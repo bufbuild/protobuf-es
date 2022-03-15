@@ -1,0 +1,9 @@
+# This is similar to the git option core.autocrlf but it applies to all
+# users of the repository and therefore doesn't depend on a developers
+# local configuration.
+* text=auto
+
+# Ignore generated files in GitHub diffs by default
+**/*_pb.ts linguist-generated=true
+**/*_pb.js linguist-generated=true
+**/*_pb.d.ts linguist-generated=true
