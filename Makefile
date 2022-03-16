@@ -124,10 +124,10 @@ test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(
 	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(TEST_DIR)/conformance_failing_tests.txt --text_format_failure_list $(TEST_DIR)/conformance_failing_tests_text_format.txt $(TEST_DIR)/bin/conformance_esm.js
 
 test-go: $(TEST_GEN)
-	go test ./internal/...
+	go test ./private/...
 
 fuzz-go:
-	gotip test ./internal/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
+	gotip test ./private/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
 
 lint: lint-es
 
@@ -135,7 +135,7 @@ lint-es: node_modules $(RUNTIME_BUILD) $(WEB_BUILD) $(TEST_BUILD)
 	npx eslint --max-warnings 0 .
 
 format: node_modules
-	go fmt ./internal/... ./cmd/...
+	go fmt ./private/... ./cmd/...
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css}' --loglevel error
 
 bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) $(WEB_BUILD)

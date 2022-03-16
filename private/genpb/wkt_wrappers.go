@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bufbuild/protobuf-es/internal/protoplugin"
-	"github.com/bufbuild/protobuf-es/internal/ts"
+	"github.com/bufbuild/protobuf-es/private/protoplugin"
+	"github.com/bufbuild/protobuf-es/private/ts"
 )
 
 type wktWrappers struct {

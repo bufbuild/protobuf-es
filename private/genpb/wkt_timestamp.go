@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/bufbuild/protobuf-es/internal/protoplugin"
+	"github.com/bufbuild/protobuf-es/private/protoplugin"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 

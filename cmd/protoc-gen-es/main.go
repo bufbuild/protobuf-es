@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/bufbuild/protobuf-es/internal/genpb"
-	"github.com/bufbuild/protobuf-es/internal/protoplugin"
+	"github.com/bufbuild/protobuf-es/private/genpb"
+	"github.com/bufbuild/protobuf-es/private/protoplugin"
 	"google.golang.org/protobuf/types/pluginpb"
 )
 
