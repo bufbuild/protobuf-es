@@ -10,6 +10,12 @@
   "bin": {
     "protoc-gen-es": "bin/protoc-gen-es"
   },
+  "scripts": {
+    "postinstall": "node postinstall.cjs"
+  },
+  "engines": {
+    "node": ">=8.5"
+  },
   "optionalDependencies": {
     "@bufbuild/protoc-gen-es-darwin-64": "0.0.1",
     "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.1",

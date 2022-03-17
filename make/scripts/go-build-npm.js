@@ -1,6 +1,13 @@
 import { exec } from "child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  copyFileSync,
+} from "fs";
 import { basename, dirname, join } from "path";
+import { fileURLToPath } from "url";
 
 if (process.argv.length < 4) {
   process.stderr.write(
@@ -17,6 +24,7 @@ if (process.argv.length < 4) {
   process.exit(1);
 }
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const npmBase = process.argv[2];
 const goPkg = process.argv[3];
 const goFlags = `-ldflags="-s -w" -trimpath`;
@@ -115,6 +123,15 @@ function scaffold(npmBase, platforms) {
   }
   const pkg = readBasePackage(npmBase);
   pkg.optionalDependencies = optionalDependencies;
+  pkg.scripts = { postinstall: "node postinstall.cjs" };
+  copyFileSync(
+    join(__dirname, "go-build-npm-postinstall.cjs"),
+    join(npmBase, "postinstall.cjs")
+  );
+  copyFileSync(
+    join(__dirname, "go-build-npm-shim.cjs"),
+    join(npmBase, Object.values(pkg.bin)[0])
+  );
   writePackage(pkg, join(npmBase, "package.json"));
 }
 
@@ -133,6 +150,9 @@ function readBasePackage(npmBase) {
   }
   if (!pkg.bin) {
     throw new Error(`${pkgPath} is missing "bin"`);
+  }
+  if (Object.keys(pkg.bin).length !== 1) {
+    throw new Error(`${pkgPath} is requires exactly one entry in "bin"`);
   }
   const binName = Object.keys(pkg.bin)[0];
   const binValue = Object.values(pkg.bin)[0];
