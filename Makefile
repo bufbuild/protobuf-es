@@ -40,7 +40,7 @@ $(PROTOC_GEN_ES_BIN): $(PROTOC_GEN_ES_SOURCES)
 # (We need --ignore-scripts so that the postinstall scripts of
 # the NPM distribution packages do not run before they are built)
 node_modules: package-lock.json
-	npm ci --force --ignore-scripts
+	npm ci --force
 
 
 # The NPM package "@bufbuild/protobuf" is the runtime library required by the code our plugin generates

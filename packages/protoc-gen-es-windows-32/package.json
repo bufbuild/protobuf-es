@@ -1,14 +1,11 @@
 {
   "name": "@bufbuild/protoc-gen-es-windows-32",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.3",
   "description": "protoc-gen-es (win32 / ia32)",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/bufbuild/protobuf-es.git"
-  },
-  "engines": {
-    "node": ">=8.5"
   },
   "os": [
     "win32"
