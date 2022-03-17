@@ -20,6 +20,7 @@ jobs:
         with:
           path: |
             ~/.cache
+            .cache
           key: ${{ runner.os }}-protobuf-es-ci-${{ hashFiles('Makefile') }}
           restore-keys: |
             ${{ runner.os }}-protobuf-es-ci-
