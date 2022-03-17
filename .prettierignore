@@ -1,0 +1,4 @@
+/packages/*/dist
+/packages/*/bin
+/.cache
+/packages/bench-codesize/src/gen
