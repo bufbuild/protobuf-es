@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-netbsd-64",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "protoc-gen-es (netbsd / x64)",
   "license": "Apache-2.0",
   "repository": {

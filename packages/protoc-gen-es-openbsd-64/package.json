@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-openbsd-64",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "protoc-gen-es (openbsd / x64)",
   "license": "Apache-2.0",
   "repository": {
