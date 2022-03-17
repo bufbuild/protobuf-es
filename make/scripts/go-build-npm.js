@@ -129,10 +129,9 @@ function scaffold(npmBase, platforms) {
     join(__dirname, "go-build-npm-postinstall.cjs"),
     join(npmBase, "postinstall.cjs")
   );
-  copyFileSync(
-    join(__dirname, "go-build-npm-shim.cjs"),
-    join(npmBase, Object.values(pkg.bin)[0])
-  );
+  const shimTarget = join(npmBase, Object.values(pkg.bin)[0]);
+  mkdirSync(dirname(shimTarget), { recursive: true });
+  copyFileSync(join(__dirname, "go-build-npm-shim.cjs"), shimTarget);
   writePackage(pkg, join(npmBase, "package.json"));
 }
 
