@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-windows-arm64",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "protoc-gen-es (win32 / arm64)",
   "license": "Apache-2.0",
   "repository": {

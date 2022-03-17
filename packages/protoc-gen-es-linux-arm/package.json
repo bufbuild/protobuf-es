@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-linux-arm",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "protoc-gen-es (linux / arm)",
   "license": "Apache-2.0",
   "repository": {
