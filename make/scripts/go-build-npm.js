@@ -111,6 +111,7 @@ function scaffold(npmBase, platforms) {
     delete pkg.peerDependencies;
     delete pkg.optionalDependencies;
     delete pkg.bin;
+    delete pkg.scripts;
     pkg.name = `${pkg.name}-${platform.name}`;
     pkg.os = [platform.npmOs];
     pkg.cpu = [platform.npmCpu];
