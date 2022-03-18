@@ -32,5 +32,3 @@ jobs:
         run: make go-build-npm
       - name: make-bench-codesize
         run: make bench-codesize
-      - name: make-format
-        run: make format

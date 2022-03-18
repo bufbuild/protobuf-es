@@ -117,7 +117,7 @@ GIT_LS_FILES_UNSTAGED_VERSION ?= v1.1.0
 # Commands
 
 .PHONY: default clean test-go test-jest test-conformance fuzz-go set-version go-build-npm
-default: lint test go-build-npm bench-codesize format
+default: lint test go-build-npm bench-codesize
 
 clean:
 	cd $(RUNTIME_DIR); npm run clean
@@ -181,6 +181,7 @@ assert-no-uncommitted:
 
 generate:
 	@$(MAKE) license-header
+	@$(MAKE) format
 
 checknodiffgenerated:
 	@ if [ -d .git ]; then \
