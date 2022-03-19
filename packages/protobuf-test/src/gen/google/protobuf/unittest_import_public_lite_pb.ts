@@ -33,73 +33,46 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // Author: liujisi@google.com (Pherl Liu)
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto2} from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessageLite
  */
 export class PublicImportMessageLite extends Message<PublicImportMessageLite> {
-  /**
-   * @generated from field: optional int32 e = 1;
-   */
-  e?: number;
 
-  constructor(data?: PartialMessage<PublicImportMessageLite>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: optional int32 e = 1;
+     */
+    e?: number;
 
-  static readonly runtime = proto2;
-  static readonly typeName = "protobuf_unittest_import.PublicImportMessageLite";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "e",
-      kind: "scalar",
-      T: 5 /* ScalarType.INT32 */,
-      opt: true,
-    },
-  ]);
+    constructor(data?: PartialMessage<PublicImportMessageLite>) {
+        super();
+        proto2.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): PublicImportMessageLite {
-    return new PublicImportMessageLite().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto2;
+    static readonly typeName = "protobuf_unittest_import.PublicImportMessageLite";
+    static readonly fields: FieldList = proto2.util.newFieldList(() => [
+        {no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): PublicImportMessageLite {
-    return new PublicImportMessageLite().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessageLite {
+        return new PublicImportMessageLite().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): PublicImportMessageLite {
-    return new PublicImportMessageLite().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicImportMessageLite {
+        return new PublicImportMessageLite().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | PublicImportMessageLite
-      | PlainMessage<PublicImportMessageLite>
-      | undefined,
-    b:
-      | PublicImportMessageLite
-      | PlainMessage<PublicImportMessageLite>
-      | undefined
-  ): boolean {
-    return proto2.util.equals(PublicImportMessageLite, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessageLite {
+        return new PublicImportMessageLite().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean {
+        return proto2.util.equals(PublicImportMessageLite, a, b);
+    }
+
 }
+
+

@@ -16,171 +16,124 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { User } from "./user_pb.js";
-import { Organization } from "./organization_pb.js";
-import { Repository } from "./repository_pb.js";
-import { Plugin, Template } from "./plugin_pb.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto3} from "@bufbuild/protobuf";
+import {User} from "./user_pb.js";
+import {Organization} from "./organization_pb.js";
+import {Repository} from "./repository_pb.js";
+import {Plugin, Template} from "./plugin_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserRequest
  */
 export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
-  /**
-   * @generated from field: string user_id = 1;
-   */
-  userId = "";
 
-  constructor(data?: PartialMessage<ForceDeleteUserRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: string user_id = 1;
+     */
+    userId = "";
 
-  static readonly runtime = proto3;
-  static readonly typeName =
-    "buf.alpha.registry.v1alpha1.ForceDeleteUserRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
+    constructor(data?: PartialMessage<ForceDeleteUserRequest>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ForceDeleteUserRequest {
-    return new ForceDeleteUserRequest().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.ForceDeleteUserRequest";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ForceDeleteUserRequest {
-    return new ForceDeleteUserRequest().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForceDeleteUserRequest {
+        return new ForceDeleteUserRequest().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ForceDeleteUserRequest {
-    return new ForceDeleteUserRequest().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForceDeleteUserRequest {
+        return new ForceDeleteUserRequest().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | ForceDeleteUserRequest
-      | PlainMessage<ForceDeleteUserRequest>
-      | undefined,
-    b: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined
-  ): boolean {
-    return proto3.util.equals(ForceDeleteUserRequest, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForceDeleteUserRequest {
+        return new ForceDeleteUserRequest().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined, b: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined): boolean {
+        return proto3.util.equals(ForceDeleteUserRequest, a, b);
+    }
+
 }
+
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserResponse
  */
 export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
-  /**
-   * The deleted user.
-   *
-   * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
-   */
-  user?: User;
 
-  /**
-   * The deleted organizations.
-   *
-   * @generated from field: repeated buf.alpha.registry.v1alpha1.Organization organizations = 2;
-   */
-  organizations: Organization[] = [];
+    /**
+     * The deleted user.
+     *
+     * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
+     */
+    user?: User;
 
-  /**
-   * The deleted repositories.
-   *
-   * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 3;
-   */
-  repositories: Repository[] = [];
+    /**
+     * The deleted organizations.
+     *
+     * @generated from field: repeated buf.alpha.registry.v1alpha1.Organization organizations = 2;
+     */
+    organizations: Organization[] = [];
 
-  /**
-   * The deleted plugins.
-   *
-   * @generated from field: repeated buf.alpha.registry.v1alpha1.Plugin plugins = 4;
-   */
-  plugins: Plugin[] = [];
+    /**
+     * The deleted repositories.
+     *
+     * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 3;
+     */
+    repositories: Repository[] = [];
 
-  /**
-   * The deleted templates.
-   *
-   * @generated from field: repeated buf.alpha.registry.v1alpha1.Template templates = 5;
-   */
-  templates: Template[] = [];
+    /**
+     * The deleted plugins.
+     *
+     * @generated from field: repeated buf.alpha.registry.v1alpha1.Plugin plugins = 4;
+     */
+    plugins: Plugin[] = [];
 
-  constructor(data?: PartialMessage<ForceDeleteUserResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The deleted templates.
+     *
+     * @generated from field: repeated buf.alpha.registry.v1alpha1.Template templates = 5;
+     */
+    templates: Template[] = [];
 
-  static readonly runtime = proto3;
-  static readonly typeName =
-    "buf.alpha.registry.v1alpha1.ForceDeleteUserResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "user", kind: "message", T: User },
-    {
-      no: 2,
-      name: "organizations",
-      kind: "message",
-      T: Organization,
-      repeated: true,
-    },
-    {
-      no: 3,
-      name: "repositories",
-      kind: "message",
-      T: Repository,
-      repeated: true,
-    },
-    { no: 4, name: "plugins", kind: "message", T: Plugin, repeated: true },
-    { no: 5, name: "templates", kind: "message", T: Template, repeated: true },
-  ]);
+    constructor(data?: PartialMessage<ForceDeleteUserResponse>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ForceDeleteUserResponse {
-    return new ForceDeleteUserResponse().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.ForceDeleteUserResponse";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "user", kind: "message", T: User},
+        {no: 2, name: "organizations", kind: "message", T: Organization, repeated: true},
+        {no: 3, name: "repositories", kind: "message", T: Repository, repeated: true},
+        {no: 4, name: "plugins", kind: "message", T: Plugin, repeated: true},
+        {no: 5, name: "templates", kind: "message", T: Template, repeated: true},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ForceDeleteUserResponse {
-    return new ForceDeleteUserResponse().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForceDeleteUserResponse {
+        return new ForceDeleteUserResponse().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ForceDeleteUserResponse {
-    return new ForceDeleteUserResponse().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForceDeleteUserResponse {
+        return new ForceDeleteUserResponse().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | ForceDeleteUserResponse
-      | PlainMessage<ForceDeleteUserResponse>
-      | undefined,
-    b:
-      | ForceDeleteUserResponse
-      | PlainMessage<ForceDeleteUserResponse>
-      | undefined
-  ): boolean {
-    return proto3.util.equals(ForceDeleteUserResponse, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForceDeleteUserResponse {
+        return new ForceDeleteUserResponse().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined, b: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined): boolean {
+        return proto3.util.equals(ForceDeleteUserResponse, a, b);
+    }
+
 }
+
+

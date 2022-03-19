@@ -16,163 +16,133 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, Timestamp, proto3 } from "@bufbuild/protobuf";
-import { Event } from "../../audit/v1alpha1/envelope_pb.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
+import {Event} from "../../audit/v1alpha1/envelope_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListAuditLogsRequest
  */
 export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
-  /**
-   * @generated from field: uint32 page_size = 1;
-   */
-  pageSize = 0;
 
-  /**
-   * The first page is returned if this is empty.
-   *
-   * @generated from field: string page_token = 2;
-   */
-  pageToken = "";
+    /**
+     * @generated from field: uint32 page_size = 1;
+     */
+    pageSize = 0;
 
-  /**
-   * @generated from field: bool reverse = 3;
-   */
-  reverse = false;
+    /**
+     * The first page is returned if this is empty.
+     *
+     * @generated from field: string page_token = 2;
+     */
+    pageToken = "";
 
-  /**
-   * Optionally specifies a start time for the query.
-   * Only audit logs from later than or equal to this time will be returned.
-   * This value is inclusive so that start_time and end_time together
-   * form a closed-open range [start_time, end_time), allowing
-   * consecutive pages to cover exclusive logs.
-   *
-   * @generated from field: google.protobuf.Timestamp start_time = 4;
-   */
-  startTime?: Timestamp;
+    /**
+     * @generated from field: bool reverse = 3;
+     */
+    reverse = false;
 
-  /**
-   * Optionally specifies an end time for the query.
-   * Only audit logs from earlier than this time will be returned.
-   * This value is exclusive, so that start_time and end_time together
-   * form a closed-open range [start_time, end_time), allowing
-   * consecutive pages to cover exclusive logs.
-   *
-   * @generated from field: google.protobuf.Timestamp end_time = 5;
-   */
-  endTime?: Timestamp;
+    /**
+     * Optionally specifies a start time for the query.
+     * Only audit logs from later than or equal to this time will be returned.
+     * This value is inclusive so that start_time and end_time together
+     * form a closed-open range [start_time, end_time), allowing
+     * consecutive pages to cover exclusive logs.
+     *
+     * @generated from field: google.protobuf.Timestamp start_time = 4;
+     */
+    startTime?: Timestamp;
 
-  constructor(data?: PartialMessage<ListAuditLogsRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Optionally specifies an end time for the query.
+     * Only audit logs from earlier than this time will be returned.
+     * This value is exclusive, so that start_time and end_time together
+     * form a closed-open range [start_time, end_time), allowing
+     * consecutive pages to cover exclusive logs.
+     *
+     * @generated from field: google.protobuf.Timestamp end_time = 5;
+     */
+    endTime?: Timestamp;
 
-  static readonly runtime = proto3;
-  static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "start_time", kind: "message", T: Timestamp },
-    { no: 5, name: "end_time", kind: "message", T: Timestamp },
-  ]);
+    constructor(data?: PartialMessage<ListAuditLogsRequest>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ListAuditLogsRequest {
-    return new ListAuditLogsRequest().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsRequest";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+        {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+        {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+        {no: 4, name: "start_time", kind: "message", T: Timestamp},
+        {no: 5, name: "end_time", kind: "message", T: Timestamp},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ListAuditLogsRequest {
-    return new ListAuditLogsRequest().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAuditLogsRequest {
+        return new ListAuditLogsRequest().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ListAuditLogsRequest {
-    return new ListAuditLogsRequest().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAuditLogsRequest {
+        return new ListAuditLogsRequest().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined,
-    b: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined
-  ): boolean {
-    return proto3.util.equals(ListAuditLogsRequest, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAuditLogsRequest {
+        return new ListAuditLogsRequest().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined, b: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined): boolean {
+        return proto3.util.equals(ListAuditLogsRequest, a, b);
+    }
+
 }
+
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListAuditLogsResponse
  */
 export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
-  /**
-   * @generated from field: repeated buf.alpha.audit.v1alpha1.Event audit_logs = 1;
-   */
-  auditLogs: Event[] = [];
 
-  /**
-   * There are no more pages if this is empty.
-   *
-   * @generated from field: string next_page_token = 2;
-   */
-  nextPageToken = "";
+    /**
+     * @generated from field: repeated buf.alpha.audit.v1alpha1.Event audit_logs = 1;
+     */
+    auditLogs: Event[] = [];
 
-  constructor(data?: PartialMessage<ListAuditLogsResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * There are no more pages if this is empty.
+     *
+     * @generated from field: string next_page_token = 2;
+     */
+    nextPageToken = "";
 
-  static readonly runtime = proto3;
-  static readonly typeName =
-    "buf.alpha.registry.v1alpha1.ListAuditLogsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "audit_logs", kind: "message", T: Event, repeated: true },
-    {
-      no: 2,
-      name: "next_page_token",
-      kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
-    },
-  ]);
+    constructor(data?: PartialMessage<ListAuditLogsResponse>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ListAuditLogsResponse {
-    return new ListAuditLogsResponse().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsResponse";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "audit_logs", kind: "message", T: Event, repeated: true},
+        {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ListAuditLogsResponse {
-    return new ListAuditLogsResponse().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAuditLogsResponse {
+        return new ListAuditLogsResponse().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ListAuditLogsResponse {
-    return new ListAuditLogsResponse().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAuditLogsResponse {
+        return new ListAuditLogsResponse().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined,
-    b: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined
-  ): boolean {
-    return proto3.util.equals(ListAuditLogsResponse, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAuditLogsResponse {
+        return new ListAuditLogsResponse().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined, b: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined): boolean {
+        return proto3.util.equals(ListAuditLogsResponse, a, b);
+    }
+
 }
+
+

@@ -32,15 +32,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "../../index.js";
-import { Message, proto3 } from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index.js";
+import {Message, proto3} from "../../index.js";
 
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
@@ -56,40 +49,33 @@ import { Message, proto3 } from "../../index.js";
  * @generated from message google.protobuf.Empty
  */
 export class Empty extends Message<Empty> {
-  constructor(data?: PartialMessage<Empty>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Empty";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
+    constructor(data?: PartialMessage<Empty>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Empty {
-    return new Empty().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Empty";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Empty {
-    return new Empty().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Empty {
+        return new Empty().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Empty {
-    return new Empty().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Empty {
+        return new Empty().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: Empty | PlainMessage<Empty> | undefined,
-    b: Empty | PlainMessage<Empty> | undefined
-  ): boolean {
-    return proto3.util.equals(Empty, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Empty {
+        return new Empty().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean {
+        return proto3.util.equals(Empty, a, b);
+    }
+
 }
+
+

@@ -41,16 +41,8 @@
 // These wrappers have no meaningful use within a map or a oneof since
 // individual entries of a map or fields of a oneof can already detect presence.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  JsonWriteOptions,
-  PartialMessage,
-  PlainMessage,
-} from "../../index.js";
-import { Message, ScalarType, proto3, protoInt64 } from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
+import {Message, ScalarType, proto3, protoInt64} from "../../index.js";
 
 /**
  * Wrapper message for `double`.
@@ -60,78 +52,69 @@ import { Message, ScalarType, proto3, protoInt64 } from "../../index.js";
  * @generated from message google.protobuf.DoubleValue
  */
 export class DoubleValue extends Message<DoubleValue> {
-  /**
-   * The double value.
-   *
-   * @generated from field: double value = 1;
-   */
-  value = 0;
 
-  constructor(data?: PartialMessage<DoubleValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The double value.
+     *
+     * @generated from field: double value = 1;
+     */
+    value = 0;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.DOUBLE, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.DOUBLE, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.DoubleValue from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<DoubleValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.DoubleValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.DOUBLE, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: number | DoubleValue): DoubleValue {
-      return value instanceof DoubleValue ? value : new DoubleValue({ value });
-    },
-    unwrapField(value: DoubleValue): number {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.DOUBLE, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.DoubleValue from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): DoubleValue {
-    return new DoubleValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.DoubleValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): DoubleValue {
-    return new DoubleValue().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: number | DoubleValue): DoubleValue {
+            return value instanceof DoubleValue ? value : new DoubleValue({value});
+        },
+        unwrapField(value: DoubleValue): number {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): DoubleValue {
-    return new DoubleValue().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoubleValue {
+        return new DoubleValue().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: DoubleValue | PlainMessage<DoubleValue> | undefined,
-    b: DoubleValue | PlainMessage<DoubleValue> | undefined
-  ): boolean {
-    return proto3.util.equals(DoubleValue, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoubleValue {
+        return new DoubleValue().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoubleValue {
+        return new DoubleValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: DoubleValue | PlainMessage<DoubleValue> | undefined, b: DoubleValue | PlainMessage<DoubleValue> | undefined): boolean {
+        return proto3.util.equals(DoubleValue, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `float`.
@@ -141,78 +124,69 @@ export class DoubleValue extends Message<DoubleValue> {
  * @generated from message google.protobuf.FloatValue
  */
 export class FloatValue extends Message<FloatValue> {
-  /**
-   * The float value.
-   *
-   * @generated from field: float value = 1;
-   */
-  value = 0;
 
-  constructor(data?: PartialMessage<FloatValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The float value.
+     *
+     * @generated from field: float value = 1;
+     */
+    value = 0;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.FLOAT, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.FLOAT, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.FloatValue from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<FloatValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.FloatValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.FLOAT, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: number | FloatValue): FloatValue {
-      return value instanceof FloatValue ? value : new FloatValue({ value });
-    },
-    unwrapField(value: FloatValue): number {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.FLOAT, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.FloatValue from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): FloatValue {
-    return new FloatValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.FloatValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 2 /* ScalarType.FLOAT */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): FloatValue {
-    return new FloatValue().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: number | FloatValue): FloatValue {
+            return value instanceof FloatValue ? value : new FloatValue({value});
+        },
+        unwrapField(value: FloatValue): number {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): FloatValue {
-    return new FloatValue().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FloatValue {
+        return new FloatValue().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: FloatValue | PlainMessage<FloatValue> | undefined,
-    b: FloatValue | PlainMessage<FloatValue> | undefined
-  ): boolean {
-    return proto3.util.equals(FloatValue, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FloatValue {
+        return new FloatValue().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FloatValue {
+        return new FloatValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: FloatValue | PlainMessage<FloatValue> | undefined, b: FloatValue | PlainMessage<FloatValue> | undefined): boolean {
+        return proto3.util.equals(FloatValue, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `int64`.
@@ -222,78 +196,69 @@ export class FloatValue extends Message<FloatValue> {
  * @generated from message google.protobuf.Int64Value
  */
 export class Int64Value extends Message<Int64Value> {
-  /**
-   * The int64 value.
-   *
-   * @generated from field: int64 value = 1;
-   */
-  value = protoInt64.zero;
 
-  constructor(data?: PartialMessage<Int64Value>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The int64 value.
+     *
+     * @generated from field: int64 value = 1;
+     */
+    value = protoInt64.zero;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.INT64, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.INT64, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.Int64Value from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<Int64Value>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Int64Value";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.INT64, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: bigint | Int64Value): Int64Value {
-      return value instanceof Int64Value ? value : new Int64Value({ value });
-    },
-    unwrapField(value: Int64Value): bigint {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.INT64, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.Int64Value from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Int64Value {
-    return new Int64Value().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Int64Value";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 3 /* ScalarType.INT64 */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Int64Value {
-    return new Int64Value().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: bigint | Int64Value): Int64Value {
+            return value instanceof Int64Value ? value : new Int64Value({value});
+        },
+        unwrapField(value: Int64Value): bigint {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Int64Value {
-    return new Int64Value().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Int64Value {
+        return new Int64Value().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: Int64Value | PlainMessage<Int64Value> | undefined,
-    b: Int64Value | PlainMessage<Int64Value> | undefined
-  ): boolean {
-    return proto3.util.equals(Int64Value, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Int64Value {
+        return new Int64Value().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int64Value {
+        return new Int64Value().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: Int64Value | PlainMessage<Int64Value> | undefined, b: Int64Value | PlainMessage<Int64Value> | undefined): boolean {
+        return proto3.util.equals(Int64Value, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `uint64`.
@@ -303,78 +268,69 @@ export class Int64Value extends Message<Int64Value> {
  * @generated from message google.protobuf.UInt64Value
  */
 export class UInt64Value extends Message<UInt64Value> {
-  /**
-   * The uint64 value.
-   *
-   * @generated from field: uint64 value = 1;
-   */
-  value = protoInt64.zero;
 
-  constructor(data?: PartialMessage<UInt64Value>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The uint64 value.
+     *
+     * @generated from field: uint64 value = 1;
+     */
+    value = protoInt64.zero;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.UINT64, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.UINT64, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.UInt64Value from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<UInt64Value>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.UInt64Value";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.UINT64, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: bigint | UInt64Value): UInt64Value {
-      return value instanceof UInt64Value ? value : new UInt64Value({ value });
-    },
-    unwrapField(value: UInt64Value): bigint {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.UINT64, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.UInt64Value from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): UInt64Value {
-    return new UInt64Value().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.UInt64Value";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 4 /* ScalarType.UINT64 */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): UInt64Value {
-    return new UInt64Value().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: bigint | UInt64Value): UInt64Value {
+            return value instanceof UInt64Value ? value : new UInt64Value({value});
+        },
+        unwrapField(value: UInt64Value): bigint {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): UInt64Value {
-    return new UInt64Value().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UInt64Value {
+        return new UInt64Value().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: UInt64Value | PlainMessage<UInt64Value> | undefined,
-    b: UInt64Value | PlainMessage<UInt64Value> | undefined
-  ): boolean {
-    return proto3.util.equals(UInt64Value, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UInt64Value {
+        return new UInt64Value().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UInt64Value {
+        return new UInt64Value().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: UInt64Value | PlainMessage<UInt64Value> | undefined, b: UInt64Value | PlainMessage<UInt64Value> | undefined): boolean {
+        return proto3.util.equals(UInt64Value, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `int32`.
@@ -384,78 +340,69 @@ export class UInt64Value extends Message<UInt64Value> {
  * @generated from message google.protobuf.Int32Value
  */
 export class Int32Value extends Message<Int32Value> {
-  /**
-   * The int32 value.
-   *
-   * @generated from field: int32 value = 1;
-   */
-  value = 0;
 
-  constructor(data?: PartialMessage<Int32Value>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The int32 value.
+     *
+     * @generated from field: int32 value = 1;
+     */
+    value = 0;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.INT32, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.INT32, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.Int32Value from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<Int32Value>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Int32Value";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.INT32, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: number | Int32Value): Int32Value {
-      return value instanceof Int32Value ? value : new Int32Value({ value });
-    },
-    unwrapField(value: Int32Value): number {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.INT32, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.Int32Value from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Int32Value {
-    return new Int32Value().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Int32Value";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Int32Value {
-    return new Int32Value().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: number | Int32Value): Int32Value {
+            return value instanceof Int32Value ? value : new Int32Value({value});
+        },
+        unwrapField(value: Int32Value): number {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Int32Value {
-    return new Int32Value().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Int32Value {
+        return new Int32Value().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: Int32Value | PlainMessage<Int32Value> | undefined,
-    b: Int32Value | PlainMessage<Int32Value> | undefined
-  ): boolean {
-    return proto3.util.equals(Int32Value, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Int32Value {
+        return new Int32Value().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int32Value {
+        return new Int32Value().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: Int32Value | PlainMessage<Int32Value> | undefined, b: Int32Value | PlainMessage<Int32Value> | undefined): boolean {
+        return proto3.util.equals(Int32Value, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `uint32`.
@@ -465,78 +412,69 @@ export class Int32Value extends Message<Int32Value> {
  * @generated from message google.protobuf.UInt32Value
  */
 export class UInt32Value extends Message<UInt32Value> {
-  /**
-   * The uint32 value.
-   *
-   * @generated from field: uint32 value = 1;
-   */
-  value = 0;
 
-  constructor(data?: PartialMessage<UInt32Value>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The uint32 value.
+     *
+     * @generated from field: uint32 value = 1;
+     */
+    value = 0;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.UINT32, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.UINT32, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.UInt32Value from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<UInt32Value>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.UInt32Value";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.UINT32, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: number | UInt32Value): UInt32Value {
-      return value instanceof UInt32Value ? value : new UInt32Value({ value });
-    },
-    unwrapField(value: UInt32Value): number {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.UINT32, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.UInt32Value from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): UInt32Value {
-    return new UInt32Value().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.UInt32Value";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): UInt32Value {
-    return new UInt32Value().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: number | UInt32Value): UInt32Value {
+            return value instanceof UInt32Value ? value : new UInt32Value({value});
+        },
+        unwrapField(value: UInt32Value): number {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): UInt32Value {
-    return new UInt32Value().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UInt32Value {
+        return new UInt32Value().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: UInt32Value | PlainMessage<UInt32Value> | undefined,
-    b: UInt32Value | PlainMessage<UInt32Value> | undefined
-  ): boolean {
-    return proto3.util.equals(UInt32Value, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UInt32Value {
+        return new UInt32Value().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UInt32Value {
+        return new UInt32Value().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: UInt32Value | PlainMessage<UInt32Value> | undefined, b: UInt32Value | PlainMessage<UInt32Value> | undefined): boolean {
+        return proto3.util.equals(UInt32Value, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `bool`.
@@ -546,78 +484,69 @@ export class UInt32Value extends Message<UInt32Value> {
  * @generated from message google.protobuf.BoolValue
  */
 export class BoolValue extends Message<BoolValue> {
-  /**
-   * The bool value.
-   *
-   * @generated from field: bool value = 1;
-   */
-  value = false;
 
-  constructor(data?: PartialMessage<BoolValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The bool value.
+     *
+     * @generated from field: bool value = 1;
+     */
+    value = false;
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.BOOL, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.BOOL, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.BoolValue from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<BoolValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.BoolValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.BOOL, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: boolean | BoolValue): BoolValue {
-      return value instanceof BoolValue ? value : new BoolValue({ value });
-    },
-    unwrapField(value: BoolValue): boolean {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.BOOL, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.BoolValue from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): BoolValue {
-    return new BoolValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.BoolValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): BoolValue {
-    return new BoolValue().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: boolean | BoolValue): BoolValue {
+            return value instanceof BoolValue ? value : new BoolValue({value});
+        },
+        unwrapField(value: BoolValue): boolean {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): BoolValue {
-    return new BoolValue().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BoolValue {
+        return new BoolValue().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: BoolValue | PlainMessage<BoolValue> | undefined,
-    b: BoolValue | PlainMessage<BoolValue> | undefined
-  ): boolean {
-    return proto3.util.equals(BoolValue, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BoolValue {
+        return new BoolValue().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolValue {
+        return new BoolValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: BoolValue | PlainMessage<BoolValue> | undefined, b: BoolValue | PlainMessage<BoolValue> | undefined): boolean {
+        return proto3.util.equals(BoolValue, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `string`.
@@ -627,78 +556,69 @@ export class BoolValue extends Message<BoolValue> {
  * @generated from message google.protobuf.StringValue
  */
 export class StringValue extends Message<StringValue> {
-  /**
-   * The string value.
-   *
-   * @generated from field: string value = 1;
-   */
-  value = "";
 
-  constructor(data?: PartialMessage<StringValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The string value.
+     *
+     * @generated from field: string value = 1;
+     */
+    value = "";
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.STRING, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.STRING, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.StringValue from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<StringValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.StringValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.STRING, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: string | StringValue): StringValue {
-      return value instanceof StringValue ? value : new StringValue({ value });
-    },
-    unwrapField(value: StringValue): string {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.STRING, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.StringValue from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): StringValue {
-    return new StringValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.StringValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): StringValue {
-    return new StringValue().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: string | StringValue): StringValue {
+            return value instanceof StringValue ? value : new StringValue({value});
+        },
+        unwrapField(value: StringValue): string {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): StringValue {
-    return new StringValue().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StringValue {
+        return new StringValue().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: StringValue | PlainMessage<StringValue> | undefined,
-    b: StringValue | PlainMessage<StringValue> | undefined
-  ): boolean {
-    return proto3.util.equals(StringValue, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StringValue {
+        return new StringValue().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StringValue {
+        return new StringValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: StringValue | PlainMessage<StringValue> | undefined, b: StringValue | PlainMessage<StringValue> | undefined): boolean {
+        return proto3.util.equals(StringValue, a, b);
+    }
+
 }
+
 
 /**
  * Wrapper message for `bytes`.
@@ -708,75 +628,67 @@ export class StringValue extends Message<StringValue> {
  * @generated from message google.protobuf.BytesValue
  */
 export class BytesValue extends Message<BytesValue> {
-  /**
-   * The bytes value.
-   *
-   * @generated from field: bytes value = 1;
-   */
-  value = new Uint8Array(0);
 
-  constructor(data?: PartialMessage<BytesValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * The bytes value.
+     *
+     * @generated from field: bytes value = 1;
+     */
+    value = new Uint8Array(0);
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return proto3.json.writeScalar(ScalarType.BYTES, this.value, true)!;
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    try {
-      this.value = proto3.json.readScalar(ScalarType.BYTES, json);
-    } catch (e) {
-      let m = `cannot decode message google.protobuf.BytesValue from JSON"`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
+    constructor(data?: PartialMessage<BytesValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.BytesValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-  ]);
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return proto3.json.writeScalar(ScalarType.BYTES, this.value, true)!;
+    }
 
-  static readonly fieldWrapper = {
-    wrapField(value: Uint8Array | BytesValue): BytesValue {
-      return value instanceof BytesValue ? value : new BytesValue({ value });
-    },
-    unwrapField(value: BytesValue): Uint8Array {
-      return value.value;
-    },
-  };
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        try {
+            this.value = proto3.json.readScalar(ScalarType.BYTES, json);
+        } catch (e) {
+            let m = `cannot decode message google.protobuf.BytesValue from JSON"`;
+            if (e instanceof Error && e.message.length > 0) {
+                m += `: ${e.message}`
+            }
+            throw new Error(m);
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): BytesValue {
-    return new BytesValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.BytesValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): BytesValue {
-    return new BytesValue().fromJson(jsonValue, options);
-  }
+    static readonly fieldWrapper = {
+        wrapField(value: Uint8Array | BytesValue): BytesValue {
+            return value instanceof BytesValue ? value : new BytesValue({value});
+        },
+        unwrapField(value: BytesValue): Uint8Array {
+            return value.value;
+        }
+    };
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): BytesValue {
-    return new BytesValue().fromJsonString(jsonString, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BytesValue {
+        return new BytesValue().fromBinary(bytes, options);
+    }
 
-  static equals(
-    a: BytesValue | PlainMessage<BytesValue> | undefined,
-    b: BytesValue | PlainMessage<BytesValue> | undefined
-  ): boolean {
-    return proto3.util.equals(BytesValue, a, b);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BytesValue {
+        return new BytesValue().fromJson(jsonValue, options);
+    }
+
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BytesValue {
+        return new BytesValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: BytesValue | PlainMessage<BytesValue> | undefined, b: BytesValue | PlainMessage<BytesValue> | undefined): boolean {
+        return proto3.util.equals(BytesValue, a, b);
+    }
+
 }
+
+

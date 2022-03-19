@@ -16,88 +16,58 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto3} from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.SelfReferencingMessage
  */
 export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
-  /**
-   * @generated from field: spec.SelfReferencingMessage self = 1;
-   */
-  self?: SelfReferencingMessage;
 
-  /**
-   * @generated from field: repeated spec.SelfReferencingMessage self_list = 2;
-   */
-  selfList: SelfReferencingMessage[] = [];
+    /**
+     * @generated from field: spec.SelfReferencingMessage self = 1;
+     */
+    self?: SelfReferencingMessage;
 
-  /**
-   * @generated from field: map<string, spec.SelfReferencingMessage> self_map = 3;
-   */
-  selfMap: { [key: string]: SelfReferencingMessage } = {};
+    /**
+     * @generated from field: repeated spec.SelfReferencingMessage self_list = 2;
+     */
+    selfList: SelfReferencingMessage[] = [];
 
-  constructor(data?: PartialMessage<SelfReferencingMessage>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: map<string, spec.SelfReferencingMessage> self_map = 3;
+     */
+    selfMap: { [key: string]: SelfReferencingMessage } = {};
 
-  static readonly runtime = proto3;
-  static readonly typeName = "spec.SelfReferencingMessage";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "self", kind: "message", T: SelfReferencingMessage },
-    {
-      no: 2,
-      name: "self_list",
-      kind: "message",
-      T: SelfReferencingMessage,
-      repeated: true,
-    },
-    {
-      no: 3,
-      name: "self_map",
-      kind: "map",
-      K: 9 /* ScalarType.STRING */,
-      V: { kind: "message", T: SelfReferencingMessage },
-    },
-  ]);
+    constructor(data?: PartialMessage<SelfReferencingMessage>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): SelfReferencingMessage {
-    return new SelfReferencingMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "spec.SelfReferencingMessage";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "self", kind: "message", T: SelfReferencingMessage},
+        {no: 2, name: "self_list", kind: "message", T: SelfReferencingMessage, repeated: true},
+        {no: 3, name: "self_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: SelfReferencingMessage}},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): SelfReferencingMessage {
-    return new SelfReferencingMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SelfReferencingMessage {
+        return new SelfReferencingMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): SelfReferencingMessage {
-    return new SelfReferencingMessage().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SelfReferencingMessage {
+        return new SelfReferencingMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | SelfReferencingMessage
-      | PlainMessage<SelfReferencingMessage>
-      | undefined,
-    b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined
-  ): boolean {
-    return proto3.util.equals(SelfReferencingMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SelfReferencingMessage {
+        return new SelfReferencingMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined, b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined): boolean {
+        return proto3.util.equals(SelfReferencingMessage, a, b);
+    }
+
 }
+
+

@@ -32,17 +32,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonObject,
-  JsonReadOptions,
-  JsonValue,
-  JsonWriteOptions,
-  PartialMessage,
-  PlainMessage,
-} from "../../index.js";
-import { Message, proto3 } from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
+import {Message, proto3} from "../../index.js";
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the
@@ -53,17 +44,19 @@ import { Message, proto3 } from "../../index.js";
  * @generated from enum google.protobuf.NullValue
  */
 export enum NullValue {
-  /**
-   * Null value.
-   *
-   * @generated from enum value: NULL_VALUE = 0;
-   */
-  NULL_VALUE = 0,
+
+    /**
+     * Null value.
+     *
+     * @generated from enum value: NULL_VALUE = 0;
+     */
+    NULL_VALUE = 0,
+
 }
 
 // Retrieve enum metadata with: proto3.getEnumType(NullValue)
 proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
-  { no: 0, name: "NULL_VALUE" },
+    {no: 0, name: "NULL_VALUE"},
 ]);
 
 /**
@@ -79,79 +72,61 @@ proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
  * @generated from message google.protobuf.Struct
  */
 export class Struct extends Message<Struct> {
-  /**
-   * Unordered map of dynamically typed values.
-   *
-   * @generated from field: map<string, google.protobuf.Value> fields = 1;
-   */
-  fields: { [key: string]: Value } = {};
 
-  constructor(data?: PartialMessage<Struct>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Unordered map of dynamically typed values.
+     *
+     * @generated from field: map<string, google.protobuf.Value> fields = 1;
+     */
+    fields: { [key: string]: Value } = {};
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    const json: JsonObject = {};
-    for (const [k, v] of Object.entries(this.fields)) {
-      json[k] = v.toJson(options);
+    constructor(data?: PartialMessage<Struct>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    return json;
-  }
 
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    if (typeof json != "object" || json == null || Array.isArray(json)) {
-      throw new Error(
-        "cannot decode google.protobuf.Struct from JSON " +
-          proto3.json.debug(json)
-      );
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        const json: JsonObject = {}
+        for (const [k, v] of Object.entries(this.fields)) {
+            json[k] = v.toJson(options);
+        }
+        return json;
     }
-    for (const [k, v] of Object.entries(json)) {
-      this.fields[k] = Value.fromJson(v);
+
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        if (typeof json != "object" || json == null || Array.isArray(json)) {
+            throw new Error("cannot decode google.protobuf.Struct from JSON " + proto3.json.debug(json));
+        }
+        for (const [k, v] of Object.entries(json)) {
+            this.fields[k] = Value.fromJson(v);
+        }
+        return this;
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Struct";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "fields",
-      kind: "map",
-      K: 9 /* ScalarType.STRING */,
-      V: { kind: "message", T: Value },
-    },
-  ]);
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Struct";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "fields", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Value}},
+    ]);
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Struct {
-    return new Struct().fromBinary(bytes, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Struct {
+        return new Struct().fromBinary(bytes, options);
+    }
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Struct {
-    return new Struct().fromJson(jsonValue, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Struct {
+        return new Struct().fromJson(jsonValue, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Struct {
-    return new Struct().fromJsonString(jsonString, options);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Struct {
+        return new Struct().fromJsonString(jsonString, options);
+    }
 
-  static equals(
-    a: Struct | PlainMessage<Struct> | undefined,
-    b: Struct | PlainMessage<Struct> | undefined
-  ): boolean {
-    return proto3.util.equals(Struct, a, b);
-  }
+    static equals(a: Struct | PlainMessage<Struct> | undefined, b: Struct | PlainMessage<Struct> | undefined): boolean {
+        return proto3.util.equals(Struct, a, b);
+    }
+
 }
+
 
 /**
  * `Value` represents a dynamically typed value which can be either
@@ -164,13 +139,13 @@ export class Struct extends Message<Struct> {
  * @generated from message google.protobuf.Value
  */
 export class Value extends Message<Value> {
-  /**
-   * The kind of value.
-   *
-   * @generated from oneof google.protobuf.Value.kind
-   */
-  kind:
-    | {
+
+    /**
+     * The kind of value.
+     *
+     * @generated from oneof google.protobuf.Value.kind
+     */
+    kind: {
         /**
          * Represents a null value.
          *
@@ -178,8 +153,7 @@ export class Value extends Message<Value> {
          */
         value: NullValue;
         case: "nullValue";
-      }
-    | {
+    } | {
         /**
          * Represents a double value.
          *
@@ -187,8 +161,7 @@ export class Value extends Message<Value> {
          */
         value: number;
         case: "numberValue";
-      }
-    | {
+    } | {
         /**
          * Represents a string value.
          *
@@ -196,8 +169,7 @@ export class Value extends Message<Value> {
          */
         value: string;
         case: "stringValue";
-      }
-    | {
+    } | {
         /**
          * Represents a boolean value.
          *
@@ -205,8 +177,7 @@ export class Value extends Message<Value> {
          */
         value: boolean;
         case: "boolValue";
-      }
-    | {
+    } | {
         /**
          * Represents a structured value.
          *
@@ -214,8 +185,7 @@ export class Value extends Message<Value> {
          */
         value: Struct;
         case: "structValue";
-      }
-    | {
+    } | {
         /**
          * Represents a repeated `Value`.
          *
@@ -223,121 +193,83 @@ export class Value extends Message<Value> {
          */
         value: ListValue;
         case: "listValue";
-      }
-    | { case: undefined; value?: undefined } = { case: undefined };
+    } | { case: undefined; value?: undefined } = { case: undefined };
 
-  constructor(data?: PartialMessage<Value>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    switch (this.kind.case) {
-      case "nullValue":
-        return null;
-      case "boolValue":
-      case "numberValue":
-      case "stringValue":
-        return this.kind.value;
-      case "structValue":
-      case "listValue":
-        return this.kind.value.toJson({ ...options, emitDefaultValues: true });
+    constructor(data?: PartialMessage<Value>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    throw new Error("google.protobuf.Value must have a value");
-  }
 
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    switch (typeof json) {
-      case "number":
-        this.kind = { case: "numberValue", value: json };
-        break;
-      case "string":
-        this.kind = { case: "stringValue", value: json };
-        break;
-      case "boolean":
-        this.kind = { case: "boolValue", value: json };
-        break;
-      case "object":
-        if (json === null) {
-          this.kind = { case: "nullValue", value: NullValue.NULL_VALUE };
-        } else if (Array.isArray(json)) {
-          this.kind = { case: "listValue", value: ListValue.fromJson(json) };
-        } else {
-          this.kind = { case: "structValue", value: Struct.fromJson(json) };
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        switch (this.kind.case) {
+            case "nullValue":
+                return null;
+            case "boolValue":
+            case "numberValue":
+            case "stringValue":
+                return this.kind.value;
+            case "structValue":
+            case "listValue":
+                return this.kind.value.toJson({...options, emitDefaultValues: true});
         }
-        break;
-      default:
-        throw new Error(
-          "cannot decode google.protobuf.Value from JSON " +
-            proto3.json.debug(json)
-        );
+        throw new Error("google.protobuf.Value must have a value");
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Value";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "null_value",
-      kind: "enum",
-      T: proto3.getEnumType(NullValue),
-      oneof: "kind",
-    },
-    {
-      no: 2,
-      name: "number_value",
-      kind: "scalar",
-      T: 1 /* ScalarType.DOUBLE */,
-      oneof: "kind",
-    },
-    {
-      no: 3,
-      name: "string_value",
-      kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
-      oneof: "kind",
-    },
-    {
-      no: 4,
-      name: "bool_value",
-      kind: "scalar",
-      T: 8 /* ScalarType.BOOL */,
-      oneof: "kind",
-    },
-    { no: 5, name: "struct_value", kind: "message", T: Struct, oneof: "kind" },
-    { no: 6, name: "list_value", kind: "message", T: ListValue, oneof: "kind" },
-  ]);
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        switch (typeof json) {
+            case "number":
+                this.kind = { case: "numberValue", value: json };
+                break;
+            case "string":
+                this.kind = { case: "stringValue", value: json };
+                break;
+            case "boolean":
+                this.kind = { case: "boolValue", value: json };
+                break;
+            case "object":
+                if (json === null) {
+                    this.kind = { case: "nullValue", value: NullValue.NULL_VALUE };
+                } else if (Array.isArray(json)) {
+                    this.kind = { case: "listValue", value: ListValue.fromJson(json) };
+                } else {
+                    this.kind = { case: "structValue", value: Struct.fromJson(json) };
+                }
+                break;
+            default:
+                throw new Error("cannot decode google.protobuf.Value from JSON " + proto3.json.debug(json));
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Value {
-    return new Value().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Value";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "null_value", kind: "enum", T: proto3.getEnumType(NullValue), oneof: "kind"},
+        {no: 2, name: "number_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind"},
+        {no: 3, name: "string_value", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
+        {no: 4, name: "bool_value", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind"},
+        {no: 5, name: "struct_value", kind: "message", T: Struct, oneof: "kind"},
+        {no: 6, name: "list_value", kind: "message", T: ListValue, oneof: "kind"},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Value {
-    return new Value().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Value {
+        return new Value().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Value {
-    return new Value().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Value {
+        return new Value().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: Value | PlainMessage<Value> | undefined,
-    b: Value | PlainMessage<Value> | undefined
-  ): boolean {
-    return proto3.util.equals(Value, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Value {
+        return new Value().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: Value | PlainMessage<Value> | undefined, b: Value | PlainMessage<Value> | undefined): boolean {
+        return proto3.util.equals(Value, a, b);
+    }
+
 }
+
 
 /**
  * `ListValue` is a wrapper around a repeated field of values.
@@ -347,66 +279,55 @@ export class Value extends Message<Value> {
  * @generated from message google.protobuf.ListValue
  */
 export class ListValue extends Message<ListValue> {
-  /**
-   * Repeated field of dynamically typed values.
-   *
-   * @generated from field: repeated google.protobuf.Value values = 1;
-   */
-  values: Value[] = [];
 
-  constructor(data?: PartialMessage<ListValue>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Repeated field of dynamically typed values.
+     *
+     * @generated from field: repeated google.protobuf.Value values = 1;
+     */
+    values: Value[] = [];
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    return this.values.map((v) => v.toJson());
-  }
-
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    if (!Array.isArray(json)) {
-      throw new Error(
-        "cannot decode google.protobuf.ListValue from JSON " +
-          proto3.json.debug(json)
-      );
+    constructor(data?: PartialMessage<ListValue>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    for (let e of json) {
-      this.values.push(Value.fromJson(e));
+
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        return this.values.map(v => v.toJson());
     }
-    return this;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.ListValue";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "values", kind: "message", T: Value, repeated: true },
-  ]);
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        if (!Array.isArray(json)) {
+            throw new Error("cannot decode google.protobuf.ListValue from JSON " + proto3.json.debug(json));
+        }
+        for (let e of json) {
+            this.values.push(Value.fromJson(e));
+        }
+        return this;
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ListValue {
-    return new ListValue().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.ListValue";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "values", kind: "message", T: Value, repeated: true},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ListValue {
-    return new ListValue().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListValue {
+        return new ListValue().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ListValue {
-    return new ListValue().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListValue {
+        return new ListValue().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: ListValue | PlainMessage<ListValue> | undefined,
-    b: ListValue | PlainMessage<ListValue> | undefined
-  ): boolean {
-    return proto3.util.equals(ListValue, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListValue {
+        return new ListValue().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ListValue | PlainMessage<ListValue> | undefined, b: ListValue | PlainMessage<ListValue> | undefined): boolean {
+        return proto3.util.equals(ListValue, a, b);
+    }
+
 }
+
+

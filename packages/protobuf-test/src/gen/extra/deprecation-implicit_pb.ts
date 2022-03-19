@@ -16,64 +16,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto3} from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage
  * @deprecated
  */
 export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
-  constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
+    constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ImplicitlyDeprecatedMessage {
-    return new ImplicitlyDeprecatedMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ImplicitlyDeprecatedMessage {
-    return new ImplicitlyDeprecatedMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage {
+        return new ImplicitlyDeprecatedMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ImplicitlyDeprecatedMessage {
-    return new ImplicitlyDeprecatedMessage().fromJsonString(
-      jsonString,
-      options
-    );
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
+        return new ImplicitlyDeprecatedMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | ImplicitlyDeprecatedMessage
-      | PlainMessage<ImplicitlyDeprecatedMessage>
-      | undefined,
-    b:
-      | ImplicitlyDeprecatedMessage
-      | PlainMessage<ImplicitlyDeprecatedMessage>
-      | undefined
-  ): boolean {
-    return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
+        return new ImplicitlyDeprecatedMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean {
+        return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
+    }
+
 }
+
+

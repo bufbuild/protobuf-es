@@ -37,67 +37,46 @@
 //
 // A proto file we will use for unit testing.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto2} from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.lazy_imports.LazyMessage
  */
 export class LazyMessage extends Message<LazyMessage> {
-  /**
-   * @generated from field: optional int32 a = 1;
-   */
-  a?: number;
 
-  constructor(data?: PartialMessage<LazyMessage>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: optional int32 a = 1;
+     */
+    a?: number;
 
-  static readonly runtime = proto2;
-  static readonly typeName = "protobuf_unittest.lazy_imports.LazyMessage";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "a",
-      kind: "scalar",
-      T: 5 /* ScalarType.INT32 */,
-      opt: true,
-    },
-  ]);
+    constructor(data?: PartialMessage<LazyMessage>) {
+        super();
+        proto2.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): LazyMessage {
-    return new LazyMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto2;
+    static readonly typeName = "protobuf_unittest.lazy_imports.LazyMessage";
+    static readonly fields: FieldList = proto2.util.newFieldList(() => [
+        {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): LazyMessage {
-    return new LazyMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LazyMessage {
+        return new LazyMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): LazyMessage {
-    return new LazyMessage().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LazyMessage {
+        return new LazyMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: LazyMessage | PlainMessage<LazyMessage> | undefined,
-    b: LazyMessage | PlainMessage<LazyMessage> | undefined
-  ): boolean {
-    return proto2.util.equals(LazyMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LazyMessage {
+        return new LazyMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean {
+        return proto2.util.equals(LazyMessage, a, b);
+    }
+
 }
+
+

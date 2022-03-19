@@ -57,11 +57,14 @@ linters:
 issues:
   exclude-rules:
     - linters: [gosec]
-      path: internal/protoplugin/names.go
+      path: private/protoplugin/names.go
       text: "G101: Potential hardcoded credentials"
     - linters: [stylecheck]
-      path: internal/protoplugin/comments.go
+      path: private/protoplugin/comments.go
       text: "ST1003: should not use underscores in Go names; const fieldNumber_"
     - linters: [stylecheck]
-      path: internal/protoplugin/runtime.go
+      path: private/protoplugin/runtime.go
       text: "ST1003: struct field Json"
+    - linters: [dogsled]
+      path: private/genpb/wkt_struct.go
+      text: "declaration has 6 blank identifiers"

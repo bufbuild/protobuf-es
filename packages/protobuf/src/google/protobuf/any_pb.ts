@@ -32,17 +32,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  JsonWriteOptions,
-  MessageType,
-  PartialMessage,
-  PlainMessage,
-} from "../../index.js";
-import { Message, proto3 } from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "../../index.js";
+import {Message, proto3} from "../../index.js";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -132,184 +123,157 @@ import { Message, proto3 } from "../../index.js";
  * @generated from message google.protobuf.Any
  */
 export class Any extends Message<Any> {
-  /**
-   * A URL/resource name that uniquely identifies the type of the serialized
-   * protocol buffer message. This string must contain at least
-   * one "/" character. The last segment of the URL's path must represent
-   * the fully qualified name of the type (as in
-   * `path/google.protobuf.Duration`). The name should be in a canonical form
-   * (e.g., leading "." is not accepted).
-   *
-   * In practice, teams usually precompile into the binary all types that they
-   * expect it to use in the context of Any. However, for URLs which use the
-   * scheme `http`, `https`, or no scheme, one can optionally set up a type
-   * server that maps type URLs to message definitions as follows:
-   *
-   * * If no scheme is provided, `https` is assumed.
-   * * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-   *   value in binary format, or produce an error.
-   * * Applications are allowed to cache lookup results based on the
-   *   URL, or have them precompiled into a binary to avoid any
-   *   lookup. Therefore, binary compatibility needs to be preserved
-   *   on changes to types. (Use versioned type names to manage
-   *   breaking changes.)
-   *
-   * Note: this functionality is not currently available in the official
-   * protobuf release, and it is not used for type URLs beginning with
-   * type.googleapis.com.
-   *
-   * Schemes other than `http`, `https` (or the empty scheme) might be
-   * used with implementation specific semantics.
-   *
-   *
-   * @generated from field: string type_url = 1;
-   */
-  typeUrl = "";
 
-  /**
-   * Must be a valid serialized protocol buffer of the above specified type.
-   *
-   * @generated from field: bytes value = 2;
-   */
-  value = new Uint8Array(0);
+    /**
+     * A URL/resource name that uniquely identifies the type of the serialized
+     * protocol buffer message. This string must contain at least
+     * one "/" character. The last segment of the URL's path must represent
+     * the fully qualified name of the type (as in
+     * `path/google.protobuf.Duration`). The name should be in a canonical form
+     * (e.g., leading "." is not accepted).
+     *
+     * In practice, teams usually precompile into the binary all types that they
+     * expect it to use in the context of Any. However, for URLs which use the
+     * scheme `http`, `https`, or no scheme, one can optionally set up a type
+     * server that maps type URLs to message definitions as follows:
+     *
+     * * If no scheme is provided, `https` is assumed.
+     * * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+     *   value in binary format, or produce an error.
+     * * Applications are allowed to cache lookup results based on the
+     *   URL, or have them precompiled into a binary to avoid any
+     *   lookup. Therefore, binary compatibility needs to be preserved
+     *   on changes to types. (Use versioned type names to manage
+     *   breaking changes.)
+     *
+     * Note: this functionality is not currently available in the official
+     * protobuf release, and it is not used for type URLs beginning with
+     * type.googleapis.com.
+     *
+     * Schemes other than `http`, `https` (or the empty scheme) might be
+     * used with implementation specific semantics.
+     *
+     *
+     * @generated from field: string type_url = 1;
+     */
+    typeUrl = "";
 
-  constructor(data?: PartialMessage<Any>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Must be a valid serialized protocol buffer of the above specified type.
+     *
+     * @generated from field: bytes value = 2;
+     */
+    value = new Uint8Array(0);
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    if (this.typeUrl === "") {
-      return {};
+    constructor(data?: PartialMessage<Any>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    const typeName = this.typeUrlToName(this.typeUrl);
-    const messageType = options?.typeRegistry?.findMessage(typeName);
-    if (!messageType) {
-      throw new Error(
-        `cannot encode message google.protobuf.Any to JSON: "${this.typeUrl}" is not in the type registry`
-      );
+
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        if (this.typeUrl === "") {
+            return {};
+        }
+        const typeName = this.typeUrlToName(this.typeUrl);
+        const messageType = options?.typeRegistry?.findMessage(typeName);
+        if (!messageType) {
+            throw new Error(`cannot encode message google.protobuf.Any to JSON: "${this.typeUrl}" is not in the type registry`);
+        }
+        const message = messageType.fromBinary(this.value);
+        let json = message.toJson(options);
+        if (typeName.startsWith("google.protobuf.") || (json === null || Array.isArray(json) || typeof json !== "object")) {
+            json = {value: json};
+        }
+        json["@type"] = this.typeUrl;
+        return json;
     }
-    const message = messageType.fromBinary(this.value);
-    let json = message.toJson(options);
-    if (
-      typeName.startsWith("google.protobuf.") ||
-      json === null ||
-      Array.isArray(json) ||
-      typeof json !== "object"
-    ) {
-      json = { value: json };
+
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        if (json === null || Array.isArray(json) || typeof json != "object") {
+            throw new Error(`cannot decode message google.protobuf.Any from JSON: expected object but got ${json === null ? "null" : Array.isArray(json) ? "array" : typeof json}`);
+        }
+        const typeUrl = json["@type"];
+        if (typeof typeUrl != "string" || typeUrl == "") {
+            throw new Error(`cannot decode message google.protobuf.Any from JSON: "@type" is empty`);
+        }
+        const typeName = this.typeUrlToName(typeUrl), messageType = options?.typeRegistry?.findMessage(typeName);
+        if (!messageType) {
+            throw new Error(`cannot decode message google.protobuf.Any from JSON: ${typeUrl} is not in the type registry`);
+        }
+        let message;
+        if (typeName.startsWith("google.protobuf.") &&  Object.prototype.hasOwnProperty.call(json, "value")) {
+            message = messageType.fromJson(json["value"], options);
+        } else {
+            const copy = Object.assign({}, json);
+            delete copy["@type"];
+            message = messageType.fromJson(copy, options);
+        }
+        this.packFrom(message);
+        return this;
     }
-    json["@type"] = this.typeUrl;
-    return json;
-  }
 
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    if (json === null || Array.isArray(json) || typeof json != "object") {
-      throw new Error(
-        `cannot decode message google.protobuf.Any from JSON: expected object but got ${
-          json === null ? "null" : Array.isArray(json) ? "array" : typeof json
-        }`
-      );
+    packFrom(message: Message): void {
+        this.value = message.toBinary();
+        this.typeUrl = this.typeNameToUrl(message.getType().typeName);
     }
-    const typeUrl = json["@type"];
-    if (typeof typeUrl != "string" || typeUrl == "") {
-      throw new Error(
-        `cannot decode message google.protobuf.Any from JSON: "@type" is empty`
-      );
+
+    unpackTo(target: Message): boolean {
+        if (!this.is(target.getType())) {
+            return false;
+        }
+        target.fromBinary(this.value);
+        return true;
     }
-    const typeName = this.typeUrlToName(typeUrl),
-      messageType = options?.typeRegistry?.findMessage(typeName);
-    if (!messageType) {
-      throw new Error(
-        `cannot decode message google.protobuf.Any from JSON: ${typeUrl} is not in the type registry`
-      );
+
+    is(type: MessageType): boolean {
+        return this.typeUrl === this.typeNameToUrl(type.typeName);
     }
-    let message;
-    if (
-      typeName.startsWith("google.protobuf.") &&
-      Object.prototype.hasOwnProperty.call(json, "value")
-    ) {
-      message = messageType.fromJson(json["value"], options);
-    } else {
-      const copy = Object.assign({}, json);
-      delete copy["@type"];
-      message = messageType.fromJson(copy, options);
+
+    private typeNameToUrl(name: string): string {
+        return `type.googleapis.com/${name}`;
     }
-    this.packFrom(message);
-    return this;
-  }
 
-  packFrom(message: Message): void {
-    this.value = message.toBinary();
-    this.typeUrl = this.typeNameToUrl(message.getType().typeName);
-  }
-
-  unpackTo(target: Message): boolean {
-    if (!this.is(target.getType())) {
-      return false;
+    private typeUrlToName(url: string): string {
+        if (!url.length) {
+            throw new Error(`invalid type url: ${url}`);
+        }
+        const slash = url.lastIndexOf("/");
+        const name = slash > 0 ? url.substring(slash + 1) : url;
+        if (!name.length) {
+            throw new Error(`invalid type url: ${url}`);
+        }
+        return name;
     }
-    target.fromBinary(this.value);
-    return true;
-  }
 
-  is(type: MessageType): boolean {
-    return this.typeUrl === this.typeNameToUrl(type.typeName);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Any";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
+        {no: 2, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    ]);
 
-  private typeNameToUrl(name: string): string {
-    return `type.googleapis.com/${name}`;
-  }
-
-  private typeUrlToName(url: string): string {
-    if (!url.length) {
-      throw new Error(`invalid type url: ${url}`);
+    static pack(message: Message): Any {
+        const any = new Any();
+        any.packFrom(message);
+        return any;
     }
-    const slash = url.lastIndexOf("/");
-    const name = slash > 0 ? url.substring(slash + 1) : url;
-    if (!name.length) {
-      throw new Error(`invalid type url: ${url}`);
+
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Any {
+        return new Any().fromBinary(bytes, options);
     }
-    return name;
-  }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Any";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-  ]);
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Any {
+        return new Any().fromJson(jsonValue, options);
+    }
 
-  static pack(message: Message): Any {
-    const any = new Any();
-    any.packFrom(message);
-    return any;
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Any {
+        return new Any().fromJsonString(jsonString, options);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Any {
-    return new Any().fromBinary(bytes, options);
-  }
+    static equals(a: Any | PlainMessage<Any> | undefined, b: Any | PlainMessage<Any> | undefined): boolean {
+        return proto3.util.equals(Any, a, b);
+    }
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Any {
-    return new Any().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Any {
-    return new Any().fromJsonString(jsonString, options);
-  }
-
-  static equals(
-    a: Any | PlainMessage<Any> | undefined,
-    b: Any | PlainMessage<Any> | undefined
-  ): boolean {
-    return proto3.util.equals(Any, a, b);
-  }
 }
+
+

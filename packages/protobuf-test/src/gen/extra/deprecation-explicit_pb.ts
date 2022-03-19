@@ -16,15 +16,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto3} from "@bufbuild/protobuf";
 
 /**
  * The entire enum is deprecated
@@ -33,21 +26,23 @@ import { Message, proto3 } from "@bufbuild/protobuf";
  * @deprecated
  */
 export enum DeprecatedEnum {
-  /**
-   * @generated from enum value: DEPRECATED_ENUM_A = 0;
-   */
-  A = 0,
 
-  /**
-   * @generated from enum value: DEPRECATED_ENUM_B = 1;
-   */
-  B = 1,
+    /**
+     * @generated from enum value: DEPRECATED_ENUM_A = 0;
+     */
+    A = 0,
+
+    /**
+     * @generated from enum value: DEPRECATED_ENUM_B = 1;
+     */
+    B = 1,
+
 }
 
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnum)
 proto3.util.setEnumType(DeprecatedEnum, "spec.DeprecatedEnum", [
-  { no: 0, name: "DEPRECATED_ENUM_A" },
-  { no: 1, name: "DEPRECATED_ENUM_B" },
+    {no: 0, name: "DEPRECATED_ENUM_A"},
+    {no: 1, name: "DEPRECATED_ENUM_B"},
 ]);
 
 /**
@@ -56,22 +51,24 @@ proto3.util.setEnumType(DeprecatedEnum, "spec.DeprecatedEnum", [
  * @generated from enum spec.DeprecatedValueEnum
  */
 export enum DeprecatedValueEnum {
-  /**
-   * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
 
-  /**
-   * @generated from enum value: DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE = 1 [deprecated = true];
-   * @deprecated
-   */
-  DEPRECATED_VALUE = 1,
+    /**
+     * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
+     */
+    UNSPECIFIED = 0,
+
+    /**
+     * @generated from enum value: DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE = 1 [deprecated = true];
+     * @deprecated
+     */
+    DEPRECATED_VALUE = 1,
+
 }
 
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedValueEnum)
 proto3.util.setEnumType(DeprecatedValueEnum, "spec.DeprecatedValueEnum", [
-  { no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED" },
-  { no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE" },
+    {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
+    {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE"},
 ]);
 
 /**
@@ -81,50 +78,41 @@ proto3.util.setEnumType(DeprecatedValueEnum, "spec.DeprecatedValueEnum", [
  * @deprecated
  */
 export class DeprecatedMessage extends Message<DeprecatedMessage> {
-  /**
-   * @generated from field: string field = 1;
-   */
-  field = "";
 
-  constructor(data?: PartialMessage<DeprecatedMessage>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: string field = 1;
+     */
+    field = "";
 
-  static readonly runtime = proto3;
-  static readonly typeName = "spec.DeprecatedMessage";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
+    constructor(data?: PartialMessage<DeprecatedMessage>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): DeprecatedMessage {
-    return new DeprecatedMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "spec.DeprecatedMessage";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): DeprecatedMessage {
-    return new DeprecatedMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedMessage {
+        return new DeprecatedMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): DeprecatedMessage {
-    return new DeprecatedMessage().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedMessage {
+        return new DeprecatedMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined,
-    b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined
-  ): boolean {
-    return proto3.util.equals(DeprecatedMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedMessage {
+        return new DeprecatedMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean {
+        return proto3.util.equals(DeprecatedMessage, a, b);
+    }
+
 }
+
 
 /**
  * A single field of this message is deprecated
@@ -132,71 +120,50 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
  * @generated from message spec.DeprecatedFieldMessage
  */
 export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
-  /**
-   * This field is deprecated
-   *
-   * @generated from field: string deprecated_field = 1 [deprecated = true];
-   * @deprecated
-   */
-  deprecatedField = "";
 
-  /**
-   * This field is not deprecated
-   *
-   * @generated from field: string current_field = 2;
-   */
-  currentField = "";
+    /**
+     * This field is deprecated
+     *
+     * @generated from field: string deprecated_field = 1 [deprecated = true];
+     * @deprecated
+     */
+    deprecatedField = "";
 
-  constructor(data?: PartialMessage<DeprecatedFieldMessage>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * This field is not deprecated
+     *
+     * @generated from field: string current_field = 2;
+     */
+    currentField = "";
 
-  static readonly runtime = proto3;
-  static readonly typeName = "spec.DeprecatedFieldMessage";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "deprecated_field",
-      kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
-    },
-    {
-      no: 2,
-      name: "current_field",
-      kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
-    },
-  ]);
+    constructor(data?: PartialMessage<DeprecatedFieldMessage>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): DeprecatedFieldMessage {
-    return new DeprecatedFieldMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "spec.DeprecatedFieldMessage";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+        {no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): DeprecatedFieldMessage {
-    return new DeprecatedFieldMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedFieldMessage {
+        return new DeprecatedFieldMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): DeprecatedFieldMessage {
-    return new DeprecatedFieldMessage().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage {
+        return new DeprecatedFieldMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | DeprecatedFieldMessage
-      | PlainMessage<DeprecatedFieldMessage>
-      | undefined,
-    b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined
-  ): boolean {
-    return proto3.util.equals(DeprecatedFieldMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage {
+        return new DeprecatedFieldMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean {
+        return proto3.util.equals(DeprecatedFieldMessage, a, b);
+    }
+
 }
+
+

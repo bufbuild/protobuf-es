@@ -37,41 +37,36 @@
 //
 // A proto file which is imported by unittest.proto to test importing.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto2} from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
  */
 export enum ImportEnum {
-  /**
-   * @generated from enum value: IMPORT_FOO = 7;
-   */
-  IMPORT_FOO = 7,
 
-  /**
-   * @generated from enum value: IMPORT_BAR = 8;
-   */
-  IMPORT_BAR = 8,
+    /**
+     * @generated from enum value: IMPORT_FOO = 7;
+     */
+    IMPORT_FOO = 7,
 
-  /**
-   * @generated from enum value: IMPORT_BAZ = 9;
-   */
-  IMPORT_BAZ = 9,
+    /**
+     * @generated from enum value: IMPORT_BAR = 8;
+     */
+    IMPORT_BAR = 8,
+
+    /**
+     * @generated from enum value: IMPORT_BAZ = 9;
+     */
+    IMPORT_BAZ = 9,
+
 }
 
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnum)
 proto2.util.setEnumType(ImportEnum, "protobuf_unittest_import.ImportEnum", [
-  { no: 7, name: "IMPORT_FOO" },
-  { no: 8, name: "IMPORT_BAR" },
-  { no: 9, name: "IMPORT_BAZ" },
+    {no: 7, name: "IMPORT_FOO"},
+    {no: 8, name: "IMPORT_BAR"},
+    {no: 9, name: "IMPORT_BAZ"},
 ]);
 
 /**
@@ -80,84 +75,68 @@ proto2.util.setEnumType(ImportEnum, "protobuf_unittest_import.ImportEnum", [
  * @generated from enum protobuf_unittest_import.ImportEnumForMap
  */
 export enum ImportEnumForMap {
-  /**
-   * @generated from enum value: UNKNOWN = 0;
-   */
-  UNKNOWN = 0,
 
-  /**
-   * @generated from enum value: FOO = 1;
-   */
-  FOO = 1,
+    /**
+     * @generated from enum value: UNKNOWN = 0;
+     */
+    UNKNOWN = 0,
 
-  /**
-   * @generated from enum value: BAR = 2;
-   */
-  BAR = 2,
+    /**
+     * @generated from enum value: FOO = 1;
+     */
+    FOO = 1,
+
+    /**
+     * @generated from enum value: BAR = 2;
+     */
+    BAR = 2,
+
 }
 
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumForMap)
-proto2.util.setEnumType(
-  ImportEnumForMap,
-  "protobuf_unittest_import.ImportEnumForMap",
-  [
-    { no: 0, name: "UNKNOWN" },
-    { no: 1, name: "FOO" },
-    { no: 2, name: "BAR" },
-  ]
-);
+proto2.util.setEnumType(ImportEnumForMap, "protobuf_unittest_import.ImportEnumForMap", [
+    {no: 0, name: "UNKNOWN"},
+    {no: 1, name: "FOO"},
+    {no: 2, name: "BAR"},
+]);
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
  */
 export class ImportMessage extends Message<ImportMessage> {
-  /**
-   * @generated from field: optional int32 d = 1;
-   */
-  d?: number;
 
-  constructor(data?: PartialMessage<ImportMessage>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: optional int32 d = 1;
+     */
+    d?: number;
 
-  static readonly runtime = proto2;
-  static readonly typeName = "protobuf_unittest_import.ImportMessage";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "d",
-      kind: "scalar",
-      T: 5 /* ScalarType.INT32 */,
-      opt: true,
-    },
-  ]);
+    constructor(data?: PartialMessage<ImportMessage>) {
+        super();
+        proto2.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): ImportMessage {
-    return new ImportMessage().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto2;
+    static readonly typeName = "protobuf_unittest_import.ImportMessage";
+    static readonly fields: FieldList = proto2.util.newFieldList(() => [
+        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): ImportMessage {
-    return new ImportMessage().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessage {
+        return new ImportMessage().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): ImportMessage {
-    return new ImportMessage().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessage {
+        return new ImportMessage().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a: ImportMessage | PlainMessage<ImportMessage> | undefined,
-    b: ImportMessage | PlainMessage<ImportMessage> | undefined
-  ): boolean {
-    return proto2.util.equals(ImportMessage, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessage {
+        return new ImportMessage().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean {
+        return proto2.util.equals(ImportMessage, a, b);
+    }
+
 }
+
+

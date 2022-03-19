@@ -11,29 +11,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-var jspb = require("google-protobuf");
+var jspb = require('google-protobuf');
 var goog = jspb;
-var global = function () {
-  if (this) {
-    return this;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  return Function("return this")();
-}.call(null);
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
-goog.exportSymbol(
-  "proto.buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1SearchFilter",
-  null,
-  global
-);
+goog.exportSymbol('proto.buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1SearchFilter', null, global);
 /**
  * @enum {number}
  */
@@ -44,7 +32,7 @@ proto.buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1SearchFilter = {
   BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_REPOSITORY: 3,
   BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_PLUGIN: 4,
   BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_TEMPLATE: 5,
-  BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_TEAM: 6,
+  BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_TEAM: 6
 };
 
 goog.object.extend(exports, proto.buf.alpha.audit.v1alpha1);

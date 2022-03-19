@@ -32,16 +32,8 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  JsonWriteOptions,
-  PartialMessage,
-  PlainMessage,
-} from "../../index.js";
-import { Message, proto3, protoInt64 } from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
+import {Message, proto3, protoInt64} from "../../index.js";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local
@@ -141,162 +133,115 @@ import { Message, proto3, protoInt64 } from "../../index.js";
  * @generated from message google.protobuf.Timestamp
  */
 export class Timestamp extends Message<Timestamp> {
-  /**
-   * Represents seconds of UTC time since Unix epoch
-   * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59Z inclusive.
-   *
-   * @generated from field: int64 seconds = 1;
-   */
-  seconds = protoInt64.zero;
 
-  /**
-   * Non-negative fractions of a second at nanosecond resolution. Negative
-   * second values with fractions must still have non-negative nanos values
-   * that count forward in time. Must be from 0 to 999,999,999
-   * inclusive.
-   *
-   * @generated from field: int32 nanos = 2;
-   */
-  nanos = 0;
+    /**
+     * Represents seconds of UTC time since Unix epoch
+     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+     * 9999-12-31T23:59:59Z inclusive.
+     *
+     * @generated from field: int64 seconds = 1;
+     */
+    seconds = protoInt64.zero;
 
-  constructor(data?: PartialMessage<Timestamp>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Negative
+     * second values with fractions must still have non-negative nanos values
+     * that count forward in time. Must be from 0 to 999,999,999
+     * inclusive.
+     *
+     * @generated from field: int32 nanos = 2;
+     */
+    nanos = 0;
 
-  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-    if (typeof json !== "string") {
-      throw new Error(
-        `cannot decode google.protobuf.Timestamp from JSON: ${proto3.json.debug(
-          json
-        )}`
-      );
+    constructor(data?: PartialMessage<Timestamp>) {
+        super();
+        proto3.util.initPartial(data, this);
     }
-    const matches = json.match(
-      /^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:Z|\.([0-9]{3,9})Z|([+-][0-9][0-9]:[0-9][0-9]))$/
-    );
-    if (!matches) {
-      throw new Error(
-        `cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string`
-      );
+
+    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+        if (typeof json !== "string") {
+            throw new Error(`cannot decode google.protobuf.Timestamp from JSON: ${proto3.json.debug(json)}`);
+        }
+        const matches = json.match(/^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:Z|\.([0-9]{3,9})Z|([+-][0-9][0-9]:[0-9][0-9]))$/);
+        if (!matches) {
+            throw new Error(`cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string`);
+        }
+        const ms = Date.parse(matches[1] + "-" + matches[2] + "-" + matches[3] + "T" + matches[4] + ":" + matches[5] + ":" + matches[6] + (matches[8] ? matches[8] : "Z"));
+        if (Number.isNaN(ms)) {
+            throw new Error(`cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string`);
+        }
+        if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {
+            throw new Error(`cannot decode message google.protobuf.Timestamp from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);
+        }
+        this.seconds = protoInt64.parse(ms / 1000);
+        this.nanos = 0;
+        if (matches[7]) {
+            this.nanos = (parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) - 1000000000);
+        }
+        return this;
     }
-    const ms = Date.parse(
-      matches[1] +
-        "-" +
-        matches[2] +
-        "-" +
-        matches[3] +
-        "T" +
-        matches[4] +
-        ":" +
-        matches[5] +
-        ":" +
-        matches[6] +
-        (matches[8] ? matches[8] : "Z")
-    );
-    if (Number.isNaN(ms)) {
-      throw new Error(
-        `cannot decode google.protobuf.Timestamp from JSON: invalid RFC 3339 string`
-      );
+
+    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+        const ms = Number(this.seconds) * 1000;
+        if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {
+            throw new Error(`cannot encode google.protobuf.Timestamp to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);
+        }
+        if (this.nanos < 0) {
+            throw new Error(`cannot encode google.protobuf.Timestamp to JSON: nanos must not be negative`);
+        }
+        let z = "Z";
+        if (this.nanos > 0) {
+            const nanosStr = (this.nanos + 1000000000).toString().substring(1);
+            if (nanosStr.substring(3) === "000000") {
+                z = "." + nanosStr.substring(0, 3) + "Z";
+            } else if (nanosStr.substring(6) === "000") {
+                z = "." + nanosStr.substring(0, 6) + "Z";
+            } else {
+                z = "." + nanosStr + "Z";
+            }
+        }
+        return new Date(ms).toISOString().replace(".000Z", z);
     }
-    if (
-      ms < Date.parse("0001-01-01T00:00:00Z") ||
-      ms > Date.parse("9999-12-31T23:59:59Z")
-    ) {
-      throw new Error(
-        `cannot decode message google.protobuf.Timestamp from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`
-      );
+
+    toDate(): Date {
+        return new Date(Number(this.seconds) * 1000 + Math.ceil(this.nanos / 1000000));
     }
-    this.seconds = protoInt64.parse(ms / 1000);
-    this.nanos = 0;
-    if (matches[7]) {
-      this.nanos =
-        parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) -
-        1000000000;
+
+    static readonly runtime = proto3;
+    static readonly typeName = "google.protobuf.Timestamp";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */},
+        {no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    ]);
+
+    static now(): Timestamp {
+        return Timestamp.fromDate(new Date())
     }
-    return this;
-  }
 
-  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-    const ms = Number(this.seconds) * 1000;
-    if (
-      ms < Date.parse("0001-01-01T00:00:00Z") ||
-      ms > Date.parse("9999-12-31T23:59:59Z")
-    ) {
-      throw new Error(
-        `cannot encode google.protobuf.Timestamp to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`
-      );
+    static fromDate(date: Date): Timestamp {
+        const ms = date.getTime();
+        return new Timestamp({
+            seconds: protoInt64.parse(Math.floor(ms / 1000)),
+            nanos: (ms % 1000) * 1000000,
+        });
     }
-    if (this.nanos < 0) {
-      throw new Error(
-        `cannot encode google.protobuf.Timestamp to JSON: nanos must not be negative`
-      );
+
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Timestamp {
+        return new Timestamp().fromBinary(bytes, options);
     }
-    let z = "Z";
-    if (this.nanos > 0) {
-      const nanosStr = (this.nanos + 1000000000).toString().substring(1);
-      if (nanosStr.substring(3) === "000000") {
-        z = "." + nanosStr.substring(0, 3) + "Z";
-      } else if (nanosStr.substring(6) === "000") {
-        z = "." + nanosStr.substring(0, 6) + "Z";
-      } else {
-        z = "." + nanosStr + "Z";
-      }
+
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Timestamp {
+        return new Timestamp().fromJson(jsonValue, options);
     }
-    return new Date(ms).toISOString().replace(".000Z", z);
-  }
 
-  toDate(): Date {
-    return new Date(
-      Number(this.seconds) * 1000 + Math.ceil(this.nanos / 1000000)
-    );
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Timestamp {
+        return new Timestamp().fromJsonString(jsonString, options);
+    }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "google.protobuf.Timestamp";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-  ]);
+    static equals(a: Timestamp | PlainMessage<Timestamp> | undefined, b: Timestamp | PlainMessage<Timestamp> | undefined): boolean {
+        return proto3.util.equals(Timestamp, a, b);
+    }
 
-  static now(): Timestamp {
-    return Timestamp.fromDate(new Date());
-  }
-
-  static fromDate(date: Date): Timestamp {
-    const ms = date.getTime();
-    return new Timestamp({
-      seconds: protoInt64.parse(Math.floor(ms / 1000)),
-      nanos: (ms % 1000) * 1000000,
-    });
-  }
-
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Timestamp {
-    return new Timestamp().fromBinary(bytes, options);
-  }
-
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Timestamp {
-    return new Timestamp().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Timestamp {
-    return new Timestamp().fromJsonString(jsonString, options);
-  }
-
-  static equals(
-    a: Timestamp | PlainMessage<Timestamp> | undefined,
-    b: Timestamp | PlainMessage<Timestamp> | undefined
-  ): boolean {
-    return proto3.util.equals(Timestamp, a, b);
-  }
 }
+
+

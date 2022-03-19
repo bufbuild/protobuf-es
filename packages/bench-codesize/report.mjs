@@ -16,8 +16,8 @@ minify the bundle, and compress it like a web server would usually do.
 
 | code generator                         | bundle size        | minified               | gzip               |
 |----------------------------------------|-------------------:|-----------------------:|-------------------:|
-| [protobuf-es](src/entry-protobuf-es.ts) | ${protobufEs.size} | ${protobufEs.minified} | ${protobufEs.gzip} |
-| [google-protobuf](src/entry-google-protobuf.js)       | ${googleProtobuf.size}    | ${googleProtobuf.minified}    | ${googleProtobuf.gzip}    |
+| [protobuf-es](src/entry-protobuf-es.ts) | ${protobufEs.size} | ${protobufEs.minified} | ${protobufEs.brotli} |
+| [google-protobuf](src/entry-google-protobuf.js)       | ${googleProtobuf.size}    | ${googleProtobuf.minified}    | ${googleProtobuf.brotli}    |
 `);
 
 
@@ -29,7 +29,7 @@ function gather(entryPoint) {
         entryPoint,
         size: formatSize(bundle.byteLength),
         minified: formatSize(bundleMinified.byteLength),
-        gzip: formatSize(compressed.gzip),
+        brotli: formatSize(compressed.brotli),
     };
 }
 
