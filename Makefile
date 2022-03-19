@@ -160,7 +160,7 @@ test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(
 	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(TEST_DIR)/conformance_failing_tests.txt --text_format_failure_list $(TEST_DIR)/conformance_failing_tests_text_format.txt $(TEST_DIR)/bin/conformance_esm.js
 
 test-go: $(TEST_GEN)
-	go test ./private/...
+	go test ./private/...  ./cmd/...
 
 fuzz-go:
 	gotip test ./private/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
