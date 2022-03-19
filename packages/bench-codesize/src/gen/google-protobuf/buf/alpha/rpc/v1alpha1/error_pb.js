@@ -11,25 +11,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-var jspb = require("google-protobuf");
+var jspb = require('google-protobuf');
 var goog = jspb;
-var global = function () {
-  if (this) {
-    return this;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  return Function("return this")();
-}.call(null);
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
-goog.exportSymbol("proto.buf.alpha.rpc.v1alpha1.ErrorCode", null, global);
+goog.exportSymbol('proto.buf.alpha.rpc.v1alpha1.ErrorCode', null, global);
 /**
  * @enum {number}
  */
@@ -50,7 +42,7 @@ proto.buf.alpha.rpc.v1alpha1.ErrorCode = {
   ERROR_CODE_INTERNAL: 13,
   ERROR_CODE_UNAVAILABLE: 14,
   ERROR_CODE_DATA_LOSS: 15,
-  ERROR_CODE_UNAUTHENTICATED: 16,
+  ERROR_CODE_UNAUTHENTICATED: 16
 };
 
 goog.object.extend(exports, proto.buf.alpha.rpc.v1alpha1);

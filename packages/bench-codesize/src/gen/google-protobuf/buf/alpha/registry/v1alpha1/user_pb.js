@@ -11,125 +11,41 @@
 /* eslint-disable */
 // @ts-nocheck
 
-var jspb = require("google-protobuf");
+var jspb = require('google-protobuf');
 var goog = jspb;
-var global = function () {
-  if (this) {
-    return this;
-  }
-  if (typeof window !== "undefined") {
-    return window;
-  }
-  if (typeof global !== "undefined") {
-    return global;
-  }
-  if (typeof self !== "undefined") {
-    return self;
-  }
-  return Function("return this")();
-}.call(null);
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
-var buf_alpha_registry_v1alpha1_role_pb = require("../../../../buf/alpha/registry/v1alpha1/role_pb.js");
+var buf_alpha_registry_v1alpha1_role_pb = require('../../../../buf/alpha/registry/v1alpha1/role_pb.js');
 goog.object.extend(proto, buf_alpha_registry_v1alpha1_role_pb);
-var google_protobuf_timestamp_pb = require("google-protobuf/google/protobuf/timestamp_pb.js");
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.CountUsersRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.CountUsersResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.CreateUserRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.CreateUserResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.DeleteUserRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.DeleteUserResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.GetUserRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.GetUserResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.ListUsersRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.ListUsersResponse",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.OrganizationUser",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest",
-  null,
-  global
-);
-goog.exportSymbol(
-  "proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse",
-  null,
-  global
-);
-goog.exportSymbol("proto.buf.alpha.registry.v1alpha1.User", null, global);
-goog.exportSymbol("proto.buf.alpha.registry.v1alpha1.UserState", null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.CountUsersRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.CountUsersResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.CreateUserRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.CreateUserResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.DeleteUserRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.DeleteUserResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.GetUserRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.GetUserResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.ListUsersRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.ListUsersResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.OrganizationUser', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.User', null, global);
+goog.exportSymbol('proto.buf.alpha.registry.v1alpha1.UserState', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -140,7 +56,7 @@ goog.exportSymbol("proto.buf.alpha.registry.v1alpha1.UserState", null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.User = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.User = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.buf.alpha.registry.v1alpha1.User, jspb.Message);
@@ -149,8 +65,7 @@ if (goog.DEBUG && !COMPILED) {
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.User.displayName =
-    "proto.buf.alpha.registry.v1alpha1.User";
+  proto.buf.alpha.registry.v1alpha1.User.displayName = 'proto.buf.alpha.registry.v1alpha1.User';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -162,7 +77,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.OrganizationUser = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.buf.alpha.registry.v1alpha1.OrganizationUser, jspb.Message);
@@ -171,8 +86,7 @@ if (goog.DEBUG && !COMPILED) {
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.OrganizationUser.displayName =
-    "proto.buf.alpha.registry.v1alpha1.OrganizationUser";
+  proto.buf.alpha.registry.v1alpha1.OrganizationUser.displayName = 'proto.buf.alpha.registry.v1alpha1.OrganizationUser';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -184,20 +98,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.CreateUserRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.CreateUserRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.CreateUserRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.CreateUserRequest";
+  proto.buf.alpha.registry.v1alpha1.CreateUserRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.CreateUserRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -209,20 +119,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.CreateUserResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.CreateUserResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.CreateUserResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.CreateUserResponse";
+  proto.buf.alpha.registry.v1alpha1.CreateUserResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.CreateUserResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -234,7 +140,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.GetUserRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.buf.alpha.registry.v1alpha1.GetUserRequest, jspb.Message);
@@ -243,8 +149,7 @@ if (goog.DEBUG && !COMPILED) {
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.GetUserRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.GetUserRequest";
+  proto.buf.alpha.registry.v1alpha1.GetUserRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.GetUserRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -256,7 +161,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.GetUserResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.buf.alpha.registry.v1alpha1.GetUserResponse, jspb.Message);
@@ -265,8 +170,7 @@ if (goog.DEBUG && !COMPILED) {
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.GetUserResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.GetUserResponse";
+  proto.buf.alpha.registry.v1alpha1.GetUserResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.GetUserResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -278,22 +182,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest = function (
-  opt_data
-) {
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest";
+  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -305,22 +203,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse = function (
-  opt_data
-) {
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse";
+  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -332,7 +224,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.buf.alpha.registry.v1alpha1.ListUsersRequest, jspb.Message);
@@ -341,8 +233,7 @@ if (goog.DEBUG && !COMPILED) {
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.ListUsersRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.ListUsersRequest";
+  proto.buf.alpha.registry.v1alpha1.ListUsersRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.ListUsersRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -354,27 +245,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse = function (opt_data) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.buf.alpha.registry.v1alpha1.ListUsersResponse.repeatedFields_,
-    null
-  );
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.buf.alpha.registry.v1alpha1.ListUsersResponse.repeatedFields_, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.ListUsersResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.ListUsersResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.ListUsersResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.ListUsersResponse";
+  proto.buf.alpha.registry.v1alpha1.ListUsersResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.ListUsersResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -386,22 +266,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest = function (
-  opt_data
-) {
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest";
+  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -413,30 +287,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse = function (
-  opt_data
-) {
-  jspb.Message.initialize(
-    this,
-    opt_data,
-    0,
-    -1,
-    proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse
-      .repeatedFields_,
-    null
-  );
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.repeatedFields_, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse";
+  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -448,20 +308,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.DeleteUserRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.DeleteUserRequest";
+  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.DeleteUserRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -473,20 +329,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserResponse = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.DeleteUserResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.DeleteUserResponse";
+  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.DeleteUserResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -498,20 +350,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest";
+  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -523,20 +371,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse";
+  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -548,22 +392,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest = function (
-  opt_data
-) {
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest";
+  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -575,22 +413,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse = function (
-  opt_data
-) {
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse";
+  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -602,20 +434,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.CountUsersRequest,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.CountUsersRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.CountUsersRequest.displayName =
-    "proto.buf.alpha.registry.v1alpha1.CountUsersRequest";
+  proto.buf.alpha.registry.v1alpha1.CountUsersRequest.displayName = 'proto.buf.alpha.registry.v1alpha1.CountUsersRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -627,90 +455,75 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse = function (opt_data) {
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(
-  proto.buf.alpha.registry.v1alpha1.CountUsersResponse,
-  jspb.Message
-);
+goog.inherits(proto.buf.alpha.registry.v1alpha1.CountUsersResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.buf.alpha.registry.v1alpha1.CountUsersResponse.displayName =
-    "proto.buf.alpha.registry.v1alpha1.CountUsersResponse";
+  proto.buf.alpha.registry.v1alpha1.CountUsersResponse.displayName = 'proto.buf.alpha.registry.v1alpha1.CountUsersResponse';
 }
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.User.prototype.toObject = function (
-    opt_includeInstance
-  ) {
-    return proto.buf.alpha.registry.v1alpha1.User.toObject(
-      opt_includeInstance,
-      this
-    );
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.User.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.User.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.User} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.User.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updateTime: (f = msg.getUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    username: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    deactivated: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.User} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.User.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-        createTime:
-          (f = msg.getCreateTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        updateTime:
-          (f = msg.getUpdateTime()) &&
-          google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-        username: jspb.Message.getFieldWithDefault(msg, 4, ""),
-        deactivated: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-      };
-
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
-  };
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.User.deserializeBinary = function (bytes) {
+proto.buf.alpha.registry.v1alpha1.User.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.buf.alpha.registry.v1alpha1.User();
-  return proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader(
-    msg,
-    reader
-  );
+  var msg = new proto.buf.alpha.registry.v1alpha1.User;
+  return proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -719,61 +532,54 @@ proto.buf.alpha.registry.v1alpha1.User.deserializeBinary = function (bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader = function (
-  msg,
-  reader
-) {
+proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-      case 1:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setId(value);
-        break;
-      case 2:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setCreateTime(value);
-        break;
-      case 3:
-        var value = new google_protobuf_timestamp_pb.Timestamp();
-        reader.readMessage(
-          value,
-          google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader
-        );
-        msg.setUpdateTime(value);
-        break;
-      case 4:
-        var value = /** @type {string} */ (reader.readString());
-        msg.setUsername(value);
-        break;
-      case 5:
-        var value = /** @type {boolean} */ (reader.readBool());
-        msg.setDeactivated(value);
-        break;
-      default:
-        reader.skipField();
-        break;
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreateTime(value);
+      break;
+    case 3:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdateTime(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDeactivated(value);
+      break;
+    default:
+      reader.skipField();
+      break;
     }
   }
   return msg;
 };
 
+
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.serializeBinary = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
   proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -782,14 +588,14 @@ proto.buf.alpha.registry.v1alpha1.User.prototype.serializeBinary = function () {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter = function (
-  message,
-  writer
-) {
+proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
-    writer.writeString(1, f);
+    writer.writeString(
+      1,
+      f
+    );
   }
   f = message.getCreateTime();
   if (f != null) {
@@ -809,212 +615,205 @@ proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter = function (
   }
   f = message.getUsername();
   if (f.length > 0) {
-    writer.writeString(4, f);
+    writer.writeString(
+      4,
+      f
+    );
   }
   f = message.getDeactivated();
   if (f) {
-    writer.writeBool(5, f);
+    writer.writeBool(
+      5,
+      f
+    );
   }
 };
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.getId = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.setId = function (value) {
+proto.buf.alpha.registry.v1alpha1.User.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
+
 
 /**
  * optional google.protobuf.Timestamp create_time = 2;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.getCreateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.getCreateTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(
-      this,
-      google_protobuf_timestamp_pb.Timestamp,
-      2
-    )
-  );
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 2));
 };
+
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
- */
-proto.buf.alpha.registry.v1alpha1.User.prototype.setCreateTime = function (
-  value
-) {
+*/
+proto.buf.alpha.registry.v1alpha1.User.prototype.setCreateTime = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.clearCreateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.clearCreateTime = function() {
   return this.setCreateTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.hasCreateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.hasCreateTime = function() {
   return jspb.Message.getField(this, 2) != null;
 };
+
 
 /**
  * optional google.protobuf.Timestamp update_time = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.getUpdateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.getUpdateTime = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(
-      this,
-      google_protobuf_timestamp_pb.Timestamp,
-      3
-    )
-  );
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
+
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
- */
-proto.buf.alpha.registry.v1alpha1.User.prototype.setUpdateTime = function (
-  value
-) {
+*/
+proto.buf.alpha.registry.v1alpha1.User.prototype.setUpdateTime = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.clearUpdateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.clearUpdateTime = function() {
   return this.setUpdateTime(undefined);
 };
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.hasUpdateTime = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.hasUpdateTime = function() {
   return jspb.Message.getField(this, 3) != null;
 };
+
 
 /**
  * optional string username = 4;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.getUsername = function () {
+proto.buf.alpha.registry.v1alpha1.User.prototype.getUsername = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.setUsername = function (
-  value
-) {
+proto.buf.alpha.registry.v1alpha1.User.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
+
 
 /**
  * optional bool deactivated = 5;
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.getDeactivated = function () {
-  return /** @type {boolean} */ (
-    jspb.Message.getBooleanFieldWithDefault(this, 5, false)
-  );
+proto.buf.alpha.registry.v1alpha1.User.prototype.getDeactivated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
+
 
 /**
  * @param {boolean} value
  * @return {!proto.buf.alpha.registry.v1alpha1.User} returns this
  */
-proto.buf.alpha.registry.v1alpha1.User.prototype.setDeactivated = function (
-  value
-) {
+proto.buf.alpha.registry.v1alpha1.User.prototype.setDeactivated = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
+
+
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        user:
-          (f = msg.getUser()) &&
-          proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f),
-        organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-        organizationRole: jspb.Message.getFieldWithDefault(msg, 3, 0),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    user: (f = msg.getUser()) && proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f),
+    organizationId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    organizationRole: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.OrganizationUser();
-    return proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.OrganizationUser;
+  return proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1023,54 +822,45 @@ proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.User();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader
-          );
-          msg.setUser(value);
-          break;
-        case 2:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setOrganizationId(value);
-          break;
-        case 3:
-          var value =
-            /** @type {!proto.buf.alpha.registry.v1alpha1.OrganizationRole} */ (
-              reader.readEnum()
-            );
-          msg.setOrganizationRole(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.User;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.buf.alpha.registry.v1alpha1.OrganizationRole} */ (reader.readEnum());
+      msg.setOrganizationRole(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.OrganizationUser.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.OrganizationUser.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1079,169 +869,160 @@ proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUser();
-    if (f != null) {
-      writer.writeMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
-      );
-    }
-    f = message.getOrganizationId();
-    if (f.length > 0) {
-      writer.writeString(2, f);
-    }
-    f = message.getOrganizationRole();
-    if (f !== 0.0) {
-      writer.writeEnum(3, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getOrganizationRole();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+};
+
 
 /**
  * optional User user = 1;
  * @return {?proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getUser =
-  function () {
-    return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
-      jspb.Message.getWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.User,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getUser = function() {
+  return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
+    jspb.Message.getWrapperField(this, proto.buf.alpha.registry.v1alpha1.User, 1));
+};
+
 
 /**
  * @param {?proto.buf.alpha.registry.v1alpha1.User|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} returns this
- */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setUser =
-  function (value) {
-    return jspb.Message.setWrapperField(this, 1, value);
-  };
+*/
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setUser = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} returns this
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.clearUser =
-  function () {
-    return this.setUser(undefined);
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.hasUser =
-  function () {
-    return jspb.Message.getField(this, 1) != null;
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
 
 /**
  * optional string organization_id = 2;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getOrganizationId =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 2, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} returns this
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setOrganizationId =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
 
 /**
  * optional OrganizationRole organization_role = 3;
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationRole}
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getOrganizationRole =
-  function () {
-    return /** @type {!proto.buf.alpha.registry.v1alpha1.OrganizationRole} */ (
-      jspb.Message.getFieldWithDefault(this, 3, 0)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.getOrganizationRole = function() {
+  return /** @type {!proto.buf.alpha.registry.v1alpha1.OrganizationRole} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.OrganizationRole} value
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser} returns this
  */
-proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setOrganizationRole =
-  function (value) {
-    return jspb.Message.setProto3EnumField(this, 3, value);
-  };
+proto.buf.alpha.registry.v1alpha1.OrganizationUser.prototype.setOrganizationRole = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.CreateUserRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.CreateUserRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.CreateUserRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.CreateUserRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.CreateUserRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    username: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.CreateUserRequest();
-    return proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.CreateUserRequest;
+  return proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1250,39 +1031,36 @@ proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setUsername(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.CreateUserRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.CreateUserRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1291,97 +1069,90 @@ proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUsername();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUsername();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string username = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.getUsername =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 1, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.getUsername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.setUsername =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserRequest.prototype.setUsername = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.CreateUserResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.CreateUserResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.CreateUserResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        user:
-          (f = msg.getUser()) &&
-          proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    user: (f = msg.getUser()) && proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.CreateUserResponse();
-    return proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.CreateUserResponse;
+  return proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1390,43 +1161,37 @@ proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.User();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader
-          );
-          msg.setUser(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.User;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.CreateUserResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.CreateUserResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1435,122 +1200,110 @@ proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUser();
-    if (f != null) {
-      writer.writeMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
-      );
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
+    );
+  }
+};
+
 
 /**
  * optional User user = 1;
  * @return {?proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.getUser =
-  function () {
-    return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
-      jspb.Message.getWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.User,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.getUser = function() {
+  return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
+    jspb.Message.getWrapperField(this, proto.buf.alpha.registry.v1alpha1.User, 1));
+};
+
 
 /**
  * @param {?proto.buf.alpha.registry.v1alpha1.User|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse} returns this
- */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.setUser =
-  function (value) {
-    return jspb.Message.setWrapperField(this, 1, value);
-  };
+*/
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.setUser = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.CreateUserResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.clearUser =
-  function () {
-    return this.setUser(undefined);
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.hasUser =
-  function () {
-    return jspb.Message.getField(this, 1) != null;
-  };
+proto.buf.alpha.registry.v1alpha1.CreateUserResponse.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.GetUserRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.GetUserRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.GetUserRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.GetUserRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinary = function (
-  bytes
-) {
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserRequest();
-  return proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinaryFromReader(
-    msg,
-    reader
-  );
+  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserRequest;
+  return proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1559,39 +1312,36 @@ proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinary = function (
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setId(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.GetUserRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.GetUserRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1600,96 +1350,90 @@ proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getId();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.getId = function () {
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.setId = function (
-  value
-) {
+proto.buf.alpha.registry.v1alpha1.GetUserRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
+
+
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.GetUserResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.GetUserResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.GetUserResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        user:
-          (f = msg.getUser()) &&
-          proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.GetUserResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    user: (f = msg.getUser()) && proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinary = function (
-  bytes
-) {
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserResponse();
-  return proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinaryFromReader(
-    msg,
-    reader
-  );
+  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserResponse;
+  return proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinaryFromReader(msg, reader);
 };
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1698,43 +1442,37 @@ proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinary = function (
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.User();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader
-          );
-          msg.setUser(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.User;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.GetUserResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.GetUserResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1743,120 +1481,110 @@ proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUser();
-    if (f != null) {
-      writer.writeMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
-      );
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
+    );
+  }
+};
+
 
 /**
  * optional User user = 1;
  * @return {?proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.getUser =
-  function () {
-    return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
-      jspb.Message.getWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.User,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.getUser = function() {
+  return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
+    jspb.Message.getWrapperField(this, proto.buf.alpha.registry.v1alpha1.User, 1));
+};
+
 
 /**
  * @param {?proto.buf.alpha.registry.v1alpha1.User|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserResponse} returns this
- */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.setUser = function (
-  value
-) {
+*/
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.setUser = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.clearUser =
-  function () {
-    return this.setUser(undefined);
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.hasUser =
-  function () {
-    return jspb.Message.getField(this, 1) != null;
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserResponse.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {
-          username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-        };
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    username: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest();
-    return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest;
+  return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1865,39 +1593,36 @@ proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setUsername(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUsername(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1906,95 +1631,90 @@ proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.serializeBi
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUsername();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUsername();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string username = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.getUsername =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 1, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.getUsername = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.setUsername =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.prototype.setUsername = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {
-          user:
-            (f = msg.getUser()) &&
-            proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f),
-        };
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    user: (f = msg.getUser()) && proto.buf.alpha.registry.v1alpha1.User.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse();
-    return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse;
+  return proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2003,43 +1723,37 @@ proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.User();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader
-          );
-          msg.setUser(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.User;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader);
+      msg.setUser(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2048,124 +1762,113 @@ proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.serializeB
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUser();
-    if (f != null) {
-      writer.writeMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
-      );
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUser();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
+    );
+  }
+};
+
 
 /**
  * optional User user = 1;
  * @return {?proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.getUser =
-  function () {
-    return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
-      jspb.Message.getWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.User,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.getUser = function() {
+  return /** @type{?proto.buf.alpha.registry.v1alpha1.User} */ (
+    jspb.Message.getWrapperField(this, proto.buf.alpha.registry.v1alpha1.User, 1));
+};
+
 
 /**
  * @param {?proto.buf.alpha.registry.v1alpha1.User|undefined} value
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse} returns this
- */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.setUser =
-  function (value) {
-    return jspb.Message.setWrapperField(this, 1, value);
-  };
+*/
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.setUser = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.clearUser =
-  function () {
-    return this.setUser(undefined);
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.clearUser = function() {
+  return this.setUser(undefined);
+};
+
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.hasUser =
-  function () {
-    return jspb.Message.getField(this, 1) != null;
-  };
+proto.buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.prototype.hasUser = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.ListUsersRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.ListUsersRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.ListUsersRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
-        pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-        reverse: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-        userStateFilter: jspb.Message.getFieldWithDefault(msg, 4, 0),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    pageSize: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    userStateFilter: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.ListUsersRequest();
-    return proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.ListUsersRequest;
+  return proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2174,54 +1877,48 @@ proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {number} */ (reader.readUint32());
-          msg.setPageSize(value);
-          break;
-        case 2:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setPageToken(value);
-          break;
-        case 3:
-          var value = /** @type {boolean} */ (reader.readBool());
-          msg.setReverse(value);
-          break;
-        case 4:
-          var value =
-            /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (
-              reader.readEnum()
-            );
-          msg.setUserStateFilter(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPageSize(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPageToken(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReverse(value);
+      break;
+    case 4:
+      var value = /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (reader.readEnum());
+      msg.setUserStateFilter(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.ListUsersRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.ListUsersRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2230,104 +1927,111 @@ proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getPageSize();
-    if (f !== 0) {
-      writer.writeUint32(1, f);
-    }
-    f = message.getPageToken();
-    if (f.length > 0) {
-      writer.writeString(2, f);
-    }
-    f = message.getReverse();
-    if (f) {
-      writer.writeBool(3, f);
-    }
-    f = message.getUserStateFilter();
-    if (f !== 0.0) {
-      writer.writeEnum(4, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+  f = message.getPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getReverse();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getUserStateFilter();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      4,
+      f
+    );
+  }
+};
+
 
 /**
  * optional uint32 page_size = 1;
  * @return {number}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getPageSize =
-  function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
 
 /**
  * @param {number} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setPageSize =
-  function (value) {
-    return jspb.Message.setProto3IntField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
 
 /**
  * optional string page_token = 2;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getPageToken =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 2, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setPageToken =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
 
 /**
  * optional bool reverse = 3;
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getReverse =
-  function () {
-    return /** @type {boolean} */ (
-      jspb.Message.getBooleanFieldWithDefault(this, 3, false)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getReverse = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
 
 /**
  * @param {boolean} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setReverse =
-  function (value) {
-    return jspb.Message.setProto3BooleanField(this, 3, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setReverse = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
 
 /**
  * optional UserState user_state_filter = 4;
  * @return {!proto.buf.alpha.registry.v1alpha1.UserState}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getUserStateFilter =
-  function () {
-    return /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (
-      jspb.Message.getFieldWithDefault(this, 4, 0)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.getUserStateFilter = function() {
+  return /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.UserState} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setUserStateFilter =
-  function (value) {
-    return jspb.Message.setProto3EnumField(this, 4, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setUserStateFilter = function(value) {
+  return jspb.Message.setProto3EnumField(this, 4, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
@@ -2336,71 +2040,61 @@ proto.buf.alpha.registry.v1alpha1.ListUsersRequest.prototype.setUserStateFilter 
  */
 proto.buf.alpha.registry.v1alpha1.ListUsersResponse.repeatedFields_ = [1];
 
+
+
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.ListUsersResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.ListUsersResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.ListUsersResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        usersList: jspb.Message.toObjectList(
-          msg.getUsersList(),
-          proto.buf.alpha.registry.v1alpha1.User.toObject,
-          includeInstance
-        ),
-        nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    proto.buf.alpha.registry.v1alpha1.User.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.ListUsersResponse();
-    return proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.ListUsersResponse;
+  return proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2409,47 +2103,41 @@ proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.User();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader
-          );
-          msg.addUsers(value);
-          break;
-        case 2:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setNextPageToken(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.User;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.User.deserializeBinaryFromReader);
+      msg.addUsers(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextPageToken(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.ListUsersResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.ListUsersResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2458,154 +2146,139 @@ proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUsersList();
-    if (f.length > 0) {
-      writer.writeRepeatedMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
-      );
-    }
-    f = message.getNextPageToken();
-    if (f.length > 0) {
-      writer.writeString(2, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUsersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.User.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
 
 /**
  * repeated User users = 1;
  * @return {!Array<!proto.buf.alpha.registry.v1alpha1.User>}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.getUsersList =
-  function () {
-    return /** @type{!Array<!proto.buf.alpha.registry.v1alpha1.User>} */ (
-      jspb.Message.getRepeatedWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.User,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.getUsersList = function() {
+  return /** @type{!Array<!proto.buf.alpha.registry.v1alpha1.User>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.buf.alpha.registry.v1alpha1.User, 1));
+};
+
 
 /**
  * @param {!Array<!proto.buf.alpha.registry.v1alpha1.User>} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse} returns this
- */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.setUsersList =
-  function (value) {
-    return jspb.Message.setRepeatedWrapperField(this, 1, value);
-  };
+*/
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.setUsersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.User=} opt_value
  * @param {number=} opt_index
  * @return {!proto.buf.alpha.registry.v1alpha1.User}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.addUsers =
-  function (opt_value, opt_index) {
-    return jspb.Message.addToRepeatedWrapperField(
-      this,
-      1,
-      opt_value,
-      proto.buf.alpha.registry.v1alpha1.User,
-      opt_index
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.addUsers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.buf.alpha.registry.v1alpha1.User, opt_index);
+};
+
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.clearUsersList =
-  function () {
-    return this.setUsersList([]);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.clearUsersList = function() {
+  return this.setUsersList([]);
+};
+
 
 /**
  * optional string next_page_token = 2;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.getNextPageToken =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 2, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.getNextPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListUsersResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.setNextPageToken =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListUsersResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {
-          organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-          pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
-          pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
-          reverse: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-        };
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    organizationId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    pageToken: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    reverse: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg =
-      new proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest();
-    return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest;
+  return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2614,51 +2287,48 @@ proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinary
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setOrganizationId(value);
-          break;
-        case 2:
-          var value = /** @type {number} */ (reader.readUint32());
-          msg.setPageSize(value);
-          break;
-        case 3:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setPageToken(value);
-          break;
-        case 4:
-          var value = /** @type {boolean} */ (reader.readBool());
-          msg.setReverse(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOrganizationId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPageSize(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPageToken(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setReverse(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2667,177 +2337,174 @@ proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.seriali
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getOrganizationId();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-    f = message.getPageSize();
-    if (f !== 0) {
-      writer.writeUint32(2, f);
-    }
-    f = message.getPageToken();
-    if (f.length > 0) {
-      writer.writeString(3, f);
-    }
-    f = message.getReverse();
-    if (f) {
-      writer.writeBool(4, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOrganizationId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getPageSize();
+  if (f !== 0) {
+    writer.writeUint32(
+      2,
+      f
+    );
+  }
+  f = message.getPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getReverse();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string organization_id = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getOrganizationId =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 1, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getOrganizationId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setOrganizationId =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setOrganizationId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
 
 /**
  * optional uint32 page_size = 2;
  * @return {number}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getPageSize =
-  function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getPageSize = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
 
 /**
  * @param {number} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setPageSize =
-  function (value) {
-    return jspb.Message.setProto3IntField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setPageSize = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
 
 /**
  * optional string page_token = 3;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getPageToken =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 3, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setPageToken =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 3, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
 
 /**
  * optional bool reverse = 4;
  * @return {boolean}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getReverse =
-  function () {
-    return /** @type {boolean} */ (
-      jspb.Message.getBooleanFieldWithDefault(this, 4, false)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.getReverse = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
 
 /**
  * @param {boolean} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setReverse =
-  function (value) {
-    return jspb.Message.setProto3BooleanField(this, 4, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.prototype.setReverse = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.repeatedFields_ =
-  [1];
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.repeatedFields_ = [1];
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {
-          usersList: jspb.Message.toObjectList(
-            msg.getUsersList(),
-            proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject,
-            includeInstance
-          ),
-          nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, ""),
-        };
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    usersList: jspb.Message.toObjectList(msg.getUsersList(),
+    proto.buf.alpha.registry.v1alpha1.OrganizationUser.toObject, includeInstance),
+    nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg =
-      new proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse();
-    return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse;
+  return proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2846,48 +2513,41 @@ proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinar
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = new proto.buf.alpha.registry.v1alpha1.OrganizationUser();
-          reader.readMessage(
-            value,
-            proto.buf.alpha.registry.v1alpha1.OrganizationUser
-              .deserializeBinaryFromReader
-          );
-          msg.addUsers(value);
-          break;
-        case 2:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setNextPageToken(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.buf.alpha.registry.v1alpha1.OrganizationUser;
+      reader.readMessage(value,proto.buf.alpha.registry.v1alpha1.OrganizationUser.deserializeBinaryFromReader);
+      msg.addUsers(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextPageToken(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2896,151 +2556,136 @@ proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.serial
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUsersList();
-    if (f.length > 0) {
-      writer.writeRepeatedMessage(
-        1,
-        f,
-        proto.buf.alpha.registry.v1alpha1.OrganizationUser
-          .serializeBinaryToWriter
-      );
-    }
-    f = message.getNextPageToken();
-    if (f.length > 0) {
-      writer.writeString(2, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUsersList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.buf.alpha.registry.v1alpha1.OrganizationUser.serializeBinaryToWriter
+    );
+  }
+  f = message.getNextPageToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
 
 /**
  * repeated OrganizationUser users = 1;
  * @return {!Array<!proto.buf.alpha.registry.v1alpha1.OrganizationUser>}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.getUsersList =
-  function () {
-    return /** @type{!Array<!proto.buf.alpha.registry.v1alpha1.OrganizationUser>} */ (
-      jspb.Message.getRepeatedWrapperField(
-        this,
-        proto.buf.alpha.registry.v1alpha1.OrganizationUser,
-        1
-      )
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.getUsersList = function() {
+  return /** @type{!Array<!proto.buf.alpha.registry.v1alpha1.OrganizationUser>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.buf.alpha.registry.v1alpha1.OrganizationUser, 1));
+};
+
 
 /**
  * @param {!Array<!proto.buf.alpha.registry.v1alpha1.OrganizationUser>} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse} returns this
- */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.setUsersList =
-  function (value) {
-    return jspb.Message.setRepeatedWrapperField(this, 1, value);
-  };
+*/
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.setUsersList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.OrganizationUser=} opt_value
  * @param {number=} opt_index
  * @return {!proto.buf.alpha.registry.v1alpha1.OrganizationUser}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.addUsers =
-  function (opt_value, opt_index) {
-    return jspb.Message.addToRepeatedWrapperField(
-      this,
-      1,
-      opt_value,
-      proto.buf.alpha.registry.v1alpha1.OrganizationUser,
-      opt_index
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.addUsers = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.buf.alpha.registry.v1alpha1.OrganizationUser, opt_index);
+};
+
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.clearUsersList =
-  function () {
-    return this.setUsersList([]);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.clearUsersList = function() {
+  return this.setUsersList([]);
+};
+
 
 /**
  * optional string next_page_token = 2;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.getNextPageToken =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 2, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.getNextPageToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.setNextPageToken =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.prototype.setNextPageToken = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.DeleteUserRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {};
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.DeleteUserRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeleteUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.DeleteUserRequest();
-    return proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.DeleteUserRequest;
+  return proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3049,35 +2694,32 @@ proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeleteUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3086,69 +2728,65 @@ proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.DeleteUserResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {};
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.DeleteUserResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeleteUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.DeleteUserResponse();
-    return proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.DeleteUserResponse;
+  return proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3157,35 +2795,32 @@ proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeleteUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3194,71 +2829,65 @@ proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-  };
+proto.buf.alpha.registry.v1alpha1.DeleteUserResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest();
-    return proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest;
+  return proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3267,39 +2896,36 @@ proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setId(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3308,93 +2934,90 @@ proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.serializeBinar
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getId();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string id = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.getId =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 1, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.setId =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {};
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse();
-    return proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse;
+  return proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3403,35 +3026,32 @@ proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3440,71 +3060,66 @@ proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.prototype.serializeBina
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-  };
+proto.buf.alpha.registry.v1alpha1.DeactivateUserResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {
-          userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-          serverRole: jspb.Message.getFieldWithDefault(msg, 2, 0),
-        };
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    serverRole: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg =
-      new proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest();
-    return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest;
+  return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3513,46 +3128,40 @@ proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinary 
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {string} */ (reader.readString());
-          msg.setUserId(value);
-          break;
-        case 2:
-          var value =
-            /** @type {!proto.buf.alpha.registry.v1alpha1.ServerRole} */ (
-              reader.readEnum()
-            );
-          msg.setServerRole(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUserId(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.buf.alpha.registry.v1alpha1.ServerRole} */ (reader.readEnum());
+      msg.setServerRole(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3561,116 +3170,115 @@ proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.serializ
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUserId();
-    if (f.length > 0) {
-      writer.writeString(1, f);
-    }
-    f = message.getServerRole();
-    if (f !== 0.0) {
-      writer.writeEnum(2, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUserId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getServerRole();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+};
+
 
 /**
  * optional string user_id = 1;
  * @return {string}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.getUserId =
-  function () {
-    return /** @type {string} */ (
-      jspb.Message.getFieldWithDefault(this, 1, "")
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.getUserId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
 
 /**
  * @param {string} value
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.setUserId =
-  function (value) {
-    return jspb.Message.setProto3StringField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.setUserId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
 
 /**
  * optional ServerRole server_role = 2;
  * @return {!proto.buf.alpha.registry.v1alpha1.ServerRole}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.getServerRole =
-  function () {
-    return /** @type {!proto.buf.alpha.registry.v1alpha1.ServerRole} */ (
-      jspb.Message.getFieldWithDefault(this, 2, 0)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.getServerRole = function() {
+  return /** @type {!proto.buf.alpha.registry.v1alpha1.ServerRole} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.ServerRole} value
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.setServerRole =
-  function (value) {
-    return jspb.Message.setProto3EnumField(this, 2, value);
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.prototype.setServerRole = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.toObject =
-    function (includeInstance, msg) {
-      var f,
-        obj = {};
 
-      if (includeInstance) {
-        obj.$jspbMessageInstance = msg;
-      }
-      return obj;
-    };
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg =
-      new proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse();
-    return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse;
+  return proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3679,35 +3287,32 @@ proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinary
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3716,71 +3321,65 @@ proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.prototype.seriali
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-  };
+proto.buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.CountUsersRequest.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.CountUsersRequest.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.CountUsersRequest} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.CountUsersRequest.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        userStateFilter: jspb.Message.getFieldWithDefault(msg, 1, 0),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.CountUsersRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    userStateFilter: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.CountUsersRequest();
-    return proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.CountUsersRequest;
+  return proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3789,42 +3388,36 @@ proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersRequest}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value =
-            /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (
-              reader.readEnum()
-            );
-          msg.setUserStateFilter(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (reader.readEnum());
+      msg.setUserStateFilter(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.CountUsersRequest.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.CountUsersRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3833,95 +3426,90 @@ proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getUserStateFilter();
-    if (f !== 0.0) {
-      writer.writeEnum(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getUserStateFilter();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional UserState user_state_filter = 1;
  * @return {!proto.buf.alpha.registry.v1alpha1.UserState}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.getUserStateFilter =
-  function () {
-    return /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (
-      jspb.Message.getFieldWithDefault(this, 1, 0)
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.getUserStateFilter = function() {
+  return /** @type {!proto.buf.alpha.registry.v1alpha1.UserState} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
 
 /**
  * @param {!proto.buf.alpha.registry.v1alpha1.UserState} value
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersRequest} returns this
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.setUserStateFilter =
-  function (value) {
-    return jspb.Message.setProto3EnumField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersRequest.prototype.setUserStateFilter = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+
+
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-  /**
-   * Creates an object representation of this proto.
-   * Field names that are reserved in JavaScript and will be renamed to pb_name.
-   * Optional fields that are not set will be set to undefined.
-   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
-   * For the list of reserved names please see:
-   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
-   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
-   *     JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @return {!Object}
-   */
-  proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.toObject =
-    function (opt_includeInstance) {
-      return proto.buf.alpha.registry.v1alpha1.CountUsersResponse.toObject(
-        opt_includeInstance,
-        this
-      );
-    };
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.buf.alpha.registry.v1alpha1.CountUsersResponse.toObject(opt_includeInstance, this);
+};
 
-  /**
-   * Static version of the {@see toObject} method.
-   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
-   *     the JSPB instance for transitional soy proto support:
-   *     http://goto/soy-param-migration
-   * @param {!proto.buf.alpha.registry.v1alpha1.CountUsersResponse} msg The msg instance to transform.
-   * @return {!Object}
-   * @suppress {unusedLocalVariables} f is only used for nested messages
-   */
-  proto.buf.alpha.registry.v1alpha1.CountUsersResponse.toObject = function (
-    includeInstance,
-    msg
-  ) {
-    var f,
-      obj = {
-        totalCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-      };
 
-    if (includeInstance) {
-      obj.$jspbMessageInstance = msg;
-    }
-    return obj;
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.buf.alpha.registry.v1alpha1.CountUsersResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    totalCount: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
 }
+
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinary =
-  function (bytes) {
-    var reader = new jspb.BinaryReader(bytes);
-    var msg = new proto.buf.alpha.registry.v1alpha1.CountUsersResponse();
-    return proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinaryFromReader(
-      msg,
-      reader
-    );
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.buf.alpha.registry.v1alpha1.CountUsersResponse;
+  return proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinaryFromReader(msg, reader);
+};
+
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3930,39 +3518,36 @@ proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinary =
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersResponse}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinaryFromReader =
-  function (msg, reader) {
-    while (reader.nextField()) {
-      if (reader.isEndGroup()) {
-        break;
-      }
-      var field = reader.getFieldNumber();
-      switch (field) {
-        case 1:
-          var value = /** @type {number} */ (reader.readUint32());
-          msg.setTotalCount(value);
-          break;
-        default:
-          reader.skipField();
-          break;
-      }
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
     }
-    return msg;
-  };
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTotalCount(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
 
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.serializeBinary =
-  function () {
-    var writer = new jspb.BinaryWriter();
-    proto.buf.alpha.registry.v1alpha1.CountUsersResponse.serializeBinaryToWriter(
-      this,
-      writer
-    );
-    return writer.getResultBuffer();
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.buf.alpha.registry.v1alpha1.CountUsersResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3971,32 +3556,35 @@ proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.serializeBinary =
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.serializeBinaryToWriter =
-  function (message, writer) {
-    var f = undefined;
-    f = message.getTotalCount();
-    if (f !== 0) {
-      writer.writeUint32(1, f);
-    }
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTotalCount();
+  if (f !== 0) {
+    writer.writeUint32(
+      1,
+      f
+    );
+  }
+};
+
 
 /**
  * optional uint32 total_count = 1;
  * @return {number}
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.getTotalCount =
-  function () {
-    return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.getTotalCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
 
 /**
  * @param {number} value
  * @return {!proto.buf.alpha.registry.v1alpha1.CountUsersResponse} returns this
  */
-proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.setTotalCount =
-  function (value) {
-    return jspb.Message.setProto3IntField(this, 1, value);
-  };
+proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.setTotalCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
 
 /**
  * @enum {number}
@@ -4004,7 +3592,7 @@ proto.buf.alpha.registry.v1alpha1.CountUsersResponse.prototype.setTotalCount =
 proto.buf.alpha.registry.v1alpha1.UserState = {
   USER_STATE_UNSPECIFIED: 0,
   USER_STATE_ACTIVE: 1,
-  USER_STATE_DEACTIVATED: 2,
+  USER_STATE_DEACTIVATED: 2
 };
 
 goog.object.extend(exports, proto.buf.alpha.registry.v1alpha1);

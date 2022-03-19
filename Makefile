@@ -1,7 +1,8 @@
-CACHE_DIR = .cache
+CACHE_DIR = $(abspath .cache)
 CACHE_BIN := $(CACHE_DIR)/bin
 SHELL := /usr/bin/env bash -o pipefail
-.DEFAULT_GOAL = default
+.DEFAULT_GOAL = all
+export PATH := $(CACHE_BIN):$(PATH)
 
 # We use the official protocolbuffers implementation to:
 # 1. generate wkt as part of the NPM package "@bufbuild/protobuf"
@@ -22,7 +23,7 @@ $(GOOGPROTOBUF_PROTOC_BIN): $(GOOGPROTOBUF_SOURCE)
 	touch $(GOOGPROTOBUF_PROTOC_BIN)
 $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN): $(GOOGPROTOBUF_SOURCE)
 	cd $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION) && bazel build test_messages_proto3_proto conformance_proto conformance_test conformance_test_runner
-export PATH := $(abspath $(GOOGPROTOBUF_SOURCE)/bazel-bin):$(abspath $(CACHE_BIN)):$(PATH)
+export PATH := $(GOOGPROTOBUF_SOURCE)/bazel-bin:$(PATH)
 
 
 # Our code generator protoc-gen-es generates message and enum types
@@ -105,21 +106,42 @@ $(BENCHCODESIZE_GEN): $(PROTOC_GEN_ES_BIN) $(PROTOC_GEN_CONNECT_WEB_BIN)
 	mkdir -p $(dir $(BENCHCODESIZE_GEN)) && touch $(BENCHCODESIZE_GEN)
 
 
-# The license header information in this project
+# Install license-header
 LICENSE_HEADER_VERSION := v1.1.0
 LICENSE_HEADER_LICENSE_TYPE := apache
 LICENSE_HEADER_COPYRIGHT_HOLDER := Buf Technologies, Inc.
 LICENSE_HEADER_YEAR_RANGE := 2021-2022
 LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/protobuf-test\/bin\/conformance_esm.js packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/ packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
+LICENSE_HEADER_DEP := $(CACHE_DIR)/dep/license-header-$(LICENSE_HEADER_VERSION)
+$(LICENSE_HEADER_DEP):
+	GOBIN=$(CACHE_BIN) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
+	mkdir -p $(dir $(LICENSE_HEADER_DEP)) && touch $(LICENSE_HEADER_DEP)
+
+# Install git-ls-files-unstaged
 GIT_LS_FILES_UNSTAGED_VERSION ?= v1.1.0
+GIT_LS_FILES_UNSTAGED_DEP := $(CACHE_DIR)/dep/git-ls-files-unstaged-$(GIT_LS_FILES_UNSTAGED_VERSION)
+$(GIT_LS_FILES_UNSTAGED_DEP):
+	GOBIN=$(CACHE_BIN) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
+	mkdir -p $(dir $(GIT_LS_FILES_UNSTAGED_DEP)) && touch $(GIT_LS_FILES_UNSTAGED_DEP)
+
+# Install golangci-lint
+GOLANGCI_LINT_VERSION ?= v1.44.0
+GOLANGCI_LINT_DEP := $(CACHE_DIR)/dep/golangci-lint-$(GOLANGCI_LINT_VERSION)
+$(GOLANGCI_LINT_DEP):
+	GOBIN=$(CACHE_BIN) go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	mkdir -p $(dir $(GOLANGCI_LINT_DEP)) && touch $(GOLANGCI_LINT_DEP)
+
 
 
 # Commands
+.PHONY: all clean test-go test-jest test-conformance fuzz-go set-version
 
-.PHONY: default clean test-go test-jest test-conformance fuzz-go set-version go-build-npm
-default: lint test go-build-npm bench-codesize
+help: ## Describe useful make targets
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
-clean:
+all: build test format lint bench-codesize ## build, test, format, lint, and bench-codesize (default)
+
+clean: ## Delete build artifacts and installed dependencies
 	cd $(RUNTIME_DIR); npm run clean
 	cd $(TEST_DIR); npm run clean
 	cd $(BENCHCODESIZE_DIR); npm run clean
@@ -127,7 +149,9 @@ clean:
 	rm -rf node_modules
 	rm -rf packages/protoc-gen-*/bin/*
 
-test: test-go test-jest test-conformance
+build: $(RUNTIME_BUILD) $(PROTOC_GEN_ES_BIN) ## Build
+
+test: test-go test-jest test-conformance ## Run all tests
 
 test-jest: $(TEST_BUILD) $(TEST_DIR)/*.config.js
 	cd $(TEST_DIR) && npx jest
@@ -141,34 +165,13 @@ test-go: $(TEST_GEN)
 fuzz-go:
 	gotip test ./private/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
 
-lint:
-	@$(MAKE) checknodiffgenerated
-	@$(MAKE) lint-es
-
-lint-es: node_modules $(RUNTIME_BUILD) $(WEB_BUILD) $(TEST_BUILD)
+lint: $(GOLANGCI_LINT_DEP) node_modules $(RUNTIME_BUILD) $(WEB_BUILD) $(TEST_BUILD) $(BENCHCODESIZE_GEN) ## Lint all files
+	golangci-lint run
 	npx eslint --max-warnings 0 .
 
-format: node_modules
+format: node_modules $(GIT_LS_FILES_UNSTAGED_DEP) $(LICENSE_HEADER_DEP) ## Format all files, adding license headers
 	go fmt ./private/... ./cmd/...
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css}' --loglevel error
-
-bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) $(WEB_BUILD)
-	cd $(BENCHCODESIZE_DIR) && npm run report
-
-go-build-npm:
-	node make/scripts/go-build-npm.js packages/protoc-gen-es ./cmd/protoc-gen-es
-
-set-version:
-	node make/scripts/update-go-version-file.js cmd/protoc-gen-es/version.go $(SET_VERSION)
-	node make/scripts/set-workspace-version.js $(SET_VERSION)
-
-install-license-header:
-	GOBIN=$(abspath $(CACHE_BIN)) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
-
-install-git-ls-files-unstaged:
-	GOBIN=$(abspath $(CACHE_BIN)) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
-
-license-header: install-license-header install-git-ls-files-unstaged
 	git-ls-files-unstaged | \
 		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
 		xargs license-header \
@@ -176,22 +179,16 @@ license-header: install-license-header install-git-ls-files-unstaged
 			--copyright-holder "$(LICENSE_HEADER_COPYRIGHT_HOLDER)" \
 			--year-range "$(LICENSE_HEADER_YEAR_RANGE)"
 
-assert-no-uncommitted:
-	[ -z "$(shell git status --short)" ] || echo "Uncommitted changes found." && exit 1;
+bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) $(WEB_BUILD) ## Benchmark code size
+	cd $(BENCHCODESIZE_DIR) && npm run report
 
-generate:
-	@$(MAKE) license-header
-	@$(MAKE) format
+set-version: ## Set a new version in for the project, i.e. make set-version SET_VERSION=1.2.3
+	node make/scripts/update-go-version-file.js cmd/protoc-gen-es/version.go $(SET_VERSION)
+	node make/scripts/set-workspace-version.js $(SET_VERSION)
 
-checknodiffgenerated:
-	@ if [ -d .git ]; then \
-			$(MAKE) __checknodiffgeneratedinternal; \
-		else \
-			echo "skipping make checknodiffgenerated due to no .git repository" >&2; \
-		fi
-
-__checknodiffgeneratedinternal:
-	bash make/scripts/checknodiffgenerated.bash $(MAKE) generate
+# Some builds need code generation, some code generation needs builds.
+# We expose this target only for ci, so it can check for diffs.
+ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN)
 
 # Release @bufbuild/protobuf.
 # Recommended procedure:
@@ -200,7 +197,9 @@ __checknodiffgeneratedinternal:
 # 3. Login with `npm login`
 # 4. Run this target, publishing to npmjs.com
 # 5. Tag the release
-release-bufbuild-protobuf: assert-no-uncommitted clean test go-build-npm bench-codesize format lint go-build-npm assert-no-uncommitted
+release: all ## Release @bufbuild/protobuf
+	@[ -z "$(shell git status --short)" ] || echo "Uncommitted changes found." && exit 1;
+	node make/scripts/go-build-npm.js packages/protoc-gen-es ./cmd/protoc-gen-es
 	npm publish \
 		--access restricted \
 		--workspace packages/protobuf \

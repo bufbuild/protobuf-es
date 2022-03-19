@@ -16,29 +16,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  BinaryReadOptions,
-  FieldList,
-  JsonReadOptions,
-  JsonValue,
-  PartialMessage,
-  PlainMessage,
-} from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { RepositoryBranch } from "./repository_branch_pb.js";
-import { RepositoryTag } from "./repository_tag_pb.js";
-import { RepositoryCommit } from "./repository_commit_pb.js";
-import { RepositoryTrack } from "./repository_track_pb.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import {Message, proto3} from "@bufbuild/protobuf";
+import {RepositoryBranch} from "./repository_branch_pb.js";
+import {RepositoryTag} from "./repository_tag_pb.js";
+import {RepositoryCommit} from "./repository_commit_pb.js";
+import {RepositoryTrack} from "./repository_track_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.Reference
  */
 export class Reference extends Message<Reference> {
-  /**
-   * @generated from oneof buf.alpha.registry.v1alpha1.Reference.reference
-   */
-  reference:
-    | {
+
+    /**
+     * @generated from oneof buf.alpha.registry.v1alpha1.Reference.reference
+     */
+    reference: {
         /**
          * The requested reference is a branch.
          *
@@ -46,8 +39,7 @@ export class Reference extends Message<Reference> {
          */
         value: RepositoryBranch;
         case: "branch";
-      }
-    | {
+    } | {
         /**
          * The requested reference is a tag.
          *
@@ -55,8 +47,7 @@ export class Reference extends Message<Reference> {
          */
         value: RepositoryTag;
         case: "tag";
-      }
-    | {
+    } | {
         /**
          * The requested reference is a commit.
          *
@@ -64,8 +55,7 @@ export class Reference extends Message<Reference> {
          */
         value: RepositoryCommit;
         case: "commit";
-      }
-    | {
+    } | {
         /**
          * The requested reference is a track.
          *
@@ -73,207 +63,136 @@ export class Reference extends Message<Reference> {
          */
         value: RepositoryTrack;
         case: "track";
-      }
-    | { case: undefined; value?: undefined } = { case: undefined };
+    } | { case: undefined; value?: undefined } = { case: undefined };
 
-  constructor(data?: PartialMessage<Reference>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    constructor(data?: PartialMessage<Reference>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static readonly runtime = proto3;
-  static readonly typeName = "buf.alpha.registry.v1alpha1.Reference";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {
-      no: 1,
-      name: "branch",
-      kind: "message",
-      T: RepositoryBranch,
-      oneof: "reference",
-    },
-    {
-      no: 2,
-      name: "tag",
-      kind: "message",
-      T: RepositoryTag,
-      oneof: "reference",
-    },
-    {
-      no: 3,
-      name: "commit",
-      kind: "message",
-      T: RepositoryCommit,
-      oneof: "reference",
-    },
-    {
-      no: 4,
-      name: "track",
-      kind: "message",
-      T: RepositoryTrack,
-      oneof: "reference",
-    },
-  ]);
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.Reference";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "branch", kind: "message", T: RepositoryBranch, oneof: "reference"},
+        {no: 2, name: "tag", kind: "message", T: RepositoryTag, oneof: "reference"},
+        {no: 3, name: "commit", kind: "message", T: RepositoryCommit, oneof: "reference"},
+        {no: 4, name: "track", kind: "message", T: RepositoryTrack, oneof: "reference"},
+    ]);
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): Reference {
-    return new Reference().fromBinary(bytes, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Reference {
+        return new Reference().fromBinary(bytes, options);
+    }
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): Reference {
-    return new Reference().fromJson(jsonValue, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Reference {
+        return new Reference().fromJson(jsonValue, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): Reference {
-    return new Reference().fromJsonString(jsonString, options);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Reference {
+        return new Reference().fromJsonString(jsonString, options);
+    }
 
-  static equals(
-    a: Reference | PlainMessage<Reference> | undefined,
-    b: Reference | PlainMessage<Reference> | undefined
-  ): boolean {
-    return proto3.util.equals(Reference, a, b);
-  }
+    static equals(a: Reference | PlainMessage<Reference> | undefined, b: Reference | PlainMessage<Reference> | undefined): boolean {
+        return proto3.util.equals(Reference, a, b);
+    }
+
 }
+
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameRequest
  */
 export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest> {
-  /**
-   * Name of the requested reference.
-   *
-   * @generated from field: string name = 1;
-   */
-  name = "";
 
-  /**
-   * Owner of the repository the reference belongs to.
-   *
-   * @generated from field: string owner = 2;
-   */
-  owner = "";
+    /**
+     * Name of the requested reference.
+     *
+     * @generated from field: string name = 1;
+     */
+    name = "";
 
-  /**
-   * Name of the repository the reference belongs to.
-   *
-   * @generated from field: string repository_name = 3;
-   */
-  repositoryName = "";
+    /**
+     * Owner of the repository the reference belongs to.
+     *
+     * @generated from field: string owner = 2;
+     */
+    owner = "";
 
-  constructor(data?: PartialMessage<GetReferenceByNameRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * Name of the repository the reference belongs to.
+     *
+     * @generated from field: string repository_name = 3;
+     */
+    repositoryName = "";
 
-  static readonly runtime = proto3;
-  static readonly typeName =
-    "buf.alpha.registry.v1alpha1.GetReferenceByNameRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    {
-      no: 3,
-      name: "repository_name",
-      kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
-    },
-  ]);
+    constructor(data?: PartialMessage<GetReferenceByNameRequest>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): GetReferenceByNameRequest {
-    return new GetReferenceByNameRequest().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameRequest";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+        {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+        {no: 3, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): GetReferenceByNameRequest {
-    return new GetReferenceByNameRequest().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetReferenceByNameRequest {
+        return new GetReferenceByNameRequest().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): GetReferenceByNameRequest {
-    return new GetReferenceByNameRequest().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetReferenceByNameRequest {
+        return new GetReferenceByNameRequest().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | GetReferenceByNameRequest
-      | PlainMessage<GetReferenceByNameRequest>
-      | undefined,
-    b:
-      | GetReferenceByNameRequest
-      | PlainMessage<GetReferenceByNameRequest>
-      | undefined
-  ): boolean {
-    return proto3.util.equals(GetReferenceByNameRequest, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetReferenceByNameRequest {
+        return new GetReferenceByNameRequest().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined, b: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined): boolean {
+        return proto3.util.equals(GetReferenceByNameRequest, a, b);
+    }
+
 }
+
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameResponse
  */
 export class GetReferenceByNameResponse extends Message<GetReferenceByNameResponse> {
-  /**
-   * @generated from field: buf.alpha.registry.v1alpha1.Reference reference = 1;
-   */
-  reference?: Reference;
 
-  constructor(data?: PartialMessage<GetReferenceByNameResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
+    /**
+     * @generated from field: buf.alpha.registry.v1alpha1.Reference reference = 1;
+     */
+    reference?: Reference;
 
-  static readonly runtime = proto3;
-  static readonly typeName =
-    "buf.alpha.registry.v1alpha1.GetReferenceByNameResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "reference", kind: "message", T: Reference },
-  ]);
+    constructor(data?: PartialMessage<GetReferenceByNameResponse>) {
+        super();
+        proto3.util.initPartial(data, this);
+    }
 
-  static fromBinary(
-    bytes: Uint8Array,
-    options?: Partial<BinaryReadOptions>
-  ): GetReferenceByNameResponse {
-    return new GetReferenceByNameResponse().fromBinary(bytes, options);
-  }
+    static readonly runtime = proto3;
+    static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameResponse";
+    static readonly fields: FieldList = proto3.util.newFieldList(() => [
+        {no: 1, name: "reference", kind: "message", T: Reference},
+    ]);
 
-  static fromJson(
-    jsonValue: JsonValue,
-    options?: Partial<JsonReadOptions>
-  ): GetReferenceByNameResponse {
-    return new GetReferenceByNameResponse().fromJson(jsonValue, options);
-  }
+    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetReferenceByNameResponse {
+        return new GetReferenceByNameResponse().fromBinary(bytes, options);
+    }
 
-  static fromJsonString(
-    jsonString: string,
-    options?: Partial<JsonReadOptions>
-  ): GetReferenceByNameResponse {
-    return new GetReferenceByNameResponse().fromJsonString(jsonString, options);
-  }
+    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetReferenceByNameResponse {
+        return new GetReferenceByNameResponse().fromJson(jsonValue, options);
+    }
 
-  static equals(
-    a:
-      | GetReferenceByNameResponse
-      | PlainMessage<GetReferenceByNameResponse>
-      | undefined,
-    b:
-      | GetReferenceByNameResponse
-      | PlainMessage<GetReferenceByNameResponse>
-      | undefined
-  ): boolean {
-    return proto3.util.equals(GetReferenceByNameResponse, a, b);
-  }
+    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetReferenceByNameResponse {
+        return new GetReferenceByNameResponse().fromJsonString(jsonString, options);
+    }
+
+    static equals(a: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined, b: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined): boolean {
+        return proto3.util.equals(GetReferenceByNameResponse, a, b);
+    }
+
 }
+
+

@@ -1,4 +1,6 @@
+/packages/*/src/gen
 /packages/*/dist
 /packages/*/bin
+/node_modules
 /.cache
-/packages/bench-codesize/src/gen
+/packages/protobuf/src/google
