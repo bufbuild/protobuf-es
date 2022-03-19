@@ -20,7 +20,6 @@ import (
 	"strings"
 
 	"github.com/bufbuild/protobuf-es/private/protoplugin"
-	"github.com/bufbuild/protobuf-es/private/ts"
 )
 
 type wktWrappers struct {
@@ -88,7 +87,7 @@ func (g wktWrappers) genWktMethods(f *protoplugin.GeneratedFile, message *protop
 
 func (g wktWrappers) genWktStaticMethods(f *protoplugin.GeneratedFile, message *protoplugin.Message) {
 	valueField, _ := g.getFields(message)
-	t := ts.ScalarTypeScriptType(message.Fields[0].Scalar)
+	t := scalarTypeScriptType(message.Fields[0].Scalar)
 	f.P("    static readonly fieldWrapper = {")
 	f.P("        wrapField(value: ", t, " | ", message.Symbol, "): ", message.Symbol, " {")
 	f.P("            return value instanceof ", message.Symbol, " ? value : new ", message.Symbol, "({value});")

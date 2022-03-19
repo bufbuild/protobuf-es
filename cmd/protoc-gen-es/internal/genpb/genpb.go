@@ -19,7 +19,6 @@ import (
 	"strings"
 
 	"github.com/bufbuild/protobuf-es/private/protoplugin"
-	"github.com/bufbuild/protobuf-es/private/ts"
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
@@ -220,12 +219,12 @@ func generateField(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
 func getFieldTyping(field *protoplugin.Field) (expr []interface{}, optional bool) {
 	switch field.Kind {
 	case protoplugin.FieldKindScalar:
-		expr = append(expr, ts.ScalarTypeScriptType(field.Scalar))
+		expr = append(expr, scalarTypeScriptType(field.Scalar))
 		optional = field.Optional
 
 	case protoplugin.FieldKindMessage:
 		if unwrapped, ok := GetUnwrappedFieldType(field); ok {
-			expr = append(expr, ts.ScalarTypeScriptType(unwrapped))
+			expr = append(expr, scalarTypeScriptType(unwrapped))
 		} else {
 			expr = append(expr, field.Message.Symbol.ToTypeOnly())
 		}
@@ -251,7 +250,7 @@ func getFieldTyping(field *protoplugin.Field) (expr []interface{}, optional bool
 		var valueType interface{}
 		switch field.Map.ValueKind {
 		case protoplugin.FieldKindScalar:
-			valueType = ts.ScalarTypeScriptType(field.Map.ValueScalar)
+			valueType = scalarTypeScriptType(field.Map.ValueScalar)
 		case protoplugin.FieldKindMessage:
 			valueType = field.Map.ValueMessage.Symbol.ToTypeOnly()
 		case protoplugin.FieldKindEnum:
