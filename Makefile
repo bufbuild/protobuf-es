@@ -1,8 +1,7 @@
-CACHE_DIR = $(abspath .cache)
-CACHE_BIN := $(CACHE_DIR)/bin
+CACHE_DIR = .cache
 SHELL := /usr/bin/env bash -o pipefail
 .DEFAULT_GOAL = all
-export PATH := $(CACHE_BIN):$(PATH)
+export PATH := $(abspath $(CACHE_DIR)/bin):$(PATH)
 
 # We use the official protocolbuffers implementation to:
 # 1. generate wkt as part of the NPM package "@bufbuild/protobuf"
@@ -114,21 +113,21 @@ LICENSE_HEADER_YEAR_RANGE := 2021-2022
 LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/protobuf-test\/bin\/conformance_esm.js packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/ packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
 LICENSE_HEADER_DEP := $(CACHE_DIR)/dep/license-header-$(LICENSE_HEADER_VERSION)
 $(LICENSE_HEADER_DEP):
-	GOBIN=$(CACHE_BIN) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
 	mkdir -p $(dir $(LICENSE_HEADER_DEP)) && touch $(LICENSE_HEADER_DEP)
 
 # Install git-ls-files-unstaged
 GIT_LS_FILES_UNSTAGED_VERSION ?= v1.1.0
 GIT_LS_FILES_UNSTAGED_DEP := $(CACHE_DIR)/dep/git-ls-files-unstaged-$(GIT_LS_FILES_UNSTAGED_VERSION)
 $(GIT_LS_FILES_UNSTAGED_DEP):
-	GOBIN=$(CACHE_BIN) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
 	mkdir -p $(dir $(GIT_LS_FILES_UNSTAGED_DEP)) && touch $(GIT_LS_FILES_UNSTAGED_DEP)
 
 # Install golangci-lint
 GOLANGCI_LINT_VERSION ?= v1.44.0
 GOLANGCI_LINT_DEP := $(CACHE_DIR)/dep/golangci-lint-$(GOLANGCI_LINT_VERSION)
 $(GOLANGCI_LINT_DEP):
-	GOBIN=$(CACHE_BIN) go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
 	mkdir -p $(dir $(GOLANGCI_LINT_DEP)) && touch $(GOLANGCI_LINT_DEP)
 
 
