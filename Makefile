@@ -22,7 +22,7 @@ $(GOOGPROTOBUF_PROTOC_BIN): $(GOOGPROTOBUF_SOURCE)
 	touch $(GOOGPROTOBUF_PROTOC_BIN)
 $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN): $(GOOGPROTOBUF_SOURCE)
 	cd $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION) && bazel build test_messages_proto3_proto conformance_proto conformance_test conformance_test_runner
-export PATH := $(GOOGPROTOBUF_SOURCE)/bazel-bin:$(PATH)
+export PATH := $(abspath $(GOOGPROTOBUF_SOURCE)/bazel-bin):$(PATH)
 
 
 # Our code generator protoc-gen-es generates message and enum types
