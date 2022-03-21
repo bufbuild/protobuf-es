@@ -1,6 +1,6 @@
 # Code size comparison
 
-This is a simple code size comparison between Connect-Web and gRPC-web.
+This is a simple code size comparison between protobuf-es and google-protobuf.
 
 We are generating code for the module [buf.build/bufbuild/buf](https://buf.build/bufbuild/buf)
 once with protoc's [built-in JavaScript generator](https://github.com/protocolbuffers/protobuf/blob/7ecf43f0cedc4320c1cb31ba787161011b62e741/src/google/protobuf/compiler/js/js_generator.cc), 
