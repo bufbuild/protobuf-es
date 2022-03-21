@@ -195,7 +195,7 @@ ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN)
 # 4. Run this target, publishing to npmjs.com
 # 5. Tag the release
 release: all ## Release @bufbuild/protobuf
-	@[ -z "$(shell git status --short)" ] || echo "Uncommitted changes found." && exit 1;
+	@[ -z "$(shell git status --short)" ] || (echo "Uncommitted changes found." && exit 1);
 	node make/scripts/go-build-npm.js packages/protoc-gen-es ./cmd/protoc-gen-es
 	npm publish \
 		--access restricted \
