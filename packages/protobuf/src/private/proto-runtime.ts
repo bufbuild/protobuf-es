@@ -20,7 +20,7 @@ import type { EnumType, EnumValueInfo } from "../enum.js";
 import type { MessageType } from "../message-type.js";
 import type { FieldListSource } from "./field-list.js";
 import type { EnumObject } from "./enum.js";
-import {getEnumType, makeEnum, makeEnumType} from "./enum.js";
+import { getEnumType, makeEnum, makeEnumType } from "./enum.js";
 import type { Util } from "./util.js";
 import { makeMessageType } from "./message-type.js";
 
@@ -56,12 +56,12 @@ export interface ProtoRuntime {
    * via getEnumType().
    */
   makeEnum(
-      typeName: string,
-      values: EnumValueInfo[],
-      opt?: {
-        // We do not surface options at this time
-        // options?: { readonly [extensionName: string]: JsonValue };
-      }
+    typeName: string,
+    values: EnumValueInfo[],
+    opt?: {
+      // We do not surface options at this time
+      // options?: { readonly [extensionName: string]: JsonValue };
+    }
   ): EnumObject;
 
   /**
@@ -70,12 +70,12 @@ export interface ProtoRuntime {
    * actual enum object.
    */
   makeEnumType(
-      typeName: string,
-      values: EnumValueInfo[],
-      opt?: {
-        // We do not surface options at this time
-        // options?: { readonly [extensionName: string]: JsonValue };
-      }
+    typeName: string,
+    values: EnumValueInfo[],
+    opt?: {
+      // We do not surface options at this time
+      // options?: { readonly [extensionName: string]: JsonValue };
+    }
   ): EnumType;
 
   /**
