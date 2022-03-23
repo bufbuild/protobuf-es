@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package genpb
+package gencommon
 
 import (
 	"bytes"
@@ -23,9 +23,9 @@ import (
 
 var errUnescape = errors.New("cannot unescape")
 
-// unescapeBytesDefaultValue parses a text-encoded default value (proto2) of a
+// UnescapeBytesDefaultValue parses a text-encoded default value (proto2) of a
 // BYTES field.
-func unescapeBytesDefaultValue(str string) ([]byte, error) {
+func UnescapeBytesDefaultValue(str string) ([]byte, error) {
 	p := newInput(str)
 	var b bytes.Buffer
 	for p.next() {

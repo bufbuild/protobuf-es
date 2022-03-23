@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package genpb
+package gencommon
 
 import "google.golang.org/protobuf/types/descriptorpb"
 
-func scalarTypeScriptType(scalarType descriptorpb.FieldDescriptorProto_Type) string {
+func ScalarTypeScriptType(scalarType descriptorpb.FieldDescriptorProto_Type) string {
 	switch scalarType {
 	case descriptorpb.FieldDescriptorProto_TYPE_STRING:
 		return "string"

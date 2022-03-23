@@ -100,8 +100,9 @@ type Generator struct {
 	Files             []*File
 	SupportedFeatures uint64
 	BootstrapWKT      bool
-	TSNoCheck         bool
-	ESLintDisable     bool
+	TSNoCheck         bool // print /* @ts-nocheck */ at the top of each generated TypeScript file
+	ESLintDisable     bool // print /* eslint-disable */ at the top of each generated file
+	Language          Language
 	symbolPool        *symbolPool
 	filesByPath       map[string]*File
 	enumsByName       map[string]*Enum
@@ -117,6 +118,7 @@ func NewGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Gen
 		Request:           request,
 		ESLintDisable:     true,
 		TSNoCheck:         true,
+		Language:          LanguageTypeScript,
 		symbolPool:        &symbolPool{},
 		filesByPath:       make(map[string]*File),
 		enumsByName:       make(map[string]*Enum),
@@ -174,6 +176,15 @@ func (g *Generator) parseParameter(parameter string) error {
 			key = key[0:i]
 		}
 		switch key {
+		case "language":
+			switch value {
+			case "typescript":
+				g.Language = LanguageTypeScript
+			case "javascript":
+				g.Language = LanguageJavaScript
+			default:
+				return ErrInvalidOption
+			}
 		case "bootstrap_wkt":
 			switch value {
 			case "true", "1":
@@ -232,6 +243,24 @@ func (g *Generator) toResponse(response *pluginpb.CodeGeneratorResponse) {
 			GeneratedCodeInfo: nil,
 		}
 		response.File = append(response.File, fP)
+	}
+}
+
+type Language int
+
+const (
+	LanguageTypeScript Language = iota
+	LanguageJavaScript
+)
+
+func (l Language) String() string {
+	switch l {
+	case LanguageTypeScript:
+		return "javascript"
+	case LanguageJavaScript:
+		return "typescript"
+	default:
+		return "unknown"
 	}
 }
 
@@ -987,7 +1016,6 @@ func (o *Oneof) String() string {
 }
 
 type Extension struct {
-	// TODO figure out symbol / local name
 	Proto      *descriptorpb.FieldDescriptorProto
 	File       *File
 	Parent     *Message // nil if top-level extension
