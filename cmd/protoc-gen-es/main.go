@@ -15,6 +15,8 @@
 package main
 
 import (
+	"github.com/bufbuild/protobuf-es/cmd/protoc-gen-es/internal/gendts"
+	"github.com/bufbuild/protobuf-es/cmd/protoc-gen-es/internal/genjs"
 	"github.com/bufbuild/protobuf-es/cmd/protoc-gen-es/internal/gents"
 	"github.com/bufbuild/protobuf-es/private/protoplugin"
 	"google.golang.org/protobuf/types/pluginpb"
@@ -33,9 +35,9 @@ func main() {
 			switch gen.Language {
 			case protoplugin.LanguageTypeScript:
 				gents.GenerateFile(gen, file)
-				//case protoplugin.LanguageJavaScript:
-				//	gendts.GenerateFile(gen, file)
-				//	genjs.GenerateFile(gen, file)
+			case protoplugin.LanguageJavaScript:
+				gendts.GenerateFile(gen, file)
+				genjs.GenerateFile(gen, file)
 			}
 		}
 		return nil

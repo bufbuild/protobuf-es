@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package gents
+package genjs
 
 import (
 	"strings"
@@ -22,7 +22,7 @@ import (
 )
 
 func GenerateFile(gen *protoplugin.Generator, file *protoplugin.File) {
-	f := gen.NewGeneratedFile(file.Name + "_pb.ts")
+	f := gen.NewGeneratedFile(file.Name + "_pb.js")
 	f.ImportPath = file.StandardImportPath
 	f.H(file.Preamble)
 	for _, enum := range file.Enums {
@@ -39,77 +39,39 @@ func GenerateFile(gen *protoplugin.Generator, file *protoplugin.File) {
 func generateEnum(f *protoplugin.GeneratedFile, enum *protoplugin.Enum) {
 	rt := enum.File.RuntimeSymbols
 	f.P(enum.JSDoc(""))
-	f.P("export enum ", enum.Symbol, " {")
-	f.P()
+	f.P("export const ", enum.Symbol, " = ", rt.ProtoN, ".makeEnum(")
+	f.P(`    "`, enum.TypeName, `",`)
+	f.P(`    [`)
 	for _, value := range enum.Values {
-		f.P(value.JSDoc("    "))
-		f.P("    ", value.LocalName, " = ", value.Proto.GetNumber(), ",")
-		f.P()
+		f.P("        {no: ", value.Proto.GetNumber(), ", name: \"", value.Proto.GetName(), "\"},")
 	}
-	f.P("}")
+	f.P(`    ]`)
+	f.P(");")
 	f.P()
-	switch enum.File.Syntax {
-	case protoplugin.ProtoSyntax2:
-		f.P("// Retrieve enum metadata with: proto2.getEnumType(", enum.Symbol, ")")
-	case protoplugin.ProtoSyntax3:
-		f.P("// Retrieve enum metadata with: proto3.getEnumType(", enum.Symbol, ")")
-	}
-	f.P(rt.ProtoN, `.util.setEnumType(`, enum.Symbol, `, "`, enum.TypeName, `", [`)
-	for _, value := range enum.Values {
-		f.P("    {no: ", value.Proto.GetNumber(), ", name: \"", value.Proto.GetName(), "\"},")
-	}
-	f.P("]);")
 }
 
 func generateMessage(f *protoplugin.GeneratedFile, message *protoplugin.Message) {
 	rt := message.File.RuntimeSymbols
+	needsLocalName := message.Proto.GetName() != message.Symbol.Name // if localName is not inferrable, we need to provide it
 	f.P(message.JSDoc(""))
-	f.P("export class ", message.Symbol, " extends ", rt.Message, "<", message.Symbol, "> {")
-	f.P()
-	for _, member := range message.Members {
-		switch member.Kind {
-		case protoplugin.MemberKindOneof:
-			generateOneof(f, member.Oneof)
-		case protoplugin.MemberKindField:
-			generateField(f, member.Field)
+	f.P("export const ", message.Symbol, " = ", rt.ProtoN, ".makeMessageType(")
+	f.P(`    "`, message.TypeName, `",`)
+	if len(message.Fields) == 0 {
+		f.P("    [],")
+	} else {
+		f.P("    () => [")
+		for _, field := range message.Fields {
+			generateFieldInfo(f, field)
 		}
-		f.P()
+		f.P("    ],")
 	}
-	f.P("    constructor(data?: ", rt.PartialMessage, "<", message.Symbol, ">) {")
-	f.P("        super();")
-	f.P("        ", rt.ProtoN, ".util.initPartial(data, this);")
-	f.P("    }")
+	if needsLocalName {
+		f.P(`    {localName: "`, message.Symbol, `"},`)
+	}
+	f.P(");")
 	f.P()
 	generateWktMethods(f, message)
-	f.P("    static readonly runtime = ", rt.ProtoN, ";")
-	f.P("    static readonly typeName = \"", message.TypeName, "\";")
-	f.P("    static readonly fields: ", rt.FieldList, " = ", rt.ProtoN, ".util.newFieldList(() => [")
-	for _, field := range message.Fields {
-		generateFieldInfo(f, field)
-	}
-	f.P("    ]);")
-	// In case we start supporting options, we have to surface them here
-	//f.P("    static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
-	f.P()
 	generateWktStaticMethods(f, message)
-	f.P("    static fromBinary(bytes: Uint8Array, options?: Partial<", rt.BinaryReadOptions, ">): ", message.Symbol, " {")
-	f.P("        return new ", message.Symbol, "().fromBinary(bytes, options);")
-	f.P("    }")
-	f.P()
-	f.P("    static fromJson(jsonValue: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): ", message.Symbol, " {")
-	f.P("        return new ", message.Symbol, "().fromJson(jsonValue, options);")
-	f.P("    }")
-	f.P()
-	f.P("    static fromJsonString(jsonString: string, options?: Partial<", rt.JsonReadOptions, ">): ", message.Symbol, " {")
-	f.P("        return new ", message.Symbol, "().fromJsonString(jsonString, options);")
-	f.P("    }")
-	f.P()
-	f.P("    static equals(a: ", message.Symbol, " | ", rt.PlainMessage, "<", message.Symbol, "> | undefined, b: ", message.Symbol, " | ", rt.PlainMessage, "<", message.Symbol, "> | undefined): boolean {")
-	f.P("        return ", rt.ProtoN, ".util.equals(", message.Symbol, ", a, b);")
-	f.P("    }")
-	f.P()
-	f.P("}")
-	f.P()
 	for _, nestedEnum := range message.NestedEnums {
 		generateEnum(f, nestedEnum)
 		f.P()
@@ -182,43 +144,10 @@ func generateFieldInfo(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
 	f.P(e...)
 }
 
-func generateOneof(f *protoplugin.GeneratedFile, oneof *protoplugin.Oneof) {
-	f.P(oneof.JSDoc("    "))
-	f.P("    ", oneof.LocalName, ": {")
-	for i, field := range oneof.Fields {
-		if i > 0 {
-			f.P(`    } | {`)
-		}
-		f.P(field.JSDoc("        "))
-		t, _ := gencommon.GetFieldTyping(field)
-		f.P(`        value: `, t, `;`)
-		f.P(`        case: "`, field.LocalName, `";`)
-	}
-	f.P(`    } | { case: undefined; value?: undefined } = { case: undefined };`)
-}
-
-func generateField(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
-	f.P(field.JSDoc("    "))
-	var expr []interface{}
-	expr = append(expr, "    ", field.LocalName)
-	defaultValue, typingInferrable := gencommon.GetFieldIntrinsicDefaultValue(field)
-	typing, optional := gencommon.GetFieldTyping(field)
-	if optional || defaultValue == nil {
-		expr = append(expr, "?: ", typing)
-	} else if !typingInferrable {
-		expr = append(expr, ": ", typing)
-	}
-	if defaultValue != nil {
-		expr = append(expr, " = ", defaultValue)
-	}
-	expr = append(expr, ";")
-	f.P(expr...)
-}
-
 func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Message) {
 	rt := message.File.RuntimeSymbols
 	if ok, ref := gencommon.MatchWktAny(message); ok {
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): ", rt.JsonValue, " {")
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P(`        if (this.`, ref.TypeURL.LocalName, ` === "") {`)
 		f.P("            return {};")
 		f.P("        }")
@@ -234,9 +163,9 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("        }")
 		f.P(`        json["@type"] = this.`, ref.TypeURL.LocalName, `;`)
 		f.P("        return json;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (json === null || Array.isArray(json) || typeof json != "object") {`)
 		f.P("            throw new Error(`cannot decode message ", message.TypeName, " from JSON: expected object but got ${json === null ? \"null\" : Array.isArray(json) ? \"array\" : typeof json}`);")
 		f.P("        }")
@@ -258,30 +187,32 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("        }")
 		f.P("        this.packFrom(message);")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    packFrom(message: Message): void {")
+		f.P(message.Symbol, ".prototype.packFrom = function packFrom(message) {")
 		f.P("        this.", ref.Value.LocalName, " = message.toBinary();")
 		f.P("        this.", ref.TypeURL.LocalName, " = this.typeNameToUrl(message.getType().typeName);")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    unpackTo(target: Message): boolean {")
+		f.P(message.Symbol, ".prototype.unpackTo = function unpackTo(target) {")
+		f.P("    unpackTo(target) {")
 		f.P("        if (!this.is(target.getType())) {")
 		f.P("            return false;")
 		f.P("        }")
 		f.P("        target.fromBinary(this.", ref.Value.LocalName, ");")
 		f.P("        return true;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    is(type: ", rt.MessageType, "): boolean {")
+		f.P(message.Symbol, ".prototype.is = function is(type) {")
+		f.P("    is(type) {")
 		f.P("        return this.", ref.TypeURL.LocalName, " === this.typeNameToUrl(type.typeName);")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    private typeNameToUrl(name: string): string {")
+		f.P(message.Symbol, ".prototype.typeNameToUrl = function typeNameToUrl(name) {")
 		f.P("        return `type.googleapis.com/${name}`;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    private typeUrlToName(url: string): string {")
+		f.P(message.Symbol, ".prototype.typeUrlToName = function typeUrlToName(url) {")
 		f.P("        if (!url.length) {")
 		f.P("            throw new Error(`invalid type url: ${url}`);")
 		f.P("        }")
@@ -291,11 +222,11 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("            throw new Error(`invalid type url: ${url}`);")
 		f.P("        }")
 		f.P("        return name;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktDuration(message); ok {
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (typeof json !== "string") {`)
 		f.P("            throw new Error(`cannot decode ", message.TypeName, " from JSON: ${proto3.json.debug(json)}`);")
 		f.P("        }")
@@ -316,9 +247,9 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("            }")
 		f.P("        }")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): JsonValue {")
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P("        if (Number(this.", ref.Seconds.LocalName, ") > 315576000000 || Number(this.", ref.Seconds.LocalName, ") < -315576000000) {")
 		f.P("            throw new Error(`cannot encode ", message.TypeName, " to JSON: value out of range`);")
 		f.P("        }")
@@ -334,11 +265,11 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`            text += "." + nanosStr;`)
 		f.P("        }")
 		f.P(`        return text + "s";`)
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktFieldMask(message); ok {
-		f.P(`    override toJson(options?: Partial<`, rt.JsonWriteOptions, `>): `, rt.JsonValue, ` {`)
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P(`        // Converts snake_case to protoCamelCase according to the convention`)
 		f.P(`        // used by protoc to convert a field name to a JSON name.`)
 		f.P(`        function protoCamelCase(snakeCase: string): string {`)
@@ -380,16 +311,16 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`            }`)
 		f.P(`            return protoCamelCase(p);`)
 		f.P(`        }).join(",");`)
-		f.P(`    }`)
+		f.P(`    };`)
 		f.P()
-		f.P(`    override fromJson(json: `, rt.JsonValue, `, options?: Partial<`, rt.JsonReadOptions, `>): this {`)
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (typeof json !== "string") {`)
 		f.P(`            throw new Error("cannot decode `, message.TypeName, ` from JSON: " + proto3.json.debug(json));`)
 		f.P(`        }`)
 		f.P(`        if (json === "") {`)
 		f.P(`            return this;`)
 		f.P(`        }`)
-		f.P(`        function camelToSnake (str: string) {`)
+		f.P(`        function camelToSnake (str) {`)
 		f.P(`            if (str.includes("_")) {`)
 		f.P(`                throw new Error("cannot decode `, message.TypeName, ` from JSON: path names must be lowerCamelCase");`)
 		f.P(`            }`)
@@ -398,19 +329,19 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`        }`)
 		f.P(`        this.`, ref.Paths.LocalName, ` = json.split(",").map(camelToSnake);`)
 		f.P(`        return this;`)
-		f.P(`    }`)
+		f.P(`    };`)
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktStruct(message); ok {
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): ", rt.JsonValue, " {")
-		f.P("        const json: ", rt.JsonObject, " = {}")
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
+		f.P("        const json = {}")
 		f.P("        for (const [k, v] of Object.entries(this.", ref.Fields.LocalName, ")) {")
 		f.P("            json[k] = v.toJson(options);")
 		f.P("        }")
 		f.P("        return json;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (typeof json != "object" || json == null || Array.isArray(json)) {`)
 		f.P(`            throw new Error("cannot decode `, message.TypeName, ` from JSON " + `, rt.ProtoN, `.json.debug(json));`)
 		f.P("        }")
@@ -418,11 +349,11 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("            this.", ref.Fields.LocalName, "[k] = ", ref.Fields.Map.ValueMessage.Symbol, ".fromJson(v);")
 		f.P("        }")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktValue(message); ok {
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): ", rt.JsonValue, " {")
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P("        switch (this.", ref.Kind.LocalName, ".case) {")
 		f.P(`            case "`, ref.NullValue.LocalName, `":`)
 		f.P("                return null;")
@@ -435,9 +366,9 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`                return this.`, ref.Kind.LocalName, `.value.toJson({...options, emitDefaultValues: true});`)
 		f.P("        }")
 		f.P(`        throw new Error("`, message.TypeName, ` must have a value");`)
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P("        switch (typeof json) {")
 		f.P(`            case "number":`)
 		f.P(`                this.kind = { case: "`, ref.NumberValue.LocalName, `", value: json };`)
@@ -461,15 +392,15 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`                throw new Error("cannot decode `, message.TypeName, ` from JSON " + `, rt.ProtoN, `.json.debug(json));`)
 		f.P("        }")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktListValue(message); ok {
-		f.P(`    override toJson(options?: Partial<`, rt.JsonWriteOptions, `>): `, rt.JsonValue, ` {`)
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P(`        return this.`, ref.Values.LocalName, `.map(v => v.toJson());`)
 		f.P(`    }`)
 		f.P()
-		f.P(`    override fromJson(json: `, rt.JsonValue, `, options?: Partial<`, rt.JsonReadOptions, `>): this {`)
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (!Array.isArray(json)) {`)
 		f.P(`            throw new Error("cannot decode `, message.TypeName, ` from JSON " + `, rt.ProtoN, `.json.debug(json));`)
 		f.P(`        }`)
@@ -477,11 +408,11 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`            this.`, ref.Values.LocalName, `.push(`, ref.Values.Message.Symbol, `.fromJson(e));`)
 		f.P(`        }`)
 		f.P(`        return this;`)
-		f.P(`    }`)
+		f.P(`    };`)
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktTimestamp(message); ok {
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P(`        if (typeof json !== "string") {`)
 		f.P("            throw new Error(`cannot decode ", message.TypeName, " from JSON: ${", rt.ProtoN, ".json.debug(json)}`);")
 		f.P("        }")
@@ -502,9 +433,9 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`            this.`, ref.Nanos.LocalName, ` = (parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) - 1000000000);`)
 		f.P("        }")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): JsonValue {")
+		f.P(message.Symbol, ".prototype.toJson = function toJson(options) {")
 		f.P("        const ms = Number(this.", ref.Seconds.LocalName, ") * 1000;")
 		f.P(`        if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {`)
 		f.P("            throw new Error(`cannot encode ", message.TypeName, " to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);")
@@ -524,20 +455,21 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("            }")
 		f.P("        }")
 		f.P(`        return new Date(ms).toISOString().replace(".000Z", z);`)
-		f.P("    }")
+		f.P("    };")
 		f.P()
+		f.P(message.Symbol, ".prototype.typeUrlToName = function typeUrlToName(url) {")
 		f.P("    toDate(): Date {")
 		f.P("        return new Date(Number(this.", ref.Seconds.LocalName, ") * 1000 + Math.ceil(this.", ref.Nanos.LocalName, " / 1000000));")
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktWrapper(message); ok {
 		t := strings.TrimPrefix(ref.Value.Scalar.String(), "TYPE_")
-		f.P("    override toJson(options?: Partial<", rt.JsonWriteOptions, ">): ", rt.JsonValue, " {")
-		f.P("        return proto3.json.writeScalar(", rt.ScalarType, ".", t, ", this.value, true)!;")
-		f.P("    }")
+		f.P(message.Symbol, ".prototype.typeUrlToName = function toJson(options) {")
+		f.P("        return proto3.json.writeScalar(", rt.ScalarType, ".", t, ", this.value, true);")
+		f.P("    };")
 		f.P()
-		f.P("    override fromJson(json: ", rt.JsonValue, ", options?: Partial<", rt.JsonReadOptions, ">): this {")
+		f.P(message.Symbol, ".prototype.fromJson = function fromJson(json, options) {")
 		f.P("        try {")
 		f.P("            this.value = ", rt.ProtoN, ".json.readScalar(", rt.ScalarType, ".", t, ", json);")
 		f.P("        } catch (e) {")
@@ -548,7 +480,7 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P("            throw new Error(m);")
 		f.P("        }")
 		f.P("        return this;")
-		f.P("    }")
+		f.P("    };")
 		f.P()
 	}
 }
@@ -556,37 +488,36 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 func generateWktStaticMethods(f *protoplugin.GeneratedFile, message *protoplugin.Message) {
 	rt := message.File.RuntimeSymbols
 	if ok, _ := gencommon.MatchWktAny(message); ok {
-		f.P("    static pack(message: Message): ", message.Symbol, " {")
-		f.P("        const any = new ", message.Symbol, "();")
-		f.P("        any.packFrom(message);")
-		f.P("        return any;")
-		f.P("    }")
+		f.P(message.Symbol, ".pack = function pack(message) {")
+		f.P("    const any = new ", message.Symbol, "();")
+		f.P("    any.packFrom(message);")
+		f.P("    return any;")
+		f.P("};")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktTimestamp(message); ok {
-		f.P("    static now(): ", message.Symbol, " {")
-		f.P("        return ", message.Symbol, ".fromDate(new Date())")
-		f.P("    }")
+		f.P(message.Symbol, ".now = function now() {")
+		f.P("    return ", message.Symbol, ".fromDate(new Date())")
+		f.P("};")
 		f.P()
-		f.P("    static fromDate(date: Date): ", message.Symbol, " {")
-		f.P("        const ms = date.getTime();")
-		f.P("        return new ", message.Symbol, "({")
-		f.P("            ", ref.Seconds.LocalName, ": ", rt.ProtoInt64, ".parse(Math.floor(ms / 1000)),")
-		f.P("            ", ref.Nanos.LocalName, ": (ms % 1000) * 1000000,")
-		f.P("        });")
-		f.P("    }")
+		f.P(message.Symbol, ".fromDate = function fromDate(date) {")
+		f.P("    const ms = date.getTime();")
+		f.P("    return new ", message.Symbol, "({")
+		f.P("        ", ref.Seconds.LocalName, ": ", rt.ProtoInt64, ".parse(Math.floor(ms / 1000)),")
+		f.P("        ", ref.Nanos.LocalName, ": (ms % 1000) * 1000000,")
+		f.P("    });")
+		f.P("};")
 		f.P()
 	}
 	if ok, ref := gencommon.MatchWktWrapper(message); ok {
-		t := gencommon.ScalarTypeScriptType(ref.Value.Scalar)
-		f.P("    static readonly fieldWrapper = {")
-		f.P("        wrapField(value: ", t, " | ", message.Symbol, "): ", message.Symbol, " {")
-		f.P("            return value instanceof ", message.Symbol, " ? value : new ", message.Symbol, "({value});")
-		f.P("        },")
-		f.P("        unwrapField(value: ", message.Symbol, "): ", t, " {")
-		f.P("            return value.", ref.Value.LocalName, ";")
-		f.P("        }")
-		f.P("    };")
+		f.P(message.Symbol, ".fieldWrapper = {")
+		f.P("    wrapField(value) {")
+		f.P("        return value instanceof ", message.Symbol, " ? value : new ", message.Symbol, "({value});")
+		f.P("    },")
+		f.P("    unwrapField(value) {")
+		f.P("        return value.", ref.Value.LocalName, ";")
+		f.P("    }")
+		f.P("};")
 		f.P()
 	}
 }
