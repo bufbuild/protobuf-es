@@ -65,6 +65,3 @@ issues:
     - linters: [stylecheck]
       path: private/protoplugin/runtime.go
       text: "ST1003: struct field Json"
-    - linters: [dogsled]
-      path: cmd/protoc-gen-es/internal/genpb/wkt_struct.go
-      text: "declaration has 6 blank identifiers"
