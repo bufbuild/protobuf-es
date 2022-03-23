@@ -20,7 +20,7 @@ import type { EnumType, EnumValueInfo } from "../enum.js";
 import type { MessageType } from "../message-type.js";
 import type { FieldListSource } from "./field-list.js";
 import type { EnumObject } from "./enum.js";
-import { getEnumType, makeEnumType } from "./enum.js";
+import {getEnumType, makeEnum, makeEnumType} from "./enum.js";
 import type { Util } from "./util.js";
 import { makeMessageType } from "./message-type.js";
 
@@ -41,25 +41,47 @@ export interface ProtoRuntime {
     fields: FieldListSource,
     opt?: {
       localName?: string;
-      options?: { readonly [extensionName: string]: JsonValue };
+      // We do not surface options at this time
+      // options?: { readonly [extensionName: string]: JsonValue };
     }
   ): MessageType<T>;
 
   /**
+   * Create an enum object at runtime, without generating code.
+   *
+   * The object conforms to TypeScript enums, and comes with
+   * mapping from name to value, and from value to name.
+   *
+   * The type name and other reflection information is accessible
+   * via getEnumType().
+   */
+  makeEnum(
+      typeName: string,
+      values: EnumValueInfo[],
+      opt?: {
+        // We do not surface options at this time
+        // options?: { readonly [extensionName: string]: JsonValue };
+      }
+  ): EnumObject;
+
+  /**
    * Create an enum type at runtime, without generating code.
+   * Note that this only creates the reflection information, not an
+   * actual enum object.
    */
   makeEnumType(
-    typeName: string,
-    values: EnumValueInfo[],
-    opt?: {
-      options?: { readonly [extensionName: string]: JsonValue };
-    }
+      typeName: string,
+      values: EnumValueInfo[],
+      opt?: {
+        // We do not surface options at this time
+        // options?: { readonly [extensionName: string]: JsonValue };
+      }
   ): EnumType;
 
   /**
-   * Get reflection information from a generated enum.
+   * Get reflection information - the EnumType - from an enum object.
    * If this function is called on something other than a generated
-   * enum, it raises an error.
+   * enum, or an enum constructed with makeEnum(), it raises an error.
    */
   getEnumType(enumObject: EnumObject): EnumType;
 }
@@ -85,6 +107,7 @@ export function makeProtoRuntime(
     ) {
       return makeMessageType(this, typeName, fields, opt);
     },
+    makeEnum,
     makeEnumType,
     getEnumType,
   };

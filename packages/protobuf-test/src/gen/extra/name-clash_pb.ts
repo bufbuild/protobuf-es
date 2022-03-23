@@ -821,7 +821,7 @@ export class PlainMessage extends Message$1<PlainMessage> {
 /**
  * clash with global type "Error"
  * either this message name is escaped in generated code, or the generated
- * code must escape it's calls to the global error object (i.e. `new Error`)
+ * code must escape its calls to the global error object (i.e. `new Error`)
  *
  * @generated from message spec.Error
  */

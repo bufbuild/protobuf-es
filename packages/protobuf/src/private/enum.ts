@@ -61,12 +61,12 @@ export function setEnumType(
  * Create a new EnumType with the given values.
  */
 export function makeEnumType(
-  typeName: string,
-  values: EnumValueInfo[]
-  // We do not surface options at this time
-  // opt?: {
-  // options?: { readonly [extensionName: string]: JsonValue };
-  // },
+    typeName: string,
+    values: EnumValueInfo[]
+    // We do not surface options at this time
+    // opt?: {
+    // options?: { readonly [extensionName: string]: JsonValue };
+    // },
 ): EnumType {
   const names = Object.create(null) as Record<string, EnumValueInfo>;
   const numbers = Object.create(null) as Record<number, EnumValueInfo>;
@@ -90,4 +90,24 @@ export function makeEnumType(
       return numbers[no];
     },
   };
+}
+
+/**
+ * Create a new enum object with the given values.
+ */
+export function makeEnum(
+    typeName: string,
+    values: EnumValueInfo[]
+    // We do not surface options at this time
+    // opt?: {
+    // options?: { readonly [extensionName: string]: JsonValue };
+    // },
+): EnumObject {
+  const enumObject: EnumObject = {};
+  for (const value of values) {
+    enumObject[value.name] = value.no;
+    enumObject[value.no] = value.name;
+  }
+  setEnumType(enumObject, typeName, values);
+  return enumObject;
 }

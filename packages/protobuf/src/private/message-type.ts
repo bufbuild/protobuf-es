@@ -32,6 +32,16 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
   typeName: string,
   fields: FieldListSource,
   opt?: {
+    /**
+     * localName is the "name" property of the constructed function.
+     * It is useful in stack traces, debuggers and test frameworks,
+     * but has no other implications.
+     *
+     * This property is optional because by default, the last part
+     * from the given typeName is used. Since this does not take
+     * reserved words into account, we provide this property so that
+     * an escaped name can be given.
+     */
     localName?: string;
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
