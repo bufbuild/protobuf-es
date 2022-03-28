@@ -17,7 +17,7 @@ jobs:
         with:
           version: 1.1.0
       - name: Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cache
