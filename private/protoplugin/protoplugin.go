@@ -386,9 +386,9 @@ type Enum struct {
 	TypeName      string // fully qualified name
 	Symbol        *Symbol
 	Values        []*EnumValue
-	Deprecated    bool // deprecated with the enum option "deprecated = true", or implicitly with the file level option
+	Deprecated    bool   // deprecated with the enum option "deprecated = true", or implicitly with the file level option
+	SharedPrefix  string // MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
 	Comments      CommentSet
-	sharedPrefix  string // MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
 	protoTypeName string // fully qualified name with a leading dot
 	sourcePath    []int32
 }
@@ -415,7 +415,7 @@ func (g *Generator) newEnum(proto *descriptorpb.EnumDescriptorProto, parentMessa
 	e.Deprecated = proto.GetOptions().GetDeprecated() || e.File.Deprecated
 	e.Comments = newCommentSet(e.File.Proto.SourceCodeInfo, e.sourcePath)
 	localName, sharedPrefix := makeEnumName(e)
-	e.sharedPrefix = sharedPrefix
+	e.SharedPrefix = sharedPrefix
 	e.Symbol = g.symbolPool.new(localName, e.File.StandardImportPath)
 	g.enumsByName[e.protoTypeName] = e
 	for index, valueProto := range proto.Value {
@@ -479,7 +479,7 @@ func (g *Generator) newEnumValue(proto *descriptorpb.EnumValueDescriptorProto, p
 	v := &EnumValue{
 		Proto:      proto,
 		Parent:     parent,
-		LocalName:  makeEnumValueName(proto.GetName(), parent.sharedPrefix),
+		LocalName:  makeEnumValueName(proto.GetName(), parent.SharedPrefix),
 		Deprecated: proto.GetOptions().GetDeprecated(),
 		Comments: newCommentSet(
 			parent.File.Proto.SourceCodeInfo,
