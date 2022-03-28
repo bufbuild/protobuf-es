@@ -45,7 +45,10 @@ func generateEnum(f *protoplugin.GeneratedFile, enum *protoplugin.Enum) {
 	for _, value := range enum.Values {
 		f.P("        {no: ", value.Proto.GetNumber(), ", name: \"", value.Proto.GetName(), "\"},")
 	}
-	f.P(`    ]`)
+	f.P(`    ],`)
+	if enum.SharedPrefix != "" {
+		f.P(`    {sharedPrefix: "`, enum.SharedPrefix, `"},`)
+	}
 	f.P(");")
 	f.P()
 }
