@@ -97,17 +97,37 @@ export function makeEnumType(
  */
 export function makeEnum(
   typeName: string,
-  values: EnumValueInfo[]
-  // We do not surface options at this time
-  // opt?: {
-  // options?: { readonly [extensionName: string]: JsonValue };
-  // },
+  values: EnumValueInfo[],
+  opt?: {
+    /**
+     * MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
+     */
+    sharedPrefix?: string;
+    // We do not surface options at this time
+    // options?: { readonly [extensionName: string]: JsonValue };
+  }
 ): EnumObject {
   const enumObject: EnumObject = {};
   for (const value of values) {
-    enumObject[value.name] = value.no;
-    enumObject[value.no] = value.name;
+    const name = makeEnumValueName(value, opt?.sharedPrefix);
+    enumObject[name] = value.no;
+    enumObject[value.no] = name;
   }
   setEnumType(enumObject, typeName, values);
   return enumObject;
+}
+
+// Construct a local name for an enum value.
+// This logic matches the Go function with the same name in private/protoplugin/names.go
+function makeEnumValueName(
+  value: EnumValueInfo,
+  sharedPrefix: string | undefined
+): string {
+  if (sharedPrefix === undefined) {
+    return value.name;
+  }
+  if (!value.name.startsWith(sharedPrefix)) {
+    return value.name;
+  }
+  return value.name.substring(sharedPrefix.length);
 }
