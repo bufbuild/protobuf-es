@@ -163,7 +163,7 @@ clean: ## Delete build artifacts and installed dependencies
 	rm -rf node_modules
 	rm -rf packages/protoc-gen-*/bin/*
 
-build: $(RUNTIME_BUILD) $(PROTOC_GEN_ES_BIN) ## Build
+build: $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(PROTOC_GEN_ES_BIN) ## Build
 
 test: test-go test-jest test-conformance ## Run all tests
 
@@ -179,7 +179,7 @@ test-go: $(TEST_GEN)
 fuzz-go:
 	gotip test ./private/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
 
-lint: $(GOLANGCI_LINT_DEP) node_modules $(RUNTIME_BUILD) $(WEB_BUILD) $(TEST_BUILD) $(BENCHCODESIZE_GEN) ## Lint all files
+lint: $(GOLANGCI_LINT_DEP) node_modules $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(BENCHCODESIZE_GEN) ## Lint all files
 	golangci-lint run
 	npx eslint --max-warnings 0 .
 
@@ -193,7 +193,7 @@ format: node_modules $(GIT_LS_FILES_UNSTAGED_DEP) $(LICENSE_HEADER_DEP) ## Forma
 			--copyright-holder "$(LICENSE_HEADER_COPYRIGHT_HOLDER)" \
 			--year-range "$(LICENSE_HEADER_YEAR_RANGE)"
 
-bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) $(WEB_BUILD) ## Benchmark code size
+bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) ## Benchmark code size
 	cd $(BENCHCODESIZE_DIR) && npm run report
 
 set-version: ## Set a new version in for the project, i.e. make set-version SET_VERSION=1.2.3
