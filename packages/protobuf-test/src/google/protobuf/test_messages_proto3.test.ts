@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TestAllTypesProto3 } from "../../gen/google/protobuf/test_messages_proto3_pb.js";
+import { TestAllTypesProto3 as TS_TestAllTypesProto3 } from "../../gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "../../gen/js/google/protobuf/test_messages_proto3_pb.js";
 import { describeMT } from "../../helpers.js";
 import type {
   JsonValue,
@@ -20,17 +21,22 @@ import type {
   PlainMessage,
 } from "@bufbuild/protobuf";
 
-describeMT(TestAllTypesProto3, (messageType) => {
-  test("defaults encodes to JSON", () => {
-    const got: JsonValue = new messageType().toJson();
-    const want: JsonValue = {};
-    expect(got).toStrictEqual(want);
-  });
-  test("defaults decodes from JSON", () => {
-    const got: PlainMessage<TestAllTypesProto3> = {
-      ...messageType.fromJson({}),
-    };
-    const want: PartialMessage<TestAllTypesProto3> = { ...new messageType() };
-    expect(got).toStrictEqual(want);
-  });
-});
+describeMT(
+  { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+  (messageType) => {
+    test("defaults encodes to JSON", () => {
+      const got: JsonValue = new messageType().toJson();
+      const want: JsonValue = {};
+      expect(got).toStrictEqual(want);
+    });
+    test("defaults decodes from JSON", () => {
+      const got: PlainMessage<TS_TestAllTypesProto3 | JS_TestAllTypesProto3> = {
+        ...messageType.fromJson({}),
+      };
+      const want: PartialMessage<
+        TS_TestAllTypesProto3 | JS_TestAllTypesProto3
+      > = { ...new messageType() };
+      expect(got).toStrictEqual(want);
+    });
+  }
+);

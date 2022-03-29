@@ -18,7 +18,7 @@ import {
   DescriptorSet,
   FileDescriptorSet,
 } from "@bufbuild/protobuf";
-import { TestAllTypes } from "./gen/google/protobuf/unittest_proto3_pb.js";
+import { TestAllTypes } from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
 import { assertMessageTypeEquals } from "./helpers.js";
 
 const fds = FileDescriptorSet.fromBinary(readFileSync("./descriptorset.bin"));

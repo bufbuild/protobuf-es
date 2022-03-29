@@ -14,10 +14,11 @@
 
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
-import { MapsMessage } from "./gen/extra/msg-maps_pb";
+import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb";
+import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb";
 
-describeMT(MapsMessage, (messageType) => {
-  const defaultFields: PlainMessage<MapsMessage> = {
+describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
+  const defaultFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
     boolStrField: {},
     int32EnuField: {},
     int32MsgField: {},
@@ -34,7 +35,7 @@ describeMT(MapsMessage, (messageType) => {
     strStrField: {},
   };
   const defaultJson: JsonValue = {};
-  const exampleFields: PlainMessage<MapsMessage> = {
+  const exampleFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
     strStrField: { a: "str", b: "xx" },
     strInt32Field: { a: 123, b: 455 },
     strInt64Field: { a: 123n },

@@ -77,16 +77,15 @@ $(CONFORMANCE_BUILD): $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_GEN) $(RUNTIME_BUILD) $
 # 1. compilation of a large number of .proto files
 # 2. unit test generated code
 # 3. test interoperability with protoc (JSON names)
-# Code is run by node.js, both the ESM variant (through the conformance tests),
-# as well es the CJS variant (through Jest).
 TEST_DIR = packages/protobuf-test
-TEST_GEN = $(CACHE_DIR)/gen/packages-test-$(GOOGPROTOBUF_VERSION)
-TEST_BUILD = $(CACHE_DIR)/build/packages-test
+TEST_GEN = $(CACHE_DIR)/gen/protobuf-test-$(GOOGPROTOBUF_VERSION)
+TEST_BUILD = $(CACHE_DIR)/build/protobuf-test
 TEST_SOURCES = $(shell find $(TEST_DIR)/src -name '*.ts') $(TEST_DIR)/*.json
 $(TEST_GEN) : protoc = $(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGPROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
 $(TEST_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(TEST_DIR) -name '*.proto')
-	rm -rf $(TEST_DIR)/src/gen/* $(TEST_DIR)/descriptorset.bin
-	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen --es_opt ts_nocheck=false
+	rm -rf $(TEST_DIR)/src/gen/ts/* $(TEST_DIR)/src/gen/js/* $(TEST_DIR)/descriptorset.bin
+	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/ts --es_opt ts_nocheck=false
+	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/js --es_opt ts_nocheck=false,language=javascript
 	$(protoc) --descriptor_set_out $(TEST_DIR)/descriptorset.bin --include_imports --include_source_info
 	mkdir -p $(dir $(TEST_GEN)) && touch $(TEST_GEN)
 $(TEST_BUILD): $(PROTOC_GEN_ES_BIN) $(TEST_GEN) $(RUNTIME_BUILD) $(TEST_SOURCES)
@@ -168,7 +167,7 @@ build: $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(PROTOC_GEN_ES_BIN) 
 test: test-go test-jest test-conformance ## Run all tests
 
 test-jest: $(TEST_BUILD) $(TEST_DIR)/*.config.js
-	cd $(TEST_DIR) && npx jest
+	cd $(TEST_DIR) && NODE_OPTIONS=--experimental-vm-modules npx jest
 
 test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_BUILD)
 	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(CONFORMANCE_DIR)/conformance_failing_tests.txt --text_format_failure_list $(CONFORMANCE_DIR)/conformance_failing_tests_text_format.txt $(CONFORMANCE_DIR)/bin/conformance_esm.js

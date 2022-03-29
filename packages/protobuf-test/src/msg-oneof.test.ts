@@ -14,9 +14,10 @@
 
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
-import { OneofMessage, OneofMessageFoo } from "./gen/extra/msg-oneof_pb.js";
+import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";
+import { OneofMessage as JS_OneofMessage } from "./gen/js/extra/msg-oneof_pb.js";
 
-describeMT(OneofMessage, (messageType) => {
+describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
   const messageField11 = messageType.fields.find(11);
   if (!messageField11) {
     throw new Error();
@@ -24,7 +25,7 @@ describeMT(OneofMessage, (messageType) => {
   if (messageField11.kind !== "message") {
     throw new Error();
   }
-  const defaultFields: PlainMessage<OneofMessage> = {
+  const defaultFields: PlainMessage<TS_OneofMessage | JS_OneofMessage> = {
     message: { case: undefined },
     scalar: { case: undefined },
     enum: { case: undefined },
@@ -33,9 +34,10 @@ describeMT(OneofMessage, (messageType) => {
   const fooValue = new messageField11.T({
     name: "max",
     toggle: false,
-  }) as OneofMessageFoo;
-  const exampleFields: PlainMessage<OneofMessage> = {
-    message: { case: "foo", value: fooValue },
+  });
+  const exampleFields: PlainMessage<TS_OneofMessage | JS_OneofMessage> = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+    message: { case: "foo", value: fooValue as any },
     scalar: { case: undefined },
     enum: { case: undefined },
   };
