@@ -22,7 +22,9 @@ const config = {
   coverageProvider: "v8",
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: "dist/cjs",
+  rootDir: "dist/esm",
+
+  transform: {},
 };
 
 export default config;

@@ -19,38 +19,48 @@ import { FileDescriptorSet } from "@bufbuild/protobuf";
 import { DescriptorRegistry } from "@bufbuild/protobuf";
 
 /**
- * Runs a describe.each() with two test cases:
- * 1. passing the given MessageType as is
- * 2. passing a dynamic version of the MessageType
+ * Runs a describe.each() with three test cases:
+ * 1. the TS generated MessageType
+ * 2. the JS generated MessageType
+ * 3. a dynamic version of the MessageType
  */
 export function describeMT<T extends Message<T>>(
-  type: MessageType<T>,
+  opt: {
+    ts: MessageType<T>;
+    js: MessageType<T>;
+  },
   fn: (type: MessageType<T>) => void
 ) {
-  const mtDynamic = makeMessageTypeDynamic(type);
+  const tsDynType = makeMessageTypeDynamic(opt.ts);
   type testCase = { name: string; messageType: MessageType<T> };
   describe.each<testCase>([
-    { name: type.typeName + " (generated)", messageType: type },
-    { name: type.typeName + " (dynamic)", messageType: mtDynamic },
+    { name: opt.ts.typeName + " (generated ts)", messageType: opt.ts },
+    { name: opt.js.typeName + " (generated js)", messageType: opt.js },
+    { name: tsDynType.typeName + " (dynamic)", messageType: tsDynType },
   ])("$name", function (testCase: testCase) {
     fn(testCase.messageType);
   });
 }
 
 /**
- * Runs a test.each() with two test cases:
- * 1. passing the given MessageType as is
- * 2. passing a dynamic version of the MessageType
+ * Runs a test.each() with three test cases:
+ * 1. the TS generated MessageType
+ * 2. the JS generated MessageType
+ * 3. a dynamic version of the MessageType
  */
 export function testMT<T extends Message<T>>(
-  type: MessageType<T>,
+  opt: {
+    ts: MessageType<T>;
+    js: MessageType<T>;
+  },
   fn: (type: MessageType<T>) => void
 ) {
-  const mtDynamic = makeMessageTypeDynamic(type);
+  const tsDynType = makeMessageTypeDynamic(opt.ts);
   type testCase = { name: string; messageType: MessageType<T> };
   test.each<testCase>([
-    { name: type.typeName + " (generated)", messageType: type },
-    { name: type.typeName + " (dynamic)", messageType: mtDynamic },
+    { name: opt.ts.typeName + " (generated ts)", messageType: opt.ts },
+    { name: opt.js.typeName + " (generated js)", messageType: opt.js },
+    { name: tsDynType.typeName + " (dynamic)", messageType: tsDynType },
   ])("$name", function (testCase: testCase) {
     fn(testCase.messageType);
   });
@@ -110,7 +120,6 @@ export function assertFieldInfoEquals(a: FieldInfo, b: FieldInfo): void {
     expect(a.T).toBe(b.T);
   }
   if (a.kind === "message" && b.kind === "message") {
-    a.T;
     assertMessageTypeEquals(a.T, b.T);
   }
   if (a.kind === "enum" && b.kind === "enum") {

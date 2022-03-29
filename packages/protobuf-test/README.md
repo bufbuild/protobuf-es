@@ -6,5 +6,6 @@ We also generate code for many of the unit test proto files that are part of
 github.com/protocolbuffers/protobuf. They cover many edge cases for both code 
 generation and serialization.
 
-Most tests are run twice, once with the generated code, once with a type that 
-is created at run time from a file descriptor set.
+Most tests are run several times, once with the generated TypeScript code, 
+once with the generated JavaScript code, and with a message type that is 
+created at runtime from a file descriptor set.
