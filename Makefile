@@ -198,6 +198,8 @@ bench-codesize: $(BENCHCODESIZE_GEN) node_modules $(RUNTIME_BUILD) ## Benchmark 
 set-version: ## Set a new version in for the project, i.e. make set-version SET_VERSION=1.2.3
 	node make/scripts/update-go-version-file.js cmd/protoc-gen-es/version.go $(SET_VERSION)
 	node make/scripts/set-workspace-version.js $(SET_VERSION)
+	rm package-lock.json
+	npm i -f
 
 # Some builds need code generation, some code generation needs builds.
 # We expose this target only for ci, so it can check for diffs.
