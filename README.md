@@ -32,16 +32,17 @@ The code generator `protoc-gen-es` implements the protoc plugin contract, define
 
 ### Plugin options:
 
-#### `target=ts|js|dts`
+#### target
 
 This option controls whether the plugin generates JavaScript or TypeScript. 
 Multiple values can be given by separating them with `+`, for example 
 `target=js+dts`.
 
-By default, JavaScript and TypeScript declaration files are generated.
+By default, JavaScript and TypeScript declaration files are generated. If you
+want to generate TypeScript, use `target=ts`.
 
 
-#### `ts_nocheck`
+#### ts_nocheck
 
 This option prints `/* @ts-nocheck */` at the top of each generated TypeScript 
 file.
@@ -49,7 +50,7 @@ It can be given as `ts_nocheck=true`, or `ts_nocheck=false`. By default, this
 option is enabled.
 
 
-#### `eslint_disable`
+#### eslint_disable
 
 This option prints `/* eslint-disable */` at the top of each generated file.
 It can be given as `eslint_disable=true`, or `eslint_disable=false`. By default, 
