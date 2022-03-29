@@ -51,7 +51,7 @@ $(RUNTIME_BUILD): node_modules $(RUNTIME_GEN) $(RUNTIME_SOURCES)
 	cd $(RUNTIME_DIR) && npm run clean && npm run build
 	mkdir -p $(CACHE_DIR)/build && touch $(RUNTIME_BUILD)
 $(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
-	$(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE)/src --plugin $(PROTOC_GEN_ES_BIN) --es_out $(RUNTIME_DIR)/src --es_opt bootstrap_wkt=true,ts_nocheck=false $(GOOGPROTOBUF_WKT_PROTOS)
+	$(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE)/src --plugin $(PROTOC_GEN_ES_BIN) --es_out $(RUNTIME_DIR)/src --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts $(GOOGPROTOBUF_WKT_PROTOS)
 	mkdir -p $(dir $(RUNTIME_GEN)) && touch $(RUNTIME_GEN)
 
 
@@ -59,10 +59,10 @@ $(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
 CONFORMANCE_DIR = packages/conformance-test
 CONFORMANCE_GEN = $(CACHE_DIR)/gen/conformance-test-$(GOOGPROTOBUF_VERSION)
 CONFORMANCE_BUILD = $(CACHE_DIR)/build/conformance-test
-CONFORMANCE_SOURCES = $(shell find $(CONFORMANCE_DIR)/src -name '*.ts') $(CONFORMANCE_DIR)/*.json
+CONFORMANCE_SOURCES = $(shell find $(CONFORMANCE_DIR)/src -name '*.ts' -or -name '*.js') $(CONFORMANCE_DIR)/*.json
 $(CONFORMANCE_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(CONFORMANCE_DIR) -name '*.proto')
 	rm -rf $(CONFORMANCE_DIR)/src/gen/*
-	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(CONFORMANCE_DIR)/src/gen --es_opt ts_nocheck=false \
+	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(CONFORMANCE_DIR)/src/gen --es_opt ts_nocheck=false,target=ts \
 		-I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src \
 		conformance/conformance.proto \
 		google/protobuf/test_messages_proto2.proto \
@@ -84,8 +84,8 @@ TEST_SOURCES = $(shell find $(TEST_DIR)/src -name '*.ts') $(TEST_DIR)/*.json
 $(TEST_GEN) : protoc = $(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGPROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
 $(TEST_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(TEST_DIR) -name '*.proto')
 	rm -rf $(TEST_DIR)/src/gen/ts/* $(TEST_DIR)/src/gen/js/* $(TEST_DIR)/descriptorset.bin
-	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/ts --es_opt ts_nocheck=false
-	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/js --es_opt ts_nocheck=false,language=javascript
+	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/ts --es_opt ts_nocheck=false,target=ts
+	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/js --es_opt ts_nocheck=false,target=js+dts
 	$(protoc) --descriptor_set_out $(TEST_DIR)/descriptorset.bin --include_imports --include_source_info
 	mkdir -p $(dir $(TEST_GEN)) && touch $(TEST_GEN)
 $(TEST_BUILD): $(PROTOC_GEN_ES_BIN) $(TEST_GEN) $(RUNTIME_BUILD) $(TEST_SOURCES)
@@ -105,7 +105,7 @@ BUF_GENERATE_TEMPLATE = '\
 			"name":"es", \
 			"path": "$(PROTOC_GEN_ES_BIN)",\
 			"out": "$(BENCHCODESIZE_DIR)/src/gen/protobuf-es",\
-			"opt": "ts_nocheck=false"\
+			"opt": "ts_nocheck=false,target=ts"\
 		},{\
 			"remote":"buf.build/protocolbuffers/plugins/js:v3.19.3-1", \
 			"out": "$(BENCHCODESIZE_DIR)/src/gen/google-protobuf", \

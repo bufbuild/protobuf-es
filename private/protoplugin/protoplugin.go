@@ -102,7 +102,7 @@ type Generator struct {
 	BootstrapWKT      bool
 	TSNoCheck         bool // print /* @ts-nocheck */ at the top of each generated TypeScript file
 	ESLintDisable     bool // print /* eslint-disable */ at the top of each generated file
-	Language          Language
+	Targets           []Target
 	symbolPool        *symbolPool
 	filesByPath       map[string]*File
 	enumsByName       map[string]*Enum
@@ -118,7 +118,7 @@ func NewGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Gen
 		Request:           request,
 		ESLintDisable:     true,
 		TSNoCheck:         true,
-		Language:          LanguageTypeScript,
+		Targets:           []Target{TargetJavaScript, TargetTypeDeclaration},
 		symbolPool:        &symbolPool{},
 		filesByPath:       make(map[string]*File),
 		enumsByName:       make(map[string]*Enum),
@@ -176,24 +176,19 @@ func (g *Generator) parseParameter(parameter string) error {
 			key = key[0:i]
 		}
 		switch key {
-		case "language":
-			switch value {
-			case "typescript":
-				g.Language = LanguageTypeScript
-			case "javascript":
-				g.Language = LanguageJavaScript
-			default:
-				return ErrInvalidOption
-			}
-		case "bootstrap_wkt":
-			switch value {
-			case "true", "1":
-				g.BootstrapWKT = true
-				g.runtimeImportPath = runtimeImportPathBootstrapWKT
-			case "false", "0":
-				g.BootstrapWKT = false
-			default:
-				return ErrInvalidOption
+		case "target":
+			g.Targets = make([]Target, 0)
+			for _, rawTarget := range strings.Split(value, "+") {
+				switch rawTarget {
+				case "ts":
+					g.Targets = append(g.Targets, TargetTypeScript)
+				case "js":
+					g.Targets = append(g.Targets, TargetJavaScript)
+				case "dts":
+					g.Targets = append(g.Targets, TargetTypeDeclaration)
+				default:
+					return ErrInvalidOption
+				}
 			}
 		case "ts_nocheck":
 			switch value {
@@ -210,6 +205,16 @@ func (g *Generator) parseParameter(parameter string) error {
 				g.ESLintDisable = true
 			case "false", "0":
 				g.ESLintDisable = false
+			default:
+				return ErrInvalidOption
+			}
+		case "bootstrap_wkt":
+			switch value {
+			case "true", "1":
+				g.BootstrapWKT = true
+				g.runtimeImportPath = runtimeImportPathBootstrapWKT
+			case "false", "0":
+				g.BootstrapWKT = false
 			default:
 				return ErrInvalidOption
 			}
@@ -246,19 +251,20 @@ func (g *Generator) toResponse(response *pluginpb.CodeGeneratorResponse) {
 	}
 }
 
-type Language int
+type Target int
 
 const (
-	LanguageTypeScript Language = iota
-	LanguageJavaScript
+	TargetTypeScript Target = iota
+	TargetJavaScript
+	TargetTypeDeclaration
 )
 
-func (l Language) String() string {
+func (l Target) String() string {
 	switch l {
-	case LanguageTypeScript:
-		return "javascript"
-	case LanguageJavaScript:
-		return "typescript"
+	case TargetTypeScript:
+		return "TypeScript"
+	case TargetJavaScript:
+		return "JavaScript"
 	default:
 		return "unknown"
 	}

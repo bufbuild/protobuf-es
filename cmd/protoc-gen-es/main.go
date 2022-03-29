@@ -32,12 +32,15 @@ func main() {
 			if !file.Generate {
 				continue
 			}
-			switch gen.Language {
-			case protoplugin.LanguageTypeScript:
-				gents.GenerateFile(gen, file)
-			case protoplugin.LanguageJavaScript:
-				gendts.GenerateFile(gen, file)
-				genjs.GenerateFile(gen, file)
+			for _, target := range gen.Targets {
+				switch target {
+				case protoplugin.TargetTypeScript:
+					gents.GenerateFile(gen, file)
+				case protoplugin.TargetJavaScript:
+					genjs.GenerateFile(gen, file)
+				case protoplugin.TargetTypeDeclaration:
+					gendts.GenerateFile(gen, file)
+				}
 			}
 		}
 		return nil
