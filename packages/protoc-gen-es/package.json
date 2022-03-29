@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2-alpha.2",
   "description": "protoc-gen-es",
   "license": "Apache-2.0",
   "repository": {
@@ -11,7 +11,7 @@
     "protoc-gen-es": "bin/protoc-gen-es"
   },
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.2-alpha.1"
+    "@bufbuild/protobuf": "^0.0.2-alpha.2"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
@@ -19,18 +19,18 @@
     }
   },
   "optionalDependencies": {
-    "@bufbuild/protoc-gen-es-darwin-64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-windows-64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-windows-arm64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-windows-32": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-linux-64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-linux-32": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-linux-arm": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-linux-arm64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-freebsd-64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-freebsd-arm64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-netbsd-64": "0.0.2-alpha.1",
-    "@bufbuild/protoc-gen-es-openbsd-64": "0.0.2-alpha.1"
+    "@bufbuild/protoc-gen-es-darwin-64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-windows-64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-windows-arm64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-windows-32": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-linux-64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-linux-32": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-linux-arm": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-linux-arm64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-freebsd-64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-freebsd-arm64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-netbsd-64": "0.0.2-alpha.2",
+    "@bufbuild/protoc-gen-es-openbsd-64": "0.0.2-alpha.2"
   }
 }
