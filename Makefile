@@ -55,18 +55,35 @@ $(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
 	mkdir -p $(dir $(RUNTIME_GEN)) && touch $(RUNTIME_GEN)
 
 
+# The private NPM package "@bufbuild/conformance-test" runs the protobuf conformance test suite
+CONFORMANCE_DIR = packages/conformance-test
+CONFORMANCE_GEN = $(CACHE_DIR)/gen/conformance-test-$(GOOGPROTOBUF_VERSION)
+CONFORMANCE_BUILD = $(CACHE_DIR)/build/conformance-test
+CONFORMANCE_SOURCES = $(shell find $(CONFORMANCE_DIR)/src -name '*.ts') $(CONFORMANCE_DIR)/*.json
+$(CONFORMANCE_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(CONFORMANCE_DIR) -name '*.proto')
+	rm -rf $(CONFORMANCE_DIR)/src/gen/*
+	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(CONFORMANCE_DIR)/src/gen --es_opt ts_nocheck=false \
+		-I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src \
+		conformance/conformance.proto \
+		google/protobuf/test_messages_proto2.proto \
+		google/protobuf/test_messages_proto3.proto
+	mkdir -p $(dir $(CONFORMANCE_GEN)) && touch $(CONFORMANCE_GEN)
+$(CONFORMANCE_BUILD): $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_GEN) $(RUNTIME_BUILD) $(CONFORMANCE_SOURCES)
+	cd $(CONFORMANCE_DIR) && npm run clean && npm run build
+	mkdir -p $(dir $(CONFORMANCE_BUILD)) && touch $(CONFORMANCE_BUILD)
+
+
 # The private NPM package "@bufbuild/protobuf-test" is used to test:
 # 1. compilation of a large number of .proto files
-# 2. conformance
-# 3. unit test generated code
-# 4. test interoperability with protoc (JSON names)
+# 2. unit test generated code
+# 3. test interoperability with protoc (JSON names)
 # Code is run by node.js, both the ESM variant (through the conformance tests),
 # as well es the CJS variant (through Jest).
 TEST_DIR = packages/protobuf-test
 TEST_GEN = $(CACHE_DIR)/gen/packages-test-$(GOOGPROTOBUF_VERSION)
 TEST_BUILD = $(CACHE_DIR)/build/packages-test
 TEST_SOURCES = $(shell find $(TEST_DIR)/src -name '*.ts') $(TEST_DIR)/*.json
-$(TEST_GEN) : protoc = $(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGPROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) conformance/conformance.proto google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
+$(TEST_GEN) : protoc = $(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGPROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
 $(TEST_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(TEST_DIR) -name '*.proto')
 	rm -rf $(TEST_DIR)/src/gen/* $(TEST_DIR)/descriptorset.bin
 	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen --es_opt ts_nocheck=false
@@ -108,7 +125,7 @@ LICENSE_HEADER_VERSION := v1.1.0
 LICENSE_HEADER_LICENSE_TYPE := apache
 LICENSE_HEADER_COPYRIGHT_HOLDER := Buf Technologies, Inc.
 LICENSE_HEADER_YEAR_RANGE := 2021-2022
-LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/protobuf-test\/bin\/conformance_esm.js packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/ packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
+LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/conformance-test\/bin\/conformance_esm.js packages\/conformance-test\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/ packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
 LICENSE_HEADER_DEP := $(CACHE_DIR)/dep/license-header-$(LICENSE_HEADER_VERSION)
 $(LICENSE_HEADER_DEP):
 	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
@@ -142,7 +159,7 @@ clean: ## Delete build artifacts and installed dependencies
 	cd $(RUNTIME_DIR); npm run clean
 	cd $(TEST_DIR); npm run clean
 	cd $(BENCHCODESIZE_DIR); npm run clean
-	rm -rf $(CACHE_DIR)/*
+	[ -n "$(CACHE_DIR)" ] && rm -rf $(CACHE_DIR)/*
 	rm -rf node_modules
 	rm -rf packages/protoc-gen-*/bin/*
 
@@ -153,8 +170,8 @@ test: test-go test-jest test-conformance ## Run all tests
 test-jest: $(TEST_BUILD) $(TEST_DIR)/*.config.js
 	cd $(TEST_DIR) && npx jest
 
-test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(TEST_BUILD)
-	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(TEST_DIR)/conformance_failing_tests.txt --text_format_failure_list $(TEST_DIR)/conformance_failing_tests_text_format.txt $(TEST_DIR)/bin/conformance_esm.js
+test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_BUILD)
+	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(CONFORMANCE_DIR)/conformance_failing_tests.txt --text_format_failure_list $(CONFORMANCE_DIR)/conformance_failing_tests_text_format.txt $(CONFORMANCE_DIR)/bin/conformance_esm.js
 
 test-go: $(TEST_GEN)
 	go test ./private/...  ./cmd/...
@@ -185,7 +202,7 @@ set-version: ## Set a new version in for the project, i.e. make set-version SET_
 
 # Some builds need code generation, some code generation needs builds.
 # We expose this target only for ci, so it can check for diffs.
-ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN)
+ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN) $(CONFORMANCE_GEN)
 
 # Release @bufbuild/protobuf.
 # Recommended procedure:
