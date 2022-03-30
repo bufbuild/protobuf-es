@@ -100,7 +100,9 @@ func newCommentSet(sourceCodeInfo *descriptorpb.SourceCodeInfo, sourcePath []int
 
 func makeFilePreamble(gen *Generator, fileName string, packageName string, syntax ProtoSyntax, syntaxComments CommentSet, packageComments CommentSet) string {
 	var builder strings.Builder
-	writeLeadingComments(&builder, syntaxComments)
+	if !gen.bootstrapWKT {
+		writeLeadingComments(&builder, syntaxComments)
+	}
 	writeGenerationInfo(&builder, gen, fileName, packageName, syntax)
 	if gen.ESLintDisable {
 		_, _ = builder.WriteString("/* eslint-disable */\n")

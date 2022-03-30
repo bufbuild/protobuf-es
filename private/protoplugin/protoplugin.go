@@ -99,7 +99,6 @@ type Generator struct {
 	Request           *pluginpb.CodeGeneratorRequest
 	Files             []*File
 	SupportedFeatures uint64
-	BootstrapWKT      bool
 	TSNoCheck         bool // print /* @ts-nocheck */ at the top of each generated TypeScript file
 	ESLintDisable     bool // print /* eslint-disable */ at the top of each generated file
 	Targets           []Target
@@ -109,6 +108,7 @@ type Generator struct {
 	messagesByName    map[string]*Message
 	servicesByName    map[string]*Service
 	generatedFiles    []*GeneratedFile
+	bootstrapWKT      bool // internal plugin option `wkt_bootstrap`; when bootstrapping well-known types, we need to generate relative import paths
 	runtimeImportPath string
 }
 
@@ -211,10 +211,10 @@ func (g *Generator) parseParameter(parameter string) error {
 		case "bootstrap_wkt":
 			switch value {
 			case "true", "1":
-				g.BootstrapWKT = true
+				g.bootstrapWKT = true
 				g.runtimeImportPath = runtimeImportPathBootstrapWKT
 			case "false", "0":
-				g.BootstrapWKT = false
+				g.bootstrapWKT = false
 			default:
 				return ErrInvalidOption
 			}
@@ -317,7 +317,7 @@ func (g *Generator) newFile(proto *descriptorpb.FileDescriptorProto, generate bo
 		PackageComments: newCommentSet(proto.SourceCodeInfo, []int32{fieldNumber_FileDescriptorProto_Package}),
 	}
 	proto.SourceCodeInfo.GetLocation()
-	f.StandardImportPath = makePBImportPath(f, g.BootstrapWKT)
+	f.StandardImportPath = makePBImportPath(f, g.bootstrapWKT)
 	switch proto.GetSyntax() {
 	case "proto3":
 		f.Syntax = ProtoSyntax3
