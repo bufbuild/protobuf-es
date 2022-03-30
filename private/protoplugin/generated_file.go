@@ -117,9 +117,6 @@ func (f *GeneratedFile) IsEmpty() bool {
 func (f *GeneratedFile) GetContent() string {
 	var buf bytes.Buffer
 	buf.Write(f.header.Bytes())
-	if f.header.Len() > 0 {
-		buf.WriteByte('\n')
-	}
 	var imports bytes.Buffer
 	symbolToIdentifier := f.processSymbols(func(typeOnly bool, from string, names map[string]string) {
 		x := make([]string, 0, len(names))

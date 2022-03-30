@@ -294,7 +294,7 @@ type File struct {
 	Syntax             ProtoSyntax
 	Name               string // name of the file, excluding the .proto suffix
 	StandardImportPath string // the standard import path for the type generator (suffix _pb.js)
-	Preamble           string // standard preamble, containing code generator information and leading detached syntax comments (usually a license header)
+	Preamble           string // standard preamble, containing syntax comments, code generator information and package comments
 	RuntimeSymbols     *Runtime
 	Enums              []*Enum
 	Messages           []*Message // excluding synthetic messages like map entries
@@ -305,7 +305,6 @@ type File struct {
 	PackageComments    CommentSet
 	Generate           bool       // whether this file was requested to be generated
 	allMessages        []*Message // including synthetic messages like map entries
-	// TODO expose comments
 }
 
 func (g *Generator) newFile(proto *descriptorpb.FileDescriptorProto, generate bool) (*File, error) {
@@ -332,7 +331,8 @@ func (g *Generator) newFile(proto *descriptorpb.FileDescriptorProto, generate bo
 		proto.GetName(),
 		proto.GetPackage(),
 		f.Syntax,
-		newCommentSet(proto.SourceCodeInfo, []int32{fieldNumber_FileDescriptorProto_Syntax}),
+		f.SyntaxComments,
+		f.PackageComments,
 	)
 	f.RuntimeSymbols = newRuntime(g.symbolPool, g.runtimeImportPath, f.Syntax)
 	for index, x := range proto.GetEnumType() {

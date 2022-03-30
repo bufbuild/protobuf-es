@@ -47,13 +47,13 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
     int64StrField: { "9223372036854775807": "hello" },
     boolStrField: { true: "yes", false: "no" },
     strMsgField: {
-      a: new messageType(), // TODO we do not support partial inputs here - should we?
+      a: new messageType(), // TODO we do not support partial inputs here
     },
     int32MsgField: {
-      "32": new messageType(), // TODO we do not support partial inputs here - should we?
+      "32": new messageType(), // TODO we do not support partial inputs here
     },
     int64MsgField: {
-      "64": new messageType(), // TODO we do not support partial inputs here - should we?
+      "64": new messageType(), // TODO we do not support partial inputs here
     },
     strEnuField: { a: 0, b: 1, c: 2 },
     int32EnuField: { 1: 0, 2: 1, 0: 2 },
