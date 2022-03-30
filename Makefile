@@ -25,6 +25,41 @@ $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN): $(GOOGPROTOBUF_SOURCE)
 export PATH := $(abspath $(GOOGPROTOBUF_SOURCE)/bazel-bin):$(PATH)
 
 
+# Install license-header
+LICENSE_HEADER_VERSION := v1.1.0
+LICENSE_HEADER_LICENSE_TYPE := apache
+LICENSE_HEADER_COPYRIGHT_HOLDER := Buf Technologies, Inc.
+LICENSE_HEADER_YEAR_RANGE := 2021-2022
+LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/conformance-test\/bin\/conformance_esm.js packages\/conformance-test\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
+LICENSE_HEADER_DEP := $(CACHE_DIR)/dep/license-header-$(LICENSE_HEADER_VERSION)
+$(LICENSE_HEADER_DEP):
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
+	mkdir -p $(dir $(LICENSE_HEADER_DEP)) && touch $(LICENSE_HEADER_DEP)
+
+
+# Install git-ls-files-unstaged
+GIT_LS_FILES_UNSTAGED_VERSION ?= v1.1.0
+GIT_LS_FILES_UNSTAGED_DEP := $(CACHE_DIR)/dep/git-ls-files-unstaged-$(GIT_LS_FILES_UNSTAGED_VERSION)
+$(GIT_LS_FILES_UNSTAGED_DEP):
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
+	mkdir -p $(dir $(GIT_LS_FILES_UNSTAGED_DEP)) && touch $(GIT_LS_FILES_UNSTAGED_DEP)
+
+
+# Install golangci-lint
+GOLANGCI_LINT_VERSION ?= v1.44.0
+GOLANGCI_LINT_DEP := $(CACHE_DIR)/dep/golangci-lint-$(GOLANGCI_LINT_VERSION)
+$(GOLANGCI_LINT_DEP):
+	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
+	mkdir -p $(dir $(GOLANGCI_LINT_DEP)) && touch $(GOLANGCI_LINT_DEP)
+
+
+# Install NPM dependencies
+# (We need --force so NPM doesn't bail on the platform-specific
+# packages in the workspace)
+node_modules: package-lock.json
+	npm ci --force
+
+
 # Our code generator protoc-gen-es generates message and enum types
 # It is used within the project to:
 # 1. compile .proto files for tests
@@ -35,13 +70,6 @@ $(PROTOC_GEN_ES_BIN): $(PROTOC_GEN_ES_SOURCES)
 	go build -o $(PROTOC_GEN_ES_BIN) ./cmd/protoc-gen-es
 
 
-# Install NPM dependencies
-# (We need --force so NPM doesn't bail on the platform-specific
-# packages in the workspace)
-node_modules: package-lock.json
-	npm ci --force
-
-
 # The NPM package "@bufbuild/protobuf" is the runtime library required by the code our plugin generates
 RUNTIME_DIR = packages/protobuf
 RUNTIME_GEN = $(CACHE_DIR)/gen/bufbuild-protobuf-wkt-$(GOOGPROTOBUF_VERSION)
@@ -50,8 +78,14 @@ RUNTIME_SOURCES = $(RUNTIME_DIR)/*.json $(RUNTIME_DIR)/src/*.ts $(RUNTIME_DIR)/s
 $(RUNTIME_BUILD): node_modules $(RUNTIME_GEN) $(RUNTIME_SOURCES)
 	cd $(RUNTIME_DIR) && npm run clean && npm run build
 	mkdir -p $(CACHE_DIR)/build && touch $(RUNTIME_BUILD)
-$(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
+$(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(LICENSE_HEADER_DEP)
 	$(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE)/src --plugin $(PROTOC_GEN_ES_BIN) --es_out $(RUNTIME_DIR)/src --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts $(GOOGPROTOBUF_WKT_PROTOS)
+	find $(RUNTIME_DIR)/src/google -name '*.ts' \
+		| grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) \
+		| xargs license-header \
+		--license-type "$(LICENSE_HEADER_LICENSE_TYPE)" \
+		--copyright-holder "$(LICENSE_HEADER_COPYRIGHT_HOLDER)" \
+		--year-range "$(LICENSE_HEADER_YEAR_RANGE)"
 	mkdir -p $(dir $(RUNTIME_GEN)) && touch $(RUNTIME_GEN)
 
 
@@ -119,30 +153,6 @@ $(BENCHCODESIZE_GEN): $(PROTOC_GEN_ES_BIN) $(PROTOC_GEN_CONNECT_WEB_BIN)
 	mkdir -p $(dir $(BENCHCODESIZE_GEN)) && touch $(BENCHCODESIZE_GEN)
 
 
-# Install license-header
-LICENSE_HEADER_VERSION := v1.1.0
-LICENSE_HEADER_LICENSE_TYPE := apache
-LICENSE_HEADER_COPYRIGHT_HOLDER := Buf Technologies, Inc.
-LICENSE_HEADER_YEAR_RANGE := 2021-2022
-LICENSE_HEADER_IGNORES := .cache\/ node_module\/ packages\/conformance-test\/bin\/conformance_esm.js packages\/conformance-test\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/ packages\/bench-codesize\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/
-LICENSE_HEADER_DEP := $(CACHE_DIR)/dep/license-header-$(LICENSE_HEADER_VERSION)
-$(LICENSE_HEADER_DEP):
-	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@$(LICENSE_HEADER_VERSION)
-	mkdir -p $(dir $(LICENSE_HEADER_DEP)) && touch $(LICENSE_HEADER_DEP)
-
-# Install git-ls-files-unstaged
-GIT_LS_FILES_UNSTAGED_VERSION ?= v1.1.0
-GIT_LS_FILES_UNSTAGED_DEP := $(CACHE_DIR)/dep/git-ls-files-unstaged-$(GIT_LS_FILES_UNSTAGED_VERSION)
-$(GIT_LS_FILES_UNSTAGED_DEP):
-	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@$(GIT_LS_FILES_UNSTAGED_VERSION)
-	mkdir -p $(dir $(GIT_LS_FILES_UNSTAGED_DEP)) && touch $(GIT_LS_FILES_UNSTAGED_DEP)
-
-# Install golangci-lint
-GOLANGCI_LINT_VERSION ?= v1.44.0
-GOLANGCI_LINT_DEP := $(CACHE_DIR)/dep/golangci-lint-$(GOLANGCI_LINT_VERSION)
-$(GOLANGCI_LINT_DEP):
-	GOBIN=$(abspath $(CACHE_DIR)/bin) go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION)
-	mkdir -p $(dir $(GOLANGCI_LINT_DEP)) && touch $(GOLANGCI_LINT_DEP)
 
 
 
