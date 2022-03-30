@@ -169,8 +169,8 @@ message ClashParent {
     }
 }
 
+// TODO we do not support this case
 // should clash with name of ClashParent.ClashChild
-// TODO fix
 //message ClashParent_ClashChild {
 //}
 
