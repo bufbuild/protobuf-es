@@ -138,7 +138,6 @@ export class Plugin extends Message<Plugin> {
 
 }
 
-
 /**
  * PluginVersion represents a specific build of a plugin,
  * such as protoc-gen-go v1.4.0.
@@ -225,7 +224,6 @@ export class PluginVersion extends Message<PluginVersion> {
   }
 
 }
-
 
 /**
  * Template defines a set of plugins that should be used together
@@ -324,7 +322,6 @@ export class Template extends Message<Template> {
 
 }
 
-
 /**
  * PluginConfig defines a runtime configuration for a plugin.
  *
@@ -392,7 +389,6 @@ export class PluginConfig extends Message<PluginConfig> {
   }
 
 }
-
 
 /**
  * TemplateVersion defines a template at a
@@ -473,7 +469,6 @@ export class TemplateVersion extends Message<TemplateVersion> {
 
 }
 
-
 /**
  * PluginVersionMapping maps a plugin_id to a version.
  *
@@ -541,7 +536,6 @@ export class PluginVersionMapping extends Message<PluginVersionMapping> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginContributor
  */
@@ -605,7 +599,6 @@ export class PluginContributor extends Message<PluginContributor> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TemplateContributor
@@ -671,7 +664,6 @@ export class TemplateContributor extends Message<TemplateContributor> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginsRequest
  */
@@ -725,7 +717,6 @@ export class ListPluginsRequest extends Message<ListPluginsRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginsResponse
  */
@@ -772,7 +763,6 @@ export class ListPluginsResponse extends Message<ListPluginsResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserPluginsRequest
@@ -835,7 +825,6 @@ export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserPluginsResponse
  */
@@ -882,7 +871,6 @@ export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationPluginsRequest
@@ -945,7 +933,6 @@ export class ListOrganizationPluginsRequest extends Message<ListOrganizationPlug
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationPluginsResponse
  */
@@ -992,7 +979,6 @@ export class ListOrganizationPluginsResponse extends Message<ListOrganizationPlu
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginVersionRequest
@@ -1051,7 +1037,6 @@ export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginVersionResponse
  */
@@ -1090,7 +1075,6 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginVersionsRequest
@@ -1163,7 +1147,6 @@ export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginVersionsResponse
  */
@@ -1210,7 +1193,6 @@ export class ListPluginVersionsResponse extends Message<ListPluginVersionsRespon
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreatePluginRequest
@@ -1273,7 +1255,6 @@ export class CreatePluginRequest extends Message<CreatePluginRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreatePluginResponse
  */
@@ -1314,7 +1295,6 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginRequest
@@ -1365,7 +1345,6 @@ export class GetPluginRequest extends Message<GetPluginRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginResponse
  */
@@ -1404,7 +1383,6 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeletePluginRequest
@@ -1455,7 +1433,6 @@ export class DeletePluginRequest extends Message<DeletePluginRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeletePluginResponse
  */
@@ -1488,7 +1465,6 @@ export class DeletePluginResponse extends Message<DeletePluginResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetPluginContributorRequest
@@ -1548,7 +1524,6 @@ export class SetPluginContributorRequest extends Message<SetPluginContributorReq
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetPluginContributorResponse
  */
@@ -1581,7 +1556,6 @@ export class SetPluginContributorResponse extends Message<SetPluginContributorRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginContributorsRequest
@@ -1642,7 +1616,6 @@ export class ListPluginContributorsRequest extends Message<ListPluginContributor
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginContributorsResponse
  */
@@ -1689,7 +1662,6 @@ export class ListPluginContributorsResponse extends Message<ListPluginContributo
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecatePluginRequest
@@ -1748,7 +1720,6 @@ export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecatePluginResponse
  */
@@ -1781,7 +1752,6 @@ export class DeprecatePluginResponse extends Message<DeprecatePluginResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecatePluginRequest
@@ -1832,7 +1802,6 @@ export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecatePluginResponse
  */
@@ -1865,7 +1834,6 @@ export class UndeprecatePluginResponse extends Message<UndeprecatePluginResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateRequest
@@ -1916,7 +1884,6 @@ export class GetTemplateRequest extends Message<GetTemplateRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateResponse
  */
@@ -1955,7 +1922,6 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplatesRequest
@@ -2010,7 +1976,6 @@ export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplatesResponse
  */
@@ -2057,7 +2022,6 @@ export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserTemplatesRequest
@@ -2120,7 +2084,6 @@ export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserTemplatesResponse
  */
@@ -2167,7 +2130,6 @@ export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateVersionRequest
@@ -2226,7 +2188,6 @@ export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateVersionResponse
  */
@@ -2265,7 +2226,6 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesRequest
@@ -2328,7 +2288,6 @@ export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTe
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesResponse
  */
@@ -2375,7 +2334,6 @@ export class ListOrganizationTemplatesResponse extends Message<ListOrganizationT
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateVersionsRequest
@@ -2448,7 +2406,6 @@ export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsReq
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateVersionsResponse
  */
@@ -2495,7 +2452,6 @@ export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateRequest
@@ -2566,7 +2522,6 @@ export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateResponse
  */
@@ -2607,7 +2562,6 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTemplateRequest
@@ -2658,7 +2612,6 @@ export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTemplateResponse
  */
@@ -2691,7 +2644,6 @@ export class DeleteTemplateResponse extends Message<DeleteTemplateResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateVersionRequest
@@ -2760,7 +2712,6 @@ export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateVersionResponse
  */
@@ -2801,7 +2752,6 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetTemplateContributorRequest
@@ -2861,7 +2811,6 @@ export class SetTemplateContributorRequest extends Message<SetTemplateContributo
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetTemplateContributorResponse
  */
@@ -2894,7 +2843,6 @@ export class SetTemplateContributorResponse extends Message<SetTemplateContribut
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateContributorsRequest
@@ -2955,7 +2903,6 @@ export class ListTemplateContributorsRequest extends Message<ListTemplateContrib
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateContributorsResponse
  */
@@ -3002,7 +2949,6 @@ export class ListTemplateContributorsResponse extends Message<ListTemplateContri
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateTemplateRequest
@@ -3061,7 +3007,6 @@ export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateTemplateResponse
  */
@@ -3094,7 +3039,6 @@ export class DeprecateTemplateResponse extends Message<DeprecateTemplateResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateTemplateRequest
@@ -3145,7 +3089,6 @@ export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateReque
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateTemplateResponse
  */
@@ -3178,5 +3121,4 @@ export class UndeprecateTemplateResponse extends Message<UndeprecateTemplateResp
   }
 
 }
-
 

@@ -142,7 +142,6 @@ export class Api extends Message<Api> {
 
 }
 
-
 /**
  * Method represents a method of an API interface.
  *
@@ -233,7 +232,6 @@ export class Method extends Message<Method> {
   }
 
 }
-
 
 /**
  * Declares an API Interface to be included in this interface. The including
@@ -363,5 +361,4 @@ export class Mixin extends Message<Mixin> {
   }
 
 }
-
 

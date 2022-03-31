@@ -142,4 +142,3 @@ export class MyMessage extends Message<MyMessage> {
 
 }
 
-

@@ -322,4 +322,3 @@ export class FieldMask extends Message<FieldMask> {
 
 }
 
-

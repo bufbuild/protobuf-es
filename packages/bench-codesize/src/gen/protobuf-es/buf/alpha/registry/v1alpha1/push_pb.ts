@@ -97,7 +97,6 @@ export class PushRequest extends Message<PushRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PushResponse
  */
@@ -136,5 +135,4 @@ export class PushResponse extends Message<PushResponse> {
   }
 
 }
-
 

@@ -64,7 +64,6 @@ export declare class TestMessageSet extends Message<TestMessageSet> {
 
 }
 
-
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
@@ -90,5 +89,4 @@ export declare class TestMessageSetWireFormatContainer extends Message<TestMessa
   static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean;
 
 }
-
 

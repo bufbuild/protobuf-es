@@ -228,4 +228,3 @@ export class Timestamp extends Message<Timestamp> {
 
 }
 
-

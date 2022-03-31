@@ -93,7 +93,6 @@ export class Proto2PackedMessage extends Message<Proto2PackedMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto2UnpackedMessage
  */
@@ -145,7 +144,6 @@ export class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
@@ -196,7 +194,6 @@ export class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPac
   }
 
 }
-
 
 /**
  * @generated from message spec.Proto2OptionalMessage
@@ -255,7 +252,6 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
@@ -313,7 +309,6 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
@@ -370,7 +365,6 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   }
 
 }
-
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
@@ -453,7 +447,6 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto2ChildMessage
  */
@@ -492,5 +485,4 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   }
 
 }
-
 

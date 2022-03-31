@@ -68,7 +68,6 @@ export declare enum ImportEnum {
 
 }
 
-
 /**
  * To use an enum in a map, it must has the first value as 0.
  *
@@ -92,7 +91,6 @@ export declare enum ImportEnumForMap {
   BAR = 2,
 
 }
-
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
@@ -119,5 +117,4 @@ export declare class ImportMessage extends Message<ImportMessage> {
   static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean;
 
 }
-
 

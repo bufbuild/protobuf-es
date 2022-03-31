@@ -61,7 +61,6 @@ export declare class NestedMessage extends Message<NestedMessage> {
 
 }
 
-
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
@@ -87,5 +86,4 @@ export declare class ArenaMessage extends Message<ArenaMessage> {
   static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean;
 
 }
-
 

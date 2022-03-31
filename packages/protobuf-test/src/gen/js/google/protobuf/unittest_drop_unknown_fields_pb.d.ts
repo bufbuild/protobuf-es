@@ -89,7 +89,6 @@ export declare enum Foo_NestedEnum {
 }
 
 
-
 /**
  * @generated from message unittest_drop_unknown_fields.FooWithExtraFields
  */
@@ -152,6 +151,5 @@ export declare enum FooWithExtraFields_NestedEnum {
   QUX = 3,
 
 }
-
 
 

@@ -76,7 +76,6 @@ export class Token extends Message<Token> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTokenRequest
  */
@@ -125,7 +124,6 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTokenResponse
  */
@@ -167,7 +165,6 @@ export class CreateTokenResponse extends Message<CreateTokenResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTokenRequest
  */
@@ -207,7 +204,6 @@ export class GetTokenRequest extends Message<GetTokenRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTokenResponse
  */
@@ -246,7 +242,6 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTokensRequest
@@ -301,7 +296,6 @@ export class ListTokensRequest extends Message<ListTokensRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTokensResponse
  */
@@ -349,7 +343,6 @@ export class ListTokensResponse extends Message<ListTokensResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTokenRequest
  */
@@ -389,7 +382,6 @@ export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTokenResponse
  */
@@ -422,5 +414,4 @@ export class DeleteTokenResponse extends Message<DeleteTokenResponse> {
   }
 
 }
-
 

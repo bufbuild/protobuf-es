@@ -204,7 +204,6 @@ export class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
@@ -237,7 +236,6 @@ export class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
@@ -272,7 +270,6 @@ export class CustomOptionFooClientMessage extends Message<CustomOptionFooClientM
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
@@ -305,7 +302,6 @@ export class CustomOptionFooServerMessage extends Message<CustomOptionFooServerM
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
@@ -397,7 +393,6 @@ export class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalid
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
  */
@@ -430,7 +425,6 @@ export class CustomOptionMinIntegerValues extends Message<CustomOptionMinInteger
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
@@ -465,7 +459,6 @@ export class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxInteger
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
  */
@@ -498,7 +491,6 @@ export class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
@@ -533,7 +525,6 @@ export class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositi
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
@@ -566,7 +557,6 @@ export class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegati
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
@@ -624,7 +614,6 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
@@ -723,7 +712,6 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
@@ -809,7 +797,6 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
@@ -849,7 +836,6 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
 
 }
 
-
 /**
  * Note that we try various different ways of naming the same extension.
  *
@@ -885,7 +871,6 @@ export class VariousComplexOptions extends Message<VariousComplexOptions> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
@@ -918,7 +903,6 @@ export class AggregateMessageSet extends Message<AggregateMessageSet> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
@@ -958,7 +942,6 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   }
 
 }
-
 
 /**
  * A helper type used to test aggregate option parsing
@@ -1039,7 +1022,6 @@ export class Aggregate extends Message<Aggregate> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
@@ -1078,7 +1060,6 @@ export class AggregateMessage extends Message<AggregateMessage> {
   }
 
 }
-
 
 /**
  * Test custom options for nested type.
@@ -1132,6 +1113,7 @@ proto2.util.setEnumType(NestedOptionType_NestedEnum, "protobuf_unittest.NestedOp
   {no: 1, name: "NESTED_ENUM_VALUE"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.NestedOptionType.NestedMessage
  */
@@ -1170,7 +1152,6 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
   }
 
 }
-
 
 
 /**
@@ -1332,5 +1313,4 @@ export class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRe
   }
 
 }
-
 

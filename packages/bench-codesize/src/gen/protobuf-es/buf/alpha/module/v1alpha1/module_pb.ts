@@ -104,7 +104,6 @@ export class Module extends Message<Module> {
 
 }
 
-
 /**
  * ModuleFile is a file within a FileSet.
  *
@@ -156,7 +155,6 @@ export class ModuleFile extends Message<ModuleFile> {
   }
 
 }
-
 
 /**
  * ModuleReference is a module reference.
@@ -218,7 +216,6 @@ export class ModuleReference extends Message<ModuleReference> {
   }
 
 }
-
 
 /**
  * ModulePin is a module pin.
@@ -296,5 +293,4 @@ export class ModulePin extends Message<ModulePin> {
   }
 
 }
-
 

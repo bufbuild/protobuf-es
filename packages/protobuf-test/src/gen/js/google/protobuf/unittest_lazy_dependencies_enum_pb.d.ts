@@ -59,4 +59,3 @@ export declare enum LazyEnum {
 
 }
 
-

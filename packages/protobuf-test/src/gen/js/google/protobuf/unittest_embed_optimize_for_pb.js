@@ -52,4 +52,3 @@ export const TestEmbedOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
-

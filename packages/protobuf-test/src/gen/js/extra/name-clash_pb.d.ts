@@ -388,7 +388,6 @@ export declare class ReservedPropertyNames_OneofRuntime extends Message$1<Reserv
 }
 
 
-
 /**
  * reserved identifier
  *
@@ -411,7 +410,6 @@ export declare class interface$ extends Message$1<interface$> {
   static equals(a: interface$ | PlainMessage$1<interface$> | undefined, b: interface$ | PlainMessage$1<interface$> | undefined): boolean;
 
 }
-
 
 /**
  * reserved identifier
@@ -436,7 +434,6 @@ export declare class function$ extends Message$1<function$> {
 
 }
 
-
 /**
  * reserved identifier
  *
@@ -459,7 +456,6 @@ export declare class instanceof$ extends Message$1<instanceof$> {
   static equals(a: instanceof$ | PlainMessage$1<instanceof$> | undefined, b: instanceof$ | PlainMessage$1<instanceof$> | undefined): boolean;
 
 }
-
 
 /**
  * reserved identifier
@@ -484,7 +480,6 @@ export declare class switch$ extends Message$1<switch$> {
 
 }
 
-
 /**
  * reserved identifier
  *
@@ -507,7 +502,6 @@ export declare class case$ extends Message$1<case$> {
   static equals(a: case$ | PlainMessage$1<case$> | undefined, b: case$ | PlainMessage$1<case$> | undefined): boolean;
 
 }
-
 
 /**
  * reserved identifier
@@ -532,7 +526,6 @@ export declare class return$ extends Message$1<return$> {
 
 }
 
-
 /**
  * used by runtime
  *
@@ -555,7 +548,6 @@ export declare class Message extends Message$1<Message> {
   static equals(a: Message | PlainMessage$1<Message> | undefined, b: Message | PlainMessage$1<Message> | undefined): boolean;
 
 }
-
 
 /**
  * used by runtime
@@ -580,7 +572,6 @@ export declare class PartialMessage extends Message$1<PartialMessage> {
 
 }
 
-
 /**
  * used by runtime
  *
@@ -603,7 +594,6 @@ export declare class PlainMessage extends Message$1<PlainMessage> {
   static equals(a: PlainMessage | PlainMessage$1<PlainMessage> | undefined, b: PlainMessage | PlainMessage$1<PlainMessage> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type "Error"
@@ -640,7 +630,6 @@ export declare class Error extends Message$1<Error> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -664,7 +653,6 @@ export declare class Object$ extends Message$1<Object$> {
 
 }
 
-
 /**
  * @generated from message spec.object
  */
@@ -685,7 +673,6 @@ export declare class object$ extends Message$1<object$> {
   static equals(a: object$ | PlainMessage$1<object$> | undefined, b: object$ | PlainMessage$1<object$> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type
@@ -710,7 +697,6 @@ export declare class array extends Message$1<array> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -733,7 +719,6 @@ export declare class string$ extends Message$1<string$> {
   static equals(a: string$ | PlainMessage$1<string$> | undefined, b: string$ | PlainMessage$1<string$> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type
@@ -758,7 +743,6 @@ export declare class number$ extends Message$1<number$> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -781,7 +765,6 @@ export declare class boolean$ extends Message$1<boolean$> {
   static equals(a: boolean$ | PlainMessage$1<boolean$> | undefined, b: boolean$ | PlainMessage$1<boolean$> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type
@@ -806,7 +789,6 @@ export declare class bigint$ extends Message$1<bigint$> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -829,7 +811,6 @@ export declare class Uint8Array$ extends Message$1<Uint8Array$> {
   static equals(a: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined, b: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type
@@ -854,7 +835,6 @@ export declare class Array extends Message$1<Array> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -877,7 +857,6 @@ export declare class String extends Message$1<String> {
   static equals(a: String | PlainMessage$1<String> | undefined, b: String | PlainMessage$1<String> | undefined): boolean;
 
 }
-
 
 /**
  * clash with global type
@@ -902,7 +881,6 @@ export declare class Number extends Message$1<Number> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -926,7 +904,6 @@ export declare class Boolean extends Message$1<Boolean> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -949,7 +926,6 @@ export declare class BigInt extends Message$1<BigInt> {
   static equals(a: BigInt | PlainMessage$1<BigInt> | undefined, b: BigInt | PlainMessage$1<BigInt> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.ClashParent
@@ -994,7 +970,6 @@ export declare class ClashParent_ClashChild extends Message$1<ClashParent_ClashC
   static equals(a: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined, b: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined): boolean;
 
 }
-
 
 
 /**
@@ -1059,7 +1034,6 @@ export declare class NoClashFields extends Message$1<NoClashFields> {
   static equals(a: NoClashFields | PlainMessage$1<NoClashFields> | undefined, b: NoClashFields | PlainMessage$1<NoClashFields> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.NoClashOneof
@@ -1135,7 +1109,6 @@ export declare class NoClashOneof extends Message$1<NoClashOneof> {
 
 }
 
-
 /**
  * @generated from message spec.NoClashOneofADT
  */
@@ -1166,7 +1139,6 @@ export declare class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean;
 
 }
-
 
 /**
  * just here as a "namespace" for the enum
@@ -1239,6 +1211,5 @@ export declare enum NoClashEnumWrap_X {
   return = 6,
 
 }
-
 
 

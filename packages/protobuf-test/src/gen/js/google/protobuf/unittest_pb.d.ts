@@ -71,7 +71,6 @@ export declare enum ForeignEnum {
 
 }
 
-
 /**
  * Test an enum that has multiple values with the same number.
  *
@@ -105,7 +104,6 @@ export declare enum TestEnumWithDupValue {
   BAR2 = 2,
 
 }
-
 
 /**
  * Test an enum with large, unordered values.
@@ -150,7 +148,6 @@ export declare enum TestSparseEnum {
   SPARSE_G = 2,
 
 }
-
 
 /**
  * @generated from enum protobuf_unittest.VeryLargeEnum
@@ -663,7 +660,6 @@ export declare enum VeryLargeEnum {
   ENUM_LABEL_100 = 100,
 
 }
-
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -1198,7 +1194,6 @@ export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_Rep
 }
 
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -1236,7 +1231,6 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
@@ -1277,7 +1271,6 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestDeprecatedMessage
  * @deprecated
@@ -1299,7 +1292,6 @@ export declare class TestDeprecatedMessage extends Message<TestDeprecatedMessage
   static equals(a: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined, b: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -1335,7 +1327,6 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
@@ -1357,7 +1348,6 @@ export declare class TestReservedFields extends Message<TestReservedFields> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
@@ -1378,7 +1368,6 @@ export declare class TestAllExtensions extends Message<TestAllExtensions> {
   static equals(a: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined, b: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
@@ -1406,7 +1395,6 @@ export declare class OptionalGroup_extension extends Message<OptionalGroup_exten
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
@@ -1432,7 +1420,6 @@ export declare class RepeatedGroup_extension extends Message<RepeatedGroup_exten
   static equals(a: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined, b: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestGroup
@@ -1492,7 +1479,6 @@ export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalG
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
@@ -1513,7 +1499,6 @@ export declare class TestGroupExtension extends Message<TestGroupExtension> {
   static equals(a: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined, b: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
@@ -1563,7 +1548,6 @@ export declare class TestNestedExtension_OptionalGroup_extension extends Message
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
@@ -1599,7 +1583,6 @@ export declare class TestChildExtension extends Message<TestChildExtension> {
   static equals(a: TestChildExtension | PlainMessage<TestChildExtension> | undefined, b: TestChildExtension | PlainMessage<TestChildExtension> | undefined): boolean;
 
 }
-
 
 /**
  * We have separate messages for testing required fields because it's
@@ -1796,7 +1779,6 @@ export declare class TestRequired extends Message<TestRequired> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
@@ -1832,7 +1814,6 @@ export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
   static equals(a: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined, b: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
@@ -1870,7 +1851,6 @@ export declare class TestRequiredMessage extends Message<TestRequiredMessage> {
 
 }
 
-
 /**
  * Test that we can use NestedMessage from outside TestAllTypes.
  *
@@ -1899,7 +1879,6 @@ export declare class TestForeignNested extends Message<TestForeignNested> {
 
 }
 
-
 /**
  * TestEmptyMessage is used to test unknown field support.
  *
@@ -1922,7 +1901,6 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -1947,7 +1925,6 @@ export declare class TestEmptyMessageWithExtensions extends Message<TestEmptyMes
   static equals(a: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined, b: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined): boolean;
 
 }
-
 
 /**
  * Needed for a Python test.
@@ -2026,7 +2003,6 @@ export declare class TestPickleNestedMessage_NestedMessage_NestedNestedMessage e
 
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
@@ -2047,7 +2023,6 @@ export declare class TestMultipleExtensionRanges extends Message<TestMultipleExt
   static equals(a: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined, b: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined): boolean;
 
 }
-
 
 /**
  * Test that really large tag numbers don't break anything.
@@ -2085,7 +2060,6 @@ export declare class TestReallyLargeTagNumber extends Message<TestReallyLargeTag
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
@@ -2116,7 +2090,6 @@ export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> 
   static equals(a: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined, b: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Test that mutual recursion works.
@@ -2212,7 +2185,6 @@ export declare class TestMutualRecursionA_SubGroup extends Message<TestMutualRec
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
@@ -2243,7 +2215,6 @@ export declare class TestMutualRecursionB extends Message<TestMutualRecursionB> 
   static equals(a: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined, b: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
@@ -2322,7 +2293,6 @@ export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestI
   static equals(a: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined, b: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined): boolean;
 
 }
-
 
 
 
@@ -2425,7 +2395,6 @@ export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_B
 }
 
 
-
 /**
  * Additional messages for testing lazy fields.
  *
@@ -2454,7 +2423,6 @@ export declare class TestEagerMessage extends Message<TestEagerMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
@@ -2480,7 +2448,6 @@ export declare class TestLazyMessage extends Message<TestLazyMessage> {
   static equals(a: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined, b: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Needed for a Python test.
@@ -2540,7 +2507,6 @@ export declare class TestNestedMessageHasBits_NestedMessage extends Message<Test
   static equals(a: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined, b: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined): boolean;
 
 }
-
 
 
 /**
@@ -2627,7 +2593,6 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
 
 }
 
-
 /**
  * We list fields out of order, to ensure that we're using field number and not
  * field index to determine serialization order.
@@ -2708,7 +2673,6 @@ export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldO
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
@@ -2734,7 +2698,6 @@ export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderi
   static equals(a: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined, b: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
@@ -2787,7 +2750,6 @@ export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Mes
   static equals(a: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined, b: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined): boolean;
 
 }
-
 
 
 /**
@@ -2964,7 +2926,6 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
@@ -2990,7 +2951,6 @@ export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
   static equals(a: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined, b: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Test String and Bytes: string is for valid UTF-8 strings
@@ -3020,7 +2980,6 @@ export declare class OneString extends Message<OneString> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.MoreString
  */
@@ -3046,7 +3005,6 @@ export declare class MoreString extends Message<MoreString> {
   static equals(a: MoreString | PlainMessage<MoreString> | undefined, b: MoreString | PlainMessage<MoreString> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OneBytes
@@ -3074,7 +3032,6 @@ export declare class OneBytes extends Message<OneBytes> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
@@ -3100,7 +3057,6 @@ export declare class MoreBytes extends Message<MoreBytes> {
   static equals(a: MoreBytes | PlainMessage<MoreBytes> | undefined, b: MoreBytes | PlainMessage<MoreBytes> | undefined): boolean;
 
 }
-
 
 /**
  * Test int32, uint32, int64, uint64, and bool are all compatible
@@ -3130,7 +3086,6 @@ export declare class Int32Message extends Message<Int32Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
@@ -3156,7 +3111,6 @@ export declare class Uint32Message extends Message<Uint32Message> {
   static equals(a: Uint32Message | PlainMessage<Uint32Message> | undefined, b: Uint32Message | PlainMessage<Uint32Message> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.Int64Message
@@ -3184,7 +3138,6 @@ export declare class Int64Message extends Message<Int64Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
@@ -3211,7 +3164,6 @@ export declare class Uint64Message extends Message<Uint64Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
@@ -3237,7 +3189,6 @@ export declare class BoolMessage extends Message<BoolMessage> {
   static equals(a: BoolMessage | PlainMessage<BoolMessage> | undefined, b: BoolMessage | PlainMessage<BoolMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Test oneofs.
@@ -3323,7 +3274,6 @@ export declare class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
@@ -3395,7 +3345,6 @@ export declare class TestOneofBackwardsCompatible_FooGroup extends Message<TestO
   static equals(a: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined, b: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined): boolean;
 
 }
-
 
 
 /**
@@ -3640,7 +3589,6 @@ export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedM
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
@@ -3710,7 +3658,6 @@ export declare class TestRequiredOneof_NestedMessage extends Message<TestRequire
   static equals(a: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined, b: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined): boolean;
 
 }
-
 
 
 /**
@@ -3803,7 +3750,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
 
 }
-
 
 /**
  * A message with the same fields as TestPackedTypes, but without packing. Used
@@ -3899,7 +3845,6 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
@@ -3921,7 +3866,6 @@ export declare class TestPackedExtensions extends Message<TestPackedExtensions> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
@@ -3942,7 +3886,6 @@ export declare class TestUnpackedExtensions extends Message<TestUnpackedExtensio
   static equals(a: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined, b: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined): boolean;
 
 }
-
 
 /**
  * Used by ExtensionSetTest/DynamicExtensions.  The test actually builds
@@ -4054,7 +3997,6 @@ export declare class TestDynamicExtensions_DynamicMessageType extends Message<Te
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
@@ -4115,7 +4057,6 @@ export declare class TestRepeatedScalarDifferentTagSizes extends Message<TestRep
   static equals(a: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined, b: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined): boolean;
 
 }
-
 
 /**
  * Test that if an optional or required message/group field appears multiple
@@ -4337,7 +4278,6 @@ export declare class TestParsingMerge_RepeatedGroup extends Message<TestParsingM
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
@@ -4366,7 +4306,6 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
 
 }
 
-
 /**
  * Test that RPC services work.
  *
@@ -4390,7 +4329,6 @@ export declare class FooRequest extends Message<FooRequest> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
@@ -4411,7 +4349,6 @@ export declare class FooResponse extends Message<FooResponse> {
   static equals(a: FooResponse | PlainMessage<FooResponse> | undefined, b: FooResponse | PlainMessage<FooResponse> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.FooClientMessage
@@ -4434,7 +4371,6 @@ export declare class FooClientMessage extends Message<FooClientMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
@@ -4455,7 +4391,6 @@ export declare class FooServerMessage extends Message<FooServerMessage> {
   static equals(a: FooServerMessage | PlainMessage<FooServerMessage> | undefined, b: FooServerMessage | PlainMessage<FooServerMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.BarRequest
@@ -4478,7 +4413,6 @@ export declare class BarRequest extends Message<BarRequest> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
@@ -4499,7 +4433,6 @@ export declare class BarResponse extends Message<BarResponse> {
   static equals(a: BarResponse | PlainMessage<BarResponse> | undefined, b: BarResponse | PlainMessage<BarResponse> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestJsonName
@@ -4556,7 +4489,6 @@ export declare class TestJsonName extends Message<TestJsonName> {
   static equals(a: TestJsonName | PlainMessage<TestJsonName> | undefined, b: TestJsonName | PlainMessage<TestJsonName> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
@@ -4685,7 +4617,6 @@ export declare class TestHugeFieldNumbers_OptionalGroup extends Message<TestHuge
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
@@ -4752,7 +4683,6 @@ export declare class TestExtensionInsideTable extends Message<TestExtensionInsid
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
@@ -4793,5 +4723,4 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean;
 
 }
-
 

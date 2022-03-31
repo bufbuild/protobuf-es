@@ -41,4 +41,3 @@ export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDepre
 
 }
 
-

@@ -90,7 +90,6 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitRequest
  */
@@ -136,7 +135,6 @@ export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<G
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitResponse
  */
@@ -175,7 +173,6 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackRequest
@@ -234,7 +231,6 @@ export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackResponse
  */
@@ -279,7 +275,6 @@ export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceRequest
@@ -338,7 +333,6 @@ export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepos
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceResponse
  */
@@ -377,5 +371,4 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
   }
 
 }
-
 

@@ -31,7 +31,6 @@ export const MapsEnum = proto3.makeEnum(
   {sharedPrefix: "MAPS_ENUM_"},
 );
 
-
 /**
  * @generated from message spec.MapsMessage
  */
@@ -54,5 +53,4 @@ export const MapsMessage = proto3.makeMessageType(
     {no: 14, name: "int64_enu_field", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "enum", T: proto3.getEnumType(MapsEnum)}},
   ],
 );
-
 

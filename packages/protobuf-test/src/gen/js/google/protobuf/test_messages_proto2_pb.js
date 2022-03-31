@@ -53,7 +53,6 @@ export const ForeignEnumProto2 = proto2.makeEnum(
   ],
 );
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -281,7 +280,6 @@ export const TestAllTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessage
 );
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
  */
@@ -291,7 +289,6 @@ export const ForeignMessageProto2 = proto2.makeMessageType(
     {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -320,7 +317,6 @@ export const UnknownToTestAllTypes_OptionalGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
@@ -328,7 +324,6 @@ export const NullHypothesisProto2 = proto2.makeMessageType(
   "protobuf_test_messages.proto2.NullHypothesisProto2",
   [],
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
@@ -348,6 +343,5 @@ export const EnumOnlyProto2_Bool = proto2.makeEnum(
     {no: 1, name: "kTrue"},
   ],
 );
-
 
 

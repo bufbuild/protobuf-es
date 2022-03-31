@@ -42,7 +42,6 @@ export const ScalarValuesMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
@@ -66,5 +65,4 @@ export const RepeatedScalarValuesMessage = proto3.makeMessageType(
     {no: 17, name: "sint64_field", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
   ],
 );
-
 

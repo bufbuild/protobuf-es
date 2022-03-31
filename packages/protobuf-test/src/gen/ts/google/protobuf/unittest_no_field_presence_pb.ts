@@ -451,6 +451,7 @@ proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto2_nofieldpresence_unittes
   {no: 2, name: "BAZ"},
 ]);
 
+
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage
  */
@@ -491,7 +492,6 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
 }
 
 
-
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
@@ -530,7 +530,6 @@ export class TestProto2Required extends Message<TestProto2Required> {
   }
 
 }
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -573,5 +572,4 @@ export class ForeignMessage extends Message<ForeignMessage> {
   }
 
 }
-
 

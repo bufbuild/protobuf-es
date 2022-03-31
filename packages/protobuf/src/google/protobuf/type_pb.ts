@@ -133,7 +133,6 @@ export class Type extends Message<Type> {
 
 }
 
-
 /**
  * A single field of a message type.
  *
@@ -416,6 +415,7 @@ proto3.util.setEnumType(Field_Kind, "google.protobuf.Field.Kind", [
   {no: 18, name: "TYPE_SINT64"},
 ]);
 
+
 /**
  * Whether a field is optional, required, or repeated.
  *
@@ -537,7 +537,6 @@ export class Enum extends Message<Enum> {
 
 }
 
-
 /**
  * Enum value definition.
  *
@@ -597,7 +596,6 @@ export class EnumValue extends Message<EnumValue> {
 
 }
 
-
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
@@ -655,5 +653,4 @@ export class Option extends Message<Option> {
   }
 
 }
-
 

@@ -129,7 +129,6 @@ export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
 );
 
 
-
 /**
  * reserved identifier
  *
@@ -140,7 +139,6 @@ export const interface$ = proto3.makeMessageType(
   [],
   {localName: "interface$"},
 );
-
 
 /**
  * reserved identifier
@@ -153,7 +151,6 @@ export const function$ = proto3.makeMessageType(
   {localName: "function$"},
 );
 
-
 /**
  * reserved identifier
  *
@@ -164,7 +161,6 @@ export const instanceof$ = proto3.makeMessageType(
   [],
   {localName: "instanceof$"},
 );
-
 
 /**
  * reserved identifier
@@ -177,7 +173,6 @@ export const switch$ = proto3.makeMessageType(
   {localName: "switch$"},
 );
 
-
 /**
  * reserved identifier
  *
@@ -188,7 +183,6 @@ export const case$ = proto3.makeMessageType(
   [],
   {localName: "case$"},
 );
-
 
 /**
  * reserved identifier
@@ -201,7 +195,6 @@ export const return$ = proto3.makeMessageType(
   {localName: "return$"},
 );
 
-
 /**
  * used by runtime
  *
@@ -211,7 +204,6 @@ export const Message = proto3.makeMessageType(
   "spec.Message",
   [],
 );
-
 
 /**
  * used by runtime
@@ -223,7 +215,6 @@ export const PartialMessage = proto3.makeMessageType(
   [],
 );
 
-
 /**
  * used by runtime
  *
@@ -233,7 +224,6 @@ export const PlainMessage = proto3.makeMessageType(
   "spec.PlainMessage",
   [],
 );
-
 
 /**
  * clash with global type "Error"
@@ -250,7 +240,6 @@ export const Error = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * clash with global type
  *
@@ -262,7 +251,6 @@ export const Object$ = proto3.makeMessageType(
   {localName: "Object$"},
 );
 
-
 /**
  * @generated from message spec.object
  */
@@ -271,7 +259,6 @@ export const object$ = proto3.makeMessageType(
   [],
   {localName: "object$"},
 );
-
 
 /**
  * clash with global type
@@ -282,7 +269,6 @@ export const array = proto3.makeMessageType(
   "spec.array",
   [],
 );
-
 
 /**
  * clash with global type
@@ -295,7 +281,6 @@ export const string$ = proto3.makeMessageType(
   {localName: "string$"},
 );
 
-
 /**
  * clash with global type
  *
@@ -306,7 +291,6 @@ export const number$ = proto3.makeMessageType(
   [],
   {localName: "number$"},
 );
-
 
 /**
  * clash with global type
@@ -319,7 +303,6 @@ export const boolean$ = proto3.makeMessageType(
   {localName: "boolean$"},
 );
 
-
 /**
  * clash with global type
  *
@@ -330,7 +313,6 @@ export const bigint$ = proto3.makeMessageType(
   [],
   {localName: "bigint$"},
 );
-
 
 /**
  * clash with global type
@@ -343,7 +325,6 @@ export const Uint8Array$ = proto3.makeMessageType(
   {localName: "Uint8Array$"},
 );
 
-
 /**
  * clash with global type
  *
@@ -353,7 +334,6 @@ export const Array = proto3.makeMessageType(
   "spec.Array",
   [],
 );
-
 
 /**
  * clash with global type
@@ -365,7 +345,6 @@ export const String = proto3.makeMessageType(
   [],
 );
 
-
 /**
  * clash with global type
  *
@@ -375,7 +354,6 @@ export const Number = proto3.makeMessageType(
   "spec.Number",
   [],
 );
-
 
 /**
  * clash with global type
@@ -387,7 +365,6 @@ export const Boolean = proto3.makeMessageType(
   [],
 );
 
-
 /**
  * clash with global type
  *
@@ -397,7 +374,6 @@ export const BigInt = proto3.makeMessageType(
   "spec.BigInt",
   [],
 );
-
 
 /**
  * @generated from message spec.ClashParent
@@ -419,7 +395,6 @@ export const ClashParent_ClashChild = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message spec.NoClashFields
  */
@@ -434,7 +409,6 @@ export const NoClashFields = proto3.makeMessageType(
     {no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */},
   ],
 );
-
 
 /**
  * @generated from message spec.NoClashOneof
@@ -451,7 +425,6 @@ export const NoClashOneof = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.NoClashOneofADT
  */
@@ -462,7 +435,6 @@ export const NoClashOneofADT = proto3.makeMessageType(
     {no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
   ],
 );
-
 
 /**
  * just here as a "namespace" for the enum
@@ -488,6 +460,5 @@ export const NoClashEnumWrap_X = proto3.makeEnum(
     {no: 6, name: "return"},
   ],
 );
-
 
 

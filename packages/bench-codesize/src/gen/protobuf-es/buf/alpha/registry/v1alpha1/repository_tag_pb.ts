@@ -94,7 +94,6 @@ export class RepositoryTag extends Message<RepositoryTag> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest
  */
@@ -152,7 +151,6 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse
  */
@@ -191,7 +189,6 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest
@@ -254,7 +251,6 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse
  */
@@ -301,5 +297,4 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
   }
 
 }
-
 

@@ -46,7 +46,6 @@ export const MyEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
@@ -59,7 +58,6 @@ export const MyEnumPlusExtra = proto3.makeEnum(
     {no: 3, name: "E_EXTRA"},
   ],
 );
-
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
@@ -76,7 +74,6 @@ export const MyMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
@@ -91,5 +88,4 @@ export const MyMessagePlusExtra = proto3.makeMessageType(
     {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
   ],
 );
-
 

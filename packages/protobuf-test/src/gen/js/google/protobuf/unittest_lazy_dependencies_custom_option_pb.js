@@ -54,4 +54,3 @@ export const LazyMessage = proto2.makeMessageType(
   ],
 );
 
-

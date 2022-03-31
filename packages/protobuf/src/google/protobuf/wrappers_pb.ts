@@ -100,7 +100,6 @@ export class DoubleValue extends Message<DoubleValue> {
 
 }
 
-
 /**
  * Wrapper message for `float`.
  *
@@ -171,7 +170,6 @@ export class FloatValue extends Message<FloatValue> {
   }
 
 }
-
 
 /**
  * Wrapper message for `int64`.
@@ -244,7 +242,6 @@ export class Int64Value extends Message<Int64Value> {
 
 }
 
-
 /**
  * Wrapper message for `uint64`.
  *
@@ -315,7 +312,6 @@ export class UInt64Value extends Message<UInt64Value> {
   }
 
 }
-
 
 /**
  * Wrapper message for `int32`.
@@ -388,7 +384,6 @@ export class Int32Value extends Message<Int32Value> {
 
 }
 
-
 /**
  * Wrapper message for `uint32`.
  *
@@ -459,7 +454,6 @@ export class UInt32Value extends Message<UInt32Value> {
   }
 
 }
-
 
 /**
  * Wrapper message for `bool`.
@@ -532,7 +526,6 @@ export class BoolValue extends Message<BoolValue> {
 
 }
 
-
 /**
  * Wrapper message for `string`.
  *
@@ -604,7 +597,6 @@ export class StringValue extends Message<StringValue> {
 
 }
 
-
 /**
  * Wrapper message for `bytes`.
  *
@@ -675,5 +667,4 @@ export class BytesValue extends Message<BytesValue> {
   }
 
 }
-
 

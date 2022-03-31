@@ -241,6 +241,7 @@ proto3.util.setEnumType(TestProto3Optional_NestedEnum, "protobuf_unittest.TestPr
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
  */
@@ -283,7 +284,6 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
   }
 
 }
-
 
 
 /**
@@ -371,7 +371,6 @@ export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3O
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
  */
@@ -404,5 +403,4 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
   }
 
 }
-
 

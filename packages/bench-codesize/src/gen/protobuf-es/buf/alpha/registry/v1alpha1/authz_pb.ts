@@ -62,7 +62,6 @@ export class UserCanCreateOrganizationRepositoryRequest extends Message<UserCanC
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryResponse
  */
@@ -101,7 +100,6 @@ export class UserCanCreateOrganizationRepositoryResponse extends Message<UserCan
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsRequest
@@ -145,7 +143,6 @@ export class UserCanSeeRepositorySettingsRequest extends Message<UserCanSeeRepos
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsResponse
  */
@@ -184,7 +181,6 @@ export class UserCanSeeRepositorySettingsResponse extends Message<UserCanSeeRepo
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsRequest
@@ -228,7 +224,6 @@ export class UserCanSeeOrganizationSettingsRequest extends Message<UserCanSeeOrg
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsResponse
  */
@@ -267,7 +262,6 @@ export class UserCanSeeOrganizationSettingsResponse extends Message<UserCanSeeOr
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanReadPluginRequest
@@ -318,7 +312,6 @@ export class UserCanReadPluginRequest extends Message<UserCanReadPluginRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanReadPluginResponse
  */
@@ -357,7 +350,6 @@ export class UserCanReadPluginResponse extends Message<UserCanReadPluginResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionRequest
@@ -408,7 +400,6 @@ export class UserCanCreatePluginVersionRequest extends Message<UserCanCreatePlug
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionResponse
  */
@@ -447,7 +438,6 @@ export class UserCanCreatePluginVersionResponse extends Message<UserCanCreatePlu
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionRequest
@@ -498,7 +488,6 @@ export class UserCanCreateTemplateVersionRequest extends Message<UserCanCreateTe
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionResponse
  */
@@ -537,7 +526,6 @@ export class UserCanCreateTemplateVersionResponse extends Message<UserCanCreateT
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginRequest
@@ -581,7 +569,6 @@ export class UserCanCreateOrganizationPluginRequest extends Message<UserCanCreat
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginResponse
  */
@@ -620,7 +607,6 @@ export class UserCanCreateOrganizationPluginResponse extends Message<UserCanCrea
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateRequest
@@ -664,7 +650,6 @@ export class UserCanCreateOrganizationTemplateRequest extends Message<UserCanCre
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateResponse
  */
@@ -703,7 +688,6 @@ export class UserCanCreateOrganizationTemplateResponse extends Message<UserCanCr
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsRequest
@@ -754,7 +738,6 @@ export class UserCanSeePluginSettingsRequest extends Message<UserCanSeePluginSet
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsResponse
  */
@@ -793,7 +776,6 @@ export class UserCanSeePluginSettingsResponse extends Message<UserCanSeePluginSe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsRequest
@@ -844,7 +826,6 @@ export class UserCanSeeTemplateSettingsRequest extends Message<UserCanSeeTemplat
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsResponse
  */
@@ -883,7 +864,6 @@ export class UserCanSeeTemplateSettingsResponse extends Message<UserCanSeeTempla
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberRequest
@@ -927,7 +907,6 @@ export class UserCanAddOrganizationMemberRequest extends Message<UserCanAddOrgan
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberResponse
  */
@@ -969,7 +948,6 @@ export class UserCanAddOrganizationMemberResponse extends Message<UserCanAddOrga
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberRequest
@@ -1013,7 +991,6 @@ export class UserCanUpdateOrganizationMemberRequest extends Message<UserCanUpdat
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberResponse
  */
@@ -1055,7 +1032,6 @@ export class UserCanUpdateOrganizationMemberResponse extends Message<UserCanUpda
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberRequest
@@ -1099,7 +1075,6 @@ export class UserCanRemoveOrganizationMemberRequest extends Message<UserCanRemov
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberResponse
  */
@@ -1141,7 +1116,6 @@ export class UserCanRemoveOrganizationMemberResponse extends Message<UserCanRemo
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationRequest
@@ -1185,7 +1159,6 @@ export class UserCanDeleteOrganizationRequest extends Message<UserCanDeleteOrgan
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationResponse
  */
@@ -1224,7 +1197,6 @@ export class UserCanDeleteOrganizationResponse extends Message<UserCanDeleteOrga
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryRequest
@@ -1268,7 +1240,6 @@ export class UserCanDeleteRepositoryRequest extends Message<UserCanDeleteReposit
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryResponse
  */
@@ -1307,7 +1278,6 @@ export class UserCanDeleteRepositoryResponse extends Message<UserCanDeleteReposi
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateRequest
@@ -1351,7 +1321,6 @@ export class UserCanDeleteTemplateRequest extends Message<UserCanDeleteTemplateR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateResponse
  */
@@ -1390,7 +1359,6 @@ export class UserCanDeleteTemplateResponse extends Message<UserCanDeleteTemplate
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeletePluginRequest
@@ -1434,7 +1402,6 @@ export class UserCanDeletePluginRequest extends Message<UserCanDeletePluginReque
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeletePluginResponse
  */
@@ -1474,7 +1441,6 @@ export class UserCanDeletePluginResponse extends Message<UserCanDeletePluginResp
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteUserRequest
  */
@@ -1507,7 +1473,6 @@ export class UserCanDeleteUserRequest extends Message<UserCanDeleteUserRequest> 
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteUserResponse
@@ -1548,7 +1513,6 @@ export class UserCanDeleteUserResponse extends Message<UserCanDeleteUserResponse
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelRequest
  */
@@ -1581,7 +1545,6 @@ export class UserCanSeeServerAdminPanelRequest extends Message<UserCanSeeServerA
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelResponse
@@ -1621,7 +1584,6 @@ export class UserCanSeeServerAdminPanelResponse extends Message<UserCanSeeServer
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsRequest
@@ -1665,7 +1627,6 @@ export class UserCanManageRepositoryContributorsRequest extends Message<UserCanM
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsResponse
  */
@@ -1707,7 +1668,6 @@ export class UserCanManageRepositoryContributorsResponse extends Message<UserCan
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsRequest
@@ -1751,7 +1711,6 @@ export class UserCanManagePluginContributorsRequest extends Message<UserCanManag
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsResponse
  */
@@ -1793,7 +1752,6 @@ export class UserCanManagePluginContributorsResponse extends Message<UserCanMana
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsRequest
@@ -1837,7 +1795,6 @@ export class UserCanManageTemplateContributorsRequest extends Message<UserCanMan
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsResponse
  */
@@ -1879,5 +1836,4 @@ export class UserCanManageTemplateContributorsResponse extends Message<UserCanMa
   }
 
 }
-
 

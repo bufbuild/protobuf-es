@@ -30,7 +30,6 @@ export const FailRequest = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message spec.ExampleRequest
  */
@@ -44,7 +43,6 @@ export const ExampleRequest = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.ExampleResponse
  */
@@ -57,5 +55,4 @@ export const ExampleResponse = proto3.makeMessageType(
     {no: 4, name: "your_fail_request", kind: "enum", T: proto3.getEnumType(FailRequest)},
   ],
 );
-
 

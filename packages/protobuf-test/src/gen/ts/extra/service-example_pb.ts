@@ -119,7 +119,6 @@ export class ExampleRequest extends Message<ExampleRequest> {
 
 }
 
-
 /**
  * @generated from message spec.ExampleResponse
  */
@@ -184,5 +183,4 @@ export class ExampleResponse extends Message<ExampleResponse> {
   }
 
 }
-
 

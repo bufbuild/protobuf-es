@@ -62,7 +62,6 @@ export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizat
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsResponse
  */
@@ -144,7 +143,6 @@ export class DisplayOrganizationElementsResponse extends Message<DisplayOrganiza
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsRequest
  */
@@ -186,7 +184,6 @@ export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryE
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsResponse
@@ -237,7 +234,6 @@ export class DisplayRepositoryElementsResponse extends Message<DisplayRepository
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayPluginElementsRequest
  */
@@ -279,7 +275,6 @@ export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsR
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayPluginElementsResponse
@@ -338,7 +333,6 @@ export class DisplayPluginElementsResponse extends Message<DisplayPluginElements
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayTemplateElementsRequest
  */
@@ -380,7 +374,6 @@ export class DisplayTemplateElementsRequest extends Message<DisplayTemplateEleme
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayTemplateElementsResponse
@@ -439,7 +432,6 @@ export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElem
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayUserElementsRequest
  */
@@ -472,7 +464,6 @@ export class DisplayUserElementsRequest extends Message<DisplayUserElementsReque
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayUserElementsResponse
@@ -515,7 +506,6 @@ export class DisplayUserElementsResponse extends Message<DisplayUserElementsResp
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayServerElementsRequest
  */
@@ -548,7 +538,6 @@ export class DisplayServerElementsRequest extends Message<DisplayServerElementsR
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayServerElementsResponse
@@ -590,7 +579,6 @@ export class DisplayServerElementsResponse extends Message<DisplayServerElements
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesRequest
@@ -634,7 +622,6 @@ export class ListManageableRepositoryRolesRequest extends Message<ListManageable
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesResponse
  */
@@ -676,7 +663,6 @@ export class ListManageableRepositoryRolesResponse extends Message<ListManageabl
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesRequest
@@ -729,7 +715,6 @@ export class ListManageableUserRepositoryRolesRequest extends Message<ListManage
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesResponse
  */
@@ -771,7 +756,6 @@ export class ListManageableUserRepositoryRolesResponse extends Message<ListManag
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageablePluginRolesRequest
@@ -815,7 +799,6 @@ export class ListManageablePluginRolesRequest extends Message<ListManageablePlug
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageablePluginRolesResponse
  */
@@ -857,7 +840,6 @@ export class ListManageablePluginRolesResponse extends Message<ListManageablePlu
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesRequest
@@ -910,7 +892,6 @@ export class ListManageableUserPluginRolesRequest extends Message<ListManageable
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesResponse
  */
@@ -952,7 +933,6 @@ export class ListManageableUserPluginRolesResponse extends Message<ListManageabl
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesRequest
@@ -996,7 +976,6 @@ export class ListManageableTemplateRolesRequest extends Message<ListManageableTe
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesResponse
  */
@@ -1038,7 +1017,6 @@ export class ListManageableTemplateRolesResponse extends Message<ListManageableT
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesRequest
@@ -1091,7 +1069,6 @@ export class ListManageableUserTemplateRolesRequest extends Message<ListManageab
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesResponse
  */
@@ -1133,5 +1110,4 @@ export class ListManageableUserTemplateRolesResponse extends Message<ListManagea
   }
 
 }
-
 

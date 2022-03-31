@@ -665,6 +665,7 @@ proto2.util.setEnumType(TestAllTypesLite_NestedEnum, "protobuf_unittest.TestAllT
   {no: 3, name: "BAZ"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage
  */
@@ -831,7 +832,6 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
@@ -870,7 +870,6 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
@@ -989,7 +988,6 @@ export class TestPackedTypesLite extends Message<TestPackedTypesLite> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
@@ -1022,7 +1020,6 @@ export class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
@@ -1063,7 +1060,6 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
@@ -1103,7 +1099,6 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
@@ -1137,7 +1132,6 @@ export class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
  */
@@ -1170,7 +1164,6 @@ export class TestNestedExtensionLite extends Message<TestNestedExtensionLite> {
   }
 
 }
-
 
 /**
  * Test that deprecated fields work.  We only verify that they compile (at one
@@ -1235,7 +1228,6 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
   }
 
 }
-
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -1538,7 +1530,6 @@ export class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMerge
 }
 
 
-
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
@@ -1573,7 +1564,6 @@ export class TestEmptyMessageLite extends Message<TestEmptyMessageLite> {
   }
 
 }
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -1610,7 +1600,6 @@ export class TestEmptyMessageWithExtensionsLite extends Message<TestEmptyMessage
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.V1MessageLite
@@ -1657,7 +1646,6 @@ export class V1MessageLite extends Message<V1MessageLite> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -1702,7 +1690,6 @@ export class V2MessageLite extends Message<V2MessageLite> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
@@ -1870,7 +1857,6 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
  */
@@ -1972,7 +1958,6 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
 
 }
 
-
 /**
  * The following four messages are set up to test for wire compatibility between
  * packed and non-packed repeated fields. We use the field number 2048, because
@@ -2016,7 +2001,6 @@ export class PackedInt32 extends Message<PackedInt32> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
  */
@@ -2055,7 +2039,6 @@ export class NonPackedInt32 extends Message<NonPackedInt32> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.PackedFixed32
@@ -2096,7 +2079,6 @@ export class PackedFixed32 extends Message<PackedFixed32> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
  */
@@ -2135,7 +2117,6 @@ export class NonPackedFixed32 extends Message<NonPackedFixed32> {
   }
 
 }
-
 
 /**
  * Test an enum that has multiple values with the same number.
@@ -2258,5 +2239,4 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
   }
 
 }
-
 

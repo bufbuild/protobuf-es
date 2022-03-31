@@ -31,7 +31,6 @@ export const OneofEnum = proto3.makeEnum(
   {sharedPrefix: "ONEOF_ENUM_"},
 );
 
-
 /**
  * @generated from message spec.OneofMessage
  */
@@ -47,7 +46,6 @@ export const OneofMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.OneofMessageFoo
  */
@@ -59,7 +57,6 @@ export const OneofMessageFoo = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.OneofMessageBar
  */
@@ -70,5 +67,4 @@ export const OneofMessageBar = proto3.makeMessageType(
     {no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */},
   ],
 );
-
 

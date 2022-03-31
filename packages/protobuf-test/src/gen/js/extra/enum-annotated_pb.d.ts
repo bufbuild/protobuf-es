@@ -33,4 +33,3 @@ export declare enum AnnotatedEnum {
 
 }
 
-

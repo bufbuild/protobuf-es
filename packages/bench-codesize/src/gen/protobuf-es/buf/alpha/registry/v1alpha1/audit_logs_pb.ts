@@ -97,7 +97,6 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListAuditLogsResponse
  */
@@ -144,5 +143,4 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
   }
 
 }
-
 

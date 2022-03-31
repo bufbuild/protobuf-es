@@ -570,6 +570,7 @@ proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto3_arena_unittest.TestAllT
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from message proto3_arena_unittest.TestAllTypes.NestedMessage
  */
@@ -612,7 +613,6 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   }
 
 }
-
 
 
 /**
@@ -731,7 +731,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
   }
 
 }
-
 
 /**
  * Explicitly set packed to false
@@ -852,7 +851,6 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
 }
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -906,7 +904,6 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
 
 }
 
-
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -949,7 +946,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
  *
@@ -984,7 +980,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
   }
 
 }
-
 
 /**
  * Needed for a Python test.
@@ -1098,7 +1093,6 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
   }
 
 }
-
 
 
 

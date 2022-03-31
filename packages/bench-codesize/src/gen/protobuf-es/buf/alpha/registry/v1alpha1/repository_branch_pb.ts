@@ -86,7 +86,6 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryBranchRequest
  */
@@ -145,7 +144,6 @@ export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranc
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryBranchResponse
  */
@@ -184,7 +182,6 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryBranchesRequest
@@ -247,7 +244,6 @@ export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranche
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryBranchesResponse
  */
@@ -294,5 +290,4 @@ export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranch
   }
 
 }
-
 

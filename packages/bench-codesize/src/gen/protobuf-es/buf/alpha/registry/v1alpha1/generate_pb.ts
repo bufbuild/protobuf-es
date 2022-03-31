@@ -72,7 +72,6 @@ export class File extends Message<File> {
 
 }
 
-
 /**
  * RuntimeLibrary describes a pinned runtime library dependency of the generated code.
  *
@@ -130,7 +129,6 @@ export class RuntimeLibrary extends Message<RuntimeLibrary> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginReference
@@ -199,7 +197,6 @@ export class PluginReference extends Message<PluginReference> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GeneratePluginsRequest
@@ -272,7 +269,6 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GeneratePluginsResponse
  */
@@ -327,7 +323,6 @@ export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GenerateTemplateRequest
@@ -419,7 +414,6 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GenerateTemplateResponse
  */
@@ -472,5 +466,4 @@ export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> 
   }
 
 }
-
 

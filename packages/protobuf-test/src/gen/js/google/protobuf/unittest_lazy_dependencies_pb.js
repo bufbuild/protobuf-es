@@ -55,7 +55,6 @@ export const ImportedMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
@@ -64,7 +63,6 @@ export const MessageCustomOption = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
@@ -72,5 +70,4 @@ export const MessageCustomOption2 = proto2.makeMessageType(
   "protobuf_unittest.lazy_imports.MessageCustomOption2",
   [],
 );
-
 

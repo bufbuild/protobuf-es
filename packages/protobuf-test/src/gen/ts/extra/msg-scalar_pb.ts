@@ -142,7 +142,6 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
 
 }
 
-
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
@@ -265,5 +264,4 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
   }
 
 }
-
 

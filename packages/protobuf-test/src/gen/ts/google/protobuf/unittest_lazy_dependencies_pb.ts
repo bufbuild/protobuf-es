@@ -85,7 +85,6 @@ export class ImportedMessage extends Message<ImportedMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
@@ -119,7 +118,6 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
@@ -152,5 +150,4 @@ export class MessageCustomOption2 extends Message<MessageCustomOption2> {
   }
 
 }
-
 

@@ -78,7 +78,6 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTrackRequest
  */
@@ -128,7 +127,6 @@ export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTrackResponse
  */
@@ -167,7 +165,6 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTracksRequest
@@ -230,7 +227,6 @@ export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksReq
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTracksResponse
  */
@@ -277,7 +273,6 @@ export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryTrackByNameRequest
@@ -332,7 +327,6 @@ export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepository
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryTrackByNameResponse
  */
@@ -365,7 +359,6 @@ export class DeleteRepositoryTrackByNameResponse extends Message<DeleteRepositor
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameRequest
@@ -420,7 +413,6 @@ export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackB
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameResponse
  */
@@ -459,5 +451,4 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
   }
 
 }
-
 

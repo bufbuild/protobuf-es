@@ -39,7 +39,6 @@ export declare enum DeprecatedEnum {
 
 }
 
-
 /**
  * Only a single enum value is deprecated
  *
@@ -59,7 +58,6 @@ export declare enum DeprecatedValueEnum {
   DEPRECATED_VALUE = 1,
 
 }
-
 
 /**
  * The entire message is deprecated
@@ -89,7 +87,6 @@ export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
   static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean;
 
 }
-
 
 /**
  * A single field of this message is deprecated
@@ -128,5 +125,4 @@ export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessa
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
 
 }
-
 

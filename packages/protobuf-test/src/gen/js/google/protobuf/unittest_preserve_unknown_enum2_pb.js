@@ -46,7 +46,6 @@ export const MyEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message proto2_preserve_unknown_enum_unittest.MyMessage
  */
@@ -61,5 +60,4 @@ export const MyMessage = proto2.makeMessageType(
     {no: 6, name: "oneof_e_2", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
   ],
 );
-
 

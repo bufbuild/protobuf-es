@@ -97,7 +97,6 @@ export class Reference extends Message<Reference> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameRequest
  */
@@ -155,7 +154,6 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameResponse
  */
@@ -194,5 +192,4 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
   }
 
 }
-
 

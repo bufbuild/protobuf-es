@@ -970,6 +970,7 @@ proto2.util.setEnumType(TestAllTypesProto2_NestedEnum, "protobuf_test_messages.p
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage
  */
@@ -1180,7 +1181,6 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
 }
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
  */
@@ -1219,7 +1219,6 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -1330,7 +1329,6 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
 }
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
@@ -1363,7 +1361,6 @@ export class NullHypothesisProto2 extends Message<NullHypothesisProto2> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2

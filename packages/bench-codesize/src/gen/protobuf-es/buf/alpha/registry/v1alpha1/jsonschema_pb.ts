@@ -80,7 +80,6 @@ export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetJSONSchemaResponse
  */
@@ -124,5 +123,4 @@ export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
   }
 
 }
-
 

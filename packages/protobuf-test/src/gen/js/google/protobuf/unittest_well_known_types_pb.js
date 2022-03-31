@@ -37,7 +37,6 @@ export const TestWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * A repeated field for each well-known type.
  *
@@ -67,7 +66,6 @@ export const RepeatedWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
  */
@@ -94,7 +92,6 @@ export const OneofWellKnownTypes = proto3.makeMessageType(
     {no: 18, name: "bytes_field", kind: "message", T: BytesValue, oneof: "oneof_field"},
   ],
 );
-
 
 /**
  * A map field for each well-known type. We only
@@ -126,5 +123,4 @@ export const MapWellKnownTypes = proto3.makeMessageType(
     {no: 18, name: "bytes_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: BytesValue}},
   ],
 );
-
 

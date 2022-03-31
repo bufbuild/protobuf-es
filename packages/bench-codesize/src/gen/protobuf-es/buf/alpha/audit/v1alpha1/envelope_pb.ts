@@ -980,7 +980,6 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetImageInfo stores audit log details not included
  * in actor or object for the GetImage action.
@@ -1022,7 +1021,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo stores audit log details not included
@@ -1066,7 +1064,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo stores audit log details not included
  * in object for the DeleteOrganization action if the deletion fails.
@@ -1109,7 +1106,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo stores audit log details not included
  * in object for the DeleteOrganizationByName action if the deletion fails.
@@ -1151,7 +1147,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo stores audit log details not included
@@ -1208,7 +1203,6 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo stores audit log details not included
  * in objects for the UpdateOrganizationMember action if the update fails and details not included in the object
@@ -1264,7 +1258,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo stores audit log details not included
  * in objects for the RemoveOrganizationMember action if the deletion fails.
@@ -1312,7 +1305,6 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo stores audit log details not included
@@ -1374,7 +1366,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1CreatePluginInfo stores audit log details not included
  * in object for the CreatePlugin action if the creation fails.
@@ -1429,7 +1420,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeletePluginInfo stores audit log details not included
  * in object for the DeletePlugin action if the deletion fails.
@@ -1478,7 +1468,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo stores audit log details not included
  * in actor or object for the GetTemplateVersion action.
@@ -1520,7 +1509,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo stores audit log details not included
@@ -1583,7 +1571,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo stores audit log details not included
  * in object for the DeleteTemplate action if the deletion fails.
@@ -1631,7 +1618,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo stores audit log details not included
@@ -1693,7 +1679,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1PushInfo stores audit log details not included
@@ -1773,7 +1758,6 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo stores audit log details not included
  * in actor or object for the GetReferenceByName action.
@@ -1849,7 +1833,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo stores audit log details not included
  * in object for the CreateRepositoryBranch action if the creation fails and details not included in
@@ -1899,7 +1882,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo stores audit log details not included
  * in actor or object for the ListRepositoryCommitsByBranch action.
@@ -1941,7 +1923,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo stores audit log details not included
@@ -1985,7 +1966,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo stores audit log details not included
  * in actor or object for the GetRepositoryCommitByReference action.
@@ -2027,7 +2007,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo stores audit log details not included
@@ -2076,7 +2055,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo stores audit log details not included
@@ -2133,7 +2111,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo stores audit log details not included
  * in object for the CreateRepositoryByFullName action if the creation fails and details not included in
@@ -2183,7 +2160,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo stores audit log details not included
  * in object for the DeleteRepository action if the deletion fails.
@@ -2226,7 +2202,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo stores audit log details not included
  * in object for the DeleteRepositoryByFullName action if the deletion fails.
@@ -2268,7 +2243,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo stores audit log details not included
@@ -2324,7 +2298,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo stores audit log details not included
  * in object for the UndeprecateRepositoryByName action if the undeprecation fails.
@@ -2372,7 +2345,6 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo stores audit log details not included
@@ -2428,7 +2400,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo stores audit log details not included
  * in actor or object for the GetLocalModulePins action.
@@ -2483,7 +2454,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1SearchInfo stores audit log details not included
  * in actor or object for the Search action.
@@ -2531,7 +2501,6 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateTokenInfo stores audit log details not included
@@ -2581,7 +2550,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo stores audit log details not included
  * in objects for the DeleteToken action if the deletion fails.
@@ -2623,7 +2591,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateUserInfo stores audit log details not included
@@ -2667,7 +2634,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1ListUsersInfo stores audit log details not included
  * in actor or object for the ListUsers action.
@@ -2710,7 +2676,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo stores audit log details not included
  * in objects for the DeactivateeUser action if the deactivation fails.
@@ -2752,7 +2717,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo stores audit log details not included
@@ -2802,7 +2766,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo stores audit log details not included
@@ -2858,7 +2821,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
 
 }
 
-
 /**
  * ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo stores audit log details
  * not included in actor or object for the CreatePluginVersionMetadata action.
@@ -2913,7 +2875,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
 
 }
 
-
 /**
  * ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo stores audit log details not included
  * in actor or object for the DeletePluginVersion action.
@@ -2955,7 +2916,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo stores audit log details not included
@@ -2999,7 +2959,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo stores audit log details not included
  * in actor or object for the SetPluginContributor action.
@@ -3041,7 +3000,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo stores audit log details not included
@@ -3085,7 +3043,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo stores audit log details not included
  * in actor or object for the CreateRepositoryTrack action.
@@ -3127,7 +3084,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
   }
 
 }
-
 
 /**
  * ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo stores audit log details not included
@@ -3171,7 +3127,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
 
 }
 
-
 /**
  * ActionBufAlphaRegistryV1Alpha1GetJSONSchema stores audit log details not included
  * in objects for the GetJSONSchema action.
@@ -3213,7 +3168,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionB
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.Event
@@ -3676,7 +3630,6 @@ export class Event extends Message<Event> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.UserActor
  */
@@ -3740,7 +3693,6 @@ export class UserActor extends Message<UserActor> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.UserObject
  */
@@ -3792,7 +3744,6 @@ export class UserObject extends Message<UserObject> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.OrganizationObject
  */
@@ -3837,7 +3788,6 @@ export class OrganizationObject extends Message<OrganizationObject> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.RepositoryObject
@@ -3902,7 +3852,6 @@ export class RepositoryObject extends Message<RepositoryObject> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.PluginObject
  */
@@ -3965,7 +3914,6 @@ export class PluginObject extends Message<PluginObject> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.TemplateObject
@@ -4030,7 +3978,6 @@ export class TemplateObject extends Message<TemplateObject> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.TokenObject
  */
@@ -4069,7 +4016,6 @@ export class TokenObject extends Message<TokenObject> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.Object
@@ -4150,5 +4096,4 @@ export class Object$ extends Message<Object$> {
   }
 
 }
-
 

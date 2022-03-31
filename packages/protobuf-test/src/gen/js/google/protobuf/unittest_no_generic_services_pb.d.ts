@@ -49,7 +49,6 @@ export declare enum TestEnum {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
  */
@@ -75,5 +74,4 @@ export declare class TestMessage extends Message<TestMessage> {
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
 
 }
-
 

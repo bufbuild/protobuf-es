@@ -57,7 +57,6 @@ export declare enum MyEnum {
 
 }
 
-
 /**
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
@@ -84,7 +83,6 @@ export declare enum MyEnumPlusExtra {
   E_EXTRA = 3,
 
 }
-
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
@@ -146,7 +144,6 @@ export declare class MyMessage extends Message<MyMessage> {
 
 }
 
-
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
@@ -204,5 +201,4 @@ export declare class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean;
 
 }
-
 

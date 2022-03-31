@@ -41,7 +41,6 @@ export declare enum MapsEnum {
 
 }
 
-
 /**
  * @generated from message spec.MapsMessage
  */
@@ -132,5 +131,4 @@ export declare class MapsMessage extends Message<MapsMessage> {
   static equals(a: MapsMessage | PlainMessage<MapsMessage> | undefined, b: MapsMessage | PlainMessage<MapsMessage> | undefined): boolean;
 
 }
-
 

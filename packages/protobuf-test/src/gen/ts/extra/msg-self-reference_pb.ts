@@ -70,4 +70,3 @@ export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
 
 }
 
-

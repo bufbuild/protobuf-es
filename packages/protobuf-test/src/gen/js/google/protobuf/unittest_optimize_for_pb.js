@@ -54,7 +54,6 @@ export const TestOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
@@ -65,7 +64,6 @@ export const TestRequiredOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
@@ -75,5 +73,4 @@ export const TestOptionalOptimizedForSize = proto2.makeMessageType(
     {no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true},
   ],
 );
-
 

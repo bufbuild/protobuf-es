@@ -53,7 +53,6 @@ export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserResponse
  */
@@ -93,7 +92,6 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest
  */
@@ -126,7 +124,6 @@ export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectR
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse
@@ -171,5 +168,4 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
   }
 
 }
-
 

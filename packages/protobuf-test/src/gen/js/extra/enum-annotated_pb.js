@@ -29,4 +29,3 @@ export const AnnotatedEnum = proto3.makeEnum(
   ],
 );
 
-

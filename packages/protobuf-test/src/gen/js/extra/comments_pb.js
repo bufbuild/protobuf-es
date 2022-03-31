@@ -40,7 +40,6 @@ export const EnumWithComments = proto3.makeEnum(
   ],
 );
 
-
 /**
  * Leading comment for deprecated enum
  *
@@ -56,7 +55,6 @@ export const DeprecatedEnumWithComment = proto3.makeEnum(
   {sharedPrefix: "DEPRECATED_ENUM_WITH_COMMENT_"},
 );
 
-
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
@@ -69,7 +67,6 @@ export const DeprecatedEnumNoComment = proto3.makeEnum(
   ],
   {sharedPrefix: "DEPRECATED_ENUM_NO_COMMENT_"},
 );
-
 
 /**
  * Comment before message.
@@ -87,7 +84,6 @@ export const MessageWithComments = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * Comment within empty message.
  *
@@ -97,7 +93,6 @@ export const EmptyMessageWithComment = proto3.makeMessageType(
   "spec.EmptyMessageWithComment",
   [],
 );
-
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -115,5 +110,4 @@ export const GoogleCommentExample = proto3.makeMessageType(
     {no: 6, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */},
   ],
 );
-
 

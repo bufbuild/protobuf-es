@@ -177,4 +177,3 @@ export class Duration extends Message<Duration> {
 
 }
 
-

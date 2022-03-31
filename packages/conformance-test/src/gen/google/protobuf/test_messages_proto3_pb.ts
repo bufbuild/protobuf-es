@@ -1085,6 +1085,7 @@ proto3.util.setEnumType(TestAllTypesProto3_NestedEnum, "protobuf_test_messages.p
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
  */
@@ -1132,6 +1133,7 @@ proto3.util.setEnumType(TestAllTypesProto3_AliasedEnum, "protobuf_test_messages.
   {no: 2, name: "bAz"},
 ]);
 
+
 /**
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
  */
@@ -1178,7 +1180,6 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
 }
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
  */
@@ -1218,7 +1219,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
  */
@@ -1251,7 +1251,6 @@ export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3

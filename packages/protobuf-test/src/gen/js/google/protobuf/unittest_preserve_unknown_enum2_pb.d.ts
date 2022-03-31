@@ -57,7 +57,6 @@ export declare enum MyEnum {
 
 }
 
-
 /**
  * @generated from message proto2_preserve_unknown_enum_unittest.MyMessage
  */
@@ -117,5 +116,4 @@ export declare class MyMessage extends Message<MyMessage> {
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
 
 }
-
 

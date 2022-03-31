@@ -90,7 +90,6 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
@@ -117,7 +116,6 @@ export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOp
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
@@ -143,5 +141,4 @@ export declare class TestOptionalOptimizedForSize extends Message<TestOptionalOp
   static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean;
 
 }
-
 

@@ -76,4 +76,3 @@ export declare class TestEmbedOptimizedForSize extends Message<TestEmbedOptimize
 
 }
 
-

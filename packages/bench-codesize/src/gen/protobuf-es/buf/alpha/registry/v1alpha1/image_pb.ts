@@ -161,7 +161,6 @@ export class GetImageRequest extends Message<GetImageRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetImageResponse
  */
@@ -200,5 +199,4 @@ export class GetImageResponse extends Message<GetImageResponse> {
   }
 
 }
-
 

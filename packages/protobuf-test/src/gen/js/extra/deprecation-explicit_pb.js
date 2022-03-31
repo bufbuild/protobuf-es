@@ -33,7 +33,6 @@ export const DeprecatedEnum = proto3.makeEnum(
   {sharedPrefix: "DEPRECATED_ENUM_"},
 );
 
-
 /**
  * Only a single enum value is deprecated
  *
@@ -48,7 +47,6 @@ export const DeprecatedValueEnum = proto3.makeEnum(
   {sharedPrefix: "DEPRECATED_VALUE_ENUM_"},
 );
 
-
 /**
  * The entire message is deprecated
  *
@@ -62,7 +60,6 @@ export const DeprecatedMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * A single field of this message is deprecated
  *
@@ -75,5 +72,4 @@ export const DeprecatedFieldMessage = proto3.makeMessageType(
     {no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
   ],
 );
-
 

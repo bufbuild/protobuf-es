@@ -99,7 +99,6 @@ export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
@@ -151,7 +150,6 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
 
 }
 
-
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
@@ -202,7 +200,6 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
   }
 
 }
-
 
 /**
  * @generated from message spec.Proto3OptionalMessage
@@ -260,5 +257,4 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   }
 
 }
-
 

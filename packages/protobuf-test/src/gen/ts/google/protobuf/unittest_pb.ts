@@ -1335,6 +1335,7 @@ proto2.util.setEnumType(TestAllTypes_NestedEnum, "protobuf_unittest.TestAllTypes
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.TestAllTypes.NestedMessage
  */
@@ -1459,7 +1460,6 @@ export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGro
 }
 
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -1512,7 +1512,6 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
@@ -1567,7 +1566,6 @@ export class TestDeprecatedFields extends Message<TestDeprecatedFields> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestDeprecatedMessage
  * @deprecated
@@ -1601,7 +1599,6 @@ export class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
   }
 
 }
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -1651,7 +1648,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
@@ -1685,7 +1681,6 @@ export class TestReservedFields extends Message<TestReservedFields> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
@@ -1718,7 +1713,6 @@ export class TestAllExtensions extends Message<TestAllExtensions> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
@@ -1759,7 +1753,6 @@ export class OptionalGroup_extension extends Message<OptionalGroup_extension> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
@@ -1798,7 +1791,6 @@ export class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestGroup
@@ -1885,7 +1877,6 @@ export class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
@@ -1918,7 +1909,6 @@ export class TestGroupExtension extends Message<TestGroupExtension> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
@@ -1993,7 +1983,6 @@ export class TestNestedExtension_OptionalGroup_extension extends Message<TestNes
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
@@ -2044,7 +2033,6 @@ export class TestChildExtension extends Message<TestChildExtension> {
   }
 
 }
-
 
 /**
  * We have separate messages for testing required fields because it's
@@ -2286,7 +2274,6 @@ export class TestRequired extends Message<TestRequired> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
@@ -2337,7 +2324,6 @@ export class TestRequiredForeign extends Message<TestRequiredForeign> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
@@ -2390,7 +2376,6 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
 
 }
 
-
 /**
  * Test that we can use NestedMessage from outside TestAllTypes.
  *
@@ -2432,7 +2417,6 @@ export class TestForeignNested extends Message<TestForeignNested> {
 
 }
 
-
 /**
  * TestEmptyMessage is used to test unknown field support.
  *
@@ -2467,7 +2451,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
   }
 
 }
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -2504,7 +2487,6 @@ export class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWith
   }
 
 }
-
 
 /**
  * Needed for a Python test.
@@ -2621,7 +2603,6 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
 
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
@@ -2654,7 +2635,6 @@ export class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRa
   }
 
 }
-
 
 /**
  * Test that really large tag numbers don't break anything.
@@ -2706,7 +2686,6 @@ export class TestReallyLargeTagNumber extends Message<TestReallyLargeTagNumber> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
@@ -2751,7 +2730,6 @@ export class TestRecursiveMessage extends Message<TestRecursiveMessage> {
   }
 
 }
-
 
 /**
  * Test that mutual recursion works.
@@ -2888,7 +2866,6 @@ export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
@@ -2933,7 +2910,6 @@ export class TestMutualRecursionB extends Message<TestMutualRecursionB> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
@@ -3051,7 +3027,6 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
   }
 
 }
-
 
 
 
@@ -3195,7 +3170,6 @@ export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
 }
 
 
-
 /**
  * Additional messages for testing lazy fields.
  *
@@ -3237,7 +3211,6 @@ export class TestEagerMessage extends Message<TestEagerMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
@@ -3276,7 +3249,6 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
   }
 
 }
-
 
 /**
  * Needed for a Python test.
@@ -3363,7 +3335,6 @@ export class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMe
   }
 
 }
-
 
 
 /**
@@ -3473,7 +3444,6 @@ export class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
   }
 
 }
-
 
 /**
  * We list fields out of order, to ensure that we're using field number and not
@@ -3585,7 +3555,6 @@ export class TestFieldOrderings_NestedMessage extends Message<TestFieldOrderings
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
@@ -3624,7 +3593,6 @@ export class TestExtensionOrderings1 extends Message<TestExtensionOrderings1> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
@@ -3703,7 +3671,6 @@ export class TestExtensionOrderings2_TestExtensionOrderings3 extends Message<Tes
   }
 
 }
-
 
 
 /**
@@ -3919,7 +3886,6 @@ export class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
@@ -3958,7 +3924,6 @@ export class SparseEnumMessage extends Message<SparseEnumMessage> {
   }
 
 }
-
 
 /**
  * Test String and Bytes: string is for valid UTF-8 strings
@@ -4001,7 +3966,6 @@ export class OneString extends Message<OneString> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.MoreString
  */
@@ -4040,7 +4004,6 @@ export class MoreString extends Message<MoreString> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OneBytes
@@ -4081,7 +4044,6 @@ export class OneBytes extends Message<OneBytes> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
@@ -4120,7 +4082,6 @@ export class MoreBytes extends Message<MoreBytes> {
   }
 
 }
-
 
 /**
  * Test int32, uint32, int64, uint64, and bool are all compatible
@@ -4163,7 +4124,6 @@ export class Int32Message extends Message<Int32Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
@@ -4202,7 +4162,6 @@ export class Uint32Message extends Message<Uint32Message> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.Int64Message
@@ -4243,7 +4202,6 @@ export class Int64Message extends Message<Int64Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
@@ -4283,7 +4241,6 @@ export class Uint64Message extends Message<Uint64Message> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
@@ -4322,7 +4279,6 @@ export class BoolMessage extends Message<BoolMessage> {
   }
 
 }
-
 
 /**
  * Test oneofs.
@@ -4438,7 +4394,6 @@ export class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
@@ -4540,7 +4495,6 @@ export class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBack
   }
 
 }
-
 
 
 /**
@@ -4760,6 +4714,7 @@ proto2.util.setEnumType(TestOneof2_NestedEnum, "protobuf_unittest.TestOneof2.Nes
   {no: 3, name: "BAZ"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.TestOneof2.FooGroup
  */
@@ -4850,7 +4805,6 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
   }
 
 }
-
 
 
 /**
@@ -4950,7 +4904,6 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
   }
 
 }
-
 
 
 /**
@@ -5069,7 +5022,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
   }
 
 }
-
 
 /**
  * A message with the same fields as TestPackedTypes, but without packing. Used
@@ -5191,7 +5143,6 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
@@ -5225,7 +5176,6 @@ export class TestPackedExtensions extends Message<TestPackedExtensions> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
@@ -5258,7 +5208,6 @@ export class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
   }
 
 }
-
 
 /**
  * Used by ExtensionSetTest/DynamicExtensions.  The test actually builds
@@ -5368,6 +5317,7 @@ proto2.util.setEnumType(TestDynamicExtensions_DynamicEnumType, "protobuf_unittes
   {no: 2202, name: "DYNAMIC_BAZ"},
 ]);
 
+
 /**
  * @generated from message protobuf_unittest.TestDynamicExtensions.DynamicMessageType
  */
@@ -5406,7 +5356,6 @@ export class TestDynamicExtensions_DynamicMessageType extends Message<TestDynami
   }
 
 }
-
 
 
 /**
@@ -5487,7 +5436,6 @@ export class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedSca
   }
 
 }
-
 
 /**
  * Test that if an optional or required message/group field appears multiple
@@ -5797,7 +5745,6 @@ export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_Rep
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
@@ -5839,7 +5786,6 @@ export class TestCommentInjectionMessage extends Message<TestCommentInjectionMes
 
 }
 
-
 /**
  * Test that RPC services work.
  *
@@ -5875,7 +5821,6 @@ export class FooRequest extends Message<FooRequest> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
@@ -5908,7 +5853,6 @@ export class FooResponse extends Message<FooResponse> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.FooClientMessage
@@ -5943,7 +5887,6 @@ export class FooClientMessage extends Message<FooClientMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
@@ -5976,7 +5919,6 @@ export class FooServerMessage extends Message<FooServerMessage> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.BarRequest
@@ -6011,7 +5953,6 @@ export class BarRequest extends Message<BarRequest> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
@@ -6044,7 +5985,6 @@ export class BarResponse extends Message<BarResponse> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestJsonName
@@ -6120,7 +6060,6 @@ export class TestJsonName extends Message<TestJsonName> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
@@ -6288,7 +6227,6 @@ export class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNum
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
@@ -6376,7 +6314,6 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
@@ -6433,5 +6370,4 @@ export class TestExtensionRangeSerialize extends Message<TestExtensionRangeSeria
   }
 
 }
-
 

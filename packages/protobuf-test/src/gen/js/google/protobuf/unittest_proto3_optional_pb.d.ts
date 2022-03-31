@@ -231,7 +231,6 @@ export declare class TestProto3Optional_NestedMessage extends Message<TestProto3
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
  */
@@ -290,7 +289,6 @@ export declare class TestProto3OptionalMessage_NestedMessage extends Message<Tes
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
  */
@@ -311,5 +309,4 @@ export declare class Proto3OptionalExtensions extends Message<Proto3OptionalExte
   static equals(a: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined, b: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined): boolean;
 
 }
-
 

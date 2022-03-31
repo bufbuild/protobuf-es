@@ -34,4 +34,3 @@ export const JsonNamesMessage = proto3.makeMessageType(
   ],
 );
 
-

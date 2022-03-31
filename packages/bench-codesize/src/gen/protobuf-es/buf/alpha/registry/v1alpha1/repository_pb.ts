@@ -160,7 +160,6 @@ export class Repository extends Message<Repository> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryContributor
  */
@@ -225,7 +224,6 @@ export class RepositoryContributor extends Message<RepositoryContributor> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameRequest
  */
@@ -268,7 +266,6 @@ export class GetRepositoriesByFullNameRequest extends Message<GetRepositoriesByF
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameResponse
  */
@@ -307,7 +304,6 @@ export class GetRepositoriesByFullNameResponse extends Message<GetRepositoriesBy
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryRequest
@@ -348,7 +344,6 @@ export class GetRepositoryRequest extends Message<GetRepositoryRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryResponse
  */
@@ -387,7 +382,6 @@ export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameRequest
@@ -428,7 +422,6 @@ export class GetRepositoryByFullNameRequest extends Message<GetRepositoryByFullN
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameResponse
  */
@@ -467,7 +460,6 @@ export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFull
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesRequest
@@ -522,7 +514,6 @@ export class ListRepositoriesRequest extends Message<ListRepositoriesRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesResponse
  */
@@ -569,7 +560,6 @@ export class ListRepositoriesResponse extends Message<ListRepositoriesResponse> 
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserRepositoriesRequest
@@ -632,7 +622,6 @@ export class ListUserRepositoriesRequest extends Message<ListUserRepositoriesReq
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserRepositoriesResponse
  */
@@ -679,7 +668,6 @@ export class ListUserRepositoriesResponse extends Message<ListUserRepositoriesRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessRequest
@@ -734,7 +722,6 @@ export class ListRepositoriesUserCanAccessRequest extends Message<ListRepositori
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessResponse
  */
@@ -781,7 +768,6 @@ export class ListRepositoriesUserCanAccessResponse extends Message<ListRepositor
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesRequest
@@ -844,7 +830,6 @@ export class ListOrganizationRepositoriesRequest extends Message<ListOrganizatio
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesResponse
  */
@@ -891,7 +876,6 @@ export class ListOrganizationRepositoriesResponse extends Message<ListOrganizati
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameRequest
@@ -940,7 +924,6 @@ export class CreateRepositoryByFullNameRequest extends Message<CreateRepositoryB
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameResponse
  */
@@ -979,7 +962,6 @@ export class CreateRepositoryByFullNameResponse extends Message<CreateRepository
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryRequest
@@ -1020,7 +1002,6 @@ export class DeleteRepositoryRequest extends Message<DeleteRepositoryRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryResponse
  */
@@ -1053,7 +1034,6 @@ export class DeleteRepositoryResponse extends Message<DeleteRepositoryResponse> 
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameRequest
@@ -1094,7 +1074,6 @@ export class DeleteRepositoryByFullNameRequest extends Message<DeleteRepositoryB
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameResponse
  */
@@ -1127,7 +1106,6 @@ export class DeleteRepositoryByFullNameResponse extends Message<DeleteRepository
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameRequest
@@ -1183,7 +1161,6 @@ export class DeprecateRepositoryByNameRequest extends Message<DeprecateRepositor
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameResponse
  */
@@ -1222,7 +1199,6 @@ export class DeprecateRepositoryByNameResponse extends Message<DeprecateReposito
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameRequest
@@ -1269,7 +1245,6 @@ export class UndeprecateRepositoryByNameRequest extends Message<UndeprecateRepos
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameResponse
  */
@@ -1308,7 +1283,6 @@ export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepo
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRepositoryContributorRequest
@@ -1368,7 +1342,6 @@ export class SetRepositoryContributorRequest extends Message<SetRepositoryContri
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRepositoryContributorResponse
  */
@@ -1401,7 +1374,6 @@ export class SetRepositoryContributorResponse extends Message<SetRepositoryContr
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryContributorsRequest
@@ -1462,7 +1434,6 @@ export class ListRepositoryContributorsRequest extends Message<ListRepositoryCon
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryContributorsResponse
  */
@@ -1510,7 +1481,6 @@ export class ListRepositoryContributorsResponse extends Message<ListRepositoryCo
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositorySettingsRequest
  */
@@ -1551,7 +1521,6 @@ export class GetRepositorySettingsRequest extends Message<GetRepositorySettingsR
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositorySettingsResponse
@@ -1594,5 +1563,4 @@ export class GetRepositorySettingsResponse extends Message<GetRepositorySettings
   }
 
 }
-
 

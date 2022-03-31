@@ -64,7 +64,6 @@ export declare enum ForeignEnum {
 
 }
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -425,7 +424,6 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
 }
 
 
-
 /**
  * @generated from message proto3_lite_unittest.TestPackedTypes
  */
@@ -516,7 +514,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
 
 }
-
 
 /**
  * Explicitly set packed to false
@@ -611,7 +608,6 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
 }
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -645,7 +641,6 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
 
 }
 
-
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -675,7 +670,6 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
  *
@@ -698,5 +692,4 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
 
 }
-
 

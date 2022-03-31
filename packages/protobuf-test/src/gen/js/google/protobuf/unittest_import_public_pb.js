@@ -46,4 +46,3 @@ export const PublicImportMessage = proto2.makeMessageType(
   ],
 );
 
-

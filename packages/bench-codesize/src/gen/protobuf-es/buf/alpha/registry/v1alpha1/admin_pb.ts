@@ -62,7 +62,6 @@ export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserResponse
  */
@@ -135,5 +134,4 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
   }
 
 }
-
 

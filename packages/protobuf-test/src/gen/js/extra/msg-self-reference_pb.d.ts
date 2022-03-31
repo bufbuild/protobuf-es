@@ -55,4 +55,3 @@ export declare class SelfReferencingMessage extends Message<SelfReferencingMessa
 
 }
 
-

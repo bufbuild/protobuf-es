@@ -36,7 +36,6 @@ export declare enum Proto2Enum {
 
 }
 
-
 /**
  * @generated from message spec.Proto2PackedMessage
  */
@@ -72,7 +71,6 @@ export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
   static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
@@ -110,7 +108,6 @@ export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage
 
 }
 
-
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
@@ -146,7 +143,6 @@ export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2Unspec
   static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.Proto2OptionalMessage
@@ -189,7 +185,6 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
 
 }
 
-
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
@@ -231,7 +226,6 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
 
 }
 
-
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
@@ -272,7 +266,6 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
   static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
@@ -335,7 +328,6 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
 
 }
 
-
 /**
  * @generated from message spec.Proto2ChildMessage
  */
@@ -361,5 +353,4 @@ export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
 
 }
-
 

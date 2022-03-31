@@ -47,7 +47,6 @@ export declare enum FailRequest {
 
 }
 
-
 /**
  * @generated from message spec.ExampleRequest
  */
@@ -97,7 +96,6 @@ export declare class ExampleRequest extends Message<ExampleRequest> {
 
 }
 
-
 /**
  * @generated from message spec.ExampleResponse
  */
@@ -146,5 +144,4 @@ export declare class ExampleResponse extends Message<ExampleResponse> {
   static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean;
 
 }
-
 

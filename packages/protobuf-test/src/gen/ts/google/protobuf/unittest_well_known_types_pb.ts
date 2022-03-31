@@ -159,7 +159,6 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
 
 }
 
-
 /**
  * A repeated field for each well-known type.
  *
@@ -304,7 +303,6 @@ export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
   }
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -470,7 +468,6 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
 
 }
 
-
 /**
  * A map field for each well-known type. We only
  * need to worry about the value part of the map being the
@@ -615,5 +612,4 @@ export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
   }
 
 }
-
 

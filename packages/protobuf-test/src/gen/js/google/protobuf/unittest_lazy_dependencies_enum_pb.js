@@ -55,4 +55,3 @@ export const LazyEnum = proto2.makeEnum(
   ],
 );
 
-

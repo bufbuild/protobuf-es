@@ -91,7 +91,6 @@ export const TestProto3Optional_NestedMessage = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
  */
@@ -115,7 +114,6 @@ export const TestProto3OptionalMessage_NestedMessage = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
  */
@@ -123,5 +121,4 @@ export const Proto3OptionalExtensions = proto3.makeMessageType(
   "protobuf_unittest.Proto3OptionalExtensions",
   [],
 );
-
 

@@ -49,7 +49,6 @@ export const ForeignEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -137,7 +136,6 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
@@ -147,7 +145,6 @@ export const TestProto2Required = proto3.makeMessageType(
     {no: 1, name: "proto2", kind: "message", T: TestRequired},
   ],
 );
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -161,5 +158,4 @@ export const ForeignMessage = proto3.makeMessageType(
     {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */},
   ],
 );
-
 

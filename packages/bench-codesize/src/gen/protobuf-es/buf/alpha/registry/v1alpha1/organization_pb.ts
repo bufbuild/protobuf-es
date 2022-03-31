@@ -85,7 +85,6 @@ export class Organization extends Message<Organization> {
 
 }
 
-
 /**
  * OrganizationMembership is a nested structure that contains
  * the organization and user membership information on that organization.
@@ -134,7 +133,6 @@ export class OrganizationMembership extends Message<OrganizationMembership> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationRequest
  */
@@ -173,7 +171,6 @@ export class GetOrganizationRequest extends Message<GetOrganizationRequest> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationResponse
@@ -214,7 +211,6 @@ export class GetOrganizationResponse extends Message<GetOrganizationResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationByNameRequest
  */
@@ -254,7 +250,6 @@ export class GetOrganizationByNameRequest extends Message<GetOrganizationByNameR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationByNameResponse
  */
@@ -293,7 +288,6 @@ export class GetOrganizationByNameResponse extends Message<GetOrganizationByName
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationsRequest
@@ -348,7 +342,6 @@ export class ListOrganizationsRequest extends Message<ListOrganizationsRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationsResponse
  */
@@ -395,7 +388,6 @@ export class ListOrganizationsResponse extends Message<ListOrganizationsResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserOrganizationsRequest
@@ -458,7 +450,6 @@ export class ListUserOrganizationsRequest extends Message<ListUserOrganizationsR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserOrganizationsResponse
  */
@@ -506,7 +497,6 @@ export class ListUserOrganizationsResponse extends Message<ListUserOrganizations
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateOrganizationRequest
  */
@@ -548,7 +538,6 @@ export class CreateOrganizationRequest extends Message<CreateOrganizationRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateOrganizationResponse
  */
@@ -587,7 +576,6 @@ export class CreateOrganizationResponse extends Message<CreateOrganizationRespon
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationRequest
@@ -628,7 +616,6 @@ export class DeleteOrganizationRequest extends Message<DeleteOrganizationRequest
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationResponse
  */
@@ -661,7 +648,6 @@ export class DeleteOrganizationResponse extends Message<DeleteOrganizationRespon
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameRequest
@@ -702,7 +688,6 @@ export class DeleteOrganizationByNameRequest extends Message<DeleteOrganizationB
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameResponse
  */
@@ -735,7 +720,6 @@ export class DeleteOrganizationByNameResponse extends Message<DeleteOrganization
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.AddOrganizationMemberRequest
@@ -794,7 +778,6 @@ export class AddOrganizationMemberRequest extends Message<AddOrganizationMemberR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.AddOrganizationMemberResponse
  */
@@ -827,7 +810,6 @@ export class AddOrganizationMemberResponse extends Message<AddOrganizationMember
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberRequest
@@ -886,7 +868,6 @@ export class UpdateOrganizationMemberRequest extends Message<UpdateOrganizationM
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberResponse
  */
@@ -919,7 +900,6 @@ export class UpdateOrganizationMemberResponse extends Message<UpdateOrganization
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberRequest
@@ -970,7 +950,6 @@ export class RemoveOrganizationMemberRequest extends Message<RemoveOrganizationM
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberResponse
  */
@@ -1003,7 +982,6 @@ export class RemoveOrganizationMemberResponse extends Message<RemoveOrganization
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetOrganizationMemberRequest
@@ -1063,7 +1041,6 @@ export class SetOrganizationMemberRequest extends Message<SetOrganizationMemberR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetOrganizationMemberResponse
  */
@@ -1096,7 +1073,6 @@ export class SetOrganizationMemberResponse extends Message<SetOrganizationMember
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationSettingsRequest
@@ -1138,7 +1114,6 @@ export class GetOrganizationSettingsRequest extends Message<GetOrganizationSetti
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationSettingsResponse
@@ -1198,7 +1173,6 @@ export class GetOrganizationSettingsResponse extends Message<GetOrganizationSett
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsRequest
@@ -1265,7 +1239,6 @@ export class UpdateOrganizationSettingsRequest extends Message<UpdateOrganizatio
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsResponse
  */
@@ -1298,5 +1271,4 @@ export class UpdateOrganizationSettingsResponse extends Message<UpdateOrganizati
   }
 
 }
-
 

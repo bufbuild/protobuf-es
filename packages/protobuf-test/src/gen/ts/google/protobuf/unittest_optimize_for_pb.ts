@@ -106,7 +106,6 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
@@ -146,7 +145,6 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
@@ -185,5 +183,4 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
   }
 
 }
-
 

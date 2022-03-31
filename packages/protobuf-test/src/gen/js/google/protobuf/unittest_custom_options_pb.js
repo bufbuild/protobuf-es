@@ -54,7 +54,6 @@ export const MethodOpt1 = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from enum protobuf_unittest.AggregateEnum
  */
@@ -64,7 +63,6 @@ export const AggregateEnum = proto2.makeEnum(
     {no: 1, name: "VALUE"},
   ],
 );
-
 
 /**
  * A test message with custom options at all possible locations (and also some
@@ -93,7 +91,6 @@ export const TestMessageWithCustomOptions_AnEnum = proto2.makeEnum(
 );
 
 
-
 /**
  * A test RPC service with custom options at all possible locations (and also
  * some regular options, to make sure they interact nicely).
@@ -105,7 +102,6 @@ export const CustomOptionFooRequest = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
@@ -113,7 +109,6 @@ export const CustomOptionFooResponse = proto2.makeMessageType(
   "protobuf_unittest.CustomOptionFooResponse",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
@@ -123,7 +118,6 @@ export const CustomOptionFooClientMessage = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
@@ -131,7 +125,6 @@ export const CustomOptionFooServerMessage = proto2.makeMessageType(
   "protobuf_unittest.CustomOptionFooServerMessage",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
@@ -153,7 +146,6 @@ export const DummyMessageContainingEnum_TestEnumType = proto2.makeEnum(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
  */
@@ -161,7 +153,6 @@ export const DummyMessageInvalidAsOptionType = proto2.makeMessageType(
   "protobuf_unittest.DummyMessageInvalidAsOptionType",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
@@ -171,7 +162,6 @@ export const CustomOptionMinIntegerValues = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
  */
@@ -179,7 +169,6 @@ export const CustomOptionMaxIntegerValues = proto2.makeMessageType(
   "protobuf_unittest.CustomOptionMaxIntegerValues",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
@@ -189,7 +178,6 @@ export const CustomOptionOtherValues = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
  */
@@ -198,7 +186,6 @@ export const SettingRealsFromPositiveInts = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
@@ -206,7 +193,6 @@ export const SettingRealsFromNegativeInts = proto2.makeMessageType(
   "protobuf_unittest.SettingRealsFromNegativeInts",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
@@ -220,7 +206,6 @@ export const ComplexOptionType1 = proto2.makeMessageType(
     {no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
@@ -247,7 +232,6 @@ export const ComplexOptionType2_ComplexOptionType4 = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
@@ -271,7 +255,6 @@ export const ComplexOptionType3_ComplexOptionType5 = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
@@ -281,7 +264,6 @@ export const ComplexOpt6 = proto2.makeMessageType(
     {no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * Note that we try various different ways of naming the same extension.
@@ -293,7 +275,6 @@ export const VariousComplexOptions = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
@@ -301,7 +282,6 @@ export const AggregateMessageSet = proto2.makeMessageType(
   "protobuf_unittest.AggregateMessageSet",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
@@ -312,7 +292,6 @@ export const AggregateMessageSetElement = proto2.makeMessageType(
     {no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
   ],
 );
-
 
 /**
  * A helper type used to test aggregate option parsing
@@ -331,7 +310,6 @@ export const Aggregate = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
@@ -341,7 +319,6 @@ export const AggregateMessage = proto2.makeMessageType(
     {no: 1, name: "fieldname", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * Test custom options for nested type.
@@ -377,7 +354,6 @@ export const NestedOptionType_NestedMessage = proto2.makeMessageType(
 );
 
 
-
 /**
  * Custom message option that has a required enum field.
  * WARNING: this is strongly discouraged!
@@ -400,7 +376,6 @@ export const OldOptionType_TestEnum = proto2.makeEnum(
     {no: 0, name: "OLD_VALUE"},
   ],
 );
-
 
 
 /**
@@ -427,7 +402,6 @@ export const NewOptionType_TestEnum = proto2.makeEnum(
 );
 
 
-
 /**
  * Test message using the "required_enum_opt" option defined above.
  *
@@ -437,5 +411,4 @@ export const TestMessageWithRequiredEnumOption = proto2.makeMessageType(
   "protobuf_unittest.TestMessageWithRequiredEnumOption",
   [],
 );
-
 

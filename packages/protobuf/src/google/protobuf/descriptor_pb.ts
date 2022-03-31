@@ -69,7 +69,6 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
 
 }
 
-
 /**
  * Describes a complete .proto file.
  *
@@ -197,7 +196,6 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
   }
 
 }
-
 
 /**
  * Describes a message type.
@@ -407,7 +405,6 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
 }
 
 
-
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
  */
@@ -448,7 +445,6 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
   }
 
 }
-
 
 /**
  * Describes a field within a message.
@@ -740,6 +736,7 @@ proto2.util.setEnumType(FieldDescriptorProto_Type, "google.protobuf.FieldDescrip
   {no: 18, name: "TYPE_SINT64"},
 ]);
 
+
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Label
  */
@@ -818,7 +815,6 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
   }
 
 }
-
 
 /**
  * Describes an enum type.
@@ -949,7 +945,6 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
 }
 
 
-
 /**
  * Describes a value within an enum.
  *
@@ -1003,7 +998,6 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
 
 }
 
-
 /**
  * Describes a service.
  *
@@ -1056,7 +1050,6 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
   }
 
 }
-
 
 /**
  * Describes a method of a service.
@@ -1135,7 +1128,6 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
   }
 
 }
-
 
 /**
  * @generated from message google.protobuf.FileOptions
@@ -1532,7 +1524,6 @@ export class MessageOptions extends Message<MessageOptions> {
 
 }
 
-
 /**
  * @generated from message google.protobuf.FieldOptions
  */
@@ -1700,6 +1691,7 @@ proto2.util.setEnumType(FieldOptions_CType, "google.protobuf.FieldOptions.CType"
   {no: 2, name: "STRING_PIECE"},
 ]);
 
+
 /**
  * @generated from enum google.protobuf.FieldOptions.JSType
  */
@@ -1777,7 +1769,6 @@ export class OneofOptions extends Message<OneofOptions> {
 
 }
 
-
 /**
  * @generated from message google.protobuf.EnumOptions
  */
@@ -1839,7 +1830,6 @@ export class EnumOptions extends Message<EnumOptions> {
 
 }
 
-
 /**
  * @generated from message google.protobuf.EnumValueOptions
  */
@@ -1892,7 +1882,6 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
 
 }
 
-
 /**
  * @generated from message google.protobuf.ServiceOptions
  */
@@ -1944,7 +1933,6 @@ export class ServiceOptions extends Message<ServiceOptions> {
   }
 
 }
-
 
 /**
  * @generated from message google.protobuf.MethodOptions
@@ -2179,7 +2167,6 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
 }
 
 
-
 /**
  * Encapsulates information about the original source file from which a
  * FileDescriptorProto was generated.
@@ -2408,7 +2395,6 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
 }
 
 
-
 /**
  * Describes the relationship between generated code and its original source
  * file. A GeneratedCodeInfo message is associated with only one generated
@@ -2523,6 +2509,5 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
   }
 
 }
-
 
 

@@ -478,6 +478,7 @@ proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto3_unittest.TestAllTypes.N
   {no: -1, name: "NEG"},
 ]);
 
+
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
  */
@@ -520,7 +521,6 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   }
 
 }
-
 
 
 /**
@@ -639,7 +639,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
   }
 
 }
-
 
 /**
  * Explicitly set packed to false
@@ -760,7 +759,6 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
 }
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -808,7 +806,6 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
 
 }
 
-
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -851,7 +848,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
 
 }
 
-
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
  *
@@ -886,7 +882,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
   }
 
 }
-
 
 /**
  * TestMessageWithDummy is also used to test behavior of unknown fields.
@@ -931,7 +926,6 @@ export class TestMessageWithDummy extends Message<TestMessageWithDummy> {
   }
 
 }
-
 
 /**
  * Same layout as TestOneof2 in unittest.proto to test unknown enum value

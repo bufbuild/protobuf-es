@@ -63,4 +63,3 @@ export declare class PublicImportMessage extends Message<PublicImportMessage> {
 
 }
 
-

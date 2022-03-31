@@ -69,7 +69,6 @@ export declare class TestMessageSetContainer extends Message<TestMessageSetConta
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
@@ -106,7 +105,6 @@ export declare class TestMessageSetExtension1 extends Message<TestMessageSetExte
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
@@ -132,7 +130,6 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean;
 
 }
-
 
 /**
  * MessageSet wire format is equivalent to this.
@@ -192,6 +189,5 @@ export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean;
 
 }
-
 
 

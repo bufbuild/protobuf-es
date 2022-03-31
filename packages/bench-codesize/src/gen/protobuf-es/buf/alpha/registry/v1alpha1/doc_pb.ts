@@ -72,7 +72,6 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
 
 }
 
-
 /**
  * GetSourceDirectoryInfoResponse returns the root FileInfo for the requested module.
  *
@@ -113,7 +112,6 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
   }
 
 }
-
 
 /**
  * FileInfo is a nested structure that contains the file path, whether or not it's a directory,
@@ -170,7 +168,6 @@ export class FileInfo extends Message$1<FileInfo> {
   }
 
 }
-
 
 /**
  * GetSourceFileRequest takes an owner, repository, reference, and normalized path.
@@ -233,7 +230,6 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
 
 }
 
-
 /**
  * GetSourceFileResponse returns the source code contents of the requested file.
  *
@@ -276,7 +272,6 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
   }
 
 }
-
 
 /**
  * GetModulePackagesRequest takes an owner, repository, and reference.
@@ -331,7 +326,6 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
 
 }
 
-
 /**
  * GetModulePackagesResponse returns the list of ModulePackages for the requested module.
  *
@@ -379,7 +373,6 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
 
 }
 
-
 /**
  * ModulePackage provides the details about a module's associated package.
  *
@@ -426,7 +419,6 @@ export class ModulePackage extends Message$1<ModulePackage> {
   }
 
 }
-
 
 /**
  * GetModuleDocumentationRequest takes an owner, repository, and reference.
@@ -481,7 +473,6 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
 
 }
 
-
 /**
  * GetModuleDocumentationResponse returns the ModuleDocumentation for the requested module.
  *
@@ -522,7 +513,6 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
   }
 
 }
-
 
 /**
  * ModuleDocumentation provides the name of the module and associated documentation.
@@ -575,7 +565,6 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
   }
 
 }
-
 
 /**
  * GetPackageDocumentationRequest takes an owner, repository, reference, and package name.
@@ -638,7 +627,6 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
 
 }
 
-
 /**
  * GetPackageDocumentationReponse returns the documentation for the requested package.
  *
@@ -679,7 +667,6 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
   }
 
 }
-
 
 /**
  * PackageDocumentation provides the name, description, and top level types defined in the package.
@@ -767,7 +754,6 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
 
 }
 
-
 /**
  * Location provides the location information for the source code.
  *
@@ -829,7 +815,6 @@ export class Location extends Message$1<Location> {
   }
 
 }
-
 
 /**
  * Service provides information for the documentation for a given service type in a file.
@@ -920,7 +905,6 @@ export class Service extends Message$1<Service> {
 
 }
 
-
 /**
  * Method provides information for the documentation for a method of a given service.
  *
@@ -984,7 +968,6 @@ export class Method extends Message$1<Method> {
   }
 
 }
-
 
 /**
  * MethodRequestResponse provides information for the documentation of a Method request or response message.
@@ -1059,7 +1042,6 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
   }
 
 }
-
 
 /**
  * Enum provides information for the documentation of an enum.
@@ -1149,7 +1131,6 @@ export class Enum extends Message$1<Enum> {
 
 }
 
-
 /**
  * EnumValue provides information for the documentation of an enum value.
  *
@@ -1207,7 +1188,6 @@ export class EnumValue extends Message$1<EnumValue> {
   }
 
 }
-
 
 /**
  * ImportRef provides the import metadata if a type is imported.
@@ -1276,7 +1256,6 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
   }
 
 }
-
 
 /**
  * Message provides information for the documentation of a protobuf message.
@@ -1378,7 +1357,6 @@ export class Message extends Message$1<Message> {
 
 }
 
-
 /**
  * MessageField can be either a single field or a oneof set of fields.
  *
@@ -1433,7 +1411,6 @@ export class MessageField extends Message$1<MessageField> {
 
 }
 
-
 /**
  * Oneof represents a oneof set of fields.
  *
@@ -1480,7 +1457,6 @@ export class Oneof extends Message$1<Oneof> {
   }
 
 }
-
 
 /**
  * Field provides information for the documentation of a message field.
@@ -1589,7 +1565,6 @@ export class Field extends Message$1<Field> {
 
 }
 
-
 /**
  * MapEntry provides the key and value types for the MapEntry type for a map field.
  *
@@ -1657,7 +1632,6 @@ export class MapEntry extends Message$1<MapEntry> {
   }
 
 }
-
 
 /**
  * FileExtension provides the information for the documentation of a file extension.
@@ -1734,5 +1708,4 @@ export class FileExtension extends Message$1<FileExtension> {
   }
 
 }
-
 

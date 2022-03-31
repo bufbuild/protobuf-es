@@ -142,7 +142,6 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.OrganizationSearchResult
  */
@@ -187,7 +186,6 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserSearchResult
@@ -240,7 +238,6 @@ export class UserSearchResult extends Message<UserSearchResult> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TeamSearchResult
  */
@@ -291,7 +288,6 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginSearchResult
@@ -361,7 +357,6 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TemplateSearchResult
  */
@@ -429,7 +424,6 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchResult
@@ -511,7 +505,6 @@ export class SearchResult extends Message<SearchResult> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchRequest
  */
@@ -577,7 +570,6 @@ export class SearchRequest extends Message<SearchRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchResponse
  */
@@ -624,5 +616,4 @@ export class SearchResponse extends Message<SearchResponse> {
   }
 
 }
-
 

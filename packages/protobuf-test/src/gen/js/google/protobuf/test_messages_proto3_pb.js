@@ -53,7 +53,6 @@ export const ForeignEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -265,7 +264,6 @@ export const TestAllTypesProto3_NestedMessage = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
  */
@@ -276,7 +274,6 @@ export const ForeignMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
  */
@@ -284,7 +281,6 @@ export const NullHypothesisProto3 = proto3.makeMessageType(
   "protobuf_test_messages.proto3.NullHypothesisProto3",
   [],
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3
@@ -304,6 +300,5 @@ export const EnumOnlyProto3_Bool = proto3.makeEnum(
     {no: 1, name: "kTrue"},
   ],
 );
-
 
 

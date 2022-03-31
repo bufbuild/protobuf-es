@@ -31,7 +31,6 @@ export const Proto3Enum = proto3.makeEnum(
   {sharedPrefix: "PROTO3_ENUM_"},
 );
 
-
 /**
  * @generated from message spec.Proto3PackedMessage
  */
@@ -43,7 +42,6 @@ export const Proto3PackedMessage = proto3.makeMessageType(
     {no: 103, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
@@ -57,7 +55,6 @@ export const Proto3UnpackedMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
@@ -69,7 +66,6 @@ export const Proto3UnlabelledMessage = proto3.makeMessageType(
     {no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message spec.Proto3OptionalMessage
@@ -83,5 +79,4 @@ export const Proto3OptionalMessage = proto3.makeMessageType(
     {no: 4, name: "message_field", kind: "message", T: Proto3OptionalMessage, opt: true},
   ],
 );
-
 

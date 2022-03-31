@@ -82,7 +82,6 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
@@ -134,7 +133,6 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
@@ -173,7 +171,6 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
   }
 
 }
-
 
 /**
  * MessageSet wire format is equivalent to this.
@@ -260,6 +257,5 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   }
 
 }
-
 
 

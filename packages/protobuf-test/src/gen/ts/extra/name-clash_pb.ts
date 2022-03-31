@@ -87,6 +87,7 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropert
   {no: 3, name: "value_of"},
 ]);
 
+
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
  */
@@ -151,6 +152,7 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropert
   {no: 12, name: "to_binary"},
   {no: 14, name: "to_json_string"},
 ]);
+
 
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
@@ -493,7 +495,6 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
 }
 
 
-
 /**
  * reserved identifier
  *
@@ -528,7 +529,6 @@ export class interface$ extends Message$1<interface$> {
   }
 
 }
-
 
 /**
  * reserved identifier
@@ -565,7 +565,6 @@ export class function$ extends Message$1<function$> {
 
 }
 
-
 /**
  * reserved identifier
  *
@@ -600,7 +599,6 @@ export class instanceof$ extends Message$1<instanceof$> {
   }
 
 }
-
 
 /**
  * reserved identifier
@@ -637,7 +635,6 @@ export class switch$ extends Message$1<switch$> {
 
 }
 
-
 /**
  * reserved identifier
  *
@@ -672,7 +669,6 @@ export class case$ extends Message$1<case$> {
   }
 
 }
-
 
 /**
  * reserved identifier
@@ -709,7 +705,6 @@ export class return$ extends Message$1<return$> {
 
 }
 
-
 /**
  * used by runtime
  *
@@ -744,7 +739,6 @@ export class Message extends Message$1<Message> {
   }
 
 }
-
 
 /**
  * used by runtime
@@ -781,7 +775,6 @@ export class PartialMessage extends Message$1<PartialMessage> {
 
 }
 
-
 /**
  * used by runtime
  *
@@ -816,7 +809,6 @@ export class PlainMessage extends Message$1<PlainMessage> {
   }
 
 }
-
 
 /**
  * clash with global type "Error"
@@ -867,7 +859,6 @@ export class Error extends Message$1<Error> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -903,7 +894,6 @@ export class Object$ extends Message$1<Object$> {
 
 }
 
-
 /**
  * @generated from message spec.object
  */
@@ -936,7 +926,6 @@ export class object$ extends Message$1<object$> {
   }
 
 }
-
 
 /**
  * clash with global type
@@ -973,7 +962,6 @@ export class array extends Message$1<array> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1008,7 +996,6 @@ export class string$ extends Message$1<string$> {
   }
 
 }
-
 
 /**
  * clash with global type
@@ -1045,7 +1032,6 @@ export class number$ extends Message$1<number$> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1080,7 +1066,6 @@ export class boolean$ extends Message$1<boolean$> {
   }
 
 }
-
 
 /**
  * clash with global type
@@ -1117,7 +1102,6 @@ export class bigint$ extends Message$1<bigint$> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1152,7 +1136,6 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
   }
 
 }
-
 
 /**
  * clash with global type
@@ -1189,7 +1172,6 @@ export class Array extends Message$1<Array> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1224,7 +1206,6 @@ export class String extends Message$1<String> {
   }
 
 }
-
 
 /**
  * clash with global type
@@ -1261,7 +1242,6 @@ export class Number extends Message$1<Number> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1297,7 +1277,6 @@ export class Boolean extends Message$1<Boolean> {
 
 }
 
-
 /**
  * clash with global type
  *
@@ -1332,7 +1311,6 @@ export class BigInt extends Message$1<BigInt> {
   }
 
 }
-
 
 /**
  * @generated from message spec.ClashParent
@@ -1401,7 +1379,6 @@ export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
   }
 
 }
-
 
 
 /**
@@ -1484,7 +1461,6 @@ export class NoClashFields extends Message$1<NoClashFields> {
   }
 
 }
-
 
 /**
  * @generated from message spec.NoClashOneof
@@ -1578,7 +1554,6 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
 
 }
 
-
 /**
  * @generated from message spec.NoClashOneofADT
  */
@@ -1623,7 +1598,6 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   }
 
 }
-
 
 /**
  * just here as a "namespace" for the enum

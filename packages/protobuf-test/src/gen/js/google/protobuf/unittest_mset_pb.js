@@ -52,7 +52,6 @@ export const TestMessageSetContainer = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
@@ -65,7 +64,6 @@ export const TestMessageSetExtension1 = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
@@ -75,7 +73,6 @@ export const TestMessageSetExtension2 = proto2.makeMessageType(
     {no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
   ],
 );
-
 
 /**
  * MessageSet wire format is equivalent to this.
@@ -100,6 +97,5 @@ export const RawMessageSet_Item = proto2.makeMessageType(
   ],
   {localName: "RawMessageSet_Item"},
 );
-
 
 

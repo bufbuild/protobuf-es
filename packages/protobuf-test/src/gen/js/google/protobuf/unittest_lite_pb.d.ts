@@ -63,7 +63,6 @@ export declare enum ForeignEnumLite {
 
 }
 
-
 /**
  * @generated from enum protobuf_unittest.V1EnumLite
  */
@@ -75,7 +74,6 @@ export declare enum V1EnumLite {
   V1_FIRST = 1,
 
 }
-
 
 /**
  * @generated from enum protobuf_unittest.V2EnumLite
@@ -93,7 +91,6 @@ export declare enum V2EnumLite {
   V2_SECOND = 2,
 
 }
-
 
 /**
  * Same as TestAllTypes but with the lite runtime.
@@ -667,7 +664,6 @@ export declare class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypes
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
@@ -693,7 +689,6 @@ export declare class ForeignMessageLite extends Message<ForeignMessageLite> {
   static equals(a: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined, b: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
@@ -786,7 +781,6 @@ export declare class TestPackedTypesLite extends Message<TestPackedTypesLite> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
@@ -807,7 +801,6 @@ export declare class TestAllExtensionsLite extends Message<TestAllExtensionsLite
   static equals(a: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined, b: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
@@ -835,7 +828,6 @@ export declare class OptionalGroup_extension_lite extends Message<OptionalGroup_
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
@@ -862,7 +854,6 @@ export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
@@ -884,7 +875,6 @@ export declare class TestPackedExtensionsLite extends Message<TestPackedExtensio
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
  */
@@ -905,7 +895,6 @@ export declare class TestNestedExtensionLite extends Message<TestNestedExtension
   static equals(a: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined, b: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined): boolean;
 
 }
-
 
 /**
  * Test that deprecated fields work.  We only verify that they compile (at one
@@ -954,7 +943,6 @@ export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
   static equals(a: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined, b: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined): boolean;
 
 }
-
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -1169,7 +1157,6 @@ export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestPars
 }
 
 
-
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
@@ -1192,7 +1179,6 @@ export declare class TestEmptyMessageLite extends Message<TestEmptyMessageLite> 
   static equals(a: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined, b: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined): boolean;
 
 }
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -1217,7 +1203,6 @@ export declare class TestEmptyMessageWithExtensionsLite extends Message<TestEmpt
   static equals(a: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined, b: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.V1MessageLite
@@ -1250,7 +1235,6 @@ export declare class V1MessageLite extends Message<V1MessageLite> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -1281,7 +1265,6 @@ export declare class V2MessageLite extends Message<V2MessageLite> {
   static equals(a: V2MessageLite | PlainMessage<V2MessageLite> | undefined, b: V2MessageLite | PlainMessage<V2MessageLite> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
@@ -1410,7 +1393,6 @@ export declare class TestHugeFieldNumbersLite_OptionalGroup extends Message<Test
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
  */
@@ -1491,7 +1473,6 @@ export declare class TestOneofParsingLite extends Message<TestOneofParsingLite> 
 
 }
 
-
 /**
  * The following four messages are set up to test for wire compatibility between
  * packed and non-packed repeated fields. We use the field number 2048, because
@@ -1522,7 +1503,6 @@ export declare class PackedInt32 extends Message<PackedInt32> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
  */
@@ -1548,7 +1528,6 @@ export declare class NonPackedInt32 extends Message<NonPackedInt32> {
   static equals(a: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined, b: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.PackedFixed32
@@ -1576,7 +1555,6 @@ export declare class PackedFixed32 extends Message<PackedFixed32> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
  */
@@ -1602,7 +1580,6 @@ export declare class NonPackedFixed32 extends Message<NonPackedFixed32> {
   static equals(a: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined, b: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined): boolean;
 
 }
-
 
 /**
  * Test an enum that has multiple values with the same number.
@@ -1660,7 +1637,6 @@ export declare enum DupEnum_TestEnumWithDupValueLite {
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.RecursiveMessage
  */
@@ -1691,5 +1667,4 @@ export declare class RecursiveMessage extends Message<RecursiveMessage> {
   static equals(a: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined, b: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined): boolean;
 
 }
-
 

@@ -129,7 +129,6 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference
  */
@@ -181,7 +180,6 @@ export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlp
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleResolveResult
  */
@@ -232,5 +230,4 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
   }
 
 }
-
 

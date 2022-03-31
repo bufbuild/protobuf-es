@@ -47,7 +47,6 @@ export declare enum EnumWithComments {
 
 }
 
-
 /**
  * Leading comment for deprecated enum
  *
@@ -68,7 +67,6 @@ export declare enum DeprecatedEnumWithComment {
 
 }
 
-
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
@@ -86,7 +84,6 @@ export declare enum DeprecatedEnumNoComment {
   B = 1,
 
 }
-
 
 /**
  * Comment before message.
@@ -162,7 +159,6 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
 
 }
 
-
 /**
  * Comment within empty message.
  *
@@ -185,7 +181,6 @@ export declare class EmptyMessageWithComment extends Message<EmptyMessageWithCom
   static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean;
 
 }
-
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -257,5 +252,4 @@ export declare class GoogleCommentExample extends Message<GoogleCommentExample> 
   static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean;
 
 }
-
 

@@ -71,7 +71,6 @@ export class DownloadRequest extends Message<DownloadRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DownloadResponse
  */
@@ -110,5 +109,4 @@ export class DownloadResponse extends Message<DownloadResponse> {
   }
 
 }
-
 

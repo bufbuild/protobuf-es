@@ -98,7 +98,6 @@ export class Version extends Message<Version> {
 
 }
 
-
 /**
  * An encoded CodeGeneratorRequest is written to the plugin's stdin.
  *
@@ -180,7 +179,6 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
   }
 
 }
-
 
 /**
  * The plugin writes an encoded CodeGeneratorResponse to stdout.
@@ -271,6 +269,7 @@ proto2.util.setEnumType(CodeGeneratorResponse_Feature, "google.protobuf.compiler
   {no: 0, name: "FEATURE_NONE"},
   {no: 1, name: "FEATURE_PROTO3_OPTIONAL"},
 ]);
+
 
 /**
  * Represents a single generated file.
@@ -386,6 +385,5 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
   }
 
 }
-
 
 

@@ -138,7 +138,6 @@ export class OneofMessage extends Message<OneofMessage> {
 
 }
 
-
 /**
  * @generated from message spec.OneofMessageFoo
  */
@@ -184,7 +183,6 @@ export class OneofMessageFoo extends Message<OneofMessageFoo> {
 
 }
 
-
 /**
  * @generated from message spec.OneofMessageBar
  */
@@ -229,5 +227,4 @@ export class OneofMessageBar extends Message<OneofMessageBar> {
   }
 
 }
-
 

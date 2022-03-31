@@ -193,7 +193,6 @@ export class MessageWithComments extends Message<MessageWithComments> {
 
 }
 
-
 /**
  * Comment within empty message.
  *
@@ -228,7 +227,6 @@ export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
   }
 
 }
-
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -318,5 +316,4 @@ export class GoogleCommentExample extends Message<GoogleCommentExample> {
   }
 
 }
-
 

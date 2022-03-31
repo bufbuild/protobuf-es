@@ -111,7 +111,6 @@ export class Struct extends Message<Struct> {
 
 }
 
-
 /**
  * `Value` represents a dynamically typed value which can be either
  * null, a number, a string, a boolean, a recursive struct value, or a
@@ -254,7 +253,6 @@ export class Value extends Message<Value> {
 
 }
 
-
 /**
  * `ListValue` is a wrapper around a repeated field of values.
  *
@@ -313,5 +311,4 @@ export class ListValue extends Message<ListValue> {
   }
 
 }
-
 

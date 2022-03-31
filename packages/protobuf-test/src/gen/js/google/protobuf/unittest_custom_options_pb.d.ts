@@ -61,7 +61,6 @@ export declare enum MethodOpt1 {
 
 }
 
-
 /**
  * @generated from enum protobuf_unittest.AggregateEnum
  */
@@ -73,7 +72,6 @@ export declare enum AggregateEnum {
   VALUE = 1,
 
 }
-
 
 /**
  * A test message with custom options at all possible locations (and also some
@@ -138,7 +136,6 @@ export declare enum TestMessageWithCustomOptions_AnEnum {
 }
 
 
-
 /**
  * A test RPC service with custom options at all possible locations (and also
  * some regular options, to make sure they interact nicely).
@@ -163,7 +160,6 @@ export declare class CustomOptionFooRequest extends Message<CustomOptionFooReque
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
@@ -184,7 +180,6 @@ export declare class CustomOptionFooResponse extends Message<CustomOptionFooResp
   static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
@@ -207,7 +202,6 @@ export declare class CustomOptionFooClientMessage extends Message<CustomOptionFo
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
@@ -228,7 +222,6 @@ export declare class CustomOptionFooServerMessage extends Message<CustomOptionFo
   static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
@@ -269,7 +262,6 @@ export declare enum DummyMessageContainingEnum_TestEnumType {
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
  */
@@ -290,7 +282,6 @@ export declare class DummyMessageInvalidAsOptionType extends Message<DummyMessag
   static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
@@ -313,7 +304,6 @@ export declare class CustomOptionMinIntegerValues extends Message<CustomOptionMi
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
  */
@@ -334,7 +324,6 @@ export declare class CustomOptionMaxIntegerValues extends Message<CustomOptionMa
   static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
@@ -357,7 +346,6 @@ export declare class CustomOptionOtherValues extends Message<CustomOptionOtherVa
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
  */
@@ -379,7 +367,6 @@ export declare class SettingRealsFromPositiveInts extends Message<SettingRealsFr
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
@@ -400,7 +387,6 @@ export declare class SettingRealsFromNegativeInts extends Message<SettingRealsFr
   static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
@@ -442,7 +428,6 @@ export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
   static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
@@ -512,7 +497,6 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
@@ -571,7 +555,6 @@ export declare class ComplexOptionType3_ComplexOptionType5 extends Message<Compl
 }
 
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
@@ -598,7 +581,6 @@ export declare class ComplexOpt6 extends Message<ComplexOpt6> {
 
 }
 
-
 /**
  * Note that we try various different ways of naming the same extension.
  *
@@ -622,7 +604,6 @@ export declare class VariousComplexOptions extends Message<VariousComplexOptions
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
@@ -643,7 +624,6 @@ export declare class AggregateMessageSet extends Message<AggregateMessageSet> {
   static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
@@ -670,7 +650,6 @@ export declare class AggregateMessageSetElement extends Message<AggregateMessage
   static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean;
 
 }
-
 
 /**
  * A helper type used to test aggregate option parsing
@@ -733,7 +712,6 @@ export declare class Aggregate extends Message<Aggregate> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
@@ -759,7 +737,6 @@ export declare class AggregateMessage extends Message<AggregateMessage> {
   static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean;
 
 }
-
 
 /**
  * Test custom options for nested type.
@@ -824,7 +801,6 @@ export declare class NestedOptionType_NestedMessage extends Message<NestedOption
 }
 
 
-
 /**
  * Custom message option that has a required enum field.
  * WARNING: this is strongly discouraged!
@@ -865,7 +841,6 @@ export declare enum OldOptionType_TestEnum {
   OLD_VALUE = 0,
 
 }
-
 
 
 /**
@@ -914,7 +889,6 @@ export declare enum NewOptionType_TestEnum {
 }
 
 
-
 /**
  * Test message using the "required_enum_opt" option defined above.
  *
@@ -937,5 +911,4 @@ export declare class TestMessageWithRequiredEnumOption extends Message<TestMessa
   static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean;
 
 }
-
 

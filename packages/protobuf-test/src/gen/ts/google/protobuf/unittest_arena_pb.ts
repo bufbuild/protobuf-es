@@ -74,7 +74,6 @@ export class NestedMessage extends Message<NestedMessage> {
 
 }
 
-
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
@@ -113,5 +112,4 @@ export class ArenaMessage extends Message<ArenaMessage> {
   }
 
 }
-
 

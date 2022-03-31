@@ -57,7 +57,6 @@ export const ImportEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * To use an enum in a map, it must has the first value as 0.
  *
@@ -72,7 +71,6 @@ export const ImportEnumForMap = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
  */
@@ -82,5 +80,4 @@ export const ImportMessage = proto2.makeMessageType(
     {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 

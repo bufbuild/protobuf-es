@@ -105,7 +105,6 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig
  */
@@ -163,7 +162,6 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary
  */
@@ -208,5 +206,4 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
   }
 
 }
-
 

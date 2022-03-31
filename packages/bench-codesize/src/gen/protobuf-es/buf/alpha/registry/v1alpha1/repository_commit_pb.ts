@@ -121,7 +121,6 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchRequest
  */
@@ -197,7 +196,6 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchResponse
  */
@@ -242,7 +240,6 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceRequest
@@ -319,7 +316,6 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceResponse
  */
@@ -364,7 +360,6 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceRequest
@@ -423,7 +418,6 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceResponse
  */
@@ -462,7 +456,6 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdRequest
@@ -529,7 +522,6 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdResponse
  */
@@ -568,5 +560,4 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
   }
 
 }
-
 

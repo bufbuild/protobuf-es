@@ -1051,4 +1051,3 @@ export const TestEnormousDescriptor = proto2.makeMessageType(
   ],
 );
 
-

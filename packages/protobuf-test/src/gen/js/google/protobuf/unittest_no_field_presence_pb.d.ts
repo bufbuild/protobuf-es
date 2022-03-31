@@ -60,7 +60,6 @@ export declare enum ForeignEnum {
 
 }
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -404,7 +403,6 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
 }
 
 
-
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
@@ -430,7 +428,6 @@ export declare class TestProto2Required extends Message<TestProto2Required> {
   static equals(a: TestProto2Required | PlainMessage<TestProto2Required> | undefined, b: TestProto2Required | PlainMessage<TestProto2Required> | undefined): boolean;
 
 }
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -460,5 +457,4 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
 
 }
-
 

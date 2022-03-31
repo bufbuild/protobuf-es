@@ -177,7 +177,6 @@ export class MyMessage extends Message<MyMessage> {
 
 }
 
-
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
@@ -253,5 +252,4 @@ export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   }
 
 }
-
 

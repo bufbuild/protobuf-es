@@ -77,7 +77,6 @@ export class Owner extends Message<Owner> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOwnerByNameRequest
  */
@@ -119,7 +118,6 @@ export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOwnerByNameResponse
  */
@@ -158,5 +156,4 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
   }
 
 }
-
 

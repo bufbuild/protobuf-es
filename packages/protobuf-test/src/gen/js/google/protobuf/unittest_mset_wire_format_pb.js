@@ -50,7 +50,6 @@ export const TestMessageSet = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
@@ -60,5 +59,4 @@ export const TestMessageSetWireFormatContainer = proto2.makeMessageType(
     {no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true},
   ],
 );
-
 

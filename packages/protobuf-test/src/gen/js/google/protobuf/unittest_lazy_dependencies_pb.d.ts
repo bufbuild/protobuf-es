@@ -72,7 +72,6 @@ export declare class ImportedMessage extends Message<ImportedMessage> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
@@ -94,7 +93,6 @@ export declare class MessageCustomOption extends Message<MessageCustomOption> {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
@@ -115,5 +113,4 @@ export declare class MessageCustomOption2 extends Message<MessageCustomOption2> 
   static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean;
 
 }
-
 

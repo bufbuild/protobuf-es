@@ -183,7 +183,6 @@ export class FailureSet extends Message<FailureSet> {
 
 }
 
-
 /**
  * Represents a single test case's input.  The testee should:
  *
@@ -311,7 +310,6 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
 
 }
 
-
 /**
  * Represents a single test case's output.
  *
@@ -438,7 +436,6 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
 
 }
 
-
 /**
  * Encoding options for jspb format.
  *
@@ -481,5 +478,4 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
   }
 
 }
-
 

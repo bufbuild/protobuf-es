@@ -128,7 +128,6 @@ export declare class TestWellKnownTypes extends Message<TestWellKnownTypes> {
 
 }
 
-
 /**
  * A repeated field for each well-known type.
  *
@@ -243,7 +242,6 @@ export declare class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTyp
   static equals(a: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined, b: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -379,7 +377,6 @@ export declare class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
 
 }
 
-
 /**
  * A map field for each well-known type. We only
  * need to worry about the value part of the map being the
@@ -494,5 +491,4 @@ export declare class MapWellKnownTypes extends Message<MapWellKnownTypes> {
   static equals(a: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined, b: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined): boolean;
 
 }
-
 

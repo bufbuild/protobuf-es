@@ -27,4 +27,3 @@ export const ImplicitlyDeprecatedMessage = proto3.makeMessageType(
   [],
 );
 
-

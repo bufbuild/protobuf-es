@@ -107,7 +107,6 @@ export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRe
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTag
  */
@@ -172,7 +171,6 @@ export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegis
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryCommit
@@ -255,7 +253,6 @@ export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRe
 
 }
 
-
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack
  */
@@ -308,5 +305,4 @@ export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaReg
   }
 
 }
-
 

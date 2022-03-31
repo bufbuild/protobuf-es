@@ -85,7 +85,6 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
 
 }
 
-
 /**
  * RecommendedTemplate is the information needed to recommend a template and link
  * to its owner page.
@@ -146,7 +145,6 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
 
 }
 
-
 /**
  * SetRecommendedRepository is the information needed to configure a repository recommendation
  *
@@ -193,7 +191,6 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
   }
 
 }
-
 
 /**
  * SetRecommendedTemplate is the information needed to configure a template recommendation
@@ -242,7 +239,6 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest
  */
@@ -275,7 +271,6 @@ export class RecommendedRepositoriesRequest extends Message<RecommendedRepositor
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse
@@ -316,7 +311,6 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest
  */
@@ -349,7 +343,6 @@ export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesReq
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse
@@ -390,7 +383,6 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest
  */
@@ -423,7 +415,6 @@ export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedR
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse
@@ -464,7 +455,6 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest
  */
@@ -497,7 +487,6 @@ export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemp
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse
@@ -538,7 +527,6 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest
  */
@@ -578,7 +566,6 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse
  */
@@ -611,7 +598,6 @@ export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest
@@ -652,7 +638,6 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse
  */
@@ -685,5 +670,4 @@ export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTempl
   }
 
 }
-
 

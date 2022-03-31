@@ -115,7 +115,6 @@ export declare class ScalarValuesMessage extends Message<ScalarValuesMessage> {
 
 }
 
-
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
@@ -211,5 +210,4 @@ export declare class RepeatedScalarValuesMessage extends Message<RepeatedScalarV
   static equals(a: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined, b: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined): boolean;
 
 }
-
 

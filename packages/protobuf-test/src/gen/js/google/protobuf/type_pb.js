@@ -48,7 +48,6 @@ export const Syntax = proto3.makeEnum(
   {sharedPrefix: "SYNTAX_"},
 );
 
-
 /**
  * A protocol buffer message type.
  *
@@ -65,7 +64,6 @@ export const Type = proto3.makeMessageType(
     {no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
   ],
 );
-
 
 /**
  * A single field of a message type.
@@ -136,7 +134,6 @@ export const Field_Cardinality = proto3.makeEnum(
 );
 
 
-
 /**
  * Enum type definition.
  *
@@ -153,7 +150,6 @@ export const Enum = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * Enum value definition.
  *
@@ -168,7 +164,6 @@ export const EnumValue = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
@@ -182,5 +177,4 @@ export const Option = proto3.makeMessageType(
     {no: 2, name: "value", kind: "message", T: Any},
   ],
 );
-
 

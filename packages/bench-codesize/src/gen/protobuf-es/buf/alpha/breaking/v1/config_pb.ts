@@ -114,7 +114,6 @@ export class Config extends Message<Config> {
 
 }
 
-
 /**
  * IDPaths represents a rule or category ID and the file and/or directory paths that are ignored for the rule.
  *
@@ -161,5 +160,4 @@ export class IDPaths extends Message<IDPaths> {
   }
 
 }
-
 

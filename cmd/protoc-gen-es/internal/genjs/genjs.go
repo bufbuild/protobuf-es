@@ -27,11 +27,9 @@ func GenerateFile(gen *protoplugin.Generator, file *protoplugin.File) {
 	f.H(file.Preamble)
 	for _, enum := range file.Enums {
 		generateEnum(f, enum)
-		f.P()
 	}
 	for _, message := range file.Messages {
 		generateMessage(f, message)
-		f.P()
 	}
 	// We do not generate anything for services, and we do not support extensions at this time
 }

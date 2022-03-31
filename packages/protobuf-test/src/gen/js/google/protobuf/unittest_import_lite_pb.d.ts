@@ -61,7 +61,6 @@ export declare enum ImportEnumLite {
 
 }
 
-
 /**
  * @generated from message protobuf_unittest_import.ImportMessageLite
  */
@@ -87,5 +86,4 @@ export declare class ImportMessageLite extends Message<ImportMessageLite> {
   static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean;
 
 }
-
 

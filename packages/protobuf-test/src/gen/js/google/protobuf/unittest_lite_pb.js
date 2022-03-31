@@ -52,7 +52,6 @@ export const ForeignEnumLite = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from enum protobuf_unittest.V1EnumLite
  */
@@ -62,7 +61,6 @@ export const V1EnumLite = proto2.makeEnum(
     {no: 1, name: "V1_FIRST"},
   ],
 );
-
 
 /**
  * @generated from enum protobuf_unittest.V2EnumLite
@@ -74,7 +72,6 @@ export const V2EnumLite = proto2.makeEnum(
     {no: 2, name: "V2_SECOND"},
   ],
 );
-
 
 /**
  * Same as TestAllTypes but with the lite runtime.
@@ -227,7 +224,6 @@ export const TestAllTypesLite_RepeatedGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
@@ -237,7 +233,6 @@ export const ForeignMessageLite = proto2.makeMessageType(
     {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
@@ -262,7 +257,6 @@ export const TestPackedTypesLite = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
@@ -270,7 +264,6 @@ export const TestAllExtensionsLite = proto2.makeMessageType(
   "protobuf_unittest.TestAllExtensionsLite",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
@@ -282,7 +275,6 @@ export const OptionalGroup_extension_lite = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
@@ -293,7 +285,6 @@ export const RepeatedGroup_extension_lite = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
@@ -302,7 +293,6 @@ export const TestPackedExtensionsLite = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
  */
@@ -310,7 +300,6 @@ export const TestNestedExtensionLite = proto2.makeMessageType(
   "protobuf_unittest.TestNestedExtensionLite",
   [],
 );
-
 
 /**
  * Test that deprecated fields work.  We only verify that they compile (at one
@@ -327,7 +316,6 @@ export const TestDeprecatedLite = proto2.makeMessageType(
     {no: 4, name: "deprecated_field4", kind: "message", T: TestDeprecatedLite, opt: true},
   ],
 );
-
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -411,7 +399,6 @@ export const TestParsingMergeLite_RepeatedGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
@@ -421,7 +408,6 @@ export const TestEmptyMessageLite = proto2.makeMessageType(
   "protobuf_unittest.TestEmptyMessageLite",
   [],
 );
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -434,7 +420,6 @@ export const TestEmptyMessageWithExtensionsLite = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.V1MessageLite
  */
@@ -446,7 +431,6 @@ export const V1MessageLite = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -457,7 +441,6 @@ export const V2MessageLite = proto2.makeMessageType(
     {no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V2EnumLite), opt: true, default: V2EnumLite.V2_FIRST},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
@@ -494,7 +477,6 @@ export const TestHugeFieldNumbersLite_OptionalGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
  */
@@ -513,7 +495,6 @@ export const TestOneofParsingLite = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * The following four messages are set up to test for wire compatibility between
  * packed and non-packed repeated fields. We use the field number 2048, because
@@ -528,7 +509,6 @@ export const PackedInt32 = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
  */
@@ -538,7 +518,6 @@ export const NonPackedInt32 = proto2.makeMessageType(
     {no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.PackedFixed32
@@ -550,7 +529,6 @@ export const PackedFixed32 = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
  */
@@ -560,7 +538,6 @@ export const NonPackedFixed32 = proto2.makeMessageType(
     {no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
   ],
 );
-
 
 /**
  * Test an enum that has multiple values with the same number.
@@ -587,7 +564,6 @@ export const DupEnum_TestEnumWithDupValueLite = proto2.makeEnum(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.RecursiveMessage
  */
@@ -598,5 +574,4 @@ export const RecursiveMessage = proto2.makeMessageType(
     {no: 2, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
   ],
 );
-
 

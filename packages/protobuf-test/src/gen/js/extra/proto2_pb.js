@@ -30,7 +30,6 @@ export const Proto2Enum = proto2.makeEnum(
   {sharedPrefix: "PROTO2_ENUM_"},
 );
 
-
 /**
  * @generated from message spec.Proto2PackedMessage
  */
@@ -42,7 +41,6 @@ export const Proto2PackedMessage = proto2.makeMessageType(
     {no: 103, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true},
   ],
 );
-
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
@@ -56,7 +54,6 @@ export const Proto2UnpackedMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
@@ -68,7 +65,6 @@ export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
     {no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message spec.Proto2OptionalMessage
@@ -83,7 +79,6 @@ export const Proto2OptionalMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
@@ -97,7 +92,6 @@ export const Proto2RequiredMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
@@ -110,7 +104,6 @@ export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
     {no: 4, name: "message_field", kind: "message", T: Proto2ChildMessage},
   ],
 );
-
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
@@ -129,7 +122,6 @@ export const Proto2DefaultsMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message spec.Proto2ChildMessage
  */
@@ -139,5 +131,4 @@ export const Proto2ChildMessage = proto2.makeMessageType(
     {no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
   ],
 );
-
 

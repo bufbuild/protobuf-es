@@ -62,7 +62,6 @@ export class Image extends Message<Image> {
 
 }
 
-
 /**
  * ImageFile is an extended FileDescriptorProto.
  *
@@ -190,7 +189,6 @@ export class ImageFile extends Message<ImageFile> {
 
 }
 
-
 /**
  * ImageFileExtension contains extensions to ImageFiles.
  *
@@ -291,7 +289,6 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
 
 }
 
-
 /**
  * ModuleInfo contains information about a Buf module that an ImageFile
  * belongs to.
@@ -348,7 +345,6 @@ export class ModuleInfo extends Message<ModuleInfo> {
 
 }
 
-
 /**
  * ModuleName is a module name.
  *
@@ -403,5 +399,4 @@ export class ModuleName extends Message<ModuleName> {
   }
 
 }
-
 

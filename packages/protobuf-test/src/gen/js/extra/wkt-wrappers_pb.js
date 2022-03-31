@@ -54,4 +54,3 @@ export const WrappersMessage = proto3.makeMessageType(
   ],
 );
 
-

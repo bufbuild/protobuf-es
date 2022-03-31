@@ -60,7 +60,6 @@ export const ForeignEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * Test an enum that has multiple values with the same number.
  *
@@ -76,7 +75,6 @@ export const TestEnumWithDupValue = proto2.makeEnum(
     {no: 2, name: "BAR2"},
   ],
 );
-
 
 /**
  * Test an enum with large, unordered values.
@@ -95,7 +93,6 @@ export const TestSparseEnum = proto2.makeEnum(
     {no: 2, name: "SPARSE_G"},
   ],
 );
-
 
 /**
  * @generated from enum protobuf_unittest.VeryLargeEnum
@@ -206,7 +203,6 @@ export const VeryLargeEnum = proto2.makeEnum(
     {no: 100, name: "ENUM_LABEL_100"},
   ],
 );
-
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -345,7 +341,6 @@ export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -360,7 +355,6 @@ export const NestedTestAllTypes = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
  */
@@ -372,7 +366,6 @@ export const TestDeprecatedFields = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestDeprecatedMessage
  * @deprecated
@@ -381,7 +374,6 @@ export const TestDeprecatedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedMessage",
   [],
 );
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -397,7 +389,6 @@ export const ForeignMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
@@ -406,7 +397,6 @@ export const TestReservedFields = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
@@ -414,7 +404,6 @@ export const TestAllExtensions = proto2.makeMessageType(
   "protobuf_unittest.TestAllExtensions",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
@@ -426,7 +415,6 @@ export const OptionalGroup_extension = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
@@ -436,7 +424,6 @@ export const RepeatedGroup_extension = proto2.makeMessageType(
     {no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestGroup
@@ -461,7 +448,6 @@ export const TestGroup_OptionalGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
@@ -469,7 +455,6 @@ export const TestGroupExtension = proto2.makeMessageType(
   "protobuf_unittest.TestGroupExtension",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
@@ -491,7 +476,6 @@ export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageTyp
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
@@ -503,7 +487,6 @@ export const TestChildExtension = proto2.makeMessageType(
     {no: 3, name: "optional_extension", kind: "message", T: TestAllExtensions, opt: true},
   ],
 );
-
 
 /**
  * We have separate messages for testing required fields because it's
@@ -553,7 +536,6 @@ export const TestRequired = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
@@ -565,7 +547,6 @@ export const TestRequiredForeign = proto2.makeMessageType(
     {no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
@@ -579,7 +560,6 @@ export const TestRequiredMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * Test that we can use NestedMessage from outside TestAllTypes.
  *
@@ -592,7 +572,6 @@ export const TestForeignNested = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * TestEmptyMessage is used to test unknown field support.
  *
@@ -602,7 +581,6 @@ export const TestEmptyMessage = proto2.makeMessageType(
   "protobuf_unittest.TestEmptyMessage",
   [],
 );
-
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -614,7 +592,6 @@ export const TestEmptyMessageWithExtensions = proto2.makeMessageType(
   "protobuf_unittest.TestEmptyMessageWithExtensions",
   [],
 );
-
 
 /**
  * Needed for a Python test.
@@ -650,7 +627,6 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.
 
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
@@ -658,7 +634,6 @@ export const TestMultipleExtensionRanges = proto2.makeMessageType(
   "protobuf_unittest.TestMultipleExtensionRanges",
   [],
 );
-
 
 /**
  * Test that really large tag numbers don't break anything.
@@ -673,7 +648,6 @@ export const TestReallyLargeTagNumber = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
@@ -684,7 +658,6 @@ export const TestRecursiveMessage = proto2.makeMessageType(
     {no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * Test that mutual recursion works.
@@ -724,7 +697,6 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
@@ -735,7 +707,6 @@ export const TestMutualRecursionB = proto2.makeMessageType(
     {no: 2, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
@@ -768,7 +739,6 @@ export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
   ],
   {localName: "TestIsInitialized_SubMessage_SubGroup"},
 );
-
 
 
 
@@ -815,7 +785,6 @@ export const TestDupFieldNumber_Bar = proto2.makeMessageType(
 );
 
 
-
 /**
  * Additional messages for testing lazy fields.
  *
@@ -828,7 +797,6 @@ export const TestEagerMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
@@ -838,7 +806,6 @@ export const TestLazyMessage = proto2.makeMessageType(
     {no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true},
   ],
 );
-
 
 /**
  * Needed for a Python test.
@@ -865,7 +832,6 @@ export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
 );
 
 
-
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
  * standard style.
@@ -889,7 +855,6 @@ export const TestCamelCaseFieldNames = proto2.makeMessageType(
     {no: 12, name: "RepeatedCordField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
   ],
 );
-
 
 /**
  * We list fields out of order, to ensure that we're using field number and not
@@ -920,7 +885,6 @@ export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
@@ -930,7 +894,6 @@ export const TestExtensionOrderings1 = proto2.makeMessageType(
     {no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
@@ -952,7 +915,6 @@ export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessag
   ],
   {localName: "TestExtensionOrderings2_TestExtensionOrderings3"},
 );
-
 
 
 /**
@@ -991,7 +953,6 @@ export const TestExtremeDefaultValues = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
@@ -1001,7 +962,6 @@ export const SparseEnumMessage = proto2.makeMessageType(
     {no: 1, name: "sparse_enum", kind: "enum", T: proto2.getEnumType(TestSparseEnum), opt: true},
   ],
 );
-
 
 /**
  * Test String and Bytes: string is for valid UTF-8 strings
@@ -1015,7 +975,6 @@ export const OneString = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.MoreString
  */
@@ -1025,7 +984,6 @@ export const MoreString = proto2.makeMessageType(
     {no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.OneBytes
@@ -1037,7 +995,6 @@ export const OneBytes = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
@@ -1047,7 +1004,6 @@ export const MoreBytes = proto2.makeMessageType(
     {no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
   ],
 );
-
 
 /**
  * Test int32, uint32, int64, uint64, and bool are all compatible
@@ -1061,7 +1017,6 @@ export const Int32Message = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
@@ -1071,7 +1026,6 @@ export const Uint32Message = proto2.makeMessageType(
     {no: 1, name: "data", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.Int64Message
@@ -1083,7 +1037,6 @@ export const Int64Message = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
@@ -1094,7 +1047,6 @@ export const Uint64Message = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
@@ -1104,7 +1056,6 @@ export const BoolMessage = proto2.makeMessageType(
     {no: 1, name: "data", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
   ],
 );
-
 
 /**
  * Test oneofs.
@@ -1134,7 +1085,6 @@ export const TestOneof_FooGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
@@ -1159,7 +1109,6 @@ export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
   ],
   {localName: "TestOneofBackwardsCompatible_FooGroup"},
 );
-
 
 
 /**
@@ -1231,7 +1180,6 @@ export const TestOneof2_NestedMessage = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
@@ -1256,7 +1204,6 @@ export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
  */
@@ -1279,7 +1226,6 @@ export const TestPackedTypes = proto2.makeMessageType(
     {no: 103, name: "packed_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true, packed: true},
   ],
 );
-
 
 /**
  * A message with the same fields as TestPackedTypes, but without packing. Used
@@ -1307,7 +1253,6 @@ export const TestUnpackedTypes = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
@@ -1316,7 +1261,6 @@ export const TestPackedExtensions = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
@@ -1324,7 +1268,6 @@ export const TestUnpackedExtensions = proto2.makeMessageType(
   "protobuf_unittest.TestUnpackedExtensions",
   [],
 );
-
 
 /**
  * Used by ExtensionSetTest/DynamicExtensions.  The test actually builds
@@ -1371,7 +1314,6 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
@@ -1386,7 +1328,6 @@ export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
     {no: 262143, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
   ],
 );
-
 
 /**
  * Test that if an optional or required message/group field appears multiple
@@ -1477,7 +1418,6 @@ export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
@@ -1487,7 +1427,6 @@ export const TestCommentInjectionMessage = proto2.makeMessageType(
     {no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "*/ <- Neither should this."},
   ],
 );
-
 
 /**
  * Test that RPC services work.
@@ -1499,7 +1438,6 @@ export const FooRequest = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
@@ -1507,7 +1445,6 @@ export const FooResponse = proto2.makeMessageType(
   "protobuf_unittest.FooResponse",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.FooClientMessage
@@ -1517,7 +1454,6 @@ export const FooClientMessage = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
@@ -1525,7 +1461,6 @@ export const FooServerMessage = proto2.makeMessageType(
   "protobuf_unittest.FooServerMessage",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.BarRequest
@@ -1535,7 +1470,6 @@ export const BarRequest = proto2.makeMessageType(
   [],
 );
 
-
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
@@ -1543,7 +1477,6 @@ export const BarResponse = proto2.makeMessageType(
   "protobuf_unittest.BarResponse",
   [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestJsonName
@@ -1560,7 +1493,6 @@ export const TestJsonName = proto2.makeMessageType(
     {no: 7, name: "fieldname7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
@@ -1597,7 +1529,6 @@ export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
 );
 
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
@@ -1616,7 +1547,6 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
@@ -1629,5 +1559,4 @@ export const TestExtensionRangeSerialize = proto2.makeMessageType(
     {no: 13, name: "foo_four", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
   ],
 );
-
 

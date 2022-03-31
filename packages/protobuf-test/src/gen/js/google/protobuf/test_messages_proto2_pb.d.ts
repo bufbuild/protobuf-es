@@ -64,7 +64,6 @@ export declare enum ForeignEnumProto2 {
 
 }
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -957,7 +956,6 @@ export declare class TestAllTypesProto2_MessageSetCorrectExtension2 extends Mess
 }
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
  */
@@ -983,7 +981,6 @@ export declare class ForeignMessageProto2 extends Message<ForeignMessageProto2> 
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -1063,7 +1060,6 @@ export declare class UnknownToTestAllTypes_OptionalGroup extends Message<Unknown
 }
 
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
@@ -1084,7 +1080,6 @@ export declare class NullHypothesisProto2 extends Message<NullHypothesisProto2> 
   static equals(a: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined, b: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
@@ -1123,6 +1118,5 @@ export declare enum EnumOnlyProto2_Bool {
   kTrue = 1,
 
 }
-
 
 

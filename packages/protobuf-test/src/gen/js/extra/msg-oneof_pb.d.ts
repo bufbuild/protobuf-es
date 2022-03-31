@@ -41,7 +41,6 @@ export declare enum OneofEnum {
 
 }
 
-
 /**
  * @generated from message spec.OneofMessage
  */
@@ -114,7 +113,6 @@ export declare class OneofMessage extends Message<OneofMessage> {
 
 }
 
-
 /**
  * @generated from message spec.OneofMessageFoo
  */
@@ -146,7 +144,6 @@ export declare class OneofMessageFoo extends Message<OneofMessageFoo> {
 
 }
 
-
 /**
  * @generated from message spec.OneofMessageBar
  */
@@ -177,5 +174,4 @@ export declare class OneofMessageBar extends Message<OneofMessageBar> {
   static equals(a: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined, b: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined): boolean;
 
 }
-
 

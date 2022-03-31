@@ -76,7 +76,6 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
 
 }
 
-
 /**
  * LocalModulePin is a local module pin.
  *
@@ -149,5 +148,4 @@ export class LocalModulePin extends Message<LocalModulePin> {
   }
 
 }
-
 

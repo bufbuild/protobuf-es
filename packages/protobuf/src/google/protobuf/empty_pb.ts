@@ -62,4 +62,3 @@ export class Empty extends Message<Empty> {
 
 }
 
-

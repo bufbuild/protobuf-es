@@ -122,7 +122,6 @@ export class User extends Message<User> {
 
 }
 
-
 /**
  * TODO: #663 move this to organization service
  *
@@ -180,7 +179,6 @@ export class OrganizationUser extends Message<OrganizationUser> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateUserRequest
  */
@@ -219,7 +217,6 @@ export class CreateUserRequest extends Message<CreateUserRequest> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateUserResponse
@@ -260,7 +257,6 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserRequest
  */
@@ -299,7 +295,6 @@ export class GetUserRequest extends Message<GetUserRequest> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserResponse
@@ -340,7 +335,6 @@ export class GetUserResponse extends Message<GetUserResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserByUsernameRequest
  */
@@ -380,7 +374,6 @@ export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserByUsernameResponse
  */
@@ -419,7 +412,6 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUsersRequest
@@ -482,7 +474,6 @@ export class ListUsersRequest extends Message<ListUsersRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUsersResponse
  */
@@ -529,7 +520,6 @@ export class ListUsersResponse extends Message<ListUsersResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest
@@ -590,7 +580,6 @@ export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersR
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse
  */
@@ -638,7 +627,6 @@ export class ListOrganizationUsersResponse extends Message<ListOrganizationUsers
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteUserRequest
  */
@@ -672,7 +660,6 @@ export class DeleteUserRequest extends Message<DeleteUserRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteUserResponse
  */
@@ -705,7 +692,6 @@ export class DeleteUserResponse extends Message<DeleteUserResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeactivateUserRequest
@@ -746,7 +732,6 @@ export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeactivateUserResponse
  */
@@ -779,7 +764,6 @@ export class DeactivateUserResponse extends Message<DeactivateUserResponse> {
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest
@@ -830,7 +814,6 @@ export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleReq
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse
  */
@@ -863,7 +846,6 @@ export class UpdateUserServerRoleResponse extends Message<UpdateUserServerRoleRe
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CountUsersRequest
@@ -906,7 +888,6 @@ export class CountUsersRequest extends Message<CountUsersRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CountUsersResponse
  */
@@ -945,5 +926,4 @@ export class CountUsersResponse extends Message<CountUsersResponse> {
   }
 
 }
-
 

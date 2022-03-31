@@ -44,7 +44,6 @@ export const NestedMessage = proto2.makeMessageType(
   ],
 );
 
-
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
@@ -54,5 +53,4 @@ export const ArenaMessage = proto2.makeMessageType(
     {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
   ],
 );
-
 

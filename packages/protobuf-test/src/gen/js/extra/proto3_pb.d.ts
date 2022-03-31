@@ -41,7 +41,6 @@ export declare enum Proto3Enum {
 
 }
 
-
 /**
  * @generated from message spec.Proto3PackedMessage
  */
@@ -77,7 +76,6 @@ export declare class Proto3PackedMessage extends Message<Proto3PackedMessage> {
   static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
@@ -115,7 +113,6 @@ export declare class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage
 
 }
 
-
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
@@ -151,7 +148,6 @@ export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMes
   static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean;
 
 }
-
 
 /**
  * @generated from message spec.Proto3OptionalMessage
@@ -193,5 +189,4 @@ export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage
   static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean;
 
 }
-
 

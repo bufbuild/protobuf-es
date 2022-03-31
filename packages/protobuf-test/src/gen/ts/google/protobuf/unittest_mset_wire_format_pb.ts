@@ -76,7 +76,6 @@ export class TestMessageSet extends Message<TestMessageSet> {
 
 }
 
-
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
@@ -115,5 +114,4 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
   }
 
 }
-
 

@@ -30,4 +30,3 @@ export const SelfReferencingMessage = proto3.makeMessageType(
   ],
 );
 
-

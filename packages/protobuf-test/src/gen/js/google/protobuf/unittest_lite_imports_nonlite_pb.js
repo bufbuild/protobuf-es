@@ -50,4 +50,3 @@ export const TestLiteImportsNonlite = proto2.makeMessageType(
   ],
 );
 
-

@@ -113,7 +113,6 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
 
 }
 
-
 /**
  * A single field of this message is deprecated
  *
@@ -165,5 +164,4 @@ export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
   }
 
 }
-
 

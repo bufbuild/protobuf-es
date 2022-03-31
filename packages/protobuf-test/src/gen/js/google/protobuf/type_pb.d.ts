@@ -58,7 +58,6 @@ export declare enum Syntax {
 
 }
 
-
 /**
  * A protocol buffer message type.
  *
@@ -123,7 +122,6 @@ export declare class Type extends Message<Type> {
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean;
 
 }
-
 
 /**
  * A single field of a message type.
@@ -401,7 +399,6 @@ export declare enum Field_Cardinality {
 }
 
 
-
 /**
  * Enum type definition.
  *
@@ -460,7 +457,6 @@ export declare class Enum extends Message<Enum> {
 
 }
 
-
 /**
  * Enum value definition.
  *
@@ -505,7 +501,6 @@ export declare class EnumValue extends Message<EnumValue> {
 
 }
 
-
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
@@ -549,5 +544,4 @@ export declare class Option extends Message<Option> {
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean;
 
 }
-
 

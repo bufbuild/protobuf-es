@@ -49,7 +49,6 @@ export const ForeignEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
@@ -156,7 +155,6 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
 );
 
 
-
 /**
  * @generated from message proto3_arena_unittest.TestPackedTypes
  */
@@ -179,7 +177,6 @@ export const TestPackedTypes = proto3.makeMessageType(
     {no: 103, name: "packed_enum", kind: "enum", T: proto3.getEnumType(ForeignEnum), repeated: true},
   ],
 );
-
 
 /**
  * Explicitly set packed to false
@@ -206,7 +203,6 @@ export const TestUnpackedTypes = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * This proto includes a recursively nested message.
  *
@@ -221,7 +217,6 @@ export const NestedTestAllTypes = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -235,7 +230,6 @@ export const ForeignMessage = proto3.makeMessageType(
   ],
 );
 
-
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
  *
@@ -245,7 +239,6 @@ export const TestEmptyMessage = proto3.makeMessageType(
   "proto3_arena_unittest.TestEmptyMessage",
   [],
 );
-
 
 /**
  * Needed for a Python test.
@@ -278,7 +271,6 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto3.
   ],
   {localName: "TestPickleNestedMessage_NestedMessage_NestedNestedMessage"},
 );
-
 
 
 

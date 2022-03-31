@@ -118,7 +118,6 @@ export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetModulePinsResponse
  */
@@ -158,7 +157,6 @@ export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetLocalModulePinsRequest
  */
@@ -197,7 +195,6 @@ export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest
   }
 
 }
-
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.LocalModuleResolveResult
@@ -256,7 +253,6 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
 
 }
 
-
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetLocalModulePinsResponse
  */
@@ -305,5 +301,4 @@ export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsRespon
   }
 
 }
-
 
