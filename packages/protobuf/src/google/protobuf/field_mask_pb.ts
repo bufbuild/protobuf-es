@@ -300,7 +300,7 @@ export class FieldMask extends Message<FieldMask> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.FieldMask";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldMask {

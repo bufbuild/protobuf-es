@@ -56,12 +56,12 @@ export const Syntax = proto3.makeEnum(
 export const Type = proto3.makeMessageType(
   "google.protobuf.Type",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "fields", kind: "message", T: Field, repeated: true},
-    {no: 3, name: "oneofs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 4, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 5, name: "source_context", kind: "message", T: SourceContext},
-    {no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "fields", kind: "message", T: Field, repeated: true },
+    { no: 3, name: "oneofs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 5, name: "source_context", kind: "message", T: SourceContext },
+    { no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ],
 );
 
@@ -73,16 +73,16 @@ export const Type = proto3.makeMessageType(
 export const Field = proto3.makeMessageType(
   "google.protobuf.Field",
   () => [
-    {no: 1, name: "kind", kind: "enum", T: proto3.getEnumType(Field_Kind)},
-    {no: 2, name: "cardinality", kind: "enum", T: proto3.getEnumType(Field_Cardinality)},
-    {no: 3, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "oneof_index", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 8, name: "packed", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 9, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 10, name: "json_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "default_value", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "kind", kind: "enum", T: proto3.getEnumType(Field_Kind) },
+    { no: 2, name: "cardinality", kind: "enum", T: proto3.getEnumType(Field_Cardinality) },
+    { no: 3, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "oneof_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "packed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 10, name: "json_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "default_value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -140,11 +140,11 @@ export const Field_Cardinality = proto3.makeEnum(
 export const Enum = proto3.makeMessageType(
   "google.protobuf.Enum",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "enumvalue", kind: "message", T: EnumValue, repeated: true},
-    {no: 3, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 4, name: "source_context", kind: "message", T: SourceContext},
-    {no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "enumvalue", kind: "message", T: EnumValue, repeated: true },
+    { no: 3, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 4, name: "source_context", kind: "message", T: SourceContext },
+    { no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ],
 );
 
@@ -156,9 +156,9 @@ export const Enum = proto3.makeMessageType(
 export const EnumValue = proto3.makeMessageType(
   "google.protobuf.EnumValue",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "options", kind: "message", T: Option, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "options", kind: "message", T: Option, repeated: true },
   ],
 );
 
@@ -171,8 +171,8 @@ export const EnumValue = proto3.makeMessageType(
 export const Option = proto3.makeMessageType(
   "google.protobuf.Option",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "message", T: Any},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "message", T: Any },
   ],
 );
 

@@ -72,10 +72,10 @@ export class Reference extends Message<Reference> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Reference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "branch", kind: "message", T: RepositoryBranch, oneof: "reference"},
-    {no: 2, name: "tag", kind: "message", T: RepositoryTag, oneof: "reference"},
-    {no: 3, name: "commit", kind: "message", T: RepositoryCommit, oneof: "reference"},
-    {no: 4, name: "track", kind: "message", T: RepositoryTrack, oneof: "reference"},
+    { no: 1, name: "branch", kind: "message", T: RepositoryBranch, oneof: "reference" },
+    { no: 2, name: "tag", kind: "message", T: RepositoryTag, oneof: "reference" },
+    { no: 3, name: "commit", kind: "message", T: RepositoryCommit, oneof: "reference" },
+    { no: 4, name: "track", kind: "message", T: RepositoryTrack, oneof: "reference" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Reference {
@@ -128,9 +128,9 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetReferenceByNameRequest {
@@ -167,7 +167,7 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "reference", kind: "message", T: Reference},
+    { no: 1, name: "reference", kind: "message", T: Reference },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetReferenceByNameResponse {

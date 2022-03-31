@@ -56,7 +56,7 @@ export const DeprecatedValueEnum = proto3.makeEnum(
 export const DeprecatedMessage = proto3.makeMessageType(
   "spec.DeprecatedMessage",
   () => [
-    {no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -68,8 +68,8 @@ export const DeprecatedMessage = proto3.makeMessageType(
 export const DeprecatedFieldMessage = proto3.makeMessageType(
   "spec.DeprecatedFieldMessage",
   () => [
-    {no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

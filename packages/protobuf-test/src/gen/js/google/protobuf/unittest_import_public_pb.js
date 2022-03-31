@@ -42,7 +42,7 @@ import {proto2} from "@bufbuild/protobuf";
 export const PublicImportMessage = proto2.makeMessageType(
   "protobuf_unittest_import.PublicImportMessage",
   () => [
-    {no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

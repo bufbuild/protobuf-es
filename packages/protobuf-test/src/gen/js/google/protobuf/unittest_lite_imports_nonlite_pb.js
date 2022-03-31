@@ -45,8 +45,8 @@ import {TestAllTypes, TestRequired} from "./unittest_pb.js";
 export const TestLiteImportsNonlite = proto2.makeMessageType(
   "protobuf_unittest.TestLiteImportsNonlite",
   () => [
-    {no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true},
-    {no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true},
+    { no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true },
+    { no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true },
   ],
 );
 

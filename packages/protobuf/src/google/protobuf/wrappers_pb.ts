@@ -69,7 +69,7 @@ export class DoubleValue extends Message<DoubleValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.DoubleValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
+    { no: 1, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -138,7 +138,7 @@ export class FloatValue extends Message<FloatValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.FloatValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 2 /* ScalarType.FLOAT */},
+    { no: 1, name: "value", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -207,7 +207,7 @@ export class Int64Value extends Message<Int64Value> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Int64Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 3 /* ScalarType.INT64 */},
+    { no: 1, name: "value", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -276,7 +276,7 @@ export class UInt64Value extends Message<UInt64Value> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.UInt64Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 4 /* ScalarType.UINT64 */},
+    { no: 1, name: "value", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -345,7 +345,7 @@ export class Int32Value extends Message<Int32Value> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Int32Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -414,7 +414,7 @@ export class UInt32Value extends Message<UInt32Value> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.UInt32Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+    { no: 1, name: "value", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -483,7 +483,7 @@ export class BoolValue extends Message<BoolValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.BoolValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "value", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -552,7 +552,7 @@ export class StringValue extends Message<StringValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.StringValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static readonly fieldWrapper = {
@@ -621,7 +621,7 @@ export class BytesValue extends Message<BytesValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.BytesValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static readonly fieldWrapper = {

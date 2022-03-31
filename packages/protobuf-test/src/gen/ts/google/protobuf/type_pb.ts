@@ -57,8 +57,8 @@ export enum Syntax {
 }
 // Retrieve enum metadata with: proto3.getEnumType(Syntax)
 proto3.util.setEnumType(Syntax, "google.protobuf.Syntax", [
-  {no: 0, name: "SYNTAX_PROTO2"},
-  {no: 1, name: "SYNTAX_PROTO3"},
+  { no: 0, name: "SYNTAX_PROTO2" },
+  { no: 1, name: "SYNTAX_PROTO3" },
 ]);
 
 /**
@@ -117,12 +117,12 @@ export class Type extends Message<Type> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Type";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "fields", kind: "message", T: Field, repeated: true},
-    {no: 3, name: "oneofs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 4, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 5, name: "source_context", kind: "message", T: SourceContext},
-    {no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "fields", kind: "message", T: Field, repeated: true },
+    { no: 3, name: "oneofs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 5, name: "source_context", kind: "message", T: SourceContext },
+    { no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Type {
@@ -228,16 +228,16 @@ export class Field extends Message<Field> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Field";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "kind", kind: "enum", T: proto3.getEnumType(Field_Kind)},
-    {no: 2, name: "cardinality", kind: "enum", T: proto3.getEnumType(Field_Cardinality)},
-    {no: 3, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "oneof_index", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 8, name: "packed", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 9, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 10, name: "json_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "default_value", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "kind", kind: "enum", T: proto3.getEnumType(Field_Kind) },
+    { no: 2, name: "cardinality", kind: "enum", T: proto3.getEnumType(Field_Cardinality) },
+    { no: 3, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "oneof_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "packed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 10, name: "json_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "default_value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Field {
@@ -398,25 +398,25 @@ export enum Field_Kind {
 }
 // Retrieve enum metadata with: proto3.getEnumType(Field_Kind)
 proto3.util.setEnumType(Field_Kind, "google.protobuf.Field.Kind", [
-  {no: 0, name: "TYPE_UNKNOWN"},
-  {no: 1, name: "TYPE_DOUBLE"},
-  {no: 2, name: "TYPE_FLOAT"},
-  {no: 3, name: "TYPE_INT64"},
-  {no: 4, name: "TYPE_UINT64"},
-  {no: 5, name: "TYPE_INT32"},
-  {no: 6, name: "TYPE_FIXED64"},
-  {no: 7, name: "TYPE_FIXED32"},
-  {no: 8, name: "TYPE_BOOL"},
-  {no: 9, name: "TYPE_STRING"},
-  {no: 10, name: "TYPE_GROUP"},
-  {no: 11, name: "TYPE_MESSAGE"},
-  {no: 12, name: "TYPE_BYTES"},
-  {no: 13, name: "TYPE_UINT32"},
-  {no: 14, name: "TYPE_ENUM"},
-  {no: 15, name: "TYPE_SFIXED32"},
-  {no: 16, name: "TYPE_SFIXED64"},
-  {no: 17, name: "TYPE_SINT32"},
-  {no: 18, name: "TYPE_SINT64"},
+  { no: 0, name: "TYPE_UNKNOWN" },
+  { no: 1, name: "TYPE_DOUBLE" },
+  { no: 2, name: "TYPE_FLOAT" },
+  { no: 3, name: "TYPE_INT64" },
+  { no: 4, name: "TYPE_UINT64" },
+  { no: 5, name: "TYPE_INT32" },
+  { no: 6, name: "TYPE_FIXED64" },
+  { no: 7, name: "TYPE_FIXED32" },
+  { no: 8, name: "TYPE_BOOL" },
+  { no: 9, name: "TYPE_STRING" },
+  { no: 10, name: "TYPE_GROUP" },
+  { no: 11, name: "TYPE_MESSAGE" },
+  { no: 12, name: "TYPE_BYTES" },
+  { no: 13, name: "TYPE_UINT32" },
+  { no: 14, name: "TYPE_ENUM" },
+  { no: 15, name: "TYPE_SFIXED32" },
+  { no: 16, name: "TYPE_SFIXED64" },
+  { no: 17, name: "TYPE_SINT32" },
+  { no: 18, name: "TYPE_SINT64" },
 ]);
 
 /**
@@ -455,10 +455,10 @@ export enum Field_Cardinality {
 }
 // Retrieve enum metadata with: proto3.getEnumType(Field_Cardinality)
 proto3.util.setEnumType(Field_Cardinality, "google.protobuf.Field.Cardinality", [
-  {no: 0, name: "CARDINALITY_UNKNOWN"},
-  {no: 1, name: "CARDINALITY_OPTIONAL"},
-  {no: 2, name: "CARDINALITY_REQUIRED"},
-  {no: 3, name: "CARDINALITY_REPEATED"},
+  { no: 0, name: "CARDINALITY_UNKNOWN" },
+  { no: 1, name: "CARDINALITY_OPTIONAL" },
+  { no: 2, name: "CARDINALITY_REQUIRED" },
+  { no: 3, name: "CARDINALITY_REPEATED" },
 ]);
 
 /**
@@ -510,11 +510,11 @@ export class Enum extends Message<Enum> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Enum";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "enumvalue", kind: "message", T: EnumValue, repeated: true},
-    {no: 3, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 4, name: "source_context", kind: "message", T: SourceContext},
-    {no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "enumvalue", kind: "message", T: EnumValue, repeated: true },
+    { no: 3, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 4, name: "source_context", kind: "message", T: SourceContext },
+    { no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Enum {
@@ -569,9 +569,9 @@ export class EnumValue extends Message<EnumValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.EnumValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "options", kind: "message", T: Option, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "options", kind: "message", T: Option, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumValue {
@@ -626,8 +626,8 @@ export class Option extends Message<Option> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Option";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "message", T: Any},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "message", T: Any },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Option {

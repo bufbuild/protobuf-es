@@ -40,8 +40,8 @@ import {proto3} from "@bufbuild/protobuf";
 export const Foo = proto3.makeMessageType(
   "unittest_drop_unknown_fields.Foo",
   () => [
-    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum)},
+    { no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum) },
   ],
 );
 
@@ -63,9 +63,9 @@ export const Foo_NestedEnum = proto3.makeEnum(
 export const FooWithExtraFields = proto3.makeMessageType(
   "unittest_drop_unknown_fields.FooWithExtraFields",
   () => [
-    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum)},
-    {no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum) },
+    { no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 

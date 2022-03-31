@@ -91,7 +91,7 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
   static readonly runtime = proto2;
   static readonly typeName = "proto2_wireformat_unittest.TestMessageSetWireFormatContainer";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true},
+    { no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetWireFormatContainer {

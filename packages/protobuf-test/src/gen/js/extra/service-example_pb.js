@@ -36,10 +36,10 @@ export const FailRequest = proto3.makeEnum(
 export const ExampleRequest = proto3.makeMessageType(
   "spec.ExampleRequest",
   () => [
-    {no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "please_fail", kind: "enum", T: proto3.getEnumType(FailRequest)},
-    {no: 3, name: "please_delay_response_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "disable_sending_example_response_headers", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "please_fail", kind: "enum", T: proto3.getEnumType(FailRequest) },
+    { no: 3, name: "please_delay_response_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "disable_sending_example_response_headers", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 
@@ -49,10 +49,10 @@ export const ExampleRequest = proto3.makeMessageType(
 export const ExampleResponse = proto3.makeMessageType(
   "spec.ExampleResponse",
   () => [
-    {no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "your_request_headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
-    {no: 3, name: "your_deadline", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "your_fail_request", kind: "enum", T: proto3.getEnumType(FailRequest)},
+    { no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "your_request_headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 3, name: "your_deadline", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "your_fail_request", kind: "enum", T: proto3.getEnumType(FailRequest) },
   ],
 );
 

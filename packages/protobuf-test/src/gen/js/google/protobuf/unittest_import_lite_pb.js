@@ -56,7 +56,7 @@ export const ImportEnumLite = proto2.makeEnum(
 export const ImportMessageLite = proto2.makeMessageType(
   "protobuf_unittest_import.ImportMessageLite",
   () => [
-    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

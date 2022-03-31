@@ -61,10 +61,10 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryBranch";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositoryBranch {
@@ -118,9 +118,9 @@ export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranc
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryBranchRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "parent_branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "parent_branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryBranchRequest {
@@ -157,7 +157,7 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryBranchResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_branch", kind: "message", T: RepositoryBranch},
+    { no: 1, name: "repository_branch", kind: "message", T: RepositoryBranch },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryBranchResponse {
@@ -213,10 +213,10 @@ export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranche
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryBranchesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryBranchesRequest {
@@ -260,8 +260,8 @@ export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranch
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryBranchesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_branches", kind: "message", T: RepositoryBranch, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_branches", kind: "message", T: RepositoryBranch, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryBranchesResponse {

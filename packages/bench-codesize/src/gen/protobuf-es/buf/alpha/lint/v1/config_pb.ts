@@ -121,17 +121,17 @@ export class Config extends Message<Config> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.lint.v1.Config";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "use_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 3, name: "except_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 4, name: "ignore_paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 5, name: "ignore_id_paths", kind: "message", T: IDPaths, repeated: true},
-    {no: 6, name: "enum_zero_value_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "rpc_allow_same_request_response", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 8, name: "rpc_allow_google_protobuf_empty_requests", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 9, name: "rpc_allow_google_protobuf_empty_responses", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 10, name: "service_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "allow_comment_ignores", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "use_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "except_ids", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "ignore_paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "ignore_id_paths", kind: "message", T: IDPaths, repeated: true },
+    { no: 6, name: "enum_zero_value_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "rpc_allow_same_request_response", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: "rpc_allow_google_protobuf_empty_requests", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "rpc_allow_google_protobuf_empty_responses", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 10, name: "service_suffix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "allow_comment_ignores", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Config {
@@ -175,8 +175,8 @@ export class IDPaths extends Message<IDPaths> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.lint.v1.IDPaths";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IDPaths {

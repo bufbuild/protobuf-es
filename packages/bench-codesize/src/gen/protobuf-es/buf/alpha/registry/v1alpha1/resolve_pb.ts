@@ -52,11 +52,11 @@ export enum ResolvedReferenceType {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ResolvedReferenceType)
 proto3.util.setEnumType(ResolvedReferenceType, "buf.alpha.registry.v1alpha1.ResolvedReferenceType", [
-  {no: 0, name: "RESOLVED_REFERENCE_TYPE_UNSPECIFIED"},
-  {no: 1, name: "RESOLVED_REFERENCE_TYPE_COMMIT"},
-  {no: 2, name: "RESOLVED_REFERENCE_TYPE_BRANCH"},
-  {no: 3, name: "RESOLVED_REFERENCE_TYPE_TAG"},
-  {no: 4, name: "RESOLVED_REFERENCE_TYPE_TRACK"},
+  { no: 0, name: "RESOLVED_REFERENCE_TYPE_UNSPECIFIED" },
+  { no: 1, name: "RESOLVED_REFERENCE_TYPE_COMMIT" },
+  { no: 2, name: "RESOLVED_REFERENCE_TYPE_BRANCH" },
+  { no: 3, name: "RESOLVED_REFERENCE_TYPE_TAG" },
+  { no: 4, name: "RESOLVED_REFERENCE_TYPE_TRACK" },
 ]);
 
 /**
@@ -92,8 +92,8 @@ export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePinsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "module_references", kind: "message", T: ModuleReference, repeated: true},
-    {no: 2, name: "current_module_pins", kind: "message", T: ModulePin, repeated: true},
+    { no: 1, name: "module_references", kind: "message", T: ModuleReference, repeated: true },
+    { no: 2, name: "current_module_pins", kind: "message", T: ModulePin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePinsRequest {
@@ -130,7 +130,7 @@ export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePinsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "module_pins", kind: "message", T: ModulePin, repeated: true},
+    { no: 1, name: "module_pins", kind: "message", T: ModulePin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePinsResponse {
@@ -167,7 +167,7 @@ export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetLocalModulePinsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "local_module_references", kind: "message", T: LocalModuleReference, repeated: true},
+    { no: 1, name: "local_module_references", kind: "message", T: LocalModuleReference, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLocalModulePinsRequest {
@@ -220,9 +220,9 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.LocalModuleResolveResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "reference", kind: "message", T: LocalModuleReference},
-    {no: 2, name: "pin", kind: "message", T: LocalModulePin},
-    {no: 3, name: "resolved_reference_type", kind: "enum", T: proto3.getEnumType(ResolvedReferenceType)},
+    { no: 1, name: "reference", kind: "message", T: LocalModuleReference },
+    { no: 2, name: "pin", kind: "message", T: LocalModulePin },
+    { no: 3, name: "resolved_reference_type", kind: "enum", T: proto3.getEnumType(ResolvedReferenceType) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LocalModuleResolveResult {
@@ -268,8 +268,8 @@ export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetLocalModulePinsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "local_module_resolve_results", kind: "message", T: LocalModuleResolveResult, repeated: true},
-    {no: 2, name: "dependencies", kind: "message", T: ModulePin, repeated: true},
+    { no: 1, name: "local_module_resolve_results", kind: "message", T: LocalModuleResolveResult, repeated: true },
+    { no: 2, name: "dependencies", kind: "message", T: ModulePin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLocalModulePinsResponse {

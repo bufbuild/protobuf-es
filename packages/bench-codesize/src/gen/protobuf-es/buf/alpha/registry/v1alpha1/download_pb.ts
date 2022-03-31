@@ -47,9 +47,9 @@ export class DownloadRequest extends Message<DownloadRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DownloadRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DownloadRequest {
@@ -86,7 +86,7 @@ export class DownloadResponse extends Message<DownloadResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DownloadResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "module", kind: "message", T: Module},
+    { no: 1, name: "module", kind: "message", T: Module },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DownloadResponse {

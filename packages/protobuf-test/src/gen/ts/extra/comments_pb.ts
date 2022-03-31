@@ -46,7 +46,7 @@ export enum EnumWithComments {
 }
 // Retrieve enum metadata with: proto3.getEnumType(EnumWithComments)
 proto3.util.setEnumType(EnumWithComments, "spec.EnumWithComments", [
-  {no: 0, name: "VALUE"},
+  { no: 0, name: "VALUE" },
 ]);
 
 /**
@@ -68,8 +68,8 @@ export enum DeprecatedEnumWithComment {
 }
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnumWithComment)
 proto3.util.setEnumType(DeprecatedEnumWithComment, "spec.DeprecatedEnumWithComment", [
-  {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A"},
-  {no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B"},
+  { no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A" },
+  { no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B" },
 ]);
 
 /**
@@ -89,8 +89,8 @@ export enum DeprecatedEnumNoComment {
 }
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnumNoComment)
 proto3.util.setEnumType(DeprecatedEnumNoComment, "spec.DeprecatedEnumNoComment", [
-  {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A"},
-  {no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B"},
+  { no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A" },
+  { no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B" },
 ]);
 
 /**
@@ -158,11 +158,11 @@ export class MessageWithComments extends Message<MessageWithComments> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.MessageWithComments";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "result"},
-    {no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 4, name: "this_field_has_an_empty_comment", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "this_field_is_deprecated", jsonName: "sdf", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "result" },
+    { no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 4, name: "this_field_has_an_empty_comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "this_field_is_deprecated", jsonName: "sdf", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageWithComments {
@@ -277,12 +277,12 @@ export class GoogleCommentExample extends Message<GoogleCommentExample> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.GoogleCommentExample";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "bar", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "baz", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "qux", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
-    {no: 5, name: "corge", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "bar", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "baz", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "qux", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 5, name: "corge", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GoogleCommentExample {

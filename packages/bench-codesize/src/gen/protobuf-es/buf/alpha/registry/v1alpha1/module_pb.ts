@@ -52,9 +52,9 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.LocalModuleReference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LocalModuleReference {
@@ -120,12 +120,12 @@ export class LocalModulePin extends Message<LocalModulePin> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.LocalModulePin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "create_time", kind: "message", T: Timestamp},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "create_time", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LocalModulePin {

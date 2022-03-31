@@ -60,8 +60,8 @@ export enum MethodOpt1 {
 }
 // Retrieve enum metadata with: proto2.getEnumType(MethodOpt1)
 proto2.util.setEnumType(MethodOpt1, "protobuf_unittest.MethodOpt1", [
-  {no: 1, name: "METHODOPT1_VAL1"},
-  {no: 2, name: "METHODOPT1_VAL2"},
+  { no: 1, name: "METHODOPT1_VAL1" },
+  { no: 2, name: "METHODOPT1_VAL2" },
 ]);
 
 /**
@@ -75,7 +75,7 @@ export enum AggregateEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(AggregateEnum)
 proto2.util.setEnumType(AggregateEnum, "protobuf_unittest.AggregateEnum", [
-  {no: 1, name: "VALUE"},
+  { no: 1, name: "VALUE" },
 ]);
 
 /**
@@ -114,9 +114,9 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageWithCustomOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "field1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "oneof_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "AnOneof"},
-    {no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
+    { no: 1, name: "field1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "oneof_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "AnOneof" },
+    { no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithCustomOptions {
@@ -152,8 +152,8 @@ export enum TestMessageWithCustomOptions_AnEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(TestMessageWithCustomOptions_AnEnum)
 proto2.util.setEnumType(TestMessageWithCustomOptions_AnEnum, "protobuf_unittest.TestMessageWithCustomOptions.AnEnum", [
-  {no: 1, name: "ANENUM_VAL1"},
-  {no: 2, name: "ANENUM_VAL2"},
+  { no: 1, name: "ANENUM_VAL1" },
+  { no: 2, name: "ANENUM_VAL2" },
 ]);
 
 /**
@@ -330,8 +330,8 @@ export enum DummyMessageContainingEnum_TestEnumType {
 }
 // Retrieve enum metadata with: proto2.getEnumType(DummyMessageContainingEnum_TestEnumType)
 proto2.util.setEnumType(DummyMessageContainingEnum_TestEnumType, "protobuf_unittest.DummyMessageContainingEnum.TestEnumType", [
-  {no: 22, name: "TEST_OPTION_ENUM_TYPE1"},
-  {no: -23, name: "TEST_OPTION_ENUM_TYPE2"},
+  { no: 22, name: "TEST_OPTION_ENUM_TYPE1" },
+  { no: -23, name: "TEST_OPTION_ENUM_TYPE2" },
 ]);
 
 /**
@@ -552,10 +552,10 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "foo2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "foo3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
+    { no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "foo2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "foo3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType1 {
@@ -607,10 +607,10 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "bar", kind: "message", T: ComplexOptionType1, opt: true},
-    {no: 2, name: "baz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "fred", kind: "message", T: ComplexOptionType2_ComplexOptionType4, opt: true},
-    {no: 4, name: "barney", kind: "message", T: ComplexOptionType2_ComplexOptionType4, repeated: true},
+    { no: 1, name: "bar", kind: "message", T: ComplexOptionType1, opt: true },
+    { no: 2, name: "baz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "fred", kind: "message", T: ComplexOptionType2_ComplexOptionType4, opt: true },
+    { no: 4, name: "barney", kind: "message", T: ComplexOptionType2_ComplexOptionType4, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2 {
@@ -647,7 +647,7 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType2.ComplexOptionType4";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "waldo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "waldo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2_ComplexOptionType4 {
@@ -689,8 +689,8 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "qux", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true},
+    { no: 1, name: "qux", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3 {
@@ -727,7 +727,7 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType3.ComplexOptionType5";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3_ComplexOptionType5 {
@@ -764,7 +764,7 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOpt6";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOpt6 {
@@ -865,7 +865,7 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.AggregateMessageSetElement";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSetElement {
@@ -937,12 +937,12 @@ export class Aggregate extends Message<Aggregate> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.Aggregate";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "sub", kind: "message", T: Aggregate, opt: true},
-    {no: 4, name: "file", kind: "message", T: FileOptions, opt: true},
-    {no: 5, name: "mset", kind: "message", T: AggregateMessageSet, opt: true},
-    {no: 6, name: "any", kind: "message", T: Any, opt: true},
+    { no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "sub", kind: "message", T: Aggregate, opt: true },
+    { no: 4, name: "file", kind: "message", T: FileOptions, opt: true },
+    { no: 5, name: "mset", kind: "message", T: AggregateMessageSet, opt: true },
+    { no: 6, name: "any", kind: "message", T: Any, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Aggregate {
@@ -979,7 +979,7 @@ export class AggregateMessage extends Message<AggregateMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.AggregateMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "fieldname", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "fieldname", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessage {
@@ -1043,7 +1043,7 @@ export enum NestedOptionType_NestedEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(NestedOptionType_NestedEnum)
 proto2.util.setEnumType(NestedOptionType_NestedEnum, "protobuf_unittest.NestedOptionType.NestedEnum", [
-  {no: 1, name: "NESTED_ENUM_VALUE"},
+  { no: 1, name: "NESTED_ENUM_VALUE" },
 ]);
 
 /**
@@ -1063,7 +1063,7 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.NestedOptionType.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "nested_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "nested_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedOptionType_NestedMessage {
@@ -1103,7 +1103,7 @@ export class OldOptionType extends Message<OldOptionType> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.OldOptionType";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum)},
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OldOptionType {
@@ -1134,7 +1134,7 @@ export enum OldOptionType_TestEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(OldOptionType_TestEnum)
 proto2.util.setEnumType(OldOptionType_TestEnum, "protobuf_unittest.OldOptionType.TestEnum", [
-  {no: 0, name: "OLD_VALUE"},
+  { no: 0, name: "OLD_VALUE" },
 ]);
 
 /**
@@ -1156,7 +1156,7 @@ export class NewOptionType extends Message<NewOptionType> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.NewOptionType";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum)},
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NewOptionType {
@@ -1192,8 +1192,8 @@ export enum NewOptionType_TestEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(NewOptionType_TestEnum)
 proto2.util.setEnumType(NewOptionType_TestEnum, "protobuf_unittest.NewOptionType.TestEnum", [
-  {no: 0, name: "OLD_VALUE"},
-  {no: 1, name: "NEW_VALUE"},
+  { no: 0, name: "OLD_VALUE" },
+  { no: 1, name: "NEW_VALUE" },
 ]);
 
 /**

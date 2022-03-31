@@ -68,11 +68,11 @@ export class RepositoryTag extends Message<RepositoryTag> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryTag";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositoryTag {
@@ -125,9 +125,9 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryTagRequest {
@@ -164,7 +164,7 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_tag", kind: "message", T: RepositoryTag},
+    { no: 1, name: "repository_tag", kind: "message", T: RepositoryTag },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryTagResponse {
@@ -220,10 +220,10 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTagsRequest {
@@ -267,8 +267,8 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_tags", kind: "message", T: RepositoryTag, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_tags", kind: "message", T: RepositoryTag, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTagsResponse {

@@ -68,11 +68,11 @@ export enum WireFormat {
 }
 // Retrieve enum metadata with: proto3.getEnumType(WireFormat)
 proto3.util.setEnumType(WireFormat, "conformance.WireFormat", [
-  {no: 0, name: "UNSPECIFIED"},
-  {no: 1, name: "PROTOBUF"},
-  {no: 2, name: "JSON"},
-  {no: 3, name: "JSPB"},
-  {no: 4, name: "TEXT_FORMAT"},
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "PROTOBUF" },
+  { no: 2, name: "JSON" },
+  { no: 3, name: "JSPB" },
+  { no: 4, name: "TEXT_FORMAT" },
 ]);
 
 /**
@@ -126,12 +126,12 @@ export enum TestCategory {
 }
 // Retrieve enum metadata with: proto3.getEnumType(TestCategory)
 proto3.util.setEnumType(TestCategory, "conformance.TestCategory", [
-  {no: 0, name: "UNSPECIFIED_TEST"},
-  {no: 1, name: "BINARY_TEST"},
-  {no: 2, name: "JSON_TEST"},
-  {no: 3, name: "JSON_IGNORE_UNKNOWN_PARSING_TEST"},
-  {no: 4, name: "JSPB_TEST"},
-  {no: 5, name: "TEXT_FORMAT_TEST"},
+  { no: 0, name: "UNSPECIFIED_TEST" },
+  { no: 1, name: "BINARY_TEST" },
+  { no: 2, name: "JSON_TEST" },
+  { no: 3, name: "JSON_IGNORE_UNKNOWN_PARSING_TEST" },
+  { no: 4, name: "JSPB_TEST" },
+  { no: 5, name: "TEXT_FORMAT_TEST" },
 ]);
 
 /**
@@ -155,7 +155,7 @@ export class FailureSet extends Message<FailureSet> {
   static readonly runtime = proto3;
   static readonly typeName = "conformance.FailureSet";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "failure", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "failure", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FailureSet {
@@ -272,15 +272,15 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "conformance.ConformanceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "payload"},
-    {no: 2, name: "json_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload"},
-    {no: 7, name: "jspb_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload"},
-    {no: 8, name: "text_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload"},
-    {no: 3, name: "requested_output_format", kind: "enum", T: proto3.getEnumType(WireFormat)},
-    {no: 4, name: "message_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "test_category", kind: "enum", T: proto3.getEnumType(TestCategory)},
-    {no: 6, name: "jspb_encoding_options", kind: "message", T: JspbEncodingConfig},
-    {no: 9, name: "print_unknown_fields", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "payload" },
+    { no: 2, name: "json_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload" },
+    { no: 7, name: "jspb_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload" },
+    { no: 8, name: "text_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "payload" },
+    { no: 3, name: "requested_output_format", kind: "enum", T: proto3.getEnumType(WireFormat) },
+    { no: 4, name: "message_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "test_category", kind: "enum", T: proto3.getEnumType(TestCategory) },
+    { no: 6, name: "jspb_encoding_options", kind: "message", T: JspbEncodingConfig },
+    { no: 9, name: "print_unknown_fields", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConformanceRequest {
@@ -397,14 +397,14 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "conformance.ConformanceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "parse_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 6, name: "serialize_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 2, name: "runtime_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 3, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "result"},
-    {no: 4, name: "json_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 5, name: "skipped", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 7, name: "jspb_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-    {no: 8, name: "text_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
+    { no: 1, name: "parse_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 6, name: "serialize_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 2, name: "runtime_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 3, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "result" },
+    { no: 4, name: "json_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 5, name: "skipped", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 7, name: "jspb_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 8, name: "text_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConformanceResponse {
@@ -445,7 +445,7 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
   static readonly runtime = proto3;
   static readonly typeName = "conformance.JspbEncodingConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "use_jspb_array_any_format", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "use_jspb_array_any_format", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JspbEncodingConfig {

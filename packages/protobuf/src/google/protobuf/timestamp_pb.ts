@@ -193,8 +193,8 @@ export class Timestamp extends Message<Timestamp> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Timestamp";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static now(): Timestamp {

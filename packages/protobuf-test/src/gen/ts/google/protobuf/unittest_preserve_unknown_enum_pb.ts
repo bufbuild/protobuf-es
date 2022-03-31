@@ -56,9 +56,9 @@ export enum MyEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(MyEnum)
 proto3.util.setEnumType(MyEnum, "proto3_preserve_unknown_enum_unittest.MyEnum", [
-  {no: 0, name: "FOO"},
-  {no: 1, name: "BAR"},
-  {no: 2, name: "BAZ"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
 ]);
 
 /**
@@ -87,10 +87,10 @@ export enum MyEnumPlusExtra {
 }
 // Retrieve enum metadata with: proto3.getEnumType(MyEnumPlusExtra)
 proto3.util.setEnumType(MyEnumPlusExtra, "proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra", [
-  {no: 0, name: "E_FOO"},
-  {no: 1, name: "E_BAR"},
-  {no: 2, name: "E_BAZ"},
-  {no: 3, name: "E_EXTRA"},
+  { no: 0, name: "E_FOO" },
+  { no: 1, name: "E_BAR" },
+  { no: 2, name: "E_BAZ" },
+  { no: 3, name: "E_EXTRA" },
 ]);
 
 /**
@@ -144,12 +144,12 @@ export class MyMessage extends Message<MyMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum)},
-    {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-    {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage {
@@ -218,12 +218,12 @@ export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   static readonly runtime = proto3;
   static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra)},
-    {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-    {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessagePlusExtra {

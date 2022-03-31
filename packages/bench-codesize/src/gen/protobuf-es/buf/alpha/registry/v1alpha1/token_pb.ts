@@ -51,10 +51,10 @@ export class Token extends Message<Token> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Token";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 3, name: "expire_time", kind: "message", T: Timestamp},
-    {no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 3, name: "expire_time", kind: "message", T: Timestamp },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Token {
@@ -99,8 +99,8 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "expire_time", kind: "message", T: Timestamp},
+    { no: 1, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "expire_time", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTokenRequest {
@@ -139,7 +139,7 @@ export class CreateTokenResponse extends Message<CreateTokenResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTokenResponse {
@@ -176,7 +176,7 @@ export class GetTokenRequest extends Message<GetTokenRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "token_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "token_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTokenRequest {
@@ -213,7 +213,7 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "token", kind: "message", T: Token},
+    { no: 1, name: "token", kind: "message", T: Token },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTokenResponse {
@@ -262,9 +262,9 @@ export class ListTokensRequest extends Message<ListTokensRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTokensRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTokensRequest {
@@ -308,8 +308,8 @@ export class ListTokensResponse extends Message<ListTokensResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTokensResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "tokens", kind: "message", T: Token, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "tokens", kind: "message", T: Token, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTokensResponse {
@@ -346,7 +346,7 @@ export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeleteTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "token_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "token_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteTokenRequest {

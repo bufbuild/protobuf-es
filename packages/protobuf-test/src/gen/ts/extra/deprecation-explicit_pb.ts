@@ -38,8 +38,8 @@ export enum DeprecatedEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnum)
 proto3.util.setEnumType(DeprecatedEnum, "spec.DeprecatedEnum", [
-  {no: 0, name: "DEPRECATED_ENUM_A"},
-  {no: 1, name: "DEPRECATED_ENUM_B"},
+  { no: 0, name: "DEPRECATED_ENUM_A" },
+  { no: 1, name: "DEPRECATED_ENUM_B" },
 ]);
 
 /**
@@ -61,8 +61,8 @@ export enum DeprecatedValueEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedValueEnum)
 proto3.util.setEnumType(DeprecatedValueEnum, "spec.DeprecatedValueEnum", [
-  {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
-  {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE"},
+  { no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED" },
+  { no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE" },
 ]);
 
 /**
@@ -85,7 +85,7 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.DeprecatedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedMessage {
@@ -134,8 +134,8 @@ export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.DeprecatedFieldMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedFieldMessage {

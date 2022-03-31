@@ -68,7 +68,7 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
+    { no: 1, name: "user", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCurrentUserResponse {
@@ -141,7 +141,7 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetCurrentUserSubjectResponse {

@@ -76,10 +76,10 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltIn)
 proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropertyNames.EnumBuiltIn", [
-  {no: 0, name: "constructor"},
-  {no: 1, name: "toString"},
-  {no: 2, name: "to_JSON"},
-  {no: 3, name: "value_of"},
+  { no: 0, name: "constructor" },
+  { no: 1, name: "toString" },
+  { no: 2, name: "to_JSON" },
+  { no: 3, name: "value_of" },
 ]);
 
 /**
@@ -133,15 +133,15 @@ export enum ReservedPropertyNames_EnumRuntime {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumRuntime)
 proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropertyNames.EnumRuntime", [
-  {no: 0, name: "to_json"},
-  {no: 6, name: "type"},
-  {no: 7, name: "clone"},
-  {no: 8, name: "equals"},
-  {no: 9, name: "from_binary"},
-  {no: 10, name: "from_json"},
-  {no: 11, name: "from_json_string"},
-  {no: 12, name: "to_binary"},
-  {no: 14, name: "to_json_string"},
+  { no: 0, name: "to_json" },
+  { no: 6, name: "type" },
+  { no: 7, name: "clone" },
+  { no: 8, name: "equals" },
+  { no: 9, name: "from_binary" },
+  { no: 10, name: "from_json" },
+  { no: 11, name: "from_json_string" },
+  { no: 12, name: "to_binary" },
+  { no: 14, name: "to_json_string" },
 ]);
 
 /**
@@ -184,10 +184,10 @@ export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNam
   static readonly runtime = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.BuiltIn";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReservedPropertyNames_BuiltIn {
@@ -282,15 +282,15 @@ export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNam
   static readonly runtime = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.Runtime";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReservedPropertyNames_Runtime {
@@ -351,10 +351,10 @@ export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropert
   static readonly runtime = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.OneofBultIn";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 2, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 3, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 4, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
+    { no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 2, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 3, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 4, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReservedPropertyNames_OneofBultIn {
@@ -445,15 +445,15 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
   static readonly runtime = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.OneofRuntime";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
+    { no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReservedPropertyNames_OneofRuntime {
@@ -796,8 +796,8 @@ export class Error extends Message$1<Error> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.Error";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Error {
@@ -1362,12 +1362,12 @@ export class NoClashFields extends Message$1<NoClashFields> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.NoClashFields";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashFields {
@@ -1452,12 +1452,12 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.NoClashOneof";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
+    { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashOneof {
@@ -1499,8 +1499,8 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.NoClashOneofADT";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashOneofADT {
@@ -1601,11 +1601,11 @@ export enum NoClashEnumWrap_X {
 }
 // Retrieve enum metadata with: proto3.getEnumType(NoClashEnumWrap_X)
 proto3.util.setEnumType(NoClashEnumWrap_X, "spec.NoClashEnumWrap.X", [
-  {no: 0, name: "instanceof"},
-  {no: 1, name: "switch"},
-  {no: 3, name: "case"},
-  {no: 4, name: "function"},
-  {no: 5, name: "interface"},
-  {no: 6, name: "return"},
+  { no: 0, name: "instanceof" },
+  { no: 1, name: "switch" },
+  { no: 3, name: "case" },
+  { no: 4, name: "function" },
+  { no: 5, name: "interface" },
+  { no: 6, name: "return" },
 ]);
 

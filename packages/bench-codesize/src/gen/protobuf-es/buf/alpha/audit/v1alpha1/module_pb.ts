@@ -50,11 +50,11 @@ export enum BufAlphaRegistryV1Alpha1ResolvedReferenceType {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_COMMIT"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_BRANCH"},
-  {no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TAG"},
-  {no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TRACK"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_COMMIT" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_BRANCH" },
+  { no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TAG" },
+  { no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TRACK" },
 ]);
 
 /**
@@ -99,12 +99,12 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModulePin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "create_time", kind: "message", T: Timestamp},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "create_time", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1LocalModulePin {
@@ -151,9 +151,9 @@ export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlp
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1LocalModuleReference {
@@ -200,9 +200,9 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleResolveResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "reference", kind: "message", T: BufAlphaRegistryV1Alpha1LocalModuleReference},
-    {no: 2, name: "pin", kind: "message", T: BufAlphaRegistryV1Alpha1LocalModulePin},
-    {no: 3, name: "resolved_reference_type", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType)},
+    { no: 1, name: "reference", kind: "message", T: BufAlphaRegistryV1Alpha1LocalModuleReference },
+    { no: 2, name: "pin", kind: "message", T: BufAlphaRegistryV1Alpha1LocalModulePin },
+    { no: 3, name: "resolved_reference_type", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1LocalModuleResolveResult {

@@ -54,7 +54,7 @@ export class PublicImportMessage extends Message<PublicImportMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest_import.PublicImportMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessage {

@@ -55,10 +55,10 @@ export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetJSONSchemaRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "type_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "type_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetJSONSchemaRequest {
@@ -100,7 +100,7 @@ export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetJSONSchemaResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "json_schema", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "json_schema", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetJSONSchemaResponse {

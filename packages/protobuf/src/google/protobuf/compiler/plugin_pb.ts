@@ -73,10 +73,10 @@ export class Version extends Message<Version> {
   static readonly runtime = proto2;
   static readonly typeName = "google.protobuf.compiler.Version";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "major", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "minor", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "patch", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 4, name: "suffix", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "major", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "minor", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "patch", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "suffix", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Version {
@@ -153,10 +153,10 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
   static readonly runtime = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorRequest";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "file_to_generate", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 2, name: "parameter", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 15, name: "proto_file", kind: "message", T: FileDescriptorProto, repeated: true},
-    {no: 3, name: "compiler_version", kind: "message", T: Version, opt: true},
+    { no: 1, name: "file_to_generate", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "parameter", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "proto_file", kind: "message", T: FileDescriptorProto, repeated: true },
+    { no: 3, name: "compiler_version", kind: "message", T: Version, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CodeGeneratorRequest {
@@ -217,9 +217,9 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
   static readonly runtime = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorResponse";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "supported_features", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true},
-    {no: 15, name: "file", kind: "message", T: CodeGeneratorResponse_File, repeated: true},
+    { no: 1, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "supported_features", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
+    { no: 15, name: "file", kind: "message", T: CodeGeneratorResponse_File, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CodeGeneratorResponse {
@@ -257,8 +257,8 @@ export enum CodeGeneratorResponse_Feature {
 }
 // Retrieve enum metadata with: proto2.getEnumType(CodeGeneratorResponse_Feature)
 proto2.util.setEnumType(CodeGeneratorResponse_Feature, "google.protobuf.compiler.CodeGeneratorResponse.Feature", [
-  {no: 0, name: "FEATURE_NONE"},
-  {no: 1, name: "FEATURE_PROTO3_OPTIONAL"},
+  { no: 0, name: "FEATURE_NONE" },
+  { no: 1, name: "FEATURE_PROTO3_OPTIONAL" },
 ]);
 
 /**
@@ -351,10 +351,10 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
   static readonly runtime = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorResponse.File";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "insertion_point", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 15, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 16, name: "generated_code_info", kind: "message", T: GeneratedCodeInfo, opt: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "insertion_point", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 16, name: "generated_code_info", kind: "message", T: GeneratedCodeInfo, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CodeGeneratorResponse_File {

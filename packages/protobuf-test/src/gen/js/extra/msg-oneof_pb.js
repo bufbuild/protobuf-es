@@ -37,12 +37,12 @@ export const OneofEnum = proto3.makeEnum(
 export const OneofMessage = proto3.makeMessageType(
   "spec.OneofMessage",
   () => [
-    {no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "scalar"},
-    {no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "scalar"},
-    {no: 11, name: "foo", kind: "message", T: OneofMessageFoo, oneof: "message"},
-    {no: 12, name: "bar", kind: "message", T: OneofMessageBar, oneof: "message"},
-    {no: 13, name: "baz", kind: "message", T: OneofMessageBar, oneof: "message"},
-    {no: 21, name: "e", kind: "enum", T: proto3.getEnumType(OneofEnum), oneof: "enum"},
+    { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "scalar" },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "scalar" },
+    { no: 11, name: "foo", kind: "message", T: OneofMessageFoo, oneof: "message" },
+    { no: 12, name: "bar", kind: "message", T: OneofMessageBar, oneof: "message" },
+    { no: 13, name: "baz", kind: "message", T: OneofMessageBar, oneof: "message" },
+    { no: 21, name: "e", kind: "enum", T: proto3.getEnumType(OneofEnum), oneof: "enum" },
   ],
 );
 
@@ -52,8 +52,8 @@ export const OneofMessage = proto3.makeMessageType(
 export const OneofMessageFoo = proto3.makeMessageType(
   "spec.OneofMessageFoo",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "toggle", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "toggle", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
 );
 
@@ -63,8 +63,8 @@ export const OneofMessageFoo = proto3.makeMessageType(
 export const OneofMessageBar = proto3.makeMessageType(
   "spec.OneofMessageBar",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 

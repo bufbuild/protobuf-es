@@ -54,8 +54,8 @@ export class Owner extends Message<Owner> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Owner";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User, oneof: "owner"},
-    {no: 2, name: "organization", kind: "message", T: Organization, oneof: "owner"},
+    { no: 1, name: "user", kind: "message", T: User, oneof: "owner" },
+    { no: 2, name: "organization", kind: "message", T: Organization, oneof: "owner" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Owner {
@@ -94,7 +94,7 @@ export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetOwnerByNameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetOwnerByNameRequest {
@@ -131,7 +131,7 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetOwnerByNameResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "message", T: Owner},
+    { no: 1, name: "owner", kind: "message", T: Owner },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetOwnerByNameResponse {

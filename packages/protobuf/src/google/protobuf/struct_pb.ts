@@ -37,7 +37,7 @@ export enum NullValue {
 }
 // Retrieve enum metadata with: proto3.getEnumType(NullValue)
 proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
-  {no: 0, name: "NULL_VALUE"},
+  { no: 0, name: "NULL_VALUE" },
 ]);
 
 /**
@@ -86,7 +86,7 @@ export class Struct extends Message<Struct> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Struct";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "fields", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Value}},
+    { no: 1, name: "fields", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Value} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Struct {
@@ -221,12 +221,12 @@ export class Value extends Message<Value> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "null_value", kind: "enum", T: proto3.getEnumType(NullValue), oneof: "kind"},
-    {no: 2, name: "number_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind"},
-    {no: 3, name: "string_value", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 4, name: "bool_value", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind"},
-    {no: 5, name: "struct_value", kind: "message", T: Struct, oneof: "kind"},
-    {no: 6, name: "list_value", kind: "message", T: ListValue, oneof: "kind"},
+    { no: 1, name: "null_value", kind: "enum", T: proto3.getEnumType(NullValue), oneof: "kind" },
+    { no: 2, name: "number_value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
+    { no: 3, name: "string_value", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 4, name: "bool_value", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
+    { no: 5, name: "struct_value", kind: "message", T: Struct, oneof: "kind" },
+    { no: 6, name: "list_value", kind: "message", T: ListValue, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Value {
@@ -283,7 +283,7 @@ export class ListValue extends Message<ListValue> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.ListValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "values", kind: "message", T: Value, repeated: true},
+    { no: 1, name: "values", kind: "message", T: Value, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListValue {

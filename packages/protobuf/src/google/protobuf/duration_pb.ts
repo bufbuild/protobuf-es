@@ -154,8 +154,8 @@ export class Duration extends Message<Duration> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Duration";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "nanos", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Duration {

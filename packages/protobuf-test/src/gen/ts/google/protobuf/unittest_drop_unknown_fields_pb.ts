@@ -57,8 +57,8 @@ export class Foo extends Message<Foo> {
   static readonly runtime = proto3;
   static readonly typeName = "unittest_drop_unknown_fields.Foo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum)},
+    { no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Foo {
@@ -99,9 +99,9 @@ export enum Foo_NestedEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(Foo_NestedEnum)
 proto3.util.setEnumType(Foo_NestedEnum, "unittest_drop_unknown_fields.Foo.NestedEnum", [
-  {no: 0, name: "FOO"},
-  {no: 1, name: "BAR"},
-  {no: 2, name: "BAZ"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
 ]);
 
 /**
@@ -131,9 +131,9 @@ export class FooWithExtraFields extends Message<FooWithExtraFields> {
   static readonly runtime = proto3;
   static readonly typeName = "unittest_drop_unknown_fields.FooWithExtraFields";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum)},
-    {no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum) },
+    { no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FooWithExtraFields {
@@ -179,9 +179,9 @@ export enum FooWithExtraFields_NestedEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(FooWithExtraFields_NestedEnum)
 proto3.util.setEnumType(FooWithExtraFields_NestedEnum, "unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum", [
-  {no: 0, name: "FOO"},
-  {no: 1, name: "BAR"},
-  {no: 2, name: "BAZ"},
-  {no: 3, name: "QUX"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
+  { no: 3, name: "QUX" },
 ]);
 

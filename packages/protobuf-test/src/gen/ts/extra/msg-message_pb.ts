@@ -41,8 +41,8 @@ export class MessageFieldMessage extends Message<MessageFieldMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.MessageFieldMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage},
-    {no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true},
+    { no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage },
+    { no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage {
@@ -79,7 +79,7 @@ export class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage
   static readonly runtime = proto3;
   static readonly typeName = "spec.MessageFieldMessage.TestMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage_TestMessage {

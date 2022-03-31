@@ -34,7 +34,7 @@ export enum AnnotatedEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(AnnotatedEnum)
 proto3.util.setEnumType(AnnotatedEnum, "spec.AnnotatedEnum", [
-  {no: 0, name: "UNSPECIFIED"},
-  {no: 1, name: "FOO"},
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "FOO" },
 ]);
 

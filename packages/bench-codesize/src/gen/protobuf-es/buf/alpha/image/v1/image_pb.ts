@@ -40,7 +40,7 @@ export class Image extends Message<Image> {
   static readonly runtime = proto2;
   static readonly typeName = "buf.alpha.image.v1.Image";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "file", kind: "message", T: ImageFile, repeated: true},
+    { no: 1, name: "file", kind: "message", T: ImageFile, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Image {
@@ -153,19 +153,19 @@ export class ImageFile extends Message<ImageFile> {
   static readonly runtime = proto2;
   static readonly typeName = "buf.alpha.image.v1.ImageFile";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "dependency", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 10, name: "public_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 11, name: "weak_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 4, name: "message_type", kind: "message", T: DescriptorProto, repeated: true},
-    {no: 5, name: "enum_type", kind: "message", T: EnumDescriptorProto, repeated: true},
-    {no: 6, name: "service", kind: "message", T: ServiceDescriptorProto, repeated: true},
-    {no: 7, name: "extension", kind: "message", T: FieldDescriptorProto, repeated: true},
-    {no: 8, name: "options", kind: "message", T: FileOptions, opt: true},
-    {no: 9, name: "source_code_info", kind: "message", T: SourceCodeInfo, opt: true},
-    {no: 12, name: "syntax", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 8042, name: "buf_extension", kind: "message", T: ImageFileExtension, opt: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "dependency", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: "public_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 11, name: "weak_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 4, name: "message_type", kind: "message", T: DescriptorProto, repeated: true },
+    { no: 5, name: "enum_type", kind: "message", T: EnumDescriptorProto, repeated: true },
+    { no: 6, name: "service", kind: "message", T: ServiceDescriptorProto, repeated: true },
+    { no: 7, name: "extension", kind: "message", T: FieldDescriptorProto, repeated: true },
+    { no: 8, name: "options", kind: "message", T: FileOptions, opt: true },
+    { no: 9, name: "source_code_info", kind: "message", T: SourceCodeInfo, opt: true },
+    { no: 12, name: "syntax", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8042, name: "buf_extension", kind: "message", T: ImageFileExtension, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImageFile {
@@ -260,10 +260,10 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
   static readonly runtime = proto2;
   static readonly typeName = "buf.alpha.image.v1.ImageFileExtension";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "is_import", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
-    {no: 2, name: "module_info", kind: "message", T: ModuleInfo, opt: true},
-    {no: 3, name: "is_syntax_unspecified", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
-    {no: 4, name: "unused_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
+    { no: 1, name: "is_import", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 2, name: "module_info", kind: "message", T: ModuleInfo, opt: true },
+    { no: 3, name: "is_syntax_unspecified", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 4, name: "unused_dependency", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImageFileExtension {
@@ -316,8 +316,8 @@ export class ModuleInfo extends Message<ModuleInfo> {
   static readonly runtime = proto2;
   static readonly typeName = "buf.alpha.image.v1.ModuleInfo";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "message", T: ModuleName, opt: true},
-    {no: 2, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "name", kind: "message", T: ModuleName, opt: true },
+    { no: 2, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleInfo {
@@ -368,9 +368,9 @@ export class ModuleName extends Message<ModuleName> {
   static readonly runtime = proto2;
   static readonly typeName = "buf.alpha.image.v1.ModuleName";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleName {

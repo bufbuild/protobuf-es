@@ -52,7 +52,7 @@ export class NestedMessage extends Message<NestedMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "proto2_arena_unittest.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedMessage {
@@ -89,7 +89,7 @@ export class ArenaMessage extends Message<ArenaMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "proto2_arena_unittest.ArenaMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
+    { no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArenaMessage {

@@ -63,10 +63,10 @@ export const ReservedPropertyNames_EnumRuntime = proto3.makeEnum(
 export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
   "spec.ReservedPropertyNames.BuiltIn",
   () => [
-    {no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
   {localName: "ReservedPropertyNames_BuiltIn"},
 );
@@ -77,15 +77,15 @@ export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
 export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
   "spec.ReservedPropertyNames.Runtime",
   () => [
-    {no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
   {localName: "ReservedPropertyNames_Runtime"},
 );
@@ -96,10 +96,10 @@ export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
 export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
   "spec.ReservedPropertyNames.OneofBultIn",
   () => [
-    {no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 2, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 3, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
-    {no: 4, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in"},
+    { no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 2, name: "to_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 3, name: "to_JSON", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
+    { no: 4, name: "value_of", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
   ],
   {localName: "ReservedPropertyNames_OneofBultIn"},
 );
@@ -110,15 +110,15 @@ export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
 export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
   "spec.ReservedPropertyNames.OneofRuntime",
   () => [
-    {no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
-    {no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime"},
+    { no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 6, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 7, name: "clone", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 8, name: "equals", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 9, name: "from_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 10, name: "from_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 11, name: "from_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 12, name: "to_binary", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
+    { no: 14, name: "to_json_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
   ],
   {localName: "ReservedPropertyNames_OneofRuntime"},
 );
@@ -229,8 +229,8 @@ export const PlainMessage = proto3.makeMessageType(
 export const Error = proto3.makeMessageType(
   "spec.Error",
   () => [
-    {no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -394,12 +394,12 @@ export const ClashParent_ClashChild = proto3.makeMessageType(
 export const NoClashFields = proto3.makeMessageType(
   "spec.NoClashFields",
   () => [
-    {no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -409,12 +409,12 @@ export const NoClashFields = proto3.makeMessageType(
 export const NoClashOneof = proto3.makeMessageType(
   "spec.NoClashOneof",
   () => [
-    {no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
-    {no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind"},
+    { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 2, name: "switch", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 3, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 4, name: "function", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 5, name: "interface", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 6, name: "return", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
   ],
 );
 
@@ -424,8 +424,8 @@ export const NoClashOneof = proto3.makeMessageType(
 export const NoClashOneofADT = proto3.makeMessageType(
   "spec.NoClashOneofADT",
   () => [
-    {no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 

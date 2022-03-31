@@ -65,12 +65,12 @@ export const MyEnumPlusExtra = proto3.makeEnum(
 export const MyMessage = proto3.makeMessageType(
   "proto3_preserve_unknown_enum_unittest.MyMessage",
   () => [
-    {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum)},
-    {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-    {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
   ],
 );
 
@@ -80,12 +80,12 @@ export const MyMessage = proto3.makeMessageType(
 export const MyMessagePlusExtra = proto3.makeMessageType(
   "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra",
   () => [
-    {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra)},
-    {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-    {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-    {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
   ],
 );
 

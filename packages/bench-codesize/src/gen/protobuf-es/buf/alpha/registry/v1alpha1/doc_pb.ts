@@ -48,9 +48,9 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoRequest {
@@ -89,7 +89,7 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "root", kind: "message", T: FileInfo},
+    { no: 1, name: "root", kind: "message", T: FileInfo },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoResponse {
@@ -141,9 +141,9 @@ export class FileInfo extends Message$1<FileInfo> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.FileInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "is_dir", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 3, name: "children", kind: "message", T: FileInfo, repeated: true},
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "is_dir", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "children", kind: "message", T: FileInfo, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileInfo {
@@ -199,10 +199,10 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileRequest {
@@ -243,7 +243,7 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileResponse {
@@ -292,9 +292,9 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesRequest {
@@ -338,8 +338,8 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "module_packages", kind: "message", T: ModulePackage, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "module_packages", kind: "message", T: ModulePackage, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesResponse {
@@ -383,8 +383,8 @@ export class ModulePackage extends Message$1<ModulePackage> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ModulePackage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModulePackage {
@@ -433,9 +433,9 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationRequest {
@@ -474,7 +474,7 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "module_documentation", kind: "message", T: ModuleDocumentation},
+    { no: 1, name: "module_documentation", kind: "message", T: ModuleDocumentation },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationResponse {
@@ -523,8 +523,8 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ModuleDocumentation";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleDocumentation {
@@ -580,10 +580,10 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationRequest {
@@ -622,7 +622,7 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "package_documentation", kind: "message", T: PackageDocumentation},
+    { no: 1, name: "package_documentation", kind: "message", T: PackageDocumentation },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationResponse {
@@ -701,12 +701,12 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PackageDocumentation";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "services", kind: "message", T: Service, repeated: true},
-    {no: 4, name: "enums", kind: "message", T: Enum, repeated: true},
-    {no: 5, name: "messages", kind: "message", T: Message, repeated: true},
-    {no: 6, name: "file_extensions", kind: "message", T: FileExtension, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "services", kind: "message", T: Service, repeated: true },
+    { no: 4, name: "enums", kind: "message", T: Enum, repeated: true },
+    { no: 5, name: "messages", kind: "message", T: Message, repeated: true },
+    { no: 6, name: "file_extensions", kind: "message", T: FileExtension, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PackageDocumentation {
@@ -763,10 +763,10 @@ export class Location extends Message$1<Location> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Location";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "start_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "start_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "end_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "end_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "start_line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "start_column", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "end_line", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "end_column", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Location {
@@ -847,13 +847,13 @@ export class Service extends Message$1<Service> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Service";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "location", kind: "message", T: Location},
-    {no: 7, name: "methods", kind: "message", T: Method, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "location", kind: "message", T: Location },
+    { no: 7, name: "methods", kind: "message", T: Method, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Service {
@@ -912,10 +912,10 @@ export class Method extends Message$1<Method> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Method";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "request", kind: "message", T: MethodRequestResponse},
-    {no: 4, name: "response", kind: "message", T: MethodRequestResponse},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "request", kind: "message", T: MethodRequestResponse },
+    { no: 4, name: "response", kind: "message", T: MethodRequestResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Method {
@@ -983,11 +983,11 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.MethodRequestResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "message", kind: "message", T: Message},
-    {no: 5, name: "import_module_ref", kind: "message", T: ImportModuleRef},
+    { no: 1, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "message", kind: "message", T: Message },
+    { no: 5, name: "import_module_ref", kind: "message", T: ImportModuleRef },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MethodRequestResponse {
@@ -1067,13 +1067,13 @@ export class Enum extends Message$1<Enum> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Enum";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "location", kind: "message", T: Location},
-    {no: 7, name: "values", kind: "message", T: EnumValue, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "location", kind: "message", T: Location },
+    { no: 7, name: "values", kind: "message", T: EnumValue, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Enum {
@@ -1127,9 +1127,9 @@ export class EnumValue extends Message$1<EnumValue> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.EnumValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumValue {
@@ -1191,11 +1191,11 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ImportModuleRef";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportModuleRef {
@@ -1285,15 +1285,15 @@ export class Message extends Message$1<Message> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Message";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "is_map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 7, name: "fields", kind: "message", T: MessageField, repeated: true},
-    {no: 8, name: "location", kind: "message", T: Location},
-    {no: 9, name: "message_extensions", kind: "message", T: Field, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "is_map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "fields", kind: "message", T: MessageField, repeated: true },
+    { no: 8, name: "location", kind: "message", T: Location },
+    { no: 9, name: "message_extensions", kind: "message", T: Field, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message {
@@ -1344,8 +1344,8 @@ export class MessageField extends Message$1<MessageField> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.MessageField";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "field", kind: "message", T: Field, oneof: "message_field"},
-    {no: 2, name: "oneof", kind: "message", T: Oneof, oneof: "message_field"},
+    { no: 1, name: "field", kind: "message", T: Field, oneof: "message_field" },
+    { no: 2, name: "oneof", kind: "message", T: Oneof, oneof: "message_field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageField {
@@ -1389,8 +1389,8 @@ export class Oneof extends Message$1<Oneof> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Oneof";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "fields", kind: "message", T: Field, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "fields", kind: "message", T: Field, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Oneof {
@@ -1487,15 +1487,15 @@ export class Field extends Message$1<Field> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Field";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "tag", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 7, name: "map_entry", kind: "message", T: MapEntry},
-    {no: 8, name: "import_module_ref", kind: "message", T: ImportModuleRef},
-    {no: 9, name: "extendee", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "tag", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 7, name: "map_entry", kind: "message", T: MapEntry },
+    { no: 8, name: "import_module_ref", kind: "message", T: ImportModuleRef },
+    { no: 9, name: "extendee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Field {
@@ -1558,10 +1558,10 @@ export class MapEntry extends Message$1<MapEntry> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.MapEntry";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "key_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value_nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "value_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "value_import_module_ref", kind: "message", T: ImportModuleRef},
+    { no: 1, name: "key_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value_nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "value_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "value_import_module_ref", kind: "message", T: ImportModuleRef },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MapEntry {
@@ -1631,11 +1631,11 @@ export class FileExtension extends Message$1<FileExtension> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.FileExtension";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "extension_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "location", kind: "message", T: Location},
-    {no: 5, name: "fields", kind: "message", T: Field, repeated: true},
+    { no: 1, name: "extension_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "location", kind: "message", T: Location },
+    { no: 5, name: "fields", kind: "message", T: Field, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileExtension {

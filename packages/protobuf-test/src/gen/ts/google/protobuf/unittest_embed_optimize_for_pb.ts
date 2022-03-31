@@ -67,8 +67,8 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true},
-    {no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true},
+    { no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true },
+    { no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmbedOptimizedForSize {

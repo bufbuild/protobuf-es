@@ -60,9 +60,9 @@ export enum ImportEnumLite {
 }
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumLite)
 proto2.util.setEnumType(ImportEnumLite, "protobuf_unittest_import.ImportEnumLite", [
-  {no: 7, name: "IMPORT_LITE_FOO"},
-  {no: 8, name: "IMPORT_LITE_BAR"},
-  {no: 9, name: "IMPORT_LITE_BAZ"},
+  { no: 7, name: "IMPORT_LITE_FOO" },
+  { no: 8, name: "IMPORT_LITE_BAR" },
+  { no: 9, name: "IMPORT_LITE_BAZ" },
 ]);
 
 /**
@@ -82,7 +82,7 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessageLite {

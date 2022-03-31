@@ -231,8 +231,8 @@ export class Any extends Message<Any> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Any";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static pack(message: Message): Any {

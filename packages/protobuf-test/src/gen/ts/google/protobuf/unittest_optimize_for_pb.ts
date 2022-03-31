@@ -81,10 +81,10 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 19, name: "msg", kind: "message", T: ForeignMessage, opt: true},
-    {no: 2, name: "integer_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
-    {no: 3, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
+    { no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 19, name: "msg", kind: "message", T: ForeignMessage, opt: true },
+    { no: 2, name: "integer_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
+    { no: 3, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptimizedForSize {
@@ -121,7 +121,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredOptimizedForSize {
@@ -158,7 +158,7 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestOptionalOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true},
+    { no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptionalOptimizedForSize {

@@ -78,11 +78,11 @@ export class Module extends Message<Module> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.Module";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "files", kind: "message", T: ModuleFile, repeated: true},
-    {no: 2, name: "dependencies", kind: "message", T: ModulePin, repeated: true},
-    {no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "breaking_config", kind: "message", T: Config},
-    {no: 5, name: "lint_config", kind: "message", T: Config$1},
+    { no: 1, name: "files", kind: "message", T: ModuleFile, repeated: true },
+    { no: 2, name: "dependencies", kind: "message", T: ModulePin, repeated: true },
+    { no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "breaking_config", kind: "message", T: Config },
+    { no: 5, name: "lint_config", kind: "message", T: Config$1 },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Module {
@@ -131,8 +131,8 @@ export class ModuleFile extends Message<ModuleFile> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModuleFile";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleFile {
@@ -188,10 +188,10 @@ export class ModuleReference extends Message<ModuleReference> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModuleReference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleReference {
@@ -260,13 +260,13 @@ export class ModulePin extends Message<ModulePin> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModulePin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 7, name: "create_time", kind: "message", T: Timestamp},
+    { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "create_time", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModulePin {

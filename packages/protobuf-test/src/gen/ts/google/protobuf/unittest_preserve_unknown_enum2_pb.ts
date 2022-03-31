@@ -56,9 +56,9 @@ export enum MyEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(MyEnum)
 proto2.util.setEnumType(MyEnum, "proto2_preserve_unknown_enum_unittest.MyEnum", [
-  {no: 0, name: "FOO"},
-  {no: 1, name: "BAR"},
-  {no: 2, name: "BAZ"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
 ]);
 
 /**
@@ -112,12 +112,12 @@ export class MyMessage extends Message<MyMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "proto2_preserve_unknown_enum_unittest.MyMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "e", kind: "enum", T: proto2.getEnumType(MyEnum), opt: true},
-    {no: 2, name: "repeated_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
-    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true, packed: true},
-    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
-    {no: 5, name: "oneof_e_1", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
-    {no: 6, name: "oneof_e_2", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
+    { no: 1, name: "e", kind: "enum", T: proto2.getEnumType(MyEnum), opt: true },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true, packed: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage {

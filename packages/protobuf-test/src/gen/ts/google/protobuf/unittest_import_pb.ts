@@ -67,9 +67,9 @@ export enum ImportEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnum)
 proto2.util.setEnumType(ImportEnum, "protobuf_unittest_import.ImportEnum", [
-  {no: 7, name: "IMPORT_FOO"},
-  {no: 8, name: "IMPORT_BAR"},
-  {no: 9, name: "IMPORT_BAZ"},
+  { no: 7, name: "IMPORT_FOO" },
+  { no: 8, name: "IMPORT_BAR" },
+  { no: 9, name: "IMPORT_BAZ" },
 ]);
 
 /**
@@ -95,9 +95,9 @@ export enum ImportEnumForMap {
 }
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumForMap)
 proto2.util.setEnumType(ImportEnumForMap, "protobuf_unittest_import.ImportEnumForMap", [
-  {no: 0, name: "UNKNOWN"},
-  {no: 1, name: "FOO"},
-  {no: 2, name: "BAR"},
+  { no: 0, name: "UNKNOWN" },
+  { no: 1, name: "FOO" },
+  { no: 2, name: "BAR" },
 ]);
 
 /**
@@ -117,7 +117,7 @@ export class ImportMessage extends Message<ImportMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest_import.ImportMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessage {

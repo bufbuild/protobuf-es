@@ -24,8 +24,8 @@ import {proto3} from "@bufbuild/protobuf";
 export const MessageFieldMessage = proto3.makeMessageType(
   "spec.MessageFieldMessage",
   () => [
-    {no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage},
-    {no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true},
+    { no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage },
+    { no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true },
   ],
 );
 
@@ -35,7 +35,7 @@ export const MessageFieldMessage = proto3.makeMessageType(
 export const MessageFieldMessage_TestMessage = proto3.makeMessageType(
   "spec.MessageFieldMessage.TestMessage",
   () => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
   {localName: "MessageFieldMessage_TestMessage"},
 );

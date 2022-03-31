@@ -50,7 +50,7 @@ import {proto2} from "@bufbuild/protobuf";
 export const LazyMessage = proto2.makeMessageType(
   "protobuf_unittest.lazy_imports.LazyMessage",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

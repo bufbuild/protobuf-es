@@ -41,9 +41,9 @@ export enum ServerRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ServerRole)
 proto3.util.setEnumType(ServerRole, "buf.alpha.registry.v1alpha1.ServerRole", [
-  {no: 0, name: "SERVER_ROLE_UNSPECIFIED"},
-  {no: 1, name: "SERVER_ROLE_ADMIN"},
-  {no: 2, name: "SERVER_ROLE_MEMBER"},
+  { no: 0, name: "SERVER_ROLE_UNSPECIFIED" },
+  { no: 1, name: "SERVER_ROLE_ADMIN" },
+  { no: 2, name: "SERVER_ROLE_MEMBER" },
 ]);
 
 /**
@@ -74,10 +74,10 @@ export enum OrganizationRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(OrganizationRole)
 proto3.util.setEnumType(OrganizationRole, "buf.alpha.registry.v1alpha1.OrganizationRole", [
-  {no: 0, name: "ORGANIZATION_ROLE_UNSPECIFIED"},
-  {no: 1, name: "ORGANIZATION_ROLE_OWNER"},
-  {no: 2, name: "ORGANIZATION_ROLE_ADMIN"},
-  {no: 3, name: "ORGANIZATION_ROLE_MEMBER"},
+  { no: 0, name: "ORGANIZATION_ROLE_UNSPECIFIED" },
+  { no: 1, name: "ORGANIZATION_ROLE_OWNER" },
+  { no: 2, name: "ORGANIZATION_ROLE_ADMIN" },
+  { no: 3, name: "ORGANIZATION_ROLE_MEMBER" },
 ]);
 
 /**
@@ -113,11 +113,11 @@ export enum RepositoryRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(RepositoryRole)
 proto3.util.setEnumType(RepositoryRole, "buf.alpha.registry.v1alpha1.RepositoryRole", [
-  {no: 0, name: "REPOSITORY_ROLE_UNSPECIFIED"},
-  {no: 1, name: "REPOSITORY_ROLE_OWNER"},
-  {no: 2, name: "REPOSITORY_ROLE_ADMIN"},
-  {no: 3, name: "REPOSITORY_ROLE_WRITE"},
-  {no: 4, name: "REPOSITORY_ROLE_READ"},
+  { no: 0, name: "REPOSITORY_ROLE_UNSPECIFIED" },
+  { no: 1, name: "REPOSITORY_ROLE_OWNER" },
+  { no: 2, name: "REPOSITORY_ROLE_ADMIN" },
+  { no: 3, name: "REPOSITORY_ROLE_WRITE" },
+  { no: 4, name: "REPOSITORY_ROLE_READ" },
 ]);
 
 /**
@@ -153,11 +153,11 @@ export enum TemplateRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(TemplateRole)
 proto3.util.setEnumType(TemplateRole, "buf.alpha.registry.v1alpha1.TemplateRole", [
-  {no: 0, name: "TEMPLATE_ROLE_UNSPECIFIED"},
-  {no: 1, name: "TEMPLATE_ROLE_OWNER"},
-  {no: 2, name: "TEMPLATE_ROLE_ADMIN"},
-  {no: 3, name: "TEMPLATE_ROLE_WRITE"},
-  {no: 4, name: "TEMPLATE_ROLE_READ"},
+  { no: 0, name: "TEMPLATE_ROLE_UNSPECIFIED" },
+  { no: 1, name: "TEMPLATE_ROLE_OWNER" },
+  { no: 2, name: "TEMPLATE_ROLE_ADMIN" },
+  { no: 3, name: "TEMPLATE_ROLE_WRITE" },
+  { no: 4, name: "TEMPLATE_ROLE_READ" },
 ]);
 
 /**
@@ -193,10 +193,10 @@ export enum PluginRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(PluginRole)
 proto3.util.setEnumType(PluginRole, "buf.alpha.registry.v1alpha1.PluginRole", [
-  {no: 0, name: "PLUGIN_ROLE_UNSPECIFIED"},
-  {no: 1, name: "PLUGIN_ROLE_OWNER"},
-  {no: 2, name: "PLUGIN_ROLE_ADMIN"},
-  {no: 3, name: "PLUGIN_ROLE_WRITE"},
-  {no: 4, name: "PLUGIN_ROLE_READ"},
+  { no: 0, name: "PLUGIN_ROLE_UNSPECIFIED" },
+  { no: 1, name: "PLUGIN_ROLE_OWNER" },
+  { no: 2, name: "PLUGIN_ROLE_ADMIN" },
+  { no: 3, name: "PLUGIN_ROLE_WRITE" },
+  { no: 4, name: "PLUGIN_ROLE_READ" },
 ]);
 

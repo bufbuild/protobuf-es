@@ -46,9 +46,9 @@ export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.SelfReferencingMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "self", kind: "message", T: SelfReferencingMessage},
-    {no: 2, name: "self_list", kind: "message", T: SelfReferencingMessage, repeated: true},
-    {no: 3, name: "self_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: SelfReferencingMessage}},
+    { no: 1, name: "self", kind: "message", T: SelfReferencingMessage },
+    { no: 2, name: "self_list", kind: "message", T: SelfReferencingMessage, repeated: true },
+    { no: 3, name: "self_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: SelfReferencingMessage} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SelfReferencingMessage {

@@ -40,9 +40,9 @@ export enum BufAlphaRegistryV1Alpha1Visibility {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1Visibility)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1Visibility, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1Visibility", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PUBLIC"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PRIVATE"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PUBLIC" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PRIVATE" },
 ]);
 
 /**
@@ -79,10 +79,10 @@ export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryBranch";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1RepositoryBranch {
@@ -141,11 +141,11 @@ export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegis
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTag";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "commit_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1RepositoryTag {
@@ -217,14 +217,14 @@ export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryCommit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 7, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 8, name: "tags", kind: "message", T: BufAlphaRegistryV1Alpha1RepositoryTag, repeated: true},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "tags", kind: "message", T: BufAlphaRegistryV1Alpha1RepositoryTag, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1RepositoryCommit {
@@ -273,9 +273,9 @@ export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaReg
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1RepositoryTrack {

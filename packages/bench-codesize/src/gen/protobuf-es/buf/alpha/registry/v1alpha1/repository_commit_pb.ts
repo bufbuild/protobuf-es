@@ -92,14 +92,14 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryCommit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 7, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 8, name: "tags", kind: "message", T: RepositoryTag, repeated: true},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 3, name: "digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "tags", kind: "message", T: RepositoryTag, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositoryCommit {
@@ -167,12 +167,12 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 5, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryCommitsByBranchRequest {
@@ -214,8 +214,8 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryCommitsByBranchResponse {
@@ -283,12 +283,12 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 5, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryCommitsByReferenceRequest {
@@ -330,8 +330,8 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryCommitsByReferenceResponse {
@@ -384,9 +384,9 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryCommitByReferenceRequest {
@@ -423,7 +423,7 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit},
+    { no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryCommitByReferenceResponse {
@@ -483,10 +483,10 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */},
+    { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "commit_sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryCommitBySequenceIdRequest {
@@ -523,7 +523,7 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit},
+    { no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryCommitBySequenceIdResponse {

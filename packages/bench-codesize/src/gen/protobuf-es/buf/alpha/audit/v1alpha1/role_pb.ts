@@ -39,9 +39,9 @@ export enum BufAlphaRegistryV1Alpha1ServerRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1ServerRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ServerRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ServerRole", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_ADMIN"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_MEMBER"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_ADMIN" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_MEMBER" },
 ]);
 
 /**
@@ -70,10 +70,10 @@ export enum BufAlphaRegistryV1Alpha1OrganizationRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1OrganizationRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1OrganizationRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_OWNER"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_ADMIN"},
-  {no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_MEMBER"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_OWNER" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_ADMIN" },
+  { no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_MEMBER" },
 ]);
 
 /**
@@ -107,11 +107,11 @@ export enum BufAlphaRegistryV1Alpha1RepositoryRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1RepositoryRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1RepositoryRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_OWNER"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_ADMIN"},
-  {no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_WRITE"},
-  {no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_READ"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_OWNER" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_ADMIN" },
+  { no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_WRITE" },
+  { no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_READ" },
 ]);
 
 /**
@@ -145,11 +145,11 @@ export enum BufAlphaRegistryV1Alpha1TemplateRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1TemplateRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1TemplateRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_OWNER"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_ADMIN"},
-  {no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_WRITE"},
-  {no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_READ"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_OWNER" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_ADMIN" },
+  { no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_WRITE" },
+  { no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_READ" },
 ]);
 
 /**
@@ -183,10 +183,10 @@ export enum BufAlphaRegistryV1Alpha1PluginRole {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1PluginRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1PluginRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_OWNER"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_ADMIN"},
-  {no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_WRITE"},
-  {no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_READ"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_OWNER" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_ADMIN" },
+  { no: 3, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_WRITE" },
+  { no: 4, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_READ" },
 ]);
 

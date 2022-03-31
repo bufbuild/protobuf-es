@@ -114,13 +114,13 @@ export class Api extends Message<Api> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Api";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "methods", kind: "message", T: Method, repeated: true},
-    {no: 3, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 4, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "source_context", kind: "message", T: SourceContext},
-    {no: 6, name: "mixins", kind: "message", T: Mixin, repeated: true},
-    {no: 7, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "methods", kind: "message", T: Method, repeated: true },
+    { no: 3, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 4, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "source_context", kind: "message", T: SourceContext },
+    { no: 6, name: "mixins", kind: "message", T: Mixin, repeated: true },
+    { no: 7, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Api {
@@ -203,13 +203,13 @@ export class Method extends Message<Method> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Method";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "request_type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "request_streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "response_type_url", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "response_streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 6, name: "options", kind: "message", T: Option, repeated: true},
-    {no: 7, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax)},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "request_type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "request_streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "response_type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "response_streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "options", kind: "message", T: Option, repeated: true },
+    { no: 7, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Method {
@@ -335,8 +335,8 @@ export class Mixin extends Message<Mixin> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.Mixin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Mixin {

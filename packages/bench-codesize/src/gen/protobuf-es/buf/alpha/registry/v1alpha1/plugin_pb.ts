@@ -46,9 +46,9 @@ export enum PluginVisibility {
 }
 // Retrieve enum metadata with: proto3.getEnumType(PluginVisibility)
 proto3.util.setEnumType(PluginVisibility, "buf.alpha.registry.v1alpha1.PluginVisibility", [
-  {no: 0, name: "PLUGIN_VISIBILITY_UNSPECIFIED"},
-  {no: 1, name: "PLUGIN_VISIBILITY_PUBLIC"},
-  {no: 2, name: "PLUGIN_VISIBILITY_PRIVATE"},
+  { no: 0, name: "PLUGIN_VISIBILITY_UNSPECIFIED" },
+  { no: 1, name: "PLUGIN_VISIBILITY_PUBLIC" },
+  { no: 2, name: "PLUGIN_VISIBILITY_PRIVATE" },
 ]);
 
 /**
@@ -108,12 +108,12 @@ export class Plugin extends Message<Plugin> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Plugin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
-    {no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 6, name: "deprecation_message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
+    { no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "deprecation_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Plugin {
@@ -193,12 +193,12 @@ export class PluginVersion extends Message<PluginVersion> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginVersion";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "container_image_digest", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "container_image_digest", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginVersion {
@@ -287,13 +287,13 @@ export class Template extends Message<Template> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Template";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "plugin_configs", kind: "message", T: PluginConfig, repeated: true},
-    {no: 5, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
-    {no: 8, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 9, name: "deprecation_message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "plugin_configs", kind: "message", T: PluginConfig, repeated: true },
+    { no: 5, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
+    { no: 8, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "deprecation_message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Template {
@@ -356,10 +356,10 @@ export class PluginConfig extends Message<PluginConfig> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 5, name: "inaccessible", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "inaccessible", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginConfig {
@@ -432,11 +432,11 @@ export class TemplateVersion extends Message<TemplateVersion> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TemplateVersion";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "plugin_versions", kind: "message", T: PluginVersionMapping, repeated: true},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "plugin_versions", kind: "message", T: PluginVersionMapping, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TemplateVersion {
@@ -498,10 +498,10 @@ export class PluginVersionMapping extends Message<PluginVersionMapping> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginVersionMapping";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "inaccessible", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "inaccessible", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginVersionMapping {
@@ -560,10 +560,10 @@ export class PluginContributor extends Message<PluginContributor> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginContributor";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
-    {no: 2, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "explicit_role", kind: "enum", T: proto3.getEnumType(PluginRole)},
-    {no: 4, name: "implicit_role", kind: "enum", T: proto3.getEnumType(PluginRole)},
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "explicit_role", kind: "enum", T: proto3.getEnumType(PluginRole) },
+    { no: 4, name: "implicit_role", kind: "enum", T: proto3.getEnumType(PluginRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginContributor {
@@ -622,10 +622,10 @@ export class TemplateContributor extends Message<TemplateContributor> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TemplateContributor";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
-    {no: 2, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "explicit_role", kind: "enum", T: proto3.getEnumType(TemplateRole)},
-    {no: 4, name: "implicit_role", kind: "enum", T: proto3.getEnumType(TemplateRole)},
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "explicit_role", kind: "enum", T: proto3.getEnumType(TemplateRole) },
+    { no: 4, name: "implicit_role", kind: "enum", T: proto3.getEnumType(TemplateRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TemplateContributor {
@@ -674,9 +674,9 @@ export class ListPluginsRequest extends Message<ListPluginsRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginsRequest {
@@ -720,8 +720,8 @@ export class ListPluginsResponse extends Message<ListPluginsResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginsResponse {
@@ -777,10 +777,10 @@ export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUserPluginsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserPluginsRequest {
@@ -824,8 +824,8 @@ export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUserPluginsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserPluginsResponse {
@@ -881,10 +881,10 @@ export class ListOrganizationPluginsRequest extends Message<ListOrganizationPlug
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationPluginsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "organization", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "organization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationPluginsRequest {
@@ -928,8 +928,8 @@ export class ListOrganizationPluginsResponse extends Message<ListOrganizationPlu
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationPluginsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugins", kind: "message", T: Plugin, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationPluginsResponse {
@@ -982,9 +982,9 @@ export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPluginVersionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPluginVersionRequest {
@@ -1021,7 +1021,7 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPluginVersionResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_version", kind: "message", T: PluginVersion},
+    { no: 1, name: "plugin_version", kind: "message", T: PluginVersion },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPluginVersionResponse {
@@ -1086,11 +1086,11 @@ export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginVersionsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginVersionsRequest {
@@ -1134,8 +1134,8 @@ export class ListPluginVersionsResponse extends Message<ListPluginVersionsRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginVersionsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_versions", kind: "message", T: PluginVersion, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugin_versions", kind: "message", T: PluginVersion, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginVersionsResponse {
@@ -1192,9 +1192,9 @@ export class CreatePluginRequest extends Message<CreatePluginRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreatePluginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreatePluginRequest {
@@ -1233,7 +1233,7 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreatePluginResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin", kind: "message", T: Plugin},
+    { no: 1, name: "plugin", kind: "message", T: Plugin },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreatePluginResponse {
@@ -1279,8 +1279,8 @@ export class GetPluginRequest extends Message<GetPluginRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPluginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPluginRequest {
@@ -1317,7 +1317,7 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetPluginResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin", kind: "message", T: Plugin},
+    { no: 1, name: "plugin", kind: "message", T: Plugin },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPluginResponse {
@@ -1363,8 +1363,8 @@ export class DeletePluginRequest extends Message<DeletePluginRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeletePluginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeletePluginRequest {
@@ -1449,9 +1449,9 @@ export class SetPluginContributorRequest extends Message<SetPluginContributorReq
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetPluginContributorRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "plugin_role", kind: "enum", T: proto3.getEnumType(PluginRole)},
+    { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "plugin_role", kind: "enum", T: proto3.getEnumType(PluginRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetPluginContributorRequest {
@@ -1536,10 +1536,10 @@ export class ListPluginContributorsRequest extends Message<ListPluginContributor
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginContributorsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginContributorsRequest {
@@ -1583,8 +1583,8 @@ export class ListPluginContributorsResponse extends Message<ListPluginContributo
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListPluginContributorsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "users", kind: "message", T: PluginContributor, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "users", kind: "message", T: PluginContributor, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPluginContributorsResponse {
@@ -1637,9 +1637,9 @@ export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeprecatePluginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatePluginRequest {
@@ -1716,8 +1716,8 @@ export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.UndeprecatePluginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UndeprecatePluginRequest {
@@ -1794,8 +1794,8 @@ export class GetTemplateRequest extends Message<GetTemplateRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTemplateRequest {
@@ -1832,7 +1832,7 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTemplateResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template", kind: "message", T: Template},
+    { no: 1, name: "template", kind: "message", T: Template },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTemplateResponse {
@@ -1881,9 +1881,9 @@ export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplatesRequest {
@@ -1927,8 +1927,8 @@ export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: Template, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "templates", kind: "message", T: Template, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplatesResponse {
@@ -1984,10 +1984,10 @@ export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUserTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserTemplatesRequest {
@@ -2031,8 +2031,8 @@ export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUserTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: Template, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "templates", kind: "message", T: Template, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserTemplatesResponse {
@@ -2085,9 +2085,9 @@ export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTemplateVersionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTemplateVersionRequest {
@@ -2124,7 +2124,7 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetTemplateVersionResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_version", kind: "message", T: TemplateVersion},
+    { no: 1, name: "template_version", kind: "message", T: TemplateVersion },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTemplateVersionResponse {
@@ -2180,10 +2180,10 @@ export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "organization", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "organization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationTemplatesRequest {
@@ -2227,8 +2227,8 @@ export class ListOrganizationTemplatesResponse extends Message<ListOrganizationT
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: Template, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "templates", kind: "message", T: Template, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationTemplatesResponse {
@@ -2293,11 +2293,11 @@ export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsReq
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplateVersionsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplateVersionsRequest {
@@ -2341,8 +2341,8 @@ export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsRe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplateVersionsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_versions", kind: "message", T: TemplateVersion, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "template_versions", kind: "message", T: TemplateVersion, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplateVersionsResponse {
@@ -2406,10 +2406,10 @@ export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
-    {no: 4, name: "plugin_configs", kind: "message", T: PluginConfig, repeated: true},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
+    { no: 4, name: "plugin_configs", kind: "message", T: PluginConfig, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTemplateRequest {
@@ -2448,7 +2448,7 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTemplateResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template", kind: "message", T: Template},
+    { no: 1, name: "template", kind: "message", T: Template },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTemplateResponse {
@@ -2494,8 +2494,8 @@ export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeleteTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteTemplateRequest {
@@ -2588,10 +2588,10 @@ export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionR
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTemplateVersionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "plugin_versions", kind: "message", T: PluginVersionMapping, repeated: true},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "plugin_versions", kind: "message", T: PluginVersionMapping, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTemplateVersionRequest {
@@ -2630,7 +2630,7 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateTemplateVersionResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_version", kind: "message", T: TemplateVersion},
+    { no: 1, name: "template_version", kind: "message", T: TemplateVersion },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateTemplateVersionResponse {
@@ -2684,9 +2684,9 @@ export class SetTemplateContributorRequest extends Message<SetTemplateContributo
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetTemplateContributorRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "template_role", kind: "enum", T: proto3.getEnumType(TemplateRole)},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "template_role", kind: "enum", T: proto3.getEnumType(TemplateRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetTemplateContributorRequest {
@@ -2771,10 +2771,10 @@ export class ListTemplateContributorsRequest extends Message<ListTemplateContrib
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplateContributorsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplateContributorsRequest {
@@ -2818,8 +2818,8 @@ export class ListTemplateContributorsResponse extends Message<ListTemplateContri
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListTemplateContributorsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "users", kind: "message", T: TemplateContributor, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "users", kind: "message", T: TemplateContributor, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListTemplateContributorsResponse {
@@ -2872,9 +2872,9 @@ export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeprecateTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecateTemplateRequest {
@@ -2951,8 +2951,8 @@ export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateReque
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.UndeprecateTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UndeprecateTemplateRequest {

@@ -213,81 +213,81 @@ export const VeryLargeEnum = proto2.makeEnum(
 export const TestAllTypes = proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes",
   () => [
-    {no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
-    {no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true},
-    {no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true},
-    {no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true},
-    {no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true},
-    {no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true},
-    {no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true},
-    {no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true},
-    {no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true},
-    {no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true},
-    {no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true},
-    {no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
-    {no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
-    {no: 16, name: "optionalgroup", kind: "message", T: TestAllTypes_OptionalGroup, opt: true},
-    {no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true},
-    {no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage, opt: true},
-    {no: 20, name: "optional_import_message", kind: "message", T: ImportMessage, opt: true},
-    {no: 21, name: "optional_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), opt: true},
-    {no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true},
-    {no: 23, name: "optional_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), opt: true},
-    {no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessage, opt: true},
-    {no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true},
-    {no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true},
-    {no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
-    {no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true},
-    {no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
-    {no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true},
-    {no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true},
-    {no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true},
-    {no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true},
-    {no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
-    {no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypes_RepeatedGroup, repeated: true},
-    {no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true},
-    {no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true},
-    {no: 50, name: "repeated_import_message", kind: "message", T: ImportMessage, repeated: true},
-    {no: 51, name: "repeated_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), repeated: true},
-    {no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true},
-    {no: 53, name: "repeated_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), repeated: true},
-    {no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true},
-    {no: 61, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 41},
-    {no: 62, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("42")},
-    {no: 63, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 43},
-    {no: 64, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("44")},
-    {no: 65, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, default: -45},
-    {no: 66, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, default: protoInt64.parse("46")},
-    {no: 67, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, default: 47},
-    {no: 68, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, default: protoInt64.uParse("48")},
-    {no: 69, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, default: 49},
-    {no: 70, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, default: protoInt64.parse("-50")},
-    {no: 71, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 51.5},
-    {no: 72, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000},
-    {no: 73, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true},
-    {no: 74, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello"},
-    {no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64, ])},
-    {no: 81, name: "default_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), opt: true, default: TestAllTypes_NestedEnum.BAR},
-    {no: 82, name: "default_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true, default: ForeignEnum.FOREIGN_BAR},
-    {no: 83, name: "default_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), opt: true, default: ImportEnum.IMPORT_BAR},
-    {no: 84, name: "default_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "abc"},
-    {no: 85, name: "default_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "123"},
-    {no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field"},
-    {no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field"},
-    {no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field"},
+    { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
+    { no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true },
+    { no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true },
+    { no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
+    { no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true },
+    { no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true },
+    { no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true },
+    { no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypes_OptionalGroup, opt: true },
+    { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
+    { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage, opt: true },
+    { no: 20, name: "optional_import_message", kind: "message", T: ImportMessage, opt: true },
+    { no: 21, name: "optional_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), opt: true },
+    { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
+    { no: 23, name: "optional_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), opt: true },
+    { no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessage, opt: true },
+    { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
+    { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true },
+    { no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true },
+    { no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true },
+    { no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true },
+    { no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypes_RepeatedGroup, repeated: true },
+    { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
+    { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true },
+    { no: 50, name: "repeated_import_message", kind: "message", T: ImportMessage, repeated: true },
+    { no: 51, name: "repeated_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), repeated: true },
+    { no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true },
+    { no: 53, name: "repeated_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), repeated: true },
+    { no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
+    { no: 61, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 41 },
+    { no: 62, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("42") },
+    { no: 63, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 43 },
+    { no: 64, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("44") },
+    { no: 65, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, default: -45 },
+    { no: 66, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, default: protoInt64.parse("46") },
+    { no: 67, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, default: 47 },
+    { no: 68, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, default: protoInt64.uParse("48") },
+    { no: 69, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, default: 49 },
+    { no: 70, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, default: protoInt64.parse("-50") },
+    { no: 71, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 51.5 },
+    { no: 72, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000 },
+    { no: 73, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
+    { no: 74, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello" },
+    { no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64, ]) },
+    { no: 81, name: "default_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypes_NestedEnum), opt: true, default: TestAllTypes_NestedEnum.BAR },
+    { no: 82, name: "default_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true, default: ForeignEnum.FOREIGN_BAR },
+    { no: 83, name: "default_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnum), opt: true, default: ImportEnum.IMPORT_BAR },
+    { no: 84, name: "default_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "abc" },
+    { no: 85, name: "default_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "123" },
+    { no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
+    { no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
+    { no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
   ],
 );
 
@@ -310,7 +310,7 @@ export const TestAllTypes_NestedEnum = proto2.makeEnum(
 export const TestAllTypes_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.NestedMessage",
   () => [
-    {no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestAllTypes_NestedMessage"},
 );
@@ -321,7 +321,7 @@ export const TestAllTypes_NestedMessage = proto2.makeMessageType(
 export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.OptionalGroup",
   () => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestAllTypes_OptionalGroup"},
 );
@@ -332,7 +332,7 @@ export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
 export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.RepeatedGroup",
   () => [
-    {no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestAllTypes_RepeatedGroup"},
 );
@@ -345,9 +345,9 @@ export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
 export const NestedTestAllTypes = proto2.makeMessageType(
   "protobuf_unittest.NestedTestAllTypes",
   () => [
-    {no: 1, name: "child", kind: "message", T: NestedTestAllTypes, opt: true},
-    {no: 2, name: "payload", kind: "message", T: TestAllTypes, opt: true},
-    {no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true},
+    { no: 1, name: "child", kind: "message", T: NestedTestAllTypes, opt: true },
+    { no: 2, name: "payload", kind: "message", T: TestAllTypes, opt: true },
+    { no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true },
   ],
 );
 
@@ -357,8 +357,8 @@ export const NestedTestAllTypes = proto2.makeMessageType(
 export const TestDeprecatedFields = proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedFields",
   () => [
-    {no: 1, name: "deprecated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "deprecated_int32_in_oneof", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_fields"},
+    { no: 1, name: "deprecated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "deprecated_int32_in_oneof", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_fields" },
   ],
 );
 
@@ -380,8 +380,8 @@ export const TestDeprecatedMessage = proto2.makeMessageType(
 export const ForeignMessage = proto2.makeMessageType(
   "protobuf_unittest.ForeignMessage",
   () => [
-    {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -407,7 +407,7 @@ export const TestAllExtensions = proto2.makeMessageType(
 export const OptionalGroup_extension = proto2.makeMessageType(
   "protobuf_unittest.OptionalGroup_extension",
   () => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -417,7 +417,7 @@ export const OptionalGroup_extension = proto2.makeMessageType(
 export const RepeatedGroup_extension = proto2.makeMessageType(
   "protobuf_unittest.RepeatedGroup_extension",
   () => [
-    {no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -427,8 +427,8 @@ export const RepeatedGroup_extension = proto2.makeMessageType(
 export const TestGroup = proto2.makeMessageType(
   "protobuf_unittest.TestGroup",
   () => [
-    {no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, opt: true},
-    {no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true},
+    { no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, opt: true },
+    { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
   ],
 );
 
@@ -438,7 +438,7 @@ export const TestGroup = proto2.makeMessageType(
 export const TestGroup_OptionalGroup = proto2.makeMessageType(
   "protobuf_unittest.TestGroup.OptionalGroup",
   () => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestGroup_OptionalGroup"},
 );
@@ -465,7 +465,7 @@ export const TestNestedExtension = proto2.makeMessageType(
 export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageType(
   "protobuf_unittest.TestNestedExtension.OptionalGroup_extension",
   () => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestNestedExtension_OptionalGroup_extension"},
 );
@@ -476,9 +476,9 @@ export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageTyp
 export const TestChildExtension = proto2.makeMessageType(
   "protobuf_unittest.TestChildExtension",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 2, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "optional_extension", kind: "message", T: TestAllExtensions, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "optional_extension", kind: "message", T: TestAllExtensions, opt: true },
   ],
 );
 
@@ -494,39 +494,39 @@ export const TestChildExtension = proto2.makeMessageType(
 export const TestRequired = proto2.makeMessageType(
   "protobuf_unittest.TestRequired",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "dummy2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "dummy4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 5, name: "dummy5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "dummy6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 7, name: "dummy7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 8, name: "dummy8", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 9, name: "dummy9", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 10, name: "dummy10", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 11, name: "dummy11", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 12, name: "dummy12", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 13, name: "dummy13", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 14, name: "dummy14", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 15, name: "dummy15", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 16, name: "dummy16", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 17, name: "dummy17", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 18, name: "dummy18", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 19, name: "dummy19", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 20, name: "dummy20", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 21, name: "dummy21", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 22, name: "dummy22", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 23, name: "dummy23", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 24, name: "dummy24", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 25, name: "dummy25", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 26, name: "dummy26", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 27, name: "dummy27", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 28, name: "dummy28", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 29, name: "dummy29", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 30, name: "dummy30", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "dummy2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "dummy4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 5, name: "dummy5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "dummy6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 7, name: "dummy7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 8, name: "dummy8", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "dummy9", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 10, name: "dummy10", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 11, name: "dummy11", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 12, name: "dummy12", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 13, name: "dummy13", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 14, name: "dummy14", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 15, name: "dummy15", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 16, name: "dummy16", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 17, name: "dummy17", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 18, name: "dummy18", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 19, name: "dummy19", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 20, name: "dummy20", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 21, name: "dummy21", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 22, name: "dummy22", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 23, name: "dummy23", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 24, name: "dummy24", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 25, name: "dummy25", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 26, name: "dummy26", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 27, name: "dummy27", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 28, name: "dummy28", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 29, name: "dummy29", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 30, name: "dummy30", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 
@@ -536,9 +536,9 @@ export const TestRequired = proto2.makeMessageType(
 export const TestRequiredForeign = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredForeign",
   () => [
-    {no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true},
-    {no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true},
-    {no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
+    { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
+    { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -548,9 +548,9 @@ export const TestRequiredForeign = proto2.makeMessageType(
 export const TestRequiredMessage = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredMessage",
   () => [
-    {no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true},
-    {no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true},
-    {no: 3, name: "required_message", kind: "message", T: TestRequired},
+    { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
+    { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
+    { no: 3, name: "required_message", kind: "message", T: TestRequired },
   ],
 );
 
@@ -562,7 +562,7 @@ export const TestRequiredMessage = proto2.makeMessageType(
 export const TestForeignNested = proto2.makeMessageType(
   "protobuf_unittest.TestForeignNested",
   () => [
-    {no: 1, name: "foreign_nested", kind: "message", T: TestAllTypes_NestedMessage, opt: true},
+    { no: 1, name: "foreign_nested", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
   ],
 );
 
@@ -603,7 +603,7 @@ export const TestPickleNestedMessage = proto2.makeMessageType(
 export const TestPickleNestedMessage_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestPickleNestedMessage.NestedMessage",
   () => [
-    {no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestPickleNestedMessage_NestedMessage"},
 );
@@ -614,7 +614,7 @@ export const TestPickleNestedMessage_NestedMessage = proto2.makeMessageType(
 export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage",
   () => [
-    {no: 1, name: "cc", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "cc", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestPickleNestedMessage_NestedMessage_NestedNestedMessage"},
 );
@@ -635,8 +635,8 @@ export const TestMultipleExtensionRanges = proto2.makeMessageType(
 export const TestReallyLargeTagNumber = proto2.makeMessageType(
   "protobuf_unittest.TestReallyLargeTagNumber",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 268435455, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 268435455, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -646,8 +646,8 @@ export const TestReallyLargeTagNumber = proto2.makeMessageType(
 export const TestRecursiveMessage = proto2.makeMessageType(
   "protobuf_unittest.TestRecursiveMessage",
   () => [
-    {no: 1, name: "a", kind: "message", T: TestRecursiveMessage, opt: true},
-    {no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "message", T: TestRecursiveMessage, opt: true },
+    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -659,8 +659,8 @@ export const TestRecursiveMessage = proto2.makeMessageType(
 export const TestMutualRecursionA = proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA",
   () => [
-    {no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true},
-    {no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true},
+    { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
+    { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true },
   ],
 );
 
@@ -670,7 +670,7 @@ export const TestMutualRecursionA = proto2.makeMessageType(
 export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA.SubMessage",
   () => [
-    {no: 1, name: "b", kind: "message", T: TestMutualRecursionB, opt: true},
+    { no: 1, name: "b", kind: "message", T: TestMutualRecursionB, opt: true },
   ],
   {localName: "TestMutualRecursionA_SubMessage"},
 );
@@ -681,8 +681,8 @@ export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
 export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA.SubGroup",
   () => [
-    {no: 3, name: "sub_message", kind: "message", T: TestMutualRecursionA_SubMessage, opt: true},
-    {no: 4, name: "not_in_this_scc", kind: "message", T: TestAllTypes, opt: true},
+    { no: 3, name: "sub_message", kind: "message", T: TestMutualRecursionA_SubMessage, opt: true },
+    { no: 4, name: "not_in_this_scc", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestMutualRecursionA_SubGroup"},
 );
@@ -693,8 +693,8 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
 export const TestMutualRecursionB = proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionB",
   () => [
-    {no: 1, name: "a", kind: "message", T: TestMutualRecursionA, opt: true},
-    {no: 2, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "message", T: TestMutualRecursionA, opt: true },
+    { no: 2, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -704,7 +704,7 @@ export const TestMutualRecursionB = proto2.makeMessageType(
 export const TestIsInitialized = proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized",
   () => [
-    {no: 1, name: "sub_message", kind: "message", T: TestIsInitialized_SubMessage, opt: true},
+    { no: 1, name: "sub_message", kind: "message", T: TestIsInitialized_SubMessage, opt: true },
   ],
 );
 
@@ -714,7 +714,7 @@ export const TestIsInitialized = proto2.makeMessageType(
 export const TestIsInitialized_SubMessage = proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized.SubMessage",
   () => [
-    {no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, opt: true},
+    { no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, opt: true },
   ],
   {localName: "TestIsInitialized_SubMessage"},
 );
@@ -725,7 +725,7 @@ export const TestIsInitialized_SubMessage = proto2.makeMessageType(
 export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized.SubMessage.SubGroup",
   () => [
-    {no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
   {localName: "TestIsInitialized_SubMessage_SubGroup"},
 );
@@ -743,9 +743,9 @@ export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
 export const TestDupFieldNumber = proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "foo", kind: "message", T: TestDupFieldNumber_Foo, opt: true},
-    {no: 3, name: "bar", kind: "message", T: TestDupFieldNumber_Bar, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "foo", kind: "message", T: TestDupFieldNumber_Foo, opt: true },
+    { no: 3, name: "bar", kind: "message", T: TestDupFieldNumber_Bar, opt: true },
   ],
 );
 
@@ -755,7 +755,7 @@ export const TestDupFieldNumber = proto2.makeMessageType(
 export const TestDupFieldNumber_Foo = proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber.Foo",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestDupFieldNumber_Foo"},
 );
@@ -766,7 +766,7 @@ export const TestDupFieldNumber_Foo = proto2.makeMessageType(
 export const TestDupFieldNumber_Bar = proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber.Bar",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestDupFieldNumber_Bar"},
 );
@@ -779,7 +779,7 @@ export const TestDupFieldNumber_Bar = proto2.makeMessageType(
 export const TestEagerMessage = proto2.makeMessageType(
   "protobuf_unittest.TestEagerMessage",
   () => [
-    {no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true},
+    { no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true },
   ],
 );
 
@@ -789,7 +789,7 @@ export const TestEagerMessage = proto2.makeMessageType(
 export const TestLazyMessage = proto2.makeMessageType(
   "protobuf_unittest.TestLazyMessage",
   () => [
-    {no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true},
+    { no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true },
   ],
 );
 
@@ -801,7 +801,7 @@ export const TestLazyMessage = proto2.makeMessageType(
 export const TestNestedMessageHasBits = proto2.makeMessageType(
   "protobuf_unittest.TestNestedMessageHasBits",
   () => [
-    {no: 1, name: "optional_nested_message", kind: "message", T: TestNestedMessageHasBits_NestedMessage, opt: true},
+    { no: 1, name: "optional_nested_message", kind: "message", T: TestNestedMessageHasBits_NestedMessage, opt: true },
   ],
 );
 
@@ -811,8 +811,8 @@ export const TestNestedMessageHasBits = proto2.makeMessageType(
 export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestNestedMessageHasBits.NestedMessage",
   () => [
-    {no: 1, name: "nestedmessage_repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 2, name: "nestedmessage_repeated_foreignmessage", kind: "message", T: ForeignMessage, repeated: true},
+    { no: 1, name: "nestedmessage_repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 2, name: "nestedmessage_repeated_foreignmessage", kind: "message", T: ForeignMessage, repeated: true },
   ],
   {localName: "TestNestedMessageHasBits_NestedMessage"},
 );
@@ -826,18 +826,18 @@ export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
 export const TestCamelCaseFieldNames = proto2.makeMessageType(
   "protobuf_unittest.TestCamelCaseFieldNames",
   () => [
-    {no: 1, name: "PrimitiveField", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "StringField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "EnumField", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true},
-    {no: 4, name: "MessageField", kind: "message", T: ForeignMessage, opt: true},
-    {no: 5, name: "StringPieceField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 6, name: "CordField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 7, name: "RepeatedPrimitiveField", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 8, name: "RepeatedStringField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 9, name: "RepeatedEnumField", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true},
-    {no: 10, name: "RepeatedMessageField", kind: "message", T: ForeignMessage, repeated: true},
-    {no: 11, name: "RepeatedStringPieceField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 12, name: "RepeatedCordField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "PrimitiveField", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "StringField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "EnumField", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
+    { no: 4, name: "MessageField", kind: "message", T: ForeignMessage, opt: true },
+    { no: 5, name: "StringPieceField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "CordField", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "RepeatedPrimitiveField", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 8, name: "RepeatedStringField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: "RepeatedEnumField", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true },
+    { no: 10, name: "RepeatedMessageField", kind: "message", T: ForeignMessage, repeated: true },
+    { no: 11, name: "RepeatedStringPieceField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 12, name: "RepeatedCordField", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ],
 );
 
@@ -850,10 +850,10 @@ export const TestCamelCaseFieldNames = proto2.makeMessageType(
 export const TestFieldOrderings = proto2.makeMessageType(
   "protobuf_unittest.TestFieldOrderings",
   () => [
-    {no: 11, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 1, name: "my_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
-    {no: 101, name: "my_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true},
-    {no: 200, name: "optional_nested_message", kind: "message", T: TestFieldOrderings_NestedMessage, opt: true},
+    { no: 11, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 1, name: "my_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 101, name: "my_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 200, name: "optional_nested_message", kind: "message", T: TestFieldOrderings_NestedMessage, opt: true },
   ],
 );
 
@@ -863,8 +863,8 @@ export const TestFieldOrderings = proto2.makeMessageType(
 export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestFieldOrderings.NestedMessage",
   () => [
-    {no: 2, name: "oo", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
-    {no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 2, name: "oo", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestFieldOrderings_NestedMessage"},
 );
@@ -875,7 +875,7 @@ export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
 export const TestExtensionOrderings1 = proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings1",
   () => [
-    {no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -885,7 +885,7 @@ export const TestExtensionOrderings1 = proto2.makeMessageType(
 export const TestExtensionOrderings2 = proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings2",
   () => [
-    {no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -895,7 +895,7 @@ export const TestExtensionOrderings2 = proto2.makeMessageType(
 export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3",
   () => [
-    {no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "TestExtensionOrderings2_TestExtensionOrderings3"},
 );
@@ -906,33 +906,33 @@ export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessag
 export const TestExtremeDefaultValues = proto2.makeMessageType(
   "protobuf_unittest.TestExtremeDefaultValues",
   () => [
-    {no: 1, name: "escaped_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x00, 0x01, 0x07, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B, 0x5C, 0xFE, ])},
-    {no: 2, name: "large_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 4294967295},
-    {no: 3, name: "large_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("18446744073709551615")},
-    {no: 4, name: "small_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -2147483647},
-    {no: 5, name: "small_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9223372036854775807")},
-    {no: 21, name: "really_small_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -2147483648},
-    {no: 22, name: "really_small_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9223372036854775808")},
-    {no: 6, name: "utf8_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "ሴ"},
-    {no: 7, name: "zero_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 0},
-    {no: 8, name: "one_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 1},
-    {no: 9, name: "small_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 1.5},
-    {no: 10, name: "negative_one_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1},
-    {no: 11, name: "negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1.5},
-    {no: 12, name: "large_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 2e+08},
-    {no: 13, name: "small_negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -8e-28},
-    {no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.POSITIVE_INFINITY},
-    {no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY},
-    {no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NaN},
-    {no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.POSITIVE_INFINITY},
-    {no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY},
-    {no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NaN},
-    {no: 20, name: "cpp_trigraph", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "? ? ?? ?? ??? ??/ ??-"},
-    {no: 23, name: "string_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hel lo"},
-    {no: 24, name: "bytes_with_zero", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x00, 0x6C, 0x64, ])},
-    {no: 25, name: "string_piece_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "ab c"},
-    {no: 26, name: "cord_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "12 3"},
-    {no: 27, name: "replacement_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "${unknown}"},
+    { no: 1, name: "escaped_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x00, 0x01, 0x07, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B, 0x5C, 0xFE, ]) },
+    { no: 2, name: "large_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 4294967295 },
+    { no: 3, name: "large_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("18446744073709551615") },
+    { no: 4, name: "small_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -2147483647 },
+    { no: 5, name: "small_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9223372036854775807") },
+    { no: 21, name: "really_small_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -2147483648 },
+    { no: 22, name: "really_small_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9223372036854775808") },
+    { no: 6, name: "utf8_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "ሴ" },
+    { no: 7, name: "zero_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 0 },
+    { no: 8, name: "one_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 1 },
+    { no: 9, name: "small_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 1.5 },
+    { no: 10, name: "negative_one_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1 },
+    { no: 11, name: "negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1.5 },
+    { no: 12, name: "large_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 2e+08 },
+    { no: 13, name: "small_negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -8e-28 },
+    { no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.POSITIVE_INFINITY },
+    { no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY },
+    { no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NaN },
+    { no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.POSITIVE_INFINITY },
+    { no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY },
+    { no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NaN },
+    { no: 20, name: "cpp_trigraph", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "? ? ?? ?? ??? ??/ ??-" },
+    { no: 23, name: "string_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hel lo" },
+    { no: 24, name: "bytes_with_zero", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x00, 0x6C, 0x64, ]) },
+    { no: 25, name: "string_piece_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "ab c" },
+    { no: 26, name: "cord_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "12 3" },
+    { no: 27, name: "replacement_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "${unknown}" },
   ],
 );
 
@@ -942,7 +942,7 @@ export const TestExtremeDefaultValues = proto2.makeMessageType(
 export const SparseEnumMessage = proto2.makeMessageType(
   "protobuf_unittest.SparseEnumMessage",
   () => [
-    {no: 1, name: "sparse_enum", kind: "enum", T: proto2.getEnumType(TestSparseEnum), opt: true},
+    { no: 1, name: "sparse_enum", kind: "enum", T: proto2.getEnumType(TestSparseEnum), opt: true },
   ],
 );
 
@@ -954,7 +954,7 @@ export const SparseEnumMessage = proto2.makeMessageType(
 export const OneString = proto2.makeMessageType(
   "protobuf_unittest.OneString",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -964,7 +964,7 @@ export const OneString = proto2.makeMessageType(
 export const MoreString = proto2.makeMessageType(
   "protobuf_unittest.MoreString",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ],
 );
 
@@ -974,7 +974,7 @@ export const MoreString = proto2.makeMessageType(
 export const OneBytes = proto2.makeMessageType(
   "protobuf_unittest.OneBytes",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
   ],
 );
 
@@ -984,7 +984,7 @@ export const OneBytes = proto2.makeMessageType(
 export const MoreBytes = proto2.makeMessageType(
   "protobuf_unittest.MoreBytes",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
+    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
   ],
 );
 
@@ -996,7 +996,7 @@ export const MoreBytes = proto2.makeMessageType(
 export const Int32Message = proto2.makeMessageType(
   "protobuf_unittest.Int32Message",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -1006,7 +1006,7 @@ export const Int32Message = proto2.makeMessageType(
 export const Uint32Message = proto2.makeMessageType(
   "protobuf_unittest.Uint32Message",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
   ],
 );
 
@@ -1016,7 +1016,7 @@ export const Uint32Message = proto2.makeMessageType(
 export const Int64Message = proto2.makeMessageType(
   "protobuf_unittest.Int64Message",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
   ],
 );
 
@@ -1026,7 +1026,7 @@ export const Int64Message = proto2.makeMessageType(
 export const Uint64Message = proto2.makeMessageType(
   "protobuf_unittest.Uint64Message",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
   ],
 );
 
@@ -1036,7 +1036,7 @@ export const Uint64Message = proto2.makeMessageType(
 export const BoolMessage = proto2.makeMessageType(
   "protobuf_unittest.BoolMessage",
   () => [
-    {no: 1, name: "data", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
+    { no: 1, name: "data", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
   ],
 );
 
@@ -1048,10 +1048,10 @@ export const BoolMessage = proto2.makeMessageType(
 export const TestOneof = proto2.makeMessageType(
   "protobuf_unittest.TestOneof",
   () => [
-    {no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
-    {no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    {no: 3, name: "foo_message", kind: "message", T: TestAllTypes, oneof: "foo"},
-    {no: 4, name: "foogroup", kind: "message", T: TestOneof_FooGroup, oneof: "foo"},
+    { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
+    { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, oneof: "foo" },
+    { no: 4, name: "foogroup", kind: "message", T: TestOneof_FooGroup, oneof: "foo" },
   ],
 );
 
@@ -1061,8 +1061,8 @@ export const TestOneof = proto2.makeMessageType(
 export const TestOneof_FooGroup = proto2.makeMessageType(
   "protobuf_unittest.TestOneof.FooGroup",
   () => [
-    {no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "TestOneof_FooGroup"},
 );
@@ -1073,10 +1073,10 @@ export const TestOneof_FooGroup = proto2.makeMessageType(
 export const TestOneofBackwardsCompatible = proto2.makeMessageType(
   "protobuf_unittest.TestOneofBackwardsCompatible",
   () => [
-    {no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 3, name: "foo_message", kind: "message", T: TestAllTypes, opt: true},
-    {no: 4, name: "foogroup", kind: "message", T: TestOneofBackwardsCompatible_FooGroup, opt: true},
+    { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, opt: true },
+    { no: 4, name: "foogroup", kind: "message", T: TestOneofBackwardsCompatible_FooGroup, opt: true },
   ],
 );
 
@@ -1086,8 +1086,8 @@ export const TestOneofBackwardsCompatible = proto2.makeMessageType(
 export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
   "protobuf_unittest.TestOneofBackwardsCompatible.FooGroup",
   () => [
-    {no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "TestOneofBackwardsCompatible_FooGroup"},
 );
@@ -1098,27 +1098,27 @@ export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
 export const TestOneof2 = proto2.makeMessageType(
   "protobuf_unittest.TestOneof2",
   () => [
-    {no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
-    {no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    {no: 3, name: "foo_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    {no: 4, name: "foo_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    {no: 5, name: "foo_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo"},
-    {no: 6, name: "foo_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), oneof: "foo"},
-    {no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo"},
-    {no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo"},
-    {no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo"},
-    {no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar"},
-    {no: 13, name: "bar_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "STRING", oneof: "bar"},
-    {no: 14, name: "bar_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "CORD", oneof: "bar"},
-    {no: 15, name: "bar_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "SPIECE", oneof: "bar"},
-    {no: 16, name: "bar_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x42, 0x59, 0x54, 0x45, 0x53, ]), oneof: "bar"},
-    {no: 17, name: "bar_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), default: TestOneof2_NestedEnum.BAR, oneof: "bar"},
-    {no: 20, name: "bar_string_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar"},
-    {no: 21, name: "bar_cord_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar"},
-    {no: 22, name: "bar_string_piece_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar"},
-    {no: 23, name: "bar_bytes_with_empty_default", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "bar"},
-    {no: 18, name: "baz_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 19, name: "baz_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "BAZ"},
+    { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
+    { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 3, name: "foo_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 4, name: "foo_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 5, name: "foo_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
+    { no: 6, name: "foo_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), oneof: "foo" },
+    { no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
+    { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo" },
+    { no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
+    { no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar" },
+    { no: 13, name: "bar_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "STRING", oneof: "bar" },
+    { no: 14, name: "bar_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "CORD", oneof: "bar" },
+    { no: 15, name: "bar_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "SPIECE", oneof: "bar" },
+    { no: 16, name: "bar_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x42, 0x59, 0x54, 0x45, 0x53, ]), oneof: "bar" },
+    { no: 17, name: "bar_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), default: TestOneof2_NestedEnum.BAR, oneof: "bar" },
+    { no: 20, name: "bar_string_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar" },
+    { no: 21, name: "bar_cord_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar" },
+    { no: 22, name: "bar_string_piece_with_empty_default", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "bar" },
+    { no: 23, name: "bar_bytes_with_empty_default", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "bar" },
+    { no: 18, name: "baz_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 19, name: "baz_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "BAZ" },
   ],
 );
 
@@ -1140,8 +1140,8 @@ export const TestOneof2_NestedEnum = proto2.makeEnum(
 export const TestOneof2_FooGroup = proto2.makeMessageType(
   "protobuf_unittest.TestOneof2.FooGroup",
   () => [
-    {no: 9, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 10, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 9, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 10, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "TestOneof2_FooGroup"},
 );
@@ -1152,8 +1152,8 @@ export const TestOneof2_FooGroup = proto2.makeMessageType(
 export const TestOneof2_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestOneof2.NestedMessage",
   () => [
-    {no: 1, name: "qux_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
-    {no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
+    { no: 1, name: "qux_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ],
   {localName: "TestOneof2_NestedMessage"},
 );
@@ -1164,9 +1164,9 @@ export const TestOneof2_NestedMessage = proto2.makeMessageType(
 export const TestRequiredOneof = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOneof",
   () => [
-    {no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
-    {no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    {no: 3, name: "foo_message", kind: "message", T: TestRequiredOneof_NestedMessage, oneof: "foo"},
+    { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
+    { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 3, name: "foo_message", kind: "message", T: TestRequiredOneof_NestedMessage, oneof: "foo" },
   ],
 );
 
@@ -1176,7 +1176,7 @@ export const TestRequiredOneof = proto2.makeMessageType(
 export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOneof.NestedMessage",
   () => [
-    {no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
+    { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
   ],
   {localName: "TestRequiredOneof_NestedMessage"},
 );
@@ -1187,20 +1187,20 @@ export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
 export const TestPackedTypes = proto2.makeMessageType(
   "protobuf_unittest.TestPackedTypes",
   () => [
-    {no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true},
-    {no: 91, name: "packed_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true},
-    {no: 92, name: "packed_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true},
-    {no: 93, name: "packed_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true},
-    {no: 94, name: "packed_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true},
-    {no: 95, name: "packed_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, packed: true},
-    {no: 96, name: "packed_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true},
-    {no: 97, name: "packed_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, packed: true},
-    {no: 98, name: "packed_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, packed: true},
-    {no: 99, name: "packed_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, packed: true},
-    {no: 100, name: "packed_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, packed: true},
-    {no: 101, name: "packed_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true},
-    {no: 102, name: "packed_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true},
-    {no: 103, name: "packed_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true, packed: true},
+    { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 91, name: "packed_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true },
+    { no: 92, name: "packed_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true },
+    { no: 93, name: "packed_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true },
+    { no: 94, name: "packed_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true },
+    { no: 95, name: "packed_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, packed: true },
+    { no: 96, name: "packed_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true },
+    { no: 97, name: "packed_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, packed: true },
+    { no: 98, name: "packed_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, packed: true },
+    { no: 99, name: "packed_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, packed: true },
+    { no: 100, name: "packed_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, packed: true },
+    { no: 101, name: "packed_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true },
+    { no: 102, name: "packed_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true },
+    { no: 103, name: "packed_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true, packed: true },
   ],
 );
 
@@ -1213,20 +1213,20 @@ export const TestPackedTypes = proto2.makeMessageType(
 export const TestUnpackedTypes = proto2.makeMessageType(
   "protobuf_unittest.TestUnpackedTypes",
   () => [
-    {no: 90, name: "unpacked_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 91, name: "unpacked_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 92, name: "unpacked_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true},
-    {no: 93, name: "unpacked_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
-    {no: 94, name: "unpacked_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true},
-    {no: 95, name: "unpacked_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
-    {no: 96, name: "unpacked_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 97, name: "unpacked_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 98, name: "unpacked_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true},
-    {no: 99, name: "unpacked_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true},
-    {no: 100, name: "unpacked_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 101, name: "unpacked_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true},
-    {no: 102, name: "unpacked_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true},
-    {no: 103, name: "unpacked_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true},
+    { no: 90, name: "unpacked_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 91, name: "unpacked_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 92, name: "unpacked_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 93, name: "unpacked_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 94, name: "unpacked_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true },
+    { no: 95, name: "unpacked_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true },
+    { no: 96, name: "unpacked_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 97, name: "unpacked_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 98, name: "unpacked_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true },
+    { no: 99, name: "unpacked_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true },
+    { no: 100, name: "unpacked_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 101, name: "unpacked_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 102, name: "unpacked_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 103, name: "unpacked_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), repeated: true },
   ],
 );
 
@@ -1256,13 +1256,13 @@ export const TestUnpackedExtensions = proto2.makeMessageType(
 export const TestDynamicExtensions = proto2.makeMessageType(
   "protobuf_unittest.TestDynamicExtensions",
   () => [
-    {no: 2000, name: "scalar_extension", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true},
-    {no: 2001, name: "enum_extension", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true},
-    {no: 2002, name: "dynamic_enum_extension", kind: "enum", T: proto2.getEnumType(TestDynamicExtensions_DynamicEnumType), opt: true},
-    {no: 2003, name: "message_extension", kind: "message", T: ForeignMessage, opt: true},
-    {no: 2004, name: "dynamic_message_extension", kind: "message", T: TestDynamicExtensions_DynamicMessageType, opt: true},
-    {no: 2005, name: "repeated_extension", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 2006, name: "packed_extension", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true},
+    { no: 2000, name: "scalar_extension", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
+    { no: 2001, name: "enum_extension", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
+    { no: 2002, name: "dynamic_enum_extension", kind: "enum", T: proto2.getEnumType(TestDynamicExtensions_DynamicEnumType), opt: true },
+    { no: 2003, name: "message_extension", kind: "message", T: ForeignMessage, opt: true },
+    { no: 2004, name: "dynamic_message_extension", kind: "message", T: TestDynamicExtensions_DynamicMessageType, opt: true },
+    { no: 2005, name: "repeated_extension", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2006, name: "packed_extension", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true },
   ],
 );
 
@@ -1284,7 +1284,7 @@ export const TestDynamicExtensions_DynamicEnumType = proto2.makeEnum(
 export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
   "protobuf_unittest.TestDynamicExtensions.DynamicMessageType",
   () => [
-    {no: 2100, name: "dynamic_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 2100, name: "dynamic_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestDynamicExtensions_DynamicMessageType"},
 );
@@ -1295,12 +1295,12 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
 export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
   "protobuf_unittest.TestRepeatedScalarDifferentTagSizes",
   () => [
-    {no: 12, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 13, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 2046, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 2047, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 262142, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 262143, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
+    { no: 12, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 13, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 2046, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 2047, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 262142, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 262143, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
   ],
 );
 
@@ -1313,11 +1313,11 @@ export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
 export const TestParsingMerge = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge",
   () => [
-    {no: 1, name: "required_all_types", kind: "message", T: TestAllTypes},
-    {no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true},
-    {no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true},
-    {no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, opt: true},
-    {no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMerge_RepeatedGroup, repeated: true},
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes },
+    { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, opt: true },
+    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMerge_RepeatedGroup, repeated: true },
   ],
 );
 
@@ -1333,13 +1333,13 @@ export const TestParsingMerge = proto2.makeMessageType(
 export const TestParsingMerge_RepeatedFieldsGenerator = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator",
   () => [
-    {no: 1, name: "field1", kind: "message", T: TestAllTypes, repeated: true},
-    {no: 2, name: "field2", kind: "message", T: TestAllTypes, repeated: true},
-    {no: 3, name: "field3", kind: "message", T: TestAllTypes, repeated: true},
-    {no: 10, name: "group1", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group1, repeated: true},
-    {no: 20, name: "group2", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group2, repeated: true},
-    {no: 1000, name: "ext1", kind: "message", T: TestAllTypes, repeated: true},
-    {no: 1001, name: "ext2", kind: "message", T: TestAllTypes, repeated: true},
+    { no: 1, name: "field1", kind: "message", T: TestAllTypes, repeated: true },
+    { no: 2, name: "field2", kind: "message", T: TestAllTypes, repeated: true },
+    { no: 3, name: "field3", kind: "message", T: TestAllTypes, repeated: true },
+    { no: 10, name: "group1", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group1, repeated: true },
+    { no: 20, name: "group2", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group2, repeated: true },
+    { no: 1000, name: "ext1", kind: "message", T: TestAllTypes, repeated: true },
+    { no: 1001, name: "ext2", kind: "message", T: TestAllTypes, repeated: true },
   ],
   {localName: "TestParsingMerge_RepeatedFieldsGenerator"},
 );
@@ -1350,7 +1350,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator = proto2.makeMessageType(
 export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1",
   () => [
-    {no: 11, name: "field1", kind: "message", T: TestAllTypes, opt: true},
+    { no: 11, name: "field1", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group1"},
 );
@@ -1361,7 +1361,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessag
 export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2",
   () => [
-    {no: 21, name: "field1", kind: "message", T: TestAllTypes, opt: true},
+    { no: 21, name: "field1", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group2"},
 );
@@ -1372,7 +1372,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessag
 export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.OptionalGroup",
   () => [
-    {no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypes, opt: true},
+    { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestParsingMerge_OptionalGroup"},
 );
@@ -1383,7 +1383,7 @@ export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
 export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedGroup",
   () => [
-    {no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypes, opt: true},
+    { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestParsingMerge_RepeatedGroup"},
 );
@@ -1394,7 +1394,7 @@ export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
 export const TestCommentInjectionMessage = proto2.makeMessageType(
   "protobuf_unittest.TestCommentInjectionMessage",
   () => [
-    {no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "*/ <- Neither should this."},
+    { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "*/ <- Neither should this." },
   ],
 );
 
@@ -1454,13 +1454,13 @@ export const BarResponse = proto2.makeMessageType(
 export const TestJsonName = proto2.makeMessageType(
   "protobuf_unittest.TestJsonName",
   () => [
-    {no: 1, name: "field_name1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "fieldName2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "FieldName3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 4, name: "_field_name4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 5, name: "FIELD_NAME5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "field_name6", jsonName: "@type", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 7, name: "fieldname7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "field_name1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "fieldName2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "FieldName3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "_field_name4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 5, name: "FIELD_NAME5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "field_name6", jsonName: "@type", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 7, name: "fieldname7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -1470,20 +1470,20 @@ export const TestJsonName = proto2.makeMessageType(
 export const TestHugeFieldNumbers = proto2.makeMessageType(
   "protobuf_unittest.TestHugeFieldNumbers",
   () => [
-    {no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 536870001, name: "fixed_32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 536870002, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 536870003, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true},
-    {no: 536870004, name: "optional_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true},
-    {no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
-    {no: 536870007, name: "optional_message", kind: "message", T: ForeignMessage, opt: true},
-    {no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbers_OptionalGroup, opt: true},
-    {no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
-    {no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field"},
-    {no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypes, oneof: "oneof_field"},
-    {no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field"},
+    { no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 536870001, name: "fixed_32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 536870002, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 536870003, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 536870004, name: "optional_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
+    { no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessage, opt: true },
+    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbers_OptionalGroup, opt: true },
+    { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
+    { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypes, oneof: "oneof_field" },
+    { no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
   ],
 );
 
@@ -1493,7 +1493,7 @@ export const TestHugeFieldNumbers = proto2.makeMessageType(
 export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
   "protobuf_unittest.TestHugeFieldNumbers.OptionalGroup",
   () => [
-    {no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestHugeFieldNumbers_OptionalGroup"},
 );
@@ -1504,15 +1504,15 @@ export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
 export const TestExtensionInsideTable = proto2.makeMessageType(
   "protobuf_unittest.TestExtensionInsideTable",
   () => [
-    {no: 1, name: "field1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "field2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 3, name: "field3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 4, name: "field4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "field6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 7, name: "field7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 8, name: "field8", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 9, name: "field9", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 10, name: "field10", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "field1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "field2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "field3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "field4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "field6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 7, name: "field7", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 8, name: "field8", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "field9", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 10, name: "field10", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -1522,10 +1522,10 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
 export const TestExtensionRangeSerialize = proto2.makeMessageType(
   "protobuf_unittest.TestExtensionRangeSerialize",
   () => [
-    {no: 1, name: "foo_one", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 6, name: "foo_two", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 7, name: "foo_three", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 13, name: "foo_four", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "foo_one", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "foo_two", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 7, name: "foo_three", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 13, name: "foo_four", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

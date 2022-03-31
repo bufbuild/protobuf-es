@@ -54,9 +54,9 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryTrack";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositoryTrack {
@@ -102,8 +102,8 @@ export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackR
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTrackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryTrackRequest {
@@ -140,7 +140,7 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTrackResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track", kind: "message", T: RepositoryTrack},
+    { no: 1, name: "repository_track", kind: "message", T: RepositoryTrack },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateRepositoryTrackResponse {
@@ -196,10 +196,10 @@ export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksReq
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTracksRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTracksRequest {
@@ -243,8 +243,8 @@ export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksRe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTracksResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_tracks", kind: "message", T: RepositoryTrack, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_tracks", kind: "message", T: RepositoryTrack, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTracksResponse {
@@ -293,9 +293,9 @@ export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepository
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeleteRepositoryTrackByNameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteRepositoryTrackByNameRequest {
@@ -375,9 +375,9 @@ export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackB
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackByNameRequest {
@@ -414,7 +414,7 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track", kind: "message", T: RepositoryTrack},
+    { no: 1, name: "repository_track", kind: "message", T: RepositoryTrack },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackByNameResponse {

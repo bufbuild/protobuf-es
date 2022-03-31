@@ -46,9 +46,9 @@ export enum FailRequest {
 }
 // Retrieve enum metadata with: proto3.getEnumType(FailRequest)
 proto3.util.setEnumType(FailRequest, "spec.FailRequest", [
-  {no: 0, name: "FAIL_REQUEST_NONE"},
-  {no: 1, name: "MESSAGE_THEN_ERROR_STATUS"},
-  {no: 2, name: "ERROR_STATUS_ONLY"},
+  { no: 0, name: "FAIL_REQUEST_NONE" },
+  { no: 1, name: "MESSAGE_THEN_ERROR_STATUS" },
+  { no: 2, name: "ERROR_STATUS_ONLY" },
 ]);
 
 /**
@@ -91,10 +91,10 @@ export class ExampleRequest extends Message<ExampleRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.ExampleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "please_fail", kind: "enum", T: proto3.getEnumType(FailRequest)},
-    {no: 3, name: "please_delay_response_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 4, name: "disable_sending_example_response_headers", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "please_fail", kind: "enum", T: proto3.getEnumType(FailRequest) },
+    { no: 3, name: "please_delay_response_ms", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "disable_sending_example_response_headers", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleRequest {
@@ -154,10 +154,10 @@ export class ExampleResponse extends Message<ExampleResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.ExampleResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "your_request_headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
-    {no: 3, name: "your_deadline", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "your_fail_request", kind: "enum", T: proto3.getEnumType(FailRequest)},
+    { no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "your_request_headers", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 3, name: "your_deadline", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "your_fail_request", kind: "enum", T: proto3.getEnumType(FailRequest) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleResponse {

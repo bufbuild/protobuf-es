@@ -40,9 +40,9 @@ export enum OneofEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(OneofEnum)
 proto3.util.setEnumType(OneofEnum, "spec.OneofEnum", [
-  {no: 0, name: "ONEOF_ENUM_UNSPECIFIED"},
-  {no: 1, name: "ONEOF_ENUM_A"},
-  {no: 2, name: "ONEOF_ENUM_B"},
+  { no: 0, name: "ONEOF_ENUM_UNSPECIFIED" },
+  { no: 1, name: "ONEOF_ENUM_A" },
+  { no: 2, name: "ONEOF_ENUM_B" },
 ]);
 
 /**
@@ -108,12 +108,12 @@ export class OneofMessage extends Message<OneofMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.OneofMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "scalar"},
-    {no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "scalar"},
-    {no: 11, name: "foo", kind: "message", T: OneofMessageFoo, oneof: "message"},
-    {no: 12, name: "bar", kind: "message", T: OneofMessageBar, oneof: "message"},
-    {no: 13, name: "baz", kind: "message", T: OneofMessageBar, oneof: "message"},
-    {no: 21, name: "e", kind: "enum", T: proto3.getEnumType(OneofEnum), oneof: "enum"},
+    { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "scalar" },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "scalar" },
+    { no: 11, name: "foo", kind: "message", T: OneofMessageFoo, oneof: "message" },
+    { no: 12, name: "bar", kind: "message", T: OneofMessageBar, oneof: "message" },
+    { no: 13, name: "baz", kind: "message", T: OneofMessageBar, oneof: "message" },
+    { no: 21, name: "e", kind: "enum", T: proto3.getEnumType(OneofEnum), oneof: "enum" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OneofMessage {
@@ -155,8 +155,8 @@ export class OneofMessageFoo extends Message<OneofMessageFoo> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.OneofMessageFoo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "toggle", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "toggle", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OneofMessageFoo {
@@ -198,8 +198,8 @@ export class OneofMessageBar extends Message<OneofMessageBar> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.OneofMessageBar";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OneofMessageBar {

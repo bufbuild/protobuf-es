@@ -48,7 +48,7 @@ export enum TestEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(TestEnum)
 proto2.util.setEnumType(TestEnum, "protobuf_unittest.no_generic_services_test.TestEnum", [
-  {no: 1, name: "FOO"},
+  { no: 1, name: "FOO" },
 ]);
 
 /**
@@ -68,7 +68,7 @@ export class TestMessage extends Message<TestMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage {

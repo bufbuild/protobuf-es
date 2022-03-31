@@ -64,8 +64,8 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true},
-    {no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true},
+    { no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true },
+    { no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLiteImportsNonlite {

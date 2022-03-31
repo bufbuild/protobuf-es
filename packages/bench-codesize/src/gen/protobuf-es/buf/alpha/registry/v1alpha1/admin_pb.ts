@@ -40,7 +40,7 @@ export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ForceDeleteUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForceDeleteUserRequest {
@@ -107,11 +107,11 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ForceDeleteUserResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
-    {no: 2, name: "organizations", kind: "message", T: Organization, repeated: true},
-    {no: 3, name: "repositories", kind: "message", T: Repository, repeated: true},
-    {no: 4, name: "plugins", kind: "message", T: Plugin, repeated: true},
-    {no: 5, name: "templates", kind: "message", T: Template, repeated: true},
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "organizations", kind: "message", T: Organization, repeated: true },
+    { no: 3, name: "repositories", kind: "message", T: Repository, repeated: true },
+    { no: 4, name: "plugins", kind: "message", T: Plugin, repeated: true },
+    { no: 5, name: "templates", kind: "message", T: Template, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForceDeleteUserResponse {

@@ -62,13 +62,13 @@ export enum SearchFilter {
 }
 // Retrieve enum metadata with: proto3.getEnumType(SearchFilter)
 proto3.util.setEnumType(SearchFilter, "buf.alpha.registry.v1alpha1.SearchFilter", [
-  {no: 0, name: "SEARCH_FILTER_UNSPECIFIED"},
-  {no: 1, name: "SEARCH_FILTER_USER"},
-  {no: 2, name: "SEARCH_FILTER_ORGANIZATION"},
-  {no: 3, name: "SEARCH_FILTER_REPOSITORY"},
-  {no: 4, name: "SEARCH_FILTER_PLUGIN"},
-  {no: 5, name: "SEARCH_FILTER_TEMPLATE"},
-  {no: 6, name: "SEARCH_FILTER_TEAM"},
+  { no: 0, name: "SEARCH_FILTER_UNSPECIFIED" },
+  { no: 1, name: "SEARCH_FILTER_USER" },
+  { no: 2, name: "SEARCH_FILTER_ORGANIZATION" },
+  { no: 3, name: "SEARCH_FILTER_REPOSITORY" },
+  { no: 4, name: "SEARCH_FILTER_PLUGIN" },
+  { no: 5, name: "SEARCH_FILTER_TEMPLATE" },
+  { no: 6, name: "SEARCH_FILTER_TEAM" },
 ]);
 
 /**
@@ -113,11 +113,11 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositorySearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(Visibility)},
-    {no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(Visibility) },
+    { no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositorySearchResult {
@@ -159,8 +159,8 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.OrganizationSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OrganizationSearchResult {
@@ -207,9 +207,9 @@ export class UserSearchResult extends Message<UserSearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.UserSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "deactivated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "deactivated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserSearchResult {
@@ -256,9 +256,9 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TeamSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "organization_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TeamSearchResult {
@@ -320,11 +320,11 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
-    {no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
+    { no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginSearchResult {
@@ -386,11 +386,11 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TemplateSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility)},
-    {no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "visibility", kind: "enum", T: proto3.getEnumType(PluginVisibility) },
+    { no: 5, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TemplateSearchResult {
@@ -463,12 +463,12 @@ export class SearchResult extends Message<SearchResult> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository", kind: "message", T: RepositorySearchResult, oneof: "item"},
-    {no: 2, name: "organization", kind: "message", T: OrganizationSearchResult, oneof: "item"},
-    {no: 3, name: "user", kind: "message", T: UserSearchResult, oneof: "item"},
-    {no: 4, name: "team", kind: "message", T: TeamSearchResult, oneof: "item"},
-    {no: 5, name: "plugin", kind: "message", T: PluginSearchResult, oneof: "item"},
-    {no: 6, name: "template", kind: "message", T: TemplateSearchResult, oneof: "item"},
+    { no: 1, name: "repository", kind: "message", T: RepositorySearchResult, oneof: "item" },
+    { no: 2, name: "organization", kind: "message", T: OrganizationSearchResult, oneof: "item" },
+    { no: 3, name: "user", kind: "message", T: UserSearchResult, oneof: "item" },
+    { no: 4, name: "team", kind: "message", T: TeamSearchResult, oneof: "item" },
+    { no: 5, name: "plugin", kind: "message", T: PluginSearchResult, oneof: "item" },
+    { no: 6, name: "template", kind: "message", T: TemplateSearchResult, oneof: "item" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchResult {
@@ -528,10 +528,10 @@ export class SearchRequest extends Message<SearchRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 4, name: "filters", kind: "enum", T: proto3.getEnumType(SearchFilter), repeated: true},
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "filters", kind: "enum", T: proto3.getEnumType(SearchFilter), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchRequest {
@@ -575,8 +575,8 @@ export class SearchResponse extends Message<SearchResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "search_results", kind: "message", T: SearchResult, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+    { no: 1, name: "search_results", kind: "message", T: SearchResult, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchResponse {

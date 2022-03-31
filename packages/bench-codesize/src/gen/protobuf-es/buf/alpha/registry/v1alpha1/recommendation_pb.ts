@@ -59,11 +59,11 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedRepository";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecommendedRepository {
@@ -118,10 +118,10 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedTemplate";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecommendedTemplate {
@@ -165,8 +165,8 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedRepository";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetRecommendedRepository {
@@ -210,8 +210,8 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedTemplate";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetRecommendedTemplate {
@@ -279,7 +279,7 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true},
+    { no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecommendedRepositoriesResponse {
@@ -347,7 +347,7 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true},
+    { no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecommendedTemplatesResponse {
@@ -415,7 +415,7 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true},
+    { no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRecommendedRepositoriesResponse {
@@ -483,7 +483,7 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true},
+    { no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRecommendedTemplatesResponse {
@@ -520,7 +520,7 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repositories", kind: "message", T: SetRecommendedRepository, repeated: true},
+    { no: 1, name: "repositories", kind: "message", T: SetRecommendedRepository, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetRecommendedRepositoriesRequest {
@@ -588,7 +588,7 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "templates", kind: "message", T: SetRecommendedTemplate, repeated: true},
+    { no: 1, name: "templates", kind: "message", T: SetRecommendedTemplate, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetRecommendedTemplatesRequest {

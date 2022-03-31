@@ -62,9 +62,9 @@ export enum ForeignEnumLite {
 }
 // Retrieve enum metadata with: proto2.getEnumType(ForeignEnumLite)
 proto2.util.setEnumType(ForeignEnumLite, "protobuf_unittest.ForeignEnumLite", [
-  {no: 4, name: "FOREIGN_LITE_FOO"},
-  {no: 6, name: "FOREIGN_LITE_BAZ"},
-  {no: 5, name: "FOREIGN_LITE_BAR"},
+  { no: 4, name: "FOREIGN_LITE_FOO" },
+  { no: 6, name: "FOREIGN_LITE_BAZ" },
+  { no: 5, name: "FOREIGN_LITE_BAR" },
 ]);
 
 /**
@@ -78,7 +78,7 @@ export enum V1EnumLite {
 }
 // Retrieve enum metadata with: proto2.getEnumType(V1EnumLite)
 proto2.util.setEnumType(V1EnumLite, "protobuf_unittest.V1EnumLite", [
-  {no: 1, name: "V1_FIRST"},
+  { no: 1, name: "V1_FIRST" },
 ]);
 
 /**
@@ -97,8 +97,8 @@ export enum V2EnumLite {
 }
 // Retrieve enum metadata with: proto2.getEnumType(V2EnumLite)
 proto2.util.setEnumType(V2EnumLite, "protobuf_unittest.V2EnumLite", [
-  {no: 1, name: "V2_FIRST"},
-  {no: 2, name: "V2_SECOND"},
+  { no: 1, name: "V2_FIRST" },
+  { no: 2, name: "V2_SECOND" },
 ]);
 
 /**
@@ -528,84 +528,84 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
-    {no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true},
-    {no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true},
-    {no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true},
-    {no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true},
-    {no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true},
-    {no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true},
-    {no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true},
-    {no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true},
-    {no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true},
-    {no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true},
-    {no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true},
-    {no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
-    {no: 16, name: "optionalgroup", kind: "message", T: TestAllTypesLite_OptionalGroup, opt: true},
-    {no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true},
-    {no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessageLite, opt: true},
-    {no: 20, name: "optional_import_message", kind: "message", T: ImportMessageLite, opt: true},
-    {no: 21, name: "optional_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true},
-    {no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true},
-    {no: 23, name: "optional_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true},
-    {no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessageLite, opt: true},
-    {no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true},
-    {no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true},
-    {no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
-    {no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true},
-    {no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
-    {no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true},
-    {no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true},
-    {no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true},
-    {no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true},
-    {no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
-    {no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypesLite_RepeatedGroup, repeated: true},
-    {no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true},
-    {no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessageLite, repeated: true},
-    {no: 50, name: "repeated_import_message", kind: "message", T: ImportMessageLite, repeated: true},
-    {no: 51, name: "repeated_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), repeated: true},
-    {no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true},
-    {no: 53, name: "repeated_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), repeated: true},
-    {no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true},
-    {no: 61, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 41},
-    {no: 62, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("42")},
-    {no: 63, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 43},
-    {no: 64, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("44")},
-    {no: 65, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, default: -45},
-    {no: 66, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, default: protoInt64.parse("46")},
-    {no: 67, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, default: 47},
-    {no: 68, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, default: protoInt64.uParse("48")},
-    {no: 69, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, default: 49},
-    {no: 70, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, default: protoInt64.parse("-50")},
-    {no: 71, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 51.5},
-    {no: 72, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000},
-    {no: 73, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true},
-    {no: 74, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello"},
-    {no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64, ])},
-    {no: 81, name: "default_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true, default: TestAllTypesLite_NestedEnum.BAR},
-    {no: 82, name: "default_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true, default: ForeignEnumLite.FOREIGN_LITE_BAR},
-    {no: 83, name: "default_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true, default: ImportEnumLite.IMPORT_LITE_BAR},
-    {no: 84, name: "default_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "abc"},
-    {no: 85, name: "default_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "123"},
-    {no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field"},
-    {no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, oneof: "oneof_field"},
-    {no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field"},
-    {no: 115, name: "oneof_lazy_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, oneof: "oneof_field"},
-    {no: 117, name: "oneof_nested_message2", kind: "message", T: TestAllTypesLite_NestedMessage2, oneof: "oneof_field"},
-    {no: 116, name: "deceptively_named_list", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
+    { no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true },
+    { no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true },
+    { no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
+    { no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true },
+    { no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true },
+    { no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true },
+    { no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true },
+    { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypesLite_OptionalGroup, opt: true },
+    { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true },
+    { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessageLite, opt: true },
+    { no: 20, name: "optional_import_message", kind: "message", T: ImportMessageLite, opt: true },
+    { no: 21, name: "optional_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true },
+    { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true },
+    { no: 23, name: "optional_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true },
+    { no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessageLite, opt: true },
+    { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true },
+    { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true },
+    { no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true },
+    { no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true },
+    { no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true },
+    { no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypesLite_RepeatedGroup, repeated: true },
+    { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true },
+    { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessageLite, repeated: true },
+    { no: 50, name: "repeated_import_message", kind: "message", T: ImportMessageLite, repeated: true },
+    { no: 51, name: "repeated_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), repeated: true },
+    { no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true },
+    { no: 53, name: "repeated_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), repeated: true },
+    { no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true },
+    { no: 61, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 41 },
+    { no: 62, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("42") },
+    { no: 63, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 43 },
+    { no: 64, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("44") },
+    { no: 65, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, default: -45 },
+    { no: 66, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, default: protoInt64.parse("46") },
+    { no: 67, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, default: 47 },
+    { no: 68, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, default: protoInt64.uParse("48") },
+    { no: 69, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, default: 49 },
+    { no: 70, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, default: protoInt64.parse("-50") },
+    { no: 71, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 51.5 },
+    { no: 72, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000 },
+    { no: 73, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
+    { no: 74, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello" },
+    { no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64, ]) },
+    { no: 81, name: "default_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true, default: TestAllTypesLite_NestedEnum.BAR },
+    { no: 82, name: "default_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true, default: ForeignEnumLite.FOREIGN_LITE_BAR },
+    { no: 83, name: "default_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true, default: ImportEnumLite.IMPORT_LITE_BAR },
+    { no: 84, name: "default_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "abc" },
+    { no: 85, name: "default_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "123" },
+    { no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
+    { no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, oneof: "oneof_field" },
+    { no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
+    { no: 115, name: "oneof_lazy_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, oneof: "oneof_field" },
+    { no: 117, name: "oneof_nested_message2", kind: "message", T: TestAllTypesLite_NestedMessage2, oneof: "oneof_field" },
+    { no: 116, name: "deceptively_named_list", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite {
@@ -646,9 +646,9 @@ export enum TestAllTypesLite_NestedEnum {
 }
 // Retrieve enum metadata with: proto2.getEnumType(TestAllTypesLite_NestedEnum)
 proto2.util.setEnumType(TestAllTypesLite_NestedEnum, "protobuf_unittest.TestAllTypesLite.NestedEnum", [
-  {no: 1, name: "FOO"},
-  {no: 2, name: "BAR"},
-  {no: 3, name: "BAZ"},
+  { no: 1, name: "FOO" },
+  { no: 2, name: "BAR" },
+  { no: 3, name: "BAZ" },
 ]);
 
 /**
@@ -673,8 +673,8 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "cc", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true},
+    { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "cc", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_NestedMessage {
@@ -711,7 +711,7 @@ export class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_Ne
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.NestedMessage2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "dd", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "dd", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_NestedMessage2 {
@@ -748,7 +748,7 @@ export class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_Opt
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_OptionalGroup {
@@ -785,7 +785,7 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.RepeatedGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_RepeatedGroup {
@@ -822,7 +822,7 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ForeignMessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForeignMessageLite {
@@ -924,20 +924,20 @@ export class TestPackedTypesLite extends Message<TestPackedTypesLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestPackedTypesLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true},
-    {no: 91, name: "packed_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true},
-    {no: 92, name: "packed_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true},
-    {no: 93, name: "packed_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true},
-    {no: 94, name: "packed_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true},
-    {no: 95, name: "packed_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, packed: true},
-    {no: 96, name: "packed_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true},
-    {no: 97, name: "packed_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, packed: true},
-    {no: 98, name: "packed_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, packed: true},
-    {no: 99, name: "packed_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, packed: true},
-    {no: 100, name: "packed_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, packed: true},
-    {no: 101, name: "packed_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true},
-    {no: 102, name: "packed_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true},
-    {no: 103, name: "packed_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true, packed: true},
+    { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 91, name: "packed_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true },
+    { no: 92, name: "packed_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true },
+    { no: 93, name: "packed_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true },
+    { no: 94, name: "packed_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true },
+    { no: 95, name: "packed_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, packed: true },
+    { no: 96, name: "packed_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true },
+    { no: 97, name: "packed_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, packed: true },
+    { no: 98, name: "packed_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, packed: true },
+    { no: 99, name: "packed_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, packed: true },
+    { no: 100, name: "packed_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, packed: true },
+    { no: 101, name: "packed_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true },
+    { no: 102, name: "packed_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true },
+    { no: 103, name: "packed_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true, packed: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedTypesLite {
@@ -1005,7 +1005,7 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.OptionalGroup_extension_lite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OptionalGroup_extension_lite {
@@ -1042,7 +1042,7 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.RepeatedGroup_extension_lite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedGroup_extension_lite {
@@ -1163,10 +1163,10 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestDeprecatedLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "deprecated_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "deprecated_field3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 4, name: "deprecated_field4", kind: "message", T: TestDeprecatedLite, opt: true},
+    { no: 1, name: "deprecated_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "deprecated_field3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "deprecated_field4", kind: "message", T: TestDeprecatedLite, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestDeprecatedLite {
@@ -1225,11 +1225,11 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite},
-    {no: 2, name: "optional_all_types", kind: "message", T: TestAllTypesLite, opt: true},
-    {no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true},
-    {no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, opt: true},
-    {no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMergeLite_RepeatedGroup, repeated: true},
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite },
+    { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypesLite, opt: true },
+    { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true },
+    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, opt: true },
+    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMergeLite_RepeatedGroup, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite {
@@ -1296,13 +1296,13 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator extends Message<TestPa
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "field1", kind: "message", T: TestAllTypesLite, repeated: true},
-    {no: 2, name: "field2", kind: "message", T: TestAllTypesLite, repeated: true},
-    {no: 3, name: "field3", kind: "message", T: TestAllTypesLite, repeated: true},
-    {no: 10, name: "group1", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group1, repeated: true},
-    {no: 20, name: "group2", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group2, repeated: true},
-    {no: 1000, name: "ext1", kind: "message", T: TestAllTypesLite, repeated: true},
-    {no: 1001, name: "ext2", kind: "message", T: TestAllTypesLite, repeated: true},
+    { no: 1, name: "field1", kind: "message", T: TestAllTypesLite, repeated: true },
+    { no: 2, name: "field2", kind: "message", T: TestAllTypesLite, repeated: true },
+    { no: 3, name: "field3", kind: "message", T: TestAllTypesLite, repeated: true },
+    { no: 10, name: "group1", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group1, repeated: true },
+    { no: 20, name: "group2", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group2, repeated: true },
+    { no: 1000, name: "ext1", kind: "message", T: TestAllTypesLite, repeated: true },
+    { no: 1001, name: "ext2", kind: "message", T: TestAllTypesLite, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator {
@@ -1339,7 +1339,7 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends Message
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 11, name: "field1", kind: "message", T: TestAllTypesLite, opt: true},
+    { no: 11, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1 {
@@ -1376,7 +1376,7 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends Message
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 21, name: "field1", kind: "message", T: TestAllTypesLite, opt: true},
+    { no: 21, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group2 {
@@ -1413,7 +1413,7 @@ export class TestParsingMergeLite_OptionalGroup extends Message<TestParsingMerge
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypesLite, opt: true},
+    { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_OptionalGroup {
@@ -1450,7 +1450,7 @@ export class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMerge
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypesLite, opt: true},
+    { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedGroup {
@@ -1559,8 +1559,8 @@ export class V1MessageLite extends Message<V1MessageLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.V1MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V1EnumLite), opt: true, default: V1EnumLite.V1_FIRST},
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V1EnumLite), opt: true, default: V1EnumLite.V1_FIRST },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): V1MessageLite {
@@ -1602,8 +1602,8 @@ export class V2MessageLite extends Message<V2MessageLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.V2MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V2EnumLite), opt: true, default: V2EnumLite.V2_FIRST},
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V2EnumLite), opt: true, default: V2EnumLite.V2_FIRST },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): V2MessageLite {
@@ -1714,20 +1714,20 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestHugeFieldNumbersLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 536870001, name: "fixed_32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 536870002, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 536870003, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true},
-    {no: 536870004, name: "optional_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true},
-    {no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    {no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
-    {no: 536870007, name: "optional_message", kind: "message", T: ForeignMessageLite, opt: true},
-    {no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbersLite_OptionalGroup, opt: true},
-    {no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
-    {no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field"},
-    {no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypesLite, oneof: "oneof_field"},
-    {no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field"},
+    { no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 536870001, name: "fixed_32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 536870002, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 536870003, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 536870004, name: "optional_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true },
+    { no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessageLite, opt: true },
+    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbersLite_OptionalGroup, opt: true },
+    { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
+    { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
+    { no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestHugeFieldNumbersLite {
@@ -1764,7 +1764,7 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestHugeFieldNumbersLite_OptionalGroup {
@@ -1855,15 +1855,15 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestOneofParsingLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "oneof_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_field"},
-    {no: 2, name: "oneof_submessage", kind: "message", T: TestAllTypesLite, oneof: "oneof_field"},
-    {no: 3, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 4, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, ]), oneof: "oneof_field"},
-    {no: 5, name: "oneof_string_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "default Cord", oneof: "oneof_field"},
-    {no: 6, name: "oneof_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field"},
-    {no: 7, name: "oneof_string_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 8, name: "oneof_bytes_string_piece", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6E, 0x67, 0x50, 0x69, 0x65, 0x63, 0x65, ]), oneof: "oneof_field"},
-    {no: 9, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(V2EnumLite), oneof: "oneof_field"},
+    { no: 1, name: "oneof_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_field" },
+    { no: 2, name: "oneof_submessage", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
+    { no: 3, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 4, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, ]), oneof: "oneof_field" },
+    { no: 5, name: "oneof_string_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "default Cord", oneof: "oneof_field" },
+    { no: 6, name: "oneof_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
+    { no: 7, name: "oneof_string_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 8, name: "oneof_bytes_string_piece", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6E, 0x67, 0x50, 0x69, 0x65, 0x63, 0x65, ]), oneof: "oneof_field" },
+    { no: 9, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(V2EnumLite), oneof: "oneof_field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneofParsingLite {
@@ -1904,7 +1904,7 @@ export class PackedInt32 extends Message<PackedInt32> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.PackedInt32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true},
+    { no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PackedInt32 {
@@ -1941,7 +1941,7 @@ export class NonPackedInt32 extends Message<NonPackedInt32> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.NonPackedInt32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
+    { no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NonPackedInt32 {
@@ -1978,7 +1978,7 @@ export class PackedFixed32 extends Message<PackedFixed32> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.PackedFixed32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true},
+    { no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PackedFixed32 {
@@ -2015,7 +2015,7 @@ export class NonPackedFixed32 extends Message<NonPackedFixed32> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.NonPackedFixed32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
+    { no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NonPackedFixed32 {
@@ -2099,11 +2099,11 @@ export enum DupEnum_TestEnumWithDupValueLite {
 }
 // Retrieve enum metadata with: proto2.getEnumType(DupEnum_TestEnumWithDupValueLite)
 proto2.util.setEnumType(DupEnum_TestEnumWithDupValueLite, "protobuf_unittest.DupEnum.TestEnumWithDupValueLite", [
-  {no: 1, name: "FOO1"},
-  {no: 2, name: "BAR1"},
-  {no: 3, name: "BAZ"},
-  {no: 1, name: "FOO2"},
-  {no: 2, name: "BAR2"},
+  { no: 1, name: "FOO1" },
+  { no: 2, name: "BAR1" },
+  { no: 3, name: "BAZ" },
+  { no: 1, name: "FOO2" },
+  { no: 2, name: "BAR2" },
 ]);
 
 /**
@@ -2128,8 +2128,8 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.RecursiveMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "recurse", kind: "message", T: RecursiveMessage, opt: true},
-    {no: 2, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true},
+    { no: 1, name: "recurse", kind: "message", T: RecursiveMessage, opt: true },
+    { no: 2, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecursiveMessage {

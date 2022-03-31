@@ -70,12 +70,12 @@ export class PushRequest extends Message<PushRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PushRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "module", kind: "message", T: Module},
-    {no: 5, name: "tags", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 6, name: "tracks", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "branch", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "module", kind: "message", T: Module },
+    { no: 5, name: "tags", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "tracks", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PushRequest {
@@ -112,7 +112,7 @@ export class PushResponse extends Message<PushResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PushResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 5, name: "local_module_pin", kind: "message", T: LocalModulePin},
+    { no: 5, name: "local_module_pin", kind: "message", T: LocalModulePin },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PushResponse {

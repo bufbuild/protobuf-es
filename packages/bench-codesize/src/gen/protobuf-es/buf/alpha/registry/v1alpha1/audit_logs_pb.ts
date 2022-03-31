@@ -71,11 +71,11 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "start_time", kind: "message", T: Timestamp},
-    {no: 5, name: "end_time", kind: "message", T: Timestamp},
+    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "start_time", kind: "message", T: Timestamp },
+    { no: 5, name: "end_time", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAuditLogsRequest {
@@ -119,8 +119,8 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "audit_logs", kind: "message", T: Event, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "audit_logs", kind: "message", T: Event, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAuditLogsResponse {

@@ -47,8 +47,8 @@ import {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
 export const TestEmbedOptimizedForSize = proto2.makeMessageType(
   "protobuf_unittest.TestEmbedOptimizedForSize",
   () => [
-    {no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true},
-    {no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true},
+    { no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true },
+    { no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true },
   ],
 );
 

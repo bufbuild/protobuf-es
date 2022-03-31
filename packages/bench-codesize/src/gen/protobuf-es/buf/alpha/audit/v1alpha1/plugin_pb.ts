@@ -40,9 +40,9 @@ export enum BufAlphaRegistryV1Alpha1PluginVisibility {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1PluginVisibility)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1PluginVisibility, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVisibility", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PUBLIC"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PRIVATE"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PUBLIC" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PRIVATE" },
 ]);
 
 /**
@@ -77,10 +77,10 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionMapping";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1PluginVersionMapping {
@@ -132,10 +132,10 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 4, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "plugin_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "deleted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1PluginConfig {
@@ -177,8 +177,8 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary {

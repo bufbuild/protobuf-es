@@ -39,8 +39,8 @@ export enum BufAlphaRegistryV1Alpha1UserState {
 }
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1UserState)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1UserState, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1UserState", [
-  {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_UNSPECIFIED"},
-  {no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_ACTIVE"},
-  {no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_DEACTIVATED"},
+  { no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_UNSPECIFIED" },
+  { no: 1, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_ACTIVE" },
+  { no: 2, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_USER_STATE_DEACTIVATED" },
 ]);
 

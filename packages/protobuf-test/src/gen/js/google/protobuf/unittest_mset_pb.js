@@ -48,7 +48,7 @@ import {TestMessageSet} from "./unittest_mset_wire_format_pb.js";
 export const TestMessageSetContainer = proto2.makeMessageType(
   "protobuf_unittest.TestMessageSetContainer",
   () => [
-    {no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true},
+    { no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true },
   ],
 );
 
@@ -58,9 +58,9 @@ export const TestMessageSetContainer = proto2.makeMessageType(
 export const TestMessageSetExtension1 = proto2.makeMessageType(
   "protobuf_unittest.TestMessageSetExtension1",
   () => [
-    {no: 15, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 16, name: "recursive", kind: "message", T: TestMessageSet, opt: true},
-    {no: 17, name: "test_aliasing", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 15, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 16, name: "recursive", kind: "message", T: TestMessageSet, opt: true },
+    { no: 17, name: "test_aliasing", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -70,7 +70,7 @@ export const TestMessageSetExtension1 = proto2.makeMessageType(
 export const TestMessageSetExtension2 = proto2.makeMessageType(
   "protobuf_unittest.TestMessageSetExtension2",
   () => [
-    {no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -82,7 +82,7 @@ export const TestMessageSetExtension2 = proto2.makeMessageType(
 export const RawMessageSet = proto2.makeMessageType(
   "protobuf_unittest.RawMessageSet",
   () => [
-    {no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true},
+    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
   ],
 );
 
@@ -92,8 +92,8 @@ export const RawMessageSet = proto2.makeMessageType(
 export const RawMessageSet_Item = proto2.makeMessageType(
   "protobuf_unittest.RawMessageSet.Item",
   () => [
-    {no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ],
   {localName: "RawMessageSet_Item"},
 );

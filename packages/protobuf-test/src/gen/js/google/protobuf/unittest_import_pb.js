@@ -77,7 +77,7 @@ export const ImportEnumForMap = proto2.makeEnum(
 export const ImportMessage = proto2.makeMessageType(
   "protobuf_unittest_import.ImportMessage",
   () => [
-    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

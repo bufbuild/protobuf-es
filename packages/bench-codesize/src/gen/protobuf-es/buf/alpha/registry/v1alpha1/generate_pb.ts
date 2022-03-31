@@ -49,8 +49,8 @@ export class File extends Message<File> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.File";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): File {
@@ -105,8 +105,8 @@ export class RuntimeLibrary extends Message<RuntimeLibrary> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RuntimeLibrary";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RuntimeLibrary {
@@ -169,10 +169,10 @@ export class PluginReference extends Message<PluginReference> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginReference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "parameters", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PluginReference {
@@ -238,10 +238,10 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GeneratePluginsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "image", kind: "message", T: Image},
-    {no: 2, name: "plugins", kind: "message", T: PluginReference, repeated: true},
-    {no: 3, name: "include_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "include_well_known_types", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "image", kind: "message", T: Image },
+    { no: 2, name: "plugins", kind: "message", T: PluginReference, repeated: true },
+    { no: 3, name: "include_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "include_well_known_types", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeneratePluginsRequest {
@@ -293,8 +293,8 @@ export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GeneratePluginsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "responses", kind: "message", T: CodeGeneratorResponse, repeated: true},
-    {no: 2, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true},
+    { no: 1, name: "responses", kind: "message", T: CodeGeneratorResponse, repeated: true },
+    { no: 2, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeneratePluginsResponse {
@@ -377,12 +377,12 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GenerateTemplateRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "image", kind: "message", T: Image},
-    {no: 2, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "template_version", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "include_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 6, name: "include_well_known_types", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "image", kind: "message", T: Image },
+    { no: 2, name: "template_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "template_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "template_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "include_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "include_well_known_types", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateTemplateRequest {
@@ -432,8 +432,8 @@ export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GenerateTemplateResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "files", kind: "message", T: File, repeated: true},
-    {no: 2, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true},
+    { no: 1, name: "files", kind: "message", T: File, repeated: true },
+    { no: 2, name: "runtime_libraries", kind: "message", T: RuntimeLibrary, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateTemplateResponse {

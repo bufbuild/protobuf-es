@@ -63,7 +63,7 @@ export class ImportedMessage extends Message<ImportedMessage> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.lazy_imports.ImportedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
+    { no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportedMessage {

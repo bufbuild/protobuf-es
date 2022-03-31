@@ -40,7 +40,7 @@ export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizat
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayOrganizationElementsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayOrganizationElementsRequest {
@@ -114,12 +114,12 @@ export class DisplayOrganizationElementsResponse extends Message<DisplayOrganiza
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayOrganizationElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "create_repository", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 2, name: "create_plugin", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 3, name: "create_template", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 5, name: "update_settings", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 6, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "create_repository", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "create_plugin", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "create_template", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "update_settings", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayOrganizationElementsResponse {
@@ -159,7 +159,7 @@ export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryE
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayRepositoryElementsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayRepositoryElementsRequest {
@@ -205,8 +205,8 @@ export class DisplayRepositoryElementsResponse extends Message<DisplayRepository
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayRepositoryElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 2, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayRepositoryElementsResponse {
@@ -246,7 +246,7 @@ export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsR
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayPluginElementsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayPluginElementsRequest {
@@ -299,9 +299,9 @@ export class DisplayPluginElementsResponse extends Message<DisplayPluginElements
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayPluginElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "create_version", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 2, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 3, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "create_version", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayPluginElementsResponse {
@@ -341,7 +341,7 @@ export class DisplayTemplateElementsRequest extends Message<DisplayTemplateEleme
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayTemplateElementsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayTemplateElementsRequest {
@@ -394,9 +394,9 @@ export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElem
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayTemplateElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "create_version", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 2, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 3, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "create_version", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "settings", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayTemplateElementsResponse {
@@ -466,7 +466,7 @@ export class DisplayUserElementsResponse extends Message<DisplayUserElementsResp
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayUserElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "delete", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayUserElementsResponse {
@@ -536,7 +536,7 @@ export class DisplayServerElementsResponse extends Message<DisplayServerElements
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DisplayServerElementsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "admin_panel", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "admin_panel", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DisplayServerElementsResponse {
@@ -576,7 +576,7 @@ export class ListManageableRepositoryRolesRequest extends Message<ListManageable
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableRepositoryRolesRequest {
@@ -616,7 +616,7 @@ export class ListManageableRepositoryRolesResponse extends Message<ListManageabl
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(RepositoryRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(RepositoryRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableRepositoryRolesResponse {
@@ -664,8 +664,8 @@ export class ListManageableUserRepositoryRolesRequest extends Message<ListManage
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserRepositoryRolesRequest {
@@ -705,7 +705,7 @@ export class ListManageableUserRepositoryRolesResponse extends Message<ListManag
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(RepositoryRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(RepositoryRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserRepositoryRolesResponse {
@@ -745,7 +745,7 @@ export class ListManageablePluginRolesRequest extends Message<ListManageablePlug
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageablePluginRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageablePluginRolesRequest {
@@ -785,7 +785,7 @@ export class ListManageablePluginRolesResponse extends Message<ListManageablePlu
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageablePluginRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(PluginRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(PluginRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageablePluginRolesResponse {
@@ -833,8 +833,8 @@ export class ListManageableUserPluginRolesRequest extends Message<ListManageable
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "plugin_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserPluginRolesRequest {
@@ -874,7 +874,7 @@ export class ListManageableUserPluginRolesResponse extends Message<ListManageabl
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(PluginRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(PluginRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserPluginRolesResponse {
@@ -914,7 +914,7 @@ export class ListManageableTemplateRolesRequest extends Message<ListManageableTe
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableTemplateRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableTemplateRolesRequest {
@@ -954,7 +954,7 @@ export class ListManageableTemplateRolesResponse extends Message<ListManageableT
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableTemplateRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(TemplateRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(TemplateRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableTemplateRolesResponse {
@@ -1002,8 +1002,8 @@ export class ListManageableUserTemplateRolesRequest extends Message<ListManageab
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserTemplateRolesRequest {
@@ -1043,7 +1043,7 @@ export class ListManageableUserTemplateRolesResponse extends Message<ListManagea
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(TemplateRole), repeated: true},
+    { no: 1, name: "roles", kind: "enum", T: proto3.getEnumType(TemplateRole), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListManageableUserTemplateRolesResponse {

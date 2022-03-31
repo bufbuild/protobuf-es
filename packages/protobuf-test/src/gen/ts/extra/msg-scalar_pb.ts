@@ -106,21 +106,21 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.ScalarValuesMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
-    {no: 2, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */},
-    {no: 3, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 4, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */},
-    {no: 5, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 6, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */},
-    {no: 7, name: "fixed32_field", kind: "scalar", T: 7 /* ScalarType.FIXED32 */},
-    {no: 8, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 9, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 11, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */},
-    {no: 12, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 14, name: "sfixed32_field", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */},
-    {no: 15, name: "sfixed64_field", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */},
-    {no: 16, name: "sint32_field", kind: "scalar", T: 17 /* ScalarType.SINT32 */},
-    {no: 17, name: "sint64_field", kind: "scalar", T: 18 /* ScalarType.SINT64 */},
+    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 2, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 3, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
+    { no: 7, name: "fixed32_field", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 8, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 12, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 14, name: "sfixed32_field", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */ },
+    { no: 15, name: "sfixed64_field", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */ },
+    { no: 16, name: "sint32_field", kind: "scalar", T: 17 /* ScalarType.SINT32 */ },
+    { no: 17, name: "sint64_field", kind: "scalar", T: 18 /* ScalarType.SINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ScalarValuesMessage {
@@ -227,21 +227,21 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
   static readonly runtime = proto3;
   static readonly typeName = "spec.RepeatedScalarValuesMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true},
-    {no: 2, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 3, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 4, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
-    {no: 5, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 6, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 7, name: "fixed32_field", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 8, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true},
-    {no: 9, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 11, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
-    {no: 12, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true},
-    {no: 14, name: "sfixed32_field", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true},
-    {no: 15, name: "sfixed64_field", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true},
-    {no: 16, name: "sint32_field", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true},
-    {no: 17, name: "sint64_field", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
+    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 2, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 3, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 4, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 5, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 6, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 7, name: "fixed32_field", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 8, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 9, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 11, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 12, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 14, name: "sfixed32_field", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true },
+    { no: 15, name: "sfixed64_field", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true },
+    { no: 16, name: "sint32_field", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true },
+    { no: 17, name: "sint64_field", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedScalarValuesMessage {

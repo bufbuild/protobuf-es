@@ -54,7 +54,7 @@ func generateEnum(f *protoplugin.GeneratedFile, enum *protoplugin.Enum) {
 	}
 	f.P(rt.ProtoN, `.util.setEnumType(`, enum.Symbol, `, "`, enum.TypeName, `", [`)
 	for _, value := range enum.Values {
-		f.P("  {no: ", value.Proto.GetNumber(), ", name: \"", value.Proto.GetName(), "\"},")
+		f.P("  { no: ", value.Proto.GetNumber(), ", name: \"", value.Proto.GetName(), "\" },")
 	}
 	f.P("]);")
 	f.P()
@@ -120,7 +120,7 @@ func generateFieldInfo(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
 	rt := field.Parent.File.RuntimeSymbols
 
 	e := make([]interface{}, 0)
-	e = append(e, "    {no: ", field.Proto.GetNumber(), `, name: "`, field.Proto.GetName(), `", `)
+	e = append(e, "    { no: ", field.Proto.GetNumber(), `, name: "`, field.Proto.GetName(), `", `)
 
 	if field.JSONName != "" {
 		e = append(e, `jsonName: "`, field.JSONName, `", `)
@@ -173,7 +173,7 @@ func generateFieldInfo(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
 	if l, ok := e[len(e)-1].(string); ok && strings.HasSuffix(l, ", ") {
 		e = append(e[:len(e)-1], strings.TrimSuffix(l, ", ")) // remove trailing ", "
 	}
-	e = append(e, "},")
+	e = append(e, " },")
 	f.P(e...)
 }
 

@@ -59,9 +59,9 @@ export enum ForeignEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ForeignEnum)
 proto3.util.setEnumType(ForeignEnum, "proto2_nofieldpresence_unittest.ForeignEnum", [
-  {no: 0, name: "FOREIGN_FOO"},
-  {no: 1, name: "FOREIGN_BAR"},
-  {no: 2, name: "FOREIGN_BAZ"},
+  { no: 0, name: "FOREIGN_FOO" },
+  { no: 1, name: "FOREIGN_BAR" },
+  { no: 2, name: "FOREIGN_BAZ" },
 ]);
 
 /**
@@ -348,56 +348,56 @@ export class TestAllTypes extends Message<TestAllTypes> {
   static readonly runtime = proto3;
   static readonly typeName = "proto2_nofieldpresence_unittest.TestAllTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */},
-    {no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */},
-    {no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */},
-    {no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */},
-    {no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */},
-    {no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */},
-    {no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */},
-    {no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */},
-    {no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */},
-    {no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
-    {no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */},
-    {no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage},
-    {no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage},
-    {no: 20, name: "optional_proto2_message", kind: "message", T: TestAllTypes$1},
-    {no: 21, name: "optional_nested_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum)},
-    {no: 22, name: "optional_foreign_enum", kind: "enum", T: proto3.getEnumType(ForeignEnum)},
-    {no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 30, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage},
-    {no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    {no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true},
-    {no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true},
-    {no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true},
-    {no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true},
-    {no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true},
-    {no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true},
-    {no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true},
-    {no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true},
-    {no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true},
-    {no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true},
-    {no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true},
-    {no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true},
-    {no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true},
-    {no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true},
-    {no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true},
-    {no: 50, name: "repeated_proto2_message", kind: "message", T: TestAllTypes$1, repeated: true},
-    {no: 51, name: "repeated_nested_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum), repeated: true},
-    {no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto3.getEnumType(ForeignEnum), repeated: true},
-    {no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true},
-    {no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field"},
-    {no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field"},
-    {no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field"},
-    {no: 114, name: "oneof_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum), oneof: "oneof_field"},
+    { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "optional_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "optional_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "optional_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: "optional_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */ },
+    { no: 6, name: "optional_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */ },
+    { no: 7, name: "optional_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 8, name: "optional_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
+    { no: 9, name: "optional_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */ },
+    { no: 10, name: "optional_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */ },
+    { no: 11, name: "optional_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 12, name: "optional_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage },
+    { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage },
+    { no: 20, name: "optional_proto2_message", kind: "message", T: TestAllTypes$1 },
+    { no: 21, name: "optional_nested_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum) },
+    { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto3.getEnumType(ForeignEnum) },
+    { no: 24, name: "optional_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 30, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage },
+    { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 34, name: "repeated_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 35, name: "repeated_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true },
+    { no: 36, name: "repeated_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true },
+    { no: 37, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+    { no: 38, name: "repeated_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true },
+    { no: 39, name: "repeated_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true },
+    { no: 40, name: "repeated_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true },
+    { no: 41, name: "repeated_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 42, name: "repeated_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
+    { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true },
+    { no: 50, name: "repeated_proto2_message", kind: "message", T: TestAllTypes$1, repeated: true },
+    { no: 51, name: "repeated_nested_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum), repeated: true },
+    { no: 52, name: "repeated_foreign_enum", kind: "enum", T: proto3.getEnumType(ForeignEnum), repeated: true },
+    { no: 54, name: "repeated_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 55, name: "repeated_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 57, name: "repeated_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
+    { no: 111, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
+    { no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
+    { no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 114, name: "oneof_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum), oneof: "oneof_field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes {
@@ -438,9 +438,9 @@ export enum TestAllTypes_NestedEnum {
 }
 // Retrieve enum metadata with: proto3.getEnumType(TestAllTypes_NestedEnum)
 proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum", [
-  {no: 0, name: "FOO"},
-  {no: 1, name: "BAR"},
-  {no: 2, name: "BAZ"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
 ]);
 
 /**
@@ -460,7 +460,7 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   static readonly runtime = proto3;
   static readonly typeName = "proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes_NestedMessage {
@@ -497,7 +497,7 @@ export class TestProto2Required extends Message<TestProto2Required> {
   static readonly runtime = proto3;
   static readonly typeName = "proto2_nofieldpresence_unittest.TestProto2Required";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "proto2", kind: "message", T: TestRequired},
+    { no: 1, name: "proto2", kind: "message", T: TestRequired },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestProto2Required {
@@ -537,7 +537,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
   static readonly runtime = proto3;
   static readonly typeName = "proto2_nofieldpresence_unittest.ForeignMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForeignMessage {

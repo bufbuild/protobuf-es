@@ -41,9 +41,9 @@ export enum UserState {
 }
 // Retrieve enum metadata with: proto3.getEnumType(UserState)
 proto3.util.setEnumType(UserState, "buf.alpha.registry.v1alpha1.UserState", [
-  {no: 0, name: "USER_STATE_UNSPECIFIED"},
-  {no: 1, name: "USER_STATE_ACTIVE"},
-  {no: 2, name: "USER_STATE_DEACTIVATED"},
+  { no: 0, name: "USER_STATE_UNSPECIFIED" },
+  { no: 1, name: "USER_STATE_ACTIVE" },
+  { no: 2, name: "USER_STATE_DEACTIVATED" },
 ]);
 
 /**
@@ -93,11 +93,11 @@ export class User extends Message<User> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 3, name: "update_time", kind: "message", T: Timestamp},
-    {no: 4, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "deactivated", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 3, name: "update_time", kind: "message", T: Timestamp },
+    { no: 4, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "deactivated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {
@@ -150,9 +150,9 @@ export class OrganizationUser extends Message<OrganizationUser> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.OrganizationUser";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
-    {no: 2, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "organization_role", kind: "enum", T: proto3.getEnumType(OrganizationRole)},
+    { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "organization_role", kind: "enum", T: proto3.getEnumType(OrganizationRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OrganizationUser {
@@ -189,7 +189,7 @@ export class CreateUserRequest extends Message<CreateUserRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateUserRequest {
@@ -226,7 +226,7 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateUserResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
+    { no: 1, name: "user", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateUserResponse {
@@ -263,7 +263,7 @@ export class GetUserRequest extends Message<GetUserRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserRequest {
@@ -300,7 +300,7 @@ export class GetUserResponse extends Message<GetUserResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetUserResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
+    { no: 1, name: "user", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserResponse {
@@ -337,7 +337,7 @@ export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> 
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetUserByUsernameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserByUsernameRequest {
@@ -374,7 +374,7 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetUserByUsernameResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user", kind: "message", T: User},
+    { no: 1, name: "user", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserByUsernameResponse {
@@ -430,10 +430,10 @@ export class ListUsersRequest extends Message<ListUsersRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUsersRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 4, name: "user_state_filter", kind: "enum", T: proto3.getEnumType(UserState)},
+    { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "user_state_filter", kind: "enum", T: proto3.getEnumType(UserState) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUsersRequest {
@@ -477,8 +477,8 @@ export class ListUsersResponse extends Message<ListUsersResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListUsersResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "users", kind: "message", T: User, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "users", kind: "message", T: User, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUsersResponse {
@@ -532,10 +532,10 @@ export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersR
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationUsersRequest {
@@ -579,8 +579,8 @@ export class ListOrganizationUsersResponse extends Message<ListOrganizationUsers
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "users", kind: "message", T: OrganizationUser, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "users", kind: "message", T: OrganizationUser, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationUsersResponse {
@@ -679,7 +679,7 @@ export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.DeactivateUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeactivateUserRequest {
@@ -756,8 +756,8 @@ export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleReq
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "server_role", kind: "enum", T: proto3.getEnumType(ServerRole)},
+    { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "server_role", kind: "enum", T: proto3.getEnumType(ServerRole) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateUserServerRoleRequest {
@@ -827,7 +827,7 @@ export class CountUsersRequest extends Message<CountUsersRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CountUsersRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "user_state_filter", kind: "enum", T: proto3.getEnumType(UserState)},
+    { no: 1, name: "user_state_filter", kind: "enum", T: proto3.getEnumType(UserState) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CountUsersRequest {
@@ -864,7 +864,7 @@ export class CountUsersResponse extends Message<CountUsersResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CountUsersResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "total_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+    { no: 1, name: "total_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CountUsersResponse {

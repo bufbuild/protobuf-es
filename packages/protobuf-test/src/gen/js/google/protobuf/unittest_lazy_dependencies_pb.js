@@ -51,7 +51,7 @@ import {LazyMessage} from "./unittest_lazy_dependencies_custom_option_pb.js";
 export const ImportedMessage = proto2.makeMessageType(
   "protobuf_unittest.lazy_imports.ImportedMessage",
   () => [
-    {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
+    { no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true },
   ],
 );
 

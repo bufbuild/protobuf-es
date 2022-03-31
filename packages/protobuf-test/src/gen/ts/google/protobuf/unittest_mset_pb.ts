@@ -60,7 +60,7 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetContainer";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true},
+    { no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetContainer {
@@ -107,9 +107,9 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 15, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    {no: 16, name: "recursive", kind: "message", T: TestMessageSet, opt: true},
-    {no: 17, name: "test_aliasing", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 15, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 16, name: "recursive", kind: "message", T: TestMessageSet, opt: true },
+    { no: 17, name: "test_aliasing", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension1 {
@@ -146,7 +146,7 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
+    { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension2 {
@@ -185,7 +185,7 @@ export class RawMessageSet extends Message<RawMessageSet> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true},
+    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet {
@@ -227,8 +227,8 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    {no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    {no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item {

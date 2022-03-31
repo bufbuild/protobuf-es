@@ -58,10 +58,10 @@ export enum ImageMask {
 }
 // Retrieve enum metadata with: proto3.getEnumType(ImageMask)
 proto3.util.setEnumType(ImageMask, "buf.alpha.registry.v1alpha1.ImageMask", [
-  {no: 0, name: "IMAGE_MASK_UNSPECIFIED"},
-  {no: 1, name: "IMAGE_MASK_MESSAGES"},
-  {no: 2, name: "IMAGE_MASK_ENUMS"},
-  {no: 3, name: "IMAGE_MASK_SERVICES"},
+  { no: 0, name: "IMAGE_MASK_UNSPECIFIED" },
+  { no: 1, name: "IMAGE_MASK_MESSAGES" },
+  { no: 2, name: "IMAGE_MASK_ENUMS" },
+  { no: 3, name: "IMAGE_MASK_SERVICES" },
 ]);
 
 /**
@@ -130,13 +130,13 @@ export class GetImageRequest extends Message<GetImageRequest> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetImageRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "exclude_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 5, name: "exclude_source_info", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-    {no: 6, name: "types", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    {no: 7, name: "include_mask", kind: "enum", T: proto3.getEnumType(ImageMask), repeated: true},
+    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "exclude_imports", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "exclude_source_info", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: "types", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: "include_mask", kind: "enum", T: proto3.getEnumType(ImageMask), repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetImageRequest {
@@ -173,7 +173,7 @@ export class GetImageResponse extends Message<GetImageResponse> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetImageResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "image", kind: "message", T: Image},
+    { no: 1, name: "image", kind: "message", T: Image },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetImageResponse {

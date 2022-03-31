@@ -65,10 +65,10 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryTrackCommit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 2, name: "create_time", kind: "message", T: Timestamp},
-    {no: 4, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 5, name: "repository_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 6, name: "sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */},
+    { no: 2, name: "create_time", kind: "message", T: Timestamp },
+    { no: 4, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "repository_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "sequence_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepositoryTrackCommit {
@@ -110,8 +110,8 @@ export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<G
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_commit_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackCommitByRepositoryCommitRequest {
@@ -148,7 +148,7 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track_commit", kind: "message", T: RepositoryTrackCommit},
+    { no: 1, name: "repository_track_commit", kind: "message", T: RepositoryTrackCommit },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackCommitByRepositoryCommitResponse {
@@ -200,10 +200,10 @@ export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-    {no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    { no: 1, name: "repository_track_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: "page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reverse", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTrackCommitsByRepositoryTrackRequest {
@@ -245,8 +245,8 @@ export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track_commits", kind: "message", T: RepositoryTrackCommit, repeated: true},
-    {no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_track_commits", kind: "message", T: RepositoryTrackCommit, repeated: true },
+    { no: 2, name: "next_page_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListRepositoryTrackCommitsByRepositoryTrackResponse {
@@ -298,10 +298,10 @@ export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepos
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 3, name: "track", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    {no: 4, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "repository_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "track", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackCommitByReferenceRequest {
@@ -338,7 +338,7 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
   static readonly runtime = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "repository_track_commit", kind: "message", T: RepositoryTrackCommit},
+    { no: 1, name: "repository_track_commit", kind: "message", T: RepositoryTrackCommit },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRepositoryTrackCommitByReferenceResponse {

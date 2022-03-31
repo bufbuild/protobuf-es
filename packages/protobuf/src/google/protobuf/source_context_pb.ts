@@ -42,7 +42,7 @@ export class SourceContext extends Message<SourceContext> {
   static readonly runtime = proto3;
   static readonly typeName = "google.protobuf.SourceContext";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    {no: 1, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    { no: 1, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SourceContext {
