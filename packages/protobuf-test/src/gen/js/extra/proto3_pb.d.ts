@@ -23,175 +23,160 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.Proto3Enum
  */
 export declare enum Proto3Enum {
+  /**
+   * @generated from enum value: PROTO3_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
 
-    /**
-     * @generated from enum value: PROTO3_ENUM_UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
+  /**
+   * @generated from enum value: PROTO3_ENUM_YES = 1;
+   */
+  YES = 1,
 
-    /**
-     * @generated from enum value: PROTO3_ENUM_YES = 1;
-     */
-    YES = 1,
-
-    /**
-     * @generated from enum value: PROTO3_ENUM_NO = 2;
-     */
-    NO = 2,
-
+  /**
+   * @generated from enum value: PROTO3_ENUM_NO = 2;
+   */
+  NO = 2,
 }
-
 
 /**
  * @generated from message spec.Proto3PackedMessage
  */
 export declare class Proto3PackedMessage extends Message<Proto3PackedMessage> {
+  /**
+   * @generated from field: repeated double packed_double_field = 101 [packed = true];
+   */
+  packedDoubleField: number[];
 
-    /**
-     * @generated from field: repeated double packed_double_field = 101 [packed = true];
-     */
-    packedDoubleField: number[];
+  /**
+   * @generated from field: repeated uint32 packed_uint32_field = 102 [packed = true];
+   */
+  packedUint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint32 packed_uint32_field = 102 [packed = true];
-     */
-    packedUint32Field: number[];
+  /**
+   * @generated from field: repeated uint64 packed_uint64_field = 103 [packed = true];
+   */
+  packedUint64Field: bigint[];
 
-    /**
-     * @generated from field: repeated uint64 packed_uint64_field = 103 [packed = true];
-     */
-    packedUint64Field: bigint[];
+  constructor(data?: PartialMessage<Proto3PackedMessage>);
 
-    constructor(data?: PartialMessage<Proto3PackedMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.Proto3PackedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.Proto3PackedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3PackedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3PackedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3PackedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3PackedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3PackedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3PackedMessage;
-
-    static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean;
-
+  static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean;
 }
-
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
 export declare class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
+  /**
+   * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
+   */
+  unpackedDoubleField: number[];
 
-    /**
-     * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
-     */
-    unpackedDoubleField: number[];
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32_field = 202 [packed = false];
+   */
+  unpackedUint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint32 unpacked_uint32_field = 202 [packed = false];
-     */
-    unpackedUint32Field: number[];
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64_field = 203 [packed = false];
+   */
+  unpackedUint64Field: bigint[];
 
-    /**
-     * @generated from field: repeated uint64 unpacked_uint64_field = 203 [packed = false];
-     */
-    unpackedUint64Field: bigint[];
+  constructor(data?: PartialMessage<Proto3UnpackedMessage>);
 
-    constructor(data?: PartialMessage<Proto3UnpackedMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.Proto3UnpackedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.Proto3UnpackedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnpackedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnpackedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnpackedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnpackedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnpackedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnpackedMessage;
-
-    static equals(a: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined, b: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined): boolean;
-
+  static equals(a: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined, b: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined): boolean;
 }
-
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
 export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
+  /**
+   * @generated from field: repeated double double_field = 1;
+   */
+  doubleField: number[];
 
-    /**
-     * @generated from field: repeated double double_field = 1;
-     */
-    doubleField: number[];
+  /**
+   * @generated from field: repeated uint32 uint32_field = 2;
+   */
+  uint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint32 uint32_field = 2;
-     */
-    uint32Field: number[];
+  /**
+   * @generated from field: repeated uint64 uint64_field = 3;
+   */
+  uint64Field: bigint[];
 
-    /**
-     * @generated from field: repeated uint64 uint64_field = 3;
-     */
-    uint64Field: bigint[];
+  constructor(data?: PartialMessage<Proto3UnlabelledMessage>);
 
-    constructor(data?: PartialMessage<Proto3UnlabelledMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.Proto3UnlabelledMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.Proto3UnlabelledMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnlabelledMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnlabelledMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage;
-
-    static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean;
-
+  static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean;
 }
-
 
 /**
  * @generated from message spec.Proto3OptionalMessage
  */
 export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
 
-    /**
-     * @generated from field: optional string string_field = 1;
-     */
-    stringField?: string;
+  /**
+   * @generated from field: optional bytes bytes_field = 2;
+   */
+  bytesField?: Uint8Array;
 
-    /**
-     * @generated from field: optional bytes bytes_field = 2;
-     */
-    bytesField?: Uint8Array;
+  /**
+   * @generated from field: optional spec.Proto3Enum enum_field = 3;
+   */
+  enumField?: Proto3Enum;
 
-    /**
-     * @generated from field: optional spec.Proto3Enum enum_field = 3;
-     */
-    enumField?: Proto3Enum;
+  /**
+   * @generated from field: optional spec.Proto3OptionalMessage message_field = 4;
+   */
+  messageField?: Proto3OptionalMessage;
 
-    /**
-     * @generated from field: optional spec.Proto3OptionalMessage message_field = 4;
-     */
-    messageField?: Proto3OptionalMessage;
+  constructor(data?: PartialMessage<Proto3OptionalMessage>);
 
-    constructor(data?: PartialMessage<Proto3OptionalMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.Proto3OptionalMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.Proto3OptionalMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3OptionalMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3OptionalMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3OptionalMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3OptionalMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalMessage;
-
-    static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean;
-
+  static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean;
 }
-
 

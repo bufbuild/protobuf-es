@@ -47,48 +47,42 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_wireformat_unittest.TestMessageSet
  */
 export declare class TestMessageSet extends Message<TestMessageSet> {
+  constructor(data?: PartialMessage<TestMessageSet>);
 
-    constructor(data?: PartialMessage<TestMessageSet>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2_wireformat_unittest.TestMessageSet";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "proto2_wireformat_unittest.TestMessageSet";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSet;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSet;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSet;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSet;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSet;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSet;
-
-    static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean;
-
+  static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean;
 }
-
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
 export declare class TestMessageSetWireFormatContainer extends Message<TestMessageSetWireFormatContainer> {
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
+   */
+  messageSet?: TestMessageSet;
 
-    /**
-     * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
-     */
-    messageSet?: TestMessageSet;
+  constructor(data?: PartialMessage<TestMessageSetWireFormatContainer>);
 
-    constructor(data?: PartialMessage<TestMessageSetWireFormatContainer>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2_wireformat_unittest.TestMessageSetWireFormatContainer";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "proto2_wireformat_unittest.TestMessageSetWireFormatContainer";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetWireFormatContainer;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetWireFormatContainer;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
-
-    static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean;
-
+  static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean;
 }
-
 

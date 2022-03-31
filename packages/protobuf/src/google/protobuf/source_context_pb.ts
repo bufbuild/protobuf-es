@@ -26,42 +26,39 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.SourceContext
  */
 export class SourceContext extends Message<SourceContext> {
+  /**
+   * The path-qualified name of the .proto file that contained the associated
+   * protobuf element.  For example: `"google/protobuf/source_context.proto"`.
+   *
+   * @generated from field: string file_name = 1;
+   */
+  fileName = "";
 
-    /**
-     * The path-qualified name of the .proto file that contained the associated
-     * protobuf element.  For example: `"google/protobuf/source_context.proto"`.
-     *
-     * @generated from field: string file_name = 1;
-     */
-    fileName = "";
+  constructor(data?: PartialMessage<SourceContext>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    constructor(data?: PartialMessage<SourceContext>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  static readonly runtime = proto3;
+  static readonly typeName = "google.protobuf.SourceContext";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
 
-    static readonly runtime = proto3;
-    static readonly typeName = "google.protobuf.SourceContext";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SourceContext {
+    return new SourceContext().fromBinary(bytes, options);
+  }
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SourceContext {
-        return new SourceContext().fromBinary(bytes, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SourceContext {
+    return new SourceContext().fromJson(jsonValue, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SourceContext {
-        return new SourceContext().fromJson(jsonValue, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceContext {
+    return new SourceContext().fromJsonString(jsonString, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceContext {
-        return new SourceContext().fromJsonString(jsonString, options);
-    }
-
-    static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean {
-        return proto3.util.equals(SourceContext, a, b);
-    }
-
+  static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean {
+    return proto3.util.equals(SourceContext, a, b);
+  }
 }
-
 

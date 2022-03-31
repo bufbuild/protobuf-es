@@ -35,18 +35,15 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.EnumWithComments
  */
 export declare enum EnumWithComments {
-
-    /**
-     * Comment before enum value.
-     *
-     * Comment next to enum value.
-     *
-     * @generated from enum value: VALUE = 0;
-     */
-    VALUE = 0,
-
+  /**
+   * Comment before enum value.
+   *
+   * Comment next to enum value.
+   *
+   * @generated from enum value: VALUE = 0;
+   */
+  VALUE = 0,
 }
-
 
 /**
  * Leading comment for deprecated enum
@@ -55,38 +52,32 @@ export declare enum EnumWithComments {
  * @deprecated
  */
 export declare enum DeprecatedEnumWithComment {
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_A = 0;
+   */
+  A = 0,
 
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_A = 0;
-     */
-    A = 0,
-
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_B = 1;
-     */
-    B = 1,
-
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_B = 1;
+   */
+  B = 1,
 }
-
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
  */
 export declare enum DeprecatedEnumNoComment {
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_A = 0;
+   */
+  A = 0,
 
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_A = 0;
-     */
-    A = 0,
-
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_B = 1;
-     */
-    B = 1,
-
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_B = 1;
+   */
+  B = 1,
 }
-
 
 /**
  * Comment before message.
@@ -94,74 +85,71 @@ export declare enum DeprecatedEnumNoComment {
  * @generated from message spec.MessageWithComments
  */
 export declare class MessageWithComments extends Message<MessageWithComments> {
+  /**
+   * Comment before field with 5 lines:
+   * line 2, next is empty
+   *
+   * line 4, next is empty
+   *
+   *
+   * Comment next to field.
+   *
+   * @generated from field: string foo = 1;
+   */
+  foo: string;
 
+  /**
+   * Comment before oneof.
+   *
+   * Comment after start of oneof.
+   *
+   * @generated from oneof spec.MessageWithComments.result
+   */
+  result: {
     /**
-     * Comment before field with 5 lines:
-     * line 2, next is empty
+     * Comment before oneof member.
      *
-     * line 4, next is empty
+     * Comment next to oneof member.
      *
-     *
-     * Comment next to field.
-     *
-     * @generated from field: string foo = 1;
+     * @generated from field: int32 value = 2;
      */
-    foo: string;
-
+    value: number;
+    case: "value";
+  } | {
     /**
-     * Comment before oneof.
-     *
-     * Comment after start of oneof.
-     *
-     * @generated from oneof spec.MessageWithComments.result
+     * @generated from field: string error = 3;
      */
-    result: {
-        /**
-         * Comment before oneof member.
-         *
-         * Comment next to oneof member.
-         *
-         * @generated from field: int32 value = 2;
-         */
-        value: number;
-        case: "value";
-    } | {
-        /**
-         * @generated from field: string error = 3;
-         */
-        value: string;
-        case: "error";
-    } | { case: undefined; value?: undefined };
+    value: string;
+    case: "error";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     *
-     *
-     * @generated from field: string this_field_has_an_empty_comment = 4;
-     */
-    thisFieldHasAnEmptyComment: string;
+  /**
+   *
+   *
+   * @generated from field: string this_field_has_an_empty_comment = 4;
+   */
+  thisFieldHasAnEmptyComment: string;
 
-    /**
-     * @generated from field: string this_field_is_deprecated = 5 [json_name = "sdf", deprecated = true];
-     * @deprecated
-     */
-    thisFieldIsDeprecated: string;
+  /**
+   * @generated from field: string this_field_is_deprecated = 5 [json_name = "sdf", deprecated = true];
+   * @deprecated
+   */
+  thisFieldIsDeprecated: string;
 
-    constructor(data?: PartialMessage<MessageWithComments>);
+  constructor(data?: PartialMessage<MessageWithComments>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.MessageWithComments";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.MessageWithComments";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageWithComments;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageWithComments;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageWithComments;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageWithComments;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageWithComments;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageWithComments;
 
-    static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean;
-
+  static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean;
 }
-
 
 /**
  * Comment within empty message.
@@ -169,23 +157,20 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
  * @generated from message spec.EmptyMessageWithComment
  */
 export declare class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
+  constructor(data?: PartialMessage<EmptyMessageWithComment>);
 
-    constructor(data?: PartialMessage<EmptyMessageWithComment>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.EmptyMessageWithComment";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.EmptyMessageWithComment";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmptyMessageWithComment;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmptyMessageWithComment;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
-
-    static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean;
-
+  static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean;
 }
-
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -193,69 +178,66 @@ export declare class EmptyMessageWithComment extends Message<EmptyMessageWithCom
  * @generated from message spec.GoogleCommentExample
  */
 export declare class GoogleCommentExample extends Message<GoogleCommentExample> {
+  /**
+   * Comment attached to foo.
+   *
+   * @generated from field: int32 foo = 1;
+   */
+  foo: number;
 
-    /**
-     * Comment attached to foo.
-     *
-     * @generated from field: int32 foo = 1;
-     */
-    foo: number;
+  /**
+   * Comment attached to bar.
+   *
+   * @generated from field: int32 bar = 2;
+   */
+  bar: number;
 
-    /**
-     * Comment attached to bar.
-     *
-     * @generated from field: int32 bar = 2;
-     */
-    bar: number;
+  /**
+   * Comment attached to baz.
+   * Another line attached to baz.
+   *
+   * @generated from field: string baz = 3;
+   */
+  baz: string;
 
-    /**
-     * Comment attached to baz.
-     * Another line attached to baz.
-     *
-     * @generated from field: string baz = 3;
-     */
-    baz: string;
+  /**
+   * Comment attached to qux.
+   *
+   * Another line attached to qux.
+   *
+   * @generated from field: double qux = 4;
+   */
+  qux: number;
 
-    /**
-     * Comment attached to qux.
-     *
-     * Another line attached to qux.
-     *
-     * @generated from field: double qux = 4;
-     */
-    qux: number;
+  /**
+   * Block comment attached
+   * to corge.  Leading asterisks
+   * will be removed. 
+   *
+   * @generated from field: string corge = 5;
+   */
+  corge: string;
 
-    /**
-     * Block comment attached
-     * to corge.  Leading asterisks
-     * will be removed. 
-     *
-     * @generated from field: string corge = 5;
-     */
-    corge: string;
+  /**
+   * Block comment attached to
+   * grault. 
+   *
+   * @generated from field: int32 grault = 6;
+   */
+  grault: number;
 
-    /**
-     * Block comment attached to
-     * grault. 
-     *
-     * @generated from field: int32 grault = 6;
-     */
-    grault: number;
+  constructor(data?: PartialMessage<GoogleCommentExample>);
 
-    constructor(data?: PartialMessage<GoogleCommentExample>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.GoogleCommentExample";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.GoogleCommentExample";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GoogleCommentExample;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GoogleCommentExample;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GoogleCommentExample;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GoogleCommentExample;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GoogleCommentExample;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GoogleCommentExample;
-
-    static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean;
-
+  static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean;
 }
-
 

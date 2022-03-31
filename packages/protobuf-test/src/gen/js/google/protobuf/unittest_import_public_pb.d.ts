@@ -41,26 +41,23 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest_import.PublicImportMessage
  */
 export declare class PublicImportMessage extends Message<PublicImportMessage> {
+  /**
+   * @generated from field: optional int32 e = 1;
+   */
+  e?: number;
 
-    /**
-     * @generated from field: optional int32 e = 1;
-     */
-    e?: number;
+  constructor(data?: PartialMessage<PublicImportMessage>);
 
-    constructor(data?: PartialMessage<PublicImportMessage>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest_import.PublicImportMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest_import.PublicImportMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicImportMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicImportMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessage;
-
-    static equals(a: PublicImportMessage | PlainMessage<PublicImportMessage> | undefined, b: PublicImportMessage | PlainMessage<PublicImportMessage> | undefined): boolean;
-
+  static equals(a: PublicImportMessage | PlainMessage<PublicImportMessage> | undefined, b: PublicImportMessage | PlainMessage<PublicImportMessage> | undefined): boolean;
 }
-
 

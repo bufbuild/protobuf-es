@@ -39,53 +39,47 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_arena_unittest.NestedMessage
  */
 export declare class NestedMessage extends Message<NestedMessage> {
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
 
-    /**
-     * @generated from field: optional int32 d = 1;
-     */
-    d?: number;
+  constructor(data?: PartialMessage<NestedMessage>);
 
-    constructor(data?: PartialMessage<NestedMessage>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2_arena_unittest.NestedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "proto2_arena_unittest.NestedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedMessage;
-
-    static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean;
-
+  static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean;
 }
-
 
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
 export declare class ArenaMessage extends Message<ArenaMessage> {
+  /**
+   * @generated from field: repeated proto2_arena_unittest.NestedMessage repeated_nested_message = 1;
+   */
+  repeatedNestedMessage: NestedMessage[];
 
-    /**
-     * @generated from field: repeated proto2_arena_unittest.NestedMessage repeated_nested_message = 1;
-     */
-    repeatedNestedMessage: NestedMessage[];
+  constructor(data?: PartialMessage<ArenaMessage>);
 
-    constructor(data?: PartialMessage<ArenaMessage>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2_arena_unittest.ArenaMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "proto2_arena_unittest.ArenaMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArenaMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArenaMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArenaMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArenaMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage;
-
-    static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean;
-
+  static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean;
 }
-
 

@@ -39,219 +39,207 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnum
  */
 export enum MyEnum {
+  /**
+   * @generated from enum value: FOO = 0;
+   */
+  FOO = 0,
 
-    /**
-     * @generated from enum value: FOO = 0;
-     */
-    FOO = 0,
+  /**
+   * @generated from enum value: BAR = 1;
+   */
+  BAR = 1,
 
-    /**
-     * @generated from enum value: BAR = 1;
-     */
-    BAR = 1,
-
-    /**
-     * @generated from enum value: BAZ = 2;
-     */
-    BAZ = 2,
-
+  /**
+   * @generated from enum value: BAZ = 2;
+   */
+  BAZ = 2,
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(MyEnum)
 proto3.util.setEnumType(MyEnum, "proto3_preserve_unknown_enum_unittest.MyEnum", [
-    {no: 0, name: "FOO"},
-    {no: 1, name: "BAR"},
-    {no: 2, name: "BAZ"},
+  { no: 0, name: "FOO" },
+  { no: 1, name: "BAR" },
+  { no: 2, name: "BAZ" },
 ]);
 
 /**
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
 export enum MyEnumPlusExtra {
+  /**
+   * @generated from enum value: E_FOO = 0;
+   */
+  E_FOO = 0,
 
-    /**
-     * @generated from enum value: E_FOO = 0;
-     */
-    E_FOO = 0,
+  /**
+   * @generated from enum value: E_BAR = 1;
+   */
+  E_BAR = 1,
 
-    /**
-     * @generated from enum value: E_BAR = 1;
-     */
-    E_BAR = 1,
+  /**
+   * @generated from enum value: E_BAZ = 2;
+   */
+  E_BAZ = 2,
 
-    /**
-     * @generated from enum value: E_BAZ = 2;
-     */
-    E_BAZ = 2,
-
-    /**
-     * @generated from enum value: E_EXTRA = 3;
-     */
-    E_EXTRA = 3,
-
+  /**
+   * @generated from enum value: E_EXTRA = 3;
+   */
+  E_EXTRA = 3,
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(MyEnumPlusExtra)
 proto3.util.setEnumType(MyEnumPlusExtra, "proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra", [
-    {no: 0, name: "E_FOO"},
-    {no: 1, name: "E_BAR"},
-    {no: 2, name: "E_BAZ"},
-    {no: 3, name: "E_EXTRA"},
+  { no: 0, name: "E_FOO" },
+  { no: 1, name: "E_BAR" },
+  { no: 2, name: "E_BAZ" },
+  { no: 3, name: "E_EXTRA" },
 ]);
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
  */
 export class MyMessage extends Message<MyMessage> {
+  /**
+   * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
+   */
+  e = MyEnum.FOO;
 
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+   */
+  repeatedE: MyEnum[] = [];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
+   */
+  repeatedPackedE: MyEnum[] = [];
+
+  /**
+   * not packed
+   *
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4;
+   */
+  repeatedPackedUnexpectedE: MyEnumPlusExtra[] = [];
+
+  /**
+   * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessage.o
+   */
+  o: {
     /**
-     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
      */
-    e = MyEnum.FOO;
-
+    value: MyEnum;
+    case: "oneofE1";
+  } | {
     /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
      */
-    repeatedE: MyEnum[] = [];
+    value: MyEnum;
+    case: "oneofE2";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
-     */
-    repeatedPackedE: MyEnum[] = [];
+  constructor(data?: PartialMessage<MyMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    /**
-     * not packed
-     *
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4;
-     */
-    repeatedPackedUnexpectedE: MyEnumPlusExtra[] = [];
+  static readonly runtime = proto3;
+  static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+  ]);
 
-    /**
-     * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessage.o
-     */
-    o: {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
-         */
-        value: MyEnum;
-        case: "oneofE1";
-    } | {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
-         */
-        value: MyEnum;
-        case: "oneofE2";
-    } | { case: undefined; value?: undefined } = { case: undefined };
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage {
+    return new MyMessage().fromBinary(bytes, options);
+  }
 
-    constructor(data?: PartialMessage<MyMessage>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage {
+    return new MyMessage().fromJson(jsonValue, options);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessage";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum)},
-        {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-        {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-        {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-        {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-    ]);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage {
+    return new MyMessage().fromJsonString(jsonString, options);
+  }
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage {
-        return new MyMessage().fromBinary(bytes, options);
-    }
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage {
-        return new MyMessage().fromJson(jsonValue, options);
-    }
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage {
-        return new MyMessage().fromJsonString(jsonString, options);
-    }
-
-    static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean {
-        return proto3.util.equals(MyMessage, a, b);
-    }
-
+  static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean {
+    return proto3.util.equals(MyMessage, a, b);
+  }
 }
-
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
 export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
+  /**
+   * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
+   */
+  e = MyEnumPlusExtra.E_FOO;
 
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_e = 2;
+   */
+  repeatedE: MyEnumPlusExtra[] = [];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_e = 3 [packed = true];
+   */
+  repeatedPackedE: MyEnumPlusExtra[] = [];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4 [packed = true];
+   */
+  repeatedPackedUnexpectedE: MyEnumPlusExtra[] = [];
+
+  /**
+   * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra.o
+   */
+  o: {
     /**
-     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_1 = 5;
      */
-    e = MyEnumPlusExtra.E_FOO;
-
+    value: MyEnumPlusExtra;
+    case: "oneofE1";
+  } | {
     /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_e = 2;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_2 = 6;
      */
-    repeatedE: MyEnumPlusExtra[] = [];
+    value: MyEnumPlusExtra;
+    case: "oneofE2";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_e = 3 [packed = true];
-     */
-    repeatedPackedE: MyEnumPlusExtra[] = [];
+  constructor(data?: PartialMessage<MyMessagePlusExtra>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4 [packed = true];
-     */
-    repeatedPackedUnexpectedE: MyEnumPlusExtra[] = [];
+  static readonly runtime = proto3;
+  static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+  ]);
 
-    /**
-     * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra.o
-     */
-    o: {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_1 = 5;
-         */
-        value: MyEnumPlusExtra;
-        case: "oneofE1";
-    } | {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_2 = 6;
-         */
-        value: MyEnumPlusExtra;
-        case: "oneofE2";
-    } | { case: undefined; value?: undefined } = { case: undefined };
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessagePlusExtra {
+    return new MyMessagePlusExtra().fromBinary(bytes, options);
+  }
 
-    constructor(data?: PartialMessage<MyMessagePlusExtra>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessagePlusExtra {
+    return new MyMessagePlusExtra().fromJson(jsonValue, options);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra)},
-        {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-        {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-    ]);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra {
+    return new MyMessagePlusExtra().fromJsonString(jsonString, options);
+  }
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessagePlusExtra {
-        return new MyMessagePlusExtra().fromBinary(bytes, options);
-    }
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessagePlusExtra {
-        return new MyMessagePlusExtra().fromJson(jsonValue, options);
-    }
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra {
-        return new MyMessagePlusExtra().fromJsonString(jsonString, options);
-    }
-
-    static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean {
-        return proto3.util.equals(MyMessagePlusExtra, a, b);
-    }
-
+  static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean {
+    return proto3.util.equals(MyMessagePlusExtra, a, b);
+  }
 }
-
 

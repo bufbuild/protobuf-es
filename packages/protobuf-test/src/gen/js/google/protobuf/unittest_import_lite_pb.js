@@ -42,23 +42,21 @@ import {proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnumLite
  */
 export const ImportEnumLite = proto2.makeEnum(
-    "protobuf_unittest_import.ImportEnumLite",
-    [
-        {no: 7, name: "IMPORT_LITE_FOO"},
-        {no: 8, name: "IMPORT_LITE_BAR"},
-        {no: 9, name: "IMPORT_LITE_BAZ"},
-    ],
+  "protobuf_unittest_import.ImportEnumLite",
+  [
+    {no: 7, name: "IMPORT_LITE_FOO"},
+    {no: 8, name: "IMPORT_LITE_BAR"},
+    {no: 9, name: "IMPORT_LITE_BAZ"},
+  ],
 );
-
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessageLite
  */
 export const ImportMessageLite = proto2.makeMessageType(
-    "protobuf_unittest_import.ImportMessageLite",
-    () => [
-        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
+  "protobuf_unittest_import.ImportMessageLite",
+  () => [
+    { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
 );
-
 

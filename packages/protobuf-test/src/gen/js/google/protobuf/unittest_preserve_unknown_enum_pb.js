@@ -38,58 +38,54 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnum
  */
 export const MyEnum = proto3.makeEnum(
-    "proto3_preserve_unknown_enum_unittest.MyEnum",
-    [
-        {no: 0, name: "FOO"},
-        {no: 1, name: "BAR"},
-        {no: 2, name: "BAZ"},
-    ],
+  "proto3_preserve_unknown_enum_unittest.MyEnum",
+  [
+    {no: 0, name: "FOO"},
+    {no: 1, name: "BAR"},
+    {no: 2, name: "BAZ"},
+  ],
 );
-
 
 /**
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
 export const MyEnumPlusExtra = proto3.makeEnum(
-    "proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra",
-    [
-        {no: 0, name: "E_FOO"},
-        {no: 1, name: "E_BAR"},
-        {no: 2, name: "E_BAZ"},
-        {no: 3, name: "E_EXTRA"},
-    ],
+  "proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra",
+  [
+    {no: 0, name: "E_FOO"},
+    {no: 1, name: "E_BAR"},
+    {no: 2, name: "E_BAZ"},
+    {no: 3, name: "E_EXTRA"},
+  ],
 );
-
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
  */
 export const MyMessage = proto3.makeMessageType(
-    "proto3_preserve_unknown_enum_unittest.MyMessage",
-    () => [
-        {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum)},
-        {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-        {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true},
-        {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-        {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o"},
-    ],
+  "proto3_preserve_unknown_enum_unittest.MyMessage",
+  () => [
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnum) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnum), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnum), oneof: "o" },
+  ],
 );
-
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
 export const MyMessagePlusExtra = proto3.makeMessageType(
-    "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra",
-    () => [
-        {no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra)},
-        {no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true},
-        {no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-        {no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o"},
-    ],
+  "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra",
+  () => [
+    { no: 1, name: "e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra) },
+    { no: 2, name: "repeated_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 3, name: "repeated_packed_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), repeated: true },
+    { no: 5, name: "oneof_e_1", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+    { no: 6, name: "oneof_e_2", kind: "enum", T: proto3.getEnumType(MyEnumPlusExtra), oneof: "o" },
+  ],
 );
-
 

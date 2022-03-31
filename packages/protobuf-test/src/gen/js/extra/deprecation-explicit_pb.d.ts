@@ -26,19 +26,16 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export declare enum DeprecatedEnum {
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_A = 0;
+   */
+  A = 0,
 
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_A = 0;
-     */
-    A = 0,
-
-    /**
-     * @generated from enum value: DEPRECATED_ENUM_B = 1;
-     */
-    B = 1,
-
+  /**
+   * @generated from enum value: DEPRECATED_ENUM_B = 1;
+   */
+  B = 1,
 }
-
 
 /**
  * Only a single enum value is deprecated
@@ -46,20 +43,17 @@ export declare enum DeprecatedEnum {
  * @generated from enum spec.DeprecatedValueEnum
  */
 export declare enum DeprecatedValueEnum {
+  /**
+   * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
 
-    /**
-     * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-
-    /**
-     * @generated from enum value: DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE = 1 [deprecated = true];
-     * @deprecated
-     */
-    DEPRECATED_VALUE = 1,
-
+  /**
+   * @generated from enum value: DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE = 1 [deprecated = true];
+   * @deprecated
+   */
+  DEPRECATED_VALUE = 1,
 }
-
 
 /**
  * The entire message is deprecated
@@ -68,28 +62,25 @@ export declare enum DeprecatedValueEnum {
  * @deprecated
  */
 export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
+  /**
+   * @generated from field: string field = 1;
+   */
+  field: string;
 
-    /**
-     * @generated from field: string field = 1;
-     */
-    field: string;
+  constructor(data?: PartialMessage<DeprecatedMessage>);
 
-    constructor(data?: PartialMessage<DeprecatedMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.DeprecatedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.DeprecatedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedMessage;
-
-    static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean;
-
+  static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean;
 }
-
 
 /**
  * A single field of this message is deprecated
@@ -97,36 +88,33 @@ export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
  * @generated from message spec.DeprecatedFieldMessage
  */
 export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
+  /**
+   * This field is deprecated
+   *
+   * @generated from field: string deprecated_field = 1 [deprecated = true];
+   * @deprecated
+   */
+  deprecatedField: string;
 
-    /**
-     * This field is deprecated
-     *
-     * @generated from field: string deprecated_field = 1 [deprecated = true];
-     * @deprecated
-     */
-    deprecatedField: string;
+  /**
+   * This field is not deprecated
+   *
+   * @generated from field: string current_field = 2;
+   */
+  currentField: string;
 
-    /**
-     * This field is not deprecated
-     *
-     * @generated from field: string current_field = 2;
-     */
-    currentField: string;
+  constructor(data?: PartialMessage<DeprecatedFieldMessage>);
 
-    constructor(data?: PartialMessage<DeprecatedFieldMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.DeprecatedFieldMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.DeprecatedFieldMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedFieldMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeprecatedFieldMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
-
-    static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
-
+  static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
 }
-
 

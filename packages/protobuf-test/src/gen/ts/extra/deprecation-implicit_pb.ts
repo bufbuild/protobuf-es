@@ -24,33 +24,30 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
+  constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  static readonly runtime = proto3;
+  static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
 
-    static readonly runtime = proto3;
-    static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    ]);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage {
+    return new ImplicitlyDeprecatedMessage().fromBinary(bytes, options);
+  }
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage {
-        return new ImplicitlyDeprecatedMessage().fromBinary(bytes, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
+    return new ImplicitlyDeprecatedMessage().fromJson(jsonValue, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
-        return new ImplicitlyDeprecatedMessage().fromJson(jsonValue, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
+    return new ImplicitlyDeprecatedMessage().fromJsonString(jsonString, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage {
-        return new ImplicitlyDeprecatedMessage().fromJsonString(jsonString, options);
-    }
-
-    static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean {
-        return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
-    }
-
+  static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean {
+    return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
+  }
 }
-
 

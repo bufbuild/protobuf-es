@@ -41,29 +41,26 @@ import type {PublicImportMessage} from "./unittest_import_public_pb.js";
  * @generated from enum proto3_arena_lite_unittest.ForeignEnum
  */
 export declare enum ForeignEnum {
+  /**
+   * @generated from enum value: FOREIGN_ZERO = 0;
+   */
+  FOREIGN_ZERO = 0,
 
-    /**
-     * @generated from enum value: FOREIGN_ZERO = 0;
-     */
-    FOREIGN_ZERO = 0,
+  /**
+   * @generated from enum value: FOREIGN_FOO = 4;
+   */
+  FOREIGN_FOO = 4,
 
-    /**
-     * @generated from enum value: FOREIGN_FOO = 4;
-     */
-    FOREIGN_FOO = 4,
+  /**
+   * @generated from enum value: FOREIGN_BAR = 5;
+   */
+  FOREIGN_BAR = 5,
 
-    /**
-     * @generated from enum value: FOREIGN_BAR = 5;
-     */
-    FOREIGN_BAR = 5,
-
-    /**
-     * @generated from enum value: FOREIGN_BAZ = 6;
-     */
-    FOREIGN_BAZ = 6,
-
+  /**
+   * @generated from enum value: FOREIGN_BAZ = 6;
+   */
+  FOREIGN_BAZ = 6,
 }
-
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -72,451 +69,439 @@ export declare enum ForeignEnum {
  * @generated from message proto3_arena_lite_unittest.TestAllTypes
  */
 export declare class TestAllTypes extends Message<TestAllTypes> {
+  /**
+   * Singular
+   *
+   * @generated from field: int32 optional_int32 = 1;
+   */
+  optionalInt32: number;
 
+  /**
+   * @generated from field: int64 optional_int64 = 2;
+   */
+  optionalInt64: bigint;
+
+  /**
+   * @generated from field: uint32 optional_uint32 = 3;
+   */
+  optionalUint32: number;
+
+  /**
+   * @generated from field: uint64 optional_uint64 = 4;
+   */
+  optionalUint64: bigint;
+
+  /**
+   * @generated from field: sint32 optional_sint32 = 5;
+   */
+  optionalSint32: number;
+
+  /**
+   * @generated from field: sint64 optional_sint64 = 6;
+   */
+  optionalSint64: bigint;
+
+  /**
+   * @generated from field: fixed32 optional_fixed32 = 7;
+   */
+  optionalFixed32: number;
+
+  /**
+   * @generated from field: fixed64 optional_fixed64 = 8;
+   */
+  optionalFixed64: bigint;
+
+  /**
+   * @generated from field: sfixed32 optional_sfixed32 = 9;
+   */
+  optionalSfixed32: number;
+
+  /**
+   * @generated from field: sfixed64 optional_sfixed64 = 10;
+   */
+  optionalSfixed64: bigint;
+
+  /**
+   * @generated from field: float optional_float = 11;
+   */
+  optionalFloat: number;
+
+  /**
+   * @generated from field: double optional_double = 12;
+   */
+  optionalDouble: number;
+
+  /**
+   * @generated from field: bool optional_bool = 13;
+   */
+  optionalBool: boolean;
+
+  /**
+   * @generated from field: string optional_string = 14;
+   */
+  optionalString: string;
+
+  /**
+   * @generated from field: bytes optional_bytes = 15;
+   */
+  optionalBytes: Uint8Array;
+
+  /**
+   * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
+   */
+  optionalNestedMessage?: TestAllTypes_NestedMessage;
+
+  /**
+   * @generated from field: proto3_arena_lite_unittest.ForeignMessage optional_foreign_message = 19;
+   */
+  optionalForeignMessage?: ForeignMessage;
+
+  /**
+   * @generated from field: protobuf_unittest_import.ImportMessage optional_import_message = 20;
+   */
+  optionalImportMessage?: ImportMessage;
+
+  /**
+   * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
+   */
+  optionalNestedEnum: TestAllTypes_NestedEnum;
+
+  /**
+   * @generated from field: proto3_arena_lite_unittest.ForeignEnum optional_foreign_enum = 22;
+   */
+  optionalForeignEnum: ForeignEnum;
+
+  /**
+   * @generated from field: string optional_string_piece = 24;
+   */
+  optionalStringPiece: string;
+
+  /**
+   * @generated from field: string optional_cord = 25;
+   */
+  optionalCord: string;
+
+  /**
+   * Defined in unittest_import_public.proto
+   *
+   * @generated from field: protobuf_unittest_import.PublicImportMessage optional_public_import_message = 26;
+   */
+  optionalPublicImportMessage?: PublicImportMessage;
+
+  /**
+   * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
+   */
+  optionalLazyMessage?: TestAllTypes_NestedMessage;
+
+  /**
+   * Repeated
+   *
+   * @generated from field: repeated int32 repeated_int32 = 31;
+   */
+  repeatedInt32: number[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64 = 32;
+   */
+  repeatedInt64: bigint[];
+
+  /**
+   * @generated from field: repeated uint32 repeated_uint32 = 33;
+   */
+  repeatedUint32: number[];
+
+  /**
+   * @generated from field: repeated uint64 repeated_uint64 = 34;
+   */
+  repeatedUint64: bigint[];
+
+  /**
+   * @generated from field: repeated sint32 repeated_sint32 = 35;
+   */
+  repeatedSint32: number[];
+
+  /**
+   * @generated from field: repeated sint64 repeated_sint64 = 36;
+   */
+  repeatedSint64: bigint[];
+
+  /**
+   * @generated from field: repeated fixed32 repeated_fixed32 = 37;
+   */
+  repeatedFixed32: number[];
+
+  /**
+   * @generated from field: repeated fixed64 repeated_fixed64 = 38;
+   */
+  repeatedFixed64: bigint[];
+
+  /**
+   * @generated from field: repeated sfixed32 repeated_sfixed32 = 39;
+   */
+  repeatedSfixed32: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 repeated_sfixed64 = 40;
+   */
+  repeatedSfixed64: bigint[];
+
+  /**
+   * @generated from field: repeated float repeated_float = 41;
+   */
+  repeatedFloat: number[];
+
+  /**
+   * @generated from field: repeated double repeated_double = 42;
+   */
+  repeatedDouble: number[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool = 43;
+   */
+  repeatedBool: boolean[];
+
+  /**
+   * @generated from field: repeated string repeated_string = 44;
+   */
+  repeatedString: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes = 45;
+   */
+  repeatedBytes: Uint8Array[];
+
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedMessage repeated_nested_message = 48;
+   */
+  repeatedNestedMessage: TestAllTypes_NestedMessage[];
+
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.ForeignMessage repeated_foreign_message = 49;
+   */
+  repeatedForeignMessage: ForeignMessage[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest_import.ImportMessage repeated_import_message = 50;
+   */
+  repeatedImportMessage: ImportMessage[];
+
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedEnum repeated_nested_enum = 51;
+   */
+  repeatedNestedEnum: TestAllTypes_NestedEnum[];
+
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.ForeignEnum repeated_foreign_enum = 52;
+   */
+  repeatedForeignEnum: ForeignEnum[];
+
+  /**
+   * @generated from field: repeated string repeated_string_piece = 54;
+   */
+  repeatedStringPiece: string[];
+
+  /**
+   * @generated from field: repeated string repeated_cord = 55;
+   */
+  repeatedCord: string[];
+
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedMessage repeated_lazy_message = 57;
+   */
+  repeatedLazyMessage: TestAllTypes_NestedMessage[];
+
+  /**
+   * @generated from oneof proto3_arena_lite_unittest.TestAllTypes.oneof_field
+   */
+  oneofField: {
     /**
-     * Singular
-     *
-     * @generated from field: int32 optional_int32 = 1;
+     * @generated from field: uint32 oneof_uint32 = 111;
      */
-    optionalInt32: number;
-
+    value: number;
+    case: "oneofUint32";
+  } | {
     /**
-     * @generated from field: int64 optional_int64 = 2;
+     * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage oneof_nested_message = 112;
      */
-    optionalInt64: bigint;
-
+    value: TestAllTypes_NestedMessage;
+    case: "oneofNestedMessage";
+  } | {
     /**
-     * @generated from field: uint32 optional_uint32 = 3;
+     * @generated from field: string oneof_string = 113;
      */
-    optionalUint32: number;
-
+    value: string;
+    case: "oneofString";
+  } | {
     /**
-     * @generated from field: uint64 optional_uint64 = 4;
+     * @generated from field: bytes oneof_bytes = 114;
      */
-    optionalUint64: bigint;
+    value: Uint8Array;
+    case: "oneofBytes";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from field: sint32 optional_sint32 = 5;
-     */
-    optionalSint32: number;
+  constructor(data?: PartialMessage<TestAllTypes>);
 
-    /**
-     * @generated from field: sint64 optional_sint64 = 6;
-     */
-    optionalSint64: bigint;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.TestAllTypes";
+  static readonly fields: FieldList;
 
-    /**
-     * @generated from field: fixed32 optional_fixed32 = 7;
-     */
-    optionalFixed32: number;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes;
 
-    /**
-     * @generated from field: fixed64 optional_fixed64 = 8;
-     */
-    optionalFixed64: bigint;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes;
 
-    /**
-     * @generated from field: sfixed32 optional_sfixed32 = 9;
-     */
-    optionalSfixed32: number;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
-    /**
-     * @generated from field: sfixed64 optional_sfixed64 = 10;
-     */
-    optionalSfixed64: bigint;
-
-    /**
-     * @generated from field: float optional_float = 11;
-     */
-    optionalFloat: number;
-
-    /**
-     * @generated from field: double optional_double = 12;
-     */
-    optionalDouble: number;
-
-    /**
-     * @generated from field: bool optional_bool = 13;
-     */
-    optionalBool: boolean;
-
-    /**
-     * @generated from field: string optional_string = 14;
-     */
-    optionalString: string;
-
-    /**
-     * @generated from field: bytes optional_bytes = 15;
-     */
-    optionalBytes: Uint8Array;
-
-    /**
-     * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
-     */
-    optionalNestedMessage?: TestAllTypes_NestedMessage;
-
-    /**
-     * @generated from field: proto3_arena_lite_unittest.ForeignMessage optional_foreign_message = 19;
-     */
-    optionalForeignMessage?: ForeignMessage;
-
-    /**
-     * @generated from field: protobuf_unittest_import.ImportMessage optional_import_message = 20;
-     */
-    optionalImportMessage?: ImportMessage;
-
-    /**
-     * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
-     */
-    optionalNestedEnum: TestAllTypes_NestedEnum;
-
-    /**
-     * @generated from field: proto3_arena_lite_unittest.ForeignEnum optional_foreign_enum = 22;
-     */
-    optionalForeignEnum: ForeignEnum;
-
-    /**
-     * @generated from field: string optional_string_piece = 24;
-     */
-    optionalStringPiece: string;
-
-    /**
-     * @generated from field: string optional_cord = 25;
-     */
-    optionalCord: string;
-
-    /**
-     * Defined in unittest_import_public.proto
-     *
-     * @generated from field: protobuf_unittest_import.PublicImportMessage optional_public_import_message = 26;
-     */
-    optionalPublicImportMessage?: PublicImportMessage;
-
-    /**
-     * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
-     */
-    optionalLazyMessage?: TestAllTypes_NestedMessage;
-
-    /**
-     * Repeated
-     *
-     * @generated from field: repeated int32 repeated_int32 = 31;
-     */
-    repeatedInt32: number[];
-
-    /**
-     * @generated from field: repeated int64 repeated_int64 = 32;
-     */
-    repeatedInt64: bigint[];
-
-    /**
-     * @generated from field: repeated uint32 repeated_uint32 = 33;
-     */
-    repeatedUint32: number[];
-
-    /**
-     * @generated from field: repeated uint64 repeated_uint64 = 34;
-     */
-    repeatedUint64: bigint[];
-
-    /**
-     * @generated from field: repeated sint32 repeated_sint32 = 35;
-     */
-    repeatedSint32: number[];
-
-    /**
-     * @generated from field: repeated sint64 repeated_sint64 = 36;
-     */
-    repeatedSint64: bigint[];
-
-    /**
-     * @generated from field: repeated fixed32 repeated_fixed32 = 37;
-     */
-    repeatedFixed32: number[];
-
-    /**
-     * @generated from field: repeated fixed64 repeated_fixed64 = 38;
-     */
-    repeatedFixed64: bigint[];
-
-    /**
-     * @generated from field: repeated sfixed32 repeated_sfixed32 = 39;
-     */
-    repeatedSfixed32: number[];
-
-    /**
-     * @generated from field: repeated sfixed64 repeated_sfixed64 = 40;
-     */
-    repeatedSfixed64: bigint[];
-
-    /**
-     * @generated from field: repeated float repeated_float = 41;
-     */
-    repeatedFloat: number[];
-
-    /**
-     * @generated from field: repeated double repeated_double = 42;
-     */
-    repeatedDouble: number[];
-
-    /**
-     * @generated from field: repeated bool repeated_bool = 43;
-     */
-    repeatedBool: boolean[];
-
-    /**
-     * @generated from field: repeated string repeated_string = 44;
-     */
-    repeatedString: string[];
-
-    /**
-     * @generated from field: repeated bytes repeated_bytes = 45;
-     */
-    repeatedBytes: Uint8Array[];
-
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedMessage repeated_nested_message = 48;
-     */
-    repeatedNestedMessage: TestAllTypes_NestedMessage[];
-
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.ForeignMessage repeated_foreign_message = 49;
-     */
-    repeatedForeignMessage: ForeignMessage[];
-
-    /**
-     * @generated from field: repeated protobuf_unittest_import.ImportMessage repeated_import_message = 50;
-     */
-    repeatedImportMessage: ImportMessage[];
-
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedEnum repeated_nested_enum = 51;
-     */
-    repeatedNestedEnum: TestAllTypes_NestedEnum[];
-
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.ForeignEnum repeated_foreign_enum = 52;
-     */
-    repeatedForeignEnum: ForeignEnum[];
-
-    /**
-     * @generated from field: repeated string repeated_string_piece = 54;
-     */
-    repeatedStringPiece: string[];
-
-    /**
-     * @generated from field: repeated string repeated_cord = 55;
-     */
-    repeatedCord: string[];
-
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedMessage repeated_lazy_message = 57;
-     */
-    repeatedLazyMessage: TestAllTypes_NestedMessage[];
-
-    /**
-     * @generated from oneof proto3_arena_lite_unittest.TestAllTypes.oneof_field
-     */
-    oneofField: {
-        /**
-         * @generated from field: uint32 oneof_uint32 = 111;
-         */
-        value: number;
-        case: "oneofUint32";
-    } | {
-        /**
-         * @generated from field: proto3_arena_lite_unittest.TestAllTypes.NestedMessage oneof_nested_message = 112;
-         */
-        value: TestAllTypes_NestedMessage;
-        case: "oneofNestedMessage";
-    } | {
-        /**
-         * @generated from field: string oneof_string = 113;
-         */
-        value: string;
-        case: "oneofString";
-    } | {
-        /**
-         * @generated from field: bytes oneof_bytes = 114;
-         */
-        value: Uint8Array;
-        case: "oneofBytes";
-    } | { case: undefined; value?: undefined };
-
-    constructor(data?: PartialMessage<TestAllTypes>);
-
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.TestAllTypes";
-    static readonly fields: FieldList;
-
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes;
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes;
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
-
-    static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
-
+  static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
 }
 
 /**
  * @generated from enum proto3_arena_lite_unittest.TestAllTypes.NestedEnum
  */
 export declare enum TestAllTypes_NestedEnum {
+  /**
+   * @generated from enum value: ZERO = 0;
+   */
+  ZERO = 0,
 
-    /**
-     * @generated from enum value: ZERO = 0;
-     */
-    ZERO = 0,
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
 
-    /**
-     * @generated from enum value: FOO = 1;
-     */
-    FOO = 1,
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
 
-    /**
-     * @generated from enum value: BAR = 2;
-     */
-    BAR = 2,
+  /**
+   * @generated from enum value: BAZ = 3;
+   */
+  BAZ = 3,
 
-    /**
-     * @generated from enum value: BAZ = 3;
-     */
-    BAZ = 3,
-
-    /**
-     * Intentionally negative.
-     *
-     * @generated from enum value: NEG = -1;
-     */
-    NEG = -1,
-
+  /**
+   * Intentionally negative.
+   *
+   * @generated from enum value: NEG = -1;
+   */
+  NEG = -1,
 }
-
 
 /**
  * @generated from message proto3_arena_lite_unittest.TestAllTypes.NestedMessage
  */
 export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
+  /**
+   * The field name "b" fails to compile in proto1 because it conflicts with
+   * a local variable named "b" in one of the generated methods.  Doh.
+   * This file needs to compile in proto1 to test backwards-compatibility.
+   *
+   * @generated from field: int32 bb = 1;
+   */
+  bb: number;
 
-    /**
-     * The field name "b" fails to compile in proto1 because it conflicts with
-     * a local variable named "b" in one of the generated methods.  Doh.
-     * This file needs to compile in proto1 to test backwards-compatibility.
-     *
-     * @generated from field: int32 bb = 1;
-     */
-    bb: number;
+  constructor(data?: PartialMessage<TestAllTypes_NestedMessage>);
 
-    constructor(data?: PartialMessage<TestAllTypes_NestedMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.TestAllTypes.NestedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.TestAllTypes.NestedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes_NestedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes_NestedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
-
-    static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
-
+  static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
 }
-
-
 
 /**
  * @generated from message proto3_arena_lite_unittest.TestPackedTypes
  */
 export declare class TestPackedTypes extends Message<TestPackedTypes> {
+  /**
+   * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
+   */
+  packedInt32: number[];
 
-    /**
-     * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
-     */
-    packedInt32: number[];
+  /**
+   * @generated from field: repeated int64 packed_int64 = 91 [packed = true];
+   */
+  packedInt64: bigint[];
 
-    /**
-     * @generated from field: repeated int64 packed_int64 = 91 [packed = true];
-     */
-    packedInt64: bigint[];
+  /**
+   * @generated from field: repeated uint32 packed_uint32 = 92 [packed = true];
+   */
+  packedUint32: number[];
 
-    /**
-     * @generated from field: repeated uint32 packed_uint32 = 92 [packed = true];
-     */
-    packedUint32: number[];
+  /**
+   * @generated from field: repeated uint64 packed_uint64 = 93 [packed = true];
+   */
+  packedUint64: bigint[];
 
-    /**
-     * @generated from field: repeated uint64 packed_uint64 = 93 [packed = true];
-     */
-    packedUint64: bigint[];
+  /**
+   * @generated from field: repeated sint32 packed_sint32 = 94 [packed = true];
+   */
+  packedSint32: number[];
 
-    /**
-     * @generated from field: repeated sint32 packed_sint32 = 94 [packed = true];
-     */
-    packedSint32: number[];
+  /**
+   * @generated from field: repeated sint64 packed_sint64 = 95 [packed = true];
+   */
+  packedSint64: bigint[];
 
-    /**
-     * @generated from field: repeated sint64 packed_sint64 = 95 [packed = true];
-     */
-    packedSint64: bigint[];
+  /**
+   * @generated from field: repeated fixed32 packed_fixed32 = 96 [packed = true];
+   */
+  packedFixed32: number[];
 
-    /**
-     * @generated from field: repeated fixed32 packed_fixed32 = 96 [packed = true];
-     */
-    packedFixed32: number[];
+  /**
+   * @generated from field: repeated fixed64 packed_fixed64 = 97 [packed = true];
+   */
+  packedFixed64: bigint[];
 
-    /**
-     * @generated from field: repeated fixed64 packed_fixed64 = 97 [packed = true];
-     */
-    packedFixed64: bigint[];
+  /**
+   * @generated from field: repeated sfixed32 packed_sfixed32 = 98 [packed = true];
+   */
+  packedSfixed32: number[];
 
-    /**
-     * @generated from field: repeated sfixed32 packed_sfixed32 = 98 [packed = true];
-     */
-    packedSfixed32: number[];
+  /**
+   * @generated from field: repeated sfixed64 packed_sfixed64 = 99 [packed = true];
+   */
+  packedSfixed64: bigint[];
 
-    /**
-     * @generated from field: repeated sfixed64 packed_sfixed64 = 99 [packed = true];
-     */
-    packedSfixed64: bigint[];
+  /**
+   * @generated from field: repeated float packed_float = 100 [packed = true];
+   */
+  packedFloat: number[];
 
-    /**
-     * @generated from field: repeated float packed_float = 100 [packed = true];
-     */
-    packedFloat: number[];
+  /**
+   * @generated from field: repeated double packed_double = 101 [packed = true];
+   */
+  packedDouble: number[];
 
-    /**
-     * @generated from field: repeated double packed_double = 101 [packed = true];
-     */
-    packedDouble: number[];
+  /**
+   * @generated from field: repeated bool packed_bool = 102 [packed = true];
+   */
+  packedBool: boolean[];
 
-    /**
-     * @generated from field: repeated bool packed_bool = 102 [packed = true];
-     */
-    packedBool: boolean[];
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.ForeignEnum packed_enum = 103 [packed = true];
+   */
+  packedEnum: ForeignEnum[];
 
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.ForeignEnum packed_enum = 103 [packed = true];
-     */
-    packedEnum: ForeignEnum[];
+  constructor(data?: PartialMessage<TestPackedTypes>);
 
-    constructor(data?: PartialMessage<TestPackedTypes>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.TestPackedTypes";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.TestPackedTypes";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedTypes;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedTypes;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestPackedTypes;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestPackedTypes;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes;
-
-    static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
-
+  static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
 }
-
 
 /**
  * Explicitly set packed to false
@@ -524,93 +509,90 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
  * @generated from message proto3_arena_lite_unittest.TestUnpackedTypes
  */
 export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 1 [packed = false];
+   */
+  repeatedInt32: number[];
 
-    /**
-     * @generated from field: repeated int32 repeated_int32 = 1 [packed = false];
-     */
-    repeatedInt32: number[];
+  /**
+   * @generated from field: repeated int64 repeated_int64 = 2 [packed = false];
+   */
+  repeatedInt64: bigint[];
 
-    /**
-     * @generated from field: repeated int64 repeated_int64 = 2 [packed = false];
-     */
-    repeatedInt64: bigint[];
+  /**
+   * @generated from field: repeated uint32 repeated_uint32 = 3 [packed = false];
+   */
+  repeatedUint32: number[];
 
-    /**
-     * @generated from field: repeated uint32 repeated_uint32 = 3 [packed = false];
-     */
-    repeatedUint32: number[];
+  /**
+   * @generated from field: repeated uint64 repeated_uint64 = 4 [packed = false];
+   */
+  repeatedUint64: bigint[];
 
-    /**
-     * @generated from field: repeated uint64 repeated_uint64 = 4 [packed = false];
-     */
-    repeatedUint64: bigint[];
+  /**
+   * @generated from field: repeated sint32 repeated_sint32 = 5 [packed = false];
+   */
+  repeatedSint32: number[];
 
-    /**
-     * @generated from field: repeated sint32 repeated_sint32 = 5 [packed = false];
-     */
-    repeatedSint32: number[];
+  /**
+   * @generated from field: repeated sint64 repeated_sint64 = 6 [packed = false];
+   */
+  repeatedSint64: bigint[];
 
-    /**
-     * @generated from field: repeated sint64 repeated_sint64 = 6 [packed = false];
-     */
-    repeatedSint64: bigint[];
+  /**
+   * @generated from field: repeated fixed32 repeated_fixed32 = 7 [packed = false];
+   */
+  repeatedFixed32: number[];
 
-    /**
-     * @generated from field: repeated fixed32 repeated_fixed32 = 7 [packed = false];
-     */
-    repeatedFixed32: number[];
+  /**
+   * @generated from field: repeated fixed64 repeated_fixed64 = 8 [packed = false];
+   */
+  repeatedFixed64: bigint[];
 
-    /**
-     * @generated from field: repeated fixed64 repeated_fixed64 = 8 [packed = false];
-     */
-    repeatedFixed64: bigint[];
+  /**
+   * @generated from field: repeated sfixed32 repeated_sfixed32 = 9 [packed = false];
+   */
+  repeatedSfixed32: number[];
 
-    /**
-     * @generated from field: repeated sfixed32 repeated_sfixed32 = 9 [packed = false];
-     */
-    repeatedSfixed32: number[];
+  /**
+   * @generated from field: repeated sfixed64 repeated_sfixed64 = 10 [packed = false];
+   */
+  repeatedSfixed64: bigint[];
 
-    /**
-     * @generated from field: repeated sfixed64 repeated_sfixed64 = 10 [packed = false];
-     */
-    repeatedSfixed64: bigint[];
+  /**
+   * @generated from field: repeated float repeated_float = 11 [packed = false];
+   */
+  repeatedFloat: number[];
 
-    /**
-     * @generated from field: repeated float repeated_float = 11 [packed = false];
-     */
-    repeatedFloat: number[];
+  /**
+   * @generated from field: repeated double repeated_double = 12 [packed = false];
+   */
+  repeatedDouble: number[];
 
-    /**
-     * @generated from field: repeated double repeated_double = 12 [packed = false];
-     */
-    repeatedDouble: number[];
+  /**
+   * @generated from field: repeated bool repeated_bool = 13 [packed = false];
+   */
+  repeatedBool: boolean[];
 
-    /**
-     * @generated from field: repeated bool repeated_bool = 13 [packed = false];
-     */
-    repeatedBool: boolean[];
+  /**
+   * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedEnum repeated_nested_enum = 14 [packed = false];
+   */
+  repeatedNestedEnum: TestAllTypes_NestedEnum[];
 
-    /**
-     * @generated from field: repeated proto3_arena_lite_unittest.TestAllTypes.NestedEnum repeated_nested_enum = 14 [packed = false];
-     */
-    repeatedNestedEnum: TestAllTypes_NestedEnum[];
+  constructor(data?: PartialMessage<TestUnpackedTypes>);
 
-    constructor(data?: PartialMessage<TestUnpackedTypes>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.TestUnpackedTypes";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.TestUnpackedTypes";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestUnpackedTypes;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestUnpackedTypes;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
-
-    static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean;
-
+  static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean;
 }
-
 
 /**
  * This proto includes a recursively nested message.
@@ -618,33 +600,30 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
  * @generated from message proto3_arena_lite_unittest.NestedTestAllTypes
  */
 export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
+  /**
+   * @generated from field: proto3_arena_lite_unittest.NestedTestAllTypes child = 1;
+   */
+  child?: NestedTestAllTypes;
 
-    /**
-     * @generated from field: proto3_arena_lite_unittest.NestedTestAllTypes child = 1;
-     */
-    child?: NestedTestAllTypes;
+  /**
+   * @generated from field: proto3_arena_lite_unittest.TestAllTypes payload = 2;
+   */
+  payload?: TestAllTypes;
 
-    /**
-     * @generated from field: proto3_arena_lite_unittest.TestAllTypes payload = 2;
-     */
-    payload?: TestAllTypes;
+  constructor(data?: PartialMessage<NestedTestAllTypes>);
 
-    constructor(data?: PartialMessage<NestedTestAllTypes>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.NestedTestAllTypes";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.NestedTestAllTypes";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestAllTypes;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestAllTypes;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
-
-    static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
-
+  static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
 }
-
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -653,28 +632,25 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
  * @generated from message proto3_arena_lite_unittest.ForeignMessage
  */
 export declare class ForeignMessage extends Message<ForeignMessage> {
+  /**
+   * @generated from field: int32 c = 1;
+   */
+  c: number;
 
-    /**
-     * @generated from field: int32 c = 1;
-     */
-    c: number;
+  constructor(data?: PartialMessage<ForeignMessage>);
 
-    constructor(data?: PartialMessage<ForeignMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.ForeignMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.ForeignMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForeignMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ForeignMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForeignMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForeignMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
-
-    static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
-
+  static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
 }
-
 
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
@@ -682,21 +658,18 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
  * @generated from message proto3_arena_lite_unittest.TestEmptyMessage
  */
 export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
+  constructor(data?: PartialMessage<TestEmptyMessage>);
 
-    constructor(data?: PartialMessage<TestEmptyMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_arena_lite_unittest.TestEmptyMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_arena_lite_unittest.TestEmptyMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmptyMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmptyMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmptyMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmptyMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessage;
-
-    static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
-
+  static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
 }
-
 

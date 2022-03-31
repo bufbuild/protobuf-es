@@ -20,17 +20,14 @@
  * @generated from enum spec.AnnotatedEnum
  */
 export declare enum AnnotatedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
 
-    /**
-     * @generated from enum value: UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-
-    /**
-     * @generated from enum value: FOO = 1;
-     */
-    FOO = 1,
-
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
 }
-
 

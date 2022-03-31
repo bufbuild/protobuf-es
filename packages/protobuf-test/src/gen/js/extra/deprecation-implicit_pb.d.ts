@@ -24,21 +24,18 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
+  constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>);
 
-    constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
-
-    static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean;
-
+  static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean;
 }
-
 

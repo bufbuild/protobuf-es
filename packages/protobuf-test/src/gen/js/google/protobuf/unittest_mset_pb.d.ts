@@ -47,92 +47,83 @@ import type {TestMessageSet} from "./unittest_mset_wire_format_pb.js";
  * @generated from message protobuf_unittest.TestMessageSetContainer
  */
 export declare class TestMessageSetContainer extends Message<TestMessageSetContainer> {
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
+   */
+  messageSet?: TestMessageSet;
 
-    /**
-     * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
-     */
-    messageSet?: TestMessageSet;
+  constructor(data?: PartialMessage<TestMessageSetContainer>);
 
-    constructor(data?: PartialMessage<TestMessageSetContainer>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetContainer";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestMessageSetContainer";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetContainer;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetContainer;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetContainer;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetContainer;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetContainer;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetContainer;
-
-    static equals(a: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined, b: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined): boolean;
-
+  static equals(a: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined, b: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined): boolean;
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
 export declare class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> {
+  /**
+   * @generated from field: optional int32 i = 15;
+   */
+  i?: number;
 
-    /**
-     * @generated from field: optional int32 i = 15;
-     */
-    i?: number;
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
+   */
+  recursive?: TestMessageSet;
 
-    /**
-     * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
-     */
-    recursive?: TestMessageSet;
+  /**
+   * @generated from field: optional string test_aliasing = 17;
+   */
+  testAliasing?: string;
 
-    /**
-     * @generated from field: optional string test_aliasing = 17;
-     */
-    testAliasing?: string;
+  constructor(data?: PartialMessage<TestMessageSetExtension1>);
 
-    constructor(data?: PartialMessage<TestMessageSetExtension1>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetExtension1";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestMessageSetExtension1";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension1;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension1;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension1;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension1;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension1;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension1;
-
-    static equals(a: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined, b: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined): boolean;
-
+  static equals(a: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined, b: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined): boolean;
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
 export declare class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> {
+  /**
+   * @generated from field: optional string str = 25;
+   */
+  str?: string;
 
-    /**
-     * @generated from field: optional string str = 25;
-     */
-    str?: string;
+  constructor(data?: PartialMessage<TestMessageSetExtension2>);
 
-    constructor(data?: PartialMessage<TestMessageSetExtension2>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetExtension2";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestMessageSetExtension2";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension2;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension2;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
-
-    static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean;
-
+  static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean;
 }
-
 
 /**
  * MessageSet wire format is equivalent to this.
@@ -140,58 +131,52 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
  * @generated from message protobuf_unittest.RawMessageSet
  */
 export declare class RawMessageSet extends Message<RawMessageSet> {
+  /**
+   * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
+   */
+  item: RawMessageSet_Item[];
 
-    /**
-     * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
-     */
-    item: RawMessageSet_Item[];
+  constructor(data?: PartialMessage<RawMessageSet>);
 
-    constructor(data?: PartialMessage<RawMessageSet>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.RawMessageSet";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.RawMessageSet";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet;
-
-    static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean;
-
+  static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean;
 }
 
 /**
  * @generated from message protobuf_unittest.RawMessageSet.Item
  */
 export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
+  /**
+   * @generated from field: required int32 type_id = 2;
+   */
+  typeId: number;
 
-    /**
-     * @generated from field: required int32 type_id = 2;
-     */
-    typeId: number;
+  /**
+   * @generated from field: required bytes message = 3;
+   */
+  message: Uint8Array;
 
-    /**
-     * @generated from field: required bytes message = 3;
-     */
-    message: Uint8Array;
+  constructor(data?: PartialMessage<RawMessageSet_Item>);
 
-    constructor(data?: PartialMessage<RawMessageSet_Item>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
-
-    static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean;
-
+  static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean;
 }
-
-
 
