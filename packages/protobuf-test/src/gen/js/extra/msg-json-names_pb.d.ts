@@ -23,56 +23,53 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.JsonNamesMessage
  */
 export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
+  /**
+   * @generated from field: string scalar_field = 1 [json_name = "scalarFieldJsonName"];
+   */
+  scalarField: string;
 
-    /**
-     * @generated from field: string scalar_field = 1 [json_name = "scalarFieldJsonName"];
-     */
-    scalarField: string;
+  /**
+   * @generated from field: repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
+   */
+  repeatedScalarField: string[];
 
-    /**
-     * @generated from field: repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
-     */
-    repeatedScalarField: string[];
+  /**
+   * @generated from field: string a = 3 [json_name = "sameJsonName"];
+   */
+  a: string;
 
-    /**
-     * @generated from field: string a = 3 [json_name = "sameJsonName"];
-     */
-    a: string;
+  /**
+   * @generated from field: string b = 4 [json_name = "sameJsonName"];
+   */
+  b: string;
 
-    /**
-     * @generated from field: string b = 4 [json_name = "sameJsonName"];
-     */
-    b: string;
+  /**
+   * @generated from field: string c = 5;
+   */
+  c: string;
 
-    /**
-     * @generated from field: string c = 5;
-     */
-    c: string;
+  /**
+   * @generated from field: string d = 6 [json_name = "c"];
+   */
+  d: string;
 
-    /**
-     * @generated from field: string d = 6 [json_name = "c"];
-     */
-    d: string;
+  /**
+   * @generated from field: string e = 7;
+   */
+  e: string;
 
-    /**
-     * @generated from field: string e = 7;
-     */
-    e: string;
+  constructor(data?: PartialMessage<JsonNamesMessage>);
 
-    constructor(data?: PartialMessage<JsonNamesMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.JsonNamesMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.JsonNamesMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JsonNamesMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JsonNamesMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JsonNamesMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JsonNamesMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JsonNamesMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JsonNamesMessage;
-
-    static equals(a: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined, b: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined): boolean;
-
+  static equals(a: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined, b: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined): boolean;
 }
-
 

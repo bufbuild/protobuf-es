@@ -44,33 +44,30 @@ import type {TestAllTypes, TestRequired} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
  */
 export declare class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
+   */
+  message?: TestAllTypes;
 
-    /**
-     * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
-     */
-    message?: TestAllTypes;
+  /**
+   * Verifies that transitive required fields generates valid code.
+   *
+   * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
+   */
+  messageWithRequired?: TestRequired;
 
-    /**
-     * Verifies that transitive required fields generates valid code.
-     *
-     * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
-     */
-    messageWithRequired?: TestRequired;
+  constructor(data?: PartialMessage<TestLiteImportsNonlite>);
 
-    constructor(data?: PartialMessage<TestLiteImportsNonlite>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLiteImportsNonlite;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLiteImportsNonlite;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
-
-    static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean;
-
+  static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean;
 }
-
 

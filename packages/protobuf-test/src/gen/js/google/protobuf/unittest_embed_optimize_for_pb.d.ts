@@ -46,34 +46,31 @@ import type {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
  */
 export declare class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize> {
+  /**
+   * Test that embedding a message which has optimize_for = CODE_SIZE into
+   * one optimized for speed works.
+   *
+   * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
+   */
+  optionalMessage?: TestOptimizedForSize;
 
-    /**
-     * Test that embedding a message which has optimize_for = CODE_SIZE into
-     * one optimized for speed works.
-     *
-     * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
-     */
-    optionalMessage?: TestOptimizedForSize;
+  /**
+   * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;
+   */
+  repeatedMessage: TestOptimizedForSize[];
 
-    /**
-     * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;
-     */
-    repeatedMessage: TestOptimizedForSize[];
+  constructor(data?: PartialMessage<TestEmbedOptimizedForSize>);
 
-    constructor(data?: PartialMessage<TestEmbedOptimizedForSize>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmbedOptimizedForSize;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmbedOptimizedForSize;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
-
-    static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean;
-
+  static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean;
 }
-
 

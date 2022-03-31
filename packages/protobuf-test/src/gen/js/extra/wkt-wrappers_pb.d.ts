@@ -23,170 +23,167 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.WrappersMessage
  */
 export declare class WrappersMessage extends Message<WrappersMessage> {
+  /**
+   * @generated from field: google.protobuf.DoubleValue double_value_field = 1;
+   */
+  doubleValueField?: number;
 
+  /**
+   * @generated from field: google.protobuf.BoolValue bool_value_field = 2;
+   */
+  boolValueField?: boolean;
+
+  /**
+   * @generated from field: google.protobuf.FloatValue float_value_field = 3;
+   */
+  floatValueField?: number;
+
+  /**
+   * @generated from field: google.protobuf.Int64Value int64_value_field = 4;
+   */
+  int64ValueField?: bigint;
+
+  /**
+   * @generated from field: google.protobuf.UInt64Value uint64_value_field = 5;
+   */
+  uint64ValueField?: bigint;
+
+  /**
+   * @generated from field: google.protobuf.Int32Value int32_value_field = 6;
+   */
+  int32ValueField?: number;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value uint32_value_field = 7;
+   */
+  uint32ValueField?: number;
+
+  /**
+   * @generated from field: google.protobuf.StringValue string_value_field = 8;
+   */
+  stringValueField?: string;
+
+  /**
+   * @generated from field: google.protobuf.BytesValue bytes_value_field = 9;
+   */
+  bytesValueField?: Uint8Array;
+
+  /**
+   * @generated from oneof spec.WrappersMessage.oneof_fields
+   */
+  oneofFields: {
     /**
-     * @generated from field: google.protobuf.DoubleValue double_value_field = 1;
+     * @generated from field: google.protobuf.DoubleValue oneof_double_value_field = 11;
      */
-    doubleValueField?: number;
-
+    value: DoubleValue;
+    case: "oneofDoubleValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.BoolValue bool_value_field = 2;
+     * @generated from field: google.protobuf.BoolValue oneof_bool_value_field = 12;
      */
-    boolValueField?: boolean;
-
+    value: BoolValue;
+    case: "oneofBoolValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.FloatValue float_value_field = 3;
+     * @generated from field: google.protobuf.FloatValue oneof_float_value_field = 13;
      */
-    floatValueField?: number;
-
+    value: FloatValue;
+    case: "oneofFloatValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.Int64Value int64_value_field = 4;
+     * @generated from field: google.protobuf.Int64Value oneof_int64_value_field = 14;
      */
-    int64ValueField?: bigint;
-
+    value: Int64Value;
+    case: "oneofInt64ValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.UInt64Value uint64_value_field = 5;
+     * @generated from field: google.protobuf.UInt64Value oneof_uint64_value_field = 15;
      */
-    uint64ValueField?: bigint;
-
+    value: UInt64Value;
+    case: "oneofUint64ValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.Int32Value int32_value_field = 6;
+     * @generated from field: google.protobuf.Int32Value oneof_int32_value_field = 16;
      */
-    int32ValueField?: number;
-
+    value: Int32Value;
+    case: "oneofInt32ValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.UInt32Value uint32_value_field = 7;
+     * @generated from field: google.protobuf.UInt32Value oneof_uint32_value_field = 17;
      */
-    uint32ValueField?: number;
-
+    value: UInt32Value;
+    case: "oneofUint32ValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.StringValue string_value_field = 8;
+     * @generated from field: google.protobuf.StringValue oneof_string_value_field = 18;
      */
-    stringValueField?: string;
-
+    value: StringValue;
+    case: "oneofStringValueField";
+  } | {
     /**
-     * @generated from field: google.protobuf.BytesValue bytes_value_field = 9;
+     * @generated from field: google.protobuf.BytesValue oneof_bytes_value_field = 19;
      */
-    bytesValueField?: Uint8Array;
+    value: BytesValue;
+    case: "oneofBytesValueField";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from oneof spec.WrappersMessage.oneof_fields
-     */
-    oneofFields: {
-        /**
-         * @generated from field: google.protobuf.DoubleValue oneof_double_value_field = 11;
-         */
-        value: DoubleValue;
-        case: "oneofDoubleValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.BoolValue oneof_bool_value_field = 12;
-         */
-        value: BoolValue;
-        case: "oneofBoolValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.FloatValue oneof_float_value_field = 13;
-         */
-        value: FloatValue;
-        case: "oneofFloatValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.Int64Value oneof_int64_value_field = 14;
-         */
-        value: Int64Value;
-        case: "oneofInt64ValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.UInt64Value oneof_uint64_value_field = 15;
-         */
-        value: UInt64Value;
-        case: "oneofUint64ValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.Int32Value oneof_int32_value_field = 16;
-         */
-        value: Int32Value;
-        case: "oneofInt32ValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.UInt32Value oneof_uint32_value_field = 17;
-         */
-        value: UInt32Value;
-        case: "oneofUint32ValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.StringValue oneof_string_value_field = 18;
-         */
-        value: StringValue;
-        case: "oneofStringValueField";
-    } | {
-        /**
-         * @generated from field: google.protobuf.BytesValue oneof_bytes_value_field = 19;
-         */
-        value: BytesValue;
-        case: "oneofBytesValueField";
-    } | { case: undefined; value?: undefined };
+  /**
+   * @generated from field: repeated google.protobuf.DoubleValue repeated_double_value_field = 21;
+   */
+  repeatedDoubleValueField: DoubleValue[];
 
-    /**
-     * @generated from field: repeated google.protobuf.DoubleValue repeated_double_value_field = 21;
-     */
-    repeatedDoubleValueField: DoubleValue[];
+  /**
+   * @generated from field: repeated google.protobuf.BoolValue repeated_bool_value_field = 22;
+   */
+  repeatedBoolValueField: BoolValue[];
 
-    /**
-     * @generated from field: repeated google.protobuf.BoolValue repeated_bool_value_field = 22;
-     */
-    repeatedBoolValueField: BoolValue[];
+  /**
+   * @generated from field: repeated google.protobuf.FloatValue repeated_float_value_field = 23;
+   */
+  repeatedFloatValueField: FloatValue[];
 
-    /**
-     * @generated from field: repeated google.protobuf.FloatValue repeated_float_value_field = 23;
-     */
-    repeatedFloatValueField: FloatValue[];
+  /**
+   * @generated from field: repeated google.protobuf.Int64Value repeated_int64_value_field = 24;
+   */
+  repeatedInt64ValueField: Int64Value[];
 
-    /**
-     * @generated from field: repeated google.protobuf.Int64Value repeated_int64_value_field = 24;
-     */
-    repeatedInt64ValueField: Int64Value[];
+  /**
+   * @generated from field: repeated google.protobuf.UInt64Value repeated_uint64_value_field = 25;
+   */
+  repeatedUint64ValueField: UInt64Value[];
 
-    /**
-     * @generated from field: repeated google.protobuf.UInt64Value repeated_uint64_value_field = 25;
-     */
-    repeatedUint64ValueField: UInt64Value[];
+  /**
+   * @generated from field: repeated google.protobuf.Int32Value repeated_int32_value_field = 26;
+   */
+  repeatedInt32ValueField: Int32Value[];
 
-    /**
-     * @generated from field: repeated google.protobuf.Int32Value repeated_int32_value_field = 26;
-     */
-    repeatedInt32ValueField: Int32Value[];
+  /**
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_uint32_value_field = 27;
+   */
+  repeatedUint32ValueField: UInt32Value[];
 
-    /**
-     * @generated from field: repeated google.protobuf.UInt32Value repeated_uint32_value_field = 27;
-     */
-    repeatedUint32ValueField: UInt32Value[];
+  /**
+   * @generated from field: repeated google.protobuf.StringValue repeated_string_value_field = 28;
+   */
+  repeatedStringValueField: StringValue[];
 
-    /**
-     * @generated from field: repeated google.protobuf.StringValue repeated_string_value_field = 28;
-     */
-    repeatedStringValueField: StringValue[];
+  /**
+   * @generated from field: repeated google.protobuf.BytesValue repeated_bytes_value_field = 29;
+   */
+  repeatedBytesValueField: BytesValue[];
 
-    /**
-     * @generated from field: repeated google.protobuf.BytesValue repeated_bytes_value_field = 29;
-     */
-    repeatedBytesValueField: BytesValue[];
+  constructor(data?: PartialMessage<WrappersMessage>);
 
-    constructor(data?: PartialMessage<WrappersMessage>);
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.WrappersMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.WrappersMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WrappersMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WrappersMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WrappersMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WrappersMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WrappersMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WrappersMessage;
-
-    static equals(a: WrappersMessage | PlainMessage<WrappersMessage> | undefined, b: WrappersMessage | PlainMessage<WrappersMessage> | undefined): boolean;
-
+  static equals(a: WrappersMessage | PlainMessage<WrappersMessage> | undefined, b: WrappersMessage | PlainMessage<WrappersMessage> | undefined): boolean;
 }
-
 

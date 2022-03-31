@@ -25,14 +25,13 @@ import {proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export const DeprecatedEnum = proto3.makeEnum(
-    "spec.DeprecatedEnum",
-    [
-        {no: 0, name: "DEPRECATED_ENUM_A"},
-        {no: 1, name: "DEPRECATED_ENUM_B"},
-    ],
-    {sharedPrefix: "DEPRECATED_ENUM_"},
+  "spec.DeprecatedEnum",
+  [
+    {no: 0, name: "DEPRECATED_ENUM_A"},
+    {no: 1, name: "DEPRECATED_ENUM_B"},
+  ],
+  {sharedPrefix: "DEPRECATED_ENUM_"},
 );
-
 
 /**
  * Only a single enum value is deprecated
@@ -40,14 +39,13 @@ export const DeprecatedEnum = proto3.makeEnum(
  * @generated from enum spec.DeprecatedValueEnum
  */
 export const DeprecatedValueEnum = proto3.makeEnum(
-    "spec.DeprecatedValueEnum",
-    [
-        {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
-        {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE"},
-    ],
-    {sharedPrefix: "DEPRECATED_VALUE_ENUM_"},
+  "spec.DeprecatedValueEnum",
+  [
+    {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
+    {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE"},
+  ],
+  {sharedPrefix: "DEPRECATED_VALUE_ENUM_"},
 );
-
 
 /**
  * The entire message is deprecated
@@ -56,12 +54,11 @@ export const DeprecatedValueEnum = proto3.makeEnum(
  * @deprecated
  */
 export const DeprecatedMessage = proto3.makeMessageType(
-    "spec.DeprecatedMessage",
-    () => [
-        {no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ],
+  "spec.DeprecatedMessage",
+  () => [
+    { no: 1, name: "field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
 );
-
 
 /**
  * A single field of this message is deprecated
@@ -69,11 +66,10 @@ export const DeprecatedMessage = proto3.makeMessageType(
  * @generated from message spec.DeprecatedFieldMessage
  */
 export const DeprecatedFieldMessage = proto3.makeMessageType(
-    "spec.DeprecatedFieldMessage",
-    () => [
-        {no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ],
+  "spec.DeprecatedFieldMessage",
+  () => [
+    { no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
 );
-
 

@@ -41,39 +41,33 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
  */
 export declare enum TestEnum {
-
-    /**
-     * @generated from enum value: FOO = 1;
-     */
-    FOO = 1,
-
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
 }
-
 
 /**
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
  */
 export declare class TestMessage extends Message<TestMessage> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
 
-    /**
-     * @generated from field: optional int32 a = 1;
-     */
-    a?: number;
+  constructor(data?: PartialMessage<TestMessage>);
 
-    constructor(data?: PartialMessage<TestMessage>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage;
-
-    static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
-
+  static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
 }
-
 

@@ -48,11 +48,10 @@ import {proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.lazy_imports.LazyEnum
  */
 export const LazyEnum = proto2.makeEnum(
-    "protobuf_unittest.lazy_imports.LazyEnum",
-    [
-        {no: 0, name: "LAZY_ENUM_0"},
-        {no: 1, name: "LAZY_ENUM_1"},
-    ],
+  "protobuf_unittest.lazy_imports.LazyEnum",
+  [
+    {no: 0, name: "LAZY_ENUM_0"},
+    {no: 1, name: "LAZY_ENUM_1"},
+  ],
 );
-
 

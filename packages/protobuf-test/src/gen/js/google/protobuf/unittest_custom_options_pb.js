@@ -47,24 +47,22 @@ import {Any, FileOptions, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.MethodOpt1
  */
 export const MethodOpt1 = proto2.makeEnum(
-    "protobuf_unittest.MethodOpt1",
-    [
-        {no: 1, name: "METHODOPT1_VAL1"},
-        {no: 2, name: "METHODOPT1_VAL2"},
-    ],
+  "protobuf_unittest.MethodOpt1",
+  [
+    {no: 1, name: "METHODOPT1_VAL1"},
+    {no: 2, name: "METHODOPT1_VAL2"},
+  ],
 );
-
 
 /**
  * @generated from enum protobuf_unittest.AggregateEnum
  */
 export const AggregateEnum = proto2.makeEnum(
-    "protobuf_unittest.AggregateEnum",
-    [
-        {no: 1, name: "VALUE"},
-    ],
+  "protobuf_unittest.AggregateEnum",
+  [
+    {no: 1, name: "VALUE"},
+  ],
 );
-
 
 /**
  * A test message with custom options at all possible locations (and also some
@@ -73,26 +71,24 @@ export const AggregateEnum = proto2.makeEnum(
  * @generated from message protobuf_unittest.TestMessageWithCustomOptions
  */
 export const TestMessageWithCustomOptions = proto2.makeMessageType(
-    "protobuf_unittest.TestMessageWithCustomOptions",
-    () => [
-        {no: 1, name: "field1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-        {no: 2, name: "oneof_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "AnOneof"},
-        {no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */}},
-    ],
+  "protobuf_unittest.TestMessageWithCustomOptions",
+  () => [
+    { no: 1, name: "field1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "oneof_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "AnOneof" },
+    { no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+  ],
 );
 
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
  */
 export const TestMessageWithCustomOptions_AnEnum = proto2.makeEnum(
-    "protobuf_unittest.TestMessageWithCustomOptions.AnEnum",
-    [
-        {no: 1, name: "ANENUM_VAL1"},
-        {no: 2, name: "ANENUM_VAL2"},
-    ],
+  "protobuf_unittest.TestMessageWithCustomOptions.AnEnum",
+  [
+    {no: 1, name: "ANENUM_VAL1"},
+    {no: 2, name: "ANENUM_VAL2"},
+  ],
 );
-
-
 
 /**
  * A test RPC service with custom options at all possible locations (and also
@@ -101,187 +97,169 @@ export const TestMessageWithCustomOptions_AnEnum = proto2.makeEnum(
  * @generated from message protobuf_unittest.CustomOptionFooRequest
  */
 export const CustomOptionFooRequest = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionFooRequest",
-    [],
+  "protobuf_unittest.CustomOptionFooRequest",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
 export const CustomOptionFooResponse = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionFooResponse",
-    [],
+  "protobuf_unittest.CustomOptionFooResponse",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
  */
 export const CustomOptionFooClientMessage = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionFooClientMessage",
-    [],
+  "protobuf_unittest.CustomOptionFooClientMessage",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
 export const CustomOptionFooServerMessage = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionFooServerMessage",
-    [],
+  "protobuf_unittest.CustomOptionFooServerMessage",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
  */
 export const DummyMessageContainingEnum = proto2.makeMessageType(
-    "protobuf_unittest.DummyMessageContainingEnum",
-    [],
+  "protobuf_unittest.DummyMessageContainingEnum",
+  [],
 );
 
 /**
  * @generated from enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType
  */
 export const DummyMessageContainingEnum_TestEnumType = proto2.makeEnum(
-    "protobuf_unittest.DummyMessageContainingEnum.TestEnumType",
-    [
-        {no: 22, name: "TEST_OPTION_ENUM_TYPE1"},
-        {no: -23, name: "TEST_OPTION_ENUM_TYPE2"},
-    ],
+  "protobuf_unittest.DummyMessageContainingEnum.TestEnumType",
+  [
+    {no: 22, name: "TEST_OPTION_ENUM_TYPE1"},
+    {no: -23, name: "TEST_OPTION_ENUM_TYPE2"},
+  ],
 );
-
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
  */
 export const DummyMessageInvalidAsOptionType = proto2.makeMessageType(
-    "protobuf_unittest.DummyMessageInvalidAsOptionType",
-    [],
+  "protobuf_unittest.DummyMessageInvalidAsOptionType",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
  */
 export const CustomOptionMinIntegerValues = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionMinIntegerValues",
-    [],
+  "protobuf_unittest.CustomOptionMinIntegerValues",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
  */
 export const CustomOptionMaxIntegerValues = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionMaxIntegerValues",
-    [],
+  "protobuf_unittest.CustomOptionMaxIntegerValues",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
  */
 export const CustomOptionOtherValues = proto2.makeMessageType(
-    "protobuf_unittest.CustomOptionOtherValues",
-    [],
+  "protobuf_unittest.CustomOptionOtherValues",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
  */
 export const SettingRealsFromPositiveInts = proto2.makeMessageType(
-    "protobuf_unittest.SettingRealsFromPositiveInts",
-    [],
+  "protobuf_unittest.SettingRealsFromPositiveInts",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
 export const SettingRealsFromNegativeInts = proto2.makeMessageType(
-    "protobuf_unittest.SettingRealsFromNegativeInts",
-    [],
+  "protobuf_unittest.SettingRealsFromNegativeInts",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
  */
 export const ComplexOptionType1 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOptionType1",
-    () => [
-        {no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 2, name: "foo2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 3, name: "foo3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true},
-    ],
+  "protobuf_unittest.ComplexOptionType1",
+  () => [
+    { no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "foo2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "foo3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+  ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
  */
 export const ComplexOptionType2 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOptionType2",
-    () => [
-        {no: 1, name: "bar", kind: "message", T: ComplexOptionType1, opt: true},
-        {no: 2, name: "baz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 3, name: "fred", kind: "message", T: ComplexOptionType2_ComplexOptionType4, opt: true},
-        {no: 4, name: "barney", kind: "message", T: ComplexOptionType2_ComplexOptionType4, repeated: true},
-    ],
+  "protobuf_unittest.ComplexOptionType2",
+  () => [
+    { no: 1, name: "bar", kind: "message", T: ComplexOptionType1, opt: true },
+    { no: 2, name: "baz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "fred", kind: "message", T: ComplexOptionType2_ComplexOptionType4, opt: true },
+    { no: 4, name: "barney", kind: "message", T: ComplexOptionType2_ComplexOptionType4, repeated: true },
+  ],
 );
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2.ComplexOptionType4
  */
 export const ComplexOptionType2_ComplexOptionType4 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOptionType2.ComplexOptionType4",
-    () => [
-        {no: 1, name: "waldo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
-    {localName: "ComplexOptionType2_ComplexOptionType4"},
+  "protobuf_unittest.ComplexOptionType2.ComplexOptionType4",
+  () => [
+    { no: 1, name: "waldo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "ComplexOptionType2_ComplexOptionType4"},
 );
-
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
 export const ComplexOptionType3 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOptionType3",
-    () => [
-        {no: 1, name: "qux", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true},
-    ],
+  "protobuf_unittest.ComplexOptionType3",
+  () => [
+    { no: 1, name: "qux", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
+  ],
 );
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
  */
 export const ComplexOptionType3_ComplexOptionType5 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOptionType3.ComplexOptionType5",
-    () => [
-        {no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
-    {localName: "ComplexOptionType3_ComplexOptionType5"},
+  "protobuf_unittest.ComplexOptionType3.ComplexOptionType5",
+  () => [
+    { no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "ComplexOptionType3_ComplexOptionType5"},
 );
-
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
 export const ComplexOpt6 = proto2.makeMessageType(
-    "protobuf_unittest.ComplexOpt6",
-    () => [
-        {no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
+  "protobuf_unittest.ComplexOpt6",
+  () => [
+    { no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
 );
-
 
 /**
  * Note that we try various different ways of naming the same extension.
@@ -289,30 +267,27 @@ export const ComplexOpt6 = proto2.makeMessageType(
  * @generated from message protobuf_unittest.VariousComplexOptions
  */
 export const VariousComplexOptions = proto2.makeMessageType(
-    "protobuf_unittest.VariousComplexOptions",
-    [],
+  "protobuf_unittest.VariousComplexOptions",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
 export const AggregateMessageSet = proto2.makeMessageType(
-    "protobuf_unittest.AggregateMessageSet",
-    [],
+  "protobuf_unittest.AggregateMessageSet",
+  [],
 );
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
  */
 export const AggregateMessageSetElement = proto2.makeMessageType(
-    "protobuf_unittest.AggregateMessageSetElement",
-    () => [
-        {no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-    ],
+  "protobuf_unittest.AggregateMessageSetElement",
+  () => [
+    { no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
 );
-
 
 /**
  * A helper type used to test aggregate option parsing
@@ -320,28 +295,26 @@ export const AggregateMessageSetElement = proto2.makeMessageType(
  * @generated from message protobuf_unittest.Aggregate
  */
 export const Aggregate = proto2.makeMessageType(
-    "protobuf_unittest.Aggregate",
-    () => [
-        {no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 2, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true},
-        {no: 3, name: "sub", kind: "message", T: Aggregate, opt: true},
-        {no: 4, name: "file", kind: "message", T: FileOptions, opt: true},
-        {no: 5, name: "mset", kind: "message", T: AggregateMessageSet, opt: true},
-        {no: 6, name: "any", kind: "message", T: Any, opt: true},
-    ],
+  "protobuf_unittest.Aggregate",
+  () => [
+    { no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "sub", kind: "message", T: Aggregate, opt: true },
+    { no: 4, name: "file", kind: "message", T: FileOptions, opt: true },
+    { no: 5, name: "mset", kind: "message", T: AggregateMessageSet, opt: true },
+    { no: 6, name: "any", kind: "message", T: Any, opt: true },
+  ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
 export const AggregateMessage = proto2.makeMessageType(
-    "protobuf_unittest.AggregateMessage",
-    () => [
-        {no: 1, name: "fieldname", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
+  "protobuf_unittest.AggregateMessage",
+  () => [
+    { no: 1, name: "fieldname", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
 );
-
 
 /**
  * Test custom options for nested type.
@@ -349,34 +322,31 @@ export const AggregateMessage = proto2.makeMessageType(
  * @generated from message protobuf_unittest.NestedOptionType
  */
 export const NestedOptionType = proto2.makeMessageType(
-    "protobuf_unittest.NestedOptionType",
-    [],
+  "protobuf_unittest.NestedOptionType",
+  [],
 );
 
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
  */
 export const NestedOptionType_NestedEnum = proto2.makeEnum(
-    "protobuf_unittest.NestedOptionType.NestedEnum",
-    [
-        {no: 1, name: "NESTED_ENUM_VALUE"},
-    ],
-    {sharedPrefix: "NESTED_ENUM_"},
+  "protobuf_unittest.NestedOptionType.NestedEnum",
+  [
+    {no: 1, name: "NESTED_ENUM_VALUE"},
+  ],
+  {sharedPrefix: "NESTED_ENUM_"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.NestedOptionType.NestedMessage
  */
 export const NestedOptionType_NestedMessage = proto2.makeMessageType(
-    "protobuf_unittest.NestedOptionType.NestedMessage",
-    () => [
-        {no: 1, name: "nested_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
-    {localName: "NestedOptionType_NestedMessage"},
+  "protobuf_unittest.NestedOptionType.NestedMessage",
+  () => [
+    { no: 1, name: "nested_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "NestedOptionType_NestedMessage"},
 );
-
-
 
 /**
  * Custom message option that has a required enum field.
@@ -385,23 +355,21 @@ export const NestedOptionType_NestedMessage = proto2.makeMessageType(
  * @generated from message protobuf_unittest.OldOptionType
  */
 export const OldOptionType = proto2.makeMessageType(
-    "protobuf_unittest.OldOptionType",
-    () => [
-        {no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum)},
-    ],
+  "protobuf_unittest.OldOptionType",
+  () => [
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum) },
+  ],
 );
 
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
  */
 export const OldOptionType_TestEnum = proto2.makeEnum(
-    "protobuf_unittest.OldOptionType.TestEnum",
-    [
-        {no: 0, name: "OLD_VALUE"},
-    ],
+  "protobuf_unittest.OldOptionType.TestEnum",
+  [
+    {no: 0, name: "OLD_VALUE"},
+  ],
 );
-
-
 
 /**
  * Updated version of the custom option above.
@@ -409,24 +377,22 @@ export const OldOptionType_TestEnum = proto2.makeEnum(
  * @generated from message protobuf_unittest.NewOptionType
  */
 export const NewOptionType = proto2.makeMessageType(
-    "protobuf_unittest.NewOptionType",
-    () => [
-        {no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum)},
-    ],
+  "protobuf_unittest.NewOptionType",
+  () => [
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum) },
+  ],
 );
 
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum
  */
 export const NewOptionType_TestEnum = proto2.makeEnum(
-    "protobuf_unittest.NewOptionType.TestEnum",
-    [
-        {no: 0, name: "OLD_VALUE"},
-        {no: 1, name: "NEW_VALUE"},
-    ],
+  "protobuf_unittest.NewOptionType.TestEnum",
+  [
+    {no: 0, name: "OLD_VALUE"},
+    {no: 1, name: "NEW_VALUE"},
+  ],
 );
-
-
 
 /**
  * Test message using the "required_enum_opt" option defined above.
@@ -434,8 +400,7 @@ export const NewOptionType_TestEnum = proto2.makeEnum(
  * @generated from message protobuf_unittest.TestMessageWithRequiredEnumOption
  */
 export const TestMessageWithRequiredEnumOption = proto2.makeMessageType(
-    "protobuf_unittest.TestMessageWithRequiredEnumOption",
-    [],
+  "protobuf_unittest.TestMessageWithRequiredEnumOption",
+  [],
 );
-
 

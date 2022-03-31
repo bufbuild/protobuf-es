@@ -46,48 +46,45 @@ import {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
  */
 export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize> {
+  /**
+   * Test that embedding a message which has optimize_for = CODE_SIZE into
+   * one optimized for speed works.
+   *
+   * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
+   */
+  optionalMessage?: TestOptimizedForSize;
 
-    /**
-     * Test that embedding a message which has optimize_for = CODE_SIZE into
-     * one optimized for speed works.
-     *
-     * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
-     */
-    optionalMessage?: TestOptimizedForSize;
+  /**
+   * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;
+   */
+  repeatedMessage: TestOptimizedForSize[] = [];
 
-    /**
-     * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;
-     */
-    repeatedMessage: TestOptimizedForSize[] = [];
+  constructor(data?: PartialMessage<TestEmbedOptimizedForSize>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    constructor(data?: PartialMessage<TestEmbedOptimizedForSize>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true },
+    { no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true },
+  ]);
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true},
-        {no: 2, name: "repeated_message", kind: "message", T: TestOptimizedForSize, repeated: true},
-    ]);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmbedOptimizedForSize {
+    return new TestEmbedOptimizedForSize().fromBinary(bytes, options);
+  }
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEmbedOptimizedForSize {
-        return new TestEmbedOptimizedForSize().fromBinary(bytes, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize {
+    return new TestEmbedOptimizedForSize().fromJson(jsonValue, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize {
-        return new TestEmbedOptimizedForSize().fromJson(jsonValue, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize {
+    return new TestEmbedOptimizedForSize().fromJsonString(jsonString, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize {
-        return new TestEmbedOptimizedForSize().fromJsonString(jsonString, options);
-    }
-
-    static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean {
-        return proto2.util.equals(TestEmbedOptimizedForSize, a, b);
-    }
-
+  static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean {
+    return proto2.util.equals(TestEmbedOptimizedForSize, a, b);
+  }
 }
-
 

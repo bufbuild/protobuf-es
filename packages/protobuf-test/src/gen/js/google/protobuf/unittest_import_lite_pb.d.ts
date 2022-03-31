@@ -43,49 +43,43 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnumLite
  */
 export declare enum ImportEnumLite {
+  /**
+   * @generated from enum value: IMPORT_LITE_FOO = 7;
+   */
+  IMPORT_LITE_FOO = 7,
 
-    /**
-     * @generated from enum value: IMPORT_LITE_FOO = 7;
-     */
-    IMPORT_LITE_FOO = 7,
+  /**
+   * @generated from enum value: IMPORT_LITE_BAR = 8;
+   */
+  IMPORT_LITE_BAR = 8,
 
-    /**
-     * @generated from enum value: IMPORT_LITE_BAR = 8;
-     */
-    IMPORT_LITE_BAR = 8,
-
-    /**
-     * @generated from enum value: IMPORT_LITE_BAZ = 9;
-     */
-    IMPORT_LITE_BAZ = 9,
-
+  /**
+   * @generated from enum value: IMPORT_LITE_BAZ = 9;
+   */
+  IMPORT_LITE_BAZ = 9,
 }
-
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessageLite
  */
 export declare class ImportMessageLite extends Message<ImportMessageLite> {
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
 
-    /**
-     * @generated from field: optional int32 d = 1;
-     */
-    d?: number;
+  constructor(data?: PartialMessage<ImportMessageLite>);
 
-    constructor(data?: PartialMessage<ImportMessageLite>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessageLite;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessageLite;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessageLite;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessageLite;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite;
-
-    static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean;
-
+  static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean;
 }
-
 

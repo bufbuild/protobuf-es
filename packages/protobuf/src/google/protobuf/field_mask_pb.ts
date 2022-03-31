@@ -223,103 +223,100 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.FieldMask
  */
 export class FieldMask extends Message<FieldMask> {
+  /**
+   * The set of field mask paths.
+   *
+   * @generated from field: repeated string paths = 1;
+   */
+  paths: string[] = [];
 
-    /**
-     * The set of field mask paths.
-     *
-     * @generated from field: repeated string paths = 1;
-     */
-    paths: string[] = [];
+  constructor(data?: PartialMessage<FieldMask>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    constructor(data?: PartialMessage<FieldMask>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
-
-    override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
-        // Converts snake_case to protoCamelCase according to the convention
-        // used by protoc to convert a field name to a JSON name.
-        function protoCamelCase(snakeCase: string): string {
-            let capNext = false;
-            const b = [];
-            for (let i = 0; i < snakeCase.length; i++) {
-                let c = snakeCase.charAt(i);
-                switch (c) {
-                    case '_':
-                        capNext = true;
-                        break;
-                    case '0':
-                    case '1':
-                    case '2':
-                    case '3':
-                    case '4':
-                    case '5':
-                    case '6':
-                    case '7':
-                    case '8':
-                    case '9':
-                        b.push(c);
-                        capNext = false;
-                        break;
-                    default:
-                        if (capNext) {
-                            capNext = false;
-                            c = c.toUpperCase();
-                        }
-                        b.push(c);
-                        break;
-                }
+  override toJson(options?: Partial<JsonWriteOptions>): JsonValue {
+    // Converts snake_case to protoCamelCase according to the convention
+    // used by protoc to convert a field name to a JSON name.
+    function protoCamelCase(snakeCase: string): string {
+      let capNext = false;
+      const b = [];
+      for (let i = 0; i < snakeCase.length; i++) {
+        let c = snakeCase.charAt(i);
+        switch (c) {
+          case '_':
+            capNext = true;
+            break;
+          case '0':
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
+          case '6':
+          case '7':
+          case '8':
+          case '9':
+            b.push(c);
+            capNext = false;
+            break;
+          default:
+            if (capNext) {
+              capNext = false;
+              c = c.toUpperCase();
             }
-            return b.join('');
+            b.push(c);
+            break;
         }
-        return this.paths.map(p => {
-            if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
-                throw new Error("cannot decode google.protobuf.FieldMask from JSON: lowerCamelCase of path name \"" + p + "\" is irreversible");
-            }
-            return protoCamelCase(p);
-        }).join(",");
+      }
+      return b.join('');
     }
+    return this.paths.map(p => {
+      if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
+        throw new Error("cannot decode google.protobuf.FieldMask from JSON: lowerCamelCase of path name \"" + p + "\" is irreversible");
+      }
+      return protoCamelCase(p);
+    }).join(",");
+  }
 
-    override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
-        if (typeof json !== "string") {
-            throw new Error("cannot decode google.protobuf.FieldMask from JSON: " + proto3.json.debug(json));
-        }
-        if (json === "") {
-            return this;
-        }
-        function camelToSnake (str: string) {
-            if (str.includes("_")) {
-                throw new Error("cannot decode google.protobuf.FieldMask from JSON: path names must be lowerCamelCase");
-            }
-            const sc = str.replace(/[A-Z]/g, letter => "_" + letter.toLowerCase());
-            return (sc[0] === "_") ? sc.substring(1) : sc;
-        }
-        this.paths = json.split(",").map(camelToSnake);
-        return this;
+  override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
+    if (typeof json !== "string") {
+      throw new Error("cannot decode google.protobuf.FieldMask from JSON: " + proto3.json.debug(json));
     }
-
-    static readonly runtime = proto3;
-    static readonly typeName = "google.protobuf.FieldMask";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-    ]);
-
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldMask {
-        return new FieldMask().fromBinary(bytes, options);
+    if (json === "") {
+      return this;
     }
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldMask {
-        return new FieldMask().fromJson(jsonValue, options);
+    function camelToSnake (str: string) {
+      if (str.includes("_")) {
+        throw new Error("cannot decode google.protobuf.FieldMask from JSON: path names must be lowerCamelCase");
+      }
+      const sc = str.replace(/[A-Z]/g, letter => "_" + letter.toLowerCase());
+      return (sc[0] === "_") ? sc.substring(1) : sc;
     }
+    this.paths = json.split(",").map(camelToSnake);
+    return this;
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldMask {
-        return new FieldMask().fromJsonString(jsonString, options);
-    }
+  static readonly runtime = proto3;
+  static readonly typeName = "google.protobuf.FieldMask";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
 
-    static equals(a: FieldMask | PlainMessage<FieldMask> | undefined, b: FieldMask | PlainMessage<FieldMask> | undefined): boolean {
-        return proto3.util.equals(FieldMask, a, b);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldMask {
+    return new FieldMask().fromBinary(bytes, options);
+  }
 
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldMask {
+    return new FieldMask().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldMask {
+    return new FieldMask().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FieldMask | PlainMessage<FieldMask> | undefined, b: FieldMask | PlainMessage<FieldMask> | undefined): boolean {
+    return proto3.util.equals(FieldMask, a, b);
+  }
 }
-
 
