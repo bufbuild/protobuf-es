@@ -50,7 +50,6 @@ import {LazyMessage} from "./unittest_lazy_dependencies_custom_option_pb.js";
  * @generated from message protobuf_unittest.lazy_imports.ImportedMessage
  */
 export class ImportedMessage extends Message<ImportedMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.lazy_imports.LazyMessage lazy_message = 1;
    */
@@ -82,14 +81,12 @@ export class ImportedMessage extends Message<ImportedMessage> {
   static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean {
     return proto2.util.equals(ImportedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
 export class MessageCustomOption extends Message<MessageCustomOption> {
-
   constructor(data?: PartialMessage<MessageCustomOption>) {
     super();
     proto2.util.initPartial(data, this);
@@ -115,14 +112,12 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
   static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean {
     return proto2.util.equals(MessageCustomOption, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
 export class MessageCustomOption2 extends Message<MessageCustomOption2> {
-
   constructor(data?: PartialMessage<MessageCustomOption2>) {
     super();
     proto2.util.initPartial(data, this);
@@ -148,6 +143,5 @@ export class MessageCustomOption2 extends Message<MessageCustomOption2> {
   static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean {
     return proto2.util.equals(MessageCustomOption2, a, b);
   }
-
 }
 

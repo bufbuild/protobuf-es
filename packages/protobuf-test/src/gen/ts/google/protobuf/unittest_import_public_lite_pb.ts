@@ -41,7 +41,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest_import.PublicImportMessageLite
  */
 export class PublicImportMessageLite extends Message<PublicImportMessageLite> {
-
   /**
    * @generated from field: optional int32 e = 1;
    */
@@ -73,6 +72,5 @@ export class PublicImportMessageLite extends Message<PublicImportMessageLite> {
   static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean {
     return proto2.util.equals(PublicImportMessageLite, a, b);
   }
-
 }
 

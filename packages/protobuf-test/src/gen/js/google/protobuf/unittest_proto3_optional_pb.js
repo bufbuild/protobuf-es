@@ -78,7 +78,6 @@ export const TestProto3Optional_NestedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
  */
@@ -89,7 +88,6 @@ export const TestProto3Optional_NestedMessage = proto3.makeMessageType(
   ],
   {localName: "TestProto3Optional_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
@@ -112,7 +110,6 @@ export const TestProto3OptionalMessage_NestedMessage = proto3.makeMessageType(
   ],
   {localName: "TestProto3OptionalMessage_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions

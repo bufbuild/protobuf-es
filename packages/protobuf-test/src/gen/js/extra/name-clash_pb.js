@@ -39,7 +39,6 @@ export const ReservedPropertyNames_EnumBuiltIn = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
  */
@@ -58,7 +57,6 @@ export const ReservedPropertyNames_EnumRuntime = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
  */
@@ -72,7 +70,6 @@ export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
   ],
   {localName: "ReservedPropertyNames_BuiltIn"},
 );
-
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
@@ -93,7 +90,6 @@ export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
   {localName: "ReservedPropertyNames_Runtime"},
 );
 
-
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
  */
@@ -107,7 +103,6 @@ export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
   ],
   {localName: "ReservedPropertyNames_OneofBultIn"},
 );
-
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
@@ -127,7 +122,6 @@ export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
   ],
   {localName: "ReservedPropertyNames_OneofRuntime"},
 );
-
 
 /**
  * reserved identifier
@@ -394,7 +388,6 @@ export const ClashParent_ClashChild = proto3.makeMessageType(
   {localName: "ClashParent_ClashChild"},
 );
 
-
 /**
  * @generated from message spec.NoClashFields
  */
@@ -460,5 +453,4 @@ export const NoClashEnumWrap_X = proto3.makeEnum(
     {no: 6, name: "return"},
   ],
 );
-
 

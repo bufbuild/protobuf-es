@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.JsonNamesMessage
  */
 export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
-
   /**
    * @generated from field: string scalar_field = 1 [json_name = "scalarFieldJsonName"];
    */
@@ -72,6 +71,5 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JsonNamesMessage;
 
   static equals(a: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined, b: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined): boolean;
-
 }
 

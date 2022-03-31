@@ -50,7 +50,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnum
  */
 export enum ImportEnum {
-
   /**
    * @generated from enum value: IMPORT_FOO = 7;
    */
@@ -65,9 +64,7 @@ export enum ImportEnum {
    * @generated from enum value: IMPORT_BAZ = 9;
    */
   IMPORT_BAZ = 9,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnum)
 proto2.util.setEnumType(ImportEnum, "protobuf_unittest_import.ImportEnum", [
   {no: 7, name: "IMPORT_FOO"},
@@ -81,7 +78,6 @@ proto2.util.setEnumType(ImportEnum, "protobuf_unittest_import.ImportEnum", [
  * @generated from enum protobuf_unittest_import.ImportEnumForMap
  */
 export enum ImportEnumForMap {
-
   /**
    * @generated from enum value: UNKNOWN = 0;
    */
@@ -96,9 +92,7 @@ export enum ImportEnumForMap {
    * @generated from enum value: BAR = 2;
    */
   BAR = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumForMap)
 proto2.util.setEnumType(ImportEnumForMap, "protobuf_unittest_import.ImportEnumForMap", [
   {no: 0, name: "UNKNOWN"},
@@ -110,7 +104,6 @@ proto2.util.setEnumType(ImportEnumForMap, "protobuf_unittest_import.ImportEnumFo
  * @generated from message protobuf_unittest_import.ImportMessage
  */
 export class ImportMessage extends Message<ImportMessage> {
-
   /**
    * @generated from field: optional int32 d = 1;
    */
@@ -142,6 +135,5 @@ export class ImportMessage extends Message<ImportMessage> {
   static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean {
     return proto2.util.equals(ImportMessage, a, b);
   }
-
 }
 

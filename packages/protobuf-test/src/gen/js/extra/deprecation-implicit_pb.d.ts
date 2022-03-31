@@ -24,7 +24,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
-
   constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>);
 
   static readonly runtime: typeof proto3;
@@ -38,6 +37,5 @@ export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDepre
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
 
   static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean;
-
 }
 

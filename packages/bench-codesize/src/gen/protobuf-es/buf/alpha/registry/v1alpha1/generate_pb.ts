@@ -26,7 +26,6 @@ import {Image} from "../../image/v1/image_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.File
  */
 export class File extends Message<File> {
-
   /**
    * path is the relative path of the file.
    * Path can only use '/' as the separator character, and includes no ".." components.
@@ -69,7 +68,6 @@ export class File extends Message<File> {
   static equals(a: File | PlainMessage<File> | undefined, b: File | PlainMessage<File> | undefined): boolean {
     return proto3.util.equals(File, a, b);
   }
-
 }
 
 /**
@@ -78,7 +76,6 @@ export class File extends Message<File> {
  * @generated from message buf.alpha.registry.v1alpha1.RuntimeLibrary
  */
 export class RuntimeLibrary extends Message<RuntimeLibrary> {
-
   /**
    * The name of the runtime library dependency. The format should match the
    * format used for dependencies in the dependency management tooling of the
@@ -127,14 +124,12 @@ export class RuntimeLibrary extends Message<RuntimeLibrary> {
   static equals(a: RuntimeLibrary | PlainMessage<RuntimeLibrary> | undefined, b: RuntimeLibrary | PlainMessage<RuntimeLibrary> | undefined): boolean {
     return proto3.util.equals(RuntimeLibrary, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginReference
  */
 export class PluginReference extends Message<PluginReference> {
-
   /**
    * The owner of the plugin which identifies the
    * plugins to use with this generation.
@@ -195,14 +190,12 @@ export class PluginReference extends Message<PluginReference> {
   static equals(a: PluginReference | PlainMessage<PluginReference> | undefined, b: PluginReference | PlainMessage<PluginReference> | undefined): boolean {
     return proto3.util.equals(PluginReference, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GeneratePluginsRequest
  */
 export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
-
   /**
    * The image to run plugins against to generate the desired file outputs.
    *
@@ -266,14 +259,12 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
   static equals(a: GeneratePluginsRequest | PlainMessage<GeneratePluginsRequest> | undefined, b: GeneratePluginsRequest | PlainMessage<GeneratePluginsRequest> | undefined): boolean {
     return proto3.util.equals(GeneratePluginsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GeneratePluginsResponse
  */
 export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
-
   /**
    * Contains all the responses from the generated plugins. The order
    * is defined by the order of the plugins in the request.
@@ -321,14 +312,12 @@ export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
   static equals(a: GeneratePluginsResponse | PlainMessage<GeneratePluginsResponse> | undefined, b: GeneratePluginsResponse | PlainMessage<GeneratePluginsResponse> | undefined): boolean {
     return proto3.util.equals(GeneratePluginsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GenerateTemplateRequest
  */
 export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
-
   /**
    * The image to run plugins against to generate the desired file outputs.
    *
@@ -411,14 +400,12 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
   static equals(a: GenerateTemplateRequest | PlainMessage<GenerateTemplateRequest> | undefined, b: GenerateTemplateRequest | PlainMessage<GenerateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(GenerateTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GenerateTemplateResponse
  */
 export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> {
-
   /**
    * files contains all the files output by the generation,
    * in lexicographical order.
@@ -464,6 +451,5 @@ export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> 
   static equals(a: GenerateTemplateResponse | PlainMessage<GenerateTemplateResponse> | undefined, b: GenerateTemplateResponse | PlainMessage<GenerateTemplateResponse> | undefined): boolean {
     return proto3.util.equals(GenerateTemplateResponse, a, b);
   }
-
 }
 

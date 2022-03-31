@@ -34,7 +34,6 @@ import {Message, proto2} from "../../index.js";
  * @generated from message google.protobuf.FileDescriptorSet
  */
 export class FileDescriptorSet extends Message<FileDescriptorSet> {
-
   /**
    * @generated from field: repeated google.protobuf.FileDescriptorProto file = 1;
    */
@@ -66,7 +65,6 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
   static equals(a: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined, b: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined): boolean {
     return proto2.util.equals(FileDescriptorSet, a, b);
   }
-
 }
 
 /**
@@ -75,7 +73,6 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
  * @generated from message google.protobuf.FileDescriptorProto
  */
 export class FileDescriptorProto extends Message<FileDescriptorProto> {
-
   /**
    * file name, relative to root of source tree
    *
@@ -194,7 +191,6 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
   static equals(a: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined, b: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined): boolean {
     return proto2.util.equals(FileDescriptorProto, a, b);
   }
-
 }
 
 /**
@@ -203,7 +199,6 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
  * @generated from message google.protobuf.DescriptorProto
  */
 export class DescriptorProto extends Message<DescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -292,14 +287,12 @@ export class DescriptorProto extends Message<DescriptorProto> {
   static equals(a: DescriptorProto | PlainMessage<DescriptorProto> | undefined, b: DescriptorProto | PlainMessage<DescriptorProto> | undefined): boolean {
     return proto2.util.equals(DescriptorProto, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
  */
 export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_ExtensionRange> {
-
   /**
    * Inclusive.
    *
@@ -347,9 +340,7 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
   static equals(a: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined, b: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined): boolean {
     return proto2.util.equals(DescriptorProto_ExtensionRange, a, b);
   }
-
 }
-
 
 /**
  * Range of reserved tag numbers. Reserved tag numbers may not be used by
@@ -359,7 +350,6 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
  * @generated from message google.protobuf.DescriptorProto.ReservedRange
  */
 export class DescriptorProto_ReservedRange extends Message<DescriptorProto_ReservedRange> {
-
   /**
    * Inclusive.
    *
@@ -401,15 +391,12 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
   static equals(a: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined, b: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined): boolean {
     return proto2.util.equals(DescriptorProto_ReservedRange, a, b);
   }
-
 }
-
 
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
  */
 export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
-
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -443,7 +430,6 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
   static equals(a: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined, b: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined): boolean {
     return proto2.util.equals(ExtensionRangeOptions, a, b);
   }
-
 }
 
 /**
@@ -452,7 +438,6 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
  * @generated from message google.protobuf.FieldDescriptorProto
  */
 export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -592,14 +577,12 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
   static equals(a: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined, b: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined): boolean {
     return proto2.util.equals(FieldDescriptorProto, a, b);
   }
-
 }
 
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Type
  */
 export enum FieldDescriptorProto_Type {
-
   /**
    * 0 is reserved for errors.
    * Order is weird for historical reasons.
@@ -711,9 +694,7 @@ export enum FieldDescriptorProto_Type {
    * @generated from enum value: TYPE_SINT64 = 18;
    */
   SINT64 = 18,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(FieldDescriptorProto_Type)
 proto2.util.setEnumType(FieldDescriptorProto_Type, "google.protobuf.FieldDescriptorProto.Type", [
   {no: 1, name: "TYPE_DOUBLE"},
@@ -736,12 +717,10 @@ proto2.util.setEnumType(FieldDescriptorProto_Type, "google.protobuf.FieldDescrip
   {no: 18, name: "TYPE_SINT64"},
 ]);
 
-
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Label
  */
 export enum FieldDescriptorProto_Label {
-
   /**
    * 0 is reserved for errors
    *
@@ -758,9 +737,7 @@ export enum FieldDescriptorProto_Label {
    * @generated from enum value: LABEL_REPEATED = 3;
    */
   REPEATED = 3,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(FieldDescriptorProto_Label)
 proto2.util.setEnumType(FieldDescriptorProto_Label, "google.protobuf.FieldDescriptorProto.Label", [
   {no: 1, name: "LABEL_OPTIONAL"},
@@ -768,14 +745,12 @@ proto2.util.setEnumType(FieldDescriptorProto_Label, "google.protobuf.FieldDescri
   {no: 3, name: "LABEL_REPEATED"},
 ]);
 
-
 /**
  * Describes a oneof.
  *
  * @generated from message google.protobuf.OneofDescriptorProto
  */
 export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -813,7 +788,6 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
   static equals(a: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined, b: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined): boolean {
     return proto2.util.equals(OneofDescriptorProto, a, b);
   }
-
 }
 
 /**
@@ -822,7 +796,6 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
  * @generated from message google.protobuf.EnumDescriptorProto
  */
 export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -885,7 +858,6 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
   static equals(a: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined, b: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined): boolean {
     return proto2.util.equals(EnumDescriptorProto, a, b);
   }
-
 }
 
 /**
@@ -899,7 +871,6 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
  * @generated from message google.protobuf.EnumDescriptorProto.EnumReservedRange
  */
 export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescriptorProto_EnumReservedRange> {
-
   /**
    * Inclusive.
    *
@@ -941,9 +912,7 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
   static equals(a: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined, b: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined): boolean {
     return proto2.util.equals(EnumDescriptorProto_EnumReservedRange, a, b);
   }
-
 }
-
 
 /**
  * Describes a value within an enum.
@@ -951,7 +920,6 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
  * @generated from message google.protobuf.EnumValueDescriptorProto
  */
 export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -995,7 +963,6 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
   static equals(a: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined, b: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined): boolean {
     return proto2.util.equals(EnumValueDescriptorProto, a, b);
   }
-
 }
 
 /**
@@ -1004,7 +971,6 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
  * @generated from message google.protobuf.ServiceDescriptorProto
  */
 export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -1048,7 +1014,6 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
   static equals(a: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined, b: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined): boolean {
     return proto2.util.equals(ServiceDescriptorProto, a, b);
   }
-
 }
 
 /**
@@ -1057,7 +1022,6 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
  * @generated from message google.protobuf.MethodDescriptorProto
  */
 export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -1126,14 +1090,12 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
   static equals(a: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined, b: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined): boolean {
     return proto2.util.equals(MethodDescriptorProto, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.FileOptions
  */
 export class FileOptions extends Message<FileOptions> {
-
   /**
    * Sets the Java package where classes generated from this .proto will be
    * placed.  By default, the proto package is used, but this is often
@@ -1366,7 +1328,6 @@ export class FileOptions extends Message<FileOptions> {
   static equals(a: FileOptions | PlainMessage<FileOptions> | undefined, b: FileOptions | PlainMessage<FileOptions> | undefined): boolean {
     return proto2.util.equals(FileOptions, a, b);
   }
-
 }
 
 /**
@@ -1375,7 +1336,6 @@ export class FileOptions extends Message<FileOptions> {
  * @generated from enum google.protobuf.FileOptions.OptimizeMode
  */
 export enum FileOptions_OptimizeMode {
-
   /**
    * Generate complete code for parsing, serialization,
    *
@@ -1398,9 +1358,7 @@ export enum FileOptions_OptimizeMode {
    * @generated from enum value: LITE_RUNTIME = 3;
    */
   LITE_RUNTIME = 3,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(FileOptions_OptimizeMode)
 proto2.util.setEnumType(FileOptions_OptimizeMode, "google.protobuf.FileOptions.OptimizeMode", [
   {no: 1, name: "SPEED"},
@@ -1408,12 +1366,10 @@ proto2.util.setEnumType(FileOptions_OptimizeMode, "google.protobuf.FileOptions.O
   {no: 3, name: "LITE_RUNTIME"},
 ]);
 
-
 /**
  * @generated from message google.protobuf.MessageOptions
  */
 export class MessageOptions extends Message<MessageOptions> {
-
   /**
    * Set true to use the old proto1 MessageSet wire format for extensions.
    * This is provided for backwards-compatibility with the MessageSet wire
@@ -1521,14 +1477,12 @@ export class MessageOptions extends Message<MessageOptions> {
   static equals(a: MessageOptions | PlainMessage<MessageOptions> | undefined, b: MessageOptions | PlainMessage<MessageOptions> | undefined): boolean {
     return proto2.util.equals(MessageOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.FieldOptions
  */
 export class FieldOptions extends Message<FieldOptions> {
-
   /**
    * The ctype option instructs the C++ code generator to use a different
    * representation of the field than it normally would.  See the specific
@@ -1657,14 +1611,12 @@ export class FieldOptions extends Message<FieldOptions> {
   static equals(a: FieldOptions | PlainMessage<FieldOptions> | undefined, b: FieldOptions | PlainMessage<FieldOptions> | undefined): boolean {
     return proto2.util.equals(FieldOptions, a, b);
   }
-
 }
 
 /**
  * @generated from enum google.protobuf.FieldOptions.CType
  */
 export enum FieldOptions_CType {
-
   /**
    * Default mode.
    *
@@ -1681,9 +1633,7 @@ export enum FieldOptions_CType {
    * @generated from enum value: STRING_PIECE = 2;
    */
   STRING_PIECE = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(FieldOptions_CType)
 proto2.util.setEnumType(FieldOptions_CType, "google.protobuf.FieldOptions.CType", [
   {no: 0, name: "STRING"},
@@ -1691,12 +1641,10 @@ proto2.util.setEnumType(FieldOptions_CType, "google.protobuf.FieldOptions.CType"
   {no: 2, name: "STRING_PIECE"},
 ]);
 
-
 /**
  * @generated from enum google.protobuf.FieldOptions.JSType
  */
 export enum FieldOptions_JSType {
-
   /**
    * Use the default type.
    *
@@ -1717,9 +1665,7 @@ export enum FieldOptions_JSType {
    * @generated from enum value: JS_NUMBER = 2;
    */
   JS_NUMBER = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(FieldOptions_JSType)
 proto2.util.setEnumType(FieldOptions_JSType, "google.protobuf.FieldOptions.JSType", [
   {no: 0, name: "JS_NORMAL"},
@@ -1727,12 +1673,10 @@ proto2.util.setEnumType(FieldOptions_JSType, "google.protobuf.FieldOptions.JSTyp
   {no: 2, name: "JS_NUMBER"},
 ]);
 
-
 /**
  * @generated from message google.protobuf.OneofOptions
  */
 export class OneofOptions extends Message<OneofOptions> {
-
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -1766,14 +1710,12 @@ export class OneofOptions extends Message<OneofOptions> {
   static equals(a: OneofOptions | PlainMessage<OneofOptions> | undefined, b: OneofOptions | PlainMessage<OneofOptions> | undefined): boolean {
     return proto2.util.equals(OneofOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.EnumOptions
  */
 export class EnumOptions extends Message<EnumOptions> {
-
   /**
    * Set this option to true to allow mapping different tag names to the same
    * value.
@@ -1827,14 +1769,12 @@ export class EnumOptions extends Message<EnumOptions> {
   static equals(a: EnumOptions | PlainMessage<EnumOptions> | undefined, b: EnumOptions | PlainMessage<EnumOptions> | undefined): boolean {
     return proto2.util.equals(EnumOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.EnumValueOptions
  */
 export class EnumValueOptions extends Message<EnumValueOptions> {
-
   /**
    * Is this enum value deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1879,14 +1819,12 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
   static equals(a: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined, b: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined): boolean {
     return proto2.util.equals(EnumValueOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.ServiceOptions
  */
 export class ServiceOptions extends Message<ServiceOptions> {
-
   /**
    * Is this service deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1931,14 +1869,12 @@ export class ServiceOptions extends Message<ServiceOptions> {
   static equals(a: ServiceOptions | PlainMessage<ServiceOptions> | undefined, b: ServiceOptions | PlainMessage<ServiceOptions> | undefined): boolean {
     return proto2.util.equals(ServiceOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.MethodOptions
  */
 export class MethodOptions extends Message<MethodOptions> {
-
   /**
    * Is this method deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1989,7 +1925,6 @@ export class MethodOptions extends Message<MethodOptions> {
   static equals(a: MethodOptions | PlainMessage<MethodOptions> | undefined, b: MethodOptions | PlainMessage<MethodOptions> | undefined): boolean {
     return proto2.util.equals(MethodOptions, a, b);
   }
-
 }
 
 /**
@@ -2000,7 +1935,6 @@ export class MethodOptions extends Message<MethodOptions> {
  * @generated from enum google.protobuf.MethodOptions.IdempotencyLevel
  */
 export enum MethodOptions_IdempotencyLevel {
-
   /**
    * @generated from enum value: IDEMPOTENCY_UNKNOWN = 0;
    */
@@ -2019,16 +1953,13 @@ export enum MethodOptions_IdempotencyLevel {
    * @generated from enum value: IDEMPOTENT = 2;
    */
   IDEMPOTENT = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(MethodOptions_IdempotencyLevel)
 proto2.util.setEnumType(MethodOptions_IdempotencyLevel, "google.protobuf.MethodOptions.IdempotencyLevel", [
   {no: 0, name: "IDEMPOTENCY_UNKNOWN"},
   {no: 1, name: "NO_SIDE_EFFECTS"},
   {no: 2, name: "IDEMPOTENT"},
 ]);
-
 
 /**
  * A message representing a option the parser does not recognize. This only
@@ -2041,7 +1972,6 @@ proto2.util.setEnumType(MethodOptions_IdempotencyLevel, "google.protobuf.MethodO
  * @generated from message google.protobuf.UninterpretedOption
  */
 export class UninterpretedOption extends Message<UninterpretedOption> {
-
   /**
    * @generated from field: repeated google.protobuf.UninterpretedOption.NamePart name = 2;
    */
@@ -2112,7 +2042,6 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
   static equals(a: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined, b: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined): boolean {
     return proto2.util.equals(UninterpretedOption, a, b);
   }
-
 }
 
 /**
@@ -2125,7 +2054,6 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
  * @generated from message google.protobuf.UninterpretedOption.NamePart
  */
 export class UninterpretedOption_NamePart extends Message<UninterpretedOption_NamePart> {
-
   /**
    * @generated from field: required string name_part = 1;
    */
@@ -2163,9 +2091,7 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
   static equals(a: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined, b: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined): boolean {
     return proto2.util.equals(UninterpretedOption_NamePart, a, b);
   }
-
 }
-
 
 /**
  * Encapsulates information about the original source file from which a
@@ -2174,7 +2100,6 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
  * @generated from message google.protobuf.SourceCodeInfo
  */
 export class SourceCodeInfo extends Message<SourceCodeInfo> {
-
   /**
    * A Location identifies a piece of source code in a .proto file which
    * corresponds to a particular definition.  This information is intended
@@ -2250,14 +2175,12 @@ export class SourceCodeInfo extends Message<SourceCodeInfo> {
   static equals(a: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined, b: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined): boolean {
     return proto2.util.equals(SourceCodeInfo, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.SourceCodeInfo.Location
  */
 export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
-
   /**
    * Identifies which part of the FileDescriptorProto was defined at this
    * location.
@@ -2391,9 +2314,7 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
   static equals(a: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined, b: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined): boolean {
     return proto2.util.equals(SourceCodeInfo_Location, a, b);
   }
-
 }
-
 
 /**
  * Describes the relationship between generated code and its original source
@@ -2403,7 +2324,6 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
  * @generated from message google.protobuf.GeneratedCodeInfo
  */
 export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
-
   /**
    * An Annotation connects some span of text in generated code to an element
    * of its generating .proto file.
@@ -2438,14 +2358,12 @@ export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
   static equals(a: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined, b: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined): boolean {
     return proto2.util.equals(GeneratedCodeInfo, a, b);
   }
-
 }
 
 /**
  * @generated from message google.protobuf.GeneratedCodeInfo.Annotation
  */
 export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Annotation> {
-
   /**
    * Identifies the element in the original source .proto file. This field
    * is formatted the same as SourceCodeInfo.Location.path.
@@ -2507,7 +2425,5 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
   static equals(a: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined, b: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined): boolean {
     return proto2.util.equals(GeneratedCodeInfo_Annotation, a, b);
   }
-
 }
-
 

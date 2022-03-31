@@ -26,7 +26,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export declare enum DeprecatedEnum {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_A = 0;
    */
@@ -36,7 +35,6 @@ export declare enum DeprecatedEnum {
    * @generated from enum value: DEPRECATED_ENUM_B = 1;
    */
   B = 1,
-
 }
 
 /**
@@ -45,7 +43,6 @@ export declare enum DeprecatedEnum {
  * @generated from enum spec.DeprecatedValueEnum
  */
 export declare enum DeprecatedValueEnum {
-
   /**
    * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
    */
@@ -56,7 +53,6 @@ export declare enum DeprecatedValueEnum {
    * @deprecated
    */
   DEPRECATED_VALUE = 1,
-
 }
 
 /**
@@ -66,7 +62,6 @@ export declare enum DeprecatedValueEnum {
  * @deprecated
  */
 export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
-
   /**
    * @generated from field: string field = 1;
    */
@@ -85,7 +80,6 @@ export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedMessage;
 
   static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean;
-
 }
 
 /**
@@ -94,7 +88,6 @@ export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
  * @generated from message spec.DeprecatedFieldMessage
  */
 export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
-
   /**
    * This field is deprecated
    *
@@ -123,6 +116,5 @@ export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessa
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
 
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
-
 }
 

@@ -25,7 +25,6 @@ import {Message as Message$1, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest
  */
 export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryInfoRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -69,7 +68,6 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
   static equals(a: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined, b: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined): boolean {
     return proto3.util.equals(GetSourceDirectoryInfoRequest, a, b);
   }
-
 }
 
 /**
@@ -78,7 +76,6 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
  * @generated from message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse
  */
 export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectoryInfoResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.FileInfo root = 1;
    */
@@ -110,7 +107,6 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
   static equals(a: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined, b: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined): boolean {
     return proto3.util.equals(GetSourceDirectoryInfoResponse, a, b);
   }
-
 }
 
 /**
@@ -120,7 +116,6 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
  * @generated from message buf.alpha.registry.v1alpha1.FileInfo
  */
 export class FileInfo extends Message$1<FileInfo> {
-
   /**
    * the normalized path of the directory, relative to the root of the module.
    *
@@ -166,7 +161,6 @@ export class FileInfo extends Message$1<FileInfo> {
   static equals(a: FileInfo | PlainMessage<FileInfo> | undefined, b: FileInfo | PlainMessage<FileInfo> | undefined): boolean {
     return proto3.util.equals(FileInfo, a, b);
   }
-
 }
 
 /**
@@ -175,7 +169,6 @@ export class FileInfo extends Message$1<FileInfo> {
  * @generated from message buf.alpha.registry.v1alpha1.GetSourceFileRequest
  */
 export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -227,7 +220,6 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
   static equals(a: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined, b: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined): boolean {
     return proto3.util.equals(GetSourceFileRequest, a, b);
   }
-
 }
 
 /**
@@ -236,7 +228,6 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
  * @generated from message buf.alpha.registry.v1alpha1.GetSourceFileResponse
  */
 export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
-
   /**
    * content is the content of the file.
    *
@@ -270,7 +261,6 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
   static equals(a: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined, b: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined): boolean {
     return proto3.util.equals(GetSourceFileResponse, a, b);
   }
-
 }
 
 /**
@@ -279,7 +269,6 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
  * @generated from message buf.alpha.registry.v1alpha1.GetModulePackagesRequest
  */
 export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -323,7 +312,6 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
   static equals(a: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined, b: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined): boolean {
     return proto3.util.equals(GetModulePackagesRequest, a, b);
   }
-
 }
 
 /**
@@ -332,7 +320,6 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
  * @generated from message buf.alpha.registry.v1alpha1.GetModulePackagesResponse
  */
 export class GetModulePackagesResponse extends Message$1<GetModulePackagesResponse> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -370,7 +357,6 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
   static equals(a: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined, b: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined): boolean {
     return proto3.util.equals(GetModulePackagesResponse, a, b);
   }
-
 }
 
 /**
@@ -379,7 +365,6 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
  * @generated from message buf.alpha.registry.v1alpha1.ModulePackage
  */
 export class ModulePackage extends Message$1<ModulePackage> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -417,7 +402,6 @@ export class ModulePackage extends Message$1<ModulePackage> {
   static equals(a: ModulePackage | PlainMessage<ModulePackage> | undefined, b: ModulePackage | PlainMessage<ModulePackage> | undefined): boolean {
     return proto3.util.equals(ModulePackage, a, b);
   }
-
 }
 
 /**
@@ -426,7 +410,6 @@ export class ModulePackage extends Message$1<ModulePackage> {
  * @generated from message buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest
  */
 export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentationRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -470,7 +453,6 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
   static equals(a: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined, b: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined): boolean {
     return proto3.util.equals(GetModuleDocumentationRequest, a, b);
   }
-
 }
 
 /**
@@ -479,7 +461,6 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
  * @generated from message buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse
  */
 export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumentationResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.ModuleDocumentation module_documentation = 1;
    */
@@ -511,7 +492,6 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
   static equals(a: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined, b: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined): boolean {
     return proto3.util.equals(GetModuleDocumentationResponse, a, b);
   }
-
 }
 
 /**
@@ -520,7 +500,6 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
  * @generated from message buf.alpha.registry.v1alpha1.ModuleDocumentation
  */
 export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -563,7 +542,6 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
   static equals(a: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined, b: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined): boolean {
     return proto3.util.equals(ModuleDocumentation, a, b);
   }
-
 }
 
 /**
@@ -572,7 +550,6 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
  * @generated from message buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest
  */
 export class GetPackageDocumentationRequest extends Message$1<GetPackageDocumentationRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -624,7 +601,6 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
   static equals(a: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined, b: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined): boolean {
     return proto3.util.equals(GetPackageDocumentationRequest, a, b);
   }
-
 }
 
 /**
@@ -633,7 +609,6 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
  * @generated from message buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse
  */
 export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumentationResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.PackageDocumentation package_documentation = 1;
    */
@@ -665,7 +640,6 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
   static equals(a: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined, b: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined): boolean {
     return proto3.util.equals(GetPackageDocumentationResponse, a, b);
   }
-
 }
 
 /**
@@ -674,7 +648,6 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
  * @generated from message buf.alpha.registry.v1alpha1.PackageDocumentation
  */
 export class PackageDocumentation extends Message$1<PackageDocumentation> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -751,7 +724,6 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
   static equals(a: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined, b: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined): boolean {
     return proto3.util.equals(PackageDocumentation, a, b);
   }
-
 }
 
 /**
@@ -763,7 +735,6 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
  * @generated from message buf.alpha.registry.v1alpha1.Location
  */
 export class Location extends Message$1<Location> {
-
   /**
    * @generated from field: int32 start_line = 1;
    */
@@ -813,7 +784,6 @@ export class Location extends Message$1<Location> {
   static equals(a: Location | PlainMessage<Location> | undefined, b: Location | PlainMessage<Location> | undefined): boolean {
     return proto3.util.equals(Location, a, b);
   }
-
 }
 
 /**
@@ -822,7 +792,6 @@ export class Location extends Message$1<Location> {
  * @generated from message buf.alpha.registry.v1alpha1.Service
  */
 export class Service extends Message$1<Service> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -902,7 +871,6 @@ export class Service extends Message$1<Service> {
   static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
     return proto3.util.equals(Service, a, b);
   }
-
 }
 
 /**
@@ -911,7 +879,6 @@ export class Service extends Message$1<Service> {
  * @generated from message buf.alpha.registry.v1alpha1.Method
  */
 export class Method extends Message$1<Method> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -966,7 +933,6 @@ export class Method extends Message$1<Method> {
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
     return proto3.util.equals(Method, a, b);
   }
-
 }
 
 /**
@@ -975,7 +941,6 @@ export class Method extends Message$1<Method> {
  * @generated from message buf.alpha.registry.v1alpha1.MethodRequestResponse
  */
 export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
-
   /**
    * nested_type is the nested name of the message of the request or response. This includes nested definitions.
    *
@@ -1040,7 +1005,6 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
   static equals(a: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined, b: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined): boolean {
     return proto3.util.equals(MethodRequestResponse, a, b);
   }
-
 }
 
 /**
@@ -1049,7 +1013,6 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
  * @generated from message buf.alpha.registry.v1alpha1.Enum
  */
 export class Enum extends Message$1<Enum> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1128,7 +1091,6 @@ export class Enum extends Message$1<Enum> {
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
     return proto3.util.equals(Enum, a, b);
   }
-
 }
 
 /**
@@ -1137,7 +1099,6 @@ export class Enum extends Message$1<Enum> {
  * @generated from message buf.alpha.registry.v1alpha1.EnumValue
  */
 export class EnumValue extends Message$1<EnumValue> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1186,7 +1147,6 @@ export class EnumValue extends Message$1<EnumValue> {
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
     return proto3.util.equals(EnumValue, a, b);
   }
-
 }
 
 /**
@@ -1195,7 +1155,6 @@ export class EnumValue extends Message$1<EnumValue> {
  * @generated from message buf.alpha.registry.v1alpha1.ImportModuleRef
  */
 export class ImportModuleRef extends Message$1<ImportModuleRef> {
-
   /**
    * @generated from field: string remote = 1;
    */
@@ -1254,7 +1213,6 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
   static equals(a: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined, b: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined): boolean {
     return proto3.util.equals(ImportModuleRef, a, b);
   }
-
 }
 
 /**
@@ -1263,7 +1221,6 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
  * @generated from message buf.alpha.registry.v1alpha1.Message
  */
 export class Message extends Message$1<Message> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1354,7 +1311,6 @@ export class Message extends Message$1<Message> {
   static equals(a: Message | PlainMessage<Message> | undefined, b: Message | PlainMessage<Message> | undefined): boolean {
     return proto3.util.equals(Message, a, b);
   }
-
 }
 
 /**
@@ -1363,7 +1319,6 @@ export class Message extends Message$1<Message> {
  * @generated from message buf.alpha.registry.v1alpha1.MessageField
  */
 export class MessageField extends Message$1<MessageField> {
-
   /**
    * @generated from oneof buf.alpha.registry.v1alpha1.MessageField.message_field
    */
@@ -1408,7 +1363,6 @@ export class MessageField extends Message$1<MessageField> {
   static equals(a: MessageField | PlainMessage<MessageField> | undefined, b: MessageField | PlainMessage<MessageField> | undefined): boolean {
     return proto3.util.equals(MessageField, a, b);
   }
-
 }
 
 /**
@@ -1417,7 +1371,6 @@ export class MessageField extends Message$1<MessageField> {
  * @generated from message buf.alpha.registry.v1alpha1.Oneof
  */
 export class Oneof extends Message$1<Oneof> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1455,7 +1408,6 @@ export class Oneof extends Message$1<Oneof> {
   static equals(a: Oneof | PlainMessage<Oneof> | undefined, b: Oneof | PlainMessage<Oneof> | undefined): boolean {
     return proto3.util.equals(Oneof, a, b);
   }
-
 }
 
 /**
@@ -1464,7 +1416,6 @@ export class Oneof extends Message$1<Oneof> {
  * @generated from message buf.alpha.registry.v1alpha1.Field
  */
 export class Field extends Message$1<Field> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1562,7 +1513,6 @@ export class Field extends Message$1<Field> {
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
     return proto3.util.equals(Field, a, b);
   }
-
 }
 
 /**
@@ -1571,7 +1521,6 @@ export class Field extends Message$1<Field> {
  * @generated from message buf.alpha.registry.v1alpha1.MapEntry
  */
 export class MapEntry extends Message$1<MapEntry> {
-
   /**
    * string representation of the full name of the type for the map key. keys can only be
    * scalar types: https://developers.google.com/protocol-buffers/docs/overview#maps
@@ -1630,7 +1579,6 @@ export class MapEntry extends Message$1<MapEntry> {
   static equals(a: MapEntry | PlainMessage<MapEntry> | undefined, b: MapEntry | PlainMessage<MapEntry> | undefined): boolean {
     return proto3.util.equals(MapEntry, a, b);
   }
-
 }
 
 /**
@@ -1639,7 +1587,6 @@ export class MapEntry extends Message$1<MapEntry> {
  * @generated from message buf.alpha.registry.v1alpha1.FileExtension
  */
 export class FileExtension extends Message$1<FileExtension> {
-
   /**
    * extension_type is the string representation of the type being extended.
    *
@@ -1706,6 +1653,5 @@ export class FileExtension extends Message$1<FileExtension> {
   static equals(a: FileExtension | PlainMessage<FileExtension> | undefined, b: FileExtension | PlainMessage<FileExtension> | undefined): boolean {
     return proto3.util.equals(FileExtension, a, b);
   }
-
 }
 

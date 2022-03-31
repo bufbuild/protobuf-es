@@ -42,7 +42,6 @@ import {TestAllTypes as TestAllTypes$1, TestRequired} from "./unittest_pb.js";
  * @generated from enum proto2_nofieldpresence_unittest.ForeignEnum
  */
 export enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 0;
    */
@@ -57,9 +56,7 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 2;
    */
   FOREIGN_BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ForeignEnum)
 proto3.util.setEnumType(ForeignEnum, "proto2_nofieldpresence_unittest.ForeignEnum", [
   {no: 0, name: "FOREIGN_FOO"},
@@ -74,7 +71,6 @@ proto3.util.setEnumType(ForeignEnum, "proto2_nofieldpresence_unittest.ForeignEnu
  * @generated from message proto2_nofieldpresence_unittest.TestAllTypes
  */
 export class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    * TODO: remove 'optional' labels as soon as CL 69188077 is LGTM'd to make
@@ -419,14 +415,12 @@ export class TestAllTypes extends Message<TestAllTypes> {
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean {
     return proto3.util.equals(TestAllTypes, a, b);
   }
-
 }
 
 /**
  * @generated from enum proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum
  */
 export enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -441,9 +435,7 @@ export enum TestAllTypes_NestedEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestAllTypes_NestedEnum)
 proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum", [
   {no: 0, name: "FOO"},
@@ -451,12 +443,10 @@ proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto2_nofieldpresence_unittes
   {no: 2, name: "BAZ"},
 ]);
 
-
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage
  */
 export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * @generated from field: int32 bb = 1;
    */
@@ -488,15 +478,12 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestAllTypes_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
 export class TestProto2Required extends Message<TestProto2Required> {
-
   /**
    * @generated from field: protobuf_unittest.TestRequired proto2 = 1;
    */
@@ -528,7 +515,6 @@ export class TestProto2Required extends Message<TestProto2Required> {
   static equals(a: TestProto2Required | PlainMessage<TestProto2Required> | undefined, b: TestProto2Required | PlainMessage<TestProto2Required> | undefined): boolean {
     return proto3.util.equals(TestProto2Required, a, b);
   }
-
 }
 
 /**
@@ -538,7 +524,6 @@ export class TestProto2Required extends Message<TestProto2Required> {
  * @generated from message proto2_nofieldpresence_unittest.ForeignMessage
  */
 export class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -570,6 +555,5 @@ export class ForeignMessage extends Message<ForeignMessage> {
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto3.util.equals(ForeignMessage, a, b);
   }
-
 }
 

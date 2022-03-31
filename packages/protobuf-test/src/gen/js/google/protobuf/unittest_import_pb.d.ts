@@ -50,7 +50,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnum
  */
 export declare enum ImportEnum {
-
   /**
    * @generated from enum value: IMPORT_FOO = 7;
    */
@@ -65,7 +64,6 @@ export declare enum ImportEnum {
    * @generated from enum value: IMPORT_BAZ = 9;
    */
   IMPORT_BAZ = 9,
-
 }
 
 /**
@@ -74,7 +72,6 @@ export declare enum ImportEnum {
  * @generated from enum protobuf_unittest_import.ImportEnumForMap
  */
 export declare enum ImportEnumForMap {
-
   /**
    * @generated from enum value: UNKNOWN = 0;
    */
@@ -89,14 +86,12 @@ export declare enum ImportEnumForMap {
    * @generated from enum value: BAR = 2;
    */
   BAR = 2,
-
 }
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
  */
 export declare class ImportMessage extends Message<ImportMessage> {
-
   /**
    * @generated from field: optional int32 d = 1;
    */
@@ -115,6 +110,5 @@ export declare class ImportMessage extends Message<ImportMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessage;
 
   static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean;
-
 }
 

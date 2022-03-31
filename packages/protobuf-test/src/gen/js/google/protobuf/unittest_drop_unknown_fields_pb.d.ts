@@ -39,7 +39,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message unittest_drop_unknown_fields.Foo
  */
 export declare class Foo extends Message<Foo> {
-
   /**
    * @generated from field: int32 int32_value = 1;
    */
@@ -63,14 +62,12 @@ export declare class Foo extends Message<Foo> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Foo;
 
   static equals(a: Foo | PlainMessage<Foo> | undefined, b: Foo | PlainMessage<Foo> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum unittest_drop_unknown_fields.Foo.NestedEnum
  */
 export declare enum Foo_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -85,15 +82,12 @@ export declare enum Foo_NestedEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 
 /**
  * @generated from message unittest_drop_unknown_fields.FooWithExtraFields
  */
 export declare class FooWithExtraFields extends Message<FooWithExtraFields> {
-
   /**
    * @generated from field: int32 int32_value = 1;
    */
@@ -122,14 +116,12 @@ export declare class FooWithExtraFields extends Message<FooWithExtraFields> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooWithExtraFields;
 
   static equals(a: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined, b: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum
  */
 export declare enum FooWithExtraFields_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -149,7 +141,5 @@ export declare enum FooWithExtraFields_NestedEnum {
    * @generated from enum value: QUX = 3;
    */
   QUX = 3,
-
 }
-
 

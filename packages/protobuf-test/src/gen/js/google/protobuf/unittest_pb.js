@@ -304,7 +304,6 @@ export const TestAllTypes_NestedEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypes.NestedMessage
  */
@@ -315,7 +314,6 @@ export const TestAllTypes_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "TestAllTypes_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
@@ -328,7 +326,6 @@ export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
   {localName: "TestAllTypes_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
  */
@@ -339,7 +336,6 @@ export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
   ],
   {localName: "TestAllTypes_RepeatedGroup"},
 );
-
 
 /**
  * This proto includes a recursively nested message.
@@ -447,7 +443,6 @@ export const TestGroup_OptionalGroup = proto2.makeMessageType(
   {localName: "TestGroup_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
@@ -474,7 +469,6 @@ export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageTyp
   ],
   {localName: "TestNestedExtension_OptionalGroup_extension"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestChildExtension
@@ -625,8 +619,6 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.
   {localName: "TestPickleNestedMessage_NestedMessage_NestedNestedMessage"},
 );
 
-
-
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
@@ -683,7 +675,6 @@ export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
   {localName: "TestMutualRecursionA_SubMessage"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
  */
@@ -695,7 +686,6 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
   ],
   {localName: "TestMutualRecursionA_SubGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
@@ -740,8 +730,6 @@ export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
   {localName: "TestIsInitialized_SubMessage_SubGroup"},
 );
 
-
-
 /**
  * Test that groups have disjoint field numbers from their siblings and
  * parents.  This is NOT possible in proto1; only google.protobuf.  When attempting
@@ -772,7 +760,6 @@ export const TestDupFieldNumber_Foo = proto2.makeMessageType(
   {localName: "TestDupFieldNumber_Foo"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
  */
@@ -783,7 +770,6 @@ export const TestDupFieldNumber_Bar = proto2.makeMessageType(
   ],
   {localName: "TestDupFieldNumber_Bar"},
 );
-
 
 /**
  * Additional messages for testing lazy fields.
@@ -830,7 +816,6 @@ export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "TestNestedMessageHasBits_NestedMessage"},
 );
-
 
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
@@ -884,7 +869,6 @@ export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
   {localName: "TestFieldOrderings_NestedMessage"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
@@ -915,7 +899,6 @@ export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessag
   ],
   {localName: "TestExtensionOrderings2_TestExtensionOrderings3"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
@@ -1084,7 +1067,6 @@ export const TestOneof_FooGroup = proto2.makeMessageType(
   {localName: "TestOneof_FooGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
@@ -1109,7 +1091,6 @@ export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
   ],
   {localName: "TestOneofBackwardsCompatible_FooGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2
@@ -1153,7 +1134,6 @@ export const TestOneof2_NestedEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestOneof2.FooGroup
  */
@@ -1166,7 +1146,6 @@ export const TestOneof2_FooGroup = proto2.makeMessageType(
   {localName: "TestOneof2_FooGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
  */
@@ -1178,7 +1157,6 @@ export const TestOneof2_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "TestOneof2_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
@@ -1202,7 +1180,6 @@ export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "TestRequiredOneof_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
@@ -1301,7 +1278,6 @@ export const TestDynamicExtensions_DynamicEnumType = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestDynamicExtensions.DynamicMessageType
  */
@@ -1312,7 +1288,6 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
   ],
   {localName: "TestDynamicExtensions_DynamicMessageType"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
@@ -1380,7 +1355,6 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessag
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group1"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
  */
@@ -1391,8 +1365,6 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessag
   ],
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group2"},
 );
-
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
@@ -1405,7 +1377,6 @@ export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
   {localName: "TestParsingMerge_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
  */
@@ -1416,7 +1387,6 @@ export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
   ],
   {localName: "TestParsingMerge_RepeatedGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
@@ -1527,7 +1497,6 @@ export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
   ],
   {localName: "TestHugeFieldNumbers_OptionalGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable

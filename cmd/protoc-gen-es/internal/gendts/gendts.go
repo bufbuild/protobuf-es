@@ -35,11 +35,12 @@ func GenerateFile(gen *protoplugin.Generator, file *protoplugin.File) {
 func generateEnum(f *protoplugin.GeneratedFile, enum *protoplugin.Enum) {
 	f.P(enum.JSDoc(""))
 	f.P("export declare enum ", enum.Symbol, " {")
-	f.P()
-	for _, value := range enum.Values {
+	for index, value := range enum.Values {
+		if index > 0 {
+			f.P()
+		}
 		f.P(value.JSDoc("  "))
 		f.P("  ", value.LocalName, " = ", value.Proto.GetNumber(), ",")
-		f.P()
 	}
 	f.P("}")
 	f.P()
@@ -49,7 +50,6 @@ func generateMessage(f *protoplugin.GeneratedFile, message *protoplugin.Message)
 	rt := message.File.RuntimeSymbols
 	f.P(message.JSDoc(""))
 	f.P("export declare class ", message.Symbol, " extends ", rt.Message, "<", message.Symbol, "> {")
-	f.P()
 	for _, member := range message.Members {
 		switch member.Kind {
 		case protoplugin.MemberKindOneof:
@@ -76,16 +76,13 @@ func generateMessage(f *protoplugin.GeneratedFile, message *protoplugin.Message)
 	f.P("  static fromJsonString(jsonString: string, options?: Partial<", rt.JsonReadOptions, ">): ", message.Symbol, ";")
 	f.P()
 	f.P("  static equals(a: ", message.Symbol, " | ", rt.PlainMessage, "<", message.Symbol, "> | undefined, b: ", message.Symbol, " | ", rt.PlainMessage, "<", message.Symbol, "> | undefined): boolean;")
-	f.P()
 	f.P("}")
 	f.P()
 	for _, nestedEnum := range message.NestedEnums {
 		generateEnum(f, nestedEnum)
-		f.P()
 	}
 	for _, nestedMessage := range message.NestedMessages {
 		generateMessage(f, nestedMessage)
-		f.P()
 	}
 	// We do not support extensions at this time
 }

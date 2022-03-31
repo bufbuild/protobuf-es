@@ -234,7 +234,6 @@ export const TestAllTypesProto3_NestedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
  */
@@ -250,7 +249,6 @@ export const TestAllTypesProto3_AliasedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
  */
@@ -262,7 +260,6 @@ export const TestAllTypesProto3_NestedMessage = proto3.makeMessageType(
   ],
   {localName: "TestAllTypesProto3_NestedMessage"},
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
@@ -300,5 +297,4 @@ export const EnumOnlyProto3_Bool = proto3.makeEnum(
     {no: 1, name: "kTrue"},
   ],
 );
-
 

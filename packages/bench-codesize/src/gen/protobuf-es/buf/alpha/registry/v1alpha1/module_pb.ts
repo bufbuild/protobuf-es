@@ -27,7 +27,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.LocalModuleReference
  */
 export class LocalModuleReference extends Message<LocalModuleReference> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -73,7 +72,6 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
   static equals(a: LocalModuleReference | PlainMessage<LocalModuleReference> | undefined, b: LocalModuleReference | PlainMessage<LocalModuleReference> | undefined): boolean {
     return proto3.util.equals(LocalModuleReference, a, b);
   }
-
 }
 
 /**
@@ -84,7 +82,6 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
  * @generated from message buf.alpha.registry.v1alpha1.LocalModulePin
  */
 export class LocalModulePin extends Message<LocalModulePin> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -146,6 +143,5 @@ export class LocalModulePin extends Message<LocalModulePin> {
   static equals(a: LocalModulePin | PlainMessage<LocalModulePin> | undefined, b: LocalModulePin | PlainMessage<LocalModulePin> | undefined): boolean {
     return proto3.util.equals(LocalModulePin, a, b);
   }
-
 }
 

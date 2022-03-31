@@ -24,7 +24,6 @@ import {OrganizationRole, PluginRole, RepositoryRole, TemplateRole} from "./role
  * @generated from message buf.alpha.registry.v1alpha1.Organization
  */
 export class Organization extends Message<Organization> {
-
   /**
    * primary key, unique, immutable
    *
@@ -82,7 +81,6 @@ export class Organization extends Message<Organization> {
   static equals(a: Organization | PlainMessage<Organization> | undefined, b: Organization | PlainMessage<Organization> | undefined): boolean {
     return proto3.util.equals(Organization, a, b);
   }
-
 }
 
 /**
@@ -92,7 +90,6 @@ export class Organization extends Message<Organization> {
  * @generated from message buf.alpha.registry.v1alpha1.OrganizationMembership
  */
 export class OrganizationMembership extends Message<OrganizationMembership> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
@@ -130,14 +127,12 @@ export class OrganizationMembership extends Message<OrganizationMembership> {
   static equals(a: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined, b: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined): boolean {
     return proto3.util.equals(OrganizationMembership, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationRequest
  */
 export class GetOrganizationRequest extends Message<GetOrganizationRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -169,14 +164,12 @@ export class GetOrganizationRequest extends Message<GetOrganizationRequest> {
   static equals(a: GetOrganizationRequest | PlainMessage<GetOrganizationRequest> | undefined, b: GetOrganizationRequest | PlainMessage<GetOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(GetOrganizationRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationResponse
  */
 export class GetOrganizationResponse extends Message<GetOrganizationResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
@@ -208,14 +201,12 @@ export class GetOrganizationResponse extends Message<GetOrganizationResponse> {
   static equals(a: GetOrganizationResponse | PlainMessage<GetOrganizationResponse> | undefined, b: GetOrganizationResponse | PlainMessage<GetOrganizationResponse> | undefined): boolean {
     return proto3.util.equals(GetOrganizationResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationByNameRequest
  */
 export class GetOrganizationByNameRequest extends Message<GetOrganizationByNameRequest> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -247,14 +238,12 @@ export class GetOrganizationByNameRequest extends Message<GetOrganizationByNameR
   static equals(a: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined, b: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetOrganizationByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationByNameResponse
  */
 export class GetOrganizationByNameResponse extends Message<GetOrganizationByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
@@ -286,14 +275,12 @@ export class GetOrganizationByNameResponse extends Message<GetOrganizationByName
   static equals(a: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined, b: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined): boolean {
     return proto3.util.equals(GetOrganizationByNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationsRequest
  */
 export class ListOrganizationsRequest extends Message<ListOrganizationsRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -339,14 +326,12 @@ export class ListOrganizationsRequest extends Message<ListOrganizationsRequest> 
   static equals(a: ListOrganizationsRequest | PlainMessage<ListOrganizationsRequest> | undefined, b: ListOrganizationsRequest | PlainMessage<ListOrganizationsRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationsResponse
  */
 export class ListOrganizationsResponse extends Message<ListOrganizationsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Organization organizations = 1;
    */
@@ -386,14 +371,12 @@ export class ListOrganizationsResponse extends Message<ListOrganizationsResponse
   static equals(a: ListOrganizationsResponse | PlainMessage<ListOrganizationsResponse> | undefined, b: ListOrganizationsResponse | PlainMessage<ListOrganizationsResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserOrganizationsRequest
  */
 export class ListUserOrganizationsRequest extends Message<ListUserOrganizationsRequest> {
-
   /**
    * The ID of the user whose organizations should be listed.
    *
@@ -447,14 +430,12 @@ export class ListUserOrganizationsRequest extends Message<ListUserOrganizationsR
   static equals(a: ListUserOrganizationsRequest | PlainMessage<ListUserOrganizationsRequest> | undefined, b: ListUserOrganizationsRequest | PlainMessage<ListUserOrganizationsRequest> | undefined): boolean {
     return proto3.util.equals(ListUserOrganizationsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserOrganizationsResponse
  */
 export class ListUserOrganizationsResponse extends Message<ListUserOrganizationsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.OrganizationMembership organizations = 1;
    */
@@ -494,14 +475,12 @@ export class ListUserOrganizationsResponse extends Message<ListUserOrganizations
   static equals(a: ListUserOrganizationsResponse | PlainMessage<ListUserOrganizationsResponse> | undefined, b: ListUserOrganizationsResponse | PlainMessage<ListUserOrganizationsResponse> | undefined): boolean {
     return proto3.util.equals(ListUserOrganizationsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateOrganizationRequest
  */
 export class CreateOrganizationRequest extends Message<CreateOrganizationRequest> {
-
   /**
    * Must be unique across organizations.
    *
@@ -535,14 +514,12 @@ export class CreateOrganizationRequest extends Message<CreateOrganizationRequest
   static equals(a: CreateOrganizationRequest | PlainMessage<CreateOrganizationRequest> | undefined, b: CreateOrganizationRequest | PlainMessage<CreateOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(CreateOrganizationRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateOrganizationResponse
  */
 export class CreateOrganizationResponse extends Message<CreateOrganizationResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
@@ -574,14 +551,12 @@ export class CreateOrganizationResponse extends Message<CreateOrganizationRespon
   static equals(a: CreateOrganizationResponse | PlainMessage<CreateOrganizationResponse> | undefined, b: CreateOrganizationResponse | PlainMessage<CreateOrganizationResponse> | undefined): boolean {
     return proto3.util.equals(CreateOrganizationResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationRequest
  */
 export class DeleteOrganizationRequest extends Message<DeleteOrganizationRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -613,14 +588,12 @@ export class DeleteOrganizationRequest extends Message<DeleteOrganizationRequest
   static equals(a: DeleteOrganizationRequest | PlainMessage<DeleteOrganizationRequest> | undefined, b: DeleteOrganizationRequest | PlainMessage<DeleteOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationResponse
  */
 export class DeleteOrganizationResponse extends Message<DeleteOrganizationResponse> {
-
   constructor(data?: PartialMessage<DeleteOrganizationResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -646,14 +619,12 @@ export class DeleteOrganizationResponse extends Message<DeleteOrganizationRespon
   static equals(a: DeleteOrganizationResponse | PlainMessage<DeleteOrganizationResponse> | undefined, b: DeleteOrganizationResponse | PlainMessage<DeleteOrganizationResponse> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameRequest
  */
 export class DeleteOrganizationByNameRequest extends Message<DeleteOrganizationByNameRequest> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -685,14 +656,12 @@ export class DeleteOrganizationByNameRequest extends Message<DeleteOrganizationB
   static equals(a: DeleteOrganizationByNameRequest | PlainMessage<DeleteOrganizationByNameRequest> | undefined, b: DeleteOrganizationByNameRequest | PlainMessage<DeleteOrganizationByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameResponse
  */
 export class DeleteOrganizationByNameResponse extends Message<DeleteOrganizationByNameResponse> {
-
   constructor(data?: PartialMessage<DeleteOrganizationByNameResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -718,14 +687,12 @@ export class DeleteOrganizationByNameResponse extends Message<DeleteOrganization
   static equals(a: DeleteOrganizationByNameResponse | PlainMessage<DeleteOrganizationByNameResponse> | undefined, b: DeleteOrganizationByNameResponse | PlainMessage<DeleteOrganizationByNameResponse> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationByNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.AddOrganizationMemberRequest
  */
 export class AddOrganizationMemberRequest extends Message<AddOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which the user will be added to.
    *
@@ -775,14 +742,12 @@ export class AddOrganizationMemberRequest extends Message<AddOrganizationMemberR
   static equals(a: AddOrganizationMemberRequest | PlainMessage<AddOrganizationMemberRequest> | undefined, b: AddOrganizationMemberRequest | PlainMessage<AddOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(AddOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.AddOrganizationMemberResponse
  */
 export class AddOrganizationMemberResponse extends Message<AddOrganizationMemberResponse> {
-
   constructor(data?: PartialMessage<AddOrganizationMemberResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -808,14 +773,12 @@ export class AddOrganizationMemberResponse extends Message<AddOrganizationMember
   static equals(a: AddOrganizationMemberResponse | PlainMessage<AddOrganizationMemberResponse> | undefined, b: AddOrganizationMemberResponse | PlainMessage<AddOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(AddOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberRequest
  */
 export class UpdateOrganizationMemberRequest extends Message<UpdateOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which the member belongs to.
    *
@@ -865,14 +828,12 @@ export class UpdateOrganizationMemberRequest extends Message<UpdateOrganizationM
   static equals(a: UpdateOrganizationMemberRequest | PlainMessage<UpdateOrganizationMemberRequest> | undefined, b: UpdateOrganizationMemberRequest | PlainMessage<UpdateOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberResponse
  */
 export class UpdateOrganizationMemberResponse extends Message<UpdateOrganizationMemberResponse> {
-
   constructor(data?: PartialMessage<UpdateOrganizationMemberResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -898,14 +859,12 @@ export class UpdateOrganizationMemberResponse extends Message<UpdateOrganization
   static equals(a: UpdateOrganizationMemberResponse | PlainMessage<UpdateOrganizationMemberResponse> | undefined, b: UpdateOrganizationMemberResponse | PlainMessage<UpdateOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberRequest
  */
 export class RemoveOrganizationMemberRequest extends Message<RemoveOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which the member belongs to.
    *
@@ -947,14 +906,12 @@ export class RemoveOrganizationMemberRequest extends Message<RemoveOrganizationM
   static equals(a: RemoveOrganizationMemberRequest | PlainMessage<RemoveOrganizationMemberRequest> | undefined, b: RemoveOrganizationMemberRequest | PlainMessage<RemoveOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(RemoveOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberResponse
  */
 export class RemoveOrganizationMemberResponse extends Message<RemoveOrganizationMemberResponse> {
-
   constructor(data?: PartialMessage<RemoveOrganizationMemberResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -980,14 +937,12 @@ export class RemoveOrganizationMemberResponse extends Message<RemoveOrganization
   static equals(a: RemoveOrganizationMemberResponse | PlainMessage<RemoveOrganizationMemberResponse> | undefined, b: RemoveOrganizationMemberResponse | PlainMessage<RemoveOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(RemoveOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetOrganizationMemberRequest
  */
 export class SetOrganizationMemberRequest extends Message<SetOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which the user's role will be set.
    *
@@ -1038,14 +993,12 @@ export class SetOrganizationMemberRequest extends Message<SetOrganizationMemberR
   static equals(a: SetOrganizationMemberRequest | PlainMessage<SetOrganizationMemberRequest> | undefined, b: SetOrganizationMemberRequest | PlainMessage<SetOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(SetOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetOrganizationMemberResponse
  */
 export class SetOrganizationMemberResponse extends Message<SetOrganizationMemberResponse> {
-
   constructor(data?: PartialMessage<SetOrganizationMemberResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1071,14 +1024,12 @@ export class SetOrganizationMemberResponse extends Message<SetOrganizationMember
   static equals(a: SetOrganizationMemberResponse | PlainMessage<SetOrganizationMemberResponse> | undefined, b: SetOrganizationMemberResponse | PlainMessage<SetOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(SetOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationSettingsRequest
  */
 export class GetOrganizationSettingsRequest extends Message<GetOrganizationSettingsRequest> {
-
   /**
    * The ID of the organization for which to get the settings.
    *
@@ -1112,14 +1063,12 @@ export class GetOrganizationSettingsRequest extends Message<GetOrganizationSetti
   static equals(a: GetOrganizationSettingsRequest | PlainMessage<GetOrganizationSettingsRequest> | undefined, b: GetOrganizationSettingsRequest | PlainMessage<GetOrganizationSettingsRequest> | undefined): boolean {
     return proto3.util.equals(GetOrganizationSettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOrganizationSettingsResponse
  */
 export class GetOrganizationSettingsResponse extends Message<GetOrganizationSettingsResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryRole repository_base_role = 1;
    */
@@ -1171,14 +1120,12 @@ export class GetOrganizationSettingsResponse extends Message<GetOrganizationSett
   static equals(a: GetOrganizationSettingsResponse | PlainMessage<GetOrganizationSettingsResponse> | undefined, b: GetOrganizationSettingsResponse | PlainMessage<GetOrganizationSettingsResponse> | undefined): boolean {
     return proto3.util.equals(GetOrganizationSettingsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsRequest
  */
 export class UpdateOrganizationSettingsRequest extends Message<UpdateOrganizationSettingsRequest> {
-
   /**
    * The ID of the organization for which to update the base roles.
    *
@@ -1236,14 +1183,12 @@ export class UpdateOrganizationSettingsRequest extends Message<UpdateOrganizatio
   static equals(a: UpdateOrganizationSettingsRequest | PlainMessage<UpdateOrganizationSettingsRequest> | undefined, b: UpdateOrganizationSettingsRequest | PlainMessage<UpdateOrganizationSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationSettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsResponse
  */
 export class UpdateOrganizationSettingsResponse extends Message<UpdateOrganizationSettingsResponse> {
-
   constructor(data?: PartialMessage<UpdateOrganizationSettingsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1269,6 +1214,5 @@ export class UpdateOrganizationSettingsResponse extends Message<UpdateOrganizati
   static equals(a: UpdateOrganizationSettingsResponse | PlainMessage<UpdateOrganizationSettingsResponse> | undefined, b: UpdateOrganizationSettingsResponse | PlainMessage<UpdateOrganizationSettingsResponse> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationSettingsResponse, a, b);
   }
-
 }
 

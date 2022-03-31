@@ -46,7 +46,6 @@ import {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
  */
 export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize> {
-
   /**
    * Test that embedding a message which has optimize_for = CODE_SIZE into
    * one optimized for speed works.
@@ -87,6 +86,5 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
   static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestEmbedOptimizedForSize, a, b);
   }
-
 }
 

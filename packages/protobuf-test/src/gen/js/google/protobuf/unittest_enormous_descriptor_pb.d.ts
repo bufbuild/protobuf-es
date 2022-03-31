@@ -47,7 +47,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest.TestEnormousDescriptor
  */
 export declare class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
-
   /**
    * @generated from field: optional string long_field_name_is_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_1 = 1 [default = "long default value is also loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong"];
    */
@@ -5061,6 +5060,5 @@ export declare class TestEnormousDescriptor extends Message<TestEnormousDescript
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEnormousDescriptor;
 
   static equals(a: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined, b: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined): boolean;
-
 }
 

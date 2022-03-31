@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.FailRequest
  */
 export declare enum FailRequest {
-
   /**
    * don't fail
    *
@@ -44,14 +43,12 @@ export declare enum FailRequest {
    * @generated from enum value: ERROR_STATUS_ONLY = 2;
    */
   ERROR_STATUS_ONLY = 2,
-
 }
 
 /**
  * @generated from message spec.ExampleRequest
  */
 export declare class ExampleRequest extends Message<ExampleRequest> {
-
   /**
    * any text
    *
@@ -93,14 +90,12 @@ export declare class ExampleRequest extends Message<ExampleRequest> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleRequest;
 
   static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.ExampleResponse
  */
 export declare class ExampleResponse extends Message<ExampleResponse> {
-
   /**
    * any text
    *
@@ -142,6 +137,5 @@ export declare class ExampleResponse extends Message<ExampleResponse> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleResponse;
 
   static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean;
-
 }
 

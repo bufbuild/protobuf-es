@@ -26,7 +26,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export enum DeprecatedEnum {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_A = 0;
    */
@@ -36,9 +35,7 @@ export enum DeprecatedEnum {
    * @generated from enum value: DEPRECATED_ENUM_B = 1;
    */
   B = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnum)
 proto3.util.setEnumType(DeprecatedEnum, "spec.DeprecatedEnum", [
   {no: 0, name: "DEPRECATED_ENUM_A"},
@@ -51,7 +48,6 @@ proto3.util.setEnumType(DeprecatedEnum, "spec.DeprecatedEnum", [
  * @generated from enum spec.DeprecatedValueEnum
  */
 export enum DeprecatedValueEnum {
-
   /**
    * @generated from enum value: DEPRECATED_VALUE_ENUM_UNSPECIFIED = 0;
    */
@@ -62,9 +58,7 @@ export enum DeprecatedValueEnum {
    * @deprecated
    */
   DEPRECATED_VALUE = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedValueEnum)
 proto3.util.setEnumType(DeprecatedValueEnum, "spec.DeprecatedValueEnum", [
   {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
@@ -78,7 +72,6 @@ proto3.util.setEnumType(DeprecatedValueEnum, "spec.DeprecatedValueEnum", [
  * @deprecated
  */
 export class DeprecatedMessage extends Message<DeprecatedMessage> {
-
   /**
    * @generated from field: string field = 1;
    */
@@ -110,7 +103,6 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
   static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean {
     return proto3.util.equals(DeprecatedMessage, a, b);
   }
-
 }
 
 /**
@@ -119,7 +111,6 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
  * @generated from message spec.DeprecatedFieldMessage
  */
 export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
-
   /**
    * This field is deprecated
    *
@@ -162,6 +153,5 @@ export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean {
     return proto3.util.equals(DeprecatedFieldMessage, a, b);
   }
-
 }
 

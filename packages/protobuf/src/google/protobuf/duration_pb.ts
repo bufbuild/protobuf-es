@@ -84,7 +84,6 @@ import {Message, proto3, protoInt64} from "../../index.js";
  * @generated from message google.protobuf.Duration
  */
 export class Duration extends Message<Duration> {
-
   /**
    * Signed seconds of the span of time. Must be from -315,576,000,000
    * to +315,576,000,000 inclusive. Note: these bounds are computed from:
@@ -174,6 +173,5 @@ export class Duration extends Message<Duration> {
   static equals(a: Duration | PlainMessage<Duration> | undefined, b: Duration | PlainMessage<Duration> | undefined): boolean {
     return proto3.util.equals(Duration, a, b);
   }
-
 }
 

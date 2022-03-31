@@ -41,7 +41,6 @@ import {PublicImportMessage} from "./unittest_import_public_pb.js";
  * @generated from enum proto3_unittest.ForeignEnum
  */
 export enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_ZERO = 0;
    */
@@ -61,9 +60,7 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ForeignEnum)
 proto3.util.setEnumType(ForeignEnum, "proto3_unittest.ForeignEnum", [
   {no: 0, name: "FOREIGN_ZERO"},
@@ -79,7 +76,6 @@ proto3.util.setEnumType(ForeignEnum, "proto3_unittest.ForeignEnum", [
  * @generated from message proto3_unittest.TestAllTypes
  */
 export class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    *
@@ -432,14 +428,12 @@ export class TestAllTypes extends Message<TestAllTypes> {
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean {
     return proto3.util.equals(TestAllTypes, a, b);
   }
-
 }
 
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
  */
 export enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: ZERO = 0;
    */
@@ -466,9 +460,7 @@ export enum TestAllTypes_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestAllTypes_NestedEnum)
 proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto3_unittest.TestAllTypes.NestedEnum", [
   {no: 0, name: "ZERO"},
@@ -478,12 +470,10 @@ proto3.util.setEnumType(TestAllTypes_NestedEnum, "proto3_unittest.TestAllTypes.N
   {no: -1, name: "NEG"},
 ]);
 
-
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
  */
 export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
    * a local variable named "b" in one of the generated methods.  Doh.
@@ -519,15 +509,12 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestAllTypes_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message proto3_unittest.TestPackedTypes
  */
 export class TestPackedTypes extends Message<TestPackedTypes> {
-
   /**
    * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
    */
@@ -637,7 +624,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean {
     return proto3.util.equals(TestPackedTypes, a, b);
   }
-
 }
 
 /**
@@ -646,7 +632,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
  * @generated from message proto3_unittest.TestUnpackedTypes
  */
 export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
-
   /**
    * @generated from field: repeated int32 repeated_int32 = 1 [packed = false];
    */
@@ -756,7 +741,6 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean {
     return proto3.util.equals(TestUnpackedTypes, a, b);
   }
-
 }
 
 /**
@@ -765,7 +749,6 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
  * @generated from message proto3_unittest.NestedTestAllTypes
  */
 export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
-
   /**
    * @generated from field: proto3_unittest.NestedTestAllTypes child = 1;
    */
@@ -803,7 +786,6 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean {
     return proto3.util.equals(NestedTestAllTypes, a, b);
   }
-
 }
 
 /**
@@ -813,7 +795,6 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
  * @generated from message proto3_unittest.ForeignMessage
  */
 export class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -845,7 +826,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto3.util.equals(ForeignMessage, a, b);
   }
-
 }
 
 /**
@@ -854,7 +834,6 @@ export class ForeignMessage extends Message<ForeignMessage> {
  * @generated from message proto3_unittest.TestEmptyMessage
  */
 export class TestEmptyMessage extends Message<TestEmptyMessage> {
-
   constructor(data?: PartialMessage<TestEmptyMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -880,7 +859,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean {
     return proto3.util.equals(TestEmptyMessage, a, b);
   }
-
 }
 
 /**
@@ -889,7 +867,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
  * @generated from message proto3_unittest.TestMessageWithDummy
  */
 export class TestMessageWithDummy extends Message<TestMessageWithDummy> {
-
   /**
    * This field is only here for triggering copy-on-write; it's not intended to
    * be serialized.
@@ -924,7 +901,6 @@ export class TestMessageWithDummy extends Message<TestMessageWithDummy> {
   static equals(a: TestMessageWithDummy | PlainMessage<TestMessageWithDummy> | undefined, b: TestMessageWithDummy | PlainMessage<TestMessageWithDummy> | undefined): boolean {
     return proto3.util.equals(TestMessageWithDummy, a, b);
   }
-
 }
 
 /**
@@ -934,7 +910,6 @@ export class TestMessageWithDummy extends Message<TestMessageWithDummy> {
  * @generated from message proto3_unittest.TestOneof2
  */
 export class TestOneof2 extends Message<TestOneof2> {
-
   /**
    * @generated from oneof proto3_unittest.TestOneof2.foo
    */
@@ -972,14 +947,12 @@ export class TestOneof2 extends Message<TestOneof2> {
   static equals(a: TestOneof2 | PlainMessage<TestOneof2> | undefined, b: TestOneof2 | PlainMessage<TestOneof2> | undefined): boolean {
     return proto3.util.equals(TestOneof2, a, b);
   }
-
 }
 
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
  */
 export enum TestOneof2_NestedEnum {
-
   /**
    * @generated from enum value: UNKNOWN = 0;
    */
@@ -999,9 +972,7 @@ export enum TestOneof2_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestOneof2_NestedEnum)
 proto3.util.setEnumType(TestOneof2_NestedEnum, "proto3_unittest.TestOneof2.NestedEnum", [
   {no: 0, name: "UNKNOWN"},
@@ -1009,5 +980,4 @@ proto3.util.setEnumType(TestOneof2_NestedEnum, "proto3_unittest.TestOneof2.Neste
   {no: 2, name: "BAR"},
   {no: 3, name: "BAZ"},
 ]);
-
 

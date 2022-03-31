@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryTag
  */
 export class RepositoryTag extends Message<RepositoryTag> {
-
   /**
    * primary key, unique, immutable
    *
@@ -91,14 +90,12 @@ export class RepositoryTag extends Message<RepositoryTag> {
   static equals(a: RepositoryTag | PlainMessage<RepositoryTag> | undefined, b: RepositoryTag | PlainMessage<RepositoryTag> | undefined): boolean {
     return proto3.util.equals(RepositoryTag, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest
  */
 export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagRequest> {
-
   /**
    * The ID of the repository this tag should be created on.
    *
@@ -148,14 +145,12 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
   static equals(a: CreateRepositoryTagRequest | PlainMessage<CreateRepositoryTagRequest> | undefined, b: CreateRepositoryTagRequest | PlainMessage<CreateRepositoryTagRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTagRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse
  */
 export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTag repository_tag = 1;
    */
@@ -187,14 +182,12 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
   static equals(a: CreateRepositoryTagResponse | PlainMessage<CreateRepositoryTagResponse> | undefined, b: CreateRepositoryTagResponse | PlainMessage<CreateRepositoryTagResponse> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTagResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest
  */
 export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest> {
-
   /**
    * The ID of the repository whose tags should be listed.
    *
@@ -248,14 +241,12 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
   static equals(a: ListRepositoryTagsRequest | PlainMessage<ListRepositoryTagsRequest> | undefined, b: ListRepositoryTagsRequest | PlainMessage<ListRepositoryTagsRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTagsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse
  */
 export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryTag repository_tags = 1;
    */
@@ -295,6 +286,5 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
   static equals(a: ListRepositoryTagsResponse | PlainMessage<ListRepositoryTagsResponse> | undefined, b: ListRepositoryTagsResponse | PlainMessage<ListRepositoryTagsResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTagsResponse, a, b);
   }
-
 }
 

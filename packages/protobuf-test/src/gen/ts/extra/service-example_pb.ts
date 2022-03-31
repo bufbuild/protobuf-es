@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.FailRequest
  */
 export enum FailRequest {
-
   /**
    * don't fail
    *
@@ -44,9 +43,7 @@ export enum FailRequest {
    * @generated from enum value: ERROR_STATUS_ONLY = 2;
    */
   ERROR_STATUS_ONLY = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(FailRequest)
 proto3.util.setEnumType(FailRequest, "spec.FailRequest", [
   {no: 0, name: "FAIL_REQUEST_NONE"},
@@ -58,7 +55,6 @@ proto3.util.setEnumType(FailRequest, "spec.FailRequest", [
  * @generated from message spec.ExampleRequest
  */
 export class ExampleRequest extends Message<ExampleRequest> {
-
   /**
    * any text
    *
@@ -116,14 +112,12 @@ export class ExampleRequest extends Message<ExampleRequest> {
   static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean {
     return proto3.util.equals(ExampleRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.ExampleResponse
  */
 export class ExampleResponse extends Message<ExampleResponse> {
-
   /**
    * any text
    *
@@ -181,6 +175,5 @@ export class ExampleResponse extends Message<ExampleResponse> {
   static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean {
     return proto3.util.equals(ExampleResponse, a, b);
   }
-
 }
 

@@ -39,7 +39,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum conformance.WireFormat
  */
 export enum WireFormat {
-
   /**
    * @generated from enum value: UNSPECIFIED = 0;
    */
@@ -66,9 +65,7 @@ export enum WireFormat {
    * @generated from enum value: TEXT_FORMAT = 4;
    */
   TEXT_FORMAT = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(WireFormat)
 proto3.util.setEnumType(WireFormat, "conformance.WireFormat", [
   {no: 0, name: "UNSPECIFIED"},
@@ -82,7 +79,6 @@ proto3.util.setEnumType(WireFormat, "conformance.WireFormat", [
  * @generated from enum conformance.TestCategory
  */
 export enum TestCategory {
-
   /**
    * @generated from enum value: UNSPECIFIED_TEST = 0;
    */
@@ -127,9 +123,7 @@ export enum TestCategory {
    * @generated from enum value: TEXT_FORMAT_TEST = 5;
    */
   TEXT_FORMAT_TEST = 5,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestCategory)
 proto3.util.setEnumType(TestCategory, "conformance.TestCategory", [
   {no: 0, name: "UNSPECIFIED_TEST"},
@@ -148,7 +142,6 @@ proto3.util.setEnumType(TestCategory, "conformance.TestCategory", [
  * @generated from message conformance.FailureSet
  */
 export class FailureSet extends Message<FailureSet> {
-
   /**
    * @generated from field: repeated string failure = 1;
    */
@@ -180,7 +173,6 @@ export class FailureSet extends Message<FailureSet> {
   static equals(a: FailureSet | PlainMessage<FailureSet> | undefined, b: FailureSet | PlainMessage<FailureSet> | undefined): boolean {
     return proto3.util.equals(FailureSet, a, b);
   }
-
 }
 
 /**
@@ -193,7 +185,6 @@ export class FailureSet extends Message<FailureSet> {
  * @generated from message conformance.ConformanceRequest
  */
 export class ConformanceRequest extends Message<ConformanceRequest> {
-
   /**
    * The payload (whether protobuf of JSON) is always for a
    * protobuf_test_messages.proto3.TestAllTypes proto (as defined in
@@ -307,7 +298,6 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
   static equals(a: ConformanceRequest | PlainMessage<ConformanceRequest> | undefined, b: ConformanceRequest | PlainMessage<ConformanceRequest> | undefined): boolean {
     return proto3.util.equals(ConformanceRequest, a, b);
   }
-
 }
 
 /**
@@ -316,7 +306,6 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
  * @generated from message conformance.ConformanceResponse
  */
 export class ConformanceResponse extends Message<ConformanceResponse> {
-
   /**
    * @generated from oneof conformance.ConformanceResponse.result
    */
@@ -433,7 +422,6 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
   static equals(a: ConformanceResponse | PlainMessage<ConformanceResponse> | undefined, b: ConformanceResponse | PlainMessage<ConformanceResponse> | undefined): boolean {
     return proto3.util.equals(ConformanceResponse, a, b);
   }
-
 }
 
 /**
@@ -442,7 +430,6 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
  * @generated from message conformance.JspbEncodingConfig
  */
 export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
-
   /**
    * Encode the value field of Any as jspb array if true, otherwise binary.
    *
@@ -476,6 +463,5 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
   static equals(a: JspbEncodingConfig | PlainMessage<JspbEncodingConfig> | undefined, b: JspbEncodingConfig | PlainMessage<JspbEncodingConfig> | undefined): boolean {
     return proto3.util.equals(JspbEncodingConfig, a, b);
   }
-
 }
 

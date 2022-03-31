@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.MessageFieldMessage
  */
 export declare class MessageFieldMessage extends Message<MessageFieldMessage> {
-
   /**
    * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
    */
@@ -47,14 +46,12 @@ export declare class MessageFieldMessage extends Message<MessageFieldMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage;
 
   static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
  */
 export declare class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage_TestMessage> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -73,7 +70,5 @@ export declare class MessageFieldMessage_TestMessage extends Message<MessageFiel
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
 
   static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean;
-
 }
-
 

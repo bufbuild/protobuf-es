@@ -33,7 +33,6 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.Empty
  */
 export class Empty extends Message<Empty> {
-
   constructor(data?: PartialMessage<Empty>) {
     super();
     proto3.util.initPartial(data, this);
@@ -59,6 +58,5 @@ export class Empty extends Message<Empty> {
   static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean {
     return proto3.util.equals(Empty, a, b);
   }
-
 }
 

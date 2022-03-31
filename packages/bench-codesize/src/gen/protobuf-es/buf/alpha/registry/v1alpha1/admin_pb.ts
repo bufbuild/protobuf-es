@@ -27,7 +27,6 @@ import {Plugin, Template} from "./plugin_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserRequest
  */
 export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
-
   /**
    * @generated from field: string user_id = 1;
    */
@@ -59,14 +58,12 @@ export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
   static equals(a: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined, b: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined): boolean {
     return proto3.util.equals(ForceDeleteUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserResponse
  */
 export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
-
   /**
    * The deleted user.
    *
@@ -132,6 +129,5 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
   static equals(a: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined, b: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined): boolean {
     return proto3.util.equals(ForceDeleteUserResponse, a, b);
   }
-
 }
 

@@ -24,7 +24,6 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.rpc.v1alpha1.ErrorCode
  */
 export enum ErrorCode {
-
   /**
    * @generated from enum value: ERROR_CODE_UNSPECIFIED = 0;
    */
@@ -109,9 +108,7 @@ export enum ErrorCode {
    * @generated from enum value: ERROR_CODE_UNAUTHENTICATED = 16;
    */
   UNAUTHENTICATED = 16,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ErrorCode)
 proto3.util.setEnumType(ErrorCode, "buf.alpha.rpc.v1alpha1.ErrorCode", [
   {no: 0, name: "ERROR_CODE_UNSPECIFIED"},

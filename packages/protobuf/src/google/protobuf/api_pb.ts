@@ -35,7 +35,6 @@ import {SourceContext} from "./source_context_pb.js";
  * @generated from message google.protobuf.Api
  */
 export class Api extends Message<Api> {
-
   /**
    * The fully qualified name of this interface, including package name
    * followed by the interface's simple name.
@@ -139,7 +138,6 @@ export class Api extends Message<Api> {
   static equals(a: Api | PlainMessage<Api> | undefined, b: Api | PlainMessage<Api> | undefined): boolean {
     return proto3.util.equals(Api, a, b);
   }
-
 }
 
 /**
@@ -148,7 +146,6 @@ export class Api extends Message<Api> {
  * @generated from message google.protobuf.Method
  */
 export class Method extends Message<Method> {
-
   /**
    * The simple name of this method.
    *
@@ -230,7 +227,6 @@ export class Method extends Message<Method> {
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
     return proto3.util.equals(Method, a, b);
   }
-
 }
 
 /**
@@ -316,7 +312,6 @@ export class Method extends Message<Method> {
  * @generated from message google.protobuf.Mixin
  */
 export class Mixin extends Message<Mixin> {
-
   /**
    * The fully qualified name of the interface which is included.
    *
@@ -359,6 +354,5 @@ export class Mixin extends Message<Mixin> {
   static equals(a: Mixin | PlainMessage<Mixin> | undefined, b: Mixin | PlainMessage<Mixin> | undefined): boolean {
     return proto3.util.equals(Mixin, a, b);
   }
-
 }
 

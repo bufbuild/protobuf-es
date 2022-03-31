@@ -22,7 +22,6 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.AnnotatedEnum
  */
 export enum AnnotatedEnum {
-
   /**
    * @generated from enum value: UNSPECIFIED = 0;
    */
@@ -32,9 +31,7 @@ export enum AnnotatedEnum {
    * @generated from enum value: FOO = 1;
    */
   FOO = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(AnnotatedEnum)
 proto3.util.setEnumType(AnnotatedEnum, "spec.AnnotatedEnum", [
   {no: 0, name: "UNSPECIFIED"},

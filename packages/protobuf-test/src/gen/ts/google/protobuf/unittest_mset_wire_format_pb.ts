@@ -47,7 +47,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_wireformat_unittest.TestMessageSet
  */
 export class TestMessageSet extends Message<TestMessageSet> {
-
   constructor(data?: PartialMessage<TestMessageSet>) {
     super();
     proto2.util.initPartial(data, this);
@@ -73,14 +72,12 @@ export class TestMessageSet extends Message<TestMessageSet> {
   static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean {
     return proto2.util.equals(TestMessageSet, a, b);
   }
-
 }
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
 export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWireFormatContainer> {
-
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
@@ -112,6 +109,5 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
   static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean {
     return proto2.util.equals(TestMessageSetWireFormatContainer, a, b);
   }
-
 }
 

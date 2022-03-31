@@ -28,16 +28,13 @@ import {Message, proto3} from "../../index.js";
  * @generated from enum google.protobuf.NullValue
  */
 export enum NullValue {
-
   /**
    * Null value.
    *
    * @generated from enum value: NULL_VALUE = 0;
    */
   NULL_VALUE = 0,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(NullValue)
 proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
   {no: 0, name: "NULL_VALUE"},
@@ -56,7 +53,6 @@ proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
  * @generated from message google.protobuf.Struct
  */
 export class Struct extends Message<Struct> {
-
   /**
    * Unordered map of dynamically typed values.
    *
@@ -108,7 +104,6 @@ export class Struct extends Message<Struct> {
   static equals(a: Struct | PlainMessage<Struct> | undefined, b: Struct | PlainMessage<Struct> | undefined): boolean {
     return proto3.util.equals(Struct, a, b);
   }
-
 }
 
 /**
@@ -122,7 +117,6 @@ export class Struct extends Message<Struct> {
  * @generated from message google.protobuf.Value
  */
 export class Value extends Message<Value> {
-
   /**
    * The kind of value.
    *
@@ -250,7 +244,6 @@ export class Value extends Message<Value> {
   static equals(a: Value | PlainMessage<Value> | undefined, b: Value | PlainMessage<Value> | undefined): boolean {
     return proto3.util.equals(Value, a, b);
   }
-
 }
 
 /**
@@ -261,7 +254,6 @@ export class Value extends Message<Value> {
  * @generated from message google.protobuf.ListValue
  */
 export class ListValue extends Message<ListValue> {
-
   /**
    * Repeated field of dynamically typed values.
    *
@@ -309,6 +301,5 @@ export class ListValue extends Message<ListValue> {
   static equals(a: ListValue | PlainMessage<ListValue> | undefined, b: ListValue | PlainMessage<ListValue> | undefined): boolean {
     return proto3.util.equals(ListValue, a, b);
   }
-
 }
 

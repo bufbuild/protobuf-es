@@ -26,7 +26,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedRepository
  */
 export class RecommendedRepository extends Message<RecommendedRepository> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -82,7 +81,6 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
   static equals(a: RecommendedRepository | PlainMessage<RecommendedRepository> | undefined, b: RecommendedRepository | PlainMessage<RecommendedRepository> | undefined): boolean {
     return proto3.util.equals(RecommendedRepository, a, b);
   }
-
 }
 
 /**
@@ -92,7 +90,6 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedTemplate
  */
 export class RecommendedTemplate extends Message<RecommendedTemplate> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -142,7 +139,6 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
   static equals(a: RecommendedTemplate | PlainMessage<RecommendedTemplate> | undefined, b: RecommendedTemplate | PlainMessage<RecommendedTemplate> | undefined): boolean {
     return proto3.util.equals(RecommendedTemplate, a, b);
   }
-
 }
 
 /**
@@ -151,7 +147,6 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedRepository
  */
 export class SetRecommendedRepository extends Message<SetRecommendedRepository> {
-
   /**
    * @generated from field: string repository_id = 1;
    */
@@ -189,7 +184,6 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
   static equals(a: SetRecommendedRepository | PlainMessage<SetRecommendedRepository> | undefined, b: SetRecommendedRepository | PlainMessage<SetRecommendedRepository> | undefined): boolean {
     return proto3.util.equals(SetRecommendedRepository, a, b);
   }
-
 }
 
 /**
@@ -198,7 +192,6 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedTemplate
  */
 export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
-
   /**
    * @generated from field: string template_id = 1;
    */
@@ -236,14 +229,12 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
   static equals(a: SetRecommendedTemplate | PlainMessage<SetRecommendedTemplate> | undefined, b: SetRecommendedTemplate | PlainMessage<SetRecommendedTemplate> | undefined): boolean {
     return proto3.util.equals(SetRecommendedTemplate, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest
  */
 export class RecommendedRepositoriesRequest extends Message<RecommendedRepositoriesRequest> {
-
   constructor(data?: PartialMessage<RecommendedRepositoriesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -269,14 +260,12 @@ export class RecommendedRepositoriesRequest extends Message<RecommendedRepositor
   static equals(a: RecommendedRepositoriesRequest | PlainMessage<RecommendedRepositoriesRequest> | undefined, b: RecommendedRepositoriesRequest | PlainMessage<RecommendedRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(RecommendedRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse
  */
 export class RecommendedRepositoriesResponse extends Message<RecommendedRepositoriesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RecommendedRepository repositories = 1;
    */
@@ -308,14 +297,12 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
   static equals(a: RecommendedRepositoriesResponse | PlainMessage<RecommendedRepositoriesResponse> | undefined, b: RecommendedRepositoriesResponse | PlainMessage<RecommendedRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(RecommendedRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest
  */
 export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesRequest> {
-
   constructor(data?: PartialMessage<RecommendedTemplatesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -341,14 +328,12 @@ export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesReq
   static equals(a: RecommendedTemplatesRequest | PlainMessage<RecommendedTemplatesRequest> | undefined, b: RecommendedTemplatesRequest | PlainMessage<RecommendedTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(RecommendedTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse
  */
 export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RecommendedTemplate templates = 1;
    */
@@ -380,14 +365,12 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
   static equals(a: RecommendedTemplatesResponse | PlainMessage<RecommendedTemplatesResponse> | undefined, b: RecommendedTemplatesResponse | PlainMessage<RecommendedTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(RecommendedTemplatesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest
  */
 export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedRepositoriesRequest> {
-
   constructor(data?: PartialMessage<ListRecommendedRepositoriesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -413,14 +396,12 @@ export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedR
   static equals(a: ListRecommendedRepositoriesRequest | PlainMessage<ListRecommendedRepositoriesRequest> | undefined, b: ListRecommendedRepositoriesRequest | PlainMessage<ListRecommendedRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListRecommendedRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse
  */
 export class ListRecommendedRepositoriesResponse extends Message<ListRecommendedRepositoriesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RecommendedRepository repositories = 1;
    */
@@ -452,14 +433,12 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
   static equals(a: ListRecommendedRepositoriesResponse | PlainMessage<ListRecommendedRepositoriesResponse> | undefined, b: ListRecommendedRepositoriesResponse | PlainMessage<ListRecommendedRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(ListRecommendedRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest
  */
 export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemplatesRequest> {
-
   constructor(data?: PartialMessage<ListRecommendedTemplatesRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -485,14 +464,12 @@ export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemp
   static equals(a: ListRecommendedTemplatesRequest | PlainMessage<ListRecommendedTemplatesRequest> | undefined, b: ListRecommendedTemplatesRequest | PlainMessage<ListRecommendedTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListRecommendedTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse
  */
 export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTemplatesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RecommendedTemplate templates = 1;
    */
@@ -524,14 +501,12 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
   static equals(a: ListRecommendedTemplatesResponse | PlainMessage<ListRecommendedTemplatesResponse> | undefined, b: ListRecommendedTemplatesResponse | PlainMessage<ListRecommendedTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(ListRecommendedTemplatesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest
  */
 export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRepositoriesRequest> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.SetRecommendedRepository repositories = 1;
    */
@@ -563,14 +538,12 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
   static equals(a: SetRecommendedRepositoriesRequest | PlainMessage<SetRecommendedRepositoriesRequest> | undefined, b: SetRecommendedRepositoriesRequest | PlainMessage<SetRecommendedRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(SetRecommendedRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse
  */
 export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRepositoriesResponse> {
-
   constructor(data?: PartialMessage<SetRecommendedRepositoriesResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -596,14 +569,12 @@ export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRe
   static equals(a: SetRecommendedRepositoriesResponse | PlainMessage<SetRecommendedRepositoriesResponse> | undefined, b: SetRecommendedRepositoriesResponse | PlainMessage<SetRecommendedRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(SetRecommendedRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest
  */
 export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTemplatesRequest> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.SetRecommendedTemplate templates = 1;
    */
@@ -635,14 +606,12 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
   static equals(a: SetRecommendedTemplatesRequest | PlainMessage<SetRecommendedTemplatesRequest> | undefined, b: SetRecommendedTemplatesRequest | PlainMessage<SetRecommendedTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(SetRecommendedTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse
  */
 export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTemplatesResponse> {
-
   constructor(data?: PartialMessage<SetRecommendedTemplatesResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -668,6 +637,5 @@ export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTempl
   static equals(a: SetRecommendedTemplatesResponse | PlainMessage<SetRecommendedTemplatesResponse> | undefined, b: SetRecommendedTemplatesResponse | PlainMessage<SetRecommendedTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(SetRecommendedTemplatesResponse, a, b);
   }
-
 }
 

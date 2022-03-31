@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryTrack
  */
 export class RepositoryTrack extends Message<RepositoryTrack> {
-
   /**
    * primary key, unique, immutable
    *
@@ -75,14 +74,12 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
   static equals(a: RepositoryTrack | PlainMessage<RepositoryTrack> | undefined, b: RepositoryTrack | PlainMessage<RepositoryTrack> | undefined): boolean {
     return proto3.util.equals(RepositoryTrack, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTrackRequest
  */
 export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackRequest> {
-
   /**
    * The ID of the repository this track should be created on.
    *
@@ -124,14 +121,12 @@ export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackR
   static equals(a: CreateRepositoryTrackRequest | PlainMessage<CreateRepositoryTrackRequest> | undefined, b: CreateRepositoryTrackRequest | PlainMessage<CreateRepositoryTrackRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTrackRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryTrackResponse
  */
 export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrackResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrack repository_track = 1;
    */
@@ -163,14 +158,12 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
   static equals(a: CreateRepositoryTrackResponse | PlainMessage<CreateRepositoryTrackResponse> | undefined, b: CreateRepositoryTrackResponse | PlainMessage<CreateRepositoryTrackResponse> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTrackResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTracksRequest
  */
 export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksRequest> {
-
   /**
    * The ID of the repository whose tracks should be listed.
    *
@@ -224,14 +217,12 @@ export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksReq
   static equals(a: ListRepositoryTracksRequest | PlainMessage<ListRepositoryTracksRequest> | undefined, b: ListRepositoryTracksRequest | PlainMessage<ListRepositoryTracksRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTracksRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTracksResponse
  */
 export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryTrack repository_tracks = 1;
    */
@@ -271,14 +262,12 @@ export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksRe
   static equals(a: ListRepositoryTracksResponse | PlainMessage<ListRepositoryTracksResponse> | undefined, b: ListRepositoryTracksResponse | PlainMessage<ListRepositoryTracksResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTracksResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryTrackByNameRequest
  */
 export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepositoryTrackByNameRequest> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -324,14 +313,12 @@ export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepository
   static equals(a: DeleteRepositoryTrackByNameRequest | PlainMessage<DeleteRepositoryTrackByNameRequest> | undefined, b: DeleteRepositoryTrackByNameRequest | PlainMessage<DeleteRepositoryTrackByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryTrackByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryTrackByNameResponse
  */
 export class DeleteRepositoryTrackByNameResponse extends Message<DeleteRepositoryTrackByNameResponse> {
-
   constructor(data?: PartialMessage<DeleteRepositoryTrackByNameResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -357,14 +344,12 @@ export class DeleteRepositoryTrackByNameResponse extends Message<DeleteRepositor
   static equals(a: DeleteRepositoryTrackByNameResponse | PlainMessage<DeleteRepositoryTrackByNameResponse> | undefined, b: DeleteRepositoryTrackByNameResponse | PlainMessage<DeleteRepositoryTrackByNameResponse> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryTrackByNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameRequest
  */
 export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackByNameRequest> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -410,14 +395,12 @@ export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackB
   static equals(a: GetRepositoryTrackByNameRequest | PlainMessage<GetRepositoryTrackByNameRequest> | undefined, b: GetRepositoryTrackByNameRequest | PlainMessage<GetRepositoryTrackByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackByNameResponse
  */
 export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrackByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrack repository_track = 1;
    */
@@ -449,6 +432,5 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
   static equals(a: GetRepositoryTrackByNameResponse | PlainMessage<GetRepositoryTrackByNameResponse> | undefined, b: GetRepositoryTrackByNameResponse | PlainMessage<GetRepositoryTrackByNameResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackByNameResponse, a, b);
   }
-
 }
 

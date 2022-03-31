@@ -24,7 +24,6 @@ import {OrganizationRole, ServerRole} from "./role_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.UserState
  */
 export enum UserState {
-
   /**
    * @generated from enum value: USER_STATE_UNSPECIFIED = 0;
    */
@@ -39,9 +38,7 @@ export enum UserState {
    * @generated from enum value: USER_STATE_DEACTIVATED = 2;
    */
   DEACTIVATED = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(UserState)
 proto3.util.setEnumType(UserState, "buf.alpha.registry.v1alpha1.UserState", [
   {no: 0, name: "USER_STATE_UNSPECIFIED"},
@@ -53,7 +50,6 @@ proto3.util.setEnumType(UserState, "buf.alpha.registry.v1alpha1.UserState", [
  * @generated from message buf.alpha.registry.v1alpha1.User
  */
 export class User extends Message<User> {
-
   /**
    * primary key, unique, immutable
    *
@@ -119,7 +115,6 @@ export class User extends Message<User> {
   static equals(a: User | PlainMessage<User> | undefined, b: User | PlainMessage<User> | undefined): boolean {
     return proto3.util.equals(User, a, b);
   }
-
 }
 
 /**
@@ -128,7 +123,6 @@ export class User extends Message<User> {
  * @generated from message buf.alpha.registry.v1alpha1.OrganizationUser
  */
 export class OrganizationUser extends Message<OrganizationUser> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -176,14 +170,12 @@ export class OrganizationUser extends Message<OrganizationUser> {
   static equals(a: OrganizationUser | PlainMessage<OrganizationUser> | undefined, b: OrganizationUser | PlainMessage<OrganizationUser> | undefined): boolean {
     return proto3.util.equals(OrganizationUser, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateUserRequest
  */
 export class CreateUserRequest extends Message<CreateUserRequest> {
-
   /**
    * @generated from field: string username = 1;
    */
@@ -215,14 +207,12 @@ export class CreateUserRequest extends Message<CreateUserRequest> {
   static equals(a: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined, b: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined): boolean {
     return proto3.util.equals(CreateUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateUserResponse
  */
 export class CreateUserResponse extends Message<CreateUserResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -254,14 +244,12 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
   static equals(a: CreateUserResponse | PlainMessage<CreateUserResponse> | undefined, b: CreateUserResponse | PlainMessage<CreateUserResponse> | undefined): boolean {
     return proto3.util.equals(CreateUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserRequest
  */
 export class GetUserRequest extends Message<GetUserRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -293,14 +281,12 @@ export class GetUserRequest extends Message<GetUserRequest> {
   static equals(a: GetUserRequest | PlainMessage<GetUserRequest> | undefined, b: GetUserRequest | PlainMessage<GetUserRequest> | undefined): boolean {
     return proto3.util.equals(GetUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserResponse
  */
 export class GetUserResponse extends Message<GetUserResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -332,14 +318,12 @@ export class GetUserResponse extends Message<GetUserResponse> {
   static equals(a: GetUserResponse | PlainMessage<GetUserResponse> | undefined, b: GetUserResponse | PlainMessage<GetUserResponse> | undefined): boolean {
     return proto3.util.equals(GetUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserByUsernameRequest
  */
 export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> {
-
   /**
    * @generated from field: string username = 1;
    */
@@ -371,14 +355,12 @@ export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> 
   static equals(a: GetUserByUsernameRequest | PlainMessage<GetUserByUsernameRequest> | undefined, b: GetUserByUsernameRequest | PlainMessage<GetUserByUsernameRequest> | undefined): boolean {
     return proto3.util.equals(GetUserByUsernameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetUserByUsernameResponse
  */
 export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -410,14 +392,12 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
   static equals(a: GetUserByUsernameResponse | PlainMessage<GetUserByUsernameResponse> | undefined, b: GetUserByUsernameResponse | PlainMessage<GetUserByUsernameResponse> | undefined): boolean {
     return proto3.util.equals(GetUserByUsernameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUsersRequest
  */
 export class ListUsersRequest extends Message<ListUsersRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -471,14 +451,12 @@ export class ListUsersRequest extends Message<ListUsersRequest> {
   static equals(a: ListUsersRequest | PlainMessage<ListUsersRequest> | undefined, b: ListUsersRequest | PlainMessage<ListUsersRequest> | undefined): boolean {
     return proto3.util.equals(ListUsersRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUsersResponse
  */
 export class ListUsersResponse extends Message<ListUsersResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.User users = 1;
    */
@@ -518,14 +496,12 @@ export class ListUsersResponse extends Message<ListUsersResponse> {
   static equals(a: ListUsersResponse | PlainMessage<ListUsersResponse> | undefined, b: ListUsersResponse | PlainMessage<ListUsersResponse> | undefined): boolean {
     return proto3.util.equals(ListUsersResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest
  */
 export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersRequest> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -577,14 +553,12 @@ export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersR
   static equals(a: ListOrganizationUsersRequest | PlainMessage<ListOrganizationUsersRequest> | undefined, b: ListOrganizationUsersRequest | PlainMessage<ListOrganizationUsersRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationUsersRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse
  */
 export class ListOrganizationUsersResponse extends Message<ListOrganizationUsersResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.OrganizationUser users = 1;
    */
@@ -624,14 +598,12 @@ export class ListOrganizationUsersResponse extends Message<ListOrganizationUsers
   static equals(a: ListOrganizationUsersResponse | PlainMessage<ListOrganizationUsersResponse> | undefined, b: ListOrganizationUsersResponse | PlainMessage<ListOrganizationUsersResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationUsersResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteUserRequest
  */
 export class DeleteUserRequest extends Message<DeleteUserRequest> {
-
   constructor(data?: PartialMessage<DeleteUserRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -657,14 +629,12 @@ export class DeleteUserRequest extends Message<DeleteUserRequest> {
   static equals(a: DeleteUserRequest | PlainMessage<DeleteUserRequest> | undefined, b: DeleteUserRequest | PlainMessage<DeleteUserRequest> | undefined): boolean {
     return proto3.util.equals(DeleteUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteUserResponse
  */
 export class DeleteUserResponse extends Message<DeleteUserResponse> {
-
   constructor(data?: PartialMessage<DeleteUserResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -690,14 +660,12 @@ export class DeleteUserResponse extends Message<DeleteUserResponse> {
   static equals(a: DeleteUserResponse | PlainMessage<DeleteUserResponse> | undefined, b: DeleteUserResponse | PlainMessage<DeleteUserResponse> | undefined): boolean {
     return proto3.util.equals(DeleteUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeactivateUserRequest
  */
 export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -729,14 +697,12 @@ export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
   static equals(a: DeactivateUserRequest | PlainMessage<DeactivateUserRequest> | undefined, b: DeactivateUserRequest | PlainMessage<DeactivateUserRequest> | undefined): boolean {
     return proto3.util.equals(DeactivateUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeactivateUserResponse
  */
 export class DeactivateUserResponse extends Message<DeactivateUserResponse> {
-
   constructor(data?: PartialMessage<DeactivateUserResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -762,14 +728,12 @@ export class DeactivateUserResponse extends Message<DeactivateUserResponse> {
   static equals(a: DeactivateUserResponse | PlainMessage<DeactivateUserResponse> | undefined, b: DeactivateUserResponse | PlainMessage<DeactivateUserResponse> | undefined): boolean {
     return proto3.util.equals(DeactivateUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest
  */
 export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleRequest> {
-
   /**
    * The ID of the user for which to be updated a role.
    *
@@ -811,14 +775,12 @@ export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleReq
   static equals(a: UpdateUserServerRoleRequest | PlainMessage<UpdateUserServerRoleRequest> | undefined, b: UpdateUserServerRoleRequest | PlainMessage<UpdateUserServerRoleRequest> | undefined): boolean {
     return proto3.util.equals(UpdateUserServerRoleRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse
  */
 export class UpdateUserServerRoleResponse extends Message<UpdateUserServerRoleResponse> {
-
   constructor(data?: PartialMessage<UpdateUserServerRoleResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -844,14 +806,12 @@ export class UpdateUserServerRoleResponse extends Message<UpdateUserServerRoleRe
   static equals(a: UpdateUserServerRoleResponse | PlainMessage<UpdateUserServerRoleResponse> | undefined, b: UpdateUserServerRoleResponse | PlainMessage<UpdateUserServerRoleResponse> | undefined): boolean {
     return proto3.util.equals(UpdateUserServerRoleResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CountUsersRequest
  */
 export class CountUsersRequest extends Message<CountUsersRequest> {
-
   /**
    * If the user_state_filter is unspecified, all users are included.
    *
@@ -885,14 +845,12 @@ export class CountUsersRequest extends Message<CountUsersRequest> {
   static equals(a: CountUsersRequest | PlainMessage<CountUsersRequest> | undefined, b: CountUsersRequest | PlainMessage<CountUsersRequest> | undefined): boolean {
     return proto3.util.equals(CountUsersRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CountUsersResponse
  */
 export class CountUsersResponse extends Message<CountUsersResponse> {
-
   /**
    * @generated from field: uint32 total_count = 1;
    */
@@ -924,6 +882,5 @@ export class CountUsersResponse extends Message<CountUsersResponse> {
   static equals(a: CountUsersResponse | PlainMessage<CountUsersResponse> | undefined, b: CountUsersResponse | PlainMessage<CountUsersResponse> | undefined): boolean {
     return proto3.util.equals(CountUsersResponse, a, b);
   }
-
 }
 

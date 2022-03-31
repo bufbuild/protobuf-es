@@ -107,7 +107,6 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.Any
  */
 export class Any extends Message<Any> {
-
   /**
    * A URL/resource name that uniquely identifies the type of the serialized
    * protocol buffer message. This string must contain at least
@@ -257,6 +256,5 @@ export class Any extends Message<Any> {
   static equals(a: Any | PlainMessage<Any> | undefined, b: Any | PlainMessage<Any> | undefined): boolean {
     return proto3.util.equals(Any, a, b);
   }
-
 }
 

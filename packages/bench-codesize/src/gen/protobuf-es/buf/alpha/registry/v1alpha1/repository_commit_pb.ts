@@ -24,7 +24,6 @@ import {RepositoryTag} from "./repository_tag_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryCommit
  */
 export class RepositoryCommit extends Message<RepositoryCommit> {
-
   /**
    * primary key, unique, immutable
    *
@@ -118,14 +117,12 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
   static equals(a: RepositoryCommit | PlainMessage<RepositoryCommit> | undefined, b: RepositoryCommit | PlainMessage<RepositoryCommit> | undefined): boolean {
     return proto3.util.equals(RepositoryCommit, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchRequest
  */
 export class ListRepositoryCommitsByBranchRequest extends Message<ListRepositoryCommitsByBranchRequest> {
-
   /**
    * The owner of the repository which the repository branch belongs to.
    *
@@ -193,14 +190,12 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
   static equals(a: ListRepositoryCommitsByBranchRequest | PlainMessage<ListRepositoryCommitsByBranchRequest> | undefined, b: ListRepositoryCommitsByBranchRequest | PlainMessage<ListRepositoryCommitsByBranchRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByBranchRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchResponse
  */
 export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositoryCommitsByBranchResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryCommit repository_commits = 1;
    */
@@ -238,14 +233,12 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
   static equals(a: ListRepositoryCommitsByBranchResponse | PlainMessage<ListRepositoryCommitsByBranchResponse> | undefined, b: ListRepositoryCommitsByBranchResponse | PlainMessage<ListRepositoryCommitsByBranchResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByBranchResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceRequest
  */
 export class ListRepositoryCommitsByReferenceRequest extends Message<ListRepositoryCommitsByReferenceRequest> {
-
   /**
    * The owner of the repository which the repository reference belongs to.
    *
@@ -313,14 +306,12 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
   static equals(a: ListRepositoryCommitsByReferenceRequest | PlainMessage<ListRepositoryCommitsByReferenceRequest> | undefined, b: ListRepositoryCommitsByReferenceRequest | PlainMessage<ListRepositoryCommitsByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByReferenceRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceResponse
  */
 export class ListRepositoryCommitsByReferenceResponse extends Message<ListRepositoryCommitsByReferenceResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryCommit repository_commits = 1;
    */
@@ -358,14 +349,12 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
   static equals(a: ListRepositoryCommitsByReferenceResponse | PlainMessage<ListRepositoryCommitsByReferenceResponse> | undefined, b: ListRepositoryCommitsByReferenceResponse | PlainMessage<ListRepositoryCommitsByReferenceResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByReferenceResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceRequest
  */
 export class GetRepositoryCommitByReferenceRequest extends Message<GetRepositoryCommitByReferenceRequest> {
-
   /**
    * The owner of the repository which the repository branch belongs to.
    *
@@ -415,14 +404,12 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
   static equals(a: GetRepositoryCommitByReferenceRequest | PlainMessage<GetRepositoryCommitByReferenceRequest> | undefined, b: GetRepositoryCommitByReferenceRequest | PlainMessage<GetRepositoryCommitByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitByReferenceRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceResponse
  */
 export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositoryCommitByReferenceResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryCommit repository_commit = 1;
    */
@@ -454,14 +441,12 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
   static equals(a: GetRepositoryCommitByReferenceResponse | PlainMessage<GetRepositoryCommitByReferenceResponse> | undefined, b: GetRepositoryCommitByReferenceResponse | PlainMessage<GetRepositoryCommitByReferenceResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitByReferenceResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdRequest
  */
 export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositoryCommitBySequenceIdRequest> {
-
   /**
    * The owner of the repository which the repository branch belongs to.
    *
@@ -519,14 +504,12 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
   static equals(a: GetRepositoryCommitBySequenceIdRequest | PlainMessage<GetRepositoryCommitBySequenceIdRequest> | undefined, b: GetRepositoryCommitBySequenceIdRequest | PlainMessage<GetRepositoryCommitBySequenceIdRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitBySequenceIdRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdResponse
  */
 export class GetRepositoryCommitBySequenceIdResponse extends Message<GetRepositoryCommitBySequenceIdResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryCommit repository_commit = 1;
    */
@@ -558,6 +541,5 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
   static equals(a: GetRepositoryCommitBySequenceIdResponse | PlainMessage<GetRepositoryCommitBySequenceIdResponse> | undefined, b: GetRepositoryCommitBySequenceIdResponse | PlainMessage<GetRepositoryCommitBySequenceIdResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitBySequenceIdResponse, a, b);
   }
-
 }
 

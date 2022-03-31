@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.ScalarValuesMessage
  */
 export declare class ScalarValuesMessage extends Message<ScalarValuesMessage> {
-
   /**
    * @generated from field: double double_field = 1;
    */
@@ -112,14 +111,12 @@ export declare class ScalarValuesMessage extends Message<ScalarValuesMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ScalarValuesMessage;
 
   static equals(a: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined, b: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
 export declare class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMessage> {
-
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -208,6 +205,5 @@ export declare class RepeatedScalarValuesMessage extends Message<RepeatedScalarV
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedScalarValuesMessage;
 
   static equals(a: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined, b: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined): boolean;
-
 }
 

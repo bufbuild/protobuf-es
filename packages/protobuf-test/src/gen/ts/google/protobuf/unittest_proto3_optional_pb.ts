@@ -39,7 +39,6 @@ import {Message, proto3, protoInt64} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest.TestProto3Optional
  */
 export class TestProto3Optional extends Message<TestProto3Optional> {
-
   /**
    * Singular
    *
@@ -195,14 +194,12 @@ export class TestProto3Optional extends Message<TestProto3Optional> {
   static equals(a: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined, b: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined): boolean {
     return proto3.util.equals(TestProto3Optional, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestProto3Optional.NestedEnum
  */
 export enum TestProto3Optional_NestedEnum {
-
   /**
    * @generated from enum value: UNSPECIFIED = 0;
    */
@@ -229,9 +226,7 @@ export enum TestProto3Optional_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestProto3Optional_NestedEnum)
 proto3.util.setEnumType(TestProto3Optional_NestedEnum, "protobuf_unittest.TestProto3Optional.NestedEnum", [
   {no: 0, name: "UNSPECIFIED"},
@@ -241,12 +236,10 @@ proto3.util.setEnumType(TestProto3Optional_NestedEnum, "protobuf_unittest.TestPr
   {no: -1, name: "NEG"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
  */
 export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional_NestedMessage> {
-
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
    * a local variable named "b" in one of the generated methods.  Doh.
@@ -282,15 +275,12 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
   static equals(a: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined, b: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3Optional_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
  */
 export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage> {
-
   /**
    * @generated from field: protobuf_unittest.TestProto3OptionalMessage.NestedMessage nested_message = 1;
    */
@@ -328,14 +318,12 @@ export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage
   static equals(a: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined, b: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3OptionalMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage.NestedMessage
  */
 export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3OptionalMessage_NestedMessage> {
-
   /**
    * @generated from field: string s = 1;
    */
@@ -367,15 +355,12 @@ export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3O
   static equals(a: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined, b: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3OptionalMessage_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
  */
 export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> {
-
   constructor(data?: PartialMessage<Proto3OptionalExtensions>) {
     super();
     proto3.util.initPartial(data, this);
@@ -401,6 +386,5 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
   static equals(a: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined, b: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined): boolean {
     return proto3.util.equals(Proto3OptionalExtensions, a, b);
   }
-
 }
 

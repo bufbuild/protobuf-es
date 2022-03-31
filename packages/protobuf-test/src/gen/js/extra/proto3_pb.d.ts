@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.Proto3Enum
  */
 export declare enum Proto3Enum {
-
   /**
    * @generated from enum value: PROTO3_ENUM_UNSPECIFIED = 0;
    */
@@ -38,14 +37,12 @@ export declare enum Proto3Enum {
    * @generated from enum value: PROTO3_ENUM_NO = 2;
    */
   NO = 2,
-
 }
 
 /**
  * @generated from message spec.Proto3PackedMessage
  */
 export declare class Proto3PackedMessage extends Message<Proto3PackedMessage> {
-
   /**
    * @generated from field: repeated double packed_double_field = 101 [packed = true];
    */
@@ -74,14 +71,12 @@ export declare class Proto3PackedMessage extends Message<Proto3PackedMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3PackedMessage;
 
   static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
 export declare class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
-
   /**
    * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
    */
@@ -110,14 +105,12 @@ export declare class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnpackedMessage;
 
   static equals(a: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined, b: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
 export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
-
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -146,14 +139,12 @@ export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage;
 
   static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto3OptionalMessage
  */
 export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
-
   /**
    * @generated from field: optional string string_field = 1;
    */
@@ -187,6 +178,5 @@ export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalMessage;
 
   static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean;
-
 }
 

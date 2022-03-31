@@ -50,7 +50,6 @@ import type {LazyMessage} from "./unittest_lazy_dependencies_custom_option_pb.js
  * @generated from message protobuf_unittest.lazy_imports.ImportedMessage
  */
 export declare class ImportedMessage extends Message<ImportedMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.lazy_imports.LazyMessage lazy_message = 1;
    */
@@ -69,14 +68,12 @@ export declare class ImportedMessage extends Message<ImportedMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportedMessage;
 
   static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
 export declare class MessageCustomOption extends Message<MessageCustomOption> {
-
   constructor(data?: PartialMessage<MessageCustomOption>);
 
   static readonly runtime: typeof proto2;
@@ -90,14 +87,12 @@ export declare class MessageCustomOption extends Message<MessageCustomOption> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption;
 
   static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
 export declare class MessageCustomOption2 extends Message<MessageCustomOption2> {
-
   constructor(data?: PartialMessage<MessageCustomOption2>);
 
   static readonly runtime: typeof proto2;
@@ -111,6 +106,5 @@ export declare class MessageCustomOption2 extends Message<MessageCustomOption2> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption2;
 
   static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean;
-
 }
 

@@ -41,7 +41,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum google.protobuf.Syntax
  */
 export declare enum Syntax {
-
   /**
    * Syntax `proto2`.
    *
@@ -55,7 +54,6 @@ export declare enum Syntax {
    * @generated from enum value: SYNTAX_PROTO3 = 1;
    */
   PROTO3 = 1,
-
 }
 
 /**
@@ -64,7 +62,6 @@ export declare enum Syntax {
  * @generated from message google.protobuf.Type
  */
 export declare class Type extends Message<Type> {
-
   /**
    * The fully qualified message name.
    *
@@ -120,7 +117,6 @@ export declare class Type extends Message<Type> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Type;
 
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean;
-
 }
 
 /**
@@ -129,7 +125,6 @@ export declare class Type extends Message<Type> {
  * @generated from message google.protobuf.Field
  */
 export declare class Field extends Message<Field> {
-
   /**
    * The field type.
    *
@@ -215,7 +210,6 @@ export declare class Field extends Message<Field> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Field;
 
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean;
-
 }
 
 /**
@@ -224,7 +218,6 @@ export declare class Field extends Message<Field> {
  * @generated from enum google.protobuf.Field.Kind
  */
 export declare enum Field_Kind {
-
   /**
    * Field type unknown.
    *
@@ -357,9 +350,7 @@ export declare enum Field_Kind {
    * @generated from enum value: TYPE_SINT64 = 18;
    */
   TYPE_SINT64 = 18,
-
 }
-
 
 /**
  * Whether a field is optional, required, or repeated.
@@ -367,7 +358,6 @@ export declare enum Field_Kind {
  * @generated from enum google.protobuf.Field.Cardinality
  */
 export declare enum Field_Cardinality {
-
   /**
    * For fields with unknown cardinality.
    *
@@ -395,9 +385,7 @@ export declare enum Field_Cardinality {
    * @generated from enum value: CARDINALITY_REPEATED = 3;
    */
   REPEATED = 3,
-
 }
-
 
 /**
  * Enum type definition.
@@ -405,7 +393,6 @@ export declare enum Field_Cardinality {
  * @generated from message google.protobuf.Enum
  */
 export declare class Enum extends Message<Enum> {
-
   /**
    * Enum type name.
    *
@@ -454,7 +441,6 @@ export declare class Enum extends Message<Enum> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Enum;
 
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean;
-
 }
 
 /**
@@ -463,7 +449,6 @@ export declare class Enum extends Message<Enum> {
  * @generated from message google.protobuf.EnumValue
  */
 export declare class EnumValue extends Message<EnumValue> {
-
   /**
    * Enum value name.
    *
@@ -498,7 +483,6 @@ export declare class EnumValue extends Message<EnumValue> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValue;
 
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean;
-
 }
 
 /**
@@ -508,7 +492,6 @@ export declare class EnumValue extends Message<EnumValue> {
  * @generated from message google.protobuf.Option
  */
 export declare class Option extends Message<Option> {
-
   /**
    * The option's name. For protobuf built-in options (options defined in
    * descriptor.proto), this is the short name. For example, `"map_entry"`.
@@ -542,6 +525,5 @@ export declare class Option extends Message<Option> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Option;
 
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean;
-
 }
 

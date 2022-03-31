@@ -23,7 +23,6 @@ import {Message as Message$1, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.ReservedPropertyNames
  */
 export class ReservedPropertyNames extends Message$1<ReservedPropertyNames> {
-
   constructor(data?: PartialMessage$1<ReservedPropertyNames>) {
     super();
     proto3.util.initPartial(data, this);
@@ -49,14 +48,12 @@ export class ReservedPropertyNames extends Message$1<ReservedPropertyNames> {
   static equals(a: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined, b: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames, a, b);
   }
-
 }
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
  */
 export enum ReservedPropertyNames_EnumBuiltIn {
-
   /**
    * @generated from enum value: constructor = 0;
    */
@@ -76,9 +73,7 @@ export enum ReservedPropertyNames_EnumBuiltIn {
    * @generated from enum value: value_of = 3;
    */
   value_of = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltIn)
 proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropertyNames.EnumBuiltIn", [
   {no: 0, name: "constructor"},
@@ -87,12 +82,10 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropert
   {no: 3, name: "value_of"},
 ]);
 
-
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
  */
 export enum ReservedPropertyNames_EnumRuntime {
-
   /**
    * @generated from enum value: to_json = 0;
    */
@@ -137,9 +130,7 @@ export enum ReservedPropertyNames_EnumRuntime {
    * @generated from enum value: to_json_string = 14;
    */
   to_json_string = 14,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumRuntime)
 proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropertyNames.EnumRuntime", [
   {no: 0, name: "to_json"},
@@ -153,12 +144,10 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropert
   {no: 14, name: "to_json_string"},
 ]);
 
-
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
  */
 export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNames_BuiltIn> {
-
   /**
    * built-in constructor()
    *
@@ -216,15 +205,12 @@ export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNam
   static equals(a: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined, b: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_BuiltIn, a, b);
   }
-
 }
-
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
  */
 export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNames_Runtime> {
-
   /**
    * runtime toJson()
    *
@@ -322,15 +308,12 @@ export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNam
   static equals(a: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined, b: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_Runtime, a, b);
   }
-
 }
-
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
  */
 export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropertyNames_OneofBultIn> {
-
   /**
    * @generated from oneof spec.ReservedPropertyNames.OneofBultIn.built_in
    */
@@ -389,15 +372,12 @@ export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropert
   static equals(a: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined, b: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_OneofBultIn, a, b);
   }
-
 }
-
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
  */
 export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedPropertyNames_OneofRuntime> {
-
   /**
    * @generated from oneof spec.ReservedPropertyNames.OneofRuntime.runtime
    */
@@ -491,9 +471,7 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
   static equals(a: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined, b: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_OneofRuntime, a, b);
   }
-
 }
-
 
 /**
  * reserved identifier
@@ -501,7 +479,6 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
  * @generated from message spec.interface
  */
 export class interface$ extends Message$1<interface$> {
-
   constructor(data?: PartialMessage$1<interface$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -527,7 +504,6 @@ export class interface$ extends Message$1<interface$> {
   static equals(a: interface$ | PlainMessage$1<interface$> | undefined, b: interface$ | PlainMessage$1<interface$> | undefined): boolean {
     return proto3.util.equals(interface$, a, b);
   }
-
 }
 
 /**
@@ -536,7 +512,6 @@ export class interface$ extends Message$1<interface$> {
  * @generated from message spec.function
  */
 export class function$ extends Message$1<function$> {
-
   constructor(data?: PartialMessage$1<function$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -562,7 +537,6 @@ export class function$ extends Message$1<function$> {
   static equals(a: function$ | PlainMessage$1<function$> | undefined, b: function$ | PlainMessage$1<function$> | undefined): boolean {
     return proto3.util.equals(function$, a, b);
   }
-
 }
 
 /**
@@ -571,7 +545,6 @@ export class function$ extends Message$1<function$> {
  * @generated from message spec.instanceof
  */
 export class instanceof$ extends Message$1<instanceof$> {
-
   constructor(data?: PartialMessage$1<instanceof$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -597,7 +570,6 @@ export class instanceof$ extends Message$1<instanceof$> {
   static equals(a: instanceof$ | PlainMessage$1<instanceof$> | undefined, b: instanceof$ | PlainMessage$1<instanceof$> | undefined): boolean {
     return proto3.util.equals(instanceof$, a, b);
   }
-
 }
 
 /**
@@ -606,7 +578,6 @@ export class instanceof$ extends Message$1<instanceof$> {
  * @generated from message spec.switch
  */
 export class switch$ extends Message$1<switch$> {
-
   constructor(data?: PartialMessage$1<switch$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -632,7 +603,6 @@ export class switch$ extends Message$1<switch$> {
   static equals(a: switch$ | PlainMessage$1<switch$> | undefined, b: switch$ | PlainMessage$1<switch$> | undefined): boolean {
     return proto3.util.equals(switch$, a, b);
   }
-
 }
 
 /**
@@ -641,7 +611,6 @@ export class switch$ extends Message$1<switch$> {
  * @generated from message spec.case
  */
 export class case$ extends Message$1<case$> {
-
   constructor(data?: PartialMessage$1<case$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -667,7 +636,6 @@ export class case$ extends Message$1<case$> {
   static equals(a: case$ | PlainMessage$1<case$> | undefined, b: case$ | PlainMessage$1<case$> | undefined): boolean {
     return proto3.util.equals(case$, a, b);
   }
-
 }
 
 /**
@@ -676,7 +644,6 @@ export class case$ extends Message$1<case$> {
  * @generated from message spec.return
  */
 export class return$ extends Message$1<return$> {
-
   constructor(data?: PartialMessage$1<return$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -702,7 +669,6 @@ export class return$ extends Message$1<return$> {
   static equals(a: return$ | PlainMessage$1<return$> | undefined, b: return$ | PlainMessage$1<return$> | undefined): boolean {
     return proto3.util.equals(return$, a, b);
   }
-
 }
 
 /**
@@ -711,7 +677,6 @@ export class return$ extends Message$1<return$> {
  * @generated from message spec.Message
  */
 export class Message extends Message$1<Message> {
-
   constructor(data?: PartialMessage$1<Message>) {
     super();
     proto3.util.initPartial(data, this);
@@ -737,7 +702,6 @@ export class Message extends Message$1<Message> {
   static equals(a: Message | PlainMessage$1<Message> | undefined, b: Message | PlainMessage$1<Message> | undefined): boolean {
     return proto3.util.equals(Message, a, b);
   }
-
 }
 
 /**
@@ -746,7 +710,6 @@ export class Message extends Message$1<Message> {
  * @generated from message spec.PartialMessage
  */
 export class PartialMessage extends Message$1<PartialMessage> {
-
   constructor(data?: PartialMessage$1<PartialMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -772,7 +735,6 @@ export class PartialMessage extends Message$1<PartialMessage> {
   static equals(a: PartialMessage | PlainMessage$1<PartialMessage> | undefined, b: PartialMessage | PlainMessage$1<PartialMessage> | undefined): boolean {
     return proto3.util.equals(PartialMessage, a, b);
   }
-
 }
 
 /**
@@ -781,7 +743,6 @@ export class PartialMessage extends Message$1<PartialMessage> {
  * @generated from message spec.PlainMessage
  */
 export class PlainMessage extends Message$1<PlainMessage> {
-
   constructor(data?: PartialMessage$1<PlainMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -807,7 +768,6 @@ export class PlainMessage extends Message$1<PlainMessage> {
   static equals(a: PlainMessage | PlainMessage$1<PlainMessage> | undefined, b: PlainMessage | PlainMessage$1<PlainMessage> | undefined): boolean {
     return proto3.util.equals(PlainMessage, a, b);
   }
-
 }
 
 /**
@@ -818,7 +778,6 @@ export class PlainMessage extends Message$1<PlainMessage> {
  * @generated from message spec.Error
  */
 export class Error extends Message$1<Error> {
-
   /**
    * @generated from field: string field_name = 1;
    */
@@ -856,7 +815,6 @@ export class Error extends Message$1<Error> {
   static equals(a: Error | PlainMessage$1<Error> | undefined, b: Error | PlainMessage$1<Error> | undefined): boolean {
     return proto3.util.equals(Error, a, b);
   }
-
 }
 
 /**
@@ -865,7 +823,6 @@ export class Error extends Message$1<Error> {
  * @generated from message spec.Object
  */
 export class Object$ extends Message$1<Object$> {
-
   constructor(data?: PartialMessage$1<Object$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -891,14 +848,12 @@ export class Object$ extends Message$1<Object$> {
   static equals(a: Object$ | PlainMessage$1<Object$> | undefined, b: Object$ | PlainMessage$1<Object$> | undefined): boolean {
     return proto3.util.equals(Object$, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.object
  */
 export class object$ extends Message$1<object$> {
-
   constructor(data?: PartialMessage$1<object$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -924,7 +879,6 @@ export class object$ extends Message$1<object$> {
   static equals(a: object$ | PlainMessage$1<object$> | undefined, b: object$ | PlainMessage$1<object$> | undefined): boolean {
     return proto3.util.equals(object$, a, b);
   }
-
 }
 
 /**
@@ -933,7 +887,6 @@ export class object$ extends Message$1<object$> {
  * @generated from message spec.array
  */
 export class array extends Message$1<array> {
-
   constructor(data?: PartialMessage$1<array>) {
     super();
     proto3.util.initPartial(data, this);
@@ -959,7 +912,6 @@ export class array extends Message$1<array> {
   static equals(a: array | PlainMessage$1<array> | undefined, b: array | PlainMessage$1<array> | undefined): boolean {
     return proto3.util.equals(array, a, b);
   }
-
 }
 
 /**
@@ -968,7 +920,6 @@ export class array extends Message$1<array> {
  * @generated from message spec.string
  */
 export class string$ extends Message$1<string$> {
-
   constructor(data?: PartialMessage$1<string$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -994,7 +945,6 @@ export class string$ extends Message$1<string$> {
   static equals(a: string$ | PlainMessage$1<string$> | undefined, b: string$ | PlainMessage$1<string$> | undefined): boolean {
     return proto3.util.equals(string$, a, b);
   }
-
 }
 
 /**
@@ -1003,7 +953,6 @@ export class string$ extends Message$1<string$> {
  * @generated from message spec.number
  */
 export class number$ extends Message$1<number$> {
-
   constructor(data?: PartialMessage$1<number$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1029,7 +978,6 @@ export class number$ extends Message$1<number$> {
   static equals(a: number$ | PlainMessage$1<number$> | undefined, b: number$ | PlainMessage$1<number$> | undefined): boolean {
     return proto3.util.equals(number$, a, b);
   }
-
 }
 
 /**
@@ -1038,7 +986,6 @@ export class number$ extends Message$1<number$> {
  * @generated from message spec.boolean
  */
 export class boolean$ extends Message$1<boolean$> {
-
   constructor(data?: PartialMessage$1<boolean$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1064,7 +1011,6 @@ export class boolean$ extends Message$1<boolean$> {
   static equals(a: boolean$ | PlainMessage$1<boolean$> | undefined, b: boolean$ | PlainMessage$1<boolean$> | undefined): boolean {
     return proto3.util.equals(boolean$, a, b);
   }
-
 }
 
 /**
@@ -1073,7 +1019,6 @@ export class boolean$ extends Message$1<boolean$> {
  * @generated from message spec.bigint
  */
 export class bigint$ extends Message$1<bigint$> {
-
   constructor(data?: PartialMessage$1<bigint$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1099,7 +1044,6 @@ export class bigint$ extends Message$1<bigint$> {
   static equals(a: bigint$ | PlainMessage$1<bigint$> | undefined, b: bigint$ | PlainMessage$1<bigint$> | undefined): boolean {
     return proto3.util.equals(bigint$, a, b);
   }
-
 }
 
 /**
@@ -1108,7 +1052,6 @@ export class bigint$ extends Message$1<bigint$> {
  * @generated from message spec.Uint8Array
  */
 export class Uint8Array$ extends Message$1<Uint8Array$> {
-
   constructor(data?: PartialMessage$1<Uint8Array$>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1134,7 +1077,6 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
   static equals(a: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined, b: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined): boolean {
     return proto3.util.equals(Uint8Array$, a, b);
   }
-
 }
 
 /**
@@ -1143,7 +1085,6 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
  * @generated from message spec.Array
  */
 export class Array extends Message$1<Array> {
-
   constructor(data?: PartialMessage$1<Array>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1169,7 +1110,6 @@ export class Array extends Message$1<Array> {
   static equals(a: Array | PlainMessage$1<Array> | undefined, b: Array | PlainMessage$1<Array> | undefined): boolean {
     return proto3.util.equals(Array, a, b);
   }
-
 }
 
 /**
@@ -1178,7 +1118,6 @@ export class Array extends Message$1<Array> {
  * @generated from message spec.String
  */
 export class String extends Message$1<String> {
-
   constructor(data?: PartialMessage$1<String>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1204,7 +1143,6 @@ export class String extends Message$1<String> {
   static equals(a: String | PlainMessage$1<String> | undefined, b: String | PlainMessage$1<String> | undefined): boolean {
     return proto3.util.equals(String, a, b);
   }
-
 }
 
 /**
@@ -1213,7 +1151,6 @@ export class String extends Message$1<String> {
  * @generated from message spec.Number
  */
 export class Number extends Message$1<Number> {
-
   constructor(data?: PartialMessage$1<Number>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1239,7 +1176,6 @@ export class Number extends Message$1<Number> {
   static equals(a: Number | PlainMessage$1<Number> | undefined, b: Number | PlainMessage$1<Number> | undefined): boolean {
     return proto3.util.equals(Number, a, b);
   }
-
 }
 
 /**
@@ -1248,7 +1184,6 @@ export class Number extends Message$1<Number> {
  * @generated from message spec.Boolean
  */
 export class Boolean extends Message$1<Boolean> {
-
   constructor(data?: PartialMessage$1<Boolean>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1274,7 +1209,6 @@ export class Boolean extends Message$1<Boolean> {
   static equals(a: Boolean | PlainMessage$1<Boolean> | undefined, b: Boolean | PlainMessage$1<Boolean> | undefined): boolean {
     return proto3.util.equals(Boolean, a, b);
   }
-
 }
 
 /**
@@ -1283,7 +1217,6 @@ export class Boolean extends Message$1<Boolean> {
  * @generated from message spec.BigInt
  */
 export class BigInt extends Message$1<BigInt> {
-
   constructor(data?: PartialMessage$1<BigInt>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1309,14 +1242,12 @@ export class BigInt extends Message$1<BigInt> {
   static equals(a: BigInt | PlainMessage$1<BigInt> | undefined, b: BigInt | PlainMessage$1<BigInt> | undefined): boolean {
     return proto3.util.equals(BigInt, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.ClashParent
  */
 export class ClashParent extends Message$1<ClashParent> {
-
   constructor(data?: PartialMessage$1<ClashParent>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1342,7 +1273,6 @@ export class ClashParent extends Message$1<ClashParent> {
   static equals(a: ClashParent | PlainMessage$1<ClashParent> | undefined, b: ClashParent | PlainMessage$1<ClashParent> | undefined): boolean {
     return proto3.util.equals(ClashParent, a, b);
   }
-
 }
 
 /**
@@ -1351,7 +1281,6 @@ export class ClashParent extends Message$1<ClashParent> {
  * @generated from message spec.ClashParent.ClashChild
  */
 export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
-
   constructor(data?: PartialMessage$1<ClashParent_ClashChild>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1377,15 +1306,12 @@ export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
   static equals(a: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined, b: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined): boolean {
     return proto3.util.equals(ClashParent_ClashChild, a, b);
   }
-
 }
-
 
 /**
  * @generated from message spec.NoClashFields
  */
 export class NoClashFields extends Message$1<NoClashFields> {
-
   /**
    * ok as object property
    *
@@ -1459,14 +1385,12 @@ export class NoClashFields extends Message$1<NoClashFields> {
   static equals(a: NoClashFields | PlainMessage$1<NoClashFields> | undefined, b: NoClashFields | PlainMessage$1<NoClashFields> | undefined): boolean {
     return proto3.util.equals(NoClashFields, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.NoClashOneof
  */
 export class NoClashOneof extends Message$1<NoClashOneof> {
-
   /**
    * @generated from oneof spec.NoClashOneof.kind
    */
@@ -1551,14 +1475,12 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
   static equals(a: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined, b: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined): boolean {
     return proto3.util.equals(NoClashOneof, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.NoClashOneofADT
  */
 export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
-
   /**
    * @generated from field: string case = 1;
    */
@@ -1596,7 +1518,6 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean {
     return proto3.util.equals(NoClashOneofADT, a, b);
   }
-
 }
 
 /**
@@ -1605,7 +1526,6 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
  * @generated from message spec.NoClashEnumWrap
  */
 export class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
-
   constructor(data?: PartialMessage$1<NoClashEnumWrap>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1631,14 +1551,12 @@ export class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
   static equals(a: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined, b: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined): boolean {
     return proto3.util.equals(NoClashEnumWrap, a, b);
   }
-
 }
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X
  */
 export enum NoClashEnumWrap_X {
-
   /**
    * ok as object property
    *
@@ -1680,9 +1598,7 @@ export enum NoClashEnumWrap_X {
    * @generated from enum value: return = 6;
    */
   return = 6,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(NoClashEnumWrap_X)
 proto3.util.setEnumType(NoClashEnumWrap_X, "spec.NoClashEnumWrap.X", [
   {no: 0, name: "instanceof"},
@@ -1692,5 +1608,4 @@ proto3.util.setEnumType(NoClashEnumWrap_X, "spec.NoClashEnumWrap.X", [
   {no: 5, name: "interface"},
   {no: 6, name: "return"},
 ]);
-
 

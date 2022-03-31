@@ -126,7 +126,6 @@ export const TestAllTypes_NestedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message proto3_arena_lite_unittest.TestAllTypes.NestedMessage
  */
@@ -137,7 +136,6 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
   ],
   {localName: "TestAllTypes_NestedMessage"},
 );
-
 
 /**
  * @generated from message proto3_arena_lite_unittest.TestPackedTypes

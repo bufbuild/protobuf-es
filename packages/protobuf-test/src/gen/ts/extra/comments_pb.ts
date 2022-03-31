@@ -35,7 +35,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.EnumWithComments
  */
 export enum EnumWithComments {
-
   /**
    * Comment before enum value.
    *
@@ -44,9 +43,7 @@ export enum EnumWithComments {
    * @generated from enum value: VALUE = 0;
    */
   VALUE = 0,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(EnumWithComments)
 proto3.util.setEnumType(EnumWithComments, "spec.EnumWithComments", [
   {no: 0, name: "VALUE"},
@@ -59,7 +56,6 @@ proto3.util.setEnumType(EnumWithComments, "spec.EnumWithComments", [
  * @deprecated
  */
 export enum DeprecatedEnumWithComment {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_A = 0;
    */
@@ -69,9 +65,7 @@ export enum DeprecatedEnumWithComment {
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_B = 1;
    */
   B = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnumWithComment)
 proto3.util.setEnumType(DeprecatedEnumWithComment, "spec.DeprecatedEnumWithComment", [
   {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A"},
@@ -83,7 +77,6 @@ proto3.util.setEnumType(DeprecatedEnumWithComment, "spec.DeprecatedEnumWithComme
  * @deprecated
  */
 export enum DeprecatedEnumNoComment {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_A = 0;
    */
@@ -93,9 +86,7 @@ export enum DeprecatedEnumNoComment {
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_B = 1;
    */
   B = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(DeprecatedEnumNoComment)
 proto3.util.setEnumType(DeprecatedEnumNoComment, "spec.DeprecatedEnumNoComment", [
   {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A"},
@@ -108,7 +99,6 @@ proto3.util.setEnumType(DeprecatedEnumNoComment, "spec.DeprecatedEnumNoComment",
  * @generated from message spec.MessageWithComments
  */
 export class MessageWithComments extends Message<MessageWithComments> {
-
   /**
    * Comment before field with 5 lines:
    * line 2, next is empty
@@ -190,7 +180,6 @@ export class MessageWithComments extends Message<MessageWithComments> {
   static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean {
     return proto3.util.equals(MessageWithComments, a, b);
   }
-
 }
 
 /**
@@ -199,7 +188,6 @@ export class MessageWithComments extends Message<MessageWithComments> {
  * @generated from message spec.EmptyMessageWithComment
  */
 export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
-
   constructor(data?: PartialMessage<EmptyMessageWithComment>) {
     super();
     proto3.util.initPartial(data, this);
@@ -225,7 +213,6 @@ export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
   static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean {
     return proto3.util.equals(EmptyMessageWithComment, a, b);
   }
-
 }
 
 /**
@@ -234,7 +221,6 @@ export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
  * @generated from message spec.GoogleCommentExample
  */
 export class GoogleCommentExample extends Message<GoogleCommentExample> {
-
   /**
    * Comment attached to foo.
    *
@@ -314,6 +300,5 @@ export class GoogleCommentExample extends Message<GoogleCommentExample> {
   static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean {
     return proto3.util.equals(GoogleCommentExample, a, b);
   }
-
 }
 

@@ -47,7 +47,6 @@ import {TestMessageSet} from "./unittest_mset_wire_format_pb.js";
  * @generated from message protobuf_unittest.TestMessageSetContainer
  */
 export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
-
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
@@ -79,14 +78,12 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
   static equals(a: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined, b: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined): boolean {
     return proto2.util.equals(TestMessageSetContainer, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
 export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> {
-
   /**
    * @generated from field: optional int32 i = 15;
    */
@@ -130,14 +127,12 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
   static equals(a: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined, b: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined): boolean {
     return proto2.util.equals(TestMessageSetExtension1, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
 export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> {
-
   /**
    * @generated from field: optional string str = 25;
    */
@@ -169,7 +164,6 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean {
     return proto2.util.equals(TestMessageSetExtension2, a, b);
   }
-
 }
 
 /**
@@ -178,7 +172,6 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
  * @generated from message protobuf_unittest.RawMessageSet
  */
 export class RawMessageSet extends Message<RawMessageSet> {
-
   /**
    * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
    */
@@ -210,14 +203,12 @@ export class RawMessageSet extends Message<RawMessageSet> {
   static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean {
     return proto2.util.equals(RawMessageSet, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.RawMessageSet.Item
  */
 export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
-
   /**
    * @generated from field: required int32 type_id = 2;
    */
@@ -255,7 +246,5 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean {
     return proto2.util.equals(RawMessageSet_Item, a, b);
   }
-
 }
-
 

@@ -46,7 +46,6 @@ import type {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
  */
 export declare class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize> {
-
   /**
    * Test that embedding a message which has optimize_for = CODE_SIZE into
    * one optimized for speed works.
@@ -73,6 +72,5 @@ export declare class TestEmbedOptimizedForSize extends Message<TestEmbedOptimize
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
 
   static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean;
-
 }
 

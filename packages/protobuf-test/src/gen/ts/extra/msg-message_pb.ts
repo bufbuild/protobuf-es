@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.MessageFieldMessage
  */
 export class MessageFieldMessage extends Message<MessageFieldMessage> {
-
   /**
    * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
    */
@@ -61,14 +60,12 @@ export class MessageFieldMessage extends Message<MessageFieldMessage> {
   static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean {
     return proto3.util.equals(MessageFieldMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
  */
 export class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage_TestMessage> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -100,7 +97,5 @@ export class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage
   static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean {
     return proto3.util.equals(MessageFieldMessage_TestMessage, a, b);
   }
-
 }
-
 

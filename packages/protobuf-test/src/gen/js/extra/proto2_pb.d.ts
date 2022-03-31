@@ -23,7 +23,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum spec.Proto2Enum
  */
 export declare enum Proto2Enum {
-
   /**
    * @generated from enum value: PROTO2_ENUM_YES = 1;
    */
@@ -33,14 +32,12 @@ export declare enum Proto2Enum {
    * @generated from enum value: PROTO2_ENUM_NO = 2;
    */
   NO = 2,
-
 }
 
 /**
  * @generated from message spec.Proto2PackedMessage
  */
 export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
-
   /**
    * @generated from field: repeated double packed_double_field = 101 [packed = true];
    */
@@ -69,14 +66,12 @@ export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
 
   static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
  */
 export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
-
   /**
    * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
    */
@@ -105,14 +100,12 @@ export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
 
   static equals(a: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined, b: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
 export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPackedMessage> {
-
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -141,14 +134,12 @@ export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2Unspec
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
 
   static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2OptionalMessage
  */
 export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
-
   /**
    * @generated from field: optional string string_field = 1;
    */
@@ -182,14 +173,12 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
 
   static equals(a: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined, b: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
 export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
-
   /**
    * @generated from field: required string string_field = 1;
    */
@@ -223,14 +212,12 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
 
   static equals(a: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined, b: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
 export declare class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefaultsMessage> {
-
   /**
    * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
    */
@@ -264,14 +251,12 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
 
   static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
  */
 export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
-
   /**
    * @generated from field: optional string string_field = 1 [default = "hello \" *\/ "];
    */
@@ -325,14 +310,12 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
 
   static equals(a: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined, b: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.Proto2ChildMessage
  */
 export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
-
   /**
    * @generated from field: optional string string_field = 1;
    */
@@ -351,6 +334,5 @@ export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
 
   static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
-
 }
 

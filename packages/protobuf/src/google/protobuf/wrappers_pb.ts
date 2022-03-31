@@ -37,7 +37,6 @@ import {Message, ScalarType, proto3, protoInt64} from "../../index.js";
  * @generated from message google.protobuf.DoubleValue
  */
 export class DoubleValue extends Message<DoubleValue> {
-
   /**
    * The double value.
    *
@@ -97,7 +96,6 @@ export class DoubleValue extends Message<DoubleValue> {
   static equals(a: DoubleValue | PlainMessage<DoubleValue> | undefined, b: DoubleValue | PlainMessage<DoubleValue> | undefined): boolean {
     return proto3.util.equals(DoubleValue, a, b);
   }
-
 }
 
 /**
@@ -108,7 +106,6 @@ export class DoubleValue extends Message<DoubleValue> {
  * @generated from message google.protobuf.FloatValue
  */
 export class FloatValue extends Message<FloatValue> {
-
   /**
    * The float value.
    *
@@ -168,7 +165,6 @@ export class FloatValue extends Message<FloatValue> {
   static equals(a: FloatValue | PlainMessage<FloatValue> | undefined, b: FloatValue | PlainMessage<FloatValue> | undefined): boolean {
     return proto3.util.equals(FloatValue, a, b);
   }
-
 }
 
 /**
@@ -179,7 +175,6 @@ export class FloatValue extends Message<FloatValue> {
  * @generated from message google.protobuf.Int64Value
  */
 export class Int64Value extends Message<Int64Value> {
-
   /**
    * The int64 value.
    *
@@ -239,7 +234,6 @@ export class Int64Value extends Message<Int64Value> {
   static equals(a: Int64Value | PlainMessage<Int64Value> | undefined, b: Int64Value | PlainMessage<Int64Value> | undefined): boolean {
     return proto3.util.equals(Int64Value, a, b);
   }
-
 }
 
 /**
@@ -250,7 +244,6 @@ export class Int64Value extends Message<Int64Value> {
  * @generated from message google.protobuf.UInt64Value
  */
 export class UInt64Value extends Message<UInt64Value> {
-
   /**
    * The uint64 value.
    *
@@ -310,7 +303,6 @@ export class UInt64Value extends Message<UInt64Value> {
   static equals(a: UInt64Value | PlainMessage<UInt64Value> | undefined, b: UInt64Value | PlainMessage<UInt64Value> | undefined): boolean {
     return proto3.util.equals(UInt64Value, a, b);
   }
-
 }
 
 /**
@@ -321,7 +313,6 @@ export class UInt64Value extends Message<UInt64Value> {
  * @generated from message google.protobuf.Int32Value
  */
 export class Int32Value extends Message<Int32Value> {
-
   /**
    * The int32 value.
    *
@@ -381,7 +372,6 @@ export class Int32Value extends Message<Int32Value> {
   static equals(a: Int32Value | PlainMessage<Int32Value> | undefined, b: Int32Value | PlainMessage<Int32Value> | undefined): boolean {
     return proto3.util.equals(Int32Value, a, b);
   }
-
 }
 
 /**
@@ -392,7 +382,6 @@ export class Int32Value extends Message<Int32Value> {
  * @generated from message google.protobuf.UInt32Value
  */
 export class UInt32Value extends Message<UInt32Value> {
-
   /**
    * The uint32 value.
    *
@@ -452,7 +441,6 @@ export class UInt32Value extends Message<UInt32Value> {
   static equals(a: UInt32Value | PlainMessage<UInt32Value> | undefined, b: UInt32Value | PlainMessage<UInt32Value> | undefined): boolean {
     return proto3.util.equals(UInt32Value, a, b);
   }
-
 }
 
 /**
@@ -463,7 +451,6 @@ export class UInt32Value extends Message<UInt32Value> {
  * @generated from message google.protobuf.BoolValue
  */
 export class BoolValue extends Message<BoolValue> {
-
   /**
    * The bool value.
    *
@@ -523,7 +510,6 @@ export class BoolValue extends Message<BoolValue> {
   static equals(a: BoolValue | PlainMessage<BoolValue> | undefined, b: BoolValue | PlainMessage<BoolValue> | undefined): boolean {
     return proto3.util.equals(BoolValue, a, b);
   }
-
 }
 
 /**
@@ -534,7 +520,6 @@ export class BoolValue extends Message<BoolValue> {
  * @generated from message google.protobuf.StringValue
  */
 export class StringValue extends Message<StringValue> {
-
   /**
    * The string value.
    *
@@ -594,7 +579,6 @@ export class StringValue extends Message<StringValue> {
   static equals(a: StringValue | PlainMessage<StringValue> | undefined, b: StringValue | PlainMessage<StringValue> | undefined): boolean {
     return proto3.util.equals(StringValue, a, b);
   }
-
 }
 
 /**
@@ -605,7 +589,6 @@ export class StringValue extends Message<StringValue> {
  * @generated from message google.protobuf.BytesValue
  */
 export class BytesValue extends Message<BytesValue> {
-
   /**
    * The bytes value.
    *
@@ -665,6 +648,5 @@ export class BytesValue extends Message<BytesValue> {
   static equals(a: BytesValue | PlainMessage<BytesValue> | undefined, b: BytesValue | PlainMessage<BytesValue> | undefined): boolean {
     return proto3.util.equals(BytesValue, a, b);
   }
-
 }
 

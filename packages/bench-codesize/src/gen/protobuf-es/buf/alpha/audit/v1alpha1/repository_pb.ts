@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3, protoInt64} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1Visibility
  */
 export enum BufAlphaRegistryV1Alpha1Visibility {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_UNSPECIFIED = 0;
    */
@@ -38,9 +37,7 @@ export enum BufAlphaRegistryV1Alpha1Visibility {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PRIVATE = 2;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_PRIVATE = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1Visibility)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1Visibility, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1Visibility", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_VISIBILITY_UNSPECIFIED"},
@@ -52,7 +49,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1Visibility, "buf.alpha.audit.v1a
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryBranch
  */
 export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRegistryV1Alpha1RepositoryBranch> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -104,14 +100,12 @@ export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRe
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryBranch | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryBranch> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryBranch | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryBranch> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryBranch, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTag
  */
 export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegistryV1Alpha1RepositoryTag> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -169,14 +163,12 @@ export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegis
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryTag | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTag> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryTag | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTag> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryTag, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryCommit
  */
 export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRegistryV1Alpha1RepositoryCommit> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -250,14 +242,12 @@ export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRe
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryCommit | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryCommit> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryCommit | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryCommit> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryCommit, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack
  */
 export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaRegistryV1Alpha1RepositoryTrack> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -303,6 +293,5 @@ export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaReg
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryTrack | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTrack> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryTrack | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTrack> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryTrack, a, b);
   }
-
 }
 

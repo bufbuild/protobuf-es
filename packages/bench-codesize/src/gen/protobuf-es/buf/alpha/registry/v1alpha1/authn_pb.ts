@@ -24,7 +24,6 @@ import {User} from "./user_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserRequest
  */
 export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
-
   constructor(data?: PartialMessage<GetCurrentUserRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -50,14 +49,12 @@ export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
   static equals(a: GetCurrentUserRequest | PlainMessage<GetCurrentUserRequest> | undefined, b: GetCurrentUserRequest | PlainMessage<GetCurrentUserRequest> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserResponse
  */
 export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -89,14 +86,12 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
   static equals(a: GetCurrentUserResponse | PlainMessage<GetCurrentUserResponse> | undefined, b: GetCurrentUserResponse | PlainMessage<GetCurrentUserResponse> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest
  */
 export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectRequest> {
-
   constructor(data?: PartialMessage<GetCurrentUserSubjectRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -122,14 +117,12 @@ export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectR
   static equals(a: GetCurrentUserSubjectRequest | PlainMessage<GetCurrentUserSubjectRequest> | undefined, b: GetCurrentUserSubjectRequest | PlainMessage<GetCurrentUserSubjectRequest> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserSubjectRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse
  */
 export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubjectResponse> {
-
   /**
    * The user's subject for mapping to user in identity provider.
    * Note: we do not want to make it part of the User response as
@@ -166,6 +159,5 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
   static equals(a: GetCurrentUserSubjectResponse | PlainMessage<GetCurrentUserSubjectResponse> | undefined, b: GetCurrentUserSubjectResponse | PlainMessage<GetCurrentUserSubjectResponse> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserSubjectResponse, a, b);
   }
-
 }
 

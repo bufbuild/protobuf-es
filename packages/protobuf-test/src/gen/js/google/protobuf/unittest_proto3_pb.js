@@ -127,7 +127,6 @@ export const TestAllTypes_NestedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
  */
@@ -138,7 +137,6 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
   ],
   {localName: "TestAllTypes_NestedMessage"},
 );
-
 
 /**
  * @generated from message proto3_unittest.TestPackedTypes
@@ -261,5 +259,4 @@ export const TestOneof2_NestedEnum = proto3.makeEnum(
     {no: 3, name: "BAZ"},
   ],
 );
-
 

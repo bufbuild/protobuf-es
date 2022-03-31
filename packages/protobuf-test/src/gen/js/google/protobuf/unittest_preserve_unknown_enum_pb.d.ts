@@ -39,7 +39,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnum
  */
 export declare enum MyEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -54,14 +53,12 @@ export declare enum MyEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
 
 /**
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
 export declare enum MyEnumPlusExtra {
-
   /**
    * @generated from enum value: E_FOO = 0;
    */
@@ -81,14 +78,12 @@ export declare enum MyEnumPlusExtra {
    * @generated from enum value: E_EXTRA = 3;
    */
   E_EXTRA = 3,
-
 }
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
  */
 export declare class MyMessage extends Message<MyMessage> {
-
   /**
    * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
    */
@@ -141,14 +136,12 @@ export declare class MyMessage extends Message<MyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
 
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
 export declare class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
-
   /**
    * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
    */
@@ -199,6 +192,5 @@ export declare class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
 
   static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean;
-
 }
 

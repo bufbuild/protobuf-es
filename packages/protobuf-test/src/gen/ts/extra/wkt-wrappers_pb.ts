@@ -23,7 +23,6 @@ import {BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, 
  * @generated from message spec.WrappersMessage
  */
 export class WrappersMessage extends Message<WrappersMessage> {
-
   /**
    * @generated from field: google.protobuf.DoubleValue double_value_field = 1;
    */
@@ -225,6 +224,5 @@ export class WrappersMessage extends Message<WrappersMessage> {
   static equals(a: WrappersMessage | PlainMessage<WrappersMessage> | undefined, b: WrappersMessage | PlainMessage<WrappersMessage> | undefined): boolean {
     return proto3.util.equals(WrappersMessage, a, b);
   }
-
 }
 

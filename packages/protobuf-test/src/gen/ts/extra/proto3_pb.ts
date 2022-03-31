@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.Proto3Enum
  */
 export enum Proto3Enum {
-
   /**
    * @generated from enum value: PROTO3_ENUM_UNSPECIFIED = 0;
    */
@@ -38,9 +37,7 @@ export enum Proto3Enum {
    * @generated from enum value: PROTO3_ENUM_NO = 2;
    */
   NO = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Proto3Enum)
 proto3.util.setEnumType(Proto3Enum, "spec.Proto3Enum", [
   {no: 0, name: "PROTO3_ENUM_UNSPECIFIED"},
@@ -52,7 +49,6 @@ proto3.util.setEnumType(Proto3Enum, "spec.Proto3Enum", [
  * @generated from message spec.Proto3PackedMessage
  */
 export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
-
   /**
    * @generated from field: repeated double packed_double_field = 101 [packed = true];
    */
@@ -96,14 +92,12 @@ export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
   static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean {
     return proto3.util.equals(Proto3PackedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
 export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
-
   /**
    * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
    */
@@ -147,14 +141,12 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
   static equals(a: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined, b: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined): boolean {
     return proto3.util.equals(Proto3UnpackedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
 export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
-
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -198,14 +190,12 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
   static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean {
     return proto3.util.equals(Proto3UnlabelledMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.Proto3OptionalMessage
  */
 export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
-
   /**
    * @generated from field: optional string string_field = 1;
    */
@@ -255,6 +245,5 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean {
     return proto3.util.equals(Proto3OptionalMessage, a, b);
   }
-
 }
 

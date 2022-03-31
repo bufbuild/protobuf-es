@@ -43,7 +43,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnumLite
  */
 export declare enum ImportEnumLite {
-
   /**
    * @generated from enum value: IMPORT_LITE_FOO = 7;
    */
@@ -58,14 +57,12 @@ export declare enum ImportEnumLite {
    * @generated from enum value: IMPORT_LITE_BAZ = 9;
    */
   IMPORT_LITE_BAZ = 9,
-
 }
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessageLite
  */
 export declare class ImportMessageLite extends Message<ImportMessageLite> {
-
   /**
    * @generated from field: optional int32 d = 1;
    */
@@ -84,6 +81,5 @@ export declare class ImportMessageLite extends Message<ImportMessageLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite;
 
   static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean;
-
 }
 

@@ -46,7 +46,6 @@ import type {ForeignMessage} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestOptimizedForSize
  */
 export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> {
-
   /**
    * @generated from field: optional int32 i = 1;
    */
@@ -87,14 +86,12 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
 
   static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
 export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedForSize> {
-
   /**
    * @generated from field: required int32 x = 1;
    */
@@ -113,14 +110,12 @@ export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOp
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
 
   static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
 export declare class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedForSize> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
    */
@@ -139,6 +134,5 @@ export declare class TestOptionalOptimizedForSize extends Message<TestOptionalOp
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
 
   static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean;
-
 }
 

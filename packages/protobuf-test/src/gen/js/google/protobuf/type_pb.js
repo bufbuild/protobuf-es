@@ -116,7 +116,6 @@ export const Field_Kind = proto3.makeEnum(
   ],
 );
 
-
 /**
  * Whether a field is optional, required, or repeated.
  *
@@ -132,7 +131,6 @@ export const Field_Cardinality = proto3.makeEnum(
   ],
   {sharedPrefix: "CARDINALITY_"},
 );
-
 
 /**
  * Enum type definition.

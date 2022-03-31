@@ -41,7 +41,6 @@ import type {PublicImportMessage} from "./unittest_import_public_pb.js";
  * @generated from enum proto3_unittest.ForeignEnum
  */
 export declare enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_ZERO = 0;
    */
@@ -61,7 +60,6 @@ export declare enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
-
 }
 
 /**
@@ -71,7 +69,6 @@ export declare enum ForeignEnum {
  * @generated from message proto3_unittest.TestAllTypes
  */
 export declare class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    *
@@ -360,14 +357,12 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
  */
 export declare enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: ZERO = 0;
    */
@@ -394,15 +389,12 @@ export declare enum TestAllTypes_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
  */
 export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
    * a local variable named "b" in one of the generated methods.  Doh.
@@ -425,15 +417,12 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message proto3_unittest.TestPackedTypes
  */
 export declare class TestPackedTypes extends Message<TestPackedTypes> {
-
   /**
    * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
    */
@@ -517,7 +506,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes;
 
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
-
 }
 
 /**
@@ -526,7 +514,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
  * @generated from message proto3_unittest.TestUnpackedTypes
  */
 export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
-
   /**
    * @generated from field: repeated int32 repeated_int32 = 1 [packed = false];
    */
@@ -610,7 +597,6 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
 
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean;
-
 }
 
 /**
@@ -619,7 +605,6 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
  * @generated from message proto3_unittest.NestedTestAllTypes
  */
 export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
-
   /**
    * @generated from field: proto3_unittest.NestedTestAllTypes child = 1;
    */
@@ -643,7 +628,6 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
 
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
-
 }
 
 /**
@@ -653,7 +637,6 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
  * @generated from message proto3_unittest.ForeignMessage
  */
 export declare class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -672,7 +655,6 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
-
 }
 
 /**
@@ -681,7 +663,6 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
  * @generated from message proto3_unittest.TestEmptyMessage
  */
 export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
-
   constructor(data?: PartialMessage<TestEmptyMessage>);
 
   static readonly runtime: typeof proto3;
@@ -695,7 +676,6 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessage;
 
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
-
 }
 
 /**
@@ -704,7 +684,6 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
  * @generated from message proto3_unittest.TestMessageWithDummy
  */
 export declare class TestMessageWithDummy extends Message<TestMessageWithDummy> {
-
   /**
    * This field is only here for triggering copy-on-write; it's not intended to
    * be serialized.
@@ -726,7 +705,6 @@ export declare class TestMessageWithDummy extends Message<TestMessageWithDummy> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithDummy;
 
   static equals(a: TestMessageWithDummy | PlainMessage<TestMessageWithDummy> | undefined, b: TestMessageWithDummy | PlainMessage<TestMessageWithDummy> | undefined): boolean;
-
 }
 
 /**
@@ -736,7 +714,6 @@ export declare class TestMessageWithDummy extends Message<TestMessageWithDummy> 
  * @generated from message proto3_unittest.TestOneof2
  */
 export declare class TestOneof2 extends Message<TestOneof2> {
-
   /**
    * @generated from oneof proto3_unittest.TestOneof2.foo
    */
@@ -761,14 +738,12 @@ export declare class TestOneof2 extends Message<TestOneof2> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2;
 
   static equals(a: TestOneof2 | PlainMessage<TestOneof2> | undefined, b: TestOneof2 | PlainMessage<TestOneof2> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
  */
 export declare enum TestOneof2_NestedEnum {
-
   /**
    * @generated from enum value: UNKNOWN = 0;
    */
@@ -788,7 +763,5 @@ export declare enum TestOneof2_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
-
 }
-
 

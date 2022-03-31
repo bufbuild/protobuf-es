@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.WrappersMessage
  */
 export declare class WrappersMessage extends Message<WrappersMessage> {
-
   /**
    * @generated from field: google.protobuf.DoubleValue double_value_field = 1;
    */
@@ -186,6 +185,5 @@ export declare class WrappersMessage extends Message<WrappersMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WrappersMessage;
 
   static equals(a: WrappersMessage | PlainMessage<WrappersMessage> | undefined, b: WrappersMessage | PlainMessage<WrappersMessage> | undefined): boolean;
-
 }
 

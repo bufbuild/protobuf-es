@@ -45,7 +45,6 @@ import type {PublicImportMessageLite} from "./unittest_import_public_lite_pb.js"
  * @generated from enum protobuf_unittest.ForeignEnumLite
  */
 export declare enum ForeignEnumLite {
-
   /**
    * @generated from enum value: FOREIGN_LITE_FOO = 4;
    */
@@ -60,26 +59,22 @@ export declare enum ForeignEnumLite {
    * @generated from enum value: FOREIGN_LITE_BAR = 5;
    */
   FOREIGN_LITE_BAR = 5,
-
 }
 
 /**
  * @generated from enum protobuf_unittest.V1EnumLite
  */
 export declare enum V1EnumLite {
-
   /**
    * @generated from enum value: V1_FIRST = 1;
    */
   V1_FIRST = 1,
-
 }
 
 /**
  * @generated from enum protobuf_unittest.V2EnumLite
  */
 export declare enum V2EnumLite {
-
   /**
    * @generated from enum value: V2_FIRST = 1;
    */
@@ -89,7 +84,6 @@ export declare enum V2EnumLite {
    * @generated from enum value: V2_SECOND = 2;
    */
   V2_SECOND = 2,
-
 }
 
 /**
@@ -98,7 +92,6 @@ export declare enum V2EnumLite {
  * @generated from message protobuf_unittest.TestAllTypesLite
  */
 export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
-
   /**
    * Singular
    *
@@ -525,14 +518,12 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite;
 
   static equals(a: TestAllTypesLite | PlainMessage<TestAllTypesLite> | undefined, b: TestAllTypesLite | PlainMessage<TestAllTypesLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestAllTypesLite.NestedEnum
  */
 export declare enum TestAllTypesLite_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
@@ -547,15 +538,12 @@ export declare enum TestAllTypesLite_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage
  */
 export declare class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_NestedMessage> {
-
   /**
    * @generated from field: optional int32 bb = 1;
    */
@@ -579,15 +567,12 @@ export declare class TestAllTypesLite_NestedMessage extends Message<TestAllTypes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_NestedMessage;
 
   static equals(a: TestAllTypesLite_NestedMessage | PlainMessage<TestAllTypesLite_NestedMessage> | undefined, b: TestAllTypesLite_NestedMessage | PlainMessage<TestAllTypesLite_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage2
  */
 export declare class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_NestedMessage2> {
-
   /**
    * @generated from field: optional int32 dd = 1;
    */
@@ -606,15 +591,12 @@ export declare class TestAllTypesLite_NestedMessage2 extends Message<TestAllType
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_NestedMessage2;
 
   static equals(a: TestAllTypesLite_NestedMessage2 | PlainMessage<TestAllTypesLite_NestedMessage2> | undefined, b: TestAllTypesLite_NestedMessage2 | PlainMessage<TestAllTypesLite_NestedMessage2> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
  */
 export declare class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -633,15 +615,12 @@ export declare class TestAllTypesLite_OptionalGroup extends Message<TestAllTypes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_OptionalGroup;
 
   static equals(a: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined, b: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
  */
 export declare class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_RepeatedGroup> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -660,15 +639,12 @@ export declare class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_RepeatedGroup;
 
   static equals(a: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined, b: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
 export declare class ForeignMessageLite extends Message<ForeignMessageLite> {
-
   /**
    * @generated from field: optional int32 c = 1;
    */
@@ -687,14 +663,12 @@ export declare class ForeignMessageLite extends Message<ForeignMessageLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessageLite;
 
   static equals(a: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined, b: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
  */
 export declare class TestPackedTypesLite extends Message<TestPackedTypesLite> {
-
   /**
    * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
    */
@@ -778,14 +752,12 @@ export declare class TestPackedTypesLite extends Message<TestPackedTypesLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypesLite;
 
   static equals(a: TestPackedTypesLite | PlainMessage<TestPackedTypesLite> | undefined, b: TestPackedTypesLite | PlainMessage<TestPackedTypesLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
 export declare class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
-
   constructor(data?: PartialMessage<TestAllExtensionsLite>);
 
   static readonly runtime: typeof proto2;
@@ -799,14 +771,12 @@ export declare class TestAllExtensionsLite extends Message<TestAllExtensionsLite
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllExtensionsLite;
 
   static equals(a: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined, b: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
  */
 export declare class OptionalGroup_extension_lite extends Message<OptionalGroup_extension_lite> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -825,14 +795,12 @@ export declare class OptionalGroup_extension_lite extends Message<OptionalGroup_
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OptionalGroup_extension_lite;
 
   static equals(a: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined, b: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
 export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extension_lite> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -851,14 +819,12 @@ export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroup_extension_lite;
 
   static equals(a: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined, b: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
 export declare class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> {
-
   constructor(data?: PartialMessage<TestPackedExtensionsLite>);
 
   static readonly runtime: typeof proto2;
@@ -872,14 +838,12 @@ export declare class TestPackedExtensionsLite extends Message<TestPackedExtensio
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedExtensionsLite;
 
   static equals(a: TestPackedExtensionsLite | PlainMessage<TestPackedExtensionsLite> | undefined, b: TestPackedExtensionsLite | PlainMessage<TestPackedExtensionsLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
  */
 export declare class TestNestedExtensionLite extends Message<TestNestedExtensionLite> {
-
   constructor(data?: PartialMessage<TestNestedExtensionLite>);
 
   static readonly runtime: typeof proto2;
@@ -893,7 +857,6 @@ export declare class TestNestedExtensionLite extends Message<TestNestedExtension
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtensionLite;
 
   static equals(a: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined, b: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined): boolean;
-
 }
 
 /**
@@ -903,7 +866,6 @@ export declare class TestNestedExtensionLite extends Message<TestNestedExtension
  * @generated from message protobuf_unittest.TestDeprecatedLite
  */
 export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
-
   /**
    * @generated from field: optional int32 deprecated_field = 1 [deprecated = true];
    * @deprecated
@@ -941,7 +903,6 @@ export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDeprecatedLite;
 
   static equals(a: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined, b: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined): boolean;
-
 }
 
 /**
@@ -950,7 +911,6 @@ export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
  * @generated from message protobuf_unittest.TestParsingMergeLite
  */
 export declare class TestParsingMergeLite extends Message<TestParsingMergeLite> {
-
   /**
    * @generated from field: required protobuf_unittest.TestAllTypesLite required_all_types = 1;
    */
@@ -989,14 +949,12 @@ export declare class TestParsingMergeLite extends Message<TestParsingMergeLite> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite;
 
   static equals(a: TestParsingMergeLite | PlainMessage<TestParsingMergeLite> | undefined, b: TestParsingMergeLite | PlainMessage<TestParsingMergeLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator
  */
 export declare class TestParsingMergeLite_RepeatedFieldsGenerator extends Message<TestParsingMergeLite_RepeatedFieldsGenerator> {
-
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypesLite field1 = 1;
    */
@@ -1045,14 +1003,12 @@ export declare class TestParsingMergeLite_RepeatedFieldsGenerator extends Messag
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator;
 
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1
  */
 export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends Message<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite field1 = 11;
    */
@@ -1071,15 +1027,12 @@ export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1;
 
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
  */
 export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends Message<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite field1 = 21;
    */
@@ -1098,16 +1051,12 @@ export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group2;
 
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined): boolean;
-
 }
-
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
  */
 export declare class TestParsingMergeLite_OptionalGroup extends Message<TestParsingMergeLite_OptionalGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite optional_group_all_types = 11;
    */
@@ -1126,15 +1075,12 @@ export declare class TestParsingMergeLite_OptionalGroup extends Message<TestPars
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_OptionalGroup;
 
   static equals(a: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined, b: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
  */
 export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMergeLite_RepeatedGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite repeated_group_all_types = 21;
    */
@@ -1153,9 +1099,7 @@ export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestPars
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedGroup;
 
   static equals(a: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined, b: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined): boolean;
-
 }
-
 
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
@@ -1163,7 +1107,6 @@ export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestPars
  * @generated from message protobuf_unittest.TestEmptyMessageLite
  */
 export declare class TestEmptyMessageLite extends Message<TestEmptyMessageLite> {
-
   constructor(data?: PartialMessage<TestEmptyMessageLite>);
 
   static readonly runtime: typeof proto2;
@@ -1177,7 +1120,6 @@ export declare class TestEmptyMessageLite extends Message<TestEmptyMessageLite> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageLite;
 
   static equals(a: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined, b: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined): boolean;
-
 }
 
 /**
@@ -1187,7 +1129,6 @@ export declare class TestEmptyMessageLite extends Message<TestEmptyMessageLite> 
  * @generated from message protobuf_unittest.TestEmptyMessageWithExtensionsLite
  */
 export declare class TestEmptyMessageWithExtensionsLite extends Message<TestEmptyMessageWithExtensionsLite> {
-
   constructor(data?: PartialMessage<TestEmptyMessageWithExtensionsLite>);
 
   static readonly runtime: typeof proto2;
@@ -1201,14 +1142,12 @@ export declare class TestEmptyMessageWithExtensionsLite extends Message<TestEmpt
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageWithExtensionsLite;
 
   static equals(a: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined, b: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.V1MessageLite
  */
 export declare class V1MessageLite extends Message<V1MessageLite> {
-
   /**
    * @generated from field: required int32 int_field = 1;
    */
@@ -1232,14 +1171,12 @@ export declare class V1MessageLite extends Message<V1MessageLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): V1MessageLite;
 
   static equals(a: V1MessageLite | PlainMessage<V1MessageLite> | undefined, b: V1MessageLite | PlainMessage<V1MessageLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
 export declare class V2MessageLite extends Message<V2MessageLite> {
-
   /**
    * @generated from field: required int32 int_field = 1;
    */
@@ -1263,14 +1200,12 @@ export declare class V2MessageLite extends Message<V2MessageLite> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): V2MessageLite;
 
   static equals(a: V2MessageLite | PlainMessage<V2MessageLite> | undefined, b: V2MessageLite | PlainMessage<V2MessageLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
  */
 export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> {
-
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
@@ -1363,14 +1298,12 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite;
 
   static equals(a: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined, b: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
  */
 export declare class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFieldNumbersLite_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
@@ -1389,15 +1322,12 @@ export declare class TestHugeFieldNumbersLite_OptionalGroup extends Message<Test
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite_OptionalGroup;
 
   static equals(a: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined, b: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
  */
 export declare class TestOneofParsingLite extends Message<TestOneofParsingLite> {
-
   /**
    * @generated from oneof protobuf_unittest.TestOneofParsingLite.oneof_field
    */
@@ -1470,7 +1400,6 @@ export declare class TestOneofParsingLite extends Message<TestOneofParsingLite> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofParsingLite;
 
   static equals(a: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined, b: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined): boolean;
-
 }
 
 /**
@@ -1481,7 +1410,6 @@ export declare class TestOneofParsingLite extends Message<TestOneofParsingLite> 
  * @generated from message protobuf_unittest.PackedInt32
  */
 export declare class PackedInt32 extends Message<PackedInt32> {
-
   /**
    * @generated from field: repeated int32 repeated_int32 = 2048 [packed = true];
    */
@@ -1500,14 +1428,12 @@ export declare class PackedInt32 extends Message<PackedInt32> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PackedInt32;
 
   static equals(a: PackedInt32 | PlainMessage<PackedInt32> | undefined, b: PackedInt32 | PlainMessage<PackedInt32> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
  */
 export declare class NonPackedInt32 extends Message<NonPackedInt32> {
-
   /**
    * @generated from field: repeated int32 repeated_int32 = 2048;
    */
@@ -1526,14 +1452,12 @@ export declare class NonPackedInt32 extends Message<NonPackedInt32> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NonPackedInt32;
 
   static equals(a: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined, b: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.PackedFixed32
  */
 export declare class PackedFixed32 extends Message<PackedFixed32> {
-
   /**
    * @generated from field: repeated fixed32 repeated_fixed32 = 2048 [packed = true];
    */
@@ -1552,14 +1476,12 @@ export declare class PackedFixed32 extends Message<PackedFixed32> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PackedFixed32;
 
   static equals(a: PackedFixed32 | PlainMessage<PackedFixed32> | undefined, b: PackedFixed32 | PlainMessage<PackedFixed32> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
  */
 export declare class NonPackedFixed32 extends Message<NonPackedFixed32> {
-
   /**
    * @generated from field: repeated fixed32 repeated_fixed32 = 2048;
    */
@@ -1578,7 +1500,6 @@ export declare class NonPackedFixed32 extends Message<NonPackedFixed32> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NonPackedFixed32;
 
   static equals(a: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined, b: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined): boolean;
-
 }
 
 /**
@@ -1587,7 +1508,6 @@ export declare class NonPackedFixed32 extends Message<NonPackedFixed32> {
  * @generated from message protobuf_unittest.DupEnum
  */
 export declare class DupEnum extends Message<DupEnum> {
-
   constructor(data?: PartialMessage<DupEnum>);
 
   static readonly runtime: typeof proto2;
@@ -1601,14 +1521,12 @@ export declare class DupEnum extends Message<DupEnum> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DupEnum;
 
   static equals(a: DupEnum | PlainMessage<DupEnum> | undefined, b: DupEnum | PlainMessage<DupEnum> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_unittest.DupEnum.TestEnumWithDupValueLite
  */
 export declare enum DupEnum_TestEnumWithDupValueLite {
-
   /**
    * @generated from enum value: FOO1 = 1;
    */
@@ -1633,15 +1551,12 @@ export declare enum DupEnum_TestEnumWithDupValueLite {
    * @generated from enum value: BAR2 = 2;
    */
   BAR2 = 2,
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.RecursiveMessage
  */
 export declare class RecursiveMessage extends Message<RecursiveMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.RecursiveMessage recurse = 1;
    */
@@ -1665,6 +1580,5 @@ export declare class RecursiveMessage extends Message<RecursiveMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecursiveMessage;
 
   static equals(a: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined, b: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined): boolean;
-
 }
 

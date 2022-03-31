@@ -24,7 +24,6 @@ import {Module} from "../../module/v1alpha1/module_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.DownloadRequest
  */
 export class DownloadRequest extends Message<DownloadRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -68,14 +67,12 @@ export class DownloadRequest extends Message<DownloadRequest> {
   static equals(a: DownloadRequest | PlainMessage<DownloadRequest> | undefined, b: DownloadRequest | PlainMessage<DownloadRequest> | undefined): boolean {
     return proto3.util.equals(DownloadRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DownloadResponse
  */
 export class DownloadResponse extends Message<DownloadResponse> {
-
   /**
    * @generated from field: buf.alpha.module.v1alpha1.Module module = 1;
    */
@@ -107,6 +104,5 @@ export class DownloadResponse extends Message<DownloadResponse> {
   static equals(a: DownloadResponse | PlainMessage<DownloadResponse> | undefined, b: DownloadResponse | PlainMessage<DownloadResponse> | undefined): boolean {
     return proto3.util.equals(DownloadResponse, a, b);
   }
-
 }
 

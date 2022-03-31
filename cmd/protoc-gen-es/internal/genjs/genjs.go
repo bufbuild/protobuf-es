@@ -75,11 +75,9 @@ func generateMessage(f *protoplugin.GeneratedFile, message *protoplugin.Message)
 	generateWktStaticMethods(f, message)
 	for _, nestedEnum := range message.NestedEnums {
 		generateEnum(f, nestedEnum)
-		f.P()
 	}
 	for _, nestedMessage := range message.NestedMessages {
 		generateMessage(f, nestedMessage)
-		f.P()
 	}
 	// We do not support extensions at this time
 }

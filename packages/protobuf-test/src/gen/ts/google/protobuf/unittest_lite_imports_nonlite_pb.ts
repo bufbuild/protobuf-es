@@ -44,7 +44,6 @@ import {TestAllTypes, TestRequired} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
  */
 export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
    */
@@ -84,6 +83,5 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
   static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean {
     return proto2.util.equals(TestLiteImportsNonlite, a, b);
   }
-
 }
 

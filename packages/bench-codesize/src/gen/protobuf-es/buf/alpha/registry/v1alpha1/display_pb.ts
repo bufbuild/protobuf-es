@@ -24,7 +24,6 @@ import {PluginRole, RepositoryRole, TemplateRole} from "./role_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsRequest
  */
 export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizationElementsRequest> {
-
   /**
    * The ID of the organization for which to check
    * which elements should be displayed.
@@ -59,14 +58,12 @@ export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizat
   static equals(a: DisplayOrganizationElementsRequest | PlainMessage<DisplayOrganizationElementsRequest> | undefined, b: DisplayOrganizationElementsRequest | PlainMessage<DisplayOrganizationElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayOrganizationElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsResponse
  */
 export class DisplayOrganizationElementsResponse extends Message<DisplayOrganizationElementsResponse> {
-
   /**
    * Display create organization repository element if true.
    *
@@ -140,14 +137,12 @@ export class DisplayOrganizationElementsResponse extends Message<DisplayOrganiza
   static equals(a: DisplayOrganizationElementsResponse | PlainMessage<DisplayOrganizationElementsResponse> | undefined, b: DisplayOrganizationElementsResponse | PlainMessage<DisplayOrganizationElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayOrganizationElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsRequest
  */
 export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryElementsRequest> {
-
   /**
    * The ID of the repository for which to check
    * which elements should be displayed.
@@ -182,14 +177,12 @@ export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryE
   static equals(a: DisplayRepositoryElementsRequest | PlainMessage<DisplayRepositoryElementsRequest> | undefined, b: DisplayRepositoryElementsRequest | PlainMessage<DisplayRepositoryElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayRepositoryElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsResponse
  */
 export class DisplayRepositoryElementsResponse extends Message<DisplayRepositoryElementsResponse> {
-
   /**
    * Display repository settings element if true.
    *
@@ -231,14 +224,12 @@ export class DisplayRepositoryElementsResponse extends Message<DisplayRepository
   static equals(a: DisplayRepositoryElementsResponse | PlainMessage<DisplayRepositoryElementsResponse> | undefined, b: DisplayRepositoryElementsResponse | PlainMessage<DisplayRepositoryElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayRepositoryElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayPluginElementsRequest
  */
 export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsRequest> {
-
   /**
    * The ID of the plugin for which to check
    * which elements should be displayed.
@@ -273,14 +264,12 @@ export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsR
   static equals(a: DisplayPluginElementsRequest | PlainMessage<DisplayPluginElementsRequest> | undefined, b: DisplayPluginElementsRequest | PlainMessage<DisplayPluginElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayPluginElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayPluginElementsResponse
  */
 export class DisplayPluginElementsResponse extends Message<DisplayPluginElementsResponse> {
-
   /**
    * Display create plugin version element if true.
    *
@@ -330,14 +319,12 @@ export class DisplayPluginElementsResponse extends Message<DisplayPluginElements
   static equals(a: DisplayPluginElementsResponse | PlainMessage<DisplayPluginElementsResponse> | undefined, b: DisplayPluginElementsResponse | PlainMessage<DisplayPluginElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayPluginElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayTemplateElementsRequest
  */
 export class DisplayTemplateElementsRequest extends Message<DisplayTemplateElementsRequest> {
-
   /**
    * The ID of the template for which to check
    * which elements should be displayed.
@@ -372,14 +359,12 @@ export class DisplayTemplateElementsRequest extends Message<DisplayTemplateEleme
   static equals(a: DisplayTemplateElementsRequest | PlainMessage<DisplayTemplateElementsRequest> | undefined, b: DisplayTemplateElementsRequest | PlainMessage<DisplayTemplateElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayTemplateElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayTemplateElementsResponse
  */
 export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElementsResponse> {
-
   /**
    * Display create template version element if true.
    *
@@ -429,14 +414,12 @@ export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElem
   static equals(a: DisplayTemplateElementsResponse | PlainMessage<DisplayTemplateElementsResponse> | undefined, b: DisplayTemplateElementsResponse | PlainMessage<DisplayTemplateElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayTemplateElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayUserElementsRequest
  */
 export class DisplayUserElementsRequest extends Message<DisplayUserElementsRequest> {
-
   constructor(data?: PartialMessage<DisplayUserElementsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -462,14 +445,12 @@ export class DisplayUserElementsRequest extends Message<DisplayUserElementsReque
   static equals(a: DisplayUserElementsRequest | PlainMessage<DisplayUserElementsRequest> | undefined, b: DisplayUserElementsRequest | PlainMessage<DisplayUserElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayUserElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayUserElementsResponse
  */
 export class DisplayUserElementsResponse extends Message<DisplayUserElementsResponse> {
-
   /**
    * Display delete user element if true.
    *
@@ -503,14 +484,12 @@ export class DisplayUserElementsResponse extends Message<DisplayUserElementsResp
   static equals(a: DisplayUserElementsResponse | PlainMessage<DisplayUserElementsResponse> | undefined, b: DisplayUserElementsResponse | PlainMessage<DisplayUserElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayUserElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayServerElementsRequest
  */
 export class DisplayServerElementsRequest extends Message<DisplayServerElementsRequest> {
-
   constructor(data?: PartialMessage<DisplayServerElementsRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -536,14 +515,12 @@ export class DisplayServerElementsRequest extends Message<DisplayServerElementsR
   static equals(a: DisplayServerElementsRequest | PlainMessage<DisplayServerElementsRequest> | undefined, b: DisplayServerElementsRequest | PlainMessage<DisplayServerElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayServerElementsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DisplayServerElementsResponse
  */
 export class DisplayServerElementsResponse extends Message<DisplayServerElementsResponse> {
-
   /**
    * Display server admin panel element if true.
    *
@@ -577,14 +554,12 @@ export class DisplayServerElementsResponse extends Message<DisplayServerElements
   static equals(a: DisplayServerElementsResponse | PlainMessage<DisplayServerElementsResponse> | undefined, b: DisplayServerElementsResponse | PlainMessage<DisplayServerElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayServerElementsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesRequest
  */
 export class ListManageableRepositoryRolesRequest extends Message<ListManageableRepositoryRolesRequest> {
-
   /**
    * The ID of the repository for which to check
    * which roles should be displayed as manageable.
@@ -619,14 +594,12 @@ export class ListManageableRepositoryRolesRequest extends Message<ListManageable
   static equals(a: ListManageableRepositoryRolesRequest | PlainMessage<ListManageableRepositoryRolesRequest> | undefined, b: ListManageableRepositoryRolesRequest | PlainMessage<ListManageableRepositoryRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableRepositoryRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesResponse
  */
 export class ListManageableRepositoryRolesResponse extends Message<ListManageableRepositoryRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -661,14 +634,12 @@ export class ListManageableRepositoryRolesResponse extends Message<ListManageabl
   static equals(a: ListManageableRepositoryRolesResponse | PlainMessage<ListManageableRepositoryRolesResponse> | undefined, b: ListManageableRepositoryRolesResponse | PlainMessage<ListManageableRepositoryRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageableRepositoryRolesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesRequest
  */
 export class ListManageableUserRepositoryRolesRequest extends Message<ListManageableUserRepositoryRolesRequest> {
-
   /**
    * The ID of the repository for which to check
    * which roles should be displayed as manageable.
@@ -712,14 +683,12 @@ export class ListManageableUserRepositoryRolesRequest extends Message<ListManage
   static equals(a: ListManageableUserRepositoryRolesRequest | PlainMessage<ListManageableUserRepositoryRolesRequest> | undefined, b: ListManageableUserRepositoryRolesRequest | PlainMessage<ListManageableUserRepositoryRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserRepositoryRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesResponse
  */
 export class ListManageableUserRepositoryRolesResponse extends Message<ListManageableUserRepositoryRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -754,14 +723,12 @@ export class ListManageableUserRepositoryRolesResponse extends Message<ListManag
   static equals(a: ListManageableUserRepositoryRolesResponse | PlainMessage<ListManageableUserRepositoryRolesResponse> | undefined, b: ListManageableUserRepositoryRolesResponse | PlainMessage<ListManageableUserRepositoryRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageableUserRepositoryRolesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageablePluginRolesRequest
  */
 export class ListManageablePluginRolesRequest extends Message<ListManageablePluginRolesRequest> {
-
   /**
    * The ID of the plugin for which to check
    * which roles should be displayed as manageable.
@@ -796,14 +763,12 @@ export class ListManageablePluginRolesRequest extends Message<ListManageablePlug
   static equals(a: ListManageablePluginRolesRequest | PlainMessage<ListManageablePluginRolesRequest> | undefined, b: ListManageablePluginRolesRequest | PlainMessage<ListManageablePluginRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageablePluginRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageablePluginRolesResponse
  */
 export class ListManageablePluginRolesResponse extends Message<ListManageablePluginRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -838,14 +803,12 @@ export class ListManageablePluginRolesResponse extends Message<ListManageablePlu
   static equals(a: ListManageablePluginRolesResponse | PlainMessage<ListManageablePluginRolesResponse> | undefined, b: ListManageablePluginRolesResponse | PlainMessage<ListManageablePluginRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageablePluginRolesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesRequest
  */
 export class ListManageableUserPluginRolesRequest extends Message<ListManageableUserPluginRolesRequest> {
-
   /**
    * The ID of the plugin for which to check
    * which roles should be displayed as manageable.
@@ -889,14 +852,12 @@ export class ListManageableUserPluginRolesRequest extends Message<ListManageable
   static equals(a: ListManageableUserPluginRolesRequest | PlainMessage<ListManageableUserPluginRolesRequest> | undefined, b: ListManageableUserPluginRolesRequest | PlainMessage<ListManageableUserPluginRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserPluginRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesResponse
  */
 export class ListManageableUserPluginRolesResponse extends Message<ListManageableUserPluginRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -931,14 +892,12 @@ export class ListManageableUserPluginRolesResponse extends Message<ListManageabl
   static equals(a: ListManageableUserPluginRolesResponse | PlainMessage<ListManageableUserPluginRolesResponse> | undefined, b: ListManageableUserPluginRolesResponse | PlainMessage<ListManageableUserPluginRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageableUserPluginRolesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesRequest
  */
 export class ListManageableTemplateRolesRequest extends Message<ListManageableTemplateRolesRequest> {
-
   /**
    * The ID of the template for which to check
    * which roles should be displayed as manageable.
@@ -973,14 +932,12 @@ export class ListManageableTemplateRolesRequest extends Message<ListManageableTe
   static equals(a: ListManageableTemplateRolesRequest | PlainMessage<ListManageableTemplateRolesRequest> | undefined, b: ListManageableTemplateRolesRequest | PlainMessage<ListManageableTemplateRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableTemplateRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesResponse
  */
 export class ListManageableTemplateRolesResponse extends Message<ListManageableTemplateRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -1015,14 +972,12 @@ export class ListManageableTemplateRolesResponse extends Message<ListManageableT
   static equals(a: ListManageableTemplateRolesResponse | PlainMessage<ListManageableTemplateRolesResponse> | undefined, b: ListManageableTemplateRolesResponse | PlainMessage<ListManageableTemplateRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageableTemplateRolesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesRequest
  */
 export class ListManageableUserTemplateRolesRequest extends Message<ListManageableUserTemplateRolesRequest> {
-
   /**
    * The ID of the template for which to check
    * which roles should be displayed as manageable.
@@ -1066,14 +1021,12 @@ export class ListManageableUserTemplateRolesRequest extends Message<ListManageab
   static equals(a: ListManageableUserTemplateRolesRequest | PlainMessage<ListManageableUserTemplateRolesRequest> | undefined, b: ListManageableUserTemplateRolesRequest | PlainMessage<ListManageableUserTemplateRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserTemplateRolesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesResponse
  */
 export class ListManageableUserTemplateRolesResponse extends Message<ListManageableUserTemplateRolesResponse> {
-
   /**
    * The list of roles that should be displayed
    * to the user as manageable.
@@ -1108,6 +1061,5 @@ export class ListManageableUserTemplateRolesResponse extends Message<ListManagea
   static equals(a: ListManageableUserTemplateRolesResponse | PlainMessage<ListManageableUserTemplateRolesResponse> | undefined, b: ListManageableUserTemplateRolesResponse | PlainMessage<ListManageableUserTemplateRolesResponse> | undefined): boolean {
     return proto3.util.equals(ListManageableUserTemplateRolesResponse, a, b);
   }
-
 }
 

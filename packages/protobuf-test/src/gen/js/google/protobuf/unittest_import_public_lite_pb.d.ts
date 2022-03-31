@@ -41,7 +41,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest_import.PublicImportMessageLite
  */
 export declare class PublicImportMessageLite extends Message<PublicImportMessageLite> {
-
   /**
    * @generated from field: optional int32 e = 1;
    */
@@ -60,6 +59,5 @@ export declare class PublicImportMessageLite extends Message<PublicImportMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
 
   static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean;
-
 }
 

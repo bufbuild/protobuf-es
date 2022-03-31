@@ -46,7 +46,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum
  */
 export declare enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 0;
    */
@@ -61,7 +60,6 @@ export declare enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 2;
    */
   FOREIGN_BAZ = 2,
-
 }
 
 /**
@@ -76,7 +74,6 @@ export declare enum ForeignEnum {
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3
  */
 export declare class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
-
   /**
    * Singular
    *
@@ -875,14 +872,12 @@ export declare class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto3;
 
   static equals(a: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined, b: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
  */
 export declare enum TestAllTypesProto3_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -904,15 +899,12 @@ export declare enum TestAllTypesProto3_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
  */
 export declare enum TestAllTypesProto3_AliasedEnum {
-
   /**
    * @generated from enum value: ALIAS_FOO = 0;
    */
@@ -942,15 +934,12 @@ export declare enum TestAllTypesProto3_AliasedEnum {
    * @generated from enum value: bAz = 2;
    */
   bAz = 2,
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
  */
 export declare class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3_NestedMessage> {
-
   /**
    * @generated from field: int32 a = 1;
    */
@@ -974,15 +963,12 @@ export declare class TestAllTypesProto3_NestedMessage extends Message<TestAllTyp
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto3_NestedMessage;
 
   static equals(a: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined, b: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
  */
 export declare class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -1001,14 +987,12 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
  */
 export declare class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
-
   constructor(data?: PartialMessage<NullHypothesisProto3>);
 
   static readonly runtime: typeof proto3;
@@ -1022,14 +1006,12 @@ export declare class NullHypothesisProto3 extends Message<NullHypothesisProto3> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NullHypothesisProto3;
 
   static equals(a: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined, b: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3
  */
 export declare class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
-
   constructor(data?: PartialMessage<EnumOnlyProto3>);
 
   static readonly runtime: typeof proto3;
@@ -1043,14 +1025,12 @@ export declare class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOnlyProto3;
 
   static equals(a: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined, b: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool
  */
 export declare enum EnumOnlyProto3_Bool {
-
   /**
    * @generated from enum value: kFalse = 0;
    */
@@ -1060,7 +1040,5 @@ export declare enum EnumOnlyProto3_Bool {
    * @generated from enum value: kTrue = 1;
    */
   kTrue = 1,
-
 }
-
 

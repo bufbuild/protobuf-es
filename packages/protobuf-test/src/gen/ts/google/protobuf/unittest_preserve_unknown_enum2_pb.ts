@@ -39,7 +39,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum proto2_preserve_unknown_enum_unittest.MyEnum
  */
 export enum MyEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -54,9 +53,7 @@ export enum MyEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(MyEnum)
 proto2.util.setEnumType(MyEnum, "proto2_preserve_unknown_enum_unittest.MyEnum", [
   {no: 0, name: "FOO"},
@@ -68,7 +65,6 @@ proto2.util.setEnumType(MyEnum, "proto2_preserve_unknown_enum_unittest.MyEnum", 
  * @generated from message proto2_preserve_unknown_enum_unittest.MyMessage
  */
 export class MyMessage extends Message<MyMessage> {
-
   /**
    * @generated from field: optional proto2_preserve_unknown_enum_unittest.MyEnum e = 1;
    */
@@ -139,6 +135,5 @@ export class MyMessage extends Message<MyMessage> {
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean {
     return proto2.util.equals(MyMessage, a, b);
   }
-
 }
 

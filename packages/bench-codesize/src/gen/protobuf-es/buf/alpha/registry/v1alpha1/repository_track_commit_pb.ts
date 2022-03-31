@@ -29,7 +29,6 @@ import {Message, Timestamp, proto3, protoInt64} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryTrackCommit
  */
 export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
-
   /**
    * immutable
    *
@@ -87,14 +86,12 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
   static equals(a: RepositoryTrackCommit | PlainMessage<RepositoryTrackCommit> | undefined, b: RepositoryTrackCommit | PlainMessage<RepositoryTrackCommit> | undefined): boolean {
     return proto3.util.equals(RepositoryTrackCommit, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitRequest
  */
 export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<GetRepositoryTrackCommitByRepositoryCommitRequest> {
-
   /**
    * @generated from field: string repository_track_id = 1;
    */
@@ -132,14 +129,12 @@ export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<G
   static equals(a: GetRepositoryTrackCommitByRepositoryCommitRequest | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitRequest> | undefined, b: GetRepositoryTrackCommitByRepositoryCommitRequest | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByRepositoryCommitRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitResponse
  */
 export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<GetRepositoryTrackCommitByRepositoryCommitResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrackCommit repository_track_commit = 1;
    */
@@ -171,14 +166,12 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
   static equals(a: GetRepositoryTrackCommitByRepositoryCommitResponse | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitResponse> | undefined, b: GetRepositoryTrackCommitByRepositoryCommitResponse | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByRepositoryCommitResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackRequest
  */
 export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<ListRepositoryTrackCommitsByRepositoryTrackRequest> {
-
   /**
    * @generated from field: string repository_track_id = 1;
    */
@@ -228,14 +221,12 @@ export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<
   static equals(a: ListRepositoryTrackCommitsByRepositoryTrackRequest | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackRequest> | undefined, b: ListRepositoryTrackCommitsByRepositoryTrackRequest | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTrackCommitsByRepositoryTrackRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackResponse
  */
 export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message<ListRepositoryTrackCommitsByRepositoryTrackResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryTrackCommit repository_track_commits = 1;
    */
@@ -273,14 +264,12 @@ export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message
   static equals(a: ListRepositoryTrackCommitsByRepositoryTrackResponse | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackResponse> | undefined, b: ListRepositoryTrackCommitsByRepositoryTrackResponse | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTrackCommitsByRepositoryTrackResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceRequest
  */
 export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepositoryTrackCommitByReferenceRequest> {
-
   /**
    * @generated from field: string repository_owner = 1;
    */
@@ -330,14 +319,12 @@ export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepos
   static equals(a: GetRepositoryTrackCommitByReferenceRequest | PlainMessage<GetRepositoryTrackCommitByReferenceRequest> | undefined, b: GetRepositoryTrackCommitByReferenceRequest | PlainMessage<GetRepositoryTrackCommitByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByReferenceRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceResponse
  */
 export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepositoryTrackCommitByReferenceResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrackCommit repository_track_commit = 1;
    */
@@ -369,6 +356,5 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
   static equals(a: GetRepositoryTrackCommitByReferenceResponse | PlainMessage<GetRepositoryTrackCommitByReferenceResponse> | undefined, b: GetRepositoryTrackCommitByReferenceResponse | PlainMessage<GetRepositoryTrackCommitByReferenceResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByReferenceResponse, a, b);
   }
-
 }
 

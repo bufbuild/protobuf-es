@@ -39,7 +39,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnum
  */
 export enum MyEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -54,9 +53,7 @@ export enum MyEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(MyEnum)
 proto3.util.setEnumType(MyEnum, "proto3_preserve_unknown_enum_unittest.MyEnum", [
   {no: 0, name: "FOO"},
@@ -68,7 +65,6 @@ proto3.util.setEnumType(MyEnum, "proto3_preserve_unknown_enum_unittest.MyEnum", 
  * @generated from enum proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra
  */
 export enum MyEnumPlusExtra {
-
   /**
    * @generated from enum value: E_FOO = 0;
    */
@@ -88,9 +84,7 @@ export enum MyEnumPlusExtra {
    * @generated from enum value: E_EXTRA = 3;
    */
   E_EXTRA = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(MyEnumPlusExtra)
 proto3.util.setEnumType(MyEnumPlusExtra, "proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra", [
   {no: 0, name: "E_FOO"},
@@ -103,7 +97,6 @@ proto3.util.setEnumType(MyEnumPlusExtra, "proto3_preserve_unknown_enum_unittest.
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessage
  */
 export class MyMessage extends Message<MyMessage> {
-
   /**
    * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
    */
@@ -174,14 +167,12 @@ export class MyMessage extends Message<MyMessage> {
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean {
     return proto3.util.equals(MyMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
 export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
-
   /**
    * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
    */
@@ -250,6 +241,5 @@ export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean {
     return proto3.util.equals(MyMessagePlusExtra, a, b);
   }
-
 }
 

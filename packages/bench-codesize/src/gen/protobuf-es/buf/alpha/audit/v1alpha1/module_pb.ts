@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType
  */
 export enum BufAlphaRegistryV1Alpha1ResolvedReferenceType {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_UNSPECIFIED = 0;
    */
@@ -48,9 +47,7 @@ export enum BufAlphaRegistryV1Alpha1ResolvedReferenceType {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TRACK = 4;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_TRACK = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_RESOLVED_REFERENCE_TYPE_UNSPECIFIED"},
@@ -64,7 +61,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ResolvedReferenceType, "buf.alph
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModulePin
  */
 export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegistryV1Alpha1LocalModulePin> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -126,14 +122,12 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
   static equals(a: BufAlphaRegistryV1Alpha1LocalModulePin | PlainMessage<BufAlphaRegistryV1Alpha1LocalModulePin> | undefined, b: BufAlphaRegistryV1Alpha1LocalModulePin | PlainMessage<BufAlphaRegistryV1Alpha1LocalModulePin> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1LocalModulePin, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference
  */
 export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlphaRegistryV1Alpha1LocalModuleReference> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -177,14 +171,12 @@ export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlp
   static equals(a: BufAlphaRegistryV1Alpha1LocalModuleReference | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleReference> | undefined, b: BufAlphaRegistryV1Alpha1LocalModuleReference | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleReference> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1LocalModuleReference, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleResolveResult
  */
 export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference reference = 1;
    */
@@ -228,6 +220,5 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
   static equals(a: BufAlphaRegistryV1Alpha1LocalModuleResolveResult | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> | undefined, b: BufAlphaRegistryV1Alpha1LocalModuleResolveResult | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1LocalModuleResolveResult, a, b);
   }
-
 }
 

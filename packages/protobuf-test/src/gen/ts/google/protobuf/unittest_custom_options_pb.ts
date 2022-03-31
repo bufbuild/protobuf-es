@@ -48,7 +48,6 @@ import {Any, FileOptions, Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.MethodOpt1
  */
 export enum MethodOpt1 {
-
   /**
    * @generated from enum value: METHODOPT1_VAL1 = 1;
    */
@@ -58,9 +57,7 @@ export enum MethodOpt1 {
    * @generated from enum value: METHODOPT1_VAL2 = 2;
    */
   METHODOPT1_VAL2 = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(MethodOpt1)
 proto2.util.setEnumType(MethodOpt1, "protobuf_unittest.MethodOpt1", [
   {no: 1, name: "METHODOPT1_VAL1"},
@@ -71,14 +68,11 @@ proto2.util.setEnumType(MethodOpt1, "protobuf_unittest.MethodOpt1", [
  * @generated from enum protobuf_unittest.AggregateEnum
  */
 export enum AggregateEnum {
-
   /**
    * @generated from enum value: VALUE = 1;
    */
   VALUE = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(AggregateEnum)
 proto2.util.setEnumType(AggregateEnum, "protobuf_unittest.AggregateEnum", [
   {no: 1, name: "VALUE"},
@@ -91,7 +85,6 @@ proto2.util.setEnumType(AggregateEnum, "protobuf_unittest.AggregateEnum", [
  * @generated from message protobuf_unittest.TestMessageWithCustomOptions
  */
 export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomOptions> {
-
   /**
    * @generated from field: optional string field1 = 1;
    */
@@ -141,14 +134,12 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
   static equals(a: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined, b: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined): boolean {
     return proto2.util.equals(TestMessageWithCustomOptions, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
  */
 export enum TestMessageWithCustomOptions_AnEnum {
-
   /**
    * @generated from enum value: ANENUM_VAL1 = 1;
    */
@@ -158,15 +149,12 @@ export enum TestMessageWithCustomOptions_AnEnum {
    * @generated from enum value: ANENUM_VAL2 = 2;
    */
   ANENUM_VAL2 = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestMessageWithCustomOptions_AnEnum)
 proto2.util.setEnumType(TestMessageWithCustomOptions_AnEnum, "protobuf_unittest.TestMessageWithCustomOptions.AnEnum", [
   {no: 1, name: "ANENUM_VAL1"},
   {no: 2, name: "ANENUM_VAL2"},
 ]);
-
 
 /**
  * A test RPC service with custom options at all possible locations (and also
@@ -175,7 +163,6 @@ proto2.util.setEnumType(TestMessageWithCustomOptions_AnEnum, "protobuf_unittest.
  * @generated from message protobuf_unittest.CustomOptionFooRequest
  */
 export class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
-
   constructor(data?: PartialMessage<CustomOptionFooRequest>) {
     super();
     proto2.util.initPartial(data, this);
@@ -201,14 +188,12 @@ export class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
   static equals(a: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined, b: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
 export class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
-
   constructor(data?: PartialMessage<CustomOptionFooResponse>) {
     super();
     proto2.util.initPartial(data, this);
@@ -234,14 +219,12 @@ export class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
   static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
  */
 export class CustomOptionFooClientMessage extends Message<CustomOptionFooClientMessage> {
-
   constructor(data?: PartialMessage<CustomOptionFooClientMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -267,14 +250,12 @@ export class CustomOptionFooClientMessage extends Message<CustomOptionFooClientM
   static equals(a: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined, b: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooClientMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
 export class CustomOptionFooServerMessage extends Message<CustomOptionFooServerMessage> {
-
   constructor(data?: PartialMessage<CustomOptionFooServerMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -300,14 +281,12 @@ export class CustomOptionFooServerMessage extends Message<CustomOptionFooServerM
   static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooServerMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
  */
 export class DummyMessageContainingEnum extends Message<DummyMessageContainingEnum> {
-
   constructor(data?: PartialMessage<DummyMessageContainingEnum>) {
     super();
     proto2.util.initPartial(data, this);
@@ -333,14 +312,12 @@ export class DummyMessageContainingEnum extends Message<DummyMessageContainingEn
   static equals(a: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined, b: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined): boolean {
     return proto2.util.equals(DummyMessageContainingEnum, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType
  */
 export enum DummyMessageContainingEnum_TestEnumType {
-
   /**
    * @generated from enum value: TEST_OPTION_ENUM_TYPE1 = 22;
    */
@@ -350,21 +327,17 @@ export enum DummyMessageContainingEnum_TestEnumType {
    * @generated from enum value: TEST_OPTION_ENUM_TYPE2 = -23;
    */
   TEST_OPTION_ENUM_TYPE2 = -23,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(DummyMessageContainingEnum_TestEnumType)
 proto2.util.setEnumType(DummyMessageContainingEnum_TestEnumType, "protobuf_unittest.DummyMessageContainingEnum.TestEnumType", [
   {no: 22, name: "TEST_OPTION_ENUM_TYPE1"},
   {no: -23, name: "TEST_OPTION_ENUM_TYPE2"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
  */
 export class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalidAsOptionType> {
-
   constructor(data?: PartialMessage<DummyMessageInvalidAsOptionType>) {
     super();
     proto2.util.initPartial(data, this);
@@ -390,14 +363,12 @@ export class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalid
   static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean {
     return proto2.util.equals(DummyMessageInvalidAsOptionType, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
  */
 export class CustomOptionMinIntegerValues extends Message<CustomOptionMinIntegerValues> {
-
   constructor(data?: PartialMessage<CustomOptionMinIntegerValues>) {
     super();
     proto2.util.initPartial(data, this);
@@ -423,14 +394,12 @@ export class CustomOptionMinIntegerValues extends Message<CustomOptionMinInteger
   static equals(a: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined, b: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined): boolean {
     return proto2.util.equals(CustomOptionMinIntegerValues, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
  */
 export class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxIntegerValues> {
-
   constructor(data?: PartialMessage<CustomOptionMaxIntegerValues>) {
     super();
     proto2.util.initPartial(data, this);
@@ -456,14 +425,12 @@ export class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxInteger
   static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean {
     return proto2.util.equals(CustomOptionMaxIntegerValues, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
  */
 export class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
-
   constructor(data?: PartialMessage<CustomOptionOtherValues>) {
     super();
     proto2.util.initPartial(data, this);
@@ -489,14 +456,12 @@ export class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
   static equals(a: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined, b: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined): boolean {
     return proto2.util.equals(CustomOptionOtherValues, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
  */
 export class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositiveInts> {
-
   constructor(data?: PartialMessage<SettingRealsFromPositiveInts>) {
     super();
     proto2.util.initPartial(data, this);
@@ -522,14 +487,12 @@ export class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositi
   static equals(a: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined, b: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined): boolean {
     return proto2.util.equals(SettingRealsFromPositiveInts, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
 export class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegativeInts> {
-
   constructor(data?: PartialMessage<SettingRealsFromNegativeInts>) {
     super();
     proto2.util.initPartial(data, this);
@@ -555,14 +518,12 @@ export class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegati
   static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean {
     return proto2.util.equals(SettingRealsFromNegativeInts, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
  */
 export class ComplexOptionType1 extends Message<ComplexOptionType1> {
-
   /**
    * @generated from field: optional int32 foo = 1;
    */
@@ -612,14 +573,12 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType1, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
  */
 export class ComplexOptionType2 extends Message<ComplexOptionType2> {
-
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType1 bar = 1;
    */
@@ -669,14 +628,12 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
   static equals(a: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined, b: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType2, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2.ComplexOptionType4
  */
 export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOptionType2_ComplexOptionType4> {
-
   /**
    * @generated from field: optional int32 waldo = 1;
    */
@@ -708,15 +665,12 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
   static equals(a: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined, b: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType2_ComplexOptionType4, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
 export class ComplexOptionType3 extends Message<ComplexOptionType3> {
-
   /**
    * @generated from field: optional int32 qux = 1;
    */
@@ -754,14 +708,12 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType3, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
  */
 export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOptionType3_ComplexOptionType5> {
-
   /**
    * @generated from field: optional int32 plugh = 3;
    */
@@ -793,15 +745,12 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
   static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType3_ComplexOptionType5, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
 export class ComplexOpt6 extends Message<ComplexOpt6> {
-
   /**
    * @generated from field: optional int32 xyzzy = 7593951;
    */
@@ -833,7 +782,6 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
   static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean {
     return proto2.util.equals(ComplexOpt6, a, b);
   }
-
 }
 
 /**
@@ -842,7 +790,6 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
  * @generated from message protobuf_unittest.VariousComplexOptions
  */
 export class VariousComplexOptions extends Message<VariousComplexOptions> {
-
   constructor(data?: PartialMessage<VariousComplexOptions>) {
     super();
     proto2.util.initPartial(data, this);
@@ -868,14 +815,12 @@ export class VariousComplexOptions extends Message<VariousComplexOptions> {
   static equals(a: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined, b: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined): boolean {
     return proto2.util.equals(VariousComplexOptions, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
 export class AggregateMessageSet extends Message<AggregateMessageSet> {
-
   constructor(data?: PartialMessage<AggregateMessageSet>) {
     super();
     proto2.util.initPartial(data, this);
@@ -901,14 +846,12 @@ export class AggregateMessageSet extends Message<AggregateMessageSet> {
   static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean {
     return proto2.util.equals(AggregateMessageSet, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
  */
 export class AggregateMessageSetElement extends Message<AggregateMessageSetElement> {
-
   /**
    * @generated from field: optional string s = 1;
    */
@@ -940,7 +883,6 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean {
     return proto2.util.equals(AggregateMessageSetElement, a, b);
   }
-
 }
 
 /**
@@ -949,7 +891,6 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
  * @generated from message protobuf_unittest.Aggregate
  */
 export class Aggregate extends Message<Aggregate> {
-
   /**
    * @generated from field: optional int32 i = 1;
    */
@@ -1019,14 +960,12 @@ export class Aggregate extends Message<Aggregate> {
   static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean {
     return proto2.util.equals(Aggregate, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
 export class AggregateMessage extends Message<AggregateMessage> {
-
   /**
    * @generated from field: optional int32 fieldname = 1;
    */
@@ -1058,7 +997,6 @@ export class AggregateMessage extends Message<AggregateMessage> {
   static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean {
     return proto2.util.equals(AggregateMessage, a, b);
   }
-
 }
 
 /**
@@ -1067,7 +1005,6 @@ export class AggregateMessage extends Message<AggregateMessage> {
  * @generated from message protobuf_unittest.NestedOptionType
  */
 export class NestedOptionType extends Message<NestedOptionType> {
-
   constructor(data?: PartialMessage<NestedOptionType>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1093,32 +1030,26 @@ export class NestedOptionType extends Message<NestedOptionType> {
   static equals(a: NestedOptionType | PlainMessage<NestedOptionType> | undefined, b: NestedOptionType | PlainMessage<NestedOptionType> | undefined): boolean {
     return proto2.util.equals(NestedOptionType, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
  */
 export enum NestedOptionType_NestedEnum {
-
   /**
    * @generated from enum value: NESTED_ENUM_VALUE = 1;
    */
   VALUE = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(NestedOptionType_NestedEnum)
 proto2.util.setEnumType(NestedOptionType_NestedEnum, "protobuf_unittest.NestedOptionType.NestedEnum", [
   {no: 1, name: "NESTED_ENUM_VALUE"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.NestedOptionType.NestedMessage
  */
 export class NestedOptionType_NestedMessage extends Message<NestedOptionType_NestedMessage> {
-
   /**
    * @generated from field: optional int32 nested_field = 1;
    */
@@ -1150,9 +1081,7 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
   static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean {
     return proto2.util.equals(NestedOptionType_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * Custom message option that has a required enum field.
@@ -1161,7 +1090,6 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
  * @generated from message protobuf_unittest.OldOptionType
  */
 export class OldOptionType extends Message<OldOptionType> {
-
   /**
    * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
    */
@@ -1193,26 +1121,21 @@ export class OldOptionType extends Message<OldOptionType> {
   static equals(a: OldOptionType | PlainMessage<OldOptionType> | undefined, b: OldOptionType | PlainMessage<OldOptionType> | undefined): boolean {
     return proto2.util.equals(OldOptionType, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
  */
 export enum OldOptionType_TestEnum {
-
   /**
    * @generated from enum value: OLD_VALUE = 0;
    */
   OLD_VALUE = 0,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(OldOptionType_TestEnum)
 proto2.util.setEnumType(OldOptionType_TestEnum, "protobuf_unittest.OldOptionType.TestEnum", [
   {no: 0, name: "OLD_VALUE"},
 ]);
-
 
 /**
  * Updated version of the custom option above.
@@ -1220,7 +1143,6 @@ proto2.util.setEnumType(OldOptionType_TestEnum, "protobuf_unittest.OldOptionType
  * @generated from message protobuf_unittest.NewOptionType
  */
 export class NewOptionType extends Message<NewOptionType> {
-
   /**
    * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
    */
@@ -1252,14 +1174,12 @@ export class NewOptionType extends Message<NewOptionType> {
   static equals(a: NewOptionType | PlainMessage<NewOptionType> | undefined, b: NewOptionType | PlainMessage<NewOptionType> | undefined): boolean {
     return proto2.util.equals(NewOptionType, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum
  */
 export enum NewOptionType_TestEnum {
-
   /**
    * @generated from enum value: OLD_VALUE = 0;
    */
@@ -1269,15 +1189,12 @@ export enum NewOptionType_TestEnum {
    * @generated from enum value: NEW_VALUE = 1;
    */
   NEW_VALUE = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(NewOptionType_TestEnum)
 proto2.util.setEnumType(NewOptionType_TestEnum, "protobuf_unittest.NewOptionType.TestEnum", [
   {no: 0, name: "OLD_VALUE"},
   {no: 1, name: "NEW_VALUE"},
 ]);
-
 
 /**
  * Test message using the "required_enum_opt" option defined above.
@@ -1285,7 +1202,6 @@ proto2.util.setEnumType(NewOptionType_TestEnum, "protobuf_unittest.NewOptionType
  * @generated from message protobuf_unittest.TestMessageWithRequiredEnumOption
  */
 export class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRequiredEnumOption> {
-
   constructor(data?: PartialMessage<TestMessageWithRequiredEnumOption>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1311,6 +1227,5 @@ export class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRe
   static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean {
     return proto2.util.equals(TestMessageWithRequiredEnumOption, a, b);
   }
-
 }
 

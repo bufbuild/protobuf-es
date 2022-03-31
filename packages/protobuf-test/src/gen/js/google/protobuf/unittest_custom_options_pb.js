@@ -90,7 +90,6 @@ export const TestMessageWithCustomOptions_AnEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * A test RPC service with custom options at all possible locations (and also
  * some regular options, to make sure they interact nicely).
@@ -144,7 +143,6 @@ export const DummyMessageContainingEnum_TestEnumType = proto2.makeEnum(
     {no: -23, name: "TEST_OPTION_ENUM_TYPE2"},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
@@ -231,7 +229,6 @@ export const ComplexOptionType2_ComplexOptionType4 = proto2.makeMessageType(
   {localName: "ComplexOptionType2_ComplexOptionType4"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
@@ -253,7 +250,6 @@ export const ComplexOptionType3_ComplexOptionType5 = proto2.makeMessageType(
   ],
   {localName: "ComplexOptionType3_ComplexOptionType5"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
@@ -341,7 +337,6 @@ export const NestedOptionType_NestedEnum = proto2.makeEnum(
   {sharedPrefix: "NESTED_ENUM_"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.NestedOptionType.NestedMessage
  */
@@ -352,7 +347,6 @@ export const NestedOptionType_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "NestedOptionType_NestedMessage"},
 );
-
 
 /**
  * Custom message option that has a required enum field.
@@ -377,7 +371,6 @@ export const OldOptionType_TestEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * Updated version of the custom option above.
  *
@@ -400,7 +393,6 @@ export const NewOptionType_TestEnum = proto2.makeEnum(
     {no: 1, name: "NEW_VALUE"},
   ],
 );
-
 
 /**
  * Test message using the "required_enum_opt" option defined above.

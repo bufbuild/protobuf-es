@@ -53,7 +53,6 @@ import {PublicImportMessage} from "./unittest_import_public_pb.js";
  * @generated from enum protobuf_unittest.ForeignEnum
  */
 export enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 4;
    */
@@ -68,9 +67,7 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(ForeignEnum)
 proto2.util.setEnumType(ForeignEnum, "protobuf_unittest.ForeignEnum", [
   {no: 4, name: "FOREIGN_FOO"},
@@ -84,7 +81,6 @@ proto2.util.setEnumType(ForeignEnum, "protobuf_unittest.ForeignEnum", [
  * @generated from enum protobuf_unittest.TestEnumWithDupValue
  */
 export enum TestEnumWithDupValue {
-
   /**
    * @generated from enum value: FOO1 = 1;
    */
@@ -109,9 +105,7 @@ export enum TestEnumWithDupValue {
    * @generated from enum value: BAR2 = 2;
    */
   BAR2 = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestEnumWithDupValue)
 proto2.util.setEnumType(TestEnumWithDupValue, "protobuf_unittest.TestEnumWithDupValue", [
   {no: 1, name: "FOO1"},
@@ -127,7 +121,6 @@ proto2.util.setEnumType(TestEnumWithDupValue, "protobuf_unittest.TestEnumWithDup
  * @generated from enum protobuf_unittest.TestSparseEnum
  */
 export enum TestSparseEnum {
-
   /**
    * @generated from enum value: SPARSE_A = 123;
    */
@@ -162,9 +155,7 @@ export enum TestSparseEnum {
    * @generated from enum value: SPARSE_G = 2;
    */
   SPARSE_G = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestSparseEnum)
 proto2.util.setEnumType(TestSparseEnum, "protobuf_unittest.TestSparseEnum", [
   {no: 123, name: "SPARSE_A"},
@@ -180,7 +171,6 @@ proto2.util.setEnumType(TestSparseEnum, "protobuf_unittest.TestSparseEnum", [
  * @generated from enum protobuf_unittest.VeryLargeEnum
  */
 export enum VeryLargeEnum {
-
   /**
    * @generated from enum value: ENUM_LABEL_DEFAULT = 0;
    */
@@ -685,9 +675,7 @@ export enum VeryLargeEnum {
    * @generated from enum value: ENUM_LABEL_100 = 100;
    */
   ENUM_LABEL_100 = 100,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(VeryLargeEnum)
 proto2.util.setEnumType(VeryLargeEnum, "protobuf_unittest.VeryLargeEnum", [
   {no: 0, name: "ENUM_LABEL_DEFAULT"},
@@ -800,7 +788,6 @@ proto2.util.setEnumType(VeryLargeEnum, "protobuf_unittest.VeryLargeEnum", [
  * @generated from message protobuf_unittest.TestAllTypes
  */
 export class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    *
@@ -1295,14 +1282,12 @@ export class TestAllTypes extends Message<TestAllTypes> {
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean {
     return proto2.util.equals(TestAllTypes, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestAllTypes.NestedEnum
  */
 export enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
@@ -1324,9 +1309,7 @@ export enum TestAllTypes_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestAllTypes_NestedEnum)
 proto2.util.setEnumType(TestAllTypes_NestedEnum, "protobuf_unittest.TestAllTypes.NestedEnum", [
   {no: 1, name: "FOO"},
@@ -1335,12 +1318,10 @@ proto2.util.setEnumType(TestAllTypes_NestedEnum, "protobuf_unittest.TestAllTypes
   {no: -1, name: "NEG"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypes.NestedMessage
  */
 export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
    * a local variable named "b" in one of the generated methods.  Doh.
@@ -1376,15 +1357,12 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypes_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
  */
 export class TestAllTypes_OptionalGroup extends Message<TestAllTypes_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1416,15 +1394,12 @@ export class TestAllTypes_OptionalGroup extends Message<TestAllTypes_OptionalGro
   static equals(a: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined, b: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestAllTypes_OptionalGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
  */
 export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGroup> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -1456,9 +1431,7 @@ export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGro
   static equals(a: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined, b: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined): boolean {
     return proto2.util.equals(TestAllTypes_RepeatedGroup, a, b);
   }
-
 }
-
 
 /**
  * This proto includes a recursively nested message.
@@ -1466,7 +1439,6 @@ export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGro
  * @generated from message protobuf_unittest.NestedTestAllTypes
  */
 export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
-
   /**
    * @generated from field: optional protobuf_unittest.NestedTestAllTypes child = 1;
    */
@@ -1510,14 +1482,12 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean {
     return proto2.util.equals(NestedTestAllTypes, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
  */
 export class TestDeprecatedFields extends Message<TestDeprecatedFields> {
-
   /**
    * @generated from field: optional int32 deprecated_int32 = 1 [deprecated = true];
    * @deprecated
@@ -1563,7 +1533,6 @@ export class TestDeprecatedFields extends Message<TestDeprecatedFields> {
   static equals(a: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined, b: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined): boolean {
     return proto2.util.equals(TestDeprecatedFields, a, b);
   }
-
 }
 
 /**
@@ -1571,7 +1540,6 @@ export class TestDeprecatedFields extends Message<TestDeprecatedFields> {
  * @deprecated
  */
 export class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
-
   constructor(data?: PartialMessage<TestDeprecatedMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1597,7 +1565,6 @@ export class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
   static equals(a: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined, b: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined): boolean {
     return proto2.util.equals(TestDeprecatedMessage, a, b);
   }
-
 }
 
 /**
@@ -1607,7 +1574,6 @@ export class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
  * @generated from message protobuf_unittest.ForeignMessage
  */
 export class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: optional int32 c = 1;
    */
@@ -1645,14 +1611,12 @@ export class ForeignMessage extends Message<ForeignMessage> {
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto2.util.equals(ForeignMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
 export class TestReservedFields extends Message<TestReservedFields> {
-
   constructor(data?: PartialMessage<TestReservedFields>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1678,14 +1642,12 @@ export class TestReservedFields extends Message<TestReservedFields> {
   static equals(a: TestReservedFields | PlainMessage<TestReservedFields> | undefined, b: TestReservedFields | PlainMessage<TestReservedFields> | undefined): boolean {
     return proto2.util.equals(TestReservedFields, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
 export class TestAllExtensions extends Message<TestAllExtensions> {
-
   constructor(data?: PartialMessage<TestAllExtensions>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1711,14 +1673,12 @@ export class TestAllExtensions extends Message<TestAllExtensions> {
   static equals(a: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined, b: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined): boolean {
     return proto2.util.equals(TestAllExtensions, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
  */
 export class OptionalGroup_extension extends Message<OptionalGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1750,14 +1710,12 @@ export class OptionalGroup_extension extends Message<OptionalGroup_extension> {
   static equals(a: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined, b: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined): boolean {
     return proto2.util.equals(OptionalGroup_extension, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
 export class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -1789,14 +1747,12 @@ export class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
   static equals(a: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined, b: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined): boolean {
     return proto2.util.equals(RepeatedGroup_extension, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestGroup
  */
 export class TestGroup extends Message<TestGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestGroup.OptionalGroup optionalgroup = 16;
    */
@@ -1834,14 +1790,12 @@ export class TestGroup extends Message<TestGroup> {
   static equals(a: TestGroup | PlainMessage<TestGroup> | undefined, b: TestGroup | PlainMessage<TestGroup> | undefined): boolean {
     return proto2.util.equals(TestGroup, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestGroup.OptionalGroup
  */
 export class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1873,15 +1827,12 @@ export class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
   static equals(a: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined, b: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestGroup_OptionalGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
 export class TestGroupExtension extends Message<TestGroupExtension> {
-
   constructor(data?: PartialMessage<TestGroupExtension>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1907,14 +1858,12 @@ export class TestGroupExtension extends Message<TestGroupExtension> {
   static equals(a: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined, b: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined): boolean {
     return proto2.util.equals(TestGroupExtension, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
  */
 export class TestNestedExtension extends Message<TestNestedExtension> {
-
   constructor(data?: PartialMessage<TestNestedExtension>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1940,14 +1889,12 @@ export class TestNestedExtension extends Message<TestNestedExtension> {
   static equals(a: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined, b: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined): boolean {
     return proto2.util.equals(TestNestedExtension, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension.OptionalGroup_extension
  */
 export class TestNestedExtension_OptionalGroup_extension extends Message<TestNestedExtension_OptionalGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1979,15 +1926,12 @@ export class TestNestedExtension_OptionalGroup_extension extends Message<TestNes
   static equals(a: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined, b: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined): boolean {
     return proto2.util.equals(TestNestedExtension_OptionalGroup_extension, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
 export class TestChildExtension extends Message<TestChildExtension> {
-
   /**
    * @generated from field: optional string a = 1;
    */
@@ -2031,7 +1975,6 @@ export class TestChildExtension extends Message<TestChildExtension> {
   static equals(a: TestChildExtension | PlainMessage<TestChildExtension> | undefined, b: TestChildExtension | PlainMessage<TestChildExtension> | undefined): boolean {
     return proto2.util.equals(TestChildExtension, a, b);
   }
-
 }
 
 /**
@@ -2044,7 +1987,6 @@ export class TestChildExtension extends Message<TestChildExtension> {
  * @generated from message protobuf_unittest.TestRequired
  */
 export class TestRequired extends Message<TestRequired> {
-
   /**
    * @generated from field: required int32 a = 1;
    */
@@ -2271,14 +2213,12 @@ export class TestRequired extends Message<TestRequired> {
   static equals(a: TestRequired | PlainMessage<TestRequired> | undefined, b: TestRequired | PlainMessage<TestRequired> | undefined): boolean {
     return proto2.util.equals(TestRequired, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
 export class TestRequiredForeign extends Message<TestRequiredForeign> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
    */
@@ -2322,14 +2262,12 @@ export class TestRequiredForeign extends Message<TestRequiredForeign> {
   static equals(a: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined, b: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined): boolean {
     return proto2.util.equals(TestRequiredForeign, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
  */
 export class TestRequiredMessage extends Message<TestRequiredMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
    */
@@ -2373,7 +2311,6 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
   static equals(a: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined, b: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined): boolean {
     return proto2.util.equals(TestRequiredMessage, a, b);
   }
-
 }
 
 /**
@@ -2382,7 +2319,6 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
  * @generated from message protobuf_unittest.TestForeignNested
  */
 export class TestForeignNested extends Message<TestForeignNested> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage foreign_nested = 1;
    */
@@ -2414,7 +2350,6 @@ export class TestForeignNested extends Message<TestForeignNested> {
   static equals(a: TestForeignNested | PlainMessage<TestForeignNested> | undefined, b: TestForeignNested | PlainMessage<TestForeignNested> | undefined): boolean {
     return proto2.util.equals(TestForeignNested, a, b);
   }
-
 }
 
 /**
@@ -2423,7 +2358,6 @@ export class TestForeignNested extends Message<TestForeignNested> {
  * @generated from message protobuf_unittest.TestEmptyMessage
  */
 export class TestEmptyMessage extends Message<TestEmptyMessage> {
-
   constructor(data?: PartialMessage<TestEmptyMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2449,7 +2383,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean {
     return proto2.util.equals(TestEmptyMessage, a, b);
   }
-
 }
 
 /**
@@ -2459,7 +2392,6 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
  * @generated from message protobuf_unittest.TestEmptyMessageWithExtensions
  */
 export class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWithExtensions> {
-
   constructor(data?: PartialMessage<TestEmptyMessageWithExtensions>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2485,7 +2417,6 @@ export class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWith
   static equals(a: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined, b: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined): boolean {
     return proto2.util.equals(TestEmptyMessageWithExtensions, a, b);
   }
-
 }
 
 /**
@@ -2494,7 +2425,6 @@ export class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWith
  * @generated from message protobuf_unittest.TestPickleNestedMessage
  */
 export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
-
   constructor(data?: PartialMessage<TestPickleNestedMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2520,14 +2450,12 @@ export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
   static equals(a: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined, b: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined): boolean {
     return proto2.util.equals(TestPickleNestedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage
  */
 export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNestedMessage_NestedMessage> {
-
   /**
    * @generated from field: optional int32 bb = 1;
    */
@@ -2559,14 +2487,12 @@ export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNes
   static equals(a: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestPickleNestedMessage_NestedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
  */
 export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends Message<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> {
-
   /**
    * @generated from field: optional int32 cc = 1;
    */
@@ -2598,16 +2524,12 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
   static equals(a: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined): boolean {
     return proto2.util.equals(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, a, b);
   }
-
 }
-
-
 
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
 export class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRanges> {
-
   constructor(data?: PartialMessage<TestMultipleExtensionRanges>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2633,7 +2555,6 @@ export class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRa
   static equals(a: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined, b: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined): boolean {
     return proto2.util.equals(TestMultipleExtensionRanges, a, b);
   }
-
 }
 
 /**
@@ -2642,7 +2563,6 @@ export class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRa
  * @generated from message protobuf_unittest.TestReallyLargeTagNumber
  */
 export class TestReallyLargeTagNumber extends Message<TestReallyLargeTagNumber> {
-
   /**
    * The largest possible tag number is 2^28 - 1, since the wire format uses
    * three bits to communicate wire type.
@@ -2683,14 +2603,12 @@ export class TestReallyLargeTagNumber extends Message<TestReallyLargeTagNumber> 
   static equals(a: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined, b: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined): boolean {
     return proto2.util.equals(TestReallyLargeTagNumber, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
 export class TestRecursiveMessage extends Message<TestRecursiveMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRecursiveMessage a = 1;
    */
@@ -2728,7 +2646,6 @@ export class TestRecursiveMessage extends Message<TestRecursiveMessage> {
   static equals(a: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined, b: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined): boolean {
     return proto2.util.equals(TestRecursiveMessage, a, b);
   }
-
 }
 
 /**
@@ -2737,7 +2654,6 @@ export class TestRecursiveMessage extends Message<TestRecursiveMessage> {
  * @generated from message protobuf_unittest.TestMutualRecursionA
  */
 export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionB bb = 1;
    */
@@ -2775,14 +2691,12 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
   static equals(a: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined, b: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionA, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubMessage
  */
 export class TestMutualRecursionA_SubMessage extends Message<TestMutualRecursionA_SubMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionB b = 1;
    */
@@ -2814,15 +2728,12 @@ export class TestMutualRecursionA_SubMessage extends Message<TestMutualRecursion
   static equals(a: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined, b: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionA_SubMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
  */
 export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_SubGroup> {
-
   /**
    * Needed because of bug in javatest
    *
@@ -2862,15 +2773,12 @@ export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_
   static equals(a: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined, b: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionA_SubGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
 export class TestMutualRecursionB extends Message<TestMutualRecursionB> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionA a = 1;
    */
@@ -2908,14 +2816,12 @@ export class TestMutualRecursionB extends Message<TestMutualRecursionB> {
   static equals(a: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined, b: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionB, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
  */
 export class TestIsInitialized extends Message<TestIsInitialized> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage sub_message = 1;
    */
@@ -2947,14 +2853,12 @@ export class TestIsInitialized extends Message<TestIsInitialized> {
   static equals(a: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined, b: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined): boolean {
     return proto2.util.equals(TestIsInitialized, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage
  */
 export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1;
    */
@@ -2986,14 +2890,12 @@ export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubM
   static equals(a: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined, b: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined): boolean {
     return proto2.util.equals(TestIsInitialized_SubMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
  */
 export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitialized_SubMessage_SubGroup> {
-
   /**
    * @generated from field: required int32 i = 2;
    */
@@ -3025,10 +2927,7 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
   static equals(a: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined, b: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined): boolean {
     return proto2.util.equals(TestIsInitialized_SubMessage_SubGroup, a, b);
   }
-
 }
-
-
 
 /**
  * Test that groups have disjoint field numbers from their siblings and
@@ -3041,7 +2940,6 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
  * @generated from message protobuf_unittest.TestDupFieldNumber
  */
 export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
-
   /**
    * NO_PROTO1
    *
@@ -3087,14 +2985,12 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
   static equals(a: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined, b: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined): boolean {
     return proto2.util.equals(TestDupFieldNumber, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Foo
  */
 export class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_Foo> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -3126,15 +3022,12 @@ export class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_Foo> {
   static equals(a: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined, b: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined): boolean {
     return proto2.util.equals(TestDupFieldNumber_Foo, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
  */
 export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -3166,9 +3059,7 @@ export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
   static equals(a: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined, b: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined): boolean {
     return proto2.util.equals(TestDupFieldNumber_Bar, a, b);
   }
-
 }
-
 
 /**
  * Additional messages for testing lazy fields.
@@ -3176,7 +3067,6 @@ export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
  * @generated from message protobuf_unittest.TestEagerMessage
  */
 export class TestEagerMessage extends Message<TestEagerMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
    */
@@ -3208,14 +3098,12 @@ export class TestEagerMessage extends Message<TestEagerMessage> {
   static equals(a: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined, b: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined): boolean {
     return proto2.util.equals(TestEagerMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
 export class TestLazyMessage extends Message<TestLazyMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
    */
@@ -3247,7 +3135,6 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
   static equals(a: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined, b: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined): boolean {
     return proto2.util.equals(TestLazyMessage, a, b);
   }
-
 }
 
 /**
@@ -3256,7 +3143,6 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
  * @generated from message protobuf_unittest.TestNestedMessageHasBits
  */
 export class TestNestedMessageHasBits extends Message<TestNestedMessageHasBits> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestNestedMessageHasBits.NestedMessage optional_nested_message = 1;
    */
@@ -3288,14 +3174,12 @@ export class TestNestedMessageHasBits extends Message<TestNestedMessageHasBits> 
   static equals(a: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined, b: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined): boolean {
     return proto2.util.equals(TestNestedMessageHasBits, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedMessageHasBits.NestedMessage
  */
 export class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMessageHasBits_NestedMessage> {
-
   /**
    * @generated from field: repeated int32 nestedmessage_repeated_int32 = 1;
    */
@@ -3333,9 +3217,7 @@ export class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMe
   static equals(a: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined, b: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestNestedMessageHasBits_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
@@ -3344,7 +3226,6 @@ export class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMe
  * @generated from message protobuf_unittest.TestCamelCaseFieldNames
  */
 export class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
-
   /**
    * @generated from field: optional int32 PrimitiveField = 1;
    */
@@ -3442,7 +3323,6 @@ export class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
   static equals(a: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined, b: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined): boolean {
     return proto2.util.equals(TestCamelCaseFieldNames, a, b);
   }
-
 }
 
 /**
@@ -3452,7 +3332,6 @@ export class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
  * @generated from message protobuf_unittest.TestFieldOrderings
  */
 export class TestFieldOrderings extends Message<TestFieldOrderings> {
-
   /**
    * @generated from field: optional string my_string = 11;
    */
@@ -3502,14 +3381,12 @@ export class TestFieldOrderings extends Message<TestFieldOrderings> {
   static equals(a: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined, b: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined): boolean {
     return proto2.util.equals(TestFieldOrderings, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestFieldOrderings.NestedMessage
  */
 export class TestFieldOrderings_NestedMessage extends Message<TestFieldOrderings_NestedMessage> {
-
   /**
    * @generated from field: optional int64 oo = 2;
    */
@@ -3551,15 +3428,12 @@ export class TestFieldOrderings_NestedMessage extends Message<TestFieldOrderings
   static equals(a: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined, b: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestFieldOrderings_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
 export class TestExtensionOrderings1 extends Message<TestExtensionOrderings1> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -3591,14 +3465,12 @@ export class TestExtensionOrderings1 extends Message<TestExtensionOrderings1> {
   static equals(a: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined, b: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined): boolean {
     return proto2.util.equals(TestExtensionOrderings1, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
  */
 export class TestExtensionOrderings2 extends Message<TestExtensionOrderings2> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -3630,14 +3502,12 @@ export class TestExtensionOrderings2 extends Message<TestExtensionOrderings2> {
   static equals(a: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined, b: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined): boolean {
     return proto2.util.equals(TestExtensionOrderings2, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3
  */
 export class TestExtensionOrderings2_TestExtensionOrderings3 extends Message<TestExtensionOrderings2_TestExtensionOrderings3> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -3669,15 +3539,12 @@ export class TestExtensionOrderings2_TestExtensionOrderings3 extends Message<Tes
   static equals(a: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined, b: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined): boolean {
     return proto2.util.equals(TestExtensionOrderings2_TestExtensionOrderings3, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
  */
 export class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> {
-
   /**
    * @generated from field: optional bytes escaped_bytes = 1 [default = "\000\001\007\010\014\n\r\t\013\\\'\\"\376"];
    */
@@ -3883,14 +3750,12 @@ export class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> 
   static equals(a: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined, b: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined): boolean {
     return proto2.util.equals(TestExtremeDefaultValues, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
 export class SparseEnumMessage extends Message<SparseEnumMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestSparseEnum sparse_enum = 1;
    */
@@ -3922,7 +3787,6 @@ export class SparseEnumMessage extends Message<SparseEnumMessage> {
   static equals(a: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined, b: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined): boolean {
     return proto2.util.equals(SparseEnumMessage, a, b);
   }
-
 }
 
 /**
@@ -3931,7 +3795,6 @@ export class SparseEnumMessage extends Message<SparseEnumMessage> {
  * @generated from message protobuf_unittest.OneString
  */
 export class OneString extends Message<OneString> {
-
   /**
    * @generated from field: optional string data = 1;
    */
@@ -3963,14 +3826,12 @@ export class OneString extends Message<OneString> {
   static equals(a: OneString | PlainMessage<OneString> | undefined, b: OneString | PlainMessage<OneString> | undefined): boolean {
     return proto2.util.equals(OneString, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.MoreString
  */
 export class MoreString extends Message<MoreString> {
-
   /**
    * @generated from field: repeated string data = 1;
    */
@@ -4002,14 +3863,12 @@ export class MoreString extends Message<MoreString> {
   static equals(a: MoreString | PlainMessage<MoreString> | undefined, b: MoreString | PlainMessage<MoreString> | undefined): boolean {
     return proto2.util.equals(MoreString, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.OneBytes
  */
 export class OneBytes extends Message<OneBytes> {
-
   /**
    * @generated from field: optional bytes data = 1;
    */
@@ -4041,14 +3900,12 @@ export class OneBytes extends Message<OneBytes> {
   static equals(a: OneBytes | PlainMessage<OneBytes> | undefined, b: OneBytes | PlainMessage<OneBytes> | undefined): boolean {
     return proto2.util.equals(OneBytes, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
 export class MoreBytes extends Message<MoreBytes> {
-
   /**
    * @generated from field: repeated bytes data = 1;
    */
@@ -4080,7 +3937,6 @@ export class MoreBytes extends Message<MoreBytes> {
   static equals(a: MoreBytes | PlainMessage<MoreBytes> | undefined, b: MoreBytes | PlainMessage<MoreBytes> | undefined): boolean {
     return proto2.util.equals(MoreBytes, a, b);
   }
-
 }
 
 /**
@@ -4089,7 +3945,6 @@ export class MoreBytes extends Message<MoreBytes> {
  * @generated from message protobuf_unittest.Int32Message
  */
 export class Int32Message extends Message<Int32Message> {
-
   /**
    * @generated from field: optional int32 data = 1;
    */
@@ -4121,14 +3976,12 @@ export class Int32Message extends Message<Int32Message> {
   static equals(a: Int32Message | PlainMessage<Int32Message> | undefined, b: Int32Message | PlainMessage<Int32Message> | undefined): boolean {
     return proto2.util.equals(Int32Message, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
 export class Uint32Message extends Message<Uint32Message> {
-
   /**
    * @generated from field: optional uint32 data = 1;
    */
@@ -4160,14 +4013,12 @@ export class Uint32Message extends Message<Uint32Message> {
   static equals(a: Uint32Message | PlainMessage<Uint32Message> | undefined, b: Uint32Message | PlainMessage<Uint32Message> | undefined): boolean {
     return proto2.util.equals(Uint32Message, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.Int64Message
  */
 export class Int64Message extends Message<Int64Message> {
-
   /**
    * @generated from field: optional int64 data = 1;
    */
@@ -4199,14 +4050,12 @@ export class Int64Message extends Message<Int64Message> {
   static equals(a: Int64Message | PlainMessage<Int64Message> | undefined, b: Int64Message | PlainMessage<Int64Message> | undefined): boolean {
     return proto2.util.equals(Int64Message, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
 export class Uint64Message extends Message<Uint64Message> {
-
   /**
    * @generated from field: optional uint64 data = 1;
    */
@@ -4238,14 +4087,12 @@ export class Uint64Message extends Message<Uint64Message> {
   static equals(a: Uint64Message | PlainMessage<Uint64Message> | undefined, b: Uint64Message | PlainMessage<Uint64Message> | undefined): boolean {
     return proto2.util.equals(Uint64Message, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
 export class BoolMessage extends Message<BoolMessage> {
-
   /**
    * @generated from field: optional bool data = 1;
    */
@@ -4277,7 +4124,6 @@ export class BoolMessage extends Message<BoolMessage> {
   static equals(a: BoolMessage | PlainMessage<BoolMessage> | undefined, b: BoolMessage | PlainMessage<BoolMessage> | undefined): boolean {
     return proto2.util.equals(BoolMessage, a, b);
   }
-
 }
 
 /**
@@ -4286,7 +4132,6 @@ export class BoolMessage extends Message<BoolMessage> {
  * @generated from message protobuf_unittest.TestOneof
  */
 export class TestOneof extends Message<TestOneof> {
-
   /**
    * @generated from oneof protobuf_unittest.TestOneof.foo
    */
@@ -4345,14 +4190,12 @@ export class TestOneof extends Message<TestOneof> {
   static equals(a: TestOneof | PlainMessage<TestOneof> | undefined, b: TestOneof | PlainMessage<TestOneof> | undefined): boolean {
     return proto2.util.equals(TestOneof, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOneof.FooGroup
  */
 export class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 5;
    */
@@ -4390,15 +4233,12 @@ export class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
   static equals(a: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined, b: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined): boolean {
     return proto2.util.equals(TestOneof_FooGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
 export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsCompatible> {
-
   /**
    * @generated from field: optional int32 foo_int = 1;
    */
@@ -4448,14 +4288,12 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
   static equals(a: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined, b: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined): boolean {
     return proto2.util.equals(TestOneofBackwardsCompatible, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup
  */
 export class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBackwardsCompatible_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 5;
    */
@@ -4493,15 +4331,12 @@ export class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBack
   static equals(a: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined, b: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined): boolean {
     return proto2.util.equals(TestOneofBackwardsCompatible_FooGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2
  */
 export class TestOneof2 extends Message<TestOneof2> {
-
   /**
    * @generated from oneof protobuf_unittest.TestOneof2.foo
    */
@@ -4682,14 +4517,12 @@ export class TestOneof2 extends Message<TestOneof2> {
   static equals(a: TestOneof2 | PlainMessage<TestOneof2> | undefined, b: TestOneof2 | PlainMessage<TestOneof2> | undefined): boolean {
     return proto2.util.equals(TestOneof2, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestOneof2.NestedEnum
  */
 export enum TestOneof2_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
@@ -4704,9 +4537,7 @@ export enum TestOneof2_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestOneof2_NestedEnum)
 proto2.util.setEnumType(TestOneof2_NestedEnum, "protobuf_unittest.TestOneof2.NestedEnum", [
   {no: 1, name: "FOO"},
@@ -4714,12 +4545,10 @@ proto2.util.setEnumType(TestOneof2_NestedEnum, "protobuf_unittest.TestOneof2.Nes
   {no: 3, name: "BAZ"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.TestOneof2.FooGroup
  */
 export class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 9;
    */
@@ -4757,15 +4586,12 @@ export class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
   static equals(a: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined, b: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined): boolean {
     return proto2.util.equals(TestOneof2_FooGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
  */
 export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> {
-
   /**
    * @generated from field: optional int64 qux_int = 1;
    */
@@ -4803,15 +4629,12 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
   static equals(a: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined, b: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestOneof2_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
 export class TestRequiredOneof extends Message<TestRequiredOneof> {
-
   /**
    * @generated from oneof protobuf_unittest.TestRequiredOneof.foo
    */
@@ -4863,14 +4686,12 @@ export class TestRequiredOneof extends Message<TestRequiredOneof> {
   static equals(a: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined, b: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined): boolean {
     return proto2.util.equals(TestRequiredOneof, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof.NestedMessage
  */
 export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_NestedMessage> {
-
   /**
    * @generated from field: required double required_double = 1;
    */
@@ -4902,15 +4723,12 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
   static equals(a: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined, b: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestRequiredOneof_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
  */
 export class TestPackedTypes extends Message<TestPackedTypes> {
-
   /**
    * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
    */
@@ -5020,7 +4838,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean {
     return proto2.util.equals(TestPackedTypes, a, b);
   }
-
 }
 
 /**
@@ -5030,7 +4847,6 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
  * @generated from message protobuf_unittest.TestUnpackedTypes
  */
 export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
-
   /**
    * @generated from field: repeated int32 unpacked_int32 = 90 [packed = false];
    */
@@ -5140,14 +4956,12 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean {
     return proto2.util.equals(TestUnpackedTypes, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
 export class TestPackedExtensions extends Message<TestPackedExtensions> {
-
   constructor(data?: PartialMessage<TestPackedExtensions>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5173,14 +4987,12 @@ export class TestPackedExtensions extends Message<TestPackedExtensions> {
   static equals(a: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined, b: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined): boolean {
     return proto2.util.equals(TestPackedExtensions, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
 export class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
-
   constructor(data?: PartialMessage<TestUnpackedExtensions>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5206,7 +5018,6 @@ export class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
   static equals(a: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined, b: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined): boolean {
     return proto2.util.equals(TestUnpackedExtensions, a, b);
   }
-
 }
 
 /**
@@ -5217,7 +5028,6 @@ export class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
  * @generated from message protobuf_unittest.TestDynamicExtensions
  */
 export class TestDynamicExtensions extends Message<TestDynamicExtensions> {
-
   /**
    * @generated from field: optional fixed32 scalar_extension = 2000;
    */
@@ -5285,14 +5095,12 @@ export class TestDynamicExtensions extends Message<TestDynamicExtensions> {
   static equals(a: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined, b: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined): boolean {
     return proto2.util.equals(TestDynamicExtensions, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType
  */
 export enum TestDynamicExtensions_DynamicEnumType {
-
   /**
    * @generated from enum value: DYNAMIC_FOO = 2200;
    */
@@ -5307,9 +5115,7 @@ export enum TestDynamicExtensions_DynamicEnumType {
    * @generated from enum value: DYNAMIC_BAZ = 2202;
    */
   DYNAMIC_BAZ = 2202,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestDynamicExtensions_DynamicEnumType)
 proto2.util.setEnumType(TestDynamicExtensions_DynamicEnumType, "protobuf_unittest.TestDynamicExtensions.DynamicEnumType", [
   {no: 2200, name: "DYNAMIC_FOO"},
@@ -5317,12 +5123,10 @@ proto2.util.setEnumType(TestDynamicExtensions_DynamicEnumType, "protobuf_unittes
   {no: 2202, name: "DYNAMIC_BAZ"},
 ]);
 
-
 /**
  * @generated from message protobuf_unittest.TestDynamicExtensions.DynamicMessageType
  */
 export class TestDynamicExtensions_DynamicMessageType extends Message<TestDynamicExtensions_DynamicMessageType> {
-
   /**
    * @generated from field: optional int32 dynamic_field = 2100;
    */
@@ -5354,15 +5158,12 @@ export class TestDynamicExtensions_DynamicMessageType extends Message<TestDynami
   static equals(a: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined, b: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined): boolean {
     return proto2.util.equals(TestDynamicExtensions_DynamicMessageType, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
 export class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedScalarDifferentTagSizes> {
-
   /**
    * Parsing repeated fixed size values used to fail. This message needs to be
    * used in order to get a tag of the right size; all of the repeated fields
@@ -5434,7 +5235,6 @@ export class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedSca
   static equals(a: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined, b: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined): boolean {
     return proto2.util.equals(TestRepeatedScalarDifferentTagSizes, a, b);
   }
-
 }
 
 /**
@@ -5444,7 +5244,6 @@ export class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedSca
  * @generated from message protobuf_unittest.TestParsingMerge
  */
 export class TestParsingMerge extends Message<TestParsingMerge> {
-
   /**
    * @generated from field: required protobuf_unittest.TestAllTypes required_all_types = 1;
    */
@@ -5500,7 +5299,6 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
   static equals(a: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined, b: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge, a, b);
   }
-
 }
 
 /**
@@ -5513,7 +5311,6 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator
  */
 export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsingMerge_RepeatedFieldsGenerator> {
-
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypes field1 = 1;
    */
@@ -5581,14 +5378,12 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
  */
 export class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group1> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 11;
    */
@@ -5620,15 +5415,12 @@ export class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Message<Tes
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator_Group1, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
  */
 export class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group2> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 21;
    */
@@ -5660,16 +5452,12 @@ export class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Message<Tes
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator_Group2, a, b);
   }
-
 }
-
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
  */
 export class TestParsingMerge_OptionalGroup extends Message<TestParsingMerge_OptionalGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_group_all_types = 11;
    */
@@ -5701,15 +5489,12 @@ export class TestParsingMerge_OptionalGroup extends Message<TestParsingMerge_Opt
   static equals(a: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined, b: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_OptionalGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
  */
 export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_RepeatedGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes repeated_group_all_types = 21;
    */
@@ -5741,15 +5526,12 @@ export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_Rep
   static equals(a: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined, b: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_RepeatedGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
 export class TestCommentInjectionMessage extends Message<TestCommentInjectionMessage> {
-
   /**
    * *\/ <- This should not close the generated doc comment
    *
@@ -5783,7 +5565,6 @@ export class TestCommentInjectionMessage extends Message<TestCommentInjectionMes
   static equals(a: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined, b: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined): boolean {
     return proto2.util.equals(TestCommentInjectionMessage, a, b);
   }
-
 }
 
 /**
@@ -5792,7 +5573,6 @@ export class TestCommentInjectionMessage extends Message<TestCommentInjectionMes
  * @generated from message protobuf_unittest.FooRequest
  */
 export class FooRequest extends Message<FooRequest> {
-
   constructor(data?: PartialMessage<FooRequest>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5818,14 +5598,12 @@ export class FooRequest extends Message<FooRequest> {
   static equals(a: FooRequest | PlainMessage<FooRequest> | undefined, b: FooRequest | PlainMessage<FooRequest> | undefined): boolean {
     return proto2.util.equals(FooRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
 export class FooResponse extends Message<FooResponse> {
-
   constructor(data?: PartialMessage<FooResponse>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5851,14 +5629,12 @@ export class FooResponse extends Message<FooResponse> {
   static equals(a: FooResponse | PlainMessage<FooResponse> | undefined, b: FooResponse | PlainMessage<FooResponse> | undefined): boolean {
     return proto2.util.equals(FooResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooClientMessage
  */
 export class FooClientMessage extends Message<FooClientMessage> {
-
   constructor(data?: PartialMessage<FooClientMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5884,14 +5660,12 @@ export class FooClientMessage extends Message<FooClientMessage> {
   static equals(a: FooClientMessage | PlainMessage<FooClientMessage> | undefined, b: FooClientMessage | PlainMessage<FooClientMessage> | undefined): boolean {
     return proto2.util.equals(FooClientMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
 export class FooServerMessage extends Message<FooServerMessage> {
-
   constructor(data?: PartialMessage<FooServerMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5917,14 +5691,12 @@ export class FooServerMessage extends Message<FooServerMessage> {
   static equals(a: FooServerMessage | PlainMessage<FooServerMessage> | undefined, b: FooServerMessage | PlainMessage<FooServerMessage> | undefined): boolean {
     return proto2.util.equals(FooServerMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.BarRequest
  */
 export class BarRequest extends Message<BarRequest> {
-
   constructor(data?: PartialMessage<BarRequest>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5950,14 +5722,12 @@ export class BarRequest extends Message<BarRequest> {
   static equals(a: BarRequest | PlainMessage<BarRequest> | undefined, b: BarRequest | PlainMessage<BarRequest> | undefined): boolean {
     return proto2.util.equals(BarRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
 export class BarResponse extends Message<BarResponse> {
-
   constructor(data?: PartialMessage<BarResponse>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5983,14 +5753,12 @@ export class BarResponse extends Message<BarResponse> {
   static equals(a: BarResponse | PlainMessage<BarResponse> | undefined, b: BarResponse | PlainMessage<BarResponse> | undefined): boolean {
     return proto2.util.equals(BarResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestJsonName
  */
 export class TestJsonName extends Message<TestJsonName> {
-
   /**
    * @generated from field: optional int32 field_name1 = 1;
    */
@@ -6058,14 +5826,12 @@ export class TestJsonName extends Message<TestJsonName> {
   static equals(a: TestJsonName | PlainMessage<TestJsonName> | undefined, b: TestJsonName | PlainMessage<TestJsonName> | undefined): boolean {
     return proto2.util.equals(TestJsonName, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
  */
 export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
-
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
@@ -6184,14 +5950,12 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
   static equals(a: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined, b: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined): boolean {
     return proto2.util.equals(TestHugeFieldNumbers, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup
  */
 export class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNumbers_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
@@ -6223,15 +5987,12 @@ export class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNum
   static equals(a: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined, b: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestHugeFieldNumbers_OptionalGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
 export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> {
-
   /**
    * @generated from field: optional int32 field1 = 1;
    */
@@ -6311,14 +6072,12 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
   static equals(a: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined, b: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined): boolean {
     return proto2.util.equals(TestExtensionInsideTable, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
 export class TestExtensionRangeSerialize extends Message<TestExtensionRangeSerialize> {
-
   /**
    * @generated from field: optional int32 foo_one = 1;
    */
@@ -6368,6 +6127,5 @@ export class TestExtensionRangeSerialize extends Message<TestExtensionRangeSeria
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean {
     return proto2.util.equals(TestExtensionRangeSerialize, a, b);
   }
-
 }
 

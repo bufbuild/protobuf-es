@@ -46,7 +46,6 @@ import {Message, proto2, protoInt64} from "@bufbuild/protobuf";
  * @generated from enum protobuf_test_messages.proto2.ForeignEnumProto2
  */
 export enum ForeignEnumProto2 {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 0;
    */
@@ -61,9 +60,7 @@ export enum ForeignEnumProto2 {
    * @generated from enum value: FOREIGN_BAZ = 2;
    */
   FOREIGN_BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(ForeignEnumProto2)
 proto2.util.setEnumType(ForeignEnumProto2, "protobuf_test_messages.proto2.ForeignEnumProto2", [
   {no: 0, name: "FOREIGN_FOO"},
@@ -83,7 +80,6 @@ proto2.util.setEnumType(ForeignEnumProto2, "protobuf_test_messages.proto2.Foreig
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2
  */
 export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
-
   /**
    * Singular
    *
@@ -930,14 +926,12 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   static equals(a: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined, b: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
  */
 export enum TestAllTypesProto2_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -959,9 +953,7 @@ export enum TestAllTypesProto2_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestAllTypesProto2_NestedEnum)
 proto2.util.setEnumType(TestAllTypesProto2_NestedEnum, "protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum", [
   {no: 0, name: "FOO"},
@@ -970,12 +962,10 @@ proto2.util.setEnumType(TestAllTypesProto2_NestedEnum, "protobuf_test_messages.p
   {no: -1, name: "NEG"},
 ]);
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage
  */
 export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2_NestedMessage> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -1013,9 +1003,7 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
   static equals(a: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined, b: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * groups
@@ -1023,7 +1011,6 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.Data
  */
 export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
-
   /**
    * @generated from field: optional int32 group_int32 = 202;
    */
@@ -1061,9 +1048,7 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
   static equals(a: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined, b: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_Data, a, b);
   }
-
 }
-
 
 /**
  * message_set test case.
@@ -1071,7 +1056,6 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
  */
 export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesProto2_MessageSetCorrect> {
-
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrect>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1097,15 +1081,12 @@ export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesPr
   static equals(a: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined, b: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrect, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
  */
 export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<TestAllTypesProto2_MessageSetCorrectExtension1> {
-
   /**
    * @generated from field: optional string str = 25;
    */
@@ -1137,15 +1118,12 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrectExtension1, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
 export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<TestAllTypesProto2_MessageSetCorrectExtension2> {
-
   /**
    * @generated from field: optional int32 i = 9;
    */
@@ -1177,15 +1155,12 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrectExtension2, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
  */
 export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
-
   /**
    * @generated from field: optional int32 c = 1;
    */
@@ -1217,14 +1192,12 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean {
     return proto2.util.equals(ForeignMessageProto2, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
  */
 export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
-
   /**
    * @generated from field: optional int32 optional_int32 = 1001;
    */
@@ -1286,14 +1259,12 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
   static equals(a: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined, b: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined): boolean {
     return proto2.util.equals(UnknownToTestAllTypes, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
  */
 export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAllTypes_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -1325,15 +1296,12 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
   static equals(a: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined, b: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(UnknownToTestAllTypes_OptionalGroup, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
 export class NullHypothesisProto2 extends Message<NullHypothesisProto2> {
-
   constructor(data?: PartialMessage<NullHypothesisProto2>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1359,14 +1327,12 @@ export class NullHypothesisProto2 extends Message<NullHypothesisProto2> {
   static equals(a: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined, b: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined): boolean {
     return proto2.util.equals(NullHypothesisProto2, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
  */
 export class EnumOnlyProto2 extends Message<EnumOnlyProto2> {
-
   constructor(data?: PartialMessage<EnumOnlyProto2>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1392,14 +1358,12 @@ export class EnumOnlyProto2 extends Message<EnumOnlyProto2> {
   static equals(a: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined, b: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined): boolean {
     return proto2.util.equals(EnumOnlyProto2, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool
  */
 export enum EnumOnlyProto2_Bool {
-
   /**
    * @generated from enum value: kFalse = 0;
    */
@@ -1409,13 +1373,10 @@ export enum EnumOnlyProto2_Bool {
    * @generated from enum value: kTrue = 1;
    */
   kTrue = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(EnumOnlyProto2_Bool)
 proto2.util.setEnumType(EnumOnlyProto2_Bool, "protobuf_test_messages.proto2.EnumOnlyProto2.Bool", [
   {no: 0, name: "kFalse"},
   {no: 1, name: "kTrue"},
 ]);
-
 

@@ -29,7 +29,6 @@ import {PluginRole, TemplateRole} from "./role_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.PluginVisibility
  */
 export enum PluginVisibility {
-
   /**
    * @generated from enum value: PLUGIN_VISIBILITY_UNSPECIFIED = 0;
    */
@@ -44,9 +43,7 @@ export enum PluginVisibility {
    * @generated from enum value: PLUGIN_VISIBILITY_PRIVATE = 2;
    */
   PRIVATE = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(PluginVisibility)
 proto3.util.setEnumType(PluginVisibility, "buf.alpha.registry.v1alpha1.PluginVisibility", [
   {no: 0, name: "PLUGIN_VISIBILITY_UNSPECIFIED"},
@@ -60,7 +57,6 @@ proto3.util.setEnumType(PluginVisibility, "buf.alpha.registry.v1alpha1.PluginVis
  * @generated from message buf.alpha.registry.v1alpha1.Plugin
  */
 export class Plugin extends Message<Plugin> {
-
   /**
    * The ID of the plugin, which uniquely identifies the plugin.
    *
@@ -135,7 +131,6 @@ export class Plugin extends Message<Plugin> {
   static equals(a: Plugin | PlainMessage<Plugin> | undefined, b: Plugin | PlainMessage<Plugin> | undefined): boolean {
     return proto3.util.equals(Plugin, a, b);
   }
-
 }
 
 /**
@@ -145,7 +140,6 @@ export class Plugin extends Message<Plugin> {
  * @generated from message buf.alpha.registry.v1alpha1.PluginVersion
  */
 export class PluginVersion extends Message<PluginVersion> {
-
   /**
    * The ID of the plugin version, which uniquely identifies the plugin version.
    * Mostly used for pagination.
@@ -222,7 +216,6 @@ export class PluginVersion extends Message<PluginVersion> {
   static equals(a: PluginVersion | PlainMessage<PluginVersion> | undefined, b: PluginVersion | PlainMessage<PluginVersion> | undefined): boolean {
     return proto3.util.equals(PluginVersion, a, b);
   }
-
 }
 
 /**
@@ -232,7 +225,6 @@ export class PluginVersion extends Message<PluginVersion> {
  * @generated from message buf.alpha.registry.v1alpha1.Template
  */
 export class Template extends Message<Template> {
-
   /**
    * The ID of the template, which uniquely identifies the template.
    *
@@ -319,7 +311,6 @@ export class Template extends Message<Template> {
   static equals(a: Template | PlainMessage<Template> | undefined, b: Template | PlainMessage<Template> | undefined): boolean {
     return proto3.util.equals(Template, a, b);
   }
-
 }
 
 /**
@@ -328,7 +319,6 @@ export class Template extends Message<Template> {
  * @generated from message buf.alpha.registry.v1alpha1.PluginConfig
  */
 export class PluginConfig extends Message<PluginConfig> {
-
   /**
    * The owner of the plugin to which this config relates.
    *
@@ -387,7 +377,6 @@ export class PluginConfig extends Message<PluginConfig> {
   static equals(a: PluginConfig | PlainMessage<PluginConfig> | undefined, b: PluginConfig | PlainMessage<PluginConfig> | undefined): boolean {
     return proto3.util.equals(PluginConfig, a, b);
   }
-
 }
 
 /**
@@ -397,7 +386,6 @@ export class PluginConfig extends Message<PluginConfig> {
  * @generated from message buf.alpha.registry.v1alpha1.TemplateVersion
  */
 export class TemplateVersion extends Message<TemplateVersion> {
-
   /**
    * The ID of the template version, which uniquely identifies the template version.
    * Mostly used for pagination.
@@ -466,7 +454,6 @@ export class TemplateVersion extends Message<TemplateVersion> {
   static equals(a: TemplateVersion | PlainMessage<TemplateVersion> | undefined, b: TemplateVersion | PlainMessage<TemplateVersion> | undefined): boolean {
     return proto3.util.equals(TemplateVersion, a, b);
   }
-
 }
 
 /**
@@ -475,7 +462,6 @@ export class TemplateVersion extends Message<TemplateVersion> {
  * @generated from message buf.alpha.registry.v1alpha1.PluginVersionMapping
  */
 export class PluginVersionMapping extends Message<PluginVersionMapping> {
-
   /**
    * The owner of the plugin to which this mapping relates.
    *
@@ -533,14 +519,12 @@ export class PluginVersionMapping extends Message<PluginVersionMapping> {
   static equals(a: PluginVersionMapping | PlainMessage<PluginVersionMapping> | undefined, b: PluginVersionMapping | PlainMessage<PluginVersionMapping> | undefined): boolean {
     return proto3.util.equals(PluginVersionMapping, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginContributor
  */
 export class PluginContributor extends Message<PluginContributor> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -597,14 +581,12 @@ export class PluginContributor extends Message<PluginContributor> {
   static equals(a: PluginContributor | PlainMessage<PluginContributor> | undefined, b: PluginContributor | PlainMessage<PluginContributor> | undefined): boolean {
     return proto3.util.equals(PluginContributor, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TemplateContributor
  */
 export class TemplateContributor extends Message<TemplateContributor> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -661,14 +643,12 @@ export class TemplateContributor extends Message<TemplateContributor> {
   static equals(a: TemplateContributor | PlainMessage<TemplateContributor> | undefined, b: TemplateContributor | PlainMessage<TemplateContributor> | undefined): boolean {
     return proto3.util.equals(TemplateContributor, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginsRequest
  */
 export class ListPluginsRequest extends Message<ListPluginsRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -714,14 +694,12 @@ export class ListPluginsRequest extends Message<ListPluginsRequest> {
   static equals(a: ListPluginsRequest | PlainMessage<ListPluginsRequest> | undefined, b: ListPluginsRequest | PlainMessage<ListPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginsResponse
  */
 export class ListPluginsResponse extends Message<ListPluginsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Plugin plugins = 1;
    */
@@ -761,14 +739,12 @@ export class ListPluginsResponse extends Message<ListPluginsResponse> {
   static equals(a: ListPluginsResponse | PlainMessage<ListPluginsResponse> | undefined, b: ListPluginsResponse | PlainMessage<ListPluginsResponse> | undefined): boolean {
     return proto3.util.equals(ListPluginsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserPluginsRequest
  */
 export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
-
   /**
    * The owner to list plugins for.
    *
@@ -822,14 +798,12 @@ export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
   static equals(a: ListUserPluginsRequest | PlainMessage<ListUserPluginsRequest> | undefined, b: ListUserPluginsRequest | PlainMessage<ListUserPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListUserPluginsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserPluginsResponse
  */
 export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Plugin plugins = 1;
    */
@@ -869,14 +843,12 @@ export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
   static equals(a: ListUserPluginsResponse | PlainMessage<ListUserPluginsResponse> | undefined, b: ListUserPluginsResponse | PlainMessage<ListUserPluginsResponse> | undefined): boolean {
     return proto3.util.equals(ListUserPluginsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationPluginsRequest
  */
 export class ListOrganizationPluginsRequest extends Message<ListOrganizationPluginsRequest> {
-
   /**
    * The organization to list plugins for.
    *
@@ -930,14 +902,12 @@ export class ListOrganizationPluginsRequest extends Message<ListOrganizationPlug
   static equals(a: ListOrganizationPluginsRequest | PlainMessage<ListOrganizationPluginsRequest> | undefined, b: ListOrganizationPluginsRequest | PlainMessage<ListOrganizationPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationPluginsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationPluginsResponse
  */
 export class ListOrganizationPluginsResponse extends Message<ListOrganizationPluginsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Plugin plugins = 1;
    */
@@ -977,14 +947,12 @@ export class ListOrganizationPluginsResponse extends Message<ListOrganizationPlu
   static equals(a: ListOrganizationPluginsResponse | PlainMessage<ListOrganizationPluginsResponse> | undefined, b: ListOrganizationPluginsResponse | PlainMessage<ListOrganizationPluginsResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationPluginsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginVersionRequest
  */
 export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
-
   /**
    * The owner of the plugin the version belongs to.
    *
@@ -1034,14 +1002,12 @@ export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
   static equals(a: GetPluginVersionRequest | PlainMessage<GetPluginVersionRequest> | undefined, b: GetPluginVersionRequest | PlainMessage<GetPluginVersionRequest> | undefined): boolean {
     return proto3.util.equals(GetPluginVersionRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginVersionResponse
  */
 export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.PluginVersion plugin_version = 1;
    */
@@ -1073,14 +1039,12 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
   static equals(a: GetPluginVersionResponse | PlainMessage<GetPluginVersionResponse> | undefined, b: GetPluginVersionResponse | PlainMessage<GetPluginVersionResponse> | undefined): boolean {
     return proto3.util.equals(GetPluginVersionResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginVersionsRequest
  */
 export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest> {
-
   /**
    * The owner of the plugin to list versions for.
    *
@@ -1144,14 +1108,12 @@ export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest
   static equals(a: ListPluginVersionsRequest | PlainMessage<ListPluginVersionsRequest> | undefined, b: ListPluginVersionsRequest | PlainMessage<ListPluginVersionsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginVersionsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginVersionsResponse
  */
 export class ListPluginVersionsResponse extends Message<ListPluginVersionsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.PluginVersion plugin_versions = 1;
    */
@@ -1191,14 +1153,12 @@ export class ListPluginVersionsResponse extends Message<ListPluginVersionsRespon
   static equals(a: ListPluginVersionsResponse | PlainMessage<ListPluginVersionsResponse> | undefined, b: ListPluginVersionsResponse | PlainMessage<ListPluginVersionsResponse> | undefined): boolean {
     return proto3.util.equals(ListPluginVersionsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreatePluginRequest
  */
 export class CreatePluginRequest extends Message<CreatePluginRequest> {
-
   /**
    * The owner of the plugin. This must be either the name
    * of the authenticated user or an organization the user is
@@ -1252,14 +1212,12 @@ export class CreatePluginRequest extends Message<CreatePluginRequest> {
   static equals(a: CreatePluginRequest | PlainMessage<CreatePluginRequest> | undefined, b: CreatePluginRequest | PlainMessage<CreatePluginRequest> | undefined): boolean {
     return proto3.util.equals(CreatePluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreatePluginResponse
  */
 export class CreatePluginResponse extends Message<CreatePluginResponse> {
-
   /**
    * The created plugin.
    *
@@ -1293,14 +1251,12 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
   static equals(a: CreatePluginResponse | PlainMessage<CreatePluginResponse> | undefined, b: CreatePluginResponse | PlainMessage<CreatePluginResponse> | undefined): boolean {
     return proto3.util.equals(CreatePluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginRequest
  */
 export class GetPluginRequest extends Message<GetPluginRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -1342,14 +1298,12 @@ export class GetPluginRequest extends Message<GetPluginRequest> {
   static equals(a: GetPluginRequest | PlainMessage<GetPluginRequest> | undefined, b: GetPluginRequest | PlainMessage<GetPluginRequest> | undefined): boolean {
     return proto3.util.equals(GetPluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetPluginResponse
  */
 export class GetPluginResponse extends Message<GetPluginResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Plugin plugin = 1;
    */
@@ -1381,14 +1335,12 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
   static equals(a: GetPluginResponse | PlainMessage<GetPluginResponse> | undefined, b: GetPluginResponse | PlainMessage<GetPluginResponse> | undefined): boolean {
     return proto3.util.equals(GetPluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeletePluginRequest
  */
 export class DeletePluginRequest extends Message<DeletePluginRequest> {
-
   /**
    * The owner of the plugin to delete.
    *
@@ -1430,14 +1382,12 @@ export class DeletePluginRequest extends Message<DeletePluginRequest> {
   static equals(a: DeletePluginRequest | PlainMessage<DeletePluginRequest> | undefined, b: DeletePluginRequest | PlainMessage<DeletePluginRequest> | undefined): boolean {
     return proto3.util.equals(DeletePluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeletePluginResponse
  */
 export class DeletePluginResponse extends Message<DeletePluginResponse> {
-
   constructor(data?: PartialMessage<DeletePluginResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1463,14 +1413,12 @@ export class DeletePluginResponse extends Message<DeletePluginResponse> {
   static equals(a: DeletePluginResponse | PlainMessage<DeletePluginResponse> | undefined, b: DeletePluginResponse | PlainMessage<DeletePluginResponse> | undefined): boolean {
     return proto3.util.equals(DeletePluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetPluginContributorRequest
  */
 export class SetPluginContributorRequest extends Message<SetPluginContributorRequest> {
-
   /**
    * The ID of the plugin for which the user's role will be set.
    *
@@ -1521,14 +1469,12 @@ export class SetPluginContributorRequest extends Message<SetPluginContributorReq
   static equals(a: SetPluginContributorRequest | PlainMessage<SetPluginContributorRequest> | undefined, b: SetPluginContributorRequest | PlainMessage<SetPluginContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetPluginContributorRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetPluginContributorResponse
  */
 export class SetPluginContributorResponse extends Message<SetPluginContributorResponse> {
-
   constructor(data?: PartialMessage<SetPluginContributorResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1554,14 +1500,12 @@ export class SetPluginContributorResponse extends Message<SetPluginContributorRe
   static equals(a: SetPluginContributorResponse | PlainMessage<SetPluginContributorResponse> | undefined, b: SetPluginContributorResponse | PlainMessage<SetPluginContributorResponse> | undefined): boolean {
     return proto3.util.equals(SetPluginContributorResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginContributorsRequest
  */
 export class ListPluginContributorsRequest extends Message<ListPluginContributorsRequest> {
-
   /**
    * @generated from field: string plugin_id = 1;
    */
@@ -1613,14 +1557,12 @@ export class ListPluginContributorsRequest extends Message<ListPluginContributor
   static equals(a: ListPluginContributorsRequest | PlainMessage<ListPluginContributorsRequest> | undefined, b: ListPluginContributorsRequest | PlainMessage<ListPluginContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListPluginContributorsResponse
  */
 export class ListPluginContributorsResponse extends Message<ListPluginContributorsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.PluginContributor users = 1;
    */
@@ -1660,14 +1602,12 @@ export class ListPluginContributorsResponse extends Message<ListPluginContributo
   static equals(a: ListPluginContributorsResponse | PlainMessage<ListPluginContributorsResponse> | undefined, b: ListPluginContributorsResponse | PlainMessage<ListPluginContributorsResponse> | undefined): boolean {
     return proto3.util.equals(ListPluginContributorsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecatePluginRequest
  */
 export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -1717,14 +1657,12 @@ export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
   static equals(a: DeprecatePluginRequest | PlainMessage<DeprecatePluginRequest> | undefined, b: DeprecatePluginRequest | PlainMessage<DeprecatePluginRequest> | undefined): boolean {
     return proto3.util.equals(DeprecatePluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecatePluginResponse
  */
 export class DeprecatePluginResponse extends Message<DeprecatePluginResponse> {
-
   constructor(data?: PartialMessage<DeprecatePluginResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1750,14 +1688,12 @@ export class DeprecatePluginResponse extends Message<DeprecatePluginResponse> {
   static equals(a: DeprecatePluginResponse | PlainMessage<DeprecatePluginResponse> | undefined, b: DeprecatePluginResponse | PlainMessage<DeprecatePluginResponse> | undefined): boolean {
     return proto3.util.equals(DeprecatePluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecatePluginRequest
  */
 export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -1799,14 +1735,12 @@ export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> 
   static equals(a: UndeprecatePluginRequest | PlainMessage<UndeprecatePluginRequest> | undefined, b: UndeprecatePluginRequest | PlainMessage<UndeprecatePluginRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecatePluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecatePluginResponse
  */
 export class UndeprecatePluginResponse extends Message<UndeprecatePluginResponse> {
-
   constructor(data?: PartialMessage<UndeprecatePluginResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1832,14 +1766,12 @@ export class UndeprecatePluginResponse extends Message<UndeprecatePluginResponse
   static equals(a: UndeprecatePluginResponse | PlainMessage<UndeprecatePluginResponse> | undefined, b: UndeprecatePluginResponse | PlainMessage<UndeprecatePluginResponse> | undefined): boolean {
     return proto3.util.equals(UndeprecatePluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateRequest
  */
 export class GetTemplateRequest extends Message<GetTemplateRequest> {
-
   /**
    * The owner of the template.
    *
@@ -1881,14 +1813,12 @@ export class GetTemplateRequest extends Message<GetTemplateRequest> {
   static equals(a: GetTemplateRequest | PlainMessage<GetTemplateRequest> | undefined, b: GetTemplateRequest | PlainMessage<GetTemplateRequest> | undefined): boolean {
     return proto3.util.equals(GetTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateResponse
  */
 export class GetTemplateResponse extends Message<GetTemplateResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Template template = 1;
    */
@@ -1920,14 +1850,12 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
   static equals(a: GetTemplateResponse | PlainMessage<GetTemplateResponse> | undefined, b: GetTemplateResponse | PlainMessage<GetTemplateResponse> | undefined): boolean {
     return proto3.util.equals(GetTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplatesRequest
  */
 export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -1973,14 +1901,12 @@ export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
   static equals(a: ListTemplatesRequest | PlainMessage<ListTemplatesRequest> | undefined, b: ListTemplatesRequest | PlainMessage<ListTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplatesResponse
  */
 export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Template templates = 1;
    */
@@ -2020,14 +1946,12 @@ export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
   static equals(a: ListTemplatesResponse | PlainMessage<ListTemplatesResponse> | undefined, b: ListTemplatesResponse | PlainMessage<ListTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(ListTemplatesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserTemplatesRequest
  */
 export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> {
-
   /**
    * The owner of the templates to list for.
    *
@@ -2081,14 +2005,12 @@ export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> 
   static equals(a: ListUserTemplatesRequest | PlainMessage<ListUserTemplatesRequest> | undefined, b: ListUserTemplatesRequest | PlainMessage<ListUserTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListUserTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserTemplatesResponse
  */
 export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Template templates = 1;
    */
@@ -2128,14 +2050,12 @@ export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse
   static equals(a: ListUserTemplatesResponse | PlainMessage<ListUserTemplatesResponse> | undefined, b: ListUserTemplatesResponse | PlainMessage<ListUserTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(ListUserTemplatesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateVersionRequest
  */
 export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest> {
-
   /**
    * The owner of the template the version belongs to.
    *
@@ -2185,14 +2105,12 @@ export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest
   static equals(a: GetTemplateVersionRequest | PlainMessage<GetTemplateVersionRequest> | undefined, b: GetTemplateVersionRequest | PlainMessage<GetTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(GetTemplateVersionRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTemplateVersionResponse
  */
 export class GetTemplateVersionResponse extends Message<GetTemplateVersionResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.TemplateVersion template_version = 1;
    */
@@ -2224,14 +2142,12 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
   static equals(a: GetTemplateVersionResponse | PlainMessage<GetTemplateVersionResponse> | undefined, b: GetTemplateVersionResponse | PlainMessage<GetTemplateVersionResponse> | undefined): boolean {
     return proto3.util.equals(GetTemplateVersionResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesRequest
  */
 export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTemplatesRequest> {
-
   /**
    * The organization of the templates to list for.
    *
@@ -2285,14 +2201,12 @@ export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTe
   static equals(a: ListOrganizationTemplatesRequest | PlainMessage<ListOrganizationTemplatesRequest> | undefined, b: ListOrganizationTemplatesRequest | PlainMessage<ListOrganizationTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationTemplatesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesResponse
  */
 export class ListOrganizationTemplatesResponse extends Message<ListOrganizationTemplatesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Template templates = 1;
    */
@@ -2332,14 +2246,12 @@ export class ListOrganizationTemplatesResponse extends Message<ListOrganizationT
   static equals(a: ListOrganizationTemplatesResponse | PlainMessage<ListOrganizationTemplatesResponse> | undefined, b: ListOrganizationTemplatesResponse | PlainMessage<ListOrganizationTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationTemplatesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateVersionsRequest
  */
 export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsRequest> {
-
   /**
    * The owner of the template to list versions for.
    *
@@ -2403,14 +2315,12 @@ export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsReq
   static equals(a: ListTemplateVersionsRequest | PlainMessage<ListTemplateVersionsRequest> | undefined, b: ListTemplateVersionsRequest | PlainMessage<ListTemplateVersionsRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplateVersionsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateVersionsResponse
  */
 export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.TemplateVersion template_versions = 1;
    */
@@ -2450,14 +2360,12 @@ export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsRe
   static equals(a: ListTemplateVersionsResponse | PlainMessage<ListTemplateVersionsResponse> | undefined, b: ListTemplateVersionsResponse | PlainMessage<ListTemplateVersionsResponse> | undefined): boolean {
     return proto3.util.equals(ListTemplateVersionsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateRequest
  */
 export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
-
   /**
    * The owner of the template. This will be either a username
    * or organization name.
@@ -2519,14 +2427,12 @@ export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
   static equals(a: CreateTemplateRequest | PlainMessage<CreateTemplateRequest> | undefined, b: CreateTemplateRequest | PlainMessage<CreateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(CreateTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateResponse
  */
 export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
-
   /**
    * The created template.
    *
@@ -2560,14 +2466,12 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
   static equals(a: CreateTemplateResponse | PlainMessage<CreateTemplateResponse> | undefined, b: CreateTemplateResponse | PlainMessage<CreateTemplateResponse> | undefined): boolean {
     return proto3.util.equals(CreateTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTemplateRequest
  */
 export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
-
   /**
    * The owner of the template to delete.
    *
@@ -2609,14 +2513,12 @@ export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
   static equals(a: DeleteTemplateRequest | PlainMessage<DeleteTemplateRequest> | undefined, b: DeleteTemplateRequest | PlainMessage<DeleteTemplateRequest> | undefined): boolean {
     return proto3.util.equals(DeleteTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTemplateResponse
  */
 export class DeleteTemplateResponse extends Message<DeleteTemplateResponse> {
-
   constructor(data?: PartialMessage<DeleteTemplateResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2642,14 +2544,12 @@ export class DeleteTemplateResponse extends Message<DeleteTemplateResponse> {
   static equals(a: DeleteTemplateResponse | PlainMessage<DeleteTemplateResponse> | undefined, b: DeleteTemplateResponse | PlainMessage<DeleteTemplateResponse> | undefined): boolean {
     return proto3.util.equals(DeleteTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateVersionRequest
  */
 export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionRequest> {
-
   /**
    * The name of the template version, i.e. "v1".
    *
@@ -2709,14 +2609,12 @@ export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionR
   static equals(a: CreateTemplateVersionRequest | PlainMessage<CreateTemplateVersionRequest> | undefined, b: CreateTemplateVersionRequest | PlainMessage<CreateTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(CreateTemplateVersionRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTemplateVersionResponse
  */
 export class CreateTemplateVersionResponse extends Message<CreateTemplateVersionResponse> {
-
   /**
    * The created template version.
    *
@@ -2750,14 +2648,12 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
   static equals(a: CreateTemplateVersionResponse | PlainMessage<CreateTemplateVersionResponse> | undefined, b: CreateTemplateVersionResponse | PlainMessage<CreateTemplateVersionResponse> | undefined): boolean {
     return proto3.util.equals(CreateTemplateVersionResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetTemplateContributorRequest
  */
 export class SetTemplateContributorRequest extends Message<SetTemplateContributorRequest> {
-
   /**
    * The ID of the template for which the user's role will be set.
    *
@@ -2808,14 +2704,12 @@ export class SetTemplateContributorRequest extends Message<SetTemplateContributo
   static equals(a: SetTemplateContributorRequest | PlainMessage<SetTemplateContributorRequest> | undefined, b: SetTemplateContributorRequest | PlainMessage<SetTemplateContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetTemplateContributorRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetTemplateContributorResponse
  */
 export class SetTemplateContributorResponse extends Message<SetTemplateContributorResponse> {
-
   constructor(data?: PartialMessage<SetTemplateContributorResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2841,14 +2735,12 @@ export class SetTemplateContributorResponse extends Message<SetTemplateContribut
   static equals(a: SetTemplateContributorResponse | PlainMessage<SetTemplateContributorResponse> | undefined, b: SetTemplateContributorResponse | PlainMessage<SetTemplateContributorResponse> | undefined): boolean {
     return proto3.util.equals(SetTemplateContributorResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateContributorsRequest
  */
 export class ListTemplateContributorsRequest extends Message<ListTemplateContributorsRequest> {
-
   /**
    * @generated from field: string template_id = 1;
    */
@@ -2900,14 +2792,12 @@ export class ListTemplateContributorsRequest extends Message<ListTemplateContrib
   static equals(a: ListTemplateContributorsRequest | PlainMessage<ListTemplateContributorsRequest> | undefined, b: ListTemplateContributorsRequest | PlainMessage<ListTemplateContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplateContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTemplateContributorsResponse
  */
 export class ListTemplateContributorsResponse extends Message<ListTemplateContributorsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.TemplateContributor users = 1;
    */
@@ -2947,14 +2837,12 @@ export class ListTemplateContributorsResponse extends Message<ListTemplateContri
   static equals(a: ListTemplateContributorsResponse | PlainMessage<ListTemplateContributorsResponse> | undefined, b: ListTemplateContributorsResponse | PlainMessage<ListTemplateContributorsResponse> | undefined): boolean {
     return proto3.util.equals(ListTemplateContributorsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateTemplateRequest
  */
 export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> {
-
   /**
    * The owner of the template.
    *
@@ -3004,14 +2892,12 @@ export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> 
   static equals(a: DeprecateTemplateRequest | PlainMessage<DeprecateTemplateRequest> | undefined, b: DeprecateTemplateRequest | PlainMessage<DeprecateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(DeprecateTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateTemplateResponse
  */
 export class DeprecateTemplateResponse extends Message<DeprecateTemplateResponse> {
-
   constructor(data?: PartialMessage<DeprecateTemplateResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3037,14 +2923,12 @@ export class DeprecateTemplateResponse extends Message<DeprecateTemplateResponse
   static equals(a: DeprecateTemplateResponse | PlainMessage<DeprecateTemplateResponse> | undefined, b: DeprecateTemplateResponse | PlainMessage<DeprecateTemplateResponse> | undefined): boolean {
     return proto3.util.equals(DeprecateTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateTemplateRequest
  */
 export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateRequest> {
-
   /**
    * The owner of the template.
    *
@@ -3086,14 +2970,12 @@ export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateReque
   static equals(a: UndeprecateTemplateRequest | PlainMessage<UndeprecateTemplateRequest> | undefined, b: UndeprecateTemplateRequest | PlainMessage<UndeprecateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecateTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateTemplateResponse
  */
 export class UndeprecateTemplateResponse extends Message<UndeprecateTemplateResponse> {
-
   constructor(data?: PartialMessage<UndeprecateTemplateResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3119,6 +3001,5 @@ export class UndeprecateTemplateResponse extends Message<UndeprecateTemplateResp
   static equals(a: UndeprecateTemplateResponse | PlainMessage<UndeprecateTemplateResponse> | undefined, b: UndeprecateTemplateResponse | PlainMessage<UndeprecateTemplateResponse> | undefined): boolean {
     return proto3.util.equals(UndeprecateTemplateResponse, a, b);
   }
-
 }
 

@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message spec.SelfReferencingMessage
  */
 export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
-
   /**
    * @generated from field: spec.SelfReferencingMessage self = 1;
    */
@@ -67,6 +66,5 @@ export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
   static equals(a: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined, b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined): boolean {
     return proto3.util.equals(SelfReferencingMessage, a, b);
   }
-
 }
 

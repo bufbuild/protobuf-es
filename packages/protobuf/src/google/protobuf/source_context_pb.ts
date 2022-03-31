@@ -26,7 +26,6 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.SourceContext
  */
 export class SourceContext extends Message<SourceContext> {
-
   /**
    * The path-qualified name of the .proto file that contained the associated
    * protobuf element.  For example: `"google/protobuf/source_context.proto"`.
@@ -61,6 +60,5 @@ export class SourceContext extends Message<SourceContext> {
   static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean {
     return proto3.util.equals(SourceContext, a, b);
   }
-
 }
 

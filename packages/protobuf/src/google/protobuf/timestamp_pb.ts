@@ -117,7 +117,6 @@ import {Message, proto3, protoInt64} from "../../index.js";
  * @generated from message google.protobuf.Timestamp
  */
 export class Timestamp extends Message<Timestamp> {
-
   /**
    * Represents seconds of UTC time since Unix epoch
    * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
@@ -225,6 +224,5 @@ export class Timestamp extends Message<Timestamp> {
   static equals(a: Timestamp | PlainMessage<Timestamp> | undefined, b: Timestamp | PlainMessage<Timestamp> | undefined): boolean {
     return proto3.util.equals(Timestamp, a, b);
   }
-
 }
 

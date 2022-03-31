@@ -23,7 +23,6 @@ import {Message, proto3, protoInt64} from "@bufbuild/protobuf";
  * @generated from message spec.ScalarValuesMessage
  */
 export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
-
   /**
    * @generated from field: double double_field = 1;
    */
@@ -139,14 +138,12 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
   static equals(a: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined, b: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined): boolean {
     return proto3.util.equals(ScalarValuesMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
 export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMessage> {
-
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -262,6 +259,5 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
   static equals(a: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined, b: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined): boolean {
     return proto3.util.equals(RepeatedScalarValuesMessage, a, b);
   }
-
 }
 

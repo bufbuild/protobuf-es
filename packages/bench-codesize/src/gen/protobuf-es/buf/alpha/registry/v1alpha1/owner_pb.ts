@@ -25,7 +25,6 @@ import {Organization} from "./organization_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.Owner
  */
 export class Owner extends Message<Owner> {
-
   /**
    * @generated from oneof buf.alpha.registry.v1alpha1.Owner.owner
    */
@@ -74,14 +73,12 @@ export class Owner extends Message<Owner> {
   static equals(a: Owner | PlainMessage<Owner> | undefined, b: Owner | PlainMessage<Owner> | undefined): boolean {
     return proto3.util.equals(Owner, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOwnerByNameRequest
  */
 export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
-
   /**
    * Name of the requested owner.
    *
@@ -115,14 +112,12 @@ export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
   static equals(a: GetOwnerByNameRequest | PlainMessage<GetOwnerByNameRequest> | undefined, b: GetOwnerByNameRequest | PlainMessage<GetOwnerByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetOwnerByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetOwnerByNameResponse
  */
 export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Owner owner = 1;
    */
@@ -154,6 +149,5 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
   static equals(a: GetOwnerByNameResponse | PlainMessage<GetOwnerByNameResponse> | undefined, b: GetOwnerByNameResponse | PlainMessage<GetOwnerByNameResponse> | undefined): boolean {
     return proto3.util.equals(GetOwnerByNameResponse, a, b);
   }
-
 }
 

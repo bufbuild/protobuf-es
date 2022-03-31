@@ -39,7 +39,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum proto2_preserve_unknown_enum_unittest.MyEnum
  */
 export declare enum MyEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -54,14 +53,12 @@ export declare enum MyEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
 
 /**
  * @generated from message proto2_preserve_unknown_enum_unittest.MyMessage
  */
 export declare class MyMessage extends Message<MyMessage> {
-
   /**
    * @generated from field: optional proto2_preserve_unknown_enum_unittest.MyEnum e = 1;
    */
@@ -114,6 +111,5 @@ export declare class MyMessage extends Message<MyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
 
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
-
 }
 

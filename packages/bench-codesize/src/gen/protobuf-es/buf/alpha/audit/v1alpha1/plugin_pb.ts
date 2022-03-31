@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVisibility
  */
 export enum BufAlphaRegistryV1Alpha1PluginVisibility {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_UNSPECIFIED = 0;
    */
@@ -38,9 +37,7 @@ export enum BufAlphaRegistryV1Alpha1PluginVisibility {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PRIVATE = 2;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_PRIVATE = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1PluginVisibility)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1PluginVisibility, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVisibility", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_VISIBILITY_UNSPECIFIED"},
@@ -52,7 +49,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1PluginVisibility, "buf.alpha.aud
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionMapping
  */
 export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlphaRegistryV1Alpha1PluginVersionMapping> {
-
   /**
    * @generated from field: string plugin_owner = 1;
    */
@@ -102,14 +98,12 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
   static equals(a: BufAlphaRegistryV1Alpha1PluginVersionMapping | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionMapping> | undefined, b: BufAlphaRegistryV1Alpha1PluginVersionMapping | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionMapping> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1PluginVersionMapping, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig
  */
 export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegistryV1Alpha1PluginConfig> {
-
   /**
    * @generated from field: string plugin_owner = 1;
    */
@@ -159,14 +153,12 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
   static equals(a: BufAlphaRegistryV1Alpha1PluginConfig | PlainMessage<BufAlphaRegistryV1Alpha1PluginConfig> | undefined, b: BufAlphaRegistryV1Alpha1PluginConfig | PlainMessage<BufAlphaRegistryV1Alpha1PluginConfig> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1PluginConfig, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary
  */
 export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -204,6 +196,5 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
   static equals(a: BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> | undefined, b: BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary, a, b);
   }
-
 }
 

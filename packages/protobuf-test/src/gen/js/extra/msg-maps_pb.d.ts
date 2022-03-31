@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.MapsEnum
  */
 export declare enum MapsEnum {
-
   /**
    * @generated from enum value: MAPS_ENUM_ANY = 0;
    */
@@ -38,14 +37,12 @@ export declare enum MapsEnum {
    * @generated from enum value: MAPS_ENUM_NO = 2;
    */
   NO = 2,
-
 }
 
 /**
  * @generated from message spec.MapsMessage
  */
 export declare class MapsMessage extends Message<MapsMessage> {
-
   /**
    * @generated from field: map<string, string> str_str_field = 1;
    */
@@ -129,6 +126,5 @@ export declare class MapsMessage extends Message<MapsMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapsMessage;
 
   static equals(a: MapsMessage | PlainMessage<MapsMessage> | undefined, b: MapsMessage | PlainMessage<MapsMessage> | undefined): boolean;
-
 }
 

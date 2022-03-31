@@ -25,7 +25,6 @@ import {PluginVisibility} from "./plugin_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.SearchFilter
  */
 export enum SearchFilter {
-
   /**
    * @generated from enum value: SEARCH_FILTER_UNSPECIFIED = 0;
    */
@@ -60,9 +59,7 @@ export enum SearchFilter {
    * @generated from enum value: SEARCH_FILTER_TEAM = 6;
    */
   TEAM = 6,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(SearchFilter)
 proto3.util.setEnumType(SearchFilter, "buf.alpha.registry.v1alpha1.SearchFilter", [
   {no: 0, name: "SEARCH_FILTER_UNSPECIFIED"},
@@ -78,7 +75,6 @@ proto3.util.setEnumType(SearchFilter, "buf.alpha.registry.v1alpha1.SearchFilter"
  * @generated from message buf.alpha.registry.v1alpha1.RepositorySearchResult
  */
 export class RepositorySearchResult extends Message<RepositorySearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -139,14 +135,12 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
   static equals(a: RepositorySearchResult | PlainMessage<RepositorySearchResult> | undefined, b: RepositorySearchResult | PlainMessage<RepositorySearchResult> | undefined): boolean {
     return proto3.util.equals(RepositorySearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.OrganizationSearchResult
  */
 export class OrganizationSearchResult extends Message<OrganizationSearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -184,14 +178,12 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
   static equals(a: OrganizationSearchResult | PlainMessage<OrganizationSearchResult> | undefined, b: OrganizationSearchResult | PlainMessage<OrganizationSearchResult> | undefined): boolean {
     return proto3.util.equals(OrganizationSearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserSearchResult
  */
 export class UserSearchResult extends Message<UserSearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -235,14 +227,12 @@ export class UserSearchResult extends Message<UserSearchResult> {
   static equals(a: UserSearchResult | PlainMessage<UserSearchResult> | undefined, b: UserSearchResult | PlainMessage<UserSearchResult> | undefined): boolean {
     return proto3.util.equals(UserSearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TeamSearchResult
  */
 export class TeamSearchResult extends Message<TeamSearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -286,14 +276,12 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
   static equals(a: TeamSearchResult | PlainMessage<TeamSearchResult> | undefined, b: TeamSearchResult | PlainMessage<TeamSearchResult> | undefined): boolean {
     return proto3.util.equals(TeamSearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PluginSearchResult
  */
 export class PluginSearchResult extends Message<PluginSearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -354,14 +342,12 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
   static equals(a: PluginSearchResult | PlainMessage<PluginSearchResult> | undefined, b: PluginSearchResult | PlainMessage<PluginSearchResult> | undefined): boolean {
     return proto3.util.equals(PluginSearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.TemplateSearchResult
  */
 export class TemplateSearchResult extends Message<TemplateSearchResult> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -422,14 +408,12 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
   static equals(a: TemplateSearchResult | PlainMessage<TemplateSearchResult> | undefined, b: TemplateSearchResult | PlainMessage<TemplateSearchResult> | undefined): boolean {
     return proto3.util.equals(TemplateSearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchResult
  */
 export class SearchResult extends Message<SearchResult> {
-
   /**
    * @generated from oneof buf.alpha.registry.v1alpha1.SearchResult.item
    */
@@ -502,14 +486,12 @@ export class SearchResult extends Message<SearchResult> {
   static equals(a: SearchResult | PlainMessage<SearchResult> | undefined, b: SearchResult | PlainMessage<SearchResult> | undefined): boolean {
     return proto3.util.equals(SearchResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchRequest
  */
 export class SearchRequest extends Message<SearchRequest> {
-
   /**
    * The search string.
    *
@@ -567,14 +549,12 @@ export class SearchRequest extends Message<SearchRequest> {
   static equals(a: SearchRequest | PlainMessage<SearchRequest> | undefined, b: SearchRequest | PlainMessage<SearchRequest> | undefined): boolean {
     return proto3.util.equals(SearchRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SearchResponse
  */
 export class SearchResponse extends Message<SearchResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.SearchResult search_results = 1;
    */
@@ -614,6 +594,5 @@ export class SearchResponse extends Message<SearchResponse> {
   static equals(a: SearchResponse | PlainMessage<SearchResponse> | undefined, b: SearchResponse | PlainMessage<SearchResponse> | undefined): boolean {
     return proto3.util.equals(SearchResponse, a, b);
   }
-
 }
 

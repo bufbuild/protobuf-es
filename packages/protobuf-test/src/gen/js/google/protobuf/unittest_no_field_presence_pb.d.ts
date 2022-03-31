@@ -42,7 +42,6 @@ import type {TestAllTypes as TestAllTypes$1, TestRequired} from "./unittest_pb.j
  * @generated from enum proto2_nofieldpresence_unittest.ForeignEnum
  */
 export declare enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 0;
    */
@@ -57,7 +56,6 @@ export declare enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 2;
    */
   FOREIGN_BAZ = 2,
-
 }
 
 /**
@@ -67,7 +65,6 @@ export declare enum ForeignEnum {
  * @generated from message proto2_nofieldpresence_unittest.TestAllTypes
  */
 export declare class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    * TODO: remove 'optional' labels as soon as CL 69188077 is LGTM'd to make
@@ -350,14 +347,12 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum
  */
 export declare enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -372,15 +367,12 @@ export declare enum TestAllTypes_NestedEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage
  */
 export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * @generated from field: int32 bb = 1;
    */
@@ -399,15 +391,12 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
 export declare class TestProto2Required extends Message<TestProto2Required> {
-
   /**
    * @generated from field: protobuf_unittest.TestRequired proto2 = 1;
    */
@@ -426,7 +415,6 @@ export declare class TestProto2Required extends Message<TestProto2Required> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto2Required;
 
   static equals(a: TestProto2Required | PlainMessage<TestProto2Required> | undefined, b: TestProto2Required | PlainMessage<TestProto2Required> | undefined): boolean;
-
 }
 
 /**
@@ -436,7 +424,6 @@ export declare class TestProto2Required extends Message<TestProto2Required> {
  * @generated from message proto2_nofieldpresence_unittest.ForeignMessage
  */
 export declare class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -455,6 +442,5 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
-
 }
 

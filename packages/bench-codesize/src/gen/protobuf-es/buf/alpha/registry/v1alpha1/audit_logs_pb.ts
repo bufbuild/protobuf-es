@@ -24,7 +24,6 @@ import {Event} from "../../audit/v1alpha1/envelope_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.ListAuditLogsRequest
  */
 export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -94,14 +93,12 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
   static equals(a: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined, b: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined): boolean {
     return proto3.util.equals(ListAuditLogsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListAuditLogsResponse
  */
 export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.audit.v1alpha1.Event audit_logs = 1;
    */
@@ -141,6 +138,5 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
   static equals(a: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined, b: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined): boolean {
     return proto3.util.equals(ListAuditLogsResponse, a, b);
   }
-
 }
 

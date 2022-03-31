@@ -174,7 +174,6 @@ export const TestAllTypesLite_NestedEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage
  */
@@ -187,7 +186,6 @@ export const TestAllTypesLite_NestedMessage = proto2.makeMessageType(
   {localName: "TestAllTypesLite_NestedMessage"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage2
  */
@@ -198,7 +196,6 @@ export const TestAllTypesLite_NestedMessage2 = proto2.makeMessageType(
   ],
   {localName: "TestAllTypesLite_NestedMessage2"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
@@ -211,7 +208,6 @@ export const TestAllTypesLite_OptionalGroup = proto2.makeMessageType(
   {localName: "TestAllTypesLite_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
  */
@@ -222,7 +218,6 @@ export const TestAllTypesLite_RepeatedGroup = proto2.makeMessageType(
   ],
   {localName: "TestAllTypesLite_RepeatedGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
@@ -361,7 +356,6 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator_Group1 = proto2.makeMe
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group1"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
  */
@@ -372,8 +366,6 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator_Group2 = proto2.makeMe
   ],
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group2"},
 );
-
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
@@ -386,7 +378,6 @@ export const TestParsingMergeLite_OptionalGroup = proto2.makeMessageType(
   {localName: "TestParsingMergeLite_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
  */
@@ -397,7 +388,6 @@ export const TestParsingMergeLite_RepeatedGroup = proto2.makeMessageType(
   ],
   {localName: "TestParsingMergeLite_RepeatedGroup"},
 );
-
 
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
@@ -475,7 +465,6 @@ export const TestHugeFieldNumbersLite_OptionalGroup = proto2.makeMessageType(
   ],
   {localName: "TestHugeFieldNumbersLite_OptionalGroup"},
 );
-
 
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
@@ -562,7 +551,6 @@ export const DupEnum_TestEnumWithDupValueLite = proto2.makeEnum(
     {no: 2, name: "BAR2"},
   ],
 );
-
 
 /**
  * @generated from message protobuf_unittest.RecursiveMessage

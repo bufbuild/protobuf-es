@@ -41,7 +41,6 @@ import {Any, Message, SourceContext, proto3} from "@bufbuild/protobuf";
  * @generated from enum google.protobuf.Syntax
  */
 export enum Syntax {
-
   /**
    * Syntax `proto2`.
    *
@@ -55,9 +54,7 @@ export enum Syntax {
    * @generated from enum value: SYNTAX_PROTO3 = 1;
    */
   PROTO3 = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Syntax)
 proto3.util.setEnumType(Syntax, "google.protobuf.Syntax", [
   {no: 0, name: "SYNTAX_PROTO2"},
@@ -70,7 +67,6 @@ proto3.util.setEnumType(Syntax, "google.protobuf.Syntax", [
  * @generated from message google.protobuf.Type
  */
 export class Type extends Message<Type> {
-
   /**
    * The fully qualified message name.
    *
@@ -144,7 +140,6 @@ export class Type extends Message<Type> {
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean {
     return proto3.util.equals(Type, a, b);
   }
-
 }
 
 /**
@@ -153,7 +148,6 @@ export class Type extends Message<Type> {
  * @generated from message google.protobuf.Field
  */
 export class Field extends Message<Field> {
-
   /**
    * The field type.
    *
@@ -261,7 +255,6 @@ export class Field extends Message<Field> {
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
     return proto3.util.equals(Field, a, b);
   }
-
 }
 
 /**
@@ -270,7 +263,6 @@ export class Field extends Message<Field> {
  * @generated from enum google.protobuf.Field.Kind
  */
 export enum Field_Kind {
-
   /**
    * Field type unknown.
    *
@@ -403,9 +395,7 @@ export enum Field_Kind {
    * @generated from enum value: TYPE_SINT64 = 18;
    */
   TYPE_SINT64 = 18,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Field_Kind)
 proto3.util.setEnumType(Field_Kind, "google.protobuf.Field.Kind", [
   {no: 0, name: "TYPE_UNKNOWN"},
@@ -429,14 +419,12 @@ proto3.util.setEnumType(Field_Kind, "google.protobuf.Field.Kind", [
   {no: 18, name: "TYPE_SINT64"},
 ]);
 
-
 /**
  * Whether a field is optional, required, or repeated.
  *
  * @generated from enum google.protobuf.Field.Cardinality
  */
 export enum Field_Cardinality {
-
   /**
    * For fields with unknown cardinality.
    *
@@ -464,9 +452,7 @@ export enum Field_Cardinality {
    * @generated from enum value: CARDINALITY_REPEATED = 3;
    */
   REPEATED = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Field_Cardinality)
 proto3.util.setEnumType(Field_Cardinality, "google.protobuf.Field.Cardinality", [
   {no: 0, name: "CARDINALITY_UNKNOWN"},
@@ -475,14 +461,12 @@ proto3.util.setEnumType(Field_Cardinality, "google.protobuf.Field.Cardinality", 
   {no: 3, name: "CARDINALITY_REPEATED"},
 ]);
 
-
 /**
  * Enum type definition.
  *
  * @generated from message google.protobuf.Enum
  */
 export class Enum extends Message<Enum> {
-
   /**
    * Enum type name.
    *
@@ -548,7 +532,6 @@ export class Enum extends Message<Enum> {
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
     return proto3.util.equals(Enum, a, b);
   }
-
 }
 
 /**
@@ -557,7 +540,6 @@ export class Enum extends Message<Enum> {
  * @generated from message google.protobuf.EnumValue
  */
 export class EnumValue extends Message<EnumValue> {
-
   /**
    * Enum value name.
    *
@@ -607,7 +589,6 @@ export class EnumValue extends Message<EnumValue> {
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
     return proto3.util.equals(EnumValue, a, b);
   }
-
 }
 
 /**
@@ -617,7 +598,6 @@ export class EnumValue extends Message<EnumValue> {
  * @generated from message google.protobuf.Option
  */
 export class Option extends Message<Option> {
-
   /**
    * The option's name. For protobuf built-in options (options defined in
    * descriptor.proto), this is the short name. For example, `"map_entry"`.
@@ -665,6 +645,5 @@ export class Option extends Message<Option> {
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean {
     return proto3.util.equals(Option, a, b);
   }
-
 }
 

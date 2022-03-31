@@ -46,7 +46,6 @@
  * @generated from enum protobuf_unittest.lazy_imports.LazyEnum
  */
 export declare enum LazyEnum {
-
   /**
    * @generated from enum value: LAZY_ENUM_0 = 0;
    */
@@ -56,6 +55,5 @@ export declare enum LazyEnum {
    * @generated from enum value: LAZY_ENUM_1 = 1;
    */
   LAZY_ENUM_1 = 1,
-
 }
 

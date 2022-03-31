@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.Token
  */
 export class Token extends Message<Token> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -73,14 +72,12 @@ export class Token extends Message<Token> {
   static equals(a: Token | PlainMessage<Token> | undefined, b: Token | PlainMessage<Token> | undefined): boolean {
     return proto3.util.equals(Token, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTokenRequest
  */
 export class CreateTokenRequest extends Message<CreateTokenRequest> {
-
   /**
    * @generated from field: string note = 1;
    */
@@ -121,14 +118,12 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
   static equals(a: CreateTokenRequest | PlainMessage<CreateTokenRequest> | undefined, b: CreateTokenRequest | PlainMessage<CreateTokenRequest> | undefined): boolean {
     return proto3.util.equals(CreateTokenRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateTokenResponse
  */
 export class CreateTokenResponse extends Message<CreateTokenResponse> {
-
   /**
    * The plaintext token to use for authentication.
    *
@@ -162,14 +157,12 @@ export class CreateTokenResponse extends Message<CreateTokenResponse> {
   static equals(a: CreateTokenResponse | PlainMessage<CreateTokenResponse> | undefined, b: CreateTokenResponse | PlainMessage<CreateTokenResponse> | undefined): boolean {
     return proto3.util.equals(CreateTokenResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTokenRequest
  */
 export class GetTokenRequest extends Message<GetTokenRequest> {
-
   /**
    * @generated from field: string token_id = 1;
    */
@@ -201,14 +194,12 @@ export class GetTokenRequest extends Message<GetTokenRequest> {
   static equals(a: GetTokenRequest | PlainMessage<GetTokenRequest> | undefined, b: GetTokenRequest | PlainMessage<GetTokenRequest> | undefined): boolean {
     return proto3.util.equals(GetTokenRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetTokenResponse
  */
 export class GetTokenResponse extends Message<GetTokenResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Token token = 1;
    */
@@ -240,14 +231,12 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
   static equals(a: GetTokenResponse | PlainMessage<GetTokenResponse> | undefined, b: GetTokenResponse | PlainMessage<GetTokenResponse> | undefined): boolean {
     return proto3.util.equals(GetTokenResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTokensRequest
  */
 export class ListTokensRequest extends Message<ListTokensRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -293,14 +282,12 @@ export class ListTokensRequest extends Message<ListTokensRequest> {
   static equals(a: ListTokensRequest | PlainMessage<ListTokensRequest> | undefined, b: ListTokensRequest | PlainMessage<ListTokensRequest> | undefined): boolean {
     return proto3.util.equals(ListTokensRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListTokensResponse
  */
 export class ListTokensResponse extends Message<ListTokensResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Token tokens = 1;
    */
@@ -340,14 +327,12 @@ export class ListTokensResponse extends Message<ListTokensResponse> {
   static equals(a: ListTokensResponse | PlainMessage<ListTokensResponse> | undefined, b: ListTokensResponse | PlainMessage<ListTokensResponse> | undefined): boolean {
     return proto3.util.equals(ListTokensResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTokenRequest
  */
 export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
-
   /**
    * @generated from field: string token_id = 1;
    */
@@ -379,14 +364,12 @@ export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
   static equals(a: DeleteTokenRequest | PlainMessage<DeleteTokenRequest> | undefined, b: DeleteTokenRequest | PlainMessage<DeleteTokenRequest> | undefined): boolean {
     return proto3.util.equals(DeleteTokenRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteTokenResponse
  */
 export class DeleteTokenResponse extends Message<DeleteTokenResponse> {
-
   constructor(data?: PartialMessage<DeleteTokenResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -412,6 +395,5 @@ export class DeleteTokenResponse extends Message<DeleteTokenResponse> {
   static equals(a: DeleteTokenResponse | PlainMessage<DeleteTokenResponse> | undefined, b: DeleteTokenResponse | PlainMessage<DeleteTokenResponse> | undefined): boolean {
     return proto3.util.equals(DeleteTokenResponse, a, b);
   }
-
 }
 

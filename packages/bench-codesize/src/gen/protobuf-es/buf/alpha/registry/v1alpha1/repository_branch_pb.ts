@@ -23,7 +23,6 @@ import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryBranch
  */
 export class RepositoryBranch extends Message<RepositoryBranch> {
-
   /**
    * primary key, unique, immutable
    *
@@ -83,14 +82,12 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
   static equals(a: RepositoryBranch | PlainMessage<RepositoryBranch> | undefined, b: RepositoryBranch | PlainMessage<RepositoryBranch> | undefined): boolean {
     return proto3.util.equals(RepositoryBranch, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryBranchRequest
  */
 export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranchRequest> {
-
   /**
    * The ID of the repository this branch should be created on.
    *
@@ -141,14 +138,12 @@ export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranc
   static equals(a: CreateRepositoryBranchRequest | PlainMessage<CreateRepositoryBranchRequest> | undefined, b: CreateRepositoryBranchRequest | PlainMessage<CreateRepositoryBranchRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryBranchRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryBranchResponse
  */
 export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBranchResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryBranch repository_branch = 1;
    */
@@ -180,14 +175,12 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
   static equals(a: CreateRepositoryBranchResponse | PlainMessage<CreateRepositoryBranchResponse> | undefined, b: CreateRepositoryBranchResponse | PlainMessage<CreateRepositoryBranchResponse> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryBranchResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryBranchesRequest
  */
 export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranchesRequest> {
-
   /**
    * The ID of the repository whose branches should be listed.
    *
@@ -241,14 +234,12 @@ export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranche
   static equals(a: ListRepositoryBranchesRequest | PlainMessage<ListRepositoryBranchesRequest> | undefined, b: ListRepositoryBranchesRequest | PlainMessage<ListRepositoryBranchesRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryBranchesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryBranchesResponse
  */
 export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranchesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryBranch repository_branches = 1;
    */
@@ -288,6 +279,5 @@ export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranch
   static equals(a: ListRepositoryBranchesResponse | PlainMessage<ListRepositoryBranchesResponse> | undefined, b: ListRepositoryBranchesResponse | PlainMessage<ListRepositoryBranchesResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryBranchesResponse, a, b);
   }
-
 }
 

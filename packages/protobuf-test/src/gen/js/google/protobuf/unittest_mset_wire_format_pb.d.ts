@@ -47,7 +47,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_wireformat_unittest.TestMessageSet
  */
 export declare class TestMessageSet extends Message<TestMessageSet> {
-
   constructor(data?: PartialMessage<TestMessageSet>);
 
   static readonly runtime: typeof proto2;
@@ -61,14 +60,12 @@ export declare class TestMessageSet extends Message<TestMessageSet> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSet;
 
   static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean;
-
 }
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
 export declare class TestMessageSetWireFormatContainer extends Message<TestMessageSetWireFormatContainer> {
-
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
@@ -87,6 +84,5 @@ export declare class TestMessageSetWireFormatContainer extends Message<TestMessa
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
 
   static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean;
-
 }
 

@@ -215,7 +215,6 @@ export const TestAllTypesProto2_NestedEnum = proto2.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage
  */
@@ -227,7 +226,6 @@ export const TestAllTypesProto2_NestedMessage = proto2.makeMessageType(
   ],
   {localName: "TestAllTypesProto2_NestedMessage"},
 );
-
 
 /**
  * groups
@@ -243,7 +241,6 @@ export const TestAllTypesProto2_Data = proto2.makeMessageType(
   {localName: "TestAllTypesProto2_Data"},
 );
 
-
 /**
  * message_set test case.
  *
@@ -254,7 +251,6 @@ export const TestAllTypesProto2_MessageSetCorrect = proto2.makeMessageType(
   [],
   {localName: "TestAllTypesProto2_MessageSetCorrect"},
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
@@ -267,7 +263,6 @@ export const TestAllTypesProto2_MessageSetCorrectExtension1 = proto2.makeMessage
   {localName: "TestAllTypesProto2_MessageSetCorrectExtension1"},
 );
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
@@ -278,7 +273,6 @@ export const TestAllTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessage
   ],
   {localName: "TestAllTypesProto2_MessageSetCorrectExtension2"},
 );
-
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
@@ -316,7 +310,6 @@ export const UnknownToTestAllTypes_OptionalGroup = proto2.makeMessageType(
   {localName: "UnknownToTestAllTypes_OptionalGroup"},
 );
 
-
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
@@ -343,5 +336,4 @@ export const EnumOnlyProto2_Bool = proto2.makeEnum(
     {no: 1, name: "kTrue"},
   ],
 );
-
 

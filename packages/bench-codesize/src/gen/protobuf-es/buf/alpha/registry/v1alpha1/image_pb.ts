@@ -27,7 +27,6 @@ import {Image} from "../../image/v1/image_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.ImageMask
  */
 export enum ImageMask {
-
   /**
    * @generated from enum value: IMAGE_MASK_UNSPECIFIED = 0;
    */
@@ -56,9 +55,7 @@ export enum ImageMask {
    * @generated from enum value: IMAGE_MASK_SERVICES = 3;
    */
   SERVICES = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ImageMask)
 proto3.util.setEnumType(ImageMask, "buf.alpha.registry.v1alpha1.ImageMask", [
   {no: 0, name: "IMAGE_MASK_UNSPECIFIED"},
@@ -71,7 +68,6 @@ proto3.util.setEnumType(ImageMask, "buf.alpha.registry.v1alpha1.ImageMask", [
  * @generated from message buf.alpha.registry.v1alpha1.GetImageRequest
  */
 export class GetImageRequest extends Message<GetImageRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -158,14 +154,12 @@ export class GetImageRequest extends Message<GetImageRequest> {
   static equals(a: GetImageRequest | PlainMessage<GetImageRequest> | undefined, b: GetImageRequest | PlainMessage<GetImageRequest> | undefined): boolean {
     return proto3.util.equals(GetImageRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetImageResponse
  */
 export class GetImageResponse extends Message<GetImageResponse> {
-
   /**
    * @generated from field: buf.alpha.image.v1.Image image = 1;
    */
@@ -197,6 +191,5 @@ export class GetImageResponse extends Message<GetImageResponse> {
   static equals(a: GetImageResponse | PlainMessage<GetImageResponse> | undefined, b: GetImageResponse | PlainMessage<GetImageResponse> | undefined): boolean {
     return proto3.util.equals(GetImageResponse, a, b);
   }
-
 }
 

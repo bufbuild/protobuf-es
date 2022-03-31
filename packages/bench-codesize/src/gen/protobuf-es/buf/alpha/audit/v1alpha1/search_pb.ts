@@ -22,7 +22,6 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1SearchFilter
  */
 export enum BufAlphaRegistryV1Alpha1SearchFilter {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_UNSPECIFIED = 0;
    */
@@ -57,9 +56,7 @@ export enum BufAlphaRegistryV1Alpha1SearchFilter {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_TEAM = 6;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_TEAM = 6,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1SearchFilter)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1SearchFilter, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1SearchFilter", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SEARCH_FILTER_UNSPECIFIED"},

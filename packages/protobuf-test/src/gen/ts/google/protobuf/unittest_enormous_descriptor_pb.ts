@@ -47,7 +47,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest.TestEnormousDescriptor
  */
 export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
-
   /**
    * @generated from field: optional string long_field_name_is_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_1 = 1 [default = "long default value is also loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong"];
    */
@@ -6073,6 +6072,5 @@ export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
   static equals(a: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined, b: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined): boolean {
     return proto2.util.equals(TestEnormousDescriptor, a, b);
   }
-
 }
 

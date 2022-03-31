@@ -25,7 +25,6 @@ import {LocalModulePin, LocalModuleReference} from "./module_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.ResolvedReferenceType
  */
 export enum ResolvedReferenceType {
-
   /**
    * @generated from enum value: RESOLVED_REFERENCE_TYPE_UNSPECIFIED = 0;
    */
@@ -50,9 +49,7 @@ export enum ResolvedReferenceType {
    * @generated from enum value: RESOLVED_REFERENCE_TYPE_TRACK = 4;
    */
   TRACK = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ResolvedReferenceType)
 proto3.util.setEnumType(ResolvedReferenceType, "buf.alpha.registry.v1alpha1.ResolvedReferenceType", [
   {no: 0, name: "RESOLVED_REFERENCE_TYPE_UNSPECIFIED"},
@@ -66,7 +63,6 @@ proto3.util.setEnumType(ResolvedReferenceType, "buf.alpha.registry.v1alpha1.Reso
  * @generated from message buf.alpha.registry.v1alpha1.GetModulePinsRequest
  */
 export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
-
   /**
    * @generated from field: repeated buf.alpha.module.v1alpha1.ModuleReference module_references = 1;
    */
@@ -115,14 +111,12 @@ export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
   static equals(a: GetModulePinsRequest | PlainMessage<GetModulePinsRequest> | undefined, b: GetModulePinsRequest | PlainMessage<GetModulePinsRequest> | undefined): boolean {
     return proto3.util.equals(GetModulePinsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetModulePinsResponse
  */
 export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.module.v1alpha1.ModulePin module_pins = 1;
    */
@@ -154,14 +148,12 @@ export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
   static equals(a: GetModulePinsResponse | PlainMessage<GetModulePinsResponse> | undefined, b: GetModulePinsResponse | PlainMessage<GetModulePinsResponse> | undefined): boolean {
     return proto3.util.equals(GetModulePinsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetLocalModulePinsRequest
  */
 export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.LocalModuleReference local_module_references = 1;
    */
@@ -193,14 +185,12 @@ export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest
   static equals(a: GetLocalModulePinsRequest | PlainMessage<GetLocalModulePinsRequest> | undefined, b: GetLocalModulePinsRequest | PlainMessage<GetLocalModulePinsRequest> | undefined): boolean {
     return proto3.util.equals(GetLocalModulePinsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.LocalModuleResolveResult
  */
 export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> {
-
   /**
    * A copy of the reference that was resolved.
    *
@@ -250,14 +240,12 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
   static equals(a: LocalModuleResolveResult | PlainMessage<LocalModuleResolveResult> | undefined, b: LocalModuleResolveResult | PlainMessage<LocalModuleResolveResult> | undefined): boolean {
     return proto3.util.equals(LocalModuleResolveResult, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetLocalModulePinsResponse
  */
 export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.LocalModuleResolveResult local_module_resolve_results = 1;
    */
@@ -299,6 +287,5 @@ export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsRespon
   static equals(a: GetLocalModulePinsResponse | PlainMessage<GetLocalModulePinsResponse> | undefined, b: GetLocalModulePinsResponse | PlainMessage<GetLocalModulePinsResponse> | undefined): boolean {
     return proto3.util.equals(GetLocalModulePinsResponse, a, b);
   }
-
 }
 

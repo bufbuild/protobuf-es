@@ -31,7 +31,6 @@ import {ErrorCode} from "../../rpc/v1alpha1/error_pb.js";
  * @generated from enum buf.alpha.audit.v1alpha1.Action
  */
 export enum Action {
-
   /**
    * @generated from enum value: ACTION_UNSPECIFIED = 0;
    */
@@ -781,9 +780,7 @@ export enum Action {
    * @generated from enum value: ACTION_BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_TRACK_COMMIT_SERVICE_GET_REPOSITORY_TRACK_COMMIT_BY_REFERENCE = 149;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_TRACK_COMMIT_SERVICE_GET_REPOSITORY_TRACK_COMMIT_BY_REFERENCE = 149,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Action)
 proto3.util.setEnumType(Action, "buf.alpha.audit.v1alpha1.Action", [
   {no: 0, name: "ACTION_UNSPECIFIED"},
@@ -945,7 +942,6 @@ proto3.util.setEnumType(Action, "buf.alpha.audit.v1alpha1.Action", [
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DownloadInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBufAlphaRegistryV1Alpha1DownloadInfo> {
-
   /**
    * @generated from field: string reference = 1;
    */
@@ -977,7 +973,6 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
   static equals(a: ActionBufAlphaRegistryV1Alpha1DownloadInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DownloadInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DownloadInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DownloadInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DownloadInfo, a, b);
   }
-
 }
 
 /**
@@ -987,7 +982,6 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetImageInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetImageInfo> {
-
   /**
    * @generated from field: string reference = 1;
    */
@@ -1019,7 +1013,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetImageInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetImageInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetImageInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetImageInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetImageInfo, a, b);
   }
-
 }
 
 /**
@@ -1029,7 +1022,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1061,7 +1053,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo, a, b);
   }
-
 }
 
 /**
@@ -1071,7 +1062,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -1103,7 +1093,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo, a, b);
   }
-
 }
 
 /**
@@ -1113,7 +1102,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1145,7 +1133,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo, a, b);
   }
-
 }
 
 /**
@@ -1156,7 +1143,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Message<ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -1200,7 +1186,6 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
   static equals(a: ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo, a, b);
   }
-
 }
 
 /**
@@ -1211,7 +1196,6 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends Message<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -1255,7 +1239,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo, a, b);
   }
-
 }
 
 /**
@@ -1265,7 +1248,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends Message<ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -1303,7 +1285,6 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
   static equals(a: ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo, a, b);
   }
-
 }
 
 /**
@@ -1313,7 +1294,6 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extends Message<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo> {
-
   /**
    * @generated from field: string organization_id = 1;
    */
@@ -1363,7 +1343,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo, a, b);
   }
-
 }
 
 /**
@@ -1373,7 +1352,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreatePluginInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreatePluginInfo> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -1417,7 +1395,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreatePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreatePluginInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreatePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreatePluginInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreatePluginInfo, a, b);
   }
-
 }
 
 /**
@@ -1427,7 +1404,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeletePluginInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeletePluginInfo> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -1465,7 +1441,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeletePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeletePluginInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeletePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeletePluginInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeletePluginInfo, a, b);
   }
-
 }
 
 /**
@@ -1475,7 +1450,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo> {
-
   /**
    * @generated from field: string version = 1;
    */
@@ -1507,7 +1481,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo, a, b);
   }
-
 }
 
 /**
@@ -1518,7 +1491,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -1568,7 +1540,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo, a, b);
   }
-
 }
 
 /**
@@ -1578,7 +1549,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -1616,7 +1586,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo, a, b);
   }
-
 }
 
 /**
@@ -1627,7 +1596,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1677,7 +1645,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo, a, b);
   }
-
 }
 
 /**
@@ -1687,7 +1654,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1PushInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlphaRegistryV1Alpha1PushInfo> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -1755,7 +1721,6 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
   static equals(a: ActionBufAlphaRegistryV1Alpha1PushInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1PushInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1PushInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1PushInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1PushInfo, a, b);
   }
-
 }
 
 /**
@@ -1765,7 +1730,6 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1830,7 +1794,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo, a, b);
   }
-
 }
 
 /**
@@ -1841,7 +1804,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -1879,7 +1841,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo, a, b);
   }
-
 }
 
 /**
@@ -1889,7 +1850,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo extends Message<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo> {
-
   /**
    * @generated from field: string repository_branch_name = 1;
    */
@@ -1921,7 +1881,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo, a, b);
   }
-
 }
 
 /**
@@ -1931,7 +1890,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo extends Message<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo> {
-
   /**
    * @generated from field: string reference = 1;
    */
@@ -1963,7 +1921,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo, a, b);
   }
-
 }
 
 /**
@@ -1973,7 +1930,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo> {
-
   /**
    * @generated from field: string reference = 1;
    */
@@ -2005,7 +1961,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo, a, b);
   }
-
 }
 
 /**
@@ -2015,7 +1970,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo> {
-
   /**
    * @generated from field: string repository_branch_name = 1;
    */
@@ -2053,7 +2007,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo, a, b);
   }
-
 }
 
 /**
@@ -2064,7 +2017,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo> {
-
   /**
    * @generated from field: string repository_id = 1;
    */
@@ -2108,7 +2060,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo, a, b);
   }
-
 }
 
 /**
@@ -2119,7 +2070,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo> {
-
   /**
    * @generated from field: string full_name = 1;
    */
@@ -2157,7 +2107,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo, a, b);
   }
-
 }
 
 /**
@@ -2167,7 +2116,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo> {
-
   /**
    * @generated from field: string repository_id = 1;
    */
@@ -2199,7 +2147,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo, a, b);
   }
-
 }
 
 /**
@@ -2209,7 +2156,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo> {
-
   /**
    * @generated from field: string full_name = 1;
    */
@@ -2241,7 +2187,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo, a, b);
   }
-
 }
 
 /**
@@ -2251,7 +2196,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -2295,7 +2239,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo, a, b);
   }
-
 }
 
 /**
@@ -2305,7 +2248,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo extends Message<ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -2343,7 +2285,6 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
   static equals(a: ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo, a, b);
   }
-
 }
 
 /**
@@ -2353,7 +2294,6 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo> {
-
   /**
    * @generated from field: repeated buf.alpha.module.v1alpha1.ModuleReference module_references = 1;
    */
@@ -2397,7 +2337,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo, a, b);
   }
-
 }
 
 /**
@@ -2407,7 +2346,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Message<ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo> {
-
   /**
    * @generated from field: repeated buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference local_module_references = 1;
    */
@@ -2451,7 +2389,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo, a, b);
   }
-
 }
 
 /**
@@ -2461,7 +2398,6 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SearchInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufAlphaRegistryV1Alpha1SearchInfo> {
-
   /**
    * @generated from field: string query = 1;
    */
@@ -2499,7 +2435,6 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
   static equals(a: ActionBufAlphaRegistryV1Alpha1SearchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SearchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SearchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SearchInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SearchInfo, a, b);
   }
-
 }
 
 /**
@@ -2509,7 +2444,6 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTokenInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo> {
-
   /**
    * @generated from field: string note = 1;
    */
@@ -2547,7 +2481,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateTokenInfo, a, b);
   }
-
 }
 
 /**
@@ -2557,7 +2490,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo> {
-
   /**
    * @generated from field: string token_id = 1;
    */
@@ -2589,7 +2521,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo, a, b);
   }
-
 }
 
 /**
@@ -2599,7 +2530,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateUserInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateUserInfo> {
-
   /**
    * @generated from field: string username = 1;
    */
@@ -2631,7 +2561,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateUserInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateUserInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateUserInfo, a, b);
   }
-
 }
 
 /**
@@ -2641,7 +2570,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListUsersInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionBufAlphaRegistryV1Alpha1ListUsersInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1UserState user_state_filter = 1;
    */
@@ -2673,7 +2601,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListUsersInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListUsersInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListUsersInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListUsersInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1ListUsersInfo, a, b);
   }
-
 }
 
 /**
@@ -2683,7 +2610,6 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo> {
-
   /**
    * @generated from field: string user_id = 1;
    */
@@ -2715,7 +2641,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo, a, b);
   }
-
 }
 
 /**
@@ -2726,7 +2651,6 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Message<ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo> {
-
   /**
    * @generated from field: string user_id = 1;
    */
@@ -2764,7 +2688,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo, a, b);
   }
-
 }
 
 /**
@@ -2774,7 +2697,6 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo
  */
 export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo extends Message<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -2818,7 +2740,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo, a, b);
   }
-
 }
 
 /**
@@ -2828,7 +2749,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo
  */
 export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo extends Message<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -2872,7 +2792,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo, a, b);
   }
-
 }
 
 /**
@@ -2882,7 +2801,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo
  */
 export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo extends Message<ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -2914,7 +2832,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo, a, b);
   }
-
 }
 
 /**
@@ -2924,7 +2841,6 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends Message<ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole repository_role = 1;
    */
@@ -2956,7 +2872,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo, a, b);
   }
-
 }
 
 /**
@@ -2966,7 +2881,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Message<ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole plugin_role = 1;
    */
@@ -2998,7 +2912,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo, a, b);
   }
-
 }
 
 /**
@@ -3008,7 +2921,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Message<ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole template_role = 1;
    */
@@ -3040,7 +2952,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo, a, b);
   }
-
 }
 
 /**
@@ -3050,7 +2961,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Message<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack track = 1;
    */
@@ -3082,7 +2992,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo, a, b);
   }
-
 }
 
 /**
@@ -3092,7 +3001,6 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo
  */
 export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Message<ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo> {
-
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole organization_role = 1;
    */
@@ -3124,7 +3032,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo, a, b);
   }
-
 }
 
 /**
@@ -3134,7 +3041,6 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
  * @generated from message buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetJSONSchema
  */
 export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionBufAlphaRegistryV1Alpha1GetJSONSchema> {
-
   /**
    * @generated from field: string reference = 1;
    */
@@ -3166,14 +3072,12 @@ export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionB
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetJSONSchema | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetJSONSchema> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetJSONSchema | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetJSONSchema> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetJSONSchema, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.Event
  */
 export class Event extends Message<Event> {
-
   /**
    * The ID representing the event.
    *
@@ -3627,14 +3531,12 @@ export class Event extends Message<Event> {
   static equals(a: Event | PlainMessage<Event> | undefined, b: Event | PlainMessage<Event> | undefined): boolean {
     return proto3.util.equals(Event, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.UserActor
  */
 export class UserActor extends Message<UserActor> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3690,14 +3592,12 @@ export class UserActor extends Message<UserActor> {
   static equals(a: UserActor | PlainMessage<UserActor> | undefined, b: UserActor | PlainMessage<UserActor> | undefined): boolean {
     return proto3.util.equals(UserActor, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.UserObject
  */
 export class UserObject extends Message<UserObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3741,14 +3641,12 @@ export class UserObject extends Message<UserObject> {
   static equals(a: UserObject | PlainMessage<UserObject> | undefined, b: UserObject | PlainMessage<UserObject> | undefined): boolean {
     return proto3.util.equals(UserObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.OrganizationObject
  */
 export class OrganizationObject extends Message<OrganizationObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3786,14 +3684,12 @@ export class OrganizationObject extends Message<OrganizationObject> {
   static equals(a: OrganizationObject | PlainMessage<OrganizationObject> | undefined, b: OrganizationObject | PlainMessage<OrganizationObject> | undefined): boolean {
     return proto3.util.equals(OrganizationObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.RepositoryObject
  */
 export class RepositoryObject extends Message<RepositoryObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3849,14 +3745,12 @@ export class RepositoryObject extends Message<RepositoryObject> {
   static equals(a: RepositoryObject | PlainMessage<RepositoryObject> | undefined, b: RepositoryObject | PlainMessage<RepositoryObject> | undefined): boolean {
     return proto3.util.equals(RepositoryObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.PluginObject
  */
 export class PluginObject extends Message<PluginObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3912,14 +3806,12 @@ export class PluginObject extends Message<PluginObject> {
   static equals(a: PluginObject | PlainMessage<PluginObject> | undefined, b: PluginObject | PlainMessage<PluginObject> | undefined): boolean {
     return proto3.util.equals(PluginObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.TemplateObject
  */
 export class TemplateObject extends Message<TemplateObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -3975,14 +3867,12 @@ export class TemplateObject extends Message<TemplateObject> {
   static equals(a: TemplateObject | PlainMessage<TemplateObject> | undefined, b: TemplateObject | PlainMessage<TemplateObject> | undefined): boolean {
     return proto3.util.equals(TemplateObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.TokenObject
  */
 export class TokenObject extends Message<TokenObject> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -4014,14 +3904,12 @@ export class TokenObject extends Message<TokenObject> {
   static equals(a: TokenObject | PlainMessage<TokenObject> | undefined, b: TokenObject | PlainMessage<TokenObject> | undefined): boolean {
     return proto3.util.equals(TokenObject, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.audit.v1alpha1.Object
  */
 export class Object$ extends Message<Object$> {
-
   /**
    * @generated from oneof buf.alpha.audit.v1alpha1.Object.type
    */
@@ -4094,6 +3982,5 @@ export class Object$ extends Message<Object$> {
   static equals(a: Object$ | PlainMessage<Object$> | undefined, b: Object$ | PlainMessage<Object$> | undefined): boolean {
     return proto3.util.equals(Object$, a, b);
   }
-
 }
 

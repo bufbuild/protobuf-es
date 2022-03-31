@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.registry.v1alpha1.GetJSONSchemaRequest
  */
 export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -77,14 +76,12 @@ export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
   static equals(a: GetJSONSchemaRequest | PlainMessage<GetJSONSchemaRequest> | undefined, b: GetJSONSchemaRequest | PlainMessage<GetJSONSchemaRequest> | undefined): boolean {
     return proto3.util.equals(GetJSONSchemaRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetJSONSchemaResponse
  */
 export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
-
   /**
    * A json schema representing what the json encoded payload for type_name
    * should conform to. This schema is an approximation to be used by editors
@@ -121,6 +118,5 @@ export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
   static equals(a: GetJSONSchemaResponse | PlainMessage<GetJSONSchemaResponse> | undefined, b: GetJSONSchemaResponse | PlainMessage<GetJSONSchemaResponse> | undefined): boolean {
     return proto3.util.equals(GetJSONSchemaResponse, a, b);
   }
-
 }
 

@@ -43,7 +43,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnumLite
  */
 export enum ImportEnumLite {
-
   /**
    * @generated from enum value: IMPORT_LITE_FOO = 7;
    */
@@ -58,9 +57,7 @@ export enum ImportEnumLite {
    * @generated from enum value: IMPORT_LITE_BAZ = 9;
    */
   IMPORT_LITE_BAZ = 9,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumLite)
 proto2.util.setEnumType(ImportEnumLite, "protobuf_unittest_import.ImportEnumLite", [
   {no: 7, name: "IMPORT_LITE_FOO"},
@@ -72,7 +69,6 @@ proto2.util.setEnumType(ImportEnumLite, "protobuf_unittest_import.ImportEnumLite
  * @generated from message protobuf_unittest_import.ImportMessageLite
  */
 export class ImportMessageLite extends Message<ImportMessageLite> {
-
   /**
    * @generated from field: optional int32 d = 1;
    */
@@ -104,6 +100,5 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
   static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean {
     return proto2.util.equals(ImportMessageLite, a, b);
   }
-
 }
 

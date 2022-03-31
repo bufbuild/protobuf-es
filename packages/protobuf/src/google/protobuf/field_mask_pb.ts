@@ -223,7 +223,6 @@ import {Message, proto3} from "../../index.js";
  * @generated from message google.protobuf.FieldMask
  */
 export class FieldMask extends Message<FieldMask> {
-
   /**
    * The set of field mask paths.
    *
@@ -319,6 +318,5 @@ export class FieldMask extends Message<FieldMask> {
   static equals(a: FieldMask | PlainMessage<FieldMask> | undefined, b: FieldMask | PlainMessage<FieldMask> | undefined): boolean {
     return proto3.util.equals(FieldMask, a, b);
   }
-
 }
 

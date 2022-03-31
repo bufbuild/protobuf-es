@@ -35,7 +35,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.EnumWithComments
  */
 export declare enum EnumWithComments {
-
   /**
    * Comment before enum value.
    *
@@ -44,7 +43,6 @@ export declare enum EnumWithComments {
    * @generated from enum value: VALUE = 0;
    */
   VALUE = 0,
-
 }
 
 /**
@@ -54,7 +52,6 @@ export declare enum EnumWithComments {
  * @deprecated
  */
 export declare enum DeprecatedEnumWithComment {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_A = 0;
    */
@@ -64,7 +61,6 @@ export declare enum DeprecatedEnumWithComment {
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_B = 1;
    */
   B = 1,
-
 }
 
 /**
@@ -72,7 +68,6 @@ export declare enum DeprecatedEnumWithComment {
  * @deprecated
  */
 export declare enum DeprecatedEnumNoComment {
-
   /**
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_A = 0;
    */
@@ -82,7 +77,6 @@ export declare enum DeprecatedEnumNoComment {
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_B = 1;
    */
   B = 1,
-
 }
 
 /**
@@ -91,7 +85,6 @@ export declare enum DeprecatedEnumNoComment {
  * @generated from message spec.MessageWithComments
  */
 export declare class MessageWithComments extends Message<MessageWithComments> {
-
   /**
    * Comment before field with 5 lines:
    * line 2, next is empty
@@ -156,7 +149,6 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageWithComments;
 
   static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean;
-
 }
 
 /**
@@ -165,7 +157,6 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
  * @generated from message spec.EmptyMessageWithComment
  */
 export declare class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
-
   constructor(data?: PartialMessage<EmptyMessageWithComment>);
 
   static readonly runtime: typeof proto3;
@@ -179,7 +170,6 @@ export declare class EmptyMessageWithComment extends Message<EmptyMessageWithCom
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
 
   static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean;
-
 }
 
 /**
@@ -188,7 +178,6 @@ export declare class EmptyMessageWithComment extends Message<EmptyMessageWithCom
  * @generated from message spec.GoogleCommentExample
  */
 export declare class GoogleCommentExample extends Message<GoogleCommentExample> {
-
   /**
    * Comment attached to foo.
    *
@@ -250,6 +239,5 @@ export declare class GoogleCommentExample extends Message<GoogleCommentExample> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GoogleCommentExample;
 
   static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean;
-
 }
 

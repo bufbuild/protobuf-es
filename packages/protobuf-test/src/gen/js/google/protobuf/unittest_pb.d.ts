@@ -53,7 +53,6 @@ import type {PublicImportMessage} from "./unittest_import_public_pb.js";
  * @generated from enum protobuf_unittest.ForeignEnum
  */
 export declare enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 4;
    */
@@ -68,7 +67,6 @@ export declare enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
-
 }
 
 /**
@@ -77,7 +75,6 @@ export declare enum ForeignEnum {
  * @generated from enum protobuf_unittest.TestEnumWithDupValue
  */
 export declare enum TestEnumWithDupValue {
-
   /**
    * @generated from enum value: FOO1 = 1;
    */
@@ -102,7 +99,6 @@ export declare enum TestEnumWithDupValue {
    * @generated from enum value: BAR2 = 2;
    */
   BAR2 = 2,
-
 }
 
 /**
@@ -111,7 +107,6 @@ export declare enum TestEnumWithDupValue {
  * @generated from enum protobuf_unittest.TestSparseEnum
  */
 export declare enum TestSparseEnum {
-
   /**
    * @generated from enum value: SPARSE_A = 123;
    */
@@ -146,14 +141,12 @@ export declare enum TestSparseEnum {
    * @generated from enum value: SPARSE_G = 2;
    */
   SPARSE_G = 2,
-
 }
 
 /**
  * @generated from enum protobuf_unittest.VeryLargeEnum
  */
 export declare enum VeryLargeEnum {
-
   /**
    * @generated from enum value: ENUM_LABEL_DEFAULT = 0;
    */
@@ -658,7 +651,6 @@ export declare enum VeryLargeEnum {
    * @generated from enum value: ENUM_LABEL_100 = 100;
    */
   ENUM_LABEL_100 = 100,
-
 }
 
 /**
@@ -668,7 +660,6 @@ export declare enum VeryLargeEnum {
  * @generated from message protobuf_unittest.TestAllTypes
  */
 export declare class TestAllTypes extends Message<TestAllTypes> {
-
   /**
    * Singular
    *
@@ -1076,14 +1067,12 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestAllTypes.NestedEnum
  */
 export declare enum TestAllTypes_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
@@ -1105,15 +1094,12 @@ export declare enum TestAllTypes_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.NestedMessage
  */
 export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessage> {
-
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
    * a local variable named "b" in one of the generated methods.  Doh.
@@ -1136,15 +1122,12 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
  */
 export declare class TestAllTypes_OptionalGroup extends Message<TestAllTypes_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1163,15 +1146,12 @@ export declare class TestAllTypes_OptionalGroup extends Message<TestAllTypes_Opt
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_OptionalGroup;
 
   static equals(a: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined, b: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
  */
 export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGroup> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -1190,9 +1170,7 @@ export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_Rep
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_RepeatedGroup;
 
   static equals(a: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined, b: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined): boolean;
-
 }
-
 
 /**
  * This proto includes a recursively nested message.
@@ -1200,7 +1178,6 @@ export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_Rep
  * @generated from message protobuf_unittest.NestedTestAllTypes
  */
 export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
-
   /**
    * @generated from field: optional protobuf_unittest.NestedTestAllTypes child = 1;
    */
@@ -1229,14 +1206,12 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
 
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
  */
 export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> {
-
   /**
    * @generated from field: optional int32 deprecated_int32 = 1 [deprecated = true];
    * @deprecated
@@ -1268,7 +1243,6 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDeprecatedFields;
 
   static equals(a: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined, b: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined): boolean;
-
 }
 
 /**
@@ -1276,7 +1250,6 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
  * @deprecated
  */
 export declare class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
-
   constructor(data?: PartialMessage<TestDeprecatedMessage>);
 
   static readonly runtime: typeof proto2;
@@ -1290,7 +1263,6 @@ export declare class TestDeprecatedMessage extends Message<TestDeprecatedMessage
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDeprecatedMessage;
 
   static equals(a: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined, b: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined): boolean;
-
 }
 
 /**
@@ -1300,7 +1272,6 @@ export declare class TestDeprecatedMessage extends Message<TestDeprecatedMessage
  * @generated from message protobuf_unittest.ForeignMessage
  */
 export declare class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: optional int32 c = 1;
    */
@@ -1324,14 +1295,12 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
 export declare class TestReservedFields extends Message<TestReservedFields> {
-
   constructor(data?: PartialMessage<TestReservedFields>);
 
   static readonly runtime: typeof proto2;
@@ -1345,14 +1314,12 @@ export declare class TestReservedFields extends Message<TestReservedFields> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestReservedFields;
 
   static equals(a: TestReservedFields | PlainMessage<TestReservedFields> | undefined, b: TestReservedFields | PlainMessage<TestReservedFields> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
 export declare class TestAllExtensions extends Message<TestAllExtensions> {
-
   constructor(data?: PartialMessage<TestAllExtensions>);
 
   static readonly runtime: typeof proto2;
@@ -1366,14 +1333,12 @@ export declare class TestAllExtensions extends Message<TestAllExtensions> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllExtensions;
 
   static equals(a: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined, b: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
  */
 export declare class OptionalGroup_extension extends Message<OptionalGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1392,14 +1357,12 @@ export declare class OptionalGroup_extension extends Message<OptionalGroup_exten
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OptionalGroup_extension;
 
   static equals(a: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined, b: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
 export declare class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 47;
    */
@@ -1418,14 +1381,12 @@ export declare class RepeatedGroup_extension extends Message<RepeatedGroup_exten
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroup_extension;
 
   static equals(a: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined, b: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestGroup
  */
 export declare class TestGroup extends Message<TestGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestGroup.OptionalGroup optionalgroup = 16;
    */
@@ -1449,14 +1410,12 @@ export declare class TestGroup extends Message<TestGroup> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroup;
 
   static equals(a: TestGroup | PlainMessage<TestGroup> | undefined, b: TestGroup | PlainMessage<TestGroup> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestGroup.OptionalGroup
  */
 export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1475,15 +1434,12 @@ export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalG
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroup_OptionalGroup;
 
   static equals(a: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined, b: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
 export declare class TestGroupExtension extends Message<TestGroupExtension> {
-
   constructor(data?: PartialMessage<TestGroupExtension>);
 
   static readonly runtime: typeof proto2;
@@ -1497,14 +1453,12 @@ export declare class TestGroupExtension extends Message<TestGroupExtension> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroupExtension;
 
   static equals(a: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined, b: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
  */
 export declare class TestNestedExtension extends Message<TestNestedExtension> {
-
   constructor(data?: PartialMessage<TestNestedExtension>);
 
   static readonly runtime: typeof proto2;
@@ -1518,14 +1472,12 @@ export declare class TestNestedExtension extends Message<TestNestedExtension> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtension;
 
   static equals(a: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined, b: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtension.OptionalGroup_extension
  */
 export declare class TestNestedExtension_OptionalGroup_extension extends Message<TestNestedExtension_OptionalGroup_extension> {
-
   /**
    * @generated from field: optional int32 a = 17;
    */
@@ -1544,15 +1496,12 @@ export declare class TestNestedExtension_OptionalGroup_extension extends Message
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtension_OptionalGroup_extension;
 
   static equals(a: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined, b: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
 export declare class TestChildExtension extends Message<TestChildExtension> {
-
   /**
    * @generated from field: optional string a = 1;
    */
@@ -1581,7 +1530,6 @@ export declare class TestChildExtension extends Message<TestChildExtension> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtension;
 
   static equals(a: TestChildExtension | PlainMessage<TestChildExtension> | undefined, b: TestChildExtension | PlainMessage<TestChildExtension> | undefined): boolean;
-
 }
 
 /**
@@ -1594,7 +1542,6 @@ export declare class TestChildExtension extends Message<TestChildExtension> {
  * @generated from message protobuf_unittest.TestRequired
  */
 export declare class TestRequired extends Message<TestRequired> {
-
   /**
    * @generated from field: required int32 a = 1;
    */
@@ -1776,14 +1723,12 @@ export declare class TestRequired extends Message<TestRequired> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequired;
 
   static equals(a: TestRequired | PlainMessage<TestRequired> | undefined, b: TestRequired | PlainMessage<TestRequired> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
 export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
    */
@@ -1812,14 +1757,12 @@ export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredForeign;
 
   static equals(a: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined, b: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
  */
 export declare class TestRequiredMessage extends Message<TestRequiredMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
    */
@@ -1848,7 +1791,6 @@ export declare class TestRequiredMessage extends Message<TestRequiredMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredMessage;
 
   static equals(a: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined, b: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined): boolean;
-
 }
 
 /**
@@ -1857,7 +1799,6 @@ export declare class TestRequiredMessage extends Message<TestRequiredMessage> {
  * @generated from message protobuf_unittest.TestForeignNested
  */
 export declare class TestForeignNested extends Message<TestForeignNested> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage foreign_nested = 1;
    */
@@ -1876,7 +1817,6 @@ export declare class TestForeignNested extends Message<TestForeignNested> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestForeignNested;
 
   static equals(a: TestForeignNested | PlainMessage<TestForeignNested> | undefined, b: TestForeignNested | PlainMessage<TestForeignNested> | undefined): boolean;
-
 }
 
 /**
@@ -1885,7 +1825,6 @@ export declare class TestForeignNested extends Message<TestForeignNested> {
  * @generated from message protobuf_unittest.TestEmptyMessage
  */
 export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
-
   constructor(data?: PartialMessage<TestEmptyMessage>);
 
   static readonly runtime: typeof proto2;
@@ -1899,7 +1838,6 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessage;
 
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
-
 }
 
 /**
@@ -1909,7 +1847,6 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
  * @generated from message protobuf_unittest.TestEmptyMessageWithExtensions
  */
 export declare class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWithExtensions> {
-
   constructor(data?: PartialMessage<TestEmptyMessageWithExtensions>);
 
   static readonly runtime: typeof proto2;
@@ -1923,7 +1860,6 @@ export declare class TestEmptyMessageWithExtensions extends Message<TestEmptyMes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageWithExtensions;
 
   static equals(a: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined, b: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined): boolean;
-
 }
 
 /**
@@ -1932,7 +1868,6 @@ export declare class TestEmptyMessageWithExtensions extends Message<TestEmptyMes
  * @generated from message protobuf_unittest.TestPickleNestedMessage
  */
 export declare class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
-
   constructor(data?: PartialMessage<TestPickleNestedMessage>);
 
   static readonly runtime: typeof proto2;
@@ -1946,14 +1881,12 @@ export declare class TestPickleNestedMessage extends Message<TestPickleNestedMes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage;
 
   static equals(a: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined, b: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage
  */
 export declare class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNestedMessage_NestedMessage> {
-
   /**
    * @generated from field: optional int32 bb = 1;
    */
@@ -1972,14 +1905,12 @@ export declare class TestPickleNestedMessage_NestedMessage extends Message<TestP
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage_NestedMessage;
 
   static equals(a: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
  */
 export declare class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends Message<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> {
-
   /**
    * @generated from field: optional int32 cc = 1;
    */
@@ -1998,16 +1929,12 @@ export declare class TestPickleNestedMessage_NestedMessage_NestedNestedMessage e
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage_NestedMessage_NestedNestedMessage;
 
   static equals(a: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined): boolean;
-
 }
-
-
 
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
 export declare class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRanges> {
-
   constructor(data?: PartialMessage<TestMultipleExtensionRanges>);
 
   static readonly runtime: typeof proto2;
@@ -2021,7 +1948,6 @@ export declare class TestMultipleExtensionRanges extends Message<TestMultipleExt
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMultipleExtensionRanges;
 
   static equals(a: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined, b: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined): boolean;
-
 }
 
 /**
@@ -2030,7 +1956,6 @@ export declare class TestMultipleExtensionRanges extends Message<TestMultipleExt
  * @generated from message protobuf_unittest.TestReallyLargeTagNumber
  */
 export declare class TestReallyLargeTagNumber extends Message<TestReallyLargeTagNumber> {
-
   /**
    * The largest possible tag number is 2^28 - 1, since the wire format uses
    * three bits to communicate wire type.
@@ -2057,14 +1982,12 @@ export declare class TestReallyLargeTagNumber extends Message<TestReallyLargeTag
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestReallyLargeTagNumber;
 
   static equals(a: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined, b: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
 export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRecursiveMessage a = 1;
    */
@@ -2088,7 +2011,6 @@ export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRecursiveMessage;
 
   static equals(a: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined, b: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined): boolean;
-
 }
 
 /**
@@ -2097,7 +2019,6 @@ export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> 
  * @generated from message protobuf_unittest.TestMutualRecursionA
  */
 export declare class TestMutualRecursionA extends Message<TestMutualRecursionA> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionB bb = 1;
    */
@@ -2121,14 +2042,12 @@ export declare class TestMutualRecursionA extends Message<TestMutualRecursionA> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA;
 
   static equals(a: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined, b: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubMessage
  */
 export declare class TestMutualRecursionA_SubMessage extends Message<TestMutualRecursionA_SubMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionB b = 1;
    */
@@ -2147,15 +2066,12 @@ export declare class TestMutualRecursionA_SubMessage extends Message<TestMutualR
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubMessage;
 
   static equals(a: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined, b: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
  */
 export declare class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_SubGroup> {
-
   /**
    * Needed because of bug in javatest
    *
@@ -2181,15 +2097,12 @@ export declare class TestMutualRecursionA_SubGroup extends Message<TestMutualRec
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroup;
 
   static equals(a: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined, b: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
 export declare class TestMutualRecursionB extends Message<TestMutualRecursionB> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestMutualRecursionA a = 1;
    */
@@ -2213,14 +2126,12 @@ export declare class TestMutualRecursionB extends Message<TestMutualRecursionB> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionB;
 
   static equals(a: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined, b: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
  */
 export declare class TestIsInitialized extends Message<TestIsInitialized> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage sub_message = 1;
    */
@@ -2239,14 +2150,12 @@ export declare class TestIsInitialized extends Message<TestIsInitialized> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized;
 
   static equals(a: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined, b: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage
  */
 export declare class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1;
    */
@@ -2265,14 +2174,12 @@ export declare class TestIsInitialized_SubMessage extends Message<TestIsInitiali
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage;
 
   static equals(a: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined, b: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
  */
 export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitialized_SubMessage_SubGroup> {
-
   /**
    * @generated from field: required int32 i = 2;
    */
@@ -2291,10 +2198,7 @@ export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestI
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage_SubGroup;
 
   static equals(a: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined, b: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined): boolean;
-
 }
-
-
 
 /**
  * Test that groups have disjoint field numbers from their siblings and
@@ -2307,7 +2211,6 @@ export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestI
  * @generated from message protobuf_unittest.TestDupFieldNumber
  */
 export declare class TestDupFieldNumber extends Message<TestDupFieldNumber> {
-
   /**
    * NO_PROTO1
    *
@@ -2338,14 +2241,12 @@ export declare class TestDupFieldNumber extends Message<TestDupFieldNumber> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber;
 
   static equals(a: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined, b: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Foo
  */
 export declare class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_Foo> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -2364,15 +2265,12 @@ export declare class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_F
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Foo;
 
   static equals(a: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined, b: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
  */
 export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -2391,9 +2289,7 @@ export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_B
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Bar;
 
   static equals(a: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined, b: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined): boolean;
-
 }
-
 
 /**
  * Additional messages for testing lazy fields.
@@ -2401,7 +2297,6 @@ export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_B
  * @generated from message protobuf_unittest.TestEagerMessage
  */
 export declare class TestEagerMessage extends Message<TestEagerMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
    */
@@ -2420,14 +2315,12 @@ export declare class TestEagerMessage extends Message<TestEagerMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMessage;
 
   static equals(a: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined, b: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
 export declare class TestLazyMessage extends Message<TestLazyMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
    */
@@ -2446,7 +2339,6 @@ export declare class TestLazyMessage extends Message<TestLazyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLazyMessage;
 
   static equals(a: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined, b: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined): boolean;
-
 }
 
 /**
@@ -2455,7 +2347,6 @@ export declare class TestLazyMessage extends Message<TestLazyMessage> {
  * @generated from message protobuf_unittest.TestNestedMessageHasBits
  */
 export declare class TestNestedMessageHasBits extends Message<TestNestedMessageHasBits> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestNestedMessageHasBits.NestedMessage optional_nested_message = 1;
    */
@@ -2474,14 +2365,12 @@ export declare class TestNestedMessageHasBits extends Message<TestNestedMessageH
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageHasBits;
 
   static equals(a: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined, b: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestNestedMessageHasBits.NestedMessage
  */
 export declare class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMessageHasBits_NestedMessage> {
-
   /**
    * @generated from field: repeated int32 nestedmessage_repeated_int32 = 1;
    */
@@ -2505,9 +2394,7 @@ export declare class TestNestedMessageHasBits_NestedMessage extends Message<Test
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageHasBits_NestedMessage;
 
   static equals(a: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined, b: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
@@ -2516,7 +2403,6 @@ export declare class TestNestedMessageHasBits_NestedMessage extends Message<Test
  * @generated from message protobuf_unittest.TestCamelCaseFieldNames
  */
 export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
-
   /**
    * @generated from field: optional int32 PrimitiveField = 1;
    */
@@ -2590,7 +2476,6 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCamelCaseFieldNames;
 
   static equals(a: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined, b: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined): boolean;
-
 }
 
 /**
@@ -2600,7 +2485,6 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
  * @generated from message protobuf_unittest.TestFieldOrderings
  */
 export declare class TestFieldOrderings extends Message<TestFieldOrderings> {
-
   /**
    * @generated from field: optional string my_string = 11;
    */
@@ -2634,14 +2518,12 @@ export declare class TestFieldOrderings extends Message<TestFieldOrderings> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestFieldOrderings;
 
   static equals(a: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined, b: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestFieldOrderings.NestedMessage
  */
 export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldOrderings_NestedMessage> {
-
   /**
    * @generated from field: optional int64 oo = 2;
    */
@@ -2669,15 +2551,12 @@ export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldO
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestFieldOrderings_NestedMessage;
 
   static equals(a: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined, b: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
 export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderings1> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -2696,14 +2575,12 @@ export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderi
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings1;
 
   static equals(a: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined, b: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
  */
 export declare class TestExtensionOrderings2 extends Message<TestExtensionOrderings2> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -2722,14 +2599,12 @@ export declare class TestExtensionOrderings2 extends Message<TestExtensionOrderi
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings2;
 
   static equals(a: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined, b: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3
  */
 export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Message<TestExtensionOrderings2_TestExtensionOrderings3> {
-
   /**
    * @generated from field: optional string my_string = 1;
    */
@@ -2748,15 +2623,12 @@ export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Mes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings2_TestExtensionOrderings3;
 
   static equals(a: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined, b: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
  */
 export declare class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> {
-
   /**
    * @generated from field: optional bytes escaped_bytes = 1 [default = "\000\001\007\010\014\n\r\t\013\\\'\\"\376"];
    */
@@ -2923,14 +2795,12 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtremeDefaultValues;
 
   static equals(a: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined, b: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
 export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestSparseEnum sparse_enum = 1;
    */
@@ -2949,7 +2819,6 @@ export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SparseEnumMessage;
 
   static equals(a: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined, b: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined): boolean;
-
 }
 
 /**
@@ -2958,7 +2827,6 @@ export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
  * @generated from message protobuf_unittest.OneString
  */
 export declare class OneString extends Message<OneString> {
-
   /**
    * @generated from field: optional string data = 1;
    */
@@ -2977,14 +2845,12 @@ export declare class OneString extends Message<OneString> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneString;
 
   static equals(a: OneString | PlainMessage<OneString> | undefined, b: OneString | PlainMessage<OneString> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.MoreString
  */
 export declare class MoreString extends Message<MoreString> {
-
   /**
    * @generated from field: repeated string data = 1;
    */
@@ -3003,14 +2869,12 @@ export declare class MoreString extends Message<MoreString> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MoreString;
 
   static equals(a: MoreString | PlainMessage<MoreString> | undefined, b: MoreString | PlainMessage<MoreString> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.OneBytes
  */
 export declare class OneBytes extends Message<OneBytes> {
-
   /**
    * @generated from field: optional bytes data = 1;
    */
@@ -3029,14 +2893,12 @@ export declare class OneBytes extends Message<OneBytes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneBytes;
 
   static equals(a: OneBytes | PlainMessage<OneBytes> | undefined, b: OneBytes | PlainMessage<OneBytes> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
 export declare class MoreBytes extends Message<MoreBytes> {
-
   /**
    * @generated from field: repeated bytes data = 1;
    */
@@ -3055,7 +2917,6 @@ export declare class MoreBytes extends Message<MoreBytes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MoreBytes;
 
   static equals(a: MoreBytes | PlainMessage<MoreBytes> | undefined, b: MoreBytes | PlainMessage<MoreBytes> | undefined): boolean;
-
 }
 
 /**
@@ -3064,7 +2925,6 @@ export declare class MoreBytes extends Message<MoreBytes> {
  * @generated from message protobuf_unittest.Int32Message
  */
 export declare class Int32Message extends Message<Int32Message> {
-
   /**
    * @generated from field: optional int32 data = 1;
    */
@@ -3083,14 +2943,12 @@ export declare class Int32Message extends Message<Int32Message> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int32Message;
 
   static equals(a: Int32Message | PlainMessage<Int32Message> | undefined, b: Int32Message | PlainMessage<Int32Message> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
 export declare class Uint32Message extends Message<Uint32Message> {
-
   /**
    * @generated from field: optional uint32 data = 1;
    */
@@ -3109,14 +2967,12 @@ export declare class Uint32Message extends Message<Uint32Message> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint32Message;
 
   static equals(a: Uint32Message | PlainMessage<Uint32Message> | undefined, b: Uint32Message | PlainMessage<Uint32Message> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.Int64Message
  */
 export declare class Int64Message extends Message<Int64Message> {
-
   /**
    * @generated from field: optional int64 data = 1;
    */
@@ -3135,14 +2991,12 @@ export declare class Int64Message extends Message<Int64Message> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int64Message;
 
   static equals(a: Int64Message | PlainMessage<Int64Message> | undefined, b: Int64Message | PlainMessage<Int64Message> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
 export declare class Uint64Message extends Message<Uint64Message> {
-
   /**
    * @generated from field: optional uint64 data = 1;
    */
@@ -3161,14 +3015,12 @@ export declare class Uint64Message extends Message<Uint64Message> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint64Message;
 
   static equals(a: Uint64Message | PlainMessage<Uint64Message> | undefined, b: Uint64Message | PlainMessage<Uint64Message> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
 export declare class BoolMessage extends Message<BoolMessage> {
-
   /**
    * @generated from field: optional bool data = 1;
    */
@@ -3187,7 +3039,6 @@ export declare class BoolMessage extends Message<BoolMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolMessage;
 
   static equals(a: BoolMessage | PlainMessage<BoolMessage> | undefined, b: BoolMessage | PlainMessage<BoolMessage> | undefined): boolean;
-
 }
 
 /**
@@ -3196,7 +3047,6 @@ export declare class BoolMessage extends Message<BoolMessage> {
  * @generated from message protobuf_unittest.TestOneof
  */
 export declare class TestOneof extends Message<TestOneof> {
-
   /**
    * @generated from oneof protobuf_unittest.TestOneof.foo
    */
@@ -3239,14 +3089,12 @@ export declare class TestOneof extends Message<TestOneof> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof;
 
   static equals(a: TestOneof | PlainMessage<TestOneof> | undefined, b: TestOneof | PlainMessage<TestOneof> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOneof.FooGroup
  */
 export declare class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 5;
    */
@@ -3270,15 +3118,12 @@ export declare class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof_FooGroup;
 
   static equals(a: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined, b: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
 export declare class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsCompatible> {
-
   /**
    * @generated from field: optional int32 foo_int = 1;
    */
@@ -3312,14 +3157,12 @@ export declare class TestOneofBackwardsCompatible extends Message<TestOneofBackw
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible;
 
   static equals(a: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined, b: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup
  */
 export declare class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBackwardsCompatible_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 5;
    */
@@ -3343,15 +3186,12 @@ export declare class TestOneofBackwardsCompatible_FooGroup extends Message<TestO
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible_FooGroup;
 
   static equals(a: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined, b: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2
  */
 export declare class TestOneof2 extends Message<TestOneof2> {
-
   /**
    * @generated from oneof protobuf_unittest.TestOneof2.foo
    */
@@ -3499,14 +3339,12 @@ export declare class TestOneof2 extends Message<TestOneof2> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2;
 
   static equals(a: TestOneof2 | PlainMessage<TestOneof2> | undefined, b: TestOneof2 | PlainMessage<TestOneof2> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestOneof2.NestedEnum
  */
 export declare enum TestOneof2_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
@@ -3521,15 +3359,12 @@ export declare enum TestOneof2_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2.FooGroup
  */
 export declare class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
-
   /**
    * @generated from field: optional int32 a = 9;
    */
@@ -3553,15 +3388,12 @@ export declare class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2_FooGroup;
 
   static equals(a: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined, b: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
  */
 export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> {
-
   /**
    * @generated from field: optional int64 qux_int = 1;
    */
@@ -3585,15 +3417,12 @@ export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedM
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2_NestedMessage;
 
   static equals(a: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined, b: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
 export declare class TestRequiredOneof extends Message<TestRequiredOneof> {
-
   /**
    * @generated from oneof protobuf_unittest.TestRequiredOneof.foo
    */
@@ -3630,14 +3459,12 @@ export declare class TestRequiredOneof extends Message<TestRequiredOneof> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOneof;
 
   static equals(a: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined, b: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof.NestedMessage
  */
 export declare class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_NestedMessage> {
-
   /**
    * @generated from field: required double required_double = 1;
    */
@@ -3656,15 +3483,12 @@ export declare class TestRequiredOneof_NestedMessage extends Message<TestRequire
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOneof_NestedMessage;
 
   static equals(a: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined, b: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
  */
 export declare class TestPackedTypes extends Message<TestPackedTypes> {
-
   /**
    * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
    */
@@ -3748,7 +3572,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes;
 
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
-
 }
 
 /**
@@ -3758,7 +3581,6 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
  * @generated from message protobuf_unittest.TestUnpackedTypes
  */
 export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
-
   /**
    * @generated from field: repeated int32 unpacked_int32 = 90 [packed = false];
    */
@@ -3842,14 +3664,12 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
 
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
 export declare class TestPackedExtensions extends Message<TestPackedExtensions> {
-
   constructor(data?: PartialMessage<TestPackedExtensions>);
 
   static readonly runtime: typeof proto2;
@@ -3863,14 +3683,12 @@ export declare class TestPackedExtensions extends Message<TestPackedExtensions> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedExtensions;
 
   static equals(a: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined, b: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
 export declare class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
-
   constructor(data?: PartialMessage<TestUnpackedExtensions>);
 
   static readonly runtime: typeof proto2;
@@ -3884,7 +3702,6 @@ export declare class TestUnpackedExtensions extends Message<TestUnpackedExtensio
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedExtensions;
 
   static equals(a: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined, b: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined): boolean;
-
 }
 
 /**
@@ -3895,7 +3712,6 @@ export declare class TestUnpackedExtensions extends Message<TestUnpackedExtensio
  * @generated from message protobuf_unittest.TestDynamicExtensions
  */
 export declare class TestDynamicExtensions extends Message<TestDynamicExtensions> {
-
   /**
    * @generated from field: optional fixed32 scalar_extension = 2000;
    */
@@ -3944,14 +3760,12 @@ export declare class TestDynamicExtensions extends Message<TestDynamicExtensions
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDynamicExtensions;
 
   static equals(a: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined, b: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined): boolean;
-
 }
 
 /**
  * @generated from enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType
  */
 export declare enum TestDynamicExtensions_DynamicEnumType {
-
   /**
    * @generated from enum value: DYNAMIC_FOO = 2200;
    */
@@ -3966,15 +3780,12 @@ export declare enum TestDynamicExtensions_DynamicEnumType {
    * @generated from enum value: DYNAMIC_BAZ = 2202;
    */
   DYNAMIC_BAZ = 2202,
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestDynamicExtensions.DynamicMessageType
  */
 export declare class TestDynamicExtensions_DynamicMessageType extends Message<TestDynamicExtensions_DynamicMessageType> {
-
   /**
    * @generated from field: optional int32 dynamic_field = 2100;
    */
@@ -3993,15 +3804,12 @@ export declare class TestDynamicExtensions_DynamicMessageType extends Message<Te
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDynamicExtensions_DynamicMessageType;
 
   static equals(a: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined, b: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
 export declare class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedScalarDifferentTagSizes> {
-
   /**
    * Parsing repeated fixed size values used to fail. This message needs to be
    * used in order to get a tag of the right size; all of the repeated fields
@@ -4055,7 +3863,6 @@ export declare class TestRepeatedScalarDifferentTagSizes extends Message<TestRep
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRepeatedScalarDifferentTagSizes;
 
   static equals(a: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined, b: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined): boolean;
-
 }
 
 /**
@@ -4065,7 +3872,6 @@ export declare class TestRepeatedScalarDifferentTagSizes extends Message<TestRep
  * @generated from message protobuf_unittest.TestParsingMerge
  */
 export declare class TestParsingMerge extends Message<TestParsingMerge> {
-
   /**
    * @generated from field: required protobuf_unittest.TestAllTypes required_all_types = 1;
    */
@@ -4104,7 +3910,6 @@ export declare class TestParsingMerge extends Message<TestParsingMerge> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge;
 
   static equals(a: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined, b: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined): boolean;
-
 }
 
 /**
@@ -4117,7 +3922,6 @@ export declare class TestParsingMerge extends Message<TestParsingMerge> {
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator
  */
 export declare class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsingMerge_RepeatedFieldsGenerator> {
-
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypes field1 = 1;
    */
@@ -4166,14 +3970,12 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator extends Message<Te
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
  */
 export declare class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group1> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 11;
    */
@@ -4192,15 +3994,12 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Mes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group1;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
  */
 export declare class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group2> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 21;
    */
@@ -4219,16 +4018,12 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Mes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group2;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined): boolean;
-
 }
-
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
  */
 export declare class TestParsingMerge_OptionalGroup extends Message<TestParsingMerge_OptionalGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_group_all_types = 11;
    */
@@ -4247,15 +4042,12 @@ export declare class TestParsingMerge_OptionalGroup extends Message<TestParsingM
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_OptionalGroup;
 
   static equals(a: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined, b: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
  */
 export declare class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_RepeatedGroup> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes repeated_group_all_types = 21;
    */
@@ -4274,15 +4066,12 @@ export declare class TestParsingMerge_RepeatedGroup extends Message<TestParsingM
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedGroup;
 
   static equals(a: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined, b: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
 export declare class TestCommentInjectionMessage extends Message<TestCommentInjectionMessage> {
-
   /**
    * *\/ <- This should not close the generated doc comment
    *
@@ -4303,7 +4092,6 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCommentInjectionMessage;
 
   static equals(a: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined, b: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined): boolean;
-
 }
 
 /**
@@ -4312,7 +4100,6 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
  * @generated from message protobuf_unittest.FooRequest
  */
 export declare class FooRequest extends Message<FooRequest> {
-
   constructor(data?: PartialMessage<FooRequest>);
 
   static readonly runtime: typeof proto2;
@@ -4326,14 +4113,12 @@ export declare class FooRequest extends Message<FooRequest> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooRequest;
 
   static equals(a: FooRequest | PlainMessage<FooRequest> | undefined, b: FooRequest | PlainMessage<FooRequest> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
 export declare class FooResponse extends Message<FooResponse> {
-
   constructor(data?: PartialMessage<FooResponse>);
 
   static readonly runtime: typeof proto2;
@@ -4347,14 +4132,12 @@ export declare class FooResponse extends Message<FooResponse> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooResponse;
 
   static equals(a: FooResponse | PlainMessage<FooResponse> | undefined, b: FooResponse | PlainMessage<FooResponse> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooClientMessage
  */
 export declare class FooClientMessage extends Message<FooClientMessage> {
-
   constructor(data?: PartialMessage<FooClientMessage>);
 
   static readonly runtime: typeof proto2;
@@ -4368,14 +4151,12 @@ export declare class FooClientMessage extends Message<FooClientMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooClientMessage;
 
   static equals(a: FooClientMessage | PlainMessage<FooClientMessage> | undefined, b: FooClientMessage | PlainMessage<FooClientMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
 export declare class FooServerMessage extends Message<FooServerMessage> {
-
   constructor(data?: PartialMessage<FooServerMessage>);
 
   static readonly runtime: typeof proto2;
@@ -4389,14 +4170,12 @@ export declare class FooServerMessage extends Message<FooServerMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooServerMessage;
 
   static equals(a: FooServerMessage | PlainMessage<FooServerMessage> | undefined, b: FooServerMessage | PlainMessage<FooServerMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.BarRequest
  */
 export declare class BarRequest extends Message<BarRequest> {
-
   constructor(data?: PartialMessage<BarRequest>);
 
   static readonly runtime: typeof proto2;
@@ -4410,14 +4189,12 @@ export declare class BarRequest extends Message<BarRequest> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BarRequest;
 
   static equals(a: BarRequest | PlainMessage<BarRequest> | undefined, b: BarRequest | PlainMessage<BarRequest> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
 export declare class BarResponse extends Message<BarResponse> {
-
   constructor(data?: PartialMessage<BarResponse>);
 
   static readonly runtime: typeof proto2;
@@ -4431,14 +4208,12 @@ export declare class BarResponse extends Message<BarResponse> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BarResponse;
 
   static equals(a: BarResponse | PlainMessage<BarResponse> | undefined, b: BarResponse | PlainMessage<BarResponse> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestJsonName
  */
 export declare class TestJsonName extends Message<TestJsonName> {
-
   /**
    * @generated from field: optional int32 field_name1 = 1;
    */
@@ -4487,14 +4262,12 @@ export declare class TestJsonName extends Message<TestJsonName> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestJsonName;
 
   static equals(a: TestJsonName | PlainMessage<TestJsonName> | undefined, b: TestJsonName | PlainMessage<TestJsonName> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
  */
 export declare class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
-
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
@@ -4587,14 +4360,12 @@ export declare class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers;
 
   static equals(a: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined, b: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup
  */
 export declare class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNumbers_OptionalGroup> {
-
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
@@ -4613,15 +4384,12 @@ export declare class TestHugeFieldNumbers_OptionalGroup extends Message<TestHuge
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers_OptionalGroup;
 
   static equals(a: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined, b: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined): boolean;
-
 }
-
 
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
 export declare class TestExtensionInsideTable extends Message<TestExtensionInsideTable> {
-
   /**
    * @generated from field: optional int32 field1 = 1;
    */
@@ -4680,14 +4448,12 @@ export declare class TestExtensionInsideTable extends Message<TestExtensionInsid
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionInsideTable;
 
   static equals(a: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined, b: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
 export declare class TestExtensionRangeSerialize extends Message<TestExtensionRangeSerialize> {
-
   /**
    * @generated from field: optional int32 foo_one = 1;
    */
@@ -4721,6 +4487,5 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionRangeSerialize;
 
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean;
-
 }
 

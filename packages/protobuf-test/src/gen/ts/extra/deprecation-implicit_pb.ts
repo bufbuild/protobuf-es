@@ -24,7 +24,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
-
   constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -50,6 +49,5 @@ export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMes
   static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean {
     return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
   }
-
 }
 

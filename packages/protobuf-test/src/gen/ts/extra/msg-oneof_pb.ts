@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.OneofEnum
  */
 export enum OneofEnum {
-
   /**
    * @generated from enum value: ONEOF_ENUM_UNSPECIFIED = 0;
    */
@@ -38,9 +37,7 @@ export enum OneofEnum {
    * @generated from enum value: ONEOF_ENUM_B = 2;
    */
   B = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(OneofEnum)
 proto3.util.setEnumType(OneofEnum, "spec.OneofEnum", [
   {no: 0, name: "ONEOF_ENUM_UNSPECIFIED"},
@@ -52,7 +49,6 @@ proto3.util.setEnumType(OneofEnum, "spec.OneofEnum", [
  * @generated from message spec.OneofMessage
  */
 export class OneofMessage extends Message<OneofMessage> {
-
   /**
    * @generated from oneof spec.OneofMessage.scalar
    */
@@ -135,14 +131,12 @@ export class OneofMessage extends Message<OneofMessage> {
   static equals(a: OneofMessage | PlainMessage<OneofMessage> | undefined, b: OneofMessage | PlainMessage<OneofMessage> | undefined): boolean {
     return proto3.util.equals(OneofMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.OneofMessageFoo
  */
 export class OneofMessageFoo extends Message<OneofMessageFoo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -180,14 +174,12 @@ export class OneofMessageFoo extends Message<OneofMessageFoo> {
   static equals(a: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined, b: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined): boolean {
     return proto3.util.equals(OneofMessageFoo, a, b);
   }
-
 }
 
 /**
  * @generated from message spec.OneofMessageBar
  */
 export class OneofMessageBar extends Message<OneofMessageBar> {
-
   /**
    * @generated from field: int32 a = 1;
    */
@@ -225,6 +217,5 @@ export class OneofMessageBar extends Message<OneofMessageBar> {
   static equals(a: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined, b: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined): boolean {
     return proto3.util.equals(OneofMessageBar, a, b);
   }
-
 }
 

@@ -25,7 +25,6 @@ import {LocalModulePin} from "./module_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.PushRequest
  */
 export class PushRequest extends Message<PushRequest> {
-
   /**
    * @generated from field: string owner = 1;
    */
@@ -94,14 +93,12 @@ export class PushRequest extends Message<PushRequest> {
   static equals(a: PushRequest | PlainMessage<PushRequest> | undefined, b: PushRequest | PlainMessage<PushRequest> | undefined): boolean {
     return proto3.util.equals(PushRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.PushResponse
  */
 export class PushResponse extends Message<PushResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.LocalModulePin local_module_pin = 5;
    */
@@ -133,6 +130,5 @@ export class PushResponse extends Message<PushResponse> {
   static equals(a: PushResponse | PlainMessage<PushResponse> | undefined, b: PushResponse | PlainMessage<PushResponse> | undefined): boolean {
     return proto3.util.equals(PushResponse, a, b);
   }
-
 }
 

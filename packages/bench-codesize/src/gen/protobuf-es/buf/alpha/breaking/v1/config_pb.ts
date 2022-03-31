@@ -31,7 +31,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message buf.alpha.breaking.v1.Config
  */
 export class Config extends Message<Config> {
-
   /**
    * version represents the version of the breaking change rule and category IDs that should be used with this config.
    *
@@ -111,7 +110,6 @@ export class Config extends Message<Config> {
   static equals(a: Config | PlainMessage<Config> | undefined, b: Config | PlainMessage<Config> | undefined): boolean {
     return proto3.util.equals(Config, a, b);
   }
-
 }
 
 /**
@@ -120,7 +118,6 @@ export class Config extends Message<Config> {
  * @generated from message buf.alpha.breaking.v1.IDPaths
  */
 export class IDPaths extends Message<IDPaths> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -158,6 +155,5 @@ export class IDPaths extends Message<IDPaths> {
   static equals(a: IDPaths | PlainMessage<IDPaths> | undefined, b: IDPaths | PlainMessage<IDPaths> | undefined): boolean {
     return proto3.util.equals(IDPaths, a, b);
   }
-
 }
 

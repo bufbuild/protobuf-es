@@ -57,7 +57,6 @@ export const Foo_NestedEnum = proto3.makeEnum(
   ],
 );
 
-
 /**
  * @generated from message unittest_drop_unknown_fields.FooWithExtraFields
  */
@@ -82,5 +81,4 @@ export const FooWithExtraFields_NestedEnum = proto3.makeEnum(
     {no: 3, name: "QUX"},
   ],
 );
-
 

@@ -20,7 +20,6 @@
  * @generated from enum spec.AnnotatedEnum
  */
 export declare enum AnnotatedEnum {
-
   /**
    * @generated from enum value: UNSPECIFIED = 0;
    */
@@ -30,6 +29,5 @@ export declare enum AnnotatedEnum {
    * @generated from enum value: FOO = 1;
    */
   FOO = 1,
-
 }
 

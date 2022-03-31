@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.MapsEnum
  */
 export enum MapsEnum {
-
   /**
    * @generated from enum value: MAPS_ENUM_ANY = 0;
    */
@@ -38,9 +37,7 @@ export enum MapsEnum {
    * @generated from enum value: MAPS_ENUM_NO = 2;
    */
   NO = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(MapsEnum)
 proto3.util.setEnumType(MapsEnum, "spec.MapsEnum", [
   {no: 0, name: "MAPS_ENUM_ANY"},
@@ -52,7 +49,6 @@ proto3.util.setEnumType(MapsEnum, "spec.MapsEnum", [
  * @generated from message spec.MapsMessage
  */
 export class MapsMessage extends Message<MapsMessage> {
-
   /**
    * @generated from field: map<string, string> str_str_field = 1;
    */
@@ -162,6 +158,5 @@ export class MapsMessage extends Message<MapsMessage> {
   static equals(a: MapsMessage | PlainMessage<MapsMessage> | undefined, b: MapsMessage | PlainMessage<MapsMessage> | undefined): boolean {
     return proto3.util.equals(MapsMessage, a, b);
   }
-
 }
 

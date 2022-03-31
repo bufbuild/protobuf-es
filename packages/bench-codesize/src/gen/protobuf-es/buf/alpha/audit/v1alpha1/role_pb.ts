@@ -22,7 +22,6 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ServerRole
  */
 export enum BufAlphaRegistryV1Alpha1ServerRole {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_UNSPECIFIED = 0;
    */
@@ -37,9 +36,7 @@ export enum BufAlphaRegistryV1Alpha1ServerRole {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_MEMBER = 2;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_MEMBER = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1ServerRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ServerRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ServerRole", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_SERVER_ROLE_UNSPECIFIED"},
@@ -51,7 +48,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1ServerRole, "buf.alpha.audit.v1a
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole
  */
 export enum BufAlphaRegistryV1Alpha1OrganizationRole {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_UNSPECIFIED = 0;
    */
@@ -71,9 +67,7 @@ export enum BufAlphaRegistryV1Alpha1OrganizationRole {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_MEMBER = 3;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_MEMBER = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1OrganizationRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1OrganizationRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_ORGANIZATION_ROLE_UNSPECIFIED"},
@@ -86,7 +80,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1OrganizationRole, "buf.alpha.aud
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole
  */
 export enum BufAlphaRegistryV1Alpha1RepositoryRole {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_UNSPECIFIED = 0;
    */
@@ -111,9 +104,7 @@ export enum BufAlphaRegistryV1Alpha1RepositoryRole {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_READ = 4;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_READ = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1RepositoryRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1RepositoryRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_REPOSITORY_ROLE_UNSPECIFIED"},
@@ -127,7 +118,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1RepositoryRole, "buf.alpha.audit
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole
  */
 export enum BufAlphaRegistryV1Alpha1TemplateRole {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_UNSPECIFIED = 0;
    */
@@ -152,9 +142,7 @@ export enum BufAlphaRegistryV1Alpha1TemplateRole {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_READ = 4;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_READ = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1TemplateRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1TemplateRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_TEMPLATE_ROLE_UNSPECIFIED"},
@@ -168,7 +156,6 @@ proto3.util.setEnumType(BufAlphaRegistryV1Alpha1TemplateRole, "buf.alpha.audit.v
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole
  */
 export enum BufAlphaRegistryV1Alpha1PluginRole {
-
   /**
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_UNSPECIFIED = 0;
    */
@@ -193,9 +180,7 @@ export enum BufAlphaRegistryV1Alpha1PluginRole {
    * @generated from enum value: BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_READ = 4;
    */
   BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_READ = 4,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(BufAlphaRegistryV1Alpha1PluginRole)
 proto3.util.setEnumType(BufAlphaRegistryV1Alpha1PluginRole, "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole", [
   {no: 0, name: "BUF_ALPHA_REGISTRY_V1_ALPHA1_PLUGIN_ROLE_UNSPECIFIED"},

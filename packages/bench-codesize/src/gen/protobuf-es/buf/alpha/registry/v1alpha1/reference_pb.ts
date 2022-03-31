@@ -27,7 +27,6 @@ import {RepositoryTrack} from "./repository_track_pb.js";
  * @generated from message buf.alpha.registry.v1alpha1.Reference
  */
 export class Reference extends Message<Reference> {
-
   /**
    * @generated from oneof buf.alpha.registry.v1alpha1.Reference.reference
    */
@@ -94,14 +93,12 @@ export class Reference extends Message<Reference> {
   static equals(a: Reference | PlainMessage<Reference> | undefined, b: Reference | PlainMessage<Reference> | undefined): boolean {
     return proto3.util.equals(Reference, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameRequest
  */
 export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest> {
-
   /**
    * Name of the requested reference.
    *
@@ -151,14 +148,12 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
   static equals(a: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined, b: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetReferenceByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetReferenceByNameResponse
  */
 export class GetReferenceByNameResponse extends Message<GetReferenceByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Reference reference = 1;
    */
@@ -190,6 +185,5 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
   static equals(a: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined, b: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined): boolean {
     return proto3.util.equals(GetReferenceByNameResponse, a, b);
   }
-
 }
 

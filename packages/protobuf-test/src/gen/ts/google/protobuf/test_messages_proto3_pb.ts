@@ -46,7 +46,6 @@ import {Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum
  */
 export enum ForeignEnum {
-
   /**
    * @generated from enum value: FOREIGN_FOO = 0;
    */
@@ -61,9 +60,7 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 2;
    */
   FOREIGN_BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(ForeignEnum)
 proto3.util.setEnumType(ForeignEnum, "protobuf_test_messages.proto3.ForeignEnum", [
   {no: 0, name: "FOREIGN_FOO"},
@@ -83,7 +80,6 @@ proto3.util.setEnumType(ForeignEnum, "protobuf_test_messages.proto3.ForeignEnum"
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3
  */
 export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
-
   /**
    * Singular
    *
@@ -1045,14 +1041,12 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
   static equals(a: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined, b: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined): boolean {
     return proto3.util.equals(TestAllTypesProto3, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
  */
 export enum TestAllTypesProto3_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -1074,9 +1068,7 @@ export enum TestAllTypesProto3_NestedEnum {
    * @generated from enum value: NEG = -1;
    */
   NEG = -1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestAllTypesProto3_NestedEnum)
 proto3.util.setEnumType(TestAllTypesProto3_NestedEnum, "protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum", [
   {no: 0, name: "FOO"},
@@ -1085,12 +1077,10 @@ proto3.util.setEnumType(TestAllTypesProto3_NestedEnum, "protobuf_test_messages.p
   {no: -1, name: "NEG"},
 ]);
 
-
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
  */
 export enum TestAllTypesProto3_AliasedEnum {
-
   /**
    * @generated from enum value: ALIAS_FOO = 0;
    */
@@ -1120,9 +1110,7 @@ export enum TestAllTypesProto3_AliasedEnum {
    * @generated from enum value: bAz = 2;
    */
   bAz = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(TestAllTypesProto3_AliasedEnum)
 proto3.util.setEnumType(TestAllTypesProto3_AliasedEnum, "protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum", [
   {no: 0, name: "ALIAS_FOO"},
@@ -1133,12 +1121,10 @@ proto3.util.setEnumType(TestAllTypesProto3_AliasedEnum, "protobuf_test_messages.
   {no: 2, name: "bAz"},
 ]);
 
-
 /**
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
  */
 export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3_NestedMessage> {
-
   /**
    * @generated from field: int32 a = 1;
    */
@@ -1176,15 +1162,12 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
   static equals(a: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined, b: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestAllTypesProto3_NestedMessage, a, b);
   }
-
 }
-
 
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
  */
 export class ForeignMessage extends Message<ForeignMessage> {
-
   /**
    * @generated from field: int32 c = 1;
    */
@@ -1216,14 +1199,12 @@ export class ForeignMessage extends Message<ForeignMessage> {
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto3.util.equals(ForeignMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
  */
 export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
-
   constructor(data?: PartialMessage<NullHypothesisProto3>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1249,14 +1230,12 @@ export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
   static equals(a: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined, b: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined): boolean {
     return proto3.util.equals(NullHypothesisProto3, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3
  */
 export class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
-
   constructor(data?: PartialMessage<EnumOnlyProto3>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1282,14 +1261,12 @@ export class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
   static equals(a: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined, b: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined): boolean {
     return proto3.util.equals(EnumOnlyProto3, a, b);
   }
-
 }
 
 /**
  * @generated from enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool
  */
 export enum EnumOnlyProto3_Bool {
-
   /**
    * @generated from enum value: kFalse = 0;
    */
@@ -1299,13 +1276,10 @@ export enum EnumOnlyProto3_Bool {
    * @generated from enum value: kTrue = 1;
    */
   kTrue = 1,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(EnumOnlyProto3_Bool)
 proto3.util.setEnumType(EnumOnlyProto3_Bool, "protobuf_test_messages.proto3.EnumOnlyProto3.Bool", [
   {no: 0, name: "kFalse"},
   {no: 1, name: "kTrue"},
 ]);
-
 

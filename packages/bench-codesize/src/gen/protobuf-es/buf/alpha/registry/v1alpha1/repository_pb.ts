@@ -25,7 +25,6 @@ import {RepositoryRole} from "./role_pb.js";
  * @generated from enum buf.alpha.registry.v1alpha1.Visibility
  */
 export enum Visibility {
-
   /**
    * @generated from enum value: VISIBILITY_UNSPECIFIED = 0;
    */
@@ -40,9 +39,7 @@ export enum Visibility {
    * @generated from enum value: VISIBILITY_PRIVATE = 2;
    */
   PRIVATE = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Visibility)
 proto3.util.setEnumType(Visibility, "buf.alpha.registry.v1alpha1.Visibility", [
   {no: 0, name: "VISIBILITY_UNSPECIFIED"},
@@ -54,7 +51,6 @@ proto3.util.setEnumType(Visibility, "buf.alpha.registry.v1alpha1.Visibility", [
  * @generated from message buf.alpha.registry.v1alpha1.Repository
  */
 export class Repository extends Message<Repository> {
-
   /**
    * primary key, unique, immutable
    *
@@ -157,14 +153,12 @@ export class Repository extends Message<Repository> {
   static equals(a: Repository | PlainMessage<Repository> | undefined, b: Repository | PlainMessage<Repository> | undefined): boolean {
     return proto3.util.equals(Repository, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryContributor
  */
 export class RepositoryContributor extends Message<RepositoryContributor> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
@@ -221,14 +215,12 @@ export class RepositoryContributor extends Message<RepositoryContributor> {
   static equals(a: RepositoryContributor | PlainMessage<RepositoryContributor> | undefined, b: RepositoryContributor | PlainMessage<RepositoryContributor> | undefined): boolean {
     return proto3.util.equals(RepositoryContributor, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameRequest
  */
 export class GetRepositoriesByFullNameRequest extends Message<GetRepositoriesByFullNameRequest> {
-
   /**
    * minimum length is 1
    * maximum length is 250
@@ -263,14 +255,12 @@ export class GetRepositoriesByFullNameRequest extends Message<GetRepositoriesByF
   static equals(a: GetRepositoriesByFullNameRequest | PlainMessage<GetRepositoriesByFullNameRequest> | undefined, b: GetRepositoriesByFullNameRequest | PlainMessage<GetRepositoriesByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoriesByFullNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameResponse
  */
 export class GetRepositoriesByFullNameResponse extends Message<GetRepositoriesByFullNameResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 1;
    */
@@ -302,14 +292,12 @@ export class GetRepositoriesByFullNameResponse extends Message<GetRepositoriesBy
   static equals(a: GetRepositoriesByFullNameResponse | PlainMessage<GetRepositoriesByFullNameResponse> | undefined, b: GetRepositoriesByFullNameResponse | PlainMessage<GetRepositoriesByFullNameResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoriesByFullNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryRequest
  */
 export class GetRepositoryRequest extends Message<GetRepositoryRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -341,14 +329,12 @@ export class GetRepositoryRequest extends Message<GetRepositoryRequest> {
   static equals(a: GetRepositoryRequest | PlainMessage<GetRepositoryRequest> | undefined, b: GetRepositoryRequest | PlainMessage<GetRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryResponse
  */
 export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
@@ -380,14 +366,12 @@ export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
   static equals(a: GetRepositoryResponse | PlainMessage<GetRepositoryResponse> | undefined, b: GetRepositoryResponse | PlainMessage<GetRepositoryResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameRequest
  */
 export class GetRepositoryByFullNameRequest extends Message<GetRepositoryByFullNameRequest> {
-
   /**
    * @generated from field: string full_name = 1;
    */
@@ -419,14 +403,12 @@ export class GetRepositoryByFullNameRequest extends Message<GetRepositoryByFullN
   static equals(a: GetRepositoryByFullNameRequest | PlainMessage<GetRepositoryByFullNameRequest> | undefined, b: GetRepositoryByFullNameRequest | PlainMessage<GetRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryByFullNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameResponse
  */
 export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFullNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
@@ -458,14 +440,12 @@ export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFull
   static equals(a: GetRepositoryByFullNameResponse | PlainMessage<GetRepositoryByFullNameResponse> | undefined, b: GetRepositoryByFullNameResponse | PlainMessage<GetRepositoryByFullNameResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositoryByFullNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesRequest
  */
 export class ListRepositoriesRequest extends Message<ListRepositoriesRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -511,14 +491,12 @@ export class ListRepositoriesRequest extends Message<ListRepositoriesRequest> {
   static equals(a: ListRepositoriesRequest | PlainMessage<ListRepositoriesRequest> | undefined, b: ListRepositoriesRequest | PlainMessage<ListRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesResponse
  */
 export class ListRepositoriesResponse extends Message<ListRepositoriesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 1;
    */
@@ -558,14 +536,12 @@ export class ListRepositoriesResponse extends Message<ListRepositoriesResponse> 
   static equals(a: ListRepositoriesResponse | PlainMessage<ListRepositoriesResponse> | undefined, b: ListRepositoriesResponse | PlainMessage<ListRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserRepositoriesRequest
  */
 export class ListUserRepositoriesRequest extends Message<ListUserRepositoriesRequest> {
-
   /**
    * The ID of the user whose repositories should be listed.
    *
@@ -619,14 +595,12 @@ export class ListUserRepositoriesRequest extends Message<ListUserRepositoriesReq
   static equals(a: ListUserRepositoriesRequest | PlainMessage<ListUserRepositoriesRequest> | undefined, b: ListUserRepositoriesRequest | PlainMessage<ListUserRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListUserRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListUserRepositoriesResponse
  */
 export class ListUserRepositoriesResponse extends Message<ListUserRepositoriesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 1;
    */
@@ -666,14 +640,12 @@ export class ListUserRepositoriesResponse extends Message<ListUserRepositoriesRe
   static equals(a: ListUserRepositoriesResponse | PlainMessage<ListUserRepositoriesResponse> | undefined, b: ListUserRepositoriesResponse | PlainMessage<ListUserRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(ListUserRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessRequest
  */
 export class ListRepositoriesUserCanAccessRequest extends Message<ListRepositoriesUserCanAccessRequest> {
-
   /**
    * @generated from field: uint32 page_size = 1;
    */
@@ -719,14 +691,12 @@ export class ListRepositoriesUserCanAccessRequest extends Message<ListRepositori
   static equals(a: ListRepositoriesUserCanAccessRequest | PlainMessage<ListRepositoriesUserCanAccessRequest> | undefined, b: ListRepositoriesUserCanAccessRequest | PlainMessage<ListRepositoriesUserCanAccessRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesUserCanAccessRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessResponse
  */
 export class ListRepositoriesUserCanAccessResponse extends Message<ListRepositoriesUserCanAccessResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 1;
    */
@@ -766,14 +736,12 @@ export class ListRepositoriesUserCanAccessResponse extends Message<ListRepositor
   static equals(a: ListRepositoriesUserCanAccessResponse | PlainMessage<ListRepositoriesUserCanAccessResponse> | undefined, b: ListRepositoriesUserCanAccessResponse | PlainMessage<ListRepositoriesUserCanAccessResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesUserCanAccessResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesRequest
  */
 export class ListOrganizationRepositoriesRequest extends Message<ListOrganizationRepositoriesRequest> {
-
   /**
    * The ID of the organization whose repositories should be listed.
    *
@@ -827,14 +795,12 @@ export class ListOrganizationRepositoriesRequest extends Message<ListOrganizatio
   static equals(a: ListOrganizationRepositoriesRequest | PlainMessage<ListOrganizationRepositoriesRequest> | undefined, b: ListOrganizationRepositoriesRequest | PlainMessage<ListOrganizationRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationRepositoriesRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesResponse
  */
 export class ListOrganizationRepositoriesResponse extends Message<ListOrganizationRepositoriesResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Repository repositories = 1;
    */
@@ -874,14 +840,12 @@ export class ListOrganizationRepositoriesResponse extends Message<ListOrganizati
   static equals(a: ListOrganizationRepositoriesResponse | PlainMessage<ListOrganizationRepositoriesResponse> | undefined, b: ListOrganizationRepositoriesResponse | PlainMessage<ListOrganizationRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationRepositoriesResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameRequest
  */
 export class CreateRepositoryByFullNameRequest extends Message<CreateRepositoryByFullNameRequest> {
-
   /**
    * Must be unique across repositories.
    *
@@ -921,14 +885,12 @@ export class CreateRepositoryByFullNameRequest extends Message<CreateRepositoryB
   static equals(a: CreateRepositoryByFullNameRequest | PlainMessage<CreateRepositoryByFullNameRequest> | undefined, b: CreateRepositoryByFullNameRequest | PlainMessage<CreateRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryByFullNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameResponse
  */
 export class CreateRepositoryByFullNameResponse extends Message<CreateRepositoryByFullNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
@@ -960,14 +922,12 @@ export class CreateRepositoryByFullNameResponse extends Message<CreateRepository
   static equals(a: CreateRepositoryByFullNameResponse | PlainMessage<CreateRepositoryByFullNameResponse> | undefined, b: CreateRepositoryByFullNameResponse | PlainMessage<CreateRepositoryByFullNameResponse> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryByFullNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryRequest
  */
 export class DeleteRepositoryRequest extends Message<DeleteRepositoryRequest> {
-
   /**
    * @generated from field: string id = 1;
    */
@@ -999,14 +959,12 @@ export class DeleteRepositoryRequest extends Message<DeleteRepositoryRequest> {
   static equals(a: DeleteRepositoryRequest | PlainMessage<DeleteRepositoryRequest> | undefined, b: DeleteRepositoryRequest | PlainMessage<DeleteRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryResponse
  */
 export class DeleteRepositoryResponse extends Message<DeleteRepositoryResponse> {
-
   constructor(data?: PartialMessage<DeleteRepositoryResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1032,14 +990,12 @@ export class DeleteRepositoryResponse extends Message<DeleteRepositoryResponse> 
   static equals(a: DeleteRepositoryResponse | PlainMessage<DeleteRepositoryResponse> | undefined, b: DeleteRepositoryResponse | PlainMessage<DeleteRepositoryResponse> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameRequest
  */
 export class DeleteRepositoryByFullNameRequest extends Message<DeleteRepositoryByFullNameRequest> {
-
   /**
    * @generated from field: string full_name = 1;
    */
@@ -1071,14 +1027,12 @@ export class DeleteRepositoryByFullNameRequest extends Message<DeleteRepositoryB
   static equals(a: DeleteRepositoryByFullNameRequest | PlainMessage<DeleteRepositoryByFullNameRequest> | undefined, b: DeleteRepositoryByFullNameRequest | PlainMessage<DeleteRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryByFullNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameResponse
  */
 export class DeleteRepositoryByFullNameResponse extends Message<DeleteRepositoryByFullNameResponse> {
-
   constructor(data?: PartialMessage<DeleteRepositoryByFullNameResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1104,14 +1058,12 @@ export class DeleteRepositoryByFullNameResponse extends Message<DeleteRepository
   static equals(a: DeleteRepositoryByFullNameResponse | PlainMessage<DeleteRepositoryByFullNameResponse> | undefined, b: DeleteRepositoryByFullNameResponse | PlainMessage<DeleteRepositoryByFullNameResponse> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryByFullNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameRequest
  */
 export class DeprecateRepositoryByNameRequest extends Message<DeprecateRepositoryByNameRequest> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -1158,14 +1110,12 @@ export class DeprecateRepositoryByNameRequest extends Message<DeprecateRepositor
   static equals(a: DeprecateRepositoryByNameRequest | PlainMessage<DeprecateRepositoryByNameRequest> | undefined, b: DeprecateRepositoryByNameRequest | PlainMessage<DeprecateRepositoryByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeprecateRepositoryByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameResponse
  */
 export class DeprecateRepositoryByNameResponse extends Message<DeprecateRepositoryByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
@@ -1197,14 +1147,12 @@ export class DeprecateRepositoryByNameResponse extends Message<DeprecateReposito
   static equals(a: DeprecateRepositoryByNameResponse | PlainMessage<DeprecateRepositoryByNameResponse> | undefined, b: DeprecateRepositoryByNameResponse | PlainMessage<DeprecateRepositoryByNameResponse> | undefined): boolean {
     return proto3.util.equals(DeprecateRepositoryByNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameRequest
  */
 export class UndeprecateRepositoryByNameRequest extends Message<UndeprecateRepositoryByNameRequest> {
-
   /**
    * @generated from field: string owner_name = 1;
    */
@@ -1242,14 +1190,12 @@ export class UndeprecateRepositoryByNameRequest extends Message<UndeprecateRepos
   static equals(a: UndeprecateRepositoryByNameRequest | PlainMessage<UndeprecateRepositoryByNameRequest> | undefined, b: UndeprecateRepositoryByNameRequest | PlainMessage<UndeprecateRepositoryByNameRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecateRepositoryByNameRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameResponse
  */
 export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepositoryByNameResponse> {
-
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
@@ -1281,14 +1227,12 @@ export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepo
   static equals(a: UndeprecateRepositoryByNameResponse | PlainMessage<UndeprecateRepositoryByNameResponse> | undefined, b: UndeprecateRepositoryByNameResponse | PlainMessage<UndeprecateRepositoryByNameResponse> | undefined): boolean {
     return proto3.util.equals(UndeprecateRepositoryByNameResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRepositoryContributorRequest
  */
 export class SetRepositoryContributorRequest extends Message<SetRepositoryContributorRequest> {
-
   /**
    * The ID of the repository for which the user's role will be set.
    *
@@ -1339,14 +1283,12 @@ export class SetRepositoryContributorRequest extends Message<SetRepositoryContri
   static equals(a: SetRepositoryContributorRequest | PlainMessage<SetRepositoryContributorRequest> | undefined, b: SetRepositoryContributorRequest | PlainMessage<SetRepositoryContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetRepositoryContributorRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.SetRepositoryContributorResponse
  */
 export class SetRepositoryContributorResponse extends Message<SetRepositoryContributorResponse> {
-
   constructor(data?: PartialMessage<SetRepositoryContributorResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1372,14 +1314,12 @@ export class SetRepositoryContributorResponse extends Message<SetRepositoryContr
   static equals(a: SetRepositoryContributorResponse | PlainMessage<SetRepositoryContributorResponse> | undefined, b: SetRepositoryContributorResponse | PlainMessage<SetRepositoryContributorResponse> | undefined): boolean {
     return proto3.util.equals(SetRepositoryContributorResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryContributorsRequest
  */
 export class ListRepositoryContributorsRequest extends Message<ListRepositoryContributorsRequest> {
-
   /**
    * @generated from field: string repository_id = 1;
    */
@@ -1431,14 +1371,12 @@ export class ListRepositoryContributorsRequest extends Message<ListRepositoryCon
   static equals(a: ListRepositoryContributorsRequest | PlainMessage<ListRepositoryContributorsRequest> | undefined, b: ListRepositoryContributorsRequest | PlainMessage<ListRepositoryContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ListRepositoryContributorsResponse
  */
 export class ListRepositoryContributorsResponse extends Message<ListRepositoryContributorsResponse> {
-
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.RepositoryContributor users = 1;
    */
@@ -1478,14 +1416,12 @@ export class ListRepositoryContributorsResponse extends Message<ListRepositoryCo
   static equals(a: ListRepositoryContributorsResponse | PlainMessage<ListRepositoryContributorsResponse> | undefined, b: ListRepositoryContributorsResponse | PlainMessage<ListRepositoryContributorsResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryContributorsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositorySettingsRequest
  */
 export class GetRepositorySettingsRequest extends Message<GetRepositorySettingsRequest> {
-
   /**
    * The ID of the repository for which to get the settings.
    *
@@ -1519,14 +1455,12 @@ export class GetRepositorySettingsRequest extends Message<GetRepositorySettingsR
   static equals(a: GetRepositorySettingsRequest | PlainMessage<GetRepositorySettingsRequest> | undefined, b: GetRepositorySettingsRequest | PlainMessage<GetRepositorySettingsRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositorySettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.GetRepositorySettingsResponse
  */
 export class GetRepositorySettingsResponse extends Message<GetRepositorySettingsResponse> {
-
   /**
    * The number of outside contributors in the repository,
    * excluding owning-organization's members that have an explicit role.
@@ -1561,6 +1495,5 @@ export class GetRepositorySettingsResponse extends Message<GetRepositorySettings
   static equals(a: GetRepositorySettingsResponse | PlainMessage<GetRepositorySettingsResponse> | undefined, b: GetRepositorySettingsResponse | PlainMessage<GetRepositorySettingsResponse> | undefined): boolean {
     return proto3.util.equals(GetRepositorySettingsResponse, a, b);
   }
-
 }
 

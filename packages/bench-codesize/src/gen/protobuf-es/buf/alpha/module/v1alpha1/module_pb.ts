@@ -27,7 +27,6 @@ import {Config as Config$1} from "../../lint/v1/config_pb.js";
  * @generated from message buf.alpha.module.v1alpha1.Module
  */
 export class Module extends Message<Module> {
-
   /**
    * files are the files that make up the set.
    *
@@ -101,7 +100,6 @@ export class Module extends Message<Module> {
   static equals(a: Module | PlainMessage<Module> | undefined, b: Module | PlainMessage<Module> | undefined): boolean {
     return proto3.util.equals(Module, a, b);
   }
-
 }
 
 /**
@@ -110,7 +108,6 @@ export class Module extends Message<Module> {
  * @generated from message buf.alpha.module.v1alpha1.ModuleFile
  */
 export class ModuleFile extends Message<ModuleFile> {
-
   /**
    * path is the relative path of the file.
    * Path can only use '/' as the separator character, and includes no ".." components.
@@ -153,7 +150,6 @@ export class ModuleFile extends Message<ModuleFile> {
   static equals(a: ModuleFile | PlainMessage<ModuleFile> | undefined, b: ModuleFile | PlainMessage<ModuleFile> | undefined): boolean {
     return proto3.util.equals(ModuleFile, a, b);
   }
-
 }
 
 /**
@@ -162,7 +158,6 @@ export class ModuleFile extends Message<ModuleFile> {
  * @generated from message buf.alpha.module.v1alpha1.ModuleReference
  */
 export class ModuleReference extends Message<ModuleReference> {
-
   /**
    * @generated from field: string remote = 1;
    */
@@ -214,7 +209,6 @@ export class ModuleReference extends Message<ModuleReference> {
   static equals(a: ModuleReference | PlainMessage<ModuleReference> | undefined, b: ModuleReference | PlainMessage<ModuleReference> | undefined): boolean {
     return proto3.util.equals(ModuleReference, a, b);
   }
-
 }
 
 /**
@@ -223,7 +217,6 @@ export class ModuleReference extends Message<ModuleReference> {
  * @generated from message buf.alpha.module.v1alpha1.ModulePin
  */
 export class ModulePin extends Message<ModulePin> {
-
   /**
    * @generated from field: string remote = 1;
    */
@@ -291,6 +284,5 @@ export class ModulePin extends Message<ModulePin> {
   static equals(a: ModulePin | PlainMessage<ModulePin> | undefined, b: ModulePin | PlainMessage<ModulePin> | undefined): boolean {
     return proto3.util.equals(ModulePin, a, b);
   }
-
 }
 

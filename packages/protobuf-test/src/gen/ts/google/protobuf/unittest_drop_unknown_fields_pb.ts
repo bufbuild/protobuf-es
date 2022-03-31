@@ -39,7 +39,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from message unittest_drop_unknown_fields.Foo
  */
 export class Foo extends Message<Foo> {
-
   /**
    * @generated from field: int32 int32_value = 1;
    */
@@ -77,14 +76,12 @@ export class Foo extends Message<Foo> {
   static equals(a: Foo | PlainMessage<Foo> | undefined, b: Foo | PlainMessage<Foo> | undefined): boolean {
     return proto3.util.equals(Foo, a, b);
   }
-
 }
 
 /**
  * @generated from enum unittest_drop_unknown_fields.Foo.NestedEnum
  */
 export enum Foo_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -99,9 +96,7 @@ export enum Foo_NestedEnum {
    * @generated from enum value: BAZ = 2;
    */
   BAZ = 2,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(Foo_NestedEnum)
 proto3.util.setEnumType(Foo_NestedEnum, "unittest_drop_unknown_fields.Foo.NestedEnum", [
   {no: 0, name: "FOO"},
@@ -109,12 +104,10 @@ proto3.util.setEnumType(Foo_NestedEnum, "unittest_drop_unknown_fields.Foo.Nested
   {no: 2, name: "BAZ"},
 ]);
 
-
 /**
  * @generated from message unittest_drop_unknown_fields.FooWithExtraFields
  */
 export class FooWithExtraFields extends Message<FooWithExtraFields> {
-
   /**
    * @generated from field: int32 int32_value = 1;
    */
@@ -158,14 +151,12 @@ export class FooWithExtraFields extends Message<FooWithExtraFields> {
   static equals(a: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined, b: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined): boolean {
     return proto3.util.equals(FooWithExtraFields, a, b);
   }
-
 }
 
 /**
  * @generated from enum unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum
  */
 export enum FooWithExtraFields_NestedEnum {
-
   /**
    * @generated from enum value: FOO = 0;
    */
@@ -185,9 +176,7 @@ export enum FooWithExtraFields_NestedEnum {
    * @generated from enum value: QUX = 3;
    */
   QUX = 3,
-
 }
-
 // Retrieve enum metadata with: proto3.getEnumType(FooWithExtraFields_NestedEnum)
 proto3.util.setEnumType(FooWithExtraFields_NestedEnum, "unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum", [
   {no: 0, name: "FOO"},
@@ -195,5 +184,4 @@ proto3.util.setEnumType(FooWithExtraFields_NestedEnum, "unittest_drop_unknown_fi
   {no: 2, name: "BAZ"},
   {no: 3, name: "QUX"},
 ]);
-
 

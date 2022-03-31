@@ -49,7 +49,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest.lazy_imports.LazyMessage
  */
 export declare class LazyMessage extends Message<LazyMessage> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -68,6 +67,5 @@ export declare class LazyMessage extends Message<LazyMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LazyMessage;
 
   static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean;
-
 }
 

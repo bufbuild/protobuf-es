@@ -41,19 +41,16 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
  */
 export declare enum TestEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
   FOO = 1,
-
 }
 
 /**
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
  */
 export declare class TestMessage extends Message<TestMessage> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -72,6 +69,5 @@ export declare class TestMessage extends Message<TestMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage;
 
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
-
 }
 

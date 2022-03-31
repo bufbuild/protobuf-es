@@ -27,7 +27,6 @@ import {DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileOptions,
  * @generated from message buf.alpha.image.v1.Image
  */
 export class Image extends Message<Image> {
-
   /**
    * @generated from field: repeated buf.alpha.image.v1.ImageFile file = 1;
    */
@@ -59,7 +58,6 @@ export class Image extends Message<Image> {
   static equals(a: Image | PlainMessage<Image> | undefined, b: Image | PlainMessage<Image> | undefined): boolean {
     return proto2.util.equals(Image, a, b);
   }
-
 }
 
 /**
@@ -75,7 +73,6 @@ export class Image extends Message<Image> {
  * @generated from message buf.alpha.image.v1.ImageFile
  */
 export class ImageFile extends Message<ImageFile> {
-
   /**
    * @generated from field: optional string name = 1;
    */
@@ -186,7 +183,6 @@ export class ImageFile extends Message<ImageFile> {
   static equals(a: ImageFile | PlainMessage<ImageFile> | undefined, b: ImageFile | PlainMessage<ImageFile> | undefined): boolean {
     return proto2.util.equals(ImageFile, a, b);
   }
-
 }
 
 /**
@@ -200,7 +196,6 @@ export class ImageFile extends Message<ImageFile> {
  * @generated from message buf.alpha.image.v1.ImageFileExtension
  */
 export class ImageFileExtension extends Message<ImageFileExtension> {
-
   /**
    * is_import denotes whether this file is considered an "import".
    *
@@ -286,7 +281,6 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
   static equals(a: ImageFileExtension | PlainMessage<ImageFileExtension> | undefined, b: ImageFileExtension | PlainMessage<ImageFileExtension> | undefined): boolean {
     return proto2.util.equals(ImageFileExtension, a, b);
   }
-
 }
 
 /**
@@ -296,7 +290,6 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
  * @generated from message buf.alpha.image.v1.ModuleInfo
  */
 export class ModuleInfo extends Message<ModuleInfo> {
-
   /**
    * name is the name of the Buf module.
    *
@@ -342,7 +335,6 @@ export class ModuleInfo extends Message<ModuleInfo> {
   static equals(a: ModuleInfo | PlainMessage<ModuleInfo> | undefined, b: ModuleInfo | PlainMessage<ModuleInfo> | undefined): boolean {
     return proto2.util.equals(ModuleInfo, a, b);
   }
-
 }
 
 /**
@@ -353,7 +345,6 @@ export class ModuleInfo extends Message<ModuleInfo> {
  * @generated from message buf.alpha.image.v1.ModuleName
  */
 export class ModuleName extends Message<ModuleName> {
-
   /**
    * @generated from field: optional string remote = 1;
    */
@@ -397,6 +388,5 @@ export class ModuleName extends Message<ModuleName> {
   static equals(a: ModuleName | PlainMessage<ModuleName> | undefined, b: ModuleName | PlainMessage<ModuleName> | undefined): boolean {
     return proto2.util.equals(ModuleName, a, b);
   }
-
 }
 

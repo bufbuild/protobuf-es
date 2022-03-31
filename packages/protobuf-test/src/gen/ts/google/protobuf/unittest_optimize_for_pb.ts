@@ -46,7 +46,6 @@ import {ForeignMessage} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestOptimizedForSize
  */
 export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
-
   /**
    * @generated from field: optional int32 i = 1;
    */
@@ -103,14 +102,12 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
   static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestOptimizedForSize, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
 export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedForSize> {
-
   /**
    * @generated from field: required int32 x = 1;
    */
@@ -142,14 +139,12 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestRequiredOptimizedForSize, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
 export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedForSize> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
    */
@@ -181,6 +176,5 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
   static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestOptionalOptimizedForSize, a, b);
   }
-
 }
 

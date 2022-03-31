@@ -98,4 +98,3 @@ export const RawMessageSet_Item = proto2.makeMessageType(
   {localName: "RawMessageSet_Item"},
 );
 
-

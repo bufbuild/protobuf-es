@@ -41,14 +41,11 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
  */
 export enum TestEnum {
-
   /**
    * @generated from enum value: FOO = 1;
    */
   FOO = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(TestEnum)
 proto2.util.setEnumType(TestEnum, "protobuf_unittest.no_generic_services_test.TestEnum", [
   {no: 1, name: "FOO"},
@@ -58,7 +55,6 @@ proto2.util.setEnumType(TestEnum, "protobuf_unittest.no_generic_services_test.Te
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
  */
 export class TestMessage extends Message<TestMessage> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -90,6 +86,5 @@ export class TestMessage extends Message<TestMessage> {
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean {
     return proto2.util.equals(TestMessage, a, b);
   }
-
 }
 

@@ -39,7 +39,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_arena_unittest.NestedMessage
  */
 export class NestedMessage extends Message<NestedMessage> {
-
   /**
    * @generated from field: optional int32 d = 1;
    */
@@ -71,14 +70,12 @@ export class NestedMessage extends Message<NestedMessage> {
   static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean {
     return proto2.util.equals(NestedMessage, a, b);
   }
-
 }
 
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
 export class ArenaMessage extends Message<ArenaMessage> {
-
   /**
    * @generated from field: repeated proto2_arena_unittest.NestedMessage repeated_nested_message = 1;
    */
@@ -110,6 +107,5 @@ export class ArenaMessage extends Message<ArenaMessage> {
   static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean {
     return proto2.util.equals(ArenaMessage, a, b);
   }
-
 }
 

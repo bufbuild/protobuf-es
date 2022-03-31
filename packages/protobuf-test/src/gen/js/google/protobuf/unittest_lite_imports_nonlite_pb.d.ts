@@ -44,7 +44,6 @@ import type {TestAllTypes, TestRequired} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
  */
 export declare class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
-
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
    */
@@ -70,6 +69,5 @@ export declare class TestLiteImportsNonlite extends Message<TestLiteImportsNonli
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
 
   static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean;
-
 }
 

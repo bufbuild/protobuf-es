@@ -24,7 +24,6 @@ import {OrganizationRole, PluginRole, RepositoryRole, TemplateRole} from "./role
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryRequest
  */
 export class UserCanCreateOrganizationRepositoryRequest extends Message<UserCanCreateOrganizationRepositoryRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -59,14 +58,12 @@ export class UserCanCreateOrganizationRepositoryRequest extends Message<UserCanC
   static equals(a: UserCanCreateOrganizationRepositoryRequest | PlainMessage<UserCanCreateOrganizationRepositoryRequest> | undefined, b: UserCanCreateOrganizationRepositoryRequest | PlainMessage<UserCanCreateOrganizationRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationRepositoryRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryResponse
  */
 export class UserCanCreateOrganizationRepositoryResponse extends Message<UserCanCreateOrganizationRepositoryResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -98,14 +95,12 @@ export class UserCanCreateOrganizationRepositoryResponse extends Message<UserCan
   static equals(a: UserCanCreateOrganizationRepositoryResponse | PlainMessage<UserCanCreateOrganizationRepositoryResponse> | undefined, b: UserCanCreateOrganizationRepositoryResponse | PlainMessage<UserCanCreateOrganizationRepositoryResponse> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationRepositoryResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsRequest
  */
 export class UserCanSeeRepositorySettingsRequest extends Message<UserCanSeeRepositorySettingsRequest> {
-
   /**
    * The ID of the repository for which to check
    * whether the user is authorized.
@@ -140,14 +135,12 @@ export class UserCanSeeRepositorySettingsRequest extends Message<UserCanSeeRepos
   static equals(a: UserCanSeeRepositorySettingsRequest | PlainMessage<UserCanSeeRepositorySettingsRequest> | undefined, b: UserCanSeeRepositorySettingsRequest | PlainMessage<UserCanSeeRepositorySettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeRepositorySettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsResponse
  */
 export class UserCanSeeRepositorySettingsResponse extends Message<UserCanSeeRepositorySettingsResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -179,14 +172,12 @@ export class UserCanSeeRepositorySettingsResponse extends Message<UserCanSeeRepo
   static equals(a: UserCanSeeRepositorySettingsResponse | PlainMessage<UserCanSeeRepositorySettingsResponse> | undefined, b: UserCanSeeRepositorySettingsResponse | PlainMessage<UserCanSeeRepositorySettingsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanSeeRepositorySettingsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsRequest
  */
 export class UserCanSeeOrganizationSettingsRequest extends Message<UserCanSeeOrganizationSettingsRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -221,14 +212,12 @@ export class UserCanSeeOrganizationSettingsRequest extends Message<UserCanSeeOrg
   static equals(a: UserCanSeeOrganizationSettingsRequest | PlainMessage<UserCanSeeOrganizationSettingsRequest> | undefined, b: UserCanSeeOrganizationSettingsRequest | PlainMessage<UserCanSeeOrganizationSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeOrganizationSettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsResponse
  */
 export class UserCanSeeOrganizationSettingsResponse extends Message<UserCanSeeOrganizationSettingsResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -260,14 +249,12 @@ export class UserCanSeeOrganizationSettingsResponse extends Message<UserCanSeeOr
   static equals(a: UserCanSeeOrganizationSettingsResponse | PlainMessage<UserCanSeeOrganizationSettingsResponse> | undefined, b: UserCanSeeOrganizationSettingsResponse | PlainMessage<UserCanSeeOrganizationSettingsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanSeeOrganizationSettingsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanReadPluginRequest
  */
 export class UserCanReadPluginRequest extends Message<UserCanReadPluginRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -309,14 +296,12 @@ export class UserCanReadPluginRequest extends Message<UserCanReadPluginRequest> 
   static equals(a: UserCanReadPluginRequest | PlainMessage<UserCanReadPluginRequest> | undefined, b: UserCanReadPluginRequest | PlainMessage<UserCanReadPluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanReadPluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanReadPluginResponse
  */
 export class UserCanReadPluginResponse extends Message<UserCanReadPluginResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -348,14 +333,12 @@ export class UserCanReadPluginResponse extends Message<UserCanReadPluginResponse
   static equals(a: UserCanReadPluginResponse | PlainMessage<UserCanReadPluginResponse> | undefined, b: UserCanReadPluginResponse | PlainMessage<UserCanReadPluginResponse> | undefined): boolean {
     return proto3.util.equals(UserCanReadPluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionRequest
  */
 export class UserCanCreatePluginVersionRequest extends Message<UserCanCreatePluginVersionRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -397,14 +380,12 @@ export class UserCanCreatePluginVersionRequest extends Message<UserCanCreatePlug
   static equals(a: UserCanCreatePluginVersionRequest | PlainMessage<UserCanCreatePluginVersionRequest> | undefined, b: UserCanCreatePluginVersionRequest | PlainMessage<UserCanCreatePluginVersionRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreatePluginVersionRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionResponse
  */
 export class UserCanCreatePluginVersionResponse extends Message<UserCanCreatePluginVersionResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -436,14 +417,12 @@ export class UserCanCreatePluginVersionResponse extends Message<UserCanCreatePlu
   static equals(a: UserCanCreatePluginVersionResponse | PlainMessage<UserCanCreatePluginVersionResponse> | undefined, b: UserCanCreatePluginVersionResponse | PlainMessage<UserCanCreatePluginVersionResponse> | undefined): boolean {
     return proto3.util.equals(UserCanCreatePluginVersionResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionRequest
  */
 export class UserCanCreateTemplateVersionRequest extends Message<UserCanCreateTemplateVersionRequest> {
-
   /**
    * The owner of the template.
    *
@@ -485,14 +464,12 @@ export class UserCanCreateTemplateVersionRequest extends Message<UserCanCreateTe
   static equals(a: UserCanCreateTemplateVersionRequest | PlainMessage<UserCanCreateTemplateVersionRequest> | undefined, b: UserCanCreateTemplateVersionRequest | PlainMessage<UserCanCreateTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateTemplateVersionRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionResponse
  */
 export class UserCanCreateTemplateVersionResponse extends Message<UserCanCreateTemplateVersionResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -524,14 +501,12 @@ export class UserCanCreateTemplateVersionResponse extends Message<UserCanCreateT
   static equals(a: UserCanCreateTemplateVersionResponse | PlainMessage<UserCanCreateTemplateVersionResponse> | undefined, b: UserCanCreateTemplateVersionResponse | PlainMessage<UserCanCreateTemplateVersionResponse> | undefined): boolean {
     return proto3.util.equals(UserCanCreateTemplateVersionResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginRequest
  */
 export class UserCanCreateOrganizationPluginRequest extends Message<UserCanCreateOrganizationPluginRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -566,14 +541,12 @@ export class UserCanCreateOrganizationPluginRequest extends Message<UserCanCreat
   static equals(a: UserCanCreateOrganizationPluginRequest | PlainMessage<UserCanCreateOrganizationPluginRequest> | undefined, b: UserCanCreateOrganizationPluginRequest | PlainMessage<UserCanCreateOrganizationPluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationPluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginResponse
  */
 export class UserCanCreateOrganizationPluginResponse extends Message<UserCanCreateOrganizationPluginResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -605,14 +578,12 @@ export class UserCanCreateOrganizationPluginResponse extends Message<UserCanCrea
   static equals(a: UserCanCreateOrganizationPluginResponse | PlainMessage<UserCanCreateOrganizationPluginResponse> | undefined, b: UserCanCreateOrganizationPluginResponse | PlainMessage<UserCanCreateOrganizationPluginResponse> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationPluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateRequest
  */
 export class UserCanCreateOrganizationTemplateRequest extends Message<UserCanCreateOrganizationTemplateRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -647,14 +618,12 @@ export class UserCanCreateOrganizationTemplateRequest extends Message<UserCanCre
   static equals(a: UserCanCreateOrganizationTemplateRequest | PlainMessage<UserCanCreateOrganizationTemplateRequest> | undefined, b: UserCanCreateOrganizationTemplateRequest | PlainMessage<UserCanCreateOrganizationTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateResponse
  */
 export class UserCanCreateOrganizationTemplateResponse extends Message<UserCanCreateOrganizationTemplateResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -686,14 +655,12 @@ export class UserCanCreateOrganizationTemplateResponse extends Message<UserCanCr
   static equals(a: UserCanCreateOrganizationTemplateResponse | PlainMessage<UserCanCreateOrganizationTemplateResponse> | undefined, b: UserCanCreateOrganizationTemplateResponse | PlainMessage<UserCanCreateOrganizationTemplateResponse> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsRequest
  */
 export class UserCanSeePluginSettingsRequest extends Message<UserCanSeePluginSettingsRequest> {
-
   /**
    * The owner of the plugin.
    *
@@ -735,14 +702,12 @@ export class UserCanSeePluginSettingsRequest extends Message<UserCanSeePluginSet
   static equals(a: UserCanSeePluginSettingsRequest | PlainMessage<UserCanSeePluginSettingsRequest> | undefined, b: UserCanSeePluginSettingsRequest | PlainMessage<UserCanSeePluginSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeePluginSettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsResponse
  */
 export class UserCanSeePluginSettingsResponse extends Message<UserCanSeePluginSettingsResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -774,14 +739,12 @@ export class UserCanSeePluginSettingsResponse extends Message<UserCanSeePluginSe
   static equals(a: UserCanSeePluginSettingsResponse | PlainMessage<UserCanSeePluginSettingsResponse> | undefined, b: UserCanSeePluginSettingsResponse | PlainMessage<UserCanSeePluginSettingsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanSeePluginSettingsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsRequest
  */
 export class UserCanSeeTemplateSettingsRequest extends Message<UserCanSeeTemplateSettingsRequest> {
-
   /**
    * The owner of the template.
    *
@@ -823,14 +786,12 @@ export class UserCanSeeTemplateSettingsRequest extends Message<UserCanSeeTemplat
   static equals(a: UserCanSeeTemplateSettingsRequest | PlainMessage<UserCanSeeTemplateSettingsRequest> | undefined, b: UserCanSeeTemplateSettingsRequest | PlainMessage<UserCanSeeTemplateSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeTemplateSettingsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsResponse
  */
 export class UserCanSeeTemplateSettingsResponse extends Message<UserCanSeeTemplateSettingsResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -862,14 +823,12 @@ export class UserCanSeeTemplateSettingsResponse extends Message<UserCanSeeTempla
   static equals(a: UserCanSeeTemplateSettingsResponse | PlainMessage<UserCanSeeTemplateSettingsResponse> | undefined, b: UserCanSeeTemplateSettingsResponse | PlainMessage<UserCanSeeTemplateSettingsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanSeeTemplateSettingsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberRequest
  */
 export class UserCanAddOrganizationMemberRequest extends Message<UserCanAddOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -904,14 +863,12 @@ export class UserCanAddOrganizationMemberRequest extends Message<UserCanAddOrgan
   static equals(a: UserCanAddOrganizationMemberRequest | PlainMessage<UserCanAddOrganizationMemberRequest> | undefined, b: UserCanAddOrganizationMemberRequest | PlainMessage<UserCanAddOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanAddOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberResponse
  */
 export class UserCanAddOrganizationMemberResponse extends Message<UserCanAddOrganizationMemberResponse> {
-
   /**
    * The list of roles that the user is authorized to add, empty list means the user is
    * not authorized to add any members.
@@ -946,14 +903,12 @@ export class UserCanAddOrganizationMemberResponse extends Message<UserCanAddOrga
   static equals(a: UserCanAddOrganizationMemberResponse | PlainMessage<UserCanAddOrganizationMemberResponse> | undefined, b: UserCanAddOrganizationMemberResponse | PlainMessage<UserCanAddOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(UserCanAddOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberRequest
  */
 export class UserCanUpdateOrganizationMemberRequest extends Message<UserCanUpdateOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -988,14 +943,12 @@ export class UserCanUpdateOrganizationMemberRequest extends Message<UserCanUpdat
   static equals(a: UserCanUpdateOrganizationMemberRequest | PlainMessage<UserCanUpdateOrganizationMemberRequest> | undefined, b: UserCanUpdateOrganizationMemberRequest | PlainMessage<UserCanUpdateOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanUpdateOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberResponse
  */
 export class UserCanUpdateOrganizationMemberResponse extends Message<UserCanUpdateOrganizationMemberResponse> {
-
   /**
    * The list of roles that the user is authorized to update (from and to), empty list means the user is
    * not authorized to update any members' role.
@@ -1030,14 +983,12 @@ export class UserCanUpdateOrganizationMemberResponse extends Message<UserCanUpda
   static equals(a: UserCanUpdateOrganizationMemberResponse | PlainMessage<UserCanUpdateOrganizationMemberResponse> | undefined, b: UserCanUpdateOrganizationMemberResponse | PlainMessage<UserCanUpdateOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(UserCanUpdateOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberRequest
  */
 export class UserCanRemoveOrganizationMemberRequest extends Message<UserCanRemoveOrganizationMemberRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -1072,14 +1023,12 @@ export class UserCanRemoveOrganizationMemberRequest extends Message<UserCanRemov
   static equals(a: UserCanRemoveOrganizationMemberRequest | PlainMessage<UserCanRemoveOrganizationMemberRequest> | undefined, b: UserCanRemoveOrganizationMemberRequest | PlainMessage<UserCanRemoveOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanRemoveOrganizationMemberRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberResponse
  */
 export class UserCanRemoveOrganizationMemberResponse extends Message<UserCanRemoveOrganizationMemberResponse> {
-
   /**
    * The list of roles that the user is authorized to remove, empty list means the user is
    * not authorized to remove any members.
@@ -1114,14 +1063,12 @@ export class UserCanRemoveOrganizationMemberResponse extends Message<UserCanRemo
   static equals(a: UserCanRemoveOrganizationMemberResponse | PlainMessage<UserCanRemoveOrganizationMemberResponse> | undefined, b: UserCanRemoveOrganizationMemberResponse | PlainMessage<UserCanRemoveOrganizationMemberResponse> | undefined): boolean {
     return proto3.util.equals(UserCanRemoveOrganizationMemberResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationRequest
  */
 export class UserCanDeleteOrganizationRequest extends Message<UserCanDeleteOrganizationRequest> {
-
   /**
    * The ID of the organization for which to check
    * whether the user is authorized.
@@ -1156,14 +1103,12 @@ export class UserCanDeleteOrganizationRequest extends Message<UserCanDeleteOrgan
   static equals(a: UserCanDeleteOrganizationRequest | PlainMessage<UserCanDeleteOrganizationRequest> | undefined, b: UserCanDeleteOrganizationRequest | PlainMessage<UserCanDeleteOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteOrganizationRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationResponse
  */
 export class UserCanDeleteOrganizationResponse extends Message<UserCanDeleteOrganizationResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1195,14 +1140,12 @@ export class UserCanDeleteOrganizationResponse extends Message<UserCanDeleteOrga
   static equals(a: UserCanDeleteOrganizationResponse | PlainMessage<UserCanDeleteOrganizationResponse> | undefined, b: UserCanDeleteOrganizationResponse | PlainMessage<UserCanDeleteOrganizationResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteOrganizationResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryRequest
  */
 export class UserCanDeleteRepositoryRequest extends Message<UserCanDeleteRepositoryRequest> {
-
   /**
    * The ID of the repository for which to check
    * whether the user is authorized.
@@ -1237,14 +1180,12 @@ export class UserCanDeleteRepositoryRequest extends Message<UserCanDeleteReposit
   static equals(a: UserCanDeleteRepositoryRequest | PlainMessage<UserCanDeleteRepositoryRequest> | undefined, b: UserCanDeleteRepositoryRequest | PlainMessage<UserCanDeleteRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteRepositoryRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryResponse
  */
 export class UserCanDeleteRepositoryResponse extends Message<UserCanDeleteRepositoryResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1276,14 +1217,12 @@ export class UserCanDeleteRepositoryResponse extends Message<UserCanDeleteReposi
   static equals(a: UserCanDeleteRepositoryResponse | PlainMessage<UserCanDeleteRepositoryResponse> | undefined, b: UserCanDeleteRepositoryResponse | PlainMessage<UserCanDeleteRepositoryResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteRepositoryResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateRequest
  */
 export class UserCanDeleteTemplateRequest extends Message<UserCanDeleteTemplateRequest> {
-
   /**
    * The ID of the template for which to check
    * whether the user is authorized.
@@ -1318,14 +1257,12 @@ export class UserCanDeleteTemplateRequest extends Message<UserCanDeleteTemplateR
   static equals(a: UserCanDeleteTemplateRequest | PlainMessage<UserCanDeleteTemplateRequest> | undefined, b: UserCanDeleteTemplateRequest | PlainMessage<UserCanDeleteTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteTemplateRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateResponse
  */
 export class UserCanDeleteTemplateResponse extends Message<UserCanDeleteTemplateResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1357,14 +1294,12 @@ export class UserCanDeleteTemplateResponse extends Message<UserCanDeleteTemplate
   static equals(a: UserCanDeleteTemplateResponse | PlainMessage<UserCanDeleteTemplateResponse> | undefined, b: UserCanDeleteTemplateResponse | PlainMessage<UserCanDeleteTemplateResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteTemplateResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeletePluginRequest
  */
 export class UserCanDeletePluginRequest extends Message<UserCanDeletePluginRequest> {
-
   /**
    * The ID of the plugin for which to check
    * whether the user is authorized.
@@ -1399,14 +1334,12 @@ export class UserCanDeletePluginRequest extends Message<UserCanDeletePluginReque
   static equals(a: UserCanDeletePluginRequest | PlainMessage<UserCanDeletePluginRequest> | undefined, b: UserCanDeletePluginRequest | PlainMessage<UserCanDeletePluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeletePluginRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeletePluginResponse
  */
 export class UserCanDeletePluginResponse extends Message<UserCanDeletePluginResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1438,14 +1371,12 @@ export class UserCanDeletePluginResponse extends Message<UserCanDeletePluginResp
   static equals(a: UserCanDeletePluginResponse | PlainMessage<UserCanDeletePluginResponse> | undefined, b: UserCanDeletePluginResponse | PlainMessage<UserCanDeletePluginResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeletePluginResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteUserRequest
  */
 export class UserCanDeleteUserRequest extends Message<UserCanDeleteUserRequest> {
-
   constructor(data?: PartialMessage<UserCanDeleteUserRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1471,14 +1402,12 @@ export class UserCanDeleteUserRequest extends Message<UserCanDeleteUserRequest> 
   static equals(a: UserCanDeleteUserRequest | PlainMessage<UserCanDeleteUserRequest> | undefined, b: UserCanDeleteUserRequest | PlainMessage<UserCanDeleteUserRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteUserRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanDeleteUserResponse
  */
 export class UserCanDeleteUserResponse extends Message<UserCanDeleteUserResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1510,14 +1439,12 @@ export class UserCanDeleteUserResponse extends Message<UserCanDeleteUserResponse
   static equals(a: UserCanDeleteUserResponse | PlainMessage<UserCanDeleteUserResponse> | undefined, b: UserCanDeleteUserResponse | PlainMessage<UserCanDeleteUserResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteUserResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelRequest
  */
 export class UserCanSeeServerAdminPanelRequest extends Message<UserCanSeeServerAdminPanelRequest> {
-
   constructor(data?: PartialMessage<UserCanSeeServerAdminPanelRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1543,14 +1470,12 @@ export class UserCanSeeServerAdminPanelRequest extends Message<UserCanSeeServerA
   static equals(a: UserCanSeeServerAdminPanelRequest | PlainMessage<UserCanSeeServerAdminPanelRequest> | undefined, b: UserCanSeeServerAdminPanelRequest | PlainMessage<UserCanSeeServerAdminPanelRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeServerAdminPanelRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelResponse
  */
 export class UserCanSeeServerAdminPanelResponse extends Message<UserCanSeeServerAdminPanelResponse> {
-
   /**
    * @generated from field: bool authorized = 1;
    */
@@ -1582,14 +1507,12 @@ export class UserCanSeeServerAdminPanelResponse extends Message<UserCanSeeServer
   static equals(a: UserCanSeeServerAdminPanelResponse | PlainMessage<UserCanSeeServerAdminPanelResponse> | undefined, b: UserCanSeeServerAdminPanelResponse | PlainMessage<UserCanSeeServerAdminPanelResponse> | undefined): boolean {
     return proto3.util.equals(UserCanSeeServerAdminPanelResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsRequest
  */
 export class UserCanManageRepositoryContributorsRequest extends Message<UserCanManageRepositoryContributorsRequest> {
-
   /**
    * The ID of the repository for which to check
    * whether the user is authorized.
@@ -1624,14 +1547,12 @@ export class UserCanManageRepositoryContributorsRequest extends Message<UserCanM
   static equals(a: UserCanManageRepositoryContributorsRequest | PlainMessage<UserCanManageRepositoryContributorsRequest> | undefined, b: UserCanManageRepositoryContributorsRequest | PlainMessage<UserCanManageRepositoryContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManageRepositoryContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsResponse
  */
 export class UserCanManageRepositoryContributorsResponse extends Message<UserCanManageRepositoryContributorsResponse> {
-
   /**
    * The list of roles that the user is authorized to manage, empty list means the user is
    * not authorized to manage any contributors.
@@ -1666,14 +1587,12 @@ export class UserCanManageRepositoryContributorsResponse extends Message<UserCan
   static equals(a: UserCanManageRepositoryContributorsResponse | PlainMessage<UserCanManageRepositoryContributorsResponse> | undefined, b: UserCanManageRepositoryContributorsResponse | PlainMessage<UserCanManageRepositoryContributorsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanManageRepositoryContributorsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsRequest
  */
 export class UserCanManagePluginContributorsRequest extends Message<UserCanManagePluginContributorsRequest> {
-
   /**
    * The ID of the plugin for which to check
    * whether the user is authorized.
@@ -1708,14 +1627,12 @@ export class UserCanManagePluginContributorsRequest extends Message<UserCanManag
   static equals(a: UserCanManagePluginContributorsRequest | PlainMessage<UserCanManagePluginContributorsRequest> | undefined, b: UserCanManagePluginContributorsRequest | PlainMessage<UserCanManagePluginContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManagePluginContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsResponse
  */
 export class UserCanManagePluginContributorsResponse extends Message<UserCanManagePluginContributorsResponse> {
-
   /**
    * The list of roles that the user is authorized to manage, empty list means the user is
    * not authorized to manage any contributors.
@@ -1750,14 +1667,12 @@ export class UserCanManagePluginContributorsResponse extends Message<UserCanMana
   static equals(a: UserCanManagePluginContributorsResponse | PlainMessage<UserCanManagePluginContributorsResponse> | undefined, b: UserCanManagePluginContributorsResponse | PlainMessage<UserCanManagePluginContributorsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanManagePluginContributorsResponse, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsRequest
  */
 export class UserCanManageTemplateContributorsRequest extends Message<UserCanManageTemplateContributorsRequest> {
-
   /**
    * The ID of the template for which to check
    * whether the user is authorized.
@@ -1792,14 +1707,12 @@ export class UserCanManageTemplateContributorsRequest extends Message<UserCanMan
   static equals(a: UserCanManageTemplateContributorsRequest | PlainMessage<UserCanManageTemplateContributorsRequest> | undefined, b: UserCanManageTemplateContributorsRequest | PlainMessage<UserCanManageTemplateContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManageTemplateContributorsRequest, a, b);
   }
-
 }
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsResponse
  */
 export class UserCanManageTemplateContributorsResponse extends Message<UserCanManageTemplateContributorsResponse> {
-
   /**
    * The list of roles that the user is authorized to manage, empty list means the user is
    * not authorized to manage any contributors.
@@ -1834,6 +1747,5 @@ export class UserCanManageTemplateContributorsResponse extends Message<UserCanMa
   static equals(a: UserCanManageTemplateContributorsResponse | PlainMessage<UserCanManageTemplateContributorsResponse> | undefined, b: UserCanManageTemplateContributorsResponse | PlainMessage<UserCanManageTemplateContributorsResponse> | undefined): boolean {
     return proto3.util.equals(UserCanManageTemplateContributorsResponse, a, b);
   }
-
 }
 

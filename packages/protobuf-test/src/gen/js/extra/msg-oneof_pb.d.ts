@@ -23,7 +23,6 @@ import {Message, proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.OneofEnum
  */
 export declare enum OneofEnum {
-
   /**
    * @generated from enum value: ONEOF_ENUM_UNSPECIFIED = 0;
    */
@@ -38,14 +37,12 @@ export declare enum OneofEnum {
    * @generated from enum value: ONEOF_ENUM_B = 2;
    */
   B = 2,
-
 }
 
 /**
  * @generated from message spec.OneofMessage
  */
 export declare class OneofMessage extends Message<OneofMessage> {
-
   /**
    * @generated from oneof spec.OneofMessage.scalar
    */
@@ -110,14 +107,12 @@ export declare class OneofMessage extends Message<OneofMessage> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessage;
 
   static equals(a: OneofMessage | PlainMessage<OneofMessage> | undefined, b: OneofMessage | PlainMessage<OneofMessage> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.OneofMessageFoo
  */
 export declare class OneofMessageFoo extends Message<OneofMessageFoo> {
-
   /**
    * @generated from field: string name = 1;
    */
@@ -141,14 +136,12 @@ export declare class OneofMessageFoo extends Message<OneofMessageFoo> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessageFoo;
 
   static equals(a: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined, b: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined): boolean;
-
 }
 
 /**
  * @generated from message spec.OneofMessageBar
  */
 export declare class OneofMessageBar extends Message<OneofMessageBar> {
-
   /**
    * @generated from field: int32 a = 1;
    */
@@ -172,6 +165,5 @@ export declare class OneofMessageBar extends Message<OneofMessageBar> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessageBar;
 
   static equals(a: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined, b: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined): boolean;
-
 }
 

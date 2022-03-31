@@ -14,7 +14,6 @@ import {Type} from "./type_pb.js";
  * @generated from message protobuf_unittest.TestWellKnownTypes
  */
 export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
-
   /**
    * @generated from field: google.protobuf.Any any_field = 1;
    */
@@ -156,7 +155,6 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
   static equals(a: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined, b: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(TestWellKnownTypes, a, b);
   }
-
 }
 
 /**
@@ -165,7 +163,6 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
  * @generated from message protobuf_unittest.RepeatedWellKnownTypes
  */
 export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
-
   /**
    * @generated from field: repeated google.protobuf.Any any_field = 1;
    */
@@ -301,14 +298,12 @@ export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
   static equals(a: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined, b: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(RepeatedWellKnownTypes, a, b);
   }
-
 }
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
  */
 export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
-
   /**
    * @generated from oneof protobuf_unittest.OneofWellKnownTypes.oneof_field
    */
@@ -465,7 +460,6 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
   static equals(a: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined, b: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(OneofWellKnownTypes, a, b);
   }
-
 }
 
 /**
@@ -476,7 +470,6 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
  * @generated from message protobuf_unittest.MapWellKnownTypes
  */
 export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
-
   /**
    * @generated from field: map<int32, google.protobuf.Any> any_field = 1;
    */
@@ -610,6 +603,5 @@ export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
   static equals(a: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined, b: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(MapWellKnownTypes, a, b);
   }
-
 }
 

@@ -42,7 +42,6 @@ import {FileDescriptorProto, GeneratedCodeInfo} from "../descriptor_pb.js";
  * @generated from message google.protobuf.compiler.Version
  */
 export class Version extends Message<Version> {
-
   /**
    * @generated from field: optional int32 major = 1;
    */
@@ -95,7 +94,6 @@ export class Version extends Message<Version> {
   static equals(a: Version | PlainMessage<Version> | undefined, b: Version | PlainMessage<Version> | undefined): boolean {
     return proto2.util.equals(Version, a, b);
   }
-
 }
 
 /**
@@ -104,7 +102,6 @@ export class Version extends Message<Version> {
  * @generated from message google.protobuf.compiler.CodeGeneratorRequest
  */
 export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
-
   /**
    * The .proto files that were explicitly listed on the command-line.  The
    * code generator should generate code only for these files.  Each file's
@@ -177,7 +174,6 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
   static equals(a: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined, b: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined): boolean {
     return proto2.util.equals(CodeGeneratorRequest, a, b);
   }
-
 }
 
 /**
@@ -186,7 +182,6 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
  * @generated from message google.protobuf.compiler.CodeGeneratorResponse
  */
 export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
-
   /**
    * Error message.  If non-empty, code generation failed.  The plugin process
    * should exit with status code zero even if it reports an error in this way.
@@ -242,7 +237,6 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
   static equals(a: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined, b: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined): boolean {
     return proto2.util.equals(CodeGeneratorResponse, a, b);
   }
-
 }
 
 /**
@@ -251,7 +245,6 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
  * @generated from enum google.protobuf.compiler.CodeGeneratorResponse.Feature
  */
 export enum CodeGeneratorResponse_Feature {
-
   /**
    * @generated from enum value: FEATURE_NONE = 0;
    */
@@ -261,15 +254,12 @@ export enum CodeGeneratorResponse_Feature {
    * @generated from enum value: FEATURE_PROTO3_OPTIONAL = 1;
    */
   PROTO3_OPTIONAL = 1,
-
 }
-
 // Retrieve enum metadata with: proto2.getEnumType(CodeGeneratorResponse_Feature)
 proto2.util.setEnumType(CodeGeneratorResponse_Feature, "google.protobuf.compiler.CodeGeneratorResponse.Feature", [
   {no: 0, name: "FEATURE_NONE"},
   {no: 1, name: "FEATURE_PROTO3_OPTIONAL"},
 ]);
-
 
 /**
  * Represents a single generated file.
@@ -277,7 +267,6 @@ proto2.util.setEnumType(CodeGeneratorResponse_Feature, "google.protobuf.compiler
  * @generated from message google.protobuf.compiler.CodeGeneratorResponse.File
  */
 export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_File> {
-
   /**
    * The file name, relative to the output directory.  The name must not
    * contain "." or ".." components and must be relative, not be absolute (so,
@@ -383,7 +372,5 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
   static equals(a: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined, b: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined): boolean {
     return proto2.util.equals(CodeGeneratorResponse_File, a, b);
   }
-
 }
-
 

@@ -14,7 +14,6 @@ import type {Type} from "./type_pb.js";
  * @generated from message protobuf_unittest.TestWellKnownTypes
  */
 export declare class TestWellKnownTypes extends Message<TestWellKnownTypes> {
-
   /**
    * @generated from field: google.protobuf.Any any_field = 1;
    */
@@ -125,7 +124,6 @@ export declare class TestWellKnownTypes extends Message<TestWellKnownTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestWellKnownTypes;
 
   static equals(a: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined, b: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined): boolean;
-
 }
 
 /**
@@ -134,7 +132,6 @@ export declare class TestWellKnownTypes extends Message<TestWellKnownTypes> {
  * @generated from message protobuf_unittest.RepeatedWellKnownTypes
  */
 export declare class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
-
   /**
    * @generated from field: repeated google.protobuf.Any any_field = 1;
    */
@@ -240,14 +237,12 @@ export declare class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTyp
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedWellKnownTypes;
 
   static equals(a: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined, b: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined): boolean;
-
 }
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
  */
 export declare class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
-
   /**
    * @generated from oneof protobuf_unittest.OneofWellKnownTypes.oneof_field
    */
@@ -374,7 +369,6 @@ export declare class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofWellKnownTypes;
 
   static equals(a: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined, b: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined): boolean;
-
 }
 
 /**
@@ -385,7 +379,6 @@ export declare class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
  * @generated from message protobuf_unittest.MapWellKnownTypes
  */
 export declare class MapWellKnownTypes extends Message<MapWellKnownTypes> {
-
   /**
    * @generated from field: map<int32, google.protobuf.Any> any_field = 1;
    */
@@ -489,6 +482,5 @@ export declare class MapWellKnownTypes extends Message<MapWellKnownTypes> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapWellKnownTypes;
 
   static equals(a: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined, b: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined): boolean;
-
 }
 

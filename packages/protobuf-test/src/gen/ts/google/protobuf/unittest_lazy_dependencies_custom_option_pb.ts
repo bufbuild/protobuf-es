@@ -49,7 +49,6 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message protobuf_unittest.lazy_imports.LazyMessage
  */
 export class LazyMessage extends Message<LazyMessage> {
-
   /**
    * @generated from field: optional int32 a = 1;
    */
@@ -81,6 +80,5 @@ export class LazyMessage extends Message<LazyMessage> {
   static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean {
     return proto2.util.equals(LazyMessage, a, b);
   }
-
 }
 
