@@ -45,13 +45,13 @@ import {ForeignMessage} from "./unittest_pb.js";
  * @generated from message protobuf_unittest.TestOptimizedForSize
  */
 export const TestOptimizedForSize = proto2.makeMessageType(
-    "protobuf_unittest.TestOptimizedForSize",
-    () => [
-        {no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-        {no: 19, name: "msg", kind: "message", T: ForeignMessage, opt: true},
-        {no: 2, name: "integer_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
-        {no: 3, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
-    ],
+  "protobuf_unittest.TestOptimizedForSize",
+  () => [
+    {no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+    {no: 19, name: "msg", kind: "message", T: ForeignMessage, opt: true},
+    {no: 2, name: "integer_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo"},
+    {no: 3, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo"},
+  ],
 );
 
 
@@ -59,10 +59,10 @@ export const TestOptimizedForSize = proto2.makeMessageType(
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
 export const TestRequiredOptimizedForSize = proto2.makeMessageType(
-    "protobuf_unittest.TestRequiredOptimizedForSize",
-    () => [
-        {no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    ],
+  "protobuf_unittest.TestRequiredOptimizedForSize",
+  () => [
+    {no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+  ],
 );
 
 
@@ -70,10 +70,10 @@ export const TestRequiredOptimizedForSize = proto2.makeMessageType(
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
 export const TestOptionalOptimizedForSize = proto2.makeMessageType(
-    "protobuf_unittest.TestOptionalOptimizedForSize",
-    () => [
-        {no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true},
-    ],
+  "protobuf_unittest.TestOptionalOptimizedForSize",
+  () => [
+    {no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true},
+  ],
 );
 
 

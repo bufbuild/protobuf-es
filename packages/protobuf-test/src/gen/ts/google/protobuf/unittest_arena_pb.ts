@@ -40,37 +40,37 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export class NestedMessage extends Message<NestedMessage> {
 
-    /**
-     * @generated from field: optional int32 d = 1;
-     */
-    d?: number;
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
 
-    constructor(data?: PartialMessage<NestedMessage>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<NestedMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "proto2_arena_unittest.NestedMessage";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "proto2_arena_unittest.NestedMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedMessage {
-        return new NestedMessage().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedMessage {
+    return new NestedMessage().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedMessage {
-        return new NestedMessage().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedMessage {
+    return new NestedMessage().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedMessage {
-        return new NestedMessage().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedMessage {
+    return new NestedMessage().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean {
-        return proto2.util.equals(NestedMessage, a, b);
-    }
+  static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean {
+    return proto2.util.equals(NestedMessage, a, b);
+  }
 
 }
 
@@ -80,37 +80,37 @@ export class NestedMessage extends Message<NestedMessage> {
  */
 export class ArenaMessage extends Message<ArenaMessage> {
 
-    /**
-     * @generated from field: repeated proto2_arena_unittest.NestedMessage repeated_nested_message = 1;
-     */
-    repeatedNestedMessage: NestedMessage[] = [];
+  /**
+   * @generated from field: repeated proto2_arena_unittest.NestedMessage repeated_nested_message = 1;
+   */
+  repeatedNestedMessage: NestedMessage[] = [];
 
-    constructor(data?: PartialMessage<ArenaMessage>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ArenaMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "proto2_arena_unittest.ArenaMessage";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "proto2_arena_unittest.ArenaMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArenaMessage {
-        return new ArenaMessage().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArenaMessage {
+    return new ArenaMessage().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArenaMessage {
-        return new ArenaMessage().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArenaMessage {
+    return new ArenaMessage().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage {
-        return new ArenaMessage().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage {
+    return new ArenaMessage().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean {
-        return proto2.util.equals(ArenaMessage, a, b);
-    }
+  static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean {
+    return proto2.util.equals(ArenaMessage, a, b);
+  }
 
 }
 

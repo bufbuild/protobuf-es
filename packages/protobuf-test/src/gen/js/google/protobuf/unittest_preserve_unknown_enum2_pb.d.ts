@@ -40,20 +40,20 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare enum MyEnum {
 
-    /**
-     * @generated from enum value: FOO = 0;
-     */
-    FOO = 0,
+  /**
+   * @generated from enum value: FOO = 0;
+   */
+  FOO = 0,
 
-    /**
-     * @generated from enum value: BAR = 1;
-     */
-    BAR = 1,
+  /**
+   * @generated from enum value: BAR = 1;
+   */
+  BAR = 1,
 
-    /**
-     * @generated from enum value: BAZ = 2;
-     */
-    BAZ = 2,
+  /**
+   * @generated from enum value: BAZ = 2;
+   */
+  BAZ = 2,
 
 }
 
@@ -63,58 +63,58 @@ export declare enum MyEnum {
  */
 export declare class MyMessage extends Message<MyMessage> {
 
+  /**
+   * @generated from field: optional proto2_preserve_unknown_enum_unittest.MyEnum e = 1;
+   */
+  e?: MyEnum;
+
+  /**
+   * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+   */
+  repeatedE: MyEnum[];
+
+  /**
+   * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
+   */
+  repeatedPackedE: MyEnum[];
+
+  /**
+   * not packed
+   *
+   * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_packed_unexpected_e = 4;
+   */
+  repeatedPackedUnexpectedE: MyEnum[];
+
+  /**
+   * @generated from oneof proto2_preserve_unknown_enum_unittest.MyMessage.o
+   */
+  o: {
     /**
-     * @generated from field: optional proto2_preserve_unknown_enum_unittest.MyEnum e = 1;
+     * @generated from field: proto2_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
      */
-    e?: MyEnum;
-
+    value: MyEnum;
+    case: "oneofE1";
+  } | {
     /**
-     * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+     * @generated from field: proto2_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
      */
-    repeatedE: MyEnum[];
+    value: MyEnum;
+    case: "oneofE2";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
-     */
-    repeatedPackedE: MyEnum[];
+  constructor(data?: PartialMessage<MyMessage>);
 
-    /**
-     * not packed
-     *
-     * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_packed_unexpected_e = 4;
-     */
-    repeatedPackedUnexpectedE: MyEnum[];
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2_preserve_unknown_enum_unittest.MyMessage";
+  static readonly fields: FieldList;
 
-    /**
-     * @generated from oneof proto2_preserve_unknown_enum_unittest.MyMessage.o
-     */
-    o: {
-        /**
-         * @generated from field: proto2_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
-         */
-        value: MyEnum;
-        case: "oneofE1";
-    } | {
-        /**
-         * @generated from field: proto2_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
-         */
-        value: MyEnum;
-        case: "oneofE2";
-    } | { case: undefined; value?: undefined };
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage;
 
-    constructor(data?: PartialMessage<MyMessage>);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "proto2_preserve_unknown_enum_unittest.MyMessage";
-    static readonly fields: FieldList;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage;
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage;
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
-
-    static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
+  static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
 
 }
 

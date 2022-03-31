@@ -22,22 +22,22 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from message spec.MessageFieldMessage
  */
 export const MessageFieldMessage = proto3.makeMessageType(
-    "spec.MessageFieldMessage",
-    () => [
-        {no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage},
-        {no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true},
-    ],
+  "spec.MessageFieldMessage",
+  () => [
+    {no: 1, name: "message_field", kind: "message", T: MessageFieldMessage_TestMessage},
+    {no: 2, name: "repeated_message_field", kind: "message", T: MessageFieldMessage_TestMessage, repeated: true},
+  ],
 );
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
  */
 export const MessageFieldMessage_TestMessage = proto3.makeMessageType(
-    "spec.MessageFieldMessage.TestMessage",
-    () => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ],
-    {localName: "MessageFieldMessage_TestMessage"},
+  "spec.MessageFieldMessage.TestMessage",
+  () => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ],
+  {localName: "MessageFieldMessage_TestMessage"},
 );
 
 

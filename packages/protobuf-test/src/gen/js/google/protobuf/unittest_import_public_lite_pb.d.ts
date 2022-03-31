@@ -42,24 +42,24 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare class PublicImportMessageLite extends Message<PublicImportMessageLite> {
 
-    /**
-     * @generated from field: optional int32 e = 1;
-     */
-    e?: number;
+  /**
+   * @generated from field: optional int32 e = 1;
+   */
+  e?: number;
 
-    constructor(data?: PartialMessage<PublicImportMessageLite>);
+  constructor(data?: PartialMessage<PublicImportMessageLite>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest_import.PublicImportMessageLite";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest_import.PublicImportMessageLite";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessageLite;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicImportMessageLite;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
 
-    static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean;
+  static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean;
 
 }
 

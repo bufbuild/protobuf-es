@@ -44,28 +44,28 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export enum ImportEnumLite {
 
-    /**
-     * @generated from enum value: IMPORT_LITE_FOO = 7;
-     */
-    IMPORT_LITE_FOO = 7,
+  /**
+   * @generated from enum value: IMPORT_LITE_FOO = 7;
+   */
+  IMPORT_LITE_FOO = 7,
 
-    /**
-     * @generated from enum value: IMPORT_LITE_BAR = 8;
-     */
-    IMPORT_LITE_BAR = 8,
+  /**
+   * @generated from enum value: IMPORT_LITE_BAR = 8;
+   */
+  IMPORT_LITE_BAR = 8,
 
-    /**
-     * @generated from enum value: IMPORT_LITE_BAZ = 9;
-     */
-    IMPORT_LITE_BAZ = 9,
+  /**
+   * @generated from enum value: IMPORT_LITE_BAZ = 9;
+   */
+  IMPORT_LITE_BAZ = 9,
 
 }
 
 // Retrieve enum metadata with: proto2.getEnumType(ImportEnumLite)
 proto2.util.setEnumType(ImportEnumLite, "protobuf_unittest_import.ImportEnumLite", [
-    {no: 7, name: "IMPORT_LITE_FOO"},
-    {no: 8, name: "IMPORT_LITE_BAR"},
-    {no: 9, name: "IMPORT_LITE_BAZ"},
+  {no: 7, name: "IMPORT_LITE_FOO"},
+  {no: 8, name: "IMPORT_LITE_BAR"},
+  {no: 9, name: "IMPORT_LITE_BAZ"},
 ]);
 
 /**
@@ -73,37 +73,37 @@ proto2.util.setEnumType(ImportEnumLite, "protobuf_unittest_import.ImportEnumLite
  */
 export class ImportMessageLite extends Message<ImportMessageLite> {
 
-    /**
-     * @generated from field: optional int32 d = 1;
-     */
-    d?: number;
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
 
-    constructor(data?: PartialMessage<ImportMessageLite>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ImportMessageLite>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessageLite {
-        return new ImportMessageLite().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessageLite {
+    return new ImportMessageLite().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessageLite {
-        return new ImportMessageLite().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessageLite {
+    return new ImportMessageLite().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite {
-        return new ImportMessageLite().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite {
+    return new ImportMessageLite().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean {
-        return proto2.util.equals(ImportMessageLite, a, b);
-    }
+  static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean {
+    return proto2.util.equals(ImportMessageLite, a, b);
+  }
 
 }
 

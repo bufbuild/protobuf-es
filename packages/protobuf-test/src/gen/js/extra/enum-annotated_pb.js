@@ -22,11 +22,11 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.AnnotatedEnum
  */
 export const AnnotatedEnum = proto3.makeEnum(
-    "spec.AnnotatedEnum",
-    [
-        {no: 0, name: "UNSPECIFIED"},
-        {no: 1, name: "FOO"},
-    ],
+  "spec.AnnotatedEnum",
+  [
+    {no: 0, name: "UNSPECIFIED"},
+    {no: 1, name: "FOO"},
+  ],
 );
 
 

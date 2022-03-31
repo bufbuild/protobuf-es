@@ -24,29 +24,29 @@ import {Message, proto3} from "@bufbuild/protobuf";
  */
 export declare class MessageFieldMessage extends Message<MessageFieldMessage> {
 
-    /**
-     * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
-     */
-    messageField?: MessageFieldMessage_TestMessage;
+  /**
+   * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
+   */
+  messageField?: MessageFieldMessage_TestMessage;
 
-    /**
-     * @generated from field: repeated spec.MessageFieldMessage.TestMessage repeated_message_field = 2;
-     */
-    repeatedMessageField: MessageFieldMessage_TestMessage[];
+  /**
+   * @generated from field: repeated spec.MessageFieldMessage.TestMessage repeated_message_field = 2;
+   */
+  repeatedMessageField: MessageFieldMessage_TestMessage[];
 
-    constructor(data?: PartialMessage<MessageFieldMessage>);
+  constructor(data?: PartialMessage<MessageFieldMessage>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.MessageFieldMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.MessageFieldMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageFieldMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageFieldMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage;
 
-    static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean;
+  static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean;
 
 }
 
@@ -55,24 +55,24 @@ export declare class MessageFieldMessage extends Message<MessageFieldMessage> {
  */
 export declare class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage_TestMessage> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name: string;
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
 
-    constructor(data?: PartialMessage<MessageFieldMessage_TestMessage>);
+  constructor(data?: PartialMessage<MessageFieldMessage_TestMessage>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.MessageFieldMessage.TestMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.MessageFieldMessage.TestMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage_TestMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageFieldMessage_TestMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
 
-    static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean;
+  static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean;
 
 }
 

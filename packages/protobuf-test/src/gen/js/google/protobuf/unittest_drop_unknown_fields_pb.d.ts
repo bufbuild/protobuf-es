@@ -40,29 +40,29 @@ import {Message, proto3} from "@bufbuild/protobuf";
  */
 export declare class Foo extends Message<Foo> {
 
-    /**
-     * @generated from field: int32 int32_value = 1;
-     */
-    int32Value: number;
+  /**
+   * @generated from field: int32 int32_value = 1;
+   */
+  int32Value: number;
 
-    /**
-     * @generated from field: unittest_drop_unknown_fields.Foo.NestedEnum enum_value = 2;
-     */
-    enumValue: Foo_NestedEnum;
+  /**
+   * @generated from field: unittest_drop_unknown_fields.Foo.NestedEnum enum_value = 2;
+   */
+  enumValue: Foo_NestedEnum;
 
-    constructor(data?: PartialMessage<Foo>);
+  constructor(data?: PartialMessage<Foo>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "unittest_drop_unknown_fields.Foo";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "unittest_drop_unknown_fields.Foo";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Foo;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Foo;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Foo;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Foo;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Foo;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Foo;
 
-    static equals(a: Foo | PlainMessage<Foo> | undefined, b: Foo | PlainMessage<Foo> | undefined): boolean;
+  static equals(a: Foo | PlainMessage<Foo> | undefined, b: Foo | PlainMessage<Foo> | undefined): boolean;
 
 }
 
@@ -71,20 +71,20 @@ export declare class Foo extends Message<Foo> {
  */
 export declare enum Foo_NestedEnum {
 
-    /**
-     * @generated from enum value: FOO = 0;
-     */
-    FOO = 0,
+  /**
+   * @generated from enum value: FOO = 0;
+   */
+  FOO = 0,
 
-    /**
-     * @generated from enum value: BAR = 1;
-     */
-    BAR = 1,
+  /**
+   * @generated from enum value: BAR = 1;
+   */
+  BAR = 1,
 
-    /**
-     * @generated from enum value: BAZ = 2;
-     */
-    BAZ = 2,
+  /**
+   * @generated from enum value: BAZ = 2;
+   */
+  BAZ = 2,
 
 }
 
@@ -95,34 +95,34 @@ export declare enum Foo_NestedEnum {
  */
 export declare class FooWithExtraFields extends Message<FooWithExtraFields> {
 
-    /**
-     * @generated from field: int32 int32_value = 1;
-     */
-    int32Value: number;
+  /**
+   * @generated from field: int32 int32_value = 1;
+   */
+  int32Value: number;
 
-    /**
-     * @generated from field: unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum enum_value = 2;
-     */
-    enumValue: FooWithExtraFields_NestedEnum;
+  /**
+   * @generated from field: unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum enum_value = 2;
+   */
+  enumValue: FooWithExtraFields_NestedEnum;
 
-    /**
-     * @generated from field: int32 extra_int32_value = 3;
-     */
-    extraInt32Value: number;
+  /**
+   * @generated from field: int32 extra_int32_value = 3;
+   */
+  extraInt32Value: number;
 
-    constructor(data?: PartialMessage<FooWithExtraFields>);
+  constructor(data?: PartialMessage<FooWithExtraFields>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "unittest_drop_unknown_fields.FooWithExtraFields";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "unittest_drop_unknown_fields.FooWithExtraFields";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FooWithExtraFields;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FooWithExtraFields;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FooWithExtraFields;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FooWithExtraFields;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooWithExtraFields;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooWithExtraFields;
 
-    static equals(a: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined, b: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined): boolean;
+  static equals(a: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined, b: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined): boolean;
 
 }
 
@@ -131,25 +131,25 @@ export declare class FooWithExtraFields extends Message<FooWithExtraFields> {
  */
 export declare enum FooWithExtraFields_NestedEnum {
 
-    /**
-     * @generated from enum value: FOO = 0;
-     */
-    FOO = 0,
+  /**
+   * @generated from enum value: FOO = 0;
+   */
+  FOO = 0,
 
-    /**
-     * @generated from enum value: BAR = 1;
-     */
-    BAR = 1,
+  /**
+   * @generated from enum value: BAR = 1;
+   */
+  BAR = 1,
 
-    /**
-     * @generated from enum value: BAZ = 2;
-     */
-    BAZ = 2,
+  /**
+   * @generated from enum value: BAZ = 2;
+   */
+  BAZ = 2,
 
-    /**
-     * @generated from enum value: QUX = 3;
-     */
-    QUX = 3,
+  /**
+   * @generated from enum value: QUX = 3;
+   */
+  QUX = 3,
 
 }
 

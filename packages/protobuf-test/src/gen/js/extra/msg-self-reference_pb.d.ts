@@ -24,34 +24,34 @@ import {Message, proto3} from "@bufbuild/protobuf";
  */
 export declare class SelfReferencingMessage extends Message<SelfReferencingMessage> {
 
-    /**
-     * @generated from field: spec.SelfReferencingMessage self = 1;
-     */
-    self?: SelfReferencingMessage;
+  /**
+   * @generated from field: spec.SelfReferencingMessage self = 1;
+   */
+  self?: SelfReferencingMessage;
 
-    /**
-     * @generated from field: repeated spec.SelfReferencingMessage self_list = 2;
-     */
-    selfList: SelfReferencingMessage[];
+  /**
+   * @generated from field: repeated spec.SelfReferencingMessage self_list = 2;
+   */
+  selfList: SelfReferencingMessage[];
 
-    /**
-     * @generated from field: map<string, spec.SelfReferencingMessage> self_map = 3;
-     */
-    selfMap: { [key: string]: SelfReferencingMessage };
+  /**
+   * @generated from field: map<string, spec.SelfReferencingMessage> self_map = 3;
+   */
+  selfMap: { [key: string]: SelfReferencingMessage };
 
-    constructor(data?: PartialMessage<SelfReferencingMessage>);
+  constructor(data?: PartialMessage<SelfReferencingMessage>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.SelfReferencingMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.SelfReferencingMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SelfReferencingMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SelfReferencingMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SelfReferencingMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SelfReferencingMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SelfReferencingMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SelfReferencingMessage;
 
-    static equals(a: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined, b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined): boolean;
+  static equals(a: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined, b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined): boolean;
 
 }
 

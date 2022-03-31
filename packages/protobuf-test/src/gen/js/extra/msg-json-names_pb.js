@@ -22,16 +22,16 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from message spec.JsonNamesMessage
  */
 export const JsonNamesMessage = proto3.makeMessageType(
-    "spec.JsonNamesMessage",
-    () => [
-        {no: 1, name: "scalar_field", jsonName: "scalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repeated_scalar_field", jsonName: "repeatedScalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
-        {no: 3, name: "a", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "b", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 7, name: "e", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ],
+  "spec.JsonNamesMessage",
+  () => [
+    {no: 1, name: "scalar_field", jsonName: "scalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repeated_scalar_field", jsonName: "repeatedScalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true},
+    {no: 3, name: "a", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "b", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 7, name: "e", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ],
 );
 
 

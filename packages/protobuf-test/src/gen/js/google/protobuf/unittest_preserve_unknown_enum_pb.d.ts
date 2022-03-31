@@ -40,20 +40,20 @@ import {Message, proto3} from "@bufbuild/protobuf";
  */
 export declare enum MyEnum {
 
-    /**
-     * @generated from enum value: FOO = 0;
-     */
-    FOO = 0,
+  /**
+   * @generated from enum value: FOO = 0;
+   */
+  FOO = 0,
 
-    /**
-     * @generated from enum value: BAR = 1;
-     */
-    BAR = 1,
+  /**
+   * @generated from enum value: BAR = 1;
+   */
+  BAR = 1,
 
-    /**
-     * @generated from enum value: BAZ = 2;
-     */
-    BAZ = 2,
+  /**
+   * @generated from enum value: BAZ = 2;
+   */
+  BAZ = 2,
 
 }
 
@@ -63,25 +63,25 @@ export declare enum MyEnum {
  */
 export declare enum MyEnumPlusExtra {
 
-    /**
-     * @generated from enum value: E_FOO = 0;
-     */
-    E_FOO = 0,
+  /**
+   * @generated from enum value: E_FOO = 0;
+   */
+  E_FOO = 0,
 
-    /**
-     * @generated from enum value: E_BAR = 1;
-     */
-    E_BAR = 1,
+  /**
+   * @generated from enum value: E_BAR = 1;
+   */
+  E_BAR = 1,
 
-    /**
-     * @generated from enum value: E_BAZ = 2;
-     */
-    E_BAZ = 2,
+  /**
+   * @generated from enum value: E_BAZ = 2;
+   */
+  E_BAZ = 2,
 
-    /**
-     * @generated from enum value: E_EXTRA = 3;
-     */
-    E_EXTRA = 3,
+  /**
+   * @generated from enum value: E_EXTRA = 3;
+   */
+  E_EXTRA = 3,
 
 }
 
@@ -91,58 +91,58 @@ export declare enum MyEnumPlusExtra {
  */
 export declare class MyMessage extends Message<MyMessage> {
 
+  /**
+   * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
+   */
+  e: MyEnum;
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+   */
+  repeatedE: MyEnum[];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
+   */
+  repeatedPackedE: MyEnum[];
+
+  /**
+   * not packed
+   *
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4;
+   */
+  repeatedPackedUnexpectedE: MyEnumPlusExtra[];
+
+  /**
+   * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessage.o
+   */
+  o: {
     /**
-     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum e = 1;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
      */
-    e: MyEnum;
-
+    value: MyEnum;
+    case: "oneofE1";
+  } | {
     /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
      */
-    repeatedE: MyEnum[];
+    value: MyEnum;
+    case: "oneofE2";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnum repeated_packed_e = 3 [packed = true];
-     */
-    repeatedPackedE: MyEnum[];
+  constructor(data?: PartialMessage<MyMessage>);
 
-    /**
-     * not packed
-     *
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4;
-     */
-    repeatedPackedUnexpectedE: MyEnumPlusExtra[];
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessage";
+  static readonly fields: FieldList;
 
-    /**
-     * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessage.o
-     */
-    o: {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_1 = 5;
-         */
-        value: MyEnum;
-        case: "oneofE1";
-    } | {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnum oneof_e_2 = 6;
-         */
-        value: MyEnum;
-        case: "oneofE2";
-    } | { case: undefined; value?: undefined };
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage;
 
-    constructor(data?: PartialMessage<MyMessage>);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessage";
-    static readonly fields: FieldList;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessage;
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessage;
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
-
-    static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
+  static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
 
 }
 
@@ -152,56 +152,56 @@ export declare class MyMessage extends Message<MyMessage> {
  */
 export declare class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
 
+  /**
+   * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
+   */
+  e: MyEnumPlusExtra;
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_e = 2;
+   */
+  repeatedE: MyEnumPlusExtra[];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_e = 3 [packed = true];
+   */
+  repeatedPackedE: MyEnumPlusExtra[];
+
+  /**
+   * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4 [packed = true];
+   */
+  repeatedPackedUnexpectedE: MyEnumPlusExtra[];
+
+  /**
+   * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra.o
+   */
+  o: {
     /**
-     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra e = 1;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_1 = 5;
      */
-    e: MyEnumPlusExtra;
-
+    value: MyEnumPlusExtra;
+    case: "oneofE1";
+  } | {
     /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_e = 2;
+     * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_2 = 6;
      */
-    repeatedE: MyEnumPlusExtra[];
+    value: MyEnumPlusExtra;
+    case: "oneofE2";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_e = 3 [packed = true];
-     */
-    repeatedPackedE: MyEnumPlusExtra[];
+  constructor(data?: PartialMessage<MyMessagePlusExtra>);
 
-    /**
-     * @generated from field: repeated proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra repeated_packed_unexpected_e = 4 [packed = true];
-     */
-    repeatedPackedUnexpectedE: MyEnumPlusExtra[];
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra";
+  static readonly fields: FieldList;
 
-    /**
-     * @generated from oneof proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra.o
-     */
-    o: {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_1 = 5;
-         */
-        value: MyEnumPlusExtra;
-        case: "oneofE1";
-    } | {
-        /**
-         * @generated from field: proto3_preserve_unknown_enum_unittest.MyEnumPlusExtra oneof_e_2 = 6;
-         */
-        value: MyEnumPlusExtra;
-        case: "oneofE2";
-    } | { case: undefined; value?: undefined };
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessagePlusExtra;
 
-    constructor(data?: PartialMessage<MyMessagePlusExtra>);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra";
-    static readonly fields: FieldList;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MyMessagePlusExtra;
-
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
-
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
-
-    static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean;
+  static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean;
 
 }
 

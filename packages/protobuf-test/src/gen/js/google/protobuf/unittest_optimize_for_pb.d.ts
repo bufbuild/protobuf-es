@@ -47,46 +47,46 @@ import type {ForeignMessage} from "./unittest_pb.js";
  */
 export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> {
 
+  /**
+   * @generated from field: optional int32 i = 1;
+   */
+  i?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;
+   */
+  msg?: ForeignMessage;
+
+  /**
+   * @generated from oneof protobuf_unittest.TestOptimizedForSize.foo
+   */
+  foo: {
     /**
-     * @generated from field: optional int32 i = 1;
+     * @generated from field: int32 integer_field = 2;
      */
-    i?: number;
-
+    value: number;
+    case: "integerField";
+  } | {
     /**
-     * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;
+     * @generated from field: string string_field = 3;
      */
-    msg?: ForeignMessage;
+    value: string;
+    case: "stringField";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from oneof protobuf_unittest.TestOptimizedForSize.foo
-     */
-    foo: {
-        /**
-         * @generated from field: int32 integer_field = 2;
-         */
-        value: number;
-        case: "integerField";
-    } | {
-        /**
-         * @generated from field: string string_field = 3;
-         */
-        value: string;
-        case: "stringField";
-    } | { case: undefined; value?: undefined };
+  constructor(data?: PartialMessage<TestOptimizedForSize>);
 
-    constructor(data?: PartialMessage<TestOptimizedForSize>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestOptimizedForSize";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestOptimizedForSize";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptimizedForSize;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptimizedForSize;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
-
-    static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean;
+  static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean;
 
 }
 
@@ -96,24 +96,24 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
  */
 export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedForSize> {
 
-    /**
-     * @generated from field: required int32 x = 1;
-     */
-    x: number;
+  /**
+   * @generated from field: required int32 x = 1;
+   */
+  x: number;
 
-    constructor(data?: PartialMessage<TestRequiredOptimizedForSize>);
+  constructor(data?: PartialMessage<TestRequiredOptimizedForSize>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestRequiredOptimizedForSize";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredOptimizedForSize";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredOptimizedForSize;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredOptimizedForSize;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
 
-    static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean;
+  static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean;
 
 }
 
@@ -123,24 +123,24 @@ export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOp
  */
 export declare class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedForSize> {
 
-    /**
-     * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
-     */
-    o?: TestRequiredOptimizedForSize;
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
+   */
+  o?: TestRequiredOptimizedForSize;
 
-    constructor(data?: PartialMessage<TestOptionalOptimizedForSize>);
+  constructor(data?: PartialMessage<TestOptionalOptimizedForSize>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestOptionalOptimizedForSize";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestOptionalOptimizedForSize";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptionalOptimizedForSize;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptionalOptimizedForSize;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
 
-    static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean;
+  static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean;
 
 }
 

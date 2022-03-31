@@ -38,23 +38,23 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from message unittest_drop_unknown_fields.Foo
  */
 export const Foo = proto3.makeMessageType(
-    "unittest_drop_unknown_fields.Foo",
-    () => [
-        {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum)},
-    ],
+  "unittest_drop_unknown_fields.Foo",
+  () => [
+    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(Foo_NestedEnum)},
+  ],
 );
 
 /**
  * @generated from enum unittest_drop_unknown_fields.Foo.NestedEnum
  */
 export const Foo_NestedEnum = proto3.makeEnum(
-    "unittest_drop_unknown_fields.Foo.NestedEnum",
-    [
-        {no: 0, name: "FOO"},
-        {no: 1, name: "BAR"},
-        {no: 2, name: "BAZ"},
-    ],
+  "unittest_drop_unknown_fields.Foo.NestedEnum",
+  [
+    {no: 0, name: "FOO"},
+    {no: 1, name: "BAR"},
+    {no: 2, name: "BAZ"},
+  ],
 );
 
 
@@ -63,25 +63,25 @@ export const Foo_NestedEnum = proto3.makeEnum(
  * @generated from message unittest_drop_unknown_fields.FooWithExtraFields
  */
 export const FooWithExtraFields = proto3.makeMessageType(
-    "unittest_drop_unknown_fields.FooWithExtraFields",
-    () => [
-        {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum)},
-        {no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    ],
+  "unittest_drop_unknown_fields.FooWithExtraFields",
+  () => [
+    {no: 1, name: "int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 2, name: "enum_value", kind: "enum", T: proto3.getEnumType(FooWithExtraFields_NestedEnum)},
+    {no: 3, name: "extra_int32_value", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+  ],
 );
 
 /**
  * @generated from enum unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum
  */
 export const FooWithExtraFields_NestedEnum = proto3.makeEnum(
-    "unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum",
-    [
-        {no: 0, name: "FOO"},
-        {no: 1, name: "BAR"},
-        {no: 2, name: "BAZ"},
-        {no: 3, name: "QUX"},
-    ],
+  "unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum",
+  [
+    {no: 0, name: "FOO"},
+    {no: 1, name: "BAR"},
+    {no: 2, name: "BAZ"},
+    {no: 3, name: "QUX"},
+  ],
 );
 
 

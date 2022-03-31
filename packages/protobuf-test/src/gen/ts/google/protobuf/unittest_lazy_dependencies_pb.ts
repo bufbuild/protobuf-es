@@ -51,37 +51,37 @@ import {LazyMessage} from "./unittest_lazy_dependencies_custom_option_pb.js";
  */
 export class ImportedMessage extends Message<ImportedMessage> {
 
-    /**
-     * @generated from field: optional protobuf_unittest.lazy_imports.LazyMessage lazy_message = 1;
-     */
-    lazyMessage?: LazyMessage;
+  /**
+   * @generated from field: optional protobuf_unittest.lazy_imports.LazyMessage lazy_message = 1;
+   */
+  lazyMessage?: LazyMessage;
 
-    constructor(data?: PartialMessage<ImportedMessage>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ImportedMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.lazy_imports.ImportedMessage";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.lazy_imports.ImportedMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportedMessage {
-        return new ImportedMessage().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportedMessage {
+    return new ImportedMessage().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportedMessage {
-        return new ImportedMessage().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportedMessage {
+    return new ImportedMessage().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportedMessage {
-        return new ImportedMessage().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportedMessage {
+    return new ImportedMessage().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean {
-        return proto2.util.equals(ImportedMessage, a, b);
-    }
+  static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean {
+    return proto2.util.equals(ImportedMessage, a, b);
+  }
 
 }
 
@@ -91,31 +91,31 @@ export class ImportedMessage extends Message<ImportedMessage> {
  */
 export class MessageCustomOption extends Message<MessageCustomOption> {
 
-    constructor(data?: PartialMessage<MessageCustomOption>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<MessageCustomOption>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageCustomOption {
-        return new MessageCustomOption().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageCustomOption {
+    return new MessageCustomOption().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageCustomOption {
-        return new MessageCustomOption().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageCustomOption {
+    return new MessageCustomOption().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption {
-        return new MessageCustomOption().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption {
+    return new MessageCustomOption().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean {
-        return proto2.util.equals(MessageCustomOption, a, b);
-    }
+  static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean {
+    return proto2.util.equals(MessageCustomOption, a, b);
+  }
 
 }
 
@@ -125,31 +125,31 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
  */
 export class MessageCustomOption2 extends Message<MessageCustomOption2> {
 
-    constructor(data?: PartialMessage<MessageCustomOption2>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<MessageCustomOption2>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption2";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption2";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageCustomOption2 {
-        return new MessageCustomOption2().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageCustomOption2 {
+    return new MessageCustomOption2().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageCustomOption2 {
-        return new MessageCustomOption2().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageCustomOption2 {
+    return new MessageCustomOption2().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption2 {
-        return new MessageCustomOption2().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption2 {
+    return new MessageCustomOption2().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean {
-        return proto2.util.equals(MessageCustomOption2, a, b);
-    }
+  static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean {
+    return proto2.util.equals(MessageCustomOption2, a, b);
+  }
 
 }
 

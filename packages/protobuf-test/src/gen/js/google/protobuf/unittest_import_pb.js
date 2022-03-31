@@ -49,12 +49,12 @@ import {proto2} from "@bufbuild/protobuf";
  * @generated from enum protobuf_unittest_import.ImportEnum
  */
 export const ImportEnum = proto2.makeEnum(
-    "protobuf_unittest_import.ImportEnum",
-    [
-        {no: 7, name: "IMPORT_FOO"},
-        {no: 8, name: "IMPORT_BAR"},
-        {no: 9, name: "IMPORT_BAZ"},
-    ],
+  "protobuf_unittest_import.ImportEnum",
+  [
+    {no: 7, name: "IMPORT_FOO"},
+    {no: 8, name: "IMPORT_BAR"},
+    {no: 9, name: "IMPORT_BAZ"},
+  ],
 );
 
 
@@ -64,12 +64,12 @@ export const ImportEnum = proto2.makeEnum(
  * @generated from enum protobuf_unittest_import.ImportEnumForMap
  */
 export const ImportEnumForMap = proto2.makeEnum(
-    "protobuf_unittest_import.ImportEnumForMap",
-    [
-        {no: 0, name: "UNKNOWN"},
-        {no: 1, name: "FOO"},
-        {no: 2, name: "BAR"},
-    ],
+  "protobuf_unittest_import.ImportEnumForMap",
+  [
+    {no: 0, name: "UNKNOWN"},
+    {no: 1, name: "FOO"},
+    {no: 2, name: "BAR"},
+  ],
 );
 
 
@@ -77,10 +77,10 @@ export const ImportEnumForMap = proto2.makeEnum(
  * @generated from message protobuf_unittest_import.ImportMessage
  */
 export const ImportMessage = proto2.makeMessageType(
-    "protobuf_unittest_import.ImportMessage",
-    () => [
-        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
+  "protobuf_unittest_import.ImportMessage",
+  () => [
+    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+  ],
 );
 
 

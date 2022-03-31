@@ -49,21 +49,21 @@ import {proto2} from "@bufbuild/protobuf";
  */
 export enum LazyEnum {
 
-    /**
-     * @generated from enum value: LAZY_ENUM_0 = 0;
-     */
-    LAZY_ENUM_0 = 0,
+  /**
+   * @generated from enum value: LAZY_ENUM_0 = 0;
+   */
+  LAZY_ENUM_0 = 0,
 
-    /**
-     * @generated from enum value: LAZY_ENUM_1 = 1;
-     */
-    LAZY_ENUM_1 = 1,
+  /**
+   * @generated from enum value: LAZY_ENUM_1 = 1;
+   */
+  LAZY_ENUM_1 = 1,
 
 }
 
 // Retrieve enum metadata with: proto2.getEnumType(LazyEnum)
 proto2.util.setEnumType(LazyEnum, "protobuf_unittest.lazy_imports.LazyEnum", [
-    {no: 0, name: "LAZY_ENUM_0"},
-    {no: 1, name: "LAZY_ENUM_1"},
+  {no: 0, name: "LAZY_ENUM_0"},
+  {no: 1, name: "LAZY_ENUM_1"},
 ]);
 

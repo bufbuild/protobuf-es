@@ -38,12 +38,12 @@ import {proto2} from "@bufbuild/protobuf";
  * @generated from enum proto2_preserve_unknown_enum_unittest.MyEnum
  */
 export const MyEnum = proto2.makeEnum(
-    "proto2_preserve_unknown_enum_unittest.MyEnum",
-    [
-        {no: 0, name: "FOO"},
-        {no: 1, name: "BAR"},
-        {no: 2, name: "BAZ"},
-    ],
+  "proto2_preserve_unknown_enum_unittest.MyEnum",
+  [
+    {no: 0, name: "FOO"},
+    {no: 1, name: "BAR"},
+    {no: 2, name: "BAZ"},
+  ],
 );
 
 
@@ -51,15 +51,15 @@ export const MyEnum = proto2.makeEnum(
  * @generated from message proto2_preserve_unknown_enum_unittest.MyMessage
  */
 export const MyMessage = proto2.makeMessageType(
-    "proto2_preserve_unknown_enum_unittest.MyMessage",
-    () => [
-        {no: 1, name: "e", kind: "enum", T: proto2.getEnumType(MyEnum), opt: true},
-        {no: 2, name: "repeated_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
-        {no: 3, name: "repeated_packed_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true, packed: true},
-        {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
-        {no: 5, name: "oneof_e_1", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
-        {no: 6, name: "oneof_e_2", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
-    ],
+  "proto2_preserve_unknown_enum_unittest.MyMessage",
+  () => [
+    {no: 1, name: "e", kind: "enum", T: proto2.getEnumType(MyEnum), opt: true},
+    {no: 2, name: "repeated_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
+    {no: 3, name: "repeated_packed_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true, packed: true},
+    {no: 4, name: "repeated_packed_unexpected_e", kind: "enum", T: proto2.getEnumType(MyEnum), repeated: true},
+    {no: 5, name: "oneof_e_1", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
+    {no: 6, name: "oneof_e_2", kind: "enum", T: proto2.getEnumType(MyEnum), oneof: "o"},
+  ],
 );
 
 

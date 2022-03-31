@@ -49,10 +49,10 @@ import {LazyMessage} from "./unittest_lazy_dependencies_custom_option_pb.js";
  * @generated from message protobuf_unittest.lazy_imports.ImportedMessage
  */
 export const ImportedMessage = proto2.makeMessageType(
-    "protobuf_unittest.lazy_imports.ImportedMessage",
-    () => [
-        {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
-    ],
+  "protobuf_unittest.lazy_imports.ImportedMessage",
+  () => [
+    {no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true},
+  ],
 );
 
 
@@ -60,8 +60,8 @@ export const ImportedMessage = proto2.makeMessageType(
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
 export const MessageCustomOption = proto2.makeMessageType(
-    "protobuf_unittest.lazy_imports.MessageCustomOption",
-    [],
+  "protobuf_unittest.lazy_imports.MessageCustomOption",
+  [],
 );
 
 
@@ -69,8 +69,8 @@ export const MessageCustomOption = proto2.makeMessageType(
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
 export const MessageCustomOption2 = proto2.makeMessageType(
-    "protobuf_unittest.lazy_imports.MessageCustomOption2",
-    [],
+  "protobuf_unittest.lazy_imports.MessageCustomOption2",
+  [],
 );
 
 

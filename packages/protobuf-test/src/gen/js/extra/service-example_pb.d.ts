@@ -24,26 +24,26 @@ import {Message, proto3} from "@bufbuild/protobuf";
  */
 export declare enum FailRequest {
 
-    /**
-     * don't fail
-     *
-     * @generated from enum value: FAIL_REQUEST_NONE = 0;
-     */
-    FAIL_REQUEST_NONE = 0,
+  /**
+   * don't fail
+   *
+   * @generated from enum value: FAIL_REQUEST_NONE = 0;
+   */
+  FAIL_REQUEST_NONE = 0,
 
-    /**
-     * send an error status trailer after sending a message
-     *
-     * @generated from enum value: MESSAGE_THEN_ERROR_STATUS = 1;
-     */
-    MESSAGE_THEN_ERROR_STATUS = 1,
+  /**
+   * send an error status trailer after sending a message
+   *
+   * @generated from enum value: MESSAGE_THEN_ERROR_STATUS = 1;
+   */
+  MESSAGE_THEN_ERROR_STATUS = 1,
 
-    /**
-     * send an error status, don't send any message
-     *
-     * @generated from enum value: ERROR_STATUS_ONLY = 2;
-     */
-    ERROR_STATUS_ONLY = 2,
+  /**
+   * send an error status, don't send any message
+   *
+   * @generated from enum value: ERROR_STATUS_ONLY = 2;
+   */
+  ERROR_STATUS_ONLY = 2,
 
 }
 
@@ -53,47 +53,47 @@ export declare enum FailRequest {
  */
 export declare class ExampleRequest extends Message<ExampleRequest> {
 
-    /**
-     * any text
-     *
-     * @generated from field: string question = 1;
-     */
-    question: string;
+  /**
+   * any text
+   *
+   * @generated from field: string question = 1;
+   */
+  question: string;
 
-    /**
-     * the server should simulate an error in the requested way 
-     *
-     * @generated from field: spec.FailRequest please_fail = 2;
-     */
-    pleaseFail: FailRequest;
+  /**
+   * the server should simulate an error in the requested way 
+   *
+   * @generated from field: spec.FailRequest please_fail = 2;
+   */
+  pleaseFail: FailRequest;
 
-    /**
-     * the server should delay it's response for this amount of milliseconds
-     *
-     * @generated from field: int32 please_delay_response_ms = 3;
-     */
-    pleaseDelayResponseMs: number;
+  /**
+   * the server should delay it's response for this amount of milliseconds
+   *
+   * @generated from field: int32 please_delay_response_ms = 3;
+   */
+  pleaseDelayResponseMs: number;
 
-    /**
-     * by default, the server always writes some custom response headers
-     *
-     * @generated from field: bool disable_sending_example_response_headers = 4;
-     */
-    disableSendingExampleResponseHeaders: boolean;
+  /**
+   * by default, the server always writes some custom response headers
+   *
+   * @generated from field: bool disable_sending_example_response_headers = 4;
+   */
+  disableSendingExampleResponseHeaders: boolean;
 
-    constructor(data?: PartialMessage<ExampleRequest>);
+  constructor(data?: PartialMessage<ExampleRequest>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.ExampleRequest";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.ExampleRequest";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleRequest;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleRequest;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExampleRequest;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExampleRequest;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleRequest;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleRequest;
 
-    static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean;
+  static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean;
 
 }
 
@@ -103,47 +103,47 @@ export declare class ExampleRequest extends Message<ExampleRequest> {
  */
 export declare class ExampleResponse extends Message<ExampleResponse> {
 
-    /**
-     * any text
-     *
-     * @generated from field: string answer = 1;
-     */
-    answer: string;
+  /**
+   * any text
+   *
+   * @generated from field: string answer = 1;
+   */
+  answer: string;
 
-    /**
-     * contains the request headers that the server received
-     *
-     * @generated from field: map<string, string> your_request_headers = 2;
-     */
-    yourRequestHeaders: { [key: string]: string };
+  /**
+   * contains the request headers that the server received
+   *
+   * @generated from field: map<string, string> your_request_headers = 2;
+   */
+  yourRequestHeaders: { [key: string]: string };
 
-    /**
-     * contains the deadline that the server received 
-     *
-     * @generated from field: string your_deadline = 3;
-     */
-    yourDeadline: string;
+  /**
+   * contains the deadline that the server received 
+   *
+   * @generated from field: string your_deadline = 3;
+   */
+  yourDeadline: string;
 
-    /**
-     * the failure requested 
-     *
-     * @generated from field: spec.FailRequest your_fail_request = 4;
-     */
-    yourFailRequest: FailRequest;
+  /**
+   * the failure requested 
+   *
+   * @generated from field: spec.FailRequest your_fail_request = 4;
+   */
+  yourFailRequest: FailRequest;
 
-    constructor(data?: PartialMessage<ExampleResponse>);
+  constructor(data?: PartialMessage<ExampleResponse>);
 
-    static readonly runtime: typeof proto3;
-    static readonly typeName = "spec.ExampleResponse";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.ExampleResponse";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleResponse;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExampleResponse;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExampleResponse;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExampleResponse;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleResponse;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleResponse;
 
-    static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean;
+  static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean;
 
 }
 

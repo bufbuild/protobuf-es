@@ -51,20 +51,20 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare enum ImportEnum {
 
-    /**
-     * @generated from enum value: IMPORT_FOO = 7;
-     */
-    IMPORT_FOO = 7,
+  /**
+   * @generated from enum value: IMPORT_FOO = 7;
+   */
+  IMPORT_FOO = 7,
 
-    /**
-     * @generated from enum value: IMPORT_BAR = 8;
-     */
-    IMPORT_BAR = 8,
+  /**
+   * @generated from enum value: IMPORT_BAR = 8;
+   */
+  IMPORT_BAR = 8,
 
-    /**
-     * @generated from enum value: IMPORT_BAZ = 9;
-     */
-    IMPORT_BAZ = 9,
+  /**
+   * @generated from enum value: IMPORT_BAZ = 9;
+   */
+  IMPORT_BAZ = 9,
 
 }
 
@@ -76,20 +76,20 @@ export declare enum ImportEnum {
  */
 export declare enum ImportEnumForMap {
 
-    /**
-     * @generated from enum value: UNKNOWN = 0;
-     */
-    UNKNOWN = 0,
+  /**
+   * @generated from enum value: UNKNOWN = 0;
+   */
+  UNKNOWN = 0,
 
-    /**
-     * @generated from enum value: FOO = 1;
-     */
-    FOO = 1,
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
 
-    /**
-     * @generated from enum value: BAR = 2;
-     */
-    BAR = 2,
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
 
 }
 
@@ -99,24 +99,24 @@ export declare enum ImportEnumForMap {
  */
 export declare class ImportMessage extends Message<ImportMessage> {
 
-    /**
-     * @generated from field: optional int32 d = 1;
-     */
-    d?: number;
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
 
-    constructor(data?: PartialMessage<ImportMessage>);
+  constructor(data?: PartialMessage<ImportMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest_import.ImportMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest_import.ImportMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessage;
 
-    static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean;
+  static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean;
 
 }
 

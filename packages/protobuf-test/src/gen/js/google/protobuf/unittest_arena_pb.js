@@ -38,10 +38,10 @@ import {proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_arena_unittest.NestedMessage
  */
 export const NestedMessage = proto2.makeMessageType(
-    "proto2_arena_unittest.NestedMessage",
-    () => [
-        {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ],
+  "proto2_arena_unittest.NestedMessage",
+  () => [
+    {no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+  ],
 );
 
 
@@ -49,10 +49,10 @@ export const NestedMessage = proto2.makeMessageType(
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
 export const ArenaMessage = proto2.makeMessageType(
-    "proto2_arena_unittest.ArenaMessage",
-    () => [
-        {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
-    ],
+  "proto2_arena_unittest.ArenaMessage",
+  () => [
+    {no: 1, name: "repeated_nested_message", kind: "message", T: NestedMessage, repeated: true},
+  ],
 );
 
 

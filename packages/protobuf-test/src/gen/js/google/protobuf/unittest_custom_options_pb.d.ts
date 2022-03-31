@@ -49,15 +49,15 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare enum MethodOpt1 {
 
-    /**
-     * @generated from enum value: METHODOPT1_VAL1 = 1;
-     */
-    METHODOPT1_VAL1 = 1,
+  /**
+   * @generated from enum value: METHODOPT1_VAL1 = 1;
+   */
+  METHODOPT1_VAL1 = 1,
 
-    /**
-     * @generated from enum value: METHODOPT1_VAL2 = 2;
-     */
-    METHODOPT1_VAL2 = 2,
+  /**
+   * @generated from enum value: METHODOPT1_VAL2 = 2;
+   */
+  METHODOPT1_VAL2 = 2,
 
 }
 
@@ -67,10 +67,10 @@ export declare enum MethodOpt1 {
  */
 export declare enum AggregateEnum {
 
-    /**
-     * @generated from enum value: VALUE = 1;
-     */
-    VALUE = 1,
+  /**
+   * @generated from enum value: VALUE = 1;
+   */
+  VALUE = 1,
 
 }
 
@@ -83,40 +83,40 @@ export declare enum AggregateEnum {
  */
 export declare class TestMessageWithCustomOptions extends Message<TestMessageWithCustomOptions> {
 
+  /**
+   * @generated from field: optional string field1 = 1;
+   */
+  field1?: string;
+
+  /**
+   * @generated from oneof protobuf_unittest.TestMessageWithCustomOptions.AnOneof
+   */
+  AnOneof: {
     /**
-     * @generated from field: optional string field1 = 1;
+     * @generated from field: int32 oneof_field = 2;
      */
-    field1?: string;
+    value: number;
+    case: "oneofField";
+  } | { case: undefined; value?: undefined };
 
-    /**
-     * @generated from oneof protobuf_unittest.TestMessageWithCustomOptions.AnOneof
-     */
-    AnOneof: {
-        /**
-         * @generated from field: int32 oneof_field = 2;
-         */
-        value: number;
-        case: "oneofField";
-    } | { case: undefined; value?: undefined };
+  /**
+   * @generated from field: map<string, string> map_field = 3;
+   */
+  mapField: { [key: string]: string };
 
-    /**
-     * @generated from field: map<string, string> map_field = 3;
-     */
-    mapField: { [key: string]: string };
+  constructor(data?: PartialMessage<TestMessageWithCustomOptions>);
 
-    constructor(data?: PartialMessage<TestMessageWithCustomOptions>);
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageWithCustomOptions";
+  static readonly fields: FieldList;
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestMessageWithCustomOptions";
-    static readonly fields: FieldList;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithCustomOptions;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithCustomOptions;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithCustomOptions;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithCustomOptions;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithCustomOptions;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithCustomOptions;
-
-    static equals(a: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined, b: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined): boolean;
+  static equals(a: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined, b: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined): boolean;
 
 }
 
@@ -125,15 +125,15 @@ export declare class TestMessageWithCustomOptions extends Message<TestMessageWit
  */
 export declare enum TestMessageWithCustomOptions_AnEnum {
 
-    /**
-     * @generated from enum value: ANENUM_VAL1 = 1;
-     */
-    ANENUM_VAL1 = 1,
+  /**
+   * @generated from enum value: ANENUM_VAL1 = 1;
+   */
+  ANENUM_VAL1 = 1,
 
-    /**
-     * @generated from enum value: ANENUM_VAL2 = 2;
-     */
-    ANENUM_VAL2 = 2,
+  /**
+   * @generated from enum value: ANENUM_VAL2 = 2;
+   */
+  ANENUM_VAL2 = 2,
 
 }
 
@@ -147,19 +147,19 @@ export declare enum TestMessageWithCustomOptions_AnEnum {
  */
 export declare class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
 
-    constructor(data?: PartialMessage<CustomOptionFooRequest>);
+  constructor(data?: PartialMessage<CustomOptionFooRequest>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionFooRequest";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionFooRequest";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooRequest;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooRequest;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooRequest;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooRequest;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooRequest;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooRequest;
 
-    static equals(a: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined, b: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined): boolean;
+  static equals(a: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined, b: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined): boolean;
 
 }
 
@@ -169,19 +169,19 @@ export declare class CustomOptionFooRequest extends Message<CustomOptionFooReque
  */
 export declare class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
 
-    constructor(data?: PartialMessage<CustomOptionFooResponse>);
+  constructor(data?: PartialMessage<CustomOptionFooResponse>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionFooResponse";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionFooResponse";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooResponse;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooResponse;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
 
-    static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean;
+  static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean;
 
 }
 
@@ -191,19 +191,19 @@ export declare class CustomOptionFooResponse extends Message<CustomOptionFooResp
  */
 export declare class CustomOptionFooClientMessage extends Message<CustomOptionFooClientMessage> {
 
-    constructor(data?: PartialMessage<CustomOptionFooClientMessage>);
+  constructor(data?: PartialMessage<CustomOptionFooClientMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionFooClientMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionFooClientMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooClientMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooClientMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooClientMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooClientMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooClientMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooClientMessage;
 
-    static equals(a: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined, b: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined): boolean;
+  static equals(a: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined, b: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined): boolean;
 
 }
 
@@ -213,19 +213,19 @@ export declare class CustomOptionFooClientMessage extends Message<CustomOptionFo
  */
 export declare class CustomOptionFooServerMessage extends Message<CustomOptionFooServerMessage> {
 
-    constructor(data?: PartialMessage<CustomOptionFooServerMessage>);
+  constructor(data?: PartialMessage<CustomOptionFooServerMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionFooServerMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionFooServerMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooServerMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionFooServerMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooServerMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooServerMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooServerMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooServerMessage;
 
-    static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean;
+  static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean;
 
 }
 
@@ -235,19 +235,19 @@ export declare class CustomOptionFooServerMessage extends Message<CustomOptionFo
  */
 export declare class DummyMessageContainingEnum extends Message<DummyMessageContainingEnum> {
 
-    constructor(data?: PartialMessage<DummyMessageContainingEnum>);
+  constructor(data?: PartialMessage<DummyMessageContainingEnum>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.DummyMessageContainingEnum";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.DummyMessageContainingEnum";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DummyMessageContainingEnum;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DummyMessageContainingEnum;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
 
-    static equals(a: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined, b: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined): boolean;
+  static equals(a: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined, b: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined): boolean;
 
 }
 
@@ -256,15 +256,15 @@ export declare class DummyMessageContainingEnum extends Message<DummyMessageCont
  */
 export declare enum DummyMessageContainingEnum_TestEnumType {
 
-    /**
-     * @generated from enum value: TEST_OPTION_ENUM_TYPE1 = 22;
-     */
-    TEST_OPTION_ENUM_TYPE1 = 22,
+  /**
+   * @generated from enum value: TEST_OPTION_ENUM_TYPE1 = 22;
+   */
+  TEST_OPTION_ENUM_TYPE1 = 22,
 
-    /**
-     * @generated from enum value: TEST_OPTION_ENUM_TYPE2 = -23;
-     */
-    TEST_OPTION_ENUM_TYPE2 = -23,
+  /**
+   * @generated from enum value: TEST_OPTION_ENUM_TYPE2 = -23;
+   */
+  TEST_OPTION_ENUM_TYPE2 = -23,
 
 }
 
@@ -275,19 +275,19 @@ export declare enum DummyMessageContainingEnum_TestEnumType {
  */
 export declare class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalidAsOptionType> {
 
-    constructor(data?: PartialMessage<DummyMessageInvalidAsOptionType>);
+  constructor(data?: PartialMessage<DummyMessageInvalidAsOptionType>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.DummyMessageInvalidAsOptionType";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.DummyMessageInvalidAsOptionType";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DummyMessageInvalidAsOptionType;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DummyMessageInvalidAsOptionType;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DummyMessageInvalidAsOptionType;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DummyMessageInvalidAsOptionType;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageInvalidAsOptionType;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageInvalidAsOptionType;
 
-    static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean;
+  static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean;
 
 }
 
@@ -297,19 +297,19 @@ export declare class DummyMessageInvalidAsOptionType extends Message<DummyMessag
  */
 export declare class CustomOptionMinIntegerValues extends Message<CustomOptionMinIntegerValues> {
 
-    constructor(data?: PartialMessage<CustomOptionMinIntegerValues>);
+  constructor(data?: PartialMessage<CustomOptionMinIntegerValues>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionMinIntegerValues";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionMinIntegerValues";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionMinIntegerValues;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionMinIntegerValues;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
 
-    static equals(a: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined, b: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined): boolean;
+  static equals(a: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined, b: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined): boolean;
 
 }
 
@@ -319,19 +319,19 @@ export declare class CustomOptionMinIntegerValues extends Message<CustomOptionMi
  */
 export declare class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxIntegerValues> {
 
-    constructor(data?: PartialMessage<CustomOptionMaxIntegerValues>);
+  constructor(data?: PartialMessage<CustomOptionMaxIntegerValues>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionMaxIntegerValues";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionMaxIntegerValues";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionMaxIntegerValues;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionMaxIntegerValues;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionMaxIntegerValues;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionMaxIntegerValues;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMaxIntegerValues;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMaxIntegerValues;
 
-    static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean;
+  static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean;
 
 }
 
@@ -341,19 +341,19 @@ export declare class CustomOptionMaxIntegerValues extends Message<CustomOptionMa
  */
 export declare class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
 
-    constructor(data?: PartialMessage<CustomOptionOtherValues>);
+  constructor(data?: PartialMessage<CustomOptionOtherValues>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.CustomOptionOtherValues";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.CustomOptionOtherValues";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionOtherValues;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CustomOptionOtherValues;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
 
-    static equals(a: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined, b: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined): boolean;
+  static equals(a: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined, b: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined): boolean;
 
 }
 
@@ -363,19 +363,19 @@ export declare class CustomOptionOtherValues extends Message<CustomOptionOtherVa
  */
 export declare class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositiveInts> {
 
-    constructor(data?: PartialMessage<SettingRealsFromPositiveInts>);
+  constructor(data?: PartialMessage<SettingRealsFromPositiveInts>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.SettingRealsFromPositiveInts";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.SettingRealsFromPositiveInts";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SettingRealsFromPositiveInts;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SettingRealsFromPositiveInts;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SettingRealsFromPositiveInts;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SettingRealsFromPositiveInts;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromPositiveInts;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromPositiveInts;
 
-    static equals(a: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined, b: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined): boolean;
+  static equals(a: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined, b: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined): boolean;
 
 }
 
@@ -385,19 +385,19 @@ export declare class SettingRealsFromPositiveInts extends Message<SettingRealsFr
  */
 export declare class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegativeInts> {
 
-    constructor(data?: PartialMessage<SettingRealsFromNegativeInts>);
+  constructor(data?: PartialMessage<SettingRealsFromNegativeInts>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.SettingRealsFromNegativeInts";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.SettingRealsFromNegativeInts";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SettingRealsFromNegativeInts;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SettingRealsFromNegativeInts;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
 
-    static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean;
+  static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean;
 
 }
 
@@ -407,39 +407,39 @@ export declare class SettingRealsFromNegativeInts extends Message<SettingRealsFr
  */
 export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
 
-    /**
-     * @generated from field: optional int32 foo = 1;
-     */
-    foo?: number;
+  /**
+   * @generated from field: optional int32 foo = 1;
+   */
+  foo?: number;
 
-    /**
-     * @generated from field: optional int32 foo2 = 2;
-     */
-    foo2?: number;
+  /**
+   * @generated from field: optional int32 foo2 = 2;
+   */
+  foo2?: number;
 
-    /**
-     * @generated from field: optional int32 foo3 = 3;
-     */
-    foo3?: number;
+  /**
+   * @generated from field: optional int32 foo3 = 3;
+   */
+  foo3?: number;
 
-    /**
-     * @generated from field: repeated int32 foo4 = 4;
-     */
-    foo4: number[];
+  /**
+   * @generated from field: repeated int32 foo4 = 4;
+   */
+  foo4: number[];
 
-    constructor(data?: PartialMessage<ComplexOptionType1>);
+  constructor(data?: PartialMessage<ComplexOptionType1>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOptionType1";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOptionType1";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType1;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType1;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType1;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType1;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType1;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType1;
 
-    static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean;
+  static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean;
 
 }
 
@@ -449,39 +449,39 @@ export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
  */
 export declare class ComplexOptionType2 extends Message<ComplexOptionType2> {
 
-    /**
-     * @generated from field: optional protobuf_unittest.ComplexOptionType1 bar = 1;
-     */
-    bar?: ComplexOptionType1;
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType1 bar = 1;
+   */
+  bar?: ComplexOptionType1;
 
-    /**
-     * @generated from field: optional int32 baz = 2;
-     */
-    baz?: number;
+  /**
+   * @generated from field: optional int32 baz = 2;
+   */
+  baz?: number;
 
-    /**
-     * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
-     */
-    fred?: ComplexOptionType2_ComplexOptionType4;
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
+   */
+  fred?: ComplexOptionType2_ComplexOptionType4;
 
-    /**
-     * @generated from field: repeated protobuf_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
-     */
-    barney: ComplexOptionType2_ComplexOptionType4[];
+  /**
+   * @generated from field: repeated protobuf_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
+   */
+  barney: ComplexOptionType2_ComplexOptionType4[];
 
-    constructor(data?: PartialMessage<ComplexOptionType2>);
+  constructor(data?: PartialMessage<ComplexOptionType2>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOptionType2";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOptionType2";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType2;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType2;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2;
 
-    static equals(a: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined, b: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined): boolean;
+  static equals(a: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined, b: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined): boolean;
 
 }
 
@@ -490,24 +490,24 @@ export declare class ComplexOptionType2 extends Message<ComplexOptionType2> {
  */
 export declare class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOptionType2_ComplexOptionType4> {
 
-    /**
-     * @generated from field: optional int32 waldo = 1;
-     */
-    waldo?: number;
+  /**
+   * @generated from field: optional int32 waldo = 1;
+   */
+  waldo?: number;
 
-    constructor(data?: PartialMessage<ComplexOptionType2_ComplexOptionType4>);
+  constructor(data?: PartialMessage<ComplexOptionType2_ComplexOptionType4>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOptionType2.ComplexOptionType4";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOptionType2.ComplexOptionType4";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2_ComplexOptionType4;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2_ComplexOptionType4;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
 
-    static equals(a: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined, b: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined): boolean;
+  static equals(a: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined, b: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined): boolean;
 
 }
 
@@ -518,29 +518,29 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
  */
 export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
 
-    /**
-     * @generated from field: optional int32 qux = 1;
-     */
-    qux?: number;
+  /**
+   * @generated from field: optional int32 qux = 1;
+   */
+  qux?: number;
 
-    /**
-     * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
-     */
-    complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
+   */
+  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
 
-    constructor(data?: PartialMessage<ComplexOptionType3>);
+  constructor(data?: PartialMessage<ComplexOptionType3>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOptionType3";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOptionType3";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3;
 
-    static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean;
+  static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean;
 
 }
 
@@ -549,24 +549,24 @@ export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
  */
 export declare class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOptionType3_ComplexOptionType5> {
 
-    /**
-     * @generated from field: optional int32 plugh = 3;
-     */
-    plugh?: number;
+  /**
+   * @generated from field: optional int32 plugh = 3;
+   */
+  plugh?: number;
 
-    constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>);
+  constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOptionType3.ComplexOptionType5";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOptionType3.ComplexOptionType5";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3_ComplexOptionType5;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3_ComplexOptionType5;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
 
-    static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean;
+  static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean;
 
 }
 
@@ -577,24 +577,24 @@ export declare class ComplexOptionType3_ComplexOptionType5 extends Message<Compl
  */
 export declare class ComplexOpt6 extends Message<ComplexOpt6> {
 
-    /**
-     * @generated from field: optional int32 xyzzy = 7593951;
-     */
-    xyzzy?: number;
+  /**
+   * @generated from field: optional int32 xyzzy = 7593951;
+   */
+  xyzzy?: number;
 
-    constructor(data?: PartialMessage<ComplexOpt6>);
+  constructor(data?: PartialMessage<ComplexOpt6>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.ComplexOpt6";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.ComplexOpt6";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOpt6;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOpt6;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOpt6;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOpt6;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOpt6;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOpt6;
 
-    static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean;
+  static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean;
 
 }
 
@@ -606,19 +606,19 @@ export declare class ComplexOpt6 extends Message<ComplexOpt6> {
  */
 export declare class VariousComplexOptions extends Message<VariousComplexOptions> {
 
-    constructor(data?: PartialMessage<VariousComplexOptions>);
+  constructor(data?: PartialMessage<VariousComplexOptions>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.VariousComplexOptions";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.VariousComplexOptions";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VariousComplexOptions;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VariousComplexOptions;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VariousComplexOptions;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VariousComplexOptions;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VariousComplexOptions;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VariousComplexOptions;
 
-    static equals(a: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined, b: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined): boolean;
+  static equals(a: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined, b: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined): boolean;
 
 }
 
@@ -628,19 +628,19 @@ export declare class VariousComplexOptions extends Message<VariousComplexOptions
  */
 export declare class AggregateMessageSet extends Message<AggregateMessageSet> {
 
-    constructor(data?: PartialMessage<AggregateMessageSet>);
+  constructor(data?: PartialMessage<AggregateMessageSet>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.AggregateMessageSet";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.AggregateMessageSet";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSet;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSet;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSet;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSet;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSet;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSet;
 
-    static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean;
+  static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean;
 
 }
 
@@ -650,24 +650,24 @@ export declare class AggregateMessageSet extends Message<AggregateMessageSet> {
  */
 export declare class AggregateMessageSetElement extends Message<AggregateMessageSetElement> {
 
-    /**
-     * @generated from field: optional string s = 1;
-     */
-    s?: string;
+  /**
+   * @generated from field: optional string s = 1;
+   */
+  s?: string;
 
-    constructor(data?: PartialMessage<AggregateMessageSetElement>);
+  constructor(data?: PartialMessage<AggregateMessageSetElement>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.AggregateMessageSetElement";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.AggregateMessageSetElement";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSetElement;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSetElement;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
 
-    static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean;
+  static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean;
 
 }
 
@@ -679,57 +679,57 @@ export declare class AggregateMessageSetElement extends Message<AggregateMessage
  */
 export declare class Aggregate extends Message<Aggregate> {
 
-    /**
-     * @generated from field: optional int32 i = 1;
-     */
-    i?: number;
+  /**
+   * @generated from field: optional int32 i = 1;
+   */
+  i?: number;
 
-    /**
-     * @generated from field: optional string s = 2;
-     */
-    s?: string;
+  /**
+   * @generated from field: optional string s = 2;
+   */
+  s?: string;
 
-    /**
-     * A nested object
-     *
-     * @generated from field: optional protobuf_unittest.Aggregate sub = 3;
-     */
-    sub?: Aggregate;
+  /**
+   * A nested object
+   *
+   * @generated from field: optional protobuf_unittest.Aggregate sub = 3;
+   */
+  sub?: Aggregate;
 
-    /**
-     * To test the parsing of extensions inside aggregate values
-     *
-     * @generated from field: optional google.protobuf.FileOptions file = 4;
-     */
-    file?: FileOptions;
+  /**
+   * To test the parsing of extensions inside aggregate values
+   *
+   * @generated from field: optional google.protobuf.FileOptions file = 4;
+   */
+  file?: FileOptions;
 
-    /**
-     * An embedded message set
-     *
-     * @generated from field: optional protobuf_unittest.AggregateMessageSet mset = 5;
-     */
-    mset?: AggregateMessageSet;
+  /**
+   * An embedded message set
+   *
+   * @generated from field: optional protobuf_unittest.AggregateMessageSet mset = 5;
+   */
+  mset?: AggregateMessageSet;
 
-    /**
-     * An any
-     *
-     * @generated from field: optional google.protobuf.Any any = 6;
-     */
-    any?: Any;
+  /**
+   * An any
+   *
+   * @generated from field: optional google.protobuf.Any any = 6;
+   */
+  any?: Any;
 
-    constructor(data?: PartialMessage<Aggregate>);
+  constructor(data?: PartialMessage<Aggregate>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.Aggregate";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.Aggregate";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Aggregate;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Aggregate;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Aggregate;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Aggregate;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Aggregate;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Aggregate;
 
-    static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean;
+  static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean;
 
 }
 
@@ -739,24 +739,24 @@ export declare class Aggregate extends Message<Aggregate> {
  */
 export declare class AggregateMessage extends Message<AggregateMessage> {
 
-    /**
-     * @generated from field: optional int32 fieldname = 1;
-     */
-    fieldname?: number;
+  /**
+   * @generated from field: optional int32 fieldname = 1;
+   */
+  fieldname?: number;
 
-    constructor(data?: PartialMessage<AggregateMessage>);
+  constructor(data?: PartialMessage<AggregateMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.AggregateMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.AggregateMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessage;
 
-    static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean;
+  static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean;
 
 }
 
@@ -768,19 +768,19 @@ export declare class AggregateMessage extends Message<AggregateMessage> {
  */
 export declare class NestedOptionType extends Message<NestedOptionType> {
 
-    constructor(data?: PartialMessage<NestedOptionType>);
+  constructor(data?: PartialMessage<NestedOptionType>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.NestedOptionType";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.NestedOptionType";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedOptionType;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedOptionType;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedOptionType;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedOptionType;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType;
 
-    static equals(a: NestedOptionType | PlainMessage<NestedOptionType> | undefined, b: NestedOptionType | PlainMessage<NestedOptionType> | undefined): boolean;
+  static equals(a: NestedOptionType | PlainMessage<NestedOptionType> | undefined, b: NestedOptionType | PlainMessage<NestedOptionType> | undefined): boolean;
 
 }
 
@@ -789,10 +789,10 @@ export declare class NestedOptionType extends Message<NestedOptionType> {
  */
 export declare enum NestedOptionType_NestedEnum {
 
-    /**
-     * @generated from enum value: NESTED_ENUM_VALUE = 1;
-     */
-    VALUE = 1,
+  /**
+   * @generated from enum value: NESTED_ENUM_VALUE = 1;
+   */
+  VALUE = 1,
 
 }
 
@@ -802,24 +802,24 @@ export declare enum NestedOptionType_NestedEnum {
  */
 export declare class NestedOptionType_NestedMessage extends Message<NestedOptionType_NestedMessage> {
 
-    /**
-     * @generated from field: optional int32 nested_field = 1;
-     */
-    nestedField?: number;
+  /**
+   * @generated from field: optional int32 nested_field = 1;
+   */
+  nestedField?: number;
 
-    constructor(data?: PartialMessage<NestedOptionType_NestedMessage>);
+  constructor(data?: PartialMessage<NestedOptionType_NestedMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.NestedOptionType.NestedMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.NestedOptionType.NestedMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedOptionType_NestedMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedOptionType_NestedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedOptionType_NestedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedOptionType_NestedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType_NestedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType_NestedMessage;
 
-    static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean;
+  static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean;
 
 }
 
@@ -833,24 +833,24 @@ export declare class NestedOptionType_NestedMessage extends Message<NestedOption
  */
 export declare class OldOptionType extends Message<OldOptionType> {
 
-    /**
-     * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
-     */
-    value: OldOptionType_TestEnum;
+  /**
+   * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
+   */
+  value: OldOptionType_TestEnum;
 
-    constructor(data?: PartialMessage<OldOptionType>);
+  constructor(data?: PartialMessage<OldOptionType>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.OldOptionType";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.OldOptionType";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OldOptionType;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OldOptionType;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OldOptionType;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OldOptionType;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OldOptionType;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OldOptionType;
 
-    static equals(a: OldOptionType | PlainMessage<OldOptionType> | undefined, b: OldOptionType | PlainMessage<OldOptionType> | undefined): boolean;
+  static equals(a: OldOptionType | PlainMessage<OldOptionType> | undefined, b: OldOptionType | PlainMessage<OldOptionType> | undefined): boolean;
 
 }
 
@@ -859,10 +859,10 @@ export declare class OldOptionType extends Message<OldOptionType> {
  */
 export declare enum OldOptionType_TestEnum {
 
-    /**
-     * @generated from enum value: OLD_VALUE = 0;
-     */
-    OLD_VALUE = 0,
+  /**
+   * @generated from enum value: OLD_VALUE = 0;
+   */
+  OLD_VALUE = 0,
 
 }
 
@@ -875,24 +875,24 @@ export declare enum OldOptionType_TestEnum {
  */
 export declare class NewOptionType extends Message<NewOptionType> {
 
-    /**
-     * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
-     */
-    value: NewOptionType_TestEnum;
+  /**
+   * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
+   */
+  value: NewOptionType_TestEnum;
 
-    constructor(data?: PartialMessage<NewOptionType>);
+  constructor(data?: PartialMessage<NewOptionType>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.NewOptionType";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.NewOptionType";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NewOptionType;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NewOptionType;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NewOptionType;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NewOptionType;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NewOptionType;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NewOptionType;
 
-    static equals(a: NewOptionType | PlainMessage<NewOptionType> | undefined, b: NewOptionType | PlainMessage<NewOptionType> | undefined): boolean;
+  static equals(a: NewOptionType | PlainMessage<NewOptionType> | undefined, b: NewOptionType | PlainMessage<NewOptionType> | undefined): boolean;
 
 }
 
@@ -901,15 +901,15 @@ export declare class NewOptionType extends Message<NewOptionType> {
  */
 export declare enum NewOptionType_TestEnum {
 
-    /**
-     * @generated from enum value: OLD_VALUE = 0;
-     */
-    OLD_VALUE = 0,
+  /**
+   * @generated from enum value: OLD_VALUE = 0;
+   */
+  OLD_VALUE = 0,
 
-    /**
-     * @generated from enum value: NEW_VALUE = 1;
-     */
-    NEW_VALUE = 1,
+  /**
+   * @generated from enum value: NEW_VALUE = 1;
+   */
+  NEW_VALUE = 1,
 
 }
 
@@ -922,19 +922,19 @@ export declare enum NewOptionType_TestEnum {
  */
 export declare class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRequiredEnumOption> {
 
-    constructor(data?: PartialMessage<TestMessageWithRequiredEnumOption>);
+  constructor(data?: PartialMessage<TestMessageWithRequiredEnumOption>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.TestMessageWithRequiredEnumOption";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageWithRequiredEnumOption";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithRequiredEnumOption;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithRequiredEnumOption;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
 
-    static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean;
+  static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean;
 
 }
 

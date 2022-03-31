@@ -26,49 +26,49 @@ import {Message as Message$1, proto3} from "@bufbuild/protobuf";
  */
 export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryInfoRequest> {
 
-    /**
-     * @generated from field: string owner = 1;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 2;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
 
-    /**
-     * @generated from field: string reference = 3;
-     */
-    reference = "";
+  /**
+   * @generated from field: string reference = 3;
+   */
+  reference = "";
 
-    constructor(data?: PartialMessage<GetSourceDirectoryInfoRequest>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetSourceDirectoryInfoRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoRequest {
-        return new GetSourceDirectoryInfoRequest().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoRequest {
+    return new GetSourceDirectoryInfoRequest().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoRequest {
-        return new GetSourceDirectoryInfoRequest().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoRequest {
+    return new GetSourceDirectoryInfoRequest().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoRequest {
-        return new GetSourceDirectoryInfoRequest().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoRequest {
+    return new GetSourceDirectoryInfoRequest().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined, b: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined): boolean {
-        return proto3.util.equals(GetSourceDirectoryInfoRequest, a, b);
-    }
+  static equals(a: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined, b: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined): boolean {
+    return proto3.util.equals(GetSourceDirectoryInfoRequest, a, b);
+  }
 
 }
 
@@ -80,37 +80,37 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
  */
 export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectoryInfoResponse> {
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.FileInfo root = 1;
-     */
-    root?: FileInfo;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.FileInfo root = 1;
+   */
+  root?: FileInfo;
 
-    constructor(data?: PartialMessage<GetSourceDirectoryInfoResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetSourceDirectoryInfoResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "root", kind: "message", T: FileInfo},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "root", kind: "message", T: FileInfo},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoResponse {
-        return new GetSourceDirectoryInfoResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceDirectoryInfoResponse {
+    return new GetSourceDirectoryInfoResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoResponse {
-        return new GetSourceDirectoryInfoResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoResponse {
+    return new GetSourceDirectoryInfoResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoResponse {
-        return new GetSourceDirectoryInfoResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoResponse {
+    return new GetSourceDirectoryInfoResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined, b: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined): boolean {
-        return proto3.util.equals(GetSourceDirectoryInfoResponse, a, b);
-    }
+  static equals(a: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined, b: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined): boolean {
+    return proto3.util.equals(GetSourceDirectoryInfoResponse, a, b);
+  }
 
 }
 
@@ -123,51 +123,51 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
  */
 export class FileInfo extends Message$1<FileInfo> {
 
-    /**
-     * the normalized path of the directory, relative to the root of the module.
-     *
-     * @generated from field: string path = 1;
-     */
-    path = "";
+  /**
+   * the normalized path of the directory, relative to the root of the module.
+   *
+   * @generated from field: string path = 1;
+   */
+  path = "";
 
-    /**
-     * @generated from field: bool is_dir = 2;
-     */
-    isDir = false;
+  /**
+   * @generated from field: bool is_dir = 2;
+   */
+  isDir = false;
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.FileInfo children = 3;
-     */
-    children: FileInfo[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.FileInfo children = 3;
+   */
+  children: FileInfo[] = [];
 
-    constructor(data?: PartialMessage<FileInfo>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<FileInfo>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.FileInfo";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "is_dir", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-        {no: 3, name: "children", kind: "message", T: FileInfo, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.FileInfo";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "is_dir", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    {no: 3, name: "children", kind: "message", T: FileInfo, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileInfo {
-        return new FileInfo().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileInfo {
+    return new FileInfo().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FileInfo {
-        return new FileInfo().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FileInfo {
+    return new FileInfo().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileInfo {
-        return new FileInfo().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileInfo {
+    return new FileInfo().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: FileInfo | PlainMessage<FileInfo> | undefined, b: FileInfo | PlainMessage<FileInfo> | undefined): boolean {
-        return proto3.util.equals(FileInfo, a, b);
-    }
+  static equals(a: FileInfo | PlainMessage<FileInfo> | undefined, b: FileInfo | PlainMessage<FileInfo> | undefined): boolean {
+    return proto3.util.equals(FileInfo, a, b);
+  }
 
 }
 
@@ -179,57 +179,57 @@ export class FileInfo extends Message$1<FileInfo> {
  */
 export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
 
-    /**
-     * @generated from field: string owner = 1;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 2;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
 
-    /**
-     * @generated from field: string reference = 3;
-     */
-    reference = "";
+  /**
+   * @generated from field: string reference = 3;
+   */
+  reference = "";
 
-    /**
-     * the normalized path to the requested file, relative to the root of the module.
-     *
-     * @generated from field: string path = 4;
-     */
-    path = "";
+  /**
+   * the normalized path to the requested file, relative to the root of the module.
+   *
+   * @generated from field: string path = 4;
+   */
+  path = "";
 
-    constructor(data?: PartialMessage<GetSourceFileRequest>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetSourceFileRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileRequest";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileRequest {
-        return new GetSourceFileRequest().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileRequest {
+    return new GetSourceFileRequest().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceFileRequest {
-        return new GetSourceFileRequest().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceFileRequest {
+    return new GetSourceFileRequest().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceFileRequest {
-        return new GetSourceFileRequest().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceFileRequest {
+    return new GetSourceFileRequest().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined, b: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined): boolean {
-        return proto3.util.equals(GetSourceFileRequest, a, b);
-    }
+  static equals(a: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined, b: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined): boolean {
+    return proto3.util.equals(GetSourceFileRequest, a, b);
+  }
 
 }
 
@@ -241,39 +241,39 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
  */
 export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
 
-    /**
-     * content is the content of the file.
-     *
-     * @generated from field: bytes content = 1;
-     */
-    content = new Uint8Array(0);
+  /**
+   * content is the content of the file.
+   *
+   * @generated from field: bytes content = 1;
+   */
+  content = new Uint8Array(0);
 
-    constructor(data?: PartialMessage<GetSourceFileResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetSourceFileResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetSourceFileResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "content", kind: "scalar", T: 12 /* ScalarType.BYTES */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileResponse {
-        return new GetSourceFileResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSourceFileResponse {
+    return new GetSourceFileResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceFileResponse {
-        return new GetSourceFileResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSourceFileResponse {
+    return new GetSourceFileResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceFileResponse {
-        return new GetSourceFileResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceFileResponse {
+    return new GetSourceFileResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined, b: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined): boolean {
-        return proto3.util.equals(GetSourceFileResponse, a, b);
-    }
+  static equals(a: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined, b: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined): boolean {
+    return proto3.util.equals(GetSourceFileResponse, a, b);
+  }
 
 }
 
@@ -285,49 +285,49 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
  */
 export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest> {
 
-    /**
-     * @generated from field: string owner = 1;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 2;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
 
-    /**
-     * @generated from field: string reference = 3;
-     */
-    reference = "";
+  /**
+   * @generated from field: string reference = 3;
+   */
+  reference = "";
 
-    constructor(data?: PartialMessage<GetModulePackagesRequest>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetModulePackagesRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesRequest";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesRequest {
-        return new GetModulePackagesRequest().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesRequest {
+    return new GetModulePackagesRequest().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModulePackagesRequest {
-        return new GetModulePackagesRequest().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModulePackagesRequest {
+    return new GetModulePackagesRequest().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModulePackagesRequest {
-        return new GetModulePackagesRequest().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModulePackagesRequest {
+    return new GetModulePackagesRequest().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined, b: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined): boolean {
-        return proto3.util.equals(GetModulePackagesRequest, a, b);
-    }
+  static equals(a: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined, b: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined): boolean {
+    return proto3.util.equals(GetModulePackagesRequest, a, b);
+  }
 
 }
 
@@ -339,43 +339,43 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
  */
 export class GetModulePackagesResponse extends Message$1<GetModulePackagesResponse> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.ModulePackage module_packages = 2;
-     */
-    modulePackages: ModulePackage[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.ModulePackage module_packages = 2;
+   */
+  modulePackages: ModulePackage[] = [];
 
-    constructor(data?: PartialMessage<GetModulePackagesResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetModulePackagesResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "module_packages", kind: "message", T: ModulePackage, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetModulePackagesResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "module_packages", kind: "message", T: ModulePackage, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesResponse {
-        return new GetModulePackagesResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModulePackagesResponse {
+    return new GetModulePackagesResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModulePackagesResponse {
-        return new GetModulePackagesResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModulePackagesResponse {
+    return new GetModulePackagesResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModulePackagesResponse {
-        return new GetModulePackagesResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModulePackagesResponse {
+    return new GetModulePackagesResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined, b: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined): boolean {
-        return proto3.util.equals(GetModulePackagesResponse, a, b);
-    }
+  static equals(a: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined, b: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined): boolean {
+    return proto3.util.equals(GetModulePackagesResponse, a, b);
+  }
 
 }
 
@@ -387,43 +387,43 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
  */
 export class ModulePackage extends Message$1<ModulePackage> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * @generated from field: string description = 2;
-     */
-    description = "";
+  /**
+   * @generated from field: string description = 2;
+   */
+  description = "";
 
-    constructor(data?: PartialMessage<ModulePackage>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ModulePackage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.ModulePackage";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.ModulePackage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModulePackage {
-        return new ModulePackage().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModulePackage {
+    return new ModulePackage().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModulePackage {
-        return new ModulePackage().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModulePackage {
+    return new ModulePackage().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModulePackage {
-        return new ModulePackage().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModulePackage {
+    return new ModulePackage().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ModulePackage | PlainMessage<ModulePackage> | undefined, b: ModulePackage | PlainMessage<ModulePackage> | undefined): boolean {
-        return proto3.util.equals(ModulePackage, a, b);
-    }
+  static equals(a: ModulePackage | PlainMessage<ModulePackage> | undefined, b: ModulePackage | PlainMessage<ModulePackage> | undefined): boolean {
+    return proto3.util.equals(ModulePackage, a, b);
+  }
 
 }
 
@@ -435,49 +435,49 @@ export class ModulePackage extends Message$1<ModulePackage> {
  */
 export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentationRequest> {
 
-    /**
-     * @generated from field: string owner = 1;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 2;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
 
-    /**
-     * @generated from field: string reference = 3;
-     */
-    reference = "";
+  /**
+   * @generated from field: string reference = 3;
+   */
+  reference = "";
 
-    constructor(data?: PartialMessage<GetModuleDocumentationRequest>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetModuleDocumentationRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationRequest {
-        return new GetModuleDocumentationRequest().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationRequest {
+    return new GetModuleDocumentationRequest().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModuleDocumentationRequest {
-        return new GetModuleDocumentationRequest().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModuleDocumentationRequest {
+    return new GetModuleDocumentationRequest().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModuleDocumentationRequest {
-        return new GetModuleDocumentationRequest().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModuleDocumentationRequest {
+    return new GetModuleDocumentationRequest().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined, b: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined): boolean {
-        return proto3.util.equals(GetModuleDocumentationRequest, a, b);
-    }
+  static equals(a: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined, b: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined): boolean {
+    return proto3.util.equals(GetModuleDocumentationRequest, a, b);
+  }
 
 }
 
@@ -489,37 +489,37 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
  */
 export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumentationResponse> {
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.ModuleDocumentation module_documentation = 1;
-     */
-    moduleDocumentation?: ModuleDocumentation;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.ModuleDocumentation module_documentation = 1;
+   */
+  moduleDocumentation?: ModuleDocumentation;
 
-    constructor(data?: PartialMessage<GetModuleDocumentationResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetModuleDocumentationResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "module_documentation", kind: "message", T: ModuleDocumentation},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "module_documentation", kind: "message", T: ModuleDocumentation},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationResponse {
-        return new GetModuleDocumentationResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetModuleDocumentationResponse {
+    return new GetModuleDocumentationResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModuleDocumentationResponse {
-        return new GetModuleDocumentationResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetModuleDocumentationResponse {
+    return new GetModuleDocumentationResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModuleDocumentationResponse {
-        return new GetModuleDocumentationResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModuleDocumentationResponse {
+    return new GetModuleDocumentationResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined, b: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined): boolean {
-        return proto3.util.equals(GetModuleDocumentationResponse, a, b);
-    }
+  static equals(a: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined, b: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined): boolean {
+    return proto3.util.equals(GetModuleDocumentationResponse, a, b);
+  }
 
 }
 
@@ -531,48 +531,48 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
  */
 export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * This is the string representation of the contents of the buf.md file for module-level documentation.
-     *
-     * The buf.md file is a part of the module.
-     * string is used to enforce UTF-8 encoding or 7-bit ASCII text.
-     *
-     * @generated from field: string documentation = 3;
-     */
-    documentation = "";
+  /**
+   * This is the string representation of the contents of the buf.md file for module-level documentation.
+   *
+   * The buf.md file is a part of the module.
+   * string is used to enforce UTF-8 encoding or 7-bit ASCII text.
+   *
+   * @generated from field: string documentation = 3;
+   */
+  documentation = "";
 
-    constructor(data?: PartialMessage<ModuleDocumentation>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ModuleDocumentation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.ModuleDocumentation";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.ModuleDocumentation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "documentation", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleDocumentation {
-        return new ModuleDocumentation().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleDocumentation {
+    return new ModuleDocumentation().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModuleDocumentation {
-        return new ModuleDocumentation().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModuleDocumentation {
+    return new ModuleDocumentation().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleDocumentation {
-        return new ModuleDocumentation().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleDocumentation {
+    return new ModuleDocumentation().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined, b: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined): boolean {
-        return proto3.util.equals(ModuleDocumentation, a, b);
-    }
+  static equals(a: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined, b: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined): boolean {
+    return proto3.util.equals(ModuleDocumentation, a, b);
+  }
 
 }
 
@@ -584,57 +584,57 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
  */
 export class GetPackageDocumentationRequest extends Message$1<GetPackageDocumentationRequest> {
 
-    /**
-     * @generated from field: string owner = 1;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 1;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 2;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 2;
+   */
+  repository = "";
 
-    /**
-     * @generated from field: string reference = 3;
-     */
-    reference = "";
+  /**
+   * @generated from field: string reference = 3;
+   */
+  reference = "";
 
-    /**
-     * this is the fully qualified package name.
-     *
-     * @generated from field: string package_name = 4;
-     */
-    packageName = "";
+  /**
+   * this is the fully qualified package name.
+   *
+   * @generated from field: string package_name = 4;
+   */
+  packageName = "";
 
-    constructor(data?: PartialMessage<GetPackageDocumentationRequest>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetPackageDocumentationRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationRequest {
-        return new GetPackageDocumentationRequest().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationRequest {
+    return new GetPackageDocumentationRequest().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPackageDocumentationRequest {
-        return new GetPackageDocumentationRequest().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPackageDocumentationRequest {
+    return new GetPackageDocumentationRequest().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPackageDocumentationRequest {
-        return new GetPackageDocumentationRequest().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPackageDocumentationRequest {
+    return new GetPackageDocumentationRequest().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined, b: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined): boolean {
-        return proto3.util.equals(GetPackageDocumentationRequest, a, b);
-    }
+  static equals(a: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined, b: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined): boolean {
+    return proto3.util.equals(GetPackageDocumentationRequest, a, b);
+  }
 
 }
 
@@ -646,37 +646,37 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
  */
 export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumentationResponse> {
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.PackageDocumentation package_documentation = 1;
-     */
-    packageDocumentation?: PackageDocumentation;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.PackageDocumentation package_documentation = 1;
+   */
+  packageDocumentation?: PackageDocumentation;
 
-    constructor(data?: PartialMessage<GetPackageDocumentationResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<GetPackageDocumentationResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "package_documentation", kind: "message", T: PackageDocumentation},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "package_documentation", kind: "message", T: PackageDocumentation},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationResponse {
-        return new GetPackageDocumentationResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPackageDocumentationResponse {
+    return new GetPackageDocumentationResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPackageDocumentationResponse {
-        return new GetPackageDocumentationResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetPackageDocumentationResponse {
+    return new GetPackageDocumentationResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPackageDocumentationResponse {
-        return new GetPackageDocumentationResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPackageDocumentationResponse {
+    return new GetPackageDocumentationResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined, b: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined): boolean {
-        return proto3.util.equals(GetPackageDocumentationResponse, a, b);
-    }
+  static equals(a: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined, b: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined): boolean {
+    return proto3.util.equals(GetPackageDocumentationResponse, a, b);
+  }
 
 }
 
@@ -688,82 +688,82 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
  */
 export class PackageDocumentation extends Message$1<PackageDocumentation> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * description contains the package-level comment documentation.
-     * There is currently no convention for this.
-     *
-     * This is derived from the leading comments at the top level of the package.
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 2;
-     */
-    description = "";
+  /**
+   * description contains the package-level comment documentation.
+   * There is currently no convention for this.
+   *
+   * This is derived from the leading comments at the top level of the package.
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 2;
+   */
+  description = "";
 
-    /**
-     * services contains all the services defined in the package in alphabetical order.
-     *
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Service services = 3;
-     */
-    services: Service[] = [];
+  /**
+   * services contains all the services defined in the package in alphabetical order.
+   *
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Service services = 3;
+   */
+  services: Service[] = [];
 
-    /**
-     * enums contains all the enums defined in the package in alphabetical order.
-     *
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Enum enums = 4;
-     */
-    enums: Enum[] = [];
+  /**
+   * enums contains all the enums defined in the package in alphabetical order.
+   *
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Enum enums = 4;
+   */
+  enums: Enum[] = [];
 
-    /**
-     * messages contains all the messages defined in the package in alphabetical order.
-     *
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Message messages = 5;
-     */
-    messages: Message[] = [];
+  /**
+   * messages contains all the messages defined in the package in alphabetical order.
+   *
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Message messages = 5;
+   */
+  messages: Message[] = [];
 
-    /**
-     * extensions contains all the file level extensions in the package in alphabetical order.
-     *
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.FileExtension file_extensions = 6;
-     */
-    fileExtensions: FileExtension[] = [];
+  /**
+   * extensions contains all the file level extensions in the package in alphabetical order.
+   *
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.FileExtension file_extensions = 6;
+   */
+  fileExtensions: FileExtension[] = [];
 
-    constructor(data?: PartialMessage<PackageDocumentation>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<PackageDocumentation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.PackageDocumentation";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "services", kind: "message", T: Service, repeated: true},
-        {no: 4, name: "enums", kind: "message", T: Enum, repeated: true},
-        {no: 5, name: "messages", kind: "message", T: Message, repeated: true},
-        {no: 6, name: "file_extensions", kind: "message", T: FileExtension, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.PackageDocumentation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "services", kind: "message", T: Service, repeated: true},
+    {no: 4, name: "enums", kind: "message", T: Enum, repeated: true},
+    {no: 5, name: "messages", kind: "message", T: Message, repeated: true},
+    {no: 6, name: "file_extensions", kind: "message", T: FileExtension, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PackageDocumentation {
-        return new PackageDocumentation().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PackageDocumentation {
+    return new PackageDocumentation().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PackageDocumentation {
-        return new PackageDocumentation().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PackageDocumentation {
+    return new PackageDocumentation().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PackageDocumentation {
-        return new PackageDocumentation().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PackageDocumentation {
+    return new PackageDocumentation().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined, b: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined): boolean {
-        return proto3.util.equals(PackageDocumentation, a, b);
-    }
+  static equals(a: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined, b: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined): boolean {
+    return proto3.util.equals(PackageDocumentation, a, b);
+  }
 
 }
 
@@ -778,55 +778,55 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
  */
 export class Location extends Message$1<Location> {
 
-    /**
-     * @generated from field: int32 start_line = 1;
-     */
-    startLine = 0;
+  /**
+   * @generated from field: int32 start_line = 1;
+   */
+  startLine = 0;
 
-    /**
-     * @generated from field: int32 start_column = 2;
-     */
-    startColumn = 0;
+  /**
+   * @generated from field: int32 start_column = 2;
+   */
+  startColumn = 0;
 
-    /**
-     * @generated from field: int32 end_line = 3;
-     */
-    endLine = 0;
+  /**
+   * @generated from field: int32 end_line = 3;
+   */
+  endLine = 0;
 
-    /**
-     * @generated from field: int32 end_column = 4;
-     */
-    endColumn = 0;
+  /**
+   * @generated from field: int32 end_column = 4;
+   */
+  endColumn = 0;
 
-    constructor(data?: PartialMessage<Location>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Location>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Location";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "start_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 2, name: "start_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 3, name: "end_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 4, name: "end_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Location";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "start_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 2, name: "start_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 3, name: "end_line", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 4, name: "end_column", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Location {
-        return new Location().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Location {
+    return new Location().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Location {
-        return new Location().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Location {
+    return new Location().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Location {
-        return new Location().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Location {
+    return new Location().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Location | PlainMessage<Location> | undefined, b: Location | PlainMessage<Location> | undefined): boolean {
-        return proto3.util.equals(Location, a, b);
-    }
+  static equals(a: Location | PlainMessage<Location> | undefined, b: Location | PlainMessage<Location> | undefined): boolean {
+    return proto3.util.equals(Location, a, b);
+  }
 
 }
 
@@ -838,85 +838,85 @@ export class Location extends Message$1<Location> {
  */
 export class Service extends Message$1<Service> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * nested_name includes the nested types for a given type definition.
-     *
-     * @generated from field: string nested_name = 2;
-     */
-    nestedName = "";
+  /**
+   * nested_name includes the nested types for a given type definition.
+   *
+   * @generated from field: string nested_name = 2;
+   */
+  nestedName = "";
 
-    /**
-     * full_name includes the package name and nested types for a given type definition.
-     *
-     * @generated from field: string full_name = 3;
-     */
-    fullName = "";
+  /**
+   * full_name includes the package name and nested types for a given type definition.
+   *
+   * @generated from field: string full_name = 3;
+   */
+  fullName = "";
 
-    /**
-     * description is derived from the leading comments of a given service.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 4;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given service.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 4;
+   */
+  description = "";
 
-    /**
-     * file_path is the normalized path of the file containing the service.
-     * This is used for navigating to the source code for the service.
-     *
-     * @generated from field: string file_path = 5;
-     */
-    filePath = "";
+  /**
+   * file_path is the normalized path of the file containing the service.
+   * This is used for navigating to the source code for the service.
+   *
+   * @generated from field: string file_path = 5;
+   */
+  filePath = "";
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
-     */
-    location?: Location;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
+   */
+  location?: Location;
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Method methods = 7;
-     */
-    methods: Method[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Method methods = 7;
+   */
+  methods: Method[] = [];
 
-    constructor(data?: PartialMessage<Service>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Service>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Service";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "location", kind: "message", T: Location},
-        {no: 7, name: "methods", kind: "message", T: Method, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Service";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "location", kind: "message", T: Location},
+    {no: 7, name: "methods", kind: "message", T: Method, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Service {
-        return new Service().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Service {
+    return new Service().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Service {
-        return new Service().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Service {
+    return new Service().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Service {
-        return new Service().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Service {
+    return new Service().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
-        return proto3.util.equals(Service, a, b);
-    }
+  static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
+    return proto3.util.equals(Service, a, b);
+  }
 
 }
 
@@ -928,60 +928,60 @@ export class Service extends Message$1<Service> {
  */
 export class Method extends Message$1<Method> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * description is derived from the leading comments of a given method.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 2;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given method.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 2;
+   */
+  description = "";
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse request = 3;
-     */
-    request?: MethodRequestResponse;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse request = 3;
+   */
+  request?: MethodRequestResponse;
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse response = 4;
-     */
-    response?: MethodRequestResponse;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse response = 4;
+   */
+  response?: MethodRequestResponse;
 
-    constructor(data?: PartialMessage<Method>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Method>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Method";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "request", kind: "message", T: MethodRequestResponse},
-        {no: 4, name: "response", kind: "message", T: MethodRequestResponse},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Method";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "request", kind: "message", T: MethodRequestResponse},
+    {no: 4, name: "response", kind: "message", T: MethodRequestResponse},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Method {
-        return new Method().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Method {
+    return new Method().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Method {
-        return new Method().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Method {
+    return new Method().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Method {
-        return new Method().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Method {
+    return new Method().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
-        return proto3.util.equals(Method, a, b);
-    }
+  static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
+    return proto3.util.equals(Method, a, b);
+  }
 
 }
 
@@ -993,70 +993,70 @@ export class Method extends Message$1<Method> {
  */
 export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
 
-    /**
-     * nested_type is the nested name of the message of the request or response. This includes nested definitions.
-     *
-     * @generated from field: string nested_type = 1;
-     */
-    nestedType = "";
+  /**
+   * nested_type is the nested name of the message of the request or response. This includes nested definitions.
+   *
+   * @generated from field: string nested_type = 1;
+   */
+  nestedType = "";
 
-    /**
-     * full_type is the fully qualified name of the message of the request or response. This includes package and nested definitions.
-     *
-     * @generated from field: string full_type = 2;
-     */
-    fullType = "";
+  /**
+   * full_type is the fully qualified name of the message of the request or response. This includes package and nested definitions.
+   *
+   * @generated from field: string full_type = 2;
+   */
+  fullType = "";
 
-    /**
-     * boolean flag for whether the streaming label is set on an method request or response.
-     *
-     * @generated from field: bool streaming = 3;
-     */
-    streaming = false;
+  /**
+   * boolean flag for whether the streaming label is set on an method request or response.
+   *
+   * @generated from field: bool streaming = 3;
+   */
+  streaming = false;
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.Message message = 4;
-     */
-    message?: Message;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.Message message = 4;
+   */
+  message?: Message;
 
-    /**
-     * import_module_ref is included if the request or response is an imported type.
-     * It contains all the metadata for the import.
-     *
-     * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 5;
-     */
-    importModuleRef?: ImportModuleRef;
+  /**
+   * import_module_ref is included if the request or response is an imported type.
+   * It contains all the metadata for the import.
+   *
+   * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 5;
+   */
+  importModuleRef?: ImportModuleRef;
 
-    constructor(data?: PartialMessage<MethodRequestResponse>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<MethodRequestResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.MethodRequestResponse";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-        {no: 4, name: "message", kind: "message", T: Message},
-        {no: 5, name: "import_module_ref", kind: "message", T: ImportModuleRef},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.MethodRequestResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "streaming", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    {no: 4, name: "message", kind: "message", T: Message},
+    {no: 5, name: "import_module_ref", kind: "message", T: ImportModuleRef},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MethodRequestResponse {
-        return new MethodRequestResponse().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MethodRequestResponse {
+    return new MethodRequestResponse().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MethodRequestResponse {
-        return new MethodRequestResponse().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MethodRequestResponse {
+    return new MethodRequestResponse().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodRequestResponse {
-        return new MethodRequestResponse().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodRequestResponse {
+    return new MethodRequestResponse().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined, b: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined): boolean {
-        return proto3.util.equals(MethodRequestResponse, a, b);
-    }
+  static equals(a: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined, b: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined): boolean {
+    return proto3.util.equals(MethodRequestResponse, a, b);
+  }
 
 }
 
@@ -1068,84 +1068,84 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
  */
 export class Enum extends Message$1<Enum> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * nested_name includes the nested types for a given type definition.
-     *
-     * @generated from field: string nested_name = 2;
-     */
-    nestedName = "";
+  /**
+   * nested_name includes the nested types for a given type definition.
+   *
+   * @generated from field: string nested_name = 2;
+   */
+  nestedName = "";
 
-    /**
-     * full_name includes the package name and nested types for a given type definition.
-     *
-     * @generated from field: string full_name = 3;
-     */
-    fullName = "";
+  /**
+   * full_name includes the package name and nested types for a given type definition.
+   *
+   * @generated from field: string full_name = 3;
+   */
+  fullName = "";
 
-    /**
-     * description is derived from the leading comments of a given Enum.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 4;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given Enum.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 4;
+   */
+  description = "";
 
-    /**
-     * file_path is the normalized path of the file containing the enum.
-     *
-     * @generated from field: string file_path = 5;
-     */
-    filePath = "";
+  /**
+   * file_path is the normalized path of the file containing the enum.
+   *
+   * @generated from field: string file_path = 5;
+   */
+  filePath = "";
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
-     */
-    location?: Location;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
+   */
+  location?: Location;
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.EnumValue values = 7;
-     */
-    values: EnumValue[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.EnumValue values = 7;
+   */
+  values: EnumValue[] = [];
 
-    constructor(data?: PartialMessage<Enum>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Enum>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Enum";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "location", kind: "message", T: Location},
-        {no: 7, name: "values", kind: "message", T: EnumValue, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Enum";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "location", kind: "message", T: Location},
+    {no: 7, name: "values", kind: "message", T: EnumValue, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Enum {
-        return new Enum().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Enum {
+    return new Enum().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Enum {
-        return new Enum().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Enum {
+    return new Enum().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Enum {
-        return new Enum().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Enum {
+    return new Enum().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
-        return proto3.util.equals(Enum, a, b);
-    }
+  static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
+    return proto3.util.equals(Enum, a, b);
+  }
 
 }
 
@@ -1157,54 +1157,54 @@ export class Enum extends Message$1<Enum> {
  */
 export class EnumValue extends Message$1<EnumValue> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * @generated from field: int32 number = 2;
-     */
-    number = 0;
+  /**
+   * @generated from field: int32 number = 2;
+   */
+  number = 0;
 
-    /**
-     * description is derived from the leading comments of a given enum value.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 3;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given enum value.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 3;
+   */
+  description = "";
 
-    constructor(data?: PartialMessage<EnumValue>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<EnumValue>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.EnumValue";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.EnumValue";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumValue {
-        return new EnumValue().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumValue {
+    return new EnumValue().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumValue {
-        return new EnumValue().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumValue {
+    return new EnumValue().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValue {
-        return new EnumValue().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValue {
+    return new EnumValue().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
-        return proto3.util.equals(EnumValue, a, b);
-    }
+  static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
+    return proto3.util.equals(EnumValue, a, b);
+  }
 
 }
 
@@ -1216,64 +1216,64 @@ export class EnumValue extends Message$1<EnumValue> {
  */
 export class ImportModuleRef extends Message$1<ImportModuleRef> {
 
-    /**
-     * @generated from field: string remote = 1;
-     */
-    remote = "";
+  /**
+   * @generated from field: string remote = 1;
+   */
+  remote = "";
 
-    /**
-     * @generated from field: string owner = 2;
-     */
-    owner = "";
+  /**
+   * @generated from field: string owner = 2;
+   */
+  owner = "";
 
-    /**
-     * @generated from field: string repository = 3;
-     */
-    repository = "";
+  /**
+   * @generated from field: string repository = 3;
+   */
+  repository = "";
 
-    /**
-     * the commit is based on the module commit of the imported type provided
-     * by the image.
-     *
-     * @generated from field: string commit = 4;
-     */
-    commit = "";
+  /**
+   * the commit is based on the module commit of the imported type provided
+   * by the image.
+   *
+   * @generated from field: string commit = 4;
+   */
+  commit = "";
 
-    /**
-     * @generated from field: string package_name = 5;
-     */
-    packageName = "";
+  /**
+   * @generated from field: string package_name = 5;
+   */
+  packageName = "";
 
-    constructor(data?: PartialMessage<ImportModuleRef>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<ImportModuleRef>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.ImportModuleRef";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.ImportModuleRef";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "repository", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "commit", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "package_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportModuleRef {
-        return new ImportModuleRef().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImportModuleRef {
+    return new ImportModuleRef().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportModuleRef {
-        return new ImportModuleRef().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ImportModuleRef {
+    return new ImportModuleRef().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportModuleRef {
-        return new ImportModuleRef().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportModuleRef {
+    return new ImportModuleRef().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined, b: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined): boolean {
-        return proto3.util.equals(ImportModuleRef, a, b);
-    }
+  static equals(a: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined, b: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined): boolean {
+    return proto3.util.equals(ImportModuleRef, a, b);
+  }
 
 }
 
@@ -1285,96 +1285,96 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
  */
 export class Message extends Message$1<Message> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * nested_name includes the nested types for a given type definition.
-     *
-     * @generated from field: string nested_name = 2;
-     */
-    nestedName = "";
+  /**
+   * nested_name includes the nested types for a given type definition.
+   *
+   * @generated from field: string nested_name = 2;
+   */
+  nestedName = "";
 
-    /**
-     * full_name includes the package name and nested types for a given type definition.
-     *
-     * @generated from field: string full_name = 3;
-     */
-    fullName = "";
+  /**
+   * full_name includes the package name and nested types for a given type definition.
+   *
+   * @generated from field: string full_name = 3;
+   */
+  fullName = "";
 
-    /**
-     * description is derived from the leading comments of a given message.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 4;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given message.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 4;
+   */
+  description = "";
 
-    /**
-     * file_path is the normalized path of the file containing the message.
-     *
-     * @generated from field: string file_path = 5;
-     */
-    filePath = "";
+  /**
+   * file_path is the normalized path of the file containing the message.
+   *
+   * @generated from field: string file_path = 5;
+   */
+  filePath = "";
 
-    /**
-     * @generated from field: bool is_map_entry = 6;
-     */
-    isMapEntry = false;
+  /**
+   * @generated from field: bool is_map_entry = 6;
+   */
+  isMapEntry = false;
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.MessageField fields = 7;
-     */
-    fields: MessageField[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.MessageField fields = 7;
+   */
+  fields: MessageField[] = [];
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.Location location = 8;
-     */
-    location?: Location;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.Location location = 8;
+   */
+  location?: Location;
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Field message_extensions = 9;
-     */
-    messageExtensions: Field[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Field message_extensions = 9;
+   */
+  messageExtensions: Field[] = [];
 
-    constructor(data?: PartialMessage<Message>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Message>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Message";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "is_map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */},
-        {no: 7, name: "fields", kind: "message", T: MessageField, repeated: true},
-        {no: 8, name: "location", kind: "message", T: Location},
-        {no: 9, name: "message_extensions", kind: "message", T: Field, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Message";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "nested_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "is_map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */},
+    {no: 7, name: "fields", kind: "message", T: MessageField, repeated: true},
+    {no: 8, name: "location", kind: "message", T: Location},
+    {no: 9, name: "message_extensions", kind: "message", T: Field, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message {
-        return new Message().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Message {
+    return new Message().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message {
-        return new Message().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Message {
+    return new Message().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message {
-        return new Message().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message {
+    return new Message().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Message | PlainMessage<Message> | undefined, b: Message | PlainMessage<Message> | undefined): boolean {
-        return proto3.util.equals(Message, a, b);
-    }
+  static equals(a: Message | PlainMessage<Message> | undefined, b: Message | PlainMessage<Message> | undefined): boolean {
+    return proto3.util.equals(Message, a, b);
+  }
 
 }
 
@@ -1386,50 +1386,50 @@ export class Message extends Message$1<Message> {
  */
 export class MessageField extends Message$1<MessageField> {
 
+  /**
+   * @generated from oneof buf.alpha.registry.v1alpha1.MessageField.message_field
+   */
+  messageField: {
     /**
-     * @generated from oneof buf.alpha.registry.v1alpha1.MessageField.message_field
+     * @generated from field: buf.alpha.registry.v1alpha1.Field field = 1;
      */
-    messageField: {
-        /**
-         * @generated from field: buf.alpha.registry.v1alpha1.Field field = 1;
-         */
-        value: Field;
-        case: "field";
-    } | {
-        /**
-         * @generated from field: buf.alpha.registry.v1alpha1.Oneof oneof = 2;
-         */
-        value: Oneof;
-        case: "oneof";
-    } | { case: undefined; value?: undefined } = { case: undefined };
+    value: Field;
+    case: "field";
+  } | {
+    /**
+     * @generated from field: buf.alpha.registry.v1alpha1.Oneof oneof = 2;
+     */
+    value: Oneof;
+    case: "oneof";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
-    constructor(data?: PartialMessage<MessageField>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<MessageField>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.MessageField";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "field", kind: "message", T: Field, oneof: "message_field"},
-        {no: 2, name: "oneof", kind: "message", T: Oneof, oneof: "message_field"},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.MessageField";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "field", kind: "message", T: Field, oneof: "message_field"},
+    {no: 2, name: "oneof", kind: "message", T: Oneof, oneof: "message_field"},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageField {
-        return new MessageField().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageField {
+    return new MessageField().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageField {
-        return new MessageField().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageField {
+    return new MessageField().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageField {
-        return new MessageField().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageField {
+    return new MessageField().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: MessageField | PlainMessage<MessageField> | undefined, b: MessageField | PlainMessage<MessageField> | undefined): boolean {
-        return proto3.util.equals(MessageField, a, b);
-    }
+  static equals(a: MessageField | PlainMessage<MessageField> | undefined, b: MessageField | PlainMessage<MessageField> | undefined): boolean {
+    return proto3.util.equals(MessageField, a, b);
+  }
 
 }
 
@@ -1441,43 +1441,43 @@ export class MessageField extends Message$1<MessageField> {
  */
 export class Oneof extends Message$1<Oneof> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Field fields = 2;
-     */
-    fields: Field[] = [];
+  /**
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Field fields = 2;
+   */
+  fields: Field[] = [];
 
-    constructor(data?: PartialMessage<Oneof>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Oneof>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Oneof";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "fields", kind: "message", T: Field, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Oneof";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "fields", kind: "message", T: Field, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Oneof {
-        return new Oneof().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Oneof {
+    return new Oneof().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Oneof {
-        return new Oneof().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Oneof {
+    return new Oneof().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Oneof {
-        return new Oneof().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Oneof {
+    return new Oneof().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Oneof | PlainMessage<Oneof> | undefined, b: Oneof | PlainMessage<Oneof> | undefined): boolean {
-        return proto3.util.equals(Oneof, a, b);
-    }
+  static equals(a: Oneof | PlainMessage<Oneof> | undefined, b: Oneof | PlainMessage<Oneof> | undefined): boolean {
+    return proto3.util.equals(Oneof, a, b);
+  }
 
 }
 
@@ -1489,103 +1489,103 @@ export class Oneof extends Message$1<Oneof> {
  */
 export class Field extends Message$1<Field> {
 
-    /**
-     * @generated from field: string name = 1;
-     */
-    name = "";
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
-    /**
-     * description is derived from the leading comments of a given message field.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 2;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given message field.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 2;
+   */
+  description = "";
 
-    /**
-     * @generated from field: string label = 3;
-     */
-    label = "";
+  /**
+   * @generated from field: string label = 3;
+   */
+  label = "";
 
-    /**
-     * string representation of the nested name of the field type, which includes nested definitions.
-     *
-     * @generated from field: string nested_type = 4;
-     */
-    nestedType = "";
+  /**
+   * string representation of the nested name of the field type, which includes nested definitions.
+   *
+   * @generated from field: string nested_type = 4;
+   */
+  nestedType = "";
 
-    /**
-     * string representation of the full name of the field type, which includes package name
-     * and nested definitions.
-     *
-     * @generated from field: string full_type = 5;
-     */
-    fullType = "";
+  /**
+   * string representation of the full name of the field type, which includes package name
+   * and nested definitions.
+   *
+   * @generated from field: string full_type = 5;
+   */
+  fullType = "";
 
-    /**
-     * @generated from field: uint32 tag = 6;
-     */
-    tag = 0;
+  /**
+   * @generated from field: uint32 tag = 6;
+   */
+  tag = 0;
 
-    /**
-     * MapEntry is present if the field is a map type.
-     *
-     * @generated from field: buf.alpha.registry.v1alpha1.MapEntry map_entry = 7;
-     */
-    mapEntry?: MapEntry;
+  /**
+   * MapEntry is present if the field is a map type.
+   *
+   * @generated from field: buf.alpha.registry.v1alpha1.MapEntry map_entry = 7;
+   */
+  mapEntry?: MapEntry;
 
-    /**
-     * import_module_ref is included if the field is an imported type.
-     * It contains all the metadata for the import.
-     *
-     * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 8;
-     */
-    importModuleRef?: ImportModuleRef;
+  /**
+   * import_module_ref is included if the field is an imported type.
+   * It contains all the metadata for the import.
+   *
+   * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 8;
+   */
+  importModuleRef?: ImportModuleRef;
 
-    /**
-     * Extendee is the name of the type that is being extended if the field is an extension.
-     * This is an empty string for fields that are not extenions.
-     *
-     * @generated from field: string extendee = 9;
-     */
-    extendee = "";
+  /**
+   * Extendee is the name of the type that is being extended if the field is an extension.
+   * This is an empty string for fields that are not extenions.
+   *
+   * @generated from field: string extendee = 9;
+   */
+  extendee = "";
 
-    constructor(data?: PartialMessage<Field>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<Field>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.Field";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "tag", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
-        {no: 7, name: "map_entry", kind: "message", T: MapEntry},
-        {no: 8, name: "import_module_ref", kind: "message", T: ImportModuleRef},
-        {no: 9, name: "extendee", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.Field";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "tag", kind: "scalar", T: 13 /* ScalarType.UINT32 */},
+    {no: 7, name: "map_entry", kind: "message", T: MapEntry},
+    {no: 8, name: "import_module_ref", kind: "message", T: ImportModuleRef},
+    {no: 9, name: "extendee", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Field {
-        return new Field().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Field {
+    return new Field().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Field {
-        return new Field().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Field {
+    return new Field().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Field {
-        return new Field().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Field {
+    return new Field().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
-        return proto3.util.equals(Field, a, b);
-    }
+  static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
+    return proto3.util.equals(Field, a, b);
+  }
 
 }
 
@@ -1597,64 +1597,64 @@ export class Field extends Message$1<Field> {
  */
 export class MapEntry extends Message$1<MapEntry> {
 
-    /**
-     * string representation of the full name of the type for the map key. keys can only be
-     * scalar types: https://developers.google.com/protocol-buffers/docs/overview#maps
-     *
-     * @generated from field: string key_full_type = 1;
-     */
-    keyFullType = "";
+  /**
+   * string representation of the full name of the type for the map key. keys can only be
+   * scalar types: https://developers.google.com/protocol-buffers/docs/overview#maps
+   *
+   * @generated from field: string key_full_type = 1;
+   */
+  keyFullType = "";
 
-    /**
-     * string representation of the nested name of the type for the map value.
-     *
-     * @generated from field: string value_nested_type = 2;
-     */
-    valueNestedType = "";
+  /**
+   * string representation of the nested name of the type for the map value.
+   *
+   * @generated from field: string value_nested_type = 2;
+   */
+  valueNestedType = "";
 
-    /**
-     * string representation of the full name of the type for the map value.
-     *
-     * @generated from field: string value_full_type = 3;
-     */
-    valueFullType = "";
+  /**
+   * string representation of the full name of the type for the map value.
+   *
+   * @generated from field: string value_full_type = 3;
+   */
+  valueFullType = "";
 
-    /**
-     * if the value is an imported type, this is the import module ref
-     *
-     * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef value_import_module_ref = 4;
-     */
-    valueImportModuleRef?: ImportModuleRef;
+  /**
+   * if the value is an imported type, this is the import module ref
+   *
+   * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef value_import_module_ref = 4;
+   */
+  valueImportModuleRef?: ImportModuleRef;
 
-    constructor(data?: PartialMessage<MapEntry>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<MapEntry>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.MapEntry";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "key_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "value_nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "value_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "value_import_module_ref", kind: "message", T: ImportModuleRef},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.MapEntry";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "key_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "value_nested_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "value_full_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "value_import_module_ref", kind: "message", T: ImportModuleRef},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MapEntry {
-        return new MapEntry().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MapEntry {
+    return new MapEntry().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MapEntry {
-        return new MapEntry().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MapEntry {
+    return new MapEntry().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapEntry {
-        return new MapEntry().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapEntry {
+    return new MapEntry().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: MapEntry | PlainMessage<MapEntry> | undefined, b: MapEntry | PlainMessage<MapEntry> | undefined): boolean {
-        return proto3.util.equals(MapEntry, a, b);
-    }
+  static equals(a: MapEntry | PlainMessage<MapEntry> | undefined, b: MapEntry | PlainMessage<MapEntry> | undefined): boolean {
+    return proto3.util.equals(MapEntry, a, b);
+  }
 
 }
 
@@ -1666,72 +1666,72 @@ export class MapEntry extends Message$1<MapEntry> {
  */
 export class FileExtension extends Message$1<FileExtension> {
 
-    /**
-     * extension_type is the string representation of the type being extended.
-     *
-     * @generated from field: string extension_type = 1;
-     */
-    extensionType = "";
+  /**
+   * extension_type is the string representation of the type being extended.
+   *
+   * @generated from field: string extension_type = 1;
+   */
+  extensionType = "";
 
-    /**
-     * description is derived from the leading comments of a given message field.
-     *
-     * Paragraph newlines (double new lines) are respected, however single newlines are not.
-     * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
-     *
-     * @generated from field: string description = 2;
-     */
-    description = "";
+  /**
+   * description is derived from the leading comments of a given message field.
+   *
+   * Paragraph newlines (double new lines) are respected, however single newlines are not.
+   * Note that any leading and trailing `//` or spaces within a `/* *\/` block will be stripped.
+   *
+   * @generated from field: string description = 2;
+   */
+  description = "";
 
-    /**
-     * file_path is the normalized path of the file containing the message.
-     *
-     * @generated from field: string file_path = 3;
-     */
-    filePath = "";
+  /**
+   * file_path is the normalized path of the file containing the message.
+   *
+   * @generated from field: string file_path = 3;
+   */
+  filePath = "";
 
-    /**
-     * @generated from field: buf.alpha.registry.v1alpha1.Location location = 4;
-     */
-    location?: Location;
+  /**
+   * @generated from field: buf.alpha.registry.v1alpha1.Location location = 4;
+   */
+  location?: Location;
 
-    /**
-     * fields are all the fields that are associated with the extension.
-     *
-     * @generated from field: repeated buf.alpha.registry.v1alpha1.Field fields = 5;
-     */
-    fields: Field[] = [];
+  /**
+   * fields are all the fields that are associated with the extension.
+   *
+   * @generated from field: repeated buf.alpha.registry.v1alpha1.Field fields = 5;
+   */
+  fields: Field[] = [];
 
-    constructor(data?: PartialMessage<FileExtension>) {
-        super();
-        proto3.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<FileExtension>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto3;
-    static readonly typeName = "buf.alpha.registry.v1alpha1.FileExtension";
-    static readonly fields: FieldList = proto3.util.newFieldList(() => [
-        {no: 1, name: "extension_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 3, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "location", kind: "message", T: Location},
-        {no: 5, name: "fields", kind: "message", T: Field, repeated: true},
-    ]);
+  static readonly runtime = proto3;
+  static readonly typeName = "buf.alpha.registry.v1alpha1.FileExtension";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    {no: 1, name: "extension_type", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 3, name: "file_path", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "location", kind: "message", T: Location},
+    {no: 5, name: "fields", kind: "message", T: Field, repeated: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileExtension {
-        return new FileExtension().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileExtension {
+    return new FileExtension().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FileExtension {
-        return new FileExtension().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FileExtension {
+    return new FileExtension().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileExtension {
-        return new FileExtension().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileExtension {
+    return new FileExtension().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: FileExtension | PlainMessage<FileExtension> | undefined, b: FileExtension | PlainMessage<FileExtension> | undefined): boolean {
-        return proto3.util.equals(FileExtension, a, b);
-    }
+  static equals(a: FileExtension | PlainMessage<FileExtension> | undefined, b: FileExtension | PlainMessage<FileExtension> | undefined): boolean {
+    return proto3.util.equals(FileExtension, a, b);
+  }
 
 }
 

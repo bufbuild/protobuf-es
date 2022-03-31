@@ -42,16 +42,16 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export enum TestEnum {
 
-    /**
-     * @generated from enum value: FOO = 1;
-     */
-    FOO = 1,
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
 
 }
 
 // Retrieve enum metadata with: proto2.getEnumType(TestEnum)
 proto2.util.setEnumType(TestEnum, "protobuf_unittest.no_generic_services_test.TestEnum", [
-    {no: 1, name: "FOO"},
+  {no: 1, name: "FOO"},
 ]);
 
 /**
@@ -59,37 +59,37 @@ proto2.util.setEnumType(TestEnum, "protobuf_unittest.no_generic_services_test.Te
  */
 export class TestMessage extends Message<TestMessage> {
 
-    /**
-     * @generated from field: optional int32 a = 1;
-     */
-    a?: number;
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
 
-    constructor(data?: PartialMessage<TestMessage>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<TestMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage {
-        return new TestMessage().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage {
+    return new TestMessage().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessage {
-        return new TestMessage().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessage {
+    return new TestMessage().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage {
-        return new TestMessage().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage {
+    return new TestMessage().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean {
-        return proto2.util.equals(TestMessage, a, b);
-    }
+  static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean {
+    return proto2.util.equals(TestMessage, a, b);
+  }
 
 }
 

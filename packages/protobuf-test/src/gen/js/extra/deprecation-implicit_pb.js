@@ -23,8 +23,8 @@ import {proto3} from "@bufbuild/protobuf";
  * @deprecated
  */
 export const ImplicitlyDeprecatedMessage = proto3.makeMessageType(
-    "spec.ImplicitlyDeprecatedMessage",
-    [],
+  "spec.ImplicitlyDeprecatedMessage",
+  [],
 );
 
 

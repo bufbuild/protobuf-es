@@ -50,24 +50,24 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare class LazyMessage extends Message<LazyMessage> {
 
-    /**
-     * @generated from field: optional int32 a = 1;
-     */
-    a?: number;
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
 
-    constructor(data?: PartialMessage<LazyMessage>);
+  constructor(data?: PartialMessage<LazyMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "protobuf_unittest.lazy_imports.LazyMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.lazy_imports.LazyMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LazyMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LazyMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LazyMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LazyMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LazyMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LazyMessage;
 
-    static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean;
+  static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean;
 
 }
 

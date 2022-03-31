@@ -34,10 +34,10 @@ import {proto3} from "@bufbuild/protobuf";
  * @generated from enum spec.EnumWithComments
  */
 export const EnumWithComments = proto3.makeEnum(
-    "spec.EnumWithComments",
-    [
-        {no: 0, name: "VALUE"},
-    ],
+  "spec.EnumWithComments",
+  [
+    {no: 0, name: "VALUE"},
+  ],
 );
 
 
@@ -48,12 +48,12 @@ export const EnumWithComments = proto3.makeEnum(
  * @deprecated
  */
 export const DeprecatedEnumWithComment = proto3.makeEnum(
-    "spec.DeprecatedEnumWithComment",
-    [
-        {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A"},
-        {no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B"},
-    ],
-    {sharedPrefix: "DEPRECATED_ENUM_WITH_COMMENT_"},
+  "spec.DeprecatedEnumWithComment",
+  [
+    {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A"},
+    {no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B"},
+  ],
+  {sharedPrefix: "DEPRECATED_ENUM_WITH_COMMENT_"},
 );
 
 
@@ -62,12 +62,12 @@ export const DeprecatedEnumWithComment = proto3.makeEnum(
  * @deprecated
  */
 export const DeprecatedEnumNoComment = proto3.makeEnum(
-    "spec.DeprecatedEnumNoComment",
-    [
-        {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A"},
-        {no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B"},
-    ],
-    {sharedPrefix: "DEPRECATED_ENUM_NO_COMMENT_"},
+  "spec.DeprecatedEnumNoComment",
+  [
+    {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A"},
+    {no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B"},
+  ],
+  {sharedPrefix: "DEPRECATED_ENUM_NO_COMMENT_"},
 );
 
 
@@ -77,14 +77,14 @@ export const DeprecatedEnumNoComment = proto3.makeEnum(
  * @generated from message spec.MessageWithComments
  */
 export const MessageWithComments = proto3.makeMessageType(
-    "spec.MessageWithComments",
-    () => [
-        {no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "result"},
-        {no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
-        {no: 4, name: "this_field_has_an_empty_comment", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 5, name: "this_field_is_deprecated", jsonName: "sdf", kind: "scalar", T: 9 /* ScalarType.STRING */},
-    ],
+  "spec.MessageWithComments",
+  () => [
+    {no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "result"},
+    {no: 3, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result"},
+    {no: 4, name: "this_field_has_an_empty_comment", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 5, name: "this_field_is_deprecated", jsonName: "sdf", kind: "scalar", T: 9 /* ScalarType.STRING */},
+  ],
 );
 
 
@@ -94,8 +94,8 @@ export const MessageWithComments = proto3.makeMessageType(
  * @generated from message spec.EmptyMessageWithComment
  */
 export const EmptyMessageWithComment = proto3.makeMessageType(
-    "spec.EmptyMessageWithComment",
-    [],
+  "spec.EmptyMessageWithComment",
+  [],
 );
 
 
@@ -105,15 +105,15 @@ export const EmptyMessageWithComment = proto3.makeMessageType(
  * @generated from message spec.GoogleCommentExample
  */
 export const GoogleCommentExample = proto3.makeMessageType(
-    "spec.GoogleCommentExample",
-    () => [
-        {no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 2, name: "bar", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-        {no: 3, name: "baz", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 4, name: "qux", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
-        {no: 5, name: "corge", kind: "scalar", T: 9 /* ScalarType.STRING */},
-        {no: 6, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */},
-    ],
+  "spec.GoogleCommentExample",
+  () => [
+    {no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 2, name: "bar", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+    {no: 3, name: "baz", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 4, name: "qux", kind: "scalar", T: 1 /* ScalarType.DOUBLE */},
+    {no: 5, name: "corge", kind: "scalar", T: 9 /* ScalarType.STRING */},
+    {no: 6, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */},
+  ],
 );
 
 

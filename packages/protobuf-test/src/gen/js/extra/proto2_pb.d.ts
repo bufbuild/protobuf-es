@@ -24,15 +24,15 @@ import {Message, proto2} from "@bufbuild/protobuf";
  */
 export declare enum Proto2Enum {
 
-    /**
-     * @generated from enum value: PROTO2_ENUM_YES = 1;
-     */
-    YES = 1,
+  /**
+   * @generated from enum value: PROTO2_ENUM_YES = 1;
+   */
+  YES = 1,
 
-    /**
-     * @generated from enum value: PROTO2_ENUM_NO = 2;
-     */
-    NO = 2,
+  /**
+   * @generated from enum value: PROTO2_ENUM_NO = 2;
+   */
+  NO = 2,
 
 }
 
@@ -42,34 +42,34 @@ export declare enum Proto2Enum {
  */
 export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
 
-    /**
-     * @generated from field: repeated double packed_double_field = 101 [packed = true];
-     */
-    packedDoubleField: number[];
+  /**
+   * @generated from field: repeated double packed_double_field = 101 [packed = true];
+   */
+  packedDoubleField: number[];
 
-    /**
-     * @generated from field: repeated uint32 packed_uint32_field = 102 [packed = true];
-     */
-    packedUint32Field: number[];
+  /**
+   * @generated from field: repeated uint32 packed_uint32_field = 102 [packed = true];
+   */
+  packedUint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint64 packed_uint64_field = 103 [packed = true];
-     */
-    packedUint64Field: bigint[];
+  /**
+   * @generated from field: repeated uint64 packed_uint64_field = 103 [packed = true];
+   */
+  packedUint64Field: bigint[];
 
-    constructor(data?: PartialMessage<Proto2PackedMessage>);
+  constructor(data?: PartialMessage<Proto2PackedMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2PackedMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2PackedMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2PackedMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2PackedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
 
-    static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean;
+  static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean;
 
 }
 
@@ -79,34 +79,34 @@ export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
  */
 export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
 
-    /**
-     * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
-     */
-    unpackedDoubleField: number[];
+  /**
+   * @generated from field: repeated double unpacked_double_field = 201 [packed = false];
+   */
+  unpackedDoubleField: number[];
 
-    /**
-     * @generated from field: repeated uint32 unpacked_uint32_field = 202 [packed = false];
-     */
-    unpackedUint32Field: number[];
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32_field = 202 [packed = false];
+   */
+  unpackedUint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint64 unpacked_uint64_field = 203 [packed = false];
-     */
-    unpackedUint64Field: bigint[];
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64_field = 203 [packed = false];
+   */
+  unpackedUint64Field: bigint[];
 
-    constructor(data?: PartialMessage<Proto2UnpackedMessage>);
+  constructor(data?: PartialMessage<Proto2UnpackedMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2UnpackedMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2UnpackedMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2UnpackedMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2UnpackedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
 
-    static equals(a: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined, b: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined): boolean;
+  static equals(a: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined, b: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined): boolean;
 
 }
 
@@ -116,34 +116,34 @@ export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage
  */
 export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPackedMessage> {
 
-    /**
-     * @generated from field: repeated double double_field = 1;
-     */
-    doubleField: number[];
+  /**
+   * @generated from field: repeated double double_field = 1;
+   */
+  doubleField: number[];
 
-    /**
-     * @generated from field: repeated uint32 uint32_field = 2;
-     */
-    uint32Field: number[];
+  /**
+   * @generated from field: repeated uint32 uint32_field = 2;
+   */
+  uint32Field: number[];
 
-    /**
-     * @generated from field: repeated uint64 uint64_field = 3;
-     */
-    uint64Field: bigint[];
+  /**
+   * @generated from field: repeated uint64 uint64_field = 3;
+   */
+  uint64Field: bigint[];
 
-    constructor(data?: PartialMessage<Proto2UnspecifiedPackedMessage>);
+  constructor(data?: PartialMessage<Proto2UnspecifiedPackedMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2UnspecifiedPackedMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2UnspecifiedPackedMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2UnspecifiedPackedMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2UnspecifiedPackedMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
 
-    static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean;
+  static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean;
 
 }
 
@@ -153,39 +153,39 @@ export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2Unspec
  */
 export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
 
-    /**
-     * @generated from field: optional string string_field = 1;
-     */
-    stringField?: string;
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
 
-    /**
-     * @generated from field: optional bytes bytes_field = 2;
-     */
-    bytesField?: Uint8Array;
+  /**
+   * @generated from field: optional bytes bytes_field = 2;
+   */
+  bytesField?: Uint8Array;
 
-    /**
-     * @generated from field: optional spec.Proto2Enum enum_field = 3;
-     */
-    enumField?: Proto2Enum;
+  /**
+   * @generated from field: optional spec.Proto2Enum enum_field = 3;
+   */
+  enumField?: Proto2Enum;
 
-    /**
-     * @generated from field: optional spec.Proto2ChildMessage message_field = 4;
-     */
-    messageField?: Proto2ChildMessage;
+  /**
+   * @generated from field: optional spec.Proto2ChildMessage message_field = 4;
+   */
+  messageField?: Proto2ChildMessage;
 
-    constructor(data?: PartialMessage<Proto2OptionalMessage>);
+  constructor(data?: PartialMessage<Proto2OptionalMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2OptionalMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2OptionalMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2OptionalMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2OptionalMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
 
-    static equals(a: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined, b: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined): boolean;
+  static equals(a: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined, b: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined): boolean;
 
 }
 
@@ -195,39 +195,39 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
  */
 export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
 
-    /**
-     * @generated from field: required string string_field = 1;
-     */
-    stringField: string;
+  /**
+   * @generated from field: required string string_field = 1;
+   */
+  stringField: string;
 
-    /**
-     * @generated from field: required bytes bytes_field = 2;
-     */
-    bytesField: Uint8Array;
+  /**
+   * @generated from field: required bytes bytes_field = 2;
+   */
+  bytesField: Uint8Array;
 
-    /**
-     * @generated from field: required spec.Proto2Enum enum_field = 3;
-     */
-    enumField: Proto2Enum;
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 3;
+   */
+  enumField: Proto2Enum;
 
-    /**
-     * @generated from field: required spec.Proto2ChildMessage message_field = 4;
-     */
-    messageField?: Proto2ChildMessage;
+  /**
+   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   */
+  messageField?: Proto2ChildMessage;
 
-    constructor(data?: PartialMessage<Proto2RequiredMessage>);
+  constructor(data?: PartialMessage<Proto2RequiredMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2RequiredMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2RequiredMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
 
-    static equals(a: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined, b: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined): boolean;
+  static equals(a: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined, b: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined): boolean;
 
 }
 
@@ -237,39 +237,39 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
  */
 export declare class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefaultsMessage> {
 
-    /**
-     * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
-     */
-    stringField: string;
+  /**
+   * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
+   */
+  stringField: string;
 
-    /**
-     * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
-     */
-    bytesField: Uint8Array;
+  /**
+   * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   */
+  bytesField: Uint8Array;
 
-    /**
-     * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
-     */
-    enumField: Proto2Enum;
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
+   */
+  enumField: Proto2Enum;
 
-    /**
-     * @generated from field: required spec.Proto2ChildMessage message_field = 4;
-     */
-    messageField?: Proto2ChildMessage;
+  /**
+   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   */
+  messageField?: Proto2ChildMessage;
 
-    constructor(data?: PartialMessage<Proto2RequiredDefaultsMessage>);
+  constructor(data?: PartialMessage<Proto2RequiredDefaultsMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2RequiredDefaultsMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2RequiredDefaultsMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredDefaultsMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredDefaultsMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
 
-    static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean;
+  static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean;
 
 }
 
@@ -279,59 +279,59 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
  */
 export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
 
-    /**
-     * @generated from field: optional string string_field = 1 [default = "hello \" *\/ "];
-     */
-    stringField?: string;
+  /**
+   * @generated from field: optional string string_field = 1 [default = "hello \" *\/ "];
+   */
+  stringField?: string;
 
-    /**
-     * @generated from field: optional bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
-     */
-    bytesField?: Uint8Array;
+  /**
+   * @generated from field: optional bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   */
+  bytesField?: Uint8Array;
 
-    /**
-     * @generated from field: optional int32 int32_field = 3 [default = 128];
-     */
-    int32Field?: number;
+  /**
+   * @generated from field: optional int32 int32_field = 3 [default = 128];
+   */
+  int32Field?: number;
 
-    /**
-     * @generated from field: optional int64 int46_field = 4 [default = -256];
-     */
-    int46Field?: bigint;
+  /**
+   * @generated from field: optional int64 int46_field = 4 [default = -256];
+   */
+  int46Field?: bigint;
 
-    /**
-     * @generated from field: optional float float_field = 5 [default = -512.13];
-     */
-    floatField?: number;
+  /**
+   * @generated from field: optional float float_field = 5 [default = -512.13];
+   */
+  floatField?: number;
 
-    /**
-     * @generated from field: optional bool bool_field = 6 [default = true];
-     */
-    boolField?: boolean;
+  /**
+   * @generated from field: optional bool bool_field = 6 [default = true];
+   */
+  boolField?: boolean;
 
-    /**
-     * @generated from field: optional spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
-     */
-    enumField?: Proto2Enum;
+  /**
+   * @generated from field: optional spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
+   */
+  enumField?: Proto2Enum;
 
-    /**
-     * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
-     */
-    messageField?: Proto2ChildMessage;
+  /**
+   * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
+   */
+  messageField?: Proto2ChildMessage;
 
-    constructor(data?: PartialMessage<Proto2DefaultsMessage>);
+  constructor(data?: PartialMessage<Proto2DefaultsMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2DefaultsMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2DefaultsMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2DefaultsMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2DefaultsMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
 
-    static equals(a: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined, b: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined): boolean;
+  static equals(a: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined, b: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined): boolean;
 
 }
 
@@ -341,24 +341,24 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
  */
 export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
 
-    /**
-     * @generated from field: optional string string_field = 1;
-     */
-    stringField?: string;
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
 
-    constructor(data?: PartialMessage<Proto2ChildMessage>);
+  constructor(data?: PartialMessage<Proto2ChildMessage>);
 
-    static readonly runtime: typeof proto2;
-    static readonly typeName = "spec.Proto2ChildMessage";
-    static readonly fields: FieldList;
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2ChildMessage";
+  static readonly fields: FieldList;
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2ChildMessage;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2ChildMessage;
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
 
-    static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
+  static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
 
 }
 

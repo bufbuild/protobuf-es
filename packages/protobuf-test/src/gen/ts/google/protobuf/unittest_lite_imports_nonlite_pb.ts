@@ -45,45 +45,45 @@ import {TestAllTypes, TestRequired} from "./unittest_pb.js";
  */
 export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
 
-    /**
-     * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
-     */
-    message?: TestAllTypes;
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
+   */
+  message?: TestAllTypes;
 
-    /**
-     * Verifies that transitive required fields generates valid code.
-     *
-     * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
-     */
-    messageWithRequired?: TestRequired;
+  /**
+   * Verifies that transitive required fields generates valid code.
+   *
+   * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
+   */
+  messageWithRequired?: TestRequired;
 
-    constructor(data?: PartialMessage<TestLiteImportsNonlite>) {
-        super();
-        proto2.util.initPartial(data, this);
-    }
+  constructor(data?: PartialMessage<TestLiteImportsNonlite>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
 
-    static readonly runtime = proto2;
-    static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
-    static readonly fields: FieldList = proto2.util.newFieldList(() => [
-        {no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true},
-        {no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true},
-    ]);
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    {no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true},
+    {no: 2, name: "message_with_required", kind: "message", T: TestRequired, opt: true},
+  ]);
 
-    static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLiteImportsNonlite {
-        return new TestLiteImportsNonlite().fromBinary(bytes, options);
-    }
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLiteImportsNonlite {
+    return new TestLiteImportsNonlite().fromBinary(bytes, options);
+  }
 
-    static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite {
-        return new TestLiteImportsNonlite().fromJson(jsonValue, options);
-    }
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite {
+    return new TestLiteImportsNonlite().fromJson(jsonValue, options);
+  }
 
-    static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite {
-        return new TestLiteImportsNonlite().fromJsonString(jsonString, options);
-    }
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite {
+    return new TestLiteImportsNonlite().fromJsonString(jsonString, options);
+  }
 
-    static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean {
-        return proto2.util.equals(TestLiteImportsNonlite, a, b);
-    }
+  static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean {
+    return proto2.util.equals(TestLiteImportsNonlite, a, b);
+  }
 
 }
 
