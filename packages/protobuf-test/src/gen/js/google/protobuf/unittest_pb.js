@@ -348,6 +348,8 @@ export const NestedTestAllTypes = proto2.makeMessageType(
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes, opt: true },
     { no: 2, name: "payload", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true },
+    { no: 4, name: "lazy_child", kind: "message", T: NestedTestAllTypes, opt: true },
+    { no: 5, name: "eager_child", kind: "message", T: TestAllTypes, opt: true },
   ],
 );
 
@@ -483,6 +485,69 @@ export const TestChildExtension = proto2.makeMessageType(
 );
 
 /**
+ * Emulates wireformat data of TestChildExtension with dynamic extension
+ * (DynamicExtension).
+ *
+ * @generated from message protobuf_unittest.TestChildExtensionData
+ */
+export const TestChildExtensionData = proto2.makeMessageType(
+  "protobuf_unittest.TestChildExtensionData",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "optional_extension", kind: "message", T: TestChildExtensionData_NestedTestAllExtensionsData, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData
+ */
+export const TestChildExtensionData_NestedTestAllExtensionsData = proto2.makeMessageType(
+  "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData",
+  () => [
+    { no: 409707008, name: "dynamic", kind: "message", T: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, opt: true },
+  ],
+  {localName: "TestChildExtensionData_NestedTestAllExtensionsData"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions
+ */
+export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions = proto2.makeMessageType(
+  "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedChildExtension
+ */
+export const TestNestedChildExtension = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedChildExtension",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: TestChildExtension, opt: true },
+  ],
+);
+
+/**
+ * Emulates wireformat data of TestNestedChildExtension with dynamic extension
+ * (DynamicExtension).
+ *
+ * @generated from message protobuf_unittest.TestNestedChildExtensionData
+ */
+export const TestNestedChildExtensionData = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedChildExtensionData",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: TestChildExtensionData, opt: true },
+  ],
+);
+
+/**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
  * do anything with it.  Note that we don't need to test every type of
@@ -527,6 +592,7 @@ export const TestRequired = proto2.makeMessageType(
     { no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 34, name: "optional_foreign", kind: "message", T: ForeignMessage, opt: true },
   ],
 );
 
@@ -551,6 +617,18 @@ export const TestRequiredMessage = proto2.makeMessageType(
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
     { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
     { no: 3, name: "required_message", kind: "message", T: TestRequired },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedRequiredForeign
+ */
+export const TestNestedRequiredForeign = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedRequiredForeign",
+  () => [
+    { no: 1, name: "child", kind: "message", T: TestNestedRequiredForeign, opt: true },
+    { no: 2, name: "payload", kind: "message", T: TestRequiredForeign, opt: true },
+    { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 
@@ -794,6 +872,29 @@ export const TestLazyMessage = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.TestEagerMaybeLazy
+ */
+export const TestEagerMaybeLazy = proto2.makeMessageType(
+  "protobuf_unittest.TestEagerMaybeLazy",
+  () => [
+    { no: 1, name: "message_foo", kind: "message", T: TestAllTypes, opt: true },
+    { no: 2, name: "message_bar", kind: "message", T: TestAllTypes, opt: true },
+    { no: 3, name: "message_baz", kind: "message", T: TestEagerMaybeLazy_NestedMessage, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestEagerMaybeLazy.NestedMessage
+ */
+export const TestEagerMaybeLazy_NestedMessage = proto2.makeMessageType(
+  "protobuf_unittest.TestEagerMaybeLazy.NestedMessage",
+  () => [
+    { no: 1, name: "packed", kind: "message", T: TestPackedTypes, opt: true },
+  ],
+  {localName: "TestEagerMaybeLazy_NestedMessage"},
+);
+
+/**
  * Needed for a Python test.
  *
  * @generated from message protobuf_unittest.TestNestedMessageHasBits
@@ -985,6 +1086,47 @@ export const MoreBytes = proto2.makeMessageType(
   "protobuf_unittest.MoreBytes",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.ManyOptionalString
+ */
+export const ManyOptionalString = proto2.makeMessageType(
+  "protobuf_unittest.ManyOptionalString",
+  () => [
+    { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "str2", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "str3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "str4", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "str5", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "str6", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "str7", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "str8", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 9, name: "str9", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 10, name: "str10", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 11, name: "str11", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 12, name: "str12", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 13, name: "str13", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 14, name: "str14", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "str15", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 16, name: "str16", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 17, name: "str17", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 18, name: "str18", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 19, name: "str19", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 20, name: "str20", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 21, name: "str21", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 22, name: "str22", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 23, name: "str23", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 24, name: "str24", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 25, name: "str25", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 26, name: "str26", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 27, name: "str27", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 28, name: "str28", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 29, name: "str29", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 30, name: "str30", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 31, name: "str31", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 32, name: "str32", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 
@@ -1389,6 +1531,19 @@ export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
 );
 
 /**
+ * Test that the correct exception is thrown by parseFrom in a corner case
+ * involving merging, extensions, and required fields.
+ *
+ * @generated from message protobuf_unittest.TestMergeException
+ */
+export const TestMergeException = proto2.makeMessageType(
+  "protobuf_unittest.TestMergeException",
+  () => [
+    { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensions, opt: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
 export const TestCommentInjectionMessage = proto2.makeMessageType(
@@ -1513,6 +1668,62 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
     { no: 8, name: "field8", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 9, name: "field9", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 10, name: "field10", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * NOTE(b/202996544): Intentionally nested to mirror go/glep.
+ *
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
+ */
+export const TestNestedGroupExtensionOuter = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedGroupExtensionOuter",
+  () => [
+    { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup
+ */
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup",
+  () => [
+    { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, repeated: true },
+    { no: 4, name: "layer2anotheroptionalrepeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, repeated: true },
+  ],
+  {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
+ */
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup",
+  () => [
+    { no: 6, name: "another_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+  {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
+ */
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup",
+  () => [
+    { no: 5, name: "but_why_tho", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+  {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionInnerExtension
+ */
+export const TestNestedGroupExtensionInnerExtension = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedGroupExtensionInnerExtension",
+  () => [
+    { no: 1, name: "inner_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 

@@ -390,6 +390,19 @@ export const TestParsingMergeLite_RepeatedGroup = proto2.makeMessageType(
 );
 
 /**
+ * Test that the correct exception is thrown by parseFrom in a corner case
+ * involving merging, extensions, and required fields.
+ *
+ * @generated from message protobuf_unittest.TestMergeExceptionLite
+ */
+export const TestMergeExceptionLite = proto2.makeMessageType(
+  "protobuf_unittest.TestMergeExceptionLite",
+  () => [
+    { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensionsLite, opt: true },
+  ],
+);
+
+/**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
  * @generated from message protobuf_unittest.TestEmptyMessageLite
@@ -482,6 +495,14 @@ export const TestOneofParsingLite = proto2.makeMessageType(
     { no: 8, name: "oneof_bytes_string_piece", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6E, 0x67, 0x50, 0x69, 0x65, 0x63, 0x65, ]), oneof: "oneof_field" },
     { no: 9, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(V2EnumLite), oneof: "oneof_field" },
   ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestMessageSetLite
+ */
+export const TestMessageSetLite = proto2.makeMessageType(
+  "protobuf_unittest.TestMessageSetLite",
+  [],
 );
 
 /**

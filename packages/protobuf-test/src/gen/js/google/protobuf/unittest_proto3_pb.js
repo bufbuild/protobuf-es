@@ -73,7 +73,7 @@ export const TestAllTypes = proto3.makeMessageType(
     { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage },
+    { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage },
     { no: 20, name: "optional_import_message", kind: "message", T: ImportMessage },
     { no: 21, name: "optional_nested_enum", kind: "enum", T: proto3.getEnumType(TestAllTypes_NestedEnum) },
