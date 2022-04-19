@@ -18,7 +18,6 @@ const module = new Module({
   files: [
     {
       path: "foo.proto",
-      content: new TextEncoder().encode(`syntax="proto3";`),
     },
   ],
 });
