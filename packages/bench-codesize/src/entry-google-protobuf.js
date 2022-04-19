@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Module, ModuleFile } from "./gen/google-protobuf/buf/alpha/module/v1alpha1/module_pb.js";
+import {
+  Module,
+  ModuleFile,
+} from "./gen/google-protobuf/buf/alpha/module/v1alpha1/module_pb.js";
 
 const file = new ModuleFile();
 file.setPath("foo.proto");
