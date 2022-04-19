@@ -1,7 +1,7 @@
 Protobuf-ES
 ===========
 
-A complete implementation of protocol buffers in TypeScript,
+A complete implementation of [protocol buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
 
@@ -9,9 +9,10 @@ suitable for web browsers and Node.js.
 
 - small code size
 - no dependencies
+- very fast code generation, implemented in Go
 - implements all proto3 features, including the canonical JSON format
 - implements all proto2 features, except for extensions and the text format
-- passes the protocol buffers conformance tests
+- passes the protocol buffers [conformance tests](./packages/conformance-test)
 - provides all well-known types with their specialized JSON representation
 - uses and algebraic data type to represent `oneof` groups
 - unboxes fields using google/protobuf/wrappers.proto to optional primitives
@@ -22,6 +23,7 @@ suitable for web browsers and Node.js.
 - messages can be constructed from partial plain objects
 - can dynamically create types at run time, for example from a set of `google.protobuf.FileDescriptorProto`
 - provides field information to traverse types programmatically
+- first class support of comments for documentation, including deprecations
 
 
 ## Code Generator

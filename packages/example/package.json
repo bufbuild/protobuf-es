@@ -1,0 +1,15 @@
+{
+  "name": "@bufbuild/example",
+  "private": true,
+  "license": "(Apache-2.0 AND BSD-3-Clause)",
+  "scripts": {
+    "clean": "rm -rf ./dist/esm/* ./dist/types/*",
+    "build": "npx tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types",
+    "add-person": "node dist/esm/add-person.js addressbook.bin",
+    "list-people": "node dist/esm/list-people.js addressbook.bin"
+  },
+  "type": "module",
+  "dependencies": {
+    "typescript": "^4.6.3"
+  }
+}

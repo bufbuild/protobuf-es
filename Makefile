@@ -153,6 +153,21 @@ $(BENCHCODESIZE_GEN): $(PROTOC_GEN_ES_BIN) $(PROTOC_GEN_CONNECT_WEB_BIN)
 	mkdir -p $(dir $(BENCHCODESIZE_GEN)) && touch $(BENCHCODESIZE_GEN)
 
 
+# The private NPM package "@bufbuild/example" provides a code example
+EXAMPLE_DIR = packages/example
+EXAMPLE_GEN = $(CACHE_DIR)/gen/example
+EXAMPLE_BUILD = $(CACHE_DIR)/build/example
+EXAMPLE_SOURCES = $(shell find $(EXAMPLE_DIR)/src -name '*.ts' -or -name '*.js') $(EXAMPLE_DIR)/*.json
+$(EXAMPLE_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
+	rm -rf $(EXAMPLE_DIR)/src/gen/*
+	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(EXAMPLE_DIR)/src/gen --es_opt ts_nocheck=false,target=ts \
+		-I $(GOOGPROTOBUF_SOURCE)/src \
+		-I $(EXAMPLE_DIR) \
+		"$(EXAMPLE_DIR)/addressbook.proto"
+	mkdir -p $(dir $(EXAMPLE_GEN)) && touch $(EXAMPLE_GEN)
+$(EXAMPLE_BUILD): $(PROTOC_GEN_ES_BIN) $(EXAMPLE_GEN) $(RUNTIME_BUILD) $(EXAMPLE_SOURCES)
+	cd $(EXAMPLE_DIR) && npm run clean && npm run build
+	mkdir -p $(dir $(EXAMPLE_BUILD)) && touch $(EXAMPLE_BUILD)
 
 
 
@@ -172,7 +187,7 @@ clean: ## Delete build artifacts and installed dependencies
 	rm -rf node_modules
 	rm -rf packages/protoc-gen-*/bin/*
 
-build: $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(PROTOC_GEN_ES_BIN) ## Build
+build: $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(PROTOC_GEN_ES_BIN) $(EXAMPLE_BUILD) ## Build
 
 test: test-go test-jest test-conformance ## Run all tests
 
@@ -188,7 +203,7 @@ test-go: $(TEST_GEN)
 fuzz-go:
 	gotip test ./private/protoplugin -cpu=1 -parallel=1 -fuzz FuzzProtoCamelCase
 
-lint: $(GOLANGCI_LINT_DEP) node_modules $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(BENCHCODESIZE_GEN) ## Lint all files
+lint: $(GOLANGCI_LINT_DEP) node_modules $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(BENCHCODESIZE_GEN) $(EXAMPLE_GEN) ## Lint all files
 	golangci-lint run
 	npx eslint --max-warnings 0 .
 
