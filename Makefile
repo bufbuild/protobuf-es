@@ -228,7 +228,7 @@ set-version: ## Set a new version in for the project, i.e. make set-version SET_
 
 # Some builds need code generation, some code generation needs builds.
 # We expose this target only for ci, so it can check for diffs.
-ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN) $(CONFORMANCE_GEN)
+ci-generate: $(RUNTIME_GEN) $(TEST_GEN) $(BENCHCODESIZE_GEN) $(CONFORMANCE_GEN) $(EXAMPLE_GEN)
 
 # Release @bufbuild/protobuf.
 # Recommended procedure:
