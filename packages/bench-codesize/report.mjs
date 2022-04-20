@@ -1,8 +1,6 @@
 import {buildSync} from "esbuild";
 import {execSync} from "child_process";
-import {mkdtempSync, readFileSync, writeFileSync} from "fs";
-import {tmpdir} from "os";
-import {join} from "path";
+import {readFileSync, unlinkSync, writeFileSync} from "fs";
 
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
@@ -52,14 +50,16 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    const tempDir = mkdtempSync(tmpdir());
-    const tempIn = join(tempDir, "in");
-    const tempOut = join(tempDir, "out");
+    const tempIn = ".tmpin";
+    const tempOut = ".tmpout";
     writeFileSync(tempIn, buf);
     execSync(`gzip --no-name -6 --stdout ${tempIn} >${tempOut}`, {
         encoding: "buffer",
     });
-    return readFileSync(tempOut);
+    const res = readFileSync(tempOut);
+    unlinkSync(tempIn);
+    unlinkSync(tempOut);
+    return res;
 }
 
 function formatSize(bytes) {
