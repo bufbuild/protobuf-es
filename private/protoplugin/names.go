@@ -251,8 +251,10 @@ func makeEnumName(enum *Enum) (string, string) {
 			break
 		}
 	}
-	nestedName := strings.TrimPrefix(enum.protoTypeName, "."+enum.File.Proto.GetPackage()+".")
-	name := strings.ReplaceAll(nestedName, ".", "_")
+	name := enum.protoTypeName
+	name = strings.TrimPrefix(name, ".")
+	name = strings.TrimPrefix(name, enum.File.Proto.GetPackage()+".")
+	name = strings.ReplaceAll(name, ".", "_")
 	if _, reserved := reservedIdentifiers[name]; reserved {
 		name += escapeChar
 	}
