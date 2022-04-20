@@ -1471,6 +1471,46 @@ export class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMerge
 }
 
 /**
+ * Test that the correct exception is thrown by parseFrom in a corner case
+ * involving merging, extensions, and required fields.
+ *
+ * @generated from message protobuf_unittest.TestMergeExceptionLite
+ */
+export class TestMergeExceptionLite extends Message<TestMergeExceptionLite> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllExtensionsLite all_extensions = 1;
+   */
+  allExtensions?: TestAllExtensionsLite;
+
+  constructor(data?: PartialMessage<TestMergeExceptionLite>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestMergeExceptionLite";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensionsLite, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMergeExceptionLite {
+    return new TestMergeExceptionLite().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMergeExceptionLite {
+    return new TestMergeExceptionLite().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMergeExceptionLite {
+    return new TestMergeExceptionLite().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined, b: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined): boolean {
+    return proto2.util.equals(TestMergeExceptionLite, a, b);
+  }
+}
+
+/**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
  * @generated from message protobuf_unittest.TestEmptyMessageLite
@@ -1880,6 +1920,37 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
 
   static equals(a: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined, b: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined): boolean {
     return proto2.util.equals(TestOneofParsingLite, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestMessageSetLite
+ */
+export class TestMessageSetLite extends Message<TestMessageSetLite> {
+  constructor(data?: PartialMessage<TestMessageSetLite>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetLite";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetLite {
+    return new TestMessageSetLite().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetLite {
+    return new TestMessageSetLite().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetLite {
+    return new TestMessageSetLite().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined, b: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined): boolean {
+    return proto2.util.equals(TestMessageSetLite, a, b);
   }
 }
 

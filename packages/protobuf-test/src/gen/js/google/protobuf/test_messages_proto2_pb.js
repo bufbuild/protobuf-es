@@ -181,6 +181,7 @@ export const TestAllTypesProto2 = proto2.makeMessageType(
     { no: 252, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 7e+22 },
     { no: 253, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
     { no: 254, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "Rosebud" },
+    { no: 255, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61, ]) },
     { no: 401, name: "fieldname1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 402, name: "field_name2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 403, name: "_field_name3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -334,6 +335,16 @@ export const EnumOnlyProto2_Bool = proto2.makeEnum(
   [
     {no: 0, name: "kFalse"},
     {no: 1, name: "kTrue"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.OneStringProto2
+ */
+export const OneStringProto2 = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.OneStringProto2",
+  () => [
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
 );
 

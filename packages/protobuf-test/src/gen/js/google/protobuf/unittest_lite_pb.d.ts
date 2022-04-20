@@ -1102,6 +1102,33 @@ export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestPars
 }
 
 /**
+ * Test that the correct exception is thrown by parseFrom in a corner case
+ * involving merging, extensions, and required fields.
+ *
+ * @generated from message protobuf_unittest.TestMergeExceptionLite
+ */
+export declare class TestMergeExceptionLite extends Message<TestMergeExceptionLite> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllExtensionsLite all_extensions = 1;
+   */
+  allExtensions?: TestAllExtensionsLite;
+
+  constructor(data?: PartialMessage<TestMergeExceptionLite>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMergeExceptionLite";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMergeExceptionLite;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMergeExceptionLite;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMergeExceptionLite;
+
+  static equals(a: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined, b: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined): boolean;
+}
+
+/**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
  * @generated from message protobuf_unittest.TestEmptyMessageLite
@@ -1400,6 +1427,25 @@ export declare class TestOneofParsingLite extends Message<TestOneofParsingLite> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofParsingLite;
 
   static equals(a: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined, b: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestMessageSetLite
+ */
+export declare class TestMessageSetLite extends Message<TestMessageSetLite> {
+  constructor(data?: PartialMessage<TestMessageSetLite>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetLite";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetLite;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetLite;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetLite;
+
+  static equals(a: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined, b: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined): boolean;
 }
 
 /**
