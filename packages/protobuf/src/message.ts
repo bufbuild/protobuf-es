@@ -159,9 +159,9 @@ type PartialField<F> =
   F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
   : F extends Array<infer U> ? Array<PartialField<U>>
   : F extends ReadonlyArray<infer U> ? ReadonlyArray<PartialField<U>>
+  : F extends Message ? PartialMessage<F>
   : F extends OneofSelectedMessage<infer C, infer V> ? {case: C; value: PartialMessage<V>}
   : F extends { case: string | undefined; value?: unknown; } ? F
-  : F extends Message ? PartialMessage<F>
   : F extends {[key: string|number]: Message<infer U>} ? {[key: string|number]: PartialMessage<U>}
   : F ;
 
