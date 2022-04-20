@@ -14,7 +14,7 @@ once with protoc's [built-in JavaScript generator](https://github.com/protocolbu
 once with \`protoc-gen-es\`. Then we bundle a [snippet of code](./src) with [esbuild](https://esbuild.github.io/),
 minify the bundle, and compress it like a web server would usually do.
 
-| code generator    | bundle size             | minified               | gzip               |
+| code generator    | bundle size             | minified               | brotli             |
 |-------------------|------------------------:|-----------------------:|-------------------:|
 | protobuf-es       | ${protobufEs.size}      | ${protobufEs.minified} | ${protobufEs.brotli} |
 | google-protobuf   | ${googleProtobuf.size}  | ${googleProtobuf.minified}    | ${googleProtobuf.brotli}    |
@@ -49,11 +49,15 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    const deflate = deflateRawSync(buf);
-    const gzip = gzipSync(buf, {
-        level: 7, // for mysterious reasons, the default (equivalent to 6) is unstable across node versions
+    const deflate = deflateRawSync(buf, {
+        info: false,
     });
-    const brotli = brotliCompressSync(buf);
+    const gzip = gzipSync(buf, {
+        info: false,
+    });
+    const brotli = brotliCompressSync(buf, {
+        info: false,
+    });
     return {
         deflate: deflate.byteLength,
         gzip: gzip.byteLength,
