@@ -81,6 +81,49 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
 }
 
 /**
+ * @generated from message protobuf_unittest.NestedTestMessageSetContainer
+ */
+export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetContainer> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMessageSetContainer container = 1;
+   */
+  container?: TestMessageSetContainer;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer child = 2;
+   */
+  child?: NestedTestMessageSetContainer;
+
+  constructor(data?: PartialMessage<NestedTestMessageSetContainer>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.NestedTestMessageSetContainer";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "container", kind: "message", T: TestMessageSetContainer, opt: true },
+    { no: 2, name: "child", kind: "message", T: NestedTestMessageSetContainer, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestMessageSetContainer {
+    return new NestedTestMessageSetContainer().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestMessageSetContainer {
+    return new NestedTestMessageSetContainer().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestMessageSetContainer {
+    return new NestedTestMessageSetContainer().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined, b: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined): boolean {
+    return proto2.util.equals(NestedTestMessageSetContainer, a, b);
+  }
+}
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
 export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> {
@@ -163,6 +206,86 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
 
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean {
     return proto2.util.equals(TestMessageSetExtension2, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.NestedTestInt
+ */
+export class NestedTestInt extends Message<NestedTestInt> {
+  /**
+   * @generated from field: optional fixed32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
+   */
+  child?: NestedTestInt;
+
+  constructor(data?: PartialMessage<NestedTestInt>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.NestedTestInt";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: NestedTestInt, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestInt {
+    return new NestedTestInt().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestInt {
+    return new NestedTestInt().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestInt {
+    return new NestedTestInt().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: NestedTestInt | PlainMessage<NestedTestInt> | undefined, b: NestedTestInt | PlainMessage<NestedTestInt> | undefined): boolean {
+    return proto2.util.equals(NestedTestInt, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestMessageSetExtension3
+ */
+export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> {
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestInt msg = 35;
+   */
+  msg?: NestedTestInt;
+
+  constructor(data?: PartialMessage<TestMessageSetExtension3>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSetExtension3";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension3 {
+    return new TestMessageSetExtension3().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension3 {
+    return new TestMessageSetExtension3().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension3 {
+    return new TestMessageSetExtension3().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined, b: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined): boolean {
+    return proto2.util.equals(TestMessageSetExtension3, a, b);
   }
 }
 

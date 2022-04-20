@@ -1454,6 +1454,16 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
    */
   repeatedChild: NestedTestAllTypes[] = [];
 
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestAllTypes lazy_child = 4;
+   */
+  lazyChild?: NestedTestAllTypes;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes eager_child = 5;
+   */
+  eagerChild?: TestAllTypes;
+
   constructor(data?: PartialMessage<NestedTestAllTypes>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1465,6 +1475,8 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes, opt: true },
     { no: 2, name: "payload", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true },
+    { no: 4, name: "lazy_child", kind: "message", T: NestedTestAllTypes, opt: true },
+    { no: 5, name: "eager_child", kind: "message", T: TestAllTypes, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestAllTypes {
@@ -1978,6 +1990,227 @@ export class TestChildExtension extends Message<TestChildExtension> {
 }
 
 /**
+ * Emulates wireformat data of TestChildExtension with dynamic extension
+ * (DynamicExtension).
+ *
+ * @generated from message protobuf_unittest.TestChildExtensionData
+ */
+export class TestChildExtensionData extends Message<TestChildExtensionData> {
+  /**
+   * @generated from field: optional string a = 1;
+   */
+  a?: string;
+
+  /**
+   * @generated from field: optional string b = 2;
+   */
+  b?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData optional_extension = 3;
+   */
+  optionalExtension?: TestChildExtensionData_NestedTestAllExtensionsData;
+
+  constructor(data?: PartialMessage<TestChildExtensionData>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestChildExtensionData";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "optional_extension", kind: "message", T: TestChildExtensionData_NestedTestAllExtensionsData, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestChildExtensionData {
+    return new TestChildExtensionData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestChildExtensionData {
+    return new TestChildExtensionData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData {
+    return new TestChildExtensionData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestChildExtensionData | PlainMessage<TestChildExtensionData> | undefined, b: TestChildExtensionData | PlainMessage<TestChildExtensionData> | undefined): boolean {
+    return proto2.util.equals(TestChildExtensionData, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData
+ */
+export class TestChildExtensionData_NestedTestAllExtensionsData extends Message<TestChildExtensionData_NestedTestAllExtensionsData> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions dynamic = 409707008;
+   */
+  dynamic?: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
+
+  constructor(data?: PartialMessage<TestChildExtensionData_NestedTestAllExtensionsData>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 409707008, name: "dynamic", kind: "message", T: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData {
+    return new TestChildExtensionData_NestedTestAllExtensionsData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData {
+    return new TestChildExtensionData_NestedTestAllExtensionsData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData {
+    return new TestChildExtensionData_NestedTestAllExtensionsData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestChildExtensionData_NestedTestAllExtensionsData | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData> | undefined, b: TestChildExtensionData_NestedTestAllExtensionsData | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData> | undefined): boolean {
+    return proto2.util.equals(TestChildExtensionData_NestedTestAllExtensionsData, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions
+ */
+export class TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions extends Message<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+
+  constructor(data?: PartialMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions {
+    return new TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions {
+    return new TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions {
+    return new TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> | undefined, b: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> | undefined): boolean {
+    return proto2.util.equals(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedChildExtension
+ */
+export class TestNestedChildExtension extends Message<TestNestedChildExtension> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtension child = 2;
+   */
+  child?: TestChildExtension;
+
+  constructor(data?: PartialMessage<TestNestedChildExtension>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedChildExtension";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: TestChildExtension, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedChildExtension {
+    return new TestNestedChildExtension().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedChildExtension {
+    return new TestNestedChildExtension().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedChildExtension {
+    return new TestNestedChildExtension().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedChildExtension | PlainMessage<TestNestedChildExtension> | undefined, b: TestNestedChildExtension | PlainMessage<TestNestedChildExtension> | undefined): boolean {
+    return proto2.util.equals(TestNestedChildExtension, a, b);
+  }
+}
+
+/**
+ * Emulates wireformat data of TestNestedChildExtension with dynamic extension
+ * (DynamicExtension).
+ *
+ * @generated from message protobuf_unittest.TestNestedChildExtensionData
+ */
+export class TestNestedChildExtensionData extends Message<TestNestedChildExtensionData> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData child = 2;
+   */
+  child?: TestChildExtensionData;
+
+  constructor(data?: PartialMessage<TestNestedChildExtensionData>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedChildExtensionData";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: TestChildExtensionData, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedChildExtensionData {
+    return new TestNestedChildExtensionData().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedChildExtensionData {
+    return new TestNestedChildExtensionData().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedChildExtensionData {
+    return new TestNestedChildExtensionData().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedChildExtensionData | PlainMessage<TestNestedChildExtensionData> | undefined, b: TestNestedChildExtensionData | PlainMessage<TestNestedChildExtensionData> | undefined): boolean {
+    return proto2.util.equals(TestNestedChildExtensionData, a, b);
+  }
+}
+
+/**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
  * do anything with it.  Note that we don't need to test every type of
@@ -2155,6 +2388,13 @@ export class TestRequired extends Message<TestRequired> {
    */
   c?: number;
 
+  /**
+   * Add an optional child message to make this non-trivial for go/pdlazy.
+   *
+   * @generated from field: optional protobuf_unittest.ForeignMessage optional_foreign = 34;
+   */
+  optionalForeign?: ForeignMessage;
+
   constructor(data?: PartialMessage<TestRequired>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2196,6 +2436,7 @@ export class TestRequired extends Message<TestRequired> {
     { no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 34, name: "optional_foreign", kind: "message", T: ForeignMessage, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequired {
@@ -2310,6 +2551,55 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
 
   static equals(a: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined, b: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined): boolean {
     return proto2.util.equals(TestRequiredMessage, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedRequiredForeign
+ */
+export class TestNestedRequiredForeign extends Message<TestNestedRequiredForeign> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedRequiredForeign child = 1;
+   */
+  child?: TestNestedRequiredForeign;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredForeign payload = 2;
+   */
+  payload?: TestRequiredForeign;
+
+  /**
+   * @generated from field: optional int32 dummy = 3;
+   */
+  dummy?: number;
+
+  constructor(data?: PartialMessage<TestNestedRequiredForeign>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedRequiredForeign";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "child", kind: "message", T: TestNestedRequiredForeign, opt: true },
+    { no: 2, name: "payload", kind: "message", T: TestRequiredForeign, opt: true },
+    { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedRequiredForeign {
+    return new TestNestedRequiredForeign().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedRequiredForeign {
+    return new TestNestedRequiredForeign().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedRequiredForeign {
+    return new TestNestedRequiredForeign().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedRequiredForeign | PlainMessage<TestNestedRequiredForeign> | undefined, b: TestNestedRequiredForeign | PlainMessage<TestNestedRequiredForeign> | undefined): boolean {
+    return proto2.util.equals(TestNestedRequiredForeign, a, b);
   }
 }
 
@@ -3138,6 +3428,92 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestEagerMaybeLazy
+ */
+export class TestEagerMaybeLazy extends Message<TestEagerMaybeLazy> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message_foo = 1;
+   */
+  messageFoo?: TestAllTypes;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message_bar = 2;
+   */
+  messageBar?: TestAllTypes;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestEagerMaybeLazy.NestedMessage message_baz = 3;
+   */
+  messageBaz?: TestEagerMaybeLazy_NestedMessage;
+
+  constructor(data?: PartialMessage<TestEagerMaybeLazy>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestEagerMaybeLazy";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "message_foo", kind: "message", T: TestAllTypes, opt: true },
+    { no: 2, name: "message_bar", kind: "message", T: TestAllTypes, opt: true },
+    { no: 3, name: "message_baz", kind: "message", T: TestEagerMaybeLazy_NestedMessage, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEagerMaybeLazy {
+    return new TestEagerMaybeLazy().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy {
+    return new TestEagerMaybeLazy().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy {
+    return new TestEagerMaybeLazy().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestEagerMaybeLazy | PlainMessage<TestEagerMaybeLazy> | undefined, b: TestEagerMaybeLazy | PlainMessage<TestEagerMaybeLazy> | undefined): boolean {
+    return proto2.util.equals(TestEagerMaybeLazy, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestEagerMaybeLazy.NestedMessage
+ */
+export class TestEagerMaybeLazy_NestedMessage extends Message<TestEagerMaybeLazy_NestedMessage> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestPackedTypes packed = 1;
+   */
+  packed?: TestPackedTypes;
+
+  constructor(data?: PartialMessage<TestEagerMaybeLazy_NestedMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestEagerMaybeLazy.NestedMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "packed", kind: "message", T: TestPackedTypes, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestEagerMaybeLazy_NestedMessage {
+    return new TestEagerMaybeLazy_NestedMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy_NestedMessage {
+    return new TestEagerMaybeLazy_NestedMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy_NestedMessage {
+    return new TestEagerMaybeLazy_NestedMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestEagerMaybeLazy_NestedMessage | PlainMessage<TestEagerMaybeLazy_NestedMessage> | undefined, b: TestEagerMaybeLazy_NestedMessage | PlainMessage<TestEagerMaybeLazy_NestedMessage> | undefined): boolean {
+    return proto2.util.equals(TestEagerMaybeLazy_NestedMessage, a, b);
+  }
+}
+
+/**
  * Needed for a Python test.
  *
  * @generated from message protobuf_unittest.TestNestedMessageHasBits
@@ -3936,6 +4312,229 @@ export class MoreBytes extends Message<MoreBytes> {
 
   static equals(a: MoreBytes | PlainMessage<MoreBytes> | undefined, b: MoreBytes | PlainMessage<MoreBytes> | undefined): boolean {
     return proto2.util.equals(MoreBytes, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.ManyOptionalString
+ */
+export class ManyOptionalString extends Message<ManyOptionalString> {
+  /**
+   * @generated from field: optional string str1 = 1;
+   */
+  str1?: string;
+
+  /**
+   * @generated from field: optional string str2 = 2;
+   */
+  str2?: string;
+
+  /**
+   * @generated from field: optional string str3 = 3;
+   */
+  str3?: string;
+
+  /**
+   * @generated from field: optional string str4 = 4;
+   */
+  str4?: string;
+
+  /**
+   * @generated from field: optional string str5 = 5;
+   */
+  str5?: string;
+
+  /**
+   * @generated from field: optional string str6 = 6;
+   */
+  str6?: string;
+
+  /**
+   * @generated from field: optional string str7 = 7;
+   */
+  str7?: string;
+
+  /**
+   * @generated from field: optional string str8 = 8;
+   */
+  str8?: string;
+
+  /**
+   * @generated from field: optional string str9 = 9;
+   */
+  str9?: string;
+
+  /**
+   * @generated from field: optional string str10 = 10;
+   */
+  str10?: string;
+
+  /**
+   * @generated from field: optional string str11 = 11;
+   */
+  str11?: string;
+
+  /**
+   * @generated from field: optional string str12 = 12;
+   */
+  str12?: string;
+
+  /**
+   * @generated from field: optional string str13 = 13;
+   */
+  str13?: string;
+
+  /**
+   * @generated from field: optional string str14 = 14;
+   */
+  str14?: string;
+
+  /**
+   * @generated from field: optional string str15 = 15;
+   */
+  str15?: string;
+
+  /**
+   * @generated from field: optional string str16 = 16;
+   */
+  str16?: string;
+
+  /**
+   * @generated from field: optional string str17 = 17;
+   */
+  str17?: string;
+
+  /**
+   * @generated from field: optional string str18 = 18;
+   */
+  str18?: string;
+
+  /**
+   * @generated from field: optional string str19 = 19;
+   */
+  str19?: string;
+
+  /**
+   * @generated from field: optional string str20 = 20;
+   */
+  str20?: string;
+
+  /**
+   * @generated from field: optional string str21 = 21;
+   */
+  str21?: string;
+
+  /**
+   * @generated from field: optional string str22 = 22;
+   */
+  str22?: string;
+
+  /**
+   * @generated from field: optional string str23 = 23;
+   */
+  str23?: string;
+
+  /**
+   * @generated from field: optional string str24 = 24;
+   */
+  str24?: string;
+
+  /**
+   * @generated from field: optional string str25 = 25;
+   */
+  str25?: string;
+
+  /**
+   * @generated from field: optional string str26 = 26;
+   */
+  str26?: string;
+
+  /**
+   * @generated from field: optional string str27 = 27;
+   */
+  str27?: string;
+
+  /**
+   * @generated from field: optional string str28 = 28;
+   */
+  str28?: string;
+
+  /**
+   * @generated from field: optional string str29 = 29;
+   */
+  str29?: string;
+
+  /**
+   * @generated from field: optional string str30 = 30;
+   */
+  str30?: string;
+
+  /**
+   * @generated from field: optional string str31 = 31;
+   */
+  str31?: string;
+
+  /**
+   * @generated from field: optional string str32 = 32;
+   */
+  str32?: string;
+
+  constructor(data?: PartialMessage<ManyOptionalString>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.ManyOptionalString";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "str2", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "str3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "str4", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "str5", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 6, name: "str6", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 7, name: "str7", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "str8", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 9, name: "str9", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 10, name: "str10", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 11, name: "str11", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 12, name: "str12", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 13, name: "str13", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 14, name: "str14", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "str15", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 16, name: "str16", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 17, name: "str17", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 18, name: "str18", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 19, name: "str19", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 20, name: "str20", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 21, name: "str21", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 22, name: "str22", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 23, name: "str23", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 24, name: "str24", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 25, name: "str25", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 26, name: "str26", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 27, name: "str27", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 28, name: "str28", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 29, name: "str29", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 30, name: "str30", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 31, name: "str31", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 32, name: "str32", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ManyOptionalString {
+    return new ManyOptionalString().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ManyOptionalString {
+    return new ManyOptionalString().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ManyOptionalString {
+    return new ManyOptionalString().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ManyOptionalString | PlainMessage<ManyOptionalString> | undefined, b: ManyOptionalString | PlainMessage<ManyOptionalString> | undefined): boolean {
+    return proto2.util.equals(ManyOptionalString, a, b);
   }
 }
 
@@ -5529,6 +6128,46 @@ export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_Rep
 }
 
 /**
+ * Test that the correct exception is thrown by parseFrom in a corner case
+ * involving merging, extensions, and required fields.
+ *
+ * @generated from message protobuf_unittest.TestMergeException
+ */
+export class TestMergeException extends Message<TestMergeException> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllExtensions all_extensions = 1;
+   */
+  allExtensions?: TestAllExtensions;
+
+  constructor(data?: PartialMessage<TestMergeException>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestMergeException";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensions, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMergeException {
+    return new TestMergeException().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMergeException {
+    return new TestMergeException().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMergeException {
+    return new TestMergeException().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMergeException | PlainMessage<TestMergeException> | undefined, b: TestMergeException | PlainMessage<TestMergeException> | undefined): boolean {
+    return proto2.util.equals(TestMergeException, a, b);
+  }
+}
+
+/**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
 export class TestCommentInjectionMessage extends Message<TestCommentInjectionMessage> {
@@ -6071,6 +6710,199 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
 
   static equals(a: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined, b: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined): boolean {
     return proto2.util.equals(TestExtensionInsideTable, a, b);
+  }
+}
+
+/**
+ * NOTE(b/202996544): Intentionally nested to mirror go/glep.
+ *
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
+ */
+export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtensionOuter> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup layer1optionalgroup = 1;
+   */
+  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup;
+
+  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter {
+    return new TestNestedGroupExtensionOuter().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter {
+    return new TestNestedGroupExtensionOuter().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter {
+    return new TestNestedGroupExtensionOuter().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined, b: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined): boolean {
+    return proto2.util.equals(TestNestedGroupExtensionOuter, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup
+ */
+export class TestNestedGroupExtensionOuter_Layer1OptionalGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup> {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup layer2repeatedgroup = 2;
+   */
+  layer2repeatedgroup: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup[] = [];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup layer2anotheroptionalrepeatedgroup = 4;
+   */
+  layer2anotheroptionalrepeatedgroup: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup[] = [];
+
+  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, repeated: true },
+    { no: 4, name: "layer2anotheroptionalrepeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined): boolean {
+    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
+ */
+export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> {
+  /**
+   * @generated from field: optional string another_field = 6;
+   */
+  anotherField?: string;
+
+  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 6, name: "another_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined): boolean {
+    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
+ */
+export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> {
+  /**
+   * @generated from field: optional string but_why_tho = 5;
+   */
+  butWhyTho?: string;
+
+  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 5, name: "but_why_tho", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
+    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined): boolean {
+    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestNestedGroupExtensionInnerExtension
+ */
+export class TestNestedGroupExtensionInnerExtension extends Message<TestNestedGroupExtensionInnerExtension> {
+  /**
+   * @generated from field: optional string inner_name = 1;
+   */
+  innerName?: string;
+
+  constructor(data?: PartialMessage<TestNestedGroupExtensionInnerExtension>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionInnerExtension";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "inner_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionInnerExtension {
+    return new TestNestedGroupExtensionInnerExtension().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionInnerExtension {
+    return new TestNestedGroupExtensionInnerExtension().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionInnerExtension {
+    return new TestNestedGroupExtensionInnerExtension().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedGroupExtensionInnerExtension | PlainMessage<TestNestedGroupExtensionInnerExtension> | undefined, b: TestNestedGroupExtensionInnerExtension | PlainMessage<TestNestedGroupExtensionInnerExtension> | undefined): boolean {
+    return proto2.util.equals(TestNestedGroupExtensionInnerExtension, a, b);
   }
 }
 

@@ -1,6 +1,5 @@
-import {deflateRawSync, gzipSync, brotliCompressSync} from "zlib";
 import {buildSync} from "esbuild";
-
+import {brotliCompressSync} from "zlib";
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
 const googleProtobuf = gather("src/entry-google-protobuf.js");
@@ -14,10 +13,10 @@ once with protoc's [built-in JavaScript generator](https://github.com/protocolbu
 once with \`protoc-gen-es\`. Then we bundle a [snippet of code](./src) with [esbuild](https://esbuild.github.io/),
 minify the bundle, and compress it like a web server would usually do.
 
-| code generator    | bundle size             | minified               | gzip               |
+| code generator    | bundle size             | minified               | compressed         |
 |-------------------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es       | ${protobufEs.size}      | ${protobufEs.minified} | ${protobufEs.brotli} |
-| google-protobuf   | ${googleProtobuf.size}  | ${googleProtobuf.minified}    | ${googleProtobuf.brotli}    |
+| protobuf-es       | ${protobufEs.size}      | ${protobufEs.minified} | ${protobufEs.compressed} |
+| google-protobuf   | ${googleProtobuf.size}  | ${googleProtobuf.minified} | ${googleProtobuf.compressed} |
 `);
 
 
@@ -29,7 +28,7 @@ function gather(entryPoint) {
         entryPoint,
         size: formatSize(bundle.byteLength),
         minified: formatSize(bundleMinified.byteLength),
-        brotli: formatSize(compressed.brotli),
+        compressed: formatSize(compressed.byteLength),
     };
 }
 
@@ -49,16 +48,7 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    const deflate = deflateRawSync(buf);
-    const gzip = gzipSync(buf, {
-        level: 7, // for mysterious reasons, the default (equivalent to 6) is unstable across node versions
-    });
-    const brotli = brotliCompressSync(buf);
-    return {
-        deflate: deflate.byteLength,
-        gzip: gzip.byteLength,
-        brotli: brotli.byteLength,
-    };
+    return brotliCompressSync(buf);
 }
 
 function formatSize(bytes) {
