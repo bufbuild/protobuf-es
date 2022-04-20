@@ -1,6 +1,5 @@
 import {buildSync} from "esbuild";
-import {execSync} from "child_process";
-import {readFileSync, unlinkSync, writeFileSync} from "fs";
+import {deflateSync} from 'fflate';
 
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
@@ -50,16 +49,10 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    const tempIn = ".tmpin";
-    const tempOut = ".tmpout";
-    writeFileSync(tempIn, buf);
-    execSync(`gzip --no-name -6 --stdout ${tempIn} >${tempOut}`, {
-        encoding: "buffer",
+    return deflateSync(buf, {
+        level: 9,
+        mem: 12,
     });
-    const res = readFileSync(tempOut);
-    unlinkSync(tempIn);
-    unlinkSync(tempOut);
-    return res;
 }
 
 function formatSize(bytes) {
