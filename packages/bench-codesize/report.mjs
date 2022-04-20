@@ -1,6 +1,5 @@
 import {buildSync} from "esbuild";
-import {deflateSync} from 'fflate';
-
+import {brotliCompressSync} from "zlib";
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
 const googleProtobuf = gather("src/entry-google-protobuf.js");
@@ -49,10 +48,7 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    return deflateSync(buf, {
-        level: 9,
-        mem: 12,
-    });
+    return brotliCompressSync(buf);
 }
 
 function formatSize(bytes) {
