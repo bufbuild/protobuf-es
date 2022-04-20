@@ -671,6 +671,11 @@ export declare class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   defaultString?: string;
 
   /**
+   * @generated from field: optional bytes default_bytes = 255 [default = "joshua"];
+   */
+  defaultBytes?: Uint8Array;
+
+  /**
    * Test field-name-to-JSON-name convention.
    * (protobuf says names can be any valid C/C++ identifier.)
    *
@@ -1082,5 +1087,29 @@ export declare enum EnumOnlyProto2_Bool {
    * @generated from enum value: kTrue = 1;
    */
   kTrue = 1,
+}
+
+/**
+ * @generated from message protobuf_test_messages.proto2.OneStringProto2
+ */
+export declare class OneStringProto2 extends Message<OneStringProto2> {
+  /**
+   * @generated from field: optional string data = 1;
+   */
+  data?: string;
+
+  constructor(data?: PartialMessage<OneStringProto2>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.OneStringProto2";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OneStringProto2;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OneStringProto2;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneStringProto2;
+
+  static equals(a: OneStringProto2 | PlainMessage<OneStringProto2> | undefined, b: OneStringProto2 | PlainMessage<OneStringProto2> | undefined): boolean;
 }
 

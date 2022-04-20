@@ -677,6 +677,11 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   defaultString?: string;
 
   /**
+   * @generated from field: optional bytes default_bytes = 255 [default = "joshua"];
+   */
+  defaultBytes?: Uint8Array;
+
+  /**
    * Test field-name-to-JSON-name convention.
    * (protobuf says names can be any valid C/C++ identifier.)
    *
@@ -891,6 +896,7 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     { no: 252, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 7e+22 },
     { no: 253, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
     { no: 254, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "Rosebud" },
+    { no: 255, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61, ]) },
     { no: 401, name: "fieldname1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 402, name: "field_name2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 403, name: "_field_name3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1379,4 +1385,41 @@ proto2.util.setEnumType(EnumOnlyProto2_Bool, "protobuf_test_messages.proto2.Enum
   { no: 0, name: "kFalse" },
   { no: 1, name: "kTrue" },
 ]);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.OneStringProto2
+ */
+export class OneStringProto2 extends Message<OneStringProto2> {
+  /**
+   * @generated from field: optional string data = 1;
+   */
+  data?: string;
+
+  constructor(data?: PartialMessage<OneStringProto2>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.OneStringProto2";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OneStringProto2 {
+    return new OneStringProto2().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OneStringProto2 {
+    return new OneStringProto2().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneStringProto2 {
+    return new OneStringProto2().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: OneStringProto2 | PlainMessage<OneStringProto2> | undefined, b: OneStringProto2 | PlainMessage<OneStringProto2> | undefined): boolean {
+    return proto2.util.equals(OneStringProto2, a, b);
+  }
+}
 

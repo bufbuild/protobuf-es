@@ -485,7 +485,6 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    * For booleans, "true" or "false".
    * For strings, contains the default text contents (not escaped in any way).
    * For bytes, contains the C escaped value.  All bytes >= 128 are escaped.
-   * TODO(kenton):  Base-64 encode?
    *
    * @generated from field: optional string default_value = 7;
    */
@@ -1551,9 +1550,24 @@ export class FieldOptions extends Message<FieldOptions> {
    * check its required fields, regardless of whether or not the message has
    * been parsed.
    *
+   * As of 2021, lazy does no correctness checks on the byte stream during
+   * parsing.  This may lead to crashes if and when an invalid byte stream is
+   * finally parsed upon access.
+   *
+   * TODO(b/211906113):  Enable validation on lazy fields.
+   *
    * @generated from field: optional bool lazy = 5 [default = false];
    */
   lazy?: boolean;
+
+  /**
+   * unverified_lazy does no correctness checks on the byte stream. This should
+   * only be used where lazy with verification is prohibitive for performance
+   * reasons.
+   *
+   * @generated from field: optional bool unverified_lazy = 15 [default = false];
+   */
+  unverifiedLazy?: boolean;
 
   /**
    * Is this field deprecated?
@@ -1591,6 +1605,7 @@ export class FieldOptions extends Message<FieldOptions> {
     { no: 2, name: "packed", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 6, name: "jstype", kind: "enum", T: proto2.getEnumType(FieldOptions_JSType), opt: true, default: FieldOptions_JSType.JS_NORMAL },
     { no: 5, name: "lazy", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 15, name: "unverified_lazy", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 10, name: "weak", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
@@ -2186,8 +2201,8 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
    * location.
    *
    * Each element is a field number or an index.  They form a path from
-   * the root FileDescriptorProto to the place where the definition.  For
-   * example, this path:
+   * the root FileDescriptorProto to the place where the definition occurs.
+   * For example, this path:
    *   [ 4, 3, 2, 7, 1 ]
    * refers to:
    *   file.message_type(3)  // 4, 3

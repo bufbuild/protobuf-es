@@ -147,7 +147,7 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   optionalBytes: Uint8Array;
 
   /**
-   * @generated from field: proto3_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
+   * @generated from field: optional proto3_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
   optionalNestedMessage?: TestAllTypes_NestedMessage;
 
