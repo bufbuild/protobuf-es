@@ -5,6 +5,8 @@
   - plain properties
   - json format
 - example generated code
+- comments
+- deprecations
 - public API
 - WKT, oneof ADT, 64-bit ints, see readme / features
 - managing the code generator plugin
