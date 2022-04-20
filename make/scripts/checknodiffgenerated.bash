@@ -22,7 +22,7 @@ diff "${STATUS_SHORT_PRE_FILE}" "${STATUS_SHORT_POST_FILE}" > "${STATUS_SHORT_DI
 set -e
 
 if [ -s "${STATUS_SHORT_DIFF_FILE}" ]; then
-  git status
+  git diff
   fail "$@ produced a diff,  make sure to check these in:
 $(grep '<\|>' "${STATUS_SHORT_DIFF_FILE}")"
 fi
