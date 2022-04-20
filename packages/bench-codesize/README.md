@@ -7,7 +7,7 @@ once with protoc's [built-in JavaScript generator](https://github.com/protocolbu
 once with `protoc-gen-es`. Then we bundle a [snippet of code](./src) with [esbuild](https://esbuild.github.io/),
 minify the bundle, and compress it like a web server would usually do.
 
-| code generator    | bundle size             | minified               | gzip               |
+| code generator    | bundle size             | minified               | compressed         |
 |-------------------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es       | 160,471 b      | 86,418 b | 15,128 b |
-| google-protobuf   | 368,034 b  | 270,748 b    | 43,704 b    |
+| protobuf-es       | 160,471 b      | 86,418 b | 17,796 b |
+| google-protobuf   | 368,034 b  | 270,748 b | 51,447 b |

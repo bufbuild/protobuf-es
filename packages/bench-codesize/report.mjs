@@ -1,5 +1,8 @@
-import {deflateRawSync, gzipSync, brotliCompressSync} from "zlib";
 import {buildSync} from "esbuild";
+import {execSync} from "child_process";
+import {mkdtempSync, readFileSync, writeFileSync} from "fs";
+import {tmpdir} from "os";
+import {join} from "path";
 
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
@@ -14,10 +17,10 @@ once with protoc's [built-in JavaScript generator](https://github.com/protocolbu
 once with \`protoc-gen-es\`. Then we bundle a [snippet of code](./src) with [esbuild](https://esbuild.github.io/),
 minify the bundle, and compress it like a web server would usually do.
 
-| code generator    | bundle size             | minified               | brotli             |
+| code generator    | bundle size             | minified               | compressed         |
 |-------------------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es       | ${protobufEs.size}      | ${protobufEs.minified} | ${protobufEs.brotli} |
-| google-protobuf   | ${googleProtobuf.size}  | ${googleProtobuf.minified}    | ${googleProtobuf.brotli}    |
+| protobuf-es       | ${protobufEs.size}      | ${protobufEs.minified} | ${protobufEs.compressed} |
+| google-protobuf   | ${googleProtobuf.size}  | ${googleProtobuf.minified} | ${googleProtobuf.compressed} |
 `);
 
 
@@ -29,7 +32,7 @@ function gather(entryPoint) {
         entryPoint,
         size: formatSize(bundle.byteLength),
         minified: formatSize(bundleMinified.byteLength),
-        brotli: formatSize(compressed.brotli),
+        compressed: formatSize(compressed.byteLength),
     };
 }
 
@@ -49,20 +52,14 @@ function build(entryPoint, minify, format) {
 }
 
 function compress(buf) {
-    const deflate = deflateRawSync(buf, {
-        info: false,
+    const tempDir = mkdtempSync(tmpdir());
+    const tempIn = join(tempDir, "in");
+    const tempOut = join(tempDir, "out");
+    writeFileSync(tempIn, buf);
+    execSync(`gzip --no-name -6 --stdout ${tempIn} >${tempOut}`, {
+        encoding: "buffer",
     });
-    const gzip = gzipSync(buf, {
-        info: false,
-    });
-    const brotli = brotliCompressSync(buf, {
-        info: false,
-    });
-    return {
-        deflate: deflate.byteLength,
-        gzip: gzip.byteLength,
-        brotli: brotli.byteLength,
-    };
+    return readFileSync(tempOut);
 }
 
 function formatSize(bytes) {
