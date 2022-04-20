@@ -201,8 +201,10 @@ func makeImportPathRelative(importer string, importPath string) string {
 }
 
 func makeMessageName(message *Message) string {
-	nestedName := strings.TrimPrefix(message.protoTypeName, "."+message.File.Proto.GetPackage()+".")
-	name := strings.ReplaceAll(nestedName, ".", "_")
+	name := message.protoTypeName
+	name = strings.TrimPrefix(name, ".")
+	name = strings.TrimPrefix(name, message.File.Proto.GetPackage()+".")
+	name = strings.ReplaceAll(name, ".", "_")
 	if _, reserved := reservedIdentifiers[name]; reserved {
 		return name + escapeChar
 	}
