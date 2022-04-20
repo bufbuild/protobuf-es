@@ -206,8 +206,11 @@ message NoClashOneof {
     }
 }
 message NoClashOneofADT {
-    string case = 1;
-    optional string value = 2;
+    message M {
+        string case = 1;
+        optional string value = 2;
+    }
+    M m = 1;
 }
 // just here as a "namespace" for the enum
 message NoClashEnumWrap {
