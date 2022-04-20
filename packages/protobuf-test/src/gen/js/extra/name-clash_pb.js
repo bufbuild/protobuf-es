@@ -424,9 +424,20 @@ export const NoClashOneof = proto3.makeMessageType(
 export const NoClashOneofADT = proto3.makeMessageType(
   "spec.NoClashOneofADT",
   () => [
+    { no: 1, name: "m", kind: "message", T: NoClashOneofADT_M },
+  ],
+);
+
+/**
+ * @generated from message spec.NoClashOneofADT.M
+ */
+export const NoClashOneofADT_M = proto3.makeMessageType(
+  "spec.NoClashOneofADT.M",
+  () => [
     { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
+  {localName: "NoClashOneofADT_M"},
 );
 
 /**
