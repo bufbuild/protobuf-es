@@ -1039,14 +1039,9 @@ export declare class NoClashOneof extends Message$1<NoClashOneof> {
  */
 export declare class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   /**
-   * @generated from field: string case = 1;
+   * @generated from field: spec.NoClashOneofADT.M m = 1;
    */
-  case: string;
-
-  /**
-   * @generated from field: optional string value = 2;
-   */
-  value?: string;
+  m?: NoClashOneofADT_M;
 
   constructor(data?: PartialMessage$1<NoClashOneofADT>);
 
@@ -1061,6 +1056,35 @@ export declare class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT;
 
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.NoClashOneofADT.M
+ */
+export declare class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
+  /**
+   * @generated from field: string case = 1;
+   */
+  case: string;
+
+  /**
+   * @generated from field: optional string value = 2;
+   */
+  value?: string;
+
+  constructor(data?: PartialMessage$1<NoClashOneofADT_M>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.NoClashOneofADT.M";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashOneofADT_M;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NoClashOneofADT_M;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT_M;
+
+  static equals(a: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined, b: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined): boolean;
 }
 
 /**

@@ -1482,14 +1482,9 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
  */
 export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   /**
-   * @generated from field: string case = 1;
+   * @generated from field: spec.NoClashOneofADT.M m = 1;
    */
-  case = "";
-
-  /**
-   * @generated from field: optional string value = 2;
-   */
-  value?: string;
+  m?: NoClashOneofADT_M;
 
   constructor(data?: PartialMessage$1<NoClashOneofADT>) {
     super();
@@ -1499,8 +1494,7 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   static readonly runtime = proto3;
   static readonly typeName = "spec.NoClashOneofADT";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 1, name: "m", kind: "message", T: NoClashOneofADT_M },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashOneofADT {
@@ -1517,6 +1511,49 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
 
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean {
     return proto3.util.equals(NoClashOneofADT, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.NoClashOneofADT.M
+ */
+export class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
+  /**
+   * @generated from field: string case = 1;
+   */
+  case = "";
+
+  /**
+   * @generated from field: optional string value = 2;
+   */
+  value?: string;
+
+  constructor(data?: PartialMessage$1<NoClashOneofADT_M>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto3;
+  static readonly typeName = "spec.NoClashOneofADT.M";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NoClashOneofADT_M {
+    return new NoClashOneofADT_M().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NoClashOneofADT_M {
+    return new NoClashOneofADT_M().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT_M {
+    return new NoClashOneofADT_M().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined, b: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined): boolean {
+    return proto3.util.equals(NoClashOneofADT_M, a, b);
   }
 }
 
