@@ -331,7 +331,7 @@ We think that your comments in proto sources files are important, and take great
 to carry them over to the generated code as JSDocs comments. That includes license 
 headers in your file, as well as comments down to individual enum values, for example.
 
-### Preamble
+#### Preamble
 
 Each generated file contains a preamble with information about the source
 file, and how it was generated:
@@ -353,7 +353,7 @@ You can turn these annotations off with the plugin options `ts_nocheck=false` an
 `eslint_disable=false`.
 
 
-### Element comments
+#### Element comments
 
 We generate similar information for every single protobuf element, so you always have 
 the best possible transparency: 
@@ -362,7 +362,7 @@ the best possible transparency:
 @generated from field: map<string, bytes> str_bytes_field = 5;
 ```
 
-### Deprecation
+#### Deprecation
 
 We support the `deprecated` option for all elements. For example, for the following 
 field declaration:
