@@ -76,9 +76,10 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
 
   /**
    * Returns true if the given arguments have equal field values, recursively.
+   * Will also return true if both messages are `undefined` or `null`.
    */
   equals(
-    a: T | PlainMessage<T> | undefined,
-    b: T | PlainMessage<T> | undefined
+    a: T | PlainMessage<T> | undefined | null,
+    b: T | PlainMessage<T> | undefined | null
   ): boolean;
 }

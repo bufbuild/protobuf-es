@@ -56,12 +56,12 @@ export interface Util {
 
   /**
    * Compares two messages of the same type recursively.
-   * Will also return true if both messages are `undefined`.
+   * Will also return true if both messages are `undefined` or `null`.
    */
   equals<T extends Message<T>>(
     type: MessageType,
-    a: T | PlainMessage<T> | undefined,
-    b: T | PlainMessage<T> | undefined
+    a: T | PlainMessage<T> | undefined | null,
+    b: T | PlainMessage<T> | undefined | null
   ): boolean;
 
   /**
