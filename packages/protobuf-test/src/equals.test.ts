@@ -34,6 +34,10 @@ describe("equals", function () {
           repeatedMessageField: [{ name: "a" }, { name: "b" }],
         });
       });
+      test("static nullish equals nullish", () => {
+        expect(messageType.equals(undefined, undefined)).toBeTruthy();
+        expect(messageType.equals(null, null)).toBeTruthy();
+      });
       test("same are equal", () => {
         expect(a).toStrictEqual(b);
         expect(a.equals(b)).toBeTruthy();
