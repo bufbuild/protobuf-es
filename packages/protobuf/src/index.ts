@@ -15,6 +15,7 @@
 export { proto3 } from "./proto3.js";
 export { proto2 } from "./proto2.js";
 export { protoInt64 } from "./proto-int64.js";
+export { protoBase64 } from "./proto-base64.js";
 
 export {
   Message,
