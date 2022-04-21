@@ -5,17 +5,35 @@ A complete implementation of [protocol buffers](https://developers.google.com/pr
 suitable for web browsers and Node.js.
 
 
+## TODO
+
+- why
+  - code size
+  - es modules
+  - plain properties
+  - json format
+  - write your own plugins - not yet
+- managing the code generator plugin
+  - link to remote plugin
+  - link to BSR npm registry
+- Getting started
+  - prerequisite protobuf compiler
+  - plugin / runtime installation instructions
+  - short example
+  - link to tutorial - packages/example/
+
+
 ## Features
 
-- small code size
+- [small bundle sizes](./packages/bench-codesize)
 - no dependencies
 - very fast code generation, implemented in Go
 - implements all proto3 features, including the canonical JSON format
 - implements all proto2 features, except for extensions and the text format
 - passes the protocol buffers [conformance tests](./packages/conformance-test)
-- provides all well-known types with their specialized JSON representation
+- provides all [well-known types](#well-known-types) with their specialized JSON representation
 - uses and algebraic data type to represent `oneof` groups
-- unboxes fields using google/protobuf/wrappers.proto to optional primitives
+- [unboxes fields using wrappers.proto](#message-fields) to optional primitives
 - represents 64-bit integers with BigInt, and falls back to `string` if unavailable
 - uses standard TypeScript enums for protocol buffer `enum`
 - provides `equals()` and `clone()` on each message for convenience
@@ -26,18 +44,39 @@ suitable for web browsers and Node.js.
 - first class support of comments for documentation, including deprecations
 
 
-## Getting started
+Further reading:
 
-- installation instructions
-- tutorial - packages/example/
-
-## Code Generator
-
-## Runtime library
-
+- [Features](#features)
+- [Generated Code](#generated-code)
+  - [Files](#files)
+  - [Messages](#messages)
+  - [Field names](#field-names)
+  - [Scalar fields](#scalar-fields)
+  - [64-bit integral types](#64-bit-integral-types)
+  - [Message fields](#message-fields)
+  - [Repeated fields](#messages)
+  - [Map fields](#messages)
+  - [Oneof groups](#messages)
+  - [Enumerations](#messages)
+  - [Extensions](#messages)
+  - [Nested types](#messages)
+  - [Services](#messages)
+  - [Comments](#messages)
+- [Runtime API](#messages)
+  - [Messages](#messages)
+    - [Constructing messages and accessing fields](#messages)
+    - [Cloning messages](#messages)
+    - [Comparing messages](#messages)
+    - [Serializing messages](#serializing-messages)
+  - [Message types](#message-types)
+  - [Enumerations](#message-types)
+  - [Well-known types](#message-types)
+  - [DescriptorRegistry](#message-types)
 
 
 ## Generated Code
+
+The following sections describe what code is generated for any given protobuf definition.
 
 ### Files
 
@@ -153,6 +192,16 @@ we generate the following property:
 
 ```typescript
 field?: Example;
+```
+
+Note that we special case the well-known wrapper types: If a message uses `google.protobuf.BoolValue` for example, we 
+automatically "unbox" the field to an optional primitive:
+
+```typescript
+/**
+ * @generated from field: google.protobuf.BoolValue bool_value_field = 1;
+ */
+boolValueField?: boolean;
 ```
 
 
@@ -390,12 +439,7 @@ symbols in this file.
 ## Runtime API
 
 The runtime library for the generated code is provided by the npm package [@bufbuild/protobuf](./packages/protobuf).
-
-The generated code actually only contains type definitions and metadata - all serialization 
-and other logic is provided by the runtime library. This enables protobuf-es to achieve
-[small bundle sizes](./packages/bench-codesize), and some unique features like the ability 
-to construct new message types at runtime for advances use cases where code generation is 
-undesirable.
+This is a detailed overview of the features provided by the library. 
 
 
 ### Messages
