@@ -401,20 +401,6 @@ to construct new message types at runtime for advances use cases where code gene
 undesirable.
 
 
-### Serialization
-
-Protocol buffers defines three serialization formats:
-- binary format - a simple length delimited format with great compatibility
-- JSON format - a convenient format for debugging purposes and even better interoperability 
-- text format - a legacy format the is not implemented by protobuf-es
-
-Conformance with the binary and the JSON format is guaranteed with [conformance tests](./packages/conformance-test).
-
-Messages can be parsed from and serialized to the binary and the JSON format with the 
-message instance methods. Both serialization formats provide well-defined options 
-for parsing and serialization.
-
-
 ### Messages
 
 All generated messages extends the base class [Message](./packages/protobuf/src/message.ts#L40).
