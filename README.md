@@ -602,7 +602,9 @@ Similar to messages, enums can also be created at run time, via [`proto3.makeEnu
 
 Protocol buffers have a small standard library of well-known types. 
 [@bufbuild/protobuf](./packages/protobuf) provides all of them as pre-compiled 
-exports: 
+exports.
+
+<details><summary>Expand the list of Well-known types</summary>
 
 | Name                                                                            | Type    | Source                                                                                                                                 |
 |---------------------------------------------------------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------|
@@ -636,6 +638,7 @@ exports:
 | [`UInt32Value`](./packages/protobuf/src/google/protobuf/wrappers_pb.ts)         | message | [google/protobuf/wrappers.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)             |
 | [`UInt64Value`](./packages/protobuf/src/google/protobuf/wrappers_pb.ts)         | message | [google/protobuf/wrappers.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)             |
 | [`Value`](./packages/protobuf/src/google/protobuf/struct_pb.ts)                 | message | [google/protobuf/struct.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto)                 |
+</details>
 
 
 ### DescriptorRegistry
