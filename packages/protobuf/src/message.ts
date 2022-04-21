@@ -41,7 +41,7 @@ export class Message<T extends Message<T> = AnyMessage> {
   /**
    * Compare with a message of the same type.
    */
-  equals(other: T | PlainMessage<T> | undefined): boolean {
+  equals(other: T | PlainMessage<T> | undefined | null): boolean {
     return this.getType().runtime.util.equals(this.getType(), this, other);
   }
 

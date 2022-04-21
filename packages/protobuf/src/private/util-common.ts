@@ -105,8 +105,8 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     },
     equals<T extends Message<T>>(
       type: MessageType<T>,
-      a: T | PlainMessage<T> | undefined,
-      b: T | PlainMessage<T> | undefined
+      a: T | PlainMessage<T> | undefined | null,
+      b: T | PlainMessage<T> | undefined | null
     ): boolean {
       if (a === b) {
         return true;
