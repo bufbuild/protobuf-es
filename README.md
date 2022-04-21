@@ -487,6 +487,9 @@ example["foo"];
 
 #### Cloning messages
 
+While a shallow copy of a message can be created by using the spread operator with the 
+message constructor, it is also possible to create a _deep_ clone of a message:
+
 ```typescript
 example.clone();
 ```
