@@ -26,7 +26,7 @@ import { unwrapField, wrapField } from "./field-wrapper.js";
 import { FieldInfo, ScalarType } from "../field.js";
 import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
 import { protoInt64 } from "../proto-int64.js";
-import { base64decode, base64encode } from "./base64.js";
+import { protoBase64 } from "../proto-base64.js";
 import type { EnumType } from "../enum.js";
 
 /* eslint-disable no-case-declarations, @typescript-eslint/restrict-plus-operands,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument */
@@ -432,7 +432,7 @@ function readScalar(type: ScalarType, json: JsonValue): any {
     case ScalarType.BYTES:
       if (json === null || json === "") return new Uint8Array(0);
       if (typeof json !== "string") break;
-      return base64decode(json);
+      return protoBase64.dec(json);
   }
   throw new Error();
 }
@@ -550,7 +550,7 @@ function writeScalar(
     case ScalarType.BYTES:
       assert(value instanceof Uint8Array);
       return emitIntrinsicDefault || value.byteLength > 0
-        ? base64encode(value)
+        ? protoBase64.enc(value)
         : undefined;
   }
 }
