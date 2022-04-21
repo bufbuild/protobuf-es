@@ -405,7 +405,7 @@ It provides a few methods to every message, to compare, clone, and serialize, as
 convenient constructor. All message classes also come with some static properties with 
 metadata, and static convenience methods.
 
-For the following examples, we will use the following message definition [example.proto](./packages/example/example.proto):
+For the following examples, we will use the following message definition [example.proto](packages/protobuf-test/extra/example.proto):
 
 ```protobuf
 syntax="proto3";
@@ -537,7 +537,7 @@ with metadata. The static shape of the generated class is a [`MessageType`](pack
 a representation of the _type_ of a message.
 
 Such a type can actually be created at run time. We can take a peek at the [generated 
-code](./packages/example/src/gen/example_pb.ts) to get some insights:
+code](packages/protobuf-test/src/gen/ts/extra/example_pb.ts) to get some insights:
 
 ```typescript
 class Example extends Message<Example> {
