@@ -42,13 +42,20 @@ suitable for web browsers and Node.js.
 ### Files
 
 For every protobuf source file, we generate a corresponding `.js`, `.ts`, or `.d.ts` file,
-but add a `_pb` suffix to the name.
-
-For example, for the protobuf file `foo/bar.proto`, we generate `foo/bar_pb.js`.
+but add a `_pb` suffix to the name. For example, for the protobuf file `foo/bar.proto`, 
+we generate `foo/bar_pb.js`.
 
 By default, we generate JavaScript _and_ TypeScript declaration files, so the generated 
 code can be used in JavaScript or TypeScript projects without transpilation. If you 
 prefer to generate TypeScript, use the plugin option `target=ts`.
+
+Note that we generate ECMAScript modules, which means we use `import` and `export` statements. 
+All import paths include a `.js` extension, so you can use the generated code in Node.js
+with `"type": "module"` in your project's `package.json` without transpilation.
+If you do require support for the legacy CommonJS format, you can generate TypeScript and
+transpile it, for example with the extremely fast [esbuild](https://github.com/evanw/esbuild)
+bundler.
+
 
 
 ### Messages
@@ -313,16 +320,6 @@ two classes `Example` and `Example_Message`, as well as the enum `Example_Enum`.
 ### Services
 
 `protoc-gen-es` does not generate any code for service declarations.
-
-
-### ECMAScript modules
-
-We generate ECMAScript modules with `import` and `export` statements. All import
-paths include a `.js` extension. That means you can use the generated code in Node.js
-with `"type": "module"` in your project's `package.json` without transpilation.
-If you require support for the legacy CommonJS format, you can generate TypeScript and
-transpile it, for example with the extremely fast [esbuild](https://github.com/evanw/esbuild)
-bundler.
 
 
 ### Comments
