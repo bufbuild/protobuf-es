@@ -158,12 +158,13 @@ EXAMPLE_DIR = packages/example
 EXAMPLE_GEN = $(CACHE_DIR)/gen/example
 EXAMPLE_BUILD = $(CACHE_DIR)/build/example
 EXAMPLE_SOURCES = $(shell find $(EXAMPLE_DIR)/src -name '*.ts' -or -name '*.js') $(EXAMPLE_DIR)/*.json
-$(EXAMPLE_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN)
+EXAMPLE_PROTOS = $(shell find $(EXAMPLE_DIR) -name '*.proto')
+$(EXAMPLE_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(EXAMPLE_PROTOS)
 	rm -rf $(EXAMPLE_DIR)/src/gen/*
-	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(EXAMPLE_DIR)/src/gen --es_opt ts_nocheck=false,target=ts \
+	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(EXAMPLE_DIR)/src/gen --es_opt target=ts \
 		-I $(GOOGPROTOBUF_SOURCE)/src \
 		-I $(EXAMPLE_DIR) \
-		"$(EXAMPLE_DIR)/addressbook.proto"
+		$(EXAMPLE_PROTOS)
 	mkdir -p $(dir $(EXAMPLE_GEN)) && touch $(EXAMPLE_GEN)
 $(EXAMPLE_BUILD): $(PROTOC_GEN_ES_BIN) $(EXAMPLE_GEN) $(RUNTIME_BUILD) $(EXAMPLE_SOURCES)
 	cd $(EXAMPLE_DIR) && npm run clean && npm run build
