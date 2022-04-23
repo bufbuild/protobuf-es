@@ -210,6 +210,7 @@ set-version: ## Set a new version in for the project, i.e. make set-version SET_
 	node make/scripts/set-workspace-version.js $(SET_VERSION)
 	rm package-lock.json
 	npm i -f
+	$(MAKE) all
 
 # Some builds need code generation, some code generation needs builds.
 # We expose this target only for ci, so it can check for diffs.
