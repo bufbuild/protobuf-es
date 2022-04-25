@@ -7,7 +7,7 @@ export PATH := $(abspath $(CACHE_DIR)/bin):$(PATH)
 # 1. generate wkt as part of the NPM package "@bufbuild/protobuf"
 # 2. test conformance
 # 3. test .proto file compilation
-GOOGPROTOBUF_VERSION = 3.20.0
+GOOGPROTOBUF_VERSION = 3.20.1
 GOOGPROTOBUF_SOURCE_URL = https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGPROTOBUF_VERSION)/protobuf-all-$(GOOGPROTOBUF_VERSION).tar.gz
 GOOGPROTOBUF_SOURCE = $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION)
 GOOGPROTOBUF_WKT_PROTOS = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
