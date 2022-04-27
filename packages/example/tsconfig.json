@@ -1,13 +1,14 @@
 {
   "files": ["src/add-person.ts", "src/list-people.ts"],
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "target": "es2020",
+    "module": "ES2015",
     "lib": [
-      "ES2016",
+      "ES2017",
       // ES2020.BigInt for the bigint representation of 64-bit integers
-      "ES2020.BigInt",
-      // ES2017.Object for Object.entries
-      "ES2017.Object"
-    ]
+      "ES2020.BigInt"
+    ],
+    "moduleResolution": "Node",
+    "strict": true
   }
 }

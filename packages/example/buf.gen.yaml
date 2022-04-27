@@ -5,8 +5,7 @@
 version: v1
 plugins:
   - name: es
-    # You would usually install the code generator with `npm install @bufbuild/protoc-gen-es`,
-    # and use `./node_modules/.bin/protoc-gen-es` here as the path.
-    path: ../../.cache/protoc-gen-es
+    # The code generator is installed with `npm install @bufbuild/protoc-gen-es`.
+    path: ./node_modules/.bin/protoc-gen-es
     opt: target=ts
     out: src/gen
