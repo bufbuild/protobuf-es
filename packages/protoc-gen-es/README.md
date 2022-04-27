@@ -9,6 +9,39 @@ Learn more at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/prot
 This is a code generator plugin for `protoc` and [`buf`](https://github.com/bufbuild/buf).
 
 
+## Installation
+
+```shell
+npm install @bufbuild/protoc-gen-es
+```
+
+This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`. It is
+actually just a simple node script that selects the correct precompiled binary for your
+platform.
+
+Note that npm does not add the executable to your `$PATH`. You can do so with:
+
+```shell
+PATH=$PATH:$(pwd)/node_modules/.bin
+```
+
+
+Alternatively, you can install the plugin with ``go``:
+
+```shell
+go install github.com/bufbuild/protobuf-es/cmd/protoc-gen-es@latest
+```
+
+If your go environment is set up correctly, the executable is now available on 
+your `$PATH`.
+
+You can always confirm successful installation with:
+```shell
+protoc-gen-es --version
+```
+
+
+
 ## Plugin options
 
 ### `target`

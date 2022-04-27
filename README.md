@@ -4,49 +4,32 @@ Protobuf-ES
 A complete implementation of [protocol buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
+For example, the following definition:
 
-## TODO
+```protobuf
+message Person {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  string email = 3;
+```
 
-- why
-  - code size
-  - es modules
-  - plain properties
-  - json format
-  - write your own plugins - not yet
-- managing the code generator plugin
-  - link to remote plugin
-  - link to BSR npm registry
-- Getting started
-  - prerequisite protobuf compiler
-  - plugin / runtime installation instructions
-  - short example
-  - link to tutorial - packages/example/
+Is compiled to an ECMAScript class that can be used like this:
 
+```typescript
+let pete = new Person({
+  name: "pete",
+  id: 123
+});
 
-## Features
+let bytes = pete.toBinary();
+pete = Person.fromBinary(bytes);
+pete = Person.fromJsonString('{"name": "pete", "id": 123}');
+```
 
-- [small bundle sizes](./packages/bench-codesize)
-- no dependencies
-- very fast code generation, implemented in Go
-- implements all proto3 features, including the canonical JSON format
-- implements all proto2 features, except for extensions and the text format
-- passes the protocol buffers [conformance tests](./packages/conformance-test)
-- provides all [well-known types](#well-known-types) with their specialized JSON representation
-- uses and algebraic data type to represent `oneof` groups
-- [unboxes fields using wrappers.proto](#message-fields) to optional primitives
-- represents 64-bit integers with BigInt, and falls back to `string` if unavailable
-- uses standard TypeScript enums for protocol buffer `enum`
-- provides `equals()` and `clone()` on each message for convenience
-- fields are plain properties, and support the object spread operator
-- messages can be constructed from partial plain objects
-- can dynamically create types at run time, for example from a set of `google.protobuf.FileDescriptorProto`
-- provides field information to traverse types programmatically
-- first class support of comments for documentation, including deprecations
+We have a complete [example here](./packages/example), and the full documentation is right below:
 
 
-Further reading:
-
-- [Features](#features)
+- [How to compile](#how-to-compile)
 - [Generated Code](#generated-code)
   - [Files](#files)
   - [Messages](#messages)
@@ -54,24 +37,61 @@ Further reading:
   - [Scalar fields](#scalar-fields)
   - [64-bit integral types](#64-bit-integral-types)
   - [Message fields](#message-fields)
-  - [Repeated fields](#messages)
-  - [Map fields](#messages)
-  - [Oneof groups](#messages)
-  - [Enumerations](#messages)
-  - [Extensions](#messages)
-  - [Nested types](#messages)
-  - [Services](#messages)
-  - [Comments](#messages)
-- [Runtime API](#messages)
-  - [Messages](#messages)
-    - [Constructing messages and accessing fields](#messages)
-    - [Cloning messages](#messages)
-    - [Comparing messages](#messages)
+  - [Repeated fields](#repeated-fields)
+  - [Map fields](#map-fields)
+  - [Oneof groups](#oneof-groups)
+  - [Enumerations](#enumerations)
+  - [Extensions](#extensions)
+  - [Nested types](#nested-types)
+  - [Services](#services)
+  - [Comments](#comments)
+- [Runtime API](#runtime-api)
+  - [Message class](#message-class)
+    - [Constructing messages and accessing fields](#constructing-messages-and-accessing-fields)
+    - [Cloning messages](#cloning-messages)
+    - [Comparing messages](#comparing-messages)
     - [Serializing messages](#serializing-messages)
   - [Message types](#message-types)
-  - [Enumerations](#message-types)
-  - [Well-known types](#message-types)
-  - [DescriptorRegistry](#message-types)
+  - [Using enumerations](#using-enumerations)
+  - [Well-known types](#well-known-types)
+  - [DescriptorRegistry](#descriptorregistry)
+- [FAQ](#FAQ)
+  - [What about protoc's JavaScript generator?](#what-about-protocs-javascript-generator)
+  - [What features are implemented, what features are missing?](#what-features-are-implemented-what-features-are-missing)
+
+
+
+## How to compile
+
+We recommend [`buf`](https://github.com/bufbuild/buf) as a protocol buffer compiler, but
+[`protoc`](https://github.com/protocolbuffers/protobuf/releases) works as well.
+
+If you have the compiler set up, you can install the code generator plugin, as well as the 
+accompanying runtime package [`@bufbuild/protobuf`](./packages/protobuf) with:
+
+```shell
+npm install @bufbuild/protoc-gen-es @bufbuild/protobuf
+```
+
+This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`. It is 
+actually just a simple node script that selects the correct precompiled binary for your 
+platform.  
+
+To compile with `buf`, add a file `buf.gen.yaml` with the following content: 
+
+```yaml
+# Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
+version: v1
+plugins:
+  - name: es
+    path: ./node_modules/.bin/protoc-gen-es
+    opt: target=ts
+    out: src/gen
+```
+
+Now `buf generate` will compile your `.proto` files to idiomatic TypeScript classes. To 
+learn about alternative install methods, and about the available plugin options, see 
+[`@bufbuild/protoc-gen-es`](./packages/protoc-gen-es).
 
 
 ## Generated Code
@@ -442,7 +462,7 @@ The runtime library for the generated code is provided by the npm package [@bufb
 This is a detailed overview of the features provided by the library. 
 
 
-### Messages
+### Message class
 
 All generated messages extends the base class [Message](./packages/protobuf/src/message.ts#L40).
 It provides a few methods to every message, to compare, clone, and serialize, as well as a
@@ -618,8 +638,7 @@ this exact piece of code is generated with the plugin option `target=js`, becaus
 quite a bit of code size.  
 
 
-
-### Enumerations
+### Using enumerations
 
 For enumerations, we lean on TypeScript enums. A quick refresher about them:
 
@@ -640,7 +659,9 @@ It provides the fully qualified protobuf type name, as well as the original valu
 names. Use  [`proto3.getEnumType()`](./packages/protobuf/src/private/proto-runtime.ts#L81-L86)
 to retrieve the EnumType for a given enum.
 
-Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`](./packages/protobuf/src/private/proto-runtime.ts#L58).
+Similar to messages, enums can also be created at run time, via 
+[`proto3.makeEnum()`](./packages/protobuf/src/private/proto-runtime.ts#L58).
+
 
 ### Well-known types
 
@@ -709,6 +730,37 @@ for (const fd of fds.file) {
 const Example = dr.findMessage("doc.Example");
 ```
 
+
+## FAQ
+
+### What about protoc's JavaScript generator?
+
+[`js_generator.cc`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/js/js_generator.cc)
+is rarely updated, and has fallen behind the quickly moving world of JavaScript.
+
+For example:
+- it does not support ECMAScript modules
+- it cannot generate TypeScript (3rd party plugins are necessary)
+- it does not support the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json)
+- it does not carry over comments from your `.proto` files
+
+Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
+
+The main differences of the generated code:
+- we use plain properties for fields, where protoc uses getters and setters
+- we represent 64-bit integers with BigInt, where protoc uses `string` or `number`
+- we implement the canonical JSON format, where protoc offers only a partial alternative with `toObject`
+- we generate [much smaller bundles](./packages/bench-codesize)
+- our implementation is rather dynamic, despite the use of TypeScript - we let you dynamically create 
+  types at run time, for example
+
+
+### What features are implemented, what features are missing?
+
+We implement all proto3 features, including the canonical JSON format.  
+We implement all proto2 features, except for extensions and the text format.  
+The implementation is covered by the protocol buffers 
+[conformance tests](./packages/conformance-test).
 
 
 ## Copyright
