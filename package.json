@@ -5,6 +5,7 @@
     "./packages/protobuf-test",
     "./packages/conformance-test",
     "./packages/bench-codesize",
+    "./packages/example",
     "./packages/protoc-gen-es*"
   ],
   "type": "module",
