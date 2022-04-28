@@ -11,6 +11,7 @@ message Person {
   string name = 1;
   int32 id = 2;  // Unique ID number for this person.
   string email = 3;
+}
 ```
 
 Is compiled to an ECMAScript class that can be used like this:
