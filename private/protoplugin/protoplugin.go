@@ -99,8 +99,6 @@ type Generator struct {
 	Request           *pluginpb.CodeGeneratorRequest
 	Files             []*File
 	SupportedFeatures uint64
-	TSNoCheck         bool // print /* @ts-nocheck */ at the top of each generated TypeScript file
-	ESLintDisable     bool // print /* eslint-disable */ at the top of each generated file
 	Targets           []Target
 	symbolPool        *symbolPool
 	filesByPath       map[string]*File
@@ -108,6 +106,7 @@ type Generator struct {
 	messagesByName    map[string]*Message
 	servicesByName    map[string]*Service
 	generatedFiles    []*GeneratedFile
+	tsNoCheck         bool // internal plugin option `ts_nocheck=false` removes the /* @ts-nocheck */ annotation at the top of each generated TypeScript file
 	bootstrapWKT      bool // internal plugin option `wkt_bootstrap`; when bootstrapping well-known types, we need to generate relative import paths
 	runtimeImportPath string
 }
@@ -116,14 +115,13 @@ func NewGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Gen
 	g := &Generator{
 		Options:           options,
 		Request:           request,
-		ESLintDisable:     true,
-		TSNoCheck:         true,
 		Targets:           []Target{TargetJavaScript, TargetTypeDeclaration},
 		symbolPool:        &symbolPool{},
 		filesByPath:       make(map[string]*File),
 		enumsByName:       make(map[string]*Enum),
 		messagesByName:    make(map[string]*Message),
 		servicesByName:    make(map[string]*Service),
+		tsNoCheck:         true,
 		runtimeImportPath: runtimeImportPath,
 	}
 	err := g.parseParameter(request.GetParameter())
@@ -193,18 +191,9 @@ func (g *Generator) parseParameter(parameter string) error {
 		case "ts_nocheck":
 			switch value {
 			case "true", "1":
-				g.TSNoCheck = true
+				g.tsNoCheck = true
 			case "false", "0":
-				g.TSNoCheck = false
-			default:
-				return ErrInvalidOption
-			}
-		case "eslint_disable":
-			switch value {
-			case "true", "1":
-				g.ESLintDisable = true
-			case "false", "0":
-				g.ESLintDisable = false
+				g.tsNoCheck = false
 			default:
 				return ErrInvalidOption
 			}

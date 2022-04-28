@@ -26,7 +26,7 @@ PATH=$PATH:$(pwd)/node_modules/.bin
 ```
 
 
-Alternatively, you can install the plugin with ``go``:
+Alternatively, you can install the plugin with `go`:
 
 ```shell
 go install github.com/bufbuild/protobuf-es/cmd/protoc-gen-es@latest
@@ -61,26 +61,3 @@ By default, we generate JavaScript and TypeScript declaration files, which
 produces the smallest code size. If you prefer to generate TypeScript, use
 `target=ts`.
 
-
-### `ts_nocheck`
-
-This option prints `/* @ts-nocheck */` at the top of each generated TypeScript
-file, which disables type checking through the TypeScript compiler. The 
-purpose is to improve backwards and forwards compatibility with different 
-versions of TypeScript.
-
-Possible values:
-- `ts_nocheck=true` - print the annotation to disable - this is the default.
-- `ts_nocheck=false` - do not print the annotation.
-
-
-### `eslint_disable`
-
-This option prints `/* eslint-disable */` at the top of each generated file.
-Since eslint is highly configurable, it is impossible for the code generator
-to comply with all rules for all users. The annotation makes sure users do not 
-need to exclude files from their eslint configuration explicitly.
-
-Possible values:
-- `eslint_disable=true` - print the annotation to disable - this is the default.
-- `eslint_disable=false` - do not print the annotation.
