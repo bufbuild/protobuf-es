@@ -416,9 +416,6 @@ disable eslint and type checking through the TypeScript compiler:
 /* @ts-nocheck */
 ```
 
-You can turn these annotations off with the plugin options `ts_nocheck=false` and
-`eslint_disable=false`.
-
 
 #### Element comments
 
