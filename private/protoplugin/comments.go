@@ -102,10 +102,8 @@ func makeFilePreamble(gen *Generator, fileName string, packageName string, synta
 	var builder strings.Builder
 	writeLeadingComments(&builder, syntaxComments)
 	writeGenerationInfo(&builder, gen, fileName, packageName, syntax)
-	if gen.ESLintDisable {
-		_, _ = builder.WriteString("/* eslint-disable */\n")
-	}
-	if gen.TSNoCheck {
+	_, _ = builder.WriteString("/* eslint-disable */\n")
+	if gen.tsNoCheck {
 		_, _ = builder.WriteString("/* @ts-nocheck */\n")
 	}
 	_, _ = builder.WriteString("\n")
