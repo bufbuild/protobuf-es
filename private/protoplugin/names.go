@@ -124,7 +124,7 @@ var (
 
 	// runtimeImportPath points to the protobuf runtime library when
 	// bootstrapping the well-known types.
-	runtimeImportPathBootstrapWKT = "./index.js"
+	runtimeImportPathBootstrapWKT = "./index-runtime.js"
 
 	// wktSourceToImportPath maps from the path of a well-known types proto
 	// file to the JavaScript import path for the runtime package.

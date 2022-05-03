@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/field_mask.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, proto3} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, proto3} from "../../index-runtime.js";
 
 /**
  * `FieldMask` represents a set of symbolic field paths, for example:
