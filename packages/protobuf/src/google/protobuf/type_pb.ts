@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, proto3} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, proto3} from "../../index-runtime.js";
 import {SourceContext} from "./source_context_pb.js";
 import {Any} from "./any_pb.js";
 

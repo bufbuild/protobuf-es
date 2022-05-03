@@ -24,8 +24,8 @@
 // @generated from file google/protobuf/descriptor.proto (package google.protobuf, syntax proto2)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, proto2} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, proto2} from "../../index-runtime.js";
 
 /**
  * The protocol compiler can output a FileDescriptorSet containing the .proto

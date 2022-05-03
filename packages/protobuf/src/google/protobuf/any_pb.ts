@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, proto3} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, proto3} from "../../index-runtime.js";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a

@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/duration.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, proto3, protoInt64} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, proto3, protoInt64} from "../../index-runtime.js";
 
 /**
  * A Duration represents a signed, fixed-length span of time represented
