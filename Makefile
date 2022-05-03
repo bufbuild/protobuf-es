@@ -57,7 +57,7 @@ $(GOLANGCI_LINT_DEP):
 # (We need --force so NPM doesn't bail on the platform-specific
 # packages in the workspace)
 node_modules: package-lock.json
-	npm ci --force
+	npm ci
 
 
 # Our code generator protoc-gen-es generates message and enum types
@@ -185,8 +185,7 @@ clean: ## Delete build artifacts and installed dependencies
 	cd $(TEST_DIR); npm run clean
 	cd $(BENCHCODESIZE_DIR); npm run clean
 	[ -n "$(CACHE_DIR)" ] && rm -rf $(CACHE_DIR)/*
-	rm -rf node_modules
-	rm -rf packages/protoc-gen-*/bin/*
+	rm -rf node_modules packages/protoc-gen-es/bin/* packages/protoc-gen-es-*
 
 build: $(RUNTIME_BUILD) $(TEST_BUILD) $(CONFORMANCE_BUILD) $(PROTOC_GEN_ES_BIN) $(EXAMPLE_BUILD) ## Build
 
@@ -225,7 +224,7 @@ set-version: ## Set a new version in for the project, i.e. make set-version SET_
 	node make/scripts/update-go-version-file.js cmd/protoc-gen-es/version.go $(SET_VERSION)
 	node make/scripts/set-workspace-version.js $(SET_VERSION)
 	rm package-lock.json
-	npm i -f
+	npm i
 	$(MAKE) all
 
 # Some builds need code generation, some code generation needs builds.
