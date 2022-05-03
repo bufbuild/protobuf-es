@@ -19,6 +19,34 @@ import {
 import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 import { testMT } from "./helpers.js";
 
+describe("constructor takes message partial for message field", function () {
+  testMT(
+    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+    (messageType) => {
+      const m = new messageType({
+        recursiveMessage: {
+          optionalInt32: 123,
+        },
+      });
+      expect(m.recursiveMessage?.optionalInt32).toBe(123);
+    }
+  );
+});
+
+describe("constructor takes message instance for message field", function () {
+  testMT(
+    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+    (messageType) => {
+      const m = new messageType({
+        recursiveMessage: new messageType({
+          optionalInt32: 123,
+        }),
+      });
+      expect(m.recursiveMessage?.optionalInt32).toBe(123);
+    }
+  );
+});
+
 describe("constructor takes partial message for oneof field", function () {
   testMT(
     { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
