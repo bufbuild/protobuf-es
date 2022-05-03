@@ -9,10 +9,7 @@ the runtime library for the code generator plugin.
 ### [`protoc-gen-es`](./protoc-gen-es)
 
 This is the npm package [`@bufbuild/protoc-gen-es`](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
-for the code generator plugin. The code generator is written in Go for best 
-performance. Since Go is a compiled language, we have several packages for 
-different platforms, but you generally only need 
-`npm install @bufbuild/protoc-gen-es`.
+for the code generator plugin. 
 
 ### [`example`](./example)
 

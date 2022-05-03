@@ -11,20 +11,43 @@ This is a code generator plugin for `protoc` and [`buf`](https://github.com/bufb
 
 ## Installation
 
+### With npm
+
 ```shell
 npm install @bufbuild/protoc-gen-es
 ```
 
-This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`. It is
-actually just a simple node script that selects the correct precompiled binary for your
-platform.
-
+This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`. 
 Note that npm does not add the executable to your `$PATH`. You can do so with:
 
 ```shell
 PATH=$PATH:$(pwd)/node_modules/.bin
 ```
 
+Note that `protoc-gen-es` is actually just a simple node script that selects the 
+correct precompiled binary for your platform. For example, if you are on a 32-bit 
+linux machine, the optional dependency `@bufbuild/protoc-gen-es-linux-32` is 
+automatically installed by `npm`, and our node script will run it. Note that this
+means you cannot move your `node_modules` directory to a different platform and
+run it. We recommend you run `npm ci` in CI or your docker images instead.
+
+
+### With yarn
+
+```shell
+yarn add @bufbuild/protoc-gen-es
+```
+
+Note that yarn v2 does not use a `node_modules` directory anymore. To find the path 
+where yarn stores the executable, run `yarn bin protoc-gen-es` (it is "unplugged" 
+automatically).
+
+Yarn supports installing dependencies for several platforms at the same time, by 
+adding the configuration field [`supportedArchitectures`](https://yarnpkg.com/configuration/yarnrc#supportedArchitectures)
+in your `.yarnrc.yml`.
+
+
+### With go
 
 Alternatively, you can install the plugin with `go`:
 
