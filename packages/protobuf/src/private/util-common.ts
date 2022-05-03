@@ -96,7 +96,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               if (mt.fieldWrapper) {
                 t[localName] = val;
               } else {
-                t[localName] = val instanceof mt ? mt : new mt(val);
+                t[localName] = val instanceof mt ? val : new mt(val);
               }
             }
             break;
