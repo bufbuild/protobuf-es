@@ -69,6 +69,12 @@ func (j *jsDocBlock) indentedString(indent string) string {
 	return buf.String()
 }
 
+// CommentSet is a set of comments associated with a protobuf element like
+// a message, field, or enum value.
+// Those comments are passed to the plugin as part of the SourceCodeInfo
+// message in a CodeGeneratorRequest. While SourceCodeInfo contains all
+// information for a file, a CommentSet is already filtered for a given
+// protobuf element.
 type CommentSet struct {
 	LeadingDetached []string
 	Leading         string
