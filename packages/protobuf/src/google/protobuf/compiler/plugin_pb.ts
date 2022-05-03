@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/compiler/plugin.proto (package google.protobuf.compiler, syntax proto2)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../../index.js";
-import {Message, proto2} from "../../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../../index-runtime.js";
+import {Message, proto2} from "../../../index-runtime.js";
 import {FileDescriptorProto, GeneratedCodeInfo} from "../descriptor_pb.js";
 
 /**

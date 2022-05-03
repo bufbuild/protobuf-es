@@ -26,8 +26,8 @@
 // @generated from file google/protobuf/wrappers.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index.js";
-import {Message, ScalarType, proto3, protoInt64} from "../../index.js";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index-runtime.js";
+import {Message, ScalarType, proto3, protoInt64} from "../../index-runtime.js";
 
 /**
  * Wrapper message for `double`.
