@@ -7,22 +7,22 @@ export PATH := $(abspath $(CACHE_DIR)/bin):$(PATH)
 # 1. generate wkt as part of the NPM package "@bufbuild/protobuf"
 # 2. test conformance
 # 3. test .proto file compilation
-GOOGPROTOBUF_VERSION = 3.20.1
-GOOGPROTOBUF_SOURCE_URL = https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGPROTOBUF_VERSION)/protobuf-all-$(GOOGPROTOBUF_VERSION).tar.gz
-GOOGPROTOBUF_SOURCE = $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION)
-GOOGPROTOBUF_WKT_PROTOS = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN = $(GOOGPROTOBUF_SOURCE)/bazel-bin/conformance_test_runner
-GOOGPROTOBUF_PROTOC_BIN = $(GOOGPROTOBUF_SOURCE)/bazel-bin/protoc
-$(GOOGPROTOBUF_SOURCE):
-	mkdir -p $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION)
-	curl --silent -L $(GOOGPROTOBUF_SOURCE_URL) > $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION).tar.gz
-	tar -xzf $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION).tar.gz -C $(CACHE_DIR)/
-$(GOOGPROTOBUF_PROTOC_BIN): $(GOOGPROTOBUF_SOURCE)
-	cd $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION) && bazel build protoc
-	touch $(GOOGPROTOBUF_PROTOC_BIN)
-$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN): $(GOOGPROTOBUF_SOURCE)
-	cd $(CACHE_DIR)/protobuf-$(GOOGPROTOBUF_VERSION) && bazel build test_messages_proto3_proto conformance_proto conformance_test conformance_test_runner
-export PATH := $(abspath $(GOOGPROTOBUF_SOURCE)/bazel-bin):$(PATH)
+GOOGLE_PROTOBUF_VERSION = 3.20.1
+GOOGLE_PROTOBUF_SOURCE_URL = https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGLE_PROTOBUF_VERSION)/protobuf-all-$(GOOGLE_PROTOBUF_VERSION).tar.gz
+GOOGLE_PROTOBUF_SOURCE = $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION)
+GOOGLE_PROTOBUF_WKT_PROTOS = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
+GOOGLE_PROTOBUF_CONFORMANCE_RUNNER_BIN = $(GOOGLE_PROTOBUF_SOURCE)/bazel-bin/conformance_test_runner
+GOOGLE_PROTOBUF_PROTOC_BIN = $(GOOGLE_PROTOBUF_SOURCE)/bazel-bin/protoc
+$(GOOGLE_PROTOBUF_SOURCE):
+	mkdir -p $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION)
+	curl --silent -L $(GOOGLE_PROTOBUF_SOURCE_URL) > $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz
+	tar -xzf $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz -C $(CACHE_DIR)/
+$(GOOGLE_PROTOBUF_PROTOC_BIN): $(GOOGLE_PROTOBUF_SOURCE)
+	cd $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION) && bazel build protoc
+	touch $(GOOGLE_PROTOBUF_PROTOC_BIN)
+$(GOOGLE_PROTOBUF_CONFORMANCE_RUNNER_BIN): $(GOOGLE_PROTOBUF_SOURCE)
+	cd $(CACHE_DIR)/protobuf-$(GOOGLE_PROTOBUF_VERSION) && bazel build test_messages_proto3_proto conformance_proto conformance_test conformance_test_runner
+export PATH := $(abspath $(GOOGLE_PROTOBUF_SOURCE)/bazel-bin):$(PATH)
 
 
 # Install license-header
@@ -72,14 +72,14 @@ $(PROTOC_GEN_ES_BIN): $(PROTOC_GEN_ES_SOURCES)
 
 # The NPM package "@bufbuild/protobuf" is the runtime library required by the code our plugin generates
 RUNTIME_DIR = packages/protobuf
-RUNTIME_GEN = $(CACHE_DIR)/gen/bufbuild-protobuf-wkt-$(GOOGPROTOBUF_VERSION)
+RUNTIME_GEN = $(CACHE_DIR)/gen/bufbuild-protobuf-wkt-$(GOOGLE_PROTOBUF_VERSION)
 RUNTIME_BUILD = $(CACHE_DIR)/build/packages-protobuf
 RUNTIME_SOURCES = $(RUNTIME_DIR)/*.json $(RUNTIME_DIR)/src/*.ts $(RUNTIME_DIR)/src/*/*.ts
 $(RUNTIME_BUILD): node_modules $(RUNTIME_GEN) $(RUNTIME_SOURCES)
 	cd $(RUNTIME_DIR) && npm run clean && npm run build
 	mkdir -p $(CACHE_DIR)/build && touch $(RUNTIME_BUILD)
-$(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(LICENSE_HEADER_DEP)
-	$(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE)/src --plugin $(PROTOC_GEN_ES_BIN) --es_out $(RUNTIME_DIR)/src --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts $(GOOGPROTOBUF_WKT_PROTOS)
+$(RUNTIME_GEN): $(GOOGLE_PROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(LICENSE_HEADER_DEP)
+	$(GOOGLE_PROTOBUF_PROTOC_BIN) -I $(GOOGLE_PROTOBUF_SOURCE)/src --plugin $(PROTOC_GEN_ES_BIN) --es_out $(RUNTIME_DIR)/src --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts $(GOOGLE_PROTOBUF_WKT_PROTOS)
 	find $(RUNTIME_DIR)/src/google -name '*.ts' \
 		| grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) \
 		| xargs license-header \
@@ -91,13 +91,13 @@ $(RUNTIME_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(LICENSE_HEADER
 
 # The private NPM package "@bufbuild/conformance-test" runs the protobuf conformance test suite
 CONFORMANCE_DIR = packages/conformance-test
-CONFORMANCE_GEN = $(CACHE_DIR)/gen/conformance-test-$(GOOGPROTOBUF_VERSION)
+CONFORMANCE_GEN = $(CACHE_DIR)/gen/conformance-test-$(GOOGLE_PROTOBUF_VERSION)
 CONFORMANCE_BUILD = $(CACHE_DIR)/build/conformance-test
 CONFORMANCE_SOURCES = $(shell find $(CONFORMANCE_DIR)/src -name '*.ts' -or -name '*.js') $(CONFORMANCE_DIR)/*.json
-$(CONFORMANCE_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(CONFORMANCE_DIR) -name '*.proto')
+$(CONFORMANCE_GEN): $(GOOGLE_PROTOBUF_SOURCE) $(GOOGLE_PROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(CONFORMANCE_DIR) -name '*.proto')
 	rm -rf $(CONFORMANCE_DIR)/src/gen/*
-	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(CONFORMANCE_DIR)/src/gen --es_opt ts_nocheck=false,target=ts \
-		-I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src \
+	$(GOOGLE_PROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(CONFORMANCE_DIR)/src/gen --es_opt ts_nocheck=false,target=ts \
+		-I $(GOOGLE_PROTOBUF_SOURCE) -I $(GOOGLE_PROTOBUF_SOURCE)/src \
 		conformance/conformance.proto \
 		google/protobuf/test_messages_proto2.proto \
 		google/protobuf/test_messages_proto3.proto
@@ -112,11 +112,11 @@ $(CONFORMANCE_BUILD): $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_GEN) $(RUNTIME_BUILD) $
 # 2. unit test generated code
 # 3. test interoperability with protoc (JSON names)
 TEST_DIR = packages/protobuf-test
-TEST_GEN = $(CACHE_DIR)/gen/protobuf-test-$(GOOGPROTOBUF_VERSION)
+TEST_GEN = $(CACHE_DIR)/gen/protobuf-test-$(GOOGLE_PROTOBUF_VERSION)
 TEST_BUILD = $(CACHE_DIR)/build/protobuf-test
 TEST_SOURCES = $(shell find $(TEST_DIR)/src -name '*.ts') $(TEST_DIR)/*.json
-$(TEST_GEN) : protoc = $(GOOGPROTOBUF_PROTOC_BIN) -I $(GOOGPROTOBUF_SOURCE) -I $(GOOGPROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGPROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
-$(TEST_GEN): $(GOOGPROTOBUF_SOURCE) $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(TEST_DIR) -name '*.proto')
+$(TEST_GEN) : protoc = $(GOOGLE_PROTOBUF_PROTOC_BIN) -I $(GOOGLE_PROTOBUF_SOURCE) -I $(GOOGLE_PROTOBUF_SOURCE)/src -I $(TEST_DIR) $(shell cd $(TEST_DIR) && find . -name '*.proto' | cut -sd / -f 2-) google/protobuf/type.proto $(shell cd $(GOOGLE_PROTOBUF_SOURCE)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) google/protobuf/test_messages_proto2.proto google/protobuf/test_messages_proto3.proto
+$(TEST_GEN): $(GOOGLE_PROTOBUF_SOURCE) $(GOOGLE_PROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(shell find $(TEST_DIR) -name '*.proto')
 	rm -rf $(TEST_DIR)/src/gen/ts/* $(TEST_DIR)/src/gen/js/* $(TEST_DIR)/descriptorset.bin
 	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/ts --es_opt ts_nocheck=false,target=ts
 	$(protoc) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(TEST_DIR)/src/gen/js --es_opt ts_nocheck=false,target=js+dts
@@ -159,10 +159,10 @@ EXAMPLE_GEN = $(CACHE_DIR)/gen/example
 EXAMPLE_BUILD = $(CACHE_DIR)/build/example
 EXAMPLE_SOURCES = $(shell find $(EXAMPLE_DIR)/src -name '*.ts' -or -name '*.js') $(EXAMPLE_DIR)/*.json
 EXAMPLE_PROTOS = $(shell find $(EXAMPLE_DIR) -name '*.proto')
-$(EXAMPLE_GEN): $(GOOGPROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(EXAMPLE_PROTOS)
+$(EXAMPLE_GEN): $(GOOGLE_PROTOBUF_PROTOC_BIN) $(PROTOC_GEN_ES_BIN) $(EXAMPLE_PROTOS)
 	rm -rf $(EXAMPLE_DIR)/src/gen/*
-	$(GOOGPROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(EXAMPLE_DIR)/src/gen --es_opt target=ts \
-		-I $(GOOGPROTOBUF_SOURCE)/src \
+	$(GOOGLE_PROTOBUF_PROTOC_BIN) --plugin $(PROTOC_GEN_ES_BIN) --es_out $(EXAMPLE_DIR)/src/gen --es_opt target=ts \
+		-I $(GOOGLE_PROTOBUF_SOURCE)/src \
 		-I $(EXAMPLE_DIR) \
 		$(EXAMPLE_PROTOS)
 	mkdir -p $(dir $(EXAMPLE_GEN)) && touch $(EXAMPLE_GEN)
@@ -195,8 +195,8 @@ test: test-go test-jest test-conformance ## Run all tests
 test-jest: $(TEST_BUILD) $(TEST_DIR)/*.config.js
 	cd $(TEST_DIR) && NODE_OPTIONS=--experimental-vm-modules npx jest
 
-test-conformance: $(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_BUILD)
-	$(GOOGPROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(CONFORMANCE_DIR)/conformance_failing_tests.txt --text_format_failure_list $(CONFORMANCE_DIR)/conformance_failing_tests_text_format.txt $(CONFORMANCE_DIR)/bin/conformance_esm.js
+test-conformance: $(GOOGLE_PROTOBUF_CONFORMANCE_RUNNER_BIN) $(PROTOC_GEN_ES_BIN) $(CONFORMANCE_BUILD)
+	$(GOOGLE_PROTOBUF_CONFORMANCE_RUNNER_BIN) --enforce_recommended --failure_list $(CONFORMANCE_DIR)/conformance_failing_tests.txt --text_format_failure_list $(CONFORMANCE_DIR)/conformance_failing_tests_text_format.txt $(CONFORMANCE_DIR)/bin/conformance_esm.js
 
 test-go: $(TEST_GEN)
 	go test ./private/...  ./cmd/...
