@@ -10,6 +10,7 @@
   "bin": {
     "protoc-gen-es": "bin/protoc-gen-es"
   },
+  "preferUnplugged": true,
   "peerDependencies": {
     "@bufbuild/protobuf": "^0.0.2-alpha.3"
   },
