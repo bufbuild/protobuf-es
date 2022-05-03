@@ -253,10 +253,9 @@ func (f *GeneratedFile) processSymbols(makeImportStatement func(typeOnly bool, f
 
 type symbolID uint64
 
-// Symbol represents an identifier in a file, such as `MyMessage` in a file
-// `my_message_pb.ts`.
+// Symbol is an importable name, such as `MyMessage` in a file `my_message_pb.ts`.
 // If the symbol is passed to the method P() of a GeneratedFile, an import
-// statement is automatically added if necessary.
+// statement is automatically added.
 type Symbol struct {
 	Name     string
 	From     string
@@ -266,8 +265,9 @@ type Symbol struct {
 
 // ToTypeOnly returns a variant of a Symbol that indicates that the identifier
 // is only used as a type, not as a value. This is relevant in TypeScript,
-// where it is preferable to use `import type {MyMessage}` explicitly, so that
-// it is easier for 3rd party transpilation tooling to ignore type imports.
+// where it is preferable to use `import type {MyMessage}` for such imports,
+// so that it is easier for 3rd party transpilation tooling to skip type
+// imports.
 func (s *Symbol) ToTypeOnly() *Symbol {
 	if s.typeOnly {
 		return s

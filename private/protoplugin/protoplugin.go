@@ -88,7 +88,7 @@ func (o Options) Pipe(gen func(gen *Generator) error) {
 	}
 }
 
-// Run takes a CodeGeneratorRequest, runs it with the provided plugin
+// Run takes a CodeGeneratorRequest, runs it through the provided plugin
 // implementation `gen`, and returns a CodeGeneratorResponse - or an error
 // in case the request is invalid.
 // This method can be used in tests, so that the plugin does not need to
@@ -402,13 +402,12 @@ func (f *File) resolveReferences(gen *Generator) error {
 	return nil
 }
 
-// Enum represents a enum definition, with some helpful fields to aid
-// generating ECMAScript.
+// Enum represents an enum definition.
 type Enum struct {
 	File          *File
 	Proto         *descriptorpb.EnumDescriptorProto
-	TypeName      string // fully qualified name
-	Symbol        *Symbol
+	TypeName      string  // fully qualified name, for example `foo.MyEnum`
+	Symbol        *Symbol // importable name of this enum in ECMAScript
 	Values        []*EnumValue
 	Deprecated    bool   // deprecated with the enum option "deprecated = true", or implicitly with the file level option
 	SharedPrefix  string // MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
@@ -561,8 +560,8 @@ func (v *EnumValue) GetDeclarationString() string {
 type Message struct {
 	File              *File
 	Proto             *descriptorpb.DescriptorProto
-	TypeName          string // fully qualified type name
-	Symbol            *Symbol
+	TypeName          string  // fully qualified name, for example `foo.MyMessage`
+	Symbol            *Symbol // importable of this message in ECMAScript
 	Members           []*Member
 	Fields            []*Field
 	Oneofs            []*Oneof // excluding synthetic oneofs for proto3 optional
@@ -746,10 +745,10 @@ const (
 // Field represents a field of a message.
 type Field struct {
 	Proto           *descriptorpb.FieldDescriptorProto
-	LocalName       string // name of the property on the message
+	LocalName       string // name of the property on the message in ECMAScript
 	JSONName        string // blank if the user did not specify the option json_name
 	Parent          *Message
-	Oneof           *Oneof // nil if not member of a oneof
+	Oneof           *Oneof // nil if not member of an oneof
 	Optional        bool   // whether the field is optional, regardless of syntax
 	Deprecated      bool   // deprecated with the field option `[deprecated = true]`
 	Repeated        bool   // a true repeated field, i.e. the user specified `repeated ...`
@@ -789,8 +788,8 @@ func (g *Generator) newField(desc *descriptorpb.FieldDescriptorProto, parent *Me
 }
 
 // JSDoc creates a JSDoc comment block for this field, including comments
-// from the protobuf source, as well as code generator information
-// and - if applicable - a deprecation tag.
+// from the protobuf source, as well as code generator information and -
+// if applicable - a deprecation tag.
 func (f *Field) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if f.Comments.Leading != "" {
@@ -1025,7 +1024,7 @@ func (g *Generator) newMap(parent *Field) (*Map, error) {
 // Oneof represents a oneof definition.
 type Oneof struct {
 	Proto      *descriptorpb.OneofDescriptorProto
-	LocalName  string
+	LocalName  string   // name of the property on the message in ECMAScript
 	Parent     *Message // message in which this oneof is declared
 	Fields     []*Field // fields that are part of this oneof
 	Comments   CommentSet
@@ -1121,8 +1120,8 @@ func (e *Extension) resolveReferences(gen *Generator) error {
 type Service struct {
 	File          *File
 	Proto         *descriptorpb.ServiceDescriptorProto
-	TypeName      string // fully qualified name
-	LocalName     string
+	TypeName      string // fully qualified name, for example `foo.MyService`
+	LocalName     string // name of the service in ECMAScript, for example `MyService`
 	Methods       []*Method
 	Deprecated    bool   // deprecated with the service option "deprecated = true", or implicitly with the file level option
 	protoTypeName string // fully qualified name with a leading dot
@@ -1178,8 +1177,8 @@ func (s *Service) String() string {
 // Method represents a method definition.
 type Method struct {
 	Proto      *descriptorpb.MethodDescriptorProto
-	LocalName  string
-	Deprecated bool // deprecated with the method option "deprecated = true", or implicitly with the file level option
+	LocalName  string // name of the method in ECMAScript
+	Deprecated bool   // deprecated with the method option "deprecated = true", or implicitly with the file level option
 	Parent     *Service
 	Input      *Message
 	Output     *Message
