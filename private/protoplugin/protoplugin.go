@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package protoplugin is a small framework for writing your own code
+// generator plugins using protobuf-es.
 package protoplugin
 
 import (
@@ -26,33 +28,25 @@ import (
 	"google.golang.org/protobuf/types/pluginpb"
 )
 
+// ErrInvalidOption is raised when protoplugin receives an unknown option.
 var ErrInvalidOption = errors.New("invalid option")
 
+// Options are options to a plugin. Name and Version are mandatory, and
+// will be included in generated files as part of the preamble.
+// ParamFunc can be used to parse arbitrary options the plugin wants to
+// provide.
 type Options struct {
 	Name      string // name of this code generator
 	Version   string // version of this code generator
 	ParamFunc func(key string, value string) error
 }
 
-func (o Options) Run(request *pluginpb.CodeGeneratorRequest, gen func(gen *Generator) error) (*pluginpb.CodeGeneratorResponse, error) {
-	g, err := NewGenerator(o, request)
-	if err != nil {
-		return nil, err
-	}
-	err = gen(g)
-	resPb := &pluginpb.CodeGeneratorResponse{
-		SupportedFeatures: &g.SupportedFeatures,
-	}
-	if err != nil {
-		errString := err.Error()
-		resPb.Error = &errString
-	}
-	if resPb.Error == nil {
-		g.toResponse(resPb)
-	}
-	return resPb, nil
-}
-
+// Pipe reads a CodeGeneratorRequest from stdin, runs it with the provided
+// plugin implementation `gen`, and writes a CodeGeneratorResponse
+// to stdout. If an error occurs, an error message is written to stderr, and
+// the program exits with code 1.
+// This method should be called from the main function of a command that
+// implements a plugin.
 func (o Options) Pipe(gen func(gen *Generator) error) {
 	exit := func(err error) {
 		_, _ = fmt.Fprintf(os.Stderr, "%s: %v\n", o.Name, err)
@@ -94,6 +88,32 @@ func (o Options) Pipe(gen func(gen *Generator) error) {
 	}
 }
 
+// Run takes a CodeGeneratorRequest, runs it through the provided plugin
+// implementation `gen`, and returns a CodeGeneratorResponse - or an error
+// in case the request is invalid.
+// This method can be used in tests, so that the plugin does not need to
+// be run through a compiler.
+func (o Options) Run(request *pluginpb.CodeGeneratorRequest, gen func(gen *Generator) error) (*pluginpb.CodeGeneratorResponse, error) {
+	g, err := newGenerator(o, request)
+	if err != nil {
+		return nil, err
+	}
+	err = gen(g)
+	resPb := &pluginpb.CodeGeneratorResponse{
+		SupportedFeatures: &g.SupportedFeatures,
+	}
+	if err != nil {
+		errString := err.Error()
+		resPb.Error = &errString
+	}
+	if resPb.Error == nil {
+		g.toResponse(resPb)
+	}
+	return resPb, nil
+}
+
+// Generator provides all information of a CodeGeneratorRequest in a simplified
+// form.
 type Generator struct {
 	Options           Options
 	Request           *pluginpb.CodeGeneratorRequest
@@ -111,7 +131,7 @@ type Generator struct {
 	runtimeImportPath string
 }
 
-func NewGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Generator, error) {
+func newGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Generator, error) {
 	g := &Generator{
 		Options:           options,
 		Request:           request,
@@ -155,6 +175,9 @@ func NewGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Gen
 	return g, nil
 }
 
+// NewGeneratedFile creates a new file to be generated. If content is added to
+// the file with P(), the file is automatically included in the
+// CodeGeneratorResponse returned to the protobuf compiler.
 func (g *Generator) NewGeneratedFile(name string) *GeneratedFile {
 	f := newGeneratedFile(g.symbolPool, name, deriveImportPath(name))
 	g.generatedFiles = append(g.generatedFiles, f)
@@ -240,6 +263,7 @@ func (g *Generator) toResponse(response *pluginpb.CodeGeneratorResponse) {
 	}
 }
 
+// Target represents on of the known output types.
 type Target int
 
 const (
@@ -259,6 +283,7 @@ func (l Target) String() string {
 	}
 }
 
+// ProtoSyntax is one of the supported syntaxes of proto files.
 type ProtoSyntax int
 
 const (
@@ -278,6 +303,8 @@ func (p ProtoSyntax) String() string {
 	}
 }
 
+// File is a protobuf source file, with several helpful fields to aid
+// generating ECMAScript.
 type File struct {
 	Proto              *descriptorpb.FileDescriptorProto
 	Syntax             ProtoSyntax
@@ -375,11 +402,12 @@ func (f *File) resolveReferences(gen *Generator) error {
 	return nil
 }
 
+// Enum represents an enum definition.
 type Enum struct {
 	File          *File
 	Proto         *descriptorpb.EnumDescriptorProto
-	TypeName      string // fully qualified name
-	Symbol        *Symbol
+	TypeName      string  // fully qualified name, for example `foo.MyEnum`
+	Symbol        *Symbol // importable name of this enum in ECMAScript
 	Values        []*EnumValue
 	Deprecated    bool   // deprecated with the enum option "deprecated = true", or implicitly with the file level option
 	SharedPrefix  string // MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
@@ -419,6 +447,7 @@ func (g *Generator) newEnum(proto *descriptorpb.EnumDescriptorProto, parentMessa
 	return e
 }
 
+// FindValueByNumber finds a value by its number as defined in protobuf.
 func (e *Enum) FindValueByNumber(number int32) *EnumValue {
 	for _, v := range e.Values {
 		if v.Proto.GetNumber() == number {
@@ -428,6 +457,7 @@ func (e *Enum) FindValueByNumber(number int32) *EnumValue {
 	return nil
 }
 
+// FindValueByName finds a value by its name as defined in protobuf.
 func (e *Enum) FindValueByName(name string) *EnumValue {
 	for _, v := range e.Values {
 		if v.Proto.GetName() == name {
@@ -437,6 +467,9 @@ func (e *Enum) FindValueByName(name string) *EnumValue {
 	return nil
 }
 
+// JSDoc creates a JSDoc comment block for this enum, including comments
+// from the protobuf source, as well as code generator information and
+// - if applicable - a deprecation tag.
 func (e *Enum) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if e.Comments.Leading != "" {
@@ -462,6 +495,7 @@ func (e *Enum) String() string {
 	return fmt.Sprintf("enum %s", e.TypeName)
 }
 
+// EnumValue represents a single value of an enum definition.
 type EnumValue struct {
 	Proto      *descriptorpb.EnumValueDescriptorProto
 	Parent     *Enum
@@ -484,6 +518,9 @@ func (g *Generator) newEnumValue(proto *descriptorpb.EnumValueDescriptorProto, p
 	return v
 }
 
+// JSDoc creates a JSDoc comment block for this enum value, including
+// comments from the protobuf source, as well as code generator information
+// and - if applicable - a deprecation tag.
 func (v *EnumValue) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if v.Comments.Leading != "" {
@@ -509,6 +546,8 @@ func (v *EnumValue) String() string {
 	return fmt.Sprintf("enum value %s.%s", v.Parent.TypeName, v.Proto.GetName())
 }
 
+// GetDeclarationString returns a string that matches the definition of this
+// value in protobuf (but does not take custom options into account).
 func (v *EnumValue) GetDeclarationString() string {
 	d := fmt.Sprintf("%s = %d", v.Proto.GetName(), v.Proto.GetNumber())
 	if v.Proto.GetOptions().GetDeprecated() {
@@ -517,11 +556,12 @@ func (v *EnumValue) GetDeclarationString() string {
 	return d
 }
 
+// Message represents a message definition.
 type Message struct {
 	File              *File
 	Proto             *descriptorpb.DescriptorProto
-	TypeName          string // fully qualified type name
-	Symbol            *Symbol
+	TypeName          string  // fully qualified name, for example `foo.MyMessage`
+	Symbol            *Symbol // importable of this message in ECMAScript
 	Members           []*Member
 	Fields            []*Field
 	Oneofs            []*Oneof // excluding synthetic oneofs for proto3 optional
@@ -614,6 +654,9 @@ func (g *Generator) newMessage(proto *descriptorpb.DescriptorProto, parentMessag
 	return message, nil
 }
 
+// JSDoc creates a JSDoc comment block for this message, including
+// comments from the protobuf source, as well as code generator information
+// and - if applicable - a deprecation tag.
 func (m *Message) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if m.Comments.Leading != "" {
@@ -674,6 +717,7 @@ func (m *Message) resolveReferences(gen *Generator) error {
 	return nil
 }
 
+// MemberKind represents the possible types a member of a Message can be.
 type MemberKind int
 
 const (
@@ -681,12 +725,14 @@ const (
 	MemberKindOneof
 )
 
+// Member is any member of a Message.
 type Member struct {
 	Kind  MemberKind
 	Field *Field
 	Oneof *Oneof
 }
 
+// FieldKind represents the possibly categories a field belongs into.
 type FieldKind int
 
 const (
@@ -696,12 +742,13 @@ const (
 	FieldKindMap
 )
 
+// Field represents a field of a message.
 type Field struct {
 	Proto           *descriptorpb.FieldDescriptorProto
-	LocalName       string // name of the property on the message
+	LocalName       string // name of the property on the message in ECMAScript
 	JSONName        string // blank if the user did not specify the option json_name
 	Parent          *Message
-	Oneof           *Oneof // nil if not member of a oneof
+	Oneof           *Oneof // nil if not member of an oneof
 	Optional        bool   // whether the field is optional, regardless of syntax
 	Deprecated      bool   // deprecated with the field option `[deprecated = true]`
 	Repeated        bool   // a true repeated field, i.e. the user specified `repeated ...`
@@ -740,6 +787,9 @@ func (g *Generator) newField(desc *descriptorpb.FieldDescriptorProto, parent *Me
 	return f, nil
 }
 
+// JSDoc creates a JSDoc comment block for this field, including comments
+// from the protobuf source, as well as code generator information and -
+// if applicable - a deprecation tag.
 func (f *Field) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if f.Comments.Leading != "" {
@@ -765,6 +815,8 @@ func (f *Field) String() string {
 	return fmt.Sprintf("field %s.%s", f.Parent.TypeName, f.Proto.GetName())
 }
 
+// GetDeclarationString returns a string that matches the definition of this
+// field in protobuf (but does not take custom options into account).
 func (f *Field) GetDeclarationString() string {
 	scalarDeclarationString := func(scalarType descriptorpb.FieldDescriptorProto_Type) string {
 		return strings.ToLower(strings.TrimPrefix(scalarType.String(), "TYPE_"))
@@ -900,6 +952,7 @@ func (f *Field) resolveReferences(gen *Generator) error {
 	return nil
 }
 
+// Map represents a map field definition.
 type Map struct {
 	Parent       *Field
 	Key          descriptorpb.FieldDescriptorProto_Type
@@ -968,9 +1021,10 @@ func (g *Generator) newMap(parent *Field) (*Map, error) {
 	return m, nil
 }
 
+// Oneof represents a oneof definition.
 type Oneof struct {
 	Proto      *descriptorpb.OneofDescriptorProto
-	LocalName  string
+	LocalName  string   // name of the property on the message in ECMAScript
 	Parent     *Message // message in which this oneof is declared
 	Fields     []*Field // fields that are part of this oneof
 	Comments   CommentSet
@@ -988,6 +1042,9 @@ func (g *Generator) newOneof(desc *descriptorpb.OneofDescriptorProto, parent *Me
 	return o
 }
 
+// JSDoc creates a JSDoc comment block for this Oneof, including
+// comments from the protobuf source, as well as code generator information
+// and - if applicable - a deprecation tag.
 func (o *Oneof) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if o.Comments.Leading != "" {
@@ -1010,6 +1067,7 @@ func (o *Oneof) String() string {
 	return fmt.Sprintf("oneof %s.%s", o.Parent.TypeName, o.Proto.GetName())
 }
 
+// Extension represents an extension.
 type Extension struct {
 	Proto      *descriptorpb.FieldDescriptorProto
 	File       *File
@@ -1058,11 +1116,12 @@ func (e *Extension) resolveReferences(gen *Generator) error {
 	return nil
 }
 
+// Service represents a service definition.
 type Service struct {
 	File          *File
 	Proto         *descriptorpb.ServiceDescriptorProto
-	TypeName      string // fully qualified name
-	LocalName     string
+	TypeName      string // fully qualified name, for example `foo.MyService`
+	LocalName     string // name of the service in ECMAScript, for example `MyService`
 	Methods       []*Method
 	Deprecated    bool   // deprecated with the service option "deprecated = true", or implicitly with the file level option
 	protoTypeName string // fully qualified name with a leading dot
@@ -1087,6 +1146,9 @@ func (g *Generator) newService(proto *descriptorpb.ServiceDescriptorProto, paren
 	return s
 }
 
+// JSDoc creates a JSDoc comment block for this Service, including
+// comments from the protobuf source, as well as code generator information
+// and - if applicable - a deprecation tag.
 func (s *Service) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if s.Comments.Leading != "" {
@@ -1112,10 +1174,11 @@ func (s *Service) String() string {
 	return fmt.Sprintf("service %s", s.TypeName)
 }
 
+// Method represents a method definition.
 type Method struct {
 	Proto      *descriptorpb.MethodDescriptorProto
-	LocalName  string
-	Deprecated bool // deprecated with the method option "deprecated = true", or implicitly with the file level option
+	LocalName  string // name of the method in ECMAScript
+	Deprecated bool   // deprecated with the method option "deprecated = true", or implicitly with the file level option
 	Parent     *Service
 	Input      *Message
 	Output     *Message
@@ -1152,6 +1215,9 @@ func (m *Method) resolveReferences(gen *Generator) error {
 	return nil
 }
 
+// JSDoc creates a JSDoc comment block for this Method, including
+// comments from the protobuf source, as well as code generator information
+// and - if applicable - a deprecation tag.
 func (m *Method) JSDoc(indent string) string {
 	doc := newJsDocBlock()
 	if m.Comments.Leading != "" {

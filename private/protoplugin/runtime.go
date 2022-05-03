@@ -14,6 +14,7 @@
 
 package protoplugin
 
+// Runtime provides convenient access to exports from the runtime library.
 type Runtime struct {
 	ProtoN             *Symbol
 	Message            *Symbol
