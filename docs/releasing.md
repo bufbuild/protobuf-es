@@ -20,6 +20,9 @@ and `@bufbuild/protoc-gen-es`.
 
 ### Steps
 
+First, start with a new git branch, so you can commit changes before publishing to 
+npmjs.com.
+
 To update the version across the packages within the monorepo, run the following 
 command:
 
@@ -27,12 +30,13 @@ command:
 make set-version SET_VERSION=1.2.3 
 ```
 
-To publish to npmjs.com, make sure you have committed all changes, then run the 
-following command:
+Commit all changes, then run the following command to publish to npmjs.com:
 
 ```bash
 make release 
 ```
+
+Merge the branch into main.
 
 Make a release at https://github.com/bufbuild/protobuf-es: 
 
