@@ -28,8 +28,8 @@ pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
 To learn more, have a look at a complete [code example](packages/example), the documentation
-for the [generated code](docs/generated-code.md), and the documentation for the 
-[runtime API](docs/runtime-api.md).
+for the [generated code](docs/generated_code.md), and the documentation for the 
+[runtime API](docs/runtime_api.md).
 
 
 ### How does this compare to protoc's JavaScript generator?
