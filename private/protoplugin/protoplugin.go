@@ -48,29 +48,35 @@ type Options struct {
 // This method should be called from the main function of a command that
 // implements a plugin.
 func (o Options) Pipe(gen func(gen *Generator) error) {
-	exit := func(err error) {
-		_, _ = fmt.Fprintf(os.Stderr, "%s: %v\n", o.Name, err)
-		os.Exit(1)
-	}
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
 		case "-v", "--version":
 			_, _ = fmt.Fprintf(os.Stderr, "%s %s\n", o.Name, o.Version)
 			os.Exit(0)
 		default:
-			exit(errors.New("this command accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout"))
+			_, _ = fmt.Fprintf(
+				os.Stderr,
+				"%s: this command accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout\n",
+				o.Name,
+			)
+			os.Exit(1)
 		}
 		return
 	}
+	if err := o.pipe(gen); err != nil {
+		_, _ = fmt.Fprintf(os.Stderr, "%s: %v\n", o.Name, err)
+		os.Exit(1)
+	}
+}
+
+func (o Options) pipe(gen func(gen *Generator) error) error {
 	in, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
-		exit(err)
-		return
+		return err
 	}
 	reqPb := &pluginpb.CodeGeneratorRequest{}
 	if err := proto.Unmarshal(in, reqPb); err != nil {
-		exit(err)
-		return
+		return err
 	}
 	resPb, err := o.Run(reqPb, gen)
 	if err != nil {
@@ -79,13 +85,12 @@ func (o Options) Pipe(gen func(gen *Generator) error) {
 	}
 	out, err := proto.Marshal(resPb)
 	if err != nil {
-		exit(err)
-		return
+		return err
 	}
 	if _, err := os.Stdout.Write(out); err != nil {
-		exit(err)
-		return
+		return err
 	}
+	return nil
 }
 
 // Run takes a CodeGeneratorRequest, runs it through the provided plugin
