@@ -9,5 +9,5 @@ minify the bundle, and compress it like a web server would usually do.
 
 | code generator    | bundle size             | minified               | compressed         |
 |-------------------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es       | 160,619 b      | 86,421 b | 15,098 b |
+| protobuf-es       | 72,457 b      | 35,936 b | 9,393 b |
 | google-protobuf   | 368,034 b  | 270,748 b | 43,704 b |

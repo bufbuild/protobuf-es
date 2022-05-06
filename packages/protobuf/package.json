@@ -8,6 +8,7 @@
     "url": "https://github.com/bufbuild/protobuf-es.git",
     "directory": "packages/protobuf"
   },
+  "sideEffects": false,
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:cjs && npm run build:esm+types",
