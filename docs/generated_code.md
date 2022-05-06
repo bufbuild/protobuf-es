@@ -219,8 +219,9 @@ Note that all map fields will have an empty object as a default value.
 
 While it is not a perfectly clear-cut case, we chose to represent map fields
 as plain objects instead of [ECMAScript map objects](https://tc39.es/ecma262/multipage/keyed-collections.html#sec-map-objects).
-While `Map` has some benefits like better behavior around keys, they don't
-have a literal representation and do not support the spread operator.
+While `Map` has better behavior around keys, they do not have a literal 
+representation, do not support the spread operator and type narrowing in 
+TypeScript.
 
 
 ### Oneof groups

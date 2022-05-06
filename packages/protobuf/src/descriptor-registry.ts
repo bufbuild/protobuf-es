@@ -52,6 +52,8 @@ import {
   UInt32Value,
   UInt64Value,
 } from "./google/protobuf/wrappers_pb.js";
+import { FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
+import type { PartialMessage } from "./message.js";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [
@@ -104,6 +106,25 @@ export class DescriptorRegistry
         this.enums["." + et.typeName] = et;
       }
     }
+  }
+
+  /**
+   * Conveniently create a DescriptorRegistry from a FileDescriptorSet
+   * instance or a FileDescriptorSet in binary format.
+   */
+  static fromFileDescriptorSet(
+    bytesOrSet:
+      | Uint8Array
+      | FileDescriptorSet
+      | PartialMessage<FileDescriptorSet>
+  ): DescriptorRegistry {
+    const set =
+      bytesOrSet instanceof Uint8Array
+        ? FileDescriptorSet.fromBinary(bytesOrSet)
+        : new FileDescriptorSet(bytesOrSet);
+    const dr = new DescriptorRegistry();
+    dr.add(...set.file);
+    return dr;
   }
 
   /**
