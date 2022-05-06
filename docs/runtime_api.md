@@ -275,10 +275,8 @@ buf generate --output image.bin
 ```
 
 ```typescript
-const fds = FileDescriptorSet.fromBinary(readFileSync("image.bin"));
-const dr = new DescriptorRegistry();
-for (const fd of fds.file) {
-  dr.add(fd);
-}
-const Example = dr.findMessage("doc.Example");
+const registry = new DescriptorRegistry.fromFileDescriptorSet(
+  readFileSync("image.bin")
+);
+const Example = registry.findMessage("doc.Example");
 ```

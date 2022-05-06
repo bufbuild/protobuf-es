@@ -34,7 +34,7 @@ for the [generated code](docs/generated_code.md), and the documentation for the
 
 ### How does this compare to protoc's JavaScript generator?
 
-[`js_generator.cc`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/js/js_generator.cc)
+[`js_generator.cc`](https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc)
 is rarely updated, and has fallen behind the quickly moving world of JavaScript.
 
 For example:
