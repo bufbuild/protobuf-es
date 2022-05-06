@@ -561,7 +561,7 @@ type Message struct {
 	File              *File
 	Proto             *descriptorpb.DescriptorProto
 	TypeName          string  // fully qualified name, for example `foo.MyMessage`
-	Symbol            *Symbol // importable of this message in ECMAScript
+	Symbol            *Symbol // importable name of this message in ECMAScript
 	Members           []*Member
 	Fields            []*Field
 	Oneofs            []*Oneof // excluding synthetic oneofs for proto3 optional
