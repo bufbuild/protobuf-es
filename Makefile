@@ -243,7 +243,6 @@ release: all ## Release @bufbuild/protobuf
 	@[ -z "$(shell git status --short)" ] || (echo "Uncommitted changes found." && exit 1);
 	node make/scripts/go-build-npm.js packages/protoc-gen-es ./cmd/protoc-gen-es
 	npm publish \
-		--access restricted \
 		--workspace packages/protobuf \
 		--workspace packages/protoc-gen-es \
 		--workspace packages/protoc-gen-es-darwin-64 \
