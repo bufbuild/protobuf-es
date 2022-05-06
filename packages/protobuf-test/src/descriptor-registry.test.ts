@@ -21,7 +21,8 @@ import {
 import { TestAllTypes } from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
 import { assertMessageTypeEquals } from "./helpers.js";
 
-const fds = FileDescriptorSet.fromBinary(readFileSync("./descriptorset.bin"));
+const fdsBytes = readFileSync("./descriptorset.bin");
+const fds = FileDescriptorSet.fromBinary(fdsBytes);
 
 describe("DescriptorSet", () => {
   test("add() does not crash", () => {
@@ -39,14 +40,22 @@ describe("DescriptorRegistry", () => {
     expect(dr.findMessage("foo.Foo")).toBeUndefined();
     expect(dr.findEnum("foo.Foo")).toBeUndefined();
   });
-  test("dynamic type equals generated type", () => {
-    const dr = new DescriptorRegistry();
-    dr.add(...fds.file);
-    const messageTypeDyn = dr.findMessage(TestAllTypes.typeName);
-    expect(messageTypeDyn).toBeDefined();
-    if (!messageTypeDyn) {
-      return;
+  test("fromDescriptorSet with instance", () => {
+    const dr = DescriptorRegistry.fromFileDescriptorSet(fds);
+    expect(dr.findEnum("foo.Foo")).toBeUndefined();
+    const mt = dr.findMessage(TestAllTypes.typeName);
+    expect(mt).toBeDefined();
+    if (mt) {
+      assertMessageTypeEquals(mt, TestAllTypes);
     }
-    assertMessageTypeEquals(messageTypeDyn, TestAllTypes);
+  });
+  test("fromDescriptorSet with bytes", () => {
+    const dr = DescriptorRegistry.fromFileDescriptorSet(fdsBytes);
+    expect(dr.findEnum("foo.Foo")).toBeUndefined();
+    const mt = dr.findMessage(TestAllTypes.typeName);
+    expect(mt).toBeDefined();
+    if (mt) {
+      assertMessageTypeEquals(mt, TestAllTypes);
+    }
   });
 });
