@@ -2,7 +2,7 @@ Migrating to Protobuf-ES
 ========================
 
 The following guides show the changes you'll need to switch your existing code base 
-from [`protobuf-javascript`](#from-protobuf-javascript) or [`protobuf-ts`](#from-protobuf-ts) 
+[from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts) 
 to Protobuf-ES.
 
 
@@ -330,7 +330,7 @@ declare var message: Example;
 
 ```diff
 - Example.is(message);
-- message instanceof Example;
++ message instanceof Example;
 ```
 
 Note that `instanceof` has much better performance characteristics than `is()`.
@@ -348,15 +348,12 @@ For that reason, we do not provide an equivalent to `isAssignable()`.
 
 ```diff
 - const Example = new MessageType("Example", [
--   { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
-- ]);
 + const Example = proto3.makeMessageType("Example", [
-+   { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
-+ ]);
+  { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
+]);
 ```
 
-Note that the type of message and enum fields does not need to be deferred for
-every field:
+Note that the type of message and enum fields does not need to be deferred:
 
 ```diff
 - { no: 1, name: "foo", kind: "message", T: () => OtherMessage },
