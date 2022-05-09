@@ -26,7 +26,7 @@ for the web.
 
 ### Migrating
 
-1. Generating code  
+1. **Generating code**  
     Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
     change your compiler invocation as follows: 
     
@@ -37,7 +37,7 @@ for the web.
     Note that the output uses [ECMAScript modules](https://nodejs.org/api/esm.html#introduction), 
     the official standard for JavaScript.  
 
-2. Field access  
+2. **Field access**  
    Singular scalar fields like `string foo` and message fields like `Example bar` become
    [plain properties](./generated_code.md#field-names):
 
@@ -49,7 +49,7 @@ for the web.
    + message.bar = message;
    ```
 
-3. Optional fields  
+3. **Optional fields**  
    Optional fields like `optional string value` simply become optional properties:
     
     ```diff
@@ -60,7 +60,7 @@ for the web.
     + message.value; // string | undefined
     ```
 
-4. Wrapper fields  
+4. **Wrapper fields**  
     Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
     simply become optional properties. For a field `google.protobuf.BoolValue tristate`: 
     
@@ -74,7 +74,7 @@ for the web.
     + messsage.tristate; // boolean | undefined
     ```
 
-5. Map fields  
+5. **Map fields**  
     Where protobuf-javascript uses [goog.collections.map](https://google.github.io/closure-library/api/goog.collections.maps.html), 
     we use [plain objects](./generated_code.md#map-fields).  
     For a field `map<string, int32> map_field`, map access changes as follows:
@@ -93,7 +93,7 @@ for the web.
     + message.mapField = {};
     ```
 
-6. Repeated fields  
+6. **Repeated fields**  
     For a field `repeated string values`, array access changes as follows:
   
     ```diff
@@ -115,7 +115,7 @@ for the web.
     + message.values = [];
     ```
 
-7. Oneof groups  
+7. **Oneof groups**  
     Where protobuf-javascript uses getters, has'ers, and a case enumeration, we use an 
     [algebraic data type ](./generated_code.md#oneof-groups)
     for oneof groups. For the following definition:
@@ -161,7 +161,7 @@ for the web.
     ```
 
 
-8. Message constructors  
+8. **Message constructors**  
     Protobuf-ES adds an initializer argument to constructors. Using it is optional:
     
     ```diff
@@ -174,7 +174,7 @@ for the web.
     + });
     ```
 
-9. Serialization  
+9. **Serialization**  
     
     Using the binary format is a simple change:
     
@@ -187,7 +187,7 @@ for the web.
     ```
     
     
-10. Enumerations
+10. **Enumerations**
     
     We drop prefixes from [enum values](./generated_code.md#enumerations).
     An enum definition like `enum Foo { FOO_BAR = 0; FOO_BAZ = 1; }` becomes:
@@ -197,7 +197,7 @@ for the web.
     + MyEnum.FOO
     ```
 
-11. toObject()
+11. **toObject()**
     
     Protobuf-ES does not provide a [`toObject()`](https://github.com/protocolbuffers/protobuf/issues/6955) 
     method, because the messages it generates already are rather simple objects.
