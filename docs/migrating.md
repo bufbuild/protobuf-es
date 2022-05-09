@@ -2,9 +2,12 @@ Migrating to Protobuf-ES
 ========================
 
 The following guides show the changes you'll need to switch your existing code base 
-from [`protobuf-javascript`](#from-protobuf-javascript) to Protobuf-ES.
+from [`protobuf-javascript`](#from-protobuf-javascript) or [`protobuf-ts`](#from-protobuf-ts) 
+to Protobuf-ES.
 
-## From protobuf-javascript
+
+
+# From protobuf-javascript
 
 With `protobuf-javascript`, we mean the official implementation hosted at
 [github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript), 
@@ -19,7 +22,7 @@ And if you dig a bit deeper, you'll notice it [does not implement the JSON forma
 and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bench-codesize)
 for the web. 
 
-Protobuf-ES addresses these shortcomings. The following steps should 
+The following steps show the changes needed to migrate:
 
 
 ### Generating code
@@ -28,7 +31,7 @@ Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protob
 change your compiler invocation as follows: 
 
 ```diff
-- protoc -I . helloworld.proto --js_out . -js_opt=import_style=commonjs,binary
+- protoc -I . helloworld.proto --js_out . -js_opt import_style=commonjs,binary
 + protoc -I . helloworld.proto --es_out .
 ```
 
@@ -226,4 +229,144 @@ Object.keys(example); // ["foo", "bar"]
 
 Note that you can use `toJson()` to convert to an object that matches the JSON 
 representation.
+
+
+# From protobuf-ts
+
+[`protobuf-ts`](https://github.com/timostamm/protobuf-ts) is an open source implementation
+of protocol buffers focused on TypeScript. If you are familiar with it, you will probably
+recognize many concepts from `protobuf-ts` in Protobuf-ES. To some degree, that is because
+many bits are from the same author, but also because they have proven themselves.
+
+So why add another implementation? `protobuf-ts` comes with several RPC implementations,
+uses interfaces for messages (which is nice, but also has some downsides), and is married
+to the TypeScript compiler API to generate code, so it is not straight-forward to write
+plugins based on it. You can think of Protobuf-ES as a refined version of `protobuf-ts`,
+that is suitable as a foundation for other projects to build upon.
+
+The following steps show the changes needed to migrate:
+
+### Generating code
+
+Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
+change your compiler invocation as follows:
+
+```diff
+- protoc -I . helloworld.proto --ts_out . -ts_opt long_type_bigint,output_javascript
++ protoc -I . helloworld.proto --es_out .
+```
+
+
+### Well-known types
+
+```diff
+// google.protobuf.Any
+- let any: Any = Any.pack(message, Example);
++ let any: Any = Any.pack(message);
+
+// google.protobuf.Timestamp
+let ts = Timestamp.fromDate(new Date());
+- date = Timestamp.toDate(ts);
++ date = ts.toDate();
+```
+
+Note that `@bufbuild/protobuf` comes with a set of pre-generated well-known types,
+and "unboxes" wrapper fields.
+
+### Wrapper fields
+
+Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
+simply become optional properties. For a field `google.protobuf.BoolValue tristate`:
+
+```diff
+- message.triState = BoolValue.create(true);
++ message.tristate = true;
+
+- message.tristate?.value;
++ messsage.tristate; // boolean | undefined
+```
+
+
+### Oneof groups
+
+TODO
+
+
+### Serialization
+
+```diff
+// serialize to the binary format
+- Example.toBinary(message);
++ message.toBinary();
+
+// serialize to JSON
+- Example.toJson(message);
++ message.toJson();
+
+// unchanged
+Example.fromBinary(); 
+Example.fromJson();
+```
+
+
+### Message constructors
+
+```diff
+- let message = Example.create({ foo: "baz" });
++ let message = new Example({ foo: "baz" });
+```
+
+
+### Cloning
+
+```diff
+declare var message: Example;
+- let clone = Example.clone(message);
++ let clone = message.clone();
+```
+
+
+### Message type guards
+
+```diff
+- Example.is(message);
+- message instanceof Example;
+```
+
+Note that `instanceof` has much better performance characteristics than `is()`.
+For that reason, we do not provide an equivalent to `isAssignable()`.
+
+
+### Reflection
+
+```diff
+- for (let field of Example.fields)
++ for (let field of Example.fields.byNumber())
+```
+
+### Dynamic messages
+
+```diff
+- const Example = new MessageType("Example", [
+-   { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
+- ]);
++ const Example = proto3.makeMessageType("Example", [
++   { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
++ ]);
+```
+
+Note that the type of message and enum fields does not need to be deferred for
+every field:
+
+```diff
+- { no: 1, name: "foo", kind: "message", T: () => OtherMessage },
++ { no: 1, name: "foo", kind: "message", T: OtherMessage },
+```
+
+In case a message refers to itself, the entire field list can be deferred:
+
+```diff
+- [{ no: 1, name: "foo", kind: "message", T: Example } ]
++ () => [{ no: 1, name: "foo", kind: "message", T: Example } ]
+```
 
