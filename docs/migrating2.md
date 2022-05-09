@@ -11,8 +11,6 @@ With `protobuf-javascript`, we mean the official implementation hosted at
 [github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript), 
 consisting of the code generator `protoc-gen-js` and the runtime library [`google-protobuf`](https://www.npmjs.com/package/google-protobuf).
 
-### Comparison
-
 Unfortunately, the code it generates feels a bit awkward to use, because it uses getter /
 setter methods instead of [plain properties](https://github.com/protocolbuffers/protobuf/issues/2107).
 And if you dig a bit deeper, you'll notice it [does not implement the JSON format](https://github.com/protocolbuffers/protobuf/issues/4540),
@@ -22,9 +20,7 @@ And if you dig a bit deeper, you'll notice it [does not implement the JSON forma
 and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bench-codesize)
 for the web.
 
-
-
-### Migrating
+The following steps address most changes:
 
 1. **Generating code**  
     Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
