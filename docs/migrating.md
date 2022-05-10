@@ -18,6 +18,7 @@ to Protobuf-ES.
 | Reflection             | ✔️          |                     | ✔️          |
 | Dynamic messages       | ✔️          | ️                   | ✔️          |
 | Wrappers unboxing      | ✔️          |                     |             |
+| Comments               | ✔️          |                     | ✔️          |
 
 
 # From protobuf-javascript
