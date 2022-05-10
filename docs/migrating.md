@@ -5,6 +5,20 @@ The following guides show the changes you'll need to switch your existing code b
 [from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts) 
 to Protobuf-ES.
 
+| Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
+|------------------------|-------------|---------------------|-------------|
+| Initializers           | ✔️          |                     | ✔️️         |
+| Plain properties       | ✔️          |                     | ✔️️         |
+| `instanceof`           | ✔️          | ✔️                  | ️️          |
+| JSON format            | ✔️          |                     | ✔️          |
+| Binary format          | ✔️          | ✔️                  | ✔️          |
+| TypeScript             | ✔️          | ️                   | ✔️          |
+| Standard module system | ✔️          |                     | ✔️          |
+| Tree shaking           | ✔️          | ️                   | ✔️          |
+| Reflection             | ✔️          |                     | ✔️          |
+| Dynamic messages       | ✔️          | ️                   | ✔️          |
+| Wrappers unboxing      | ✔️          |                     |             |
+
 
 # From protobuf-javascript
 
