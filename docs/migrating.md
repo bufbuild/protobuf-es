@@ -88,8 +88,9 @@ declare var example: Example;
 
 - let any = new Any();
 - any.pack(example.serializeBinary(), "Example");
-- any.unpack((packed) => Timestamp.deserializeBinary(packed), "Example");
 + let any = Any.pack(example);
+
+- any.unpack((packed) => Timestamp.deserializeBinary(packed), "Example");
 + any.unpackTo(example);
 ```
 
