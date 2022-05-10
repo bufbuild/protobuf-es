@@ -339,11 +339,6 @@ simply become optional properties. For a field `google.protobuf.BoolValue trista
 ```
 
 
-### Oneof groups
-
-TODO
-
-
 ### Serialization
 
 ```diff
