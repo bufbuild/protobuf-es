@@ -6,7 +6,6 @@ The following guides show the changes you'll need to switch your existing code b
 to Protobuf-ES.
 
 
-
 # From protobuf-javascript
 
 With `protobuf-javascript`, we mean the official implementation hosted at
@@ -63,6 +62,35 @@ Optional fields like `optional string value` simply become optional properties:
 -   message.getValue(); // string
 - }
 + message.value; // string | undefined
+```
+
+### Well-known types
+
+Update your import paths for well-known types as follows:
+
+```diff
+- import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
++ import { Timestamp } from "@bufbuild/protobuf";
+```
+
+```diff
+// google.protobuf.Timestamp
+
+- let ts = new Timestamp();
+- ts.fromDate(someDateObject);
++ let ts = Timestamp.fromDate(someDateObject);
+```
+
+```diff
+// google.protobuf.Any
+
+declare var example: Example;
+
+- let any = new Any();
+- any.pack(example.serializeBinary(), "Example");
+- any.unpack((packed) => Timestamp.deserializeBinary(packed), "Example");
++ let any = Any.pack(example);
++ any.unpackTo(example);
 ```
 
 
@@ -259,19 +287,42 @@ change your compiler invocation as follows:
 
 ### Well-known types
 
-```diff
-// google.protobuf.Any
-- let any: Any = Any.pack(message, Example);
-+ let any: Any = Any.pack(message);
+With `protobuf-ts` you are always using locally generated versions of well-known types. 
+With Protobuf-ES, you import them from `@bufbuild/protobuf`:
 
-// google.protobuf.Timestamp
-let ts = Timestamp.fromDate(new Date());
-- date = Timestamp.toDate(ts);
-+ date = ts.toDate();
+```diff
+- import { Timestamp } from "./google/protobuf/timestamp_pb";
++ import { Timestamp } from "@bufbuild/protobuf";
 ```
 
-Note that `@bufbuild/protobuf` comes with a set of pre-generated well-known types,
-and "unboxes" wrapper fields.
+There are slight API changes, mostly because Protobuf-ES has instance methods:
+
+```diff
+// google.protobuf.Any
+
+declare var message: Example;
+declare var any: Any;
+
+- any = Any.pack(message, Example);
++ any = Any.pack(message);
+
+- Any.contains(any, Example);
++ any.is(Example);
+
+- message = Any.unpack(any, Example);
++ any.unpackTo(message);
+```
+
+```diff
+// google.protobuf.Timestamp
+
+declare var someDate: Date;
+let ts = Timestamp.fromDate(someDate);
+- someDate = Timestamp.toDate(ts);
++ someDate = ts.toDate();
+```
+
+
 
 ### Wrapper fields
 
