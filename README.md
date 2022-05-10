@@ -46,13 +46,12 @@ For example:
 Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
 
 The main differences of the generated code:
-- we use plain properties for fields, where protoc uses getters and setters
-- we represent 64-bit integers with BigInt, where protoc uses `string` or `number`
-- we implement the canonical JSON format, where protoc offers only a partial alternative with `toObject`
+- we use plain properties for fields, where protoc uses getter and setter methods
+- we implement the canonical JSON format
 - we generate [much smaller bundles](packages/bench-codesize)
 - we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
-- our implementation is rather dynamic, despite the use of TypeScript - for example, you can 
-  dynamically create types at run time
+
+See the [migration guides](docs/migrating.md) for details.
 
 
 ### What features are implemented
