@@ -19,6 +19,7 @@ to Protobuf-ES.
 | Dynamic messages       | ✔️          | ️                   | ✔️          |
 | Wrappers unboxing      | ✔️          |                     |             |
 | Comments               | ✔️          |                     | ✔️          |
+| Deprecation            | ✔️          |                     | ✔️          |
 | proto2 syntax          | ✔️          | ✔️                  |             |
 | proto2 extensions      | ️           | ✔️                  |             |
 
