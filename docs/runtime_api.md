@@ -113,8 +113,8 @@ let {foo, bar} = message;
 ````
 
 
-The same is true for `repeated` and `map` fields, but note fields in a oneof group are combined 
-into an object.
+The same is true for `repeated` and `map` fields, but fields in a oneof group are 
+grouped into an object property.
 
 
 ### Accessing oneof groups
@@ -133,11 +133,16 @@ message Example {
 }
 ```
 
-A property named `result` is added to the message. This object is always present on the message, 
-and is `{case: undefined}` by default.
+A property named `result` (the name of the oneof group) is added to the message. 
+It is an object with two properties:
+- `case` - the name of the selected field
+- `value` - the value of the selected field
 
-`result.case` tracks which field of the oneof is selected. It can be either `"number"`, `"error"`, 
-or `undefined`. If a field is selected, the property `result.value` contains the value of the 
+This property is always defined on the message - similar how map or repeated 
+fields are always defined. By default, it is `{case: undefined}`.
+
+In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`. 
+If a field is selected, the property `result.value` contains the value of the 
 selected field.
 
 In TypeScript, these rules are actually enforced by the declaration:
