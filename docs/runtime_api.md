@@ -77,21 +77,11 @@ with a default value are class properties with a default value:
  * @generated from field: string foo = 1;
  */
 foo = "";
-
-/**
- * @generated from field: bool bar = 2;
- */
-bar = false;
-
-/**
- * @generated from field: Example baz = 3;
- */
-baz?: Example;
 ```
 
-The following table gives an overview of default values for all possible fields:
+Protobuf fields map to default values as follows:
 
-| kind               | default value                                                     |
+| Protobuf field     | Class property default value                                      |
 |--------------------|-------------------------------------------------------------------|
 | bool               | `false`                                                           |
 | string             | `""`                                                              |
