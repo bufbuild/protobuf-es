@@ -38,7 +38,10 @@ This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`
 actually just a simple node script that selects the correct precompiled binary for your
 platform.
 
-To compile with `buf`, add a file `buf.gen.yaml` with the following content:
+#### Generate with `buf`
+
+To compile with [`buf`](https://github.com/bufbuild/buf), add a file `buf.gen.yaml` with 
+the following content:
 
 ```yaml
 # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
@@ -50,9 +53,17 @@ plugins:
     out: src/gen
 ```
 
-Now `buf generate` will compile your `.proto` files to idiomatic TypeScript classes. To
-learn about alternative install methods, and about the available plugin options, see
-[`@bufbuild/protoc-gen-es`](../packages/protoc-gen-es).
+Now `buf generate` will compile your `.proto` files to idiomatic TypeScript classes. 
+
+#### Generate with `protoc`
+
+To compile with `protoc`:
+```shell
+protoc -I . --plugin ./node_modules/.bin/protoc-gen-es --es_out src/gen --es_opt target=ts example.proto
+```
+
+To learn about other ways to install the plugin, and about the available plugin options, 
+see [`@bufbuild/protoc-gen-es`](../packages/protoc-gen-es).
 
 
 
@@ -156,6 +167,7 @@ the field value. For more detailed information, see the conversion utility
 [`protoInt64`](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65)
 provided by [@bufbuild/protobuf](../packages/protobuf).
 
+
 ### Message fields
 
 For the following message field declaration:
@@ -241,8 +253,8 @@ we generate the following property:
 
 ```typescript
 result:
-  | { value: number; case: "number" }
-  | { value: string; case: "error" }
+  | { case: "number";  value: number }
+  | { case: "error";   value: string }
   | { case: undefined; value?: undefined } = { case: undefined };
 ```
 
@@ -250,32 +262,8 @@ So the entire oneof group is turned into an object `result` with two properties:
 - `case` - the name of the selected field
 - `value` - the value of the selected field
 
-Example usage:
-
-```typescript
-// if blocks:
-if (message.result.case === "number") {
-    message.result.value; // a number
-}
-// switch statement:
-switch (message.result.case) {
-    case "number":
-        message.result.value; // a number
-        break;
-    case "error":
-        message.result.value; // a string
-        break;
-}
-// selecting a field:
-message.result = {case: "number", value: 123};
-message.result = {case: undefined};
-```
-
-This representation is particularly useful in TypeScript, because the compiler
-narrows down the type. That means the if blocks and switch statements above tell
-the compiler the type of the `value` property. Note that type narrowing requires
-the TypeScript compiler option [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks).
-This option is automatically enabled with the option `strict`, which is recommended.
+Refer to the [runtime API documentation](runtime_api.md#accessing-oneof-groups) for 
+details on how to use this object.
 
 
 ### Enumerations
