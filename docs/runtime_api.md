@@ -26,9 +26,8 @@ provided by the library.
 ## Message class
 
 All generated messages extends the base class [Message](../packages/protobuf/src/message.ts#L40).
-It provides a few methods to every message, to compare, clone, and serialize, as well as a
-convenient constructor. All message classes also come with some static properties with
-metadata, and static convenience methods.
+It provides a few helpful methods to compare, clone, and serialize, and a convenient constructor. 
+All message classes also come with some static properties with metadata, and static convenience methods.
 
 For the following examples, we will use the following message definition [example.proto](../packages/protobuf-test/extra/example.proto):
 
