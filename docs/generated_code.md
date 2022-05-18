@@ -1,8 +1,8 @@
 Protobuf-ES: Generated Code
 ===========================
 
-The following document describe how to generate, and what code precisely is generated 
-for any given protobuf definition.
+This tutorial shows you how to use the code generator, and what code precisely 
+is generated for any given protobuf definition.
 
 
 - [How to generate](#how-to-generate)
