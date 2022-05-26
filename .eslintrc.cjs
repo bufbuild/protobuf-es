@@ -11,13 +11,14 @@ module.exports = {
     "packages/*/dist/**",
     "node_modules/**",
   ],
-  plugins: ["@typescript-eslint", "node"],
+  plugins: ["@typescript-eslint", "node", "import"],
   // Rules and settings that do not require a non-default parser
   extends: [
     "eslint:recommended",
   ],
   rules: {
     "no-console": "error",
+    "import/no-cycle": "error"
   },
   settings: {},
   overrides: [
