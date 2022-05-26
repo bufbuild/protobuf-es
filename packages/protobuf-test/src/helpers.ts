@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message, MessageType } from "@bufbuild/protobuf";
-import type { EnumType, FieldInfo } from "@bufbuild/protobuf";
+import type { Message, MessageType, EnumType, FieldInfo } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
-import { FileDescriptorSet } from "@bufbuild/protobuf";
-import { DescriptorRegistry } from "@bufbuild/protobuf";
+import { FileDescriptorSet, DescriptorRegistry } from "@bufbuild/protobuf";
 
 /**
  * Runs a describe.each() with three test cases:

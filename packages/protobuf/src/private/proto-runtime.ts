@@ -14,8 +14,7 @@
 
 import type { JsonFormat, JsonValue } from "../json-format.js";
 import type { BinaryFormat } from "../binary-format.js";
-import type { AnyMessage } from "../message.js";
-import type { Message } from "../message.js";
+import type { AnyMessage, Message } from "../message.js";
 import type { EnumType, EnumValueInfo } from "../enum.js";
 import type { MessageType } from "../message-type.js";
 import type { FieldListSource } from "./field-list.js";

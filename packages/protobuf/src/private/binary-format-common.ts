@@ -22,8 +22,8 @@ import {
 import type {
   BinaryReadOptions,
   BinaryWriteOptions,
+  BinaryFormat,
 } from "../binary-format.js";
-import type { BinaryFormat } from "../binary-format.js";
 import type { Message } from "../message.js";
 import { FieldInfo, ScalarType } from "../field.js";
 import { unwrapField, wrapField } from "./field-wrapper.js";
