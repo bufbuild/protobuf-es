@@ -18,7 +18,7 @@ module.exports = {
   ],
   rules: {
     "no-console": "error",
-    "import/no-cycle": "error"
+    
   },
   settings: {},
   overrides: [
@@ -34,9 +34,18 @@ module.exports = {
               project: "./tsconfig.json",
               tsconfigRootDir: dir,
             },
+            settings: {
+              "import/resolver": {
+                "typescript": {
+                  "project": "packages/*/tsconfig.json",
+                }
+              }
+            },
             extends: [
               "plugin:@typescript-eslint/recommended",
               "plugin:@typescript-eslint/recommended-requiring-type-checking",
+              "plugin:import/recommended",
+              "plugin:import/typescript",
             ],
             rules: {
               "@typescript-eslint/strict-boolean-expressions": "error",
@@ -47,6 +56,7 @@ module.exports = {
               "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
               "@typescript-eslint/no-invalid-void-type": "error",
               "@typescript-eslint/no-base-to-string": "error",
+              "import/no-cycle": "error"
             },
           };
         }),
