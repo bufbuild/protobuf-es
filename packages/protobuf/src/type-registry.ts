@@ -20,6 +20,9 @@ import type { ServiceType } from "./service-type.js";
  * IMessageTypeRegistry provides look-up for message types.
  */
 export interface IMessageTypeRegistry {
+  /**
+   * Find a message type by its protobuf type name.
+   */
   findMessage(typeName: string): MessageType | undefined;
 }
 
@@ -27,6 +30,9 @@ export interface IMessageTypeRegistry {
  * IEnumTypeRegistry provides look-up for enum types.
  */
 export interface IEnumTypeRegistry {
+  /**
+   * Find an enum type by its protobuf type name.
+   */
   findEnum(typeName: string): EnumType | undefined;
 }
 
@@ -34,11 +40,14 @@ export interface IEnumTypeRegistry {
  * IServiceTypeRegistry provides look-up for service types.
  */
 export interface IServiceTypeRegistry {
+  /**
+   * Find a service type by its protobuf type name.
+   */
   findService(typeName: string): ServiceType | undefined;
 }
 
 /**
- * TypeRegistry is a basic type registry
+ * TypeRegistry is a simple registry for all message, enum, or service types.
  */
 export class TypeRegistry
   implements IMessageTypeRegistry, IEnumTypeRegistry, IServiceTypeRegistry
@@ -47,37 +56,83 @@ export class TypeRegistry
   private readonly enums: Record<string, EnumType> = {};
   private readonly services: Record<string, ServiceType> = {};
 
+  /**
+   * Find a message type by its protobuf type name.
+   */
   findMessage(typeName: string): MessageType | undefined {
     return this.messages[typeName];
   }
 
+  /**
+   * Find an enum type by its protobuf type name.
+   */
   findEnum(typeName: string): EnumType | undefined {
     return this.enums[typeName];
   }
 
+  /**
+   * Find a service type by its protobuf type name.
+   */
   findService(typeName: string): ServiceType | undefined {
     return this.services[typeName];
   }
 
-  private add(type: MessageType | EnumType | ServiceType): void {
+  /**
+   * Create a new TypeRegistry from the given types.
+   */
+  static from(
+    ...types: Array<MessageType | EnumType | ServiceType>
+  ): TypeRegistry {
+    const registry = new TypeRegistry();
+    for (const type of types) {
+      registry.add(type);
+    }
+    return registry;
+  }
+
+  /**
+   * @deprecated use TypeRegistry.from()
+   */
+  static fromIterable(types: Iterable<MessageType>): TypeRegistry {
+    return TypeRegistry.from(...types);
+  }
+
+  /**
+   * @deprecated use TypeRegistry.from()
+   */
+  static fromTypes(...types: MessageType[]): TypeRegistry {
+    return TypeRegistry.from(...types);
+  }
+
+  /**
+   * Add a type to the registry. For messages, the types used in message
+   * fields are added recursively. For services, the message types used
+   * for requests and responses are added recursively.
+   */
+  add(type: MessageType | EnumType | ServiceType): void {
     if ("fields" in type) {
-      this.messages[type.typeName] = type;
+      if (!this.findMessage(type.typeName)) {
+        this.messages[type.typeName] = type;
+        for (const field of type.fields.list()) {
+          if (field.kind == "message") {
+            this.add(field.T);
+          } else if (field.kind == "map" && field.V.kind == "message") {
+            this.add(field.V.T);
+          } else if (field.kind == "enum") {
+            this.add(field.T);
+          }
+        }
+      }
     } else if ("methods" in type) {
-      this.services[type.typeName] = type;
+      if (!this.findService(type.typeName)) {
+        this.services[type.typeName] = type;
+        for (const method of Object.values(type.methods)) {
+          this.add(method.I);
+          this.add(method.O);
+        }
+      }
     } else {
       this.enums[type.typeName] = type;
     }
-  }
-
-  static fromIterable(types: Iterable<MessageType>): TypeRegistry {
-    const r = new TypeRegistry();
-    for (const t of types) {
-      r.add(t);
-    }
-    return r;
-  }
-
-  static fromTypes(...types: MessageType[]): TypeRegistry {
-    return TypeRegistry.fromIterable(types);
   }
 }
