@@ -15,7 +15,7 @@
 import { Any, Struct, TypeRegistry, Value } from "@bufbuild/protobuf";
 
 describe(Any.typeName, () => {
-  const typeRegistry = TypeRegistry.fromTypes(Struct, Value);
+  const typeRegistry = TypeRegistry.from(Struct, Value);
 
   test(`encodes ${Struct.typeName} to JSON`, () => {
     const str = new Struct({

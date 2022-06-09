@@ -34,7 +34,7 @@ import {
   Value,
 } from "@bufbuild/protobuf";
 
-const typeRegistry = TypeRegistry.fromTypes(
+const typeRegistry = TypeRegistry.from(
   Value,
   Struct,
   FieldMask,
