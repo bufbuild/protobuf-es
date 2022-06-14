@@ -16,10 +16,14 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "../../index-runtime.js";
-import {Message, proto3} from "../../index-runtime.js";
+import type {PartialMessage, PlainMessage} from "../../message.js";
+import {Message} from "../../message.js";
 import {Option, Syntax} from "./type_pb.js";
 import {SourceContext} from "./source_context_pb.js";
+import {proto3} from "../../proto3.js";
+import type {FieldList} from "../../field-list.js";
+import type {BinaryReadOptions} from "../../binary-format.js";
+import type {JsonReadOptions, JsonValue} from "../../json-format.js";
 
 /**
  * Api is a light-weight descriptor for an API Interface.
