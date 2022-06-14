@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-linux-arm",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "protoc-gen-es (linux / arm)",
   "license": "Apache-2.0",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "preferUnplugged": true,
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.4"
+    "@bufbuild/protobuf": "^0.0.5"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
