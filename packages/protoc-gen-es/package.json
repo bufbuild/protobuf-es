@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "protoc-gen-es",
   "license": "Apache-2.0",
   "repository": {
@@ -12,7 +12,7 @@
   },
   "preferUnplugged": true,
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.5"
+    "@bufbuild/protobuf": "^0.0.6"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
@@ -20,18 +20,18 @@
     }
   },
   "optionalDependencies": {
-    "@bufbuild/protoc-gen-es-darwin-64": "0.0.5",
-    "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.5",
-    "@bufbuild/protoc-gen-es-windows-64": "0.0.5",
-    "@bufbuild/protoc-gen-es-windows-arm64": "0.0.5",
-    "@bufbuild/protoc-gen-es-windows-32": "0.0.5",
-    "@bufbuild/protoc-gen-es-linux-64": "0.0.5",
-    "@bufbuild/protoc-gen-es-linux-32": "0.0.5",
-    "@bufbuild/protoc-gen-es-linux-arm": "0.0.5",
-    "@bufbuild/protoc-gen-es-linux-arm64": "0.0.5",
-    "@bufbuild/protoc-gen-es-freebsd-64": "0.0.5",
-    "@bufbuild/protoc-gen-es-freebsd-arm64": "0.0.5",
-    "@bufbuild/protoc-gen-es-netbsd-64": "0.0.5",
-    "@bufbuild/protoc-gen-es-openbsd-64": "0.0.5"
+    "@bufbuild/protoc-gen-es-darwin-64": "0.0.6",
+    "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.6",
+    "@bufbuild/protoc-gen-es-windows-64": "0.0.6",
+    "@bufbuild/protoc-gen-es-windows-arm64": "0.0.6",
+    "@bufbuild/protoc-gen-es-windows-32": "0.0.6",
+    "@bufbuild/protoc-gen-es-linux-64": "0.0.6",
+    "@bufbuild/protoc-gen-es-linux-32": "0.0.6",
+    "@bufbuild/protoc-gen-es-linux-arm": "0.0.6",
+    "@bufbuild/protoc-gen-es-linux-arm64": "0.0.6",
+    "@bufbuild/protoc-gen-es-freebsd-64": "0.0.6",
+    "@bufbuild/protoc-gen-es-freebsd-arm64": "0.0.6",
+    "@bufbuild/protoc-gen-es-netbsd-64": "0.0.6",
+    "@bufbuild/protoc-gen-es-openbsd-64": "0.0.6"
   }
 }

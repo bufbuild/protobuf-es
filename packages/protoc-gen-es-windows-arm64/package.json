@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-windows-arm64",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "protoc-gen-es (win32 / arm64)",
   "license": "Apache-2.0",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "preferUnplugged": true,
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.5"
+    "@bufbuild/protobuf": "^0.0.6"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
