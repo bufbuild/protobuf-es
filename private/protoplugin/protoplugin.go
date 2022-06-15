@@ -128,21 +128,19 @@ type Generator struct {
 	generatedFiles    []*GeneratedFile
 	tsNoCheck         bool // internal plugin option `ts_nocheck=false` removes the /* @ts-nocheck */ annotation at the top of each generated TypeScript file
 	bootstrapWKT      bool // internal plugin option `wkt_bootstrap`; when bootstrapping well-known types, we need to generate relative import paths
-	runtimeImportPath string
 }
 
 func newGenerator(options Options, request *pluginpb.CodeGeneratorRequest) (*Generator, error) {
 	g := &Generator{
-		Options:           options,
-		Request:           request,
-		Targets:           []Target{TargetJavaScript, TargetTypeDeclaration},
-		symbolPool:        &symbolPool{},
-		filesByPath:       make(map[string]*File),
-		enumsByName:       make(map[string]*Enum),
-		messagesByName:    make(map[string]*Message),
-		servicesByName:    make(map[string]*Service),
-		tsNoCheck:         true,
-		runtimeImportPath: runtimeImportPath,
+		Options:        options,
+		Request:        request,
+		Targets:        []Target{TargetJavaScript, TargetTypeDeclaration},
+		symbolPool:     &symbolPool{},
+		filesByPath:    make(map[string]*File),
+		enumsByName:    make(map[string]*Enum),
+		messagesByName: make(map[string]*Message),
+		servicesByName: make(map[string]*Service),
+		tsNoCheck:      true,
 	}
 	err := g.parseParameter(request.GetParameter())
 	if err != nil {
@@ -224,7 +222,6 @@ func (g *Generator) parseParameter(parameter string) error {
 			switch value {
 			case "true", "1":
 				g.bootstrapWKT = true
-				g.runtimeImportPath = runtimeImportPathBootstrapWKT
 			case "false", "0":
 				g.bootstrapWKT = false
 			default:
@@ -350,7 +347,7 @@ func (g *Generator) newFile(proto *descriptorpb.FileDescriptorProto, generate bo
 		f.SyntaxComments,
 		f.PackageComments,
 	)
-	f.RuntimeSymbols = newRuntime(g.symbolPool, g.runtimeImportPath, f.Syntax, g.bootstrapWKT)
+	f.RuntimeSymbols = newRuntime(g.symbolPool, f.Syntax, g.bootstrapWKT)
 	for index, x := range proto.GetEnumType() {
 		f.Enums = append(f.Enums, g.newEnum(x, f, index))
 	}

@@ -36,7 +36,7 @@ type Runtime struct {
 	MethodIdempotency  *Symbol
 }
 
-func newRuntime(symbolPool *symbolPool, runtimeImportPath string, syntax ProtoSyntax, bootstrapWKT bool) *Runtime {
+func newRuntime(symbolPool *symbolPool, syntax ProtoSyntax, bootstrapWKT bool) *Runtime {
 	if bootstrapWKT {
 		return &Runtime{
 			ProtoN:             symbolPool.new(syntax.String(), fmt.Sprintf("./%s.js", syntax.String())),
