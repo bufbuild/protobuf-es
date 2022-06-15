@@ -16,8 +16,13 @@
 // @generated from file google/protobuf/timestamp.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index-runtime.js";
-import {Message, proto3, protoInt64} from "../../index-runtime.js";
+import type {PartialMessage, PlainMessage} from "../../message.js";
+import {Message} from "../../message.js";
+import {protoInt64} from "../../proto-int64.js";
+import {proto3} from "../../proto3.js";
+import type {JsonReadOptions, JsonValue, JsonWriteOptions} from "../../json-format.js";
+import type {FieldList} from "../../field-list.js";
+import type {BinaryReadOptions} from "../../binary-format.js";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local
