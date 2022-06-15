@@ -18,7 +18,7 @@ module.exports = {
   ],
   rules: {
     "no-console": "error",
-    
+    "import/no-duplicates": "off",
   },
   settings: {},
   overrides: [
@@ -56,7 +56,8 @@ module.exports = {
               "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
               "@typescript-eslint/no-invalid-void-type": "error",
               "@typescript-eslint/no-base-to-string": "error",
-              "import/no-cycle": "error"
+              "import/no-cycle": "error",
+              "import/no-duplicates": "off",
             },
           };
         }),
