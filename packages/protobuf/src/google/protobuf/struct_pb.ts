@@ -16,8 +16,12 @@
 // @generated from file google/protobuf/struct.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "../../index-runtime.js";
-import {Message, proto3} from "../../index-runtime.js";
+import {proto3} from "../../proto3.js";
+import type {PartialMessage, PlainMessage} from "../../message.js";
+import {Message} from "../../message.js";
+import type {JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions} from "../../json-format.js";
+import type {FieldList} from "../../field-list.js";
+import type {BinaryReadOptions} from "../../binary-format.js";
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the

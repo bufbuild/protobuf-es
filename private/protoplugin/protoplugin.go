@@ -350,7 +350,7 @@ func (g *Generator) newFile(proto *descriptorpb.FileDescriptorProto, generate bo
 		f.SyntaxComments,
 		f.PackageComments,
 	)
-	f.RuntimeSymbols = newRuntime(g.symbolPool, g.runtimeImportPath, f.Syntax)
+	f.RuntimeSymbols = newRuntime(g.symbolPool, g.runtimeImportPath, f.Syntax, g.bootstrapWKT)
 	for index, x := range proto.GetEnumType() {
 		f.Enums = append(f.Enums, g.newEnum(x, f, index))
 	}
