@@ -1,14 +1,6 @@
 {
   "compilerOptions": {
-    // TODO we only set es2020 for bigint - check if viable
-    // "target": "es2016",
-    "target": "es2020",
-
-    "lib": [
-      "ES2016",
-      // ES2020.BigInt for the bigint representation of 64-bit integers
-      "ES2020.BigInt"
-    ],
+    "target": "es2017",
     "esModuleInterop": false,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,

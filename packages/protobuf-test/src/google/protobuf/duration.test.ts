@@ -14,12 +14,17 @@
 
 import { Duration } from "@bufbuild/protobuf";
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 describe(Duration.typeName, () => {
   const json3s = "3s";
   const json3s1ms = "3.000001s";
   const json3s1ns = "3.000000001s";
+  // @ts-expect-error TS2737
   const dura3s = new Duration({ seconds: 3n, nanos: 0 });
+  // @ts-expect-error TS2737
   const dura3s1ms = new Duration({ seconds: 3n, nanos: 1000 });
+  // @ts-expect-error TS2737
   const dura3s1ns = new Duration({ seconds: 3n, nanos: 1 });
 
   test("encodes 3s to JSON", () => {
