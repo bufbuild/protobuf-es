@@ -131,7 +131,7 @@ export class Duration extends Message<Duration> {
     if (typeof match[2] == "string") {
       const nanosStr = match[2] + "0".repeat(9 - match[2].length);
       this.nanos = parseInt(nanosStr);
-      if (longSeconds < 0n) {
+      if (longSeconds < protoInt64.zero) {
         this.nanos = -this.nanos;
       }
     }

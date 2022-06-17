@@ -27,6 +27,8 @@ import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappe
 import { testMT } from "./helpers.js";
 import { protoInt64 } from "@bufbuild/protobuf";
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 describe("clone", function () {
   testMT(
     { ts: TS_MessageFieldMessage, js: JS_MessageFieldMessage },
@@ -51,9 +53,12 @@ describe("clone", function () {
       const a = new messageType({
         doubleField: 0.75,
         floatField: -0.75,
+        // @ts-expect-error TS2737
         int64Field: -1n,
+        // @ts-expect-error TS2737
         uint64Field: 1n,
         int32Field: -123,
+        // @ts-expect-error TS2737
         fixed64Field: 1n,
         fixed32Field: 123,
         boolField: true,
@@ -63,8 +68,10 @@ describe("clone", function () {
         ]),
         uint32Field: 123,
         sfixed32Field: -123,
+        // @ts-expect-error TS2737
         sfixed64Field: -1n,
         sint32Field: -1,
+        // @ts-expect-error TS2737
         sint64Field: -1n,
       });
       const b = a.clone();
@@ -83,9 +90,12 @@ describe("clone", function () {
       const a = new messageType({
         doubleField: [0.75, 0, 1],
         floatField: [0.75, -0.75],
+        // @ts-expect-error TS2737
         int64Field: [-1n, -2n],
+        // @ts-expect-error TS2737
         uint64Field: [1n, 2n],
         int32Field: [-123, 500],
+        // @ts-expect-error TS2737
         fixed64Field: [1n, 99n],
         fixed32Field: [123, 999],
         boolField: [true, false, true],
@@ -97,8 +107,10 @@ describe("clone", function () {
         ],
         uint32Field: [123, 123],
         sfixed32Field: [-123, -123, -123],
+        // @ts-expect-error TS2737
         sfixed64Field: [-1n, -2n, 100n],
         sint32Field: [-1, -2, 999],
+        // @ts-expect-error TS2737
         sint64Field: [-1n, -99n, 99n],
       });
       const b = a.clone();

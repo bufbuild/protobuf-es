@@ -241,7 +241,7 @@ func generateWktMethods(f *protoplugin.GeneratedFile, message *protoplugin.Messa
 		f.P(`    if (typeof match[2] == "string") {`)
 		f.P(`      const nanosStr = match[2] + "0".repeat(9 - match[2].length);`)
 		f.P("      this.", ref.Nanos.LocalName, " = parseInt(nanosStr);")
-		f.P("      if (longSeconds < 0n) {")
+		f.P("      if (longSeconds < ", rt.ProtoInt64, ".zero) {")
 		f.P("        this.", ref.Nanos.LocalName, " = -this.", ref.Nanos.LocalName, ";")
 		f.P("      }")
 		f.P("    }")

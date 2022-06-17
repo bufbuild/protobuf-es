@@ -23,6 +23,8 @@ import {
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 describeMT(
   { ts: TS_ScalarValuesMessage, js: JS_ScalarValuesMessage },
   (messageType) => {
@@ -31,9 +33,12 @@ describeMT(
     > = {
       doubleField: 0,
       floatField: 0,
+      // @ts-expect-error TS2737
       int64Field: 0n,
+      // @ts-expect-error TS2737
       uint64Field: 0n,
       int32Field: 0,
+      // @ts-expect-error TS2737
       fixed64Field: 0n,
       fixed32Field: 0,
       boolField: false,
@@ -41,8 +46,10 @@ describeMT(
       bytesField: new Uint8Array(0),
       uint32Field: 0,
       sfixed32Field: 0,
+      // @ts-expect-error TS2737
       sfixed64Field: 0n,
       sint32Field: 0,
+      // @ts-expect-error TS2737
       sint64Field: 0n,
     };
     const defaultJson: JsonValue = {};
@@ -51,9 +58,12 @@ describeMT(
     > = {
       doubleField: 0.75,
       floatField: -0.75,
+      // @ts-expect-error TS2737
       int64Field: -1n,
+      // @ts-expect-error TS2737
       uint64Field: 1n,
       int32Field: -123,
+      // @ts-expect-error TS2737
       fixed64Field: 1n,
       fixed32Field: 123,
       boolField: true,
@@ -63,8 +73,10 @@ describeMT(
       ]),
       uint32Field: 123,
       sfixed32Field: -123,
+      // @ts-expect-error TS2737
       sfixed64Field: -1n,
       sint32Field: -1,
+      // @ts-expect-error TS2737
       sint64Field: -1n,
     };
     const exampleJson: JsonValue = {
@@ -135,9 +147,12 @@ describeMT(
     > = {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
+      // @ts-expect-error TS2737
       int64Field: [-1n, -2n],
+      // @ts-expect-error TS2737
       uint64Field: [1n, 2n],
       int32Field: [-123, 500],
+      // @ts-expect-error TS2737
       fixed64Field: [1n, 99n],
       fixed32Field: [123, 999],
       boolField: [true, false, true],
@@ -147,8 +162,10 @@ describeMT(
       ],
       uint32Field: [123, 123],
       sfixed32Field: [-123, -123, -123],
+      // @ts-expect-error TS2737
       sfixed64Field: [-1n, -2n, 100n],
       sint32Field: [-1, -2, 999],
+      // @ts-expect-error TS2737
       sint64Field: [-1n, -99n, 99n],
     };
     const exampleJson: JsonValue = {

@@ -24,5 +24,6 @@ const module = new Module({
 
 const bytes = module.toBinary();
 
-// eslint-disable-next-line no-console -- log statement makes sure the variable is in use
+/* eslint-disable no-console,@typescript-eslint/ban-ts-comment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
+// @ts-ignore
 console.log(bytes.length);
