@@ -53,10 +53,13 @@ describe("clone", function () {
       const a = new messageType({
         doubleField: 0.75,
         floatField: -0.75,
-        int64Field: protoInt64.parse(-1),
-        uint64Field: protoInt64.parse(1),
+        // @ts-expect-error TS2737
+        int64Field: -1n,
+        // @ts-expect-error TS2737
+        uint64Field: 1n,
         int32Field: -123,
-        fixed64Field: protoInt64.parse(-1),
+        // @ts-expect-error TS2737
+        fixed64Field: 1n,
         fixed32Field: 123,
         boolField: true,
         stringField: "hello world",
@@ -65,9 +68,11 @@ describe("clone", function () {
         ]),
         uint32Field: 123,
         sfixed32Field: -123,
-        sfixed64Field: protoInt64.parse(-1),
+        // @ts-expect-error TS2737
+        sfixed64Field: -1n,
         sint32Field: -1,
-        sint64Field: protoInt64.parse(-1),
+        // @ts-expect-error TS2737
+        sint64Field: -1n,
       });
       const b = a.clone();
       expect(b).toStrictEqual(a);
