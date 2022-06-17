@@ -38,6 +38,7 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
   const exampleFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
     strStrField: { a: "str", b: "xx" },
     strInt32Field: { a: 123, b: 455 },
+    // @ts-expect-error TS2737
     strInt64Field: { a: 123n },
     strBoolField: { a: true, b: false },
     strBytesField: {
