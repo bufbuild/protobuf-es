@@ -38,7 +38,10 @@ jobs:
         with:
           tagging_message: ${{ steps.publish.outputs.nextVersion }}
       - name: publish to npm
+        env:
+          NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
+          npm set //registry.npmjs.org/:_authToken $NPM_PUBLISH_TOKEN
           make release
       - name: create release
         id: create_release
