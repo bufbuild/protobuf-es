@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es-linux-64",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "protoc-gen-es (linux / x64)",
   "license": "Apache-2.0",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "preferUnplugged": true,
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.6"
+    "@bufbuild/protobuf": "^0.0.7"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
