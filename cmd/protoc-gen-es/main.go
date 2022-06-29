@@ -22,6 +22,9 @@ import (
 	"google.golang.org/protobuf/types/pluginpb"
 )
 
+// version is the semantic version of the protobuf-es module.
+const version = "v0.0.7"
+
 func main() {
 	protoplugin.Options{
 		Name:    "protoc-gen-es",
