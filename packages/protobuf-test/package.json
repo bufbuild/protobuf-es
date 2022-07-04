@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "0.0.7",
-    "@types/jest": "^28.1.2",
-    "jest": "^28.1.1"
+    "@types/jest": "^28.1.4",
+    "jest": "^28.1.2"
   },
   "devDependencies": {
     "typescript": "^4.7.4"
