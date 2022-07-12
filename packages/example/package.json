@@ -10,8 +10,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/protobuf": "0.0.7",
-    "@bufbuild/protoc-gen-es": "0.0.7",
+    "@bufbuild/protobuf": "0.0.8",
+    "@bufbuild/protoc-gen-es": "0.0.8",
     "@types/node": "^18.0.1",
     "typescript": "^4.7.4"
   }
