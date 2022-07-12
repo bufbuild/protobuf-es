@@ -23,7 +23,7 @@ import (
 )
 
 // version is the semantic version of the protobuf-es module.
-const version = "v0.0.7"
+const version = "v0.0.8"
 
 func main() {
 	protoplugin.Options{
