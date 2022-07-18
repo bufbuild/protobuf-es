@@ -116,7 +116,7 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "field1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "oneof_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "AnOneof" },
-    { no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 3, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithCustomOptions {
