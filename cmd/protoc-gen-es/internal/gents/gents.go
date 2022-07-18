@@ -136,7 +136,7 @@ func generateFieldInfo(f *protoplugin.GeneratedFile, field *protoplugin.Field) {
 		e = append(e, `kind: "map", K: `, int32(field.Map.Key), ` /* ScalarType.`, t, ` */, `)
 		switch field.Map.ValueKind {
 		case protoplugin.FieldKindScalar:
-			t := strings.TrimPrefix(field.Scalar.String(), "TYPE_")
+			t := strings.TrimPrefix(field.Map.ValueScalar.String(), "TYPE_")
 			e = append(e, `V: {kind: "scalar", T: `, int32(field.Map.ValueScalar), ` /* ScalarType.`, t, ` */}, `)
 		case protoplugin.FieldKindMessage:
 			e = append(e, `V: {kind: "message", T: `, field.Map.ValueMessage.Symbol, `}, `)

@@ -1763,7 +1763,7 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
     { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessageLite, opt: true },
     { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbersLite_OptionalGroup, opt: true },
-    { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.0 */} },
+    { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
     { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
     { no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
