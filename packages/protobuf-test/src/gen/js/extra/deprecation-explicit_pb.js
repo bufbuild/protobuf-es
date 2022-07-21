@@ -27,10 +27,9 @@ import {proto3} from "@bufbuild/protobuf";
 export const DeprecatedEnum = proto3.makeEnum(
   "spec.DeprecatedEnum",
   [
-    {no: 0, name: "DEPRECATED_ENUM_A"},
-    {no: 1, name: "DEPRECATED_ENUM_B"},
+    {no: 0, name: "DEPRECATED_ENUM_A", localName: "A"},
+    {no: 1, name: "DEPRECATED_ENUM_B", localName: "B"},
   ],
-  {sharedPrefix: "DEPRECATED_ENUM_"},
 );
 
 /**
@@ -41,10 +40,9 @@ export const DeprecatedEnum = proto3.makeEnum(
 export const DeprecatedValueEnum = proto3.makeEnum(
   "spec.DeprecatedValueEnum",
   [
-    {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED"},
-    {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE"},
+    {no: 0, name: "DEPRECATED_VALUE_ENUM_UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE", localName: "DEPRECATED_VALUE"},
   ],
-  {sharedPrefix: "DEPRECATED_VALUE_ENUM_"},
 );
 
 /**

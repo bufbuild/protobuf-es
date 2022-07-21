@@ -12,20 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { FieldMask } from "@bufbuild/protobuf";
+import { FieldMask as TS_FieldMask } from "../../gen/ts/google/protobuf/field_mask_pb";
+import { FieldMask as JS_FieldMask } from "../../gen/js/google/protobuf/field_mask_pb";
 
-describe(FieldMask.typeName, () => {
-  const fieldMask = new FieldMask({
-    paths: ["user.display_name", "photo"],
-  });
-  const json = "user.displayName,photo";
-  test("encodes to JSON", () => {
-    expect(fieldMask.toJson()).toBe(json);
-  });
-  test("decodes from JSON", () => {
-    const want = new FieldMask({
+describe("google.protobuf.FieldMask", () => {
+  describe.each([
+    { FieldMask: TS_FieldMask, name: `(generated ts)` },
+    { FieldMask: JS_FieldMask, name: `(generated js)` },
+  ])("$name", ({ FieldMask }) => {
+    const fieldMask = new FieldMask({
       paths: ["user.display_name", "photo"],
     });
-    expect(FieldMask.fromJson(json)).toStrictEqual(want);
+    const json = "user.displayName,photo";
+    test("encodes to JSON", () => {
+      expect(fieldMask.toJson()).toBe(json);
+    });
+    test("decodes from JSON", () => {
+      const want = new FieldMask({
+        paths: ["user.display_name", "photo"],
+      });
+      expect(FieldMask.fromJson(json)).toStrictEqual(want);
+    });
   });
 });

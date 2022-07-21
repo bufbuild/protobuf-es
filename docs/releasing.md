@@ -27,7 +27,7 @@ To update the version across the packages within the monorepo, run the following
 command:
 
 ```bash
-make set-version SET_VERSION=1.2.3 
+make setversion SET_VERSION=1.2.3 
 ```
 
 Commit all changes, then run the following command to publish to npmjs.com:

@@ -49,10 +49,9 @@ export const EnumWithComments = proto3.makeEnum(
 export const DeprecatedEnumWithComment = proto3.makeEnum(
   "spec.DeprecatedEnumWithComment",
   [
-    {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A"},
-    {no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B"},
+    {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A", localName: "A"},
+    {no: 1, name: "DEPRECATED_ENUM_WITH_COMMENT_B", localName: "B"},
   ],
-  {sharedPrefix: "DEPRECATED_ENUM_WITH_COMMENT_"},
 );
 
 /**
@@ -62,10 +61,9 @@ export const DeprecatedEnumWithComment = proto3.makeEnum(
 export const DeprecatedEnumNoComment = proto3.makeEnum(
   "spec.DeprecatedEnumNoComment",
   [
-    {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A"},
-    {no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B"},
+    {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A", localName: "A"},
+    {no: 1, name: "DEPRECATED_ENUM_NO_COMMENT_B", localName: "B"},
   ],
-  {sharedPrefix: "DEPRECATED_ENUM_NO_COMMENT_"},
 );
 
 /**

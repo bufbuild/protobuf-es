@@ -19,7 +19,7 @@ provided by the library.
 - [64-bit-integral-types](#64-bit-integral-types)
 - [Reflection](#reflection)
   - [Iterating over message fields](#iterating-over-message-fields)
-  - [DescriptorRegistry](#descriptorregistry)
+  - [Registries](#registries)
 - [Advanced TypeScript types](#advanced-typescript-types)
 
 
@@ -247,7 +247,7 @@ with the previous version. In general, the binary format is also more performant
 JSON.
 
 Conformance with the binary and the JSON format is ensured by the
-[conformance tests](../packages/conformance-test). We do not implement the text format.
+[conformance tests](../packages/protobuf-conformance). We do not implement the text format.
 
 
 
@@ -492,20 +492,20 @@ quite a bit of code size.
 ## Reflection
 
 
-### DescriptorRegistry
+### Registries
 
 As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
 Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
 `.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
 
-Using a [`DescriptorRegistry`](../packages/protobuf/src/descriptor-registry.ts#L88), you
-can create types at run time from a set of descriptors created by a protocol buffers
-compiler:
-
 ```sh
 # generate an image (compatible to a `google.protobuf.FileDescriptorSet`)
 buf generate --output image.bin
 ```
+
+Using a [`DescriptorRegistry`](../packages/protobuf/src/legacy-descriptor-registry.ts#L88), you
+can create types at run time from a set of descriptors created by a protocol buffers
+compiler:
 
 ```typescript
 const registry = new DescriptorRegistry.fromFileDescriptorSet(

@@ -32,8 +32,10 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {Any, BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, SourceContext} from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
 import {Message, proto3} from "@bufbuild/protobuf";
+import type {SourceContext} from "./source_context_pb.js";
+import type {Any} from "./any_pb.js";
 
 /**
  * The syntax in which a protocol buffer element is defined.

@@ -15,7 +15,6 @@
 import type { FieldListSource } from "./field-list.js";
 import type { FieldList } from "../field-list.js";
 import type { EnumObject } from "./enum.js";
-import type { JsonValue } from "../json-format.js";
 import type { Message, PartialMessage, PlainMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { EnumValueInfo } from "../enum.js";
@@ -37,8 +36,11 @@ export interface Util {
   setEnumType(
     enumObject: EnumObject,
     typeName: string,
-    values: EnumValueInfo[],
-    opt?: { options?: { readonly [extensionName: string]: JsonValue } }
+    values: Omit<EnumValueInfo, "localName">[],
+    opt?: {
+      // We do not surface options at this time
+      // options?: { readonly [extensionName: string]: JsonValue };
+    }
   ): void;
 
   /**

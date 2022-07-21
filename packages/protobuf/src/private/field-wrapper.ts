@@ -14,6 +14,8 @@
 
 import type { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
+import type { DescField } from "../descriptor-set.js";
+import { ScalarType } from "../field.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- unknown fields are represented with any */
 
@@ -57,3 +59,34 @@ export function unwrapField<T extends Message<T>>(
 ): any {
   return type.fieldWrapper ? type.fieldWrapper.unwrapField(value) : value;
 }
+
+/**
+ * If the given field uses one of the well-known wrapper types, return
+ * the base type it wraps.
+ */
+export function getUnwrappedFieldType(
+  field: DescField
+): ScalarType | undefined {
+  if (field.kind !== "message_field") {
+    return undefined;
+  }
+  if (field.repeated) {
+    return undefined;
+  }
+  if (field.oneof != undefined) {
+    return undefined;
+  }
+  return wktWrapperToScalarType[field.message.typeName];
+}
+
+const wktWrapperToScalarType: Record<string, ScalarType> = {
+  "google.protobuf.DoubleValue": ScalarType.DOUBLE,
+  "google.protobuf.FloatValue": ScalarType.FLOAT,
+  "google.protobuf.Int64Value": ScalarType.INT64,
+  "google.protobuf.UInt64Value": ScalarType.UINT64,
+  "google.protobuf.Int32Value": ScalarType.INT32,
+  "google.protobuf.UInt32Value": ScalarType.UINT32,
+  "google.protobuf.BoolValue": ScalarType.BOOL,
+  "google.protobuf.StringValue": ScalarType.STRING,
+  "google.protobuf.BytesValue": ScalarType.BYTES,
+};
