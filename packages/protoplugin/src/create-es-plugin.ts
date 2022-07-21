@@ -73,7 +73,7 @@ function parseParameter(
   parseOption: PluginOptionParseFn | undefined
 ) {
   let targets: Target[] = ["js", "dts"];
-  let tsNocheck = false;
+  let tsNocheck = true;
   let bootstrapWkt = false;
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
