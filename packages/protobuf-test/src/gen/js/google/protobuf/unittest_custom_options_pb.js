@@ -332,9 +332,8 @@ export const NestedOptionType = proto2.makeMessageType(
 export const NestedOptionType_NestedEnum = proto2.makeEnum(
   "protobuf_unittest.NestedOptionType.NestedEnum",
   [
-    {no: 1, name: "NESTED_ENUM_VALUE"},
+    {no: 1, name: "NESTED_ENUM_VALUE", localName: "VALUE"},
   ],
-  {sharedPrefix: "NESTED_ENUM_"},
 );
 
 /**

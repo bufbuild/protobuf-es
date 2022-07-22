@@ -54,7 +54,7 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
   d = "";
 
   /**
-   * @generated from field: string e = 7;
+   * @generated from field: string e = 7 [json_name = ""];
    */
   e = "";
 
@@ -72,7 +72,7 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
     { no: 4, name: "b", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "e", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "e", jsonName: "", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JsonNamesMessage {

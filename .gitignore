@@ -1,8 +1,7 @@
 node_modules
+/packages/*/dist
+/packages/protobuf-test/descriptorset.bin
 /testdata/gen/**/*.js
 /testdata/gen/**/*.ts
 /testdata/gen/**/**.d.ts
-/packages/protoc-gen-es*/bin/protoc-gen-es*
-/packages/*/dist
-/packages/protobuf-test/descriptorset.bin
-/.cache
+/.tmp

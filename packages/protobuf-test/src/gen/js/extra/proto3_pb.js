@@ -24,11 +24,10 @@ import {proto3} from "@bufbuild/protobuf";
 export const Proto3Enum = proto3.makeEnum(
   "spec.Proto3Enum",
   [
-    {no: 0, name: "PROTO3_ENUM_UNSPECIFIED"},
-    {no: 1, name: "PROTO3_ENUM_YES"},
-    {no: 2, name: "PROTO3_ENUM_NO"},
+    {no: 0, name: "PROTO3_ENUM_UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "PROTO3_ENUM_YES", localName: "YES"},
+    {no: 2, name: "PROTO3_ENUM_NO", localName: "NO"},
   ],
-  {sharedPrefix: "PROTO3_ENUM_"},
 );
 
 /**

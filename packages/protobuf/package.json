@@ -2,7 +2,7 @@
   "name": "@bufbuild/protobuf",
   "version": "0.0.8",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
-  "description": "A complete implementation of protocol buffers in TypeScript, suitable for web browsers and Node.js.",
+  "description": "A complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js.",
   "repository": {
     "type": "git",
     "url": "https://github.com/bufbuild/protobuf-es.git",

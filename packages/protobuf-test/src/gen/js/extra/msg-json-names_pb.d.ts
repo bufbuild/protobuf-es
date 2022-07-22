@@ -54,7 +54,7 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
   d: string;
 
   /**
-   * @generated from field: string e = 7;
+   * @generated from field: string e = 7 [json_name = ""];
    */
   e: string;
 

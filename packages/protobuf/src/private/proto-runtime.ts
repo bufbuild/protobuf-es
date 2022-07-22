@@ -57,7 +57,7 @@ export interface ProtoRuntime {
    */
   makeEnum(
     typeName: string,
-    values: EnumValueInfo[],
+    values: (EnumValueInfo | Omit<EnumValueInfo, "localName">)[],
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
@@ -71,7 +71,7 @@ export interface ProtoRuntime {
    */
   makeEnumType(
     typeName: string,
-    values: EnumValueInfo[],
+    values: (EnumValueInfo | Omit<EnumValueInfo, "localName">)[],
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };

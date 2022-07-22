@@ -1,0 +1,4 @@
+{
+  "files": ["src/protoc-gen-es-plugin.ts"],
+  "extends": "../../tsconfig.base.json"
+}

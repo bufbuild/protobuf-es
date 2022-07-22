@@ -2,7 +2,7 @@
 // @generated from file google/protobuf/unittest_well_known_types.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import {Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value, proto3} from "@bufbuild/protobuf";
+import {Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, proto3, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value} from "@bufbuild/protobuf";
 import {Type} from "./type_pb.js";
 
 /**

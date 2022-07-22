@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { FieldInfo, OneofInfo } from "../field.js";
-import { makeOneofName } from "./names.js";
+import { localOneofName } from "./names.js";
 import { assert } from "./assert.js";
 
 export class InternalOneofInfo implements OneofInfo {
@@ -29,7 +29,7 @@ export class InternalOneofInfo implements OneofInfo {
 
   constructor(name: string) {
     this.name = name;
-    this.localName = makeOneofName(name);
+    this.localName = localOneofName(name);
   }
 
   addField(field: FieldInfo) {
