@@ -12,11 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message, MessageType } from "@bufbuild/protobuf";
-import type { EnumType, FieldInfo } from "@bufbuild/protobuf";
+import type {
+  EnumType,
+  FieldInfo,
+  Message,
+  MessageType,
+} from "@bufbuild/protobuf";
+import { createRegistryFromDescriptors } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
-import { FileDescriptorSet } from "@bufbuild/protobuf";
-import { DescriptorRegistry } from "@bufbuild/protobuf";
 
 /**
  * Runs a describe.each() with three test cases:
@@ -66,11 +69,9 @@ export function testMT<T extends Message<T>>(
   });
 }
 
-const fds = FileDescriptorSet.fromBinary(readFileSync("./descriptorset.bin"));
-const dr = new DescriptorRegistry();
-dr.add(...fds.file);
+const dr = createRegistryFromDescriptors(readFileSync("./descriptorset.bin"));
 
-function makeMessageTypeDynamic<T extends Message<T>>(
+export function makeMessageTypeDynamic<T extends Message<T>>(
   type: MessageType<T>
 ): MessageType<T> {
   const dyn = dr.findMessage(type.typeName);

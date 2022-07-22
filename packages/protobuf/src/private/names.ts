@@ -12,43 +12,143 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type {
+  DescEnum,
+  DescEnumValue,
+  DescField,
+  DescMessage,
+  DescService,
+} from "../descriptor-set.js";
+import type { DescMethod, DescOneof } from "../descriptor-set.js";
+
+/**
+ * Returns the name of a protobuf element in generated code.
+ *
+ * Field names - including oneofs - are converted to lowerCamelCase. For
+ * messages, enumerations and services, the package name is stripped from
+ * the type name. For nested messages and enumerations, the names are joined
+ * with an underscore. For methods, the first character is made lowercase.
+ */
+export function localName(
+  desc:
+    | DescEnum
+    | DescEnumValue
+    | DescMessage
+    | DescOneof
+    | DescField
+    | DescService
+    | DescMethod
+): string {
+  switch (desc.kind) {
+    case "enum_field":
+    case "message_field":
+    case "map_field":
+    case "scalar_field":
+      return localFieldName(desc.name, desc.oneof !== undefined);
+    case "oneof":
+      return localOneofName(desc.name);
+    case "enum":
+    case "message":
+    case "service": {
+      const pkg = desc.file.proto.package;
+      const offset = pkg === undefined ? 0 : pkg.length + 1;
+      const name = desc.typeName.substring(offset).replace(/\./g, "_");
+      if (reservedIdent[name]) {
+        return name + "$";
+      }
+      return name;
+    }
+    case "enum_value": {
+      const sharedPrefix = desc.parent.sharedPrefix;
+      if (sharedPrefix === undefined) {
+        return desc.name;
+      }
+      const name = desc.name.substring(sharedPrefix.length);
+      if (reservedObjectProperties[name]) {
+        return name + "$";
+      }
+      return name;
+    }
+    case "rpc": {
+      let name = desc.name;
+      if (name.length == 0) {
+        return name;
+      }
+      name = name[0].toLowerCase() + name.substring(1);
+      if (reservedObjectProperties[name]) {
+        return name + "$";
+      }
+      return name;
+    }
+  }
+}
+
+/**
+ * Returns the name of a field in generated code.
+ */
+export function localFieldName(protoName: string, inOneof: boolean) {
+  let name = protoCamelCase(protoName);
+  if (inOneof) {
+    // oneof member names are not properties, but values of the `case` property.
+    return name;
+  }
+  if (reservedObjectProperties[name] || reservedMessageProperties[name]) {
+    name = name + "$";
+  }
+  return name;
+}
+
+/**
+ * Returns the name of a oneof group in generated code.
+ */
+export function localOneofName(protoName: string): string {
+  return localFieldName(protoName, false);
+}
+
 /**
  * Returns the JSON name for a protobuf field, exactly like protoc does.
  */
-export function makeJsonName(protoName: string) {
-  return protoCamelCase(protoName);
-}
+export const fieldJsonName = protoCamelCase;
 
 /**
- * Returns the local name of a field, exactly like protoc-gen-es does.
+ * Finds a prefix shared by enum values, for example `MY_ENUM_` for
+ * `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`.
  */
-export function makeFieldName(protoName: string, inOneof: boolean) {
-  const n = protoCamelCase(protoName);
-  if (inOneof) {
-    return n;
+export function findEnumSharedPrefix(
+  enumName: string,
+  valueNames: string[]
+): string | undefined {
+  const prefix = camelToSnakeCase(enumName) + "_";
+  for (const name of valueNames) {
+    if (!name.toLowerCase().startsWith(prefix)) {
+      return undefined;
+    }
+    const shortName = name.substring(prefix.length);
+    if (shortName.length == 0) {
+      return undefined;
+    }
+    if (/^\d/.test(shortName)) {
+      // identifiers must not start with numbers
+      return undefined;
+    }
   }
-  return rProp[n] ? n + escapeChar : n;
+  return prefix;
 }
 
 /**
- * Returns the local name of a oneof group, exactly like protoc-gen-es does.
+ * Converts lowerCamelCase or UpperCamelCase into lower_snake_case.
+ * This is used to find shared prefixes in an enum.
  */
-export function makeOneofName(protoName: string): string {
-  return makeFieldName(protoName, false);
+function camelToSnakeCase(camel: string): string {
+  return (
+    camel.substring(0, 1) + camel.substring(1).replace(/[A-Z]/g, (c) => "_" + c)
+  ).toLowerCase();
 }
 
 /**
- * Returns the local name of a rpc, exactly like protoc-gen-es does.
+ * Converts snake_case to protoCamelCase according to the convention
+ * used by protoc to convert a field name to a JSON name.
  */
-export function makeMethodName(protoName: string): string {
-  if (protoName.length == 0) {
-    return protoName;
-  }
-  return protoName[0].toLowerCase() + protoName.substring(1);
-}
-
-// Converts snake_case to protoCamelCase according to the convention
-// used by protoc to convert a field name to a JSON name.
 function protoCamelCase(snakeCase: string): string {
   let capNext = false;
   const b = [];
@@ -83,19 +183,87 @@ function protoCamelCase(snakeCase: string): string {
   return b.join("");
 }
 
-// escapeChar must be appended to a reserved name.
-// We choose '$' because it is invalid in proto identifiers.
-const escapeChar = "$";
+// Names that cannot be used for identifiers, such as class names,
+// but _can_ be used for object properties.
+const reservedIdent: { [k: string]: boolean } = {
+  // ECMAScript 2015 keywords
+  break: true,
+  case: true,
+  catch: true,
+  class: true,
+  const: true,
+  continue: true,
+  debugger: true,
+  default: true,
+  delete: true,
+  do: true,
+  else: true,
+  export: true,
+  extends: true,
+  false: true,
+  finally: true,
+  for: true,
+  function: true,
+  if: true,
+  import: true,
+  in: true,
+  instanceof: true,
+  new: true,
+  null: true,
+  return: true,
+  super: true,
+  switch: true,
+  this: true,
+  throw: true,
+  true: true,
+  try: true,
+  typeof: true,
+  var: true,
+  void: true,
+  while: true,
+  with: true,
+  yield: true,
 
-// Names that cannot be used for object properties.
-// See buf_es/protoc-gen-es/internal/protoplugin/names.go
-const rProp: { [k: string]: boolean } = {
+  // ECMAScript 2015 future reserved keywords
+  enum: true,
+  implements: true,
+  interface: true,
+  let: true,
+  package: true,
+  private: true,
+  protected: true,
+  public: true,
+  static: true,
+
+  // Class name cannot be 'Object' when targeting ES5 with module CommonJS
+  Object: true,
+
+  // TypeScript keywords that cannot be used for types (as opposed to variables)
+  bigint: true,
+  number: true,
+  boolean: true,
+  string: true,
+  object: true,
+
+  // Identifiers reserved for the runtime, so we can generate legible code
+  globalThis: true,
+  Uint8Array: true,
+  Partial: true,
+};
+
+// Names that cannot be used for object properties because they are reserved
+// by built-in JavaScript properties.
+const reservedObjectProperties: { [k: string]: boolean } = {
   // names reserved by JavaScript
   constructor: true,
   toString: true,
   toJSON: true,
   valueOf: true,
+};
 
+// Names that cannot be used for object properties because they are reserved
+// by the runtime.
+const reservedMessageProperties: { [k: string]: boolean } = {
   // names reserved by the runtime
   getType: true,
   clone: true,

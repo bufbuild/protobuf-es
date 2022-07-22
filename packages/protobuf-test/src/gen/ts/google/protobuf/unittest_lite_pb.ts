@@ -593,7 +593,7 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
     { no: 72, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000 },
     { no: 73, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
     { no: 74, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello" },
-    { no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64, ]) },
+    { no: 75, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64]) },
     { no: 81, name: "default_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true, default: TestAllTypesLite_NestedEnum.BAR },
     { no: 82, name: "default_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true, default: ForeignEnumLite.FOREIGN_LITE_BAR },
     { no: 83, name: "default_import_enum", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true, default: ImportEnumLite.IMPORT_LITE_BAR },
@@ -1898,11 +1898,11 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
     { no: 1, name: "oneof_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_field" },
     { no: 2, name: "oneof_submessage", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
     { no: 3, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
-    { no: 4, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, ]), oneof: "oneof_field" },
+    { no: 4, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73]), oneof: "oneof_field" },
     { no: 5, name: "oneof_string_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "default Cord", oneof: "oneof_field" },
     { no: 6, name: "oneof_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
     { no: 7, name: "oneof_string_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
-    { no: 8, name: "oneof_bytes_string_piece", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6E, 0x67, 0x50, 0x69, 0x65, 0x63, 0x65, ]), oneof: "oneof_field" },
+    { no: 8, name: "oneof_bytes_string_piece", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x64, 0x65, 0x66, 0x61, 0x75, 0x6C, 0x74, 0x20, 0x53, 0x74, 0x72, 0x69, 0x6E, 0x67, 0x50, 0x69, 0x65, 0x63, 0x65]), oneof: "oneof_field" },
     { no: 9, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(V2EnumLite), oneof: "oneof_field" },
   ]);
 

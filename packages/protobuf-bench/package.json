@@ -1,0 +1,13 @@
+{
+  "name": "@bufbuild/protobuf-bench",
+  "private": true,
+  "scripts": {
+    "report": "node report.mjs > README.md",
+    "clean": "rm -rf README.md src/gen"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "0.0.8",
+    "esbuild": "^0.14.48",
+    "google-protobuf": "^3.20.1"
+  }
+}

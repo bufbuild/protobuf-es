@@ -13,11 +13,11 @@
 // limitations under the License.
 
 /**
- * Reflection information for a protobuf enum.
+ * Reflection information for a protobuf enumeration.
  */
 export interface EnumType {
   /**
-   * The fully qualified name of the enum.
+   * The fully qualified name of the enumeration.
    */
   readonly typeName: string;
 
@@ -38,18 +38,23 @@ export interface EnumType {
 }
 
 /**
- * Reflection information for a protobuf enum value.
+ * Reflection information for a protobuf enumeration value.
  */
 export interface EnumValueInfo {
   /**
-   * The number of the value as specified in proto.
+   * The numeric enumeration value, as specified in the protobuf source.
    */
   readonly no: number;
 
   /**
-   * The name of the value as specified in proto.
+   * The name of the enumeration value, as specified in the protobuf source.
    */
   readonly name: string;
+
+  /**
+   * The name of the enumeration value in generated code.
+   */
+  readonly localName: string;
 
   // We do not surface options at this time
   // readonly options: OptionsMap;

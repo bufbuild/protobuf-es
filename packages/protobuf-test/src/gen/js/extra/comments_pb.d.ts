@@ -124,8 +124,6 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
   } | { case: undefined; value?: undefined };
 
   /**
-   *
-   *
    * @generated from field: string this_field_has_an_empty_comment = 4;
    */
   thisFieldHasAnEmptyComment: string;

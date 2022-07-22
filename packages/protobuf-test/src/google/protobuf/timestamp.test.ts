@@ -12,18 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Timestamp } from "@bufbuild/protobuf";
+import { Timestamp as TS_Timestamp } from "../../gen/ts/google/protobuf/timestamp_pb";
+import { Timestamp as JS_Timestamp } from "../../gen/js/google/protobuf/timestamp_pb";
 
-describe(Timestamp.typeName, () => {
-  test("now()", () => {
-    const ts = Timestamp.now();
-    expect(ts.seconds).toBeDefined();
-  });
-
-  test("fromDate()", () => {
-    const a = new Date();
-    const ts = Timestamp.fromDate(a);
-    const b = ts.toDate();
-    expect(b.getTime()).toBe(a.getTime());
+describe("google.protobuf.Timestamp", () => {
+  describe.each([
+    { Timestamp: TS_Timestamp, name: `(generated ts)` },
+    { Timestamp: JS_Timestamp, name: `(generated js)` },
+  ])("$name", ({ Timestamp }) => {
+    test("now()", () => {
+      const ts = Timestamp.now();
+      expect(ts.seconds).toBeDefined();
+    });
+    test("fromDate()", () => {
+      const a = new Date();
+      const ts = Timestamp.fromDate(a);
+      const b = ts.toDate();
+      expect(b.getTime()).toBe(a.getTime());
+    });
   });
 });

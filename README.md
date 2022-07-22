@@ -1,7 +1,7 @@
 Protobuf-ES
 ===========
 
-A complete implementation of [protocol buffers](https://developers.google.com/protocol-buffers) in TypeScript,
+A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
 For example, the following definition:
@@ -27,9 +27,9 @@ pete = Person.fromBinary(bytes);
 pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
-To learn more, have a look at a complete [code example](packages/example), the documentation
-for the [generated code](docs/generated_code.md), and the documentation for the 
-[runtime API](docs/runtime_api.md).
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/packages/example), 
+the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/docs/generated_code.md), 
+and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/docs/runtime_api.md).
 
 
 ### How does this compare to protoc's JavaScript generator?
@@ -48,7 +48,7 @@ Because of this, we want to provide a solid, modern alternative with Protobuf-ES
 The main differences of the generated code:
 - we use plain properties for fields, where protoc uses getter and setter methods
 - we implement the canonical JSON format
-- we generate [much smaller bundles](packages/bench-codesize)
+- we generate [much smaller bundles](packages/protobuf-bench)
 - we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 
 See the [migration guides](docs/migrating.md) for details.
@@ -59,8 +59,24 @@ See the [migration guides](docs/migrating.md) for details.
 We implement all proto3 features, including the canonical JSON format.  
 We implement all proto2 features, except for extensions and the text format.  
 The implementation is covered by the protocol buffers 
-[conformance tests](packages/conformance-test).
+[conformance tests](packages/protobuf-conformance).
 
+
+### Packages
+
+#### @bufbuild/protoc-gen-es
+This package provides the code generator plugin `protoc-gen-es`. The code it
+generates depends on `@bufbuild/protobuf`.  
+[Source](packages/protoc-gen-es) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+
+#### @bufbuild/protobuf
+This package provides the runtime library for the code generator plugin
+[`protoc-gen-es`](https://github.com/bufbuild/packages/protoc-gen-es).  
+[Source](packages/protobuf) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protobuf)
+
+#### @bufbuild/protoplugin
+This package helps to create your own code generator plugin.  
+[Source](packages/protoplugin) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protoplugin)
 
 
 ### Copyright

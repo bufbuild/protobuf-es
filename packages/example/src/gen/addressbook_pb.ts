@@ -18,7 +18,7 @@
 /* @ts-nocheck */
 
 import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, Timestamp, proto3} from "@bufbuild/protobuf";
+import {Message, proto3, Timestamp} from "@bufbuild/protobuf";
 
 /**
  * @generated from message example.Person

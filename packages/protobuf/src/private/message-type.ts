@@ -37,10 +37,7 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
      * It is useful in stack traces, debuggers and test frameworks,
      * but has no other implications.
      *
-     * This property is optional because by default, the last part
-     * from the given typeName is used. Since this does not take
-     * reserved words into account, we provide this property so that
-     * an escaped name can be given.
+     * If omitted, the last part of the typeName is used.
      */
     localName?: string;
     // We do not surface options at this time

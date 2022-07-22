@@ -97,8 +97,7 @@ message Example {}
 we generate a class called `Example`, which extends the base class [Message](https://github.com/bufbuild/protobuf-es/blob/tstamm/add-docs/packages/protobuf/src/message.ts#L40)
 provided by [@bufbuild/protobuf](../packages/protobuf). See the [runtime API documentation](#runtime-api) for details.
 
-Note that [some names](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/private/protoplugin/names.go#L30-L94)
-cannot be used as class names and will be escaped by adding the suffix `$`.
+Note that some names cannot be used as class names and will be escaped by adding the suffix `$`.
 For example, a protobuf message `break` will become a class `break$`.
 
 
@@ -113,8 +112,7 @@ While there is no official style for ECMAScript, most style guides
 [Node.js APIs](https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options) and
 [browser APIs](https://fetch.spec.whatwg.org/#request-class) use `lowerCamelCase`, and so do we.
 
-Note that [some names](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/private/protoplugin/names.go#L96-L118)
-cannot be used as class properties and will be escaped by adding the suffix `$`.
+Note that some names cannot be used as class properties and will be escaped by adding the suffix `$`.
 For example, a protobuf field `constructor` will become a class property `constructor$`.
 
 
@@ -288,9 +286,9 @@ enum Foo {
 }
 ```
 
-Note that [some names](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/private/protoplugin/names.go#L30-L94)
-cannot be used as enum names and will be escaped by adding the suffix `$`.
-For example, a protobuf enum `catch` will become a TypeScript enum `catch$`.
+Note that some names cannot be used as enum names and will be escaped by 
+adding the suffix `$`. For example, a protobuf enum `catch` will become a 
+TypeScript enum `catch$`.
 
 If all enum values share a prefix that corresponds with the enum's name, the
 prefix is dropped from all enum value names. For example, for the following

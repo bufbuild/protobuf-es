@@ -30,7 +30,7 @@ export const JsonNamesMessage = proto3.makeMessageType(
     { no: 4, name: "b", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "e", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "e", jsonName: "", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
