@@ -8,10 +8,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - name: setup-go
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.18
       - uses: bufbuild/buf-setup-action@v1.6.0
         with:
           version: 1.1.0
@@ -19,20 +15,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ~/.cache
-            .cache
+            ~/.tmp
+            .tmp
           key: ${{ runner.os }}-protobuf-es-ci-${{ hashFiles('Makefile') }}
           restore-keys: |
             ${{ runner.os }}-protobuf-es-ci-
-      - name: make-ci-generate
-        run: bash make/scripts/checknodiffgenerated.bash make ci-generate
-      - name: make-format
-        run: bash make/scripts/checknodiffgenerated.bash make format
-      - name: make-build
-        run: make build
-      - name: make-lint
-        run: make lint
-      - name: make-test
-        run: make test
-      - name: make-bench-codesize
-        run: make bench-codesize
+      - name: make
+        run: make all checkdiff

@@ -22,7 +22,7 @@ import type { AnyMessage, Message } from "./message.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { FieldInfo, ScalarType } from "./field.js";
 import { InternalOneofInfo } from "./private/field.js";
-import { makeFieldName, makeJsonName } from "./private/names.js";
+import { localFieldName, fieldJsonName } from "./private/names.js";
 
 /**
  * Provides functionality for messages defined with the proto3 syntax.
@@ -78,8 +78,8 @@ function normalizeFieldInfosProto3(fieldInfos: FieldListSource): FieldInfo[] {
     ? fieldInfos()
     : fieldInfos) {
     const f = field as any;
-    f.localName = makeFieldName(field.name, field.oneof !== undefined);
-    f.jsonName = field.jsonName ?? makeJsonName(field.name);
+    f.localName = localFieldName(field.name, field.oneof !== undefined);
+    f.jsonName = field.jsonName ?? fieldJsonName(field.name);
     f.repeated = field.repeated ?? false;
     // From the proto3 language guide:
     // > In proto3, repeated fields of scalar numeric types are packed by default.

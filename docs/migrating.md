@@ -36,7 +36,7 @@ And if you dig a bit deeper, you'll notice it [does not implement the JSON forma
 [does not support TypeScript](https://github.com/protocolbuffers/protobuf/pull/9412), 
 [does not have any reflection capabilities](https://github.com/protocolbuffers/protobuf/issues/1711),
 [does not use a standard module system](https://github.com/protocolbuffers/protobuf/issues/8389), 
-and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bench-codesize)
+and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-bench)
 for the web. Protobuf-ES fixes those issues. It is a modern replacement for `protobuf-javascript`.
 
 The following steps show the changes needed to migrate:
