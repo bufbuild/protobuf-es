@@ -16,11 +16,12 @@ import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { typescript } from "./typescript.js";
 import { javascript } from "./javascript.js";
 import { declaration } from "./declaration";
+import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin(
   {
     name: "protoc-gen-es",
-    version: "v0.0.8",
+    version: `v${String(version)}`,
   },
   (schema) => {
     const targets = [typescript, javascript, declaration].filter((gen) =>
