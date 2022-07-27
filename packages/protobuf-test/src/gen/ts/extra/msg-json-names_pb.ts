@@ -58,6 +58,11 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
    */
   e = "";
 
+  /**
+   * @generated from field: string f = 8 [json_name = "@type"];
+   */
+  f = "";
+
   constructor(data?: PartialMessage<JsonNamesMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -73,6 +78,7 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
     { no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "e", jsonName: "", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "f", jsonName: "@type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JsonNamesMessage {
