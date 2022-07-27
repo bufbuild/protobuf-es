@@ -28,7 +28,6 @@ import { PluginOptionError, reasonToString } from "./error.js";
  * ```
  */
 export function runNodeJs(plugin: Plugin): void {
-  setBlockingStdout();
   const args = process.argv.slice(2);
   if ((args.length === 1 && args[0] === "-v") || args[0] === "--version") {
     process.stdout.write(`${plugin.name} ${plugin.version}\n`);
@@ -46,8 +45,12 @@ export function runNodeJs(plugin: Plugin): void {
     .then((data) => {
       const req = CodeGeneratorRequest.fromBinary(data);
       const res = plugin.run(req);
-      process.stdout.write(res.toBinary());
-      process.exit(0);
+      process.stdout.write(res.toBinary(), (err) => {
+        if (err) {
+          process.exit(1);
+        }
+        process.exit(0);
+      });
     })
     .catch((reason) => {
       const message =
@@ -74,19 +77,4 @@ function readBytes(stream: ReadStream): Promise<Uint8Array> {
       reject(err);
     });
   });
-}
-
-/**
- * Node.js buffers stdout, and process.exit() will truncate output.
- * As a workaround, we set the stream to blocking via a private API.
- * See https://github.com/timostamm/protobuf-ts/issues/134
- * See https://github.com/nodejs/node/issues/6456
- */
-function setBlockingStdout(): void {
-  const stdout = process.stdout as unknown as {
-    _handle?: {
-      setBlocking?(value: boolean): void;
-    };
-  };
-  stdout._handle?.setBlocking?.(true);
 }
