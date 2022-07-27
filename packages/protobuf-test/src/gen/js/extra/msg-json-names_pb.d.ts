@@ -58,6 +58,11 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
    */
   e: string;
 
+  /**
+   * @generated from field: string f = 8 [json_name = "@type"];
+   */
+  f: string;
+
   constructor(data?: PartialMessage<JsonNamesMessage>);
 
   static readonly runtime: typeof proto3;
