@@ -32,20 +32,20 @@ describeMT(
       expect(got).toStrictEqual({
         "": "e",
         "@type": "f",
-        "c": "c",
-        "sameJsonName": "b"
+        c: "c",
+        sameJsonName: "b",
       });
     });
     test("json_name clash with Any.@type is not prevented", () => {
       const any = Any.pack(msg);
       const got = any.toJson({
-        typeRegistry: createRegistry(JsonNamesMessage)
+        typeRegistry: createRegistry(JsonNamesMessage),
       });
       expect(got).toStrictEqual({
         "": "e",
         "@type": "type.googleapis.com/spec.JsonNamesMessage",
-        "c": "c",
-        "sameJsonName": "b"
+        c: "c",
+        sameJsonName: "b",
       });
     });
   }
