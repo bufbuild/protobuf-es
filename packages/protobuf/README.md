@@ -1,7 +1,7 @@
 # @bufbuild/protobuf
 
 This package provides the runtime library for the code generator plugin
-[`protoc-gen-es`](https://github.com/bufbuild/packages/protoc-gen-es).
+[protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
 
 ## Protocol Buffers for ECMAScript
 
