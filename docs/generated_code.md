@@ -94,7 +94,7 @@ For the following message declaration:
 message Example {}
 ```
 
-we generate a class called `Example`, which extends the base class [Message](https://github.com/bufbuild/protobuf-es/blob/tstamm/add-docs/packages/protobuf/src/message.ts#L40)
+we generate a class called `Example`, which extends the base class [Message](../packages/protobuf/src/message.ts#L40)
 provided by [@bufbuild/protobuf](../packages/protobuf). See the [runtime API documentation](#runtime-api) for details.
 
 Note that some names cannot be used as class names and will be escaped by adding the suffix `$`.
