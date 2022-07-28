@@ -70,7 +70,7 @@ The implementation is covered by the protocol buffers
 - [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
   The runtime library for the code generator plugin `protoc-gen-es` ([source](packages/protobuf)).
 - [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
-  Helps to create your own code generator plugin.   `protoc-gen-es` ([source](packages/protoplugin)).
+  Helps to create your own code generator plugin ([source](packages/protoplugin)).
 
 
 ### Copyright
