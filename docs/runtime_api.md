@@ -500,7 +500,7 @@ Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` 
 buf generate --output image.bin
 ```
 
-Using a [`createRegistryFromDescriptors()`][src-create-registry-from-desc], you
+Using [`createRegistryFromDescriptors()`][src-create-registry-from-desc], you
 can create types at run time from a set of descriptors created by a protocol buffers
 compiler:
 
