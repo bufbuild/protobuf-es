@@ -37,7 +37,7 @@
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^0.0.10"
+    "@bufbuild/protobuf": "0.0.10"
   },
   "devDependencies": {
     "typescript": "^4.7.4"

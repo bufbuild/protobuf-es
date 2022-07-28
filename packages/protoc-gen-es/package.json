@@ -20,10 +20,10 @@
   },
   "preferUnplugged": true,
   "dependencies": {
-    "@bufbuild/protoplugin": "^0.0.10"
+    "@bufbuild/protoplugin": "0.0.10"
   },
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.10"
+    "@bufbuild/protobuf": "0.0.10"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
