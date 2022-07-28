@@ -370,8 +370,9 @@ function makeMapFieldInfo(
 ): PartialFieldInfo {
   const base = {
     kind: "map",
-    name: field.name,
     no: field.number,
+    name: field.name,
+    jsonName: field.jsonName,
     K: field.mapKey,
   } as const;
   if (field.mapValue.message) {
@@ -417,9 +418,10 @@ function makeScalarFieldInfo(
   field: DescField & { kind: "scalar_field" }
 ): PartialFieldInfo {
   const base = {
+    kind: "scalar",
     no: field.number,
     name: field.name,
-    kind: "scalar",
+    jsonName: field.jsonName,
     T: field.scalar,
   } as const;
   if (field.repeated) {
@@ -456,9 +458,10 @@ function makeMessageFieldInfo(
     `message "${field.message.typeName}" for ${field.toString()} not found`
   );
   const base = {
+    kind: "message",
     no: field.number,
     name: field.name,
-    kind: "message",
+    jsonName: field.jsonName,
     T: messageType,
   } as const;
   if (field.repeated) {
@@ -494,9 +497,10 @@ function makeEnumFieldInfo(
     `enum "${field.enum.typeName}" for ${field.toString()} not found`
   );
   const base = {
+    kind: "enum",
     no: field.number,
     name: field.name,
-    kind: "enum",
+    jsonName: field.jsonName,
     T: enumType,
   } as const;
   if (field.repeated) {

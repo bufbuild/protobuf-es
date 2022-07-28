@@ -26,5 +26,6 @@ message JsonNamesMessage {
     string c = 5;
     string d = 6 [json_name = "c"];
     string e = 7 [json_name = ""];
+    string f = 8 [json_name = "@type"];
 
 }
