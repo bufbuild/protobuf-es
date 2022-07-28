@@ -2,8 +2,8 @@ Protobuf-ES: Runtime API
 ========================
 
 The runtime library for the generated code is provided by the npm package 
-[@bufbuild/protobuf](../packages/protobuf). This is a detailed overview of the features 
-provided by the library.
+[@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf). This is a detailed 
+overview of the features provided by the library.
 
 - [Message class](#message-class)
   - [Constructing messages](#constructing-messages)
@@ -279,8 +279,8 @@ Similar to messages, enums can also be created at run time, via
 ## Well-known types
 
 Protocol buffers have a small standard library of well-known types.
-[@bufbuild/protobuf](../packages/protobuf) provides all of them as pre-compiled
-exports.
+[@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf) provides all of 
+them as pre-compiled exports.
 
 <details><summary>Expand the list of Well-known types</summary>
 

@@ -28,7 +28,8 @@ We recommend [`buf`](https://github.com/bufbuild/buf) as a protocol buffer compi
 [`protoc`](https://github.com/protocolbuffers/protobuf/releases) works as well.
 
 If you have the compiler set up, you can install the code generator plugin, as well as the
-accompanying runtime package [`@bufbuild/protobuf`](../packages/protobuf) with:
+accompanying runtime package [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf) 
+with:
 
 ```shell
 npm install @bufbuild/protoc-gen-es @bufbuild/protobuf
@@ -63,7 +64,7 @@ protoc -I . --plugin ./node_modules/.bin/protoc-gen-es --es_out src/gen --es_opt
 ```
 
 To learn about other ways to install the plugin, and about the available plugin options, 
-see [`@bufbuild/protoc-gen-es`](../packages/protoc-gen-es).
+see [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
 
 
 
@@ -95,7 +96,8 @@ message Example {}
 ```
 
 we generate a class called `Example`, which extends the base class [Message](../packages/protobuf/src/message.ts#L40)
-provided by [@bufbuild/protobuf](../packages/protobuf). See the [runtime API documentation](#runtime-api) for details.
+provided by [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf). 
+See the [runtime API documentation](#runtime-api) for details.
 
 Note that some names cannot be used as class names and will be escaped by adding the suffix `$`.
 For example, a protobuf message `break` will become a class `break$`.
@@ -163,7 +165,7 @@ all values typed as `bigint` will actually be strings.
 For presentation purposes, it is always safe to simply call `toString()` on
 the field value. For more detailed information, see the conversion utility
 [`protoInt64`](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65)
-provided by [@bufbuild/protobuf](../packages/protobuf).
+provided by [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
 
 
 ### Message fields
