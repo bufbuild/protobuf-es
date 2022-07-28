@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Plugin } from "./plugin.js";
-import type { ReadStream } from "tty";
+import type { ReadStream, WriteStream } from "tty";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { PluginOptionError, reasonToString } from "./error.js";
 
@@ -28,7 +28,6 @@ import { PluginOptionError, reasonToString } from "./error.js";
  * ```
  */
 export function runNodeJs(plugin: Plugin): void {
-  setBlockingStdout();
   const args = process.argv.slice(2);
   if ((args.length === 1 && args[0] === "-v") || args[0] === "--version") {
     process.stdout.write(`${plugin.name} ${plugin.version}\n`);
@@ -46,9 +45,9 @@ export function runNodeJs(plugin: Plugin): void {
     .then((data) => {
       const req = CodeGeneratorRequest.fromBinary(data);
       const res = plugin.run(req);
-      process.stdout.write(res.toBinary());
-      process.exit(0);
+      return writeBytes(process.stdout, res.toBinary());
     })
+    .then(() => process.exit(0))
     .catch((reason) => {
       const message =
         reason instanceof PluginOptionError
@@ -77,16 +76,16 @@ function readBytes(stream: ReadStream): Promise<Uint8Array> {
 }
 
 /**
- * Node.js buffers stdout, and process.exit() will truncate output.
- * As a workaround, we set the stream to blocking via a private API.
- * See https://github.com/timostamm/protobuf-ts/issues/134
- * See https://github.com/nodejs/node/issues/6456
+ * Write a chunk of bytes to a stream.
  */
-function setBlockingStdout(): void {
-  const stdout = process.stdout as unknown as {
-    _handle?: {
-      setBlocking?(value: boolean): void;
-    };
-  };
-  stdout._handle?.setBlocking?.(true);
+function writeBytes(stream: WriteStream, data: Uint8Array): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    stream.write(data, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
 }
