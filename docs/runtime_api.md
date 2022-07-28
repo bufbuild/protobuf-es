@@ -81,16 +81,16 @@ foo = "";
 
 Protobuf fields map to default values as follows:
 
-| Protobuf field     | Class property default value                                      |
-|--------------------|-------------------------------------------------------------------|
-| bool               | `false`                                                           |
-| string             | `""`                                                              |
-| other scalar types | see [intrinsic default values](./generated_code.md#scalar-fields) |
-| optional scalar    | `undefined`                                                       |
-| message            | `undefined`                                                       |
-| map                | `{}`                                                              |
-| repeated           | `[]`                                                              |
-| oneof              | `{ case: undefined }`                                             |
+| Protobuf field     | Class property default value                                         |
+|--------------------|----------------------------------------------------------------------|
+| bool               | `false`                                                              |
+| string             | `""`                                                                 |
+| other scalar types | see [scalar field default values](./generated_code.md#scalar-fields) |
+| optional scalar    | `undefined`                                                          |
+| message            | `undefined`                                                          |
+| map                | `{}`                                                                 |
+| repeated           | `[]`                                                                 |
+| oneof              | `{ case: undefined }`                                                |
 
 
 ### Accessing fields
