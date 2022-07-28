@@ -541,7 +541,7 @@ for examples how to include them. The JSON and binary serialization mechanisms u
 ### PartialMessage
 
 The object initializers accepted by message constructors are defined by the type 
-[`PartialMessage<T>`](../packages/protobuf/src/message.ts#L145-L153).
+[`PartialMessage<T>`](../packages/protobuf/src/message.ts#L143).
 It is similar to the TypeScript built-in type `Partial`, but works recursively. 
 
 This type is well suited in case you know the type of a message, but want to allow 
@@ -550,7 +550,7 @@ an instance to be given in the most flexible way.
 
 ### PlainMessage
 
-[`PlainMessage<T>`](../packages/protobuf/src/message.ts#L136-L140) represents _just_
+[`PlainMessage<T>`](../packages/protobuf/src/message.ts#L137) represents _just_
 the fields of a message, without their methods. 
 
 In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
@@ -574,7 +574,7 @@ let plain: PlainMessage<Example> = {...example};
 
 ### AnyMessage
 
-If you want to handle messages of unknown type, the type [`AnyMessage`](https://github.com/bufbuild/protobuf-es/blob/584eddddc8ed53fd0df763355e450e3419259258/packages/protobuf/src/message.ts#L24-L31) 
+If you want to handle messages of unknown type, the type [`AnyMessage`](../packages/protobuf/src/message.ts#L25) 
 provides a convenient index signature to access fields:
 
 ```typescript
