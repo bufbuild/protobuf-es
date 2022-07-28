@@ -3,8 +3,8 @@ Release
 
 ## Cutting a release
 
-This guide is a step-by-step process for cutting a release for `@bufbuild/protobuf` 
-and `@bufbuild/protoc-gen-es`.
+This guide is a step-by-step process for cutting a release for [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf) 
+and [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
 
 
 ### Prerequisites

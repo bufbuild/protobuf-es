@@ -307,7 +307,7 @@ change your compiler invocation as follows:
 ### Well-known types
 
 With `protobuf-ts` you are always using locally generated versions of well-known types. 
-With Protobuf-ES, you import them from `@bufbuild/protobuf`:
+With Protobuf-ES, you import them from [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
 
 ```diff
 - import { Timestamp } from "./google/protobuf/timestamp_pb";

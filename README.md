@@ -64,19 +64,13 @@ The implementation is covered by the protocol buffers
 
 ### Packages
 
-#### @bufbuild/protoc-gen-es
-This package provides the code generator plugin `protoc-gen-es`. The code it
-generates depends on `@bufbuild/protobuf`.  
-[Source](packages/protoc-gen-es) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-
-#### @bufbuild/protobuf
-This package provides the runtime library for the code generator plugin
-[`protoc-gen-es`](https://github.com/bufbuild/packages/protoc-gen-es).  
-[Source](packages/protobuf) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protobuf)
-
-#### @bufbuild/protoplugin
-This package helps to create your own code generator plugin.  
-[Source](packages/protoplugin) | [npmjs.com](https://www.npmjs.com/package/@bufbuild/protoplugin)
+- [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
+  Provides the code generator plugin `protoc-gen-es` ([source](packages/protoc-gen-es)).   
+  The code it generates depends on `@bufbuild/protobuf`.
+- [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
+  The runtime library for the code generator plugin `protoc-gen-es` ([source](packages/protobuf)).
+- [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
+  Helps to create your own code generator plugin ([source](packages/protoplugin)).
 
 
 ### Copyright
