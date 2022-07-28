@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Plugin } from "./plugin.js";
-import type { ReadStream } from "tty";
+import type { ReadStream, WriteStream } from "tty";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { PluginOptionError, reasonToString } from "./error.js";
 
@@ -45,13 +45,9 @@ export function runNodeJs(plugin: Plugin): void {
     .then((data) => {
       const req = CodeGeneratorRequest.fromBinary(data);
       const res = plugin.run(req);
-      process.stdout.write(res.toBinary(), (err) => {
-        if (err) {
-          process.exit(1);
-        }
-        process.exit(0);
-      });
+      return writeBytes(process.stdout, res.toBinary());
     })
+    .then(() => process.exit(0))
     .catch((reason) => {
       const message =
         reason instanceof PluginOptionError
@@ -75,6 +71,21 @@ function readBytes(stream: ReadStream): Promise<Uint8Array> {
     });
     stream.on("error", (err) => {
       reject(err);
+    });
+  });
+}
+
+/**
+ * Write a chunk of bytes to a stream.
+ */
+function writeBytes(stream: WriteStream, data: Uint8Array): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    stream.write(data, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
     });
   });
 }
