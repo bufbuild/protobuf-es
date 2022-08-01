@@ -8,6 +8,6 @@
   "dependencies": {
     "@bufbuild/protobuf": "0.0.10",
     "esbuild": "^0.14.50",
-    "google-protobuf": "^3.20.1"
+    "google-protobuf": "^3.21.0"
   }
 }
