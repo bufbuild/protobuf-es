@@ -22,7 +22,7 @@ import type {
 } from "./type-registry.js";
 
 /**
- * Create a new registry from the given types. Note that
+ * Create a new registry from the given types.
  */
 export function createRegistry(
   ...types: Array<MessageType | EnumType | ServiceType>
