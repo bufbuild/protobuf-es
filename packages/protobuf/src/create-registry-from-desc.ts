@@ -176,7 +176,7 @@ export function createRegistryFromDescriptors(
       const methods: Record<string, MethodInfo> = {};
       for (const method of desc.methods) {
         const I = this.findMessage(method.input.typeName);
-        const O = this.findMessage(method.input.typeName);
+        const O = this.findMessage(method.output.typeName);
         assert(
           I,
           `message "${
