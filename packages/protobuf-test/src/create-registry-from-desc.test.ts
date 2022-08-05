@@ -17,11 +17,15 @@ import {
   createDescriptorSet,
   createRegistry,
   createRegistryFromDescriptors,
-  FileDescriptorSet, MethodKind
+  FileDescriptorSet,
+  MethodKind,
 } from "@bufbuild/protobuf";
 import { TestAllTypes } from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
 import { assertMessageTypeEquals } from "./helpers.js";
-import { ExampleRequest, ExampleResponse } from "./gen/ts/extra/service-example_pb";
+import {
+  ExampleRequest,
+  ExampleResponse,
+} from "./gen/ts/extra/service-example_pb";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 const fds = FileDescriptorSet.fromBinary(fdsBytes);
@@ -43,7 +47,9 @@ describe("createRegistryFromDescriptors()", () => {
   });
 });
 
-function assertExpectedRegistry(registry: ReturnType<typeof createRegistry>): void {
+function assertExpectedRegistry(
+  registry: ReturnType<typeof createRegistry>
+): void {
   expect(registry.findEnum("foo.Foo")).toBeUndefined();
   const mt = registry.findMessage(TestAllTypes.typeName);
   expect(mt).toBeDefined();
@@ -52,7 +58,12 @@ function assertExpectedRegistry(registry: ReturnType<typeof createRegistry>): vo
   }
   const st = registry.findService("spec.ExampleService");
   expect(st).toBeDefined();
-  expect(Object.keys(st?.methods ?? {})).toStrictEqual(["unary", "serverStream", "clientStream", "bidi"]);
+  expect(Object.keys(st?.methods ?? {})).toStrictEqual([
+    "unary",
+    "serverStream",
+    "clientStream",
+    "bidi",
+  ]);
   for (const m of Object.values(st?.methods ?? {})) {
     assertMessageTypeEquals(m.I, ExampleRequest);
     assertMessageTypeEquals(m.O, ExampleResponse);
