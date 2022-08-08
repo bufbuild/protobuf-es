@@ -75,9 +75,6 @@ export { createDescriptorSet } from "./create-descriptor-set.js";
 export { IMessageTypeRegistry } from "./type-registry.js";
 export { createRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
-export { LegacyDescriptorRegistry } from "./legacy-descriptor-registry.js";
-export { LegacyDescriptorSet } from "./legacy-descriptor-set.js";
-export { TypeRegistry } from "./legacy-type-registry.js";
 
 // ideally, we would export these types with sub-path exports:
 export * from "./google/protobuf/compiler/plugin_pb.js";
