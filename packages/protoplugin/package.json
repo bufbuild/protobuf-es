@@ -1,0 +1,48 @@
+{
+  "name": "@bufbuild/protoplugin",
+  "version": "0.0.10",
+  "license": "(Apache-2.0 AND BSD-3-Clause)",
+  "description": "Helps to create your own Protocol Buffers code generators.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bufbuild/protobuf-es.git",
+    "directory": "packages/protoplugin"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
+    "build": "npm run build:cjs && npm run build:esm+types",
+    "build:cjs": "npx tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm+types": "npx tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./ecmascript": {
+      "import": "./dist/esm/ecmascript/index.js",
+      "require": "./dist/cjs/ecmascript/index.js",
+      "default": "./dist/esm/ecmascript/index.js"
+    }
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "ecmascript": [
+        "./dist/types/ecmascript/index.d.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "0.0.10"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "files": [
+    "dist/**/"
+  ]
+}

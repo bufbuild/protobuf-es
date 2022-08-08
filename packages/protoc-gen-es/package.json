@@ -1,37 +1,33 @@
 {
   "name": "@bufbuild/protoc-gen-es",
-  "version": "0.0.8",
-  "description": "protoc-gen-es",
+  "version": "0.0.10",
+  "description": "Protocol Buffers code generator for ECMAScript",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bufbuild/protobuf-es.git"
+    "url": "https://github.com/bufbuild/protobuf-es.git",
+    "directory": "packages/protoc-gen-es"
   },
   "bin": {
     "protoc-gen-es": "bin/protoc-gen-es"
   },
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist/cjs/*",
+    "build": "npx tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs"
+  },
   "preferUnplugged": true,
+  "dependencies": {
+    "@bufbuild/protoplugin": "0.0.10"
+  },
   "peerDependencies": {
-    "@bufbuild/protobuf": "^0.0.8"
+    "@bufbuild/protobuf": "0.0.10"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {
       "optional": true
     }
-  },
-  "optionalDependencies": {
-    "@bufbuild/protoc-gen-es-darwin-64": "0.0.8",
-    "@bufbuild/protoc-gen-es-darwin-arm64": "0.0.8",
-    "@bufbuild/protoc-gen-es-windows-64": "0.0.8",
-    "@bufbuild/protoc-gen-es-windows-arm64": "0.0.8",
-    "@bufbuild/protoc-gen-es-windows-32": "0.0.8",
-    "@bufbuild/protoc-gen-es-linux-64": "0.0.8",
-    "@bufbuild/protoc-gen-es-linux-32": "0.0.8",
-    "@bufbuild/protoc-gen-es-linux-arm": "0.0.8",
-    "@bufbuild/protoc-gen-es-linux-arm64": "0.0.8",
-    "@bufbuild/protoc-gen-es-freebsd-64": "0.0.8",
-    "@bufbuild/protoc-gen-es-freebsd-arm64": "0.0.8",
-    "@bufbuild/protoc-gen-es-netbsd-64": "0.0.8",
-    "@bufbuild/protoc-gen-es-openbsd-64": "0.0.8"
   }
 }

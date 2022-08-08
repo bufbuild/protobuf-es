@@ -1,12 +1,37 @@
 # @bufbuild/protoc-gen-es
 
-[![npm](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es?style=flat-square)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+This package provides the code generator plugin `protoc-gen-es`. The code it 
+generates depends on [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
 
-A complete implementation of protocol buffers in TypeScript, 
-suitable for web browsers and Node.js.  
+## Protocol Buffers for ECMAScript
+
+A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) 
+in TypeScript, suitable for web browsers and Node.js.  
+
+For example, the following definition:
+
+```protobuf
+message Person {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  string email = 3;
+}
+```
+
+Is compiled to an ECMAScript class that can be used like this:
+
+```typescript
+let pete = new Person({
+  name: "pete",
+  id: 123
+});
+
+let bytes = pete.toBinary();
+pete = Person.fromBinary(bytes);
+pete = Person.fromJsonString('{"name": "pete", "id": 123}');
+```
+
 Learn more at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
-
-This is a code generator plugin for `protoc` and [`buf`](https://github.com/bufbuild/buf).
 
 
 ## Installation
@@ -24,14 +49,6 @@ Note that npm does not add the executable to your `$PATH`. You can do so with:
 PATH=$PATH:$(pwd)/node_modules/.bin
 ```
 
-Note that `protoc-gen-es` is actually just a simple node script that selects the 
-correct precompiled binary for your platform. For example, if you are on a 32-bit 
-linux machine, the optional dependency `@bufbuild/protoc-gen-es-linux-32` is 
-automatically installed by `npm`, and our node script will run it. Note that this
-means you cannot move your `node_modules` directory to a different platform and
-run it. We recommend you run `npm ci` in CI or your docker images instead.
-
-
 ### With yarn
 
 ```shell
@@ -42,27 +59,10 @@ Note that yarn v2 does not use a `node_modules` directory anymore. To find the p
 where yarn stores the executable, run `yarn bin protoc-gen-es` (it is "unplugged" 
 automatically).
 
-Yarn supports installing dependencies for several platforms at the same time, by 
-adding the configuration field [`supportedArchitectures`](https://yarnpkg.com/configuration/yarnrc#supportedArchitectures)
-in your `.yarnrc.yml`.
-
-
-### With go
-
-Alternatively, you can install the plugin with `go`:
-
-```shell
-go install github.com/bufbuild/protobuf-es/cmd/protoc-gen-es@latest
-```
-
-If your go environment is set up correctly, the executable is now available on 
-your `$PATH`.
-
 You can always confirm successful installation with:
 ```shell
 protoc-gen-es --version
 ```
-
 
 
 ## Plugin options

@@ -44,29 +44,35 @@ export function getEnumType(enumObject: EnumObject): EnumType {
 export function setEnumType(
   enumObject: EnumObject,
   typeName: string,
-  values: EnumValueInfo[]
-  // We do not surface options at this time
-  // opt?: {
-  // options?: { readonly [extensionName: string]: JsonValue };
-  // },
+  values: Omit<EnumValueInfo, "localName">[],
+  opt?: {
+    // We do not surface options at this time
+    // options?: { readonly [extensionName: string]: JsonValue };
+  }
 ): void {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-  (enumObject as any)[enumTypeSymbol] = makeEnumType(typeName, values);
+  (enumObject as any)[enumTypeSymbol] = makeEnumType(
+    typeName,
+    values.map((v) => ({
+      no: v.no,
+      name: v.name,
+      localName: enumObject[v.no],
+    })),
+    opt
+  );
 }
-
-// We do not surface options at this time
-// export type PartialEnumValue = Omit<EnumValueInfo, 'options'> & Partial<Pick<EnumValueInfo, "options">>;
 
 /**
  * Create a new EnumType with the given values.
  */
 export function makeEnumType(
   typeName: string,
-  values: EnumValueInfo[]
-  // We do not surface options at this time
-  // opt?: {
-  // options?: { readonly [extensionName: string]: JsonValue };
-  // },
+  values: (EnumValueInfo | Omit<EnumValueInfo, "localName">)[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _opt?: {
+    // We do not surface options at this time
+    // options?: { readonly [extensionName: string]: JsonValue };
+  }
 ): EnumType {
   const names = Object.create(null) as Record<string, EnumValueInfo>;
   const numbers = Object.create(null) as Record<number, EnumValueInfo>;
@@ -74,9 +80,10 @@ export function makeEnumType(
   for (const value of values) {
     // We do not surface options at this time
     // const value: EnumValueInfo = {...v, options: v.options ?? emptyReadonlyObject};
-    normalValues.push(value);
-    names[value.name] = value;
-    numbers[value.no] = value;
+    const n = normalizeEnumValue(value);
+    normalValues.push(n);
+    names[value.name] = n;
+    numbers[value.no] = n;
   }
   return {
     typeName,
@@ -94,40 +101,31 @@ export function makeEnumType(
 
 /**
  * Create a new enum object with the given values.
+ * Sets reflection information.
  */
 export function makeEnum(
   typeName: string,
-  values: EnumValueInfo[],
+  values: (EnumValueInfo | Omit<EnumValueInfo, "localName">)[],
   opt?: {
-    /**
-     * MY_ENUM_ for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`, or blank string
-     */
-    sharedPrefix?: string;
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
   }
 ): EnumObject {
   const enumObject: EnumObject = {};
   for (const value of values) {
-    const name = makeEnumValueName(value, opt?.sharedPrefix);
-    enumObject[name] = value.no;
-    enumObject[value.no] = name;
+    const n = normalizeEnumValue(value);
+    enumObject[n.localName] = n.no;
+    enumObject[n.no] = n.localName;
   }
-  setEnumType(enumObject, typeName, values);
+  setEnumType(enumObject, typeName, values, opt);
   return enumObject;
 }
 
-// Construct a local name for an enum value.
-// This logic matches the Go function with the same name in private/protoplugin/names.go
-function makeEnumValueName(
-  value: EnumValueInfo,
-  sharedPrefix: string | undefined
-): string {
-  if (sharedPrefix === undefined) {
-    return value.name;
+function normalizeEnumValue(
+  value: EnumValueInfo | Omit<EnumValueInfo, "localName">
+): EnumValueInfo {
+  if ("localName" in value) {
+    return value;
   }
-  if (!value.name.startsWith(sharedPrefix)) {
-    return value.name;
-  }
-  return value.name.substring(sharedPrefix.length);
+  return { ...value, localName: value.name };
 }

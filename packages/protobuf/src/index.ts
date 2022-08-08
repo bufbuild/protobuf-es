@@ -16,6 +16,7 @@ export { proto3 } from "./proto3.js";
 export { proto2 } from "./proto2.js";
 export { protoInt64 } from "./proto-int64.js";
 export { protoBase64 } from "./proto-base64.js";
+export { codegenInfo } from "./codegen-info.js";
 
 export {
   Message,
@@ -39,9 +40,6 @@ export type {
   MethodInfoBiDiStreaming,
 } from "./service-type.js";
 export { MethodKind, MethodIdempotency } from "./service-type.js";
-export { TypeRegistry, IMessageTypeRegistry } from "./type-registry.js";
-export { DescriptorRegistry } from "./descriptor-registry.js";
-export { DescriptorSet } from "./descriptor-set.js";
 
 export { WireType, BinaryWriter, BinaryReader } from "./binary-encoding.js";
 export type { IBinaryReader, IBinaryWriter } from "./binary-encoding.js";
@@ -59,6 +57,24 @@ export {
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "./json-format.js";
+
+export {
+  DescriptorSet,
+  DescFile,
+  DescEnum,
+  DescEnumValue,
+  DescMessage,
+  DescOneof,
+  DescField,
+  DescService,
+  DescMethod,
+  DescExtension,
+  DescComments,
+} from "./descriptor-set.js";
+export { createDescriptorSet } from "./create-descriptor-set.js";
+export { IMessageTypeRegistry } from "./type-registry.js";
+export { createRegistry } from "./create-registry.js";
+export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
 
 // ideally, we would export these types with sub-path exports:
 export * from "./google/protobuf/compiler/plugin_pb.js";

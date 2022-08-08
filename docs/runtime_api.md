@@ -2,7 +2,7 @@ Protobuf-ES: Runtime API
 ========================
 
 The runtime library for the generated code is provided by the npm package 
-[@bufbuild/protobuf](../packages/protobuf). This is a detailed overview of the features 
+[@bufbuild/protobuf][pkg-protobuf]. This is a detailed overview of the features 
 provided by the library.
 
 - [Message class](#message-class)
@@ -19,13 +19,13 @@ provided by the library.
 - [64-bit-integral-types](#64-bit-integral-types)
 - [Reflection](#reflection)
   - [Iterating over message fields](#iterating-over-message-fields)
-  - [DescriptorRegistry](#descriptorregistry)
+  - [Registries](#registries)
 - [Advanced TypeScript types](#advanced-typescript-types)
 
 
 ## Message class
 
-All generated messages extends the base class [Message](../packages/protobuf/src/message.ts#L40).
+All generated messages extends the base class [Message][src-message].
 It provides a few helpful methods to compare, clone, and serialize, and a convenient constructor. 
 All message classes also come with some static properties with metadata, and static convenience methods.
 
@@ -81,16 +81,16 @@ foo = "";
 
 Protobuf fields map to default values as follows:
 
-| Protobuf field     | Class property default value                                      |
-|--------------------|-------------------------------------------------------------------|
-| bool               | `false`                                                           |
-| string             | `""`                                                              |
-| other scalar types | see [intrinsic default values](./generated_code.md#scalar-fields) |
-| optional scalar    | `undefined`                                                       |
-| message            | `undefined`                                                       |
-| map                | `{}`                                                              |
-| repeated           | `[]`                                                              |
-| oneof              | `{ case: undefined }`                                             |
+| Protobuf field     | Class property default value                                         |
+|--------------------|----------------------------------------------------------------------|
+| bool               | `false`                                                              |
+| string             | `""`                                                                 |
+| other scalar types | see [scalar field default values](./generated_code.md#scalar-fields) |
+| optional scalar    | `undefined`                                                          |
+| message            | `undefined`                                                          |
+| map                | `{}`                                                                 |
+| repeated           | `[]`                                                                 |
+| oneof              | `{ case: undefined }`                                                |
 
 
 ### Accessing fields
@@ -230,10 +230,9 @@ const json = example.toJson();
 Example.fromJson(json);
 ```
 
-But the result will be a [JSON value](../packages/protobuf/src/json-format.ts#L139-L154) –
-a primitive JavaScript that can be converted to a JSON string with the built-in function
-`JSON.stringify()`. For convenience, we also provide methods that include the stringify
-step:
+But the result will be a [JSON value][src-json-value] – a primitive JavaScript that can 
+be converted to a JSON string with the built-in function `JSON.stringify()`. For 
+convenience, we also provide methods that include the stringify step:
 
 
 ```typescript
@@ -247,7 +246,7 @@ with the previous version. In general, the binary format is also more performant
 JSON.
 
 Conformance with the binary and the JSON format is ensured by the
-[conformance tests](../packages/conformance-test). We do not implement the text format.
+[conformance tests](../packages/protobuf-conformance). We do not implement the text format.
 
 
 
@@ -267,20 +266,18 @@ For enumerations, we lean on TypeScript enums. A quick refresher about them:
 - TypeScript enums are just plain objects in JavaScript.
 - TypeScript enums support aliases - as does protobuf with the `allow_alias` option.
 
-However, similar to MessageType, there is also [`EnumType`](../packages/protobuf/src/enum.ts#L15).
-It provides the fully qualified protobuf type name, as well as the original values and their
-names. Use  [`proto3.getEnumType()`](../packages/protobuf/src/private/proto-runtime.ts#L81-L86)
-to retrieve the EnumType for a given enum.
+However, similar to MessageType, there is also [`EnumType`][src-enum-type].
+It provides the fully qualified protobuf type name, as well as the original values and 
+their names. Use  [`proto3.getEnumType()`][src-proto3-getEnumType] to retrieve the 
+EnumType for a given enum.
 
-Similar to messages, enums can also be created at run time, via
-[`proto3.makeEnum()`](../packages/protobuf/src/private/proto-runtime.ts#L58).
+Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
 
 
 ## Well-known types
 
-Protocol buffers have a small standard library of well-known types.
-[@bufbuild/protobuf](../packages/protobuf) provides all of them as pre-compiled
-exports.
+Protocol buffers have a small standard library of well-known types. 
+[@bufbuild/protobuf][pkg-protobuf] provides all of them as pre-compiled exports.
 
 <details><summary>Expand the list of Well-known types</summary>
 
@@ -427,7 +424,7 @@ representation that is suitable to display in a GUI, as a map key, or for simila
 purposes.
 
 In case you simply want to set a field value, for example from an HTML form input,
-use the provided conversion utility [`protoInt64`](https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65):
+use the provided conversion utility [`protoInt64`][src-proto-int64]:
 
 ```typescript
 import {protoInt64} from "@bufbuild/protobuf";
@@ -447,7 +444,7 @@ third party library like [Long.js](https://www.npmjs.com/package/long).
 
 In the previous section we went through the methods every message class provides,
 including static methods. But we actually generate a few more static properties
-with metadata. The static shape of the generated class is a [`MessageType`](../packages/protobuf/src/message-type.ts#L27),
+with metadata. The static shape of the generated class is a [`MessageType`][src-message-type],
 a representation of the _type_ of a message.
 
 Such a type can actually be created at run time. We can take a peek at the [generated
@@ -492,23 +489,23 @@ quite a bit of code size.
 ## Reflection
 
 
-### DescriptorRegistry
+### Registries
 
 As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
 Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
 `.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
-
-Using a [`DescriptorRegistry`](../packages/protobuf/src/descriptor-registry.ts#L88), you
-can create types at run time from a set of descriptors created by a protocol buffers
-compiler:
 
 ```sh
 # generate an image (compatible to a `google.protobuf.FileDescriptorSet`)
 buf generate --output image.bin
 ```
 
+Using [`createRegistryFromDescriptors()`][src-create-registry-from-desc], you
+can create types at run time from a set of descriptors created by a protocol buffers
+compiler:
+
 ```typescript
-const registry = new DescriptorRegistry.fromFileDescriptorSet(
+const registry = createRegistryFromDescriptors(
   readFileSync("image.bin")
 );
 const Example = registry.findMessage("doc.Example");
@@ -533,7 +530,8 @@ walkFields(message);
 ```
 
 Note that the example does not handle oneof groups. Please consult the sources code 
-for examples how to include them. The JSON and binary serialization mechanisms use this technique. 
+for examples how to include them. The JSON and binary serialization mechanisms use this 
+technique. 
 
 
 ## Advanced TypeScript types
@@ -541,8 +539,8 @@ for examples how to include them. The JSON and binary serialization mechanisms u
 ### PartialMessage
 
 The object initializers accepted by message constructors are defined by the type 
-[`PartialMessage<T>`](../packages/protobuf/src/message.ts#L145-L153).
-It is similar to the TypeScript built-in type `Partial`, but works recursively. 
+[`PartialMessage<T>`][src-partial-message]. It is similar to the TypeScript built-in type 
+`Partial`, but works recursively. 
 
 This type is well suited in case you know the type of a message, but want to allow 
 an instance to be given in the most flexible way.
@@ -550,8 +548,8 @@ an instance to be given in the most flexible way.
 
 ### PlainMessage
 
-[`PlainMessage<T>`](../packages/protobuf/src/message.ts#L136-L140) represents _just_
-the fields of a message, without their methods. 
+[`PlainMessage<T>`][src-plain-message] represents _just_ the fields of a message, without 
+their methods. 
 
 In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
 provided. And since it is not recursive, message fields must provide the exact type.
@@ -574,7 +572,7 @@ let plain: PlainMessage<Example> = {...example};
 
 ### AnyMessage
 
-If you want to handle messages of unknown type, the type [`AnyMessage`](https://github.com/bufbuild/protobuf-es/blob/584eddddc8ed53fd0df763355e450e3419259258/packages/protobuf/src/message.ts#L24-L31) 
+If you want to handle messages of unknown type, the type [`AnyMessage`][src-any-message] 
 provides a convenient index signature to access fields:
 
 ```typescript
@@ -582,3 +580,16 @@ const anyMessage: AnyMessage = example;
 example["foo"];
 ```
 
+
+[src-proto-int64]: https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65
+[src-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L40
+[src-message-type]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message-type.ts#L27
+[src-enum-type]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/enum.ts#L15
+[src-json-value]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/json-format.ts#L139-L154
+[src-proto3-getEnumType]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/private/proto-runtime.ts#L81-L86
+[src-proto3-makeEnum]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/private/proto-runtime.ts#L58
+[src-create-registry-from-desc]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
+[src-partial-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L143
+[src-plain-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
+[src-any-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
+[pkg-protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
