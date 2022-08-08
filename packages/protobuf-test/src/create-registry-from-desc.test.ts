@@ -15,11 +15,17 @@
 import { readFileSync } from "fs";
 import {
   createDescriptorSet,
+  createRegistry,
   createRegistryFromDescriptors,
   FileDescriptorSet,
+  MethodKind,
 } from "@bufbuild/protobuf";
 import { TestAllTypes } from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
 import { assertMessageTypeEquals } from "./helpers.js";
+import {
+  ExampleRequest,
+  ExampleResponse,
+} from "./gen/ts/extra/service-example_pb";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 const fds = FileDescriptorSet.fromBinary(fdsBytes);
@@ -29,23 +35,51 @@ describe("createRegistryFromDescriptors()", () => {
     const dr = createRegistryFromDescriptors(createDescriptorSet([]));
     expect(dr.findMessage("foo.Foo")).toBeUndefined();
     expect(dr.findEnum("foo.Foo")).toBeUndefined();
+    expect(dr.findService("foo.Foo")).toBeUndefined();
   });
   test("from google.protobuf.FileDescriptorSet", () => {
     const dr = createRegistryFromDescriptors(fds);
-    expect(dr.findEnum("foo.Foo")).toBeUndefined();
-    const mt = dr.findMessage(TestAllTypes.typeName);
-    expect(mt).toBeDefined();
-    if (mt) {
-      assertMessageTypeEquals(mt, TestAllTypes);
-    }
+    assertExpectedRegistry(dr);
   });
   test("from serialized google.protobuf.FileDescriptorSet", () => {
     const dr = createRegistryFromDescriptors(fdsBytes);
-    expect(dr.findEnum("foo.Foo")).toBeUndefined();
-    const mt = dr.findMessage(TestAllTypes.typeName);
-    expect(mt).toBeDefined();
-    if (mt) {
-      assertMessageTypeEquals(mt, TestAllTypes);
-    }
+    assertExpectedRegistry(dr);
   });
 });
+
+function assertExpectedRegistry(
+  registry: ReturnType<typeof createRegistry>
+): void {
+  expect(registry.findEnum("foo.Foo")).toBeUndefined();
+  const mt = registry.findMessage(TestAllTypes.typeName);
+  expect(mt).toBeDefined();
+  if (mt) {
+    assertMessageTypeEquals(mt, TestAllTypes);
+  }
+  const st = registry.findService("spec.ExampleService");
+  expect(st).toBeDefined();
+  expect(Object.keys(st?.methods ?? {})).toStrictEqual([
+    "unary",
+    "serverStream",
+    "clientStream",
+    "bidi",
+  ]);
+  for (const m of Object.values(st?.methods ?? {})) {
+    assertMessageTypeEquals(m.I, ExampleRequest);
+    assertMessageTypeEquals(m.O, ExampleResponse);
+    switch (m.name) {
+      case "Unary":
+        expect(m.kind).toBe(MethodKind.Unary);
+        break;
+      case "ServerStream":
+        expect(m.kind).toBe(MethodKind.ServerStreaming);
+        break;
+      case "ClientStream":
+        expect(m.kind).toBe(MethodKind.ClientStreaming);
+        break;
+      case "Bidi":
+        expect(m.kind).toBe(MethodKind.BiDiStreaming);
+        break;
+    }
+  }
+}
