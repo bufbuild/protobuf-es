@@ -180,7 +180,6 @@ bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header ## Gene
 		--plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out $(TMP)/bootstrapwkt --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts \
 		--proto_path $(PB)/src $(GOOGLE_PROTOBUF_WKT)
 	find $(TMP)/bootstrapwkt -name '*.ts' | \
-		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
 		xargs $(BIN)/license-header \
 			--license-type "apache" \
 			--copyright-holder "Buf Technologies, Inc." \
