@@ -22,17 +22,14 @@ describe("PlainMessage", () => {
     expect(plainTimestamp.nanos).toBeDefined();
   });
   test("removes standard methods from type system", () => {
-    // Methods are removed from the type system.
+    // We want to test that the type system sees this function as undefined even though it's still actually there.  So
+    // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
     // @ts-expect-error TS2339
-    const toBinary = plainTimestamp.toBinary;
-    // The method property still exists.
-    expect(toBinary).toBeDefined();
+    expect(plainTimestamp.toBinary).toBeDefined();
   });
   test("removes wkt methods from type system", () => {
     // Custom methods of well-known types are removed as well.
     // @ts-expect-error TS2339
-    const toDate = plainTimestamp.toDate;
-    // The method property still exists.
-    expect(toDate).toBeDefined();
+    expect(plainTimestamp.toDate).toBeDefined();
   });
 });
