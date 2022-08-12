@@ -26,7 +26,7 @@ describe("PlainMessage", () => {
     test("TS_Timestamp", () => {
       const plainTimestamp: PlainMessage<TS_Timestamp> = TS_Timestamp.now();
       // @ts-expect-error TS2339
-      console.log(plainTimestamp.toDate());
+      plainTimestamp.toDate();
     });
   });
 });
