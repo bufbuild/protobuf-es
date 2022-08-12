@@ -13,14 +13,26 @@
 // limitations under the License.
 
 import type { PlainMessage } from "@bufbuild/protobuf";
-import { Timestamp as TS_Timestamp } from "./gen/ts/google/protobuf/timestamp_pb";
+import { Timestamp } from "./gen/ts/google/protobuf/timestamp_pb";
 
 describe("PlainMessage", () => {
-  test("removes wkt functions from type system", () => {
-    const plainTimestamp: PlainMessage<TS_Timestamp> = TS_Timestamp.now();
-    // We want to test that the type system sees this function as undefined even though it's still actually there.  So
-    // we expect TS error TS2339, but add a simple test so Jest doesn't complain there's no expectations.
+  const plainTimestamp: PlainMessage<Timestamp> = Timestamp.now();
+  test("keeps regular fields", () => {
+    // Regular fields are untouched.
+    expect(plainTimestamp.nanos).toBeDefined();
+  });
+  test("removes standard methods from type system", () => {
+    // Methods are removed from the type system.
     // @ts-expect-error TS2339
-    expect(plainTimestamp.toDate).toBeDefined();
+    const toBinary = plainTimestamp.toBinary;
+    // The method property still exists.
+    expect(toBinary).toBeDefined();
+  });
+  test("removes wkt methods from type system", () => {
+    // Custom methods of well-known types are removed as well.
+    // @ts-expect-error TS2339
+    const toDate = plainTimestamp.toDate;
+    // The method property still exists.
+    expect(toDate).toBeDefined();
   });
 });
