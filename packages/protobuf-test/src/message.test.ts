@@ -16,10 +16,11 @@ import type { PlainMessage } from "@bufbuild/protobuf";
 import { Timestamp as TS_Timestamp } from "./gen/ts/google/protobuf/timestamp_pb";
 
 describe("PlainMessage", () => {
-  test("removes wkt functions", () => {
+  test("removes wkt functions from type system", () => {
     const plainTimestamp: PlainMessage<TS_Timestamp> = TS_Timestamp.now();
-    // We want to test that the type system sees this function as undefined even though it's still actually there.
-    // @ts-expect-error TS2334
+    // We want to test that the type system sees this function as undefined even though it's still actually there.  So
+    // we expect TS error TS2339, but add a simple test so Jest doesn't complain there's no expectations.
+    // @ts-expect-error TS2339
     expect(plainTimestamp.toDate).toBeDefined();
   });
 });
