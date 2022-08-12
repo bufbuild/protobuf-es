@@ -34,7 +34,12 @@ import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
 import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
-import { deriveImportPath, ImportRedirections, makeImportPath, redirectImport } from "./import-path.js";
+import {
+  deriveImportPath,
+  ImportRedirections,
+  makeImportPath,
+  redirectImport,
+} from "./import-path.js";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -91,7 +96,10 @@ export function createSchema(
   const runtime = createRuntimeImports(bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
     const name = codegenInfo.localName(desc);
-    const from = redirectImport(makeImportPath(desc.file, bootstrapWkt, filesToGenerate), redirectedImports);
+    const from = redirectImport(
+      makeImportPath(desc.file, bootstrapWkt, filesToGenerate),
+      redirectedImports
+    );
     return createImportSymbol(name, from);
   };
   const generatedFiles: GenerateFileToResponse[] = [];
@@ -102,13 +110,22 @@ export function createSchema(
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
-      const importPath = redirectImport(deriveImportPath(name), redirectedImports);
-      const genFile = createGeneratedFile(name, importPath, createTypeImport, runtime, {
-        pluginName,
-        pluginVersion,
-        parameter: request.parameter,
-        tsNocheck,
-      });
+      const importPath = redirectImport(
+        deriveImportPath(name),
+        redirectedImports
+      );
+      const genFile = createGeneratedFile(
+        name,
+        importPath,
+        createTypeImport,
+        runtime,
+        {
+          pluginName,
+          pluginVersion,
+          parameter: request.parameter,
+          tsNocheck,
+        }
+      );
       generatedFiles.push(genFile);
       return genFile;
     },

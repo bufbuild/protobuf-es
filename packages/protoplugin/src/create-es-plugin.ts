@@ -48,10 +48,8 @@ export function createEcmaScriptPlugin(
     name: init.name,
     version: init.version,
     run(req) {
-      const { targets, tsNocheck, bootstrapWkt, redirectedImports } = parseParameter(
-        req.parameter,
-        init.parseOption
-      );
+      const { targets, tsNocheck, bootstrapWkt, redirectedImports } =
+        parseParameter(req.parameter, init.parseOption);
       const { schema, toResponse } = createSchema(
         req,
         targets,
@@ -65,7 +63,7 @@ export function createEcmaScriptPlugin(
       const res = new CodeGeneratorResponse();
       toResponse(res);
       return res;
-    }
+    },
   };
 }
 
@@ -127,7 +125,10 @@ function parseParameter(
       case "redirect_imports": {
         const parts = value.split(":");
         if (parts.length !== 2) {
-          throw new PluginOptionError(`${key}=${value}`, "must be in the form of <pattern>:<target>");
+          throw new PluginOptionError(
+            `${key}=${value}`,
+            "must be in the form of <pattern>:<target>"
+          );
         }
         const [pattern, target] = parts;
         redirectedImports.push({ pattern, target });
@@ -158,7 +159,7 @@ function splitParameter(
     const i = pair.indexOf("=");
     return {
       key: i === -1 ? pair : pair.substring(0, i),
-      value: i === -1 ? "" : pair.substring(i + 1)
+      value: i === -1 ? "" : pair.substring(i + 1),
     };
   });
 }

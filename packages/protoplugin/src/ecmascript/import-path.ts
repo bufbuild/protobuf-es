@@ -1,3 +1,17 @@
+// Copyright 2021-2022 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 import { codegenInfo, DescFile } from "@bufbuild/protobuf";
 
 /**
@@ -31,25 +45,33 @@ import { codegenInfo, DescFile } from "@bufbuild/protobuf";
  */
 export type ImportRedirections = { pattern: string; target: string }[];
 
-const cache = new WeakMap<ImportRedirections, { pattern: RegExp; target: string }[]>();
+const cache = new WeakMap<
+  ImportRedirections,
+  { pattern: RegExp; target: string }[]
+>();
 
 /**
  * Apply import redirection to the given path.
  */
-export function redirectImport(importPath: string, redirectedImports: ImportRedirections): string {
+export function redirectImport(
+  importPath: string,
+  redirectedImports: ImportRedirections
+): string {
   let ri = cache.get(redirectedImports);
   if (ri === undefined) {
     ri = redirectedImports.map(({ pattern, target }) => {
       return {
         pattern: starToRegExp(pattern),
-        target
+        target,
       };
     });
     cache.set(redirectedImports, ri);
   }
   for (const { pattern, target } of ri) {
     if (pattern.test(importPath)) {
-      return target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/");
+      return (
+        target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/")
+      );
     }
   }
   return importPath;
@@ -60,7 +82,7 @@ function starToRegExp(star: string): RegExp {
   for (let i = 0; i < star.length; i++) {
     switch (star[i]) {
       case "*":
-        if (star[i+1] === "*" && star[i+2] === "/") {
+        if (star[i + 1] === "*" && star[i + 2] === "/") {
           i += 2;
           r.push("([^\\/]+\\/)*");
           break;
@@ -138,7 +160,10 @@ export function deriveImportPath(filename: string): string {
  * - baz.js
  * If foo.js wants to import baz.js, we return ../baz.js
  */
-export function makeImportPathRelative(importer: string, importPath: string): string {
+export function makeImportPathRelative(
+  importer: string,
+  importPath: string
+): string {
   if (!relativePathRE.test(importPath)) {
     // We don't touch absolute imports, like @bufbuild/protobuf
     return importPath;

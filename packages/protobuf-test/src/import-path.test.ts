@@ -1,17 +1,39 @@
+// Copyright 2021-2022 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 // TODO remove me or deduplicate
 describe("redirectImport()", () => {
   test("redirects", () => {
     expect(
-      redirectImport("./foo/bar_pb.js", [{ pattern: "./foo/**/*_pb.js", target: "@scope/pkg" }])
+      redirectImport("./foo/bar_pb.js", [
+        { pattern: "./foo/**/*_pb.js", target: "@scope/pkg" },
+      ])
     ).toBe("@scope/pkg/foo/bar_pb.js");
     expect(
-      redirectImport("./foo/bar/baz_pb.js", [{ pattern: "./foo/**/*_pb.js", target: "@scope/pkg" }])
+      redirectImport("./foo/bar/baz_pb.js", [
+        { pattern: "./foo/**/*_pb.js", target: "@scope/pkg" },
+      ])
     ).toBe("@scope/pkg/foo/bar/baz_pb.js");
     expect(
-      redirectImport("./x/y_pb.js", [{ pattern: "./**/*_pb.js", target: "@scope/pkg" }])
+      redirectImport("./x/y_pb.js", [
+        { pattern: "./**/*_pb.js", target: "@scope/pkg" },
+      ])
     ).toBe("@scope/pkg/x/y_pb.js");
     expect(
-      redirectImport("./x/y_pb.js", [{ pattern: "./**/*_pb.js", target: "pkg" }])
+      redirectImport("./x/y_pb.js", [
+        { pattern: "./**/*_pb.js", target: "pkg" },
+      ])
     ).toBe("pkg/x/y_pb.js");
     expect(
       redirectImport("./x/y_pb.js", [{ pattern: "./*/*_pb.js", target: "pkg" }])
@@ -20,18 +42,26 @@ describe("redirectImport()", () => {
       redirectImport("./y_pb.js", [{ pattern: "./**/*_pb.js", target: "pkg" }])
     ).toBe("pkg/y_pb.js");
     expect(
-      redirectImport("./y_pb.js", [{ pattern: "./**/*_pb.js", target: "../foo/" }])
+      redirectImport("./y_pb.js", [
+        { pattern: "./**/*_pb.js", target: "../foo/" },
+      ])
     ).toBe("../foo/y_pb.js");
     expect(
-      redirectImport("./x/y_pb.js", [{ pattern: "./**/*_pb.js", target: "../foo" }])
+      redirectImport("./x/y_pb.js", [
+        { pattern: "./**/*_pb.js", target: "../foo" },
+      ])
     ).toBe("../foo/x/y_pb.js");
   });
   test("does not redirect", () => {
     expect(
-      redirectImport("./bar_pb.js", [{ pattern:  "./foo/**/*_pb.js", target: "pkg" }])
+      redirectImport("./bar_pb.js", [
+        { pattern: "./foo/**/*_pb.js", target: "pkg" },
+      ])
     ).toBe("./bar_pb.js");
     expect(
-      redirectImport("./foo/bar_zz.txt", [{ pattern:  "./foo/**/*_pb.js", target: "pkg" }])
+      redirectImport("./foo/bar_zz.txt", [
+        { pattern: "./foo/**/*_pb.js", target: "pkg" },
+      ])
     ).toBe("./foo/bar_zz.txt");
     expect(
       redirectImport("./y_pb.js", [{ pattern: "./*/*_pb.js", target: "pkg" }])
@@ -80,25 +110,33 @@ export const relativePathRE = /^\.{1,2}\//;
  */
 export type ImportRedirections = { pattern: string; target: string }[];
 
-const cache = new WeakMap<ImportRedirections, { pattern: RegExp; target: string }[]>();
+const cache = new WeakMap<
+  ImportRedirections,
+  { pattern: RegExp; target: string }[]
+>();
 
 /**
  * Apply import redirection to the given path.
  */
-export function redirectImport(importPath: string, redirectedImports: ImportRedirections): string {
+export function redirectImport(
+  importPath: string,
+  redirectedImports: ImportRedirections
+): string {
   let ri = cache.get(redirectedImports);
   if (ri === undefined) {
     ri = redirectedImports.map(({ pattern, target }) => {
       return {
         pattern: starToRegExp(pattern),
-        target
+        target,
       };
     });
     cache.set(redirectedImports, ri);
   }
   for (const { pattern, target } of ri) {
     if (pattern.test(importPath)) {
-      return target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/");
+      return (
+        target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/")
+      );
     }
   }
   return importPath;
@@ -109,7 +147,7 @@ function starToRegExp(star: string): RegExp {
   for (let i = 0; i < star.length; i++) {
     switch (star[i]) {
       case "*":
-        if (star[i+1] === "*" && star[i+2] === "/") {
+        if (star[i + 1] === "*" && star[i + 2] === "/") {
           i += 2;
           r.push("([^\\/]+\\/)*");
           break;

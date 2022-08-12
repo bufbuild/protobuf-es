@@ -13,7 +13,10 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile, DescMessage } from "@bufbuild/protobuf";
-import { CodeGeneratorResponse, CodeGeneratorResponse_File } from "@bufbuild/protobuf";
+import {
+  CodeGeneratorResponse,
+  CodeGeneratorResponse_File,
+} from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { literalString, makeFilePreamble } from "./gencommon.js";
