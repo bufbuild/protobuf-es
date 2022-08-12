@@ -89,8 +89,8 @@ export const relativePathRE = /^\.{1,2}\//;
  * multiple times, in the form of `redirect_imports=<pattern>:<target>`.
  * If any generated file imports from a path matching a pattern, the import
  * path is redirected to the corresponding target. The first matching pattern
- * wins. As a result, the target is prepended to the import path, stripping
- * any leading ./ or ../ from the import path first.
+ * wins. As a result, the target is prepended to the import path (after
+ * replacing any leading ./ or ../ from the import path with / first).
  *
  * The pattern is a very reduced subset of glob:
  * - `*` matches zero or more characters except `/`.
