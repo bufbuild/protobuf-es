@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema } from "./ecmascript";
+import type { Schema, Target } from "./ecmascript";
 import { createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
-import type { Target } from "./ecmascript";
+import type { ImportRedirections } from "./ecmascript/import-path.js";
 
 interface PluginInit {
   /**
@@ -48,7 +48,7 @@ export function createEcmaScriptPlugin(
     name: init.name,
     version: init.version,
     run(req) {
-      const { targets, tsNocheck, bootstrapWkt } = parseParameter(
+      const { targets, tsNocheck, bootstrapWkt, redirectedImports } = parseParameter(
         req.parameter,
         init.parseOption
       );
@@ -58,13 +58,14 @@ export function createEcmaScriptPlugin(
         init.name,
         init.version,
         tsNocheck,
-        bootstrapWkt
+        bootstrapWkt,
+        redirectedImports
       );
       generateFn(schema);
       const res = new CodeGeneratorResponse();
       toResponse(res);
       return res;
-    },
+    }
   };
 }
 
@@ -75,6 +76,7 @@ function parseParameter(
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
   let bootstrapWkt = false;
+  const redirectedImports: ImportRedirections = [];
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
       case "target":
@@ -122,6 +124,15 @@ function parseParameter(
             throw new PluginOptionError(`${key}=${value}`);
         }
         break;
+      case "redirect_imports": {
+        const parts = value.split(":");
+        if (parts.length !== 2) {
+          throw new PluginOptionError(`${key}=${value}`, "must be in the form of <pattern>:<target>");
+        }
+        const [pattern, target] = parts;
+        redirectedImports.push({ pattern, target });
+        break;
+      }
       default:
         if (parseOption === undefined) {
           throw new PluginOptionError(`${key}=${value}`);
@@ -134,7 +145,7 @@ function parseParameter(
         break;
     }
   }
-  return { targets, tsNocheck, bootstrapWkt };
+  return { targets, tsNocheck, bootstrapWkt, redirectedImports };
 }
 
 function splitParameter(
@@ -147,7 +158,7 @@ function splitParameter(
     const i = pair.indexOf("=");
     return {
       key: i === -1 ? pair : pair.substring(0, i),
-      value: i === -1 ? "" : pair.substring(i + 1),
+      value: i === -1 ? "" : pair.substring(i + 1)
     };
   });
 }

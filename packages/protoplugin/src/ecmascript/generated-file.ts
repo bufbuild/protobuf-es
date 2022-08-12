@@ -13,14 +13,12 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile, DescMessage } from "@bufbuild/protobuf";
-import {
-  CodeGeneratorResponse,
-  CodeGeneratorResponse_File,
-} from "@bufbuild/protobuf";
+import { CodeGeneratorResponse, CodeGeneratorResponse_File } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { literalString, makeFilePreamble } from "./gencommon.js";
-import type { RuntimeImports } from "./runtime-imports";
+import type { RuntimeImports } from "./runtime-imports.js";
+import { makeImportPathRelative } from "./import-path.js";
 
 /**
  * All types that can be passed to GeneratedFile.print()
@@ -93,6 +91,7 @@ type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
 
 export function createGeneratedFile(
   name: string,
+  importPath: string,
   createTypeImport: CreateTypeImportFn,
   runtimeImports: RuntimeImports,
   preambleSettings: {
@@ -102,7 +101,6 @@ export function createGeneratedFile(
     tsNocheck: boolean;
   }
 ): GeneratedFile & GenerateFileToResponse {
-  const importPath = deriveImportPath(name);
   let preamble: string | undefined;
   const el: El[] = [];
   return {
@@ -148,18 +146,6 @@ export function createGeneratedFile(
 }
 
 type El = ImportSymbol | string;
-
-const importPathExtension = ".js";
-const knownExtensionsRE = /\.(js|ts|d.ts)$/;
-const relativePathRE = /^\.{1,2}\//;
-
-function deriveImportPath(filename: string): string {
-  let importPath = filename.replace(knownExtensionsRE, importPathExtension);
-  if (!relativePathRE.test(importPath)) {
-    importPath = "./" + importPath;
-  }
-  return importPath;
-}
 
 function elToContent(el: El[], importerPath: string): string {
   const c: string[] = [];
@@ -355,44 +341,6 @@ function processImports(
   }
 
   return symbolToIdentifier;
-}
-
-// makeImportPathRelative makes an import path relative to the file importing
-// it. For example, consider the following files:
-// - foo/foo.js
-// - baz.js
-// If foo.js wants to import baz.js, we return ../baz.js
-function makeImportPathRelative(importer: string, importPath: string): string {
-  if (!relativePathRE.test(importPath)) {
-    // We don't touch absolute imports, like @bufbuild/protobuf
-    return importPath;
-  }
-  let a = importer
-    .replace(/^\.\//, "")
-    .split("/")
-    .filter((p) => p.length > 0)
-    .slice(0, -1);
-  let b = importPath
-    .replace(/^\.\//, "")
-    .split("/")
-    .filter((p) => p.length > 0);
-  let matchingPartCount = 0;
-  for (
-    let l = Math.min(a.length, b.length);
-    matchingPartCount < l;
-    matchingPartCount++
-  ) {
-    if (a[matchingPartCount] !== b[matchingPartCount]) {
-      break;
-    }
-  }
-  a = a.slice(matchingPartCount);
-  b = b.slice(matchingPartCount);
-  const c = a
-    .map(() => "..")
-    .concat(b)
-    .join("/");
-  return relativePathRE.test(c) ? c : "./" + c;
 }
 
 function literalNumber(value: number): string {
