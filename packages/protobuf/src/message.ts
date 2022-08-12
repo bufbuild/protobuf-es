@@ -137,7 +137,10 @@ export class Message<T extends Message<T> = AnyMessage> {
  * PlainMessage<T> strips all methods from a message, leaving only fields
  * and oneof groups.
  */
-export type PlainMessage<T extends Message> = Omit<T, keyof Message>;
+export type PlainMessage<T extends Message> = {
+  // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
+  [P in keyof T as T[P] extends Function ? never : P]: T[P];
+};
 
 /**
  * PartialMessage<T> constructs a type from a message. The resulting type
