@@ -97,7 +97,8 @@ export const relativePathRE = /^\.{1,2}\//;
  * - `**` matches zero or more path elements, where an element is one or more
  *   characters with a trailing `/`.
  *
- * For example, the pattern `./foo/**\/*_pb.js` matches:
+ * For example, the pattern `./foo/**\/*_pb.js` (escaped for block comment!)
+ * matches:
  * - ./foo/bar_pb.js
  * - ./foo/bar/baz_pb.js
  *
