@@ -13,20 +13,13 @@
 // limitations under the License.
 
 import type { PlainMessage } from "@bufbuild/protobuf";
-import { Timestamp as JS_Timestamp } from "./gen/js/google/protobuf/timestamp_pb";
 import { Timestamp as TS_Timestamp } from "./gen/ts/google/protobuf/timestamp_pb";
 
 describe("PlainMessage", () => {
-  describe("toDate", () => {
-    test("JS_Timestamp", () => {
-      const plainTimestamp: PlainMessage<JS_Timestamp> = JS_Timestamp.now();
-      // @ts-expect-error TS2339
-      plainTimestamp.toDate();
-    });
-    test("TS_Timestamp", () => {
-      const plainTimestamp: PlainMessage<TS_Timestamp> = TS_Timestamp.now();
-      // @ts-expect-error TS2339
-      plainTimestamp.toDate();
-    });
+  test("removes wkt functions", () => {
+    const plainTimestamp: PlainMessage<TS_Timestamp> = TS_Timestamp.now();
+    // We want to test that the type system sees this function as undefined even though it's still actually there.
+    // @ts-expect-error TS2334
+    expect(plainTimestamp.toDate).toBeDefined();
   });
 });
