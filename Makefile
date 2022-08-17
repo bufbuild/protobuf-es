@@ -19,6 +19,7 @@ GOOGLE_PROTOBUF_VERSION = 3.20.1
 node_modules: package-lock.json
 	npm ci
 
+
 $(PB):
 	echo $(PB)
 	@mkdir -p $(TMP)
@@ -214,3 +215,61 @@ checkdiff:
 	@# Used in CI to verify that `make` doesn't produce a diff, but ignore changes in benchmarks
 	git checkout packages/protobuf-bench/README.md
 	test -z "$$(git status --porcelain | tee /dev/stderr)"
+
+
+# TypeScript testing
+.PHONY: test-ts
+test-ts::
+
+TS_VERSIONS := $(TS_VERSIONS) \
+		   4.7.4 \
+		   4.4.2 \
+		   4.4.3
+
+define settsfunc
+.PHONY: set-ts$(notdir $(1))
+set-ts$(notdir $(1)):
+	echo "Installing TypeScript version $(1)"
+	sed 's/\"typescript\": \"0.0.0\"/\"typescript\": \"$(1)\"/g' packages/protobuf-ts-test/template.json > packages/protobuf-ts-test/package.json
+	npm install
+	
+.PHONY: run-test$(notdir $(1))
+run-test$(notdir $(1)):
+	cd packages/protobuf-ts-test && PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
+
+test-ts:: set-ts$(notdir $(1)) $(BUILD)/protobuf-ts-test$(notdir $(1)) packages/protobuf-ts-test/jest.config.js run-test$(notdir $(1))
+
+$(BUILD)/protobuf-ts-test$(notdir $(1)): $(BUILD)/protobuf-force$(notdir $(1))
+	npm run -w packages/protobuf-ts-test clean
+	-npm run -w packages/protobuf-ts-test build
+
+$(BUILD)/protobuf-force$(notdir $(1)): 
+	npm run -w packages/protobuf clean
+	npm run -w packages/protobuf build
+endef
+
+
+$(foreach gobin,$(sort $(TS_VERSIONS)),$(eval $(call settsfunc,$(gobin))))
+
+
+
+$(GEN)/protobuf-ts-test: $(BIN)/protoc $(BUILD)/protoc-gen-es
+	@rm -rf packages/protobuf-ts-test/src/gen/ts/* packages/protobuf-ts-test/src/gen/js/* packages/protobuf--ts-test/descriptorset.bin
+	$(BIN)/protoc \
+		--descriptor_set_out packages/protobuf-ts-test/descriptorset.bin --include_imports --include_source_info \
+		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-ts-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
+		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-ts-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
+		--proto_path $(PB) --proto_path $(PB)/src -I packages/protobuf-ts-test \
+		$(shell cd packages/protobuf-ts-test && find . -name '*.proto' | cut -sd / -f 2-) \
+		$(shell cd $(PB)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) \
+		google/protobuf/type.proto \
+		google/protobuf/test_messages_proto2.proto \
+		google/protobuf/test_messages_proto3.proto
+	$(BIN)/protoc \
+		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-ts-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
+		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-ts-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
+		--proto_path $(PB)/src \
+		$(GOOGLE_PROTOBUF_WKT)
+	@mkdir -p $(@D)
+	@touch $(@)
+
