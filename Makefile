@@ -82,7 +82,7 @@ $(BUILD)/example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/exa
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es
+$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto')
 	@rm -rf packages/protobuf-test/src/gen/ts/* packages/protobuf-test/src/gen/js/* packages/protobuf-test/descriptorset.bin
 	$(BIN)/protoc \
 		--descriptor_set_out packages/protobuf-test/descriptorset.bin --include_imports --include_source_info \
