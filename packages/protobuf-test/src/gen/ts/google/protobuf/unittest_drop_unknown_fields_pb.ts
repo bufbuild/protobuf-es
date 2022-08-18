@@ -173,15 +173,15 @@ export enum FooWithExtraFields_NestedEnum {
   BAZ = 2,
 
   /**
-   * @generated from enum value: QUX = 3;
+   * @generated from enum value: MOO = 3;
    */
-  QUX = 3,
+  MOO = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(FooWithExtraFields_NestedEnum)
 proto3.util.setEnumType(FooWithExtraFields_NestedEnum, "unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum", [
   { no: 0, name: "FOO" },
   { no: 1, name: "BAR" },
   { no: 2, name: "BAZ" },
-  { no: 3, name: "QUX" },
+  { no: 3, name: "MOO" },
 ]);
 

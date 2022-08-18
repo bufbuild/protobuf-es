@@ -461,9 +461,9 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
  */
 export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
   /**
-   * @generated from field: optional int32 qux = 1;
+   * @generated from field: optional int32 moo = 1;
    */
-  qux?: number;
+  moo?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;

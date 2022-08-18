@@ -138,8 +138,8 @@ export declare enum FooWithExtraFields_NestedEnum {
   BAZ = 2,
 
   /**
-   * @generated from enum value: QUX = 3;
+   * @generated from enum value: MOO = 3;
    */
-  QUX = 3,
+  MOO = 3,
 }
 
