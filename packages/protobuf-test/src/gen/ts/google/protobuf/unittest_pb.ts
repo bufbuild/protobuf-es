@@ -923,6 +923,11 @@ export class TestAllTypes extends Message<TestAllTypes> {
   optionalLazyMessage?: TestAllTypes_NestedMessage;
 
   /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+
+  /**
    * Repeated
    *
    * @generated from field: repeated int32 repeated_int32 = 31;
@@ -1216,6 +1221,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessage, opt: true },
     { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
+    { no: 28, name: "optional_unverified_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
     { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
     { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
@@ -5192,9 +5198,9 @@ export class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
  */
 export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> {
   /**
-   * @generated from field: optional int64 qux_int = 1;
+   * @generated from field: optional int64 moo_int = 1;
    */
-  quxInt?: bigint;
+  mooInt?: bigint;
 
   /**
    * @generated from field: repeated int32 corge_int = 2;
@@ -5209,7 +5215,7 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestOneof2.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "qux_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "moo_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
 
@@ -6207,6 +6213,76 @@ export class TestCommentInjectionMessage extends Message<TestCommentInjectionMes
 }
 
 /**
+ * Used to check that the c++ code generator re-orders messages to reduce
+ * padding.
+ *
+ * @generated from message protobuf_unittest.TestMessageSize
+ */
+export class TestMessageSize extends Message<TestMessageSize> {
+  /**
+   * @generated from field: optional bool m1 = 1;
+   */
+  m1?: boolean;
+
+  /**
+   * @generated from field: optional int64 m2 = 2;
+   */
+  m2?: bigint;
+
+  /**
+   * @generated from field: optional bool m3 = 3;
+   */
+  m3?: boolean;
+
+  /**
+   * @generated from field: optional string m4 = 4;
+   */
+  m4?: string;
+
+  /**
+   * @generated from field: optional int32 m5 = 5;
+   */
+  m5?: number;
+
+  /**
+   * @generated from field: optional int64 m6 = 6;
+   */
+  m6?: bigint;
+
+  constructor(data?: PartialMessage<TestMessageSize>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSize";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "m1", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 2, name: "m2", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "m3", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 4, name: "m4", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "m5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "m6", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSize {
+    return new TestMessageSize().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSize {
+    return new TestMessageSize().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSize {
+    return new TestMessageSize().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMessageSize | PlainMessage<TestMessageSize> | undefined, b: TestMessageSize | PlainMessage<TestMessageSize> | undefined): boolean {
+    return proto2.util.equals(TestMessageSize, a, b);
+  }
+}
+
+/**
  * Test that RPC services work.
  *
  * @generated from message protobuf_unittest.FooRequest
@@ -6958,6 +7034,852 @@ export class TestExtensionRangeSerialize extends Message<TestExtensionRangeSeria
 
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean {
     return proto2.util.equals(TestExtensionRangeSerialize, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32Simple
+ */
+export class TestVerifyInt32Simple extends Message<TestVerifyInt32Simple> {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  constructor(data?: PartialMessage<TestVerifyInt32Simple>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32Simple";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32Simple {
+    return new TestVerifyInt32Simple().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32Simple {
+    return new TestVerifyInt32Simple().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32Simple {
+    return new TestVerifyInt32Simple().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined, b: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined): boolean {
+    return proto2.util.equals(TestVerifyInt32Simple, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32
+ */
+export class TestVerifyInt32 extends Message<TestVerifyInt32> {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyInt32>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32 {
+    return new TestVerifyInt32().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32 {
+    return new TestVerifyInt32().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32 {
+    return new TestVerifyInt32().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined, b: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined): boolean {
+    return proto2.util.equals(TestVerifyInt32, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32
+ */
+export class TestVerifyMostlyInt32 extends Message<TestVerifyMostlyInt32> {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: bigint;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyMostlyInt32>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyMostlyInt32";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "optional_int32_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "optional_int32_4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyMostlyInt32 {
+    return new TestVerifyMostlyInt32().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32 {
+    return new TestVerifyMostlyInt32().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32 {
+    return new TestVerifyMostlyInt32().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined, b: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined): boolean {
+    return proto2.util.equals(TestVerifyMostlyInt32, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber
+ */
+export class TestVerifyMostlyInt32BigFieldNumber extends Message<TestVerifyMostlyInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: bigint;
+
+  /**
+   * @generated from field: optional int32 optional_int32_300 = 300;
+   */
+  optionalInt32300?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyMostlyInt32BigFieldNumber>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 300, name: "optional_int32_300", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "optional_int32_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "optional_int32_4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyMostlyInt32BigFieldNumber {
+    return new TestVerifyMostlyInt32BigFieldNumber().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32BigFieldNumber {
+    return new TestVerifyMostlyInt32BigFieldNumber().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32BigFieldNumber {
+    return new TestVerifyMostlyInt32BigFieldNumber().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined, b: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined): boolean {
+    return proto2.util.equals(TestVerifyMostlyInt32BigFieldNumber, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32Simple
+ */
+export class TestVerifyUint32Simple extends Message<TestVerifyUint32Simple> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  constructor(data?: PartialMessage<TestVerifyUint32Simple>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32Simple";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32Simple {
+    return new TestVerifyUint32Simple().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32Simple {
+    return new TestVerifyUint32Simple().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32Simple {
+    return new TestVerifyUint32Simple().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined, b: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined): boolean {
+    return proto2.util.equals(TestVerifyUint32Simple, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32
+ */
+export class TestVerifyUint32 extends Message<TestVerifyUint32> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyUint32>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32 {
+    return new TestVerifyUint32().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32 {
+    return new TestVerifyUint32().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32 {
+    return new TestVerifyUint32().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined, b: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined): boolean {
+    return proto2.util.equals(TestVerifyUint32, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneUint32
+ */
+export class TestVerifyOneUint32 extends Message<TestVerifyOneUint32> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyOneUint32>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyOneUint32";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyOneUint32 {
+    return new TestVerifyOneUint32().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyOneUint32 {
+    return new TestVerifyOneUint32().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneUint32 {
+    return new TestVerifyOneUint32().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined, b: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined): boolean {
+    return proto2.util.equals(TestVerifyOneUint32, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneInt32BigFieldNumber
+ */
+export class TestVerifyOneInt32BigFieldNumber extends Message<TestVerifyOneInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_1 = 1;
+   */
+  optionalInt641?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_2 = 2;
+   */
+  optionalInt642?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_63 = 63;
+   */
+  optionalInt6463?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_64 = 64;
+   */
+  optionalInt6464?: bigint;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyOneInt32BigFieldNumber>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyOneInt32BigFieldNumber";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 65, name: "optional_int32_65", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int64_1", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 2, name: "optional_int64_2", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 63, name: "optional_int64_63", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 64, name: "optional_int64_64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyOneInt32BigFieldNumber {
+    return new TestVerifyOneInt32BigFieldNumber().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyOneInt32BigFieldNumber {
+    return new TestVerifyOneInt32BigFieldNumber().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneInt32BigFieldNumber {
+    return new TestVerifyOneInt32BigFieldNumber().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined, b: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined): boolean {
+    return proto2.util.equals(TestVerifyOneInt32BigFieldNumber, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32BigFieldNumber
+ */
+export class TestVerifyInt32BigFieldNumber extends Message<TestVerifyInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int32 optional_int32_1000 = 1000;
+   */
+  optionalInt321000?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyInt32BigFieldNumber>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32BigFieldNumber";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1000, name: "optional_int32_1000", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 65, name: "optional_int32_65", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32BigFieldNumber {
+    return new TestVerifyInt32BigFieldNumber().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32BigFieldNumber {
+    return new TestVerifyInt32BigFieldNumber().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32BigFieldNumber {
+    return new TestVerifyInt32BigFieldNumber().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined, b: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined): boolean {
+    return proto2.util.equals(TestVerifyInt32BigFieldNumber, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32BigFieldNumber
+ */
+export class TestVerifyUint32BigFieldNumber extends Message<TestVerifyUint32BigFieldNumber> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyUint32BigFieldNumber>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32BigFieldNumber";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1000, name: "optional_uint32_1000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 65, name: "optional_uint32_65", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32BigFieldNumber {
+    return new TestVerifyUint32BigFieldNumber().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32BigFieldNumber {
+    return new TestVerifyUint32BigFieldNumber().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32BigFieldNumber {
+    return new TestVerifyUint32BigFieldNumber().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined, b: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined): boolean {
+    return proto2.util.equals(TestVerifyUint32BigFieldNumber, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32
+ */
+export class TestVerifyBigFieldNumberUint32 extends Message<TestVerifyBigFieldNumberUint32> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 1;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+
+  constructor(data?: PartialMessage<TestVerifyBigFieldNumberUint32>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyBigFieldNumberUint32";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyBigFieldNumberUint32 {
+    return new TestVerifyBigFieldNumberUint32().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32 {
+    return new TestVerifyBigFieldNumberUint32().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32 {
+    return new TestVerifyBigFieldNumberUint32().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined, b: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined): boolean {
+    return proto2.util.equals(TestVerifyBigFieldNumberUint32, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested
+ */
+export class TestVerifyBigFieldNumberUint32_Nested extends Message<TestVerifyBigFieldNumberUint32_Nested> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_5000 = 5000;
+   */
+  optionalUint325000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_66 = 66;
+   */
+  optionalUint3266?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested repeated_nested = 10;
+   */
+  repeatedNested: TestVerifyBigFieldNumberUint32_Nested[] = [];
+
+  constructor(data?: PartialMessage<TestVerifyBigFieldNumberUint32_Nested>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime = proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 5000, name: "optional_uint32_5000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1000, name: "optional_uint32_1000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 66, name: "optional_uint32_66", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 65, name: "optional_uint32_65", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, opt: true },
+    { no: 10, name: "repeated_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyBigFieldNumberUint32_Nested {
+    return new TestVerifyBigFieldNumberUint32_Nested().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested {
+    return new TestVerifyBigFieldNumberUint32_Nested().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested {
+    return new TestVerifyBigFieldNumberUint32_Nested().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined, b: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined): boolean {
+    return proto2.util.equals(TestVerifyBigFieldNumberUint32_Nested, a, b);
   }
 }
 

@@ -78,7 +78,7 @@ export const FooWithExtraFields_NestedEnum = proto3.makeEnum(
     {no: 0, name: "FOO"},
     {no: 1, name: "BAR"},
     {no: 2, name: "BAZ"},
-    {no: 3, name: "QUX"},
+    {no: 3, name: "MOO"},
   ],
 );
 

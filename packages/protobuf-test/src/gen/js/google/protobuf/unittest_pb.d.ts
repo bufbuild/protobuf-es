@@ -795,6 +795,11 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   optionalLazyMessage?: TestAllTypes_NestedMessage;
 
   /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+
+  /**
    * Repeated
    *
    * @generated from field: repeated int32 repeated_int32 = 31;
@@ -3834,9 +3839,9 @@ export declare class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
  */
 export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> {
   /**
-   * @generated from field: optional int64 qux_int = 1;
+   * @generated from field: optional int64 moo_int = 1;
    */
-  quxInt?: bigint;
+  mooInt?: bigint;
 
   /**
    * @generated from field: repeated int32 corge_int = 2;
@@ -4561,6 +4566,58 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
 }
 
 /**
+ * Used to check that the c++ code generator re-orders messages to reduce
+ * padding.
+ *
+ * @generated from message protobuf_unittest.TestMessageSize
+ */
+export declare class TestMessageSize extends Message<TestMessageSize> {
+  /**
+   * @generated from field: optional bool m1 = 1;
+   */
+  m1?: boolean;
+
+  /**
+   * @generated from field: optional int64 m2 = 2;
+   */
+  m2?: bigint;
+
+  /**
+   * @generated from field: optional bool m3 = 3;
+   */
+  m3?: boolean;
+
+  /**
+   * @generated from field: optional string m4 = 4;
+   */
+  m4?: string;
+
+  /**
+   * @generated from field: optional int32 m5 = 5;
+   */
+  m5?: number;
+
+  /**
+   * @generated from field: optional int64 m6 = 6;
+   */
+  m6?: bigint;
+
+  constructor(data?: PartialMessage<TestMessageSize>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageSize";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSize;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSize;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSize;
+
+  static equals(a: TestMessageSize | PlainMessage<TestMessageSize> | undefined, b: TestMessageSize | PlainMessage<TestMessageSize> | undefined): boolean;
+}
+
+/**
  * Test that RPC services work.
  *
  * @generated from message protobuf_unittest.FooRequest
@@ -5080,5 +5137,628 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionRangeSerialize;
 
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32Simple
+ */
+export declare class TestVerifyInt32Simple extends Message<TestVerifyInt32Simple> {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  constructor(data?: PartialMessage<TestVerifyInt32Simple>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32Simple";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32Simple;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32Simple;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32Simple;
+
+  static equals(a: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined, b: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32
+ */
+export declare class TestVerifyInt32 extends Message<TestVerifyInt32> {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyInt32>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32;
+
+  static equals(a: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined, b: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32
+ */
+export declare class TestVerifyMostlyInt32 extends Message<TestVerifyMostlyInt32> {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: bigint;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyMostlyInt32>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyMostlyInt32";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyMostlyInt32;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32;
+
+  static equals(a: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined, b: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber
+ */
+export declare class TestVerifyMostlyInt32BigFieldNumber extends Message<TestVerifyMostlyInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: bigint;
+
+  /**
+   * @generated from field: optional int32 optional_int32_300 = 300;
+   */
+  optionalInt32300?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyMostlyInt32BigFieldNumber>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyMostlyInt32BigFieldNumber;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32BigFieldNumber;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32BigFieldNumber;
+
+  static equals(a: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined, b: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32Simple
+ */
+export declare class TestVerifyUint32Simple extends Message<TestVerifyUint32Simple> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  constructor(data?: PartialMessage<TestVerifyUint32Simple>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32Simple";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32Simple;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32Simple;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32Simple;
+
+  static equals(a: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined, b: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32
+ */
+export declare class TestVerifyUint32 extends Message<TestVerifyUint32> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyUint32>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32;
+
+  static equals(a: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined, b: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneUint32
+ */
+export declare class TestVerifyOneUint32 extends Message<TestVerifyOneUint32> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyOneUint32>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyOneUint32";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyOneUint32;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyOneUint32;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneUint32;
+
+  static equals(a: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined, b: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneInt32BigFieldNumber
+ */
+export declare class TestVerifyOneInt32BigFieldNumber extends Message<TestVerifyOneInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_1 = 1;
+   */
+  optionalInt641?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_2 = 2;
+   */
+  optionalInt642?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_63 = 63;
+   */
+  optionalInt6463?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_64 = 64;
+   */
+  optionalInt6464?: bigint;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyOneInt32BigFieldNumber>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyOneInt32BigFieldNumber";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyOneInt32BigFieldNumber;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyOneInt32BigFieldNumber;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneInt32BigFieldNumber;
+
+  static equals(a: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined, b: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32BigFieldNumber
+ */
+export declare class TestVerifyInt32BigFieldNumber extends Message<TestVerifyInt32BigFieldNumber> {
+  /**
+   * @generated from field: optional int32 optional_int32_1000 = 1000;
+   */
+  optionalInt321000?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyInt32BigFieldNumber>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyInt32BigFieldNumber";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyInt32BigFieldNumber;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyInt32BigFieldNumber;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32BigFieldNumber;
+
+  static equals(a: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined, b: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32BigFieldNumber
+ */
+export declare class TestVerifyUint32BigFieldNumber extends Message<TestVerifyUint32BigFieldNumber> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypes;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes: TestAllTypes[];
+
+  constructor(data?: PartialMessage<TestVerifyUint32BigFieldNumber>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyUint32BigFieldNumber";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyUint32BigFieldNumber;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyUint32BigFieldNumber;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32BigFieldNumber;
+
+  static equals(a: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined, b: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32
+ */
+export declare class TestVerifyBigFieldNumberUint32 extends Message<TestVerifyBigFieldNumberUint32> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 1;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+
+  constructor(data?: PartialMessage<TestVerifyBigFieldNumberUint32>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyBigFieldNumberUint32";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyBigFieldNumberUint32;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32;
+
+  static equals(a: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined, b: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested
+ */
+export declare class TestVerifyBigFieldNumberUint32_Nested extends Message<TestVerifyBigFieldNumberUint32_Nested> {
+  /**
+   * @generated from field: optional uint32 optional_uint32_5000 = 5000;
+   */
+  optionalUint325000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_66 = 66;
+   */
+  optionalUint3266?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested repeated_nested = 10;
+   */
+  repeatedNested: TestVerifyBigFieldNumberUint32_Nested[];
+
+  constructor(data?: PartialMessage<TestVerifyBigFieldNumberUint32_Nested>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestVerifyBigFieldNumberUint32_Nested;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested;
+
+  static equals(a: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined, b: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined): boolean;
 }
 

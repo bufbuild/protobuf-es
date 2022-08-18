@@ -243,8 +243,8 @@ export const TestAllTypesProto3_AliasedEnum = proto3.makeEnum(
     {no: 0, name: "ALIAS_FOO"},
     {no: 1, name: "ALIAS_BAR"},
     {no: 2, name: "ALIAS_BAZ"},
-    {no: 2, name: "QUX"},
-    {no: 2, name: "qux"},
+    {no: 2, name: "MOO"},
+    {no: 2, name: "moo"},
     {no: 2, name: "bAz"},
   ],
 );

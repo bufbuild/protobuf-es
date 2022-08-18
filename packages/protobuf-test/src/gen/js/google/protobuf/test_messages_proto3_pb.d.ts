@@ -921,14 +921,14 @@ export declare enum TestAllTypesProto3_AliasedEnum {
   ALIAS_BAZ = 2,
 
   /**
-   * @generated from enum value: QUX = 2;
+   * @generated from enum value: MOO = 2;
    */
-  QUX = 2,
+  MOO = 2,
 
   /**
-   * @generated from enum value: qux = 2;
+   * @generated from enum value: moo = 2;
    */
-  qux = 2,
+  moo = 2,
 
   /**
    * @generated from enum value: bAz = 2;

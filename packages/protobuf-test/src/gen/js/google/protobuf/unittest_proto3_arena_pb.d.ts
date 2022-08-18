@@ -194,6 +194,11 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   optionalLazyMessage?: TestAllTypes_NestedMessage;
 
   /**
+   * @generated from field: proto3_arena_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+
+  /**
    * @generated from field: protobuf_unittest_import.ImportMessage optional_lazy_import_message = 115;
    */
   optionalLazyImportMessage?: ImportMessage;

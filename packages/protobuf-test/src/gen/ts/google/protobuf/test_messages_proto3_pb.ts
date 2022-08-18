@@ -1097,14 +1097,14 @@ export enum TestAllTypesProto3_AliasedEnum {
   ALIAS_BAZ = 2,
 
   /**
-   * @generated from enum value: QUX = 2;
+   * @generated from enum value: MOO = 2;
    */
-  QUX = 2,
+  MOO = 2,
 
   /**
-   * @generated from enum value: qux = 2;
+   * @generated from enum value: moo = 2;
    */
-  qux = 2,
+  moo = 2,
 
   /**
    * @generated from enum value: bAz = 2;
@@ -1116,8 +1116,8 @@ proto3.util.setEnumType(TestAllTypesProto3_AliasedEnum, "protobuf_test_messages.
   { no: 0, name: "ALIAS_FOO" },
   { no: 1, name: "ALIAS_BAR" },
   { no: 2, name: "ALIAS_BAZ" },
-  { no: 2, name: "QUX" },
-  { no: 2, name: "qux" },
+  { no: 2, name: "MOO" },
+  { no: 2, name: "moo" },
   { no: 2, name: "bAz" },
 ]);
 
