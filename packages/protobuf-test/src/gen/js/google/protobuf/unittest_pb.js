@@ -239,6 +239,7 @@ export const TestAllTypes = proto2.makeMessageType(
     { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessage, opt: true },
     { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
+    { no: 28, name: "optional_unverified_lazy_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
     { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
     { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
@@ -1294,7 +1295,7 @@ export const TestOneof2_FooGroup = proto2.makeMessageType(
 export const TestOneof2_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestOneof2.NestedMessage",
   () => [
-    { no: 1, name: "qux_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "moo_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ],
   {localName: "TestOneof2_NestedMessage"},
@@ -1554,6 +1555,24 @@ export const TestCommentInjectionMessage = proto2.makeMessageType(
 );
 
 /**
+ * Used to check that the c++ code generator re-orders messages to reduce
+ * padding.
+ *
+ * @generated from message protobuf_unittest.TestMessageSize
+ */
+export const TestMessageSize = proto2.makeMessageType(
+  "protobuf_unittest.TestMessageSize",
+  () => [
+    { no: 1, name: "m1", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 2, name: "m2", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "m3", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 4, name: "m4", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 5, name: "m5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 6, name: "m6", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+  ],
+);
+
+/**
  * Test that RPC services work.
  *
  * @generated from message protobuf_unittest.FooRequest
@@ -1738,5 +1757,193 @@ export const TestExtensionRangeSerialize = proto2.makeMessageType(
     { no: 7, name: "foo_three", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 13, name: "foo_four", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32Simple
+ */
+export const TestVerifyInt32Simple = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyInt32Simple",
+  () => [
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32
+ */
+export const TestVerifyInt32 = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyInt32",
+  () => [
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32
+ */
+export const TestVerifyMostlyInt32 = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyMostlyInt32",
+  () => [
+    { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "optional_int32_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "optional_int32_4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber
+ */
+export const TestVerifyMostlyInt32BigFieldNumber = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber",
+  () => [
+    { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 300, name: "optional_int32_300", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "optional_int32_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "optional_int32_4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32Simple
+ */
+export const TestVerifyUint32Simple = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyUint32Simple",
+  () => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32
+ */
+export const TestVerifyUint32 = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyUint32",
+  () => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneUint32
+ */
+export const TestVerifyOneUint32 = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyOneUint32",
+  () => [
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyOneInt32BigFieldNumber
+ */
+export const TestVerifyOneInt32BigFieldNumber = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyOneInt32BigFieldNumber",
+  () => [
+    { no: 65, name: "optional_int32_65", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int64_1", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 2, name: "optional_int64_2", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 63, name: "optional_int64_63", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 64, name: "optional_int64_64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyInt32BigFieldNumber
+ */
+export const TestVerifyInt32BigFieldNumber = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyInt32BigFieldNumber",
+  () => [
+    { no: 1000, name: "optional_int32_1000", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 65, name: "optional_int32_65", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "optional_int32_2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 63, name: "optional_int32_63", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 64, name: "optional_int32_64", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyUint32BigFieldNumber
+ */
+export const TestVerifyUint32BigFieldNumber = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyUint32BigFieldNumber",
+  () => [
+    { no: 1000, name: "optional_uint32_1000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 65, name: "optional_uint32_65", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
+    { no: 10, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32
+ */
+export const TestVerifyBigFieldNumberUint32 = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyBigFieldNumberUint32",
+  () => [
+    { no: 1, name: "optional_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested
+ */
+export const TestVerifyBigFieldNumberUint32_Nested = proto2.makeMessageType(
+  "protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested",
+  () => [
+    { no: 5000, name: "optional_uint32_5000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1000, name: "optional_uint32_1000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 66, name: "optional_uint32_66", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 65, name: "optional_uint32_65", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 2, name: "optional_uint32_2", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 63, name: "optional_uint32_63", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 64, name: "optional_uint32_64", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+    { no: 9, name: "optional_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, opt: true },
+    { no: 10, name: "repeated_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, repeated: true },
+  ],
+  {localName: "TestVerifyBigFieldNumberUint32_Nested"},
 );
 

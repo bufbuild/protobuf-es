@@ -227,6 +227,11 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
   optionalLazyMessage?: TestAllTypesLite_NestedMessage;
 
   /**
+   * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypesLite_NestedMessage;
+
+  /**
    * Repeated
    *
    * @generated from field: repeated int32 repeated_int32 = 31;

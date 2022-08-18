@@ -242,6 +242,11 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
   optionalLazyMessage?: TestAllTypesLite_NestedMessage;
 
   /**
+   * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypesLite_NestedMessage;
+
+  /**
    * Repeated
    *
    * @generated from field: repeated int32 repeated_int32 = 31;
@@ -554,6 +559,7 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
     { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessageLite, opt: true },
     { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true },
+    { no: 28, name: "optional_unverified_lazy_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true },
     { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
     { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
     { no: 33, name: "repeated_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },

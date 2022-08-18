@@ -201,6 +201,11 @@ export class TestAllTypes extends Message<TestAllTypes> {
   optionalLazyMessage?: TestAllTypes_NestedMessage;
 
   /**
+   * @generated from field: proto3_arena_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+
+  /**
    * @generated from field: protobuf_unittest_import.ImportMessage optional_lazy_import_message = 115;
    */
   optionalLazyImportMessage?: ImportMessage;
@@ -460,6 +465,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 25, name: "optional_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 26, name: "optional_public_import_message", kind: "message", T: PublicImportMessage },
     { no: 27, name: "optional_lazy_message", kind: "message", T: TestAllTypes_NestedMessage },
+    { no: 28, name: "optional_unverified_lazy_message", kind: "message", T: TestAllTypes_NestedMessage },
     { no: 115, name: "optional_lazy_import_message", kind: "message", T: ImportMessage },
     { no: 31, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
     { no: 32, name: "repeated_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
