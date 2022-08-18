@@ -155,12 +155,24 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
+NUMBERS = 4.4.4 \
+		  4.5.5 \
+		  4.7.4
+
 .PHONY: test-ts-compat
-test-ts-compat: $(GEN)/protobuf-test node_modules $(shell find packages/protobuf-test -name '*.json')
+test-ts-compat:  node_modules
 	@# we can add more typescript versions here with:
 	@# npm i -w packages/protobuf-test ts4_4_4@npm:typescript@4.4.4
-	node_modules/ts4_4_4/bin/tsc -p packages/protobuf-test/tsconfig.4_4_4.json --noEmit
-	node_modules/ts4_5_5/bin/tsc -p packages/protobuf-test/tsconfig.4_5_5.json --noEmit
+	for number in $(NUMBERS) ; do \
+		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
+		npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
+		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
+		node_modules/ts$$dirname/bin/tsc --init ; \
+		mkdir -p packages/protobuf-test/typescript/ts$${dirname}; \
+		sed -i '' -e "1s/^//p; 1s/^.*/\t\"include\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.ts\"],\n\t\"exclude\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.test\.ts\"],/" tsconfig.json ; \
+		mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json; \
+		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
+	done
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files
