@@ -32,7 +32,6 @@ import type {JsonReadOptions, JsonValue} from "../../json-format.js";
  *       rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);
  *     }
  *
- * The JSON representation for `Empty` is empty JSON object `{}`.
  *
  * @generated from message google.protobuf.Empty
  */
