@@ -159,8 +159,8 @@ NUMBERS = 4.4.4 \
 		  4.5.5 \
 		  4.7.4
 
-.PHONY: test-ts-compat
-test-ts-compat:  node_modules
+.PHONY: test-ts-install
+test-ts-install:  node_modules
 	@# we can add more typescript versions here with:
 	@# npm i -w packages/protobuf-test ts4_4_4@npm:typescript@4.4.4
 	for number in $(NUMBERS) ; do \
@@ -171,6 +171,14 @@ test-ts-compat:  node_modules
 		mkdir -p packages/protobuf-test/typescript/ts$${dirname}; \
 		sed -i '' -e "1s/^//p; 1s/^.*/\t\"include\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.ts\"],\n\t\"exclude\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.test\.ts\"],/" tsconfig.json ; \
 		mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json; \
+		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
+	done
+
+.PHONY: test-ts-compat
+test-ts-compat: 
+	for number in $(NUMBERS) ; do \
+		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
+		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
 		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
 	done
 
