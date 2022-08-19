@@ -183,9 +183,16 @@ install-ts:  node_modules
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test node_modules $(shell find packages/protobuf-test -name '*.json')
 	@for number in $(TS_VERSIONS) ; do \
-		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
-		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
+		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
+		dirname=packages/protobuf-test/typescript/ts$${formatted} ; \
+		echo "Using TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.json --noEmit > $$dirname/errors.log 2>&1; \
+		if [ "$$?" -eq 0 ]; then \
+	  		echo "Success" ; \
+			rm $$dirname/errors.log ; \
+  		else \
+	  		echo "Failed compilation.  Errors saved to $${dirname}/errors.log" ; \
+	  	fi ; \
 	done
 
 .PHONY: lint

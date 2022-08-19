@@ -1,0 +1,26 @@
+node_modules/@types/jest/index.d.ts(416,62): error TS1005: ']' expected.
+node_modules/@types/jest/index.d.ts(416,65): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(416,70): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(416,94): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(416,95): error TS1128: Declaration or statement expected.
+node_modules/@types/jest/index.d.ts(420,50): error TS1005: ']' expected.
+node_modules/@types/jest/index.d.ts(420,53): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(420,58): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(420,101): error TS1005: ';' expected.
+node_modules/@types/jest/index.d.ts(420,102): error TS1128: Declaration or statement expected.
+node_modules/@types/jest/index.d.ts(420,109): error TS1128: Declaration or statement expected.
+node_modules/@types/jest/index.d.ts(1385,1): error TS1128: Declaration or statement expected.
+packages/protobuf/dist/types/message.d.ts(71,19): error TS1005: ']' expected.
+packages/protobuf/dist/types/message.d.ts(71,22): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(71,27): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(71,55): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(71,56): error TS1128: Declaration or statement expected.
+packages/protobuf/dist/types/message.d.ts(72,1): error TS1128: Declaration or statement expected.
+packages/protobuf/dist/types/message.d.ts(82,19): error TS1005: ']' expected.
+packages/protobuf/dist/types/message.d.ts(82,22): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(82,27): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(82,55): error TS1005: ';' expected.
+packages/protobuf/dist/types/message.d.ts(82,56): error TS1128: Declaration or statement expected.
+packages/protobuf/dist/types/message.d.ts(82,57): error TS1128: Declaration or statement expected.
+packages/protobuf/dist/types/message.d.ts(82,77): error TS1005: '(' expected.
+packages/protobuf/dist/types/message.d.ts(83,1): error TS1128: Declaration or statement expected.
