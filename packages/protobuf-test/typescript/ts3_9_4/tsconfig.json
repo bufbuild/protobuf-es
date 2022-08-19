@@ -2,11 +2,11 @@
   "include": ["../../src/**/*.ts"],
   "exclude": ["../../src/**/*.test.ts", "../../src/gen/**/*.ts"],
   "compilerOptions": {
-    "target": "es5",                          
-    "module": "commonjs",                     
-    "strict": true,                           
-    "esModuleInterop": true, 
-    "skipLibCheck": true,                     
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }
