@@ -19,7 +19,6 @@ GOOGLE_PROTOBUF_VERSION = 21.5
 node_modules: package-lock.json
 	npm ci
 
-
 $(PB):
 	echo $(PB)
 	@mkdir -p $(TMP)
