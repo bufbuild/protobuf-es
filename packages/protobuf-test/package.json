@@ -17,8 +17,12 @@
     "@bufbuild/protobuf": "0.0.10",
     "@types/jest": "^28.1.6",
     "jest": "^28.1.3",
+    "ts4_0": "npm:typescript@4.0",
+    "ts4_0_8": "npm:typescript@^4.0.8",
     "ts4_1_4": "npm:typescript@^4.1.4",
     "ts4_2": "npm:typescript@4.2",
+    "ts4_2_4": "npm:typescript@^4.2.4",
+    "ts4_3_3": "npm:typescript@^4.3.3",
     "ts4_4_4": "npm:typescript@^4.4.4",
     "ts4_5_5": "npm:typescript@^4.5.5"
   }

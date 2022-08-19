@@ -155,8 +155,10 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
-NUMBERS = 4.1.4 \
-		  4.2 \
+NUMBERS = 4.0.8 \
+		  4.1.4 \
+		  4.2.4 \
+		  4.3.3 \
 		  4.4.4 \
 		  4.5.5
 
@@ -164,11 +166,15 @@ NUMBERS = 4.1.4 \
 test-ts-install:  node_modules
 	for number in $(NUMBERS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
-		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
-		mkdir -p packages/protobuf-test/typescript/ts$${dirname}/ ; \
-		node_modules/ts$$dirname/bin/tsc --init ; \
-		mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ; \
+		if [ ! -f packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ]; then \
+			npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
+			echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
+			mkdir -p packages/protobuf-test/typescript/ts$${dirname}/ ; \
+			node_modules/ts$$dirname/bin/tsc --init ; \
+			mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ; \
+		else \
+	    	echo "Version $$number already installed" ; \
+		fi ; \
 	done
 
 .PHONY: test-ts-compat
