@@ -175,12 +175,19 @@ test-ts-install:  node_modules
 	done
 
 .PHONY: test-ts-compat
-test-ts-compat: 
+test-ts-compat: node_modules $(shell find packages/protobuf-test -name '*.json')
 	for number in $(NUMBERS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
 		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
 	done
+
+.PHONY: timo
+timo: node_modules $(shell find packages/protobuf-test -name '*.json')
+	# rm -rf packages/protobuf/dist/cjs/* packages/protobuf/dist/esm/* packages/protobuf/dist/types/*
+	# rm -rf packages/protobuf/dist/cjs/* packages/protobuf/dist/esm/* packages/protobuf/dist/types/*
+	node_modules/ts4_4_4/bin/tsc -p packages/protobuf-test/tsconfig.4_4_4.json --noEmit
+	node_modules/ts4_5_5/bin/tsc -p packages/protobuf-test/tsconfig.4_5_5.json --noEmit
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files
