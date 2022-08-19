@@ -2,6 +2,7 @@
   "include": ["../../src/**/*.ts"],
   "exclude": ["../../src/**/*.test.ts", "../../src/gen/**/*.ts"],
   "compilerOptions": {
+      "explainFiles": true,
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Basic Options */
@@ -41,7 +42,6 @@
     // "noUnusedParameters": true,            /* Report errors on unused parameters. */
     // "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-    // "noUncheckedIndexedAccess": true,      /* Include 'undefined' in index signature results */
 
     /* Module Resolution Options */
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
