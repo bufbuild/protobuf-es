@@ -155,7 +155,7 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
-NUMBERS = 3.9.4 \
+TS_VERSIONS = 3.9.4 \
 		  4.0.2 \
 		  4.0.8 \
 		  4.1.4 \
@@ -165,9 +165,9 @@ NUMBERS = 3.9.4 \
 		  4.4.4 \
 		  4.5.5
 
-.PHONY: test-ts-install
-test-ts-install:  node_modules
-	for number in $(NUMBERS) ; do \
+.PHONY: install-ts
+install-ts:  node_modules
+	@for number in $(TS_VERSIONS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		if [ ! -f packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ]; then \
 			npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
@@ -182,7 +182,7 @@ test-ts-install:  node_modules
 
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test node_modules $(shell find packages/protobuf-test -name '*.json')
-	for number in $(NUMBERS) ; do \
+	@for number in $(TS_VERSIONS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
 		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
