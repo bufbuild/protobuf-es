@@ -1,6 +1,6 @@
 {
-	"include": ["../../src/**/*.ts"],
-	"exclude": ["../../src/**/*.test.ts"],
+  "include": ["../../src/**/*.ts"],
+  "exclude": ["../../src/**/*.test.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 

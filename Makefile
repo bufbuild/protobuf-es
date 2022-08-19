@@ -155,39 +155,29 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
-NUMBERS = 4.4.4 \
-		  4.5.5 \
-		  4.7.4
+NUMBERS = 4.1.4 \
+		  4.2 \
+		  4.4.4 \
+		  4.5.5
 
 .PHONY: test-ts-install
 test-ts-install:  node_modules
-	@# we can add more typescript versions here with:
-	@# npm i -w packages/protobuf-test ts4_4_4@npm:typescript@4.4.4
 	for number in $(NUMBERS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
 		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
+		mkdir -p packages/protobuf-test/typescript/ts$${dirname}/ ; \
 		node_modules/ts$$dirname/bin/tsc --init ; \
-		mkdir -p packages/protobuf-test/typescript/ts$${dirname}; \
-		sed -i '' -e "1s/^//p; 1s/^.*/\t\"include\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.ts\"],\n\t\"exclude\": [\"\.\.\/\.\.\/src\/\*\*\/\*\.test\.ts\"],/" tsconfig.json ; \
-		mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json; \
-		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
+		mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ; \
 	done
 
 .PHONY: test-ts-compat
-test-ts-compat: node_modules $(shell find packages/protobuf-test -name '*.json')
+test-ts-compat: $(GEN)/protobuf-test node_modules $(shell find packages/protobuf-test -name '*.json')
 	for number in $(NUMBERS) ; do \
 		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
 		node_modules/ts$$dirname/bin/tsc -p packages/protobuf-test/typescript/ts$$dirname/tsconfig.json --noEmit; \
 	done
-
-.PHONY: timo
-timo: node_modules $(shell find packages/protobuf-test -name '*.json')
-	# rm -rf packages/protobuf/dist/cjs/* packages/protobuf/dist/esm/* packages/protobuf/dist/types/*
-	# rm -rf packages/protobuf/dist/cjs/* packages/protobuf/dist/esm/* packages/protobuf/dist/types/*
-	node_modules/ts4_4_4/bin/tsc -p packages/protobuf-test/tsconfig.4_4_4.json --noEmit
-	node_modules/ts4_5_5/bin/tsc -p packages/protobuf-test/tsconfig.4_5_5.json --noEmit
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files
@@ -249,61 +239,3 @@ checkdiff:
 	@# Used in CI to verify that `make` doesn't produce a diff, but ignore changes in benchmarks
 	git checkout packages/protobuf-bench/README.md
 	test -z "$$(git status --porcelain | tee /dev/stderr)"
-
-
-# TypeScript testing
-.PHONY: test-ts
-test-ts::
-
-TS_VERSIONS := $(TS_VERSIONS) \
-		   4.7.4 \
-		   4.4.2 \
-		   4.4.3
-
-define settsfunc
-.PHONY: set-ts$(notdir $(1))
-set-ts$(notdir $(1)):
-	echo "Installing TypeScript version $(1)"
-	sed 's/\"typescript\": \"0.0.0\"/\"typescript\": \"$(1)\"/g' packages/protobuf-ts-test/template.json > packages/protobuf-ts-test/package.json
-	npm install
-	
-.PHONY: run-test$(notdir $(1))
-run-test$(notdir $(1)):
-	cd packages/protobuf-ts-test && PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
-
-test-ts:: set-ts$(notdir $(1)) $(BUILD)/protobuf-ts-test$(notdir $(1)) packages/protobuf-ts-test/jest.config.js run-test$(notdir $(1))
-
-$(BUILD)/protobuf-ts-test$(notdir $(1)): $(BUILD)/protobuf-force$(notdir $(1))
-	npm run -w packages/protobuf-ts-test clean
-	-npm run -w packages/protobuf-ts-test build
-
-$(BUILD)/protobuf-force$(notdir $(1)): 
-	npm run -w packages/protobuf clean
-	npm run -w packages/protobuf build
-endef
-
-
-$(foreach gobin,$(sort $(TS_VERSIONS)),$(eval $(call settsfunc,$(gobin))))
-
-
-
-$(GEN)/protobuf-ts-test: $(BIN)/protoc $(BUILD)/protoc-gen-es
-	@rm -rf packages/protobuf-ts-test/src/gen/ts/* packages/protobuf-ts-test/src/gen/js/* packages/protobuf--ts-test/descriptorset.bin
-	$(BIN)/protoc \
-		--descriptor_set_out packages/protobuf-ts-test/descriptorset.bin --include_imports --include_source_info \
-		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-ts-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
-		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-ts-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
-		--proto_path $(PB) --proto_path $(PB)/src -I packages/protobuf-ts-test \
-		$(shell cd packages/protobuf-ts-test && find . -name '*.proto' | cut -sd / -f 2-) \
-		$(shell cd $(PB)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) \
-		google/protobuf/type.proto \
-		google/protobuf/test_messages_proto2.proto \
-		google/protobuf/test_messages_proto3.proto
-	$(BIN)/protoc \
-		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-ts-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
-		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-ts-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
-		--proto_path $(PB)/src \
-		$(GOOGLE_PROTOBUF_WKT)
-	@mkdir -p $(@D)
-	@touch $(@)
-
