@@ -158,6 +158,7 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 TS_VERSIONS = 3.9.4 \
 		  4.0.2 \
 		  4.0.8 \
+		  4.1.3 \
 		  4.1.4 \
 		  4.2.4 \
 		  4.3.2 \
@@ -168,13 +169,14 @@ TS_VERSIONS = 3.9.4 \
 .PHONY: install-ts
 install-ts:  node_modules
 	@for number in $(TS_VERSIONS) ; do \
-		dirname=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		if [ ! -f packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ]; then \
-			npm i -w packages/protobuf-test ts$${dirname}@npm:typescript@$${number}; \
-			echo "Using TypeScript `node_modules/ts$$dirname/bin/tsc --version`" ; \
-			mkdir -p packages/protobuf-test/typescript/ts$${dirname}/ ; \
-			node_modules/ts$$dirname/bin/tsc --init ; \
-			mv tsconfig.json packages/protobuf-test/typescript/ts$${dirname}/tsconfig.json ; \
+		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
+		dirname=packages/protobuf-test/typescript/ts$${formatted} ; \
+		if [ ! -f $$dirname/tsconfig.json ]; then \
+			npm i -w packages/protobuf-test ts$${formatted}@npm:typescript@$${number}; \
+			echo "Using TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
+			mkdir -p $$dirname/ ; \
+			node_modules/ts$$formatted/bin/tsc --init ; \
+			mv tsconfig.json $$dirname/tsconfig.json ; \
 		else \
 	    	echo "Version $$number already installed" ; \
 		fi ; \
