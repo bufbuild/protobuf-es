@@ -122,7 +122,7 @@ export function makeJsonFormatCommon(
             throw new Error(
               `cannot decode field ${type.typeName}.${
                 field.name
-              } from JSON: "${this.debug(jsonValue)}"`
+              } from JSON: ${this.debug(jsonValue)}`
             );
           }
           const targetArray = target[localName] as unknown[];
@@ -131,7 +131,7 @@ export function makeJsonFormatCommon(
               throw new Error(
                 `cannot decode field ${type.typeName}.${
                   field.name
-                } from JSON: "${this.debug(jsonItem)}"`
+                } from JSON: ${this.debug(jsonItem)}`
               );
             }
             let val;
@@ -150,7 +150,7 @@ export function makeJsonFormatCommon(
                 } catch (e) {
                   let m = `cannot decode field ${type.typeName}.${
                     field.name
-                  } from JSON: "${this.debug(jsonItem)}"`;
+                  } from JSON: ${this.debug(jsonItem)}`;
                   if (e instanceof Error && e.message.length > 0) {
                     m += `: ${e.message}`;
                   }
@@ -197,7 +197,7 @@ export function makeJsonFormatCommon(
                 } catch (e) {
                   let m = `cannot decode map value for field ${type.typeName}.${
                     field.name
-                  } from JSON: "${this.debug(jsonValue)}"`;
+                  } from JSON: ${this.debug(jsonValue)}`;
                   if (e instanceof Error && e.message.length > 0) {
                     m += `: ${e.message}`;
                   }
@@ -221,7 +221,7 @@ export function makeJsonFormatCommon(
             } catch (e) {
               let m = `cannot decode map key for field ${type.typeName}.${
                 field.name
-              } from JSON: "${this.debug(jsonValue)}"`;
+              } from JSON: ${this.debug(jsonValue)}`;
               if (e instanceof Error && e.message.length > 0) {
                 m += `: ${e.message}`;
               }
@@ -268,7 +268,7 @@ export function makeJsonFormatCommon(
               } catch (e) {
                 let m = `cannot decode field ${type.typeName}.${
                   field.name
-                } from JSON: "${this.debug(jsonValue)}"`;
+                } from JSON: ${this.debug(jsonValue)}`;
                 if (e instanceof Error && e.message.length > 0) {
                   m += `: ${e.message}`;
                 }

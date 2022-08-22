@@ -14,8 +14,7 @@
 
 import { Duration as TS_Duration } from "../../gen/ts/google/protobuf/duration_pb.js";
 import { Duration as JS_Duration } from "../../gen/js/google/protobuf/duration_pb.js";
-
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { protoInt64 } from "@bufbuild/protobuf";
 
 describe("google.protobuf.Duration", () => {
   describe.each([
@@ -25,12 +24,12 @@ describe("google.protobuf.Duration", () => {
     const json3s = "3s";
     const json3s1ms = "3.000001s";
     const json3s1ns = "3.000000001s";
-    // @ts-expect-error TS2737
-    const dura3s = new Duration({ seconds: 3n, nanos: 0 });
-    // @ts-expect-error TS2737
-    const dura3s1ms = new Duration({ seconds: 3n, nanos: 1000 });
-    // @ts-expect-error TS2737
-    const dura3s1ns = new Duration({ seconds: 3n, nanos: 1 });
+    const dura3s = new Duration({ seconds: protoInt64.parse(3), nanos: 0 });
+    const dura3s1ms = new Duration({
+      seconds: protoInt64.parse(3),
+      nanos: 1000,
+    });
+    const dura3s1ns = new Duration({ seconds: protoInt64.parse(3), nanos: 1 });
 
     test("encodes 3s to JSON", () => {
       expect(dura3s.toJson()).toBe(json3s);

@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { int64fromString, int64toString } from "./google/varint.js";
+import { assert } from "./private/assert.js";
+import { int64FromString, int64ToString, uInt64ToString } from "./google/varint.js";
 
 /**
  * We use the `bigint` primitive to represent 64-bit integral types. If bigint
@@ -45,22 +46,23 @@ import { int64fromString, int64toString } from "./google/varint.js";
  * ```
  *
  * If you need to manipulate 64-bit integral values that are outside the
- * range of safe representation as Number, you can work with the two's
- * complement directly. The following example negates a field value:
+ * range of safe representation as a JavaScript Number, we recommend you
+ * use a third party library, for example the npm package "long":
  *
  * ```ts
- * let t = protoInt64.enc(message.int64Field);
- * t.hi = ~t.hi;
- * if (t.lo) {
- *     t.lo = ~t.lo + 1;
- * } else {
- *     t.hi += 1;
- * }
- * message.int64Field = protoInt64.dec(t.lo, t.hi);
- * ```
+ * // convert the field value to a Long
+ * const bits = protoInt64.enc(message.int64Field);
+ * const longValue = Long.fromBits(bits.lo, bits.hi);
  *
- * There are several 3rd party libraries that provide arithmetic operations
- * on a two's complement, for example the npm package "long".
+ * // perform arithmetic
+ * const longResult = longValue.subtract(1);
+ *
+ * // set the result in the field
+ * message.int64Field = protoInt64.dec(longResult.low, longResult.high);
+ *
+ * // Assuming int64Field contains 9223372036854775807:
+ * console.log(message.int64Field); // 9223372036854775806
+ * ```
  */
 interface Int64Support {
   /**
@@ -116,7 +118,10 @@ function makeInt64Support(): Int64Support {
     typeof dv.getBigInt64 === "function" &&
     typeof dv.getBigUint64 === "function" &&
     typeof dv.setBigInt64 === "function" &&
-    typeof dv.setBigUint64 === "function";
+    typeof dv.setBigUint64 === "function" &&
+    (typeof process != "object" ||
+      typeof process.env != "object" ||
+      process.env.BUF_BIGINT_DISABLE !== "1");
   if (ok) {
     const MIN = BigInt("-9223372036854775808"),
       MAX = BigInt("9223372036854775807"),
@@ -143,14 +148,14 @@ function makeInt64Support(): Int64Support {
         dv.setBigInt64(0, this.parse(value), true);
         return {
           lo: dv.getInt32(0, true),
-          hi: dv.getInt32(4, true),
+          hi: dv.getInt32(4, true)
         };
       },
       uEnc(value: string | number | bigint): { lo: number; hi: number } {
         dv.setBigInt64(0, this.uParse(value), true);
         return {
           lo: dv.getInt32(0, true),
-          hi: dv.getInt32(4, true),
+          hi: dv.getInt32(4, true)
         };
       },
       dec(lo: number, hi: number): bigint {
@@ -162,66 +167,50 @@ function makeInt64Support(): Int64Support {
         dv.setInt32(0, lo, true);
         dv.setInt32(4, hi, true);
         return dv.getBigUint64(0, true);
-      },
+      }
     };
   }
+  const assertInt64String = (value: string) =>
+    assert(/^-?[0-9]+$/.test(value), `int64 invalid: ${value}`);
+  const assertUInt64String = (value: string) =>
+    assert(/^[0-9]+$/.test(value), `uint64 invalid: ${value}`);
   return {
     zero: "0" as unknown as 0n,
     supported: false,
-    parse(value: string): bigint {
-      if (!/^-?[0-9]+$/.test(value)) {
-        throw new Error(`int64 invalid: ${value}`);
+    parse(value: string | number | bigint): bigint {
+      if (typeof value != "string") {
+        value = value.toString();
       }
+      assertInt64String(value);
       return value as unknown as bigint;
     },
-    uParse(value: string): bigint {
-      if (!/^-?[0-9]+$/.test(value)) {
-        throw new Error(`uint64 invalid: ${value}`);
+    uParse(value: string | number | bigint): bigint {
+      if (typeof value != "string") {
+        value = value.toString();
       }
+      assertUInt64String(value);
       return value as unknown as bigint;
     },
     enc(value: string | number | bigint): { lo: number; hi: number } {
-      if (typeof value == "string") {
-        if (!/^-?[0-9]+$/.test(value)) {
-          throw new Error(`int64 invalid: ${value}`);
-        }
-      } else {
-        value = value.toString(10);
+      if (typeof value != "string") {
+        value = value.toString();
       }
-      const [, lo, hi] = int64fromString(value);
-      return { lo, hi };
+      assertInt64String(value);
+      return int64FromString(value);
     },
     uEnc(value: string | number | bigint): { lo: number; hi: number } {
-      if (typeof value == "string") {
-        if (!/^-?[0-9]+$/.test(value)) {
-          throw new Error(`uint64 invalid: ${value}`);
-        }
-      } else {
-        value = value.toString(10);
+      if (typeof value != "string") {
+        value = value.toString();
       }
-      const [minus, lo, hi] = int64fromString(value);
-      if (minus) {
-        throw new Error(`uint64 invalid: ${value}`);
-      }
-      return { lo, hi };
+      assertUInt64String(value);
+      return int64FromString(value);
     },
     dec(lo: number, hi: number): bigint {
-      const minus = (hi & 0x80000000) !== 0;
-      if (minus) {
-        // negate
-        hi = ~hi;
-        if (lo) {
-          lo = ~lo + 1;
-        } else {
-          hi += 1;
-        }
-        return ("-" + int64toString(lo, hi)) as unknown as bigint;
-      }
-      return int64toString(lo, hi) as unknown as bigint;
+      return int64ToString(lo, hi) as unknown as bigint;
     },
     uDec(lo: number, hi: number): bigint {
-      return int64toString(lo, hi) as unknown as bigint;
-    },
+      return uInt64ToString(lo, hi) as unknown as bigint;
+    }
   };
 }
 
