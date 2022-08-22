@@ -22,15 +22,21 @@ import { codegenInfo, DescFile } from "@bufbuild/protobuf";
  * All plugins based on @bufbuild/protoplugin support the option
  * "rewrite_imports", which is parsed into this type. The option can be given
  * multiple times, in the form of `rewrite_imports=<pattern>:<target>`.
- * If any generated file imports from a path matching a pattern, the import
- * path is rewritten to the corresponding target. The first matching pattern
- * wins. As a result, the target is prepended to the import path (after
- * replacing any leading ./ or ../ from the import path with / first).
  *
  * The pattern is a very reduced subset of glob:
  * - `*` matches zero or more characters except `/`.
  * - `**` matches zero or more path elements, where an element is one or more
  *   characters with a trailing `/`.
+ *
+ * The target is typically a npm package name, for example `@scope/pkg`.
+ *
+ * If any generated file imports from a path matching one of the patterns, the
+ * import path is rewritten to the corresponding target, by prepending the
+ * target to the import path (after replacing any leading ./ or ../ from the
+ * import path with / first).
+ *
+ * Note that the pattern is matched against the import path before it is made
+ * relative to the file importing it. The first matching pattern wins.
  *
  * For example, the pattern `./foo/**\/*_pb.js` (escaped for block comment!)
  * matches:
@@ -39,7 +45,7 @@ import { codegenInfo, DescFile } from "@bufbuild/protobuf";
  *
  * But neither of:
  * - ./bar_pb.js
- * - ./foo/bar_pb.js
+ * - ./foo/bar_xx.js
  *
  * With the target `@scope/pkg`, the import path `./foo/bar_pb.js` is
  * transformed to `@scope/pkg/foo/bar_pb.js`.
