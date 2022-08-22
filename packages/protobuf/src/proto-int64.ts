@@ -13,7 +13,11 @@
 // limitations under the License.
 
 import { assert } from "./private/assert.js";
-import { int64FromString, int64ToString, uInt64ToString } from "./google/varint.js";
+import {
+  int64FromString,
+  int64ToString,
+  uInt64ToString,
+} from "./google/varint.js";
 
 /**
  * We use the `bigint` primitive to represent 64-bit integral types. If bigint
@@ -148,14 +152,14 @@ function makeInt64Support(): Int64Support {
         dv.setBigInt64(0, this.parse(value), true);
         return {
           lo: dv.getInt32(0, true),
-          hi: dv.getInt32(4, true)
+          hi: dv.getInt32(4, true),
         };
       },
       uEnc(value: string | number | bigint): { lo: number; hi: number } {
         dv.setBigInt64(0, this.uParse(value), true);
         return {
           lo: dv.getInt32(0, true),
-          hi: dv.getInt32(4, true)
+          hi: dv.getInt32(4, true),
         };
       },
       dec(lo: number, hi: number): bigint {
@@ -167,7 +171,7 @@ function makeInt64Support(): Int64Support {
         dv.setInt32(0, lo, true);
         dv.setInt32(4, hi, true);
         return dv.getBigUint64(0, true);
-      }
+      },
     };
   }
   const assertInt64String = (value: string) =>
@@ -210,7 +214,7 @@ function makeInt64Support(): Int64Support {
     },
     uDec(lo: number, hi: number): bigint {
       return uInt64ToString(lo, hi) as unknown as bigint;
-    }
+    },
   };
 }
 
