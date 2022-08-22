@@ -36,9 +36,9 @@ import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import {
   deriveImportPath,
-  ImportRedirections,
+  RewriteImports,
   makeImportPath,
-  redirectImport,
+  rewriteImportPath,
 } from "./import-path.js";
 
 /**
@@ -89,16 +89,16 @@ export function createSchema(
   pluginVersion: string,
   tsNocheck: boolean,
   bootstrapWkt: boolean,
-  redirectedImports: ImportRedirections
+  rewriteImports: RewriteImports
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
     const name = codegenInfo.localName(desc);
-    const from = redirectImport(
+    const from = rewriteImportPath(
       makeImportPath(desc.file, bootstrapWkt, filesToGenerate),
-      redirectedImports
+      rewriteImports
     );
     return createImportSymbol(name, from);
   };
@@ -110,9 +110,9 @@ export function createSchema(
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
-      const importPath = redirectImport(
+      const importPath = rewriteImportPath(
         deriveImportPath(name),
-        redirectedImports
+        rewriteImports
       );
       const genFile = createGeneratedFile(
         name,

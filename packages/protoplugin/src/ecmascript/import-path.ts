@@ -15,24 +15,25 @@
 import { codegenInfo, DescFile } from "@bufbuild/protobuf";
 
 /**
- * A configuration of import path redirections, a feature mainly used for
+ * A configuration for rewriting import paths, a feature mainly used for
  * remote code generation in the BSR npm registry, which makes it possible
  * to serve the output of a BSR module and a plugin in an individual package.
  *
  * All plugins based on @bufbuild/protoplugin support the option
- * "redirect_imports", which is parsed into this type. The option can be given
- * multiple times, in the form of `redirect_imports=<pattern>:<target>`.
+ * "rewrite_imports", which is parsed into this type. The option can be given
+ * multiple times, in the form of `rewrite_imports=<pattern>:<target>`.
  * If any generated file imports from a path matching a pattern, the import
- * path is redirected to the corresponding target. The first matching pattern
- * wins. As a result, the target is prepended to the import path, stripping
- * any leading ./ or ../ from the import path first.
+ * path is rewritten to the corresponding target. The first matching pattern
+ * wins. As a result, the target is prepended to the import path (after
+ * replacing any leading ./ or ../ from the import path with / first).
  *
  * The pattern is a very reduced subset of glob:
  * - `*` matches zero or more characters except `/`.
  * - `**` matches zero or more path elements, where an element is one or more
  *   characters with a trailing `/`.
  *
- * For example, the pattern `./foo/**\/*_pb.js` matches:
+ * For example, the pattern `./foo/**\/*_pb.js` (escaped for block comment!)
+ * matches:
  * - ./foo/bar_pb.js
  * - ./foo/bar/baz_pb.js
  *
@@ -43,29 +44,29 @@ import { codegenInfo, DescFile } from "@bufbuild/protobuf";
  * With the target `@scope/pkg`, the import path `./foo/bar_pb.js` is
  * transformed to `@scope/pkg/foo/bar_pb.js`.
  */
-export type ImportRedirections = { pattern: string; target: string }[];
+export type RewriteImports = { pattern: string; target: string }[];
 
 const cache = new WeakMap<
-  ImportRedirections,
+  RewriteImports,
   { pattern: RegExp; target: string }[]
 >();
 
 /**
- * Apply import redirection to the given path.
+ * Apply import rewrites to the given path.
  */
-export function redirectImport(
+export function rewriteImportPath(
   importPath: string,
-  redirectedImports: ImportRedirections
+  rewriteImports: RewriteImports
 ): string {
-  let ri = cache.get(redirectedImports);
+  let ri = cache.get(rewriteImports);
   if (ri === undefined) {
-    ri = redirectedImports.map(({ pattern, target }) => {
+    ri = rewriteImports.map(({ pattern, target }) => {
       return {
         pattern: starToRegExp(pattern),
         target,
       };
     });
-    cache.set(redirectedImports, ri);
+    cache.set(rewriteImports, ri);
   }
   for (const { pattern, target } of ri) {
     if (pattern.test(importPath)) {

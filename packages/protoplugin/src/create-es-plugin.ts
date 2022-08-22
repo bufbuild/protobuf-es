@@ -17,7 +17,7 @@ import { createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
-import type { ImportRedirections } from "./ecmascript/import-path.js";
+import type { RewriteImports } from "./ecmascript/import-path.js";
 
 interface PluginInit {
   /**
@@ -48,7 +48,7 @@ export function createEcmaScriptPlugin(
     name: init.name,
     version: init.version,
     run(req) {
-      const { targets, tsNocheck, bootstrapWkt, redirectedImports } =
+      const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
       const { schema, toResponse } = createSchema(
         req,
@@ -57,7 +57,7 @@ export function createEcmaScriptPlugin(
         init.version,
         tsNocheck,
         bootstrapWkt,
-        redirectedImports
+        rewriteImports
       );
       generateFn(schema);
       const res = new CodeGeneratorResponse();
@@ -74,7 +74,7 @@ function parseParameter(
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
   let bootstrapWkt = false;
-  const redirectedImports: ImportRedirections = [];
+  const rewriteImports: RewriteImports = [];
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
       case "target":
@@ -122,7 +122,7 @@ function parseParameter(
             throw new PluginOptionError(`${key}=${value}`);
         }
         break;
-      case "redirect_imports": {
+      case "rewrite_imports": {
         const parts = value.split(":");
         if (parts.length !== 2) {
           throw new PluginOptionError(
@@ -131,7 +131,7 @@ function parseParameter(
           );
         }
         const [pattern, target] = parts;
-        redirectedImports.push({ pattern, target });
+        rewriteImports.push({ pattern, target });
         break;
       }
       default:
@@ -146,7 +146,7 @@ function parseParameter(
         break;
     }
   }
-  return { targets, tsNocheck, bootstrapWkt, redirectedImports };
+  return { targets, tsNocheck, bootstrapWkt, rewriteImports };
 }
 
 function splitParameter(
