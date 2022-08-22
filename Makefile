@@ -154,9 +154,7 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
-TS_VERSIONS = 3.9.4 \
-		  4.0.2 \
-		  4.0.8 \
+TS_VERSIONS = 4.0.8 \
 		  4.1.3 \
 		  4.1.4 \
 		  4.2.4 \
