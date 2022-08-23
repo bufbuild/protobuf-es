@@ -1,15 +1,12 @@
 {
-  "include": [
-      "../../src/gen/js/extra/*.js",
-      "../../src/gen/ts/extra/*.ts"
-  ],
+  "include": ["../../src/gen/js/extra/*.js", "../../src/gen/ts/extra/*.ts"],
   // These are the default compiler options for TypeScript v4.2.3, created with `tsc --init`
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,  
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }
