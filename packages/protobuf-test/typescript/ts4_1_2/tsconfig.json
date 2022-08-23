@@ -1,0 +1,14 @@
+{
+  "include": [
+      "../../src/gen/js/extra/*.js",
+      "../../src/gen/ts/extra/*.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true, 
+    "skipLibCheck": true,   
+    "forceConsistentCasingInFileNames": true
+  }
+}

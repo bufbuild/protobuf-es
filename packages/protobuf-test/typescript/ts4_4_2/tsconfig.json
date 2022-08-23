@@ -1,0 +1,15 @@
+// This TS config was generated using tsc 4.4.2 and the `--init` flag
+{
+  "include": [
+      "../../src/gen/js/extra/*.js",
+      "../../src/gen/ts/extra/*.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

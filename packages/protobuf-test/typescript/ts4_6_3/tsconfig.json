@@ -1,4 +1,4 @@
-// This TS config was generated using tsc 4.5.5 and the `--init` flag
+// This TS config was generated using tsc 4.6.3 and the `--init` flag
 {
   "include": [
       "../../src/gen/js/extra/*.js",
