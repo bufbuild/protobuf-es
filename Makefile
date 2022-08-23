@@ -141,7 +141,7 @@ clean: ## Delete build artifacts and installed dependencies
 build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
 
 .PHONY: test
-test: test-jest test-conformance ## Run all tests
+test: test-jest test-conformance test-ts-compat $(shell find packages/protobuf-test -name '*.json') # Run all tests
 
 .PHONY: test-jest
 test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
@@ -155,60 +155,22 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		packages/protobuf-conformance/bin/conformance_esm.js
 
 TS_VERSIONS = 4.1.2 \
-			  4.1.3 \
-			  4.1.4 \
-			  4.1.5 \
-			  4.1.6 \
-			  4.2.2 \
-			  4.2.3 \
 			  4.2.4 \
-			  4.3.2 \
-			  4.3.3 \
-			  4.3.4 \
 			  4.3.5 \
-			  4.4.2 \
-			  4.4.3 \
 			  4.4.4 \
 			  4.5.2 \
-			  4.5.3 \
-			  4.5.4 \
-			  4.5.5 \
-			  4.6.2 \
-			  4.6.3 \
 			  4.6.4 \
-			  4.7.2 \
-			  4.7.3 \
-			  4.7.4 \
-			  4.8.1-rc \
-
-.PHONY: install-ts
-install-ts:  node_modules
-	@for number in $(TS_VERSIONS) ; do \
-		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		dirname=packages/protobuf-test/typescript/ts$${formatted} ; \
-		if [ ! -f $$dirname/tsconfig.json ]; then \
-			npm i -w packages/protobuf-test ts$${formatted}@npm:typescript@$${number}; \
-			echo "Installing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-			mkdir -p $$dirname/ ; \
-			node_modules/ts$$formatted/bin/tsc --init ; \
-			mv tsconfig.json $$dirname/tsconfig.json ; \
-		else \
-	    	echo "Version $$number already installed" ; \
-		fi ; \
-	done
+			  4.8.1-rc
 
 .PHONY: test-ts-compat
-test-ts-compat: $(GEN)/protobuf-test node_modules $(shell find packages/protobuf-test -name '*.json')
+test-ts-compat: $(GEN)/protobuf-test node_modules 
 	@for number in $(TS_VERSIONS) ; do \
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		dirname=packages/protobuf-test/typescript/ts$${formatted} ; \
+		dirname=packages/protobuf-test/typescript ; \
 		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.json --noEmit > $$dirname/errors.log 2>&1; \
-		if [ "$$?" -eq 0 ]; then \
-	  		echo "Success" ; \
-			rm $$dirname/errors.log ; \
-  		else \
-	  		echo "Failed compilation.  Errors saved to $${dirname}/errors.log" ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit ; \
+		if [ "$$?" -ne 0 ]; then \
+			exit 1 ; \
 	  	fi ; \
 	done
 

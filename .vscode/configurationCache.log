@@ -1,0 +1,1 @@
+{"buildTargets":[".PHONY",".tmp/build/protoplugin","all","bench","boostrapwkt","bootstrapwkt","build","checkdiff","clean","format","help","install-ts","lint","node_modules","release","setversion","test","test-conformance","test-jest","test-ts-compat"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

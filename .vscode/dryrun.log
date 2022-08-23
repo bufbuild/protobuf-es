@@ -1,0 +1,114 @@
+make: Entering directory `/Users/sayers/Projects/protobuf-es'
+npm ci
+npm run -w packages/protobuf clean
+npm run -w packages/protobuf build
+mkdir -p .tmp/build
+touch .tmp/build/protobuf
+echo .tmp/protobuf-21.5
+mkdir -p .tmp
+curl -L https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protobuf-all-21.5.tar.gz \
+		> .tmp/protobuf-21.5.tar.gz
+tar -xzf .tmp/protobuf-21.5.tar.gz -C .tmp/
+mkdir -p .tmp/bin
+cd .tmp/protobuf-21.5 && bazel build protoc
+cp -f .tmp/protobuf-21.5/bazel-bin/protoc .tmp/bin
+touch .tmp/bin/protoc
+npm run -w packages/protoplugin clean
+npm run -w packages/protoplugin build
+mkdir -p .tmp/build
+touch .tmp/build/protoplugin
+npm run -w packages/protoc-gen-es clean
+npm run -w packages/protoc-gen-es build
+mkdir -p .tmp/build
+touch .tmp/build/protoc-gen-es
+ 
+rm -rf packages/protobuf-test/src/gen/ts/* packages/protobuf-test/src/gen/js/* packages/protobuf-test/descriptorset.bin
+.tmp/bin/protoc \
+		--descriptor_set_out packages/protobuf-test/descriptorset.bin --include_imports --include_source_info \
+		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
+		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
+		--proto_path .tmp/protobuf-21.5 --proto_path .tmp/protobuf-21.5/src -I packages/protobuf-test \
+		extra/proto2.proto extra/msg-oneof.proto extra/msg-self-reference.proto extra/msg-message.proto extra/empty-file.proto extra/msg-maps.proto extra/comments.proto extra/deprecation-explicit.proto extra/proto3.proto extra/msg-scalar.proto extra/msg-json-names.proto extra/wkt-wrappers.proto extra/deprecation-implicit.proto extra/enum.proto extra/name-clash.proto extra/service-example.proto extra/service-all.proto extra/example.proto \
+		google/protobuf/unittest_no_field_presence.proto google/protobuf/unittest_optimize_for.proto google/protobuf/unittest_lazy_dependencies_custom_option.proto google/protobuf/unittest_drop_unknown_fields.proto google/protobuf/unittest_well_known_types.proto google/protobuf/unittest_enormous_descriptor.proto google/protobuf/unittest_embed_optimize_for.proto google/protobuf/unittest_arena.proto google/protobuf/unittest_preserve_unknown_enum.proto google/protobuf/unittest_lite.proto google/protobuf/unittest_proto3_arena.proto google/protobuf/unittest_proto3.proto google/protobuf/unittest_import.proto google/protobuf/unittest_no_generic_services.proto google/protobuf/unittest_proto3_optional.proto google/protobuf/unittest_import_public.proto google/protobuf/unittest.proto google/protobuf/unittest_mset_wire_format.proto google/protobuf/unittest_empty.proto google/protobuf/unittest_import_public_lite.proto google/protobuf/unittest_mset.proto google/protobuf/unittest_import_lite.proto google/protobuf/unittest_lazy_dependencies.proto google/protobuf/unittest_proto3_lite.proto google/protobuf/unittest_proto3_arena_lite.proto google/protobuf/unittest_lite_imports_nonlite.proto google/protobuf/unittest_lazy_dependencies_enum.proto google/protobuf/unittest_preserve_unknown_enum2.proto google/protobuf/unittest_custom_options.proto \
+		google/protobuf/type.proto \
+		google/protobuf/test_messages_proto2.proto \
+		google/protobuf/test_messages_proto3.proto
+.tmp/bin/protoc \
+		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
+		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
+		--proto_path .tmp/protobuf-21.5/src \
+		google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
+mkdir -p .tmp/gen
+touch .tmp/gen/protobuf-test
+ 
+npm run -w packages/protobuf-test clean
+npm run -w packages/protobuf-test build
+mkdir -p .tmp/build
+touch .tmp/build/protobuf-test
+rm -rf packages/protobuf-conformance/src/gen/*
+.tmp/bin/protoc --plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out packages/protobuf-conformance/src/gen --es_opt ts_nocheck=false,target=ts \
+		--proto_path .tmp/protobuf-21.5 --proto_path .tmp/protobuf-21.5/src \
+		conformance/conformance.proto \
+		google/protobuf/test_messages_proto2.proto \
+		google/protobuf/test_messages_proto3.proto
+mkdir -p .tmp/gen
+touch .tmp/gen/protobuf-conformance
+ 
+npm run -w packages/protobuf-conformance clean
+npm run -w packages/protobuf-conformance build
+mkdir -p .tmp/build
+ 
+touch .tmp/build/protobuf-conformance
+ 
+npm run -w packages/example clean
+npm run -w packages/example build
+mkdir -p .tmp/build
+touch .tmp/build/example
+cd packages/protobuf-test && PATH="/Users/sayers/Projects/protobuf-es/.tmp/bin:/Users/sayers/Downloads/google-cloud-sdk/bin:/Users/sayers/.gimme/versions/go1.18.darwin.amd64/bin:/Users/sayers/Projects/go/bin:/Users/sayers/.gimme/versions/go1.18.darwin.arm64/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin::/Users/sayers/bin:/Users/sayers/protoc/3.20.1/bin:/Users/sayers/Projects/go/bin:/Users/sayers/.gimme/versions/go1.18.darwin.arm64/bin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin::/Users/sayers/.rvm/bin" NODE_OPTIONS=--experimental-vm-modules npx jest
+mkdir -p .tmp/bin
+cd .tmp/protobuf-21.5 && bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
+cp -f .tmp/protobuf-21.5/bazel-bin/conformance/conformance_test_runner .tmp/bin
+touch .tmp/bin/conformance_test_runner
+.tmp/bin/conformance_test_runner --enforce_recommended \
+		--failure_list packages/protobuf-conformance/conformance_failing_tests.txt \
+		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
+		packages/protobuf-conformance/bin/conformance_esm.js
+ 
+mkdir -p .tmp/bin
+GOBIN=/Users/sayers/Projects/protobuf-es/.tmp/bin go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@v1.1.0
+mkdir -p .tmp/bin
+GOBIN=/Users/sayers/Projects/protobuf-es/.tmp/bin go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@v1.1.0
+npx prettier --write '**/*.{json,js,jsx,ts,tsx,css}' --loglevel error
+.tmp/bin/git-ls-files-unstaged | \
+		grep -v -e .tmp\/ -e node_module\/ -e packages\/protobuf-bench\/src\/gen\/ -e packages\/protobuf-conformance\/bin\/conformance_esm.js -e packages\/protobuf-conformance\/src\/gen\/ -e packages\/protobuf-test\/dist\/ -e packages\/protobuf-test\/src\/gen\/ -e packages\/protobuf\/dist\/ -e packages\/protobuf\/src\/google\/varint.ts -e scripts\/ | \
+		xargs .tmp/bin/license-header \
+			--license-type "apache" \
+			--copyright-holder "Buf Technologies, Inc." \
+			--year-range "2021-2022"
+rm -rf packages/protobuf-bench/src/gen/*
+buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
+mkdir -p .tmp/gen
+touch .tmp/gen/protobuf-bench
+ 
+rm -rf packages/example/src/gen/*
+buf generate packages/example --template packages/example/buf.gen.yaml --output packages/example
+mkdir -p .tmp/gen
+touch .tmp/gen/example
+npx eslint --max-warnings 0 .
+npm run -w packages/protobuf-bench report
+rm -rf .tmp/bootstrapwkt
+mkdir -p .tmp/bootstrapwkt
+.tmp/bin/protoc \
+		--plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out .tmp/bootstrapwkt --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts \
+		--proto_path .tmp/protobuf-21.5/src google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
+find .tmp/bootstrapwkt -name '*.ts' | \
+		xargs .tmp/bin/license-header \
+			--license-type "apache" \
+			--copyright-holder "Buf Technologies, Inc." \
+			--year-range "2021-2022"
+# If the generated code differs, use it, and run tests again
+diff >/dev/null -r packages/protobuf/src/google/protobuf .tmp/bootstrapwkt/google/protobuf || \
+		(cp -r .tmp/bootstrapwkt/google/protobuf packages/protobuf/src/google/ && /Library/Developer/CommandLineTools/usr/bin/make build test format lint)
+ 
+make: Leaving directory `/Users/sayers/Projects/protobuf-es'
+ 
