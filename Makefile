@@ -142,7 +142,7 @@ clean: ## Delete build artifacts and installed dependencies
 build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
 
 .PHONY: test
-test: test-jest test-conformance test-ts-compat # Run all tests
+test: test-jest test-conformance test-ts-compat ## Run all tests
 
 .PHONY: test-jest
 test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
