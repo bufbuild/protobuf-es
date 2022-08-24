@@ -14,7 +14,7 @@ PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
 LICENSE_HEADER_YEAR_RANGE := 2021-2022
 LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-GOOGLE_PROTOBUF_VERSION = 3.20.1
+GOOGLE_PROTOBUF_VERSION = 21.5
 
 node_modules: package-lock.json
 	npm ci
@@ -34,8 +34,8 @@ $(BIN)/protoc: $(PB)
 
 $(BIN)/conformance_test_runner: $(PB)
 	@mkdir -p $(@D)
-	cd $(PB) && bazel build test_messages_proto3_proto conformance_proto conformance_test conformance_test_runner
-	cp -f $(PB)/bazel-bin/conformance_test_runner $(@D)
+	cd $(PB) && bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
+	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
 	@touch $(@)
 
 $(BIN)/license-header: Makefile
@@ -82,7 +82,7 @@ $(BUILD)/example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/exa
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es
+$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto')
 	@rm -rf packages/protobuf-test/src/gen/ts/* packages/protobuf-test/src/gen/js/* packages/protobuf-test/descriptorset.bin
 	$(BIN)/protoc \
 		--descriptor_set_out packages/protobuf-test/descriptorset.bin --include_imports --include_source_info \
@@ -145,14 +145,15 @@ test: test-jest test-conformance ## Run all tests
 
 .PHONY: test-jest
 test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
-	cd packages/protobuf-test && PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
+	cd packages/protobuf-test \
+		&& BUF_BIGINT_DISABLE=0 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
+		&& BUF_BIGINT_DISABLE=1 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
 
 .PHONY: test-conformance
 test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
-	$(BIN)/conformance_test_runner --enforce_recommended \
-		--failure_list packages/protobuf-conformance/conformance_failing_tests.txt \
-		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
-		packages/protobuf-conformance/bin/conformance_esm.js
+	cd packages/protobuf-conformance \
+		&& BUF_BIGINT_DISABLE=0 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_with_bigint.txt    --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js \
+		&& BUF_BIGINT_DISABLE=1 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files

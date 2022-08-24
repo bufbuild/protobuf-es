@@ -22,8 +22,7 @@ import {
 } from "./gen/js/extra/msg-scalar_pb";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
-
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT(
   { ts: TS_ScalarValuesMessage, js: JS_ScalarValuesMessage },
@@ -33,24 +32,19 @@ describeMT(
     > = {
       doubleField: 0,
       floatField: 0,
-      // @ts-expect-error TS2737
-      int64Field: 0n,
-      // @ts-expect-error TS2737
-      uint64Field: 0n,
+      int64Field: protoInt64.parse(0),
+      uint64Field: protoInt64.uParse(0),
       int32Field: 0,
-      // @ts-expect-error TS2737
-      fixed64Field: 0n,
+      fixed64Field: protoInt64.uParse(0),
       fixed32Field: 0,
       boolField: false,
       stringField: "",
       bytesField: new Uint8Array(0),
       uint32Field: 0,
       sfixed32Field: 0,
-      // @ts-expect-error TS2737
-      sfixed64Field: 0n,
+      sfixed64Field: protoInt64.parse(0),
       sint32Field: 0,
-      // @ts-expect-error TS2737
-      sint64Field: 0n,
+      sint64Field: protoInt64.parse(0),
     };
     const defaultJson: JsonValue = {};
     const exampleFields: PlainMessage<
@@ -58,13 +52,10 @@ describeMT(
     > = {
       doubleField: 0.75,
       floatField: -0.75,
-      // @ts-expect-error TS2737
-      int64Field: -1n,
-      // @ts-expect-error TS2737
-      uint64Field: 1n,
+      int64Field: protoInt64.parse(-1),
+      uint64Field: protoInt64.uParse(1),
       int32Field: -123,
-      // @ts-expect-error TS2737
-      fixed64Field: 1n,
+      fixed64Field: protoInt64.uParse(1),
       fixed32Field: 123,
       boolField: true,
       stringField: "hello world",
@@ -73,11 +64,9 @@ describeMT(
       ]),
       uint32Field: 123,
       sfixed32Field: -123,
-      // @ts-expect-error TS2737
-      sfixed64Field: -1n,
+      sfixed64Field: protoInt64.parse(-1),
       sint32Field: -1,
-      // @ts-expect-error TS2737
-      sint64Field: -1n,
+      sint64Field: protoInt64.parse(-1),
     };
     const exampleJson: JsonValue = {
       doubleField: 0.75,
@@ -147,13 +136,10 @@ describeMT(
     > = {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
-      // @ts-expect-error TS2737
-      int64Field: [-1n, -2n],
-      // @ts-expect-error TS2737
-      uint64Field: [1n, 2n],
+      int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
+      uint64Field: [protoInt64.uParse(1), protoInt64.uParse(2)],
       int32Field: [-123, 500],
-      // @ts-expect-error TS2737
-      fixed64Field: [1n, 99n],
+      fixed64Field: [protoInt64.uParse(1), protoInt64.uParse(99)],
       fixed32Field: [123, 999],
       boolField: [true, false, true],
       stringField: ["hello", "world"],
@@ -162,11 +148,17 @@ describeMT(
       ],
       uint32Field: [123, 123],
       sfixed32Field: [-123, -123, -123],
-      // @ts-expect-error TS2737
-      sfixed64Field: [-1n, -2n, 100n],
+      sfixed64Field: [
+        protoInt64.parse(-1),
+        protoInt64.parse(-2),
+        protoInt64.parse(100),
+      ],
       sint32Field: [-1, -2, 999],
-      // @ts-expect-error TS2737
-      sint64Field: [-1n, -99n, 99n],
+      sint64Field: [
+        protoInt64.parse(-1),
+        protoInt64.parse(-99),
+        protoInt64.parse(99),
+      ],
     };
     const exampleJson: JsonValue = {
       doubleField: [0.75, 0, 1],

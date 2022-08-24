@@ -672,9 +672,9 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
  */
 export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   /**
-   * @generated from field: optional int32 qux = 1;
+   * @generated from field: optional int32 moo = 1;
    */
-  qux?: number;
+  moo?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
@@ -689,7 +689,7 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.ComplexOptionType3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "qux", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "moo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
   ]);
 
