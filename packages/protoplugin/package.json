@@ -19,13 +19,11 @@
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "default": "./dist/esm/index.js"
+      "require": "./dist/cjs/index.js"
     },
     "./ecmascript": {
       "import": "./dist/esm/ecmascript/index.js",
-      "require": "./dist/cjs/ecmascript/index.js",
-      "default": "./dist/esm/ecmascript/index.js"
+      "require": "./dist/cjs/ecmascript/index.js"
     }
   },
   "types": "./dist/types/index.d.ts",

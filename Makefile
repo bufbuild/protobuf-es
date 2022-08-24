@@ -146,14 +146,15 @@ test: test-jest test-conformance test-ts-compat # Run all tests
 
 .PHONY: test-jest
 test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
-	cd packages/protobuf-test && PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
+	cd packages/protobuf-test \
+		&& BUF_BIGINT_DISABLE=0 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
+		&& BUF_BIGINT_DISABLE=1 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
 
 .PHONY: test-conformance
 test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
-	$(BIN)/conformance_test_runner --enforce_recommended \
-		--failure_list packages/protobuf-conformance/conformance_failing_tests.txt \
-		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
-		packages/protobuf-conformance/bin/conformance_esm.js
+	cd packages/protobuf-conformance \
+		&& BUF_BIGINT_DISABLE=0 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_with_bigint.txt    --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js \
+		&& BUF_BIGINT_DISABLE=1 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js
 
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test node_modules 
