@@ -40,7 +40,7 @@ specified version of TypeScript as a package alias to `protobuf-test`.  Note
 that the version before the `@` sign is the version number with all decimals 
 replaced with underscores:
 
-    `npm i -w packages/protobuf-test ts4_5_3@npm:typescript@4.5.3`
+    `npm i -w packages/protobuf-test ts4_5_3@npm:typescript@4.5.3 --save-exact`
 
 2.  Change directories to the TypeScript test directory:
 
