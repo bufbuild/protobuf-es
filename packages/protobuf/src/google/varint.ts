@@ -122,22 +122,22 @@ export function varint64write(lo: number, hi: number, bytes: number[]): void {
 }
 
 // constants for binary math
-const TWO_PWR_32_DBL = (1 << 16) * (1 << 16);
+const TWO_PWR_32_DBL = 0x100000000;
 
 /**
  * Parse decimal string of 64 bit integer value as two JS numbers.
  *
- * Returns tuple:
- * [0]: minus sign?
- * [1]: low bits
- * [2]: high bits
+ * Copyright 2008 Google Inc.  All rights reserved.
  *
- * Copyright 2008 Google Inc.
+ * See https://github.com/protocolbuffers/protobuf-javascript/blob/a428c58273abad07c66071d9753bc4d1289de426/experimental/runtime/int64.js#L10
  */
-export function int64fromString(dec: string): [boolean, number, number] {
+export function int64FromString(dec: string): { lo: number; hi: number } {
   // Check for minus sign.
-  let minus = dec[0] == "-";
-  if (minus) dec = dec.slice(1);
+  const minus = dec[0] === "-";
+  if (minus) {
+    dec = dec.slice(1);
+  }
+
   // Work 6 decimal digits at a time, acting like we're converting base 1e6
   // digits to binary. This is safe to do with floating point math because
   // Number.isSafeInteger(ALL_32_BITS * 1e6) == true.
@@ -161,19 +161,47 @@ export function int64fromString(dec: string): [boolean, number, number] {
   add1e6digit(-18, -12);
   add1e6digit(-12, -6);
   add1e6digit(-6);
-  return [minus, lowBits, highBits];
+  return minus ? negate(lowBits, highBits) : newBits(lowBits, highBits);
 }
 
 /**
- * Format 64 bit integer value (as two JS numbers) to decimal string.
+ * Losslessly converts a 64-bit signed integer in 32:32 split representation
+ * into a decimal string.
  *
- * Copyright 2008 Google Inc.
+ * Copyright 2008 Google Inc.  All rights reserved.
+ *
+ * See https://github.com/protocolbuffers/protobuf-javascript/blob/a428c58273abad07c66071d9753bc4d1289de426/experimental/runtime/int64.js#L10
  */
-export function int64toString(bitsLow: number, bitsHigh: number): string {
+export function int64ToString(lo: number, hi: number): string {
+  let bits = newBits(lo, hi);
+  // If we're treating the input as a signed value and the high bit is set, do
+  // a manual two's complement conversion before the decimal conversion.
+  const negative = (bits.hi & 0x80000000);
+  if (negative) {
+    bits = negate(bits.lo, bits.hi);
+  }
+  const result = uInt64ToString(bits.lo, bits.hi);
+  return negative ? "-" + result : result;
+}
+
+/**
+ * Losslessly converts a 64-bit unsigned integer in 32:32 split representation
+ * into a decimal string.
+ *
+ * Copyright 2008 Google Inc.  All rights reserved.
+ *
+ * See https://github.com/protocolbuffers/protobuf-javascript/blob/a428c58273abad07c66071d9753bc4d1289de426/experimental/runtime/int64.js#L10
+ */
+export function uInt64ToString(lo: number, hi: number): string {
+  ({ lo, hi } = toUnsigned(lo, hi));
   // Skip the expensive conversion if the number is small enough to use the
   // built-in conversions.
-  if (bitsHigh <= 0x1fffff) {
-    return "" + (TWO_PWR_32_DBL * bitsHigh + bitsLow);
+  // Number.MAX_SAFE_INTEGER = 0x001FFFFF FFFFFFFF, thus any number with
+  // highBits <= 0x1FFFFF can be safely expressed with a double and retain
+  // integer precision.
+  // Proven by: Number.isSafeInteger(0x1FFFFF * 2**32 + 0xFFFFFFFF) == true.
+  if (hi <= 0x1FFFFF) {
+    return String(TWO_PWR_32_DBL * hi + lo);
   }
 
   // What this code is doing is essentially converting the input number from
@@ -187,19 +215,19 @@ export function int64toString(bitsLow: number, bitsHigh: number): string {
 
   // Split 32:32 representation into 16:24:24 representation so our
   // intermediate digits don't overflow.
-  let low = bitsLow & 0xffffff;
-  let mid = (((bitsLow >>> 24) | (bitsHigh << 8)) >>> 0) & 0xffffff;
-  let high = (bitsHigh >> 16) & 0xffff;
+  const low = lo & 0xFFFFFF;
+  const mid = ((lo >>> 24) | (hi << 8)) & 0xFFFFFF;
+  const high = (hi >> 16) & 0xFFFF;
 
   // Assemble our three base-1e7 digits, ignoring carries. The maximum
   // value in a digit at this step is representable as a 48-bit integer, which
   // can be stored in a 64-bit floating point number.
-  let digitA = low + mid * 6777216 + high * 6710656;
-  let digitB = mid + high * 8147497;
-  let digitC = high * 2;
+  let digitA = low + (mid * 6777216) + (high * 6710656);
+  let digitB = mid + (high * 8147497);
+  let digitC = (high * 2);
 
   // Apply carries from A to B and from B to C.
-  let base = 10000000;
+  const base = 10000000;
   if (digitA >= base) {
     digitB += Math.floor(digitA / base);
     digitA %= base;
@@ -210,23 +238,45 @@ export function int64toString(bitsLow: number, bitsHigh: number): string {
     digitB %= base;
   }
 
-  // Convert base-1e7 digits to base-10, with optional leading zeroes.
-  function decimalFrom1e7(digit1e7: number, needLeadingZeros: number) {
-    let partial = digit1e7 ? String(digit1e7) : "";
-    if (needLeadingZeros) {
-      return "0000000".slice(partial.length) + partial;
-    }
-    return partial;
-  }
-
-  return (
-    decimalFrom1e7(digitC, /*needLeadingZeros=*/ 0) +
-    decimalFrom1e7(digitB, /*needLeadingZeros=*/ digitC) +
-    // If the final 1e7 digit didn't need leading zeros, we would have
-    // returned via the trivial code path at the top.
-    decimalFrom1e7(digitA, /*needLeadingZeros=*/ 1)
-  );
+  // If digitC is 0, then we should have returned in the trivial code path
+  // at the top for non-safe integers. Given this, we can assume both digitB
+  // and digitA need leading zeros.
+  return digitC.toString() + decimalFrom1e7WithLeadingZeros(digitB) +
+    decimalFrom1e7WithLeadingZeros(digitA);
 }
+
+function toUnsigned(lo: number, hi: number): { lo: number; hi: number } {
+  return { lo: lo >>> 0, hi: hi >>> 0 };
+}
+
+function newBits(lo: number, hi: number): { lo: number; hi: number } {
+  return { lo: lo | 0, hi: hi | 0 };
+}
+
+/**
+ * Returns two's compliment negation of input.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Signed_32-bit_integers
+ */
+function negate(lowBits: number, highBits: number) {
+  highBits = ~highBits;
+  if (lowBits) {
+    lowBits = ~lowBits + 1;
+  } else {
+    // If lowBits is 0, then bitwise-not is 0xFFFFFFFF,
+    // adding 1 to that, results in 0x100000000, which leaves
+    // the low bits 0x0 and simply adds one to the high bits.
+    highBits += 1;
+  }
+  return newBits(lowBits, highBits);
+}
+
+/**
+ * Returns decimal representation of digit1e7 with leading zeros.
+ */
+const decimalFrom1e7WithLeadingZeros = (digit1e7: number) => {
+  const partial = String(digit1e7);
+  return "0000000".slice(partial.length) + partial;
+};
 
 /**
  * Write a 32 bit varint, signed or unsigned. Same as `varint64write(0, value, bytes)`

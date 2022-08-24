@@ -16,6 +16,7 @@ import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb";
 import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb";
+import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
   const defaultFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
@@ -38,8 +39,7 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
   const exampleFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
     strStrField: { a: "str", b: "xx" },
     strInt32Field: { a: 123, b: 455 },
-    // @ts-expect-error TS2737
-    strInt64Field: { a: 123n },
+    strInt64Field: { a: protoInt64.parse(123) },
     strBoolField: { a: true, b: false },
     strBytesField: {
       a: new Uint8Array([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]),

@@ -1,0 +1,30 @@
+# proto2 extensions are not implemented
+# WARNING, test=Recommended.Proto2.JsonInput.FieldNameExtension.Validator: Expected JSON payload but got type 1. request=json_payload: "{\n        \"[protobuf_test_messages.proto2.extension_int32]\": 1\n      }" requested_output_format: JSON message_type: "protobuf_test_messages.proto2.TestAllTypesProto2" test_category: JSON_TEST, response=parse_error: "Error: cannot decode message protobuf_test_messages.proto2.TestAllTypesProto2 from JSON: key \"[protobuf_test_messages.proto2.extension_int32]\" is unknown"
+Recommended.Proto2.JsonInput.FieldNameExtension.Validator
+
+# Without BigInt support, a JavaScript runtime can only safely represent values
+# in the range from Number.MIN_SAFE_INTEGER to Number.MAX_SAFE_INTEGER.
+# That means number values in JSON will be unsafe as well. If you plan to use
+# protobuf-es on runtimes without BigInt support, make sure that the JSON data
+# you consume does contains 64-bit values as strings instead of numbers.
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalInt64\": 9223372036854774784}" requested_output_format: PROTOBUF message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int64 from JSON: 9223372036854775000: not a safe integer: 9223372036854775000"
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalInt64\": 9223372036854774784}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int64 from JSON: 9223372036854775000: not a safe integer: 9223372036854775000"
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalInt64\": -9223372036854775808}" requested_output_format: PROTOBUF message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int64 from JSON: -9223372036854776000: not a safe integer: -9223372036854776000"
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalInt64\": -9223372036854775808}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int64 from JSON: -9223372036854776000: not a safe integer: -9223372036854776000"
+# ERROR, test=Required.Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalUint64\": 18446744073709549568}" requested_output_format: PROTOBUF message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_uint64 from JSON: 18446744073709550000: not a safe integer: 18446744073709550000"
+# ERROR, test=Required.Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput: Failed to parse input or produce output. request=json_payload: "{\"optionalUint64\": 18446744073709549568}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=parse_error: "Error: cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_uint64 from JSON: 18446744073709550000: not a safe integer: 18446744073709550000"
+Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
+Required.Proto3.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
+Required.Proto3.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
+Required.Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
+
+# Without BigInt support, our implementation does not validate that 64-bit
+# values are within bounds.
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldTooLarge: Should have failed to parse, but didn't. request=json_payload: "{\"optionalInt64\": \"9223372036854775808\"}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalInt64\":\"9223372036854775808\"}"
+# ERROR, test=Required.Proto3.JsonInput.Int64FieldTooSmall: Should have failed to parse, but didn't. request=json_payload: "{\"optionalInt64\": \"-9223372036854775809\"}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalInt64\":\"-9223372036854775809\"}"
+# ERROR, test=Required.Proto3.JsonInput.Uint64FieldTooLarge: Should have failed to parse, but didn't. request=json_payload: "{\"optionalUint64\": \"18446744073709551616\"}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalUint64\":\"18446744073709551616\"}"
+Required.Proto3.JsonInput.Int64FieldTooLarge
+Required.Proto3.JsonInput.Int64FieldTooSmall
+Required.Proto3.JsonInput.Uint64FieldTooLarge
