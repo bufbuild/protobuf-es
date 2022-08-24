@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema } from "./ecmascript";
+import type { Schema, Target } from "./ecmascript";
 import { createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
-import type { Target } from "./ecmascript";
+import type { RewriteImports } from "./ecmascript/import-path.js";
 
 interface PluginInit {
   /**
@@ -48,17 +48,16 @@ export function createEcmaScriptPlugin(
     name: init.name,
     version: init.version,
     run(req) {
-      const { targets, tsNocheck, bootstrapWkt } = parseParameter(
-        req.parameter,
-        init.parseOption
-      );
+      const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
+        parseParameter(req.parameter, init.parseOption);
       const { schema, toResponse } = createSchema(
         req,
         targets,
         init.name,
         init.version,
         tsNocheck,
-        bootstrapWkt
+        bootstrapWkt,
+        rewriteImports
       );
       generateFn(schema);
       const res = new CodeGeneratorResponse();
@@ -75,6 +74,7 @@ function parseParameter(
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
   let bootstrapWkt = false;
+  const rewriteImports: RewriteImports = [];
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
       case "target":
@@ -122,6 +122,18 @@ function parseParameter(
             throw new PluginOptionError(`${key}=${value}`);
         }
         break;
+      case "rewrite_imports": {
+        const parts = value.split(":");
+        if (parts.length !== 2) {
+          throw new PluginOptionError(
+            `${key}=${value}`,
+            "must be in the form of <pattern>:<target>"
+          );
+        }
+        const [pattern, target] = parts;
+        rewriteImports.push({ pattern, target });
+        break;
+      }
       default:
         if (parseOption === undefined) {
           throw new PluginOptionError(`${key}=${value}`);
@@ -134,7 +146,7 @@ function parseParameter(
         break;
     }
   }
-  return { targets, tsNocheck, bootstrapWkt };
+  return { targets, tsNocheck, bootstrapWkt, rewriteImports };
 }
 
 function splitParameter(
