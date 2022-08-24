@@ -15,6 +15,7 @@ LICENSE_HEADER_YEAR_RANGE := 2021-2022
 LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
 GOOGLE_PROTOBUF_VERSION = 21.5
+TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.8.1-rc
 
 node_modules: package-lock.json
 	npm ci
@@ -141,7 +142,7 @@ clean: ## Delete build artifacts and installed dependencies
 build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
 
 .PHONY: test
-test: test-jest test-conformance test-ts-compat $(shell find packages/protobuf-test -name '*.json') # Run all tests
+test: test-jest test-conformance test-ts-compat # Run all tests
 
 .PHONY: test-jest
 test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
@@ -154,24 +155,13 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		--text_format_failure_list packages/protobuf-conformance/conformance_failing_tests_text_format.txt \
 		packages/protobuf-conformance/bin/conformance_esm.js
 
-TS_VERSIONS = 4.1.2 \
-			  4.2.4 \
-			  4.3.5 \
-			  4.4.4 \
-			  4.5.2 \
-			  4.6.4 \
-			  4.8.1-rc
-
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test node_modules 
 	@for number in $(TS_VERSIONS) ; do \
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		dirname=packages/protobuf-test/typescript ; \
 		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit ; \
-		if [ "$$?" -ne 0 ]; then \
-			exit 1 ; \
-	  	fi ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit || exit ; \
 	done
 
 .PHONY: lint
