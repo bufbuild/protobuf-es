@@ -62,6 +62,11 @@ The implementation is covered by the protocol buffers
 [conformance tests](packages/protobuf-conformance).
 
 
+### TypeScript
+
+The minimum version of TypeScript supported by Protobuf-ES is **4.1.2**.
+
+
 ### Packages
 
 - [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
