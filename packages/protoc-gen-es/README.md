@@ -1,14 +1,7 @@
 # @bufbuild/protoc-gen-es
 
-This package provides the code generator plugin `protoc-gen-es`. The code it 
-generates depends on [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
-
-## Protocol Buffers for ECMAScript
-
-A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) 
-in TypeScript, suitable for web browsers and Node.js.  
-
-For example, the following definition:
+The code generator for Protocol Buffers for ECMAScript. For example, the 
+following definition:
 
 ```protobuf
 message Person {
@@ -31,45 +24,92 @@ pete = Person.fromBinary(bytes);
 pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
-Learn more at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
 
 
 ## Installation
 
-### With npm
+`protoc-gen-es` is a code generator plugin for Protocol Buffer compilers,
+like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
+It generates base types - messages and enumerations - from your Protocol Buffer 
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
+
+To install the plugin and the runtime library, run:
 
 ```shell
-npm install @bufbuild/protoc-gen-es
+npm install --save-dev @bufbuild/protoc-gen-es
+npm install @bufbuild/protobuf
 ```
 
-This will install the code generator plugin in `node_modules/.bin/protoc-gen-es`. 
-Note that npm does not add the executable to your `$PATH`. You can do so with:
+We use peer dependencies to ensure that code generator and runtime library are
+compatible with each other. Note that yarn and pnpm only emit a warning in this case.
 
-```shell
-PATH=$PATH:$(pwd)/node_modules/.bin
+
+## Generating code
+
+### With buf
+
+Add a new configuration file `buf.gen.yaml`:
+
+```yaml
+# buf.gen.yaml defines a local generation template.
+# For details, see https://docs.buf.build/configuration/v1/buf-gen-yaml
+version: v1
+plugins:
+  # This will invoke protoc-gen-es and write output to src/gen
+  - name: es
+    out: src/gen
+    opt: target=ts
 ```
 
-### With yarn
+Add the following script to your `package.json`:
 
-```shell
-yarn add @bufbuild/protoc-gen-es
+```json
+{
+  "name": "your-package",
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "buf generate"
+  },
+  // ...
+}
 ```
 
-Note that yarn v2 does not use a `node_modules` directory anymore. To find the path 
-where yarn stores the executable, run `yarn bin protoc-gen-es` (it is "unplugged" 
-automatically).
+To generate code for all protobuf files within your project, simply run:
 
-You can always confirm successful installation with:
-```shell
-protoc-gen-es --version
+```bash
+npm run generate
 ```
 
+Note that `buf` can generate from various [inputs](https://docs.buf.build/reference/inputs),
+not just local protobuf files. 
+
+
+### With protoc
+
+```bash
+PATH=$PATH:$(pwd)/node_modules/.bin \
+  protoc -I . \
+  --es_out src/gen \
+  --os_opt target=ts \
+  a.proto b.proto c.proto
+```
+
+Note that we are adding `node_modules/.bin` to the `$PATH`, so that the protocol
+buffer compiler can find them. This happens automatically with npm scripts.
+
+Since yarn v2 and above does not use a `node_modules` directory, you need to 
+change the variable a bit:
+
+```bash
+PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
+```
 
 ## Plugin options
 
 ### `target`
 
-This option controls whether the plugin generates JavaScript, TypeScript, 
+This option controls whether the plugin generates JavaScript, TypeScript,
 or TypeScript declaration files.
 
 Possible values:
