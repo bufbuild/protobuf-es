@@ -32,7 +32,7 @@ Learn more about the project at [github.com/bufbuild/protobuf-es](https://github
 `protoc-gen-es` is a code generator plugin for Protocol Buffer compilers,
 like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 It generates base types - messages and enumerations - from your Protocol Buffer 
-schema. The generated requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
 
 To install the plugin and the runtime library, run:
 
@@ -98,8 +98,8 @@ PATH=$PATH:$(pwd)/node_modules/.bin \
 Note that we are adding `node_modules/.bin` to the `$PATH`, so that the protocol
 buffer compiler can find them. This happens automatically with npm scripts.
 
-Since yarn does not use a `node_modules` directory, you need to change the variable
-a bit:
+Since yarn v2 and above does not use a `node_modules` directory, you need to 
+change the variable a bit:
 
 ```bash
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
