@@ -25,7 +25,6 @@
     "ts4_5_2": "npm:typescript@4.5.2",
     "ts4_6_4": "npm:typescript@4.6.4",
     "ts4_7_4": "npm:typescript@4.7.4",
-    "ts4_8_1-rc": "npm:typescript@4.8.1-rc",
     "ts4_8_2": "npm:typescript@4.8.2"
   }
 }
