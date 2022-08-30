@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     // To guard against regression and ensure we are remaining backwards compatible, set the skipLibCheck flag to false explicitly.
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "moduleResolution": "NodeNext"
   }
 }

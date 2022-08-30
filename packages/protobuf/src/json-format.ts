@@ -15,7 +15,7 @@
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
 import type { ScalarType } from "./field.js";
-import type { IMessageTypeRegistry } from "./type-registry";
+import type { IMessageTypeRegistry } from "./type-registry.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
