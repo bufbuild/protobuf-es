@@ -1,6 +1,6 @@
 {
   "include": ["../src/gen/js/extra/*.js", "../src/gen/ts/extra/*.ts"],
-  // These are the default compiler options for TypeScript v4.8.1-rc, created with `tsc --init` (except skipLibCheck -- see below)
+  // These are the default compiler options for TypeScript v4.7.4, created with `tsc --init` (except where noted)
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
@@ -8,6 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     // To guard against regression and ensure we are remaining backwards compatible, set the skipLibCheck flag to false explicitly.
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    // To test forward-compatibility, set to NodeNext
+    "moduleResolution": "NodeNext"
   }
 }
