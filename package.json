@@ -16,7 +16,7 @@
     "npm": ">=8"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.33.0",
     "eslint": "^8.21.0",
     "eslint-import-resolver-typescript": "^3.4.1",
