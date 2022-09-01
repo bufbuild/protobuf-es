@@ -109,7 +109,7 @@ describeMT(
           stringField: "",
         }).toBinary()
       ).toThrow(
-        `cannot encode field ${messageType.typeName}.enum_field to JSON: required field not set`
+        `cannot encode field ${messageType.typeName}.enum_field to binary: required field not set`
       );
     });
   }

@@ -53,7 +53,7 @@ export function makeBinaryFormatProto2(): BinaryFormat {
             // field is missing a value.
             if (value === undefined && !field.oneof && !field.opt) {
               throw new Error(
-                `cannot encode field ${type.typeName}.${field.name} to JSON: required field not set`
+                `cannot encode field ${type.typeName}.${field.name} to binary: required field not set`
               );
             }
           }
