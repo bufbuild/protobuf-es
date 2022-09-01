@@ -38,7 +38,7 @@
     "@bufbuild/protobuf": "0.1.0"
   },
   "devDependencies": {
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.2"
   },
   "files": [
     "dist/**/"
