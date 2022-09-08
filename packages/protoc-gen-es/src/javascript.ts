@@ -23,12 +23,20 @@ import {
 } from "@bufbuild/protoplugin/ecmascript";
 import { matchWkt } from "./match-wkt.js";
 
-export const javascript = {
-  target: "js",
+interface Target {
+    targetOut: string;
+    extension: string;
+    generateEnum?: (schema: Schema, genFile: GeneratedFile, enumeration: DescEnum) => void;
+    generateMessage?: (schema: Schema, genFile: GeneratedFile, enumeration: DescMessage) => void;
+}
+
+
+export const javascript: JavaScriptTarget = {
+  targetOut: "js",
   extension: "_pb.js",
   generateEnum,
   generateMessage,
-} as const;
+};
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {

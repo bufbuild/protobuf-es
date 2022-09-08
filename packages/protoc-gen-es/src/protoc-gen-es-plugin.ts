@@ -13,9 +13,8 @@
 // limitations under the License.
 
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 import { typescript } from "./typescript.js";
-import { javascript } from "./javascript.js";
-import { declaration } from "./declaration";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin(
@@ -23,22 +22,17 @@ export const protocGenEs = createEcmaScriptPlugin(
     name: "protoc-gen-es",
     version: `v${String(version)}`,
   },
-  (schema) => {
-    const targets = [typescript, javascript, declaration].filter((gen) =>
-      schema.targets.includes(gen.target)
-    );
-    for (const target of targets) {
+  (schema: Schema) => {
       for (const file of schema.files) {
-        const f = schema.generateFile(file.name + target.extension);
+        const f = schema.generateFile(file.name + typescript.extension);
         f.preamble(file);
         for (const enumeration of file.enums) {
-          target.generateEnum(schema, f, enumeration);
+          typescript.generateEnum(schema, f, enumeration);
         }
         for (const message of file.messages) {
-          target.generateMessage(schema, f, message);
+          typescript.generateMessage(schema, f, message);
         }
         // We do not generate anything for services, and we do not support extensions at this time
       }
-    }
   }
 );
