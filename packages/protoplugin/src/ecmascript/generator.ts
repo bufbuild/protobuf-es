@@ -12,18 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { typescript } from "./typescript.js";
-import { javascript } from "./javascript.js";
-import { declaration } from "./declaration";
-import { version } from "../package.json";
+import type { Schema } from "./schema.js";
+import type { Target } from "./target.js";
 
-export const protocGenEs = createEcmaScriptPlugin({
-  name: "protoc-gen-es",
-  version: `v${String(version)}`,
-  generators: {
-    ts: typescript,
-    js: javascript,
-    dts: declaration,
-  },
-});
+export interface Generator {
+  target: Target;
+  extension: string;
+  generate: (schema: Schema) => void;
+}
+
+export interface TypeScriptGenerator extends Generator {
+  target: "ts";
+}
+
+export interface JavaScriptGenerator extends Generator {
+  target: "js";
+}
+
+export interface DeclarationGenerator extends Generator {
+  target: "dts";
+}

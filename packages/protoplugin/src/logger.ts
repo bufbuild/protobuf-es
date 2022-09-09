@@ -12,18 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { typescript } from "./typescript.js";
-import { javascript } from "./javascript.js";
-import { declaration } from "./declaration";
-import { version } from "../package.json";
+import { appendFileSync } from "fs";
 
-export const protocGenEs = createEcmaScriptPlugin({
-  name: "protoc-gen-es",
-  version: `v${String(version)}`,
-  generators: {
-    ts: typescript,
-    js: javascript,
-    dts: declaration,
-  },
-});
+const LOG_NAME = "./pluginlog";
+
+export function log(data: any) {
+  try {
+    appendFileSync(LOG_NAME, "====\n" + JSON.stringify(data, null, 2) + "\n");
+  } catch (err) {
+    /* Handle the error */
+  }
+}

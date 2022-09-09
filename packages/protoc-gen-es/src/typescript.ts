@@ -33,9 +33,22 @@ import { literalString } from "@bufbuild/protoplugin/ecmascript";
 export const typescript = {
   target: "ts",
   extension: "_pb.ts",
-  generateEnum,
-  generateMessage,
+  generate,
 } as const;
+
+function generate(schema: Schema) {
+  for (const file of schema.files) {
+    const f = schema.generateFile(file.name + typescript.extension);
+    f.preamble(file);
+    for (const enumeration of file.enums) {
+      generateEnum(schema, f, enumeration);
+    }
+    for (const message of file.messages) {
+      generateMessage(schema, f, message);
+    }
+    // We do not generate anything for services, and we do not support extensions at this time
+  }
+}
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {

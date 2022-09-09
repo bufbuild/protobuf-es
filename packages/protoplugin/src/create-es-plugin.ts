@@ -12,12 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema, Target } from "./ecmascript";
+import type { Target } from "./ecmascript";
 import { createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
+import type {
+  DeclarationGenerator,
+  JavaScriptGenerator,
+  TypeScriptGenerator,
+} from "./ecmascript/generator.js";
 
 interface PluginInit {
   /**
@@ -30,6 +35,13 @@ interface PluginInit {
    */
   version: string;
 
+  generators: {
+    // A TypeScript generator is required
+    ts: TypeScriptGenerator;
+    js?: JavaScriptGenerator;
+    dts?: DeclarationGenerator;
+  };
+
   parseOption?: PluginOptionParseFn;
 }
 
@@ -40,10 +52,7 @@ type PluginOptionParseFn = (key: string, value: string | undefined) => void;
  * The plugin can generate JavaScript, TypeScript, or TypeScript declaration
  * files.
  */
-export function createEcmaScriptPlugin(
-  init: PluginInit,
-  generateFn: (schema: Schema) => void
-): Plugin {
+export function createEcmaScriptPlugin(init: PluginInit): Plugin {
   return {
     name: init.name,
     version: init.version,
@@ -59,7 +68,18 @@ export function createEcmaScriptPlugin(
         bootstrapWkt,
         rewriteImports
       );
-      generateFn(schema);
+
+      schema.targets.forEach((target) => {
+        const gen = init.generators[target];
+        if (gen) {
+          gen.generate(schema);
+        } else {
+          // A target was specified that we don't have a generator for.  This can either be js or dts because
+          // ts generators are required. In this case, we will auto-transpile the code using the generated TS files
+          // TODO - define transpile function
+        }
+      });
+
       const res = new CodeGeneratorResponse();
       toResponse(res);
       return res;
