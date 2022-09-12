@@ -53,13 +53,15 @@ type PluginOptionParseFn = (key: string, value: string | undefined) => void;
  * files.
  */
 export function createEcmaScriptPlugin(init: PluginInit): Plugin {
+  let transpileJs = false;
+  let transpileDts = false;
   return {
     name: init.name,
     version: init.version,
     run(req) {
       const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
-      const { schema, toResponse } = createSchema(
+      const { schema, transpile, toResponse } = createSchema(
         req,
         targets,
         init.name,
@@ -69,16 +71,29 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         rewriteImports
       );
 
-      schema.targets.forEach((target) => {
-        const gen = init.generators[target];
-        if (gen) {
-          gen.generate(schema);
+      if (schema.targets.includes("ts")) {
+        init.generators["ts"].generate(schema);
+      }
+
+      if (schema.targets.includes("js")) {
+        const jsGenerator = init.generators["js"];
+        if (jsGenerator) {
+          jsGenerator.generate(schema);
         } else {
-          // A target was specified that we don't have a generator for.  This can either be js or dts because
-          // ts generators are required. In this case, we will auto-transpile the code using the generated TS files
-          // TODO - define transpile function
+          transpileJs = true;
         }
-      });
+      }
+
+      if (schema.targets.includes("dts")) {
+        const dtsGenerator = init.generators["dts"];
+        if (dtsGenerator) {
+          dtsGenerator.generate(schema);
+        } else {
+          transpileDts = true;
+        }
+      }
+
+      transpile(transpileJs, transpileDts);
 
       const res = new CodeGeneratorResponse();
       toResponse(res);

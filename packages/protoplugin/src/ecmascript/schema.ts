@@ -80,6 +80,7 @@ export interface Schema {
 interface SchemaController {
   schema: Schema;
   toResponse: (res: CodeGeneratorResponse) => void;
+  transpile: (transpileJs: boolean, transpileDts: boolean) => void;
 }
 
 export function createSchema(
@@ -132,6 +133,7 @@ export function createSchema(
   };
   return {
     schema,
+    transpile,
     toResponse(res) {
       res.supportedFeatures = protoInt64.parse(
         CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
@@ -141,6 +143,13 @@ export function createSchema(
       }
     },
   };
+}
+
+function transpile(transpileJs: boolean, transpileDts: boolean) {
+  if (!transpileJs && !transpileDts) {
+    return;
+  }
+  return;
 }
 
 function findFilesToGenerate(
