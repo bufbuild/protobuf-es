@@ -24,14 +24,12 @@ import {
 import { matchWkt } from "./match-wkt.js";
 
 export const javascript = {
-  target: "js",
-  extension: "_pb.js",
   generate,
-} as const;
+};
 
 function generate(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + javascript.extension);
+    const f = schema.generateFile(file.name + "_pb.js");
     f.preamble(file);
     for (const enumeration of file.enums) {
       generateEnum(schema, f, enumeration);

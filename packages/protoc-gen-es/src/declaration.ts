@@ -28,14 +28,12 @@ import {
 import { matchWkt } from "./match-wkt.js";
 
 export const declaration = {
-  target: "dts",
-  extension: "_pb.d.ts",
   generate,
-} as const;
+};
 
 function generate(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + declaration.extension);
+    const f = schema.generateFile(file.name + "_pb.d.ts");
     f.preamble(file);
     for (const enumeration of file.enums) {
       generateEnum(schema, f, enumeration);
