@@ -31,14 +31,12 @@ import { generateFieldInfo } from "./javascript.js";
 import { literalString } from "@bufbuild/protoplugin/ecmascript";
 
 export const typescript = {
-  target: "ts",
-  extension: "_pb.ts",
   generate,
-} as const;
+};
 
 function generate(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + typescript.extension);
+    const f = schema.generateFile(file.name + "_pb.ts");
     f.preamble(file);
     for (const enumeration of file.enums) {
       generateEnum(schema, f, enumeration);

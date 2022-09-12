@@ -13,16 +13,13 @@
 // limitations under the License.
 
 import type { Target } from "./ecmascript";
-import { createSchema } from "./ecmascript/schema.js";
+import { Schema, createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
-import type {
-  DeclarationGenerator,
-  JavaScriptGenerator,
-  TypeScriptGenerator,
-} from "./ecmascript/generator.js";
+
+// type GenerateFunc = (schema: Schema, target: Target) => void;
 
 interface PluginInit {
   /**
@@ -35,14 +32,12 @@ interface PluginInit {
    */
   version: string;
 
-  generators: {
-    // A TypeScript generator is required
-    ts: TypeScriptGenerator;
-    js?: JavaScriptGenerator;
-    dts?: DeclarationGenerator;
-  };
-
   parseOption?: PluginOptionParseFn;
+
+  // A TypeScript generator is required
+  generateTs: (schema: Schema, target: "ts") => void;
+  generateJs: (schema: Schema, target: "js") => void;
+  generateDts: (schema: Schema, target: "dts") => void;
 }
 
 type PluginOptionParseFn = (key: string, value: string | undefined) => void;
@@ -72,22 +67,20 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       );
 
       if (schema.targets.includes("ts")) {
-        init.generators["ts"].generate(schema);
+        init.generateTs(schema, "ts");
       }
 
       if (schema.targets.includes("js")) {
-        const jsGenerator = init.generators["js"];
-        if (jsGenerator) {
-          jsGenerator.generate(schema);
+        if (init.generateJs) {
+          init.generateJs(schema, "js");
         } else {
           transpileJs = true;
         }
       }
 
       if (schema.targets.includes("dts")) {
-        const dtsGenerator = init.generators["dts"];
-        if (dtsGenerator) {
-          dtsGenerator.generate(schema);
+        if (init.generateDts) {
+          init.generateDts(schema, "dts");
         } else {
           transpileDts = true;
         }

@@ -13,22 +13,7 @@
 // limitations under the License.
 
 import type { Schema } from "./schema.js";
-import type { Target } from "./target.js";
 
 export interface Generator {
-  target: Target;
-  extension: string;
   generate: (schema: Schema) => void;
-}
-
-export interface TypeScriptGenerator extends Generator {
-  target: "ts";
-}
-
-export interface JavaScriptGenerator extends Generator {
-  target: "js";
-}
-
-export interface DeclarationGenerator extends Generator {
-  target: "dts";
 }

@@ -21,9 +21,7 @@ import { version } from "../package.json";
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
   version: `v${String(version)}`,
-  generators: {
-    ts: typescript,
-    js: javascript,
-    dts: declaration,
-  },
+  generateTs: typescript.generate,
+  generateJs: javascript.generate,
+  generateDts: declaration.generate,
 });
