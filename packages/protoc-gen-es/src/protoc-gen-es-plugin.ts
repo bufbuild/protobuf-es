@@ -14,14 +14,20 @@
 
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { typescript } from "./typescript.js";
-import { javascript } from "./javascript.js";
-import { declaration } from "./declaration";
 import { version } from "../package.json";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
   version: `v${String(version)}`,
   generateTs: typescript.generate,
-  generateJs: javascript.generate,
-  generateDts: declaration.generate,
+  transpile,
 });
+
+function transpile(
+  schema: Schema,
+  transpileJs: boolean,
+  transpileDts: boolean
+) {
+  // transpile
+}

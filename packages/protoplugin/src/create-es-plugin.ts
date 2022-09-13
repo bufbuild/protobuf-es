@@ -13,11 +13,17 @@
 // limitations under the License.
 
 import type { Target } from "./ecmascript";
-import { Schema, createSchema, TranspileFn } from "./ecmascript/schema.js";
+import { Schema, createSchema } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
+
+export type TranspileFn = (
+  schema: Schema,
+  transpileJs: boolean,
+  transpileDts: boolean
+) => void;
 
 interface PluginInit {
   /**
@@ -76,20 +82,6 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         } else {
           transpileJs = true;
         }
-
-        // The call to transpile would happen here if the generateJs function is not present... (how can we know?)
-        //
-        // The TranspileFn needs to accept the array of generated files, which the Schema knows about.  We can either
-        // expose generatedFiles there or expose a function that transpiles or something
-        // either way it would be something like:
-        //
-        // init.transpileFn(generatedFiles)
-        // or?
-        // this in the schema, which would accept a transpileFn from the plugin author
-        //
-        // schema.transpile(transpileFn);
-        // where transpileFn accepts an array of GeneratedFile
-        // then the author should do the TypeScript API magic
       }
 
       if (schema.targets.includes("dts")) {
@@ -100,16 +92,8 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      if (transpileJs || transpileDts) {
-        if (init.transpile) {
-          schema.transpile(init.transpile, transpileJs, transpileDts);
-        } else {
-          // This should be an error
-        }
-      }
-
-      if (init.transpile) {
-        schema.transpile(init.transpile);
+      if ((transpileJs || transpileDts) && init.transpile) {
+        init.transpile(schema, transpileJs, transpileDts);
       } else {
         // This should be an error
       }
