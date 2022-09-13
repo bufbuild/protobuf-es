@@ -92,10 +92,15 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      if ((transpileJs || transpileDts) && init.transpile) {
-        init.transpile(schema, transpileJs, transpileDts);
-      } else {
-        // This should be an error
+      if (transpileJs || transpileDts) {
+        if (init.transpile) {
+          init.transpile(schema, transpileJs, transpileDts);
+        } else {
+          // This should be an error because it means:
+          // 1.  the user picked js or dts as a target out AND
+          // 2.  the plugin author didn't provide a generator for js or dts AND
+          // 3.  the plugin author didn't provide a transpile function, so there's no way to generate the files.
+        }
       }
 
       const res = new CodeGeneratorResponse();
