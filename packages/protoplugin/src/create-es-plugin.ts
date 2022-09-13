@@ -13,13 +13,11 @@
 // limitations under the License.
 
 import type { Target } from "./ecmascript";
-import { Schema, createSchema } from "./ecmascript/schema.js";
+import { Schema, createSchema, TranspileFn } from "./ecmascript/schema.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
-
-// type GenerateFunc = (schema: Schema, target: Target) => void;
 
 interface PluginInit {
   /**
@@ -36,8 +34,10 @@ interface PluginInit {
 
   // A TypeScript generator is required
   generateTs: (schema: Schema, target: "ts") => void;
-  generateJs: (schema: Schema, target: "js") => void;
-  generateDts: (schema: Schema, target: "dts") => void;
+  generateJs?: (schema: Schema, target: "js") => void;
+  generateDts?: (schema: Schema, target: "dts") => void;
+
+  transpile?: TranspileFn;
 }
 
 type PluginOptionParseFn = (key: string, value: string | undefined) => void;
@@ -56,7 +56,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     run(req) {
       const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
-      const { schema, transpile, toResponse } = createSchema(
+      const { schema, toResponse } = createSchema(
         req,
         targets,
         init.name,
@@ -76,6 +76,20 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         } else {
           transpileJs = true;
         }
+
+        // The call to transpile would happen here if the generateJs function is not present... (how can we know?)
+        //
+        // The TranspileFn needs to accept the array of generated files, which the Schema knows about.  We can either
+        // expose generatedFiles there or expose a function that transpiles or something
+        // either way it would be something like:
+        //
+        // init.transpileFn(generatedFiles)
+        // or?
+        // this in the schema, which would accept a transpileFn from the plugin author
+        //
+        // schema.transpile(transpileFn);
+        // where transpileFn accepts an array of GeneratedFile
+        // then the author should do the TypeScript API magic
       }
 
       if (schema.targets.includes("dts")) {
@@ -86,7 +100,19 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      transpile(transpileJs, transpileDts);
+      if (transpileJs || transpileDts) {
+        if (init.transpile) {
+          schema.transpile(init.transpile, transpileJs, transpileDts);
+        } else {
+          // This should be an error
+        }
+      }
+
+      if (init.transpile) {
+        schema.transpile(init.transpile);
+      } else {
+        // This should be an error
+      }
 
       const res = new CodeGeneratorResponse();
       toResponse(res);

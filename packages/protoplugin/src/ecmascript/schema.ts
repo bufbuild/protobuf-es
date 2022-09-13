@@ -41,6 +41,12 @@ import {
   rewriteImportPath,
 } from "./import-path.js";
 
+export type TranspileFn = (
+  files: GenerateFileToResponse[],
+  transpileJs: boolean,
+  transpileDts: boolean
+) => void;
+
 /**
  * Schema describes the files and types that the plugin is requested to
  * generate.
@@ -72,6 +78,11 @@ export interface Schema {
   generateFile(name: string): GeneratedFile;
 
   /**
+   * Transpile generated files by using the given function.
+   */
+  transpile(fn: TranspileFn): void;
+
+  /**
    * The original google.protobuf.compiler.CodeGeneratorRequest.
    */
   readonly proto: CodeGeneratorRequest;
@@ -80,7 +91,6 @@ export interface Schema {
 interface SchemaController {
   schema: Schema;
   toResponse: (res: CodeGeneratorResponse) => void;
-  transpile: (transpileJs: boolean, transpileDts: boolean) => void;
 }
 
 export function createSchema(
@@ -130,10 +140,12 @@ export function createSchema(
       generatedFiles.push(genFile);
       return genFile;
     },
+    transpile(transpileFn: TranspileFn) {
+      transpileFn(generatedFiles);
+    },
   };
   return {
     schema,
-    transpile,
     toResponse(res) {
       res.supportedFeatures = protoInt64.parse(
         CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
@@ -143,13 +155,6 @@ export function createSchema(
       }
     },
   };
-}
-
-function transpile(transpileJs: boolean, transpileDts: boolean) {
-  if (!transpileJs && !transpileDts) {
-    return;
-  }
-  return;
 }
 
 function findFilesToGenerate(

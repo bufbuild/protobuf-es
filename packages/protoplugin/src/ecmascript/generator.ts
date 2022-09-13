@@ -16,4 +16,8 @@ import type { Schema } from "./schema.js";
 
 export interface Generator {
   generate: (schema: Schema) => void;
+
+  // This could be here and would be invoked if generate is not passed.
+  // How can we make TypeScript say 'one of these must be present'
+  // transpile?: (generatedFiles: GeneratedFile[]) => void;
 }
