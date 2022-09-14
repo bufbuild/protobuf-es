@@ -29,6 +29,7 @@ import {
 import type {
   GeneratedFile,
   GenerateFileToResponse,
+  TSFile,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
@@ -79,7 +80,8 @@ export interface Schema {
 
 interface SchemaController {
   schema: Schema;
-  toResponse: (res: CodeGeneratorResponse) => void;
+  toIntermediateType: () => TSFile[];
+  toResponse: (res: CodeGeneratorResponse, tsFiles: TSFile[]) => void;
 }
 
 export function createSchema(
@@ -132,12 +134,20 @@ export function createSchema(
   };
   return {
     schema,
-    toResponse(res) {
+    toIntermediateType() {
+      return generatedFiles.map((file) => {
+        return file.toIntermediateType();
+      });
+    },
+    toResponse(res: CodeGeneratorResponse, tsFiles: TSFile[]) {
       res.supportedFeatures = protoInt64.parse(
         CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
       );
       for (const genFile of generatedFiles) {
         genFile.toResponse(res);
+      }
+      for (const tsFile of tsFiles) {
+        tsFile.toResponse(res);
       }
     },
   };

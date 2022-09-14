@@ -22,6 +22,16 @@ export class PluginOptionError extends Error {
   }
 }
 
+export class PluginInitializationError extends Error {
+  constructor(option: string, reason?: unknown) {
+    super(
+      reason === undefined
+        ? `invalid initialization "${option}`
+        : `invalid initialization "${option}: ${reasonToString(reason)}`
+    );
+  }
+}
+
 export function reasonToString(reason: unknown): string {
   if (reason instanceof Error) {
     return reason.message;

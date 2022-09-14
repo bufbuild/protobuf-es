@@ -14,16 +14,17 @@
 
 import type { Target } from "./ecmascript";
 import { Schema, createSchema } from "./ecmascript/schema.js";
+import type { TSFile } from "./ecmascript/generated-file.js";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
-import { PluginOptionError } from "./error.js";
+import { PluginOptionError, PluginInitializationError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
 
 export type TranspileFn = (
-  schema: Schema,
+  files: TSFile[],
   transpileJs: boolean,
   transpileDts: boolean
-) => void;
+) => TSFile[];
 
 interface PluginInit {
   /**
@@ -62,7 +63,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     run(req) {
       const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
-      const { schema, toResponse } = createSchema(
+      const { schema, toResponse, toIntermediateType } = createSchema(
         req,
         targets,
         init.name,
@@ -72,9 +73,10 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         rewriteImports
       );
 
-      if (schema.targets.includes("ts")) {
-        init.generateTs(schema, "ts");
-      }
+      // TODO - we shouldn't generate TS if schema targets doesn't include it AND there is a generator provided
+      // for the other two targets (js and/or dts)
+      // Right now, we're just always generating
+      init.generateTs(schema, "ts");
 
       if (schema.targets.includes("js")) {
         if (init.generateJs) {
@@ -92,19 +94,24 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
+      let transpiledFiles: TSFile[] = [];
       if (transpileJs || transpileDts) {
         if (init.transpile) {
-          init.transpile(schema, transpileJs, transpileDts);
+          const files = toIntermediateType();
+          transpiledFiles = init.transpile(files, transpileJs, transpileDts);
         } else {
           // This should be an error because it means:
           // 1.  the user picked js or dts as a target out AND
           // 2.  the plugin author didn't provide a generator for js or dts AND
           // 3.  the plugin author didn't provide a transpile function, so there's no way to generate the files.
+          throw new PluginInitializationError(
+            `You must either provide a generator or a transpiler.`
+          );
         }
       }
 
       const res = new CodeGeneratorResponse();
-      toResponse(res);
+      toResponse(res, transpiledFiles);
       return res;
     },
   };

@@ -17,7 +17,7 @@ import { codegenInfo } from "@bufbuild/protobuf";
 export { Target } from "./target.js";
 export { Schema } from "./schema.js";
 export { RuntimeImports } from "./runtime-imports.js";
-export { GeneratedFile } from "./generated-file.js";
+export { createTSFile, GeneratedFile, TSFile } from "./generated-file.js";
 export { ImportSymbol } from "./import-symbol.js";
 
 export const { localName } = codegenInfo;

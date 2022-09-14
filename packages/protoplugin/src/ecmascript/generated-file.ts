@@ -37,6 +37,27 @@ type Printable =
   | DescEnum
   | Printable[];
 
+export interface TSFile {
+  name: string;
+  content: string;
+  toResponse: (res: CodeGeneratorResponse) => void;
+}
+
+export function createTSFile(name: string, content: string) {
+  return {
+    name,
+    content,
+    toResponse(res: CodeGeneratorResponse) {
+      res.file.push(
+        new CodeGeneratorResponse_File({
+          name: name,
+          content,
+        })
+      );
+    },
+  };
+}
+
 /**
  * Represents a JavaScript, TypeScript, or TypeScript declaration file.
  */
@@ -88,6 +109,7 @@ export interface GeneratedFile {
 
 export interface GenerateFileToResponse {
   toResponse(res: CodeGeneratorResponse): void;
+  toIntermediateType(): TSFile;
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
@@ -129,6 +151,13 @@ export function createGeneratedFile(
         return createImportSymbol(name, from!);
       }
       return createTypeImport(typeOrName);
+    },
+    toIntermediateType() {
+      let content = elToContent(el, importPath);
+      if (preamble !== undefined) {
+        content = preamble + "\n" + content;
+      }
+      return createTSFile(name, content);
     },
     toResponse(res) {
       let content = elToContent(el, importPath);
