@@ -22,13 +22,9 @@ export class PluginOptionError extends Error {
   }
 }
 
-export class PluginInitializationError extends Error {
-  constructor(option: string, reason?: unknown) {
-    super(
-      reason === undefined
-        ? `invalid initialization "${option}`
-        : `invalid initialization "${option}: ${reasonToString(reason)}`
-    );
+export class PluginGenerationError extends Error {
+  constructor(reason: unknown) {
+    super(`unable to generate files : ${reasonToString(reason)}`);
   }
 }
 

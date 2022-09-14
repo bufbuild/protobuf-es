@@ -16,7 +16,7 @@ import type { Target } from "./ecmascript";
 import { Schema, createSchema, toResponse } from "./ecmascript/schema.js";
 import type { TSFile } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
-import { PluginOptionError, PluginInitializationError } from "./error.js";
+import { PluginOptionError, PluginGenerationError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
 
 export type TranspileFn = (
@@ -74,7 +74,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       // TODO - we shouldn't generate TS if schema targets doesn't include it AND there is a generator provided
       // for the other two targets (js and/or dts)
-      // Right now, we're just always generating
+      // Right now, we're just always generating ts
       init.generateTs(schema, "ts");
 
       if (schema.targets.includes("js")) {
@@ -93,23 +93,31 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      let transpiledFiles: TSFile[] = [];
+      // Convert all the files created via generators into our intermediate type
+      const files = toTSFile();
+
+      // If either boolean is true, it means it was specified in the target out
+      // but no generate function was provided
       if (transpileJs || transpileDts) {
         if (init.transpile) {
-          const files = toTSFile();
-          transpiledFiles = init.transpile(files, transpileJs, transpileDts);
+          // Transpile the generated files and add to the master list of files
+          const transpiledFiles = init.transpile(
+            files,
+            transpileJs,
+            transpileDts
+          );
+          files.push(...transpiledFiles);
         } else {
-          // This should be an error because it means:
-          // 1.  the user picked js or dts as a target out AND
-          // 2.  the plugin author didn't provide a generator for js or dts AND
-          // 3.  the plugin author didn't provide a transpile function, so there's no way to generate the files.
-          throw new PluginInitializationError(
-            `You must either provide a generator or a transpiler.`
+          throw new PluginGenerationError(
+            `Attempted to generate files for ${schema.targets.join(
+              "+"
+            )}, but neither a generator nor a 
+              transpiler was provided in the plugin initialization`
           );
         }
       }
 
-      return toResponse(transpiledFiles);
+      return toResponse(files);
     },
   };
 }

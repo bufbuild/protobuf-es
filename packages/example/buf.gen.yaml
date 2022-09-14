@@ -5,5 +5,5 @@
 version: v1
 plugins:
   - name: es
-    opt: target=js+dts
+    opt: target=ts
     out: src/gen
