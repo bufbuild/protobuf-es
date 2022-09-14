@@ -14,7 +14,7 @@
 
 import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
-import { describeMT } from "./helpers";
+import { describeMT } from "./helpers.js";
 import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT(

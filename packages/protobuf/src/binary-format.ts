@@ -42,8 +42,8 @@ export interface BinaryFormat {
   /**
    * Parse a message from binary data, merging fields.
    */
-  readMessage<T extends Message>(
-    message: T,
+  readMessage(
+    message: Message,
     reader: IBinaryReader,
     length: number,
     options: BinaryReadOptions

@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import type { JsonObject } from "@bufbuild/protobuf";
-import * as TS from "../../gen/ts/google/protobuf/struct_pb";
-import * as JS from "../../gen/js/google/protobuf/struct_pb";
+import * as TS from "../../gen/ts/google/protobuf/struct_pb.js";
+import * as JS from "../../gen/js/google/protobuf/struct_pb.js";
 
 describe("google.protobuf.Struct", () => {
   describe.each([

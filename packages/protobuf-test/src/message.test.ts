@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { PlainMessage } from "@bufbuild/protobuf";
-import { Timestamp } from "./gen/ts/google/protobuf/timestamp_pb";
+import { Timestamp } from "./gen/ts/google/protobuf/timestamp_pb.js";
 
 describe("PlainMessage", () => {
   const plainTimestamp: PlainMessage<Timestamp> = Timestamp.now();

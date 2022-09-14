@@ -92,7 +92,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
       }
       m[unknownFieldsSymbol].push({ no, wireType, data });
     },
-    readMessage<T extends Message>(
+    readMessage<T extends Message<T>>(
       message: T,
       reader: IBinaryReader,
       length: number,

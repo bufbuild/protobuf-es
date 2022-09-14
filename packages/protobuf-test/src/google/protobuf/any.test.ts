@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import { createRegistry, Struct, Value } from "@bufbuild/protobuf";
-import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb";
-import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb";
+import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb.js";
+import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb.js";
 
 describe("google.protobuf.Any", () => {
   describe.each([

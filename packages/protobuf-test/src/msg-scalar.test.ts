@@ -15,11 +15,11 @@
 import {
   RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as TS_ScalarValuesMessage,
-} from "./gen/ts/extra/msg-scalar_pb";
+} from "./gen/ts/extra/msg-scalar_pb.js";
 import {
   RepeatedScalarValuesMessage as JS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as JS_ScalarValuesMessage,
-} from "./gen/js/extra/msg-scalar_pb";
+} from "./gen/js/extra/msg-scalar_pb.js";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { protoInt64 } from "@bufbuild/protobuf";
