@@ -106,6 +106,9 @@ export interface GeneratedFile {
    */
   import(name: string, from: string): ImportSymbol;
 
+  /**
+   * Convert the generated file into a TSFile, which is used for the actual writing to CodeGeneratorResponse
+   */
   toTSFile(): TSFile;
 }
 
