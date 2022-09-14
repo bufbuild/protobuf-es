@@ -26,11 +26,7 @@ import {
   createDescriptorSet,
   protoInt64,
 } from "@bufbuild/protobuf";
-import type {
-  GeneratedFile,
-  GenerateFileToResponse,
-  TSFile,
-} from "./generated-file.js";
+import type { GeneratedFile, TSFile } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
 import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
@@ -80,8 +76,7 @@ export interface Schema {
 
 interface SchemaController {
   schema: Schema;
-  toIntermediateType: () => TSFile[];
-  toResponse: (res: CodeGeneratorResponse, tsFiles: TSFile[]) => void;
+  toTSFile: () => TSFile[];
 }
 
 export function createSchema(
@@ -104,7 +99,7 @@ export function createSchema(
     );
     return createImportSymbol(name, from);
   };
-  const generatedFiles: GenerateFileToResponse[] = [];
+  const generatedFiles: GeneratedFile[] = [];
   const schema: Schema = {
     targets,
     runtime,
@@ -134,23 +129,23 @@ export function createSchema(
   };
   return {
     schema,
-    toIntermediateType() {
+    toTSFile() {
       return generatedFiles.map((file) => {
-        return file.toIntermediateType();
+        return file.toTSFile();
       });
     },
-    toResponse(res: CodeGeneratorResponse, tsFiles: TSFile[]) {
-      res.supportedFeatures = protoInt64.parse(
-        CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
-      );
-      for (const genFile of generatedFiles) {
-        genFile.toResponse(res);
-      }
-      for (const tsFile of tsFiles) {
-        tsFile.toResponse(res);
-      }
-    },
   };
+}
+
+export function toResponse(tsFiles: TSFile[]): CodeGeneratorResponse {
+  const res = new CodeGeneratorResponse();
+  res.supportedFeatures = protoInt64.parse(
+    CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
+  );
+  for (const tsFile of tsFiles) {
+    tsFile.toResponse(res);
+  }
+  return res;
 }
 
 function findFilesToGenerate(

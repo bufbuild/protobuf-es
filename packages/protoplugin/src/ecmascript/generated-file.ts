@@ -105,11 +105,8 @@ export interface GeneratedFile {
    * relative to the current file.
    */
   import(name: string, from: string): ImportSymbol;
-}
 
-export interface GenerateFileToResponse {
-  toResponse(res: CodeGeneratorResponse): void;
-  toIntermediateType(): TSFile;
+  toTSFile(): TSFile;
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
@@ -125,7 +122,7 @@ export function createGeneratedFile(
     parameter: string | undefined;
     tsNocheck: boolean;
   }
-): GeneratedFile & GenerateFileToResponse {
+): GeneratedFile {
   let preamble: string | undefined;
   const el: El[] = [];
   return {
@@ -152,27 +149,12 @@ export function createGeneratedFile(
       }
       return createTypeImport(typeOrName);
     },
-    toIntermediateType() {
+    toTSFile() {
       let content = elToContent(el, importPath);
       if (preamble !== undefined) {
         content = preamble + "\n" + content;
       }
       return createTSFile(name, content);
-    },
-    toResponse(res) {
-      let content = elToContent(el, importPath);
-      if (content.length === 0) {
-        return;
-      }
-      if (preamble !== undefined) {
-        content = preamble + "\n" + content;
-      }
-      res.file.push(
-        new CodeGeneratorResponse_File({
-          name: name,
-          content,
-        })
-      );
     },
   };
 }

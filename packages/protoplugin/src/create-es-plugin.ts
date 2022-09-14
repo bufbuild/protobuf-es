@@ -13,9 +13,8 @@
 // limitations under the License.
 
 import type { Target } from "./ecmascript";
-import { Schema, createSchema } from "./ecmascript/schema.js";
+import { Schema, createSchema, toResponse } from "./ecmascript/schema.js";
 import type { TSFile } from "./ecmascript/generated-file.js";
-import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 import type { Plugin } from "./plugin.js";
 import { PluginOptionError, PluginInitializationError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
@@ -63,7 +62,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     run(req) {
       const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
-      const { schema, toResponse, toIntermediateType } = createSchema(
+      const { schema, toTSFile } = createSchema(
         req,
         targets,
         init.name,
@@ -97,7 +96,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       let transpiledFiles: TSFile[] = [];
       if (transpileJs || transpileDts) {
         if (init.transpile) {
-          const files = toIntermediateType();
+          const files = toTSFile();
           transpiledFiles = init.transpile(files, transpileJs, transpileDts);
         } else {
           // This should be an error because it means:
@@ -110,9 +109,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      const res = new CodeGeneratorResponse();
-      toResponse(res, transpiledFiles);
-      return res;
+      return toResponse(transpiledFiles);
     },
   };
 }
