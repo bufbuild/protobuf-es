@@ -23,11 +23,7 @@ import {
 } from "@bufbuild/protoplugin/ecmascript";
 import { matchWkt } from "./match-wkt.js";
 
-export const javascript = {
-  generate,
-};
-
-function generate(schema: Schema) {
+export function generateJs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.js");
     f.preamble(file);

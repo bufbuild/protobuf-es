@@ -13,10 +13,6 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile, DescMessage } from "@bufbuild/protobuf";
-import {
-  CodeGeneratorResponse,
-  CodeGeneratorResponse_File,
-} from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { literalString, makeFilePreamble } from "./gencommon.js";
@@ -40,22 +36,6 @@ type Printable =
 export interface TSFile {
   name: string;
   content: string;
-  toResponse: (res: CodeGeneratorResponse) => void;
-}
-
-export function createTSFile(name: string, content: string) {
-  return {
-    name,
-    content,
-    toResponse(res: CodeGeneratorResponse) {
-      res.file.push(
-        new CodeGeneratorResponse_File({
-          name: name,
-          content,
-        })
-      );
-    },
-  };
 }
 
 /**
@@ -105,10 +85,9 @@ export interface GeneratedFile {
    * relative to the current file.
    */
   import(name: string, from: string): ImportSymbol;
+}
 
-  /**
-   * Convert the generated file into a TSFile, which is used for the actual writing to CodeGeneratorResponse
-   */
+export interface GenerateFileToTSFile {
   toTSFile(): TSFile;
 }
 
@@ -125,7 +104,7 @@ export function createGeneratedFile(
     parameter: string | undefined;
     tsNocheck: boolean;
   }
-): GeneratedFile {
+): GeneratedFile & GenerateFileToTSFile {
   let preamble: string | undefined;
   const el: El[] = [];
   return {
@@ -157,7 +136,10 @@ export function createGeneratedFile(
       if (preamble !== undefined) {
         content = preamble + "\n" + content;
       }
-      return createTSFile(name, content);
+      return {
+        name,
+        content,
+      };
     },
   };
 }

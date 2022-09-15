@@ -13,17 +13,17 @@
 // limitations under the License.
 
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { typescript } from "./typescript.js";
-import { javascript } from "./javascript.js";
-import { declaration } from "./declaration.js";
+import { generateTs } from "./typescript.js";
+import { generateJs } from "./javascript.js";
+import { generateDts } from "./declaration.js";
 // import { transpile } from "./transpile.js";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
   version: `v${String(version)}`,
-  generateTs: typescript.generate,
-  generateJs: javascript.generate,
-  generateDts: declaration.generate,
+  generateTs,
+  generateJs,
+  generateDts,
   // transpile,
 });

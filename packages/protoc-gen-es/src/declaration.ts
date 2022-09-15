@@ -27,11 +27,7 @@ import {
 } from "@bufbuild/protoplugin/ecmascript";
 import { matchWkt } from "./match-wkt.js";
 
-export const declaration = {
-  generate,
-};
-
-function generate(schema: Schema) {
+export function generateDts(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.d.ts");
     f.preamble(file);

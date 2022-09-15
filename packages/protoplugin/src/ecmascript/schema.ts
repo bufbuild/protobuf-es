@@ -26,7 +26,11 @@ import {
   createDescriptorSet,
   protoInt64,
 } from "@bufbuild/protobuf";
-import type { GeneratedFile, TSFile } from "./generated-file.js";
+import type {
+  GeneratedFile,
+  GenerateFileToTSFile,
+  TSFile,
+} from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
 import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
@@ -99,7 +103,7 @@ export function createSchema(
     );
     return createImportSymbol(name, from);
   };
-  const generatedFiles: GeneratedFile[] = [];
+  const generatedFiles: GenerateFileToTSFile[] = [];
   const schema: Schema = {
     targets,
     runtime,
@@ -138,13 +142,12 @@ export function createSchema(
 }
 
 export function toResponse(tsFiles: TSFile[]): CodeGeneratorResponse {
-  const res = new CodeGeneratorResponse();
-  res.supportedFeatures = protoInt64.parse(
-    CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
-  );
-  for (const tsFile of tsFiles) {
-    tsFile.toResponse(res);
-  }
+  const res = new CodeGeneratorResponse({
+    supportedFeatures: protoInt64.parse(
+      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
+    ),
+    file: tsFiles,
+  });
   return res;
 }
 

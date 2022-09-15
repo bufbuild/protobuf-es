@@ -1,5 +1,4 @@
 import type { TSFile } from "@bufbuild/protoplugin/ecmascript";
-import { createTSFile } from "@bufbuild/protoplugin/ecmascript";
 import * as path from "path";
 import * as ts from "typescript";
 
@@ -179,7 +178,10 @@ export function transpile(
       }
       // TODO - is this needed?
       // const content = file.getHeader() + data;
-      results.push(createTSFile(fileName, data));
+      results.push({
+        name: fileName,
+        content: data,
+      });
     }
   );
   if (err) {

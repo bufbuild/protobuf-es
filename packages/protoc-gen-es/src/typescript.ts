@@ -30,11 +30,7 @@ import { matchWkt } from "./match-wkt.js";
 import { generateFieldInfo } from "./javascript.js";
 import { literalString } from "@bufbuild/protoplugin/ecmascript";
 
-export const typescript = {
-  generate,
-};
-
-function generate(schema: Schema) {
+export function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.ts");
     f.preamble(file);
