@@ -16,7 +16,6 @@ import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { generateTs } from "./typescript.js";
 import { generateJs } from "./javascript.js";
 import { generateDts } from "./declaration.js";
-// import { transpile } from "./transpile.js";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -25,5 +24,4 @@ export const protocGenEs = createEcmaScriptPlugin({
   generateTs,
   generateJs,
   generateDts,
-  // transpile,
 });

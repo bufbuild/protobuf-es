@@ -72,12 +72,24 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         rewriteImports
       );
 
-      // TODO - we shouldn't generate TS if schema targets doesn't include it AND there is a generator provided
-      // for the other two targets (js and/or dts)
-      // Right now, we're just always generating ts
-      init.generateTs(schema, "ts");
+      const targetTs = schema.targets.includes("ts");
+      const targetJs = schema.targets.includes("js");
+      const targetDts = schema.targets.includes("dts");
 
-      if (schema.targets.includes("js")) {
+      // Generate TS files under the following conditions:
+      // - if they are explicitly specified as a target.
+      // - if js is specified as a target but no js generator is provided.
+      // - if dts is specified as a target, but no dts generator is provided.
+      // In the latter two cases, it is because we need the generated TS files to use for transpiling js and/or dts.
+      if (
+        targetTs ||
+        (targetJs && !init.generateJs) ||
+        (targetDts && !init.generateDts)
+      ) {
+        init.generateTs(schema, "ts");
+      }
+
+      if (targetJs) {
         if (init.generateJs) {
           init.generateJs(schema, "js");
         } else {
@@ -85,7 +97,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      if (schema.targets.includes("dts")) {
+      if (targetDts) {
         if (init.generateDts) {
           init.generateDts(schema, "dts");
         } else {
