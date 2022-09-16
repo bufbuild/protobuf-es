@@ -134,6 +134,10 @@ export function createSchema(
   return {
     schema,
     toTSFile() {
+      // TODO - If all targets are requested, but the plugin doesn't have a generateDts, we might need to
+      // retrieve only the ts files here. If that turns out to be the case, we can change the method behavior
+      // to evict the generated files. As in "get the files generated so far, and remove them from
+      // the schema controller".
       return generatedFiles.map((file) => {
         return file.toTSFile();
       });

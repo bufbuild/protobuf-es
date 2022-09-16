@@ -108,6 +108,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
           );
           files.push(...transpiledFiles);
         } else {
+          // TODO - This can be handled at compile-time with a function overload
           throw new PluginGenerationError(
             `Attempted to generate files for ${schema.targets.join(
               "+"
