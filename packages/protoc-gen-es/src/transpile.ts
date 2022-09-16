@@ -1,5 +1,4 @@
 import type { TSFile } from "@bufbuild/protoplugin/ecmascript";
-import { log } from "@bufbuild/protoplugin";
 import * as ts from "typescript";
 import {
   createDefaultMapFromNodeModules,
@@ -74,11 +73,13 @@ export function transpile(
         );
         return;
       }
-      // TODO - is this needed?
-      // const content = file.getHeader() + data;
+      let content = data;
+      if (file.preamble !== undefined) {
+        content = file.preamble + "\n" + content;
+      }
       results.push({
         name: fileName,
-        content: data,
+        content,
       });
     }
   );

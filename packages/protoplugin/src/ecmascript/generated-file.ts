@@ -36,6 +36,7 @@ type Printable =
 export interface TSFile {
   name: string;
   content: string;
+  preamble?: string | undefined;
 }
 
 /**
@@ -139,6 +140,7 @@ export function createGeneratedFile(
       return {
         name,
         content,
+        preamble,
       };
     },
   };
