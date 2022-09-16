@@ -89,7 +89,7 @@ export interface GeneratedFile {
 }
 
 export interface GenerateFileToTSFile {
-  toTSFile(): TSFile;
+  toTSFile(): TSFile | undefined;
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
@@ -134,6 +134,9 @@ export function createGeneratedFile(
     },
     toTSFile() {
       let content = elToContent(el, importPath);
+      if (content.length === 0) {
+        return;
+      }
       if (preamble !== undefined) {
         content = preamble + "\n" + content;
       }

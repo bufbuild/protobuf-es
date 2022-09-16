@@ -138,8 +138,13 @@ export function createSchema(
       // retrieve only the ts files here. If that turns out to be the case, we can change the method behavior
       // to evict the generated files. As in "get the files generated so far, and remove them from
       // the schema controller".
-      return generatedFiles.map((file) => {
-        return file.toTSFile();
+      return generatedFiles.flatMap((file) => {
+        const tsFile = file.toTSFile();
+        // undefined is returned if the file has no content
+        if (!tsFile) {
+          return [];
+        }
+        return [tsFile];
       });
     },
   };
