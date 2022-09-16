@@ -16,4 +16,3 @@ export { Plugin } from "./plugin.js";
 export { Schema } from "./ecmascript/schema.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
-export { log } from "./logger.js";
