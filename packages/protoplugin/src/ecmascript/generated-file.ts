@@ -140,9 +140,6 @@ export function createGeneratedFile(
       if (content.length === 0) {
         return;
       }
-      if (preamble !== undefined) {
-        content = preamble + "\n" + content;
-      }
       return {
         name,
         content,
