@@ -160,7 +160,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       // If either boolean is true, it means it was specified in the target out
       // but no generate function was provided
       if (transpileJs || transpileDts) {
-        const transpileFn = init.transpile || transpile;
+        const transpileFn = init.transpile ?? transpile;
         // Transpile the generated files and add to the master list of files
         const transpiledFiles = transpileFn(files, transpileJs, transpileDts);
         files.push(...transpiledFiles);
