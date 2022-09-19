@@ -28,8 +28,8 @@ import {
 } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
-  GenerateFileToTSFile,
-  TSFile,
+  GenerateFileToFileInfo,
+  FileInfo,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
@@ -80,7 +80,7 @@ export interface Schema {
 
 interface SchemaController {
   schema: Schema;
-  toTSFile: () => TSFile[];
+  getFileInfo: () => FileInfo[];
 }
 
 export function createSchema(
@@ -103,7 +103,7 @@ export function createSchema(
     );
     return createImportSymbol(name, from);
   };
-  const generatedFiles: GenerateFileToTSFile[] = [];
+  const generatedFiles: GenerateFileToFileInfo[] = [];
   const schema: Schema = {
     targets,
     runtime,
@@ -133,30 +133,36 @@ export function createSchema(
   };
   return {
     schema,
-    toTSFile() {
+    getFileInfo() {
       // TODO - If all targets are requested, but the plugin doesn't have a generateDts, we might need to
       // retrieve only the ts files here. If that turns out to be the case, we can change the method behavior
       // to evict the generated files. As in "get the files generated so far, and remove them from
       // the schema controller".
       return generatedFiles.flatMap((file) => {
-        const tsFile = file.toTSFile();
+        const fileInfo = file.getFileInfo();
         // undefined is returned if the file has no content
-        if (!tsFile) {
+        if (!fileInfo) {
           return [];
         }
-        return [tsFile];
+        return [fileInfo];
       });
     },
   };
 }
 
-export function toResponse(tsFiles: TSFile[]): CodeGeneratorResponse {
+export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
   const res = new CodeGeneratorResponse({
     supportedFeatures: protoInt64.parse(
       CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
     ),
-    file: tsFiles,
+    file: files.map((f) => {
+      if (f.preamble !== undefined) {
+        f.content = f.preamble + "\n" + f.content;
+      }
+      return f;
+    }),
   });
+
   return res;
 }
 

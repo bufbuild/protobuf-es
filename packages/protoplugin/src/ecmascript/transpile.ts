@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { TSFile } from "@bufbuild/protoplugin/ecmascript";
+import type { FileInfo } from "./generated-file.js";
 import * as ts from "typescript";
 import {
   createDefaultMapFromNodeModules,
@@ -20,7 +20,7 @@ import {
   createVirtualCompilerHost,
 } from "@typescript/vfs";
 
-function createTranspiler(options: ts.CompilerOptions, files: TSFile[]) {
+function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
   const fsMap = createDefaultMapFromNodeModules({
     target: ts.ScriptTarget.ES2015,
   });
@@ -40,10 +40,10 @@ function createTranspiler(options: ts.CompilerOptions, files: TSFile[]) {
 }
 
 export function transpile(
-  files: TSFile[],
+  files: FileInfo[],
   transpileJs: boolean,
   transpileDts: boolean
-): TSFile[] {
+): FileInfo[] {
   // TODO - Need more options here by default
   const options: ts.CompilerOptions = {
     declaration: transpileDts,
@@ -53,7 +53,7 @@ export function transpile(
   // Create the transpiler (a ts.Program object)
   const program = createTranspiler(options, files);
 
-  const results: TSFile[] = [];
+  const results: FileInfo[] = [];
   let err: Error | undefined;
 
   program.emit(
@@ -87,13 +87,10 @@ export function transpile(
         );
         return;
       }
-      let content = data;
-      if (file.preamble !== undefined) {
-        content = file.preamble + "\n" + content;
-      }
       results.push({
         name: fileName,
-        content,
+        preamble: file.preamble,
+        content: data,
       });
     }
   );

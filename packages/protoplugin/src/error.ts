@@ -22,12 +22,6 @@ export class PluginOptionError extends Error {
   }
 }
 
-export class PluginGenerationError extends Error {
-  constructor(reason: unknown) {
-    super(`unable to generate files : ${reasonToString(reason)}`);
-  }
-}
-
 export function reasonToString(reason: unknown): string {
   if (reason instanceof Error) {
     return reason.message;

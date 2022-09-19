@@ -33,7 +33,10 @@ type Printable =
   | DescEnum
   | Printable[];
 
-export interface TSFile {
+/**
+ * FileInfo represents an intermediate type using for transpiling TypeScript internally.
+ */
+export interface FileInfo {
   name: string;
   content: string;
   preamble?: string | undefined;
@@ -88,8 +91,8 @@ export interface GeneratedFile {
   import(name: string, from: string): ImportSymbol;
 }
 
-export interface GenerateFileToTSFile {
-  toTSFile(): TSFile | undefined;
+export interface GenerateFileToFileInfo {
+  getFileInfo(): FileInfo | undefined;
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
@@ -105,7 +108,7 @@ export function createGeneratedFile(
     parameter: string | undefined;
     tsNocheck: boolean;
   }
-): GeneratedFile & GenerateFileToTSFile {
+): GeneratedFile & GenerateFileToFileInfo {
   let preamble: string | undefined;
   const el: El[] = [];
   return {
@@ -132,7 +135,7 @@ export function createGeneratedFile(
       }
       return createTypeImport(typeOrName);
     },
-    toTSFile() {
+    getFileInfo() {
       let content = elToContent(el, importPath);
       if (content.length === 0) {
         return;
