@@ -136,7 +136,7 @@ export function createGeneratedFile(
       return createTypeImport(typeOrName);
     },
     getFileInfo() {
-      let content = elToContent(el, importPath);
+      const content = elToContent(el, importPath);
       if (content.length === 0) {
         return;
       }
