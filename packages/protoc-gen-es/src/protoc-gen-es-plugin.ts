@@ -15,7 +15,7 @@
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { generateTs } from "./typescript.js";
 import { generateJs } from "./javascript.js";
-// import { generateDts } from "./declaration.js";
+import { generateDts } from "./declaration.js";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -23,5 +23,5 @@ export const protocGenEs = createEcmaScriptPlugin({
   version: `v${String(version)}`,
   generateTs,
   generateJs,
-  // generateDts,
+  generateDts,
 });
