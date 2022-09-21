@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { FileInfo } from "./generated-file.js";
-import * as ts from "typescript";
+import ts from "typescript";
 import {
   createDefaultMapFromNodeModules,
   createSystem,
@@ -89,7 +89,8 @@ export function transpile(
       }
       results.push({
         name: fileName,
-        preamble: file.preamble,
+        preamble:
+          file.preamble + "// transpiled using TypeScript v" + ts.version,
         content: data,
       });
     }

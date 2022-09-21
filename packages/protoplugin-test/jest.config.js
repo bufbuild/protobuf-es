@@ -12,16 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { generateTs } from "./typescript.js";
-import { generateJs } from "./javascript.js";
-// import { generateDts } from "./declaration.js";
-import { version } from "../package.json";
+/*
+ * For a detailed explanation regarding each configuration property and type check, visit:
+ * https://jestjs.io/docs/configuration
+ */
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
+  // Indicates which provider should be used to instrument code for coverage
+  coverageProvider: "v8",
 
-export const protocGenEs = createEcmaScriptPlugin({
-  name: "protoc-gen-es",
-  version: `v${String(version)}`,
-  generateTs,
-  generateJs,
-  // generateDts,
-});
+  // The root directory that Jest should scan for tests and modules within
+  rootDir: "dist/esm",
+
+  transform: {},
+};
+
+export default config;

@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { generateTs } from "./typescript.js";
-import { generateJs } from "./javascript.js";
-// import { generateDts } from "./declaration.js";
-import { version } from "../package.json";
+import { FileDescriptorSet, CodeGeneratorRequest } from "@bufbuild/protobuf";
+import { readFileSync } from "fs";
 
-export const protocGenEs = createEcmaScriptPlugin({
-  name: "protoc-gen-es",
-  version: `v${String(version)}`,
-  generateTs,
-  generateJs,
-  // generateDts,
-});
+export function getCodeGeneratorRequest(parameter: string = "") {
+  const fdsBytes = readFileSync("./descriptorset.bin");
+  const fds = FileDescriptorSet.fromBinary(fdsBytes);
+  return new CodeGeneratorRequest({
+    parameter,
+    fileToGenerate: ["proto/test.proto"], // tells the plugin which files from the set to generate
+    protoFile: fds.file,
+  });
+}

@@ -12,16 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { generateTs } from "./typescript.js";
-import { generateJs } from "./javascript.js";
-// import { generateDts } from "./declaration.js";
-import { version } from "../package.json";
+syntax = "proto3";
+package example;
 
-export const protocGenEs = createEcmaScriptPlugin({
-  name: "protoc-gen-es",
-  version: `v${String(version)}`,
-  generateTs,
-  generateJs,
-  // generateDts,
-});
+message Steve {
+  string name = 1;
+  int32 id = 2;  // Unique ID number for this person.
+  string email = 3;
+}
