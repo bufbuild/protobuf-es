@@ -15,7 +15,7 @@
 import { FileDescriptorSet, CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
-export function getCodeGeneratorRequest(parameter: string = "") {
+export function getCodeGeneratorRequest(parameter = "") {
   const fdsBytes = readFileSync("./descriptorset.bin");
   const fds = FileDescriptorSet.fromBinary(fdsBytes);
   return new CodeGeneratorRequest({

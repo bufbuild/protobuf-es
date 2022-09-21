@@ -15,8 +15,9 @@
 syntax = "proto3";
 package example;
 
-message Steve {
-  string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
-  string email = 3;
+message Record {
+  string first_name = 1;
+  string last_name = 2;
+  int32 id = 3;
+  bool is_active = 4;
 }

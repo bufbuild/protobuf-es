@@ -20,6 +20,8 @@ import {
   createVirtualCompilerHost,
 } from "@typescript/vfs";
 
+/* eslint-disable import/no-named-as-default-member */
+
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
   const fsMap = createDefaultMapFromNodeModules({
     target: ts.ScriptTarget.ES2015,
@@ -89,8 +91,7 @@ export function transpile(
       }
       results.push({
         name: fileName,
-        preamble:
-          file.preamble + "// transpiled using TypeScript v" + ts.version,
+        preamble: file.preamble,
         content: data,
       });
     }
