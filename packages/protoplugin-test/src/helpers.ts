@@ -15,12 +15,18 @@
 import { FileDescriptorSet, CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
-export function getCodeGeneratorRequest(parameter = "") {
+// If no files are passed, default to generating all files.
+const defaultFiles = ["proto/address_book.proto", "proto/person.proto"];
+
+export function getCodeGeneratorRequest(
+  parameter = "",
+  fileToGenerate = defaultFiles
+) {
   const fdsBytes = readFileSync("./descriptorset.bin");
   const fds = FileDescriptorSet.fromBinary(fdsBytes);
   return new CodeGeneratorRequest({
     parameter,
-    fileToGenerate: ["proto/test.proto"], // tells the plugin which files from the set to generate
+    fileToGenerate, // tells the plugin which files from the set to generate
     protoFile: fds.file,
   });
 }
