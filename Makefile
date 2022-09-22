@@ -110,7 +110,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 	@touch $(@)
 
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
-	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
+	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
 	@npm run -w packages/protoplugin-test buf:build
 
 $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
@@ -152,10 +152,7 @@ clean: ## Delete build artifacts and installed dependencies
 build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
 
 .PHONY: test
-test: test-jest test-conformance test-ts-compat ## Run all tests
-
-.PHONY: test-jest
-test-jest: test-protobuf test-protoplugin
+test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all tests
 
 .PHONY: test-protobuf
 test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js

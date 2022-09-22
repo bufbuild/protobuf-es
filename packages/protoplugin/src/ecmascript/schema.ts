@@ -151,7 +151,7 @@ export function createSchema(
 }
 
 export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
-  const res = new CodeGeneratorResponse({
+  return new CodeGeneratorResponse({
     supportedFeatures: protoInt64.parse(
       CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
     ),
@@ -162,8 +162,6 @@ export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
       return f;
     }),
   });
-
-  return res;
 }
 
 function findFilesToGenerate(

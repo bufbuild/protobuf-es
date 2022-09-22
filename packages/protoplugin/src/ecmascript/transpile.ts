@@ -22,6 +22,21 @@ import {
 
 /* eslint-disable import/no-named-as-default-member */
 
+/**
+ * Create a transpiler using the given compiler options, which will compile the
+ * content provided in the files array.
+ *
+ * Note:  this library intentionally transpiles with a pinned older version of
+ * TypeScript for stability.  This version is denoted in this workspace's
+ * package.json.
+ *
+ * In addition, note that there is a dependency on @typescript/vfs in the
+ * top-level package as well as this package.  This is to avoid npm hoisting
+ * @typescript/vfs to the top-level node_modules directory, which then causes
+ * type mismatches when trying to use it with this package's version of
+ * TypeScript.  Ideally we would use something like Yarn's nohoist here, but
+ * npm does not support that yet.
+ */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
   const fsMap = createDefaultMapFromNodeModules({
     target: ts.ScriptTarget.ES2015,
@@ -67,9 +82,9 @@ export function transpile(
       onError?: (message: string) => void,
       sourceFiles?: readonly ts.SourceFile[]
     ) => {
-      // We have to go through some hoops here because the header we add to each file
-      // is not part of the AST. So we find the TypeScript file we generated for each
-      // emitted file and add the header to each output ourselves.
+      // We have to go through some hoops here because the header we add to each
+      // file is not part of the AST. So we find the TypeScript file we
+      // generated for each emitted file and add the header to each output ourselves.
       if (!sourceFiles) {
         err = new Error(
           `unable to map emitted file "${fileName}" to a source file: missing source files`
