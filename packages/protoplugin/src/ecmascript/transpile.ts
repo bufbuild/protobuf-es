@@ -22,13 +22,30 @@ import {
 
 /* eslint-disable import/no-named-as-default-member */
 
+// The default options used to auto-transpile if needed.
+const defaultOptions: ts.CompilerOptions = {
+  target: ts.ScriptTarget.ES2016,
+  module: ts.ModuleKind.CommonJS,
+  esModuleInterop: true,
+  forceConsistentCasingInFileNames: true,
+  strict: true,
+  skipLibCheck: true,
+};
+
 /**
  * Create a transpiler using the given compiler options, which will compile the
  * content provided in the files array.
  *
  * Note:  this library intentionally transpiles with a pinned older version of
  * TypeScript for stability.  This version is denoted in this workspace's
- * package.json.
+ * package.json.  For the default set of compiler options, we use the default
+ * options created with `tsc --init` by the aforementioned pinned older version
+ * of TypeScript (see `defaultOptions` above).
+ *
+ * If this is not desirable for plugin authors, they are free to provide their
+ * own transpile function as part of the plugin initialization.  If one is
+ * provided, it will be invoked instead and the framework's auto-transpilation
+ * will be bypassed.
  *
  * In addition, note that there is a dependency on @typescript/vfs in the
  * top-level package as well as this package.  This is to avoid npm hoisting
@@ -39,7 +56,7 @@ import {
  */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
   const fsMap = createDefaultMapFromNodeModules({
-    target: ts.ScriptTarget.ES2015,
+    target: options.target,
   });
 
   files.forEach((file) => {
@@ -61,8 +78,8 @@ export function transpile(
   transpileJs: boolean,
   transpileDts: boolean
 ): FileInfo[] {
-  // TODO - Need more options here by default
   const options: ts.CompilerOptions = {
+    ...defaultOptions,
     declaration: transpileDts,
     emitDeclarationOnly: transpileDts && !transpileJs,
   };
