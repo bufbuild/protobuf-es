@@ -48,8 +48,13 @@ export function createEcmaScriptPlugin(
     name: init.name,
     version: init.version,
     run(req) {
-      const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
-        parseParameter(req.parameter, init.parseOption);
+      const {
+        targets,
+        tsNocheck,
+        bootstrapWkt,
+        rewriteImports,
+        keepEmptyFiles,
+      } = parseParameter(req.parameter, init.parseOption);
       const { schema, toResponse } = createSchema(
         req,
         targets,
@@ -57,7 +62,8 @@ export function createEcmaScriptPlugin(
         init.version,
         tsNocheck,
         bootstrapWkt,
-        rewriteImports
+        rewriteImports,
+        keepEmptyFiles
       );
       generateFn(schema);
       const res = new CodeGeneratorResponse();
@@ -74,6 +80,7 @@ function parseParameter(
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
   let bootstrapWkt = false;
+  let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
@@ -134,6 +141,21 @@ function parseParameter(
         rewriteImports.push({ pattern, target });
         break;
       }
+      case "keep_empty_files": {
+        switch (value) {
+          case "true":
+          case "1":
+            keepEmptyFiles = true;
+            break;
+          case "false":
+          case "0":
+            keepEmptyFiles = false;
+            break;
+          default:
+            throw new PluginOptionError(`${key}=${value}`);
+        }
+        break;
+      }
       default:
         if (parseOption === undefined) {
           throw new PluginOptionError(`${key}=${value}`);
@@ -146,7 +168,7 @@ function parseParameter(
         break;
     }
   }
-  return { targets, tsNocheck, bootstrapWkt, rewriteImports };
+  return { targets, tsNocheck, bootstrapWkt, rewriteImports, keepEmptyFiles };
 }
 
 function splitParameter(
