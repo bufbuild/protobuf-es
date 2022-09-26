@@ -24,12 +24,32 @@ import {
 
 // The default options used to auto-transpile if needed.
 const defaultOptions: ts.CompilerOptions = {
-  target: ts.ScriptTarget.ES2016,
-  module: ts.ModuleKind.CommonJS,
-  esModuleInterop: true,
-  forceConsistentCasingInFileNames: true,
-  strict: true,
+  // Type checking
+  strict: false,
+
+  // modules
+  module: ts.ModuleKind.ES2020,
+  moduleResolution: ts.ModuleResolutionKind.NodeJs,
+  noResolve: true,
+  resolveJsonModule: false,
+
+  // emit
+  emitBOM: false,
+  importsNotUsedAsValues: ts.ImportsNotUsedAsValues.Preserve,
+  newLine: ts.NewLineKind.LineFeed,
+  preserveValueImports: false,
+
+  // JavaScript Support
+  checkJs: false,
+
+  // Language and Environment
+  lib: [],
+  moduleDetection: "force",
+  target: ts.ScriptTarget.ES2017,
+
+  // Completeness
   skipLibCheck: true,
+  skipDefaultLibCheck: false,
 };
 
 /**
@@ -38,9 +58,9 @@ const defaultOptions: ts.CompilerOptions = {
  *
  * Note:  this library intentionally transpiles with a pinned older version of
  * TypeScript for stability.  This version is denoted in this workspace's
- * package.json.  For the default set of compiler options, we use the default
- * options created with `tsc --init` by the aforementioned pinned older version
- * of TypeScript (see `defaultOptions` above).
+ * package.json.  For the default set of compiler options, we use a lenient
+ * set of options because the general goal is to emit code as best as we can.
+ * For a list of the options used, see `defaultOptions` above.
  *
  * If this is not desirable for plugin authors, they are free to provide their
  * own transpile function as part of the plugin initialization.  If one is
