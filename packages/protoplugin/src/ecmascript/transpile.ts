@@ -14,11 +14,7 @@
 
 import type { FileInfo } from "./generated-file.js";
 import ts from "typescript";
-import {
-  createDefaultMapFromNodeModules,
-  createSystem,
-  createVirtualCompilerHost,
-} from "@typescript/vfs";
+import { createSystem, createVirtualCompilerHost } from "@typescript/vfs";
 
 /* eslint-disable import/no-named-as-default-member */
 
@@ -75,9 +71,7 @@ const defaultOptions: ts.CompilerOptions = {
  * npm does not support that yet.
  */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
-  const fsMap = createDefaultMapFromNodeModules({
-    target: options.target,
-  });
+  const fsMap = new Map<string, string>();
 
   files.forEach((file) => {
     fsMap.set(file.name, file.content);
