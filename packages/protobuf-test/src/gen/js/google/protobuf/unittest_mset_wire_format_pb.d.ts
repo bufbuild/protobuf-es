@@ -40,6 +40,7 @@
 
 import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
 import {Message, proto2} from "@bufbuild/protobuf";
+import type {TestMessageSetExtension1, TestMessageSetExtension2, TestMessageSetExtension3} from "./unittest_mset_pb.js";
 
 /**
  * A message with message_set_wire_format.
@@ -47,6 +48,21 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_wireformat_unittest.TestMessageSet
  */
 export declare class TestMessageSet extends Message<TestMessageSet> {
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension1.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension1.message_set_extension"?: TestMessageSetExtension1;
+
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension2.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension2.message_set_extension"?: TestMessageSetExtension2;
+
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension3.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension3.message_set_extension"?: TestMessageSetExtension3;
+
   constructor(data?: PartialMessage<TestMessageSet>);
 
   static readonly runtime: typeof proto2;

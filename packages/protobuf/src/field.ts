@@ -107,6 +107,9 @@ interface fiShared {
    */
   readonly oneof?: OneofInfo | undefined;
 
+  // TODO
+  readonly ext?: string;
+
   // We do not surface options at this time
   // readonly options: OptionsMap;
 }

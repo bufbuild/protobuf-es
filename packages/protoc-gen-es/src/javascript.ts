@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
+import type {
+  DescEnum,
+  DescExtension,
+  DescField,
+  DescMessage,
+} from "@bufbuild/protobuf";
 import { proto2, proto3, ScalarType } from "@bufbuild/protobuf";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import {
@@ -58,6 +63,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print(makeJsDoc(message));
   f.print("export const ", message, " = ", protoN, ".makeMessageType(")
   f.print(`  `, literalString(message.typeName), `,`)
+  // TODO extensions
   if (message.fields.length == 0) {
     f.print("  [],")
   } else {
@@ -88,18 +94,19 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 }
 
 // prettier-ignore
-export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
-  const protoN = schema.runtime[field.parent.file.syntax];
+export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField | DescExtension) {
+  const syntax = field.kind == "field" ? field.parent.file.syntax : "proto2";
+  const protoN = schema.runtime[syntax];
   const e: Parameters<typeof f.print> = [];
   e.push("    { no: ", field.number, `, name: "`, field.name, `", `);
   if (field.jsonName !== undefined) {
     e.push(`jsonName: "`, field.jsonName, `", `);
   }
-  switch (field.kind) {
-    case "scalar_field":
+  switch (field.fieldKind) {
+    case "scalar":
       e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
       break;
-    case "map_field":
+    case "map":
       e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);
       switch (field.mapValue.kind) {
         case "scalar":
@@ -113,10 +120,10 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
           break;
       }
       break;
-    case "message_field":
+    case "message":
       e.push(`kind: "message", T: `, field.message, `, `);
       break;
-    case "enum_field":
+    case "enum":
       e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
       break;
   }
@@ -135,6 +142,9 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   }
   if (field.oneof) {
     e.push(`oneof: "`, field.oneof.name, `", `);
+  }
+  if (field.kind == "extension") {
+    e.push(`ext: "`, field.typeName, `", `);
   }
   const lastE = e[e.length - 1];
   if (typeof lastE == "string" && lastE.endsWith(", ")) {

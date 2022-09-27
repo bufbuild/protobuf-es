@@ -14,6 +14,7 @@
 
 import type {
   DescEnum,
+  DescExtension,
   DescField,
   DescMessage,
   DescOneof,
@@ -84,6 +85,11 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
+  // TODO
+  for (const ext of message.getExtensions()) {
+    generateField(schema, f, ext);
+    f.print();
+  }
   f.print("  constructor(data?: ", PartialMessage, "<", message, ">) {");
   f.print("    super();");
   f.print("    ", protoN, ".util.initPartial(data, this);");
@@ -96,6 +102,11 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   for (const field of message.fields) {
     generateFieldInfo(schema, f, field);
   }
+  // TODO
+  for (const ext of message.getExtensions()) {
+    generateFieldInfo(schema, f, ext);
+  }
+  // TODO
   f.print("  ]);")
   // In case we start supporting options, we have to surface them here
   //f.print("  static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
@@ -143,10 +154,22 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
   f.print(`  } | { case: undefined; value?: undefined } = { case: undefined };`);
 }
 
-function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
+function generateField(
+  schema: Schema,
+  f: GeneratedFile,
+  field: DescField | DescExtension
+) {
   f.print(makeJsDoc(field, "  "));
   const e: Parameters<typeof f.print> = [];
-  e.push("  ", localName(field));
+  // TODO
+  switch (field.kind) {
+    case "field":
+      e.push("  ", localName(field));
+      break;
+    case "extension":
+      e.push("  ", literalString(localName(field)));
+      break;
+  }
   const { defaultValue, typingInferrable } =
     getFieldIntrinsicDefaultValue(field);
   const { typing, optional } = getFieldTyping(field, f);

@@ -763,6 +763,399 @@ export declare class TestPackedTypesLite extends Message<TestPackedTypesLite> {
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
 export declare class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
+  /**
+   * Singular
+   *
+   * @generated from extension protobuf_unittest.optional_int32_extension_lite
+   */
+  "protobuf_unittest.optional_int32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_int64_extension_lite
+   */
+  "protobuf_unittest.optional_int64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_uint32_extension_lite
+   */
+  "protobuf_unittest.optional_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_uint64_extension_lite
+   */
+  "protobuf_unittest.optional_uint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sint32_extension_lite
+   */
+  "protobuf_unittest.optional_sint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sint64_extension_lite
+   */
+  "protobuf_unittest.optional_sint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_fixed32_extension_lite
+   */
+  "protobuf_unittest.optional_fixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_fixed64_extension_lite
+   */
+  "protobuf_unittest.optional_fixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sfixed32_extension_lite
+   */
+  "protobuf_unittest.optional_sfixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sfixed64_extension_lite
+   */
+  "protobuf_unittest.optional_sfixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_float_extension_lite
+   */
+  "protobuf_unittest.optional_float_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_double_extension_lite
+   */
+  "protobuf_unittest.optional_double_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_bool_extension_lite
+   */
+  "protobuf_unittest.optional_bool_extension_lite"?: boolean;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_string_extension_lite
+   */
+  "protobuf_unittest.optional_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_bytes_extension_lite
+   */
+  "protobuf_unittest.optional_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.optionalgroup_extension_lite
+   */
+  "protobuf_unittest.optionalgroup_extension_lite"?: OptionalGroup_extension_lite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_nested_message_extension_lite
+   */
+  "protobuf_unittest.optional_nested_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_foreign_message_extension_lite
+   */
+  "protobuf_unittest.optional_foreign_message_extension_lite"?: ForeignMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_import_message_extension_lite
+   */
+  "protobuf_unittest.optional_import_message_extension_lite"?: ImportMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_nested_enum_extension_lite
+   */
+  "protobuf_unittest.optional_nested_enum_extension_lite"?: TestAllTypesLite_NestedEnum;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.optional_foreign_enum_extension_lite"?: ForeignEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_import_enum_extension_lite
+   */
+  "protobuf_unittest.optional_import_enum_extension_lite"?: ImportEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_string_piece_extension_lite
+   */
+  "protobuf_unittest.optional_string_piece_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_cord_extension_lite
+   */
+  "protobuf_unittest.optional_cord_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_public_import_message_extension_lite
+   */
+  "protobuf_unittest.optional_public_import_message_extension_lite"?: PublicImportMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_lazy_message_extension_lite
+   */
+  "protobuf_unittest.optional_lazy_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_unverified_lazy_message_extension_lite
+   */
+  "protobuf_unittest.optional_unverified_lazy_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * Repeated
+   *
+   * @generated from extension protobuf_unittest.repeated_int32_extension_lite
+   */
+  "protobuf_unittest.repeated_int32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_int64_extension_lite
+   */
+  "protobuf_unittest.repeated_int64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_uint32_extension_lite
+   */
+  "protobuf_unittest.repeated_uint32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_uint64_extension_lite
+   */
+  "protobuf_unittest.repeated_uint64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sint32_extension_lite
+   */
+  "protobuf_unittest.repeated_sint32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sint64_extension_lite
+   */
+  "protobuf_unittest.repeated_sint64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_fixed32_extension_lite
+   */
+  "protobuf_unittest.repeated_fixed32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_fixed64_extension_lite
+   */
+  "protobuf_unittest.repeated_fixed64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sfixed32_extension_lite
+   */
+  "protobuf_unittest.repeated_sfixed32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sfixed64_extension_lite
+   */
+  "protobuf_unittest.repeated_sfixed64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_float_extension_lite
+   */
+  "protobuf_unittest.repeated_float_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_double_extension_lite
+   */
+  "protobuf_unittest.repeated_double_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_bool_extension_lite
+   */
+  "protobuf_unittest.repeated_bool_extension_lite": boolean[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_string_extension_lite
+   */
+  "protobuf_unittest.repeated_string_extension_lite": string[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_bytes_extension_lite
+   */
+  "protobuf_unittest.repeated_bytes_extension_lite": Uint8Array[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeatedgroup_extension_lite
+   */
+  "protobuf_unittest.repeatedgroup_extension_lite": RepeatedGroup_extension_lite[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_nested_message_extension_lite
+   */
+  "protobuf_unittest.repeated_nested_message_extension_lite": TestAllTypesLite_NestedMessage[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_foreign_message_extension_lite
+   */
+  "protobuf_unittest.repeated_foreign_message_extension_lite": ForeignMessageLite[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_import_message_extension_lite
+   */
+  "protobuf_unittest.repeated_import_message_extension_lite": ImportMessageLite[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_nested_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_nested_enum_extension_lite": TestAllTypesLite_NestedEnum[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_foreign_enum_extension_lite": ForeignEnumLite[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_import_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_import_enum_extension_lite": ImportEnumLite[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_string_piece_extension_lite
+   */
+  "protobuf_unittest.repeated_string_piece_extension_lite": string[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_cord_extension_lite
+   */
+  "protobuf_unittest.repeated_cord_extension_lite": string[];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_lazy_message_extension_lite
+   */
+  "protobuf_unittest.repeated_lazy_message_extension_lite": TestAllTypesLite_NestedMessage[];
+
+  /**
+   * Singular with defaults
+   *
+   * @generated from extension protobuf_unittest.default_int32_extension_lite
+   */
+  "protobuf_unittest.default_int32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_int64_extension_lite
+   */
+  "protobuf_unittest.default_int64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_uint32_extension_lite
+   */
+  "protobuf_unittest.default_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_uint64_extension_lite
+   */
+  "protobuf_unittest.default_uint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sint32_extension_lite
+   */
+  "protobuf_unittest.default_sint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sint64_extension_lite
+   */
+  "protobuf_unittest.default_sint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_fixed32_extension_lite
+   */
+  "protobuf_unittest.default_fixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_fixed64_extension_lite
+   */
+  "protobuf_unittest.default_fixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sfixed32_extension_lite
+   */
+  "protobuf_unittest.default_sfixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sfixed64_extension_lite
+   */
+  "protobuf_unittest.default_sfixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_float_extension_lite
+   */
+  "protobuf_unittest.default_float_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_double_extension_lite
+   */
+  "protobuf_unittest.default_double_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_bool_extension_lite
+   */
+  "protobuf_unittest.default_bool_extension_lite"?: boolean;
+
+  /**
+   * @generated from extension protobuf_unittest.default_string_extension_lite
+   */
+  "protobuf_unittest.default_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.default_bytes_extension_lite
+   */
+  "protobuf_unittest.default_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.default_nested_enum_extension_lite
+   */
+  "protobuf_unittest.default_nested_enum_extension_lite"?: TestAllTypesLite_NestedEnum;
+
+  /**
+   * @generated from extension protobuf_unittest.default_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.default_foreign_enum_extension_lite"?: ForeignEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.default_import_enum_extension_lite
+   */
+  "protobuf_unittest.default_import_enum_extension_lite"?: ImportEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.default_string_piece_extension_lite
+   */
+  "protobuf_unittest.default_string_piece_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.default_cord_extension_lite
+   */
+  "protobuf_unittest.default_cord_extension_lite"?: string;
+
+  /**
+   * For oneof test
+   *
+   * @generated from extension protobuf_unittest.oneof_uint32_extension_lite
+   */
+  "protobuf_unittest.oneof_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_nested_message_extension_lite
+   */
+  "protobuf_unittest.oneof_nested_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_string_extension_lite
+   */
+  "protobuf_unittest.oneof_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_bytes_extension_lite
+   */
+  "protobuf_unittest.oneof_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.TestNestedExtensionLite.nested_extension
+   */
+  "protobuf_unittest.TestNestedExtensionLite.nested_extension"?: number;
+
   constructor(data?: PartialMessage<TestAllExtensionsLite>);
 
   static readonly runtime: typeof proto2;
@@ -830,6 +1223,76 @@ export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
 export declare class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> {
+  /**
+   * @generated from extension protobuf_unittest.packed_int32_extension_lite
+   */
+  "protobuf_unittest.packed_int32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_int64_extension_lite
+   */
+  "protobuf_unittest.packed_int64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_uint32_extension_lite
+   */
+  "protobuf_unittest.packed_uint32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_uint64_extension_lite
+   */
+  "protobuf_unittest.packed_uint64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sint32_extension_lite
+   */
+  "protobuf_unittest.packed_sint32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sint64_extension_lite
+   */
+  "protobuf_unittest.packed_sint64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_fixed32_extension_lite
+   */
+  "protobuf_unittest.packed_fixed32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_fixed64_extension_lite
+   */
+  "protobuf_unittest.packed_fixed64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sfixed32_extension_lite
+   */
+  "protobuf_unittest.packed_sfixed32_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sfixed64_extension_lite
+   */
+  "protobuf_unittest.packed_sfixed64_extension_lite": bigint[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_float_extension_lite
+   */
+  "protobuf_unittest.packed_float_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_double_extension_lite
+   */
+  "protobuf_unittest.packed_double_extension_lite": number[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_bool_extension_lite
+   */
+  "protobuf_unittest.packed_bool_extension_lite": boolean[];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_enum_extension_lite
+   */
+  "protobuf_unittest.packed_enum_extension_lite": ForeignEnumLite[];
+
   constructor(data?: PartialMessage<TestPackedExtensionsLite>);
 
   static readonly runtime: typeof proto2;
@@ -940,6 +1403,16 @@ export declare class TestParsingMergeLite extends Message<TestParsingMergeLite> 
    * @generated from field: repeated protobuf_unittest.TestParsingMergeLite.RepeatedGroup repeatedgroup = 20;
    */
   repeatedgroup: TestParsingMergeLite_RepeatedGroup[];
+
+  /**
+   * @generated from extension protobuf_unittest.TestParsingMergeLite.optional_ext
+   */
+  "protobuf_unittest.TestParsingMergeLite.optional_ext"?: TestAllTypesLite;
+
+  /**
+   * @generated from extension protobuf_unittest.TestParsingMergeLite.repeated_ext
+   */
+  "protobuf_unittest.TestParsingMergeLite.repeated_ext": TestAllTypesLite[];
 
   constructor(data?: PartialMessage<TestParsingMergeLite>);
 
@@ -1316,6 +1789,11 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
     value: Uint8Array;
     case: "oneofBytes";
   } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from extension protobuf_unittest.test_all_types_lite
+   */
+  "protobuf_unittest.test_all_types_lite"?: TestAllTypesLite;
 
   constructor(data?: PartialMessage<TestHugeFieldNumbersLite>);
 

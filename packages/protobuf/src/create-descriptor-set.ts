@@ -321,6 +321,16 @@ function addMessage(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    // TODO
+    getExtensions(): DescExtension[] {
+      const results: DescExtension[] = [];
+      for (const e of cart.extensions.values()) {
+        if (e.extendee.typeName === this.typeName) {
+          results.push(e);
+        }
+      }
+      return results;
+    },
   };
   if (proto.options?.mapEntry === true) {
     cart.mapEntries.set(desc.typeName, desc);
@@ -528,7 +538,8 @@ function newField(
         );
         return {
           ...common,
-          kind: "map_field",
+          kind: "field",
+          fieldKind: "map",
           repeated: false,
           ...getMapFieldTypes(mapEntry),
         };
@@ -540,7 +551,8 @@ function newField(
       );
       return {
         ...common,
-        kind: "message_field",
+        kind: "field",
+        fieldKind: "message",
         repeated,
         message,
       };
@@ -554,7 +566,8 @@ function newField(
       );
       return {
         ...common,
-        kind: "enum_field",
+        kind: "field",
+        fieldKind: "enum",
         getDefaultValue,
         repeated,
         enum: e,
@@ -568,7 +581,8 @@ function newField(
       );
       return {
         ...common,
-        kind: "scalar_field",
+        kind: "field",
+        fieldKind: "scalar",
         getDefaultValue,
         repeated,
         scalar,
@@ -601,6 +615,7 @@ function newExtension(
   );
   return {
     ...field,
+    kind: "extension",
     typeName: makeTypeName(proto, parent, file),
     parent,
     file,
@@ -670,7 +685,7 @@ function trimLeadingDot(typeName: string): string {
 
 function getMapFieldTypes(
   mapEntry: DescMessage
-): Pick<DescField & { kind: "map_field" }, "mapKey" | "mapValue"> {
+): Pick<DescField & { fieldKind: "map" }, "mapKey" | "mapValue"> {
   assert(
     mapEntry.proto.options?.mapEntry,
     `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`
@@ -701,8 +716,8 @@ function getMapFieldTypes(
     valueField,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`
   );
-  switch (valueField.kind) {
-    case "scalar_field":
+  switch (valueField.fieldKind) {
+    case "scalar":
       return {
         mapKey,
         mapValue: {
@@ -710,7 +725,7 @@ function getMapFieldTypes(
           kind: "scalar",
         },
       };
-    case "message_field":
+    case "message":
       return {
         mapKey,
         mapValue: {
@@ -718,7 +733,7 @@ function getMapFieldTypes(
           kind: "message",
         },
       };
-    case "enum_field":
+    case "enum":
       return {
         mapKey,
         mapValue: {
@@ -907,7 +922,7 @@ function declarationString(this: DescField | DescExtension): string {
   if (this.optional) {
     parts.push("optional");
   }
-  const file = "extendee" in this ? this.file : this.parent.file;
+  const file = this.kind === "extension" ? this.file : this.parent.file;
   if (
     file.syntax == "proto2" &&
     this.proto.label === FieldDescriptorProto_Label.REQUIRED
@@ -915,17 +930,17 @@ function declarationString(this: DescField | DescExtension): string {
     parts.push("required");
   }
   let type: string;
-  switch (this.kind) {
-    case "scalar_field":
+  switch (this.fieldKind) {
+    case "scalar":
       type = ScalarType[this.scalar].toLowerCase();
       break;
-    case "enum_field":
+    case "enum":
       type = this.enum.typeName;
       break;
-    case "message_field":
+    case "message":
       type = this.message.typeName;
       break;
-    case "map_field": {
+    case "map": {
       const k = ScalarType[this.mapKey].toLowerCase();
       let v: string;
       switch (this.mapValue.kind) {
@@ -980,13 +995,13 @@ function getDefaultValue(
   if (d === undefined) {
     return undefined;
   }
-  switch (this.kind) {
-    case "enum_field": {
+  switch (this.fieldKind) {
+    case "enum": {
       const enumValue = this.enum.values.find((v) => v.name === d);
       assert(enumValue, `cannot parse ${this.toString()} default value: ${d}`);
       return enumValue.number;
     }
-    case "scalar_field":
+    case "scalar":
       switch (this.scalar) {
         case ScalarType.STRING:
           return d;

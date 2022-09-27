@@ -210,18 +210,19 @@ export function createRegistryFromDescriptors(
 
 interface Resolver extends IMessageTypeRegistry, IEnumTypeRegistry {}
 
+// TODO
 function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
-  switch (desc.kind) {
-    case "map_field":
+  switch (desc.fieldKind) {
+    case "map":
       return makeMapFieldInfo(desc, resolver);
-    case "message_field":
+    case "message":
       return makeMessageFieldInfo(desc, resolver);
-    case "enum_field": {
+    case "enum": {
       const fi = makeEnumFieldInfo(desc, resolver);
       fi.default = desc.getDefaultValue();
       return fi;
     }
-    case "scalar_field": {
+    case "scalar": {
       const fi = makeScalarFieldInfo(desc);
       fi.default = desc.getDefaultValue();
       return fi;
@@ -230,7 +231,7 @@ function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
 }
 
 function makeMapFieldInfo(
-  field: DescField & { kind: "map_field" },
+  field: DescField & { fieldKind: "map" },
   resolver: Resolver
 ): PartialFieldInfo {
   const base = {
@@ -280,7 +281,7 @@ function makeMapFieldInfo(
 }
 
 function makeScalarFieldInfo(
-  field: DescField & { kind: "scalar_field" }
+  field: DescField & { fieldKind: "scalar" }
 ): PartialFieldInfo {
   const base = {
     kind: "scalar",
@@ -314,7 +315,7 @@ function makeScalarFieldInfo(
 }
 
 function makeMessageFieldInfo(
-  field: DescField & { kind: "message_field" },
+  field: DescField & { fieldKind: "message" },
   resolver: Resolver
 ): PartialFieldInfo {
   const messageType = resolver.findMessage(field.message.typeName);
@@ -353,7 +354,7 @@ function makeMessageFieldInfo(
 }
 
 function makeEnumFieldInfo(
-  field: DescField & { kind: "enum_field" },
+  field: DescField & { fieldKind: "enum" },
   resolver: Resolver
 ): PartialFieldInfo {
   const enumType = resolver.findEnum(field.enum.typeName);

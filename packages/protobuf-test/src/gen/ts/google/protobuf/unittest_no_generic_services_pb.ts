@@ -60,6 +60,11 @@ export class TestMessage extends Message<TestMessage> {
    */
   a?: number;
 
+  /**
+   * @generated from extension protobuf_unittest.no_generic_services_test.test_extension
+   */
+  "protobuf_unittest.no_generic_services_test.test_extension"?: number;
+
   constructor(data?: PartialMessage<TestMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -69,6 +74,7 @@ export class TestMessage extends Message<TestMessage> {
   static readonly typeName = "protobuf_unittest.no_generic_services_test.TestMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1000, name: "test_extension", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.no_generic_services_test.test_extension" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessage {

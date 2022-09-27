@@ -378,6 +378,16 @@ export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
    */
   foo4: number[];
 
+  /**
+   * @generated from extension protobuf_unittest.mooo
+   */
+  "protobuf_unittest.mooo"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.corge
+   */
+  "protobuf_unittest.corge"?: ComplexOptionType3;
+
   constructor(data?: PartialMessage<ComplexOptionType1>);
 
   static readonly runtime: typeof proto2;
@@ -416,6 +426,16 @@ export declare class ComplexOptionType2 extends Message<ComplexOptionType2> {
    * @generated from field: repeated protobuf_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
    */
   barney: ComplexOptionType2_ComplexOptionType4[];
+
+  /**
+   * @generated from extension protobuf_unittest.grault
+   */
+  "protobuf_unittest.grault"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.garply
+   */
+  "protobuf_unittest.garply"?: ComplexOptionType1;
 
   constructor(data?: PartialMessage<ComplexOptionType2>);
 
@@ -558,6 +578,11 @@ export declare class VariousComplexOptions extends Message<VariousComplexOptions
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
 export declare class AggregateMessageSet extends Message<AggregateMessageSet> {
+  /**
+   * @generated from extension protobuf_unittest.AggregateMessageSetElement.message_set_extension
+   */
+  "protobuf_unittest.AggregateMessageSetElement.message_set_extension"?: AggregateMessageSetElement;
+
   constructor(data?: PartialMessage<AggregateMessageSet>);
 
   static readonly runtime: typeof proto2;

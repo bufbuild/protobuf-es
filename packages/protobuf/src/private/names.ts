@@ -15,6 +15,7 @@
 import type {
   DescEnum,
   DescEnumValue,
+  DescExtension,
   DescField,
   DescMessage,
   DescService,
@@ -36,15 +37,15 @@ export function localName(
     | DescMessage
     | DescOneof
     | DescField
+    | DescExtension
     | DescService
     | DescMethod
 ): string {
   switch (desc.kind) {
-    case "enum_field":
-    case "message_field":
-    case "map_field":
-    case "scalar_field":
+    case "field":
       return localFieldName(desc.name, desc.oneof !== undefined);
+    case "extension":
+      return localExtensionFieldName(desc.typeName);
     case "oneof":
       return localOneofName(desc.name);
     case "enum":
@@ -81,6 +82,18 @@ export function localName(
       return name;
     }
   }
+}
+
+// TODO
+export function localExtensionFieldName(extensionTypeName: string) {
+  if (extensionTypeName.includes(".")) {
+    return extensionTypeName;
+  }
+  return `.${extensionTypeName}`;
+}
+
+export function extensionFieldJsonName(extensionTypeName: string) {
+  return `[${extensionTypeName}]`;
 }
 
 /**

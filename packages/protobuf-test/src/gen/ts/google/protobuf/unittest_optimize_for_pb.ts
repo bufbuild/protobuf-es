@@ -73,6 +73,16 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
     case: "stringField";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
+  /**
+   * @generated from extension protobuf_unittest.TestOptimizedForSize.test_extension
+   */
+  "protobuf_unittest.TestOptimizedForSize.test_extension"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.TestOptimizedForSize.test_extension2
+   */
+  "protobuf_unittest.TestOptimizedForSize.test_extension2"?: TestRequiredOptimizedForSize;
+
   constructor(data?: PartialMessage<TestOptimizedForSize>) {
     super();
     proto2.util.initPartial(data, this);
@@ -85,6 +95,8 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
     { no: 19, name: "msg", kind: "message", T: ForeignMessage, opt: true },
     { no: 2, name: "integer_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
     { no: 3, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
+    { no: 1234, name: "test_extension", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.TestOptimizedForSize.test_extension" },
+    { no: 1235, name: "test_extension2", kind: "message", T: TestRequiredOptimizedForSize, opt: true, ext: "protobuf_unittest.TestOptimizedForSize.test_extension2" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOptimizedForSize {

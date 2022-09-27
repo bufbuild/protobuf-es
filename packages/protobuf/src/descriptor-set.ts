@@ -254,6 +254,7 @@ export interface DescMessage {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+  getExtensions(): DescExtension[];
   toString(): string;
 }
 
@@ -262,6 +263,8 @@ export interface DescMessage {
  */
 export type DescField = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
+    kind: "field";
+
     /**
      * The message this field is declared on.
      */
@@ -273,6 +276,8 @@ export type DescField = DescFieldCommon &
  */
 export type DescExtension = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
+    kind: "extension";
+
     /**
      * The fully qualified name of the extension.
      */
@@ -345,7 +350,7 @@ interface DescFieldCommon {
 }
 
 interface DescFieldScalar {
-  readonly kind: "scalar_field";
+  readonly fieldKind: "scalar";
   /**
    * Is the field repeated?
    */
@@ -384,7 +389,7 @@ interface DescFieldScalar {
 }
 
 interface DescFieldMessage {
-  readonly kind: "message_field";
+  readonly fieldKind: "message";
   /**
    * Is the field repeated?
    */
@@ -412,7 +417,7 @@ interface DescFieldMessage {
 }
 
 interface DescFieldEnum {
-  readonly kind: "enum_field";
+  readonly fieldKind: "enum";
   /**
    * Is the field repeated?
    */
@@ -451,7 +456,7 @@ interface DescFieldEnum {
 }
 
 interface DescFieldMap {
-  readonly kind: "map_field";
+  readonly fieldKind: "map";
   /**
    * Is the field repeated?
    */

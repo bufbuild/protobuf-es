@@ -56,6 +56,11 @@ export declare class TestMessage extends Message<TestMessage> {
    */
   a?: number;
 
+  /**
+   * @generated from extension protobuf_unittest.no_generic_services_test.test_extension
+   */
+  "protobuf_unittest.no_generic_services_test.test_extension"?: number;
+
   constructor(data?: PartialMessage<TestMessage>);
 
   static readonly runtime: typeof proto2;

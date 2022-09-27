@@ -26,6 +26,7 @@ import {
 import { describeMT, testMT } from "./helpers.js";
 import type { AnyMessage, Message } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
+import { Proto2Extendee } from "./gen/ts/extra/proto2-extend_pb";
 
 function setDefaults(m: AnyMessage): void {
   for (const f of m.getType().fields.list()) {
@@ -41,6 +42,16 @@ function verify<T extends Message>(m: T): boolean {
     .fields.list()
     .every((f) => f.opt || (m as AnyMessage)[f.localName] !== undefined);
 }
+
+describe("extend", () => {
+  const e = new Proto2Extendee();
+  e["spec.foo"] = "foo";
+  e["spec.bar"] = ["bar"];
+  expect(e.toJson()).toEqual({
+    "[spec.foo]": "foo",
+    "[spec.bar]": ["bar"],
+  });
+});
 
 describe("setDefaults", () => {
   testMT(

@@ -967,6 +967,399 @@ export class TestPackedTypesLite extends Message<TestPackedTypesLite> {
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
 export class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
+  /**
+   * Singular
+   *
+   * @generated from extension protobuf_unittest.optional_int32_extension_lite
+   */
+  "protobuf_unittest.optional_int32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_int64_extension_lite
+   */
+  "protobuf_unittest.optional_int64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_uint32_extension_lite
+   */
+  "protobuf_unittest.optional_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_uint64_extension_lite
+   */
+  "protobuf_unittest.optional_uint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sint32_extension_lite
+   */
+  "protobuf_unittest.optional_sint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sint64_extension_lite
+   */
+  "protobuf_unittest.optional_sint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_fixed32_extension_lite
+   */
+  "protobuf_unittest.optional_fixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_fixed64_extension_lite
+   */
+  "protobuf_unittest.optional_fixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sfixed32_extension_lite
+   */
+  "protobuf_unittest.optional_sfixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_sfixed64_extension_lite
+   */
+  "protobuf_unittest.optional_sfixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_float_extension_lite
+   */
+  "protobuf_unittest.optional_float_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_double_extension_lite
+   */
+  "protobuf_unittest.optional_double_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_bool_extension_lite
+   */
+  "protobuf_unittest.optional_bool_extension_lite"?: boolean;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_string_extension_lite
+   */
+  "protobuf_unittest.optional_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_bytes_extension_lite
+   */
+  "protobuf_unittest.optional_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.optionalgroup_extension_lite
+   */
+  "protobuf_unittest.optionalgroup_extension_lite"?: OptionalGroup_extension_lite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_nested_message_extension_lite
+   */
+  "protobuf_unittest.optional_nested_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_foreign_message_extension_lite
+   */
+  "protobuf_unittest.optional_foreign_message_extension_lite"?: ForeignMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_import_message_extension_lite
+   */
+  "protobuf_unittest.optional_import_message_extension_lite"?: ImportMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_nested_enum_extension_lite
+   */
+  "protobuf_unittest.optional_nested_enum_extension_lite"?: TestAllTypesLite_NestedEnum;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.optional_foreign_enum_extension_lite"?: ForeignEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_import_enum_extension_lite
+   */
+  "protobuf_unittest.optional_import_enum_extension_lite"?: ImportEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_string_piece_extension_lite
+   */
+  "protobuf_unittest.optional_string_piece_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_cord_extension_lite
+   */
+  "protobuf_unittest.optional_cord_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_public_import_message_extension_lite
+   */
+  "protobuf_unittest.optional_public_import_message_extension_lite"?: PublicImportMessageLite;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_lazy_message_extension_lite
+   */
+  "protobuf_unittest.optional_lazy_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.optional_unverified_lazy_message_extension_lite
+   */
+  "protobuf_unittest.optional_unverified_lazy_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * Repeated
+   *
+   * @generated from extension protobuf_unittest.repeated_int32_extension_lite
+   */
+  "protobuf_unittest.repeated_int32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_int64_extension_lite
+   */
+  "protobuf_unittest.repeated_int64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_uint32_extension_lite
+   */
+  "protobuf_unittest.repeated_uint32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_uint64_extension_lite
+   */
+  "protobuf_unittest.repeated_uint64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sint32_extension_lite
+   */
+  "protobuf_unittest.repeated_sint32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sint64_extension_lite
+   */
+  "protobuf_unittest.repeated_sint64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_fixed32_extension_lite
+   */
+  "protobuf_unittest.repeated_fixed32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_fixed64_extension_lite
+   */
+  "protobuf_unittest.repeated_fixed64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sfixed32_extension_lite
+   */
+  "protobuf_unittest.repeated_sfixed32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_sfixed64_extension_lite
+   */
+  "protobuf_unittest.repeated_sfixed64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_float_extension_lite
+   */
+  "protobuf_unittest.repeated_float_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_double_extension_lite
+   */
+  "protobuf_unittest.repeated_double_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_bool_extension_lite
+   */
+  "protobuf_unittest.repeated_bool_extension_lite": boolean[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_string_extension_lite
+   */
+  "protobuf_unittest.repeated_string_extension_lite": string[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_bytes_extension_lite
+   */
+  "protobuf_unittest.repeated_bytes_extension_lite": Uint8Array[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeatedgroup_extension_lite
+   */
+  "protobuf_unittest.repeatedgroup_extension_lite": RepeatedGroup_extension_lite[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_nested_message_extension_lite
+   */
+  "protobuf_unittest.repeated_nested_message_extension_lite": TestAllTypesLite_NestedMessage[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_foreign_message_extension_lite
+   */
+  "protobuf_unittest.repeated_foreign_message_extension_lite": ForeignMessageLite[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_import_message_extension_lite
+   */
+  "protobuf_unittest.repeated_import_message_extension_lite": ImportMessageLite[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_nested_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_nested_enum_extension_lite": TestAllTypesLite_NestedEnum[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_foreign_enum_extension_lite": ForeignEnumLite[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_import_enum_extension_lite
+   */
+  "protobuf_unittest.repeated_import_enum_extension_lite": ImportEnumLite[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_string_piece_extension_lite
+   */
+  "protobuf_unittest.repeated_string_piece_extension_lite": string[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_cord_extension_lite
+   */
+  "protobuf_unittest.repeated_cord_extension_lite": string[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.repeated_lazy_message_extension_lite
+   */
+  "protobuf_unittest.repeated_lazy_message_extension_lite": TestAllTypesLite_NestedMessage[] = [];
+
+  /**
+   * Singular with defaults
+   *
+   * @generated from extension protobuf_unittest.default_int32_extension_lite
+   */
+  "protobuf_unittest.default_int32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_int64_extension_lite
+   */
+  "protobuf_unittest.default_int64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_uint32_extension_lite
+   */
+  "protobuf_unittest.default_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_uint64_extension_lite
+   */
+  "protobuf_unittest.default_uint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sint32_extension_lite
+   */
+  "protobuf_unittest.default_sint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sint64_extension_lite
+   */
+  "protobuf_unittest.default_sint64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_fixed32_extension_lite
+   */
+  "protobuf_unittest.default_fixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_fixed64_extension_lite
+   */
+  "protobuf_unittest.default_fixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sfixed32_extension_lite
+   */
+  "protobuf_unittest.default_sfixed32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_sfixed64_extension_lite
+   */
+  "protobuf_unittest.default_sfixed64_extension_lite"?: bigint;
+
+  /**
+   * @generated from extension protobuf_unittest.default_float_extension_lite
+   */
+  "protobuf_unittest.default_float_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_double_extension_lite
+   */
+  "protobuf_unittest.default_double_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.default_bool_extension_lite
+   */
+  "protobuf_unittest.default_bool_extension_lite"?: boolean;
+
+  /**
+   * @generated from extension protobuf_unittest.default_string_extension_lite
+   */
+  "protobuf_unittest.default_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.default_bytes_extension_lite
+   */
+  "protobuf_unittest.default_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.default_nested_enum_extension_lite
+   */
+  "protobuf_unittest.default_nested_enum_extension_lite"?: TestAllTypesLite_NestedEnum;
+
+  /**
+   * @generated from extension protobuf_unittest.default_foreign_enum_extension_lite
+   */
+  "protobuf_unittest.default_foreign_enum_extension_lite"?: ForeignEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.default_import_enum_extension_lite
+   */
+  "protobuf_unittest.default_import_enum_extension_lite"?: ImportEnumLite;
+
+  /**
+   * @generated from extension protobuf_unittest.default_string_piece_extension_lite
+   */
+  "protobuf_unittest.default_string_piece_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.default_cord_extension_lite
+   */
+  "protobuf_unittest.default_cord_extension_lite"?: string;
+
+  /**
+   * For oneof test
+   *
+   * @generated from extension protobuf_unittest.oneof_uint32_extension_lite
+   */
+  "protobuf_unittest.oneof_uint32_extension_lite"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_nested_message_extension_lite
+   */
+  "protobuf_unittest.oneof_nested_message_extension_lite"?: TestAllTypesLite_NestedMessage;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_string_extension_lite
+   */
+  "protobuf_unittest.oneof_string_extension_lite"?: string;
+
+  /**
+   * @generated from extension protobuf_unittest.oneof_bytes_extension_lite
+   */
+  "protobuf_unittest.oneof_bytes_extension_lite"?: Uint8Array;
+
+  /**
+   * @generated from extension protobuf_unittest.TestNestedExtensionLite.nested_extension
+   */
+  "protobuf_unittest.TestNestedExtensionLite.nested_extension"?: number;
+
   constructor(data?: PartialMessage<TestAllExtensionsLite>) {
     super();
     proto2.util.initPartial(data, this);
@@ -975,6 +1368,83 @@ export class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestAllExtensionsLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_int32_extension_lite", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.optional_int32_extension_lite" },
+    { no: 2, name: "optional_int64_extension_lite", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, ext: "protobuf_unittest.optional_int64_extension_lite" },
+    { no: 3, name: "optional_uint32_extension_lite", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, ext: "protobuf_unittest.optional_uint32_extension_lite" },
+    { no: 4, name: "optional_uint64_extension_lite", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, ext: "protobuf_unittest.optional_uint64_extension_lite" },
+    { no: 5, name: "optional_sint32_extension_lite", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, ext: "protobuf_unittest.optional_sint32_extension_lite" },
+    { no: 6, name: "optional_sint64_extension_lite", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, ext: "protobuf_unittest.optional_sint64_extension_lite" },
+    { no: 7, name: "optional_fixed32_extension_lite", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, ext: "protobuf_unittest.optional_fixed32_extension_lite" },
+    { no: 8, name: "optional_fixed64_extension_lite", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, ext: "protobuf_unittest.optional_fixed64_extension_lite" },
+    { no: 9, name: "optional_sfixed32_extension_lite", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, ext: "protobuf_unittest.optional_sfixed32_extension_lite" },
+    { no: 10, name: "optional_sfixed64_extension_lite", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, ext: "protobuf_unittest.optional_sfixed64_extension_lite" },
+    { no: 11, name: "optional_float_extension_lite", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, ext: "protobuf_unittest.optional_float_extension_lite" },
+    { no: 12, name: "optional_double_extension_lite", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, ext: "protobuf_unittest.optional_double_extension_lite" },
+    { no: 13, name: "optional_bool_extension_lite", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, ext: "protobuf_unittest.optional_bool_extension_lite" },
+    { no: 14, name: "optional_string_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, ext: "protobuf_unittest.optional_string_extension_lite" },
+    { no: 15, name: "optional_bytes_extension_lite", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, ext: "protobuf_unittest.optional_bytes_extension_lite" },
+    { no: 16, name: "optionalgroup_extension_lite", kind: "message", T: OptionalGroup_extension_lite, opt: true, ext: "protobuf_unittest.optionalgroup_extension_lite" },
+    { no: 18, name: "optional_nested_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true, ext: "protobuf_unittest.optional_nested_message_extension_lite" },
+    { no: 19, name: "optional_foreign_message_extension_lite", kind: "message", T: ForeignMessageLite, opt: true, ext: "protobuf_unittest.optional_foreign_message_extension_lite" },
+    { no: 20, name: "optional_import_message_extension_lite", kind: "message", T: ImportMessageLite, opt: true, ext: "protobuf_unittest.optional_import_message_extension_lite" },
+    { no: 21, name: "optional_nested_enum_extension_lite", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true, ext: "protobuf_unittest.optional_nested_enum_extension_lite" },
+    { no: 22, name: "optional_foreign_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true, ext: "protobuf_unittest.optional_foreign_enum_extension_lite" },
+    { no: 23, name: "optional_import_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true, ext: "protobuf_unittest.optional_import_enum_extension_lite" },
+    { no: 24, name: "optional_string_piece_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, ext: "protobuf_unittest.optional_string_piece_extension_lite" },
+    { no: 25, name: "optional_cord_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, ext: "protobuf_unittest.optional_cord_extension_lite" },
+    { no: 26, name: "optional_public_import_message_extension_lite", kind: "message", T: PublicImportMessageLite, opt: true, ext: "protobuf_unittest.optional_public_import_message_extension_lite" },
+    { no: 27, name: "optional_lazy_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true, ext: "protobuf_unittest.optional_lazy_message_extension_lite" },
+    { no: 28, name: "optional_unverified_lazy_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true, ext: "protobuf_unittest.optional_unverified_lazy_message_extension_lite" },
+    { no: 31, name: "repeated_int32_extension_lite", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, ext: "protobuf_unittest.repeated_int32_extension_lite" },
+    { no: 32, name: "repeated_int64_extension_lite", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, ext: "protobuf_unittest.repeated_int64_extension_lite" },
+    { no: 33, name: "repeated_uint32_extension_lite", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, ext: "protobuf_unittest.repeated_uint32_extension_lite" },
+    { no: 34, name: "repeated_uint64_extension_lite", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, ext: "protobuf_unittest.repeated_uint64_extension_lite" },
+    { no: 35, name: "repeated_sint32_extension_lite", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, ext: "protobuf_unittest.repeated_sint32_extension_lite" },
+    { no: 36, name: "repeated_sint64_extension_lite", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, ext: "protobuf_unittest.repeated_sint64_extension_lite" },
+    { no: 37, name: "repeated_fixed32_extension_lite", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, ext: "protobuf_unittest.repeated_fixed32_extension_lite" },
+    { no: 38, name: "repeated_fixed64_extension_lite", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, ext: "protobuf_unittest.repeated_fixed64_extension_lite" },
+    { no: 39, name: "repeated_sfixed32_extension_lite", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, ext: "protobuf_unittest.repeated_sfixed32_extension_lite" },
+    { no: 40, name: "repeated_sfixed64_extension_lite", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, ext: "protobuf_unittest.repeated_sfixed64_extension_lite" },
+    { no: 41, name: "repeated_float_extension_lite", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, ext: "protobuf_unittest.repeated_float_extension_lite" },
+    { no: 42, name: "repeated_double_extension_lite", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, ext: "protobuf_unittest.repeated_double_extension_lite" },
+    { no: 43, name: "repeated_bool_extension_lite", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, ext: "protobuf_unittest.repeated_bool_extension_lite" },
+    { no: 44, name: "repeated_string_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true, ext: "protobuf_unittest.repeated_string_extension_lite" },
+    { no: 45, name: "repeated_bytes_extension_lite", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true, ext: "protobuf_unittest.repeated_bytes_extension_lite" },
+    { no: 46, name: "repeatedgroup_extension_lite", kind: "message", T: RepeatedGroup_extension_lite, repeated: true, ext: "protobuf_unittest.repeatedgroup_extension_lite" },
+    { no: 48, name: "repeated_nested_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true, ext: "protobuf_unittest.repeated_nested_message_extension_lite" },
+    { no: 49, name: "repeated_foreign_message_extension_lite", kind: "message", T: ForeignMessageLite, repeated: true, ext: "protobuf_unittest.repeated_foreign_message_extension_lite" },
+    { no: 50, name: "repeated_import_message_extension_lite", kind: "message", T: ImportMessageLite, repeated: true, ext: "protobuf_unittest.repeated_import_message_extension_lite" },
+    { no: 51, name: "repeated_nested_enum_extension_lite", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), repeated: true, ext: "protobuf_unittest.repeated_nested_enum_extension_lite" },
+    { no: 52, name: "repeated_foreign_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true, ext: "protobuf_unittest.repeated_foreign_enum_extension_lite" },
+    { no: 53, name: "repeated_import_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ImportEnumLite), repeated: true, ext: "protobuf_unittest.repeated_import_enum_extension_lite" },
+    { no: 54, name: "repeated_string_piece_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true, ext: "protobuf_unittest.repeated_string_piece_extension_lite" },
+    { no: 55, name: "repeated_cord_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true, ext: "protobuf_unittest.repeated_cord_extension_lite" },
+    { no: 57, name: "repeated_lazy_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true, ext: "protobuf_unittest.repeated_lazy_message_extension_lite" },
+    { no: 61, name: "default_int32_extension_lite", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 41, ext: "protobuf_unittest.default_int32_extension_lite" },
+    { no: 62, name: "default_int64_extension_lite", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("42"), ext: "protobuf_unittest.default_int64_extension_lite" },
+    { no: 63, name: "default_uint32_extension_lite", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 43, ext: "protobuf_unittest.default_uint32_extension_lite" },
+    { no: 64, name: "default_uint64_extension_lite", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true, default: protoInt64.uParse("44"), ext: "protobuf_unittest.default_uint64_extension_lite" },
+    { no: 65, name: "default_sint32_extension_lite", kind: "scalar", T: 17 /* ScalarType.SINT32 */, opt: true, default: -45, ext: "protobuf_unittest.default_sint32_extension_lite" },
+    { no: 66, name: "default_sint64_extension_lite", kind: "scalar", T: 18 /* ScalarType.SINT64 */, opt: true, default: protoInt64.parse("46"), ext: "protobuf_unittest.default_sint64_extension_lite" },
+    { no: 67, name: "default_fixed32_extension_lite", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true, default: 47, ext: "protobuf_unittest.default_fixed32_extension_lite" },
+    { no: 68, name: "default_fixed64_extension_lite", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true, default: protoInt64.uParse("48"), ext: "protobuf_unittest.default_fixed64_extension_lite" },
+    { no: 69, name: "default_sfixed32_extension_lite", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, opt: true, default: 49, ext: "protobuf_unittest.default_sfixed32_extension_lite" },
+    { no: 70, name: "default_sfixed64_extension_lite", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, opt: true, default: protoInt64.parse("-50"), ext: "protobuf_unittest.default_sfixed64_extension_lite" },
+    { no: 71, name: "default_float_extension_lite", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 51.5, ext: "protobuf_unittest.default_float_extension_lite" },
+    { no: 72, name: "default_double_extension_lite", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: 52000, ext: "protobuf_unittest.default_double_extension_lite" },
+    { no: 73, name: "default_bool_extension_lite", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true, ext: "protobuf_unittest.default_bool_extension_lite" },
+    { no: 74, name: "default_string_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello", ext: "protobuf_unittest.default_string_extension_lite" },
+    { no: 75, name: "default_bytes_extension_lite", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64]), ext: "protobuf_unittest.default_bytes_extension_lite" },
+    { no: 81, name: "default_nested_enum_extension_lite", kind: "enum", T: proto2.getEnumType(TestAllTypesLite_NestedEnum), opt: true, default: TestAllTypesLite_NestedEnum.BAR, ext: "protobuf_unittest.default_nested_enum_extension_lite" },
+    { no: 82, name: "default_foreign_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), opt: true, default: ForeignEnumLite.FOREIGN_LITE_BAR, ext: "protobuf_unittest.default_foreign_enum_extension_lite" },
+    { no: 83, name: "default_import_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ImportEnumLite), opt: true, default: ImportEnumLite.IMPORT_LITE_BAR, ext: "protobuf_unittest.default_import_enum_extension_lite" },
+    { no: 84, name: "default_string_piece_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "abc", ext: "protobuf_unittest.default_string_piece_extension_lite" },
+    { no: 85, name: "default_cord_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "123", ext: "protobuf_unittest.default_cord_extension_lite" },
+    { no: 111, name: "oneof_uint32_extension_lite", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, ext: "protobuf_unittest.oneof_uint32_extension_lite" },
+    { no: 112, name: "oneof_nested_message_extension_lite", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true, ext: "protobuf_unittest.oneof_nested_message_extension_lite" },
+    { no: 113, name: "oneof_string_extension_lite", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, ext: "protobuf_unittest.oneof_string_extension_lite" },
+    { no: 114, name: "oneof_bytes_extension_lite", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, ext: "protobuf_unittest.oneof_bytes_extension_lite" },
+    { no: 12345, name: "nested_extension", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.TestNestedExtensionLite.nested_extension" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllExtensionsLite {
@@ -1072,6 +1542,76 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
 export class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> {
+  /**
+   * @generated from extension protobuf_unittest.packed_int32_extension_lite
+   */
+  "protobuf_unittest.packed_int32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_int64_extension_lite
+   */
+  "protobuf_unittest.packed_int64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_uint32_extension_lite
+   */
+  "protobuf_unittest.packed_uint32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_uint64_extension_lite
+   */
+  "protobuf_unittest.packed_uint64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sint32_extension_lite
+   */
+  "protobuf_unittest.packed_sint32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sint64_extension_lite
+   */
+  "protobuf_unittest.packed_sint64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_fixed32_extension_lite
+   */
+  "protobuf_unittest.packed_fixed32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_fixed64_extension_lite
+   */
+  "protobuf_unittest.packed_fixed64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sfixed32_extension_lite
+   */
+  "protobuf_unittest.packed_sfixed32_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_sfixed64_extension_lite
+   */
+  "protobuf_unittest.packed_sfixed64_extension_lite": bigint[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_float_extension_lite
+   */
+  "protobuf_unittest.packed_float_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_double_extension_lite
+   */
+  "protobuf_unittest.packed_double_extension_lite": number[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_bool_extension_lite
+   */
+  "protobuf_unittest.packed_bool_extension_lite": boolean[] = [];
+
+  /**
+   * @generated from extension protobuf_unittest.packed_enum_extension_lite
+   */
+  "protobuf_unittest.packed_enum_extension_lite": ForeignEnumLite[] = [];
+
   constructor(data?: PartialMessage<TestPackedExtensionsLite>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1080,6 +1620,20 @@ export class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> 
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.TestPackedExtensionsLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 90, name: "packed_int32_extension_lite", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_int32_extension_lite" },
+    { no: 91, name: "packed_int64_extension_lite", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_int64_extension_lite" },
+    { no: 92, name: "packed_uint32_extension_lite", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_uint32_extension_lite" },
+    { no: 93, name: "packed_uint64_extension_lite", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_uint64_extension_lite" },
+    { no: 94, name: "packed_sint32_extension_lite", kind: "scalar", T: 17 /* ScalarType.SINT32 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_sint32_extension_lite" },
+    { no: 95, name: "packed_sint64_extension_lite", kind: "scalar", T: 18 /* ScalarType.SINT64 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_sint64_extension_lite" },
+    { no: 96, name: "packed_fixed32_extension_lite", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_fixed32_extension_lite" },
+    { no: 97, name: "packed_fixed64_extension_lite", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_fixed64_extension_lite" },
+    { no: 98, name: "packed_sfixed32_extension_lite", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_sfixed32_extension_lite" },
+    { no: 99, name: "packed_sfixed64_extension_lite", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, repeated: true, packed: true, ext: "protobuf_unittest.packed_sfixed64_extension_lite" },
+    { no: 100, name: "packed_float_extension_lite", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true, packed: true, ext: "protobuf_unittest.packed_float_extension_lite" },
+    { no: 101, name: "packed_double_extension_lite", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true, ext: "protobuf_unittest.packed_double_extension_lite" },
+    { no: 102, name: "packed_bool_extension_lite", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true, ext: "protobuf_unittest.packed_bool_extension_lite" },
+    { no: 103, name: "packed_enum_extension_lite", kind: "enum", T: proto2.getEnumType(ForeignEnumLite), repeated: true, packed: true, ext: "protobuf_unittest.packed_enum_extension_lite" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedExtensionsLite {
@@ -1223,6 +1777,16 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
    */
   repeatedgroup: TestParsingMergeLite_RepeatedGroup[] = [];
 
+  /**
+   * @generated from extension protobuf_unittest.TestParsingMergeLite.optional_ext
+   */
+  "protobuf_unittest.TestParsingMergeLite.optional_ext"?: TestAllTypesLite;
+
+  /**
+   * @generated from extension protobuf_unittest.TestParsingMergeLite.repeated_ext
+   */
+  "protobuf_unittest.TestParsingMergeLite.repeated_ext": TestAllTypesLite[] = [];
+
   constructor(data?: PartialMessage<TestParsingMergeLite>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1236,6 +1800,8 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, opt: true },
     { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMergeLite_RepeatedGroup, repeated: true },
+    { no: 1000, name: "optional_ext", kind: "message", T: TestAllTypesLite, opt: true, ext: "protobuf_unittest.TestParsingMergeLite.optional_ext" },
+    { no: 1001, name: "repeated_ext", kind: "message", T: TestAllTypesLite, repeated: true, ext: "protobuf_unittest.TestParsingMergeLite.repeated_ext" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite {
@@ -1752,6 +2318,11 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
     case: "oneofBytes";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
+  /**
+   * @generated from extension protobuf_unittest.test_all_types_lite
+   */
+  "protobuf_unittest.test_all_types_lite"?: TestAllTypesLite;
+
   constructor(data?: PartialMessage<TestHugeFieldNumbersLite>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1774,6 +2345,7 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
     { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
     { no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
     { no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
+    { no: 536860000, name: "test_all_types_lite", kind: "message", T: TestAllTypesLite, opt: true, ext: "protobuf_unittest.test_all_types_lite" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestHugeFieldNumbersLite {

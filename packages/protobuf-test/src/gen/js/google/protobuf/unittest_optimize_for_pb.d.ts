@@ -73,6 +73,16 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
     case: "stringField";
   } | { case: undefined; value?: undefined };
 
+  /**
+   * @generated from extension protobuf_unittest.TestOptimizedForSize.test_extension
+   */
+  "protobuf_unittest.TestOptimizedForSize.test_extension"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.TestOptimizedForSize.test_extension2
+   */
+  "protobuf_unittest.TestOptimizedForSize.test_extension2"?: TestRequiredOptimizedForSize;
+
   constructor(data?: PartialMessage<TestOptimizedForSize>);
 
   static readonly runtime: typeof proto2;

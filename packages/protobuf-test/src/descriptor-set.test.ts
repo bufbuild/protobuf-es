@@ -23,6 +23,7 @@ import {
   TestAllExtensions,
   TestNestedExtension,
 } from "./gen/ts/google/protobuf/unittest_pb.js";
+import { Proto2Extendee } from "./gen/ts/extra/proto2-extend_pb.js";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 
@@ -37,7 +38,8 @@ describe("DescriptorSet", () => {
     expect(ext?.typeName).toBe("protobuf_unittest.optional_int32_extension");
     expect(ext?.extendee.typeName).toBe(TestAllExtensions.typeName);
     expect(ext?.optional).toBe(true);
-    expect(ext?.kind).toBe("scalar_field");
+    expect(ext?.kind).toBe("extension");
+    expect(ext?.fieldKind).toBe("scalar");
     expect(ext?.scalar).toBe(ScalarType.INT32);
     expect(ext?.toString()).toBe(
       "extension protobuf_unittest.optional_int32_extension"
@@ -133,34 +135,17 @@ describe("DescriptorSet", () => {
       });
     });
   });
-  describe("for message", () => {
-    const message = set.messages.get(MessageWithComments.typeName);
-    test("itself", () => {
-      const comments = message?.getComments();
-      expect(comments).toBeDefined();
-      if (comments) {
-        expect(comments.leadingDetached).toStrictEqual([
-          " Comment after package.\n",
-          " Comment between package and message.\n",
-        ]);
-        expect(comments.leading).toBe(" Comment before message.\n");
-        expect(comments.trailing).toBeUndefined();
-      }
-    });
-    test("field", () => {
-      const comments = message?.fields
-        .find((field) => field.name === "foo")
-        ?.getComments();
-      expect(comments).toBeDefined();
-      if (comments) {
-        expect(comments.leadingDetached).toStrictEqual([
-          "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
-        ]);
-        expect(comments.leading).toBe(
-          " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n"
-        );
-        expect(comments.trailing).toBe(" Comment next to field.\n");
-      }
+  describe("getExtensions()", () => {
+    test("returns expected extensions", () => {
+      const descMessage = set.messages.get(Proto2Extendee.typeName);
+      const got = descMessage?.getExtensions() ?? [];
+      expect(got.length).toBe(2);
+      const foo = got.find((e) => e.typeName === "spec.foo");
+      expect(foo?.toString()).toBe("extension spec.foo");
+      expect(foo?.declarationString()).toBe("optional string foo = 100");
+      const bar = got.find((e) => e.typeName === "spec.bar");
+      expect(bar?.toString()).toBe("extension spec.bar");
+      expect(bar?.declarationString()).toBe("repeated string bar = 101");
     });
   });
 });

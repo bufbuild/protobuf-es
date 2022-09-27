@@ -774,6 +774,11 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    */
   FieldName18?: number;
 
+  /**
+   * @generated from extension protobuf_test_messages.proto2.extension_int32
+   */
+  "protobuf_test_messages.proto2.extension_int32"?: number;
+
   constructor(data?: PartialMessage<TestAllTypesProto2>) {
     super();
     proto2.util.initPartial(data, this);
@@ -915,6 +920,7 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     { no: 416, name: "field__Name16", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 417, name: "field_name17__", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 418, name: "Field_name18__", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 120, name: "extension_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_test_messages.proto2.extension_int32" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2 {
@@ -1062,6 +1068,16 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
  */
 export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesProto2_MessageSetCorrect> {
+  /**
+   * @generated from extension protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension
+   */
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension"?: TestAllTypesProto2_MessageSetCorrectExtension1;
+
+  /**
+   * @generated from extension protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension
+   */
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension"?: TestAllTypesProto2_MessageSetCorrectExtension2;
+
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrect>) {
     super();
     proto2.util.initPartial(data, this);
@@ -1070,6 +1086,8 @@ export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesPr
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1547769, name: "message_set_extension", kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension1, opt: true, ext: "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension" },
+    { no: 4135312, name: "message_set_extension", kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension2, opt: true, ext: "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2_MessageSetCorrect {

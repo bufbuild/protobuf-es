@@ -20,7 +20,12 @@ import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
 import type { FieldInfo } from "./field.js";
 import { InternalOneofInfo } from "./private/field.js";
-import { localFieldName, fieldJsonName } from "./private/names.js";
+import {
+  localFieldName,
+  fieldJsonName,
+  localExtensionFieldName,
+  extensionFieldJsonName,
+} from "./private/names.js";
 import { makeJsonFormatProto2 } from "./private/json-format-proto2.js";
 
 /**
@@ -75,8 +80,14 @@ function normalizeFieldInfosProto2(fieldInfos: FieldListSource): FieldInfo[] {
     ? fieldInfos()
     : fieldInfos) {
     const f = field as any;
-    f.localName = localFieldName(field.name, field.oneof !== undefined);
-    f.jsonName = field.jsonName ?? fieldJsonName(field.name);
+    // TODO
+    if (field.ext !== undefined) {
+      f.localName = localExtensionFieldName(field.ext);
+      f.jsonName = field.jsonName ?? extensionFieldJsonName(field.ext);
+    } else {
+      f.localName = localFieldName(field.name, field.oneof !== undefined);
+      f.jsonName = field.jsonName ?? fieldJsonName(field.name);
+    }
     f.repeated = field.repeated ?? false;
     // In contrast to proto3, repeated fields are unpacked except when explicitly specified.
     f.packed = field.packed ?? false;

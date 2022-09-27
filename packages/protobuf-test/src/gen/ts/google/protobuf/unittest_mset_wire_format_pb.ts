@@ -40,6 +40,7 @@
 
 import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
 import {Message, proto2} from "@bufbuild/protobuf";
+import {TestMessageSetExtension1, TestMessageSetExtension2, TestMessageSetExtension3} from "./unittest_mset_pb.js";
 
 /**
  * A message with message_set_wire_format.
@@ -47,6 +48,21 @@ import {Message, proto2} from "@bufbuild/protobuf";
  * @generated from message proto2_wireformat_unittest.TestMessageSet
  */
 export class TestMessageSet extends Message<TestMessageSet> {
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension1.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension1.message_set_extension"?: TestMessageSetExtension1;
+
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension2.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension2.message_set_extension"?: TestMessageSetExtension2;
+
+  /**
+   * @generated from extension protobuf_unittest.TestMessageSetExtension3.message_set_extension
+   */
+  "protobuf_unittest.TestMessageSetExtension3.message_set_extension"?: TestMessageSetExtension3;
+
   constructor(data?: PartialMessage<TestMessageSet>) {
     super();
     proto2.util.initPartial(data, this);
@@ -55,6 +71,9 @@ export class TestMessageSet extends Message<TestMessageSet> {
   static readonly runtime = proto2;
   static readonly typeName = "proto2_wireformat_unittest.TestMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1545008, name: "message_set_extension", kind: "message", T: TestMessageSetExtension1, opt: true, ext: "protobuf_unittest.TestMessageSetExtension1.message_set_extension" },
+    { no: 1547769, name: "message_set_extension", kind: "message", T: TestMessageSetExtension2, opt: true, ext: "protobuf_unittest.TestMessageSetExtension2.message_set_extension" },
+    { no: 195273129, name: "message_set_extension", kind: "message", T: TestMessageSetExtension3, opt: true, ext: "protobuf_unittest.TestMessageSetExtension3.message_set_extension" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSet {

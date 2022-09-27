@@ -14,6 +14,7 @@
 
 import type {
   DescEnum,
+  DescExtension,
   DescField,
   DescMessage,
   DescOneof,
@@ -74,6 +75,11 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
+  // TODO
+  for (const ext of message.getExtensions()) {
+    generateField(schema, f, ext);
+    f.print();
+  }
   f.print("  constructor(data?: ", PartialMessage, "<", message, ">);");
   f.print();
   generateWktMethods(schema, f, message);
@@ -118,10 +124,22 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
   f.print(`  } | { case: undefined; value?: undefined };`);
 }
 
-function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
+function generateField(
+  schema: Schema,
+  f: GeneratedFile,
+  field: DescField | DescExtension
+) {
   f.print(makeJsDoc(field, "  "));
   const e: Parameters<typeof f.print> = [];
-  e.push("  ", localName(field));
+  // TODO
+  switch (field.kind) {
+    case "field":
+      e.push("  ", localName(field));
+      break;
+    case "extension":
+      e.push("  ", literalString(localName(field)));
+      break;
+  }
   const { typing, optional } = getFieldTyping(field, f);
   if (optional) {
     e.push("?: ", typing);

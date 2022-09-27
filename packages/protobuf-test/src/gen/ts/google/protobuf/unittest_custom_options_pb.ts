@@ -544,6 +544,16 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
    */
   foo4: number[] = [];
 
+  /**
+   * @generated from extension protobuf_unittest.mooo
+   */
+  "protobuf_unittest.mooo"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.corge
+   */
+  "protobuf_unittest.corge"?: ComplexOptionType3;
+
   constructor(data?: PartialMessage<ComplexOptionType1>) {
     super();
     proto2.util.initPartial(data, this);
@@ -556,6 +566,8 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
     { no: 2, name: "foo2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 3, name: "foo3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 4, name: "foo4", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 7663707, name: "mooo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.mooo" },
+    { no: 7663442, name: "corge", kind: "message", T: ComplexOptionType3, opt: true, ext: "protobuf_unittest.corge" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType1 {
@@ -599,6 +611,16 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
    */
   barney: ComplexOptionType2_ComplexOptionType4[] = [];
 
+  /**
+   * @generated from extension protobuf_unittest.grault
+   */
+  "protobuf_unittest.grault"?: number;
+
+  /**
+   * @generated from extension protobuf_unittest.garply
+   */
+  "protobuf_unittest.garply"?: ComplexOptionType1;
+
   constructor(data?: PartialMessage<ComplexOptionType2>) {
     super();
     proto2.util.initPartial(data, this);
@@ -611,6 +633,8 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
     { no: 2, name: "baz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 3, name: "fred", kind: "message", T: ComplexOptionType2_ComplexOptionType4, opt: true },
     { no: 4, name: "barney", kind: "message", T: ComplexOptionType2_ComplexOptionType4, repeated: true },
+    { no: 7650927, name: "grault", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, ext: "protobuf_unittest.grault" },
+    { no: 7649992, name: "garply", kind: "message", T: ComplexOptionType1, opt: true, ext: "protobuf_unittest.garply" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType2 {
@@ -821,6 +845,11 @@ export class VariousComplexOptions extends Message<VariousComplexOptions> {
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
 export class AggregateMessageSet extends Message<AggregateMessageSet> {
+  /**
+   * @generated from extension protobuf_unittest.AggregateMessageSetElement.message_set_extension
+   */
+  "protobuf_unittest.AggregateMessageSetElement.message_set_extension"?: AggregateMessageSetElement;
+
   constructor(data?: PartialMessage<AggregateMessageSet>) {
     super();
     proto2.util.initPartial(data, this);
@@ -829,6 +858,7 @@ export class AggregateMessageSet extends Message<AggregateMessageSet> {
   static readonly runtime = proto2;
   static readonly typeName = "protobuf_unittest.AggregateMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 15447542, name: "message_set_extension", kind: "message", T: AggregateMessageSetElement, opt: true, ext: "protobuf_unittest.AggregateMessageSetElement.message_set_extension" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AggregateMessageSet {

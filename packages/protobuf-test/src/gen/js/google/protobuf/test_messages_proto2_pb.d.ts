@@ -768,6 +768,11 @@ export declare class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    */
   FieldName18?: number;
 
+  /**
+   * @generated from extension protobuf_test_messages.proto2.extension_int32
+   */
+  "protobuf_test_messages.proto2.extension_int32"?: number;
+
   constructor(data?: PartialMessage<TestAllTypesProto2>);
 
   static readonly runtime: typeof proto2;
@@ -876,6 +881,16 @@ export declare class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
  */
 export declare class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesProto2_MessageSetCorrect> {
+  /**
+   * @generated from extension protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension
+   */
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension"?: TestAllTypesProto2_MessageSetCorrectExtension1;
+
+  /**
+   * @generated from extension protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension
+   */
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension"?: TestAllTypesProto2_MessageSetCorrectExtension2;
+
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrect>);
 
   static readonly runtime: typeof proto2;
