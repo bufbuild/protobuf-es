@@ -40,10 +40,7 @@ export function localName(
     | DescMethod
 ): string {
   switch (desc.kind) {
-    case "enum_field":
-    case "message_field":
-    case "map_field":
-    case "scalar_field":
+    case "field":
       return localFieldName(desc.name, desc.oneof !== undefined);
     case "oneof":
       return localOneofName(desc.name);

@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { FileDescriptorSet, CodeGeneratorRequest } from "@bufbuild/protobuf";
+import {
+  createDescriptorSet,
+  FileDescriptorSet,
+  CodeGeneratorRequest,
+} from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
 // If no files are passed, default to generating all files.
@@ -22,11 +26,20 @@ export function getCodeGeneratorRequest(
   parameter = "",
   fileToGenerate = defaultFiles
 ) {
-  const fdsBytes = readFileSync("./descriptorset.bin");
-  const fds = FileDescriptorSet.fromBinary(fdsBytes);
+  const fds = getFileDescriptorSet();
   return new CodeGeneratorRequest({
     parameter,
     fileToGenerate, // tells the plugin which files from the set to generate
     protoFile: fds.file,
   });
+}
+
+export function getFileDescriptorSet() {
+  const fdsBytes = readFileSync("./descriptorset.bin");
+  return FileDescriptorSet.fromBinary(fdsBytes);
+}
+
+export function getDescriptorSet() {
+  const fds = getFileDescriptorSet();
+  return createDescriptorSet(fds.file);
 }

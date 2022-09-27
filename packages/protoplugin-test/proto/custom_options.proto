@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FileOptions {
+  optional string foo_file_option = 50000;
+}
+extend google.protobuf.MessageOptions {
+  optional int32 foo_message_option = 50001;
+}
+extend google.protobuf.FieldOptions {
+  optional float foo_field_option = 50002;
+}
+extend google.protobuf.OneofOptions {
+  optional int64 foo_oneof_option = 50003;
+}
+extend google.protobuf.EnumOptions {
+  optional bool foo_enum_option = 50004;
+}
+extend google.protobuf.EnumValueOptions {
+  optional uint32 foo_enum_value_option = 50005;
+}
+extend google.protobuf.ServiceOptions {
+  optional FooEnum foo_service_option = 50006;
+}
+extend google.protobuf.MethodOptions {
+  optional FooMessage foo_method_option = 50007;
+}
+
+option (foo_file_option) = "Hello";
+
+message FooMessage {
+  option (foo_message_option) = 1234;
+
+  int32 foo = 1 [(foo_field_option) = 4.5];
+  string bar = 2;
+  oneof qux {
+    option (foo_oneof_option) = 42;
+
+    string quux = 3;
+  }
+  repeated string many = 4;
+  map<string, string> mapping = 5;
+  string unused = 6;
+}
+
+enum FooEnum {
+  option (foo_enum_option) = true;
+
+  UNDEFINED = 0;
+  OFF = 1 [(foo_enum_value_option) = 321];
+  ON = 2;
+}
+
+message GetRequest {}
+message GetResponse {}
+
+service FooService {
+  option (foo_service_option) = OFF;
+
+  rpc Get(GetRequest) returns (GetResponse) {
+    // Note:  foo_method_option has type FooMessage.  We can set each field
+    //   within it using a separate "option" line.
+    option deprecated = true;
+    option (foo_method_option) = { 
+        foo: 567, 
+        bar: "Some string", 
+        quux: "Oneof string",
+        many: ["a", "b", "c"],
+        mapping: [{key: "testKey", value: "testVal"}]
+    };
+  }
+}
+

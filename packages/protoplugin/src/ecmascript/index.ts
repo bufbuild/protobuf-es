@@ -30,3 +30,23 @@ export {
   makeJsDoc,
   literalString,
 } from "./gencommon.js";
+
+export {
+  getCustomOptionUint32,
+  getCustomOptionInt32,
+  getCustomOptionSint32,
+  getCustomOptionInt64,
+  getCustomOptionSint64,
+  getCustomOptionSfixed64,
+  getCustomOptionUint64,
+  getCustomOptionFixed64,
+  getCustomOptionBoolean,
+  getCustomOptionFixed32,
+  getCustomOptionSfixed32,
+  getCustomOptionFloat,
+  getCustomOptionDouble,
+  getCustomOptionBytes,
+  getCustomOptionString,
+  getCustomOptionMessage,
+  getCustomOptionEnum,
+} from "./custom-options.js";

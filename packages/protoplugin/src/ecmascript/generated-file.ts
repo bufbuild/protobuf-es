@@ -107,7 +107,8 @@ export function createGeneratedFile(
     pluginVersion: string;
     parameter: string | undefined;
     tsNocheck: boolean;
-  }
+  },
+  keepEmpty: boolean
 ): GeneratedFile & GenerateFileToFileInfo {
   let preamble: string | undefined;
   const el: El[] = [];
@@ -137,7 +138,7 @@ export function createGeneratedFile(
     },
     getFileInfo() {
       const content = elToContent(el, importPath);
-      if (content.length === 0) {
+      if (!keepEmpty && content.length === 0) {
         return;
       }
       return {
