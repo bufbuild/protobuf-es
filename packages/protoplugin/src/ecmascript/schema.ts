@@ -90,7 +90,8 @@ export function createSchema(
   pluginVersion: string,
   tsNocheck: boolean,
   bootstrapWkt: boolean,
-  rewriteImports: RewriteImports
+  rewriteImports: RewriteImports,
+  keepEmptyFiles: boolean
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
@@ -125,7 +126,8 @@ export function createSchema(
           pluginVersion,
           parameter: request.parameter,
           tsNocheck,
-        }
+        },
+        keepEmptyFiles
       );
       generatedFiles.push(genFile);
       return genFile;
