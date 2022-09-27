@@ -65,6 +65,12 @@ $(BUILD)/protoplugin: $(BUILD)/protobuf node_modules tsconfig.base.json packages
 	@mkdir -p $(@D)
 	@touch $(@)
 
+$(BUILD)/protoplugin-test: $(BUILD)/protobuf $(GEN)/protoplugin-test node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
+	npm run -w packages/protoplugin-test clean
+	npm run -w packages/protoplugin-test build
+	@mkdir -p $(@D)
+	@touch $(@)
+
 $(BUILD)/protoc-gen-es: $(BUILD)/protoplugin node_modules tsconfig.base.json packages/protoc-gen-es/tsconfig.json $(shell find packages/protoc-gen-es/src -name '*.ts')
 	npm run -w packages/protoc-gen-es clean
 	npm run -w packages/protoc-gen-es build
@@ -103,6 +109,10 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 	@mkdir -p $(@D)
 	@touch $(@)
 
+$(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
+	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
+	@npm run -w packages/protoplugin-test buf:build
+
 $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@rm -rf packages/protobuf-conformance/src/gen/*
 	$(BIN)/protoc --plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out packages/protobuf-conformance/src/gen --es_opt ts_nocheck=false,target=ts \
@@ -115,7 +125,7 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 
 $(GEN)/example: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/example/buf.gen.yaml $(shell find packages/example -name '*.proto')
 	@rm -rf packages/example/src/gen/*
-	buf generate packages/example --template packages/example/buf.gen.yaml --output packages/example
+	npm run -w packages/example buf:generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -139,16 +149,20 @@ clean: ## Delete build artifacts and installed dependencies
 	git clean -Xdf
 
 .PHONY: build
-build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
+build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
 
 .PHONY: test
-test: test-jest test-conformance test-ts-compat ## Run all tests
+test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all tests
 
-.PHONY: test-jest
-test-jest: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
+.PHONY: test-protobuf
+test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
 	cd packages/protobuf-test \
 		&& BUF_BIGINT_DISABLE=0 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
-		&& BUF_BIGINT_DISABLE=1 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest
+		&& BUF_BIGINT_DISABLE=1 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
+
+.PHONY: test-protoplugin
+test-protoplugin: $(BUILD)/protoplugin-test packages/protoplugin-test/jest.config.js
+	npm run -w packages/protoplugin-test test
 
 .PHONY: test-conformance
 test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance

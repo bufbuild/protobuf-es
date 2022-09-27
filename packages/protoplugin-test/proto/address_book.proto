@@ -12,21 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo } from "@bufbuild/protobuf";
+syntax = "proto3";
+package example;
 
-export { Target } from "./target.js";
-export { Schema } from "./schema.js";
-export { RuntimeImports } from "./runtime-imports.js";
-export { GeneratedFile, FileInfo } from "./generated-file.js";
-export { ImportSymbol } from "./import-symbol.js";
+import "proto/person.proto";
 
-export const { localName } = codegenInfo;
-
-export {
-  createJsDocBlock,
-  getFieldExplicitDefaultValue,
-  getFieldIntrinsicDefaultValue,
-  getFieldTyping,
-  makeJsDoc,
-  literalString,
-} from "./gencommon.js";
+// Our address book file is just one of these.
+message AddressBook {
+  repeated Person people = 1;
+}
