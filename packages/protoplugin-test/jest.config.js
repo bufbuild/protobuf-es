@@ -12,21 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo } from "@bufbuild/protobuf";
+/*
+ * For a detailed explanation regarding each configuration property and type check, visit:
+ * https://jestjs.io/docs/configuration
+ */
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
+  // Indicates which provider should be used to instrument code for coverage
+  coverageProvider: "v8",
 
-export { Target } from "./target.js";
-export { Schema } from "./schema.js";
-export { RuntimeImports } from "./runtime-imports.js";
-export { GeneratedFile, FileInfo } from "./generated-file.js";
-export { ImportSymbol } from "./import-symbol.js";
+  // The root directory that Jest should scan for tests and modules within
+  rootDir: "dist/esm",
 
-export const { localName } = codegenInfo;
+  transform: {},
+};
 
-export {
-  createJsDocBlock,
-  getFieldExplicitDefaultValue,
-  getFieldIntrinsicDefaultValue,
-  getFieldTyping,
-  makeJsDoc,
-  literalString,
-} from "./gencommon.js";
+export default config;
