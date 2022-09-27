@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema, Target } from "./ecmascript";
-import { createSchema } from "./ecmascript/schema.js";
-import { CodeGeneratorResponse } from "@bufbuild/protobuf";
+import type { Target } from "./ecmascript";
+import { Schema, createSchema, toResponse } from "./ecmascript/schema.js";
+import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
+import { transpile } from "./ecmascript/transpile.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
 
@@ -30,7 +31,57 @@ interface PluginInit {
    */
   version: string;
 
+  /**
+   * A optional parsing function which can be used to customize parameter
+   * parsing of the plugin.
+   */
   parseOption?: PluginOptionParseFn;
+
+  /**
+   * A function which will generate TypeScript files based on proto input.
+   * This function will be invoked by the plugin framework when the plugin runs.
+   *
+   * Note that this is required to be provided for plugin initialization.
+   */
+  generateTs: (schema: Schema, target: "ts") => void;
+
+  /**
+   * A optional function which will generate JavaScript files based on proto
+   * input.  This function will be invoked by the  plugin framework when the
+   * plugin runs.
+   *
+   * If this function is not provided, the plugin framework will then check if
+   * a transpile function is provided.  If so, it will be invoked to transpile
+   * JavaScript files.  If not, the plugin framework will transpile the files
+   * itself.
+   */
+  generateJs?: (schema: Schema, target: "js") => void;
+
+  /**
+   * A optional function which will generate TypeScript declaration files
+   * based on proto input.  This function will be invoked by the plugin
+   * framework when the plugin runs.
+   *
+   * If this function is not provided, the plugin framework will then check if
+   * a transpile function is provided.  If so, it will be invoked to transpile
+   * declaration files.  If not, the plugin framework will transpile the files
+   * itself.
+   */
+  generateDts?: (schema: Schema, target: "dts") => void;
+
+  /**
+   * A optional function which will transpile a given set of files.
+   *
+   * This funcion is meant to be used in place of either generateJs,
+   * generateDts, or both.  However, those functions will take precedence.
+   * This means that if generateJs, generateDts, and this transpile function
+   * are all provided, this transpile function will be ignored.
+   */
+  transpile?: (
+    files: FileInfo[],
+    transpileJs: boolean,
+    transpileDts: boolean
+  ) => FileInfo[];
 }
 
 type PluginOptionParseFn = (key: string, value: string | undefined) => void;
@@ -40,17 +91,16 @@ type PluginOptionParseFn = (key: string, value: string | undefined) => void;
  * The plugin can generate JavaScript, TypeScript, or TypeScript declaration
  * files.
  */
-export function createEcmaScriptPlugin(
-  init: PluginInit,
-  generateFn: (schema: Schema) => void
-): Plugin {
+export function createEcmaScriptPlugin(init: PluginInit): Plugin {
+  let transpileJs = false;
+  let transpileDts = false;
   return {
     name: init.name,
     version: init.version,
     run(req) {
       const { targets, tsNocheck, bootstrapWkt, rewriteImports } =
         parseParameter(req.parameter, init.parseOption);
-      const { schema, toResponse } = createSchema(
+      const { schema, getFileInfo } = createSchema(
         req,
         targets,
         init.name,
@@ -59,10 +109,68 @@ export function createEcmaScriptPlugin(
         bootstrapWkt,
         rewriteImports
       );
-      generateFn(schema);
-      const res = new CodeGeneratorResponse();
-      toResponse(res);
-      return res;
+
+      const targetTs = schema.targets.includes("ts");
+      const targetJs = schema.targets.includes("js");
+      const targetDts = schema.targets.includes("dts");
+
+      // Generate TS files under the following conditions:
+      // - if they are explicitly specified as a target.
+      // - if js is specified as a target but no js generator is provided.
+      // - if dts is specified as a target, but no dts generator is provided.
+      // In the latter two cases, it is because we need the generated TS files
+      // to use for transpiling js and/or dts.
+      let tsFiles: FileInfo[] = [];
+      if (
+        targetTs ||
+        (targetJs && !init.generateJs) ||
+        (targetDts && !init.generateDts)
+      ) {
+        init.generateTs(schema, "ts");
+
+        // Save off the generated TypeScript files so that we can pass these
+        // to the transpilation process if necessary.  We do not want to pass
+        // JavaScript files for a few reasons:
+        // 1.  Our usage of allowJs in the compiler options will cause issues
+        // with attempting to transpile .ts and .js files to the same location.
+        // 2.  There should be no reason to transpile JS because generateTs
+        // functions are required, so users would never be able to only specify
+        // a generateJs function and expect to transpile declarations.
+        // 3.  Transpiling is somewhat expensive and situations with an
+        // extremely large amount of files could have performance impacts.
+        tsFiles = getFileInfo();
+      }
+
+      if (targetJs) {
+        if (init.generateJs) {
+          init.generateJs(schema, "js");
+        } else {
+          transpileJs = true;
+        }
+      }
+
+      if (targetDts) {
+        if (init.generateDts) {
+          init.generateDts(schema, "dts");
+        } else {
+          transpileDts = true;
+        }
+      }
+
+      // Get all generated files
+      const files = getFileInfo();
+
+      // If either boolean is true, it means it was specified in the target out
+      // but no generate function was provided.  This also means that we will
+      // have generated .ts files above.
+      if (transpileJs || transpileDts) {
+        const transpileFn = init.transpile ?? transpile;
+        // Transpile the TypeScript files and add to the master list of files
+        const transpiledFiles = transpileFn(tsFiles, transpileJs, transpileDts);
+        files.push(...transpiledFiles);
+      }
+
+      return toResponse(files);
     },
   };
 }

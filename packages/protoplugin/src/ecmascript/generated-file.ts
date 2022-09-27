@@ -13,10 +13,6 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile, DescMessage } from "@bufbuild/protobuf";
-import {
-  CodeGeneratorResponse,
-  CodeGeneratorResponse_File,
-} from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { literalString, makeFilePreamble } from "./gencommon.js";
@@ -36,6 +32,15 @@ type Printable =
   | DescMessage
   | DescEnum
   | Printable[];
+
+/**
+ * FileInfo represents an intermediate type using for transpiling TypeScript internally.
+ */
+export interface FileInfo {
+  name: string;
+  content: string;
+  preamble?: string | undefined;
+}
 
 /**
  * Represents a JavaScript, TypeScript, or TypeScript declaration file.
@@ -86,8 +91,8 @@ export interface GeneratedFile {
   import(name: string, from: string): ImportSymbol;
 }
 
-export interface GenerateFileToResponse {
-  toResponse(res: CodeGeneratorResponse): void;
+export interface GenerateFileToFileInfo {
+  getFileInfo(): FileInfo | undefined;
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
@@ -103,7 +108,7 @@ export function createGeneratedFile(
     parameter: string | undefined;
     tsNocheck: boolean;
   }
-): GeneratedFile & GenerateFileToResponse {
+): GeneratedFile & GenerateFileToFileInfo {
   let preamble: string | undefined;
   const el: El[] = [];
   return {
@@ -130,20 +135,16 @@ export function createGeneratedFile(
       }
       return createTypeImport(typeOrName);
     },
-    toResponse(res) {
-      let content = elToContent(el, importPath);
+    getFileInfo() {
+      const content = elToContent(el, importPath);
       if (content.length === 0) {
         return;
       }
-      if (preamble !== undefined) {
-        content = preamble + "\n" + content;
-      }
-      res.file.push(
-        new CodeGeneratorResponse_File({
-          name: name,
-          content,
-        })
-      );
+      return {
+        name,
+        content,
+        preamble,
+      };
     },
   };
 }
