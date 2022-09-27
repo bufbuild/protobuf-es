@@ -120,12 +120,25 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       // - if dts is specified as a target, but no dts generator is provided.
       // In the latter two cases, it is because we need the generated TS files
       // to use for transpiling js and/or dts.
+      let tsFiles: FileInfo[] = [];
       if (
         targetTs ||
         (targetJs && !init.generateJs) ||
         (targetDts && !init.generateDts)
       ) {
         init.generateTs(schema, "ts");
+
+        // Save off the generated TypeScript files so that we can pass these
+        // to the transpilation process if necessary.  We do not want to pass
+        // JavaScript files for a few reasons:
+        // 1.  Our usage of allowJs in the compiler options will cause issues
+        // with attempting to transpile .ts and .js files to the same location.
+        // 2.  There should be no reason to transpile JS because generateTs
+        // functions are required, so users would never be able to only specify
+        // a generateJs function and expect to transpile declarations.
+        // 3.  Transpiling is somewhat expensive and situations with an
+        // extremely large amount of files could have performance impacts.
+        tsFiles = getFileInfo();
       }
 
       if (targetJs) {
@@ -144,15 +157,16 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      // Convert all the files created via generators into our intermediate type
+      // Get all generated files
       const files = getFileInfo();
 
       // If either boolean is true, it means it was specified in the target out
-      // but no generate function was provided
+      // but no generate function was provided.  This also means that we will
+      // have generated .ts files above.
       if (transpileJs || transpileDts) {
         const transpileFn = init.transpile ?? transpile;
-        // Transpile the generated files and add to the master list of files
-        const transpiledFiles = transpileFn(files, transpileJs, transpileDts);
+        // Transpile the TypeScript files and add to the master list of files
+        const transpiledFiles = transpileFn(tsFiles, transpileJs, transpileDts);
         files.push(...transpiledFiles);
       }
 

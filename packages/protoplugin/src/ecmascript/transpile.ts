@@ -36,6 +36,7 @@ const defaultOptions: ts.CompilerOptions = {
   preserveValueImports: false,
 
   // JavaScript Support
+  allowJs: true,
   checkJs: false,
 
   // Language and Environment
