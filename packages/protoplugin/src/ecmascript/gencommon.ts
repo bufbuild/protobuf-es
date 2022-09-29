@@ -136,10 +136,7 @@ export function makeJsDoc(
     case "enum_value":
       text += `@generated from enum value: ${desc.declarationString()};`;
       break;
-    case "scalar_field":
-    case "enum_field":
-    case "message_field":
-    case "map_field":
+    case "field":
       text += `@generated from field: ${desc.declarationString()};`;
       break;
     default:
@@ -175,12 +172,12 @@ export function getFieldTyping(
 ): { typing: Printable; optional: boolean } {
   const typing: Printable = [];
   let optional = false;
-  switch (field.kind) {
-    case "scalar_field":
+  switch (field.fieldKind) {
+    case "scalar":
       typing.push(scalarTypeScriptType(field.scalar));
       optional = field.optional;
       break;
-    case "message_field": {
+    case "message": {
       const baseType = getUnwrappedFieldType(field);
       if (baseType !== undefined) {
         typing.push(scalarTypeScriptType(baseType));
@@ -190,11 +187,11 @@ export function getFieldTyping(
       optional = true;
       break;
     }
-    case "enum_field":
+    case "enum":
       typing.push(file.import(field.enum).toTypeOnly());
       optional = field.optional;
       break;
-    case "map_field": {
+    case "map": {
       let keyType: string;
       switch (field.mapKey) {
         case ScalarType.INT32:
@@ -271,8 +268,8 @@ export function getFieldExplicitDefaultValue(
   field: DescField,
   protoInt64Symbol: ImportSymbol
 ): Printable | undefined {
-  switch (field.kind) {
-    case "enum_field": {
+  switch (field.fieldKind) {
+    case "enum": {
       const value = field.enum.values.find(
         (v) => v.number === field.getDefaultValue()
       );
@@ -281,7 +278,7 @@ export function getFieldExplicitDefaultValue(
       }
       break;
     }
-    case "scalar_field": {
+    case "scalar": {
       const defaultValue = field.getDefaultValue();
       if (defaultValue === undefined) {
         break;
@@ -338,7 +335,7 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
       typingInferrable: false,
     };
   }
-  if (field.kind == "map_field") {
+  if (field.fieldKind == "map") {
     return {
       defaultValue: "{}",
       typingInferrable: false,
@@ -347,8 +344,8 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
   let defaultValue: Printable | undefined = undefined;
   let typingInferrable = false;
   if (field.parent.file.syntax == "proto3") {
-    switch (field.kind) {
-      case "enum_field": {
+    switch (field.fieldKind) {
+      case "enum": {
         if (!field.optional) {
           const zeroValue = field.enum.values.find((v) => v.number === 0);
           if (zeroValue === undefined) {
@@ -359,7 +356,7 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
         }
         break;
       }
-      case "scalar_field":
+      case "scalar":
         if (!field.optional) {
           typingInferrable = true;
           if (field.scalar === ScalarType.STRING) {

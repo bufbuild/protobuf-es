@@ -102,11 +102,11 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   if (field.jsonName !== undefined) {
     e.push(`jsonName: "`, field.jsonName, `", `);
   }
-  switch (field.kind) {
-    case "scalar_field":
+  switch (field.fieldKind) {
+    case "scalar":
       e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
       break;
-    case "map_field":
+    case "map":
       e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);
       switch (field.mapValue.kind) {
         case "scalar":
@@ -120,10 +120,10 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
           break;
       }
       break;
-    case "message_field":
+    case "message":
       e.push(`kind: "message", T: `, field.message, `, `);
       break;
-    case "enum_field":
+    case "enum":
       e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
       break;
   }
