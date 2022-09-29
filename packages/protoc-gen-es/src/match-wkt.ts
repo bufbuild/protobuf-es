@@ -37,21 +37,21 @@ type DescWkt =
     }
   | {
       typeName: "google.protobuf.Struct";
-      fields: DescField & { kind: "map_field" };
+      fields: DescField & { fieldKind: "map" };
     }
   | {
       typeName: "google.protobuf.Value";
       kind: DescOneof;
-      nullValue: DescField & { kind: "enum_field" };
+      nullValue: DescField & { fieldKind: "enum" };
       numberValue: DescField;
       stringValue: DescField;
       boolValue: DescField;
-      structValue: DescField & { kind: "message_field" };
-      listValue: DescField & { kind: "message_field" };
+      structValue: DescField & { fieldKind: "message" };
+      listValue: DescField & { fieldKind: "message" };
     }
   | {
       typeName: "google.protobuf.ListValue";
-      values: DescField & { kind: "message_field" };
+      values: DescField & { fieldKind: "message" };
     }
   | {
       typeName: "google.protobuf.FieldMask";
@@ -59,39 +59,39 @@ type DescWkt =
     }
   | {
       typeName: "google.protobuf.DoubleValue";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.FloatValue";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.Int64Value";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.UInt64Value";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.Int32Value";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.UInt32Value";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.BoolValue";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.StringValue";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.BytesValue";
-      value: DescField & { kind: "scalar_field" };
+      value: DescField & { fieldKind: "scalar" };
     };
 
 export function matchWkt(message: DescMessage): DescWkt | undefined {
@@ -100,13 +100,13 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       const typeUrl = message.fields.find(
         (f) =>
           f.number == 1 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.STRING
       );
       const value = message.fields.find(
         (f) =>
           f.number == 2 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.BYTES
       );
       if (typeUrl && value) {
@@ -122,13 +122,13 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       const seconds = message.fields.find(
         (f) =>
           f.number == 1 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.INT64
       );
       const nanos = message.fields.find(
         (f) =>
           f.number == 2 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.INT32
       );
       if (seconds && nanos) {
@@ -144,13 +144,13 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       const seconds = message.fields.find(
         (f) =>
           f.number == 1 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.INT64
       );
       const nanos = message.fields.find(
         (f) =>
           f.number == 2 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.INT32
       );
       if (seconds && nanos) {
@@ -165,7 +165,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
     case "google.protobuf.Struct": {
       const fields = message.fields.find((f) => f.number == 1 && !f.repeated);
       if (
-        fields?.kind !== "map_field" ||
+        fields?.fieldKind !== "map" ||
         fields.mapValue.kind !== "message" ||
         fields.mapValue.message.typeName !== "google.protobuf.Value"
       ) {
@@ -179,7 +179,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
         (f) => f.number == 1 && f.oneof === kind
       );
       if (
-        nullValue?.kind !== "enum_field" ||
+        nullValue?.fieldKind !== "enum" ||
         nullValue.enum.typeName !== "google.protobuf.NullValue"
       ) {
         return undefined;
@@ -187,21 +187,21 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       const numberValue = message.fields.find(
         (f) =>
           f.number == 2 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.DOUBLE &&
           f.oneof === kind
       );
       const stringValue = message.fields.find(
         (f) =>
           f.number == 3 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.STRING &&
           f.oneof === kind
       );
       const boolValue = message.fields.find(
         (f) =>
           f.number == 4 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.BOOL &&
           f.oneof === kind
       );
@@ -209,7 +209,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
         (f) => f.number == 5 && f.oneof === kind
       );
       if (
-        structValue?.kind !== "message_field" ||
+        structValue?.fieldKind !== "message" ||
         structValue.message.typeName !== "google.protobuf.Struct"
       ) {
         return undefined;
@@ -218,7 +218,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
         (f) => f.number == 6 && f.oneof === kind
       );
       if (
-        listValue?.kind !== "message_field" ||
+        listValue?.fieldKind !== "message" ||
         listValue.message.typeName !== "google.protobuf.ListValue"
       ) {
         return undefined;
@@ -240,7 +240,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
     case "google.protobuf.ListValue": {
       const values = message.fields.find((f) => f.number == 1 && f.repeated);
       if (
-        values?.kind != "message_field" ||
+        values?.fieldKind != "message" ||
         values.message.typeName !== "google.protobuf.Value"
       ) {
         break;
@@ -251,7 +251,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       const paths = message.fields.find(
         (f) =>
           f.number == 1 &&
-          f.kind == "scalar_field" &&
+          f.fieldKind == "scalar" &&
           f.scalar === ScalarType.STRING &&
           f.repeated
       );
@@ -275,7 +275,7 @@ export function matchWkt(message: DescMessage): DescWkt | undefined {
       if (!value) {
         break;
       }
-      if (value.kind !== "scalar_field") {
+      if (value.fieldKind !== "scalar") {
         break;
       }
       return { typeName: message.typeName, value };
