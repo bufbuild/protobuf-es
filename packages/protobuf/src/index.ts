@@ -60,6 +60,7 @@ export {
 
 export {
   DescriptorSet,
+  AnyDesc,
   DescFile,
   DescEnum,
   DescEnumValue,

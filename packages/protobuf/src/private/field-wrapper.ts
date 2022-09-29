@@ -67,7 +67,7 @@ export function unwrapField<T extends Message<T>>(
 export function getUnwrappedFieldType(
   field: DescField
 ): ScalarType | undefined {
-  if (field.kind !== "message_field") {
+  if (field.fieldKind !== "message") {
     return undefined;
   }
   if (field.repeated) {
