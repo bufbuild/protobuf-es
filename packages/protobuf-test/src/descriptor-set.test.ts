@@ -37,7 +37,8 @@ describe("DescriptorSet", () => {
     expect(ext?.typeName).toBe("protobuf_unittest.optional_int32_extension");
     expect(ext?.extendee.typeName).toBe(TestAllExtensions.typeName);
     expect(ext?.optional).toBe(true);
-    expect(ext?.kind).toBe("scalar_field");
+    expect(ext?.kind).toBe("extension");
+    expect(ext?.fieldKind).toBe("scalar");
     expect(ext?.scalar).toBe(ScalarType.INT32);
     expect(ext?.toString()).toBe(
       "extension protobuf_unittest.optional_int32_extension"
