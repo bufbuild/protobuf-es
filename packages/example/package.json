@@ -6,7 +6,8 @@
     "clean": "rm -rf ./dist/esm/* ./dist/types/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "add-person": "node dist/esm/add-person.js addressbook.bin",
-    "list-people": "node dist/esm/list-people.js addressbook.bin"
+    "list-people": "node dist/esm/list-people.js addressbook.bin",
+    "buf:generate": "buf generate"
   },
   "type": "module",
   "dependencies": {

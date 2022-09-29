@@ -32,6 +32,10 @@ import type { MethodIdempotency, MethodKind } from "./service-type.js";
  * When protobuf sources are compiled, each file is parsed into a
  * google.protobuf.FileDescriptorProto. Those messages describe all parts
  * of the source file that are required to generate code for them.
+ *
+ * DescriptorSet resolves references between the descriptors, hides
+ * implementation details like synthetic map entry messages, and provides
+ * simple access to comments.
  */
 export interface DescriptorSet {
   /**
@@ -58,6 +62,20 @@ export interface DescriptorSet {
    */
   readonly extensions: ReadonlyMap<string, DescExtension>;
 }
+
+/**
+ * A union of all descriptors, discriminated by a `kind` property.
+ */
+export type AnyDesc =
+  | DescFile
+  | DescEnum
+  | DescEnumValue
+  | DescMessage
+  | DescField
+  | DescExtension
+  | DescOneof
+  | DescService
+  | DescMethod;
 
 /**
  * Describes a protobuf source file.
@@ -100,14 +118,17 @@ export interface DescFile {
    * The compiler-generated descriptor.
    */
   readonly proto: FileDescriptorProto;
+
   /**
    * Get comments on the syntax element in the protobuf source.
    */
   getSyntaxComments(): DescComments;
+
   /**
    * Get comments on the package element in the protobuf source.
    */
   getPackageComments(): DescComments;
+
   toString(): string;
 }
 
@@ -149,10 +170,12 @@ export interface DescEnum {
    * The compiler-generated descriptor.
    */
   readonly proto: EnumDescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   toString(): string;
 }
 
@@ -181,15 +204,18 @@ export interface DescEnumValue {
    * The compiler-generated descriptor.
    */
   readonly proto: EnumValueDescriptorProto;
+
   /**
    * Return a string that (closely) matches the definition of the enumeration
    * value in the protobuf source.
    */
   declarationString(): string;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   toString(): string;
 }
 
@@ -250,10 +276,12 @@ export interface DescMessage {
    * The compiler-generated descriptor.
    */
   readonly proto: DescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   getExtensions(): DescExtension[];
   toString(): string;
 }
@@ -337,15 +365,18 @@ interface DescFieldCommon {
    * The compiler-generated descriptor.
    */
   readonly proto: FieldDescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   /**
    * Return a string that (closely) matches the definition of the field in the
    * protobuf source.
    */
   declarationString(): string;
+
   toString(): string;
 }
 
@@ -375,6 +406,7 @@ interface DescFieldScalar {
    * The map value type, if this is a map field.
    */
   readonly mapValue: undefined;
+
   /**
    * Return the default value specified in the protobuf source.
    * Only valid for proto2 syntax.
@@ -442,6 +474,7 @@ interface DescFieldEnum {
    * The map value type, if this is a map field.
    */
   readonly mapValue: undefined;
+
   /**
    * Return the default value specified in the protobuf source.
    * Only valid for proto2 syntax.
@@ -564,10 +597,12 @@ export interface DescOneof {
    * The compiler-generated descriptor.
    */
   readonly proto: OneofDescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   toString(): string;
 }
 
@@ -600,10 +635,12 @@ export interface DescService {
    * The compiler-generated descriptor.
    */
   readonly proto: ServiceDescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   toString(): string;
 }
 
@@ -644,10 +681,12 @@ export interface DescMethod {
    * The compiler-generated descriptor.
    */
   readonly proto: MethodDescriptorProto;
+
   /**
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
   toString(): string;
 }
 

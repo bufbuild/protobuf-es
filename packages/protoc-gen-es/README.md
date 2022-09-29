@@ -124,3 +124,11 @@ By default, we generate JavaScript and TypeScript declaration files, which
 produces the smallest code size. If you prefer to generate TypeScript, use
 `target=ts`.
 
+### `keep_empty_files=true`
+
+By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
+(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin)) 
+omit empty files from the plugin output. This option disables pruning of 
+empty files, to allow for smooth interoperation with Bazel and similar 
+tooling that requires all output files to be declared ahead of time.
+Unless you use Bazel, it is very unlikely that you need this option.
