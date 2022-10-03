@@ -39,7 +39,9 @@ The name of your plugin.
 Most plugins are prefixed with `protoc-gen` as required by `protoc`.  
 For example, the official ECMAScript plugin which generates JavaScript,
   TypeScript, and declaration files is named `protoc-gen-es`..
-  
+
+---
+
 #### version
 
 Type: `string`.
@@ -48,7 +50,7 @@ Required:  `true`.
 The version of your plugin.  
 Typically, this should mirror the version specified in your package.json.
 
---- 
+---
 
 #### generateTs
 
@@ -62,6 +64,8 @@ Required: `True`
 The `generateTs` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
 can be used to generate TypeScript files.  
 
+---
+
 #### generateJs
 
 Type: `Function`
@@ -74,6 +78,8 @@ Optional: `True`
 The `generateJs` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
 can be used to generate JavaScript files.  
 
+---
+
 #### generateDts
 
 Type: `Function`
@@ -85,6 +91,23 @@ Optional: `True`
 
 The `generateDts` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
 can be used to generate TypeScript declaration files.  
+
+---
+
+#### transpile
+
+Type: `Function`
+Optional: `True`
+
+```typescript
+(files: FileInfo[],
+ transpileJs: boolean,
+ transpileDts: boolean) => FileInfo[];
+```
+
+The `transpile` function.
+
+---
 
 #### parseOption
 
