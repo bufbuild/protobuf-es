@@ -62,7 +62,7 @@ Required: `True`
 ```
 
 The `generateTs` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
-can be used to generate TypeScript files.  
+can be used to generate TypeScript files.
 
 ---
 
@@ -75,8 +75,13 @@ Optional: `True`
 (schema: Schema) => void;
 ```
 
-The `generateJs` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
-can be used to generate JavaScript files.  
+The `generateJs` function is a function which will be invoked by the plugin framework if `js` is specified as a target out
+parameter.  A `Schema` object will be passed, containing relevant `CodeGeneratorRequest` information that can be used to 
+generate JavaScript files.  
+
+If this function is not provided, the plugin framework will attempt to transpile JavaScript files using a pre-configured
+version of TypeScript internally.  Users can override this transpilation process by passing their own `transpile` function 
+(see [transpile](#transpile) below).
 
 ---
 
@@ -89,8 +94,13 @@ Optional: `True`
 (schema: Schema) => void;
 ```
 
-The `generateDts` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
-can be used to generate TypeScript declaration files.  
+The `generateDts` function is a function which will be invoked by the plugin framework if `dts` is specified as a target out
+parameter.  A `Schema` object will be passed, containing relevant `CodeGeneratorRequest` information that can be used to 
+generate declaration files.  
+
+If this function is not provided, the plugin framework will attempt to transpile declaration files using a pre-configured
+version of TypeScript internally.  Users can override this transpilation process by passing their own `transpile` function 
+(see [transpile](#transpile) below).
 
 ---
 
@@ -105,7 +115,21 @@ Optional: `True`
  transpileDts: boolean) => FileInfo[];
 ```
 
-The `transpile` function.
+This function can be used to override the plugin framework's transpilation process.  As mentioned above,
+if `js` or `dts` is specified as a target out and `generateJs` or `generateDts` is not specified in the 
+plugin initialization, the framework will attempt to transpile JavaScript and/or declaration files where
+appropriate.  This process uses a stable version of TypeScript with lenient compiler options so that files
+are generated under most circumstances.  However, if this is not sufficient for plugin authors, they may 
+specify this function to override this process with a transpiler using their own version of TypeScript or
+compiler options.
+
+The function will be invoked with an array of `FileInfo` objects representing the TypeScript file content
+to use for transpilation as well as two booleans indicating whether the function should transpile JavaScript,
+declaration files, or both.
+
+The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both.  
+However, those functions will take precedence.  This means that if `generateJs`, `generateDts`, and 
+this transpile function are all provided, this transpile function will be ignored.
 
 ---
 
