@@ -2,75 +2,96 @@
 
 ## Introduction
 
-This package helps to create your own code generator plugin.  The overall process involves a series of xx steps:
+This package helps to create your own code generator plugin.  The overall process involves a series of 3 steps:
 
 1.  Implement a TypeScript generator function, which is used to generate TypeScript files
-2.  Optionally implement a JavaScript generator function, a declaration file generator function, or a transpile function.
-3.  Pass these functions along with some static configuration values to `createEcmaScriptPlugin` from the `@bufbuild/protoplugin` package.
-4.  Create a binary file which runs your plugin.
+2.  Pass this function along with some static configuration values (and optional functions) to `createEcmaScriptPlugin` from the `@bufbuild/protoplugin` package.
+3.  Create an executable file which runs your plugin.
 
-## Usage
+**NOTE**:  Plugin authors may optionally implement a JavaScript generator function, a declaration file generator function, or a transpile function for more 
+fine-grained control over the generation process.  See [API](#api) for more information.
 
-Create a binary for your plugin:
+The following instructions will walk authors through the process outlined above.
 
-```js
-#!/usr/bin/env node
-
-const { runNodeJs } = require("@bufbuild/protoplugin");
-const { protocGenEs } = require("../dist/cjs/src/protoc-gen-foo-plugin.js");
-
-runNodeJs(protocGenEs);
-```
-
-An example invocation looks as follows:
-
-```js
-export const protocGenFoo = createEcmaScriptPlugin({
-   name: "protoc-gen-foo",
-   version: "v0.1.0",
-   
-   // Generator functions
-   generateTs,
-   generateJs,
-   generateDts,
-});
-
-```
 ### Generating Code
 
-The generator functions are invoked by the plugin framework with a parameter of type `Schema`.  This `Schema` object contains the information needed to generate code.  
+Generator functions are functions that are used to generate the actual file content parsed from protobuf files.  There are three that can be implemented, corresponding to the three possible target outputs for plugins:
 
-In addition to the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the `Schema` object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects.  See the API definition of [Schema](#schema) for more information.
+| Target Out | Function |
+| :--- | :--- |
+| `ts` | `generateTs` |
+| `js` | `generateJs` |
+| `dts` | `generateDts` |
 
-The `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the files requested to be generated.  The first thing to do in your generator function is to iterate over this list and issue a call to the `generateFile` function for each file object.  This will return a `GeneratedFile` object which you can then use to "print" the generated code.  
+Of the three, only `generateTs` is required.  These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.  
+
+Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs.  See the [PluginInit](#plugininit) object definition for more information.
+
+The generator functions are invoked by the plugin framework with a parameter of type [`Schema`](#schema).  This object contains the information needed to generate code.  In addition to the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the `Schema` object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects.  For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the files requested to be generated.  
+  
+The first thing to do in your generator function is to iterate over this list and issue a call to the `generateFile` function for each file object.  This will return a `GeneratedFile` object which you can then use to "print" the generated code.
 
 Each `DescFile` object in the `files` property contains all enums and messages needed to begin generating code.  You can iterate over each as follows:
 
 ```ts
-for (const file of schema.files) {
-  const f = schema.generateFile(file.name + "_pb.ts");
+// protoc-gen-foo-plugin.js
+
+function generateTs(schema: Schema) {
+   for (const file of schema.files) {
+     const f = schema.generateFile(file.name + "_pb.ts");
   
-  for (const enumeration of file.enums) {
-     f.print("// generating enums");
-     ...
-  }
+     for (const enumeration of file.enums) {
+        f.print(`// generating enums from ${file.name}`);
+        ...
+     }
   
-  for (const enumeration of file.messages) {
-     f.print("// generating messages");
-     ...
-  }
+     for (const message of file.messages) {
+        f.print(`// generating messages from ${file.name}`);
+        ...
+     }
+   }
 }
 ```
 
-### Custom Options
+#### Custom Options
 
 Protobuf-ES does not yet provide support for extensions, neither in general as pertaining to proto2 nor with custom options in proto3.  However, in the interim, there are convenience functions for retrieving any custom options specified in your .proto files.  These are provided as a temporary utility until full extension support is implemented.
 
 For available functions, see the [custom options](#custom-options) section under **API**.
 
-### Working Example
 
-For a working example of a plugin written with the framework, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/packages/protoc-gen-es).
+### Initializing your plugin
+
+Once your generator functions are defined, you then need to initialize your plugin by calling `createEcmaScriptPlugin` with a plugin initialization object.  
+
+```ts
+// protoc-gen-foo-plugin.js
+
+export const protocGenFoo = createEcmaScriptPlugin({
+   name: "protoc-gen-foo",
+   version: "v0.1.0",
+   generateTs,
+});
+```
+
+See the [PluginInit](#plugininit) object definition for more information.
+
+### Create an executable file
+
+Finally, you need to create an executable file that will execute the plugin returned from the above call:
+
+```js
+// bin/protoc-gen-foo
+
+#!/usr/bin/env node
+
+const { runNodeJs } = require("@bufbuild/protoplugin");
+const { protocGenFoo } = require("../protoc-gen-foo-plugin.js");
+
+runNodeJs(protocGenFoo);
+```
+
+For a complete working example of a plugin written with the framework, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/packages/protoc-gen-es).
 
 
 ## API
@@ -85,8 +106,9 @@ Type: `object`
 
 #### name
 
-Type: `string`.
-Required:  `true`.
+Type: `string`
+
+Required:  `Yes`
 
 The name of your plugin.  
 Most plugins are prefixed with `protoc-gen` as required by `protoc`.  
@@ -97,8 +119,9 @@ For example, the official ECMAScript plugin which generates JavaScript,
 
 #### version
 
-Type: `string`.
-Required:  `true`.
+Type: `string`
+
+Required:  `Yes`
 
 The version of your plugin.  
 Typically, this should mirror the version specified in your package.json.
@@ -108,7 +131,8 @@ Typically, this should mirror the version specified in your package.json.
 #### generateTs
 
 Type: `Function`
-Required: `True`
+
+Required: `Yes`
 
 ```typescript
 (schema: Schema) => void;
@@ -122,7 +146,8 @@ can be used to generate TypeScript files.
 #### generateJs
 
 Type: `Function`
-Optional: `True`
+
+Required: `No`
 
 ```typescript
 (schema: Schema) => void;
@@ -141,7 +166,8 @@ version of TypeScript internally.  Users can override this transpilation process
 #### generateDts
 
 Type: `Function`
-Optional: `True`
+
+Required: `No`
 
 ```typescript
 (schema: Schema) => void;
@@ -160,7 +186,8 @@ version of TypeScript internally.  Users can override this transpilation process
 #### transpile
 
 Type: `Function`
-Optional: `True`
+
+Required: `No`
 
 ```typescript
 (files: FileInfo[],
@@ -192,7 +219,8 @@ Type: `Function`
 ```js
  (key: string, value: string | undefined) => void
  ```
-Optional
+ 
+Required: `No`
 
 The optional `parseOption` function which can be used to customize the parsing of parameters passed to your plugin.
 The plugin framework attempts to parse a set of pre-defined parameters, but if your plugin needs to be passed additional parameters,
