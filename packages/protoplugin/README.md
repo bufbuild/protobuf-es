@@ -2,11 +2,12 @@
 
 ## Introduction
 
-This package helps to create your own code generator plugin.  The overall process involves a series of 3 steps:
+This package helps to create your own code generator plugin.  At a high level, the process is:
 
-1.  Implement a TypeScript generator function, which is used to generate TypeScript files
+1.  Implement a TypeScript generator function, `generateTs`, which is used to generate TypeScript files
 2.  Pass this function along with some static configuration values (and optional functions) to `createEcmaScriptPlugin` from the `@bufbuild/protoplugin` package.
 3.  Create an executable file which runs your plugin.
+4.  Specify this in your `package.json` file.
 
 **NOTE**:  Plugin authors may optionally implement a JavaScript generator function, a declaration file generator function, or a transpile function for more 
 fine-grained control over the generation process.  See [API](#api) for more information.
@@ -19,19 +20,19 @@ Generator functions are functions that are used to generate the actual file cont
 
 | Target Out | Function |
 | :--- | :--- |
-| `ts` | `generateTs` |
-| `js` | `generateJs` |
-| `dts` | `generateDts` |
+| `ts` | [`generateTs`](#generatets) |
+| `js` | [`generateJs`](#generatejs) |
+| `dts` | [`generateDts`](#generatedts) |
 
-Of the three, only `generateTs` is required.  These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.  
+Of the three, only [`generateTs`](#generatets) is required.  These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.  
 
-Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs.  See the [PluginInit](#plugininit) object definition for more information.
+Since [`generateJs`](#generatejs) and [`generateDts`](#generatedts) are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary.  See the [`PluginInit`](#plugininit) object definition for more information.
 
-The generator functions are invoked by the plugin framework with a parameter of type [`Schema`](#schema).  This object contains the information needed to generate code.  In addition to the [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the `Schema` object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects.  For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the files requested to be generated.  
-  
-The first thing to do in your generator function is to iterate over this list and issue a call to the `generateFile` function for each file object.  This will return a `GeneratedFile` object which you can then use to "print" the generated code.
+The generator functions are invoked by the plugin framework with a parameter of type [`Schema`](#schema).  This object contains the information needed to generate code.  In addition to the [`CodeGeneratorRequest`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the [`Schema`](#schema) object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects.  
 
-Each `DescFile` object in the `files` property contains all enums and messages needed to begin generating code.  You can iterate over each as follows:
+For example, the [`Schema`](#schema) object contains a [`files`](#files) property, which is a list of `DescFile` objects representing the files requested to be generated.  The first thing you will most likely do in your generator function is iterate over this list and issue a call to the [`generateFile`](#generatefile) function for each file object.  This will return a generated file object containing a `print` function which you can then use to "print" to the file.
+
+Each `DescFile` object in the [`files`](#files) property contains all enums and messages needed to begin generating code:
 
 ```ts
 // protoc-gen-foo-plugin.js
@@ -74,11 +75,11 @@ export const protocGenFoo = createEcmaScriptPlugin({
 });
 ```
 
-See the [PluginInit](#plugininit) object definition for more information.
+See the [`PluginInit`](#plugininit) object definition for more information.
 
 ### Create an executable file
 
-Finally, you need to create an executable file that will execute the plugin returned from the above call:
+Then, you need to create an executable file that will execute the plugin returned from the above call:
 
 ```js
 // bin/protoc-gen-foo
@@ -91,103 +92,114 @@ const { protocGenFoo } = require("../protoc-gen-foo-plugin.js");
 runNodeJs(protocGenFoo);
 ```
 
-For a complete working example of a plugin written with the framework, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/packages/protoc-gen-es).
+### Specify the executable
+
+Finally, specify the path to the executable file in the `bin` property of your `package.json` file:
+
+```js
+// package.json
+
+{
+  "name": "protoc-gen-foo",
+  "version": "0.1.0",
+  "bin": {
+    "protoc-gen-foo": "bin/protoc-gen-foo"
+  },
+  ...
+}
+
+```
+
+For a complete working example of a plugin written with the framework, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es).
 
 
 ## API
 
-```typescript
-createEcmaScriptPlugin(init: PluginInit): Plugin
-```
+Following are the definitions of relevant objects in the plugin framework.
 
 ### `PluginInit`
 
 Type: `object`
 
-#### name
+#### `name`
 
-Type: `string`
+**Type**: `string`
 
-Required:  `Yes`
+**Required**:  `Yes`
 
 The name of your plugin.  
-Most plugins are prefixed with `protoc-gen` as required by `protoc`.  
-For example, the official ECMAScript plugin which generates JavaScript,
-  TypeScript, and declaration files is named `protoc-gen-es`..
+Most plugins are prefixed with `protoc-gen` as required by `protoc` i.e. [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es).
 
 ---
 
-#### version
+#### `version`
 
-Type: `string`
+**Type**: `string`
 
-Required:  `Yes`
+**Required**:  `Yes`
 
 The version of your plugin.  
 Typically, this should mirror the version specified in your package.json.
 
 ---
 
-#### generateTs
+#### `generateTs`
 
-Type: `Function`
+**Type**: `Function`
 
-Required: `Yes`
+**Required**: `Yes`
 
 ```typescript
 (schema: Schema) => void;
 ```
 
-The `generateTs` function is a function which will be invoked by the plugin framework, passing a `Schema` object which
+The `generateTs` function will be invoked by the plugin framework, passing a [`Schema`](#schema) object which
 can be used to generate TypeScript files.
 
 ---
 
-#### generateJs
+#### `generateJs`
 
-Type: `Function`
+**Type**: `Function`
 
-Required: `No`
+**Required**: `No`
 
 ```typescript
 (schema: Schema) => void;
 ```
 
-The `generateJs` function is a function which will be invoked by the plugin framework if `js` is specified as a target out
-parameter.  A `Schema` object will be passed, containing relevant `CodeGeneratorRequest` information that can be used to 
-generate JavaScript files.  
+The `generateJs` function will be invoked by the plugin framework if `js` is specified as a target out
+parameter.  A [`Schema`](#schema) object will be passed, containing relevant [`CodeGeneratorRequest`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) information that can be used to  generate JavaScript files.  
 
 If this function is not provided, the plugin framework will attempt to transpile JavaScript files using a pre-configured
-version of TypeScript internally.  Users can override this transpilation process by passing their own `transpile` function 
-(see [transpile](#transpile) below).
+version of TypeScript internally.  Users can override this transpilation process by passing their own [`transpile`](#transpile) function.
 
 ---
 
-#### generateDts
+#### `generateDts`
 
-Type: `Function`
+**Type**: `Function`
 
-Required: `No`
+**Required**: `No`
 
 ```typescript
 (schema: Schema) => void;
 ```
 
-The `generateDts` function is a function which will be invoked by the plugin framework if `dts` is specified as a target out
-parameter.  A [`Schema`](#schema) object will be passed, containing relevant `CodeGeneratorRequest` information that can be used to 
+The `generateDts` function will be invoked by the plugin framework if `dts` is specified as a target out
+parameter.  A [`Schema`](#schema) object will be passed, containing relevant [`CodeGeneratorRequest`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) information that can be used to 
 generate declaration files.  
 
 If this function is not provided, the plugin framework will attempt to transpile declaration files using a pre-configured
-version of TypeScript internally.  Users can override this transpilation process by passing their own `transpile` function 
-(see [transpile](#transpile) below).
+version of TypeScript internally.  Users can override this transpilation process by passing their own [`transpile`](#transpile) function.
 
 ---
 
-#### transpile
+#### `transpile`
 
-Type: `Function`
+**Type**: `Function`
 
-Required: `No`
+**Required**: `No`
 
 ```typescript
 (files: FileInfo[],
@@ -209,13 +221,14 @@ declaration files, or both.
 
 The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both.  
 However, those functions will take precedence.  This means that if `generateJs`, `generateDts`, and 
-this transpile function are all provided, this transpile function will be ignored.
+this `transpile` function are all provided, `transpile` will be ignored.
 
 ---
 
-#### parseOption
+#### `parseOption`
 
-Type: `Function`
+**Type**: `Function`
+
 ```js
  (key: string, value: string | undefined) => void
  ```
@@ -223,34 +236,34 @@ Type: `Function`
 Required: `No`
 
 The optional `parseOption` function which can be used to customize the parsing of parameters passed to your plugin.
-The plugin framework attempts to parse a set of pre-defined parameters, but if your plugin needs to be passed additional parameters,
-this function parameter can be used to parse those and act accordingly.
+The plugin framework attempts to parse a set of pre-defined key/value pairs, but if your plugin needs to be passed additional parameters,
+`parseOption` can be used to read them and act accordingly.
 
 
 
 ### `Schema`
 
-Type: `object`
+**Type**: `object`
 
-#### files
+#### `files`
 
-Type: `DescFile[]`
+**Type**: `DescFile[]`
 
 A list of `DescFile` objects representing the files that were asked to be generated.
 
 ---
 
-#### allFiles
+#### `allFiles`
 
-Type: `DescFile[]`
+**Type**: `DescFile[]`
 
 A list of `DescFile` objects representing *all* files contained in the `CodeGeneratorRequest`.
 
 ---
 
-#### targets
+#### `targets`
 
-Type: `Target[]`
+**Type**: `Target[]`
 
 A list of targets requested as the desired output, i.e. `ts`, `js`, `dts`.
 
@@ -258,15 +271,15 @@ A list of targets requested as the desired output, i.e. `ts`, `js`, `dts`.
 
 #### runtime
 
-Type: `RuntimeImports`
+**Type**: `RuntimeImports`
 
 An object containing symbols from the runtime library.  Contains helpful utilities for working with nuances between runtimes of `proto2` and `proto3`.
 
 ---
 
-#### generateFile
+#### `generateFile`
 
-Type: `Function`
+**Type**: `Function`
 
 ```typescript
 (name: string): GeneratedFile;
@@ -277,9 +290,9 @@ be represented as the actual file generated by the plugin.
 
 ---
 
-#### proto
+#### `proto`
 
-Type: `CodeGeneratorRequest`
+**Type**: `CodeGeneratorRequest`
 
 The original [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto).
 
