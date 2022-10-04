@@ -54,7 +54,7 @@ function generateTs(schema: Schema) {
 }
 ```
 
-#### Custom Options
+#### Reading Custom Options
 
 Protobuf-ES does not yet provide support for extensions, neither in general as pertaining to proto2 nor with custom options in proto3.  However, in the interim, there are convenience functions for retrieving any custom options specified in your .proto files.  These are provided as a temporary utility until full extension support is implemented.
 
