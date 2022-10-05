@@ -16,72 +16,22 @@ import type { AnyDesc } from "@bufbuild/protobuf";
 import {
   proto3,
   BinaryReader,
+  Message,
   MessageType,
-  AnyMessage,
   ScalarType,
 } from "@bufbuild/protobuf";
-
-type ScalarValue<T> = T extends ScalarType.STRING
-  ? string
-  : T extends ScalarType.INT32
-  ? number
-  : T extends ScalarType.UINT32
-  ? number
-  : T extends ScalarType.UINT32
-  ? number
-  : T extends ScalarType.SINT32
-  ? number
-  : T extends ScalarType.FIXED32
-  ? number
-  : T extends ScalarType.SFIXED32
-  ? number
-  : T extends ScalarType.FLOAT
-  ? number
-  : T extends ScalarType.DOUBLE
-  ? number
-  : T extends ScalarType.INT64
-  ? bigint | string
-  : T extends ScalarType.SINT64
-  ? bigint | string
-  : T extends ScalarType.SFIXED64
-  ? bigint | string
-  : T extends ScalarType.UINT64
-  ? bigint | string
-  : T extends ScalarType.FIXED64
-  ? bigint | string
-  : T extends ScalarType.BOOL
-  ? boolean
-  : T extends ScalarType.BYTES
-  ? Uint8Array
-  : undefined;
-
-/**
- * Returns a binary reader for the given descriptor and field ID.
- */
-function getBinaryReader(desc: AnyDesc, id: number): BinaryReader | undefined {
-  const opt = desc.proto.options;
-  let reader: BinaryReader | undefined = undefined;
-  if (opt !== undefined) {
-    const unknownFields = proto3.bin.listUnknownFields(opt);
-    const field = unknownFields.find((f) => f.no === id);
-    if (field) {
-      reader = new BinaryReader(field.data);
-    }
-  }
-  return reader;
-}
 
 /**
  * Returns the value of a custom option with a scalar type.
  *
  * If no option is found, returns undefined.
  */
-export function getCustomScalarOption<T extends ScalarType>(
+export function findCustomScalarOption<T extends ScalarType>(
   desc: AnyDesc,
   id: number,
   scalarType: T
-): ScalarValue<T> {
-  const reader = getBinaryReader(desc, id);
+): ScalarValue<T> | undefined {
+  const reader = createBinaryReader(desc, id);
   if (reader) {
     switch (scalarType) {
       case ScalarType.INT32:
@@ -119,7 +69,7 @@ export function getCustomScalarOption<T extends ScalarType>(
       }
     }
   }
-  return undefined as ScalarValue<T>;
+  return undefined;
 }
 
 /**
@@ -130,12 +80,12 @@ export function getCustomScalarOption<T extends ScalarType>(
  *
  * If the message option is unable to be read or deserialized, an error will be thrown.
  */
-export function getCustomMessageOption(
+export function findCustomMessageOption<T extends Message<T>>(
   desc: AnyDesc,
   id: number,
-  msgType: MessageType<AnyMessage>
-): AnyMessage | undefined {
-  const reader = getBinaryReader(desc, id);
+  msgType: MessageType<T>
+): T | undefined {
+  const reader = createBinaryReader(desc, id);
   if (reader) {
     try {
       const data = reader.bytes();
@@ -153,9 +103,65 @@ export function getCustomMessageOption(
  *
  * If no options are found, returns undefined.
  */
-export function getCustomEnumOption(
+export function findCustomEnumOption(
   desc: AnyDesc,
   id: number
 ): number | undefined {
-  return getCustomScalarOption(desc, id, ScalarType.INT32);
+  return findCustomScalarOption(desc, id, ScalarType.INT32);
+}
+
+/**
+ * ScalarValue is a conditional type that pairs a ScalarType value with its concrete type.
+ */
+type ScalarValue<T> = T extends ScalarType.STRING
+  ? string
+  : T extends ScalarType.INT32
+  ? number
+  : T extends ScalarType.UINT32
+  ? number
+  : T extends ScalarType.UINT32
+  ? number
+  : T extends ScalarType.SINT32
+  ? number
+  : T extends ScalarType.FIXED32
+  ? number
+  : T extends ScalarType.SFIXED32
+  ? number
+  : T extends ScalarType.FLOAT
+  ? number
+  : T extends ScalarType.DOUBLE
+  ? number
+  : T extends ScalarType.INT64
+  ? bigint | string
+  : T extends ScalarType.SINT64
+  ? bigint | string
+  : T extends ScalarType.SFIXED64
+  ? bigint | string
+  : T extends ScalarType.UINT64
+  ? bigint | string
+  : T extends ScalarType.FIXED64
+  ? bigint | string
+  : T extends ScalarType.BOOL
+  ? boolean
+  : T extends ScalarType.BYTES
+  ? Uint8Array
+  : never;
+
+/**
+ * Returns a binary reader for the given descriptor and field ID.
+ */
+function createBinaryReader(
+  desc: AnyDesc,
+  id: number
+): BinaryReader | undefined {
+  const opt = desc.proto.options;
+  let reader: BinaryReader | undefined = undefined;
+  if (opt !== undefined) {
+    const unknownFields = proto3.bin.listUnknownFields(opt);
+    const field = unknownFields.find((f) => f.no === id);
+    if (field) {
+      reader = new BinaryReader(field.data);
+    }
+  }
+  return reader;
 }

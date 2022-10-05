@@ -14,9 +14,9 @@
 
 import { getDescriptorSet } from "./helpers.js";
 import {
-  getCustomScalarOption,
-  getCustomMessageOption,
-  getCustomEnumOption,
+  findCustomScalarOption,
+  findCustomMessageOption,
+  findCustomEnumOption,
 } from "@bufbuild/protoplugin/ecmascript";
 import { proto3, ScalarType } from "@bufbuild/protobuf";
 import { FooMessage } from "./gen/proto/custom_options_pb.js";
@@ -27,9 +27,9 @@ describe("custom options", function () {
     test("file options", () => {
       for (const file of descriptorSet.files) {
         if (file.name === "proto/custom_options") {
-          expect(getCustomScalarOption(file, 50000, ScalarType.STRING)).toEqual(
-            "Hello"
-          );
+          expect(
+            findCustomScalarOption(file, 50000, ScalarType.STRING)
+          ).toEqual("Hello");
         }
       }
     });
@@ -37,7 +37,7 @@ describe("custom options", function () {
       const enumeration = descriptorSet.enums.get("example.FooEnum");
       expect(enumeration).toBeDefined();
       expect(
-        getCustomScalarOption(enumeration!, 50004, ScalarType.BOOL)
+        findCustomScalarOption(enumeration!, 50004, ScalarType.BOOL)
       ).toBeTruthy();
     });
     test("enum value options", () => {
@@ -46,11 +46,11 @@ describe("custom options", function () {
       for (const enumValue of enumeration!.values) {
         if (enumValue.name === "OFF") {
           expect(
-            getCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
+            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
           ).toEqual(321);
         } else {
           expect(
-            getCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
+            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
           ).toBeUndefined();
         }
       }
@@ -58,7 +58,7 @@ describe("custom options", function () {
     test("message options", () => {
       const msg = descriptorSet.messages.get("example.FooMessage");
       expect(msg).toBeDefined();
-      expect(getCustomScalarOption(msg!, 50001, ScalarType.INT32)).toEqual(
+      expect(findCustomScalarOption(msg!, 50001, ScalarType.INT32)).toEqual(
         1234
       );
     });
@@ -69,11 +69,11 @@ describe("custom options", function () {
         switch (member.kind) {
           case "oneof":
             expect(
-              getCustomScalarOption(member, 50003, ScalarType.INT64)
+              findCustomScalarOption(member, 50003, ScalarType.INT64)
             ).toEqual(BigInt(42));
             break;
           default: {
-            const val = getCustomScalarOption(member, 50002, ScalarType.FLOAT);
+            const val = findCustomScalarOption(member, 50002, ScalarType.FLOAT);
             if (member.name === "foo") {
               expect(val).toEqual(4.5);
             } else {
@@ -87,13 +87,13 @@ describe("custom options", function () {
     test("service options", () => {
       const service = descriptorSet.services.get("example.FooService");
       expect(service).toBeDefined();
-      expect(getCustomEnumOption(service!, 50006)).toEqual(1);
+      expect(findCustomEnumOption(service!, 50006)).toEqual(1);
     });
     test("method options", () => {
       const service = descriptorSet.services.get("example.FooService");
       expect(service).toBeDefined();
       for (const method of service!.methods) {
-        const option = getCustomMessageOption(method, 50007, FooMessage);
+        const option = findCustomMessageOption(method, 50007, FooMessage);
         expect(option?.foo).toEqual(567);
         expect(option?.bar).toEqual("Some string");
         expect(option?.qux?.case).toEqual("quux");
@@ -107,7 +107,7 @@ describe("custom options", function () {
     test("file options", () => {
       for (const file of descriptorSet.files) {
         expect(
-          getCustomScalarOption(file, 99999, ScalarType.STRING)
+          findCustomScalarOption(file, 99999, ScalarType.STRING)
         ).toBeUndefined();
       }
     });
@@ -115,7 +115,7 @@ describe("custom options", function () {
       for (const file of descriptorSet.files) {
         for (const enumeration of file.enums) {
           expect(
-            getCustomScalarOption(enumeration, 99999, ScalarType.BOOL)
+            findCustomScalarOption(enumeration, 99999, ScalarType.BOOL)
           ).toBeUndefined();
         }
       }
@@ -125,7 +125,7 @@ describe("custom options", function () {
         for (const enumeration of file.enums) {
           for (const enumValue of enumeration.values) {
             expect(
-              getCustomScalarOption(enumValue, 99999, ScalarType.UINT32)
+              findCustomScalarOption(enumValue, 99999, ScalarType.UINT32)
             ).toBeUndefined();
           }
         }
@@ -135,7 +135,7 @@ describe("custom options", function () {
       for (const file of descriptorSet.files) {
         for (const message of file.messages) {
           expect(
-            getCustomScalarOption(message, 99999, ScalarType.INT32)
+            findCustomScalarOption(message, 99999, ScalarType.INT32)
           ).toBeUndefined();
         }
       }
@@ -147,12 +147,12 @@ describe("custom options", function () {
             switch (member.kind) {
               case "oneof":
                 expect(
-                  getCustomScalarOption(member, 99999, ScalarType.INT64)
+                  findCustomScalarOption(member, 99999, ScalarType.INT64)
                 ).toBeUndefined();
                 break;
               default: {
                 expect(
-                  getCustomScalarOption(member, 99999, ScalarType.FLOAT)
+                  findCustomScalarOption(member, 99999, ScalarType.FLOAT)
                 ).toBeUndefined();
                 break;
               }
@@ -164,7 +164,7 @@ describe("custom options", function () {
     test("service options", () => {
       for (const file of descriptorSet.files) {
         for (const service of file.services) {
-          expect(getCustomEnumOption(service, 99999)).toBeUndefined();
+          expect(findCustomEnumOption(service, 99999)).toBeUndefined();
         }
       }
     });
@@ -173,7 +173,7 @@ describe("custom options", function () {
         for (const service of file.services) {
           for (const method of service.methods) {
             expect(
-              getCustomMessageOption(method, 99999, FooMessage)
+              findCustomMessageOption(method, 99999, FooMessage)
             ).toBeUndefined();
           }
         }
@@ -194,7 +194,7 @@ describe("custom options", function () {
       expect(service).toBeDefined();
       for (const method of service!.methods) {
         const getFn = () => {
-          getCustomMessageOption(method, 50007, invalid);
+          findCustomMessageOption(method, 50007, invalid);
         };
         expect(getFn).toThrow(Error);
       }
@@ -221,7 +221,7 @@ describe("custom options", function () {
     const service = descriptorSet.services.get("example.FooService");
     expect(service).toBeDefined();
     for (const method of service!.methods) {
-      const option = getCustomMessageOption(method, 50007, partial);
+      const option = findCustomMessageOption(method, 50007, partial);
       expect(option?.foo).toEqual(567);
       expect(option?.bar).toEqual("Some string");
       // Following values were set in the proto file but not in the message type above
@@ -235,7 +235,7 @@ describe("custom options", function () {
     const service = descriptorSet.services.get("example.FooService");
     expect(service).toBeDefined();
     for (const method of service!.methods) {
-      const option = getCustomMessageOption(method, 50007, FooMessage);
+      const option = findCustomMessageOption(method, 50007, FooMessage);
       expect(option?.unused).toEqual("");
     }
   });

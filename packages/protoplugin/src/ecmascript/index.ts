@@ -32,7 +32,7 @@ export {
 } from "./gencommon.js";
 
 export {
-  getCustomScalarOption,
-  getCustomMessageOption,
-  getCustomEnumOption,
+  findCustomScalarOption,
+  findCustomMessageOption,
+  findCustomEnumOption,
 } from "./custom-options.js";
