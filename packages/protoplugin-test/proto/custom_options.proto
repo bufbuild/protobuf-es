@@ -75,8 +75,6 @@ service FooService {
   option (foo_service_option) = OFF;
 
   rpc Get(GetRequest) returns (GetResponse) {
-    // Note:  foo_method_option has type FooMessage.  We can set each field
-    //   within it using a separate "option" line.
     option deprecated = true;
     option (foo_method_option) = { 
         foo: 567, 

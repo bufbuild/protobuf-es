@@ -24,38 +24,36 @@ import {
 type ScalarValue<T> = T extends ScalarType.STRING
   ? string
   : T extends ScalarType.INT32
-  ? number | undefined
+  ? number
   : T extends ScalarType.UINT32
-  ? number | undefined
+  ? number
   : T extends ScalarType.UINT32
-  ? number | undefined
+  ? number
   : T extends ScalarType.SINT32
-  ? number | undefined
+  ? number
   : T extends ScalarType.FIXED32
-  ? number | undefined
+  ? number
   : T extends ScalarType.SFIXED32
-  ? number | undefined
+  ? number
   : T extends ScalarType.FLOAT
-  ? number | undefined
+  ? number
   : T extends ScalarType.DOUBLE
-  ? number | undefined
+  ? number
   : T extends ScalarType.INT64
-  ? bigint | string | undefined
+  ? bigint | string
   : T extends ScalarType.SINT64
-  ? bigint | string | undefined
+  ? bigint | string
   : T extends ScalarType.SFIXED64
-  ? bigint | string | undefined
+  ? bigint | string
   : T extends ScalarType.UINT64
-  ? bigint | string | undefined
+  ? bigint | string
   : T extends ScalarType.FIXED64
-  ? bigint | string | undefined
+  ? bigint | string
   : T extends ScalarType.BOOL
-  ? boolean | undefined
+  ? boolean
   : T extends ScalarType.BYTES
-  ? Uint8Array | undefined
-  : T extends ScalarType.STRING
-  ? string | undefined
-  : never;
+  ? Uint8Array
+  : undefined;
 
 /**
  * Returns a binary reader for the given descriptor and field ID.
