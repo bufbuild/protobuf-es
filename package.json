@@ -24,7 +24,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "prettier": "^2.7.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.8.4"
   },
   "dependencies": {
     "@typescript/vfs": "1.0.0",
