@@ -72,9 +72,9 @@ function getBinaryReader(desc: AnyDesc, id: number): BinaryReader | undefined {
 }
 
 /**
- * Returns the value of a custom sfixed32 option for the given descriptor and ID.
+ * Returns the value of a custom option with a scalar type.
  *
- * If no options are found, returns undefined.
+ * If no option is found, returns undefined.
  */
 export function getCustomScalarOption<T extends ScalarType>(
   desc: AnyDesc,
