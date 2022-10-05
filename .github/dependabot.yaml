@@ -14,4 +14,9 @@ updates:
       day: "monday"
       timezone: UTC
       time: "07:00"
+    ignore:
+      # These dependencies are explicitly pinned for usage in the plugin 
+      # transpilation process and should only be updated manually / intentionally.
+      - dependency-name: "typescript"
+      - dependency-name: "@typescript/vfs"
     open-pull-requests-limit: 50
