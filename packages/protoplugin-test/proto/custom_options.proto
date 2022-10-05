@@ -16,6 +16,8 @@ syntax = "proto3";
 
 import "google/protobuf/descriptor.proto";
 
+package example;
+
 extend google.protobuf.FileOptions {
   optional string foo_file_option = 50000;
 }
