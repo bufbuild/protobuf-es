@@ -144,22 +144,20 @@ describe("custom options", function () {
     });
     test("field options", () => {
       const msg = descriptorSet.messages.get(msgName);
-      assert(msg);
-      for (const member of msg.members) {
-        switch (member.kind) {
-          case "oneof":
-            expect(
-              findCustomScalarOption(member, 99999, ScalarType.INT64)
-            ).toBeUndefined();
-            break;
-          default: {
-            expect(
-              findCustomScalarOption(member, 99999, ScalarType.FLOAT)
-            ).toBeUndefined();
-            break;
-          }
-        }
-      }
+
+      const quxField = msg?.members.find((m) => m.name === "qux");
+      assert(quxField);
+      assert(quxField.kind === "oneof");
+      expect(
+        findCustomScalarOption(quxField, 99999, ScalarType.INT64)
+      ).toBeUndefined();
+
+      const fooField = msg?.members.find((m) => m.name === "foo");
+      assert(fooField);
+      assert(fooField.kind === "field");
+      expect(
+        findCustomScalarOption(fooField, 99999, ScalarType.FLOAT)
+      ).toBeUndefined();
     });
     test("service options", () => {
       const service = descriptorSet.services.get(serviceName);

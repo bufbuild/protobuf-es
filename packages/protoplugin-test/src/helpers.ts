@@ -19,24 +19,6 @@ import {
 } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
-// If no files are passed, default to generating all files.
-const defaultFiles = ["proto/address_book.proto", "proto/person.proto"];
-
-/**
- * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
- */
-export function getCodeGeneratorRequest(
-  parameter = "",
-  fileToGenerate = defaultFiles
-) {
-  const fds = getFileDescriptorSet();
-  return new CodeGeneratorRequest({
-    parameter,
-    fileToGenerate, // tells the plugin which files from the set to generate
-    protoFile: fds.file,
-  });
-}
-
 /**
  * Assert that condition is truthy or throw error (with message)
  */
@@ -45,6 +27,21 @@ export function assert(condition: unknown, msg?: string): asserts condition {
   if (!condition) {
     throw new Error(msg);
   }
+}
+
+/**
+ * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
+ */
+export function getCodeGeneratorRequest(
+  parameter = "",
+  fileToGenerate: string[]
+) {
+  const fds = getFileDescriptorSet();
+  return new CodeGeneratorRequest({
+    parameter,
+    fileToGenerate, // tells the plugin which files from the set to generate
+    protoFile: fds.file,
+  });
 }
 
 /**
