@@ -51,7 +51,12 @@ function verifyOutFiles(
   req?: CodeGeneratorRequest
 ) {
   const targets = Object.keys(fixture);
-  req = req ?? getCodeGeneratorRequest(`target=${targets.join("+")}`);
+  req =
+    req ??
+    getCodeGeneratorRequest(`target=${targets.join("+")}`, [
+      "proto/address_book.proto",
+      "proto/person.proto",
+    ]);
   const resp = plugin.run(req);
 
   // The total expected files is the sum of the lengths of the arrays in the

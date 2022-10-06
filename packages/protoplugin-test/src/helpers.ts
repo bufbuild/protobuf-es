@@ -12,21 +12,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { FileDescriptorSet, CodeGeneratorRequest } from "@bufbuild/protobuf";
+import {
+  createDescriptorSet,
+  FileDescriptorSet,
+  CodeGeneratorRequest,
+} from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
-// If no files are passed, default to generating all files.
-const defaultFiles = ["proto/address_book.proto", "proto/person.proto"];
+/**
+ * Assert that condition is truthy or throw error (with message)
+ */
+export function assert(condition: unknown, msg?: string): asserts condition {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
+  if (!condition) {
+    throw new Error(msg);
+  }
+}
 
+/**
+ * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
+ */
 export function getCodeGeneratorRequest(
   parameter = "",
-  fileToGenerate = defaultFiles
+  fileToGenerate: string[]
 ) {
-  const fdsBytes = readFileSync("./descriptorset.bin");
-  const fds = FileDescriptorSet.fromBinary(fdsBytes);
+  const fds = getFileDescriptorSet();
   return new CodeGeneratorRequest({
     parameter,
     fileToGenerate, // tells the plugin which files from the set to generate
     protoFile: fds.file,
   });
+}
+
+/**
+ * Returns a DescriptorSet from a pre-built Buf image
+ */
+export function getDescriptorSet() {
+  const fds = getFileDescriptorSet();
+  return createDescriptorSet(fds.file);
+}
+
+/**
+ * Returns a FileDescriptorSet from a pre-built Buf image
+ */
+function getFileDescriptorSet() {
+  const fdsBytes = readFileSync("./descriptorset.bin");
+  return FileDescriptorSet.fromBinary(fdsBytes);
 }

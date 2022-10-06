@@ -30,3 +30,9 @@ export {
   makeJsDoc,
   literalString,
 } from "./gencommon.js";
+
+export {
+  findCustomScalarOption,
+  findCustomMessageOption,
+  findCustomEnumOption,
+} from "./custom-options.js";
