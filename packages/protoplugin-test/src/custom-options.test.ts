@@ -96,8 +96,8 @@ describe("custom options", function () {
         const option = findCustomMessageOption(method, 50007, FooMessage);
         expect(option?.foo).toEqual(567);
         expect(option?.bar).toEqual("Some string");
-        expect(option?.qux?.case).toEqual("quux");
-        expect(option?.qux?.value).toEqual("Oneof string");
+        expect(option?.qux.case).toEqual("quux");
+        expect(option?.qux.value).toEqual("Oneof string");
         expect(option?.many).toEqual(["a", "b", "c"]);
         expect(option?.mapping).toEqual({ testKey: "testVal" });
       }
