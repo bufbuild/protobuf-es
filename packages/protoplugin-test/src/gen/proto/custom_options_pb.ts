@@ -21,35 +21,35 @@ import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMe
 import {Message, proto3} from "@bufbuild/protobuf";
 
 /**
- * @generated from enum example.FooEnum
+ * @generated from enum example.ServiceStatus
  */
-export enum FooEnum {
+export enum ServiceStatus {
   /**
    * @generated from enum value: UNDEFINED = 0;
    */
   UNDEFINED = 0,
 
   /**
-   * @generated from enum value: OFF = 1;
+   * @generated from enum value: EXPERIMENTAL = 1;
    */
-  OFF = 1,
+  EXPERIMENTAL = 1,
 
   /**
-   * @generated from enum value: ON = 2;
+   * @generated from enum value: STABLE = 2;
    */
-  ON = 2,
+  STABLE = 2,
 }
-// Retrieve enum metadata with: proto3.getEnumType(FooEnum)
-proto3.util.setEnumType(FooEnum, "example.FooEnum", [
+// Retrieve enum metadata with: proto3.getEnumType(ServiceStatus)
+proto3.util.setEnumType(ServiceStatus, "example.ServiceStatus", [
   { no: 0, name: "UNDEFINED" },
-  { no: 1, name: "OFF" },
-  { no: 2, name: "ON" },
+  { no: 1, name: "EXPERIMENTAL" },
+  { no: 2, name: "STABLE" },
 ]);
 
 /**
- * @generated from message example.FooMessage
+ * @generated from message example.Configuration
  */
-export class FooMessage extends Message<FooMessage> {
+export class Configuration extends Message<Configuration> {
   /**
    * @generated from field: int32 foo = 1;
    */
@@ -61,7 +61,7 @@ export class FooMessage extends Message<FooMessage> {
   bar = "";
 
   /**
-   * @generated from oneof example.FooMessage.qux
+   * @generated from oneof example.Configuration.qux
    */
   qux: {
     /**
@@ -86,13 +86,13 @@ export class FooMessage extends Message<FooMessage> {
    */
   unused = "";
 
-  constructor(data?: PartialMessage<FooMessage>) {
+  constructor(data?: PartialMessage<Configuration>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime = proto3;
-  static readonly typeName = "example.FooMessage";
+  static readonly typeName = "example.Configuration";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "bar", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -102,82 +102,20 @@ export class FooMessage extends Message<FooMessage> {
     { no: 6, name: "unused", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FooMessage {
-    return new FooMessage().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Configuration {
+    return new Configuration().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FooMessage {
-    return new FooMessage().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Configuration {
+    return new Configuration().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooMessage {
-    return new FooMessage().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Configuration {
+    return new Configuration().fromJsonString(jsonString, options);
   }
 
-  static equals(a: FooMessage | PlainMessage<FooMessage> | undefined, b: FooMessage | PlainMessage<FooMessage> | undefined): boolean {
-    return proto3.util.equals(FooMessage, a, b);
-  }
-}
-
-/**
- * @generated from message example.GetRequest
- */
-export class GetRequest extends Message<GetRequest> {
-  constructor(data?: PartialMessage<GetRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime = proto3;
-  static readonly typeName = "example.GetRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetRequest {
-    return new GetRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetRequest {
-    return new GetRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRequest {
-    return new GetRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetRequest | PlainMessage<GetRequest> | undefined, b: GetRequest | PlainMessage<GetRequest> | undefined): boolean {
-    return proto3.util.equals(GetRequest, a, b);
-  }
-}
-
-/**
- * @generated from message example.GetResponse
- */
-export class GetResponse extends Message<GetResponse> {
-  constructor(data?: PartialMessage<GetResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime = proto3;
-  static readonly typeName = "example.GetResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetResponse {
-    return new GetResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetResponse {
-    return new GetResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetResponse {
-    return new GetResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetResponse | PlainMessage<GetResponse> | undefined, b: GetResponse | PlainMessage<GetResponse> | undefined): boolean {
-    return proto3.util.equals(GetResponse, a, b);
+  static equals(a: Configuration | PlainMessage<Configuration> | undefined, b: Configuration | PlainMessage<Configuration> | undefined): boolean {
+    return proto3.util.equals(Configuration, a, b);
   }
 }
 

@@ -19,19 +19,20 @@ import {
   findCustomEnumOption,
 } from "@bufbuild/protoplugin/ecmascript";
 import { proto3, ScalarType } from "@bufbuild/protobuf";
-import { FooMessage } from "./gen/proto/custom_options_pb.js";
+import { Configuration } from "./gen/proto/custom_options_pb.js";
 
 describe("custom options", function () {
-  const enumName = "example.FooEnum";
-  const msgName = "example.FooMessage";
-  const serviceName = "example.FooService";
+  const enumName = "example.EnumWithOptions";
+  const msgName = "example.MessageWithOptions";
+  const serviceName = "example.ServiceWithOptions";
+  const fileName = "proto/service";
 
   const descriptorSet = getDescriptorSet();
 
   describe("finds options correctly", function () {
     test("file options", () => {
       for (const file of descriptorSet.files) {
-        if (file.name === "proto/custom_options") {
+        if (file.name === fileName) {
           expect(
             findCustomScalarOption(file, 50000, ScalarType.STRING)
           ).toEqual("Hello");
@@ -49,7 +50,7 @@ describe("custom options", function () {
       const enumeration = descriptorSet.enums.get(enumName);
       assert(enumeration);
       for (const enumValue of enumeration.values) {
-        if (enumValue.name === "OFF") {
+        if (enumValue.name === "ACTIVE") {
           expect(
             findCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
           ).toEqual(321);
@@ -98,7 +99,7 @@ describe("custom options", function () {
       const service = descriptorSet.services.get(serviceName);
       assert(service);
       for (const method of service.methods) {
-        const option = findCustomMessageOption(method, 50007, FooMessage);
+        const option = findCustomMessageOption(method, 50007, Configuration);
         expect(option?.foo).toEqual(567);
         expect(option?.bar).toEqual("Some string");
         expect(option?.qux.case).toEqual("quux");
@@ -111,7 +112,7 @@ describe("custom options", function () {
   describe("all methods return undefined when option not found", function () {
     test("file options", () => {
       for (const file of descriptorSet.files) {
-        if (file.name === "proto/custom_options") {
+        if (file.name === fileName) {
           expect(
             findCustomScalarOption(file, 99999, ScalarType.STRING)
           ).toBeUndefined();
@@ -170,7 +171,7 @@ describe("custom options", function () {
       assert(service);
       for (const method of service.methods) {
         expect(
-          findCustomMessageOption(method, 99999, FooMessage)
+          findCustomMessageOption(method, 99999, Configuration)
         ).toBeUndefined();
       }
     });
@@ -196,10 +197,10 @@ describe("custom options", function () {
     });
   });
   test("valid but partial message still returns values", () => {
-    // Rather than use the generated FooMessage, we are using a type created at
+    // Rather than use the generated Configuration message, we are using a type created at
     // runtime to test 1.  that makeMessageType also allows us to get message options
     // and 2.  that a partial message will work.
-    const partial = proto3.makeMessageType("InvalidMessage", [
+    const partial = proto3.makeMessageType("PartialMessage", [
       {
         no: 1,
         name: "foo",
@@ -230,7 +231,7 @@ describe("custom options", function () {
     const service = descriptorSet.services.get(serviceName);
     assert(service);
     for (const method of service.methods) {
-      const option = findCustomMessageOption(method, 50007, FooMessage);
+      const option = findCustomMessageOption(method, 50007, Configuration);
       expect(option?.unused).toEqual("");
     }
   });
