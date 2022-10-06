@@ -300,9 +300,37 @@ The original [CodeGeneratorRequest](https://github.com/protocolbuffers/protobuf/
 
 ### Custom Options
 
+Custom options can be obtained via utility functions exported by the `@bufbuild/protoplugin/ecmascript` package.  There are three functions depending on the structure of the custom option desired (scalar, message, or enum):
+
 #### Scalar Options
 
-Custom options of a scalar type (`boolean`, `string`, `int32`, etc.) can be retrieved by a series of functions specific to the type of custom option desired.  Each function expects an `AnyDesc` object, which can represent any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc. and the ID of the custom option field.
+Custom options of a scalar type (`boolean`, `string`, `int32`, etc.) can be retrieved via the `findCustomScalarOption` function.  It returns a type corresponding to the given `scalarType` parameter.  For example, if `ScalarType.STRING` is passed, the return type will be a `string`.  If the option is not found, it returns `undefined`.
+
+```ts
+function findCustomScalarOption<T extends ScalarType>(
+  desc: AnyDesc,
+  id: number,
+  scalarType: T
+): ScalarValue<T> | undefined;
+```
+
+##### `desc`
+
+**Type**: `AnyDesc`
+
+Represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.
+
+##### `id`
+
+**Type**: `number`
+
+The ID of the custom options field definition.
+
+##### `scalarType`
+
+**Type**: `<T extends ScalarType>`
+
+The scalar type of the custom option you are searching for.  `ScalarType` is an enum that represents all possible scalar types in the Protobuf grammar
 
 For example, given the following:
 
@@ -324,20 +352,46 @@ message FooMessage {
 The values of these options can be retrieved as follows:
 
 ```ts
-const msgVal = getCustomOptionInt32(descMessage, 50001);  // 1234
+const msgVal = findCustomScalarOption(descMessage, 50001, ScalarType.INT32);  // 1234
 
-const fieldVal = getCustomOptionString(descField, 50002);  // "test"
+const fieldVal = findCustomScalarOption(descField, 50002, ScalarType.STRING);  // "test"
 ```
 
 #### Message Options
 
-Message options are retrieved slightly differently.  There is one function to retrieve them named `getCustomOptionMessage`, but the signature is a bit more involved.
+Custom options of a more complex message type can be retrieved via the `findCustomMessageOption` function.  It returns a concrete type with fields populated corresponding to the values set in the proto file.
 
-It still expects a `DescXXX` type and field ID, but it also expects a message type created at runtime that is used for returning the values of the custom option.
+```ts
+export function findCustomMessageOption<T extends Message<T>>(
+  desc: AnyDesc,
+  id: number,
+  msgType: MessageType<T>
+): T | undefined {
+```
 
-For example, given the following proto file:
+##### `desc`
+
+**Type**: `AnyDesc`
+
+Represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.
+
+##### `id`
+
+**Type**: `number`
+
+The ID of the custom options field definition.
+
+##### `msgType`
+
+**Type**: `MessageType<T>`
+
+The type of the message you are searching for.  Note that this can be a message generated from a proto file or can be a type created at runtime via `makeMessageType`.
+
+For example, given the following proto files:
 
 ```proto
+// custom_options.proto
+
 extend google.protobuf.MethodOptions {
   optional ServiceOptions service_method_option = 50007;
 }
@@ -351,6 +405,12 @@ message ServiceOptions {
   repeated string many = 4;
   map<string, string> mapping = 5;
 }
+```
+
+```proto
+// service.proto
+
+import "custom_options.proto";
 
 service FooService {
   rpc Get(GetRequest) returns (GetResponse) {
@@ -365,7 +425,26 @@ service FooService {
 }
 ```
 
-The value of this options can be retrieved as follows:
+You can retrieve the options using a generated type by first generating the file which defines the custom option type.  Then, import and pass this type to the `findCustomMessageOption` function.
+
+```ts
+import { ServiceOptions } from "./gen/proto/custom_options_pb.js";
+
+const option = findCustomMessageOption(method, 50007, ServiceOptions)
+
+console.log(option);
+/*
+ * {
+ *     foo: 567, 
+ *     bar: "Some string", 
+ *     quux: "Oneof string",
+ *     many: ["a", "b", "c"],
+ *     mapping: [{key: "testKey", value: "testVal"}]
+ * }
+ */
+ ```
+ 
+ Alternatively, you can use a type created at runtime:
 
 ```ts
 const opts = proto3.makeMessageType("ServiceOptions", [
@@ -373,26 +452,26 @@ const opts = proto3.makeMessageType("ServiceOptions", [
     no: 1,
     name: "foo",
     kind: "scalar",
-    T: 5 /* ScalarType.INT32 */,
+    T: ScalarType.STRING,
   },
   {
     no: 2,
     name: "bar",
     kind: "scalar",
-    T: 9 /* ScalarType.STRING */,
+    T: ScalarType.STRING,
   },
   {
     no: 3,
     name: "quux",
     kind: "scalar",
-    T: 9 /* ScalarType.STRING */,
+    T: ScalarType.STRING,
   },
   {
     no: 4,
     name: "many",
     kind: "scalar",
     repeated: true,
-    T: 9 /* ScalarType.STRING */,
+    T: ScalarType.STRING,
   },
   {
     no: 5,
@@ -401,11 +480,11 @@ const opts = proto3.makeMessageType("ServiceOptions", [
     K: 9 /* ScalarType.STRING */,
     V: {
       kind: "scalar",
-      T: 9 /* ScalarType.STRING */,
+      T: ScalarType.STRING,
     },
   },
 ]);
-const option = getCustomOptionMessage(method, 50007, opts)
+const option = findCustomMessageOption(method, 50007, opts)
 
 console.log(option);
 /*
@@ -421,3 +500,50 @@ console.log(option);
 
 Note that `repeated` and `map` values are only supported within a custom message option.  They are not supported as option types independently.  If you have need to use a custom option that is `repeated` or is of type `map`, it is recommended to use a message option as a wrapper.
 
+
+#### Enum Options
+
+Custom options of an enum type can be retrieved via the `findCustomEnumOption` function.  It returns a `number` corresponding to the enum value set in the option.
+
+```ts
+export function findCustomEnumOption(
+  desc: AnyDesc,
+  id: number
+): number | undefined {
+```
+
+##### `desc`
+
+**Type**: `AnyDesc`
+
+Represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.
+
+##### `id`
+
+**Type**: `number`
+
+For example, given the following:
+
+```proto
+extend google.protobuf.MessageOptions {
+  optional FooEnum foo_enum_option = 50001;
+}
+
+enum FooEnum {
+  UNDEFINED = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
+}
+
+message FooMessage {
+  option (foo_enum_option) = ACTIVE;
+
+  string name = 1;
+}
+```
+
+The value of this option can be retrieved as follows:
+
+```ts
+const enumVal = findCustomEnumOption(fooMessage, 50001);  // 1
+```
