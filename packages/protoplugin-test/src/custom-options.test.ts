@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { getDescriptorSet } from "./helpers.js";
+import { assert, getDescriptorSet } from "./helpers.js";
 import {
   findCustomScalarOption,
   findCustomMessageOption,
@@ -35,14 +35,14 @@ describe("custom options", function () {
     });
     test("enum options", () => {
       const enumeration = descriptorSet.enums.get("example.FooEnum");
-      expect(enumeration).toBeDefined();
+      assert(enumeration);
       expect(
         findCustomScalarOption(enumeration!, 50004, ScalarType.BOOL)
       ).toBeTruthy();
     });
     test("enum value options", () => {
       const enumeration = descriptorSet.enums.get("example.FooEnum");
-      expect(enumeration).toBeDefined();
+      assert(enumeration);
       for (const enumValue of enumeration!.values) {
         if (enumValue.name === "OFF") {
           expect(
@@ -57,14 +57,14 @@ describe("custom options", function () {
     });
     test("message options", () => {
       const msg = descriptorSet.messages.get("example.FooMessage");
-      expect(msg).toBeDefined();
+      assert(msg);
       expect(findCustomScalarOption(msg!, 50001, ScalarType.INT32)).toEqual(
         1234
       );
     });
     test("field options", () => {
       const msg = descriptorSet.messages.get("example.FooMessage");
-      expect(msg).toBeDefined();
+      assert(msg);
       for (const member of msg!.members) {
         switch (member.kind) {
           case "oneof":
@@ -86,12 +86,12 @@ describe("custom options", function () {
     });
     test("service options", () => {
       const service = descriptorSet.services.get("example.FooService");
-      expect(service).toBeDefined();
+      assert(service);
       expect(findCustomEnumOption(service!, 50006)).toEqual(1);
     });
     test("method options", () => {
       const service = descriptorSet.services.get("example.FooService");
-      expect(service).toBeDefined();
+      assert(service);
       for (const method of service!.methods) {
         const option = findCustomMessageOption(method, 50007, FooMessage);
         expect(option?.foo).toEqual(567);
@@ -191,7 +191,7 @@ describe("custom options", function () {
         },
       ]);
       const service = descriptorSet.services.get("example.FooService");
-      expect(service).toBeDefined();
+      assert(service);
       for (const method of service!.methods) {
         const getFn = () => {
           findCustomMessageOption(method, 50007, invalid);
@@ -219,7 +219,7 @@ describe("custom options", function () {
       },
     ]);
     const service = descriptorSet.services.get("example.FooService");
-    expect(service).toBeDefined();
+    assert(service);
     for (const method of service!.methods) {
       const option = findCustomMessageOption(method, 50007, partial);
       expect(option?.foo).toEqual(567);
@@ -233,7 +233,7 @@ describe("custom options", function () {
   });
   test("unset properties in proto return default values", () => {
     const service = descriptorSet.services.get("example.FooService");
-    expect(service).toBeDefined();
+    assert(service);
     for (const method of service!.methods) {
       const option = findCustomMessageOption(method, 50007, FooMessage);
       expect(option?.unused).toEqual("");

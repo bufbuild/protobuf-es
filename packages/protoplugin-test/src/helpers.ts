@@ -22,6 +22,9 @@ import { readFileSync } from "fs";
 // If no files are passed, default to generating all files.
 const defaultFiles = ["proto/address_book.proto", "proto/person.proto"];
 
+/**
+ * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
+ */
 export function getCodeGeneratorRequest(
   parameter = "",
   fileToGenerate = defaultFiles
@@ -34,12 +37,28 @@ export function getCodeGeneratorRequest(
   });
 }
 
+/**
+ * Returns a FileDescriptorSet from a pre-built Buf image
+ */
 export function getFileDescriptorSet() {
   const fdsBytes = readFileSync("./descriptorset.bin");
   return FileDescriptorSet.fromBinary(fdsBytes);
 }
 
+/**
+ * Returns a DescriptorSet from a pre-built Buf image
+ */
 export function getDescriptorSet() {
   const fds = getFileDescriptorSet();
   return createDescriptorSet(fds.file);
+}
+
+/**
+ * Assert that condition is truthy or throw error (with message)
+ */
+export function assert(condition: unknown, msg?: string): asserts condition {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
+  if (!condition) {
+    throw new Error(msg);
+  }
 }
