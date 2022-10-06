@@ -38,11 +38,13 @@ export function getCodeGeneratorRequest(
 }
 
 /**
- * Returns a FileDescriptorSet from a pre-built Buf image
+ * Assert that condition is truthy or throw error (with message)
  */
-export function getFileDescriptorSet() {
-  const fdsBytes = readFileSync("./descriptorset.bin");
-  return FileDescriptorSet.fromBinary(fdsBytes);
+export function assert(condition: unknown, msg?: string): asserts condition {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
+  if (!condition) {
+    throw new Error(msg);
+  }
 }
 
 /**
@@ -54,11 +56,9 @@ export function getDescriptorSet() {
 }
 
 /**
- * Assert that condition is truthy or throw error (with message)
+ * Returns a FileDescriptorSet from a pre-built Buf image
  */
-export function assert(condition: unknown, msg?: string): asserts condition {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
-  if (!condition) {
-    throw new Error(msg);
-  }
+function getFileDescriptorSet() {
+  const fdsBytes = readFileSync("./descriptorset.bin");
+  return FileDescriptorSet.fromBinary(fdsBytes);
 }
