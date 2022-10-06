@@ -545,5 +545,5 @@ message FooMessage {
 The value of this option can be retrieved as follows:
 
 ```ts
-const enumVal = findCustomEnumOption(fooMessage, 50001);  // 1
+const enumVal = findCustomEnumOption(descMessage, 50001);  // 1
 ```
