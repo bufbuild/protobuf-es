@@ -112,6 +112,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
 	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
 	@npm run -w packages/protoplugin-test buf:build
+	@npm run -w packages/protoplugin-test buf:generate
 
 $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@rm -rf packages/protobuf-conformance/src/gen/*
