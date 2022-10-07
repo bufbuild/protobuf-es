@@ -83,9 +83,9 @@ $(BUILD)/protobuf-conformance: $(GEN)/protobuf-conformance node_modules tsconfig
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(BUILD)/example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/example/tsconfig.json $(shell find packages/example/src -name '*.ts')
-	npm run -w packages/example clean
-	npm run -w packages/example build
+$(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/protobuf-example/tsconfig.json $(shell find packages/protobuf-example/src -name '*.ts')
+	npm run -w packages/protobuf-example clean
+	npm run -w packages/protobuf-example build
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -124,9 +124,9 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/example: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/example/buf.gen.yaml $(shell find packages/example -name '*.proto')
-	@rm -rf packages/example/src/gen/*
-	npm run -w packages/example buf:generate
+$(GEN)/protobuf-example: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
+	@rm -rf packages/protobuf-example/src/gen/*
+	npm run -w packages/protobuf-example buf:generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -150,7 +150,7 @@ clean: ## Delete build artifacts and installed dependencies
 	git clean -Xdf
 
 .PHONY: build
-build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
+build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/protobuf-example ## Build
 
 .PHONY: test
 test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all tests
@@ -181,7 +181,7 @@ test-ts-compat: $(GEN)/protobuf-test node_modules
 	done
 
 .PHONY: lint
-lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files
+lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
 	npx eslint --max-warnings 0 .
 
 .PHONY: format
