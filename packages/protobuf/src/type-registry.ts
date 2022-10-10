@@ -15,6 +15,7 @@
 import type { MessageType } from "./message-type.js";
 import type { EnumType } from "./enum.js";
 import type { ServiceType } from "./service-type.js";
+import type { Extension } from "./extension";
 
 /**
  * IMessageTypeRegistry provides look-up for message types.
@@ -44,4 +45,19 @@ export interface IServiceTypeRegistry {
    * Find a service type by its protobuf type name.
    */
   findService(typeName: string): ServiceType | undefined;
+}
+
+/**
+ * IExtensionRegistry provides look-up for extensions.
+ */
+export interface IExtensionRegistry {
+
+  // TODO these methods need to change, according to what's needed for the binary and json format
+
+  findExtensions(extendee: string): Extension[];
+  findExtensionByNumber(no: number, extendee: string): Extension | undefined;
+  /**
+   * Find an extension type by its protobuf type name.
+   */
+  findExtension(typeName: string): Extension | undefined;
 }
