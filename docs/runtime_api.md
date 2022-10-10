@@ -543,7 +543,34 @@ The object initializers accepted by message constructors are defined by the type
 `Partial`, but works recursively. 
 
 This type is well suited in case you know the type of a message, but want to allow 
-an instance to be given in the most flexible way.
+an instance to be given in the most flexible way. If you want to offer an API that lets 
+users provide message data, consider accepting `PartialMessage<T>`, so that users can 
+simply give an object literal with only the non-default values they want. Note that any
+`T` is assignable to `PartialMessage<T>`.
+
+For example, let's say you have a protobuf `message Foo`, and you want to provide a 
+function to your users that processes this message:
+
+```ts
+export function sendExample(example: PartialMessage<Example>) {
+  // convert partial messages into their full representation if necessary
+  const e = example instanceof Example ? example : new Example(example);
+  // process further...
+  const bytes = e.toBinary();
+}
+```
+
+All three examples below are valid input for your function:
+
+```ts
+sendExample({foo: "abc"});
+
+const e = new Example();
+e.foo = "abc";
+sendExample(e);
+
+sendExample(new Example());
+```
 
 
 ### PlainMessage
@@ -569,6 +596,12 @@ let plain: PlainMessage<Example> = {
 let plain: PlainMessage<Example> = {...example};
 ```
 
+As such, `PlainMessage<T>` can be a great fit to use in throughout your business logic,
+if that business logic is never concerned with serialization, and does not need 
+`instanceof`.
+
+Note that any `T` is assignable to `PlainMessage<T>`.
+
 
 ### AnyMessage
 
@@ -579,6 +612,8 @@ provides a convenient index signature to access fields:
 const anyMessage: AnyMessage = example;
 example["foo"];
 ```
+
+Note that any message is assignable to `AnyMessage`.
 
 
 [src-proto-int64]: https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65
