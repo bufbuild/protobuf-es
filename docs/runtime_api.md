@@ -548,8 +548,8 @@ users provide message data, consider accepting `PartialMessage<T>`, so that user
 simply give an object literal with only the non-default values they want. Note that any
 `T` is assignable to `PartialMessage<T>`.
 
-For example, let's say you have a protobuf `message Foo`, and want to provide a function
-to users that process this message:
+For example, let's say you have a protobuf `message Foo`, and you want to provide a 
+function to your users that processes this message:
 
 ```ts
 export function sendExample(example: PartialMessage<Example>) {
