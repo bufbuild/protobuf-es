@@ -18,11 +18,7 @@ import { proto3 } from "./proto3.js";
 import { proto2 } from "./proto2.js";
 import type { PartialFieldInfo } from "./field.js";
 import type { EnumType, EnumValueInfo } from "./enum.js";
-import type {
-  IEnumTypeRegistry,
-  IMessageTypeRegistry,
-  IServiceTypeRegistry,
-} from "./type-registry.js";
+import type { IEnumTypeRegistry, IMessageTypeRegistry, IServiceTypeRegistry } from "./type-registry.js";
 import type { MethodInfo, ServiceType } from "./service-type.js";
 import { localName } from "./private/names.js";
 import { Timestamp } from "./google/protobuf/timestamp_pb.js";
@@ -30,12 +26,7 @@ import { Duration } from "./google/protobuf/duration_pb.js";
 import { Any } from "./google/protobuf/any_pb.js";
 import { Empty } from "./google/protobuf/empty_pb.js";
 import { FieldMask } from "./google/protobuf/field_mask_pb.js";
-import {
-  ListValue,
-  NullValue,
-  Struct,
-  Value,
-} from "./google/protobuf/struct_pb.js";
+import { ListValue, NullValue, Struct, Value } from "./google/protobuf/struct_pb.js";
 import { getEnumType } from "./private/enum.js";
 import {
   BoolValue,
@@ -46,7 +37,7 @@ import {
   Int64Value,
   StringValue,
   UInt32Value,
-  UInt64Value,
+  UInt64Value
 } from "./google/protobuf/wrappers_pb.js";
 import { FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
 import type { DescField, DescriptorSet } from "./descriptor-set.js";
@@ -91,7 +82,7 @@ const wkEnums = [getEnumType(NullValue)];
 export function createRegistryFromDescriptors(
   input: DescriptorSet | FileDescriptorSet | Uint8Array,
   replaceWkt = true
-): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
+): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry /*& IExtensionRegistry*/ {
   const set: DescriptorSet =
     input instanceof Uint8Array || input instanceof FileDescriptorSet
       ? createDescriptorSet(input)
@@ -99,6 +90,7 @@ export function createRegistryFromDescriptors(
   const enums: Record<string, EnumType | undefined> = {};
   const messages: Record<string, MessageType | undefined> = {};
   const services: Record<string, ServiceType | undefined> = {};
+  // const extensions: Record<string, Extension | undefined> = {};
   if (replaceWkt) {
     for (const mt of wkMessages) {
       messages[mt.typeName] = mt;

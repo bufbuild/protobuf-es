@@ -20,23 +20,25 @@ import type {
   IEnumTypeRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
+import type { Extension } from "./extension.js";
 
 /**
  * Create a new registry from the given types.
  */
 export function createRegistry(
-  ...types: Array<MessageType | EnumType | ServiceType>
-): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
+  ...types: Array<MessageType | EnumType | ServiceType | Extension>
+): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry /* & IExtensionRegistry */ {
   const messages: Record<string, MessageType> = {};
   const enums: Record<string, EnumType> = {};
   const services: Record<string, ServiceType> = {};
+  const extensions: Record<string, Extension> = {};
   const registry = {
     /**
      * Add a type to the registry. For messages, the types used in message
      * fields are added recursively. For services, the message types used
      * for requests and responses are added recursively.
      */
-    add(type: MessageType | EnumType | ServiceType): void {
+    add(type: MessageType | EnumType | ServiceType | Extension): void {
       if ("fields" in type) {
         if (!this.findMessage(type.typeName)) {
           messages[type.typeName] = type;
@@ -58,6 +60,8 @@ export function createRegistry(
             this.add(method.O);
           }
         }
+      } else if ("extendee" in type) {
+        extensions[type.typeName] = type;
       } else {
         enums[type.typeName] = type;
       }
