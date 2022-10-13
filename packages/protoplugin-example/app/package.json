@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "buf:generate": "buf generate buf.build/bufbuild/eliza",
+    "link": "npm link ../../protoplugin ../../protobuf ../../protoc-gen-es ../protoc-gen-twirp-es",
+    "buf:generate": "npm run link && buf generate buf.build/bufbuild/eliza",
     "start": "npm run buf:generate && npm run build",
     "build": "npx tsc --noEmit && npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
   },
