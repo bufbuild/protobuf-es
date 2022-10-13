@@ -1,4 +1,4 @@
-// Copyright 2022 Buf Technologies, Inc.
+// Copyright 2021-2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,28 +17,44 @@
 /* eslint-disable */
 /* @ts-nocheck */
 
-import { ConverseResponse, IntroduceResponse, SayResponse } from "./eliza_pb.js";
-import { TwirpClient } from 'protoc-gen-twirp-es/src/client.js';
+import {
+  ConverseResponse,
+  IntroduceResponse,
+  SayResponse,
+} from "./eliza_pb.js";
+import { TwirpClient } from "protoc-gen-twirp-es/src/client.js";
 export function createElizaServiceClient(opts) {
-    return new ElizaServiceClient(opts);
+  return new ElizaServiceClient(opts);
 }
 export class ElizaServiceClient extends TwirpClient {
-    constructor(opts) {
-        super(opts);
-    }
-    async Say(request) {
-        const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Say", "application/json", request);
-        return promise.then(async (data) => SayResponse.fromJson(data));
-    }
-    ;
-    async Converse(request) {
-        const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Converse", "application/json", request);
-        return promise.then(async (data) => ConverseResponse.fromJson(data));
-    }
-    ;
-    async Introduce(request) {
-        const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Introduce", "application/json", request);
-        return promise.then(async (data) => IntroduceResponse.fromJson(data));
-    }
-    ;
+  constructor(opts) {
+    super(opts);
+  }
+  async Say(request) {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Say",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) => SayResponse.fromJson(data));
+  }
+  async Converse(request) {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Converse",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) => ConverseResponse.fromJson(data));
+  }
+  async Introduce(request) {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Introduce",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) => IntroduceResponse.fromJson(data));
+  }
 }

@@ -1,4 +1,4 @@
-// Copyright 2022 Buf Technologies, Inc.
+// Copyright 2021-2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,78 +17,87 @@
 /* eslint-disable */
 /* @ts-nocheck */
 
-import {ConverseRequest, ConverseResponse, IntroduceRequest, IntroduceResponse, SayRequest, SayResponse} from "./eliza_pb.js";
+import {
+  ConverseRequest,
+  ConverseResponse,
+  IntroduceRequest,
+  IntroduceResponse,
+  SayRequest,
+  SayResponse,
+} from "./eliza_pb.js";
 
-import type { JsonValue } from '@bufbuild/protobuf';
-import { TwirpClient, TransportOptions } from 'protoc-gen-twirp-es/src/client.js';
+import type { JsonValue } from "@bufbuild/protobuf";
+import {
+  TwirpClient,
+  TransportOptions,
+} from "protoc-gen-twirp-es/src/client.js";
 
 export function createElizaServiceClient(opts: TransportOptions): ElizaService {
-    return new ElizaServiceClient(opts);
+  return new ElizaServiceClient(opts);
 }
 
 export interface ElizaService {
-    /**
-     * Say is a unary request demo. This method should allow for a one sentence
-     * response given a one sentence request.
-     *
-     * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Say
-     */
-    Say(request: SayRequest): Promise<SayResponse>;
-    /**
-     * Converse is a bi-directional streaming request demo. This method should allow for
-     * many requests and many responses.
-     *
-     * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Converse
-     */
-    Converse(request: ConverseRequest): Promise<ConverseResponse>;
-    /**
-     * Introduce is a server-streaming request demo.  This method allows for a single request that will return a series
-     * of responses
-     *
-     * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Introduce
-     */
-    Introduce(request: IntroduceRequest): Promise<IntroduceResponse>;
+  /**
+   * Say is a unary request demo. This method should allow for a one sentence
+   * response given a one sentence request.
+   *
+   * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Say
+   */
+  Say(request: SayRequest): Promise<SayResponse>;
+  /**
+   * Converse is a bi-directional streaming request demo. This method should allow for
+   * many requests and many responses.
+   *
+   * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Converse
+   */
+  Converse(request: ConverseRequest): Promise<ConverseResponse>;
+  /**
+   * Introduce is a server-streaming request demo.  This method allows for a single request that will return a series
+   * of responses
+   *
+   * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Introduce
+   */
+  Introduce(request: IntroduceRequest): Promise<IntroduceResponse>;
 }
 
 export class ElizaServiceClient extends TwirpClient {
-    constructor(opts: TransportOptions) {
-        super(opts);
-    }
+  constructor(opts: TransportOptions) {
+    super(opts);
+  }
 
-    async Say(request: SayRequest): Promise<SayResponse> {
-        const promise = this.request(
-            "buf.connect.demo.eliza.v1.ElizaService", 
-            "Say",
-            "application/json",
-            request
-        );
-        return promise.then(async (data) =>
-             SayResponse.fromJson(data as JsonValue)
-        );
-    };
+  async Say(request: SayRequest): Promise<SayResponse> {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Say",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) =>
+      SayResponse.fromJson(data as JsonValue)
+    );
+  }
 
-    async Converse(request: ConverseRequest): Promise<ConverseResponse> {
-        const promise = this.request(
-            "buf.connect.demo.eliza.v1.ElizaService", 
-            "Converse",
-            "application/json",
-            request
-        );
-        return promise.then(async (data) =>
-             ConverseResponse.fromJson(data as JsonValue)
-        );
-    };
+  async Converse(request: ConverseRequest): Promise<ConverseResponse> {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Converse",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) =>
+      ConverseResponse.fromJson(data as JsonValue)
+    );
+  }
 
-    async Introduce(request: IntroduceRequest): Promise<IntroduceResponse> {
-        const promise = this.request(
-            "buf.connect.demo.eliza.v1.ElizaService", 
-            "Introduce",
-            "application/json",
-            request
-        );
-        return promise.then(async (data) =>
-             IntroduceResponse.fromJson(data as JsonValue)
-        );
-    };
-
+  async Introduce(request: IntroduceRequest): Promise<IntroduceResponse> {
+    const promise = this.request(
+      "buf.connect.demo.eliza.v1.ElizaService",
+      "Introduce",
+      "application/json",
+      request
+    );
+    return promise.then(async (data) =>
+      IntroduceResponse.fromJson(data as JsonValue)
+    );
+  }
 }
