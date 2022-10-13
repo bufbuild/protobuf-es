@@ -4,8 +4,7 @@
   "description": "",
   "scripts": {
     "clean": "rm -rf ./dist/cjs/*",
-    "build": "./node_modules/.bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs",
-    "generate": "npm run build && buf generate"
+    "build": "./node_modules/.bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs"
   },
   "author": "Buf",
   "license": "Apache-2.0",

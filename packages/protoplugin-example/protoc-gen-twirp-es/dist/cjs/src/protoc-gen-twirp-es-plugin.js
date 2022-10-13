@@ -1,3 +1,4 @@
+"use strict";
 // Copyright 2021-2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,25 +12,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-syntax = "proto3";
-
-package example;
-
-message GetRequest {
-    string id = 1;
-}
-
-message GetResponse {
-    Foo foo = 1;
-}
-
-message Foo {
-   string id = 1;
-   string name = 2;
-}
-
-service FooService {
-  rpc Get(GetRequest) returns (GetResponse) {}
-}
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.protocGenTwirpEs = void 0;
+const protoplugin_1 = require("@bufbuild/protoplugin");
+const typescript_js_1 = require("./typescript.js");
+const package_json_1 = require("../package.json");
+exports.protocGenTwirpEs = (0, protoplugin_1.createEcmaScriptPlugin)({
+    name: "protoc-gen-twirp-es",
+    version: `v${String(package_json_1.version)}`,
+    generateTs: typescript_js_1.generateTs,
+});

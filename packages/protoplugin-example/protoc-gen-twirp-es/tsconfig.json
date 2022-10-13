@@ -1,6 +1,6 @@
 {
   "files": ["src/protoc-gen-twirp-es-plugin.ts"],
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "resolveJsonModule": true
   }

@@ -23,10 +23,9 @@ export function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
-    f.print("export interface TransportOptions {");
-    f.print("    baseUrl: string;");
-    f.print("    headers: HeadersInit;");
-    f.print("};");
+    f.print(
+      "import { TwirpClient, TransportOptions } from 'protoc-gen-twirp-es/src/client.js';"
+    );
     f.print();
     for (const service of file.services) {
       const localServiceName = localName(service);
@@ -48,47 +47,11 @@ export function generateTs(schema: Schema) {
           method.name,
           "(request: ",
           method.input,
-          "): ",
+          "): Promise<",
           method.output,
-          ";"
+          ">;"
         );
       }
-      f.print("}");
-      f.print();
-      f.print("export class TwirpClient {");
-      f.print(
-        "    private readonly options: TransportOptions | undefined = undefined;"
-      );
-      f.print();
-      f.print("    constructor(opts: TransportOptions) {");
-      f.print("        this.options = opts;");
-      f.print("    }");
-      f.print();
-      f.print(
-        "    async request(service: string, method: string, contentType: string, data) {"
-      );
-      f.print("        const headers = new Headers(this.options.headers)");
-      f.print('        headers.set("content-type", contentType);');
-      f.print(
-        "        const response = await fetch(`${this.options.baseUrl}/${service}/${method}`, {"
-      );
-      f.print("            ...this.options,");
-      f.print('            method: "POST",');
-      f.print("            headers,");
-      f.print("            body: data.toJsonString(),");
-      f.print("        });");
-
-      f.print("        if (response.status === 200) {");
-      f.print("            if (contentType === 'application/json') {");
-      f.print("                return await response.json();");
-      f.print("            }");
-      f.print(
-        "            return new Uint8Array(await response.arrayBuffer());"
-      );
-      f.print("        }");
-      f.print();
-      f.print("        throw Error(await response.json());");
-      f.print("    }");
       f.print("}");
       f.print();
       f.print(
@@ -102,13 +65,13 @@ export function generateTs(schema: Schema) {
       f.print();
       for (const method of service.methods) {
         f.print(
-          "    ",
+          "    async ",
           method.name,
           "(request: ",
           method.input,
-          "): ",
+          "): Promise<",
           method.output,
-          "{"
+          "> {"
         );
         f.print("        const promise = this.request(");
         f.print("            ", literalString(service.typeName), ", ");
@@ -116,8 +79,15 @@ export function generateTs(schema: Schema) {
         f.print('            "application/json",');
         f.print("            request");
         f.print("        );");
-        f.print("        return new ", method.output, "();");
+        f.print("        return promise.then((data) =>");
+        f.print(
+          "             ",
+          method.output,
+          ".fromJson(data as any, { ignoreUnknownFields: true })"
+        );
+        f.print("        );");
         f.print("    };");
+        f.print();
       }
       f.print("}");
     }

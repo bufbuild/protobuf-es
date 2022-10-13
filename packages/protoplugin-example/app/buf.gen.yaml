@@ -8,6 +8,5 @@ plugins:
     opt: target=ts
     out: src/gen
   - name: twirp-es
-    path: ./bin/protoc-gen-twirp-es
     opt: target=ts+js+dts
     out: src/gen
