@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { Message } from "@bufbuild/protobuf";
+
 export interface TransportOptions {
   baseUrl: string;
   headers?: HeadersInit;
@@ -26,7 +28,12 @@ export class TwirpClient {
     this.options = opts;
   }
 
-  async request(service: string, method: string, contentType: string, data) {
+  async request<T extends Message<T>>(
+    service: string,
+    method: string,
+    contentType: string,
+    data: T
+  ) {
     const headers = new Headers(this.options.headers ?? []);
     headers.set("content-type", contentType);
     const response = await fetch(

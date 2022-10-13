@@ -5,6 +5,7 @@
     "./packages/protoc-gen-es",
     "./packages/protoplugin",
     "./packages/protoplugin-test",
+    "./packages/protoplugin-example",
     "./packages/protobuf-test",
     "./packages/protobuf-conformance",
     "./packages/protobuf-bench",
