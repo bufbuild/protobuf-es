@@ -19,9 +19,10 @@
 
 import {ConverseRequest, ConverseResponse, IntroduceRequest, IntroduceResponse, SayRequest, SayResponse} from "./eliza_pb.js";
 
+import type { JsonValue } from '@bufbuild/protobuf';
 import { TwirpClient, TransportOptions } from 'protoc-gen-twirp-es/src/client.js';
 
-export function createElizaServiceClient(opts: TransportOptions): ElizaServiceClient {
+export function createElizaServiceClient(opts: TransportOptions): ElizaService {
     return new ElizaServiceClient(opts);
 }
 
@@ -61,8 +62,8 @@ export class ElizaServiceClient extends TwirpClient {
             "application/json",
             request
         );
-        return promise.then((data) =>
-             SayResponse.fromJson(data as any, { ignoreUnknownFields: true })
+        return promise.then(async (data) =>
+             SayResponse.fromJson(data as JsonValue)
         );
     };
 
@@ -73,8 +74,8 @@ export class ElizaServiceClient extends TwirpClient {
             "application/json",
             request
         );
-        return promise.then((data) =>
-             ConverseResponse.fromJson(data as any, { ignoreUnknownFields: true })
+        return promise.then(async (data) =>
+             ConverseResponse.fromJson(data as JsonValue)
         );
     };
 
@@ -85,8 +86,8 @@ export class ElizaServiceClient extends TwirpClient {
             "application/json",
             request
         );
-        return promise.then((data) =>
-             IntroduceResponse.fromJson(data as any, { ignoreUnknownFields: true })
+        return promise.then(async (data) =>
+             IntroduceResponse.fromJson(data as JsonValue)
         );
     };
 

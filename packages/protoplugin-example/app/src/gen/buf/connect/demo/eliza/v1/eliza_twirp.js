@@ -28,17 +28,17 @@ export class ElizaServiceClient extends TwirpClient {
     }
     async Say(request) {
         const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Say", "application/json", request);
-        return promise.then((data) => SayResponse.fromJson(data, { ignoreUnknownFields: true }));
+        return promise.then(async (data) => SayResponse.fromJson(data));
     }
     ;
     async Converse(request) {
         const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Converse", "application/json", request);
-        return promise.then((data) => ConverseResponse.fromJson(data, { ignoreUnknownFields: true }));
+        return promise.then(async (data) => ConverseResponse.fromJson(data));
     }
     ;
     async Introduce(request) {
         const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Introduce", "application/json", request);
-        return promise.then((data) => IntroduceResponse.fromJson(data, { ignoreUnknownFields: true }));
+        return promise.then(async (data) => IntroduceResponse.fromJson(data));
     }
     ;
 }

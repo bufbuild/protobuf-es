@@ -23,6 +23,7 @@ export function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
+    f.print("import type { JsonValue } from '@bufbuild/protobuf';");
     f.print(
       "import { TwirpClient, TransportOptions } from 'protoc-gen-twirp-es/src/client.js';"
     );
@@ -34,7 +35,7 @@ export function generateTs(schema: Schema) {
         localServiceName,
         "Client(opts: TransportOptions): ",
         localServiceName,
-        "Client {"
+        " {"
       );
       f.print("    return new ", localServiceName, "Client(opts);");
       f.print("}");
@@ -79,12 +80,8 @@ export function generateTs(schema: Schema) {
         f.print('            "application/json",');
         f.print("            request");
         f.print("        );");
-        f.print("        return promise.then((data) =>");
-        f.print(
-          "             ",
-          method.output,
-          ".fromJson(data as any, { ignoreUnknownFields: true })"
-        );
+        f.print("        return promise.then(async (data) =>");
+        f.print("             ", method.output, ".fromJson(data as JsonValue)");
         f.print("        );");
         f.print("    };");
         f.print();
