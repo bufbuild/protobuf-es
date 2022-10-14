@@ -32,17 +32,6 @@ export function generateTs(schema: Schema) {
     f.print("    headers?: HeadersInit;");
     f.print("}");
     f.print();
-    f.print("export class TwirpError extends Error {");
-    f.print("    public readonly msg: string;");
-    f.print("    public readonly code: string;");
-    f.print();
-    f.print("    constructor(code: string, msg: string) {");
-    f.print("        super(msg);");
-    f.print("        this.code = code;");
-    f.print("        this.msg = msg;");
-    f.print("    }");
-    f.print("}");
-    f.print();
     f.print("class TwirpClient {");
     f.print("    private readonly options: TransportOptions = {");
     f.print("        baseUrl: '',");
@@ -110,7 +99,7 @@ export function generateTs(schema: Schema) {
             f.print("             ", method.output, ".fromJson(data as JsonValue)");
             f.print("        );");
         } else {
-            f.print("        throw new TwirpError('unimplemented', '", MethodKind[method.methodKind]," is not supported');");
+            f.print("        throw new Error('", MethodKind[method.methodKind]," is not supported');");
         }
         f.print("    };");
         f.print();

@@ -26,17 +26,6 @@ export interface TransportOptions {
     headers?: HeadersInit;
 }
 
-export class TwirpError extends Error {
-    public readonly msg: string;
-    public readonly code: string;
-
-    constructor(code: string, msg: string) {
-        super(msg);
-        this.code = code;
-        this.msg = msg;
-    }
-}
-
 class TwirpClient {
     private readonly options: TransportOptions = {
         baseUrl: '',
@@ -119,11 +108,11 @@ export class ElizaServiceClient extends TwirpClient {
     };
 
     async Converse(request: ConverseRequest): Promise<ConverseResponse> {
-        throw new TwirpError('unimplemented', 'BiDiStreaming is not supported');
+        throw new Error('BiDiStreaming is not supported');
     };
 
     async Introduce(request: IntroduceRequest): Promise<IntroduceResponse> {
-        throw new TwirpError('unimplemented', 'ServerStreaming is not supported');
+        throw new Error('ServerStreaming is not supported');
     };
 
 }

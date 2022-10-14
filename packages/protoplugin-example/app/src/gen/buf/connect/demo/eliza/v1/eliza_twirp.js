@@ -18,13 +18,6 @@
 /* @ts-nocheck */
 
 import { SayResponse } from "./eliza_pb.js";
-export class TwirpError extends Error {
-    constructor(code, msg) {
-        super(msg);
-        this.code = code;
-        this.msg = msg;
-    }
-}
 class TwirpClient {
     constructor(opts) {
         this.options = {
@@ -59,11 +52,11 @@ export class ElizaServiceClient extends TwirpClient {
     }
     ;
     async Converse(request) {
-        throw new TwirpError('unimplemented', 'BiDiStreaming is not supported');
+        throw new Error('BiDiStreaming is not supported');
     }
     ;
     async Introduce(request) {
-        throw new TwirpError('unimplemented', 'ServerStreaming is not supported');
+        throw new Error('ServerStreaming is not supported');
     }
     ;
 }
