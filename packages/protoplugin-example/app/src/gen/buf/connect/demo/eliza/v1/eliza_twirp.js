@@ -1,4 +1,4 @@
-// Copyright 2021-2022 Buf Technologies, Inc.
+// Copyright 2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,44 +17,53 @@
 /* eslint-disable */
 /* @ts-nocheck */
 
-import {
-  ConverseResponse,
-  IntroduceResponse,
-  SayResponse,
-} from "./eliza_pb.js";
-import { TwirpClient } from "protoc-gen-twirp-es/src/client.js";
+import { SayResponse } from "./eliza_pb.js";
+export class TwirpError extends Error {
+    constructor(code, msg) {
+        super(msg);
+        this.code = code;
+        this.msg = msg;
+    }
+}
+class TwirpClient {
+    constructor(opts) {
+        this.options = {
+            baseUrl: '',
+        };
+        this.options = opts;
+    }
+    async request(service, method, contentType, data) {
+        var _a;
+        const headers = new Headers((_a = this.options.headers) !== null && _a !== void 0 ? _a : []);
+        headers.set('content-type', contentType);
+        const response = await fetch(`${this.options.baseUrl}/${service}/${method}`, Object.assign(Object.assign({}, this.options), { method: 'POST', headers, body: data.toJsonString() }));
+        if (response.status === 200) {
+            if (contentType === 'application/json') {
+                return await response.json();
+            }
+            return new Uint8Array(await response.arrayBuffer());
+        }
+        throw Error(await response.json());
+    }
+}
 export function createElizaServiceClient(opts) {
-  return new ElizaServiceClient(opts);
+    return new ElizaServiceClient(opts);
 }
 export class ElizaServiceClient extends TwirpClient {
-  constructor(opts) {
-    super(opts);
-  }
-  async Say(request) {
-    const promise = this.request(
-      "buf.connect.demo.eliza.v1.ElizaService",
-      "Say",
-      "application/json",
-      request
-    );
-    return promise.then(async (data) => SayResponse.fromJson(data));
-  }
-  async Converse(request) {
-    const promise = this.request(
-      "buf.connect.demo.eliza.v1.ElizaService",
-      "Converse",
-      "application/json",
-      request
-    );
-    return promise.then(async (data) => ConverseResponse.fromJson(data));
-  }
-  async Introduce(request) {
-    const promise = this.request(
-      "buf.connect.demo.eliza.v1.ElizaService",
-      "Introduce",
-      "application/json",
-      request
-    );
-    return promise.then(async (data) => IntroduceResponse.fromJson(data));
-  }
+    constructor(opts) {
+        super(opts);
+    }
+    async Say(request) {
+        const promise = this.request("buf.connect.demo.eliza.v1.ElizaService", "Say", "application/json", request);
+        return promise.then(async (data) => SayResponse.fromJson(data));
+    }
+    ;
+    async Converse(request) {
+        throw new TwirpError('unimplemented', 'BiDiStreaming is not supported');
+    }
+    ;
+    async Introduce(request) {
+        throw new TwirpError('unimplemented', 'ServerStreaming is not supported');
+    }
+    ;
 }

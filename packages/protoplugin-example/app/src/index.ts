@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createElizaServiceClient } from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
+import {
+  createElizaServiceClient,
+  TwirpError,
+} from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
 import {
   IntroduceRequest,
   SayRequest,
@@ -67,14 +70,16 @@ async function send() {
 
     addNode(response.sentence, "eliza");
   } else {
-    const request = new IntroduceRequest({
-      name: sentence,
-    });
-    console.log(request);
+    try {
+      const request = new IntroduceRequest({
+        name: sentence,
+      });
 
-    // for await (const response of client.Introduce(request)) {
-    //   addNode(response.sentence, "eliza");
-    // }
+      await client.Introduce(request);
+    } catch (e) {
+      const twirpError = e as TwirpError;
+      addNode(`${twirpError.msg}, but we can still chat.  OK?`, "eliza");
+    }
 
     introFinished = true;
   }
