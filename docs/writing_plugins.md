@@ -3,7 +3,13 @@ Writing Plugins
 
 ## Introduction
 
-This package helps to create your own code generator plugin.  At a high level, the process is:
+Code generator plugins are a unique feature of protocol buffer compilers like protoc and the buf CLI.  With a plugin, you can generate files based on Protobuf schemas as the input.  Outputs such as RPC clients and server stubs, mappings from protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
+
+The contract between the protobuf compiler and a code generator plugin is defined in [plugin.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto). Plugins are simple executables (typically on your `$PATH`) that are named `protoc-gen-x`, where `x` is the name of the language or feature that the plugin provides. The protobuf compiler parses the protobuf files, and invokes the plugin, sending a `CodeGeneratorRequest` on standard in, and expecting a `CodeGeneratorResponse` on standard out. The request contains a set of descriptors (see [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto)) - an abstract version of the parsed protobuf files. The response contains a list of files, each having a name and text content.
+
+For more information on how plugins work, check out [our documentation](https://docs.buf.build/reference/images).
+
+With the `@bufbuild/protoplugin` package, you can write your own code generator plugins.  At a high level, the process is:
 
 1.  Implement a TypeScript generator function, `generateTs`, which is used to generate TypeScript files
 2.  Pass this function along with some static configuration values (and optional functions) to `createEcmaScriptPlugin` from the `@bufbuild/protoplugin` package.
