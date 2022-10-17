@@ -8,7 +8,7 @@ module.exports = {
     node: true,
   },
   ignorePatterns: [
-    "packages/**/dist/**",
+    "packages/*/dist/**",
     "node_modules/**",
   ],
   plugins: ["@typescript-eslint", "node", "import"],

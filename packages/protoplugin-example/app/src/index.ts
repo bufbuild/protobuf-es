@@ -12,17 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createElizaServiceClient } from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
-import {
-  IntroduceRequest,
-  SayRequest,
-} from "./gen/buf/connect/demo/eliza/v1/eliza_pb.js";
+import { ElizaServiceClient } from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
+import { SayRequest } from "./gen/buf/connect/demo/eliza/v1/eliza_pb.js";
 
 let introFinished = false;
 
-const client = createElizaServiceClient({
-  baseUrl: "https://demo.connect.build",
-});
+const client = new ElizaServiceClient("https://demo.connect.build");
 
 // Query for the common elements and cache them.
 const containerEl = document.getElementById(
@@ -67,16 +62,7 @@ async function send() {
 
     addNode(response.sentence, "eliza");
   } else {
-    try {
-      const request = new IntroduceRequest({
-        name: sentence,
-      });
-
-      await client.Introduce(request);
-    } catch (e) {
-      const err = e as Error;
-      addNode(`${err.message}, but we can still chat.  OK?`, "eliza");
-    }
+    addNode(`Streaming is not supported but we can still chat.  OK?`, "eliza");
 
     introFinished = true;
   }
