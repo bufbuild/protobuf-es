@@ -80,11 +80,9 @@ See the [`PluginInit`](#plugininit) object definition for more information.
 
 ### Create an executable file
 
-Then, you need to create an executable file that will execute the plugin returned from the above call:
+Then, you need to create an executable file that will execute the plugin returned from the above call.  This file should be placed in `bin` without an extension and named after the plugin.  For this example, the file would reside at `bin/protoc-gen-foo`:
 
 ```js
-// bin/protoc-gen-foo
-
 #!/usr/bin/env node
 
 const { runNodeJs } = require("@bufbuild/protoplugin");
