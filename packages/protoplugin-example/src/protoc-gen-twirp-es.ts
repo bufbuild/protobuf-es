@@ -5,7 +5,7 @@ import { generateTs } from "./typescript.js";
 import { version } from "../package.json";
 import { runNodeJs } from "@bufbuild/protoplugin";
 
-export const protocGenTwirpEs = createEcmaScriptPlugin({
+const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
   version: `v${String(version)}`,
   generateTs,
