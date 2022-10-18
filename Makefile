@@ -124,7 +124,7 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-example: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
+$(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
 	@rm -rf packages/protobuf-example/src/gen/*
 	npm run -w packages/protobuf-example buf:generate
 	@mkdir -p $(@D)
