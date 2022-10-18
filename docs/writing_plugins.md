@@ -113,7 +113,7 @@ function generateTs(schema: Schema) {
 
 The `Schema` object contains the hierarchy of the grammar contained within a Protobuf file.  The plugin framework uses its own interfaces that mostly correspond to the `DescriptorProto` objects representing the various elements of Protobuf (messages, enums, services, methods, etc.).  Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
 
-The hierarchy starts with `DescFile`, which contains all the nested `Desc` types necessary to being generating code.  For example:
+The hierarchy starts with `DescFile`, which contains all the nested `Desc` types necessary to begin generating code.  For example:
 
 ```ts
 for (const file of schema.files) {
@@ -179,7 +179,7 @@ function generateTs(schema: Schema) {
      for (const service of file.services) {
         f.print("// generating services from ", file.name);
         f.print();
-        for (const service of file.services) {
+        for (const method of service.methods) {
             f.print("generating methods for service ", service.name);
             f.print();
             ...
@@ -361,7 +361,7 @@ const opts = proto3.makeMessageType("ServiceOptions", [
     no: 5,
     name: "mapping",
     kind: "map",
-    K: 9 /* ScalarType.STRING */,
+    K: ScalarType.STRING,
     V: {
       kind: "scalar",
       T: ScalarType.STRING,
