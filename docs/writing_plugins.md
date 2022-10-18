@@ -20,7 +20,7 @@ Writing Plugins
 
 ## Introduction
 
-Code generator plugins are a unique feature of protocol buffer compilers like protoc and the buf CLI.  With a plugin, you can generate files based on Protobuf schemas as the input.  Outputs such as RPC clients and server stubs, mappings from protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
+Code generator plugins are a unique feature of protocol buffer compilers like protoc and the [buf CLI](https://docs.buf.build/introduction#the-buf-cli).  With a plugin, you can generate files based on Protobuf schemas as the input.  Outputs such as RPC clients and server stubs, mappings from protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
 
 The contract between the protobuf compiler and a code generator plugin is defined in [plugin.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto). Plugins are simple executables (typically on your `$PATH`) that are named `protoc-gen-x`, where `x` is the name of the language or feature that the plugin provides. The protobuf compiler parses the protobuf files, and invokes the plugin, sending a `CodeGeneratorRequest` on standard in, and expecting a `CodeGeneratorResponse` on standard out. The request contains a set of descriptors (see [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto)) - an abstract version of the parsed protobuf files. The response contains a list of files, each having a name and text content.
 
