@@ -65,7 +65,6 @@ function verifyOutFiles(
     (prev, curr) => prev + curr.length,
     0
   );
-
   expect(resp.file.length).toEqual(totalExpectedFiles);
 
   targets.forEach((target) => {
@@ -160,7 +159,7 @@ describe("no declaration generator with variant target outs", function () {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
     });
   });
-  test.only("js+dts", () => {
+  test("js+dts", () => {
     // Note that even though we only requested js+dts, the TS generator
     // ran also because we need it to emit the declaration files.  However,
     // there should be no TS files in the generated output since ts was
