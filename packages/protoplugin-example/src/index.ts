@@ -47,7 +47,7 @@ function addNode(text: string, sender: string): void {
 }
 
 async function send() {
-  const sentence = inputEl?.value ?? "";
+  const sentence = inputEl.value;
 
   addNode(sentence, "user");
 
@@ -69,5 +69,5 @@ async function send() {
 }
 
 export function handleSend() {
-  send();
+  void send();
 }
