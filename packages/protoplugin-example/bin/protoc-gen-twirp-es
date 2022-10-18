@@ -1,6 +1,0 @@
-#!/usr/bin/env node
-
-const {runNodeJs} = require("@bufbuild/protoplugin");
-const {protocGenTwirpEs} = require("../dist/cjs/src/protoc-gen-twirp-es-plugin.js");
-
-runNodeJs(protocGenTwirpEs);

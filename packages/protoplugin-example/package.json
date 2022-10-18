@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "app:link": "npm link ../protoplugin ../protobuf ../protoc-gen-es",
-    "app:buf:generate": "npm run app:link && buf generate buf.build/bufbuild/eliza",
-    "app:start": "npm run app:buf:generate && npm run app:build",
-    "app:build": "../../node_modules/typescript/bin/tsc --noEmit && npx esbuild app/src/index.ts --serve=localhost:3000 --servedir=app/www --outdir=app/www --bundle --global-name=eliza",
-    "plugin:link": "npm link ../protoplugin ../protobuf ../protoc-gen-es",
-    "plugin:clean": "rm -rf ./dist/cjs/*",
-    "plugin:build": "npm run plugin:link && ../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs"
+    "build": "../../node_modules/typescript/bin/tsc --noEmit",
+    "app:buf:generate": "buf generate buf.build/bufbuild/eliza",
+    "app:start": "npm run app:buf:generate && npm run app:serve",
+    "app:serve": "../../node_modules/typescript/bin/tsc --noEmit && npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
   },
   "author": "Buf",
   "license": "Apache-2.0",
@@ -27,6 +24,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "^0.1.1",
     "@bufbuild/protoc-gen-es": "^0.1.1",
-    "@bufbuild/protoplugin": "^0.1.1"
+    "@bufbuild/protoplugin": "^0.1.1",
+    "tsx": "^3.10.3"
   }
 }

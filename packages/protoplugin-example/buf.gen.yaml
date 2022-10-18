@@ -6,8 +6,8 @@ version: v1
 plugins:
   - name: es
     opt: target=ts
-    out: app/src/gen
+    out: src/gen
   - name: twirp-es
-    path: ./bin/protoc-gen-twirp-es
+    path: ./src/protoc-gen-twirp-es.ts
     opt: target=ts
-    out: app/src/gen
+    out: src/gen
