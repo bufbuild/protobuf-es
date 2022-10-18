@@ -1,23 +1,15 @@
 {
   "name": "protoc-gen-twirp-es",
   "version": "0.1.0",
+  "private": true,
   "description": "",
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
-    "app:buf:generate": "buf generate buf.build/bufbuild/eliza",
-    "app:start": "npm run app:buf:generate && npm run app:serve",
-    "app:serve": "../../node_modules/typescript/bin/tsc --noEmit && npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
+    "buf:generate": "buf generate buf.build/bufbuild/eliza",
+    "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
   },
   "author": "Buf",
   "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bufbuild/protobuf-es.git",
-    "directory": "packages/protoplugin-example"
-  },
-  "bin": {
-    "protoc-gen-twirp-es": "bin/protoc-gen-twirp-es"
-  },
   "engines": {
     "node": ">=14"
   },
