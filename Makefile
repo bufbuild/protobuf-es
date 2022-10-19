@@ -73,6 +73,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protobuf $(GEN)/protoplugin-test node_module
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoplugin node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
+	npm run -w packages/protoplugin-example buf:generate
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
