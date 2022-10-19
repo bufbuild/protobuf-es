@@ -17,4 +17,4 @@ To build the plugin:
 
 To run the example webpage and see the generated code in action:
 
-`npm run app:start`
+`npm run start`
