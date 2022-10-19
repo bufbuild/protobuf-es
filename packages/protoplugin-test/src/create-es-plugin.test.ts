@@ -29,7 +29,14 @@ function generateFile(schema: Schema, extension: string) {
     for (const enumeration of file.enums) {
       f.print(makeJsDoc(enumeration));
     }
-    f.print('const test = "test"');
+    const { Message } = schema.runtime;
+    const MessageAsType = Message.toTypeOnly();
+    f.print("export class Test {");
+    f.print();
+    f.print("    print<T extends ", MessageAsType, "<T>>(data: T) {");
+    f.print("        console.log(data);");
+    f.print("    }");
+    f.print("}");
   }
 }
 
@@ -66,6 +73,8 @@ function verifyOutFiles(
     0
   );
   expect(resp.file.length).toEqual(totalExpectedFiles);
+
+  console.log(resp);
 
   targets.forEach((target) => {
     const expectedFiles = fixture[target];
@@ -171,6 +180,16 @@ describe("no declaration generator with variant target outs", function () {
   test("ts", () => {
     verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
+    });
+  });
+  test("js", () => {
+    verifyOutFiles(protocGenEs, {
+      js: ["proto/person_proto.js", "proto/address_book_proto.js"],
+    });
+  });
+  test("dts", () => {
+    verifyOutFiles(protocGenEs, {
+      dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
   });
   test("js+dts", () => {

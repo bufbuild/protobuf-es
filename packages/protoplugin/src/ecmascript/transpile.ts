@@ -105,7 +105,9 @@ export function transpile(
   const results: FileInfo[] = [];
   let err: Error | undefined;
 
-  program.emit(
+  console.error(ts.getPreEmitDiagnostics(program));
+
+  const result = program.emit(
     undefined,
     (
       fileName: string,
@@ -143,6 +145,7 @@ export function transpile(
       });
     }
   );
+  console.log(result);
   if (err) {
     throw err;
   }
