@@ -20,7 +20,16 @@
 import type {JsonValue, Message} from "@bufbuild/protobuf";
 import {SayRequest, SayResponse} from "./eliza_pb.js";
 
-
+/**
+ * ElizaService provides a way to talk to the ELIZA, which is a port of
+ * the DOCTOR script for Joseph Weizenbaum's original ELIZA program.
+ * Created in the mid-1960s at the MIT Artificial Intelligence Laboratory,
+ * ELIZA demonstrates the superficiality of human-computer communication.
+ * DOCTOR simulates a psychotherapist, and is commonly found as an Easter
+ * egg in emacs distributions.
+ *
+ * @generated from service buf.connect.demo.eliza.v1.ElizaService
+ */
 export class ElizaServiceClient {
     private baseUrl: string = '';
 
@@ -52,13 +61,14 @@ export class ElizaServiceClient {
         }
         throw Error(`HTTP ${response.status} ${response.statusText}`)
     }
+
     /**
      * Say is a unary request demo. This method should allow for a one sentence
      * response given a one sentence request.
      *
      * @generated from rpc buf.connect.demo.eliza.v1.ElizaService.Say
      */
-    async Say(request: SayRequest): Promise<SayResponse> {
+    async say(request: SayRequest): Promise<SayResponse> {
         const promise = this.request(
             "buf.connect.demo.eliza.v1.ElizaService", 
             "Say",

@@ -1,5 +1,5 @@
 {
-  "name": "protoc-gen-twirp-es",
+  "name": "@bufbuild/protoplugin-example",
   "version": "0.1.0",
   "private": true,
   "description": "",

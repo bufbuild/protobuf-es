@@ -27,9 +27,9 @@ function generateTs(schema: Schema) {
     } = schema.runtime;
     // Convert the Message ImportSymbol to a type-only ImportSymbol
     const MessageAsType = Message.toTypeOnly();
-    f.print();
     for (const service of file.services) {
       const localServiceName = localName(service);
+      f.print(makeJsDoc(service));
       f.print("export class ", localServiceName, "Client {");
       f.print("    private baseUrl: string = '';");
       f.print();
@@ -63,8 +63,9 @@ function generateTs(schema: Schema) {
       f.print("    }");
       for (const method of service.methods) {
         if (method.methodKind === MethodKind.Unary) {
+            f.print();
             f.print(makeJsDoc(method, "    "));
-            f.print("    async ", method.name, "(request: ", method.input, "): Promise<", method.output, "> {");
+            f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
             f.print("        const promise = this.request(");
             f.print("            ", literalString(service.typeName), ", ");
             f.print("            ", literalString(method.name), ",");

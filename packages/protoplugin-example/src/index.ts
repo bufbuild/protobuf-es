@@ -58,7 +58,7 @@ async function send() {
       sentence,
     });
 
-    const response = await client.Say(request);
+    const response = await client.say(request);
 
     addNode(response.sentence, "eliza");
   } else {
