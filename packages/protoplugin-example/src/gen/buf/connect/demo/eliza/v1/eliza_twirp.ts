@@ -1,4 +1,4 @@
-// Copyright 2021-2022 Buf Technologies, Inc.
+// Copyright 2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 /* eslint-disable */
 /* @ts-nocheck */
 
+import type {JsonValue, Message} from "@bufbuild/protobuf";
 import {SayRequest, SayResponse} from "./eliza_pb.js";
 
-import type { JsonValue, Message } from '@bufbuild/protobuf';
 
 export class ElizaServiceClient {
     private baseUrl: string = '';

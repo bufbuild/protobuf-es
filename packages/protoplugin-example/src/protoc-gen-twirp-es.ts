@@ -21,7 +21,12 @@ function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
-    f.print("import type { JsonValue, Message } from '@bufbuild/protobuf';");
+    const {
+      Message,
+      JsonValue
+    } = schema.runtime;
+    // Convert the Message ImportSymbol to a type-only ImportSymbol
+    const MessageAsType = Message.toTypeOnly();
     f.print();
     for (const service of file.services) {
       const localServiceName = localName(service);
@@ -32,7 +37,7 @@ function generateTs(schema: Schema) {
       f.print("        this.baseUrl = url;");
       f.print("    }");
       f.print();
-      f.print("    async request<T extends Message<T>>(");
+      f.print("    async request<T extends ", MessageAsType, "<T>>(");
       f.print("        service: string,");
       f.print("        method: string,");
       f.print("        contentType: string,");
@@ -67,7 +72,7 @@ function generateTs(schema: Schema) {
             f.print("            request");
             f.print("        );");
             f.print("        return promise.then(async (data) =>");
-            f.print("             ", method.output, ".fromJson(data as JsonValue)");
+            f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
             f.print("        );");
         }
       }
