@@ -46,7 +46,7 @@ const defaultOptions: ts.CompilerOptions = {
   // Language and Environment
   lib: [],
   moduleDetection: "force",
-  target: ts.ScriptTarget.ES2020,
+  target: ts.ScriptTarget.ES2017,
 
   // Completeness
   skipLibCheck: true,
