@@ -9,5 +9,5 @@ plugins:
     out: src/gen
   - name: twirp-es
     path: ./src/protoc-gen-twirp-es.ts
-    opt: target=ts
+    opt: target=dts
     out: src/gen
