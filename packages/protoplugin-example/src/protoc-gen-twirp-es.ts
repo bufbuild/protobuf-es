@@ -1,4 +1,4 @@
-#!/usr/bin/env npx tsx
+#!/usr/bin/env -S npx tsx
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
