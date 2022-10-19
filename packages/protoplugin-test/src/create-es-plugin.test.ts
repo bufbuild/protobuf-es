@@ -22,6 +22,7 @@ type OutFixture = {
   [key in Target as string]: string[];
 };
 
+// prettier-ignore
 function generateFile(schema: Schema, extension: string) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + extension);
@@ -33,8 +34,19 @@ function generateFile(schema: Schema, extension: string) {
     const MessageAsType = Message.toTypeOnly();
     f.print("export class Test {");
     f.print();
-    f.print("    print<T extends ", MessageAsType, "<T>>(data: T) {");
+    f.print("    interface Todo {");
+    f.print("       title: string;");
+    f.print("       desc: string;");
+    f.print("    }");
+    f.print();
+    f.print("    print<T extends ", MessageAsType, "<T>>(data: T, todo: Partial<Todo>): Promise<string> {");
+    f.print("        const headers = new Headers([]);");
+    f.print("        console.log(headers);");
     f.print("        console.log(data);");
+    f.print("        console.log(todo);");
+    f.print("        return new Promise<string>((resolve, reject) => {");
+    f.print("            resolve('test');");
+    f.print("        });");
     f.print("    }");
     f.print("}");
   }
@@ -73,8 +85,6 @@ function verifyOutFiles(
     0
   );
   expect(resp.file.length).toEqual(totalExpectedFiles);
-
-  console.log(resp);
 
   targets.forEach((target) => {
     const expectedFiles = fixture[target];
