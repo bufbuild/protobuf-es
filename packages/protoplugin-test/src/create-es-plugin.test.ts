@@ -110,6 +110,20 @@ describe("all generators with variant target outs", function () {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
     });
   });
+  test("js", () => {
+    // Note the TS generator was not run because we only specified js+dts
+    // and provided a generator for both, so there was no need for TS files
+    verifyOutFiles(protocGenEs, {
+      js: ["proto/person_proto.js", "proto/address_book_proto.js"],
+    });
+  });
+  test("dts", () => {
+    // Note the TS generator was not run because we only specified js+dts
+    // and provided a generator for both, so there was no need for TS files
+    verifyOutFiles(protocGenEs, {
+      dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
+    });
+  });
   test("js+dts", () => {
     // Note the TS generator was not run because we only specified js+dts
     // and provided a generator for both, so there was no need for TS files
