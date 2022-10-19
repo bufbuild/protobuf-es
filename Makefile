@@ -71,6 +71,12 @@ $(BUILD)/protoplugin-test: $(BUILD)/protobuf $(GEN)/protoplugin-test node_module
 	@mkdir -p $(@D)
 	@touch $(@)
 
+$(BUILD)/protoplugin-example: $(BUILD)/protoplugin node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
+	npm run -w packages/protoplugin-example clean
+	npm run -w packages/protoplugin-example build
+	@mkdir -p $(@D)
+	@touch $(@)
+
 $(BUILD)/protoc-gen-es: $(BUILD)/protoplugin node_modules tsconfig.base.json packages/protoc-gen-es/tsconfig.json $(shell find packages/protoc-gen-es/src -name '*.ts')
 	npm run -w packages/protoc-gen-es clean
 	npm run -w packages/protoc-gen-es build
@@ -150,7 +156,7 @@ clean: ## Delete build artifacts and installed dependencies
 	git clean -Xdf
 
 .PHONY: build
-build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/protobuf-example ## Build
+build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/protobuf-example $(BUILD)/protoplugin-example ## Build
 
 .PHONY: test
 test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all tests

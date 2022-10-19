@@ -4,7 +4,8 @@
   "private": true,
   "description": "",
   "scripts": {
-    "build": "../../node_modules/typescript/bin/tsc --noEmit",
+    "clean": "rm -rf src/gen",
+    "build": "npm run buf:generate && ../../node_modules/typescript/bin/tsc --noEmit",
     "buf:generate": "buf generate buf.build/bufbuild/eliza",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
   },
