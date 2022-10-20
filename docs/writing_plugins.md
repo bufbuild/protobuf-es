@@ -10,6 +10,10 @@ Writing Plugins
   - [Walking through the schema](#walking-through-the-schema)
   - [Printing to a generated file](#printing-to-a-generated-file)
   - [Importing](#importing)
+     - [Importing from an NPM package](#importing-from-an-npm-package) 
+     - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code) 
+     - [Importing from the `@bufbuild/protobuf` runtime](#importing-from-the-bufbuildprotobuf-runtime)
+     - [Why use `f.import()`?](#why-use-fimport)
   - [Exporting](#exporting)
   - [Parsing plugin options](#parsing-plugin-options)
   - [Reading custom options](#reading-custom-options)
@@ -193,13 +197,101 @@ function generateTs(schema: Schema) {
 
 ### Importing
 
-TODO
-Describe importing from an npm package or from protoc-gen-es generated code
+Generating import statements is accomplished via a combination of the `print` function and another function on the generated file object:  `import`.  The approach varies depending on the type of import you would like to generate.  
+
+#### Importing from an NPM package
+
+To generate an import statement from an NPM package dependency, you first invoke the `import` function, passing the name of the import and the package in which it is located.
+
+For example, to import the `useEffect` hook from React:
+
+```ts
+const useEffect = f.import("useEffect", "react");
+```
+
+This will return you an object of type `ImportSymbol`.  This object can then be used in your generation code with the `print` function:
+
+```ts
+f.print(useEffect, "(() => {");
+f.print("    document.title = `You clicked ${count} times`;
+f.print("});");
+```
+
+When the `ImportSymbol` is printed (and only when it is printed), an import statement will be automatically generated for you:
+
+`import { useEffect } from 'react';`
+
+#### Importing from `protoc-gen-es` generated code 
+
+Imports in this way work similarly.  Again, the `print` statement will automatically generate the import statement for you when invoked.
+
+```ts
+declare var someMessageDescriptor: DescMessage;
+const someMessage = f.import(someMessageDescriptor);
+f.print('const msg = new ', someMessage,'();');
+```
+
+There is also a shortcut in `print` which does the above for you:
+
+```ts
+f.print('const msg = new ', someMessageDescriptor,'();');
+```
+
+#### Importing from the @bufbuild/protobuf runtime
+
+The `Schema` object contains a `runtime` property which provides an `ImportSymbol` for all important types as a convenience:
+
+```ts
+const { JsonValue } = schema.runtime;
+f.print('const j: ', JsonValue, ' = "hello";');
+```
+
+#### Why use `f.import()`?
+
+The natural instinct would be to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but this is not the recommended approach.  Using `f.import()` has many advantages such as:
+
+- **Conditional imports**
+   - Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
+   
+- **Prevents name collisions**
+    - For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
+
+- **Compatibility across standards**
+    - Abstracting the generation of imports allows the library to offer a plugin option for all ECMAScript plugins that generates imports with CommonJS instead of ECMAScript imports, and all plugins work with it out of the box.
+
 
 ### Exporting
 
-TODO
-Describe exporting symbols, and importing them in other generated files
+Working with exports is accomplished via the `export` function on the generated file object.  Let's walk through an example:
+
+Suppose you generate a validation function for every message.  If you have a nested message, such as:
+
+```proto
+message Bar {
+   Foo foo = 1;
+}
+```
+
+You may want to import and use the validation function generated for message `Foo` when generating the code for message `Bar`.  To generate the validation function, you would use `export` as follows:
+
+```ts
+const fn = f.export("validateFoo");
+f.print("function ", fn, "() {");
+f.print("   return true;");
+f.print("}");
+```
+
+Note that `export` returns an `ImportSymbol` that can then be used by another dependency.  The trick is to store this `ImportSymbol` and use it when you generate the validation function for `Bar`.  Storing the symbol is as simple as putting it in a global map:
+
+```ts
+const exportMap = new Map<DescMessage, ImportSymbol>()
+```
+
+That way, when you need to use it for `Bar`, you can simply access the map:
+
+```ts
+const fooValidationFn = exportMap.get(bar);  // bar is of type DescMessage
+```
 
 ### Parsing plugin options
 
