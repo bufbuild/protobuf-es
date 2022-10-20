@@ -20,7 +20,7 @@ then run the following commands:
 
 ```shell
 # in the project root:
-cd packages/example
+cd packages/protobuf-example
 npm install
 npm run build
 ```
