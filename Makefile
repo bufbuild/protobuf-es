@@ -12,7 +12,7 @@ BUILD = .tmp/build
 GEN   = .tmp/gen
 PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
 LICENSE_HEADER_YEAR_RANGE := 2021-2022
-LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/
+LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
 GOOGLE_PROTOBUF_VERSION = 21.7
 TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.2
@@ -65,9 +65,16 @@ $(BUILD)/protoplugin: $(BUILD)/protobuf node_modules tsconfig.base.json packages
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(BUILD)/protoplugin-test: $(BUILD)/protobuf $(GEN)/protoplugin-test node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
+$(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
 	npm run -w packages/protoplugin-test clean
 	npm run -w packages/protoplugin-test build
+	@mkdir -p $(@D)
+	@touch $(@)
+
+$(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
+	npm run -w packages/protoplugin-example clean
+	npm run -w packages/protoplugin-example buf:generate
+	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -83,9 +90,9 @@ $(BUILD)/protobuf-conformance: $(GEN)/protobuf-conformance node_modules tsconfig
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(BUILD)/example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/example/tsconfig.json $(shell find packages/example/src -name '*.ts')
-	npm run -w packages/example clean
-	npm run -w packages/example build
+$(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/protobuf-example/tsconfig.json $(shell find packages/protobuf-example/src -name '*.ts')
+	npm run -w packages/protobuf-example clean
+	npm run -w packages/protobuf-example build
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -124,9 +131,9 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/example: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/example/buf.gen.yaml $(shell find packages/example -name '*.proto')
-	@rm -rf packages/example/src/gen/*
-	npm run -w packages/example buf:generate
+$(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
+	@rm -rf packages/protobuf-example/src/gen/*
+	npm run -w packages/protobuf-example buf:generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -150,7 +157,7 @@ clean: ## Delete build artifacts and installed dependencies
 	git clean -Xdf
 
 .PHONY: build
-build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/example ## Build
+build: $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protoplugin $(BUILD)/protoplugin-test $(BUILD)/protobuf-conformance $(BUILD)/protoc-gen-es $(BUILD)/protobuf-example $(BUILD)/protoplugin-example ## Build
 
 .PHONY: test
 test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all tests
@@ -181,7 +188,7 @@ test-ts-compat: $(GEN)/protobuf-test node_modules
 	done
 
 .PHONY: lint
-lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/example ## Lint all files
+lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
 	npx eslint --max-warnings 0 .
 
 .PHONY: format

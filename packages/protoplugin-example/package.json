@@ -1,0 +1,23 @@
+{
+  "name": "@bufbuild/protoplugin-example",
+  "version": "0.1.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "clean": "rm -rf src/gen",
+    "build": "../../node_modules/typescript/bin/tsc --noEmit",
+    "buf:generate": "buf generate buf.build/bufbuild/eliza",
+    "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
+  },
+  "author": "Buf",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^0.1.1",
+    "@bufbuild/protoc-gen-es": "^0.1.1",
+    "@bufbuild/protoplugin": "^0.1.1",
+    "tsx": "^3.10.3"
+  }
+}
