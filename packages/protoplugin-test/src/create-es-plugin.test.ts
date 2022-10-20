@@ -32,12 +32,12 @@ function generateFile(schema: Schema, extension: string) {
     }
     const { Message } = schema.runtime;
     const MessageAsType = Message.toTypeOnly();
-    f.print("export class Test {");
+    f.print("interface Todo {");
+    f.print("   title: string;");
+    f.print("   desc: string;");
+    f.print("}");
     f.print();
-    f.print("    interface Todo {");
-    f.print("       title: string;");
-    f.print("       desc: string;");
-    f.print("    }");
+    f.print("export class Test {");
     f.print();
     f.print("    print<T extends ", MessageAsType, "<T>>(data: T, todo: Partial<Todo>): Promise<string> {");
     f.print("        const headers = new Headers([]);");
@@ -94,6 +94,10 @@ function verifyOutFiles(
   });
 }
 
+/**
+ * The create-es-plugin tests verify the number and name of files output via the
+ * plugin process, using various target outs and various provided generator functions
+ */
 describe("all generators with variant target outs", function () {
   let protocGenEs: Plugin;
   beforeEach(() => {
