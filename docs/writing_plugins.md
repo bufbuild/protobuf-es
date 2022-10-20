@@ -253,7 +253,7 @@ The natural instinct would be to simply print your own import statements as `f.p
 - **Conditional imports**
    - Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
    
-- **Prevents name collisions**
+- **Preventing name collisions**
     - For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
 
 - **Compatibility across standards**
