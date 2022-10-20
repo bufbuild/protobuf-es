@@ -18,7 +18,11 @@ import type {
   DescMessage,
   DescOneof,
 } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import type {
+  GeneratedFile,
+  Printable,
+  Schema,
+} from "@bufbuild/protoplugin/ecmascript";
 import {
   getFieldTyping,
   literalString,
@@ -127,7 +131,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(makeJsDoc(field, "  "));
-  const e: Parameters<typeof f.print> = [];
+  const e: Printable = [];
   e.push("  ", localName(field));
   const { typing, optional } = getFieldTyping(field, f);
   if (optional) {

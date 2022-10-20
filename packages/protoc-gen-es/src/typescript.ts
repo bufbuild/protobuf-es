@@ -19,7 +19,11 @@ import type {
   DescOneof,
 } from "@bufbuild/protobuf";
 import { ScalarType } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import type {
+  GeneratedFile,
+  Printable,
+  Schema,
+} from "@bufbuild/protoplugin/ecmascript";
 import {
   localName,
   getFieldIntrinsicDefaultValue,
@@ -152,7 +156,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(makeJsDoc(field, "  "));
-  const e: Parameters<typeof f.print> = [];
+  const e: Printable = [];
   e.push("  ", localName(field));
   const { defaultValue, typingInferrable } =
     getFieldIntrinsicDefaultValue(field);
