@@ -27,7 +27,7 @@ pete = Person.fromBinary(bytes);
 pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
-To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/example), 
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
