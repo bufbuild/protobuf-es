@@ -132,7 +132,7 @@ export function createGeneratedFile(
     import(typeOrName: DescMessage | DescEnum | string, from?: string) {
       if (typeof typeOrName == "string") {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return createImportSymbol(name, from!);
+        return createImportSymbol(typeOrName, from!);
       }
       return createTypeImport(typeOrName);
     },
