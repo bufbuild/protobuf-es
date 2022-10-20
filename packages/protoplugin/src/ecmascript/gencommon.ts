@@ -25,12 +25,10 @@ import {
   DescService,
   ScalarType,
 } from "@bufbuild/protobuf";
-import type { GeneratedFile } from "./generated-file.js";
+import type { GeneratedFile, Printable } from "./generated-file.js";
 import type { ImportSymbol } from "./import-symbol.js";
 
 const { localName, getUnwrappedFieldType, scalarDefaultValue } = codegenInfo;
-
-type Printable = Parameters<GeneratedFile["print"]>[number];
 
 export function makeFilePreamble(
   file: DescFile,
