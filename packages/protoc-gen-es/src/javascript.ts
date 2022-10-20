@@ -14,7 +14,11 @@
 
 import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
 import { proto2, proto3, ScalarType } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import type {
+  GeneratedFile,
+  Printable,
+  Schema,
+} from "@bufbuild/protoplugin/ecmascript";
 import {
   getFieldExplicitDefaultValue,
   literalString,
@@ -97,7 +101,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 // prettier-ignore
 export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
   const protoN = schema.runtime[field.parent.file.syntax];
-  const e: Parameters<typeof f.print> = [];
+  const e: Printable = [];
   e.push("    { no: ", field.number, `, name: "`, field.name, `", `);
   if (field.jsonName !== undefined) {
     e.push(`jsonName: "`, field.jsonName, `", `);
