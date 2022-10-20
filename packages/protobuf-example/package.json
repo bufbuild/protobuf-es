@@ -1,5 +1,5 @@
 {
-  "name": "@bufbuild/example",
+  "name": "@bufbuild/protobuf-example",
   "private": true,
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "scripts": {
