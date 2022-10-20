@@ -22,7 +22,7 @@ import { makeImportPathRelative } from "./import-path.js";
 /**
  * All types that can be passed to GeneratedFile.print()
  */
-type Printable =
+export type Printable =
   | string
   | number
   | boolean
