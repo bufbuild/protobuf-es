@@ -13,6 +13,7 @@ Writing Plugins
      - [Importing from an NPM package](#importing-from-an-npm-package) 
      - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code) 
      - [Importing from the `@bufbuild/protobuf` runtime](#importing-from-the-bufbuildprotobuf-runtime)
+     - [Type-only imports](#type-only-imports)
      - [Why use `f.import()`?](#why-use-fimport)
   - [Exporting](#exporting)
   - [Parsing plugin options](#parsing-plugin-options)
@@ -20,6 +21,7 @@ Writing Plugins
      - [Scalar options](#scalar-options) 
      - [Message options](#message-options) 
      - [Enum options](#enum-options) 
+- [Testing](#testing)
 - [Examples](#examples)
 
 ## Introduction
@@ -246,6 +248,28 @@ const { JsonValue } = schema.runtime;
 f.print('const j: ', JsonValue, ' = "hello";');
 ```
 
+#### Type-only imports
+
+If you would like the printing of your `ImportSymbol` to generate a type-only import, then you can convert it using the `toTypeOnly()` function:
+
+```ts
+const { Message } = schema.runtime;
+const MessageAsType = Message.toTypeOnly();
+f.print("isFoo<T extends ", MessageAsType, "<T>>(data: T): bool {");
+f.print("   return true;");
+f.print("}");
+```
+
+This will instead generate the following import:
+
+```ts
+import type { Message } from "@bufbuild/protobuf";
+```
+
+This is useful when `importsNotUsedAsValues` is set to `error` in your tsconfig, which will not allow you to use a plain import if that import is never used as a value.  
+
+Note that some of the `ImportSymbol` types in the schema runtime (such as `JsonValue`) are type-only imports by default since they cannot be used as a value.  Most, though, can be used as both and will default to a regular import.
+
 #### Why use `f.import()`?
 
 The natural instinct would be to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but this is not the recommended approach.  Using `f.import()` has many advantages such as:
@@ -258,7 +282,6 @@ The natural instinct would be to simply print your own import statements as `f.p
 
 - **Compatibility across standards**
     - Abstracting the generation of imports allows the library to offer a plugin option for all ECMAScript plugins that generates imports with CommonJS instead of ECMAScript imports, and all plugins work with it out of the box.
-
 
 ### Exporting
 
@@ -302,7 +325,6 @@ parseOption(key: string, value: string | undefined): void;
 ```
 
 This function will be invoked by the framework, passing in any key/value pairs that it does not recognize from its pre-defined list.
-
 
 ### Reading custom options
 
@@ -513,6 +535,13 @@ The value of this option can be retrieved as follows:
 ```ts
 const enumVal = findCustomEnumOption(descMessage, 50001);  // 1
 ```
+
+## Testing
+
+There is no specific formula for how to test an individual plugin.  The official [protoc-gen-es](../packages/protoc-gen-es) plugin is extensively tested and could provide some guidance.  In addition, there are examples of testing the framework in the [protoplugin-test package](../packages/protoplugin-test). 
+
+A helpful suggestion is to generate specific use cases that are expected for your plugin and then test that the output is what is expected.  It is a bit difficult to test discrete functionality so verifying the output is valid is the recommended approach.  To test the transpilation process specifically, it may be helpful to generate your own JavaScript and declaration files and then verify that they match transpilation.  
+
 
 ## Examples
 
