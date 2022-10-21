@@ -163,8 +163,17 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         }
       }
 
-      // Get all generated files
-      const files = getFileInfo();
+      // Get generated files.  If ts was specified as a target, then we want
+      // all generated files.  If ts was not specified, we still may have
+      // generated TypeScript files to assist in transpilation.  If they were
+      // generated but not specified in the target out, we shouldn't produce
+      // these files in the CodeGeneratorResponse.
+      let files = getFileInfo();
+      if (!targetTs && tsFiles.length > 0) {
+        files = files.filter(
+          (file) => !tsFiles.some((tsFile) => tsFile.name === file.name)
+        );
+      }
 
       // If either boolean is true, it means it was specified in the target out
       // but no generate function was provided.  This also means that we will
