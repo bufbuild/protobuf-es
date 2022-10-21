@@ -14,7 +14,11 @@
 
 import type { FileInfo } from "./generated-file.js";
 import ts from "typescript";
-import { createSystem, createVirtualCompilerHost } from "@typescript/vfs";
+import {
+  createDefaultMapFromNodeModules,
+  createSystem,
+  createVirtualCompilerHost,
+} from "@typescript/vfs";
 
 /* eslint-disable import/no-named-as-default-member */
 
@@ -72,7 +76,9 @@ const defaultOptions: ts.CompilerOptions = {
  * npm does not support that yet.
  */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
-  const fsMap = new Map<string, string>();
+  const fsMap = createDefaultMapFromNodeModules({
+    target: options.target,
+  });
 
   files.forEach((file) => {
     fsMap.set(file.name, file.content);
@@ -105,7 +111,7 @@ export function transpile(
   const results: FileInfo[] = [];
   let err: Error | undefined;
 
-  program.emit(
+  const result = program.emit(
     undefined,
     (
       fileName: string,
@@ -145,6 +151,11 @@ export function transpile(
   );
   if (err) {
     throw err;
+  }
+  if (result.emitSkipped) {
+    throw Error(
+      "An problem occurred during transpilation and files were not generated.  Contact the plugin author for support."
+    );
   }
   return results;
 }
