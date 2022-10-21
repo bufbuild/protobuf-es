@@ -22,6 +22,7 @@ type OutFixture = {
   [key in Target as string]: string[];
 };
 
+// prettier-ignore
 function generateFile(schema: Schema, extension: string) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + extension);
@@ -29,7 +30,25 @@ function generateFile(schema: Schema, extension: string) {
     for (const enumeration of file.enums) {
       f.print(makeJsDoc(enumeration));
     }
-    f.print('const test = "test"');
+    const { Message } = schema.runtime;
+    const MessageAsType = Message.toTypeOnly();
+    f.print("interface Todo {");
+    f.print("   title: string;");
+    f.print("   desc: string;");
+    f.print("}");
+    f.print();
+    f.print("export class Test {");
+    f.print();
+    f.print("    print<T extends ", MessageAsType, "<T>>(data: T, todo: Partial<Todo>): Promise<string> {");
+    f.print("        const headers = new Headers([]);");
+    f.print("        console.log(headers);");
+    f.print("        console.log(data);");
+    f.print("        console.log(todo);");
+    f.print("        return new Promise<string>((resolve, reject) => {");
+    f.print("            resolve('test');");
+    f.print("        });");
+    f.print("    }");
+    f.print("}");
   }
 }
 
@@ -75,6 +94,10 @@ function verifyOutFiles(
   });
 }
 
+/**
+ * The create-es-plugin tests verify the number and name of files output via the
+ * plugin process, using various target outs and various provided generator functions
+ */
 describe("all generators with variant target outs", function () {
   let protocGenEs: Plugin;
   beforeEach(() => {
@@ -108,6 +131,20 @@ describe("all generators with variant target outs", function () {
   test("ts", () => {
     verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
+    });
+  });
+  test("js", () => {
+    // Note the TS generator was not run because we only specified js+dts
+    // and provided a generator for both, so there was no need for TS files
+    verifyOutFiles(protocGenEs, {
+      js: ["proto/person_proto.js", "proto/address_book_proto.js"],
+    });
+  });
+  test("dts", () => {
+    // Note the TS generator was not run because we only specified js+dts
+    // and provided a generator for both, so there was no need for TS files
+    verifyOutFiles(protocGenEs, {
+      dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
     });
   });
   test("js+dts", () => {
@@ -159,12 +196,22 @@ describe("no declaration generator with variant target outs", function () {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
     });
   });
+  test("js", () => {
+    verifyOutFiles(protocGenEs, {
+      js: ["proto/person_proto.js", "proto/address_book_proto.js"],
+    });
+  });
+  test("dts", () => {
+    verifyOutFiles(protocGenEs, {
+      dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
+    });
+  });
   test("js+dts", () => {
     // Note that even though we only requested js+dts, the TS generator
-    // ran also because we need it to emit the declaration files (since we
-    // didn't pass a generateDts function)
+    // ran also because we need it to emit the declaration files.  However,
+    // there should be no TS files in the generated output since ts was
+    // not specified as a target out.
     verifyOutFiles(protocGenEs, {
-      ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
       dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
