@@ -97,7 +97,7 @@ describe("custom options", function () {
         service,
         50006
       );
-      expect(enumVal).toEqual(ServiceStatus.UNDEFINED);
+      expect(enumVal).toEqual(ServiceStatus.EXPERIMENTAL);
     });
     test("method options", () => {
       const service = descriptorSet.services.get(serviceName);
