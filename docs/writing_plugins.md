@@ -359,12 +359,12 @@ Custom options of a scalar type (`boolean`, `string`, `int32`, etc.) can be retr
 ```ts
 function findCustomScalarOption<T extends ScalarType>(
   desc: AnyDesc,
-  id: number,
+  extensionNumber: number,
   scalarType: T
 ): ScalarValue<T> | undefined;
 ```
 
-`AnyDesc` represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.  The `id` parameter represents the extension number of the custom options field definition.
+`AnyDesc` represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.  The `extensionNumber` parameter represents the extension number of the custom options field definition.
 
 The `scalarType` parameter is the type of the custom option you are searching for.  `ScalarType` is an enum that represents all possible scalar types in the Protobuf grammar
 
@@ -400,7 +400,7 @@ Custom options of a more complex message type can be retrieved via the `findCust
 ```ts
 export function findCustomMessageOption<T extends Message<T>>(
   desc: AnyDesc,
-  id: number,
+  extensionNumber: number,
   msgType: MessageType<T>
 ): T | undefined {
 ```
@@ -474,7 +474,7 @@ Custom options of an enum type can be retrieved via the `findCustomEnumOption` f
 ```ts
 export function findCustomEnumOption(
   desc: AnyDesc,
-  id: number
+  extensionNumber: number
 ): number | undefined {
 ```
 
