@@ -19,7 +19,7 @@ import {
   findCustomEnumOption,
 } from "@bufbuild/protoplugin/ecmascript";
 import { proto3, ScalarType } from "@bufbuild/protobuf";
-import { Configuration } from "./gen/proto/custom_options_pb.js";
+import { Configuration, ServiceStatus } from "./gen/proto/custom_options_pb.js";
 
 describe("custom options", function () {
   const enumName = "example.EnumWithOptions";
@@ -93,7 +93,11 @@ describe("custom options", function () {
     test("service options", () => {
       const service = descriptorSet.services.get(serviceName);
       assert(service);
-      expect(findCustomEnumOption(service, 50006)).toEqual(1);
+      const enumVal: ServiceStatus | undefined = findCustomEnumOption(
+        service,
+        50006
+      );
+      expect(enumVal).toEqual(ServiceStatus.UNDEFINED);
     });
     test("method options", () => {
       const service = descriptorSet.services.get(serviceName);
