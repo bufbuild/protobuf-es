@@ -1,8 +1,10 @@
-Writing Plugins
+Protobuf-ES: Writing Plugins
 ========================
+Code generator plugins can be created using the npm packages [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). This is a detailed overview of the process of writing a plugin.
 
 - [Introduction](#introduction)
 - [Writing a plugin](#writing-a-plugin)
+  - [Installing the plugin framework and dependencies](#installing-the-plugin-framework-and-dependencies)
   - [Setting up your plugin](#setting-up-your-plugin)
   - [Providing generator functions](#providing-generator-functions)
      - [Overriding transpilation](#overriding-transpilation) 
@@ -35,6 +37,25 @@ For more information on how plugins work, check out [our documentation](https://
 ## Writing a plugin
 
 The following will describe the steps and things to know when writing your own code generator plugin.  The main step in the process is passing a plugin initialization object to the `createEcmaScriptPlugin` function exported by the plugin framework.  This plugin initalization object will contain various properties pertaining to different aspects of your plugin.
+
+### Installing the plugin framework and dependencies
+
+The main dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and the runtime API at [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf).  Using your package manager of choice, install the above packages:
+
+**npm**
+```bash
+npm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**pnpm**
+```bash
+pnpm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**Yarn**
+```bash
+yarn add @bufbuild/protoplugin @bufbuild/protobuf
+```
 
 ### Setting up your plugin
 
@@ -280,8 +301,9 @@ The natural instinct would be to simply print your own import statements as `f.p
 - **Preventing name collisions**
     - For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
 
-- **Compatibility across standards**
-    - Abstracting the generation of imports allows the library to offer a plugin option for all ECMAScript plugins that generates imports with CommonJS instead of ECMAScript imports, and all plugins work with it out of the box.
+- **Extensibility of import generation**
+    - Abstracting the generation of imports allows the library to potentially offer other import styles in the future without affecting current users.
+  
 
 ### Exporting
 
@@ -342,7 +364,7 @@ function findCustomScalarOption<T extends ScalarType>(
 ): ScalarValue<T> | undefined;
 ```
 
-`AnyDesc` represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.  The `id` parameter represents the ID of the custom options field definition.
+`AnyDesc` represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.  The `id` parameter represents the extension number of the custom options field definition.
 
 The `scalarType` parameter is the type of the custom option you are searching for.  `ScalarType` is an enum that represents all possible scalar types in the Protobuf grammar
 
@@ -383,7 +405,7 @@ export function findCustomMessageOption<T extends Message<T>>(
 ): T | undefined {
 ```
 
-The `msgType` parameter represents the type of the message you are searching for.  Note that this can be a message generated from a proto file or can be a type created at runtime via `makeMessageType`.
+The `msgType` parameter represents the type of the message you are searching for.  
 
 For example, given the following proto files:
 
@@ -441,60 +463,6 @@ console.log(option);
  * }
  */
  ```
- 
- Alternatively, you can use a type created at runtime:
-
-```ts
-const opts = proto3.makeMessageType("ServiceOptions", [
-  {
-    no: 1,
-    name: "foo",
-    kind: "scalar",
-    T: ScalarType.STRING,
-  },
-  {
-    no: 2,
-    name: "bar",
-    kind: "scalar",
-    T: ScalarType.STRING,
-  },
-  {
-    no: 3,
-    name: "quux",
-    kind: "scalar",
-    T: ScalarType.STRING,
-  },
-  {
-    no: 4,
-    name: "many",
-    kind: "scalar",
-    repeated: true,
-    T: ScalarType.STRING,
-  },
-  {
-    no: 5,
-    name: "mapping",
-    kind: "map",
-    K: ScalarType.STRING,
-    V: {
-      kind: "scalar",
-      T: ScalarType.STRING,
-    },
-  },
-]);
-const option = findCustomMessageOption(method, 50007, opts)
-
-console.log(option);
-/**
-  {
-      foo: 567, 
-      bar: "Some string", 
-      quux: "Oneof string",
-      many: ["a", "b", "c"],
-      mapping: [{key: "testKey", value: "testVal"}]
-  }
- */
-```
 
 Note that `repeated` and `map` values are only supported within a custom message option.  They are not supported as option types independently.  If you have need to use a custom option that is `repeated` or is of type `map`, it is recommended to use a message option as a wrapper.
 
