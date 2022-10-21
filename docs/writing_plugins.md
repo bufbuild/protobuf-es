@@ -469,7 +469,7 @@ Note that `repeated` and `map` values are only supported within a custom message
 
 #### Enum Options
 
-Custom options of an enum type can be retrieved via the `findCustomEnumOption` function.  It returns a `number` corresponding to the enum value set in the option.
+Custom options of an enum type can be retrieved via the `findCustomEnumOption` function.  It returns a `number` corresponding to the `enum` value set in the option.
 
 ```ts
 export function findCustomEnumOption(
@@ -477,6 +477,8 @@ export function findCustomEnumOption(
   id: number
 ): number | undefined {
 ```
+
+The returned number can then be coerced into the concrete `enum` type.  The `enum` type just needs to be generated ahead of time much like the example in `findCustomMessageOption`.
 
 For example, given the following:
 
@@ -501,7 +503,7 @@ message FooMessage {
 The value of this option can be retrieved as follows:
 
 ```ts
-const enumVal = findCustomEnumOption(descMessage, 50001);  // 1
+const enumVal: FooEnum | undefined = findCustomEnumOption(descMessage, 50001);  // FooEnum.ACTIVE
 ```
 
 ## Testing
