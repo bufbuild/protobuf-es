@@ -28,10 +28,10 @@ import {
  */
 export function findCustomScalarOption<T extends ScalarType>(
   desc: AnyDesc,
-  id: number,
+  extensionNumber: number,
   scalarType: T
 ): ScalarValue<T> | undefined {
-  const reader = createBinaryReader(desc, id);
+  const reader = createBinaryReader(desc, extensionNumber);
   if (reader) {
     switch (scalarType) {
       case ScalarType.INT32:
@@ -73,19 +73,22 @@ export function findCustomScalarOption<T extends ScalarType>(
 }
 
 /**
- * Returns the value of a custom message option for the given descriptor and ID.
- * The msgType param is then used to deserialize the message for returning to the caller.
+ * Returns the value of a custom message option for the given descriptor and
+ * extension number.
+ * The msgType param is then used to deserialize the message for returning to
+ * the caller.
  *
  * If no options are found, returns undefined.
  *
- * If the message option is unable to be read or deserialized, an error will be thrown.
+ * If the message option is unable to be read or deserialized, an error will
+ * be thrown.
  */
 export function findCustomMessageOption<T extends Message<T>>(
   desc: AnyDesc,
-  id: number,
+  extensionNumber: number,
   msgType: MessageType<T>
 ): T | undefined {
-  const reader = createBinaryReader(desc, id);
+  const reader = createBinaryReader(desc, extensionNumber);
   if (reader) {
     try {
       const data = reader.bytes();
@@ -99,15 +102,16 @@ export function findCustomMessageOption<T extends Message<T>>(
 }
 
 /**
- * Returns the value of a custom enum option for the given descriptor and ID.
+ * Returns the value of a custom enum option for the given descriptor and
+ * extension number.
  *
  * If no options are found, returns undefined.
  */
 export function findCustomEnumOption(
   desc: AnyDesc,
-  id: number
+  extensionNumber: number
 ): number | undefined {
-  return findCustomScalarOption(desc, id, ScalarType.INT32);
+  return findCustomScalarOption(desc, extensionNumber, ScalarType.INT32);
 }
 
 /**
@@ -148,17 +152,17 @@ type ScalarValue<T> = T extends ScalarType.STRING
   : never;
 
 /**
- * Returns a binary reader for the given descriptor and field ID.
+ * Returns a binary reader for the given descriptor and extension number.
  */
 function createBinaryReader(
   desc: AnyDesc,
-  id: number
+  extensionNumber: number
 ): BinaryReader | undefined {
   const opt = desc.proto.options;
   let reader: BinaryReader | undefined = undefined;
   if (opt !== undefined) {
     const unknownFields = proto3.bin.listUnknownFields(opt);
-    const field = unknownFields.find((f) => f.no === id);
+    const field = unknownFields.find((f) => f.no === extensionNumber);
     if (field) {
       reader = new BinaryReader(field.data);
     }
