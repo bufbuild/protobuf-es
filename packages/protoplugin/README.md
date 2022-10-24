@@ -1,38 +1,32 @@
 # @bufbuild/protoplugin
 
-This package helps to create your own code generator plugin.
+This package helps to create your own code generator plugin using the 
+Protobuf-ES plugin framework.
 
-## Protocol Buffers for ECMAScript
+Protobuf-ES is a complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript, suitable for web browsers and Node.js.  
 
-A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers)
-in TypeScript, suitable for web browsers and Node.js.  
-Learn more at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+In addition to a full Protobuf runtime library, it also provides a code generator
+`protoc-gen-es`, which utilizes a plugin framework to generate base types from
+your Protobuf schema.  It is fully compatible with both Buf and protoc compilers.
 
+And now, you can write your own Protobuf-ES compatible plugins using this same
+plugin framework with the `@bufbuild/protoplugin` package.
 
-It is a complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers)
-in TypeScript, suitable for web browsers and Node.js.
+With `@bufbuild/protoplugin`, you can generate your own TypeScript code tailored 
+to your project or needs.  You also have various options for producing 
+JavaScript and TypeScript declaration files:
 
-For example, the following definition:
+- Exercise full control by writing your own JavaScript and declaration file
+generators in addition to TypeScript.
 
-```protobuf
-message Person {
-  string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
-  string email = 3;
-}
-```
+- Generate TypeScript files only and let the framework generate JavaScript and
+declaration files automatically using our internal TypeScript compiler.
 
-Is compiled to an ECMAScript class that can be used like this:
+- Generate TypeScript files only and bring your own TypeScript compiler, using
+it to generate JavaScript and declaration files with your own version of 
+TypeScript and your own compiler options.
 
-```typescript
-let pete = new Person({
-  name: "pete",
-  id: 123
-});
+With `protoplugin`, you have all the tools at your disposal to produce ECMAScript-compliant
+code.  
 
-let bytes = pete.toBinary();
-pete = Person.fromBinary(bytes);
-pete = Person.fromJsonString('{"name": "pete", "id": 123}');
-```
-
-Learn more at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+Get started now with our [plugin documentation](https://github.com/bufbuild/protobuf-es/blob/main/docs/writing_plugins.md). 
