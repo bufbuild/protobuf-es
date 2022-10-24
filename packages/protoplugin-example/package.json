@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin-example",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "",
   "scripts": {
@@ -15,9 +15,9 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^0.1.1",
-    "@bufbuild/protoc-gen-es": "^0.1.1",
-    "@bufbuild/protoplugin": "^0.1.1",
+    "@bufbuild/protobuf": "^0.2.0",
+    "@bufbuild/protoc-gen-es": "^0.2.0",
+    "@bufbuild/protoplugin": "^0.2.0",
     "tsx": "^3.10.3"
   }
 }

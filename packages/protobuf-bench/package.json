@@ -6,7 +6,7 @@
     "clean": "rm -rf README.md src/gen"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "0.1.1",
+    "@bufbuild/protobuf": "0.2.0",
     "esbuild": "^0.15.10",
     "google-protobuf": "^3.20.1"
   }
