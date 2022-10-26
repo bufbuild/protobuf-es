@@ -28,7 +28,7 @@ import {
   literalString,
   localName,
   makeJsDoc,
-  matchWkt,
+  reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 
 export function generateDts(schema: Schema) {
@@ -145,7 +145,7 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
 
 // prettier-ignore
 function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const ref = matchWkt(message);
+  const ref = reifyWkt(message);
   if (ref === undefined) {
     return;
   }
@@ -190,7 +190,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
 
 // prettier-ignore
 function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const ref = matchWkt(message);
+  const ref = reifyWkt(message);
   if (ref === undefined) {
     return;
   }
