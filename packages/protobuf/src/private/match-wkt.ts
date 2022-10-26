@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  DescField,
-  DescMessage,
-  DescOneof,
-  ScalarType,
-} from "@bufbuild/protobuf";
+import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
+import { ScalarType } from "../field.js";
 
 type DescWkt =
   | {

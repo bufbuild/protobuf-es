@@ -29,8 +29,8 @@ import {
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
   makeJsDoc,
+  matchWkt,
 } from "@bufbuild/protoplugin/ecmascript";
-import { matchWkt } from "./match-wkt.js";
 import { generateFieldInfo } from "./javascript.js";
 import { literalString } from "@bufbuild/protoplugin/ecmascript";
 

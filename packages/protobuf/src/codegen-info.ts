@@ -15,7 +15,7 @@
 import { localName } from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
-import { matchWkt } from "./match-wkt";
+import { matchWkt } from "./private/match-wkt.js";
 
 interface CodegenInfo {
   readonly packageName: string;

@@ -24,8 +24,8 @@ import {
   literalString,
   localName,
   makeJsDoc,
+  matchWkt,
 } from "@bufbuild/protoplugin/ecmascript";
-import { matchWkt } from "./match-wkt.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
