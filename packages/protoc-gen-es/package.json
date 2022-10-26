@@ -16,7 +16,8 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist/cjs/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs"
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs",
+    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types"
   },
   "preferUnplugged": true,
   "dependencies": {

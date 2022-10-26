@@ -20,7 +20,7 @@ export { RuntimeImports } from "./runtime-imports.js";
 export { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
 export { ImportSymbol } from "./import-symbol.js";
 
-export const { localName } = codegenInfo;
+export const { localName, matchWkt } = codegenInfo;
 
 export {
   createJsDocBlock,
