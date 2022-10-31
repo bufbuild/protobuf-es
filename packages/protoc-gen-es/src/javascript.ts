@@ -190,6 +190,9 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`  if (json === null || Array.isArray(json) || typeof json != "object") {`);
       f.print("    throw new Error(`cannot decode message ", message.typeName, ' from JSON: expected object but got ${json === null ? "null" : Array.isArray(json) ? "array" : typeof json}`);');
       f.print("  }");
+      f.print(`  if (Object.keys(json).length == 0) {`);
+      f.print(`    return this;`);
+      f.print(`  }`);
       f.print(`  const typeUrl = json["@type"];`);
       f.print(`  if (typeof typeUrl != "string" || typeUrl == "") {`);
       f.print("    throw new Error(`cannot decode message ", message.typeName, ' from JSON: "@type" is empty`);');
