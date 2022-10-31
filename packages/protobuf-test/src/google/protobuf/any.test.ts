@@ -12,18 +12,59 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createRegistry, Struct, Value } from "@bufbuild/protobuf";
-import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb";
-import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb";
+import {
+  Any as PKG_Any,
+  createRegistry,
+  Struct,
+  Value,
+} from "@bufbuild/protobuf";
+import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb.js";
+import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb.js";
+import { MessageWithAnyField as TS_MessageWithAnyField } from "../../gen/ts/extra/wkt-any_pb.js";
+import { MessageWithAnyField as JS_MessageWithAnyField } from "../../gen/js/extra/wkt-any_pb.js";
 
 describe("google.protobuf.Any", () => {
   describe.each([
-    { Any: TS_Any, name: `(generated ts)` },
-    { Any: JS_Any, name: `(generated js)` },
-  ])("$name", ({ Any }) => {
-    const typeRegistry = createRegistry(Struct, Value);
+    {
+      Any: PKG_Any,
+      MessageWithAnyField: TS_MessageWithAnyField,
+      name: `(from package)`,
+    },
+    {
+      Any: TS_Any,
+      MessageWithAnyField: TS_MessageWithAnyField,
+      name: `(generated ts)`,
+    },
+    {
+      Any: JS_Any,
+      MessageWithAnyField: JS_MessageWithAnyField,
+      name: `(generated js)`,
+    },
+  ])("$name", ({ Any, MessageWithAnyField }) => {
+    test("encodes to JSON {} without packed content", () => {
+      const m = new MessageWithAnyField({
+        field: {},
+      });
+      expect(m.field).toBeDefined();
+      expect(m.toJsonString()).toBe('{"field":{}}');
+    });
+
+    test("decodes from JSON field value {}", () => {
+      const jsonString = '{"field":{}}';
+      const m = MessageWithAnyField.fromJsonString(jsonString);
+      expect(m.field).toBeDefined();
+      expect(m.field?.typeUrl).toBe("");
+      expect(m.field?.value.length).toBe(0);
+    });
+
+    test("decodes from JSON field value null", () => {
+      const jsonString = '{"field":null}';
+      const m = MessageWithAnyField.fromJsonString(jsonString);
+      expect(m.field).toBeUndefined();
+    });
 
     test(`encodes ${Struct.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const str = new Struct({
         fields: {
           foo: { kind: { case: "numberValue", value: 1 } },
@@ -39,6 +80,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`encodes ${Value.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const val = new Value({
         kind: { case: "numberValue", value: 1 },
       });
@@ -52,6 +94,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`encodes ${Value.typeName} with ${Struct.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const want = {
         "@type": "type.googleapis.com/google.protobuf.Value",
         value: {
@@ -74,6 +117,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`decodes ${Value.typeName} from JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const want = new Value({
         kind: { case: "numberValue", value: 1 },
       });
