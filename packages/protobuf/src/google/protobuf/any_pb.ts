@@ -180,6 +180,9 @@ export class Any extends Message<Any> {
     if (json === null || Array.isArray(json) || typeof json != "object") {
       throw new Error(`cannot decode message google.protobuf.Any from JSON: expected object but got ${json === null ? "null" : Array.isArray(json) ? "array" : typeof json}`);
     }
+    if (Object.keys(json).length == 0) {
+      return this;
+    }
     const typeUrl = json["@type"];
     if (typeof typeUrl != "string" || typeUrl == "") {
       throw new Error(`cannot decode message google.protobuf.Any from JSON: "@type" is empty`);

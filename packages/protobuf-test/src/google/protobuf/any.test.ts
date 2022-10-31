@@ -12,18 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createRegistry, Struct, Value } from "@bufbuild/protobuf";
+import {
+  Any as PKG_Any,
+  createRegistry,
+  Struct,
+  Value,
+} from "@bufbuild/protobuf";
 import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb.js";
 import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb.js";
 
 describe("google.protobuf.Any", () => {
   describe.each([
+    { Any: PKG_Any, name: `(from package)` },
     { Any: TS_Any, name: `(generated ts)` },
     { Any: JS_Any, name: `(generated js)` },
   ])("$name", ({ Any }) => {
-    const typeRegistry = createRegistry(Struct, Value);
+    test("without value encodes to JSON {}", () => {
+      const a = new Any();
+      expect(a.toJsonString()).toBe("{}");
+    });
+
+    test("decodes from JSON {}", () => {
+      const jsonString = "{}";
+      const a = Any.fromJsonString(jsonString);
+      expect(a).toBeDefined();
+      expect(a.typeUrl).toBe("");
+      expect(a.value.length).toBe(0);
+    });
 
     test(`encodes ${Struct.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const str = new Struct({
         fields: {
           foo: { kind: { case: "numberValue", value: 1 } },
@@ -39,6 +57,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`encodes ${Value.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const val = new Value({
         kind: { case: "numberValue", value: 1 },
       });
@@ -52,6 +71,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`encodes ${Value.typeName} with ${Struct.typeName} to JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const want = {
         "@type": "type.googleapis.com/google.protobuf.Value",
         value: {
@@ -74,6 +94,7 @@ describe("google.protobuf.Any", () => {
     });
 
     test(`decodes ${Value.typeName} from JSON`, () => {
+      const typeRegistry = createRegistry(Struct, Value);
       const want = new Value({
         kind: { case: "numberValue", value: 1 },
       });
