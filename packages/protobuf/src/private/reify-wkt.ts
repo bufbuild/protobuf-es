@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  DescField,
-  DescMessage,
-  DescOneof,
-  ScalarType,
-} from "@bufbuild/protobuf";
+import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
+import { ScalarType } from "../field.js";
 
 type DescWkt =
   | {
@@ -94,7 +90,18 @@ type DescWkt =
       value: DescField & { fieldKind: "scalar" };
     };
 
-export function matchWkt(message: DescMessage): DescWkt | undefined {
+/**
+ * Reifies a given DescMessage into a more concrete object representing its
+ * respective well-known type.  The returned object will contain properties
+ * representing the WKT's defined fields.
+ *
+ * Useful during code generation when immediate access to a particular field
+ * is needed without having to search the object's typename and DescField list.
+ *
+ * Returns undefined if the WKT cannot be completely constructed via the
+ * DescMessage.
+ */
+export function reifyWkt(message: DescMessage): DescWkt | undefined {
   switch (message.typeName) {
     case "google.protobuf.Any": {
       const typeUrl = message.fields.find(

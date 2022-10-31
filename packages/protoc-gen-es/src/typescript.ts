@@ -29,8 +29,8 @@ import {
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
   makeJsDoc,
+  reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
-import { matchWkt } from "./match-wkt.js";
 import { generateFieldInfo } from "./javascript.js";
 import { literalString } from "@bufbuild/protoplugin/ecmascript";
 
@@ -175,7 +175,7 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
 
 // prettier-ignore
 function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const ref = matchWkt(message);
+  const ref = reifyWkt(message);
   if (ref === undefined) {
     return;
   }
@@ -540,7 +540,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
 
 // prettier-ignore
 function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const ref = matchWkt(message);
+  const ref = reifyWkt(message);
   if (ref === undefined) {
     return;
   }
