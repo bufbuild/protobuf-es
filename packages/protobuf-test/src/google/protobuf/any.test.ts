@@ -20,47 +20,24 @@ import {
 } from "@bufbuild/protobuf";
 import { Any as TS_Any } from "../../gen/ts/google/protobuf/any_pb.js";
 import { Any as JS_Any } from "../../gen/js/google/protobuf/any_pb.js";
-import { MessageWithAnyField as TS_MessageWithAnyField } from "../../gen/ts/extra/wkt-any_pb.js";
-import { MessageWithAnyField as JS_MessageWithAnyField } from "../../gen/js/extra/wkt-any_pb.js";
 
 describe("google.protobuf.Any", () => {
   describe.each([
-    {
-      Any: PKG_Any,
-      MessageWithAnyField: TS_MessageWithAnyField,
-      name: `(from package)`,
-    },
-    {
-      Any: TS_Any,
-      MessageWithAnyField: TS_MessageWithAnyField,
-      name: `(generated ts)`,
-    },
-    {
-      Any: JS_Any,
-      MessageWithAnyField: JS_MessageWithAnyField,
-      name: `(generated js)`,
-    },
-  ])("$name", ({ Any, MessageWithAnyField }) => {
-    test("encodes to JSON {} without packed content", () => {
-      const m = new MessageWithAnyField({
-        field: {},
-      });
-      expect(m.field).toBeDefined();
-      expect(m.toJsonString()).toBe('{"field":{}}');
+    { Any: PKG_Any, name: `(from package)` },
+    { Any: TS_Any, name: `(generated ts)` },
+    { Any: JS_Any, name: `(generated js)` },
+  ])("$name", ({ Any }) => {
+    test("without value encodes to JSON {}", () => {
+      const a = new Any();
+      expect(a.toJsonString()).toBe("{}");
     });
 
-    test("decodes from JSON field value {}", () => {
-      const jsonString = '{"field":{}}';
-      const m = MessageWithAnyField.fromJsonString(jsonString);
-      expect(m.field).toBeDefined();
-      expect(m.field?.typeUrl).toBe("");
-      expect(m.field?.value.length).toBe(0);
-    });
-
-    test("decodes from JSON field value null", () => {
-      const jsonString = '{"field":null}';
-      const m = MessageWithAnyField.fromJsonString(jsonString);
-      expect(m.field).toBeUndefined();
+    test("decodes from JSON {}", () => {
+      const jsonString = "{}";
+      const a = Any.fromJsonString(jsonString);
+      expect(a).toBeDefined();
+      expect(a.typeUrl).toBe("");
+      expect(a.value.length).toBe(0);
     });
 
     test(`encodes ${Struct.typeName} to JSON`, () => {
