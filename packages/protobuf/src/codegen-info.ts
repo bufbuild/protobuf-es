@@ -15,6 +15,7 @@
 import { localName } from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
+import { reifyWkt } from "./private/reify-wkt.js";
 
 interface CodegenInfo {
   readonly packageName: string;
@@ -23,6 +24,7 @@ interface CodegenInfo {
   readonly getUnwrappedFieldType: typeof getUnwrappedFieldType;
   readonly wktSourceFiles: readonly string[];
   readonly scalarDefaultValue: typeof scalarDefaultValue;
+  readonly reifyWkt: typeof reifyWkt;
 }
 
 type RuntimeSymbolName =
@@ -55,6 +57,7 @@ const packageName = "@bufbuild/protobuf";
 export const codegenInfo: CodegenInfo = {
   packageName,
   localName,
+  reifyWkt,
   getUnwrappedFieldType,
   scalarDefaultValue,
   // prettier-ignore
