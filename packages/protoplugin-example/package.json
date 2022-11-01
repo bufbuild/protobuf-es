@@ -18,6 +18,6 @@
     "@bufbuild/protobuf": "^0.2.1",
     "@bufbuild/protoc-gen-es": "^0.2.1",
     "@bufbuild/protoplugin": "^0.2.1",
-    "tsx": "^3.10.3"
+    "tsx": "^3.11.0"
   }
 }
