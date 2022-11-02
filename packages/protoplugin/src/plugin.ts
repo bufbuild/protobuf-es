@@ -34,5 +34,5 @@ export interface Plugin {
   /**
    * Run this plugin for the given request.
    */
-  run(request: CodeGeneratorRequest): CodeGeneratorResponse;
+  run(request: CodeGeneratorRequest): Promise<CodeGeneratorResponse>;
 }

@@ -20,9 +20,9 @@ import type { Schema } from "@bufbuild/protoplugin/ecmascript";
  * Creates a plugin with the given function to generate TypeScript,
  * runs the plugin, and returns a function to retrieve output files.
  */
-function transpile(
+async function transpile(
   genTs: (schema: Schema) => void
-): (name: string) => string[] {
+): Promise<(name: string) => string[]> {
   const req = new CodeGeneratorRequest({
     parameter: `target=ts+js+dts`,
   });
@@ -31,7 +31,8 @@ function transpile(
     version: "v99.0.0",
     generateTs: genTs,
   });
-  const res = plugin.run(req);
+  const res = await plugin.run(req);
+
   return function linesOf(filename: string): string[] {
     const file = res.file.find((f) => f.name === filename);
     if (!file) {
@@ -43,8 +44,8 @@ function transpile(
 }
 
 describe("transpile", function () {
-  test("ECMAScript types", () => {
-    const linesOf = transpile((schema) => {
+  test("ECMAScript types", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       f.print("export const p = Promise.resolve(true);");
     });
@@ -56,8 +57,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("TypeScript built-in types", () => {
-    const linesOf = transpile((schema) => {
+  test("TypeScript built-in types", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       f.print("export const n: ReturnType<typeof parseInt> = 1;");
     });
@@ -69,8 +70,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("DOM types", () => {
-    const linesOf = transpile((schema) => {
+  test("DOM types", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       f.print("export const h = new Headers();");
     });
@@ -82,8 +83,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("runtime types", () => {
-    const linesOf = transpile((schema) => {
+  test("runtime types", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       f.print("export const j: ", schema.runtime.JsonValue, " = 1;");
     });
@@ -98,8 +99,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("file preamble", () => {
-    const linesOf = transpile((schema) => {
+  test("file preamble", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       f.preamble({
         kind: "file",
@@ -151,8 +152,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("unknown type is not inferred correctly", () => {
-    const linesOf = transpile((schema) => {
+  test("unknown type is not inferred correctly", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       const Foo = f.import("Foo", "foo");
       f.print("export function foo() { return new ", Foo, "(); };");
@@ -169,8 +170,8 @@ describe("transpile", function () {
     ]);
   });
 
-  test("unknown type can be typed explicitly", () => {
-    const linesOf = transpile((schema) => {
+  test("unknown type can be typed explicitly", async () => {
+    const linesOf = await transpile((schema) => {
       const f = schema.generateFile("test.ts");
       const Foo = f.import("Foo", "foo");
       f.print("export function foo(): ", Foo, " { return new ", Foo, "(); };");

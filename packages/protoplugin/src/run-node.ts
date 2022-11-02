@@ -42,9 +42,9 @@ export function runNodeJs(plugin: Plugin): void {
     return;
   }
   readBytes(process.stdin)
-    .then((data) => {
+    .then(async (data) => {
       const req = CodeGeneratorRequest.fromBinary(data);
-      const res = plugin.run(req);
+      const res = await plugin.run(req);
       return writeBytes(process.stdout, res.toBinary());
     })
     .then(() => process.exit(0))

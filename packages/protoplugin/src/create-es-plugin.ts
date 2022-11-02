@@ -43,7 +43,7 @@ interface PluginInit {
    *
    * Note that this is required to be provided for plugin initialization.
    */
-  generateTs: (schema: Schema, target: "ts") => void;
+  generateTs: (schema: Schema, target: "ts") => Promise<void> | void;
 
   /**
    * A optional function which will generate JavaScript files based on proto
@@ -55,7 +55,7 @@ interface PluginInit {
    * JavaScript files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateJs?: (schema: Schema, target: "js") => void;
+  generateJs?: (schema: Schema, target: "js") => Promise<void> | void;
 
   /**
    * A optional function which will generate TypeScript declaration files
@@ -67,7 +67,7 @@ interface PluginInit {
    * declaration files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateDts?: (schema: Schema, target: "dts") => void;
+  generateDts?: (schema: Schema, target: "dts") => Promise<void> | void;
 
   /**
    * A optional function which will transpile a given set of files.
@@ -97,7 +97,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
   return {
     name: init.name,
     version: init.version,
-    run(req) {
+    async run(req) {
       const {
         targets,
         tsNocheck,
@@ -132,7 +132,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         (targetJs && !init.generateJs) ||
         (targetDts && !init.generateDts)
       ) {
-        init.generateTs(schema, "ts");
+        await init.generateTs(schema, "ts");
 
         // Save off the generated TypeScript files so that we can pass these
         // to the transpilation process if necessary.  We do not want to pass
@@ -149,7 +149,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetJs) {
         if (init.generateJs) {
-          init.generateJs(schema, "js");
+          await init.generateJs(schema, "js");
         } else {
           transpileJs = true;
         }
@@ -157,7 +157,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetDts) {
         if (init.generateDts) {
-          init.generateDts(schema, "dts");
+          await init.generateDts(schema, "dts");
         } else {
           transpileDts = true;
         }

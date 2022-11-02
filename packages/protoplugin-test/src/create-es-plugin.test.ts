@@ -64,7 +64,7 @@ function generateDts(schema: Schema) {
   generateFile(schema, "_proto.dts");
 }
 
-function verifyOutFiles(
+async function verifyOutFiles(
   plugin: Plugin,
   fixture: OutFixture,
   req?: CodeGeneratorRequest
@@ -76,7 +76,7 @@ function verifyOutFiles(
       "proto/address_book.proto",
       "proto/person.proto",
     ]);
-  const resp = plugin.run(req);
+  const resp = await plugin.run(req);
 
   // The total expected files is the sum of the lengths of the arrays in the
   // given fixture.
@@ -109,48 +109,48 @@ describe("all generators with variant target outs", function () {
       generateDts,
     });
   });
-  test("all targets", () => {
-    verifyOutFiles(protocGenEs, {
+  test("all targets", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
       dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
     });
   });
-  test("ts+js", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts+js", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
     });
   });
-  test("ts+dts", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts+dts", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
     });
   });
-  test("ts", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
     });
   });
-  test("js", () => {
+  test("js", async () => {
     // Note the TS generator was not run because we only specified js+dts
     // and provided a generator for both, so there was no need for TS files
-    verifyOutFiles(protocGenEs, {
+    await verifyOutFiles(protocGenEs, {
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
     });
   });
-  test("dts", () => {
+  test("dts", async () => {
     // Note the TS generator was not run because we only specified js+dts
     // and provided a generator for both, so there was no need for TS files
-    verifyOutFiles(protocGenEs, {
+    await verifyOutFiles(protocGenEs, {
       dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
     });
   });
-  test("js+dts", () => {
+  test("js+dts", async () => {
     // Note the TS generator was not run because we only specified js+dts
     // and provided a generator for both, so there was no need for TS files
-    verifyOutFiles(protocGenEs, {
+    await verifyOutFiles(protocGenEs, {
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
       dts: ["proto/person_proto.dts", "proto/address_book_proto.dts"],
     });
@@ -172,46 +172,46 @@ describe("no declaration generator with variant target outs", function () {
   // generates.  Our custom generateDts above uses 'dts'.  A better approach
   // would be to use a spy and verify which functions are being called, but
   // Jest currently has an issue with importing the Jest object in TypeScript
-  test("all targets", () => {
-    verifyOutFiles(protocGenEs, {
+  test("all targets", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
       dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
   });
-  test("ts+js", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts+js", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
     });
   });
-  test("ts+dts", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts+dts", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
       dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
   });
-  test("ts", () => {
-    verifyOutFiles(protocGenEs, {
+  test("ts", async () => {
+    await verifyOutFiles(protocGenEs, {
       ts: ["proto/person_proto.ts", "proto/address_book_proto.ts"],
     });
   });
-  test("js", () => {
-    verifyOutFiles(protocGenEs, {
+  test("js", async () => {
+    await verifyOutFiles(protocGenEs, {
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
     });
   });
-  test("dts", () => {
-    verifyOutFiles(protocGenEs, {
+  test("dts", async () => {
+    await verifyOutFiles(protocGenEs, {
       dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
   });
-  test("js+dts", () => {
+  test("js+dts", async () => {
     // Note that even though we only requested js+dts, the TS generator
     // ran also because we need it to emit the declaration files.  However,
     // there should be no TS files in the generated output since ts was
-    // not specified as a target out.
-    verifyOutFiles(protocGenEs, {
+    // not specified as a async target out.
+    await verifyOutFiles(protocGenEs, {
       js: ["proto/person_proto.js", "proto/address_book_proto.js"],
       dts: ["proto/person_proto.d.ts", "proto/address_book_proto.d.ts"],
     });
@@ -219,7 +219,7 @@ describe("no declaration generator with variant target outs", function () {
 });
 
 describe("only request one file to generate with variant target outs", function () {
-  test("all targets with all generators", () => {
+  test("all targets with all generators", async () => {
     const req = getCodeGeneratorRequest("target=ts+js+dts", [
       "proto/address_book.proto",
     ]);
@@ -230,7 +230,7 @@ describe("only request one file to generate with variant target outs", function 
       generateJs,
       generateDts,
     });
-    verifyOutFiles(
+    await verifyOutFiles(
       protocGenEs,
       {
         ts: ["proto/address_book_proto.ts"],
@@ -240,7 +240,7 @@ describe("only request one file to generate with variant target outs", function 
       req
     );
   });
-  test("all targets with no dts generator", () => {
+  test("all targets with no dts generator", async () => {
     const req = getCodeGeneratorRequest("target=ts+js+dts", [
       "proto/address_book.proto",
     ]);
@@ -250,7 +250,7 @@ describe("only request one file to generate with variant target outs", function 
       generateTs,
       generateJs,
     });
-    verifyOutFiles(
+    await verifyOutFiles(
       protocGenEs,
       {
         ts: ["proto/address_book_proto.ts"],
@@ -260,7 +260,7 @@ describe("only request one file to generate with variant target outs", function 
       req
     );
   });
-  test("all targets with no js or dts generator", () => {
+  test("all targets with no js or dts generator", async () => {
     const req = getCodeGeneratorRequest("target=ts+js+dts", [
       "proto/address_book.proto",
     ]);
@@ -269,7 +269,7 @@ describe("only request one file to generate with variant target outs", function 
       version: "v0.1.0",
       generateTs,
     });
-    verifyOutFiles(
+    await verifyOutFiles(
       protocGenEs,
       {
         ts: ["proto/address_book_proto.ts"],
