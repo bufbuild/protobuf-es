@@ -185,4 +185,22 @@ describe("transpile", function () {
       "export declare function foo(): Foo;",
     ]);
   });
+
+  test("printTag with symbol works correctly", () => {
+    const linesOf = transpile((schema) => {
+      const f = schema.generateFile("test.ts");
+      const Foo = f.import("Foo", "foo");
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- false positive error
+      f.printTag`export function foo(): ${Foo} { return new ${Foo}(); };`;
+    });
+    expect(linesOf("test.ts")).toStrictEqual([
+      'import {Foo} from "foo";',
+      "",
+      "export function foo(): Foo { return new Foo(); };",
+    ]);
+    expect(linesOf("test.d.ts")).toStrictEqual([
+      'import { Foo } from "foo";',
+      "export declare function foo(): Foo;",
+    ]);
+  });
 });
