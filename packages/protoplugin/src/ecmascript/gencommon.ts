@@ -69,7 +69,7 @@ export function makeFilePreamble(
   builder.push(`syntax ${file.syntax})\n`);
   builder.push("/* eslint-disable */\n");
   if (tsNoCheck) {
-    builder.push("/* @ts-nocheck */\n");
+    builder.push("// @ts-nocheck\n");
   }
   builder.push("\n");
   writeLeadingComments(file.getPackageComments());
