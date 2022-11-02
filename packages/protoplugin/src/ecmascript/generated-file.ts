@@ -69,6 +69,11 @@ export interface GeneratedFile {
   print(...any: Printable[]): void;
 
   /**
+   * Add a line of code to the file with tagged template literal.
+   */
+  printTag(fragments: TemplateStringsArray, ...values: Printable[]): void;
+
+  /**
    * Reserves an identifier in this file.
    */
   export(name: string): ImportSymbol;
@@ -124,6 +129,18 @@ export function createGeneratedFile(
     },
     print(...any) {
       printableToEl(any, el, createTypeImport, runtimeImports);
+      el.push("\n");
+    },
+    printTag(fragments, ...values) {
+      const printables: Printable[] = [];
+      fragments.forEach((fragment, i) => {
+        printables.push(fragment);
+        if (fragments.length - 1 !== i) {
+          printables.push(values[i]);
+        }
+      });
+
+      printableToEl(printables, el, createTypeImport, runtimeImports);
       el.push("\n");
     },
     export(name) {
