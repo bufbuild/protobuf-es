@@ -46,7 +46,7 @@ export function wrapField<T extends Message<T>>(
     return type.fieldWrapper.wrapField(value);
   }
   throw new Error(
-    `cannot unwrap field value, ${type.typeName} does not define a field wrapper`
+    `cannot wrap field value, ${type.typeName} does not define a field wrapper`
   );
 }
 
