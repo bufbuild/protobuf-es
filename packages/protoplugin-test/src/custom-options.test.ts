@@ -110,6 +110,7 @@ describe("custom options", function () {
         expect(option?.qux.value).toEqual("Oneof string");
         expect(option?.many).toEqual(["a", "b", "c"]);
         expect(option?.mapping).toEqual({ testKey: "testVal" });
+        expect(option?.baz).toEqual(1.23);
       }
     });
   });

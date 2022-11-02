@@ -86,6 +86,11 @@ export class Configuration extends Message<Configuration> {
    */
   unused = "";
 
+  /**
+   * @generated from field: float baz = 7;
+   */
+  baz = 0;
+
   constructor(data?: PartialMessage<Configuration>) {
     super();
     proto3.util.initPartial(data, this);
@@ -100,6 +105,7 @@ export class Configuration extends Message<Configuration> {
     { no: 4, name: "many", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 5, name: "mapping", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 6, name: "unused", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "baz", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Configuration {

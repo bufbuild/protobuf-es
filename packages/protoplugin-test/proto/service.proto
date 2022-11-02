@@ -56,7 +56,8 @@ service ServiceWithOptions {
         bar: "Some string", 
         quux: "Oneof string",
         many: ["a", "b", "c"],
-        mapping: [{key: "testKey", value: "testVal"}]
+        mapping: [{key: "testKey", value: "testVal"}],
+        baz: 1.23
     };
   }
 }

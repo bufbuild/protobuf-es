@@ -52,6 +52,7 @@ message Configuration {
   repeated string many = 4;
   map<string, string> mapping = 5;
   string unused = 6;
+  float baz = 7;
 }
 
 enum ServiceStatus {
