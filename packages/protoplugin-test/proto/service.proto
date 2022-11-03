@@ -23,7 +23,7 @@ option (example_file_option) = "Hello";
 message MessageWithOptions {
   option (example_message_option) = 1234;
 
-  int32 foo = 1 [(example_field_option) = 4.5];
+  int32 foo = 1 [(example_field_option) = 1.23];
   string bar = 2;
   oneof qux {
     option (example_oneof_option) = 42;
