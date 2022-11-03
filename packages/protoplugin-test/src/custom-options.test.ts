@@ -81,7 +81,10 @@ describe("custom options", function () {
           default: {
             const val = findCustomScalarOption(member, 50002, ScalarType.FLOAT);
             if (member.name === "foo") {
-              expect(val).toEqual(4.5);
+              // The custom option value is set to 1.23, but due to the representation
+              // of floating-point numbers in JavaScript, we need to compare the parsed
+              // result to the nearest 32-bit single precision value.
+              expect(val).toEqual(Math.fround(1.23));
             } else {
               expect(val).toBeUndefined();
             }
