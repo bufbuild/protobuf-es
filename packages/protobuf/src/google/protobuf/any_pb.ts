@@ -217,7 +217,10 @@ export class Any extends Message<Any> {
     return true;
   }
 
-  unpack(registry: IMessageTypeRegistry): Message {
+  unpack(registry: IMessageTypeRegistry): Message | undefined {
+    if (this.typeUrl === "") {
+      return undefined;
+    }
     const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
     if (!messageType) {
       throw new Error(`cannot unpack message: ${this.typeUrl} is not in the type registry`);
