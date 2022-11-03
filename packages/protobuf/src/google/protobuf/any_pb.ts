@@ -20,6 +20,7 @@ import type {PartialMessage, PlainMessage} from "../../message.js";
 import {Message} from "../../message.js";
 import {proto3} from "../../proto3.js";
 import type {JsonReadOptions, JsonValue, JsonWriteOptions} from "../../json-format.js";
+import type {IMessageTypeRegistry} from "../../type-registry.js";
 import type {MessageType} from "../../message-type.js";
 import type {FieldList} from "../../field-list.js";
 import type {BinaryReadOptions} from "../../binary-format.js";
@@ -214,6 +215,14 @@ export class Any extends Message<Any> {
     }
     target.fromBinary(this.value);
     return true;
+  }
+
+  unpack(registry: IMessageTypeRegistry): Message {
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      throw new Error(`cannot unpack message: ${this.typeUrl} is not in the type registry`);
+    }
+    return messageType.fromBinary(this.value);
   }
 
   is(type: MessageType): boolean {

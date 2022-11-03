@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
+import type {BinaryReadOptions, FieldList, IMessageTypeRegistry, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
 import {Message, proto3} from "@bufbuild/protobuf";
 
 /**
@@ -225,6 +225,14 @@ export class Any extends Message<Any> {
     }
     target.fromBinary(this.value);
     return true;
+  }
+
+  unpack(registry: IMessageTypeRegistry): Message {
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      throw new Error(`cannot unpack message: ${this.typeUrl} is not in the type registry`);
+    }
+    return messageType.fromBinary(this.value);
   }
 
   is(type: MessageType): boolean {
