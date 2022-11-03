@@ -190,7 +190,6 @@ describe("transpile", function () {
     const linesOf = transpile((schema) => {
       const f = schema.generateFile("test.ts");
       const Foo = f.import("Foo", "foo");
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- false positive error
       f.print`export function foo(): ${Foo} { return new ${Foo}(); };`;
     });
     expect(linesOf("test.ts")).toStrictEqual([
