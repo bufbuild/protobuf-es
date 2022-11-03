@@ -186,12 +186,12 @@ describe("transpile", function () {
     ]);
   });
 
-  test("printTag with symbol works correctly", () => {
+  test("print with tagged template literal works correctly", () => {
     const linesOf = transpile((schema) => {
       const f = schema.generateFile("test.ts");
       const Foo = f.import("Foo", "foo");
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- false positive error
-      f.printTag`export function foo(): ${Foo} { return new ${Foo}(); };`;
+      f.print`export function foo(): ${Foo} { return new ${Foo}(); };`;
     });
     expect(linesOf("test.ts")).toStrictEqual([
       'import {Foo} from "foo";',

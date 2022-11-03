@@ -66,12 +66,12 @@ export interface GeneratedFile {
    * - ImportSymbol: Adds an import statement and prints the name of the symbol.
    * - DescMessage or DescEnum: Imports the type if necessary, and prints the name.
    */
-  print(...any: Printable[]): void;
+  print(...printables: Printable[]): void;
 
   /**
    * Add a line of code to the file with tagged template literal.
    */
-  printTag(fragments: TemplateStringsArray, ...values: Printable[]): void;
+  print(fragments: TemplateStringsArray, ...values: Printable[]): void;
 
   /**
    * Reserves an identifier in this file.
@@ -127,18 +127,28 @@ export function createGeneratedFile(
         preambleSettings.tsNocheck
       );
     },
-    print(...any) {
-      printableToEl(any, el, createTypeImport, runtimeImports);
-      el.push("\n");
-    },
-    printTag(fragments, ...values) {
-      const printables: Printable[] = [];
-      fragments.forEach((fragment, i) => {
-        printables.push(fragment);
-        if (fragments.length - 1 !== i) {
-          printables.push(values[i]);
-        }
-      });
+    print(
+      printableOrFragments?: Printable | TemplateStringsArray,
+      ...rest: Printable[]
+    ) {
+      let printables: Printable[];
+
+      if (
+        printableOrFragments != null &&
+        Object.prototype.hasOwnProperty.call(printableOrFragments, "raw")
+      ) {
+        // in the case of called as a tagged template literal
+        printables = buildPrintablesFromFragments(
+          printableOrFragments as TemplateStringsArray,
+          rest
+        );
+      } else {
+        // in the case of called as a normal function call
+        printables =
+          printableOrFragments != null
+            ? [printableOrFragments as Printable, ...rest]
+            : rest;
+      }
 
       printableToEl(printables, el, createTypeImport, runtimeImports);
       el.push("\n");
@@ -245,6 +255,21 @@ function printableToEl(
       }
     }
   }
+}
+
+function buildPrintablesFromFragments(
+  fragments: TemplateStringsArray,
+  values: Printable[]
+): Printable[] {
+  const printables: Printable[] = [];
+  fragments.forEach((fragment, i) => {
+    printables.push(fragment);
+    if (fragments.length - 1 !== i) {
+      printables.push(values[i]);
+    }
+  });
+
+  return printables;
 }
 
 type MakeImportStatementFn = (
