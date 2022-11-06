@@ -780,6 +780,8 @@ export declare class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2;
 
+  static conforms(value: any): value is TestAllTypesProto2;
+
   static equals(a: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined, b: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined): boolean;
 }
 
@@ -836,6 +838,8 @@ export declare class TestAllTypesProto2_NestedMessage extends Message<TestAllTyp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_NestedMessage;
 
+  static conforms(value: any): value is TestAllTypesProto2_NestedMessage;
+
   static equals(a: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined, b: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined): boolean;
 }
 
@@ -867,6 +871,8 @@ export declare class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_Data;
 
+  static conforms(value: any): value is TestAllTypesProto2_Data;
+
   static equals(a: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined, b: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined): boolean;
 }
 
@@ -887,6 +893,8 @@ export declare class TestAllTypesProto2_MessageSetCorrect extends Message<TestAl
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MessageSetCorrect;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MessageSetCorrect;
+
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrect;
 
   static equals(a: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined, b: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined): boolean;
 }
@@ -912,6 +920,8 @@ export declare class TestAllTypesProto2_MessageSetCorrectExtension1 extends Mess
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MessageSetCorrectExtension1;
 
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension1;
+
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined): boolean;
 }
 
@@ -936,6 +946,8 @@ export declare class TestAllTypesProto2_MessageSetCorrectExtension2 extends Mess
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MessageSetCorrectExtension2;
 
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension2;
+
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined): boolean;
 }
 
@@ -959,6 +971,8 @@ export declare class ForeignMessageProto2 extends Message<ForeignMessageProto2> 
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForeignMessageProto2;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessageProto2;
+
+  static conforms(value: any): value is ForeignMessageProto2;
 
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean;
 }
@@ -1009,6 +1023,8 @@ export declare class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes;
 
+  static conforms(value: any): value is UnknownToTestAllTypes;
+
   static equals(a: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined, b: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined): boolean;
 }
 
@@ -1033,6 +1049,8 @@ export declare class UnknownToTestAllTypes_OptionalGroup extends Message<Unknown
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes_OptionalGroup;
 
+  static conforms(value: any): value is UnknownToTestAllTypes_OptionalGroup;
+
   static equals(a: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined, b: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined): boolean;
 }
 
@@ -1052,6 +1070,8 @@ export declare class NullHypothesisProto2 extends Message<NullHypothesisProto2> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NullHypothesisProto2;
 
+  static conforms(value: any): value is NullHypothesisProto2;
+
   static equals(a: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined, b: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined): boolean;
 }
 
@@ -1070,6 +1090,8 @@ export declare class EnumOnlyProto2 extends Message<EnumOnlyProto2> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumOnlyProto2;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOnlyProto2;
+
+  static conforms(value: any): value is EnumOnlyProto2;
 
   static equals(a: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined, b: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined): boolean;
 }
@@ -1109,6 +1131,8 @@ export declare class OneStringProto2 extends Message<OneStringProto2> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OneStringProto2;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneStringProto2;
+
+  static conforms(value: any): value is OneStringProto2;
 
   static equals(a: OneStringProto2 | PlainMessage<OneStringProto2> | undefined, b: OneStringProto2 | PlainMessage<OneStringProto2> | undefined): boolean;
 }

@@ -50,6 +50,8 @@ export declare class SelfReferencingMessage extends Message<SelfReferencingMessa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SelfReferencingMessage;
 
+  static conforms(value: any): value is SelfReferencingMessage;
+
   static equals(a: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined, b: SelfReferencingMessage | PlainMessage<SelfReferencingMessage> | undefined): boolean;
 }
 

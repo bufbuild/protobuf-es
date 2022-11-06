@@ -412,6 +412,10 @@ export class TestAllTypes extends Message<TestAllTypes> {
     return new TestAllTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypes {
+    return proto3.util.conforms(TestAllTypes, value);
+  }
+
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean {
     return proto3.util.equals(TestAllTypes, a, b);
   }
@@ -475,6 +479,10 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
     return new TestAllTypes_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypes_NestedMessage {
+    return proto3.util.conforms(TestAllTypes_NestedMessage, value);
+  }
+
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestAllTypes_NestedMessage, a, b);
   }
@@ -510,6 +518,10 @@ export class TestProto2Required extends Message<TestProto2Required> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto2Required {
     return new TestProto2Required().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestProto2Required {
+    return proto3.util.conforms(TestProto2Required, value);
   }
 
   static equals(a: TestProto2Required | PlainMessage<TestProto2Required> | undefined, b: TestProto2Required | PlainMessage<TestProto2Required> | undefined): boolean {
@@ -550,6 +562,10 @@ export class ForeignMessage extends Message<ForeignMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage {
     return new ForeignMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ForeignMessage {
+    return proto3.util.conforms(ForeignMessage, value);
   }
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {

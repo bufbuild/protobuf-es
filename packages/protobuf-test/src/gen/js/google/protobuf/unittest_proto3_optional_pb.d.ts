@@ -160,6 +160,8 @@ export declare class TestProto3Optional extends Message<TestProto3Optional> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto3Optional;
 
+  static conforms(value: any): value is TestProto3Optional;
+
   static equals(a: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined, b: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined): boolean;
 }
 
@@ -220,6 +222,8 @@ export declare class TestProto3Optional_NestedMessage extends Message<TestProto3
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto3Optional_NestedMessage;
 
+  static conforms(value: any): value is TestProto3Optional_NestedMessage;
+
   static equals(a: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined, b: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined): boolean;
 }
 
@@ -249,6 +253,8 @@ export declare class TestProto3OptionalMessage extends Message<TestProto3Optiona
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto3OptionalMessage;
 
+  static conforms(value: any): value is TestProto3OptionalMessage;
+
   static equals(a: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined, b: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined): boolean;
 }
 
@@ -273,6 +279,8 @@ export declare class TestProto3OptionalMessage_NestedMessage extends Message<Tes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto3OptionalMessage_NestedMessage;
 
+  static conforms(value: any): value is TestProto3OptionalMessage_NestedMessage;
+
   static equals(a: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined, b: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined): boolean;
 }
 
@@ -291,6 +299,8 @@ export declare class Proto3OptionalExtensions extends Message<Proto3OptionalExte
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3OptionalExtensions;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalExtensions;
+
+  static conforms(value: any): value is Proto3OptionalExtensions;
 
   static equals(a: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined, b: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined): boolean;
 }

@@ -45,6 +45,10 @@ export class ReservedPropertyNames extends Message$1<ReservedPropertyNames> {
     return new ReservedPropertyNames().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ReservedPropertyNames {
+    return proto3.util.conforms(ReservedPropertyNames, value);
+  }
+
   static equals(a: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined, b: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames, a, b);
   }
@@ -202,6 +206,10 @@ export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNam
     return new ReservedPropertyNames_BuiltIn().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ReservedPropertyNames_BuiltIn {
+    return proto3.util.conforms(ReservedPropertyNames_BuiltIn, value);
+  }
+
   static equals(a: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined, b: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_BuiltIn, a, b);
   }
@@ -305,6 +313,10 @@ export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNam
     return new ReservedPropertyNames_Runtime().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ReservedPropertyNames_Runtime {
+    return proto3.util.conforms(ReservedPropertyNames_Runtime, value);
+  }
+
   static equals(a: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined, b: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_Runtime, a, b);
   }
@@ -367,6 +379,10 @@ export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropert
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames_OneofBultIn {
     return new ReservedPropertyNames_OneofBultIn().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ReservedPropertyNames_OneofBultIn {
+    return proto3.util.conforms(ReservedPropertyNames_OneofBultIn, value);
   }
 
   static equals(a: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined, b: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined): boolean {
@@ -468,6 +484,10 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
     return new ReservedPropertyNames_OneofRuntime().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ReservedPropertyNames_OneofRuntime {
+    return proto3.util.conforms(ReservedPropertyNames_OneofRuntime, value);
+  }
+
   static equals(a: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined, b: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined): boolean {
     return proto3.util.equals(ReservedPropertyNames_OneofRuntime, a, b);
   }
@@ -499,6 +519,10 @@ export class interface$ extends Message$1<interface$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): interface$ {
     return new interface$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is interface$ {
+    return proto3.util.conforms(interface$, value);
   }
 
   static equals(a: interface$ | PlainMessage$1<interface$> | undefined, b: interface$ | PlainMessage$1<interface$> | undefined): boolean {
@@ -534,6 +558,10 @@ export class function$ extends Message$1<function$> {
     return new function$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is function$ {
+    return proto3.util.conforms(function$, value);
+  }
+
   static equals(a: function$ | PlainMessage$1<function$> | undefined, b: function$ | PlainMessage$1<function$> | undefined): boolean {
     return proto3.util.equals(function$, a, b);
   }
@@ -565,6 +593,10 @@ export class instanceof$ extends Message$1<instanceof$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): instanceof$ {
     return new instanceof$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is instanceof$ {
+    return proto3.util.conforms(instanceof$, value);
   }
 
   static equals(a: instanceof$ | PlainMessage$1<instanceof$> | undefined, b: instanceof$ | PlainMessage$1<instanceof$> | undefined): boolean {
@@ -600,6 +632,10 @@ export class switch$ extends Message$1<switch$> {
     return new switch$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is switch$ {
+    return proto3.util.conforms(switch$, value);
+  }
+
   static equals(a: switch$ | PlainMessage$1<switch$> | undefined, b: switch$ | PlainMessage$1<switch$> | undefined): boolean {
     return proto3.util.equals(switch$, a, b);
   }
@@ -631,6 +667,10 @@ export class case$ extends Message$1<case$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): case$ {
     return new case$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is case$ {
+    return proto3.util.conforms(case$, value);
   }
 
   static equals(a: case$ | PlainMessage$1<case$> | undefined, b: case$ | PlainMessage$1<case$> | undefined): boolean {
@@ -666,6 +706,10 @@ export class return$ extends Message$1<return$> {
     return new return$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is return$ {
+    return proto3.util.conforms(return$, value);
+  }
+
   static equals(a: return$ | PlainMessage$1<return$> | undefined, b: return$ | PlainMessage$1<return$> | undefined): boolean {
     return proto3.util.equals(return$, a, b);
   }
@@ -697,6 +741,10 @@ export class Message extends Message$1<Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message {
     return new Message().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Message {
+    return proto3.util.conforms(Message, value);
   }
 
   static equals(a: Message | PlainMessage$1<Message> | undefined, b: Message | PlainMessage$1<Message> | undefined): boolean {
@@ -732,6 +780,10 @@ export class PartialMessage extends Message$1<PartialMessage> {
     return new PartialMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PartialMessage {
+    return proto3.util.conforms(PartialMessage, value);
+  }
+
   static equals(a: PartialMessage | PlainMessage$1<PartialMessage> | undefined, b: PartialMessage | PlainMessage$1<PartialMessage> | undefined): boolean {
     return proto3.util.equals(PartialMessage, a, b);
   }
@@ -763,6 +815,10 @@ export class PlainMessage extends Message$1<PlainMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PlainMessage {
     return new PlainMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PlainMessage {
+    return proto3.util.conforms(PlainMessage, value);
   }
 
   static equals(a: PlainMessage | PlainMessage$1<PlainMessage> | undefined, b: PlainMessage | PlainMessage$1<PlainMessage> | undefined): boolean {
@@ -812,6 +868,10 @@ export class Error extends Message$1<Error> {
     return new Error().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Error {
+    return proto3.util.conforms(Error, value);
+  }
+
   static equals(a: Error | PlainMessage$1<Error> | undefined, b: Error | PlainMessage$1<Error> | undefined): boolean {
     return proto3.util.equals(Error, a, b);
   }
@@ -845,6 +905,10 @@ export class Object$ extends Message$1<Object$> {
     return new Object$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Object$ {
+    return proto3.util.conforms(Object$, value);
+  }
+
   static equals(a: Object$ | PlainMessage$1<Object$> | undefined, b: Object$ | PlainMessage$1<Object$> | undefined): boolean {
     return proto3.util.equals(Object$, a, b);
   }
@@ -874,6 +938,10 @@ export class object$ extends Message$1<object$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): object$ {
     return new object$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is object$ {
+    return proto3.util.conforms(object$, value);
   }
 
   static equals(a: object$ | PlainMessage$1<object$> | undefined, b: object$ | PlainMessage$1<object$> | undefined): boolean {
@@ -909,6 +977,10 @@ export class array extends Message$1<array> {
     return new array().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is array {
+    return proto3.util.conforms(array, value);
+  }
+
   static equals(a: array | PlainMessage$1<array> | undefined, b: array | PlainMessage$1<array> | undefined): boolean {
     return proto3.util.equals(array, a, b);
   }
@@ -940,6 +1012,10 @@ export class string$ extends Message$1<string$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): string$ {
     return new string$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is string$ {
+    return proto3.util.conforms(string$, value);
   }
 
   static equals(a: string$ | PlainMessage$1<string$> | undefined, b: string$ | PlainMessage$1<string$> | undefined): boolean {
@@ -975,6 +1051,10 @@ export class number$ extends Message$1<number$> {
     return new number$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is number$ {
+    return proto3.util.conforms(number$, value);
+  }
+
   static equals(a: number$ | PlainMessage$1<number$> | undefined, b: number$ | PlainMessage$1<number$> | undefined): boolean {
     return proto3.util.equals(number$, a, b);
   }
@@ -1006,6 +1086,10 @@ export class boolean$ extends Message$1<boolean$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): boolean$ {
     return new boolean$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is boolean$ {
+    return proto3.util.conforms(boolean$, value);
   }
 
   static equals(a: boolean$ | PlainMessage$1<boolean$> | undefined, b: boolean$ | PlainMessage$1<boolean$> | undefined): boolean {
@@ -1041,6 +1125,10 @@ export class bigint$ extends Message$1<bigint$> {
     return new bigint$().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is bigint$ {
+    return proto3.util.conforms(bigint$, value);
+  }
+
   static equals(a: bigint$ | PlainMessage$1<bigint$> | undefined, b: bigint$ | PlainMessage$1<bigint$> | undefined): boolean {
     return proto3.util.equals(bigint$, a, b);
   }
@@ -1072,6 +1160,10 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint8Array$ {
     return new Uint8Array$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Uint8Array$ {
+    return proto3.util.conforms(Uint8Array$, value);
   }
 
   static equals(a: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined, b: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined): boolean {
@@ -1107,6 +1199,10 @@ export class Array extends Message$1<Array> {
     return new Array().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Array {
+    return proto3.util.conforms(Array, value);
+  }
+
   static equals(a: Array | PlainMessage$1<Array> | undefined, b: Array | PlainMessage$1<Array> | undefined): boolean {
     return proto3.util.equals(Array, a, b);
   }
@@ -1138,6 +1234,10 @@ export class String extends Message$1<String> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): String {
     return new String().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is String {
+    return proto3.util.conforms(String, value);
   }
 
   static equals(a: String | PlainMessage$1<String> | undefined, b: String | PlainMessage$1<String> | undefined): boolean {
@@ -1173,6 +1273,10 @@ export class Number extends Message$1<Number> {
     return new Number().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Number {
+    return proto3.util.conforms(Number, value);
+  }
+
   static equals(a: Number | PlainMessage$1<Number> | undefined, b: Number | PlainMessage$1<Number> | undefined): boolean {
     return proto3.util.equals(Number, a, b);
   }
@@ -1204,6 +1308,10 @@ export class Boolean extends Message$1<Boolean> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Boolean {
     return new Boolean().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Boolean {
+    return proto3.util.conforms(Boolean, value);
   }
 
   static equals(a: Boolean | PlainMessage$1<Boolean> | undefined, b: Boolean | PlainMessage$1<Boolean> | undefined): boolean {
@@ -1239,6 +1347,10 @@ export class BigInt extends Message$1<BigInt> {
     return new BigInt().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BigInt {
+    return proto3.util.conforms(BigInt, value);
+  }
+
   static equals(a: BigInt | PlainMessage$1<BigInt> | undefined, b: BigInt | PlainMessage$1<BigInt> | undefined): boolean {
     return proto3.util.equals(BigInt, a, b);
   }
@@ -1268,6 +1380,10 @@ export class ClashParent extends Message$1<ClashParent> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ClashParent {
     return new ClashParent().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ClashParent {
+    return proto3.util.conforms(ClashParent, value);
   }
 
   static equals(a: ClashParent | PlainMessage$1<ClashParent> | undefined, b: ClashParent | PlainMessage$1<ClashParent> | undefined): boolean {
@@ -1301,6 +1417,10 @@ export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ClashParent_ClashChild {
     return new ClashParent_ClashChild().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ClashParent_ClashChild {
+    return proto3.util.conforms(ClashParent_ClashChild, value);
   }
 
   static equals(a: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined, b: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined): boolean {
@@ -1380,6 +1500,10 @@ export class NoClashFields extends Message$1<NoClashFields> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashFields {
     return new NoClashFields().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NoClashFields {
+    return proto3.util.conforms(NoClashFields, value);
   }
 
   static equals(a: NoClashFields | PlainMessage$1<NoClashFields> | undefined, b: NoClashFields | PlainMessage$1<NoClashFields> | undefined): boolean {
@@ -1472,6 +1596,10 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
     return new NoClashOneof().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NoClashOneof {
+    return proto3.util.conforms(NoClashOneof, value);
+  }
+
   static equals(a: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined, b: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined): boolean {
     return proto3.util.equals(NoClashOneof, a, b);
   }
@@ -1507,6 +1635,10 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT {
     return new NoClashOneofADT().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NoClashOneofADT {
+    return proto3.util.conforms(NoClashOneofADT, value);
   }
 
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean {
@@ -1552,6 +1684,10 @@ export class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
     return new NoClashOneofADT_M().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NoClashOneofADT_M {
+    return proto3.util.conforms(NoClashOneofADT_M, value);
+  }
+
   static equals(a: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined, b: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined): boolean {
     return proto3.util.equals(NoClashOneofADT_M, a, b);
   }
@@ -1583,6 +1719,10 @@ export class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashEnumWrap {
     return new NoClashEnumWrap().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NoClashEnumWrap {
+    return proto3.util.conforms(NoClashEnumWrap, value);
   }
 
   static equals(a: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined, b: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined): boolean {

@@ -90,6 +90,10 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
     return new ListAuditLogsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListAuditLogsRequest {
+    return proto3.util.conforms(ListAuditLogsRequest, value);
+  }
+
   static equals(a: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined, b: ListAuditLogsRequest | PlainMessage<ListAuditLogsRequest> | undefined): boolean {
     return proto3.util.equals(ListAuditLogsRequest, a, b);
   }
@@ -133,6 +137,10 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAuditLogsResponse {
     return new ListAuditLogsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListAuditLogsResponse {
+    return proto3.util.conforms(ListAuditLogsResponse, value);
   }
 
   static equals(a: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined, b: ListAuditLogsResponse | PlainMessage<ListAuditLogsResponse> | undefined): boolean {

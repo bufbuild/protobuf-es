@@ -84,6 +84,9 @@ DoubleValue.fieldWrapper = {
   }
 };
 
+DoubleValue.conforms = function conforms(value) {
+ return proto3.util.conforms(DoubleValue, value);
+};
 /**
  * Wrapper message for `float`.
  *
@@ -124,6 +127,9 @@ FloatValue.fieldWrapper = {
   }
 };
 
+FloatValue.conforms = function conforms(value) {
+ return proto3.util.conforms(FloatValue, value);
+};
 /**
  * Wrapper message for `int64`.
  *
@@ -164,6 +170,9 @@ Int64Value.fieldWrapper = {
   }
 };
 
+Int64Value.conforms = function conforms(value) {
+ return proto3.util.conforms(Int64Value, value);
+};
 /**
  * Wrapper message for `uint64`.
  *
@@ -204,6 +213,9 @@ UInt64Value.fieldWrapper = {
   }
 };
 
+UInt64Value.conforms = function conforms(value) {
+ return proto3.util.conforms(UInt64Value, value);
+};
 /**
  * Wrapper message for `int32`.
  *
@@ -244,6 +256,9 @@ Int32Value.fieldWrapper = {
   }
 };
 
+Int32Value.conforms = function conforms(value) {
+ return proto3.util.conforms(Int32Value, value);
+};
 /**
  * Wrapper message for `uint32`.
  *
@@ -284,6 +299,9 @@ UInt32Value.fieldWrapper = {
   }
 };
 
+UInt32Value.conforms = function conforms(value) {
+ return proto3.util.conforms(UInt32Value, value);
+};
 /**
  * Wrapper message for `bool`.
  *
@@ -324,6 +342,9 @@ BoolValue.fieldWrapper = {
   }
 };
 
+BoolValue.conforms = function conforms(value) {
+ return proto3.util.conforms(BoolValue, value);
+};
 /**
  * Wrapper message for `string`.
  *
@@ -364,6 +385,9 @@ StringValue.fieldWrapper = {
   }
 };
 
+StringValue.conforms = function conforms(value) {
+ return proto3.util.conforms(StringValue, value);
+};
 /**
  * Wrapper message for `bytes`.
  *
@@ -404,3 +428,6 @@ BytesValue.fieldWrapper = {
   }
 };
 
+BytesValue.conforms = function conforms(value) {
+ return proto3.util.conforms(BytesValue, value);
+};

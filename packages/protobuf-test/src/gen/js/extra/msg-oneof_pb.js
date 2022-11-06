@@ -45,6 +45,9 @@ export const OneofMessage = proto3.makeMessageType(
   ],
 );
 
+OneofMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(OneofMessage, value);
+};
 /**
  * @generated from message spec.OneofMessageFoo
  */
@@ -56,6 +59,9 @@ export const OneofMessageFoo = proto3.makeMessageType(
   ],
 );
 
+OneofMessageFoo.conforms = function conforms(value) {
+ return proto3.util.conforms(OneofMessageFoo, value);
+};
 /**
  * @generated from message spec.OneofMessageBar
  */
@@ -67,3 +73,6 @@ export const OneofMessageBar = proto3.makeMessageType(
   ],
 );
 
+OneofMessageBar.conforms = function conforms(value) {
+ return proto3.util.conforms(OneofMessageBar, value);
+};

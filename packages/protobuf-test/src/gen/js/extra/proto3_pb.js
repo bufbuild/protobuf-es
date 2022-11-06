@@ -42,6 +42,9 @@ export const Proto3PackedMessage = proto3.makeMessageType(
   ],
 );
 
+Proto3PackedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(Proto3PackedMessage, value);
+};
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
@@ -54,6 +57,9 @@ export const Proto3UnpackedMessage = proto3.makeMessageType(
   ],
 );
 
+Proto3UnpackedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(Proto3UnpackedMessage, value);
+};
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
@@ -66,6 +72,9 @@ export const Proto3UnlabelledMessage = proto3.makeMessageType(
   ],
 );
 
+Proto3UnlabelledMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(Proto3UnlabelledMessage, value);
+};
 /**
  * @generated from message spec.Proto3OptionalMessage
  */
@@ -79,3 +88,6 @@ export const Proto3OptionalMessage = proto3.makeMessageType(
   ],
 );
 
+Proto3OptionalMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(Proto3OptionalMessage, value);
+};

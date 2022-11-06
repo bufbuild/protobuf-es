@@ -56,3 +56,6 @@ export const TestMessage = proto2.makeMessageType(
   ],
 );
 
+TestMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessage, value);
+};

@@ -50,6 +50,9 @@ export const TestMessageSet = proto2.makeMessageType(
   [],
 );
 
+TestMessageSet.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSet, value);
+};
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
  */
@@ -60,3 +63,6 @@ export const TestMessageSetWireFormatContainer = proto2.makeMessageType(
   ],
 );
 
+TestMessageSetWireFormatContainer.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetWireFormatContainer, value);
+};

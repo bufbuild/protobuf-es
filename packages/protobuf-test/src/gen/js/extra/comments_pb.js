@@ -82,6 +82,9 @@ export const MessageWithComments = proto3.makeMessageType(
   ],
 );
 
+MessageWithComments.conforms = function conforms(value) {
+ return proto3.util.conforms(MessageWithComments, value);
+};
 /**
  * Comment within empty message.
  *
@@ -92,6 +95,9 @@ export const EmptyMessageWithComment = proto3.makeMessageType(
   [],
 );
 
+EmptyMessageWithComment.conforms = function conforms(value) {
+ return proto3.util.conforms(EmptyMessageWithComment, value);
+};
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
  *
@@ -109,3 +115,6 @@ export const GoogleCommentExample = proto3.makeMessageType(
   ],
 );
 
+GoogleCommentExample.conforms = function conforms(value) {
+ return proto3.util.conforms(GoogleCommentExample, value);
+};

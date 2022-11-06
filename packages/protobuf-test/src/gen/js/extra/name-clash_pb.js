@@ -26,6 +26,9 @@ export const ReservedPropertyNames = proto3.makeMessageType(
   [],
 );
 
+ReservedPropertyNames.conforms = function conforms(value) {
+ return proto3.util.conforms(ReservedPropertyNames, value);
+};
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
  */
@@ -71,6 +74,9 @@ export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
   {localName: "ReservedPropertyNames_BuiltIn"},
 );
 
+ReservedPropertyNames_BuiltIn.conforms = function conforms(value) {
+ return proto3.util.conforms(ReservedPropertyNames_BuiltIn, value);
+};
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
  */
@@ -90,6 +96,9 @@ export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
   {localName: "ReservedPropertyNames_Runtime"},
 );
 
+ReservedPropertyNames_Runtime.conforms = function conforms(value) {
+ return proto3.util.conforms(ReservedPropertyNames_Runtime, value);
+};
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
  */
@@ -104,6 +113,9 @@ export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
   {localName: "ReservedPropertyNames_OneofBultIn"},
 );
 
+ReservedPropertyNames_OneofBultIn.conforms = function conforms(value) {
+ return proto3.util.conforms(ReservedPropertyNames_OneofBultIn, value);
+};
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
  */
@@ -123,6 +135,9 @@ export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
   {localName: "ReservedPropertyNames_OneofRuntime"},
 );
 
+ReservedPropertyNames_OneofRuntime.conforms = function conforms(value) {
+ return proto3.util.conforms(ReservedPropertyNames_OneofRuntime, value);
+};
 /**
  * reserved identifier
  *
@@ -134,6 +149,9 @@ export const interface$ = proto3.makeMessageType(
   {localName: "interface$"},
 );
 
+interface$.conforms = function conforms(value) {
+ return proto3.util.conforms(interface$, value);
+};
 /**
  * reserved identifier
  *
@@ -145,6 +163,9 @@ export const function$ = proto3.makeMessageType(
   {localName: "function$"},
 );
 
+function$.conforms = function conforms(value) {
+ return proto3.util.conforms(function$, value);
+};
 /**
  * reserved identifier
  *
@@ -156,6 +177,9 @@ export const instanceof$ = proto3.makeMessageType(
   {localName: "instanceof$"},
 );
 
+instanceof$.conforms = function conforms(value) {
+ return proto3.util.conforms(instanceof$, value);
+};
 /**
  * reserved identifier
  *
@@ -167,6 +191,9 @@ export const switch$ = proto3.makeMessageType(
   {localName: "switch$"},
 );
 
+switch$.conforms = function conforms(value) {
+ return proto3.util.conforms(switch$, value);
+};
 /**
  * reserved identifier
  *
@@ -178,6 +205,9 @@ export const case$ = proto3.makeMessageType(
   {localName: "case$"},
 );
 
+case$.conforms = function conforms(value) {
+ return proto3.util.conforms(case$, value);
+};
 /**
  * reserved identifier
  *
@@ -189,6 +219,9 @@ export const return$ = proto3.makeMessageType(
   {localName: "return$"},
 );
 
+return$.conforms = function conforms(value) {
+ return proto3.util.conforms(return$, value);
+};
 /**
  * used by runtime
  *
@@ -199,6 +232,9 @@ export const Message = proto3.makeMessageType(
   [],
 );
 
+Message.conforms = function conforms(value) {
+ return proto3.util.conforms(Message, value);
+};
 /**
  * used by runtime
  *
@@ -209,6 +245,9 @@ export const PartialMessage = proto3.makeMessageType(
   [],
 );
 
+PartialMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(PartialMessage, value);
+};
 /**
  * used by runtime
  *
@@ -219,6 +258,9 @@ export const PlainMessage = proto3.makeMessageType(
   [],
 );
 
+PlainMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(PlainMessage, value);
+};
 /**
  * clash with global type "Error"
  * either this message name is escaped in generated code, or the generated
@@ -234,6 +276,9 @@ export const Error = proto3.makeMessageType(
   ],
 );
 
+Error.conforms = function conforms(value) {
+ return proto3.util.conforms(Error, value);
+};
 /**
  * clash with global type
  *
@@ -245,6 +290,9 @@ export const Object$ = proto3.makeMessageType(
   {localName: "Object$"},
 );
 
+Object$.conforms = function conforms(value) {
+ return proto3.util.conforms(Object$, value);
+};
 /**
  * @generated from message spec.object
  */
@@ -254,6 +302,9 @@ export const object$ = proto3.makeMessageType(
   {localName: "object$"},
 );
 
+object$.conforms = function conforms(value) {
+ return proto3.util.conforms(object$, value);
+};
 /**
  * clash with global type
  *
@@ -264,6 +315,9 @@ export const array = proto3.makeMessageType(
   [],
 );
 
+array.conforms = function conforms(value) {
+ return proto3.util.conforms(array, value);
+};
 /**
  * clash with global type
  *
@@ -275,6 +329,9 @@ export const string$ = proto3.makeMessageType(
   {localName: "string$"},
 );
 
+string$.conforms = function conforms(value) {
+ return proto3.util.conforms(string$, value);
+};
 /**
  * clash with global type
  *
@@ -286,6 +343,9 @@ export const number$ = proto3.makeMessageType(
   {localName: "number$"},
 );
 
+number$.conforms = function conforms(value) {
+ return proto3.util.conforms(number$, value);
+};
 /**
  * clash with global type
  *
@@ -297,6 +357,9 @@ export const boolean$ = proto3.makeMessageType(
   {localName: "boolean$"},
 );
 
+boolean$.conforms = function conforms(value) {
+ return proto3.util.conforms(boolean$, value);
+};
 /**
  * clash with global type
  *
@@ -308,6 +371,9 @@ export const bigint$ = proto3.makeMessageType(
   {localName: "bigint$"},
 );
 
+bigint$.conforms = function conforms(value) {
+ return proto3.util.conforms(bigint$, value);
+};
 /**
  * clash with global type
  *
@@ -319,6 +385,9 @@ export const Uint8Array$ = proto3.makeMessageType(
   {localName: "Uint8Array$"},
 );
 
+Uint8Array$.conforms = function conforms(value) {
+ return proto3.util.conforms(Uint8Array$, value);
+};
 /**
  * clash with global type
  *
@@ -329,6 +398,9 @@ export const Array = proto3.makeMessageType(
   [],
 );
 
+Array.conforms = function conforms(value) {
+ return proto3.util.conforms(Array, value);
+};
 /**
  * clash with global type
  *
@@ -339,6 +411,9 @@ export const String = proto3.makeMessageType(
   [],
 );
 
+String.conforms = function conforms(value) {
+ return proto3.util.conforms(String, value);
+};
 /**
  * clash with global type
  *
@@ -349,6 +424,9 @@ export const Number = proto3.makeMessageType(
   [],
 );
 
+Number.conforms = function conforms(value) {
+ return proto3.util.conforms(Number, value);
+};
 /**
  * clash with global type
  *
@@ -359,6 +437,9 @@ export const Boolean = proto3.makeMessageType(
   [],
 );
 
+Boolean.conforms = function conforms(value) {
+ return proto3.util.conforms(Boolean, value);
+};
 /**
  * clash with global type
  *
@@ -369,6 +450,9 @@ export const BigInt = proto3.makeMessageType(
   [],
 );
 
+BigInt.conforms = function conforms(value) {
+ return proto3.util.conforms(BigInt, value);
+};
 /**
  * @generated from message spec.ClashParent
  */
@@ -377,6 +461,9 @@ export const ClashParent = proto3.makeMessageType(
   [],
 );
 
+ClashParent.conforms = function conforms(value) {
+ return proto3.util.conforms(ClashParent, value);
+};
 /**
  * should clash with message ClashParent_ClashChild
  *
@@ -388,6 +475,9 @@ export const ClashParent_ClashChild = proto3.makeMessageType(
   {localName: "ClashParent_ClashChild"},
 );
 
+ClashParent_ClashChild.conforms = function conforms(value) {
+ return proto3.util.conforms(ClashParent_ClashChild, value);
+};
 /**
  * @generated from message spec.NoClashFields
  */
@@ -403,6 +493,9 @@ export const NoClashFields = proto3.makeMessageType(
   ],
 );
 
+NoClashFields.conforms = function conforms(value) {
+ return proto3.util.conforms(NoClashFields, value);
+};
 /**
  * @generated from message spec.NoClashOneof
  */
@@ -418,6 +511,9 @@ export const NoClashOneof = proto3.makeMessageType(
   ],
 );
 
+NoClashOneof.conforms = function conforms(value) {
+ return proto3.util.conforms(NoClashOneof, value);
+};
 /**
  * @generated from message spec.NoClashOneofADT
  */
@@ -428,6 +524,9 @@ export const NoClashOneofADT = proto3.makeMessageType(
   ],
 );
 
+NoClashOneofADT.conforms = function conforms(value) {
+ return proto3.util.conforms(NoClashOneofADT, value);
+};
 /**
  * @generated from message spec.NoClashOneofADT.M
  */
@@ -440,6 +539,9 @@ export const NoClashOneofADT_M = proto3.makeMessageType(
   {localName: "NoClashOneofADT_M"},
 );
 
+NoClashOneofADT_M.conforms = function conforms(value) {
+ return proto3.util.conforms(NoClashOneofADT_M, value);
+};
 /**
  * just here as a "namespace" for the enum
  *
@@ -450,6 +552,9 @@ export const NoClashEnumWrap = proto3.makeMessageType(
   [],
 );
 
+NoClashEnumWrap.conforms = function conforms(value) {
+ return proto3.util.conforms(NoClashEnumWrap, value);
+};
 /**
  * @generated from enum spec.NoClashEnumWrap.X
  */

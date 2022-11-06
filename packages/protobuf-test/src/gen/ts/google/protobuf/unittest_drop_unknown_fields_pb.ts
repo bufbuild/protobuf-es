@@ -73,6 +73,10 @@ export class Foo extends Message<Foo> {
     return new Foo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Foo {
+    return proto3.util.conforms(Foo, value);
+  }
+
   static equals(a: Foo | PlainMessage<Foo> | undefined, b: Foo | PlainMessage<Foo> | undefined): boolean {
     return proto3.util.equals(Foo, a, b);
   }
@@ -146,6 +150,10 @@ export class FooWithExtraFields extends Message<FooWithExtraFields> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooWithExtraFields {
     return new FooWithExtraFields().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is FooWithExtraFields {
+    return proto3.util.conforms(FooWithExtraFields, value);
   }
 
   static equals(a: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined, b: FooWithExtraFields | PlainMessage<FooWithExtraFields> | undefined): boolean {

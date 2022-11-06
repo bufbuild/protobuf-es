@@ -78,6 +78,10 @@ export class Person extends Message<Person> {
     return new Person().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Person {
+    return proto3.util.conforms(Person, value);
+  }
+
   static equals(a: Person | PlainMessage<Person> | undefined, b: Person | PlainMessage<Person> | undefined): boolean {
     return proto3.util.equals(Person, a, b);
   }
@@ -145,6 +149,10 @@ export class Person_PhoneNumber extends Message<Person_PhoneNumber> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Person_PhoneNumber {
     return new Person_PhoneNumber().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Person_PhoneNumber {
+    return proto3.util.conforms(Person_PhoneNumber, value);
   }
 
   static equals(a: Person_PhoneNumber | PlainMessage<Person_PhoneNumber> | undefined, b: Person_PhoneNumber | PlainMessage<Person_PhoneNumber> | undefined): boolean {

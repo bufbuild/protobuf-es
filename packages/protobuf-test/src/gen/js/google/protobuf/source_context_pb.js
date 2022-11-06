@@ -47,3 +47,6 @@ export const SourceContext = proto3.makeMessageType(
   ],
 );
 
+SourceContext.conforms = function conforms(value) {
+ return proto3.util.conforms(SourceContext, value);
+};

@@ -67,6 +67,8 @@ export declare class ImportedMessage extends Message<ImportedMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportedMessage;
 
+  static conforms(value: any): value is ImportedMessage;
+
   static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean;
 }
 
@@ -86,6 +88,8 @@ export declare class MessageCustomOption extends Message<MessageCustomOption> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption;
 
+  static conforms(value: any): value is MessageCustomOption;
+
   static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean;
 }
 
@@ -104,6 +108,8 @@ export declare class MessageCustomOption2 extends Message<MessageCustomOption2> 
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageCustomOption2;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption2;
+
+  static conforms(value: any): value is MessageCustomOption2;
 
   static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean;
 }

@@ -69,6 +69,10 @@ export class Token extends Message<Token> {
     return new Token().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Token {
+    return proto3.util.conforms(Token, value);
+  }
+
   static equals(a: Token | PlainMessage<Token> | undefined, b: Token | PlainMessage<Token> | undefined): boolean {
     return proto3.util.equals(Token, a, b);
   }
@@ -115,6 +119,10 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
     return new CreateTokenRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateTokenRequest {
+    return proto3.util.conforms(CreateTokenRequest, value);
+  }
+
   static equals(a: CreateTokenRequest | PlainMessage<CreateTokenRequest> | undefined, b: CreateTokenRequest | PlainMessage<CreateTokenRequest> | undefined): boolean {
     return proto3.util.equals(CreateTokenRequest, a, b);
   }
@@ -154,6 +162,10 @@ export class CreateTokenResponse extends Message<CreateTokenResponse> {
     return new CreateTokenResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateTokenResponse {
+    return proto3.util.conforms(CreateTokenResponse, value);
+  }
+
   static equals(a: CreateTokenResponse | PlainMessage<CreateTokenResponse> | undefined, b: CreateTokenResponse | PlainMessage<CreateTokenResponse> | undefined): boolean {
     return proto3.util.equals(CreateTokenResponse, a, b);
   }
@@ -191,6 +203,10 @@ export class GetTokenRequest extends Message<GetTokenRequest> {
     return new GetTokenRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetTokenRequest {
+    return proto3.util.conforms(GetTokenRequest, value);
+  }
+
   static equals(a: GetTokenRequest | PlainMessage<GetTokenRequest> | undefined, b: GetTokenRequest | PlainMessage<GetTokenRequest> | undefined): boolean {
     return proto3.util.equals(GetTokenRequest, a, b);
   }
@@ -226,6 +242,10 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetTokenResponse {
     return new GetTokenResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetTokenResponse {
+    return proto3.util.conforms(GetTokenResponse, value);
   }
 
   static equals(a: GetTokenResponse | PlainMessage<GetTokenResponse> | undefined, b: GetTokenResponse | PlainMessage<GetTokenResponse> | undefined): boolean {
@@ -279,6 +299,10 @@ export class ListTokensRequest extends Message<ListTokensRequest> {
     return new ListTokensRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListTokensRequest {
+    return proto3.util.conforms(ListTokensRequest, value);
+  }
+
   static equals(a: ListTokensRequest | PlainMessage<ListTokensRequest> | undefined, b: ListTokensRequest | PlainMessage<ListTokensRequest> | undefined): boolean {
     return proto3.util.equals(ListTokensRequest, a, b);
   }
@@ -324,6 +348,10 @@ export class ListTokensResponse extends Message<ListTokensResponse> {
     return new ListTokensResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListTokensResponse {
+    return proto3.util.conforms(ListTokensResponse, value);
+  }
+
   static equals(a: ListTokensResponse | PlainMessage<ListTokensResponse> | undefined, b: ListTokensResponse | PlainMessage<ListTokensResponse> | undefined): boolean {
     return proto3.util.equals(ListTokensResponse, a, b);
   }
@@ -361,6 +389,10 @@ export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
     return new DeleteTokenRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteTokenRequest {
+    return proto3.util.conforms(DeleteTokenRequest, value);
+  }
+
   static equals(a: DeleteTokenRequest | PlainMessage<DeleteTokenRequest> | undefined, b: DeleteTokenRequest | PlainMessage<DeleteTokenRequest> | undefined): boolean {
     return proto3.util.equals(DeleteTokenRequest, a, b);
   }
@@ -390,6 +422,10 @@ export class DeleteTokenResponse extends Message<DeleteTokenResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteTokenResponse {
     return new DeleteTokenResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteTokenResponse {
+    return proto3.util.conforms(DeleteTokenResponse, value);
   }
 
   static equals(a: DeleteTokenResponse | PlainMessage<DeleteTokenResponse> | undefined, b: DeleteTokenResponse | PlainMessage<DeleteTokenResponse> | undefined): boolean {

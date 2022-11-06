@@ -90,6 +90,10 @@ export class Reference extends Message<Reference> {
     return new Reference().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Reference {
+    return proto3.util.conforms(Reference, value);
+  }
+
   static equals(a: Reference | PlainMessage<Reference> | undefined, b: Reference | PlainMessage<Reference> | undefined): boolean {
     return proto3.util.equals(Reference, a, b);
   }
@@ -145,6 +149,10 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
     return new GetReferenceByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetReferenceByNameRequest {
+    return proto3.util.conforms(GetReferenceByNameRequest, value);
+  }
+
   static equals(a: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined, b: GetReferenceByNameRequest | PlainMessage<GetReferenceByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetReferenceByNameRequest, a, b);
   }
@@ -180,6 +188,10 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetReferenceByNameResponse {
     return new GetReferenceByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetReferenceByNameResponse {
+    return proto3.util.conforms(GetReferenceByNameResponse, value);
   }
 
   static equals(a: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined, b: GetReferenceByNameResponse | PlainMessage<GetReferenceByNameResponse> | undefined): boolean {

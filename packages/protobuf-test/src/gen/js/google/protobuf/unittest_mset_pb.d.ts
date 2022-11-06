@@ -64,6 +64,8 @@ export declare class TestMessageSetContainer extends Message<TestMessageSetConta
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetContainer;
 
+  static conforms(value: any): value is TestMessageSetContainer;
+
   static equals(a: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined, b: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined): boolean;
 }
 
@@ -92,6 +94,8 @@ export declare class NestedTestMessageSetContainer extends Message<NestedTestMes
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestMessageSetContainer;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestMessageSetContainer;
+
+  static conforms(value: any): value is NestedTestMessageSetContainer;
 
   static equals(a: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined, b: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined): boolean;
 }
@@ -127,6 +131,8 @@ export declare class TestMessageSetExtension1 extends Message<TestMessageSetExte
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension1;
 
+  static conforms(value: any): value is TestMessageSetExtension1;
+
   static equals(a: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined, b: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined): boolean;
 }
 
@@ -150,6 +156,8 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension2;
+
+  static conforms(value: any): value is TestMessageSetExtension2;
 
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean;
 }
@@ -180,6 +188,8 @@ export declare class NestedTestInt extends Message<NestedTestInt> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestInt;
 
+  static conforms(value: any): value is NestedTestInt;
+
   static equals(a: NestedTestInt | PlainMessage<NestedTestInt> | undefined, b: NestedTestInt | PlainMessage<NestedTestInt> | undefined): boolean;
 }
 
@@ -203,6 +213,8 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetExtension3;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension3;
+
+  static conforms(value: any): value is TestMessageSetExtension3;
 
   static equals(a: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined, b: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined): boolean;
 }
@@ -229,6 +241,8 @@ export declare class RawMessageSet extends Message<RawMessageSet> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet;
+
+  static conforms(value: any): value is RawMessageSet;
 
   static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean;
 }
@@ -258,6 +272,8 @@ export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
+
+  static conforms(value: any): value is RawMessageSet_Item;
 
   static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean;
 }

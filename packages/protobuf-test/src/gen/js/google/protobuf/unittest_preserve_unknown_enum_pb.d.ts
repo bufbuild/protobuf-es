@@ -135,6 +135,8 @@ export declare class MyMessage extends Message<MyMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessage;
 
+  static conforms(value: any): value is MyMessage;
+
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean;
 }
 
@@ -190,6 +192,8 @@ export declare class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MyMessagePlusExtra;
+
+  static conforms(value: any): value is MyMessagePlusExtra;
 
   static equals(a: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined, b: MyMessagePlusExtra | PlainMessage<MyMessagePlusExtra> | undefined): boolean;
 }

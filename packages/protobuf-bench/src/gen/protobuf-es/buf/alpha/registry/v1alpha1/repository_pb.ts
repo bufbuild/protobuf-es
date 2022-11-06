@@ -150,6 +150,10 @@ export class Repository extends Message<Repository> {
     return new Repository().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Repository {
+    return proto3.util.conforms(Repository, value);
+  }
+
   static equals(a: Repository | PlainMessage<Repository> | undefined, b: Repository | PlainMessage<Repository> | undefined): boolean {
     return proto3.util.equals(Repository, a, b);
   }
@@ -212,6 +216,10 @@ export class RepositoryContributor extends Message<RepositoryContributor> {
     return new RepositoryContributor().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryContributor {
+    return proto3.util.conforms(RepositoryContributor, value);
+  }
+
   static equals(a: RepositoryContributor | PlainMessage<RepositoryContributor> | undefined, b: RepositoryContributor | PlainMessage<RepositoryContributor> | undefined): boolean {
     return proto3.util.equals(RepositoryContributor, a, b);
   }
@@ -252,6 +260,10 @@ export class GetRepositoriesByFullNameRequest extends Message<GetRepositoriesByF
     return new GetRepositoriesByFullNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoriesByFullNameRequest {
+    return proto3.util.conforms(GetRepositoriesByFullNameRequest, value);
+  }
+
   static equals(a: GetRepositoriesByFullNameRequest | PlainMessage<GetRepositoriesByFullNameRequest> | undefined, b: GetRepositoriesByFullNameRequest | PlainMessage<GetRepositoriesByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoriesByFullNameRequest, a, b);
   }
@@ -287,6 +299,10 @@ export class GetRepositoriesByFullNameResponse extends Message<GetRepositoriesBy
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoriesByFullNameResponse {
     return new GetRepositoriesByFullNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoriesByFullNameResponse {
+    return proto3.util.conforms(GetRepositoriesByFullNameResponse, value);
   }
 
   static equals(a: GetRepositoriesByFullNameResponse | PlainMessage<GetRepositoriesByFullNameResponse> | undefined, b: GetRepositoriesByFullNameResponse | PlainMessage<GetRepositoriesByFullNameResponse> | undefined): boolean {
@@ -326,6 +342,10 @@ export class GetRepositoryRequest extends Message<GetRepositoryRequest> {
     return new GetRepositoryRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryRequest {
+    return proto3.util.conforms(GetRepositoryRequest, value);
+  }
+
   static equals(a: GetRepositoryRequest | PlainMessage<GetRepositoryRequest> | undefined, b: GetRepositoryRequest | PlainMessage<GetRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryRequest, a, b);
   }
@@ -361,6 +381,10 @@ export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryResponse {
     return new GetRepositoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryResponse {
+    return proto3.util.conforms(GetRepositoryResponse, value);
   }
 
   static equals(a: GetRepositoryResponse | PlainMessage<GetRepositoryResponse> | undefined, b: GetRepositoryResponse | PlainMessage<GetRepositoryResponse> | undefined): boolean {
@@ -400,6 +424,10 @@ export class GetRepositoryByFullNameRequest extends Message<GetRepositoryByFullN
     return new GetRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryByFullNameRequest {
+    return proto3.util.conforms(GetRepositoryByFullNameRequest, value);
+  }
+
   static equals(a: GetRepositoryByFullNameRequest | PlainMessage<GetRepositoryByFullNameRequest> | undefined, b: GetRepositoryByFullNameRequest | PlainMessage<GetRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryByFullNameRequest, a, b);
   }
@@ -435,6 +463,10 @@ export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFull
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryByFullNameResponse {
     return new GetRepositoryByFullNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryByFullNameResponse {
+    return proto3.util.conforms(GetRepositoryByFullNameResponse, value);
   }
 
   static equals(a: GetRepositoryByFullNameResponse | PlainMessage<GetRepositoryByFullNameResponse> | undefined, b: GetRepositoryByFullNameResponse | PlainMessage<GetRepositoryByFullNameResponse> | undefined): boolean {
@@ -488,6 +520,10 @@ export class ListRepositoriesRequest extends Message<ListRepositoriesRequest> {
     return new ListRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoriesRequest {
+    return proto3.util.conforms(ListRepositoriesRequest, value);
+  }
+
   static equals(a: ListRepositoriesRequest | PlainMessage<ListRepositoriesRequest> | undefined, b: ListRepositoriesRequest | PlainMessage<ListRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesRequest, a, b);
   }
@@ -531,6 +567,10 @@ export class ListRepositoriesResponse extends Message<ListRepositoriesResponse> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoriesResponse {
     return new ListRepositoriesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoriesResponse {
+    return proto3.util.conforms(ListRepositoriesResponse, value);
   }
 
   static equals(a: ListRepositoriesResponse | PlainMessage<ListRepositoriesResponse> | undefined, b: ListRepositoriesResponse | PlainMessage<ListRepositoriesResponse> | undefined): boolean {
@@ -592,6 +632,10 @@ export class ListUserRepositoriesRequest extends Message<ListUserRepositoriesReq
     return new ListUserRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUserRepositoriesRequest {
+    return proto3.util.conforms(ListUserRepositoriesRequest, value);
+  }
+
   static equals(a: ListUserRepositoriesRequest | PlainMessage<ListUserRepositoriesRequest> | undefined, b: ListUserRepositoriesRequest | PlainMessage<ListUserRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListUserRepositoriesRequest, a, b);
   }
@@ -635,6 +679,10 @@ export class ListUserRepositoriesResponse extends Message<ListUserRepositoriesRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListUserRepositoriesResponse {
     return new ListUserRepositoriesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListUserRepositoriesResponse {
+    return proto3.util.conforms(ListUserRepositoriesResponse, value);
   }
 
   static equals(a: ListUserRepositoriesResponse | PlainMessage<ListUserRepositoriesResponse> | undefined, b: ListUserRepositoriesResponse | PlainMessage<ListUserRepositoriesResponse> | undefined): boolean {
@@ -688,6 +736,10 @@ export class ListRepositoriesUserCanAccessRequest extends Message<ListRepositori
     return new ListRepositoriesUserCanAccessRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoriesUserCanAccessRequest {
+    return proto3.util.conforms(ListRepositoriesUserCanAccessRequest, value);
+  }
+
   static equals(a: ListRepositoriesUserCanAccessRequest | PlainMessage<ListRepositoriesUserCanAccessRequest> | undefined, b: ListRepositoriesUserCanAccessRequest | PlainMessage<ListRepositoriesUserCanAccessRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoriesUserCanAccessRequest, a, b);
   }
@@ -731,6 +783,10 @@ export class ListRepositoriesUserCanAccessResponse extends Message<ListRepositor
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoriesUserCanAccessResponse {
     return new ListRepositoriesUserCanAccessResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoriesUserCanAccessResponse {
+    return proto3.util.conforms(ListRepositoriesUserCanAccessResponse, value);
   }
 
   static equals(a: ListRepositoriesUserCanAccessResponse | PlainMessage<ListRepositoriesUserCanAccessResponse> | undefined, b: ListRepositoriesUserCanAccessResponse | PlainMessage<ListRepositoriesUserCanAccessResponse> | undefined): boolean {
@@ -792,6 +848,10 @@ export class ListOrganizationRepositoriesRequest extends Message<ListOrganizatio
     return new ListOrganizationRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationRepositoriesRequest {
+    return proto3.util.conforms(ListOrganizationRepositoriesRequest, value);
+  }
+
   static equals(a: ListOrganizationRepositoriesRequest | PlainMessage<ListOrganizationRepositoriesRequest> | undefined, b: ListOrganizationRepositoriesRequest | PlainMessage<ListOrganizationRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationRepositoriesRequest, a, b);
   }
@@ -835,6 +895,10 @@ export class ListOrganizationRepositoriesResponse extends Message<ListOrganizati
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListOrganizationRepositoriesResponse {
     return new ListOrganizationRepositoriesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListOrganizationRepositoriesResponse {
+    return proto3.util.conforms(ListOrganizationRepositoriesResponse, value);
   }
 
   static equals(a: ListOrganizationRepositoriesResponse | PlainMessage<ListOrganizationRepositoriesResponse> | undefined, b: ListOrganizationRepositoriesResponse | PlainMessage<ListOrganizationRepositoriesResponse> | undefined): boolean {
@@ -882,6 +946,10 @@ export class CreateRepositoryByFullNameRequest extends Message<CreateRepositoryB
     return new CreateRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateRepositoryByFullNameRequest {
+    return proto3.util.conforms(CreateRepositoryByFullNameRequest, value);
+  }
+
   static equals(a: CreateRepositoryByFullNameRequest | PlainMessage<CreateRepositoryByFullNameRequest> | undefined, b: CreateRepositoryByFullNameRequest | PlainMessage<CreateRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryByFullNameRequest, a, b);
   }
@@ -917,6 +985,10 @@ export class CreateRepositoryByFullNameResponse extends Message<CreateRepository
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRepositoryByFullNameResponse {
     return new CreateRepositoryByFullNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateRepositoryByFullNameResponse {
+    return proto3.util.conforms(CreateRepositoryByFullNameResponse, value);
   }
 
   static equals(a: CreateRepositoryByFullNameResponse | PlainMessage<CreateRepositoryByFullNameResponse> | undefined, b: CreateRepositoryByFullNameResponse | PlainMessage<CreateRepositoryByFullNameResponse> | undefined): boolean {
@@ -956,6 +1028,10 @@ export class DeleteRepositoryRequest extends Message<DeleteRepositoryRequest> {
     return new DeleteRepositoryRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteRepositoryRequest {
+    return proto3.util.conforms(DeleteRepositoryRequest, value);
+  }
+
   static equals(a: DeleteRepositoryRequest | PlainMessage<DeleteRepositoryRequest> | undefined, b: DeleteRepositoryRequest | PlainMessage<DeleteRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryRequest, a, b);
   }
@@ -985,6 +1061,10 @@ export class DeleteRepositoryResponse extends Message<DeleteRepositoryResponse> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteRepositoryResponse {
     return new DeleteRepositoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteRepositoryResponse {
+    return proto3.util.conforms(DeleteRepositoryResponse, value);
   }
 
   static equals(a: DeleteRepositoryResponse | PlainMessage<DeleteRepositoryResponse> | undefined, b: DeleteRepositoryResponse | PlainMessage<DeleteRepositoryResponse> | undefined): boolean {
@@ -1024,6 +1104,10 @@ export class DeleteRepositoryByFullNameRequest extends Message<DeleteRepositoryB
     return new DeleteRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteRepositoryByFullNameRequest {
+    return proto3.util.conforms(DeleteRepositoryByFullNameRequest, value);
+  }
+
   static equals(a: DeleteRepositoryByFullNameRequest | PlainMessage<DeleteRepositoryByFullNameRequest> | undefined, b: DeleteRepositoryByFullNameRequest | PlainMessage<DeleteRepositoryByFullNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryByFullNameRequest, a, b);
   }
@@ -1053,6 +1137,10 @@ export class DeleteRepositoryByFullNameResponse extends Message<DeleteRepository
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteRepositoryByFullNameResponse {
     return new DeleteRepositoryByFullNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteRepositoryByFullNameResponse {
+    return proto3.util.conforms(DeleteRepositoryByFullNameResponse, value);
   }
 
   static equals(a: DeleteRepositoryByFullNameResponse | PlainMessage<DeleteRepositoryByFullNameResponse> | undefined, b: DeleteRepositoryByFullNameResponse | PlainMessage<DeleteRepositoryByFullNameResponse> | undefined): boolean {
@@ -1107,6 +1195,10 @@ export class DeprecateRepositoryByNameRequest extends Message<DeprecateRepositor
     return new DeprecateRepositoryByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeprecateRepositoryByNameRequest {
+    return proto3.util.conforms(DeprecateRepositoryByNameRequest, value);
+  }
+
   static equals(a: DeprecateRepositoryByNameRequest | PlainMessage<DeprecateRepositoryByNameRequest> | undefined, b: DeprecateRepositoryByNameRequest | PlainMessage<DeprecateRepositoryByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeprecateRepositoryByNameRequest, a, b);
   }
@@ -1142,6 +1234,10 @@ export class DeprecateRepositoryByNameResponse extends Message<DeprecateReposito
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecateRepositoryByNameResponse {
     return new DeprecateRepositoryByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeprecateRepositoryByNameResponse {
+    return proto3.util.conforms(DeprecateRepositoryByNameResponse, value);
   }
 
   static equals(a: DeprecateRepositoryByNameResponse | PlainMessage<DeprecateRepositoryByNameResponse> | undefined, b: DeprecateRepositoryByNameResponse | PlainMessage<DeprecateRepositoryByNameResponse> | undefined): boolean {
@@ -1187,6 +1283,10 @@ export class UndeprecateRepositoryByNameRequest extends Message<UndeprecateRepos
     return new UndeprecateRepositoryByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UndeprecateRepositoryByNameRequest {
+    return proto3.util.conforms(UndeprecateRepositoryByNameRequest, value);
+  }
+
   static equals(a: UndeprecateRepositoryByNameRequest | PlainMessage<UndeprecateRepositoryByNameRequest> | undefined, b: UndeprecateRepositoryByNameRequest | PlainMessage<UndeprecateRepositoryByNameRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecateRepositoryByNameRequest, a, b);
   }
@@ -1222,6 +1322,10 @@ export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UndeprecateRepositoryByNameResponse {
     return new UndeprecateRepositoryByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UndeprecateRepositoryByNameResponse {
+    return proto3.util.conforms(UndeprecateRepositoryByNameResponse, value);
   }
 
   static equals(a: UndeprecateRepositoryByNameResponse | PlainMessage<UndeprecateRepositoryByNameResponse> | undefined, b: UndeprecateRepositoryByNameResponse | PlainMessage<UndeprecateRepositoryByNameResponse> | undefined): boolean {
@@ -1280,6 +1384,10 @@ export class SetRepositoryContributorRequest extends Message<SetRepositoryContri
     return new SetRepositoryContributorRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetRepositoryContributorRequest {
+    return proto3.util.conforms(SetRepositoryContributorRequest, value);
+  }
+
   static equals(a: SetRepositoryContributorRequest | PlainMessage<SetRepositoryContributorRequest> | undefined, b: SetRepositoryContributorRequest | PlainMessage<SetRepositoryContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetRepositoryContributorRequest, a, b);
   }
@@ -1309,6 +1417,10 @@ export class SetRepositoryContributorResponse extends Message<SetRepositoryContr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetRepositoryContributorResponse {
     return new SetRepositoryContributorResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetRepositoryContributorResponse {
+    return proto3.util.conforms(SetRepositoryContributorResponse, value);
   }
 
   static equals(a: SetRepositoryContributorResponse | PlainMessage<SetRepositoryContributorResponse> | undefined, b: SetRepositoryContributorResponse | PlainMessage<SetRepositoryContributorResponse> | undefined): boolean {
@@ -1368,6 +1480,10 @@ export class ListRepositoryContributorsRequest extends Message<ListRepositoryCon
     return new ListRepositoryContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryContributorsRequest {
+    return proto3.util.conforms(ListRepositoryContributorsRequest, value);
+  }
+
   static equals(a: ListRepositoryContributorsRequest | PlainMessage<ListRepositoryContributorsRequest> | undefined, b: ListRepositoryContributorsRequest | PlainMessage<ListRepositoryContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryContributorsRequest, a, b);
   }
@@ -1413,6 +1529,10 @@ export class ListRepositoryContributorsResponse extends Message<ListRepositoryCo
     return new ListRepositoryContributorsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryContributorsResponse {
+    return proto3.util.conforms(ListRepositoryContributorsResponse, value);
+  }
+
   static equals(a: ListRepositoryContributorsResponse | PlainMessage<ListRepositoryContributorsResponse> | undefined, b: ListRepositoryContributorsResponse | PlainMessage<ListRepositoryContributorsResponse> | undefined): boolean {
     return proto3.util.equals(ListRepositoryContributorsResponse, a, b);
   }
@@ -1450,6 +1570,10 @@ export class GetRepositorySettingsRequest extends Message<GetRepositorySettingsR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositorySettingsRequest {
     return new GetRepositorySettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositorySettingsRequest {
+    return proto3.util.conforms(GetRepositorySettingsRequest, value);
   }
 
   static equals(a: GetRepositorySettingsRequest | PlainMessage<GetRepositorySettingsRequest> | undefined, b: GetRepositorySettingsRequest | PlainMessage<GetRepositorySettingsRequest> | undefined): boolean {
@@ -1490,6 +1614,10 @@ export class GetRepositorySettingsResponse extends Message<GetRepositorySettings
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositorySettingsResponse {
     return new GetRepositorySettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositorySettingsResponse {
+    return proto3.util.conforms(GetRepositorySettingsResponse, value);
   }
 
   static equals(a: GetRepositorySettingsResponse | PlainMessage<GetRepositorySettingsResponse> | undefined, b: GetRepositorySettingsResponse | PlainMessage<GetRepositorySettingsResponse> | undefined): boolean {

@@ -27,3 +27,6 @@ export const ImplicitlyDeprecatedMessage = proto3.makeMessageType(
   [],
 );
 
+ImplicitlyDeprecatedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(ImplicitlyDeprecatedMessage, value);
+};

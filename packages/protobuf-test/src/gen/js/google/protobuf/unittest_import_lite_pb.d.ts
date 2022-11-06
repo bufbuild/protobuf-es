@@ -80,6 +80,8 @@ export declare class ImportMessageLite extends Message<ImportMessageLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessageLite;
 
+  static conforms(value: any): value is ImportMessageLite;
+
   static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean;
 }
 

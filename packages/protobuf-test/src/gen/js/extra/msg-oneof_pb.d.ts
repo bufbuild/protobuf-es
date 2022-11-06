@@ -106,6 +106,8 @@ export declare class OneofMessage extends Message<OneofMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessage;
 
+  static conforms(value: any): value is OneofMessage;
+
   static equals(a: OneofMessage | PlainMessage<OneofMessage> | undefined, b: OneofMessage | PlainMessage<OneofMessage> | undefined): boolean;
 }
 
@@ -135,6 +137,8 @@ export declare class OneofMessageFoo extends Message<OneofMessageFoo> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessageFoo;
 
+  static conforms(value: any): value is OneofMessageFoo;
+
   static equals(a: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined, b: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined): boolean;
 }
 
@@ -163,6 +167,8 @@ export declare class OneofMessageBar extends Message<OneofMessageBar> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OneofMessageBar;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessageBar;
+
+  static conforms(value: any): value is OneofMessageBar;
 
   static equals(a: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined, b: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined): boolean;
 }

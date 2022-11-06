@@ -99,6 +99,10 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
     return new TestOptimizedForSize().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestOptimizedForSize {
+    return proto2.util.conforms(TestOptimizedForSize, value);
+  }
+
   static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestOptimizedForSize, a, b);
   }
@@ -136,6 +140,10 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
     return new TestRequiredOptimizedForSize().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestRequiredOptimizedForSize {
+    return proto2.util.conforms(TestRequiredOptimizedForSize, value);
+  }
+
   static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestRequiredOptimizedForSize, a, b);
   }
@@ -171,6 +179,10 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize {
     return new TestOptionalOptimizedForSize().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestOptionalOptimizedForSize {
+    return proto2.util.conforms(TestOptionalOptimizedForSize, value);
   }
 
   static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean {

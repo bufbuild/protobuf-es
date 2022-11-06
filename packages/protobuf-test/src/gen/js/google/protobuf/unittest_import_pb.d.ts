@@ -109,6 +109,8 @@ export declare class ImportMessage extends Message<ImportMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportMessage;
 
+  static conforms(value: any): value is ImportMessage;
+
   static equals(a: ImportMessage | PlainMessage<ImportMessage> | undefined, b: ImportMessage | PlainMessage<ImportMessage> | undefined): boolean;
 }
 

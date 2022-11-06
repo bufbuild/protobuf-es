@@ -62,6 +62,9 @@ export const Api = proto3.makeMessageType(
   ],
 );
 
+Api.conforms = function conforms(value) {
+ return proto3.util.conforms(Api, value);
+};
 /**
  * Method represents a method of an API interface.
  *
@@ -80,6 +83,9 @@ export const Method = proto3.makeMessageType(
   ],
 );
 
+Method.conforms = function conforms(value) {
+ return proto3.util.conforms(Method, value);
+};
 /**
  * Declares an API Interface to be included in this interface. The including
  * interface must redeclare all the methods from the included interface, but
@@ -170,3 +176,6 @@ export const Mixin = proto3.makeMessageType(
   ],
 );
 
+Mixin.conforms = function conforms(value) {
+ return proto3.util.conforms(Mixin, value);
+};

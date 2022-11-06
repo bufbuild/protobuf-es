@@ -60,3 +60,6 @@ export const ImportMessageLite = proto2.makeMessageType(
   ],
 );
 
+ImportMessageLite.conforms = function conforms(value) {
+ return proto2.util.conforms(ImportMessageLite, value);
+};

@@ -67,6 +67,10 @@ export class NestedMessage extends Message<NestedMessage> {
     return new NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NestedMessage {
+    return proto2.util.conforms(NestedMessage, value);
+  }
+
   static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean {
     return proto2.util.equals(NestedMessage, a, b);
   }
@@ -102,6 +106,10 @@ export class ArenaMessage extends Message<ArenaMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage {
     return new ArenaMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ArenaMessage {
+    return proto2.util.conforms(ArenaMessage, value);
   }
 
   static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean {

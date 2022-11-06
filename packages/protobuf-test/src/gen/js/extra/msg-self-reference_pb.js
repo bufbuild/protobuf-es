@@ -30,3 +30,6 @@ export const SelfReferencingMessage = proto3.makeMessageType(
   ],
 );
 
+SelfReferencingMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(SelfReferencingMessage, value);
+};

@@ -57,6 +57,10 @@ export class MessageFieldMessage extends Message<MessageFieldMessage> {
     return new MessageFieldMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MessageFieldMessage {
+    return proto3.util.conforms(MessageFieldMessage, value);
+  }
+
   static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean {
     return proto3.util.equals(MessageFieldMessage, a, b);
   }
@@ -92,6 +96,10 @@ export class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage {
     return new MessageFieldMessage_TestMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MessageFieldMessage_TestMessage {
+    return proto3.util.conforms(MessageFieldMessage_TestMessage, value);
   }
 
   static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean {

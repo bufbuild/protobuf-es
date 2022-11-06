@@ -97,6 +97,10 @@ export class Module extends Message<Module> {
     return new Module().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Module {
+    return proto3.util.conforms(Module, value);
+  }
+
   static equals(a: Module | PlainMessage<Module> | undefined, b: Module | PlainMessage<Module> | undefined): boolean {
     return proto3.util.equals(Module, a, b);
   }
@@ -145,6 +149,10 @@ export class ModuleFile extends Message<ModuleFile> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleFile {
     return new ModuleFile().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModuleFile {
+    return proto3.util.conforms(ModuleFile, value);
   }
 
   static equals(a: ModuleFile | PlainMessage<ModuleFile> | undefined, b: ModuleFile | PlainMessage<ModuleFile> | undefined): boolean {
@@ -204,6 +212,10 @@ export class ModuleReference extends Message<ModuleReference> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleReference {
     return new ModuleReference().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModuleReference {
+    return proto3.util.conforms(ModuleReference, value);
   }
 
   static equals(a: ModuleReference | PlainMessage<ModuleReference> | undefined, b: ModuleReference | PlainMessage<ModuleReference> | undefined): boolean {
@@ -279,6 +291,10 @@ export class ModulePin extends Message<ModulePin> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModulePin {
     return new ModulePin().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModulePin {
+    return proto3.util.conforms(ModulePin, value);
   }
 
   static equals(a: ModulePin | PlainMessage<ModulePin> | undefined, b: ModulePin | PlainMessage<ModulePin> | undefined): boolean {

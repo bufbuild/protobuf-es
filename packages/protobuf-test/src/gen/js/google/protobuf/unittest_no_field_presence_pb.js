@@ -111,6 +111,9 @@ export const TestAllTypes = proto3.makeMessageType(
   ],
 );
 
+TestAllTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypes, value);
+};
 /**
  * @generated from enum proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum
  */
@@ -134,6 +137,9 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
   {localName: "TestAllTypes_NestedMessage"},
 );
 
+TestAllTypes_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypes_NestedMessage, value);
+};
 /**
  * @generated from message proto2_nofieldpresence_unittest.TestProto2Required
  */
@@ -144,6 +150,9 @@ export const TestProto2Required = proto3.makeMessageType(
   ],
 );
 
+TestProto2Required.conforms = function conforms(value) {
+ return proto3.util.conforms(TestProto2Required, value);
+};
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -157,3 +166,6 @@ export const ForeignMessage = proto3.makeMessageType(
   ],
 );
 
+ForeignMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(ForeignMessage, value);
+};

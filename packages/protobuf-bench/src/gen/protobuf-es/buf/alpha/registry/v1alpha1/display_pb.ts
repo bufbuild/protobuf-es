@@ -55,6 +55,10 @@ export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizat
     return new DisplayOrganizationElementsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayOrganizationElementsRequest {
+    return proto3.util.conforms(DisplayOrganizationElementsRequest, value);
+  }
+
   static equals(a: DisplayOrganizationElementsRequest | PlainMessage<DisplayOrganizationElementsRequest> | undefined, b: DisplayOrganizationElementsRequest | PlainMessage<DisplayOrganizationElementsRequest> | undefined): boolean {
     return proto3.util.equals(DisplayOrganizationElementsRequest, a, b);
   }
@@ -134,6 +138,10 @@ export class DisplayOrganizationElementsResponse extends Message<DisplayOrganiza
     return new DisplayOrganizationElementsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayOrganizationElementsResponse {
+    return proto3.util.conforms(DisplayOrganizationElementsResponse, value);
+  }
+
   static equals(a: DisplayOrganizationElementsResponse | PlainMessage<DisplayOrganizationElementsResponse> | undefined, b: DisplayOrganizationElementsResponse | PlainMessage<DisplayOrganizationElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayOrganizationElementsResponse, a, b);
   }
@@ -172,6 +180,10 @@ export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryE
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayRepositoryElementsRequest {
     return new DisplayRepositoryElementsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayRepositoryElementsRequest {
+    return proto3.util.conforms(DisplayRepositoryElementsRequest, value);
   }
 
   static equals(a: DisplayRepositoryElementsRequest | PlainMessage<DisplayRepositoryElementsRequest> | undefined, b: DisplayRepositoryElementsRequest | PlainMessage<DisplayRepositoryElementsRequest> | undefined): boolean {
@@ -221,6 +233,10 @@ export class DisplayRepositoryElementsResponse extends Message<DisplayRepository
     return new DisplayRepositoryElementsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayRepositoryElementsResponse {
+    return proto3.util.conforms(DisplayRepositoryElementsResponse, value);
+  }
+
   static equals(a: DisplayRepositoryElementsResponse | PlainMessage<DisplayRepositoryElementsResponse> | undefined, b: DisplayRepositoryElementsResponse | PlainMessage<DisplayRepositoryElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayRepositoryElementsResponse, a, b);
   }
@@ -259,6 +275,10 @@ export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayPluginElementsRequest {
     return new DisplayPluginElementsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayPluginElementsRequest {
+    return proto3.util.conforms(DisplayPluginElementsRequest, value);
   }
 
   static equals(a: DisplayPluginElementsRequest | PlainMessage<DisplayPluginElementsRequest> | undefined, b: DisplayPluginElementsRequest | PlainMessage<DisplayPluginElementsRequest> | undefined): boolean {
@@ -316,6 +336,10 @@ export class DisplayPluginElementsResponse extends Message<DisplayPluginElements
     return new DisplayPluginElementsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayPluginElementsResponse {
+    return proto3.util.conforms(DisplayPluginElementsResponse, value);
+  }
+
   static equals(a: DisplayPluginElementsResponse | PlainMessage<DisplayPluginElementsResponse> | undefined, b: DisplayPluginElementsResponse | PlainMessage<DisplayPluginElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayPluginElementsResponse, a, b);
   }
@@ -354,6 +378,10 @@ export class DisplayTemplateElementsRequest extends Message<DisplayTemplateEleme
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayTemplateElementsRequest {
     return new DisplayTemplateElementsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayTemplateElementsRequest {
+    return proto3.util.conforms(DisplayTemplateElementsRequest, value);
   }
 
   static equals(a: DisplayTemplateElementsRequest | PlainMessage<DisplayTemplateElementsRequest> | undefined, b: DisplayTemplateElementsRequest | PlainMessage<DisplayTemplateElementsRequest> | undefined): boolean {
@@ -411,6 +439,10 @@ export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElem
     return new DisplayTemplateElementsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayTemplateElementsResponse {
+    return proto3.util.conforms(DisplayTemplateElementsResponse, value);
+  }
+
   static equals(a: DisplayTemplateElementsResponse | PlainMessage<DisplayTemplateElementsResponse> | undefined, b: DisplayTemplateElementsResponse | PlainMessage<DisplayTemplateElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayTemplateElementsResponse, a, b);
   }
@@ -440,6 +472,10 @@ export class DisplayUserElementsRequest extends Message<DisplayUserElementsReque
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayUserElementsRequest {
     return new DisplayUserElementsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayUserElementsRequest {
+    return proto3.util.conforms(DisplayUserElementsRequest, value);
   }
 
   static equals(a: DisplayUserElementsRequest | PlainMessage<DisplayUserElementsRequest> | undefined, b: DisplayUserElementsRequest | PlainMessage<DisplayUserElementsRequest> | undefined): boolean {
@@ -481,6 +517,10 @@ export class DisplayUserElementsResponse extends Message<DisplayUserElementsResp
     return new DisplayUserElementsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DisplayUserElementsResponse {
+    return proto3.util.conforms(DisplayUserElementsResponse, value);
+  }
+
   static equals(a: DisplayUserElementsResponse | PlainMessage<DisplayUserElementsResponse> | undefined, b: DisplayUserElementsResponse | PlainMessage<DisplayUserElementsResponse> | undefined): boolean {
     return proto3.util.equals(DisplayUserElementsResponse, a, b);
   }
@@ -510,6 +550,10 @@ export class DisplayServerElementsRequest extends Message<DisplayServerElementsR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayServerElementsRequest {
     return new DisplayServerElementsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayServerElementsRequest {
+    return proto3.util.conforms(DisplayServerElementsRequest, value);
   }
 
   static equals(a: DisplayServerElementsRequest | PlainMessage<DisplayServerElementsRequest> | undefined, b: DisplayServerElementsRequest | PlainMessage<DisplayServerElementsRequest> | undefined): boolean {
@@ -549,6 +593,10 @@ export class DisplayServerElementsResponse extends Message<DisplayServerElements
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DisplayServerElementsResponse {
     return new DisplayServerElementsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DisplayServerElementsResponse {
+    return proto3.util.conforms(DisplayServerElementsResponse, value);
   }
 
   static equals(a: DisplayServerElementsResponse | PlainMessage<DisplayServerElementsResponse> | undefined, b: DisplayServerElementsResponse | PlainMessage<DisplayServerElementsResponse> | undefined): boolean {
@@ -591,6 +639,10 @@ export class ListManageableRepositoryRolesRequest extends Message<ListManageable
     return new ListManageableRepositoryRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageableRepositoryRolesRequest {
+    return proto3.util.conforms(ListManageableRepositoryRolesRequest, value);
+  }
+
   static equals(a: ListManageableRepositoryRolesRequest | PlainMessage<ListManageableRepositoryRolesRequest> | undefined, b: ListManageableRepositoryRolesRequest | PlainMessage<ListManageableRepositoryRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableRepositoryRolesRequest, a, b);
   }
@@ -629,6 +681,10 @@ export class ListManageableRepositoryRolesResponse extends Message<ListManageabl
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageableRepositoryRolesResponse {
     return new ListManageableRepositoryRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageableRepositoryRolesResponse {
+    return proto3.util.conforms(ListManageableRepositoryRolesResponse, value);
   }
 
   static equals(a: ListManageableRepositoryRolesResponse | PlainMessage<ListManageableRepositoryRolesResponse> | undefined, b: ListManageableRepositoryRolesResponse | PlainMessage<ListManageableRepositoryRolesResponse> | undefined): boolean {
@@ -680,6 +736,10 @@ export class ListManageableUserRepositoryRolesRequest extends Message<ListManage
     return new ListManageableUserRepositoryRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageableUserRepositoryRolesRequest {
+    return proto3.util.conforms(ListManageableUserRepositoryRolesRequest, value);
+  }
+
   static equals(a: ListManageableUserRepositoryRolesRequest | PlainMessage<ListManageableUserRepositoryRolesRequest> | undefined, b: ListManageableUserRepositoryRolesRequest | PlainMessage<ListManageableUserRepositoryRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserRepositoryRolesRequest, a, b);
   }
@@ -718,6 +778,10 @@ export class ListManageableUserRepositoryRolesResponse extends Message<ListManag
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageableUserRepositoryRolesResponse {
     return new ListManageableUserRepositoryRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageableUserRepositoryRolesResponse {
+    return proto3.util.conforms(ListManageableUserRepositoryRolesResponse, value);
   }
 
   static equals(a: ListManageableUserRepositoryRolesResponse | PlainMessage<ListManageableUserRepositoryRolesResponse> | undefined, b: ListManageableUserRepositoryRolesResponse | PlainMessage<ListManageableUserRepositoryRolesResponse> | undefined): boolean {
@@ -760,6 +824,10 @@ export class ListManageablePluginRolesRequest extends Message<ListManageablePlug
     return new ListManageablePluginRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageablePluginRolesRequest {
+    return proto3.util.conforms(ListManageablePluginRolesRequest, value);
+  }
+
   static equals(a: ListManageablePluginRolesRequest | PlainMessage<ListManageablePluginRolesRequest> | undefined, b: ListManageablePluginRolesRequest | PlainMessage<ListManageablePluginRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageablePluginRolesRequest, a, b);
   }
@@ -798,6 +866,10 @@ export class ListManageablePluginRolesResponse extends Message<ListManageablePlu
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageablePluginRolesResponse {
     return new ListManageablePluginRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageablePluginRolesResponse {
+    return proto3.util.conforms(ListManageablePluginRolesResponse, value);
   }
 
   static equals(a: ListManageablePluginRolesResponse | PlainMessage<ListManageablePluginRolesResponse> | undefined, b: ListManageablePluginRolesResponse | PlainMessage<ListManageablePluginRolesResponse> | undefined): boolean {
@@ -849,6 +921,10 @@ export class ListManageableUserPluginRolesRequest extends Message<ListManageable
     return new ListManageableUserPluginRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageableUserPluginRolesRequest {
+    return proto3.util.conforms(ListManageableUserPluginRolesRequest, value);
+  }
+
   static equals(a: ListManageableUserPluginRolesRequest | PlainMessage<ListManageableUserPluginRolesRequest> | undefined, b: ListManageableUserPluginRolesRequest | PlainMessage<ListManageableUserPluginRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserPluginRolesRequest, a, b);
   }
@@ -887,6 +963,10 @@ export class ListManageableUserPluginRolesResponse extends Message<ListManageabl
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageableUserPluginRolesResponse {
     return new ListManageableUserPluginRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageableUserPluginRolesResponse {
+    return proto3.util.conforms(ListManageableUserPluginRolesResponse, value);
   }
 
   static equals(a: ListManageableUserPluginRolesResponse | PlainMessage<ListManageableUserPluginRolesResponse> | undefined, b: ListManageableUserPluginRolesResponse | PlainMessage<ListManageableUserPluginRolesResponse> | undefined): boolean {
@@ -929,6 +1009,10 @@ export class ListManageableTemplateRolesRequest extends Message<ListManageableTe
     return new ListManageableTemplateRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageableTemplateRolesRequest {
+    return proto3.util.conforms(ListManageableTemplateRolesRequest, value);
+  }
+
   static equals(a: ListManageableTemplateRolesRequest | PlainMessage<ListManageableTemplateRolesRequest> | undefined, b: ListManageableTemplateRolesRequest | PlainMessage<ListManageableTemplateRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableTemplateRolesRequest, a, b);
   }
@@ -967,6 +1051,10 @@ export class ListManageableTemplateRolesResponse extends Message<ListManageableT
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageableTemplateRolesResponse {
     return new ListManageableTemplateRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageableTemplateRolesResponse {
+    return proto3.util.conforms(ListManageableTemplateRolesResponse, value);
   }
 
   static equals(a: ListManageableTemplateRolesResponse | PlainMessage<ListManageableTemplateRolesResponse> | undefined, b: ListManageableTemplateRolesResponse | PlainMessage<ListManageableTemplateRolesResponse> | undefined): boolean {
@@ -1018,6 +1106,10 @@ export class ListManageableUserTemplateRolesRequest extends Message<ListManageab
     return new ListManageableUserTemplateRolesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListManageableUserTemplateRolesRequest {
+    return proto3.util.conforms(ListManageableUserTemplateRolesRequest, value);
+  }
+
   static equals(a: ListManageableUserTemplateRolesRequest | PlainMessage<ListManageableUserTemplateRolesRequest> | undefined, b: ListManageableUserTemplateRolesRequest | PlainMessage<ListManageableUserTemplateRolesRequest> | undefined): boolean {
     return proto3.util.equals(ListManageableUserTemplateRolesRequest, a, b);
   }
@@ -1056,6 +1148,10 @@ export class ListManageableUserTemplateRolesResponse extends Message<ListManagea
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListManageableUserTemplateRolesResponse {
     return new ListManageableUserTemplateRolesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListManageableUserTemplateRolesResponse {
+    return proto3.util.conforms(ListManageableUserTemplateRolesResponse, value);
   }
 
   static equals(a: ListManageableUserTemplateRolesResponse | PlainMessage<ListManageableUserTemplateRolesResponse> | undefined, b: ListManageableUserTemplateRolesResponse | PlainMessage<ListManageableUserTemplateRolesResponse> | undefined): boolean {

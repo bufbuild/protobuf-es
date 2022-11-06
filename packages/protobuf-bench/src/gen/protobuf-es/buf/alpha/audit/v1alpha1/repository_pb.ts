@@ -97,6 +97,10 @@ export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRe
     return new BufAlphaRegistryV1Alpha1RepositoryBranch().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryBranch {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryBranch, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryBranch | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryBranch> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryBranch | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryBranch> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryBranch, a, b);
   }
@@ -158,6 +162,10 @@ export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegis
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BufAlphaRegistryV1Alpha1RepositoryTag {
     return new BufAlphaRegistryV1Alpha1RepositoryTag().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryTag {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryTag, value);
   }
 
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryTag | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTag> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryTag | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTag> | undefined): boolean {
@@ -239,6 +247,10 @@ export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRe
     return new BufAlphaRegistryV1Alpha1RepositoryCommit().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryCommit {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryCommit, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryCommit | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryCommit> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryCommit | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryCommit> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1RepositoryCommit, a, b);
   }
@@ -288,6 +300,10 @@ export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaReg
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BufAlphaRegistryV1Alpha1RepositoryTrack {
     return new BufAlphaRegistryV1Alpha1RepositoryTrack().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryTrack {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryTrack, value);
   }
 
   static equals(a: BufAlphaRegistryV1Alpha1RepositoryTrack | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTrack> | undefined, b: BufAlphaRegistryV1Alpha1RepositoryTrack | PlainMessage<BufAlphaRegistryV1Alpha1RepositoryTrack> | undefined): boolean {

@@ -55,6 +55,9 @@ export const ImportedMessage = proto2.makeMessageType(
   ],
 );
 
+ImportedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(ImportedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption
  */
@@ -63,6 +66,9 @@ export const MessageCustomOption = proto2.makeMessageType(
   [],
 );
 
+MessageCustomOption.conforms = function conforms(value) {
+ return proto2.util.conforms(MessageCustomOption, value);
+};
 /**
  * @generated from message protobuf_unittest.lazy_imports.MessageCustomOption2
  */
@@ -71,3 +77,6 @@ export const MessageCustomOption2 = proto2.makeMessageType(
   [],
 );
 
+MessageCustomOption2.conforms = function conforms(value) {
+ return proto2.util.conforms(MessageCustomOption2, value);
+};

@@ -66,6 +66,9 @@ export const Version = proto2.makeMessageType(
   ],
 );
 
+Version.conforms = function conforms(value) {
+ return proto2.util.conforms(Version, value);
+};
 /**
  * An encoded CodeGeneratorRequest is written to the plugin's stdin.
  *
@@ -81,6 +84,9 @@ export const CodeGeneratorRequest = proto2.makeMessageType(
   ],
 );
 
+CodeGeneratorRequest.conforms = function conforms(value) {
+ return proto2.util.conforms(CodeGeneratorRequest, value);
+};
 /**
  * The plugin writes an encoded CodeGeneratorResponse to stdout.
  *
@@ -95,6 +101,9 @@ export const CodeGeneratorResponse = proto2.makeMessageType(
   ],
 );
 
+CodeGeneratorResponse.conforms = function conforms(value) {
+ return proto2.util.conforms(CodeGeneratorResponse, value);
+};
 /**
  * Sync with code_generator.h.
  *
@@ -124,3 +133,6 @@ export const CodeGeneratorResponse_File = proto2.makeMessageType(
   {localName: "CodeGeneratorResponse_File"},
 );
 
+CodeGeneratorResponse_File.conforms = function conforms(value) {
+ return proto2.util.conforms(CodeGeneratorResponse_File, value);
+};

@@ -78,6 +78,10 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
     return new RecommendedRepository().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RecommendedRepository {
+    return proto3.util.conforms(RecommendedRepository, value);
+  }
+
   static equals(a: RecommendedRepository | PlainMessage<RecommendedRepository> | undefined, b: RecommendedRepository | PlainMessage<RecommendedRepository> | undefined): boolean {
     return proto3.util.equals(RecommendedRepository, a, b);
   }
@@ -136,6 +140,10 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
     return new RecommendedTemplate().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RecommendedTemplate {
+    return proto3.util.conforms(RecommendedTemplate, value);
+  }
+
   static equals(a: RecommendedTemplate | PlainMessage<RecommendedTemplate> | undefined, b: RecommendedTemplate | PlainMessage<RecommendedTemplate> | undefined): boolean {
     return proto3.util.equals(RecommendedTemplate, a, b);
   }
@@ -179,6 +187,10 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetRecommendedRepository {
     return new SetRecommendedRepository().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetRecommendedRepository {
+    return proto3.util.conforms(SetRecommendedRepository, value);
   }
 
   static equals(a: SetRecommendedRepository | PlainMessage<SetRecommendedRepository> | undefined, b: SetRecommendedRepository | PlainMessage<SetRecommendedRepository> | undefined): boolean {
@@ -226,6 +238,10 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
     return new SetRecommendedTemplate().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetRecommendedTemplate {
+    return proto3.util.conforms(SetRecommendedTemplate, value);
+  }
+
   static equals(a: SetRecommendedTemplate | PlainMessage<SetRecommendedTemplate> | undefined, b: SetRecommendedTemplate | PlainMessage<SetRecommendedTemplate> | undefined): boolean {
     return proto3.util.equals(SetRecommendedTemplate, a, b);
   }
@@ -255,6 +271,10 @@ export class RecommendedRepositoriesRequest extends Message<RecommendedRepositor
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecommendedRepositoriesRequest {
     return new RecommendedRepositoriesRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RecommendedRepositoriesRequest {
+    return proto3.util.conforms(RecommendedRepositoriesRequest, value);
   }
 
   static equals(a: RecommendedRepositoriesRequest | PlainMessage<RecommendedRepositoriesRequest> | undefined, b: RecommendedRepositoriesRequest | PlainMessage<RecommendedRepositoriesRequest> | undefined): boolean {
@@ -294,6 +314,10 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
     return new RecommendedRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RecommendedRepositoriesResponse {
+    return proto3.util.conforms(RecommendedRepositoriesResponse, value);
+  }
+
   static equals(a: RecommendedRepositoriesResponse | PlainMessage<RecommendedRepositoriesResponse> | undefined, b: RecommendedRepositoriesResponse | PlainMessage<RecommendedRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(RecommendedRepositoriesResponse, a, b);
   }
@@ -323,6 +347,10 @@ export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesReq
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecommendedTemplatesRequest {
     return new RecommendedTemplatesRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RecommendedTemplatesRequest {
+    return proto3.util.conforms(RecommendedTemplatesRequest, value);
   }
 
   static equals(a: RecommendedTemplatesRequest | PlainMessage<RecommendedTemplatesRequest> | undefined, b: RecommendedTemplatesRequest | PlainMessage<RecommendedTemplatesRequest> | undefined): boolean {
@@ -362,6 +390,10 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
     return new RecommendedTemplatesResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RecommendedTemplatesResponse {
+    return proto3.util.conforms(RecommendedTemplatesResponse, value);
+  }
+
   static equals(a: RecommendedTemplatesResponse | PlainMessage<RecommendedTemplatesResponse> | undefined, b: RecommendedTemplatesResponse | PlainMessage<RecommendedTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(RecommendedTemplatesResponse, a, b);
   }
@@ -391,6 +423,10 @@ export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRecommendedRepositoriesRequest {
     return new ListRecommendedRepositoriesRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRecommendedRepositoriesRequest {
+    return proto3.util.conforms(ListRecommendedRepositoriesRequest, value);
   }
 
   static equals(a: ListRecommendedRepositoriesRequest | PlainMessage<ListRecommendedRepositoriesRequest> | undefined, b: ListRecommendedRepositoriesRequest | PlainMessage<ListRecommendedRepositoriesRequest> | undefined): boolean {
@@ -430,6 +466,10 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
     return new ListRecommendedRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRecommendedRepositoriesResponse {
+    return proto3.util.conforms(ListRecommendedRepositoriesResponse, value);
+  }
+
   static equals(a: ListRecommendedRepositoriesResponse | PlainMessage<ListRecommendedRepositoriesResponse> | undefined, b: ListRecommendedRepositoriesResponse | PlainMessage<ListRecommendedRepositoriesResponse> | undefined): boolean {
     return proto3.util.equals(ListRecommendedRepositoriesResponse, a, b);
   }
@@ -459,6 +499,10 @@ export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRecommendedTemplatesRequest {
     return new ListRecommendedTemplatesRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRecommendedTemplatesRequest {
+    return proto3.util.conforms(ListRecommendedTemplatesRequest, value);
   }
 
   static equals(a: ListRecommendedTemplatesRequest | PlainMessage<ListRecommendedTemplatesRequest> | undefined, b: ListRecommendedTemplatesRequest | PlainMessage<ListRecommendedTemplatesRequest> | undefined): boolean {
@@ -498,6 +542,10 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
     return new ListRecommendedTemplatesResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRecommendedTemplatesResponse {
+    return proto3.util.conforms(ListRecommendedTemplatesResponse, value);
+  }
+
   static equals(a: ListRecommendedTemplatesResponse | PlainMessage<ListRecommendedTemplatesResponse> | undefined, b: ListRecommendedTemplatesResponse | PlainMessage<ListRecommendedTemplatesResponse> | undefined): boolean {
     return proto3.util.equals(ListRecommendedTemplatesResponse, a, b);
   }
@@ -535,6 +583,10 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
     return new SetRecommendedRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetRecommendedRepositoriesRequest {
+    return proto3.util.conforms(SetRecommendedRepositoriesRequest, value);
+  }
+
   static equals(a: SetRecommendedRepositoriesRequest | PlainMessage<SetRecommendedRepositoriesRequest> | undefined, b: SetRecommendedRepositoriesRequest | PlainMessage<SetRecommendedRepositoriesRequest> | undefined): boolean {
     return proto3.util.equals(SetRecommendedRepositoriesRequest, a, b);
   }
@@ -564,6 +616,10 @@ export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetRecommendedRepositoriesResponse {
     return new SetRecommendedRepositoriesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetRecommendedRepositoriesResponse {
+    return proto3.util.conforms(SetRecommendedRepositoriesResponse, value);
   }
 
   static equals(a: SetRecommendedRepositoriesResponse | PlainMessage<SetRecommendedRepositoriesResponse> | undefined, b: SetRecommendedRepositoriesResponse | PlainMessage<SetRecommendedRepositoriesResponse> | undefined): boolean {
@@ -603,6 +659,10 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
     return new SetRecommendedTemplatesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetRecommendedTemplatesRequest {
+    return proto3.util.conforms(SetRecommendedTemplatesRequest, value);
+  }
+
   static equals(a: SetRecommendedTemplatesRequest | PlainMessage<SetRecommendedTemplatesRequest> | undefined, b: SetRecommendedTemplatesRequest | PlainMessage<SetRecommendedTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(SetRecommendedTemplatesRequest, a, b);
   }
@@ -632,6 +692,10 @@ export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTempl
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetRecommendedTemplatesResponse {
     return new SetRecommendedTemplatesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetRecommendedTemplatesResponse {
+    return proto3.util.conforms(SetRecommendedTemplatesResponse, value);
   }
 
   static equals(a: SetRecommendedTemplatesResponse | PlainMessage<SetRecommendedTemplatesResponse> | undefined, b: SetRecommendedTemplatesResponse | PlainMessage<SetRecommendedTemplatesResponse> | undefined): boolean {

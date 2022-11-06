@@ -87,6 +87,10 @@ export class RepositoryTag extends Message<RepositoryTag> {
     return new RepositoryTag().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryTag {
+    return proto3.util.conforms(RepositoryTag, value);
+  }
+
   static equals(a: RepositoryTag | PlainMessage<RepositoryTag> | undefined, b: RepositoryTag | PlainMessage<RepositoryTag> | undefined): boolean {
     return proto3.util.equals(RepositoryTag, a, b);
   }
@@ -142,6 +146,10 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
     return new CreateRepositoryTagRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateRepositoryTagRequest {
+    return proto3.util.conforms(CreateRepositoryTagRequest, value);
+  }
+
   static equals(a: CreateRepositoryTagRequest | PlainMessage<CreateRepositoryTagRequest> | undefined, b: CreateRepositoryTagRequest | PlainMessage<CreateRepositoryTagRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTagRequest, a, b);
   }
@@ -177,6 +185,10 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRepositoryTagResponse {
     return new CreateRepositoryTagResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateRepositoryTagResponse {
+    return proto3.util.conforms(CreateRepositoryTagResponse, value);
   }
 
   static equals(a: CreateRepositoryTagResponse | PlainMessage<CreateRepositoryTagResponse> | undefined, b: CreateRepositoryTagResponse | PlainMessage<CreateRepositoryTagResponse> | undefined): boolean {
@@ -238,6 +250,10 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
     return new ListRepositoryTagsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryTagsRequest {
+    return proto3.util.conforms(ListRepositoryTagsRequest, value);
+  }
+
   static equals(a: ListRepositoryTagsRequest | PlainMessage<ListRepositoryTagsRequest> | undefined, b: ListRepositoryTagsRequest | PlainMessage<ListRepositoryTagsRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTagsRequest, a, b);
   }
@@ -281,6 +297,10 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryTagsResponse {
     return new ListRepositoryTagsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryTagsResponse {
+    return proto3.util.conforms(ListRepositoryTagsResponse, value);
   }
 
   static equals(a: ListRepositoryTagsResponse | PlainMessage<ListRepositoryTagsResponse> | undefined, b: ListRepositoryTagsResponse | PlainMessage<ListRepositoryTagsResponse> | undefined): boolean {

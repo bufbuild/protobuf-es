@@ -175,6 +175,10 @@ export class MessageWithComments extends Message<MessageWithComments> {
     return new MessageWithComments().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MessageWithComments {
+    return proto3.util.conforms(MessageWithComments, value);
+  }
+
   static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean {
     return proto3.util.equals(MessageWithComments, a, b);
   }
@@ -206,6 +210,10 @@ export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmptyMessageWithComment {
     return new EmptyMessageWithComment().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is EmptyMessageWithComment {
+    return proto3.util.conforms(EmptyMessageWithComment, value);
   }
 
   static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean {
@@ -293,6 +301,10 @@ export class GoogleCommentExample extends Message<GoogleCommentExample> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GoogleCommentExample {
     return new GoogleCommentExample().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GoogleCommentExample {
+    return proto3.util.conforms(GoogleCommentExample, value);
   }
 
   static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean {

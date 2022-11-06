@@ -80,6 +80,10 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
     return new TestLiteImportsNonlite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestLiteImportsNonlite {
+    return proto2.util.conforms(TestLiteImportsNonlite, value);
+  }
+
   static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean {
     return proto2.util.equals(TestLiteImportsNonlite, a, b);
   }

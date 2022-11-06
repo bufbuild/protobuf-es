@@ -970,6 +970,10 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
     return new ActionBufAlphaRegistryV1Alpha1DownloadInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DownloadInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DownloadInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1DownloadInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DownloadInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DownloadInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DownloadInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DownloadInfo, a, b);
   }
@@ -1008,6 +1012,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1GetImageInfo {
     return new ActionBufAlphaRegistryV1Alpha1GetImageInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetImageInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetImageInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetImageInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetImageInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetImageInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetImageInfo> | undefined): boolean {
@@ -1050,6 +1058,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo, a, b);
   }
@@ -1090,6 +1102,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo, a, b);
   }
@@ -1128,6 +1144,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo {
     return new ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo> | undefined): boolean {
@@ -1183,6 +1203,10 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo, a, b);
   }
@@ -1236,6 +1260,10 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo, a, b);
   }
@@ -1280,6 +1308,10 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo {
     return new ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo> | undefined): boolean {
@@ -1340,6 +1372,10 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
     return new ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo, a, b);
   }
@@ -1392,6 +1428,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
     return new ActionBufAlphaRegistryV1Alpha1CreatePluginInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreatePluginInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreatePluginInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreatePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreatePluginInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreatePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreatePluginInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreatePluginInfo, a, b);
   }
@@ -1438,6 +1478,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
     return new ActionBufAlphaRegistryV1Alpha1DeletePluginInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeletePluginInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeletePluginInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeletePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeletePluginInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeletePluginInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeletePluginInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeletePluginInfo, a, b);
   }
@@ -1476,6 +1520,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo {
     return new ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo> | undefined): boolean {
@@ -1537,6 +1585,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
     return new ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo, a, b);
   }
@@ -1581,6 +1633,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo {
     return new ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo> | undefined): boolean {
@@ -1640,6 +1696,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo {
     return new ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo> | undefined): boolean {
@@ -1718,6 +1778,10 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
     return new ActionBufAlphaRegistryV1Alpha1PushInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1PushInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1PushInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1PushInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1PushInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1PushInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1PushInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1PushInfo, a, b);
   }
@@ -1791,6 +1855,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo, a, b);
   }
@@ -1838,6 +1906,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo, a, b);
   }
@@ -1876,6 +1948,10 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo {
     return new ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo> | undefined): boolean {
@@ -1918,6 +1994,10 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
     return new ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo, a, b);
   }
@@ -1956,6 +2036,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo {
     return new ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo> | undefined): boolean {
@@ -2002,6 +2086,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo {
     return new ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo> | undefined): boolean {
@@ -2057,6 +2145,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo, a, b);
   }
@@ -2104,6 +2196,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo, a, b);
   }
@@ -2144,6 +2240,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
     return new ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo, a, b);
   }
@@ -2182,6 +2282,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo {
     return new ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo> | undefined): boolean {
@@ -2236,6 +2340,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
     return new ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo, a, b);
   }
@@ -2280,6 +2388,10 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo {
     return new ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo> | undefined): boolean {
@@ -2334,6 +2446,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
     return new ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo, a, b);
   }
@@ -2386,6 +2502,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo, a, b);
   }
@@ -2430,6 +2550,10 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1SearchInfo {
     return new ActionBufAlphaRegistryV1Alpha1SearchInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SearchInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SearchInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1SearchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SearchInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SearchInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SearchInfo> | undefined): boolean {
@@ -2478,6 +2602,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
     return new ActionBufAlphaRegistryV1Alpha1CreateTokenInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTokenInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTokenInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateTokenInfo, a, b);
   }
@@ -2516,6 +2644,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo {
     return new ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo> | undefined): boolean {
@@ -2558,6 +2690,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
     return new ActionBufAlphaRegistryV1Alpha1CreateUserInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateUserInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateUserInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateUserInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateUserInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1CreateUserInfo, a, b);
   }
@@ -2598,6 +2734,10 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
     return new ActionBufAlphaRegistryV1Alpha1ListUsersInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListUsersInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListUsersInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1ListUsersInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListUsersInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1ListUsersInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1ListUsersInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1ListUsersInfo, a, b);
   }
@@ -2636,6 +2776,10 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo {
     return new ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo> | undefined): boolean {
@@ -2683,6 +2827,10 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo {
     return new ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo> | undefined): boolean {
@@ -2737,6 +2885,10 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
     return new ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo, a, b);
   }
@@ -2789,6 +2941,10 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
     return new ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo, a, b);
   }
@@ -2827,6 +2983,10 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo {
     return new ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo> | undefined, b: ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo | PlainMessage<ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo> | undefined): boolean {
@@ -2869,6 +3029,10 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo, a, b);
   }
@@ -2907,6 +3071,10 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo {
     return new ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo> | undefined): boolean {
@@ -2949,6 +3117,10 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
     return new ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo, a, b);
   }
@@ -2987,6 +3159,10 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo {
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo> | undefined): boolean {
@@ -3029,6 +3205,10 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo, value);
+  }
+
   static equals(a: ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo> | undefined, b: ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo | PlainMessage<ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo> | undefined): boolean {
     return proto3.util.equals(ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo, a, b);
   }
@@ -3067,6 +3247,10 @@ export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionB
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ActionBufAlphaRegistryV1Alpha1GetJSONSchema {
     return new ActionBufAlphaRegistryV1Alpha1GetJSONSchema().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetJSONSchema {
+    return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetJSONSchema, value);
   }
 
   static equals(a: ActionBufAlphaRegistryV1Alpha1GetJSONSchema | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetJSONSchema> | undefined, b: ActionBufAlphaRegistryV1Alpha1GetJSONSchema | PlainMessage<ActionBufAlphaRegistryV1Alpha1GetJSONSchema> | undefined): boolean {
@@ -3528,6 +3712,10 @@ export class Event extends Message<Event> {
     return new Event().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Event {
+    return proto3.util.conforms(Event, value);
+  }
+
   static equals(a: Event | PlainMessage<Event> | undefined, b: Event | PlainMessage<Event> | undefined): boolean {
     return proto3.util.equals(Event, a, b);
   }
@@ -3589,6 +3777,10 @@ export class UserActor extends Message<UserActor> {
     return new UserActor().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserActor {
+    return proto3.util.conforms(UserActor, value);
+  }
+
   static equals(a: UserActor | PlainMessage<UserActor> | undefined, b: UserActor | PlainMessage<UserActor> | undefined): boolean {
     return proto3.util.equals(UserActor, a, b);
   }
@@ -3638,6 +3830,10 @@ export class UserObject extends Message<UserObject> {
     return new UserObject().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserObject {
+    return proto3.util.conforms(UserObject, value);
+  }
+
   static equals(a: UserObject | PlainMessage<UserObject> | undefined, b: UserObject | PlainMessage<UserObject> | undefined): boolean {
     return proto3.util.equals(UserObject, a, b);
   }
@@ -3679,6 +3875,10 @@ export class OrganizationObject extends Message<OrganizationObject> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OrganizationObject {
     return new OrganizationObject().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is OrganizationObject {
+    return proto3.util.conforms(OrganizationObject, value);
   }
 
   static equals(a: OrganizationObject | PlainMessage<OrganizationObject> | undefined, b: OrganizationObject | PlainMessage<OrganizationObject> | undefined): boolean {
@@ -3742,6 +3942,10 @@ export class RepositoryObject extends Message<RepositoryObject> {
     return new RepositoryObject().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryObject {
+    return proto3.util.conforms(RepositoryObject, value);
+  }
+
   static equals(a: RepositoryObject | PlainMessage<RepositoryObject> | undefined, b: RepositoryObject | PlainMessage<RepositoryObject> | undefined): boolean {
     return proto3.util.equals(RepositoryObject, a, b);
   }
@@ -3801,6 +4005,10 @@ export class PluginObject extends Message<PluginObject> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginObject {
     return new PluginObject().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PluginObject {
+    return proto3.util.conforms(PluginObject, value);
   }
 
   static equals(a: PluginObject | PlainMessage<PluginObject> | undefined, b: PluginObject | PlainMessage<PluginObject> | undefined): boolean {
@@ -3864,6 +4072,10 @@ export class TemplateObject extends Message<TemplateObject> {
     return new TemplateObject().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TemplateObject {
+    return proto3.util.conforms(TemplateObject, value);
+  }
+
   static equals(a: TemplateObject | PlainMessage<TemplateObject> | undefined, b: TemplateObject | PlainMessage<TemplateObject> | undefined): boolean {
     return proto3.util.equals(TemplateObject, a, b);
   }
@@ -3899,6 +4111,10 @@ export class TokenObject extends Message<TokenObject> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TokenObject {
     return new TokenObject().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TokenObject {
+    return proto3.util.conforms(TokenObject, value);
   }
 
   static equals(a: TokenObject | PlainMessage<TokenObject> | undefined, b: TokenObject | PlainMessage<TokenObject> | undefined): boolean {
@@ -3977,6 +4193,10 @@ export class Object$ extends Message<Object$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Object$ {
     return new Object$().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Object$ {
+    return proto3.util.conforms(Object$, value);
   }
 
   static equals(a: Object$ | PlainMessage<Object$> | undefined, b: Object$ | PlainMessage<Object$> | undefined): boolean {

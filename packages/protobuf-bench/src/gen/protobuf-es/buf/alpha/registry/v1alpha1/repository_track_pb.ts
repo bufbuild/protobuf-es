@@ -71,6 +71,10 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
     return new RepositoryTrack().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryTrack {
+    return proto3.util.conforms(RepositoryTrack, value);
+  }
+
   static equals(a: RepositoryTrack | PlainMessage<RepositoryTrack> | undefined, b: RepositoryTrack | PlainMessage<RepositoryTrack> | undefined): boolean {
     return proto3.util.equals(RepositoryTrack, a, b);
   }
@@ -118,6 +122,10 @@ export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackR
     return new CreateRepositoryTrackRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateRepositoryTrackRequest {
+    return proto3.util.conforms(CreateRepositoryTrackRequest, value);
+  }
+
   static equals(a: CreateRepositoryTrackRequest | PlainMessage<CreateRepositoryTrackRequest> | undefined, b: CreateRepositoryTrackRequest | PlainMessage<CreateRepositoryTrackRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryTrackRequest, a, b);
   }
@@ -153,6 +161,10 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRepositoryTrackResponse {
     return new CreateRepositoryTrackResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateRepositoryTrackResponse {
+    return proto3.util.conforms(CreateRepositoryTrackResponse, value);
   }
 
   static equals(a: CreateRepositoryTrackResponse | PlainMessage<CreateRepositoryTrackResponse> | undefined, b: CreateRepositoryTrackResponse | PlainMessage<CreateRepositoryTrackResponse> | undefined): boolean {
@@ -214,6 +226,10 @@ export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksReq
     return new ListRepositoryTracksRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryTracksRequest {
+    return proto3.util.conforms(ListRepositoryTracksRequest, value);
+  }
+
   static equals(a: ListRepositoryTracksRequest | PlainMessage<ListRepositoryTracksRequest> | undefined, b: ListRepositoryTracksRequest | PlainMessage<ListRepositoryTracksRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTracksRequest, a, b);
   }
@@ -257,6 +273,10 @@ export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryTracksResponse {
     return new ListRepositoryTracksResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryTracksResponse {
+    return proto3.util.conforms(ListRepositoryTracksResponse, value);
   }
 
   static equals(a: ListRepositoryTracksResponse | PlainMessage<ListRepositoryTracksResponse> | undefined, b: ListRepositoryTracksResponse | PlainMessage<ListRepositoryTracksResponse> | undefined): boolean {
@@ -310,6 +330,10 @@ export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepository
     return new DeleteRepositoryTrackByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteRepositoryTrackByNameRequest {
+    return proto3.util.conforms(DeleteRepositoryTrackByNameRequest, value);
+  }
+
   static equals(a: DeleteRepositoryTrackByNameRequest | PlainMessage<DeleteRepositoryTrackByNameRequest> | undefined, b: DeleteRepositoryTrackByNameRequest | PlainMessage<DeleteRepositoryTrackByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteRepositoryTrackByNameRequest, a, b);
   }
@@ -339,6 +363,10 @@ export class DeleteRepositoryTrackByNameResponse extends Message<DeleteRepositor
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteRepositoryTrackByNameResponse {
     return new DeleteRepositoryTrackByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteRepositoryTrackByNameResponse {
+    return proto3.util.conforms(DeleteRepositoryTrackByNameResponse, value);
   }
 
   static equals(a: DeleteRepositoryTrackByNameResponse | PlainMessage<DeleteRepositoryTrackByNameResponse> | undefined, b: DeleteRepositoryTrackByNameResponse | PlainMessage<DeleteRepositoryTrackByNameResponse> | undefined): boolean {
@@ -392,6 +420,10 @@ export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackB
     return new GetRepositoryTrackByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryTrackByNameRequest {
+    return proto3.util.conforms(GetRepositoryTrackByNameRequest, value);
+  }
+
   static equals(a: GetRepositoryTrackByNameRequest | PlainMessage<GetRepositoryTrackByNameRequest> | undefined, b: GetRepositoryTrackByNameRequest | PlainMessage<GetRepositoryTrackByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackByNameRequest, a, b);
   }
@@ -427,6 +459,10 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryTrackByNameResponse {
     return new GetRepositoryTrackByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryTrackByNameResponse {
+    return proto3.util.conforms(GetRepositoryTrackByNameResponse, value);
   }
 
   static equals(a: GetRepositoryTrackByNameResponse | PlainMessage<GetRepositoryTrackByNameResponse> | undefined, b: GetRepositoryTrackByNameResponse | PlainMessage<GetRepositoryTrackByNameResponse> | undefined): boolean {

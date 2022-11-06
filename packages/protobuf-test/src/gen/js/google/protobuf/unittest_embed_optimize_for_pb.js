@@ -52,3 +52,6 @@ export const TestEmbedOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
+TestEmbedOptimizedForSize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEmbedOptimizedForSize, value);
+};

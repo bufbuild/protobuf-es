@@ -108,6 +108,10 @@ export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
     return new GetModulePinsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetModulePinsRequest {
+    return proto3.util.conforms(GetModulePinsRequest, value);
+  }
+
   static equals(a: GetModulePinsRequest | PlainMessage<GetModulePinsRequest> | undefined, b: GetModulePinsRequest | PlainMessage<GetModulePinsRequest> | undefined): boolean {
     return proto3.util.equals(GetModulePinsRequest, a, b);
   }
@@ -145,6 +149,10 @@ export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
     return new GetModulePinsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetModulePinsResponse {
+    return proto3.util.conforms(GetModulePinsResponse, value);
+  }
+
   static equals(a: GetModulePinsResponse | PlainMessage<GetModulePinsResponse> | undefined, b: GetModulePinsResponse | PlainMessage<GetModulePinsResponse> | undefined): boolean {
     return proto3.util.equals(GetModulePinsResponse, a, b);
   }
@@ -180,6 +188,10 @@ export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLocalModulePinsRequest {
     return new GetLocalModulePinsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetLocalModulePinsRequest {
+    return proto3.util.conforms(GetLocalModulePinsRequest, value);
   }
 
   static equals(a: GetLocalModulePinsRequest | PlainMessage<GetLocalModulePinsRequest> | undefined, b: GetLocalModulePinsRequest | PlainMessage<GetLocalModulePinsRequest> | undefined): boolean {
@@ -237,6 +249,10 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
     return new LocalModuleResolveResult().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is LocalModuleResolveResult {
+    return proto3.util.conforms(LocalModuleResolveResult, value);
+  }
+
   static equals(a: LocalModuleResolveResult | PlainMessage<LocalModuleResolveResult> | undefined, b: LocalModuleResolveResult | PlainMessage<LocalModuleResolveResult> | undefined): boolean {
     return proto3.util.equals(LocalModuleResolveResult, a, b);
   }
@@ -282,6 +298,10 @@ export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLocalModulePinsResponse {
     return new GetLocalModulePinsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetLocalModulePinsResponse {
+    return proto3.util.conforms(GetLocalModulePinsResponse, value);
   }
 
   static equals(a: GetLocalModulePinsResponse | PlainMessage<GetLocalModulePinsResponse> | undefined, b: GetLocalModulePinsResponse | PlainMessage<GetLocalModulePinsResponse> | undefined): boolean {

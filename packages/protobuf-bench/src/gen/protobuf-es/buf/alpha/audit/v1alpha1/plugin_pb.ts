@@ -95,6 +95,10 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
     return new BufAlphaRegistryV1Alpha1PluginVersionMapping().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginVersionMapping {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginVersionMapping, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1PluginVersionMapping | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionMapping> | undefined, b: BufAlphaRegistryV1Alpha1PluginVersionMapping | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionMapping> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1PluginVersionMapping, a, b);
   }
@@ -150,6 +154,10 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
     return new BufAlphaRegistryV1Alpha1PluginConfig().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginConfig {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginConfig, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1PluginConfig | PlainMessage<BufAlphaRegistryV1Alpha1PluginConfig> | undefined, b: BufAlphaRegistryV1Alpha1PluginConfig | PlainMessage<BufAlphaRegistryV1Alpha1PluginConfig> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1PluginConfig, a, b);
   }
@@ -191,6 +199,10 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary {
     return new BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary, value);
   }
 
   static equals(a: BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> | undefined, b: BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary | PlainMessage<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> | undefined): boolean {

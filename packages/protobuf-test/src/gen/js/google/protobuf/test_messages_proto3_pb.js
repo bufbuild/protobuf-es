@@ -221,6 +221,9 @@ export const TestAllTypesProto3 = proto3.makeMessageType(
   ],
 );
 
+TestAllTypesProto3.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypesProto3, value);
+};
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
  */
@@ -261,6 +264,9 @@ export const TestAllTypesProto3_NestedMessage = proto3.makeMessageType(
   {localName: "TestAllTypesProto3_NestedMessage"},
 );
 
+TestAllTypesProto3_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypesProto3_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
  */
@@ -271,6 +277,9 @@ export const ForeignMessage = proto3.makeMessageType(
   ],
 );
 
+ForeignMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(ForeignMessage, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
  */
@@ -279,6 +288,9 @@ export const NullHypothesisProto3 = proto3.makeMessageType(
   [],
 );
 
+NullHypothesisProto3.conforms = function conforms(value) {
+ return proto3.util.conforms(NullHypothesisProto3, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3
  */
@@ -287,6 +299,9 @@ export const EnumOnlyProto3 = proto3.makeMessageType(
   [],
 );
 
+EnumOnlyProto3.conforms = function conforms(value) {
+ return proto3.util.conforms(EnumOnlyProto3, value);
+};
 /**
  * @generated from enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool
  */

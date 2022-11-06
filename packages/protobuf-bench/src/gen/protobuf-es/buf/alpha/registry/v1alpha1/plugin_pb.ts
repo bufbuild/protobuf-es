@@ -128,6 +128,10 @@ export class Plugin extends Message<Plugin> {
     return new Plugin().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Plugin {
+    return proto3.util.conforms(Plugin, value);
+  }
+
   static equals(a: Plugin | PlainMessage<Plugin> | undefined, b: Plugin | PlainMessage<Plugin> | undefined): boolean {
     return proto3.util.equals(Plugin, a, b);
   }
@@ -211,6 +215,10 @@ export class PluginVersion extends Message<PluginVersion> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginVersion {
     return new PluginVersion().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PluginVersion {
+    return proto3.util.conforms(PluginVersion, value);
   }
 
   static equals(a: PluginVersion | PlainMessage<PluginVersion> | undefined, b: PluginVersion | PlainMessage<PluginVersion> | undefined): boolean {
@@ -308,6 +316,10 @@ export class Template extends Message<Template> {
     return new Template().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Template {
+    return proto3.util.conforms(Template, value);
+  }
+
   static equals(a: Template | PlainMessage<Template> | undefined, b: Template | PlainMessage<Template> | undefined): boolean {
     return proto3.util.equals(Template, a, b);
   }
@@ -372,6 +384,10 @@ export class PluginConfig extends Message<PluginConfig> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginConfig {
     return new PluginConfig().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PluginConfig {
+    return proto3.util.conforms(PluginConfig, value);
   }
 
   static equals(a: PluginConfig | PlainMessage<PluginConfig> | undefined, b: PluginConfig | PlainMessage<PluginConfig> | undefined): boolean {
@@ -451,6 +467,10 @@ export class TemplateVersion extends Message<TemplateVersion> {
     return new TemplateVersion().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TemplateVersion {
+    return proto3.util.conforms(TemplateVersion, value);
+  }
+
   static equals(a: TemplateVersion | PlainMessage<TemplateVersion> | undefined, b: TemplateVersion | PlainMessage<TemplateVersion> | undefined): boolean {
     return proto3.util.equals(TemplateVersion, a, b);
   }
@@ -516,6 +536,10 @@ export class PluginVersionMapping extends Message<PluginVersionMapping> {
     return new PluginVersionMapping().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PluginVersionMapping {
+    return proto3.util.conforms(PluginVersionMapping, value);
+  }
+
   static equals(a: PluginVersionMapping | PlainMessage<PluginVersionMapping> | undefined, b: PluginVersionMapping | PlainMessage<PluginVersionMapping> | undefined): boolean {
     return proto3.util.equals(PluginVersionMapping, a, b);
   }
@@ -576,6 +600,10 @@ export class PluginContributor extends Message<PluginContributor> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginContributor {
     return new PluginContributor().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PluginContributor {
+    return proto3.util.conforms(PluginContributor, value);
   }
 
   static equals(a: PluginContributor | PlainMessage<PluginContributor> | undefined, b: PluginContributor | PlainMessage<PluginContributor> | undefined): boolean {
@@ -640,6 +668,10 @@ export class TemplateContributor extends Message<TemplateContributor> {
     return new TemplateContributor().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TemplateContributor {
+    return proto3.util.conforms(TemplateContributor, value);
+  }
+
   static equals(a: TemplateContributor | PlainMessage<TemplateContributor> | undefined, b: TemplateContributor | PlainMessage<TemplateContributor> | undefined): boolean {
     return proto3.util.equals(TemplateContributor, a, b);
   }
@@ -691,6 +723,10 @@ export class ListPluginsRequest extends Message<ListPluginsRequest> {
     return new ListPluginsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListPluginsRequest {
+    return proto3.util.conforms(ListPluginsRequest, value);
+  }
+
   static equals(a: ListPluginsRequest | PlainMessage<ListPluginsRequest> | undefined, b: ListPluginsRequest | PlainMessage<ListPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginsRequest, a, b);
   }
@@ -734,6 +770,10 @@ export class ListPluginsResponse extends Message<ListPluginsResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPluginsResponse {
     return new ListPluginsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListPluginsResponse {
+    return proto3.util.conforms(ListPluginsResponse, value);
   }
 
   static equals(a: ListPluginsResponse | PlainMessage<ListPluginsResponse> | undefined, b: ListPluginsResponse | PlainMessage<ListPluginsResponse> | undefined): boolean {
@@ -795,6 +835,10 @@ export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
     return new ListUserPluginsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUserPluginsRequest {
+    return proto3.util.conforms(ListUserPluginsRequest, value);
+  }
+
   static equals(a: ListUserPluginsRequest | PlainMessage<ListUserPluginsRequest> | undefined, b: ListUserPluginsRequest | PlainMessage<ListUserPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListUserPluginsRequest, a, b);
   }
@@ -838,6 +882,10 @@ export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListUserPluginsResponse {
     return new ListUserPluginsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListUserPluginsResponse {
+    return proto3.util.conforms(ListUserPluginsResponse, value);
   }
 
   static equals(a: ListUserPluginsResponse | PlainMessage<ListUserPluginsResponse> | undefined, b: ListUserPluginsResponse | PlainMessage<ListUserPluginsResponse> | undefined): boolean {
@@ -899,6 +947,10 @@ export class ListOrganizationPluginsRequest extends Message<ListOrganizationPlug
     return new ListOrganizationPluginsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationPluginsRequest {
+    return proto3.util.conforms(ListOrganizationPluginsRequest, value);
+  }
+
   static equals(a: ListOrganizationPluginsRequest | PlainMessage<ListOrganizationPluginsRequest> | undefined, b: ListOrganizationPluginsRequest | PlainMessage<ListOrganizationPluginsRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationPluginsRequest, a, b);
   }
@@ -942,6 +994,10 @@ export class ListOrganizationPluginsResponse extends Message<ListOrganizationPlu
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListOrganizationPluginsResponse {
     return new ListOrganizationPluginsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListOrganizationPluginsResponse {
+    return proto3.util.conforms(ListOrganizationPluginsResponse, value);
   }
 
   static equals(a: ListOrganizationPluginsResponse | PlainMessage<ListOrganizationPluginsResponse> | undefined, b: ListOrganizationPluginsResponse | PlainMessage<ListOrganizationPluginsResponse> | undefined): boolean {
@@ -999,6 +1055,10 @@ export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
     return new GetPluginVersionRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetPluginVersionRequest {
+    return proto3.util.conforms(GetPluginVersionRequest, value);
+  }
+
   static equals(a: GetPluginVersionRequest | PlainMessage<GetPluginVersionRequest> | undefined, b: GetPluginVersionRequest | PlainMessage<GetPluginVersionRequest> | undefined): boolean {
     return proto3.util.equals(GetPluginVersionRequest, a, b);
   }
@@ -1034,6 +1094,10 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPluginVersionResponse {
     return new GetPluginVersionResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetPluginVersionResponse {
+    return proto3.util.conforms(GetPluginVersionResponse, value);
   }
 
   static equals(a: GetPluginVersionResponse | PlainMessage<GetPluginVersionResponse> | undefined, b: GetPluginVersionResponse | PlainMessage<GetPluginVersionResponse> | undefined): boolean {
@@ -1105,6 +1169,10 @@ export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest
     return new ListPluginVersionsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListPluginVersionsRequest {
+    return proto3.util.conforms(ListPluginVersionsRequest, value);
+  }
+
   static equals(a: ListPluginVersionsRequest | PlainMessage<ListPluginVersionsRequest> | undefined, b: ListPluginVersionsRequest | PlainMessage<ListPluginVersionsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginVersionsRequest, a, b);
   }
@@ -1148,6 +1216,10 @@ export class ListPluginVersionsResponse extends Message<ListPluginVersionsRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPluginVersionsResponse {
     return new ListPluginVersionsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListPluginVersionsResponse {
+    return proto3.util.conforms(ListPluginVersionsResponse, value);
   }
 
   static equals(a: ListPluginVersionsResponse | PlainMessage<ListPluginVersionsResponse> | undefined, b: ListPluginVersionsResponse | PlainMessage<ListPluginVersionsResponse> | undefined): boolean {
@@ -1209,6 +1281,10 @@ export class CreatePluginRequest extends Message<CreatePluginRequest> {
     return new CreatePluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreatePluginRequest {
+    return proto3.util.conforms(CreatePluginRequest, value);
+  }
+
   static equals(a: CreatePluginRequest | PlainMessage<CreatePluginRequest> | undefined, b: CreatePluginRequest | PlainMessage<CreatePluginRequest> | undefined): boolean {
     return proto3.util.equals(CreatePluginRequest, a, b);
   }
@@ -1246,6 +1322,10 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreatePluginResponse {
     return new CreatePluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreatePluginResponse {
+    return proto3.util.conforms(CreatePluginResponse, value);
   }
 
   static equals(a: CreatePluginResponse | PlainMessage<CreatePluginResponse> | undefined, b: CreatePluginResponse | PlainMessage<CreatePluginResponse> | undefined): boolean {
@@ -1295,6 +1375,10 @@ export class GetPluginRequest extends Message<GetPluginRequest> {
     return new GetPluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetPluginRequest {
+    return proto3.util.conforms(GetPluginRequest, value);
+  }
+
   static equals(a: GetPluginRequest | PlainMessage<GetPluginRequest> | undefined, b: GetPluginRequest | PlainMessage<GetPluginRequest> | undefined): boolean {
     return proto3.util.equals(GetPluginRequest, a, b);
   }
@@ -1330,6 +1414,10 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPluginResponse {
     return new GetPluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetPluginResponse {
+    return proto3.util.conforms(GetPluginResponse, value);
   }
 
   static equals(a: GetPluginResponse | PlainMessage<GetPluginResponse> | undefined, b: GetPluginResponse | PlainMessage<GetPluginResponse> | undefined): boolean {
@@ -1379,6 +1467,10 @@ export class DeletePluginRequest extends Message<DeletePluginRequest> {
     return new DeletePluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeletePluginRequest {
+    return proto3.util.conforms(DeletePluginRequest, value);
+  }
+
   static equals(a: DeletePluginRequest | PlainMessage<DeletePluginRequest> | undefined, b: DeletePluginRequest | PlainMessage<DeletePluginRequest> | undefined): boolean {
     return proto3.util.equals(DeletePluginRequest, a, b);
   }
@@ -1408,6 +1500,10 @@ export class DeletePluginResponse extends Message<DeletePluginResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeletePluginResponse {
     return new DeletePluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeletePluginResponse {
+    return proto3.util.conforms(DeletePluginResponse, value);
   }
 
   static equals(a: DeletePluginResponse | PlainMessage<DeletePluginResponse> | undefined, b: DeletePluginResponse | PlainMessage<DeletePluginResponse> | undefined): boolean {
@@ -1466,6 +1562,10 @@ export class SetPluginContributorRequest extends Message<SetPluginContributorReq
     return new SetPluginContributorRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetPluginContributorRequest {
+    return proto3.util.conforms(SetPluginContributorRequest, value);
+  }
+
   static equals(a: SetPluginContributorRequest | PlainMessage<SetPluginContributorRequest> | undefined, b: SetPluginContributorRequest | PlainMessage<SetPluginContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetPluginContributorRequest, a, b);
   }
@@ -1495,6 +1595,10 @@ export class SetPluginContributorResponse extends Message<SetPluginContributorRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetPluginContributorResponse {
     return new SetPluginContributorResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetPluginContributorResponse {
+    return proto3.util.conforms(SetPluginContributorResponse, value);
   }
 
   static equals(a: SetPluginContributorResponse | PlainMessage<SetPluginContributorResponse> | undefined, b: SetPluginContributorResponse | PlainMessage<SetPluginContributorResponse> | undefined): boolean {
@@ -1554,6 +1658,10 @@ export class ListPluginContributorsRequest extends Message<ListPluginContributor
     return new ListPluginContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListPluginContributorsRequest {
+    return proto3.util.conforms(ListPluginContributorsRequest, value);
+  }
+
   static equals(a: ListPluginContributorsRequest | PlainMessage<ListPluginContributorsRequest> | undefined, b: ListPluginContributorsRequest | PlainMessage<ListPluginContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListPluginContributorsRequest, a, b);
   }
@@ -1597,6 +1705,10 @@ export class ListPluginContributorsResponse extends Message<ListPluginContributo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPluginContributorsResponse {
     return new ListPluginContributorsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListPluginContributorsResponse {
+    return proto3.util.conforms(ListPluginContributorsResponse, value);
   }
 
   static equals(a: ListPluginContributorsResponse | PlainMessage<ListPluginContributorsResponse> | undefined, b: ListPluginContributorsResponse | PlainMessage<ListPluginContributorsResponse> | undefined): boolean {
@@ -1654,6 +1766,10 @@ export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
     return new DeprecatePluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeprecatePluginRequest {
+    return proto3.util.conforms(DeprecatePluginRequest, value);
+  }
+
   static equals(a: DeprecatePluginRequest | PlainMessage<DeprecatePluginRequest> | undefined, b: DeprecatePluginRequest | PlainMessage<DeprecatePluginRequest> | undefined): boolean {
     return proto3.util.equals(DeprecatePluginRequest, a, b);
   }
@@ -1683,6 +1799,10 @@ export class DeprecatePluginResponse extends Message<DeprecatePluginResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatePluginResponse {
     return new DeprecatePluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeprecatePluginResponse {
+    return proto3.util.conforms(DeprecatePluginResponse, value);
   }
 
   static equals(a: DeprecatePluginResponse | PlainMessage<DeprecatePluginResponse> | undefined, b: DeprecatePluginResponse | PlainMessage<DeprecatePluginResponse> | undefined): boolean {
@@ -1732,6 +1852,10 @@ export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> 
     return new UndeprecatePluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UndeprecatePluginRequest {
+    return proto3.util.conforms(UndeprecatePluginRequest, value);
+  }
+
   static equals(a: UndeprecatePluginRequest | PlainMessage<UndeprecatePluginRequest> | undefined, b: UndeprecatePluginRequest | PlainMessage<UndeprecatePluginRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecatePluginRequest, a, b);
   }
@@ -1761,6 +1885,10 @@ export class UndeprecatePluginResponse extends Message<UndeprecatePluginResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UndeprecatePluginResponse {
     return new UndeprecatePluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UndeprecatePluginResponse {
+    return proto3.util.conforms(UndeprecatePluginResponse, value);
   }
 
   static equals(a: UndeprecatePluginResponse | PlainMessage<UndeprecatePluginResponse> | undefined, b: UndeprecatePluginResponse | PlainMessage<UndeprecatePluginResponse> | undefined): boolean {
@@ -1810,6 +1938,10 @@ export class GetTemplateRequest extends Message<GetTemplateRequest> {
     return new GetTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetTemplateRequest {
+    return proto3.util.conforms(GetTemplateRequest, value);
+  }
+
   static equals(a: GetTemplateRequest | PlainMessage<GetTemplateRequest> | undefined, b: GetTemplateRequest | PlainMessage<GetTemplateRequest> | undefined): boolean {
     return proto3.util.equals(GetTemplateRequest, a, b);
   }
@@ -1845,6 +1977,10 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetTemplateResponse {
     return new GetTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetTemplateResponse {
+    return proto3.util.conforms(GetTemplateResponse, value);
   }
 
   static equals(a: GetTemplateResponse | PlainMessage<GetTemplateResponse> | undefined, b: GetTemplateResponse | PlainMessage<GetTemplateResponse> | undefined): boolean {
@@ -1898,6 +2034,10 @@ export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
     return new ListTemplatesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListTemplatesRequest {
+    return proto3.util.conforms(ListTemplatesRequest, value);
+  }
+
   static equals(a: ListTemplatesRequest | PlainMessage<ListTemplatesRequest> | undefined, b: ListTemplatesRequest | PlainMessage<ListTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplatesRequest, a, b);
   }
@@ -1941,6 +2081,10 @@ export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListTemplatesResponse {
     return new ListTemplatesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListTemplatesResponse {
+    return proto3.util.conforms(ListTemplatesResponse, value);
   }
 
   static equals(a: ListTemplatesResponse | PlainMessage<ListTemplatesResponse> | undefined, b: ListTemplatesResponse | PlainMessage<ListTemplatesResponse> | undefined): boolean {
@@ -2002,6 +2146,10 @@ export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> 
     return new ListUserTemplatesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUserTemplatesRequest {
+    return proto3.util.conforms(ListUserTemplatesRequest, value);
+  }
+
   static equals(a: ListUserTemplatesRequest | PlainMessage<ListUserTemplatesRequest> | undefined, b: ListUserTemplatesRequest | PlainMessage<ListUserTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListUserTemplatesRequest, a, b);
   }
@@ -2045,6 +2193,10 @@ export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListUserTemplatesResponse {
     return new ListUserTemplatesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListUserTemplatesResponse {
+    return proto3.util.conforms(ListUserTemplatesResponse, value);
   }
 
   static equals(a: ListUserTemplatesResponse | PlainMessage<ListUserTemplatesResponse> | undefined, b: ListUserTemplatesResponse | PlainMessage<ListUserTemplatesResponse> | undefined): boolean {
@@ -2102,6 +2254,10 @@ export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest
     return new GetTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetTemplateVersionRequest {
+    return proto3.util.conforms(GetTemplateVersionRequest, value);
+  }
+
   static equals(a: GetTemplateVersionRequest | PlainMessage<GetTemplateVersionRequest> | undefined, b: GetTemplateVersionRequest | PlainMessage<GetTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(GetTemplateVersionRequest, a, b);
   }
@@ -2137,6 +2293,10 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetTemplateVersionResponse {
     return new GetTemplateVersionResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetTemplateVersionResponse {
+    return proto3.util.conforms(GetTemplateVersionResponse, value);
   }
 
   static equals(a: GetTemplateVersionResponse | PlainMessage<GetTemplateVersionResponse> | undefined, b: GetTemplateVersionResponse | PlainMessage<GetTemplateVersionResponse> | undefined): boolean {
@@ -2198,6 +2358,10 @@ export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTe
     return new ListOrganizationTemplatesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationTemplatesRequest {
+    return proto3.util.conforms(ListOrganizationTemplatesRequest, value);
+  }
+
   static equals(a: ListOrganizationTemplatesRequest | PlainMessage<ListOrganizationTemplatesRequest> | undefined, b: ListOrganizationTemplatesRequest | PlainMessage<ListOrganizationTemplatesRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationTemplatesRequest, a, b);
   }
@@ -2241,6 +2405,10 @@ export class ListOrganizationTemplatesResponse extends Message<ListOrganizationT
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListOrganizationTemplatesResponse {
     return new ListOrganizationTemplatesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListOrganizationTemplatesResponse {
+    return proto3.util.conforms(ListOrganizationTemplatesResponse, value);
   }
 
   static equals(a: ListOrganizationTemplatesResponse | PlainMessage<ListOrganizationTemplatesResponse> | undefined, b: ListOrganizationTemplatesResponse | PlainMessage<ListOrganizationTemplatesResponse> | undefined): boolean {
@@ -2312,6 +2480,10 @@ export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsReq
     return new ListTemplateVersionsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListTemplateVersionsRequest {
+    return proto3.util.conforms(ListTemplateVersionsRequest, value);
+  }
+
   static equals(a: ListTemplateVersionsRequest | PlainMessage<ListTemplateVersionsRequest> | undefined, b: ListTemplateVersionsRequest | PlainMessage<ListTemplateVersionsRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplateVersionsRequest, a, b);
   }
@@ -2355,6 +2527,10 @@ export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListTemplateVersionsResponse {
     return new ListTemplateVersionsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListTemplateVersionsResponse {
+    return proto3.util.conforms(ListTemplateVersionsResponse, value);
   }
 
   static equals(a: ListTemplateVersionsResponse | PlainMessage<ListTemplateVersionsResponse> | undefined, b: ListTemplateVersionsResponse | PlainMessage<ListTemplateVersionsResponse> | undefined): boolean {
@@ -2424,6 +2600,10 @@ export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
     return new CreateTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateTemplateRequest {
+    return proto3.util.conforms(CreateTemplateRequest, value);
+  }
+
   static equals(a: CreateTemplateRequest | PlainMessage<CreateTemplateRequest> | undefined, b: CreateTemplateRequest | PlainMessage<CreateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(CreateTemplateRequest, a, b);
   }
@@ -2461,6 +2641,10 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateTemplateResponse {
     return new CreateTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateTemplateResponse {
+    return proto3.util.conforms(CreateTemplateResponse, value);
   }
 
   static equals(a: CreateTemplateResponse | PlainMessage<CreateTemplateResponse> | undefined, b: CreateTemplateResponse | PlainMessage<CreateTemplateResponse> | undefined): boolean {
@@ -2510,6 +2694,10 @@ export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
     return new DeleteTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteTemplateRequest {
+    return proto3.util.conforms(DeleteTemplateRequest, value);
+  }
+
   static equals(a: DeleteTemplateRequest | PlainMessage<DeleteTemplateRequest> | undefined, b: DeleteTemplateRequest | PlainMessage<DeleteTemplateRequest> | undefined): boolean {
     return proto3.util.equals(DeleteTemplateRequest, a, b);
   }
@@ -2539,6 +2727,10 @@ export class DeleteTemplateResponse extends Message<DeleteTemplateResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteTemplateResponse {
     return new DeleteTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteTemplateResponse {
+    return proto3.util.conforms(DeleteTemplateResponse, value);
   }
 
   static equals(a: DeleteTemplateResponse | PlainMessage<DeleteTemplateResponse> | undefined, b: DeleteTemplateResponse | PlainMessage<DeleteTemplateResponse> | undefined): boolean {
@@ -2606,6 +2798,10 @@ export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionR
     return new CreateTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateTemplateVersionRequest {
+    return proto3.util.conforms(CreateTemplateVersionRequest, value);
+  }
+
   static equals(a: CreateTemplateVersionRequest | PlainMessage<CreateTemplateVersionRequest> | undefined, b: CreateTemplateVersionRequest | PlainMessage<CreateTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(CreateTemplateVersionRequest, a, b);
   }
@@ -2643,6 +2839,10 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateTemplateVersionResponse {
     return new CreateTemplateVersionResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateTemplateVersionResponse {
+    return proto3.util.conforms(CreateTemplateVersionResponse, value);
   }
 
   static equals(a: CreateTemplateVersionResponse | PlainMessage<CreateTemplateVersionResponse> | undefined, b: CreateTemplateVersionResponse | PlainMessage<CreateTemplateVersionResponse> | undefined): boolean {
@@ -2701,6 +2901,10 @@ export class SetTemplateContributorRequest extends Message<SetTemplateContributo
     return new SetTemplateContributorRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetTemplateContributorRequest {
+    return proto3.util.conforms(SetTemplateContributorRequest, value);
+  }
+
   static equals(a: SetTemplateContributorRequest | PlainMessage<SetTemplateContributorRequest> | undefined, b: SetTemplateContributorRequest | PlainMessage<SetTemplateContributorRequest> | undefined): boolean {
     return proto3.util.equals(SetTemplateContributorRequest, a, b);
   }
@@ -2730,6 +2934,10 @@ export class SetTemplateContributorResponse extends Message<SetTemplateContribut
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetTemplateContributorResponse {
     return new SetTemplateContributorResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetTemplateContributorResponse {
+    return proto3.util.conforms(SetTemplateContributorResponse, value);
   }
 
   static equals(a: SetTemplateContributorResponse | PlainMessage<SetTemplateContributorResponse> | undefined, b: SetTemplateContributorResponse | PlainMessage<SetTemplateContributorResponse> | undefined): boolean {
@@ -2789,6 +2997,10 @@ export class ListTemplateContributorsRequest extends Message<ListTemplateContrib
     return new ListTemplateContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListTemplateContributorsRequest {
+    return proto3.util.conforms(ListTemplateContributorsRequest, value);
+  }
+
   static equals(a: ListTemplateContributorsRequest | PlainMessage<ListTemplateContributorsRequest> | undefined, b: ListTemplateContributorsRequest | PlainMessage<ListTemplateContributorsRequest> | undefined): boolean {
     return proto3.util.equals(ListTemplateContributorsRequest, a, b);
   }
@@ -2832,6 +3044,10 @@ export class ListTemplateContributorsResponse extends Message<ListTemplateContri
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListTemplateContributorsResponse {
     return new ListTemplateContributorsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListTemplateContributorsResponse {
+    return proto3.util.conforms(ListTemplateContributorsResponse, value);
   }
 
   static equals(a: ListTemplateContributorsResponse | PlainMessage<ListTemplateContributorsResponse> | undefined, b: ListTemplateContributorsResponse | PlainMessage<ListTemplateContributorsResponse> | undefined): boolean {
@@ -2889,6 +3105,10 @@ export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> 
     return new DeprecateTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeprecateTemplateRequest {
+    return proto3.util.conforms(DeprecateTemplateRequest, value);
+  }
+
   static equals(a: DeprecateTemplateRequest | PlainMessage<DeprecateTemplateRequest> | undefined, b: DeprecateTemplateRequest | PlainMessage<DeprecateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(DeprecateTemplateRequest, a, b);
   }
@@ -2918,6 +3138,10 @@ export class DeprecateTemplateResponse extends Message<DeprecateTemplateResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecateTemplateResponse {
     return new DeprecateTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeprecateTemplateResponse {
+    return proto3.util.conforms(DeprecateTemplateResponse, value);
   }
 
   static equals(a: DeprecateTemplateResponse | PlainMessage<DeprecateTemplateResponse> | undefined, b: DeprecateTemplateResponse | PlainMessage<DeprecateTemplateResponse> | undefined): boolean {
@@ -2967,6 +3191,10 @@ export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateReque
     return new UndeprecateTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UndeprecateTemplateRequest {
+    return proto3.util.conforms(UndeprecateTemplateRequest, value);
+  }
+
   static equals(a: UndeprecateTemplateRequest | PlainMessage<UndeprecateTemplateRequest> | undefined, b: UndeprecateTemplateRequest | PlainMessage<UndeprecateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UndeprecateTemplateRequest, a, b);
   }
@@ -2996,6 +3224,10 @@ export class UndeprecateTemplateResponse extends Message<UndeprecateTemplateResp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UndeprecateTemplateResponse {
     return new UndeprecateTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UndeprecateTemplateResponse {
+    return proto3.util.conforms(UndeprecateTemplateResponse, value);
   }
 
   static equals(a: UndeprecateTemplateResponse | PlainMessage<UndeprecateTemplateResponse> | undefined, b: UndeprecateTemplateResponse | PlainMessage<UndeprecateTemplateResponse> | undefined): boolean {

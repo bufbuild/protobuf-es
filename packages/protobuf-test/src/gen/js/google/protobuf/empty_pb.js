@@ -51,3 +51,6 @@ export const Empty = proto3.makeMessageType(
   [],
 );
 
+Empty.conforms = function conforms(value) {
+ return proto3.util.conforms(Empty, value);
+};

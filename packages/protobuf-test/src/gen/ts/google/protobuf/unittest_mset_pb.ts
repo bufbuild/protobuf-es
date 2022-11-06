@@ -75,6 +75,10 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
     return new TestMessageSetContainer().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMessageSetContainer {
+    return proto2.util.conforms(TestMessageSetContainer, value);
+  }
+
   static equals(a: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined, b: TestMessageSetContainer | PlainMessage<TestMessageSetContainer> | undefined): boolean {
     return proto2.util.equals(TestMessageSetContainer, a, b);
   }
@@ -116,6 +120,10 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestMessageSetContainer {
     return new NestedTestMessageSetContainer().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NestedTestMessageSetContainer {
+    return proto2.util.conforms(NestedTestMessageSetContainer, value);
   }
 
   static equals(a: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined, b: NestedTestMessageSetContainer | PlainMessage<NestedTestMessageSetContainer> | undefined): boolean {
@@ -167,6 +175,10 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
     return new TestMessageSetExtension1().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMessageSetExtension1 {
+    return proto2.util.conforms(TestMessageSetExtension1, value);
+  }
+
   static equals(a: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined, b: TestMessageSetExtension1 | PlainMessage<TestMessageSetExtension1> | undefined): boolean {
     return proto2.util.equals(TestMessageSetExtension1, a, b);
   }
@@ -202,6 +214,10 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension2 {
     return new TestMessageSetExtension2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestMessageSetExtension2 {
+    return proto2.util.conforms(TestMessageSetExtension2, value);
   }
 
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean {
@@ -247,6 +263,10 @@ export class NestedTestInt extends Message<NestedTestInt> {
     return new NestedTestInt().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NestedTestInt {
+    return proto2.util.conforms(NestedTestInt, value);
+  }
+
   static equals(a: NestedTestInt | PlainMessage<NestedTestInt> | undefined, b: NestedTestInt | PlainMessage<NestedTestInt> | undefined): boolean {
     return proto2.util.equals(NestedTestInt, a, b);
   }
@@ -282,6 +302,10 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetExtension3 {
     return new TestMessageSetExtension3().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestMessageSetExtension3 {
+    return proto2.util.conforms(TestMessageSetExtension3, value);
   }
 
   static equals(a: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined, b: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined): boolean {
@@ -321,6 +345,10 @@ export class RawMessageSet extends Message<RawMessageSet> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet {
     return new RawMessageSet().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RawMessageSet {
+    return proto2.util.conforms(RawMessageSet, value);
   }
 
   static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean {
@@ -364,6 +392,10 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item {
     return new RawMessageSet_Item().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RawMessageSet_Item {
+    return proto2.util.conforms(RawMessageSet_Item, value);
   }
 
   static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean {

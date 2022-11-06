@@ -107,6 +107,10 @@ export class Version extends Message<Version> {
     return new Version().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Version {
+    return proto2.util.conforms(Version, value);
+  }
+
   static equals(a: Version | PlainMessage<Version> | undefined, b: Version | PlainMessage<Version> | undefined): boolean {
     return proto2.util.equals(Version, a, b);
   }
@@ -187,6 +191,10 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
     return new CodeGeneratorRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CodeGeneratorRequest {
+    return proto2.util.conforms(CodeGeneratorRequest, value);
+  }
+
   static equals(a: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined, b: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined): boolean {
     return proto2.util.equals(CodeGeneratorRequest, a, b);
   }
@@ -248,6 +256,10 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CodeGeneratorResponse {
     return new CodeGeneratorResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CodeGeneratorResponse {
+    return proto2.util.conforms(CodeGeneratorResponse, value);
   }
 
   static equals(a: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined, b: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined): boolean {
@@ -383,6 +395,10 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CodeGeneratorResponse_File {
     return new CodeGeneratorResponse_File().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CodeGeneratorResponse_File {
+    return proto2.util.conforms(CodeGeneratorResponse_File, value);
   }
 
   static equals(a: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined, b: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined): boolean {

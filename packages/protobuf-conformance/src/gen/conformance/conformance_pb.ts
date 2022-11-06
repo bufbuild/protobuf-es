@@ -170,6 +170,10 @@ export class FailureSet extends Message<FailureSet> {
     return new FailureSet().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is FailureSet {
+    return proto3.util.conforms(FailureSet, value);
+  }
+
   static equals(a: FailureSet | PlainMessage<FailureSet> | undefined, b: FailureSet | PlainMessage<FailureSet> | undefined): boolean {
     return proto3.util.equals(FailureSet, a, b);
   }
@@ -293,6 +297,10 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConformanceRequest {
     return new ConformanceRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ConformanceRequest {
+    return proto3.util.conforms(ConformanceRequest, value);
   }
 
   static equals(a: ConformanceRequest | PlainMessage<ConformanceRequest> | undefined, b: ConformanceRequest | PlainMessage<ConformanceRequest> | undefined): boolean {
@@ -419,6 +427,10 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
     return new ConformanceResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ConformanceResponse {
+    return proto3.util.conforms(ConformanceResponse, value);
+  }
+
   static equals(a: ConformanceResponse | PlainMessage<ConformanceResponse> | undefined, b: ConformanceResponse | PlainMessage<ConformanceResponse> | undefined): boolean {
     return proto3.util.equals(ConformanceResponse, a, b);
   }
@@ -458,6 +470,10 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JspbEncodingConfig {
     return new JspbEncodingConfig().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is JspbEncodingConfig {
+    return proto3.util.conforms(JspbEncodingConfig, value);
   }
 
   static equals(a: JspbEncodingConfig | PlainMessage<JspbEncodingConfig> | undefined, b: JspbEncodingConfig | PlainMessage<JspbEncodingConfig> | undefined): boolean {

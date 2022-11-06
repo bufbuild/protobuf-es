@@ -133,6 +133,8 @@ export declare class Duration extends Message<Duration> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Duration;
 
+  static conforms(value: any): value is Duration;
+
   static equals(a: Duration | PlainMessage<Duration> | undefined, b: Duration | PlainMessage<Duration> | undefined): boolean;
 }
 

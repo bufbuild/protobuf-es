@@ -1,4 +1,4 @@
-// Copyright 2021-2022 Buf Technologies, Inc.
+// Copyright 2022 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,6 +54,10 @@ export class SayRequest extends Message<SayRequest> {
     return new SayRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SayRequest {
+    return proto3.util.conforms(SayRequest, value);
+  }
+
   static equals(a: SayRequest | PlainMessage<SayRequest> | undefined, b: SayRequest | PlainMessage<SayRequest> | undefined): boolean {
     return proto3.util.equals(SayRequest, a, b);
   }
@@ -91,6 +95,10 @@ export class SayResponse extends Message<SayResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SayResponse {
     return new SayResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SayResponse {
+    return proto3.util.conforms(SayResponse, value);
   }
 
   static equals(a: SayResponse | PlainMessage<SayResponse> | undefined, b: SayResponse | PlainMessage<SayResponse> | undefined): boolean {
@@ -132,6 +140,10 @@ export class ConverseRequest extends Message<ConverseRequest> {
     return new ConverseRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ConverseRequest {
+    return proto3.util.conforms(ConverseRequest, value);
+  }
+
   static equals(a: ConverseRequest | PlainMessage<ConverseRequest> | undefined, b: ConverseRequest | PlainMessage<ConverseRequest> | undefined): boolean {
     return proto3.util.equals(ConverseRequest, a, b);
   }
@@ -169,6 +181,10 @@ export class ConverseResponse extends Message<ConverseResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConverseResponse {
     return new ConverseResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ConverseResponse {
+    return proto3.util.conforms(ConverseResponse, value);
   }
 
   static equals(a: ConverseResponse | PlainMessage<ConverseResponse> | undefined, b: ConverseResponse | PlainMessage<ConverseResponse> | undefined): boolean {
@@ -210,6 +226,10 @@ export class IntroduceRequest extends Message<IntroduceRequest> {
     return new IntroduceRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is IntroduceRequest {
+    return proto3.util.conforms(IntroduceRequest, value);
+  }
+
   static equals(a: IntroduceRequest | PlainMessage<IntroduceRequest> | undefined, b: IntroduceRequest | PlainMessage<IntroduceRequest> | undefined): boolean {
     return proto3.util.equals(IntroduceRequest, a, b);
   }
@@ -247,6 +267,10 @@ export class IntroduceResponse extends Message<IntroduceResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IntroduceResponse {
     return new IntroduceResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is IntroduceResponse {
+    return proto3.util.conforms(IntroduceResponse, value);
   }
 
   static equals(a: IntroduceResponse | PlainMessage<IntroduceResponse> | undefined, b: IntroduceResponse | PlainMessage<IntroduceResponse> | undefined): boolean {

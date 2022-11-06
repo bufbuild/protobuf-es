@@ -81,3 +81,6 @@ export const ImportMessage = proto2.makeMessageType(
   ],
 );
 
+ImportMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(ImportMessage, value);
+};

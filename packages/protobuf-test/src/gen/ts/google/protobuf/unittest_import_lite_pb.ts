@@ -97,6 +97,10 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
     return new ImportMessageLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ImportMessageLite {
+    return proto2.util.conforms(ImportMessageLite, value);
+  }
+
   static equals(a: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined, b: ImportMessageLite | PlainMessage<ImportMessageLite> | undefined): boolean {
     return proto2.util.equals(ImportMessageLite, a, b);
   }

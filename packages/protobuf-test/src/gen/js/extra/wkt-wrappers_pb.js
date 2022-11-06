@@ -54,3 +54,6 @@ export const WrappersMessage = proto3.makeMessageType(
   ],
 );
 
+WrappersMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(WrappersMessage, value);
+};

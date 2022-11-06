@@ -78,6 +78,10 @@ export class Organization extends Message<Organization> {
     return new Organization().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Organization {
+    return proto3.util.conforms(Organization, value);
+  }
+
   static equals(a: Organization | PlainMessage<Organization> | undefined, b: Organization | PlainMessage<Organization> | undefined): boolean {
     return proto3.util.equals(Organization, a, b);
   }
@@ -124,6 +128,10 @@ export class OrganizationMembership extends Message<OrganizationMembership> {
     return new OrganizationMembership().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OrganizationMembership {
+    return proto3.util.conforms(OrganizationMembership, value);
+  }
+
   static equals(a: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined, b: OrganizationMembership | PlainMessage<OrganizationMembership> | undefined): boolean {
     return proto3.util.equals(OrganizationMembership, a, b);
   }
@@ -159,6 +167,10 @@ export class GetOrganizationRequest extends Message<GetOrganizationRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationRequest {
     return new GetOrganizationRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetOrganizationRequest {
+    return proto3.util.conforms(GetOrganizationRequest, value);
   }
 
   static equals(a: GetOrganizationRequest | PlainMessage<GetOrganizationRequest> | undefined, b: GetOrganizationRequest | PlainMessage<GetOrganizationRequest> | undefined): boolean {
@@ -198,6 +210,10 @@ export class GetOrganizationResponse extends Message<GetOrganizationResponse> {
     return new GetOrganizationResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetOrganizationResponse {
+    return proto3.util.conforms(GetOrganizationResponse, value);
+  }
+
   static equals(a: GetOrganizationResponse | PlainMessage<GetOrganizationResponse> | undefined, b: GetOrganizationResponse | PlainMessage<GetOrganizationResponse> | undefined): boolean {
     return proto3.util.equals(GetOrganizationResponse, a, b);
   }
@@ -235,6 +251,10 @@ export class GetOrganizationByNameRequest extends Message<GetOrganizationByNameR
     return new GetOrganizationByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetOrganizationByNameRequest {
+    return proto3.util.conforms(GetOrganizationByNameRequest, value);
+  }
+
   static equals(a: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined, b: GetOrganizationByNameRequest | PlainMessage<GetOrganizationByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetOrganizationByNameRequest, a, b);
   }
@@ -270,6 +290,10 @@ export class GetOrganizationByNameResponse extends Message<GetOrganizationByName
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationByNameResponse {
     return new GetOrganizationByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetOrganizationByNameResponse {
+    return proto3.util.conforms(GetOrganizationByNameResponse, value);
   }
 
   static equals(a: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined, b: GetOrganizationByNameResponse | PlainMessage<GetOrganizationByNameResponse> | undefined): boolean {
@@ -323,6 +347,10 @@ export class ListOrganizationsRequest extends Message<ListOrganizationsRequest> 
     return new ListOrganizationsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationsRequest {
+    return proto3.util.conforms(ListOrganizationsRequest, value);
+  }
+
   static equals(a: ListOrganizationsRequest | PlainMessage<ListOrganizationsRequest> | undefined, b: ListOrganizationsRequest | PlainMessage<ListOrganizationsRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationsRequest, a, b);
   }
@@ -366,6 +394,10 @@ export class ListOrganizationsResponse extends Message<ListOrganizationsResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListOrganizationsResponse {
     return new ListOrganizationsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListOrganizationsResponse {
+    return proto3.util.conforms(ListOrganizationsResponse, value);
   }
 
   static equals(a: ListOrganizationsResponse | PlainMessage<ListOrganizationsResponse> | undefined, b: ListOrganizationsResponse | PlainMessage<ListOrganizationsResponse> | undefined): boolean {
@@ -427,6 +459,10 @@ export class ListUserOrganizationsRequest extends Message<ListUserOrganizationsR
     return new ListUserOrganizationsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUserOrganizationsRequest {
+    return proto3.util.conforms(ListUserOrganizationsRequest, value);
+  }
+
   static equals(a: ListUserOrganizationsRequest | PlainMessage<ListUserOrganizationsRequest> | undefined, b: ListUserOrganizationsRequest | PlainMessage<ListUserOrganizationsRequest> | undefined): boolean {
     return proto3.util.equals(ListUserOrganizationsRequest, a, b);
   }
@@ -472,6 +508,10 @@ export class ListUserOrganizationsResponse extends Message<ListUserOrganizations
     return new ListUserOrganizationsResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUserOrganizationsResponse {
+    return proto3.util.conforms(ListUserOrganizationsResponse, value);
+  }
+
   static equals(a: ListUserOrganizationsResponse | PlainMessage<ListUserOrganizationsResponse> | undefined, b: ListUserOrganizationsResponse | PlainMessage<ListUserOrganizationsResponse> | undefined): boolean {
     return proto3.util.equals(ListUserOrganizationsResponse, a, b);
   }
@@ -511,6 +551,10 @@ export class CreateOrganizationRequest extends Message<CreateOrganizationRequest
     return new CreateOrganizationRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateOrganizationRequest {
+    return proto3.util.conforms(CreateOrganizationRequest, value);
+  }
+
   static equals(a: CreateOrganizationRequest | PlainMessage<CreateOrganizationRequest> | undefined, b: CreateOrganizationRequest | PlainMessage<CreateOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(CreateOrganizationRequest, a, b);
   }
@@ -546,6 +590,10 @@ export class CreateOrganizationResponse extends Message<CreateOrganizationRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateOrganizationResponse {
     return new CreateOrganizationResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateOrganizationResponse {
+    return proto3.util.conforms(CreateOrganizationResponse, value);
   }
 
   static equals(a: CreateOrganizationResponse | PlainMessage<CreateOrganizationResponse> | undefined, b: CreateOrganizationResponse | PlainMessage<CreateOrganizationResponse> | undefined): boolean {
@@ -585,6 +633,10 @@ export class DeleteOrganizationRequest extends Message<DeleteOrganizationRequest
     return new DeleteOrganizationRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteOrganizationRequest {
+    return proto3.util.conforms(DeleteOrganizationRequest, value);
+  }
+
   static equals(a: DeleteOrganizationRequest | PlainMessage<DeleteOrganizationRequest> | undefined, b: DeleteOrganizationRequest | PlainMessage<DeleteOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationRequest, a, b);
   }
@@ -614,6 +666,10 @@ export class DeleteOrganizationResponse extends Message<DeleteOrganizationRespon
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteOrganizationResponse {
     return new DeleteOrganizationResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteOrganizationResponse {
+    return proto3.util.conforms(DeleteOrganizationResponse, value);
   }
 
   static equals(a: DeleteOrganizationResponse | PlainMessage<DeleteOrganizationResponse> | undefined, b: DeleteOrganizationResponse | PlainMessage<DeleteOrganizationResponse> | undefined): boolean {
@@ -653,6 +709,10 @@ export class DeleteOrganizationByNameRequest extends Message<DeleteOrganizationB
     return new DeleteOrganizationByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteOrganizationByNameRequest {
+    return proto3.util.conforms(DeleteOrganizationByNameRequest, value);
+  }
+
   static equals(a: DeleteOrganizationByNameRequest | PlainMessage<DeleteOrganizationByNameRequest> | undefined, b: DeleteOrganizationByNameRequest | PlainMessage<DeleteOrganizationByNameRequest> | undefined): boolean {
     return proto3.util.equals(DeleteOrganizationByNameRequest, a, b);
   }
@@ -682,6 +742,10 @@ export class DeleteOrganizationByNameResponse extends Message<DeleteOrganization
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteOrganizationByNameResponse {
     return new DeleteOrganizationByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteOrganizationByNameResponse {
+    return proto3.util.conforms(DeleteOrganizationByNameResponse, value);
   }
 
   static equals(a: DeleteOrganizationByNameResponse | PlainMessage<DeleteOrganizationByNameResponse> | undefined, b: DeleteOrganizationByNameResponse | PlainMessage<DeleteOrganizationByNameResponse> | undefined): boolean {
@@ -739,6 +803,10 @@ export class AddOrganizationMemberRequest extends Message<AddOrganizationMemberR
     return new AddOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is AddOrganizationMemberRequest {
+    return proto3.util.conforms(AddOrganizationMemberRequest, value);
+  }
+
   static equals(a: AddOrganizationMemberRequest | PlainMessage<AddOrganizationMemberRequest> | undefined, b: AddOrganizationMemberRequest | PlainMessage<AddOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(AddOrganizationMemberRequest, a, b);
   }
@@ -768,6 +836,10 @@ export class AddOrganizationMemberResponse extends Message<AddOrganizationMember
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AddOrganizationMemberResponse {
     return new AddOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is AddOrganizationMemberResponse {
+    return proto3.util.conforms(AddOrganizationMemberResponse, value);
   }
 
   static equals(a: AddOrganizationMemberResponse | PlainMessage<AddOrganizationMemberResponse> | undefined, b: AddOrganizationMemberResponse | PlainMessage<AddOrganizationMemberResponse> | undefined): boolean {
@@ -825,6 +897,10 @@ export class UpdateOrganizationMemberRequest extends Message<UpdateOrganizationM
     return new UpdateOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UpdateOrganizationMemberRequest {
+    return proto3.util.conforms(UpdateOrganizationMemberRequest, value);
+  }
+
   static equals(a: UpdateOrganizationMemberRequest | PlainMessage<UpdateOrganizationMemberRequest> | undefined, b: UpdateOrganizationMemberRequest | PlainMessage<UpdateOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationMemberRequest, a, b);
   }
@@ -854,6 +930,10 @@ export class UpdateOrganizationMemberResponse extends Message<UpdateOrganization
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateOrganizationMemberResponse {
     return new UpdateOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UpdateOrganizationMemberResponse {
+    return proto3.util.conforms(UpdateOrganizationMemberResponse, value);
   }
 
   static equals(a: UpdateOrganizationMemberResponse | PlainMessage<UpdateOrganizationMemberResponse> | undefined, b: UpdateOrganizationMemberResponse | PlainMessage<UpdateOrganizationMemberResponse> | undefined): boolean {
@@ -903,6 +983,10 @@ export class RemoveOrganizationMemberRequest extends Message<RemoveOrganizationM
     return new RemoveOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RemoveOrganizationMemberRequest {
+    return proto3.util.conforms(RemoveOrganizationMemberRequest, value);
+  }
+
   static equals(a: RemoveOrganizationMemberRequest | PlainMessage<RemoveOrganizationMemberRequest> | undefined, b: RemoveOrganizationMemberRequest | PlainMessage<RemoveOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(RemoveOrganizationMemberRequest, a, b);
   }
@@ -932,6 +1016,10 @@ export class RemoveOrganizationMemberResponse extends Message<RemoveOrganization
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveOrganizationMemberResponse {
     return new RemoveOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RemoveOrganizationMemberResponse {
+    return proto3.util.conforms(RemoveOrganizationMemberResponse, value);
   }
 
   static equals(a: RemoveOrganizationMemberResponse | PlainMessage<RemoveOrganizationMemberResponse> | undefined, b: RemoveOrganizationMemberResponse | PlainMessage<RemoveOrganizationMemberResponse> | undefined): boolean {
@@ -990,6 +1078,10 @@ export class SetOrganizationMemberRequest extends Message<SetOrganizationMemberR
     return new SetOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SetOrganizationMemberRequest {
+    return proto3.util.conforms(SetOrganizationMemberRequest, value);
+  }
+
   static equals(a: SetOrganizationMemberRequest | PlainMessage<SetOrganizationMemberRequest> | undefined, b: SetOrganizationMemberRequest | PlainMessage<SetOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(SetOrganizationMemberRequest, a, b);
   }
@@ -1019,6 +1111,10 @@ export class SetOrganizationMemberResponse extends Message<SetOrganizationMember
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetOrganizationMemberResponse {
     return new SetOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SetOrganizationMemberResponse {
+    return proto3.util.conforms(SetOrganizationMemberResponse, value);
   }
 
   static equals(a: SetOrganizationMemberResponse | PlainMessage<SetOrganizationMemberResponse> | undefined, b: SetOrganizationMemberResponse | PlainMessage<SetOrganizationMemberResponse> | undefined): boolean {
@@ -1058,6 +1154,10 @@ export class GetOrganizationSettingsRequest extends Message<GetOrganizationSetti
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationSettingsRequest {
     return new GetOrganizationSettingsRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetOrganizationSettingsRequest {
+    return proto3.util.conforms(GetOrganizationSettingsRequest, value);
   }
 
   static equals(a: GetOrganizationSettingsRequest | PlainMessage<GetOrganizationSettingsRequest> | undefined, b: GetOrganizationSettingsRequest | PlainMessage<GetOrganizationSettingsRequest> | undefined): boolean {
@@ -1115,6 +1215,10 @@ export class GetOrganizationSettingsResponse extends Message<GetOrganizationSett
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOrganizationSettingsResponse {
     return new GetOrganizationSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetOrganizationSettingsResponse {
+    return proto3.util.conforms(GetOrganizationSettingsResponse, value);
   }
 
   static equals(a: GetOrganizationSettingsResponse | PlainMessage<GetOrganizationSettingsResponse> | undefined, b: GetOrganizationSettingsResponse | PlainMessage<GetOrganizationSettingsResponse> | undefined): boolean {
@@ -1180,6 +1284,10 @@ export class UpdateOrganizationSettingsRequest extends Message<UpdateOrganizatio
     return new UpdateOrganizationSettingsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UpdateOrganizationSettingsRequest {
+    return proto3.util.conforms(UpdateOrganizationSettingsRequest, value);
+  }
+
   static equals(a: UpdateOrganizationSettingsRequest | PlainMessage<UpdateOrganizationSettingsRequest> | undefined, b: UpdateOrganizationSettingsRequest | PlainMessage<UpdateOrganizationSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UpdateOrganizationSettingsRequest, a, b);
   }
@@ -1209,6 +1317,10 @@ export class UpdateOrganizationSettingsResponse extends Message<UpdateOrganizati
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateOrganizationSettingsResponse {
     return new UpdateOrganizationSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UpdateOrganizationSettingsResponse {
+    return proto3.util.conforms(UpdateOrganizationSettingsResponse, value);
   }
 
   static equals(a: UpdateOrganizationSettingsResponse | PlainMessage<UpdateOrganizationSettingsResponse> | undefined, b: UpdateOrganizationSettingsResponse | PlainMessage<UpdateOrganizationSettingsResponse> | undefined): boolean {

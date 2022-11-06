@@ -1038,6 +1038,10 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
     return new TestAllTypesProto3().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto3 {
+    return proto3.util.conforms(TestAllTypesProto3, value);
+  }
+
   static equals(a: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined, b: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined): boolean {
     return proto3.util.equals(TestAllTypesProto3, a, b);
   }
@@ -1159,6 +1163,10 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
     return new TestAllTypesProto3_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto3_NestedMessage {
+    return proto3.util.conforms(TestAllTypesProto3_NestedMessage, value);
+  }
+
   static equals(a: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined, b: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestAllTypesProto3_NestedMessage, a, b);
   }
@@ -1196,6 +1204,10 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ForeignMessage {
+    return proto3.util.conforms(ForeignMessage, value);
+  }
+
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto3.util.equals(ForeignMessage, a, b);
   }
@@ -1227,6 +1239,10 @@ export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
     return new NullHypothesisProto3().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NullHypothesisProto3 {
+    return proto3.util.conforms(NullHypothesisProto3, value);
+  }
+
   static equals(a: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined, b: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined): boolean {
     return proto3.util.equals(NullHypothesisProto3, a, b);
   }
@@ -1256,6 +1272,10 @@ export class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOnlyProto3 {
     return new EnumOnlyProto3().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is EnumOnlyProto3 {
+    return proto3.util.conforms(EnumOnlyProto3, value);
   }
 
   static equals(a: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined, b: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined): boolean {

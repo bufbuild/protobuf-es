@@ -100,6 +100,10 @@ export class DeprecatedMessage extends Message<DeprecatedMessage> {
     return new DeprecatedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeprecatedMessage {
+    return proto3.util.conforms(DeprecatedMessage, value);
+  }
+
   static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean {
     return proto3.util.equals(DeprecatedMessage, a, b);
   }
@@ -148,6 +152,10 @@ export class DeprecatedFieldMessage extends Message<DeprecatedFieldMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage {
     return new DeprecatedFieldMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeprecatedFieldMessage {
+    return proto3.util.conforms(DeprecatedFieldMessage, value);
   }
 
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean {

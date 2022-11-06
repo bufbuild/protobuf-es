@@ -70,6 +70,10 @@ export class Owner extends Message<Owner> {
     return new Owner().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Owner {
+    return proto3.util.conforms(Owner, value);
+  }
+
   static equals(a: Owner | PlainMessage<Owner> | undefined, b: Owner | PlainMessage<Owner> | undefined): boolean {
     return proto3.util.equals(Owner, a, b);
   }
@@ -109,6 +113,10 @@ export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
     return new GetOwnerByNameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetOwnerByNameRequest {
+    return proto3.util.conforms(GetOwnerByNameRequest, value);
+  }
+
   static equals(a: GetOwnerByNameRequest | PlainMessage<GetOwnerByNameRequest> | undefined, b: GetOwnerByNameRequest | PlainMessage<GetOwnerByNameRequest> | undefined): boolean {
     return proto3.util.equals(GetOwnerByNameRequest, a, b);
   }
@@ -144,6 +152,10 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetOwnerByNameResponse {
     return new GetOwnerByNameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetOwnerByNameResponse {
+    return proto3.util.conforms(GetOwnerByNameResponse, value);
   }
 
   static equals(a: GetOwnerByNameResponse | PlainMessage<GetOwnerByNameResponse> | undefined, b: GetOwnerByNameResponse | PlainMessage<GetOwnerByNameResponse> | undefined): boolean {

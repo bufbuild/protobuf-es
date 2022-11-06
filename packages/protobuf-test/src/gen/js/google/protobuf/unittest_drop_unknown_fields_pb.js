@@ -45,6 +45,9 @@ export const Foo = proto3.makeMessageType(
   ],
 );
 
+Foo.conforms = function conforms(value) {
+ return proto3.util.conforms(Foo, value);
+};
 /**
  * @generated from enum unittest_drop_unknown_fields.Foo.NestedEnum
  */
@@ -69,6 +72,9 @@ export const FooWithExtraFields = proto3.makeMessageType(
   ],
 );
 
+FooWithExtraFields.conforms = function conforms(value) {
+ return proto3.util.conforms(FooWithExtraFields, value);
+};
 /**
  * @generated from enum unittest_drop_unknown_fields.FooWithExtraFields.NestedEnum
  */

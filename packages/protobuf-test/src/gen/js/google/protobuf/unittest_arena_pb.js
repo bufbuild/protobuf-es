@@ -44,6 +44,9 @@ export const NestedMessage = proto2.makeMessageType(
   ],
 );
 
+NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedMessage, value);
+};
 /**
  * @generated from message proto2_arena_unittest.ArenaMessage
  */
@@ -54,3 +57,6 @@ export const ArenaMessage = proto2.makeMessageType(
   ],
 );
 
+ArenaMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(ArenaMessage, value);
+};

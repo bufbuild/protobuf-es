@@ -30,3 +30,6 @@ export const Example = proto3.makeMessageType(
   ],
 );
 
+Example.conforms = function conforms(value) {
+ return proto3.util.conforms(Example, value);
+};

@@ -109,6 +109,10 @@ export class ExampleRequest extends Message<ExampleRequest> {
     return new ExampleRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ExampleRequest {
+    return proto3.util.conforms(ExampleRequest, value);
+  }
+
   static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean {
     return proto3.util.equals(ExampleRequest, a, b);
   }
@@ -170,6 +174,10 @@ export class ExampleResponse extends Message<ExampleResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleResponse {
     return new ExampleResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ExampleResponse {
+    return proto3.util.conforms(ExampleResponse, value);
   }
 
   static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean {

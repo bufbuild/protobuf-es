@@ -65,6 +65,10 @@ export class File extends Message<File> {
     return new File().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is File {
+    return proto3.util.conforms(File, value);
+  }
+
   static equals(a: File | PlainMessage<File> | undefined, b: File | PlainMessage<File> | undefined): boolean {
     return proto3.util.equals(File, a, b);
   }
@@ -119,6 +123,10 @@ export class RuntimeLibrary extends Message<RuntimeLibrary> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RuntimeLibrary {
     return new RuntimeLibrary().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RuntimeLibrary {
+    return proto3.util.conforms(RuntimeLibrary, value);
   }
 
   static equals(a: RuntimeLibrary | PlainMessage<RuntimeLibrary> | undefined, b: RuntimeLibrary | PlainMessage<RuntimeLibrary> | undefined): boolean {
@@ -185,6 +193,10 @@ export class PluginReference extends Message<PluginReference> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PluginReference {
     return new PluginReference().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PluginReference {
+    return proto3.util.conforms(PluginReference, value);
   }
 
   static equals(a: PluginReference | PlainMessage<PluginReference> | undefined, b: PluginReference | PlainMessage<PluginReference> | undefined): boolean {
@@ -256,6 +268,10 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
     return new GeneratePluginsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GeneratePluginsRequest {
+    return proto3.util.conforms(GeneratePluginsRequest, value);
+  }
+
   static equals(a: GeneratePluginsRequest | PlainMessage<GeneratePluginsRequest> | undefined, b: GeneratePluginsRequest | PlainMessage<GeneratePluginsRequest> | undefined): boolean {
     return proto3.util.equals(GeneratePluginsRequest, a, b);
   }
@@ -307,6 +323,10 @@ export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeneratePluginsResponse {
     return new GeneratePluginsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GeneratePluginsResponse {
+    return proto3.util.conforms(GeneratePluginsResponse, value);
   }
 
   static equals(a: GeneratePluginsResponse | PlainMessage<GeneratePluginsResponse> | undefined, b: GeneratePluginsResponse | PlainMessage<GeneratePluginsResponse> | undefined): boolean {
@@ -397,6 +417,10 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
     return new GenerateTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GenerateTemplateRequest {
+    return proto3.util.conforms(GenerateTemplateRequest, value);
+  }
+
   static equals(a: GenerateTemplateRequest | PlainMessage<GenerateTemplateRequest> | undefined, b: GenerateTemplateRequest | PlainMessage<GenerateTemplateRequest> | undefined): boolean {
     return proto3.util.equals(GenerateTemplateRequest, a, b);
   }
@@ -446,6 +470,10 @@ export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenerateTemplateResponse {
     return new GenerateTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GenerateTemplateResponse {
+    return proto3.util.conforms(GenerateTemplateResponse, value);
   }
 
   static equals(a: GenerateTemplateResponse | PlainMessage<GenerateTemplateResponse> | undefined, b: GenerateTemplateResponse | PlainMessage<GenerateTemplateResponse> | undefined): boolean {

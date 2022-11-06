@@ -5059,6 +5059,8 @@ export declare class TestEnormousDescriptor extends Message<TestEnormousDescript
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEnormousDescriptor;
 
+  static conforms(value: any): value is TestEnormousDescriptor;
+
   static equals(a: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined, b: TestEnormousDescriptor | PlainMessage<TestEnormousDescriptor> | undefined): boolean;
 }
 

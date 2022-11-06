@@ -70,6 +70,10 @@ export class Empty extends Message<Empty> {
     return new Empty().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Empty {
+    return proto3.util.conforms(Empty, value);
+  }
+
   static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean {
     return proto3.util.equals(Empty, a, b);
   }

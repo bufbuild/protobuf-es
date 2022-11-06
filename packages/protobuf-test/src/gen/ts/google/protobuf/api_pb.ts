@@ -151,6 +151,10 @@ export class Api extends Message<Api> {
     return new Api().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Api {
+    return proto3.util.conforms(Api, value);
+  }
+
   static equals(a: Api | PlainMessage<Api> | undefined, b: Api | PlainMessage<Api> | undefined): boolean {
     return proto3.util.equals(Api, a, b);
   }
@@ -238,6 +242,10 @@ export class Method extends Message<Method> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Method {
     return new Method().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Method {
+    return proto3.util.conforms(Method, value);
   }
 
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
@@ -365,6 +373,10 @@ export class Mixin extends Message<Mixin> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Mixin {
     return new Mixin().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Mixin {
+    return proto3.util.conforms(Mixin, value);
   }
 
   static equals(a: Mixin | PlainMessage<Mixin> | undefined, b: Mixin | PlainMessage<Mixin> | undefined): boolean {

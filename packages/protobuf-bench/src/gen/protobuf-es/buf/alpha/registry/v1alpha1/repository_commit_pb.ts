@@ -114,6 +114,10 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
     return new RepositoryCommit().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryCommit {
+    return proto3.util.conforms(RepositoryCommit, value);
+  }
+
   static equals(a: RepositoryCommit | PlainMessage<RepositoryCommit> | undefined, b: RepositoryCommit | PlainMessage<RepositoryCommit> | undefined): boolean {
     return proto3.util.equals(RepositoryCommit, a, b);
   }
@@ -187,6 +191,10 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
     return new ListRepositoryCommitsByBranchRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryCommitsByBranchRequest {
+    return proto3.util.conforms(ListRepositoryCommitsByBranchRequest, value);
+  }
+
   static equals(a: ListRepositoryCommitsByBranchRequest | PlainMessage<ListRepositoryCommitsByBranchRequest> | undefined, b: ListRepositoryCommitsByBranchRequest | PlainMessage<ListRepositoryCommitsByBranchRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByBranchRequest, a, b);
   }
@@ -228,6 +236,10 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryCommitsByBranchResponse {
     return new ListRepositoryCommitsByBranchResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryCommitsByBranchResponse {
+    return proto3.util.conforms(ListRepositoryCommitsByBranchResponse, value);
   }
 
   static equals(a: ListRepositoryCommitsByBranchResponse | PlainMessage<ListRepositoryCommitsByBranchResponse> | undefined, b: ListRepositoryCommitsByBranchResponse | PlainMessage<ListRepositoryCommitsByBranchResponse> | undefined): boolean {
@@ -303,6 +315,10 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
     return new ListRepositoryCommitsByReferenceRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryCommitsByReferenceRequest {
+    return proto3.util.conforms(ListRepositoryCommitsByReferenceRequest, value);
+  }
+
   static equals(a: ListRepositoryCommitsByReferenceRequest | PlainMessage<ListRepositoryCommitsByReferenceRequest> | undefined, b: ListRepositoryCommitsByReferenceRequest | PlainMessage<ListRepositoryCommitsByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryCommitsByReferenceRequest, a, b);
   }
@@ -344,6 +360,10 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryCommitsByReferenceResponse {
     return new ListRepositoryCommitsByReferenceResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryCommitsByReferenceResponse {
+    return proto3.util.conforms(ListRepositoryCommitsByReferenceResponse, value);
   }
 
   static equals(a: ListRepositoryCommitsByReferenceResponse | PlainMessage<ListRepositoryCommitsByReferenceResponse> | undefined, b: ListRepositoryCommitsByReferenceResponse | PlainMessage<ListRepositoryCommitsByReferenceResponse> | undefined): boolean {
@@ -401,6 +421,10 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
     return new GetRepositoryCommitByReferenceRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryCommitByReferenceRequest {
+    return proto3.util.conforms(GetRepositoryCommitByReferenceRequest, value);
+  }
+
   static equals(a: GetRepositoryCommitByReferenceRequest | PlainMessage<GetRepositoryCommitByReferenceRequest> | undefined, b: GetRepositoryCommitByReferenceRequest | PlainMessage<GetRepositoryCommitByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitByReferenceRequest, a, b);
   }
@@ -436,6 +460,10 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryCommitByReferenceResponse {
     return new GetRepositoryCommitByReferenceResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryCommitByReferenceResponse {
+    return proto3.util.conforms(GetRepositoryCommitByReferenceResponse, value);
   }
 
   static equals(a: GetRepositoryCommitByReferenceResponse | PlainMessage<GetRepositoryCommitByReferenceResponse> | undefined, b: GetRepositoryCommitByReferenceResponse | PlainMessage<GetRepositoryCommitByReferenceResponse> | undefined): boolean {
@@ -501,6 +529,10 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
     return new GetRepositoryCommitBySequenceIdRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryCommitBySequenceIdRequest {
+    return proto3.util.conforms(GetRepositoryCommitBySequenceIdRequest, value);
+  }
+
   static equals(a: GetRepositoryCommitBySequenceIdRequest | PlainMessage<GetRepositoryCommitBySequenceIdRequest> | undefined, b: GetRepositoryCommitBySequenceIdRequest | PlainMessage<GetRepositoryCommitBySequenceIdRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryCommitBySequenceIdRequest, a, b);
   }
@@ -536,6 +568,10 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryCommitBySequenceIdResponse {
     return new GetRepositoryCommitBySequenceIdResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryCommitBySequenceIdResponse {
+    return proto3.util.conforms(GetRepositoryCommitBySequenceIdResponse, value);
   }
 
   static equals(a: GetRepositoryCommitBySequenceIdResponse | PlainMessage<GetRepositoryCommitBySequenceIdResponse> | undefined, b: GetRepositoryCommitBySequenceIdResponse | PlainMessage<GetRepositoryCommitBySequenceIdResponse> | undefined): boolean {

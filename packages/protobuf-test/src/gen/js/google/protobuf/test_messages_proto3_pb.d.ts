@@ -871,6 +871,8 @@ export declare class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto3;
 
+  static conforms(value: any): value is TestAllTypesProto3;
+
   static equals(a: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined, b: TestAllTypesProto3 | PlainMessage<TestAllTypesProto3> | undefined): boolean;
 }
 
@@ -962,6 +964,8 @@ export declare class TestAllTypesProto3_NestedMessage extends Message<TestAllTyp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto3_NestedMessage;
 
+  static conforms(value: any): value is TestAllTypesProto3_NestedMessage;
+
   static equals(a: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined, b: TestAllTypesProto3_NestedMessage | PlainMessage<TestAllTypesProto3_NestedMessage> | undefined): boolean;
 }
 
@@ -986,6 +990,8 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
+  static conforms(value: any): value is ForeignMessage;
+
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
 }
 
@@ -1005,6 +1011,8 @@ export declare class NullHypothesisProto3 extends Message<NullHypothesisProto3> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NullHypothesisProto3;
 
+  static conforms(value: any): value is NullHypothesisProto3;
+
   static equals(a: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined, b: NullHypothesisProto3 | PlainMessage<NullHypothesisProto3> | undefined): boolean;
 }
 
@@ -1023,6 +1031,8 @@ export declare class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumOnlyProto3;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOnlyProto3;
+
+  static conforms(value: any): value is EnumOnlyProto3;
 
   static equals(a: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined, b: EnumOnlyProto3 | PlainMessage<EnumOnlyProto3> | undefined): boolean;
 }

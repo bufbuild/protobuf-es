@@ -83,6 +83,10 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
     return new RepositoryTrackCommit().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryTrackCommit {
+    return proto3.util.conforms(RepositoryTrackCommit, value);
+  }
+
   static equals(a: RepositoryTrackCommit | PlainMessage<RepositoryTrackCommit> | undefined, b: RepositoryTrackCommit | PlainMessage<RepositoryTrackCommit> | undefined): boolean {
     return proto3.util.equals(RepositoryTrackCommit, a, b);
   }
@@ -126,6 +130,10 @@ export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<G
     return new GetRepositoryTrackCommitByRepositoryCommitRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryTrackCommitByRepositoryCommitRequest {
+    return proto3.util.conforms(GetRepositoryTrackCommitByRepositoryCommitRequest, value);
+  }
+
   static equals(a: GetRepositoryTrackCommitByRepositoryCommitRequest | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitRequest> | undefined, b: GetRepositoryTrackCommitByRepositoryCommitRequest | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByRepositoryCommitRequest, a, b);
   }
@@ -161,6 +169,10 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryTrackCommitByRepositoryCommitResponse {
     return new GetRepositoryTrackCommitByRepositoryCommitResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryTrackCommitByRepositoryCommitResponse {
+    return proto3.util.conforms(GetRepositoryTrackCommitByRepositoryCommitResponse, value);
   }
 
   static equals(a: GetRepositoryTrackCommitByRepositoryCommitResponse | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitResponse> | undefined, b: GetRepositoryTrackCommitByRepositoryCommitResponse | PlainMessage<GetRepositoryTrackCommitByRepositoryCommitResponse> | undefined): boolean {
@@ -218,6 +230,10 @@ export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<
     return new ListRepositoryTrackCommitsByRepositoryTrackRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryTrackCommitsByRepositoryTrackRequest {
+    return proto3.util.conforms(ListRepositoryTrackCommitsByRepositoryTrackRequest, value);
+  }
+
   static equals(a: ListRepositoryTrackCommitsByRepositoryTrackRequest | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackRequest> | undefined, b: ListRepositoryTrackCommitsByRepositoryTrackRequest | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryTrackCommitsByRepositoryTrackRequest, a, b);
   }
@@ -259,6 +275,10 @@ export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryTrackCommitsByRepositoryTrackResponse {
     return new ListRepositoryTrackCommitsByRepositoryTrackResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryTrackCommitsByRepositoryTrackResponse {
+    return proto3.util.conforms(ListRepositoryTrackCommitsByRepositoryTrackResponse, value);
   }
 
   static equals(a: ListRepositoryTrackCommitsByRepositoryTrackResponse | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackResponse> | undefined, b: ListRepositoryTrackCommitsByRepositoryTrackResponse | PlainMessage<ListRepositoryTrackCommitsByRepositoryTrackResponse> | undefined): boolean {
@@ -316,6 +336,10 @@ export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepos
     return new GetRepositoryTrackCommitByReferenceRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRepositoryTrackCommitByReferenceRequest {
+    return proto3.util.conforms(GetRepositoryTrackCommitByReferenceRequest, value);
+  }
+
   static equals(a: GetRepositoryTrackCommitByReferenceRequest | PlainMessage<GetRepositoryTrackCommitByReferenceRequest> | undefined, b: GetRepositoryTrackCommitByReferenceRequest | PlainMessage<GetRepositoryTrackCommitByReferenceRequest> | undefined): boolean {
     return proto3.util.equals(GetRepositoryTrackCommitByReferenceRequest, a, b);
   }
@@ -351,6 +375,10 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetRepositoryTrackCommitByReferenceResponse {
     return new GetRepositoryTrackCommitByReferenceResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetRepositoryTrackCommitByReferenceResponse {
+    return proto3.util.conforms(GetRepositoryTrackCommitByReferenceResponse, value);
   }
 
   static equals(a: GetRepositoryTrackCommitByReferenceResponse | PlainMessage<GetRepositoryTrackCommitByReferenceResponse> | undefined, b: GetRepositoryTrackCommitByReferenceResponse | PlainMessage<GetRepositoryTrackCommitByReferenceResponse> | undefined): boolean {

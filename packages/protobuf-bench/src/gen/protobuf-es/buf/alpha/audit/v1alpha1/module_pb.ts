@@ -119,6 +119,10 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
     return new BufAlphaRegistryV1Alpha1LocalModulePin().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModulePin {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModulePin, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1LocalModulePin | PlainMessage<BufAlphaRegistryV1Alpha1LocalModulePin> | undefined, b: BufAlphaRegistryV1Alpha1LocalModulePin | PlainMessage<BufAlphaRegistryV1Alpha1LocalModulePin> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1LocalModulePin, a, b);
   }
@@ -168,6 +172,10 @@ export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlp
     return new BufAlphaRegistryV1Alpha1LocalModuleReference().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModuleReference {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModuleReference, value);
+  }
+
   static equals(a: BufAlphaRegistryV1Alpha1LocalModuleReference | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleReference> | undefined, b: BufAlphaRegistryV1Alpha1LocalModuleReference | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleReference> | undefined): boolean {
     return proto3.util.equals(BufAlphaRegistryV1Alpha1LocalModuleReference, a, b);
   }
@@ -215,6 +223,10 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BufAlphaRegistryV1Alpha1LocalModuleResolveResult {
     return new BufAlphaRegistryV1Alpha1LocalModuleResolveResult().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModuleResolveResult {
+    return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModuleResolveResult, value);
   }
 
   static equals(a: BufAlphaRegistryV1Alpha1LocalModuleResolveResult | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> | undefined, b: BufAlphaRegistryV1Alpha1LocalModuleResolveResult | PlainMessage<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> | undefined): boolean {

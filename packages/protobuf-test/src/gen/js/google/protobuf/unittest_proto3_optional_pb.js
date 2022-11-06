@@ -64,6 +64,9 @@ export const TestProto3Optional = proto3.makeMessageType(
   ],
 );
 
+TestProto3Optional.conforms = function conforms(value) {
+ return proto3.util.conforms(TestProto3Optional, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestProto3Optional.NestedEnum
  */
@@ -89,6 +92,9 @@ export const TestProto3Optional_NestedMessage = proto3.makeMessageType(
   {localName: "TestProto3Optional_NestedMessage"},
 );
 
+TestProto3Optional_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestProto3Optional_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
  */
@@ -100,6 +106,9 @@ export const TestProto3OptionalMessage = proto3.makeMessageType(
   ],
 );
 
+TestProto3OptionalMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestProto3OptionalMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage.NestedMessage
  */
@@ -111,6 +120,9 @@ export const TestProto3OptionalMessage_NestedMessage = proto3.makeMessageType(
   {localName: "TestProto3OptionalMessage_NestedMessage"},
 );
 
+TestProto3OptionalMessage_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestProto3OptionalMessage_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
  */
@@ -119,3 +131,6 @@ export const Proto3OptionalExtensions = proto3.makeMessageType(
   [],
 );
 
+Proto3OptionalExtensions.conforms = function conforms(value) {
+ return proto3.util.conforms(Proto3OptionalExtensions, value);
+};

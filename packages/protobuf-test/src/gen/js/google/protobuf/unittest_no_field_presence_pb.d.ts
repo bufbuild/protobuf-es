@@ -346,6 +346,8 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
+  static conforms(value: any): value is TestAllTypes;
+
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
 }
 
@@ -390,6 +392,8 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
+  static conforms(value: any): value is TestAllTypes_NestedMessage;
+
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
 }
 
@@ -413,6 +417,8 @@ export declare class TestProto2Required extends Message<TestProto2Required> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestProto2Required;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestProto2Required;
+
+  static conforms(value: any): value is TestProto2Required;
 
   static equals(a: TestProto2Required | PlainMessage<TestProto2Required> | undefined, b: TestProto2Required | PlainMessage<TestProto2Required> | undefined): boolean;
 }
@@ -440,6 +446,8 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ForeignMessage;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
+
+  static conforms(value: any): value is ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
 }

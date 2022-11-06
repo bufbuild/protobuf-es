@@ -272,6 +272,10 @@ export class Any extends Message<Any> {
     return new Any().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Any {
+    return proto3.util.conforms(Any, value);
+  }
+
   static equals(a: Any | PlainMessage<Any> | undefined, b: Any | PlainMessage<Any> | undefined): boolean {
     return proto3.util.equals(Any, a, b);
   }

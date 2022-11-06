@@ -58,6 +58,9 @@ export const DeprecatedMessage = proto3.makeMessageType(
   ],
 );
 
+DeprecatedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(DeprecatedMessage, value);
+};
 /**
  * A single field of this message is deprecated
  *
@@ -71,3 +74,6 @@ export const DeprecatedFieldMessage = proto3.makeMessageType(
   ],
 );
 
+DeprecatedFieldMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(DeprecatedFieldMessage, value);
+};

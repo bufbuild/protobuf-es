@@ -117,6 +117,10 @@ export class Struct extends Message<Struct> {
     return new Struct().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Struct {
+    return proto3.util.conforms(Struct, value);
+  }
+
   static equals(a: Struct | PlainMessage<Struct> | undefined, b: Struct | PlainMessage<Struct> | undefined): boolean {
     return proto3.util.equals(Struct, a, b);
   }
@@ -257,6 +261,10 @@ export class Value extends Message<Value> {
     return new Value().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Value {
+    return proto3.util.conforms(Value, value);
+  }
+
   static equals(a: Value | PlainMessage<Value> | undefined, b: Value | PlainMessage<Value> | undefined): boolean {
     return proto3.util.equals(Value, a, b);
   }
@@ -312,6 +320,10 @@ export class ListValue extends Message<ListValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListValue {
     return new ListValue().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListValue {
+    return proto3.util.conforms(ListValue, value);
   }
 
   static equals(a: ListValue | PlainMessage<ListValue> | undefined, b: ListValue | PlainMessage<ListValue> | undefined): boolean {

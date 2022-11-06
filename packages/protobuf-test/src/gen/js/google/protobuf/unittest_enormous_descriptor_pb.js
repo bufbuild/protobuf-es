@@ -1051,3 +1051,6 @@ export const TestEnormousDescriptor = proto2.makeMessageType(
   ],
 );
 
+TestEnormousDescriptor.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEnormousDescriptor, value);
+};

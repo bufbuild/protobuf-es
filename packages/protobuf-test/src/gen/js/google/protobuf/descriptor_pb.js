@@ -55,6 +55,9 @@ export const FileDescriptorSet = proto2.makeMessageType(
   ],
 );
 
+FileDescriptorSet.conforms = function conforms(value) {
+ return proto2.util.conforms(FileDescriptorSet, value);
+};
 /**
  * Describes a complete .proto file.
  *
@@ -78,6 +81,9 @@ export const FileDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+FileDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(FileDescriptorProto, value);
+};
 /**
  * Describes a message type.
  *
@@ -99,6 +105,9 @@ export const DescriptorProto = proto2.makeMessageType(
   ],
 );
 
+DescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(DescriptorProto, value);
+};
 /**
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
  */
@@ -112,6 +121,9 @@ export const DescriptorProto_ExtensionRange = proto2.makeMessageType(
   {localName: "DescriptorProto_ExtensionRange"},
 );
 
+DescriptorProto_ExtensionRange.conforms = function conforms(value) {
+ return proto2.util.conforms(DescriptorProto_ExtensionRange, value);
+};
 /**
  * Range of reserved tag numbers. Reserved tag numbers may not be used by
  * fields or extension ranges in the same message. Reserved ranges may
@@ -128,6 +140,9 @@ export const DescriptorProto_ReservedRange = proto2.makeMessageType(
   {localName: "DescriptorProto_ReservedRange"},
 );
 
+DescriptorProto_ReservedRange.conforms = function conforms(value) {
+ return proto2.util.conforms(DescriptorProto_ReservedRange, value);
+};
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
  */
@@ -138,6 +153,9 @@ export const ExtensionRangeOptions = proto2.makeMessageType(
   ],
 );
 
+ExtensionRangeOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(ExtensionRangeOptions, value);
+};
 /**
  * Describes a field within a message.
  *
@@ -160,6 +178,9 @@ export const FieldDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+FieldDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(FieldDescriptorProto, value);
+};
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Type
  */
@@ -212,6 +233,9 @@ export const OneofDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+OneofDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(OneofDescriptorProto, value);
+};
 /**
  * Describes an enum type.
  *
@@ -228,6 +252,9 @@ export const EnumDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+EnumDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumDescriptorProto, value);
+};
 /**
  * Range of reserved numeric values. Reserved values may not be used by
  * entries in the same enum. Reserved ranges may not overlap.
@@ -247,6 +274,9 @@ export const EnumDescriptorProto_EnumReservedRange = proto2.makeMessageType(
   {localName: "EnumDescriptorProto_EnumReservedRange"},
 );
 
+EnumDescriptorProto_EnumReservedRange.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumDescriptorProto_EnumReservedRange, value);
+};
 /**
  * Describes a value within an enum.
  *
@@ -261,6 +291,9 @@ export const EnumValueDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+EnumValueDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumValueDescriptorProto, value);
+};
 /**
  * Describes a service.
  *
@@ -275,6 +308,9 @@ export const ServiceDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+ServiceDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(ServiceDescriptorProto, value);
+};
 /**
  * Describes a method of a service.
  *
@@ -292,6 +328,9 @@ export const MethodDescriptorProto = proto2.makeMessageType(
   ],
 );
 
+MethodDescriptorProto.conforms = function conforms(value) {
+ return proto2.util.conforms(MethodDescriptorProto, value);
+};
 /**
  * @generated from message google.protobuf.FileOptions
  */
@@ -322,6 +361,9 @@ export const FileOptions = proto2.makeMessageType(
   ],
 );
 
+FileOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(FileOptions, value);
+};
 /**
  * Generated classes can be optimized for speed or code size.
  *
@@ -350,6 +392,9 @@ export const MessageOptions = proto2.makeMessageType(
   ],
 );
 
+MessageOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(MessageOptions, value);
+};
 /**
  * @generated from message google.protobuf.FieldOptions
  */
@@ -367,6 +412,9 @@ export const FieldOptions = proto2.makeMessageType(
   ],
 );
 
+FieldOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(FieldOptions, value);
+};
 /**
  * @generated from enum google.protobuf.FieldOptions.CType
  */
@@ -401,6 +449,9 @@ export const OneofOptions = proto2.makeMessageType(
   ],
 );
 
+OneofOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(OneofOptions, value);
+};
 /**
  * @generated from message google.protobuf.EnumOptions
  */
@@ -413,6 +464,9 @@ export const EnumOptions = proto2.makeMessageType(
   ],
 );
 
+EnumOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumOptions, value);
+};
 /**
  * @generated from message google.protobuf.EnumValueOptions
  */
@@ -424,6 +478,9 @@ export const EnumValueOptions = proto2.makeMessageType(
   ],
 );
 
+EnumValueOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumValueOptions, value);
+};
 /**
  * @generated from message google.protobuf.ServiceOptions
  */
@@ -435,6 +492,9 @@ export const ServiceOptions = proto2.makeMessageType(
   ],
 );
 
+ServiceOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(ServiceOptions, value);
+};
 /**
  * @generated from message google.protobuf.MethodOptions
  */
@@ -447,6 +507,9 @@ export const MethodOptions = proto2.makeMessageType(
   ],
 );
 
+MethodOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(MethodOptions, value);
+};
 /**
  * Is this method side-effect-free (or safe in HTTP parlance), or idempotent,
  * or neither? HTTP based RPC implementation may choose GET verb for safe
@@ -486,6 +549,9 @@ export const UninterpretedOption = proto2.makeMessageType(
   ],
 );
 
+UninterpretedOption.conforms = function conforms(value) {
+ return proto2.util.conforms(UninterpretedOption, value);
+};
 /**
  * The name of the uninterpreted option.  Each string represents a segment in
  * a dot-separated name.  is_extension is true iff a segment represents an
@@ -504,6 +570,9 @@ export const UninterpretedOption_NamePart = proto2.makeMessageType(
   {localName: "UninterpretedOption_NamePart"},
 );
 
+UninterpretedOption_NamePart.conforms = function conforms(value) {
+ return proto2.util.conforms(UninterpretedOption_NamePart, value);
+};
 /**
  * Encapsulates information about the original source file from which a
  * FileDescriptorProto was generated.
@@ -517,6 +586,9 @@ export const SourceCodeInfo = proto2.makeMessageType(
   ],
 );
 
+SourceCodeInfo.conforms = function conforms(value) {
+ return proto2.util.conforms(SourceCodeInfo, value);
+};
 /**
  * @generated from message google.protobuf.SourceCodeInfo.Location
  */
@@ -532,6 +604,9 @@ export const SourceCodeInfo_Location = proto2.makeMessageType(
   {localName: "SourceCodeInfo_Location"},
 );
 
+SourceCodeInfo_Location.conforms = function conforms(value) {
+ return proto2.util.conforms(SourceCodeInfo_Location, value);
+};
 /**
  * Describes the relationship between generated code and its original source
  * file. A GeneratedCodeInfo message is associated with only one generated
@@ -546,6 +621,9 @@ export const GeneratedCodeInfo = proto2.makeMessageType(
   ],
 );
 
+GeneratedCodeInfo.conforms = function conforms(value) {
+ return proto2.util.conforms(GeneratedCodeInfo, value);
+};
 /**
  * @generated from message google.protobuf.GeneratedCodeInfo.Annotation
  */
@@ -560,3 +638,6 @@ export const GeneratedCodeInfo_Annotation = proto2.makeMessageType(
   {localName: "GeneratedCodeInfo_Annotation"},
 );
 
+GeneratedCodeInfo_Annotation.conforms = function conforms(value) {
+ return proto2.util.conforms(GeneratedCodeInfo_Annotation, value);
+};

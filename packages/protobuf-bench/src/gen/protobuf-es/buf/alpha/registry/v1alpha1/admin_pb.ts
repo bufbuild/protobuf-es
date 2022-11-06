@@ -55,6 +55,10 @@ export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
     return new ForceDeleteUserRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ForceDeleteUserRequest {
+    return proto3.util.conforms(ForceDeleteUserRequest, value);
+  }
+
   static equals(a: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined, b: ForceDeleteUserRequest | PlainMessage<ForceDeleteUserRequest> | undefined): boolean {
     return proto3.util.equals(ForceDeleteUserRequest, a, b);
   }
@@ -124,6 +128,10 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForceDeleteUserResponse {
     return new ForceDeleteUserResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ForceDeleteUserResponse {
+    return proto3.util.conforms(ForceDeleteUserResponse, value);
   }
 
   static equals(a: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined, b: ForceDeleteUserResponse | PlainMessage<ForceDeleteUserResponse> | undefined): boolean {

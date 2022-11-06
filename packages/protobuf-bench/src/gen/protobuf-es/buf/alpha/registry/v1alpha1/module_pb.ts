@@ -69,6 +69,10 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
     return new LocalModuleReference().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is LocalModuleReference {
+    return proto3.util.conforms(LocalModuleReference, value);
+  }
+
   static equals(a: LocalModuleReference | PlainMessage<LocalModuleReference> | undefined, b: LocalModuleReference | PlainMessage<LocalModuleReference> | undefined): boolean {
     return proto3.util.equals(LocalModuleReference, a, b);
   }
@@ -138,6 +142,10 @@ export class LocalModulePin extends Message<LocalModulePin> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LocalModulePin {
     return new LocalModulePin().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is LocalModulePin {
+    return proto3.util.conforms(LocalModulePin, value);
   }
 
   static equals(a: LocalModulePin | PlainMessage<LocalModulePin> | undefined, b: LocalModulePin | PlainMessage<LocalModulePin> | undefined): boolean {

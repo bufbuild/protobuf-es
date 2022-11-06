@@ -135,6 +135,10 @@ export class EnumMessage extends Message<EnumMessage> {
     return new EnumMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumMessage {
+    return proto3.util.conforms(EnumMessage, value);
+  }
+
   static equals(a: EnumMessage | PlainMessage<EnumMessage> | undefined, b: EnumMessage | PlainMessage<EnumMessage> | undefined): boolean {
     return proto3.util.equals(EnumMessage, a, b);
   }

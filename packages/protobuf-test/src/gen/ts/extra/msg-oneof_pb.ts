@@ -128,6 +128,10 @@ export class OneofMessage extends Message<OneofMessage> {
     return new OneofMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OneofMessage {
+    return proto3.util.conforms(OneofMessage, value);
+  }
+
   static equals(a: OneofMessage | PlainMessage<OneofMessage> | undefined, b: OneofMessage | PlainMessage<OneofMessage> | undefined): boolean {
     return proto3.util.equals(OneofMessage, a, b);
   }
@@ -171,6 +175,10 @@ export class OneofMessageFoo extends Message<OneofMessageFoo> {
     return new OneofMessageFoo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OneofMessageFoo {
+    return proto3.util.conforms(OneofMessageFoo, value);
+  }
+
   static equals(a: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined, b: OneofMessageFoo | PlainMessage<OneofMessageFoo> | undefined): boolean {
     return proto3.util.equals(OneofMessageFoo, a, b);
   }
@@ -212,6 +220,10 @@ export class OneofMessageBar extends Message<OneofMessageBar> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofMessageBar {
     return new OneofMessageBar().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is OneofMessageBar {
+    return proto3.util.conforms(OneofMessageBar, value);
   }
 
   static equals(a: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined, b: OneofMessageBar | PlainMessage<OneofMessageBar> | undefined): boolean {

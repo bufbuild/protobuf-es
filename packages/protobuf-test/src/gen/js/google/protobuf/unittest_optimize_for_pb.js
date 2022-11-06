@@ -54,6 +54,9 @@ export const TestOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
+TestOptimizedForSize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOptimizedForSize, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
@@ -64,6 +67,9 @@ export const TestRequiredOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
+TestRequiredOptimizedForSize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequiredOptimizedForSize, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
@@ -74,3 +80,6 @@ export const TestOptionalOptimizedForSize = proto2.makeMessageType(
   ],
 );
 
+TestOptionalOptimizedForSize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOptionalOptimizedForSize, value);
+};

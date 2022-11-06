@@ -147,3 +147,6 @@ Duration.prototype.toJson = function toJson(options) {
   return text + "s";
 };
 
+Duration.conforms = function conforms(value) {
+ return proto3.util.conforms(Duration, value);
+};

@@ -146,6 +146,8 @@ export declare class MessageWithComments extends Message<MessageWithComments> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageWithComments;
 
+  static conforms(value: any): value is MessageWithComments;
+
   static equals(a: MessageWithComments | PlainMessage<MessageWithComments> | undefined, b: MessageWithComments | PlainMessage<MessageWithComments> | undefined): boolean;
 }
 
@@ -166,6 +168,8 @@ export declare class EmptyMessageWithComment extends Message<EmptyMessageWithCom
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EmptyMessageWithComment;
+
+  static conforms(value: any): value is EmptyMessageWithComment;
 
   static equals(a: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined, b: EmptyMessageWithComment | PlainMessage<EmptyMessageWithComment> | undefined): boolean;
 }
@@ -235,6 +239,8 @@ export declare class GoogleCommentExample extends Message<GoogleCommentExample> 
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GoogleCommentExample;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GoogleCommentExample;
+
+  static conforms(value: any): value is GoogleCommentExample;
 
   static equals(a: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined, b: GoogleCommentExample | PlainMessage<GoogleCommentExample> | undefined): boolean;
 }

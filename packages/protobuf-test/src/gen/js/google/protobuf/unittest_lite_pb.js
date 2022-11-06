@@ -163,6 +163,9 @@ export const TestAllTypesLite = proto2.makeMessageType(
   ],
 );
 
+TestAllTypesLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesLite, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestAllTypesLite.NestedEnum
  */
@@ -187,6 +190,9 @@ export const TestAllTypesLite_NestedMessage = proto2.makeMessageType(
   {localName: "TestAllTypesLite_NestedMessage"},
 );
 
+TestAllTypesLite_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesLite_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage2
  */
@@ -198,6 +204,9 @@ export const TestAllTypesLite_NestedMessage2 = proto2.makeMessageType(
   {localName: "TestAllTypesLite_NestedMessage2"},
 );
 
+TestAllTypesLite_NestedMessage2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesLite_NestedMessage2, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
  */
@@ -209,6 +218,9 @@ export const TestAllTypesLite_OptionalGroup = proto2.makeMessageType(
   {localName: "TestAllTypesLite_OptionalGroup"},
 );
 
+TestAllTypesLite_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesLite_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
  */
@@ -220,6 +232,9 @@ export const TestAllTypesLite_RepeatedGroup = proto2.makeMessageType(
   {localName: "TestAllTypesLite_RepeatedGroup"},
 );
 
+TestAllTypesLite_RepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesLite_RepeatedGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
@@ -230,6 +245,9 @@ export const ForeignMessageLite = proto2.makeMessageType(
   ],
 );
 
+ForeignMessageLite.conforms = function conforms(value) {
+ return proto2.util.conforms(ForeignMessageLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
  */
@@ -253,6 +271,9 @@ export const TestPackedTypesLite = proto2.makeMessageType(
   ],
 );
 
+TestPackedTypesLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPackedTypesLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
  */
@@ -261,6 +282,9 @@ export const TestAllExtensionsLite = proto2.makeMessageType(
   [],
 );
 
+TestAllExtensionsLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllExtensionsLite, value);
+};
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
  */
@@ -271,6 +295,9 @@ export const OptionalGroup_extension_lite = proto2.makeMessageType(
   ],
 );
 
+OptionalGroup_extension_lite.conforms = function conforms(value) {
+ return proto2.util.conforms(OptionalGroup_extension_lite, value);
+};
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
@@ -281,6 +308,9 @@ export const RepeatedGroup_extension_lite = proto2.makeMessageType(
   ],
 );
 
+RepeatedGroup_extension_lite.conforms = function conforms(value) {
+ return proto2.util.conforms(RepeatedGroup_extension_lite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
@@ -289,6 +319,9 @@ export const TestPackedExtensionsLite = proto2.makeMessageType(
   [],
 );
 
+TestPackedExtensionsLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPackedExtensionsLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
  */
@@ -297,6 +330,9 @@ export const TestNestedExtensionLite = proto2.makeMessageType(
   [],
 );
 
+TestNestedExtensionLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedExtensionLite, value);
+};
 /**
  * Test that deprecated fields work.  We only verify that they compile (at one
  * point this failed).
@@ -313,6 +349,9 @@ export const TestDeprecatedLite = proto2.makeMessageType(
   ],
 );
 
+TestDeprecatedLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDeprecatedLite, value);
+};
 /**
  * See the comments of the same type in unittest.proto.
  *
@@ -329,6 +368,9 @@ export const TestParsingMergeLite = proto2.makeMessageType(
   ],
 );
 
+TestParsingMergeLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator
  */
@@ -346,6 +388,9 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator = proto2.makeMessageTy
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator"},
 );
 
+TestParsingMergeLite_RepeatedFieldsGenerator.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1
  */
@@ -357,6 +402,9 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator_Group1 = proto2.makeMe
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group1"},
 );
 
+TestParsingMergeLite_RepeatedFieldsGenerator_Group1.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator_Group1, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
  */
@@ -368,6 +416,9 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator_Group2 = proto2.makeMe
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group2"},
 );
 
+TestParsingMergeLite_RepeatedFieldsGenerator_Group2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator_Group2, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
  */
@@ -379,6 +430,9 @@ export const TestParsingMergeLite_OptionalGroup = proto2.makeMessageType(
   {localName: "TestParsingMergeLite_OptionalGroup"},
 );
 
+TestParsingMergeLite_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
  */
@@ -390,6 +444,9 @@ export const TestParsingMergeLite_RepeatedGroup = proto2.makeMessageType(
   {localName: "TestParsingMergeLite_RepeatedGroup"},
 );
 
+TestParsingMergeLite_RepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMergeLite_RepeatedGroup, value);
+};
 /**
  * Test that the correct exception is thrown by parseFrom in a corner case
  * involving merging, extensions, and required fields.
@@ -403,6 +460,9 @@ export const TestMergeExceptionLite = proto2.makeMessageType(
   ],
 );
 
+TestMergeExceptionLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMergeExceptionLite, value);
+};
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
  *
@@ -413,6 +473,9 @@ export const TestEmptyMessageLite = proto2.makeMessageType(
   [],
 );
 
+TestEmptyMessageLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEmptyMessageLite, value);
+};
 /**
  * Like above, but declare all field numbers as potential extensions.  No
  * actual extensions should ever be defined for this type.
@@ -424,6 +487,9 @@ export const TestEmptyMessageWithExtensionsLite = proto2.makeMessageType(
   [],
 );
 
+TestEmptyMessageWithExtensionsLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEmptyMessageWithExtensionsLite, value);
+};
 /**
  * @generated from message protobuf_unittest.V1MessageLite
  */
@@ -435,6 +501,9 @@ export const V1MessageLite = proto2.makeMessageType(
   ],
 );
 
+V1MessageLite.conforms = function conforms(value) {
+ return proto2.util.conforms(V1MessageLite, value);
+};
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -446,6 +515,9 @@ export const V2MessageLite = proto2.makeMessageType(
   ],
 );
 
+V2MessageLite.conforms = function conforms(value) {
+ return proto2.util.conforms(V2MessageLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
  */
@@ -469,6 +541,9 @@ export const TestHugeFieldNumbersLite = proto2.makeMessageType(
   ],
 );
 
+TestHugeFieldNumbersLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestHugeFieldNumbersLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
  */
@@ -480,6 +555,9 @@ export const TestHugeFieldNumbersLite_OptionalGroup = proto2.makeMessageType(
   {localName: "TestHugeFieldNumbersLite_OptionalGroup"},
 );
 
+TestHugeFieldNumbersLite_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestHugeFieldNumbersLite_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
  */
@@ -498,6 +576,9 @@ export const TestOneofParsingLite = proto2.makeMessageType(
   ],
 );
 
+TestOneofParsingLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneofParsingLite, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMessageSetLite
  */
@@ -506,6 +587,9 @@ export const TestMessageSetLite = proto2.makeMessageType(
   [],
 );
 
+TestMessageSetLite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetLite, value);
+};
 /**
  * The following four messages are set up to test for wire compatibility between
  * packed and non-packed repeated fields. We use the field number 2048, because
@@ -520,6 +604,9 @@ export const PackedInt32 = proto2.makeMessageType(
   ],
 );
 
+PackedInt32.conforms = function conforms(value) {
+ return proto2.util.conforms(PackedInt32, value);
+};
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
  */
@@ -530,6 +617,9 @@ export const NonPackedInt32 = proto2.makeMessageType(
   ],
 );
 
+NonPackedInt32.conforms = function conforms(value) {
+ return proto2.util.conforms(NonPackedInt32, value);
+};
 /**
  * @generated from message protobuf_unittest.PackedFixed32
  */
@@ -540,6 +630,9 @@ export const PackedFixed32 = proto2.makeMessageType(
   ],
 );
 
+PackedFixed32.conforms = function conforms(value) {
+ return proto2.util.conforms(PackedFixed32, value);
+};
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
  */
@@ -550,6 +643,9 @@ export const NonPackedFixed32 = proto2.makeMessageType(
   ],
 );
 
+NonPackedFixed32.conforms = function conforms(value) {
+ return proto2.util.conforms(NonPackedFixed32, value);
+};
 /**
  * Test an enum that has multiple values with the same number.
  *
@@ -560,6 +656,9 @@ export const DupEnum = proto2.makeMessageType(
   [],
 );
 
+DupEnum.conforms = function conforms(value) {
+ return proto2.util.conforms(DupEnum, value);
+};
 /**
  * @generated from enum protobuf_unittest.DupEnum.TestEnumWithDupValueLite
  */
@@ -585,3 +684,6 @@ export const RecursiveMessage = proto2.makeMessageType(
   ],
 );
 
+RecursiveMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(RecursiveMessage, value);
+};

@@ -46,3 +46,6 @@ export const PublicImportMessage = proto2.makeMessageType(
   ],
 );
 
+PublicImportMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(PublicImportMessage, value);
+};

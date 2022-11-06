@@ -109,6 +109,8 @@ export declare class TestMessageWithCustomOptions extends Message<TestMessageWit
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithCustomOptions;
 
+  static conforms(value: any): value is TestMessageWithCustomOptions;
+
   static equals(a: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined, b: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined): boolean;
 }
 
@@ -146,6 +148,8 @@ export declare class CustomOptionFooRequest extends Message<CustomOptionFooReque
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooRequest;
 
+  static conforms(value: any): value is CustomOptionFooRequest;
+
   static equals(a: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined, b: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined): boolean;
 }
 
@@ -164,6 +168,8 @@ export declare class CustomOptionFooResponse extends Message<CustomOptionFooResp
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooResponse;
+
+  static conforms(value: any): value is CustomOptionFooResponse;
 
   static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean;
 }
@@ -184,6 +190,8 @@ export declare class CustomOptionFooClientMessage extends Message<CustomOptionFo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooClientMessage;
 
+  static conforms(value: any): value is CustomOptionFooClientMessage;
+
   static equals(a: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined, b: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined): boolean;
 }
 
@@ -203,6 +211,8 @@ export declare class CustomOptionFooServerMessage extends Message<CustomOptionFo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooServerMessage;
 
+  static conforms(value: any): value is CustomOptionFooServerMessage;
+
   static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean;
 }
 
@@ -221,6 +231,8 @@ export declare class DummyMessageContainingEnum extends Message<DummyMessageCont
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum;
+
+  static conforms(value: any): value is DummyMessageContainingEnum;
 
   static equals(a: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined, b: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined): boolean;
 }
@@ -256,6 +268,8 @@ export declare class DummyMessageInvalidAsOptionType extends Message<DummyMessag
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageInvalidAsOptionType;
 
+  static conforms(value: any): value is DummyMessageInvalidAsOptionType;
+
   static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean;
 }
 
@@ -274,6 +288,8 @@ export declare class CustomOptionMinIntegerValues extends Message<CustomOptionMi
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues;
+
+  static conforms(value: any): value is CustomOptionMinIntegerValues;
 
   static equals(a: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined, b: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined): boolean;
 }
@@ -294,6 +310,8 @@ export declare class CustomOptionMaxIntegerValues extends Message<CustomOptionMa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMaxIntegerValues;
 
+  static conforms(value: any): value is CustomOptionMaxIntegerValues;
+
   static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean;
 }
 
@@ -312,6 +330,8 @@ export declare class CustomOptionOtherValues extends Message<CustomOptionOtherVa
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionOtherValues;
+
+  static conforms(value: any): value is CustomOptionOtherValues;
 
   static equals(a: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined, b: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined): boolean;
 }
@@ -332,6 +352,8 @@ export declare class SettingRealsFromPositiveInts extends Message<SettingRealsFr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromPositiveInts;
 
+  static conforms(value: any): value is SettingRealsFromPositiveInts;
+
   static equals(a: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined, b: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined): boolean;
 }
 
@@ -350,6 +372,8 @@ export declare class SettingRealsFromNegativeInts extends Message<SettingRealsFr
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts;
+
+  static conforms(value: any): value is SettingRealsFromNegativeInts;
 
   static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean;
 }
@@ -390,6 +414,8 @@ export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType1;
 
+  static conforms(value: any): value is ComplexOptionType1;
+
   static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean;
 }
 
@@ -429,6 +455,8 @@ export declare class ComplexOptionType2 extends Message<ComplexOptionType2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2;
 
+  static conforms(value: any): value is ComplexOptionType2;
+
   static equals(a: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined, b: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined): boolean;
 }
 
@@ -452,6 +480,8 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4;
+
+  static conforms(value: any): value is ComplexOptionType2_ComplexOptionType4;
 
   static equals(a: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined, b: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined): boolean;
 }
@@ -482,6 +512,8 @@ export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3;
 
+  static conforms(value: any): value is ComplexOptionType3;
+
   static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean;
 }
 
@@ -505,6 +537,8 @@ export declare class ComplexOptionType3_ComplexOptionType5 extends Message<Compl
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
+
+  static conforms(value: any): value is ComplexOptionType3_ComplexOptionType5;
 
   static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean;
 }
@@ -530,6 +564,8 @@ export declare class ComplexOpt6 extends Message<ComplexOpt6> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOpt6;
 
+  static conforms(value: any): value is ComplexOpt6;
+
   static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean;
 }
 
@@ -551,6 +587,8 @@ export declare class VariousComplexOptions extends Message<VariousComplexOptions
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VariousComplexOptions;
 
+  static conforms(value: any): value is VariousComplexOptions;
+
   static equals(a: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined, b: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined): boolean;
 }
 
@@ -569,6 +607,8 @@ export declare class AggregateMessageSet extends Message<AggregateMessageSet> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSet;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSet;
+
+  static conforms(value: any): value is AggregateMessageSet;
 
   static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean;
 }
@@ -593,6 +633,8 @@ export declare class AggregateMessageSetElement extends Message<AggregateMessage
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSetElement;
+
+  static conforms(value: any): value is AggregateMessageSetElement;
 
   static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean;
 }
@@ -653,6 +695,8 @@ export declare class Aggregate extends Message<Aggregate> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Aggregate;
 
+  static conforms(value: any): value is Aggregate;
+
   static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean;
 }
 
@@ -677,6 +721,8 @@ export declare class AggregateMessage extends Message<AggregateMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessage;
 
+  static conforms(value: any): value is AggregateMessage;
+
   static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean;
 }
 
@@ -697,6 +743,8 @@ export declare class NestedOptionType extends Message<NestedOptionType> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedOptionType;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType;
+
+  static conforms(value: any): value is NestedOptionType;
 
   static equals(a: NestedOptionType | PlainMessage<NestedOptionType> | undefined, b: NestedOptionType | PlainMessage<NestedOptionType> | undefined): boolean;
 }
@@ -732,6 +780,8 @@ export declare class NestedOptionType_NestedMessage extends Message<NestedOption
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType_NestedMessage;
 
+  static conforms(value: any): value is NestedOptionType_NestedMessage;
+
   static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean;
 }
 
@@ -758,6 +808,8 @@ export declare class OldOptionType extends Message<OldOptionType> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OldOptionType;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OldOptionType;
+
+  static conforms(value: any): value is OldOptionType;
 
   static equals(a: OldOptionType | PlainMessage<OldOptionType> | undefined, b: OldOptionType | PlainMessage<OldOptionType> | undefined): boolean;
 }
@@ -795,6 +847,8 @@ export declare class NewOptionType extends Message<NewOptionType> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NewOptionType;
 
+  static conforms(value: any): value is NewOptionType;
+
   static equals(a: NewOptionType | PlainMessage<NewOptionType> | undefined, b: NewOptionType | PlainMessage<NewOptionType> | undefined): boolean;
 }
 
@@ -830,6 +884,8 @@ export declare class TestMessageWithRequiredEnumOption extends Message<TestMessa
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption;
+
+  static conforms(value: any): value is TestMessageWithRequiredEnumOption;
 
   static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean;
 }

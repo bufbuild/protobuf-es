@@ -86,6 +86,9 @@ Struct.prototype.fromJson = function fromJson(json, options) {
   return this;
 };
 
+Struct.conforms = function conforms(value) {
+ return proto3.util.conforms(Struct, value);
+};
 /**
  * `Value` represents a dynamically typed value which can be either
  * null, a number, a string, a boolean, a recursive struct value, or a
@@ -149,6 +152,9 @@ Value.prototype.fromJson = function fromJson(json, options) {
   return this;
 };
 
+Value.conforms = function conforms(value) {
+ return proto3.util.conforms(Value, value);
+};
 /**
  * `ListValue` is a wrapper around a repeated field of values.
  *
@@ -177,3 +183,6 @@ ListValue.prototype.fromJson = function fromJson(json, options) {
   return this;
 };
 
+ListValue.conforms = function conforms(value) {
+ return proto3.util.conforms(ListValue, value);
+};

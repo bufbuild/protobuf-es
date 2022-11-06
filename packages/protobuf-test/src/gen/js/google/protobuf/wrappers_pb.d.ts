@@ -77,6 +77,8 @@ export declare class DoubleValue extends Message<DoubleValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoubleValue;
 
+  static conforms(value: any): value is DoubleValue;
+
   static equals(a: DoubleValue | PlainMessage<DoubleValue> | undefined, b: DoubleValue | PlainMessage<DoubleValue> | undefined): boolean;
 }
 
@@ -111,6 +113,8 @@ export declare class FloatValue extends Message<FloatValue> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FloatValue;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FloatValue;
+
+  static conforms(value: any): value is FloatValue;
 
   static equals(a: FloatValue | PlainMessage<FloatValue> | undefined, b: FloatValue | PlainMessage<FloatValue> | undefined): boolean;
 }
@@ -147,6 +151,8 @@ export declare class Int64Value extends Message<Int64Value> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int64Value;
 
+  static conforms(value: any): value is Int64Value;
+
   static equals(a: Int64Value | PlainMessage<Int64Value> | undefined, b: Int64Value | PlainMessage<Int64Value> | undefined): boolean;
 }
 
@@ -181,6 +187,8 @@ export declare class UInt64Value extends Message<UInt64Value> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UInt64Value;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UInt64Value;
+
+  static conforms(value: any): value is UInt64Value;
 
   static equals(a: UInt64Value | PlainMessage<UInt64Value> | undefined, b: UInt64Value | PlainMessage<UInt64Value> | undefined): boolean;
 }
@@ -217,6 +225,8 @@ export declare class Int32Value extends Message<Int32Value> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int32Value;
 
+  static conforms(value: any): value is Int32Value;
+
   static equals(a: Int32Value | PlainMessage<Int32Value> | undefined, b: Int32Value | PlainMessage<Int32Value> | undefined): boolean;
 }
 
@@ -251,6 +261,8 @@ export declare class UInt32Value extends Message<UInt32Value> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UInt32Value;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UInt32Value;
+
+  static conforms(value: any): value is UInt32Value;
 
   static equals(a: UInt32Value | PlainMessage<UInt32Value> | undefined, b: UInt32Value | PlainMessage<UInt32Value> | undefined): boolean;
 }
@@ -287,6 +299,8 @@ export declare class BoolValue extends Message<BoolValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolValue;
 
+  static conforms(value: any): value is BoolValue;
+
   static equals(a: BoolValue | PlainMessage<BoolValue> | undefined, b: BoolValue | PlainMessage<BoolValue> | undefined): boolean;
 }
 
@@ -322,6 +336,8 @@ export declare class StringValue extends Message<StringValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StringValue;
 
+  static conforms(value: any): value is StringValue;
+
   static equals(a: StringValue | PlainMessage<StringValue> | undefined, b: StringValue | PlainMessage<StringValue> | undefined): boolean;
 }
 
@@ -356,6 +372,8 @@ export declare class BytesValue extends Message<BytesValue> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BytesValue;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BytesValue;
+
+  static conforms(value: any): value is BytesValue;
 
   static equals(a: BytesValue | PlainMessage<BytesValue> | undefined, b: BytesValue | PlainMessage<BytesValue> | undefined): boolean;
 }

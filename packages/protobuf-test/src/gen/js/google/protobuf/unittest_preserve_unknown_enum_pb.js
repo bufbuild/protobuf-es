@@ -74,6 +74,9 @@ export const MyMessage = proto3.makeMessageType(
   ],
 );
 
+MyMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(MyMessage, value);
+};
 /**
  * @generated from message proto3_preserve_unknown_enum_unittest.MyMessagePlusExtra
  */
@@ -89,3 +92,6 @@ export const MyMessagePlusExtra = proto3.makeMessageType(
   ],
 );
 
+MyMessagePlusExtra.conforms = function conforms(value) {
+ return proto3.util.conforms(MyMessagePlusExtra, value);
+};

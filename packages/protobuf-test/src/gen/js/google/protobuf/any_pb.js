@@ -213,3 +213,6 @@ Any.pack = function pack(message) {
   return any;
 };
 
+Any.conforms = function conforms(value) {
+ return proto3.util.conforms(Any, value);
+};

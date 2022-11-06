@@ -83,6 +83,10 @@ export class Proto2PackedMessage extends Message<Proto2PackedMessage> {
     return new Proto2PackedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto2PackedMessage {
+    return proto2.util.conforms(Proto2PackedMessage, value);
+  }
+
   static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean {
     return proto2.util.equals(Proto2PackedMessage, a, b);
   }
@@ -132,6 +136,10 @@ export class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
     return new Proto2UnpackedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto2UnpackedMessage {
+    return proto2.util.conforms(Proto2UnpackedMessage, value);
+  }
+
   static equals(a: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined, b: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined): boolean {
     return proto2.util.equals(Proto2UnpackedMessage, a, b);
   }
@@ -179,6 +187,10 @@ export class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPac
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage {
     return new Proto2UnspecifiedPackedMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto2UnspecifiedPackedMessage {
+    return proto2.util.conforms(Proto2UnspecifiedPackedMessage, value);
   }
 
   static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean {
@@ -236,6 +248,10 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
     return new Proto2OptionalMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto2OptionalMessage {
+    return proto2.util.conforms(Proto2OptionalMessage, value);
+  }
+
   static equals(a: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined, b: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined): boolean {
     return proto2.util.equals(Proto2OptionalMessage, a, b);
   }
@@ -291,6 +307,10 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
     return new Proto2RequiredMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto2RequiredMessage {
+    return proto2.util.conforms(Proto2RequiredMessage, value);
+  }
+
   static equals(a: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined, b: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined): boolean {
     return proto2.util.equals(Proto2RequiredMessage, a, b);
   }
@@ -344,6 +364,10 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage {
     return new Proto2RequiredDefaultsMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto2RequiredDefaultsMessage {
+    return proto2.util.conforms(Proto2RequiredDefaultsMessage, value);
   }
 
   static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean {
@@ -425,6 +449,10 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
     return new Proto2DefaultsMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto2DefaultsMessage {
+    return proto2.util.conforms(Proto2DefaultsMessage, value);
+  }
+
   static equals(a: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined, b: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined): boolean {
     return proto2.util.equals(Proto2DefaultsMessage, a, b);
   }
@@ -460,6 +488,10 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2ChildMessage {
     return new Proto2ChildMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto2ChildMessage {
+    return proto2.util.conforms(Proto2ChildMessage, value);
   }
 
   static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean {

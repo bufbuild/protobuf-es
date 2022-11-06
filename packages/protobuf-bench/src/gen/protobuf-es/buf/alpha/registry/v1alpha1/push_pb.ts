@@ -90,6 +90,10 @@ export class PushRequest extends Message<PushRequest> {
     return new PushRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PushRequest {
+    return proto3.util.conforms(PushRequest, value);
+  }
+
   static equals(a: PushRequest | PlainMessage<PushRequest> | undefined, b: PushRequest | PlainMessage<PushRequest> | undefined): boolean {
     return proto3.util.equals(PushRequest, a, b);
   }
@@ -125,6 +129,10 @@ export class PushResponse extends Message<PushResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PushResponse {
     return new PushResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is PushResponse {
+    return proto3.util.conforms(PushResponse, value);
   }
 
   static equals(a: PushResponse | PlainMessage<PushResponse> | undefined, b: PushResponse | PlainMessage<PushResponse> | undefined): boolean {

@@ -55,6 +55,10 @@ export class Image extends Message<Image> {
     return new Image().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Image {
+    return proto2.util.conforms(Image, value);
+  }
+
   static equals(a: Image | PlainMessage<Image> | undefined, b: Image | PlainMessage<Image> | undefined): boolean {
     return proto2.util.equals(Image, a, b);
   }
@@ -180,6 +184,10 @@ export class ImageFile extends Message<ImageFile> {
     return new ImageFile().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ImageFile {
+    return proto2.util.conforms(ImageFile, value);
+  }
+
   static equals(a: ImageFile | PlainMessage<ImageFile> | undefined, b: ImageFile | PlainMessage<ImageFile> | undefined): boolean {
     return proto2.util.equals(ImageFile, a, b);
   }
@@ -278,6 +286,10 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
     return new ImageFileExtension().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ImageFileExtension {
+    return proto2.util.conforms(ImageFileExtension, value);
+  }
+
   static equals(a: ImageFileExtension | PlainMessage<ImageFileExtension> | undefined, b: ImageFileExtension | PlainMessage<ImageFileExtension> | undefined): boolean {
     return proto2.util.equals(ImageFileExtension, a, b);
   }
@@ -332,6 +344,10 @@ export class ModuleInfo extends Message<ModuleInfo> {
     return new ModuleInfo().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ModuleInfo {
+    return proto2.util.conforms(ModuleInfo, value);
+  }
+
   static equals(a: ModuleInfo | PlainMessage<ModuleInfo> | undefined, b: ModuleInfo | PlainMessage<ModuleInfo> | undefined): boolean {
     return proto2.util.equals(ModuleInfo, a, b);
   }
@@ -383,6 +399,10 @@ export class ModuleName extends Message<ModuleName> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleName {
     return new ModuleName().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModuleName {
+    return proto2.util.conforms(ModuleName, value);
   }
 
   static equals(a: ModuleName | PlainMessage<ModuleName> | undefined, b: ModuleName | PlainMessage<ModuleName> | undefined): boolean {

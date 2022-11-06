@@ -46,6 +46,10 @@ export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
     return new GetCurrentUserRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetCurrentUserRequest {
+    return proto3.util.conforms(GetCurrentUserRequest, value);
+  }
+
   static equals(a: GetCurrentUserRequest | PlainMessage<GetCurrentUserRequest> | undefined, b: GetCurrentUserRequest | PlainMessage<GetCurrentUserRequest> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserRequest, a, b);
   }
@@ -83,6 +87,10 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
     return new GetCurrentUserResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetCurrentUserResponse {
+    return proto3.util.conforms(GetCurrentUserResponse, value);
+  }
+
   static equals(a: GetCurrentUserResponse | PlainMessage<GetCurrentUserResponse> | undefined, b: GetCurrentUserResponse | PlainMessage<GetCurrentUserResponse> | undefined): boolean {
     return proto3.util.equals(GetCurrentUserResponse, a, b);
   }
@@ -112,6 +120,10 @@ export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCurrentUserSubjectRequest {
     return new GetCurrentUserSubjectRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetCurrentUserSubjectRequest {
+    return proto3.util.conforms(GetCurrentUserSubjectRequest, value);
   }
 
   static equals(a: GetCurrentUserSubjectRequest | PlainMessage<GetCurrentUserSubjectRequest> | undefined, b: GetCurrentUserSubjectRequest | PlainMessage<GetCurrentUserSubjectRequest> | undefined): boolean {
@@ -154,6 +166,10 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetCurrentUserSubjectResponse {
     return new GetCurrentUserSubjectResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetCurrentUserSubjectResponse {
+    return proto3.util.conforms(GetCurrentUserSubjectResponse, value);
   }
 
   static equals(a: GetCurrentUserSubjectResponse | PlainMessage<GetCurrentUserSubjectResponse> | undefined, b: GetCurrentUserSubjectResponse | PlainMessage<GetCurrentUserSubjectResponse> | undefined): boolean {

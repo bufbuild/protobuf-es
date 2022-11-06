@@ -306,3 +306,6 @@ FieldMask.prototype.fromJson = function fromJson(json, options) {
   return this;
 };
 
+FieldMask.conforms = function conforms(value) {
+ return proto3.util.conforms(FieldMask, value);
+};

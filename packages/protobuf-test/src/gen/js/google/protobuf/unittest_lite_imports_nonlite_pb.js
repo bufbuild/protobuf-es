@@ -50,3 +50,6 @@ export const TestLiteImportsNonlite = proto2.makeMessageType(
   ],
 );
 
+TestLiteImportsNonlite.conforms = function conforms(value) {
+ return proto2.util.conforms(TestLiteImportsNonlite, value);
+};

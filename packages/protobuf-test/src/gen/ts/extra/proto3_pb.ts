@@ -89,6 +89,10 @@ export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
     return new Proto3PackedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto3PackedMessage {
+    return proto3.util.conforms(Proto3PackedMessage, value);
+  }
+
   static equals(a: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined, b: Proto3PackedMessage | PlainMessage<Proto3PackedMessage> | undefined): boolean {
     return proto3.util.equals(Proto3PackedMessage, a, b);
   }
@@ -138,6 +142,10 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
     return new Proto3UnpackedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Proto3UnpackedMessage {
+    return proto3.util.conforms(Proto3UnpackedMessage, value);
+  }
+
   static equals(a: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined, b: Proto3UnpackedMessage | PlainMessage<Proto3UnpackedMessage> | undefined): boolean {
     return proto3.util.equals(Proto3UnpackedMessage, a, b);
   }
@@ -185,6 +193,10 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnlabelledMessage {
     return new Proto3UnlabelledMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto3UnlabelledMessage {
+    return proto3.util.conforms(Proto3UnlabelledMessage, value);
   }
 
   static equals(a: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined, b: Proto3UnlabelledMessage | PlainMessage<Proto3UnlabelledMessage> | undefined): boolean {
@@ -240,6 +252,10 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalMessage {
     return new Proto3OptionalMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto3OptionalMessage {
+    return proto3.util.conforms(Proto3OptionalMessage, value);
   }
 
   static equals(a: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined, b: Proto3OptionalMessage | PlainMessage<Proto3OptionalMessage> | undefined): boolean {

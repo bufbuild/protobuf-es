@@ -203,6 +203,9 @@ export const TestAllTypesProto2 = proto2.makeMessageType(
   ],
 );
 
+TestAllTypesProto2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2, value);
+};
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
  */
@@ -228,6 +231,9 @@ export const TestAllTypesProto2_NestedMessage = proto2.makeMessageType(
   {localName: "TestAllTypesProto2_NestedMessage"},
 );
 
+TestAllTypesProto2_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2_NestedMessage, value);
+};
 /**
  * groups
  *
@@ -242,6 +248,9 @@ export const TestAllTypesProto2_Data = proto2.makeMessageType(
   {localName: "TestAllTypesProto2_Data"},
 );
 
+TestAllTypesProto2_Data.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2_Data, value);
+};
 /**
  * message_set test case.
  *
@@ -253,6 +262,9 @@ export const TestAllTypesProto2_MessageSetCorrect = proto2.makeMessageType(
   {localName: "TestAllTypesProto2_MessageSetCorrect"},
 );
 
+TestAllTypesProto2_MessageSetCorrect.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrect, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
  */
@@ -264,6 +276,9 @@ export const TestAllTypesProto2_MessageSetCorrectExtension1 = proto2.makeMessage
   {localName: "TestAllTypesProto2_MessageSetCorrectExtension1"},
 );
 
+TestAllTypesProto2_MessageSetCorrectExtension1.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension1, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
@@ -275,6 +290,9 @@ export const TestAllTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessage
   {localName: "TestAllTypesProto2_MessageSetCorrectExtension2"},
 );
 
+TestAllTypesProto2_MessageSetCorrectExtension2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension2, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
  */
@@ -285,6 +303,9 @@ export const ForeignMessageProto2 = proto2.makeMessageType(
   ],
 );
 
+ForeignMessageProto2.conforms = function conforms(value) {
+ return proto2.util.conforms(ForeignMessageProto2, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
  */
@@ -300,6 +321,9 @@ export const UnknownToTestAllTypes = proto2.makeMessageType(
   ],
 );
 
+UnknownToTestAllTypes.conforms = function conforms(value) {
+ return proto2.util.conforms(UnknownToTestAllTypes, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
  */
@@ -311,6 +335,9 @@ export const UnknownToTestAllTypes_OptionalGroup = proto2.makeMessageType(
   {localName: "UnknownToTestAllTypes_OptionalGroup"},
 );
 
+UnknownToTestAllTypes_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(UnknownToTestAllTypes_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
  */
@@ -319,6 +346,9 @@ export const NullHypothesisProto2 = proto2.makeMessageType(
   [],
 );
 
+NullHypothesisProto2.conforms = function conforms(value) {
+ return proto2.util.conforms(NullHypothesisProto2, value);
+};
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
  */
@@ -327,6 +357,9 @@ export const EnumOnlyProto2 = proto2.makeMessageType(
   [],
 );
 
+EnumOnlyProto2.conforms = function conforms(value) {
+ return proto2.util.conforms(EnumOnlyProto2, value);
+};
 /**
  * @generated from enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool
  */
@@ -348,3 +381,6 @@ export const OneStringProto2 = proto2.makeMessageType(
   ],
 );
 
+OneStringProto2.conforms = function conforms(value) {
+ return proto2.util.conforms(OneStringProto2, value);
+};

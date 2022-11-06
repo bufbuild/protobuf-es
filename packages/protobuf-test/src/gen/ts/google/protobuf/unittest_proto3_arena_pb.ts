@@ -523,6 +523,10 @@ export class TestAllTypes extends Message<TestAllTypes> {
     return new TestAllTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypes {
+    return proto3.util.conforms(TestAllTypes, value);
+  }
+
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean {
     return proto3.util.equals(TestAllTypes, a, b);
   }
@@ -602,6 +606,10 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage {
     return new TestAllTypes_NestedMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestAllTypes_NestedMessage {
+    return proto3.util.conforms(TestAllTypes_NestedMessage, value);
   }
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
@@ -717,6 +725,10 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes {
     return new TestPackedTypes().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestPackedTypes {
+    return proto3.util.conforms(TestPackedTypes, value);
   }
 
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean {
@@ -836,6 +848,10 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
     return new TestUnpackedTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestUnpackedTypes {
+    return proto3.util.conforms(TestUnpackedTypes, value);
+  }
+
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean {
     return proto3.util.equals(TestUnpackedTypes, a, b);
   }
@@ -887,6 +903,10 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     return new NestedTestAllTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NestedTestAllTypes {
+    return proto3.util.conforms(NestedTestAllTypes, value);
+  }
+
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean {
     return proto3.util.equals(NestedTestAllTypes, a, b);
   }
@@ -927,6 +947,10 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ForeignMessage {
+    return proto3.util.conforms(ForeignMessage, value);
+  }
+
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean {
     return proto3.util.equals(ForeignMessage, a, b);
   }
@@ -960,6 +984,10 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
     return new TestEmptyMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestEmptyMessage {
+    return proto3.util.conforms(TestEmptyMessage, value);
+  }
+
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean {
     return proto3.util.equals(TestEmptyMessage, a, b);
   }
@@ -991,6 +1019,10 @@ export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage {
     return new TestPickleNestedMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestPickleNestedMessage {
+    return proto3.util.conforms(TestPickleNestedMessage, value);
   }
 
   static equals(a: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined, b: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined): boolean {
@@ -1030,6 +1062,10 @@ export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNes
     return new TestPickleNestedMessage_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage {
+    return proto3.util.conforms(TestPickleNestedMessage_NestedMessage, value);
+  }
+
   static equals(a: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestPickleNestedMessage_NestedMessage, a, b);
   }
@@ -1065,6 +1101,10 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
     return new TestPickleNestedMessage_NestedMessage_NestedNestedMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
+    return proto3.util.conforms(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, value);
   }
 
   static equals(a: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined): boolean {

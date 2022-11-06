@@ -29,6 +29,9 @@ export const MessageFieldMessage = proto3.makeMessageType(
   ],
 );
 
+MessageFieldMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(MessageFieldMessage, value);
+};
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
  */
@@ -40,3 +43,6 @@ export const MessageFieldMessage_TestMessage = proto3.makeMessageType(
   {localName: "MessageFieldMessage_TestMessage"},
 );
 
+MessageFieldMessage_TestMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(MessageFieldMessage_TestMessage, value);
+};

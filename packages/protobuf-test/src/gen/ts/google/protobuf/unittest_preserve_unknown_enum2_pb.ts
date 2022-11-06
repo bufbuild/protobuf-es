@@ -132,6 +132,10 @@ export class MyMessage extends Message<MyMessage> {
     return new MyMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MyMessage {
+    return proto2.util.conforms(MyMessage, value);
+  }
+
   static equals(a: MyMessage | PlainMessage<MyMessage> | undefined, b: MyMessage | PlainMessage<MyMessage> | undefined): boolean {
     return proto2.util.equals(MyMessage, a, b);
   }

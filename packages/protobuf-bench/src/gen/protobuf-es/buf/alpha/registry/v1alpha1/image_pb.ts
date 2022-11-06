@@ -151,6 +151,10 @@ export class GetImageRequest extends Message<GetImageRequest> {
     return new GetImageRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetImageRequest {
+    return proto3.util.conforms(GetImageRequest, value);
+  }
+
   static equals(a: GetImageRequest | PlainMessage<GetImageRequest> | undefined, b: GetImageRequest | PlainMessage<GetImageRequest> | undefined): boolean {
     return proto3.util.equals(GetImageRequest, a, b);
   }
@@ -186,6 +190,10 @@ export class GetImageResponse extends Message<GetImageResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetImageResponse {
     return new GetImageResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetImageResponse {
+    return proto3.util.conforms(GetImageResponse, value);
   }
 
   static equals(a: GetImageResponse | PlainMessage<GetImageResponse> | undefined, b: GetImageResponse | PlainMessage<GetImageResponse> | undefined): boolean {

@@ -114,6 +114,10 @@ export class Configuration extends Message<Configuration> {
     return new Configuration().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Configuration {
+    return proto3.util.conforms(Configuration, value);
+  }
+
   static equals(a: Configuration | PlainMessage<Configuration> | undefined, b: Configuration | PlainMessage<Configuration> | undefined): boolean {
     return proto3.util.equals(Configuration, a, b);
   }

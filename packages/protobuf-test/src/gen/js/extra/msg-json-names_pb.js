@@ -35,3 +35,6 @@ export const JsonNamesMessage = proto3.makeMessageType(
   ],
 );
 
+JsonNamesMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(JsonNamesMessage, value);
+};

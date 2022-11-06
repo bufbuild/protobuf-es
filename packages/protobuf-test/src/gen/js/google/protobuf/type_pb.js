@@ -66,6 +66,9 @@ export const Type = proto3.makeMessageType(
   ],
 );
 
+Type.conforms = function conforms(value) {
+ return proto3.util.conforms(Type, value);
+};
 /**
  * A single field of a message type.
  *
@@ -87,6 +90,9 @@ export const Field = proto3.makeMessageType(
   ],
 );
 
+Field.conforms = function conforms(value) {
+ return proto3.util.conforms(Field, value);
+};
 /**
  * Basic field types.
  *
@@ -148,6 +154,9 @@ export const Enum = proto3.makeMessageType(
   ],
 );
 
+Enum.conforms = function conforms(value) {
+ return proto3.util.conforms(Enum, value);
+};
 /**
  * Enum value definition.
  *
@@ -162,6 +171,9 @@ export const EnumValue = proto3.makeMessageType(
   ],
 );
 
+EnumValue.conforms = function conforms(value) {
+ return proto3.util.conforms(EnumValue, value);
+};
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
@@ -176,3 +188,6 @@ export const Option = proto3.makeMessageType(
   ],
 );
 
+Option.conforms = function conforms(value) {
+ return proto3.util.conforms(Option, value);
+};

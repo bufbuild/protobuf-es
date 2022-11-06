@@ -75,6 +75,9 @@ export const EnumMessage = proto3.makeMessageType(
   [],
 );
 
+EnumMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(EnumMessage, value);
+};
 /**
  * @generated from enum spec.EnumMessage.NestedEnum
  */

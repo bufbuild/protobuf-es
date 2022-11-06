@@ -112,6 +112,10 @@ export class User extends Message<User> {
     return new User().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is User {
+    return proto3.util.conforms(User, value);
+  }
+
   static equals(a: User | PlainMessage<User> | undefined, b: User | PlainMessage<User> | undefined): boolean {
     return proto3.util.equals(User, a, b);
   }
@@ -167,6 +171,10 @@ export class OrganizationUser extends Message<OrganizationUser> {
     return new OrganizationUser().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OrganizationUser {
+    return proto3.util.conforms(OrganizationUser, value);
+  }
+
   static equals(a: OrganizationUser | PlainMessage<OrganizationUser> | undefined, b: OrganizationUser | PlainMessage<OrganizationUser> | undefined): boolean {
     return proto3.util.equals(OrganizationUser, a, b);
   }
@@ -202,6 +210,10 @@ export class CreateUserRequest extends Message<CreateUserRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateUserRequest {
     return new CreateUserRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateUserRequest {
+    return proto3.util.conforms(CreateUserRequest, value);
   }
 
   static equals(a: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined, b: CreateUserRequest | PlainMessage<CreateUserRequest> | undefined): boolean {
@@ -241,6 +253,10 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
     return new CreateUserResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateUserResponse {
+    return proto3.util.conforms(CreateUserResponse, value);
+  }
+
   static equals(a: CreateUserResponse | PlainMessage<CreateUserResponse> | undefined, b: CreateUserResponse | PlainMessage<CreateUserResponse> | undefined): boolean {
     return proto3.util.equals(CreateUserResponse, a, b);
   }
@@ -276,6 +292,10 @@ export class GetUserRequest extends Message<GetUserRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserRequest {
     return new GetUserRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetUserRequest {
+    return proto3.util.conforms(GetUserRequest, value);
   }
 
   static equals(a: GetUserRequest | PlainMessage<GetUserRequest> | undefined, b: GetUserRequest | PlainMessage<GetUserRequest> | undefined): boolean {
@@ -315,6 +335,10 @@ export class GetUserResponse extends Message<GetUserResponse> {
     return new GetUserResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetUserResponse {
+    return proto3.util.conforms(GetUserResponse, value);
+  }
+
   static equals(a: GetUserResponse | PlainMessage<GetUserResponse> | undefined, b: GetUserResponse | PlainMessage<GetUserResponse> | undefined): boolean {
     return proto3.util.equals(GetUserResponse, a, b);
   }
@@ -352,6 +376,10 @@ export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> 
     return new GetUserByUsernameRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetUserByUsernameRequest {
+    return proto3.util.conforms(GetUserByUsernameRequest, value);
+  }
+
   static equals(a: GetUserByUsernameRequest | PlainMessage<GetUserByUsernameRequest> | undefined, b: GetUserByUsernameRequest | PlainMessage<GetUserByUsernameRequest> | undefined): boolean {
     return proto3.util.equals(GetUserByUsernameRequest, a, b);
   }
@@ -387,6 +415,10 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetUserByUsernameResponse {
     return new GetUserByUsernameResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetUserByUsernameResponse {
+    return proto3.util.conforms(GetUserByUsernameResponse, value);
   }
 
   static equals(a: GetUserByUsernameResponse | PlainMessage<GetUserByUsernameResponse> | undefined, b: GetUserByUsernameResponse | PlainMessage<GetUserByUsernameResponse> | undefined): boolean {
@@ -448,6 +480,10 @@ export class ListUsersRequest extends Message<ListUsersRequest> {
     return new ListUsersRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListUsersRequest {
+    return proto3.util.conforms(ListUsersRequest, value);
+  }
+
   static equals(a: ListUsersRequest | PlainMessage<ListUsersRequest> | undefined, b: ListUsersRequest | PlainMessage<ListUsersRequest> | undefined): boolean {
     return proto3.util.equals(ListUsersRequest, a, b);
   }
@@ -491,6 +527,10 @@ export class ListUsersResponse extends Message<ListUsersResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListUsersResponse {
     return new ListUsersResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListUsersResponse {
+    return proto3.util.conforms(ListUsersResponse, value);
   }
 
   static equals(a: ListUsersResponse | PlainMessage<ListUsersResponse> | undefined, b: ListUsersResponse | PlainMessage<ListUsersResponse> | undefined): boolean {
@@ -550,6 +590,10 @@ export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersR
     return new ListOrganizationUsersRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationUsersRequest {
+    return proto3.util.conforms(ListOrganizationUsersRequest, value);
+  }
+
   static equals(a: ListOrganizationUsersRequest | PlainMessage<ListOrganizationUsersRequest> | undefined, b: ListOrganizationUsersRequest | PlainMessage<ListOrganizationUsersRequest> | undefined): boolean {
     return proto3.util.equals(ListOrganizationUsersRequest, a, b);
   }
@@ -595,6 +639,10 @@ export class ListOrganizationUsersResponse extends Message<ListOrganizationUsers
     return new ListOrganizationUsersResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListOrganizationUsersResponse {
+    return proto3.util.conforms(ListOrganizationUsersResponse, value);
+  }
+
   static equals(a: ListOrganizationUsersResponse | PlainMessage<ListOrganizationUsersResponse> | undefined, b: ListOrganizationUsersResponse | PlainMessage<ListOrganizationUsersResponse> | undefined): boolean {
     return proto3.util.equals(ListOrganizationUsersResponse, a, b);
   }
@@ -626,6 +674,10 @@ export class DeleteUserRequest extends Message<DeleteUserRequest> {
     return new DeleteUserRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeleteUserRequest {
+    return proto3.util.conforms(DeleteUserRequest, value);
+  }
+
   static equals(a: DeleteUserRequest | PlainMessage<DeleteUserRequest> | undefined, b: DeleteUserRequest | PlainMessage<DeleteUserRequest> | undefined): boolean {
     return proto3.util.equals(DeleteUserRequest, a, b);
   }
@@ -655,6 +707,10 @@ export class DeleteUserResponse extends Message<DeleteUserResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteUserResponse {
     return new DeleteUserResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeleteUserResponse {
+    return proto3.util.conforms(DeleteUserResponse, value);
   }
 
   static equals(a: DeleteUserResponse | PlainMessage<DeleteUserResponse> | undefined, b: DeleteUserResponse | PlainMessage<DeleteUserResponse> | undefined): boolean {
@@ -694,6 +750,10 @@ export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
     return new DeactivateUserRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DeactivateUserRequest {
+    return proto3.util.conforms(DeactivateUserRequest, value);
+  }
+
   static equals(a: DeactivateUserRequest | PlainMessage<DeactivateUserRequest> | undefined, b: DeactivateUserRequest | PlainMessage<DeactivateUserRequest> | undefined): boolean {
     return proto3.util.equals(DeactivateUserRequest, a, b);
   }
@@ -723,6 +783,10 @@ export class DeactivateUserResponse extends Message<DeactivateUserResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeactivateUserResponse {
     return new DeactivateUserResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DeactivateUserResponse {
+    return proto3.util.conforms(DeactivateUserResponse, value);
   }
 
   static equals(a: DeactivateUserResponse | PlainMessage<DeactivateUserResponse> | undefined, b: DeactivateUserResponse | PlainMessage<DeactivateUserResponse> | undefined): boolean {
@@ -772,6 +836,10 @@ export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleReq
     return new UpdateUserServerRoleRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UpdateUserServerRoleRequest {
+    return proto3.util.conforms(UpdateUserServerRoleRequest, value);
+  }
+
   static equals(a: UpdateUserServerRoleRequest | PlainMessage<UpdateUserServerRoleRequest> | undefined, b: UpdateUserServerRoleRequest | PlainMessage<UpdateUserServerRoleRequest> | undefined): boolean {
     return proto3.util.equals(UpdateUserServerRoleRequest, a, b);
   }
@@ -801,6 +869,10 @@ export class UpdateUserServerRoleResponse extends Message<UpdateUserServerRoleRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateUserServerRoleResponse {
     return new UpdateUserServerRoleResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UpdateUserServerRoleResponse {
+    return proto3.util.conforms(UpdateUserServerRoleResponse, value);
   }
 
   static equals(a: UpdateUserServerRoleResponse | PlainMessage<UpdateUserServerRoleResponse> | undefined, b: UpdateUserServerRoleResponse | PlainMessage<UpdateUserServerRoleResponse> | undefined): boolean {
@@ -842,6 +914,10 @@ export class CountUsersRequest extends Message<CountUsersRequest> {
     return new CountUsersRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CountUsersRequest {
+    return proto3.util.conforms(CountUsersRequest, value);
+  }
+
   static equals(a: CountUsersRequest | PlainMessage<CountUsersRequest> | undefined, b: CountUsersRequest | PlainMessage<CountUsersRequest> | undefined): boolean {
     return proto3.util.equals(CountUsersRequest, a, b);
   }
@@ -877,6 +953,10 @@ export class CountUsersResponse extends Message<CountUsersResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CountUsersResponse {
     return new CountUsersResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CountUsersResponse {
+    return proto3.util.conforms(CountUsersResponse, value);
   }
 
   static equals(a: CountUsersResponse | PlainMessage<CountUsersResponse> | undefined, b: CountUsersResponse | PlainMessage<CountUsersResponse> | undefined): boolean {

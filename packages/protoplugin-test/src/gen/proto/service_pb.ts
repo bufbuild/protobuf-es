@@ -114,6 +114,10 @@ export class MessageWithOptions extends Message<MessageWithOptions> {
     return new MessageWithOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MessageWithOptions {
+    return proto3.util.conforms(MessageWithOptions, value);
+  }
+
   static equals(a: MessageWithOptions | PlainMessage<MessageWithOptions> | undefined, b: MessageWithOptions | PlainMessage<MessageWithOptions> | undefined): boolean {
     return proto3.util.equals(MessageWithOptions, a, b);
   }
@@ -145,6 +149,10 @@ export class GetRequest extends Message<GetRequest> {
     return new GetRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetRequest {
+    return proto3.util.conforms(GetRequest, value);
+  }
+
   static equals(a: GetRequest | PlainMessage<GetRequest> | undefined, b: GetRequest | PlainMessage<GetRequest> | undefined): boolean {
     return proto3.util.equals(GetRequest, a, b);
   }
@@ -174,6 +182,10 @@ export class GetResponse extends Message<GetResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetResponse {
     return new GetResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetResponse {
+    return proto3.util.conforms(GetResponse, value);
   }
 
   static equals(a: GetResponse | PlainMessage<GetResponse> | undefined, b: GetResponse | PlainMessage<GetResponse> | undefined): boolean {

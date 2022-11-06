@@ -93,6 +93,8 @@ export declare class Version extends Message<Version> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Version;
 
+  static conforms(value: any): value is Version;
+
   static equals(a: Version | PlainMessage<Version> | undefined, b: Version | PlainMessage<Version> | undefined): boolean;
 }
 
@@ -157,6 +159,8 @@ export declare class CodeGeneratorRequest extends Message<CodeGeneratorRequest> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CodeGeneratorRequest;
 
+  static conforms(value: any): value is CodeGeneratorRequest;
+
   static equals(a: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined, b: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined): boolean;
 }
 
@@ -204,6 +208,8 @@ export declare class CodeGeneratorResponse extends Message<CodeGeneratorResponse
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CodeGeneratorResponse;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CodeGeneratorResponse;
+
+  static conforms(value: any): value is CodeGeneratorResponse;
 
   static equals(a: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined, b: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined): boolean;
 }
@@ -318,6 +324,8 @@ export declare class CodeGeneratorResponse_File extends Message<CodeGeneratorRes
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CodeGeneratorResponse_File;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CodeGeneratorResponse_File;
+
+  static conforms(value: any): value is CodeGeneratorResponse_File;
 
   static equals(a: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined, b: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined): boolean;
 }

@@ -62,6 +62,8 @@ export declare class SourceContext extends Message<SourceContext> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceContext;
 
+  static conforms(value: any): value is SourceContext;
+
   static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean;
 }
 

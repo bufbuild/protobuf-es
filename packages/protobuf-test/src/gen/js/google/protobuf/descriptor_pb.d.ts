@@ -67,6 +67,8 @@ export declare class FileDescriptorSet extends Message<FileDescriptorSet> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileDescriptorSet;
 
+  static conforms(value: any): value is FileDescriptorSet;
+
   static equals(a: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined, b: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined): boolean;
 }
 
@@ -169,6 +171,8 @@ export declare class FileDescriptorProto extends Message<FileDescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileDescriptorProto;
 
+  static conforms(value: any): value is FileDescriptorProto;
+
   static equals(a: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined, b: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined): boolean;
 }
 
@@ -243,6 +247,8 @@ export declare class DescriptorProto extends Message<DescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DescriptorProto;
 
+  static conforms(value: any): value is DescriptorProto;
+
   static equals(a: DescriptorProto | PlainMessage<DescriptorProto> | undefined, b: DescriptorProto | PlainMessage<DescriptorProto> | undefined): boolean;
 }
 
@@ -281,6 +287,8 @@ export declare class DescriptorProto_ExtensionRange extends Message<DescriptorPr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DescriptorProto_ExtensionRange;
 
+  static conforms(value: any): value is DescriptorProto_ExtensionRange;
+
   static equals(a: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined, b: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined): boolean;
 }
 
@@ -318,6 +326,8 @@ export declare class DescriptorProto_ReservedRange extends Message<DescriptorPro
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DescriptorProto_ReservedRange;
 
+  static conforms(value: any): value is DescriptorProto_ReservedRange;
+
   static equals(a: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined, b: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined): boolean;
 }
 
@@ -343,6 +353,8 @@ export declare class ExtensionRangeOptions extends Message<ExtensionRangeOptions
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtensionRangeOptions;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionRangeOptions;
+
+  static conforms(value: any): value is ExtensionRangeOptions;
 
   static equals(a: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined, b: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined): boolean;
 }
@@ -466,6 +478,8 @@ export declare class FieldDescriptorProto extends Message<FieldDescriptorProto> 
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldDescriptorProto;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldDescriptorProto;
+
+  static conforms(value: any): value is FieldDescriptorProto;
 
   static equals(a: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined, b: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined): boolean;
 }
@@ -637,6 +651,8 @@ export declare class OneofDescriptorProto extends Message<OneofDescriptorProto> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofDescriptorProto;
 
+  static conforms(value: any): value is OneofDescriptorProto;
+
   static equals(a: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined, b: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined): boolean;
 }
 
@@ -690,6 +706,8 @@ export declare class EnumDescriptorProto extends Message<EnumDescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumDescriptorProto;
 
+  static conforms(value: any): value is EnumDescriptorProto;
+
   static equals(a: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined, b: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined): boolean;
 }
 
@@ -730,6 +748,8 @@ export declare class EnumDescriptorProto_EnumReservedRange extends Message<EnumD
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumDescriptorProto_EnumReservedRange;
 
+  static conforms(value: any): value is EnumDescriptorProto_EnumReservedRange;
+
   static equals(a: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined, b: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined): boolean;
 }
 
@@ -766,6 +786,8 @@ export declare class EnumValueDescriptorProto extends Message<EnumValueDescripto
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValueDescriptorProto;
 
+  static conforms(value: any): value is EnumValueDescriptorProto;
+
   static equals(a: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined, b: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined): boolean;
 }
 
@@ -801,6 +823,8 @@ export declare class ServiceDescriptorProto extends Message<ServiceDescriptorPro
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ServiceDescriptorProto;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServiceDescriptorProto;
+
+  static conforms(value: any): value is ServiceDescriptorProto;
 
   static equals(a: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined, b: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined): boolean;
 }
@@ -859,6 +883,8 @@ export declare class MethodDescriptorProto extends Message<MethodDescriptorProto
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MethodDescriptorProto;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodDescriptorProto;
+
+  static conforms(value: any): value is MethodDescriptorProto;
 
   static equals(a: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined, b: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined): boolean;
 }
@@ -1065,6 +1091,8 @@ export declare class FileOptions extends Message<FileOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileOptions;
 
+  static conforms(value: any): value is FileOptions;
+
   static equals(a: FileOptions | PlainMessage<FileOptions> | undefined, b: FileOptions | PlainMessage<FileOptions> | undefined): boolean;
 }
 
@@ -1190,6 +1218,8 @@ export declare class MessageOptions extends Message<MessageOptions> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageOptions;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageOptions;
+
+  static conforms(value: any): value is MessageOptions;
 
   static equals(a: MessageOptions | PlainMessage<MessageOptions> | undefined, b: MessageOptions | PlainMessage<MessageOptions> | undefined): boolean;
 }
@@ -1321,6 +1351,8 @@ export declare class FieldOptions extends Message<FieldOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldOptions;
 
+  static conforms(value: any): value is FieldOptions;
+
   static equals(a: FieldOptions | PlainMessage<FieldOptions> | undefined, b: FieldOptions | PlainMessage<FieldOptions> | undefined): boolean;
 }
 
@@ -1395,6 +1427,8 @@ export declare class OneofOptions extends Message<OneofOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofOptions;
 
+  static conforms(value: any): value is OneofOptions;
+
   static equals(a: OneofOptions | PlainMessage<OneofOptions> | undefined, b: OneofOptions | PlainMessage<OneofOptions> | undefined): boolean;
 }
 
@@ -1439,6 +1473,8 @@ export declare class EnumOptions extends Message<EnumOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOptions;
 
+  static conforms(value: any): value is EnumOptions;
+
   static equals(a: EnumOptions | PlainMessage<EnumOptions> | undefined, b: EnumOptions | PlainMessage<EnumOptions> | undefined): boolean;
 }
 
@@ -1475,6 +1511,8 @@ export declare class EnumValueOptions extends Message<EnumValueOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValueOptions;
 
+  static conforms(value: any): value is EnumValueOptions;
+
   static equals(a: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined, b: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined): boolean;
 }
 
@@ -1510,6 +1548,8 @@ export declare class ServiceOptions extends Message<ServiceOptions> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ServiceOptions;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServiceOptions;
+
+  static conforms(value: any): value is ServiceOptions;
 
   static equals(a: ServiceOptions | PlainMessage<ServiceOptions> | undefined, b: ServiceOptions | PlainMessage<ServiceOptions> | undefined): boolean;
 }
@@ -1551,6 +1591,8 @@ export declare class MethodOptions extends Message<MethodOptions> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MethodOptions;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodOptions;
+
+  static conforms(value: any): value is MethodOptions;
 
   static equals(a: MethodOptions | PlainMessage<MethodOptions> | undefined, b: MethodOptions | PlainMessage<MethodOptions> | undefined): boolean;
 }
@@ -1644,6 +1686,8 @@ export declare class UninterpretedOption extends Message<UninterpretedOption> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UninterpretedOption;
 
+  static conforms(value: any): value is UninterpretedOption;
+
   static equals(a: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined, b: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined): boolean;
 }
 
@@ -1678,6 +1722,8 @@ export declare class UninterpretedOption_NamePart extends Message<UninterpretedO
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UninterpretedOption_NamePart;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UninterpretedOption_NamePart;
+
+  static conforms(value: any): value is UninterpretedOption_NamePart;
 
   static equals(a: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined, b: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined): boolean;
 }
@@ -1749,6 +1795,8 @@ export declare class SourceCodeInfo extends Message<SourceCodeInfo> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SourceCodeInfo;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceCodeInfo;
+
+  static conforms(value: any): value is SourceCodeInfo;
 
   static equals(a: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined, b: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined): boolean;
 }
@@ -1872,6 +1920,8 @@ export declare class SourceCodeInfo_Location extends Message<SourceCodeInfo_Loca
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceCodeInfo_Location;
 
+  static conforms(value: any): value is SourceCodeInfo_Location;
+
   static equals(a: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined, b: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined): boolean;
 }
 
@@ -1902,6 +1952,8 @@ export declare class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GeneratedCodeInfo;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeneratedCodeInfo;
+
+  static conforms(value: any): value is GeneratedCodeInfo;
 
   static equals(a: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined, b: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined): boolean;
 }
@@ -1953,6 +2005,8 @@ export declare class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeI
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GeneratedCodeInfo_Annotation;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeneratedCodeInfo_Annotation;
+
+  static conforms(value: any): value is GeneratedCodeInfo_Annotation;
 
   static equals(a: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined, b: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined): boolean;
 }

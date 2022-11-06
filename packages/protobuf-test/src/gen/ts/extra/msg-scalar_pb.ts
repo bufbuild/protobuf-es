@@ -135,6 +135,10 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
     return new ScalarValuesMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ScalarValuesMessage {
+    return proto3.util.conforms(ScalarValuesMessage, value);
+  }
+
   static equals(a: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined, b: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined): boolean {
     return proto3.util.equals(ScalarValuesMessage, a, b);
   }
@@ -254,6 +258,10 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedScalarValuesMessage {
     return new RepeatedScalarValuesMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RepeatedScalarValuesMessage {
+    return proto3.util.conforms(RepeatedScalarValuesMessage, value);
   }
 
   static equals(a: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined, b: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined): boolean {

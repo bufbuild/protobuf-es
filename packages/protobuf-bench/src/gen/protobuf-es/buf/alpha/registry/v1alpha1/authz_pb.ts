@@ -55,6 +55,10 @@ export class UserCanCreateOrganizationRepositoryRequest extends Message<UserCanC
     return new UserCanCreateOrganizationRepositoryRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanCreateOrganizationRepositoryRequest {
+    return proto3.util.conforms(UserCanCreateOrganizationRepositoryRequest, value);
+  }
+
   static equals(a: UserCanCreateOrganizationRepositoryRequest | PlainMessage<UserCanCreateOrganizationRepositoryRequest> | undefined, b: UserCanCreateOrganizationRepositoryRequest | PlainMessage<UserCanCreateOrganizationRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationRepositoryRequest, a, b);
   }
@@ -90,6 +94,10 @@ export class UserCanCreateOrganizationRepositoryResponse extends Message<UserCan
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanCreateOrganizationRepositoryResponse {
     return new UserCanCreateOrganizationRepositoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanCreateOrganizationRepositoryResponse {
+    return proto3.util.conforms(UserCanCreateOrganizationRepositoryResponse, value);
   }
 
   static equals(a: UserCanCreateOrganizationRepositoryResponse | PlainMessage<UserCanCreateOrganizationRepositoryResponse> | undefined, b: UserCanCreateOrganizationRepositoryResponse | PlainMessage<UserCanCreateOrganizationRepositoryResponse> | undefined): boolean {
@@ -132,6 +140,10 @@ export class UserCanSeeRepositorySettingsRequest extends Message<UserCanSeeRepos
     return new UserCanSeeRepositorySettingsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanSeeRepositorySettingsRequest {
+    return proto3.util.conforms(UserCanSeeRepositorySettingsRequest, value);
+  }
+
   static equals(a: UserCanSeeRepositorySettingsRequest | PlainMessage<UserCanSeeRepositorySettingsRequest> | undefined, b: UserCanSeeRepositorySettingsRequest | PlainMessage<UserCanSeeRepositorySettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeRepositorySettingsRequest, a, b);
   }
@@ -167,6 +179,10 @@ export class UserCanSeeRepositorySettingsResponse extends Message<UserCanSeeRepo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeeRepositorySettingsResponse {
     return new UserCanSeeRepositorySettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeeRepositorySettingsResponse {
+    return proto3.util.conforms(UserCanSeeRepositorySettingsResponse, value);
   }
 
   static equals(a: UserCanSeeRepositorySettingsResponse | PlainMessage<UserCanSeeRepositorySettingsResponse> | undefined, b: UserCanSeeRepositorySettingsResponse | PlainMessage<UserCanSeeRepositorySettingsResponse> | undefined): boolean {
@@ -209,6 +225,10 @@ export class UserCanSeeOrganizationSettingsRequest extends Message<UserCanSeeOrg
     return new UserCanSeeOrganizationSettingsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanSeeOrganizationSettingsRequest {
+    return proto3.util.conforms(UserCanSeeOrganizationSettingsRequest, value);
+  }
+
   static equals(a: UserCanSeeOrganizationSettingsRequest | PlainMessage<UserCanSeeOrganizationSettingsRequest> | undefined, b: UserCanSeeOrganizationSettingsRequest | PlainMessage<UserCanSeeOrganizationSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeOrganizationSettingsRequest, a, b);
   }
@@ -244,6 +264,10 @@ export class UserCanSeeOrganizationSettingsResponse extends Message<UserCanSeeOr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeeOrganizationSettingsResponse {
     return new UserCanSeeOrganizationSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeeOrganizationSettingsResponse {
+    return proto3.util.conforms(UserCanSeeOrganizationSettingsResponse, value);
   }
 
   static equals(a: UserCanSeeOrganizationSettingsResponse | PlainMessage<UserCanSeeOrganizationSettingsResponse> | undefined, b: UserCanSeeOrganizationSettingsResponse | PlainMessage<UserCanSeeOrganizationSettingsResponse> | undefined): boolean {
@@ -293,6 +317,10 @@ export class UserCanReadPluginRequest extends Message<UserCanReadPluginRequest> 
     return new UserCanReadPluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanReadPluginRequest {
+    return proto3.util.conforms(UserCanReadPluginRequest, value);
+  }
+
   static equals(a: UserCanReadPluginRequest | PlainMessage<UserCanReadPluginRequest> | undefined, b: UserCanReadPluginRequest | PlainMessage<UserCanReadPluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanReadPluginRequest, a, b);
   }
@@ -328,6 +356,10 @@ export class UserCanReadPluginResponse extends Message<UserCanReadPluginResponse
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanReadPluginResponse {
     return new UserCanReadPluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanReadPluginResponse {
+    return proto3.util.conforms(UserCanReadPluginResponse, value);
   }
 
   static equals(a: UserCanReadPluginResponse | PlainMessage<UserCanReadPluginResponse> | undefined, b: UserCanReadPluginResponse | PlainMessage<UserCanReadPluginResponse> | undefined): boolean {
@@ -377,6 +409,10 @@ export class UserCanCreatePluginVersionRequest extends Message<UserCanCreatePlug
     return new UserCanCreatePluginVersionRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanCreatePluginVersionRequest {
+    return proto3.util.conforms(UserCanCreatePluginVersionRequest, value);
+  }
+
   static equals(a: UserCanCreatePluginVersionRequest | PlainMessage<UserCanCreatePluginVersionRequest> | undefined, b: UserCanCreatePluginVersionRequest | PlainMessage<UserCanCreatePluginVersionRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreatePluginVersionRequest, a, b);
   }
@@ -412,6 +448,10 @@ export class UserCanCreatePluginVersionResponse extends Message<UserCanCreatePlu
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanCreatePluginVersionResponse {
     return new UserCanCreatePluginVersionResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanCreatePluginVersionResponse {
+    return proto3.util.conforms(UserCanCreatePluginVersionResponse, value);
   }
 
   static equals(a: UserCanCreatePluginVersionResponse | PlainMessage<UserCanCreatePluginVersionResponse> | undefined, b: UserCanCreatePluginVersionResponse | PlainMessage<UserCanCreatePluginVersionResponse> | undefined): boolean {
@@ -461,6 +501,10 @@ export class UserCanCreateTemplateVersionRequest extends Message<UserCanCreateTe
     return new UserCanCreateTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanCreateTemplateVersionRequest {
+    return proto3.util.conforms(UserCanCreateTemplateVersionRequest, value);
+  }
+
   static equals(a: UserCanCreateTemplateVersionRequest | PlainMessage<UserCanCreateTemplateVersionRequest> | undefined, b: UserCanCreateTemplateVersionRequest | PlainMessage<UserCanCreateTemplateVersionRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateTemplateVersionRequest, a, b);
   }
@@ -496,6 +540,10 @@ export class UserCanCreateTemplateVersionResponse extends Message<UserCanCreateT
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanCreateTemplateVersionResponse {
     return new UserCanCreateTemplateVersionResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanCreateTemplateVersionResponse {
+    return proto3.util.conforms(UserCanCreateTemplateVersionResponse, value);
   }
 
   static equals(a: UserCanCreateTemplateVersionResponse | PlainMessage<UserCanCreateTemplateVersionResponse> | undefined, b: UserCanCreateTemplateVersionResponse | PlainMessage<UserCanCreateTemplateVersionResponse> | undefined): boolean {
@@ -538,6 +586,10 @@ export class UserCanCreateOrganizationPluginRequest extends Message<UserCanCreat
     return new UserCanCreateOrganizationPluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanCreateOrganizationPluginRequest {
+    return proto3.util.conforms(UserCanCreateOrganizationPluginRequest, value);
+  }
+
   static equals(a: UserCanCreateOrganizationPluginRequest | PlainMessage<UserCanCreateOrganizationPluginRequest> | undefined, b: UserCanCreateOrganizationPluginRequest | PlainMessage<UserCanCreateOrganizationPluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationPluginRequest, a, b);
   }
@@ -573,6 +625,10 @@ export class UserCanCreateOrganizationPluginResponse extends Message<UserCanCrea
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanCreateOrganizationPluginResponse {
     return new UserCanCreateOrganizationPluginResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanCreateOrganizationPluginResponse {
+    return proto3.util.conforms(UserCanCreateOrganizationPluginResponse, value);
   }
 
   static equals(a: UserCanCreateOrganizationPluginResponse | PlainMessage<UserCanCreateOrganizationPluginResponse> | undefined, b: UserCanCreateOrganizationPluginResponse | PlainMessage<UserCanCreateOrganizationPluginResponse> | undefined): boolean {
@@ -615,6 +671,10 @@ export class UserCanCreateOrganizationTemplateRequest extends Message<UserCanCre
     return new UserCanCreateOrganizationTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanCreateOrganizationTemplateRequest {
+    return proto3.util.conforms(UserCanCreateOrganizationTemplateRequest, value);
+  }
+
   static equals(a: UserCanCreateOrganizationTemplateRequest | PlainMessage<UserCanCreateOrganizationTemplateRequest> | undefined, b: UserCanCreateOrganizationTemplateRequest | PlainMessage<UserCanCreateOrganizationTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UserCanCreateOrganizationTemplateRequest, a, b);
   }
@@ -650,6 +710,10 @@ export class UserCanCreateOrganizationTemplateResponse extends Message<UserCanCr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanCreateOrganizationTemplateResponse {
     return new UserCanCreateOrganizationTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanCreateOrganizationTemplateResponse {
+    return proto3.util.conforms(UserCanCreateOrganizationTemplateResponse, value);
   }
 
   static equals(a: UserCanCreateOrganizationTemplateResponse | PlainMessage<UserCanCreateOrganizationTemplateResponse> | undefined, b: UserCanCreateOrganizationTemplateResponse | PlainMessage<UserCanCreateOrganizationTemplateResponse> | undefined): boolean {
@@ -699,6 +763,10 @@ export class UserCanSeePluginSettingsRequest extends Message<UserCanSeePluginSet
     return new UserCanSeePluginSettingsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanSeePluginSettingsRequest {
+    return proto3.util.conforms(UserCanSeePluginSettingsRequest, value);
+  }
+
   static equals(a: UserCanSeePluginSettingsRequest | PlainMessage<UserCanSeePluginSettingsRequest> | undefined, b: UserCanSeePluginSettingsRequest | PlainMessage<UserCanSeePluginSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeePluginSettingsRequest, a, b);
   }
@@ -734,6 +802,10 @@ export class UserCanSeePluginSettingsResponse extends Message<UserCanSeePluginSe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeePluginSettingsResponse {
     return new UserCanSeePluginSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeePluginSettingsResponse {
+    return proto3.util.conforms(UserCanSeePluginSettingsResponse, value);
   }
 
   static equals(a: UserCanSeePluginSettingsResponse | PlainMessage<UserCanSeePluginSettingsResponse> | undefined, b: UserCanSeePluginSettingsResponse | PlainMessage<UserCanSeePluginSettingsResponse> | undefined): boolean {
@@ -783,6 +855,10 @@ export class UserCanSeeTemplateSettingsRequest extends Message<UserCanSeeTemplat
     return new UserCanSeeTemplateSettingsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanSeeTemplateSettingsRequest {
+    return proto3.util.conforms(UserCanSeeTemplateSettingsRequest, value);
+  }
+
   static equals(a: UserCanSeeTemplateSettingsRequest | PlainMessage<UserCanSeeTemplateSettingsRequest> | undefined, b: UserCanSeeTemplateSettingsRequest | PlainMessage<UserCanSeeTemplateSettingsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanSeeTemplateSettingsRequest, a, b);
   }
@@ -818,6 +894,10 @@ export class UserCanSeeTemplateSettingsResponse extends Message<UserCanSeeTempla
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeeTemplateSettingsResponse {
     return new UserCanSeeTemplateSettingsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeeTemplateSettingsResponse {
+    return proto3.util.conforms(UserCanSeeTemplateSettingsResponse, value);
   }
 
   static equals(a: UserCanSeeTemplateSettingsResponse | PlainMessage<UserCanSeeTemplateSettingsResponse> | undefined, b: UserCanSeeTemplateSettingsResponse | PlainMessage<UserCanSeeTemplateSettingsResponse> | undefined): boolean {
@@ -860,6 +940,10 @@ export class UserCanAddOrganizationMemberRequest extends Message<UserCanAddOrgan
     return new UserCanAddOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanAddOrganizationMemberRequest {
+    return proto3.util.conforms(UserCanAddOrganizationMemberRequest, value);
+  }
+
   static equals(a: UserCanAddOrganizationMemberRequest | PlainMessage<UserCanAddOrganizationMemberRequest> | undefined, b: UserCanAddOrganizationMemberRequest | PlainMessage<UserCanAddOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanAddOrganizationMemberRequest, a, b);
   }
@@ -898,6 +982,10 @@ export class UserCanAddOrganizationMemberResponse extends Message<UserCanAddOrga
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanAddOrganizationMemberResponse {
     return new UserCanAddOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanAddOrganizationMemberResponse {
+    return proto3.util.conforms(UserCanAddOrganizationMemberResponse, value);
   }
 
   static equals(a: UserCanAddOrganizationMemberResponse | PlainMessage<UserCanAddOrganizationMemberResponse> | undefined, b: UserCanAddOrganizationMemberResponse | PlainMessage<UserCanAddOrganizationMemberResponse> | undefined): boolean {
@@ -940,6 +1028,10 @@ export class UserCanUpdateOrganizationMemberRequest extends Message<UserCanUpdat
     return new UserCanUpdateOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanUpdateOrganizationMemberRequest {
+    return proto3.util.conforms(UserCanUpdateOrganizationMemberRequest, value);
+  }
+
   static equals(a: UserCanUpdateOrganizationMemberRequest | PlainMessage<UserCanUpdateOrganizationMemberRequest> | undefined, b: UserCanUpdateOrganizationMemberRequest | PlainMessage<UserCanUpdateOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanUpdateOrganizationMemberRequest, a, b);
   }
@@ -978,6 +1070,10 @@ export class UserCanUpdateOrganizationMemberResponse extends Message<UserCanUpda
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanUpdateOrganizationMemberResponse {
     return new UserCanUpdateOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanUpdateOrganizationMemberResponse {
+    return proto3.util.conforms(UserCanUpdateOrganizationMemberResponse, value);
   }
 
   static equals(a: UserCanUpdateOrganizationMemberResponse | PlainMessage<UserCanUpdateOrganizationMemberResponse> | undefined, b: UserCanUpdateOrganizationMemberResponse | PlainMessage<UserCanUpdateOrganizationMemberResponse> | undefined): boolean {
@@ -1020,6 +1116,10 @@ export class UserCanRemoveOrganizationMemberRequest extends Message<UserCanRemov
     return new UserCanRemoveOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanRemoveOrganizationMemberRequest {
+    return proto3.util.conforms(UserCanRemoveOrganizationMemberRequest, value);
+  }
+
   static equals(a: UserCanRemoveOrganizationMemberRequest | PlainMessage<UserCanRemoveOrganizationMemberRequest> | undefined, b: UserCanRemoveOrganizationMemberRequest | PlainMessage<UserCanRemoveOrganizationMemberRequest> | undefined): boolean {
     return proto3.util.equals(UserCanRemoveOrganizationMemberRequest, a, b);
   }
@@ -1058,6 +1158,10 @@ export class UserCanRemoveOrganizationMemberResponse extends Message<UserCanRemo
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanRemoveOrganizationMemberResponse {
     return new UserCanRemoveOrganizationMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanRemoveOrganizationMemberResponse {
+    return proto3.util.conforms(UserCanRemoveOrganizationMemberResponse, value);
   }
 
   static equals(a: UserCanRemoveOrganizationMemberResponse | PlainMessage<UserCanRemoveOrganizationMemberResponse> | undefined, b: UserCanRemoveOrganizationMemberResponse | PlainMessage<UserCanRemoveOrganizationMemberResponse> | undefined): boolean {
@@ -1100,6 +1204,10 @@ export class UserCanDeleteOrganizationRequest extends Message<UserCanDeleteOrgan
     return new UserCanDeleteOrganizationRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeleteOrganizationRequest {
+    return proto3.util.conforms(UserCanDeleteOrganizationRequest, value);
+  }
+
   static equals(a: UserCanDeleteOrganizationRequest | PlainMessage<UserCanDeleteOrganizationRequest> | undefined, b: UserCanDeleteOrganizationRequest | PlainMessage<UserCanDeleteOrganizationRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteOrganizationRequest, a, b);
   }
@@ -1135,6 +1243,10 @@ export class UserCanDeleteOrganizationResponse extends Message<UserCanDeleteOrga
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanDeleteOrganizationResponse {
     return new UserCanDeleteOrganizationResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanDeleteOrganizationResponse {
+    return proto3.util.conforms(UserCanDeleteOrganizationResponse, value);
   }
 
   static equals(a: UserCanDeleteOrganizationResponse | PlainMessage<UserCanDeleteOrganizationResponse> | undefined, b: UserCanDeleteOrganizationResponse | PlainMessage<UserCanDeleteOrganizationResponse> | undefined): boolean {
@@ -1177,6 +1289,10 @@ export class UserCanDeleteRepositoryRequest extends Message<UserCanDeleteReposit
     return new UserCanDeleteRepositoryRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeleteRepositoryRequest {
+    return proto3.util.conforms(UserCanDeleteRepositoryRequest, value);
+  }
+
   static equals(a: UserCanDeleteRepositoryRequest | PlainMessage<UserCanDeleteRepositoryRequest> | undefined, b: UserCanDeleteRepositoryRequest | PlainMessage<UserCanDeleteRepositoryRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteRepositoryRequest, a, b);
   }
@@ -1212,6 +1328,10 @@ export class UserCanDeleteRepositoryResponse extends Message<UserCanDeleteReposi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanDeleteRepositoryResponse {
     return new UserCanDeleteRepositoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanDeleteRepositoryResponse {
+    return proto3.util.conforms(UserCanDeleteRepositoryResponse, value);
   }
 
   static equals(a: UserCanDeleteRepositoryResponse | PlainMessage<UserCanDeleteRepositoryResponse> | undefined, b: UserCanDeleteRepositoryResponse | PlainMessage<UserCanDeleteRepositoryResponse> | undefined): boolean {
@@ -1254,6 +1374,10 @@ export class UserCanDeleteTemplateRequest extends Message<UserCanDeleteTemplateR
     return new UserCanDeleteTemplateRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeleteTemplateRequest {
+    return proto3.util.conforms(UserCanDeleteTemplateRequest, value);
+  }
+
   static equals(a: UserCanDeleteTemplateRequest | PlainMessage<UserCanDeleteTemplateRequest> | undefined, b: UserCanDeleteTemplateRequest | PlainMessage<UserCanDeleteTemplateRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteTemplateRequest, a, b);
   }
@@ -1289,6 +1413,10 @@ export class UserCanDeleteTemplateResponse extends Message<UserCanDeleteTemplate
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanDeleteTemplateResponse {
     return new UserCanDeleteTemplateResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanDeleteTemplateResponse {
+    return proto3.util.conforms(UserCanDeleteTemplateResponse, value);
   }
 
   static equals(a: UserCanDeleteTemplateResponse | PlainMessage<UserCanDeleteTemplateResponse> | undefined, b: UserCanDeleteTemplateResponse | PlainMessage<UserCanDeleteTemplateResponse> | undefined): boolean {
@@ -1331,6 +1459,10 @@ export class UserCanDeletePluginRequest extends Message<UserCanDeletePluginReque
     return new UserCanDeletePluginRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeletePluginRequest {
+    return proto3.util.conforms(UserCanDeletePluginRequest, value);
+  }
+
   static equals(a: UserCanDeletePluginRequest | PlainMessage<UserCanDeletePluginRequest> | undefined, b: UserCanDeletePluginRequest | PlainMessage<UserCanDeletePluginRequest> | undefined): boolean {
     return proto3.util.equals(UserCanDeletePluginRequest, a, b);
   }
@@ -1368,6 +1500,10 @@ export class UserCanDeletePluginResponse extends Message<UserCanDeletePluginResp
     return new UserCanDeletePluginResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeletePluginResponse {
+    return proto3.util.conforms(UserCanDeletePluginResponse, value);
+  }
+
   static equals(a: UserCanDeletePluginResponse | PlainMessage<UserCanDeletePluginResponse> | undefined, b: UserCanDeletePluginResponse | PlainMessage<UserCanDeletePluginResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeletePluginResponse, a, b);
   }
@@ -1397,6 +1533,10 @@ export class UserCanDeleteUserRequest extends Message<UserCanDeleteUserRequest> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanDeleteUserRequest {
     return new UserCanDeleteUserRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanDeleteUserRequest {
+    return proto3.util.conforms(UserCanDeleteUserRequest, value);
   }
 
   static equals(a: UserCanDeleteUserRequest | PlainMessage<UserCanDeleteUserRequest> | undefined, b: UserCanDeleteUserRequest | PlainMessage<UserCanDeleteUserRequest> | undefined): boolean {
@@ -1436,6 +1576,10 @@ export class UserCanDeleteUserResponse extends Message<UserCanDeleteUserResponse
     return new UserCanDeleteUserResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanDeleteUserResponse {
+    return proto3.util.conforms(UserCanDeleteUserResponse, value);
+  }
+
   static equals(a: UserCanDeleteUserResponse | PlainMessage<UserCanDeleteUserResponse> | undefined, b: UserCanDeleteUserResponse | PlainMessage<UserCanDeleteUserResponse> | undefined): boolean {
     return proto3.util.equals(UserCanDeleteUserResponse, a, b);
   }
@@ -1465,6 +1609,10 @@ export class UserCanSeeServerAdminPanelRequest extends Message<UserCanSeeServerA
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeeServerAdminPanelRequest {
     return new UserCanSeeServerAdminPanelRequest().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeeServerAdminPanelRequest {
+    return proto3.util.conforms(UserCanSeeServerAdminPanelRequest, value);
   }
 
   static equals(a: UserCanSeeServerAdminPanelRequest | PlainMessage<UserCanSeeServerAdminPanelRequest> | undefined, b: UserCanSeeServerAdminPanelRequest | PlainMessage<UserCanSeeServerAdminPanelRequest> | undefined): boolean {
@@ -1502,6 +1650,10 @@ export class UserCanSeeServerAdminPanelResponse extends Message<UserCanSeeServer
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanSeeServerAdminPanelResponse {
     return new UserCanSeeServerAdminPanelResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanSeeServerAdminPanelResponse {
+    return proto3.util.conforms(UserCanSeeServerAdminPanelResponse, value);
   }
 
   static equals(a: UserCanSeeServerAdminPanelResponse | PlainMessage<UserCanSeeServerAdminPanelResponse> | undefined, b: UserCanSeeServerAdminPanelResponse | PlainMessage<UserCanSeeServerAdminPanelResponse> | undefined): boolean {
@@ -1544,6 +1696,10 @@ export class UserCanManageRepositoryContributorsRequest extends Message<UserCanM
     return new UserCanManageRepositoryContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanManageRepositoryContributorsRequest {
+    return proto3.util.conforms(UserCanManageRepositoryContributorsRequest, value);
+  }
+
   static equals(a: UserCanManageRepositoryContributorsRequest | PlainMessage<UserCanManageRepositoryContributorsRequest> | undefined, b: UserCanManageRepositoryContributorsRequest | PlainMessage<UserCanManageRepositoryContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManageRepositoryContributorsRequest, a, b);
   }
@@ -1582,6 +1738,10 @@ export class UserCanManageRepositoryContributorsResponse extends Message<UserCan
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanManageRepositoryContributorsResponse {
     return new UserCanManageRepositoryContributorsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanManageRepositoryContributorsResponse {
+    return proto3.util.conforms(UserCanManageRepositoryContributorsResponse, value);
   }
 
   static equals(a: UserCanManageRepositoryContributorsResponse | PlainMessage<UserCanManageRepositoryContributorsResponse> | undefined, b: UserCanManageRepositoryContributorsResponse | PlainMessage<UserCanManageRepositoryContributorsResponse> | undefined): boolean {
@@ -1624,6 +1784,10 @@ export class UserCanManagePluginContributorsRequest extends Message<UserCanManag
     return new UserCanManagePluginContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanManagePluginContributorsRequest {
+    return proto3.util.conforms(UserCanManagePluginContributorsRequest, value);
+  }
+
   static equals(a: UserCanManagePluginContributorsRequest | PlainMessage<UserCanManagePluginContributorsRequest> | undefined, b: UserCanManagePluginContributorsRequest | PlainMessage<UserCanManagePluginContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManagePluginContributorsRequest, a, b);
   }
@@ -1662,6 +1826,10 @@ export class UserCanManagePluginContributorsResponse extends Message<UserCanMana
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanManagePluginContributorsResponse {
     return new UserCanManagePluginContributorsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanManagePluginContributorsResponse {
+    return proto3.util.conforms(UserCanManagePluginContributorsResponse, value);
   }
 
   static equals(a: UserCanManagePluginContributorsResponse | PlainMessage<UserCanManagePluginContributorsResponse> | undefined, b: UserCanManagePluginContributorsResponse | PlainMessage<UserCanManagePluginContributorsResponse> | undefined): boolean {
@@ -1704,6 +1872,10 @@ export class UserCanManageTemplateContributorsRequest extends Message<UserCanMan
     return new UserCanManageTemplateContributorsRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserCanManageTemplateContributorsRequest {
+    return proto3.util.conforms(UserCanManageTemplateContributorsRequest, value);
+  }
+
   static equals(a: UserCanManageTemplateContributorsRequest | PlainMessage<UserCanManageTemplateContributorsRequest> | undefined, b: UserCanManageTemplateContributorsRequest | PlainMessage<UserCanManageTemplateContributorsRequest> | undefined): boolean {
     return proto3.util.equals(UserCanManageTemplateContributorsRequest, a, b);
   }
@@ -1742,6 +1914,10 @@ export class UserCanManageTemplateContributorsResponse extends Message<UserCanMa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserCanManageTemplateContributorsResponse {
     return new UserCanManageTemplateContributorsResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UserCanManageTemplateContributorsResponse {
+    return proto3.util.conforms(UserCanManageTemplateContributorsResponse, value);
   }
 
   static equals(a: UserCanManageTemplateContributorsResponse | PlainMessage<UserCanManageTemplateContributorsResponse> | undefined, b: UserCanManageTemplateContributorsResponse | PlainMessage<UserCanManageTemplateContributorsResponse> | undefined): boolean {

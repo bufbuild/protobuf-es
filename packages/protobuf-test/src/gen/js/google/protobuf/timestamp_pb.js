@@ -200,3 +200,6 @@ Timestamp.fromDate = function fromDate(date) {
   });
 };
 
+Timestamp.conforms = function conforms(value) {
+ return proto3.util.conforms(Timestamp, value);
+};

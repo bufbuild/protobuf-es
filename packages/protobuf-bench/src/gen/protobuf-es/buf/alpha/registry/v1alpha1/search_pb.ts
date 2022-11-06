@@ -132,6 +132,10 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
     return new RepositorySearchResult().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositorySearchResult {
+    return proto3.util.conforms(RepositorySearchResult, value);
+  }
+
   static equals(a: RepositorySearchResult | PlainMessage<RepositorySearchResult> | undefined, b: RepositorySearchResult | PlainMessage<RepositorySearchResult> | undefined): boolean {
     return proto3.util.equals(RepositorySearchResult, a, b);
   }
@@ -173,6 +177,10 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OrganizationSearchResult {
     return new OrganizationSearchResult().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is OrganizationSearchResult {
+    return proto3.util.conforms(OrganizationSearchResult, value);
   }
 
   static equals(a: OrganizationSearchResult | PlainMessage<OrganizationSearchResult> | undefined, b: OrganizationSearchResult | PlainMessage<OrganizationSearchResult> | undefined): boolean {
@@ -224,6 +232,10 @@ export class UserSearchResult extends Message<UserSearchResult> {
     return new UserSearchResult().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UserSearchResult {
+    return proto3.util.conforms(UserSearchResult, value);
+  }
+
   static equals(a: UserSearchResult | PlainMessage<UserSearchResult> | undefined, b: UserSearchResult | PlainMessage<UserSearchResult> | undefined): boolean {
     return proto3.util.equals(UserSearchResult, a, b);
   }
@@ -271,6 +283,10 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TeamSearchResult {
     return new TeamSearchResult().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TeamSearchResult {
+    return proto3.util.conforms(TeamSearchResult, value);
   }
 
   static equals(a: TeamSearchResult | PlainMessage<TeamSearchResult> | undefined, b: TeamSearchResult | PlainMessage<TeamSearchResult> | undefined): boolean {
@@ -339,6 +355,10 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
     return new PluginSearchResult().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PluginSearchResult {
+    return proto3.util.conforms(PluginSearchResult, value);
+  }
+
   static equals(a: PluginSearchResult | PlainMessage<PluginSearchResult> | undefined, b: PluginSearchResult | PlainMessage<PluginSearchResult> | undefined): boolean {
     return proto3.util.equals(PluginSearchResult, a, b);
   }
@@ -403,6 +423,10 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TemplateSearchResult {
     return new TemplateSearchResult().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TemplateSearchResult {
+    return proto3.util.conforms(TemplateSearchResult, value);
   }
 
   static equals(a: TemplateSearchResult | PlainMessage<TemplateSearchResult> | undefined, b: TemplateSearchResult | PlainMessage<TemplateSearchResult> | undefined): boolean {
@@ -483,6 +507,10 @@ export class SearchResult extends Message<SearchResult> {
     return new SearchResult().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SearchResult {
+    return proto3.util.conforms(SearchResult, value);
+  }
+
   static equals(a: SearchResult | PlainMessage<SearchResult> | undefined, b: SearchResult | PlainMessage<SearchResult> | undefined): boolean {
     return proto3.util.equals(SearchResult, a, b);
   }
@@ -546,6 +574,10 @@ export class SearchRequest extends Message<SearchRequest> {
     return new SearchRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SearchRequest {
+    return proto3.util.conforms(SearchRequest, value);
+  }
+
   static equals(a: SearchRequest | PlainMessage<SearchRequest> | undefined, b: SearchRequest | PlainMessage<SearchRequest> | undefined): boolean {
     return proto3.util.equals(SearchRequest, a, b);
   }
@@ -589,6 +621,10 @@ export class SearchResponse extends Message<SearchResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchResponse {
     return new SearchResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SearchResponse {
+    return proto3.util.conforms(SearchResponse, value);
   }
 
   static equals(a: SearchResponse | PlainMessage<SearchResponse> | undefined, b: SearchResponse | PlainMessage<SearchResponse> | undefined): boolean {

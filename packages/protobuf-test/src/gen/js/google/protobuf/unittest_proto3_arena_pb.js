@@ -129,6 +129,9 @@ export const TestAllTypes = proto3.makeMessageType(
   ],
 );
 
+TestAllTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypes, value);
+};
 /**
  * @generated from enum proto3_arena_unittest.TestAllTypes.NestedEnum
  */
@@ -154,6 +157,9 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
   {localName: "TestAllTypes_NestedMessage"},
 );
 
+TestAllTypes_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestAllTypes_NestedMessage, value);
+};
 /**
  * @generated from message proto3_arena_unittest.TestPackedTypes
  */
@@ -177,6 +183,9 @@ export const TestPackedTypes = proto3.makeMessageType(
   ],
 );
 
+TestPackedTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(TestPackedTypes, value);
+};
 /**
  * Explicitly set packed to false
  *
@@ -202,6 +211,9 @@ export const TestUnpackedTypes = proto3.makeMessageType(
   ],
 );
 
+TestUnpackedTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(TestUnpackedTypes, value);
+};
 /**
  * This proto includes a recursively nested message.
  *
@@ -216,6 +228,9 @@ export const NestedTestAllTypes = proto3.makeMessageType(
   ],
 );
 
+NestedTestAllTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(NestedTestAllTypes, value);
+};
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -229,6 +244,9 @@ export const ForeignMessage = proto3.makeMessageType(
   ],
 );
 
+ForeignMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(ForeignMessage, value);
+};
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
  *
@@ -239,6 +257,9 @@ export const TestEmptyMessage = proto3.makeMessageType(
   [],
 );
 
+TestEmptyMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestEmptyMessage, value);
+};
 /**
  * Needed for a Python test.
  *
@@ -249,6 +270,9 @@ export const TestPickleNestedMessage = proto3.makeMessageType(
   [],
 );
 
+TestPickleNestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestPickleNestedMessage, value);
+};
 /**
  * @generated from message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage
  */
@@ -260,6 +284,9 @@ export const TestPickleNestedMessage_NestedMessage = proto3.makeMessageType(
   {localName: "TestPickleNestedMessage_NestedMessage"},
 );
 
+TestPickleNestedMessage_NestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestPickleNestedMessage_NestedMessage, value);
+};
 /**
  * @generated from message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
  */
@@ -271,3 +298,6 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto3.
   {localName: "TestPickleNestedMessage_NestedMessage_NestedNestedMessage"},
 );
 
+TestPickleNestedMessage_NestedMessage_NestedNestedMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, value);
+};

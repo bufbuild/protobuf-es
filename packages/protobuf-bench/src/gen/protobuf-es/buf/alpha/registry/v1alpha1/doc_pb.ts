@@ -65,6 +65,10 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
     return new GetSourceDirectoryInfoRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetSourceDirectoryInfoRequest {
+    return proto3.util.conforms(GetSourceDirectoryInfoRequest, value);
+  }
+
   static equals(a: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined, b: GetSourceDirectoryInfoRequest | PlainMessage<GetSourceDirectoryInfoRequest> | undefined): boolean {
     return proto3.util.equals(GetSourceDirectoryInfoRequest, a, b);
   }
@@ -102,6 +106,10 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceDirectoryInfoResponse {
     return new GetSourceDirectoryInfoResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetSourceDirectoryInfoResponse {
+    return proto3.util.conforms(GetSourceDirectoryInfoResponse, value);
   }
 
   static equals(a: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined, b: GetSourceDirectoryInfoResponse | PlainMessage<GetSourceDirectoryInfoResponse> | undefined): boolean {
@@ -156,6 +164,10 @@ export class FileInfo extends Message$1<FileInfo> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileInfo {
     return new FileInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is FileInfo {
+    return proto3.util.conforms(FileInfo, value);
   }
 
   static equals(a: FileInfo | PlainMessage<FileInfo> | undefined, b: FileInfo | PlainMessage<FileInfo> | undefined): boolean {
@@ -217,6 +229,10 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
     return new GetSourceFileRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetSourceFileRequest {
+    return proto3.util.conforms(GetSourceFileRequest, value);
+  }
+
   static equals(a: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined, b: GetSourceFileRequest | PlainMessage<GetSourceFileRequest> | undefined): boolean {
     return proto3.util.equals(GetSourceFileRequest, a, b);
   }
@@ -256,6 +272,10 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSourceFileResponse {
     return new GetSourceFileResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetSourceFileResponse {
+    return proto3.util.conforms(GetSourceFileResponse, value);
   }
 
   static equals(a: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined, b: GetSourceFileResponse | PlainMessage<GetSourceFileResponse> | undefined): boolean {
@@ -309,6 +329,10 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
     return new GetModulePackagesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetModulePackagesRequest {
+    return proto3.util.conforms(GetModulePackagesRequest, value);
+  }
+
   static equals(a: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined, b: GetModulePackagesRequest | PlainMessage<GetModulePackagesRequest> | undefined): boolean {
     return proto3.util.equals(GetModulePackagesRequest, a, b);
   }
@@ -354,6 +378,10 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
     return new GetModulePackagesResponse().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetModulePackagesResponse {
+    return proto3.util.conforms(GetModulePackagesResponse, value);
+  }
+
   static equals(a: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined, b: GetModulePackagesResponse | PlainMessage<GetModulePackagesResponse> | undefined): boolean {
     return proto3.util.equals(GetModulePackagesResponse, a, b);
   }
@@ -397,6 +425,10 @@ export class ModulePackage extends Message$1<ModulePackage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModulePackage {
     return new ModulePackage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModulePackage {
+    return proto3.util.conforms(ModulePackage, value);
   }
 
   static equals(a: ModulePackage | PlainMessage<ModulePackage> | undefined, b: ModulePackage | PlainMessage<ModulePackage> | undefined): boolean {
@@ -450,6 +482,10 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
     return new GetModuleDocumentationRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetModuleDocumentationRequest {
+    return proto3.util.conforms(GetModuleDocumentationRequest, value);
+  }
+
   static equals(a: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined, b: GetModuleDocumentationRequest | PlainMessage<GetModuleDocumentationRequest> | undefined): boolean {
     return proto3.util.equals(GetModuleDocumentationRequest, a, b);
   }
@@ -487,6 +523,10 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetModuleDocumentationResponse {
     return new GetModuleDocumentationResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetModuleDocumentationResponse {
+    return proto3.util.conforms(GetModuleDocumentationResponse, value);
   }
 
   static equals(a: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined, b: GetModuleDocumentationResponse | PlainMessage<GetModuleDocumentationResponse> | undefined): boolean {
@@ -537,6 +577,10 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleDocumentation {
     return new ModuleDocumentation().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ModuleDocumentation {
+    return proto3.util.conforms(ModuleDocumentation, value);
   }
 
   static equals(a: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined, b: ModuleDocumentation | PlainMessage<ModuleDocumentation> | undefined): boolean {
@@ -598,6 +642,10 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
     return new GetPackageDocumentationRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetPackageDocumentationRequest {
+    return proto3.util.conforms(GetPackageDocumentationRequest, value);
+  }
+
   static equals(a: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined, b: GetPackageDocumentationRequest | PlainMessage<GetPackageDocumentationRequest> | undefined): boolean {
     return proto3.util.equals(GetPackageDocumentationRequest, a, b);
   }
@@ -635,6 +683,10 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetPackageDocumentationResponse {
     return new GetPackageDocumentationResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetPackageDocumentationResponse {
+    return proto3.util.conforms(GetPackageDocumentationResponse, value);
   }
 
   static equals(a: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined, b: GetPackageDocumentationResponse | PlainMessage<GetPackageDocumentationResponse> | undefined): boolean {
@@ -721,6 +773,10 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
     return new PackageDocumentation().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PackageDocumentation {
+    return proto3.util.conforms(PackageDocumentation, value);
+  }
+
   static equals(a: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined, b: PackageDocumentation | PlainMessage<PackageDocumentation> | undefined): boolean {
     return proto3.util.equals(PackageDocumentation, a, b);
   }
@@ -779,6 +835,10 @@ export class Location extends Message$1<Location> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Location {
     return new Location().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Location {
+    return proto3.util.conforms(Location, value);
   }
 
   static equals(a: Location | PlainMessage<Location> | undefined, b: Location | PlainMessage<Location> | undefined): boolean {
@@ -868,6 +928,10 @@ export class Service extends Message$1<Service> {
     return new Service().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Service {
+    return proto3.util.conforms(Service, value);
+  }
+
   static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
     return proto3.util.equals(Service, a, b);
   }
@@ -928,6 +992,10 @@ export class Method extends Message$1<Method> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Method {
     return new Method().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Method {
+    return proto3.util.conforms(Method, value);
   }
 
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
@@ -1000,6 +1068,10 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodRequestResponse {
     return new MethodRequestResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MethodRequestResponse {
+    return proto3.util.conforms(MethodRequestResponse, value);
   }
 
   static equals(a: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined, b: MethodRequestResponse | PlainMessage<MethodRequestResponse> | undefined): boolean {
@@ -1088,6 +1160,10 @@ export class Enum extends Message$1<Enum> {
     return new Enum().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Enum {
+    return proto3.util.conforms(Enum, value);
+  }
+
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
     return proto3.util.equals(Enum, a, b);
   }
@@ -1142,6 +1218,10 @@ export class EnumValue extends Message$1<EnumValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValue {
     return new EnumValue().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is EnumValue {
+    return proto3.util.conforms(EnumValue, value);
   }
 
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
@@ -1208,6 +1288,10 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImportModuleRef {
     return new ImportModuleRef().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ImportModuleRef {
+    return proto3.util.conforms(ImportModuleRef, value);
   }
 
   static equals(a: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined, b: ImportModuleRef | PlainMessage<ImportModuleRef> | undefined): boolean {
@@ -1308,6 +1392,10 @@ export class Message extends Message$1<Message> {
     return new Message().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Message {
+    return proto3.util.conforms(Message, value);
+  }
+
   static equals(a: Message | PlainMessage<Message> | undefined, b: Message | PlainMessage<Message> | undefined): boolean {
     return proto3.util.equals(Message, a, b);
   }
@@ -1360,6 +1448,10 @@ export class MessageField extends Message$1<MessageField> {
     return new MessageField().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MessageField {
+    return proto3.util.conforms(MessageField, value);
+  }
+
   static equals(a: MessageField | PlainMessage<MessageField> | undefined, b: MessageField | PlainMessage<MessageField> | undefined): boolean {
     return proto3.util.equals(MessageField, a, b);
   }
@@ -1403,6 +1495,10 @@ export class Oneof extends Message$1<Oneof> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Oneof {
     return new Oneof().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Oneof {
+    return proto3.util.conforms(Oneof, value);
   }
 
   static equals(a: Oneof | PlainMessage<Oneof> | undefined, b: Oneof | PlainMessage<Oneof> | undefined): boolean {
@@ -1510,6 +1606,10 @@ export class Field extends Message$1<Field> {
     return new Field().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Field {
+    return proto3.util.conforms(Field, value);
+  }
+
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
     return proto3.util.equals(Field, a, b);
   }
@@ -1574,6 +1674,10 @@ export class MapEntry extends Message$1<MapEntry> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapEntry {
     return new MapEntry().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MapEntry {
+    return proto3.util.conforms(MapEntry, value);
   }
 
   static equals(a: MapEntry | PlainMessage<MapEntry> | undefined, b: MapEntry | PlainMessage<MapEntry> | undefined): boolean {
@@ -1648,6 +1752,10 @@ export class FileExtension extends Message$1<FileExtension> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FileExtension {
     return new FileExtension().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is FileExtension {
+    return proto3.util.conforms(FileExtension, value);
   }
 
   static equals(a: FileExtension | PlainMessage<FileExtension> | undefined, b: FileExtension | PlainMessage<FileExtension> | undefined): boolean {

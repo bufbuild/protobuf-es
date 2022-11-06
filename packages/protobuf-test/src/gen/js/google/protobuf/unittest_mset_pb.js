@@ -52,6 +52,9 @@ export const TestMessageSetContainer = proto2.makeMessageType(
   ],
 );
 
+TestMessageSetContainer.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetContainer, value);
+};
 /**
  * @generated from message protobuf_unittest.NestedTestMessageSetContainer
  */
@@ -63,6 +66,9 @@ export const NestedTestMessageSetContainer = proto2.makeMessageType(
   ],
 );
 
+NestedTestMessageSetContainer.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedTestMessageSetContainer, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
@@ -75,6 +81,9 @@ export const TestMessageSetExtension1 = proto2.makeMessageType(
   ],
 );
 
+TestMessageSetExtension1.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetExtension1, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
@@ -85,6 +94,9 @@ export const TestMessageSetExtension2 = proto2.makeMessageType(
   ],
 );
 
+TestMessageSetExtension2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetExtension2, value);
+};
 /**
  * @generated from message protobuf_unittest.NestedTestInt
  */
@@ -96,6 +108,9 @@ export const NestedTestInt = proto2.makeMessageType(
   ],
 );
 
+NestedTestInt.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedTestInt, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension3
  */
@@ -106,6 +121,9 @@ export const TestMessageSetExtension3 = proto2.makeMessageType(
   ],
 );
 
+TestMessageSetExtension3.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSetExtension3, value);
+};
 /**
  * MessageSet wire format is equivalent to this.
  *
@@ -118,6 +136,9 @@ export const RawMessageSet = proto2.makeMessageType(
   ],
 );
 
+RawMessageSet.conforms = function conforms(value) {
+ return proto2.util.conforms(RawMessageSet, value);
+};
 /**
  * @generated from message protobuf_unittest.RawMessageSet.Item
  */
@@ -130,3 +151,6 @@ export const RawMessageSet_Item = proto2.makeMessageType(
   {localName: "RawMessageSet_Item"},
 );
 
+RawMessageSet_Item.conforms = function conforms(value) {
+ return proto2.util.conforms(RawMessageSet_Item, value);
+};

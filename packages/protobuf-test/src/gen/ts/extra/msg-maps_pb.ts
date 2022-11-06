@@ -155,6 +155,10 @@ export class MapsMessage extends Message<MapsMessage> {
     return new MapsMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MapsMessage {
+    return proto3.util.conforms(MapsMessage, value);
+  }
+
   static equals(a: MapsMessage | PlainMessage<MapsMessage> | undefined, b: MapsMessage | PlainMessage<MapsMessage> | undefined): boolean {
     return proto3.util.equals(MapsMessage, a, b);
   }

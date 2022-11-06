@@ -59,6 +59,8 @@ export declare class TestMessageSet extends Message<TestMessageSet> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSet;
 
+  static conforms(value: any): value is TestMessageSet;
+
   static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean;
 }
 
@@ -82,6 +84,8 @@ export declare class TestMessageSetWireFormatContainer extends Message<TestMessa
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer;
+
+  static conforms(value: any): value is TestMessageSetWireFormatContainer;
 
   static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean;
 }

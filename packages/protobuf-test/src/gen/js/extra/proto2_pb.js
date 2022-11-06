@@ -41,6 +41,9 @@ export const Proto2PackedMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2PackedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2PackedMessage, value);
+};
 /**
  * @generated from message spec.Proto2UnpackedMessage
  */
@@ -53,6 +56,9 @@ export const Proto2UnpackedMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2UnpackedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2UnpackedMessage, value);
+};
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
@@ -65,6 +71,9 @@ export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2UnspecifiedPackedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2UnspecifiedPackedMessage, value);
+};
 /**
  * @generated from message spec.Proto2OptionalMessage
  */
@@ -78,6 +87,9 @@ export const Proto2OptionalMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2OptionalMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2OptionalMessage, value);
+};
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
@@ -91,6 +103,9 @@ export const Proto2RequiredMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2RequiredMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2RequiredMessage, value);
+};
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
@@ -104,6 +119,9 @@ export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2RequiredDefaultsMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2RequiredDefaultsMessage, value);
+};
 /**
  * @generated from message spec.Proto2DefaultsMessage
  */
@@ -121,6 +139,9 @@ export const Proto2DefaultsMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2DefaultsMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2DefaultsMessage, value);
+};
 /**
  * @generated from message spec.Proto2ChildMessage
  */
@@ -131,3 +152,6 @@ export const Proto2ChildMessage = proto2.makeMessageType(
   ],
 );
 
+Proto2ChildMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(Proto2ChildMessage, value);
+};

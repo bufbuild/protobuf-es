@@ -146,6 +146,10 @@ export class Config extends Message<Config> {
     return new Config().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Config {
+    return proto3.util.conforms(Config, value);
+  }
+
   static equals(a: Config | PlainMessage<Config> | undefined, b: Config | PlainMessage<Config> | undefined): boolean {
     return proto3.util.equals(Config, a, b);
   }
@@ -189,6 +193,10 @@ export class IDPaths extends Message<IDPaths> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IDPaths {
     return new IDPaths().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is IDPaths {
+    return proto3.util.conforms(IDPaths, value);
   }
 
   static equals(a: IDPaths | PlainMessage<IDPaths> | undefined, b: IDPaths | PlainMessage<IDPaths> | undefined): boolean {

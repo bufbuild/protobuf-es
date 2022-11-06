@@ -43,6 +43,9 @@ export const ExampleRequest = proto3.makeMessageType(
   ],
 );
 
+ExampleRequest.conforms = function conforms(value) {
+ return proto3.util.conforms(ExampleRequest, value);
+};
 /**
  * @generated from message spec.ExampleResponse
  */
@@ -56,3 +59,6 @@ export const ExampleResponse = proto3.makeMessageType(
   ],
 );
 
+ExampleResponse.conforms = function conforms(value) {
+ return proto3.util.conforms(ExampleResponse, value);
+};

@@ -79,6 +79,10 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
     return new RepositoryBranch().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepositoryBranch {
+    return proto3.util.conforms(RepositoryBranch, value);
+  }
+
   static equals(a: RepositoryBranch | PlainMessage<RepositoryBranch> | undefined, b: RepositoryBranch | PlainMessage<RepositoryBranch> | undefined): boolean {
     return proto3.util.equals(RepositoryBranch, a, b);
   }
@@ -135,6 +139,10 @@ export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranc
     return new CreateRepositoryBranchRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CreateRepositoryBranchRequest {
+    return proto3.util.conforms(CreateRepositoryBranchRequest, value);
+  }
+
   static equals(a: CreateRepositoryBranchRequest | PlainMessage<CreateRepositoryBranchRequest> | undefined, b: CreateRepositoryBranchRequest | PlainMessage<CreateRepositoryBranchRequest> | undefined): boolean {
     return proto3.util.equals(CreateRepositoryBranchRequest, a, b);
   }
@@ -170,6 +178,10 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateRepositoryBranchResponse {
     return new CreateRepositoryBranchResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CreateRepositoryBranchResponse {
+    return proto3.util.conforms(CreateRepositoryBranchResponse, value);
   }
 
   static equals(a: CreateRepositoryBranchResponse | PlainMessage<CreateRepositoryBranchResponse> | undefined, b: CreateRepositoryBranchResponse | PlainMessage<CreateRepositoryBranchResponse> | undefined): boolean {
@@ -231,6 +243,10 @@ export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranche
     return new ListRepositoryBranchesRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ListRepositoryBranchesRequest {
+    return proto3.util.conforms(ListRepositoryBranchesRequest, value);
+  }
+
   static equals(a: ListRepositoryBranchesRequest | PlainMessage<ListRepositoryBranchesRequest> | undefined, b: ListRepositoryBranchesRequest | PlainMessage<ListRepositoryBranchesRequest> | undefined): boolean {
     return proto3.util.equals(ListRepositoryBranchesRequest, a, b);
   }
@@ -274,6 +290,10 @@ export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranch
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListRepositoryBranchesResponse {
     return new ListRepositoryBranchesResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ListRepositoryBranchesResponse {
+    return proto3.util.conforms(ListRepositoryBranchesResponse, value);
   }
 
   static equals(a: ListRepositoryBranchesResponse | PlainMessage<ListRepositoryBranchesResponse> | undefined, b: ListRepositoryBranchesResponse | PlainMessage<ListRepositoryBranchesResponse> | undefined): boolean {

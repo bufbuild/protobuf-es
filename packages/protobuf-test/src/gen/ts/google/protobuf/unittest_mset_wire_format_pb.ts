@@ -69,6 +69,10 @@ export class TestMessageSet extends Message<TestMessageSet> {
     return new TestMessageSet().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMessageSet {
+    return proto2.util.conforms(TestMessageSet, value);
+  }
+
   static equals(a: TestMessageSet | PlainMessage<TestMessageSet> | undefined, b: TestMessageSet | PlainMessage<TestMessageSet> | undefined): boolean {
     return proto2.util.equals(TestMessageSet, a, b);
   }
@@ -104,6 +108,10 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetWireFormatContainer {
     return new TestMessageSetWireFormatContainer().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestMessageSetWireFormatContainer {
+    return proto2.util.conforms(TestMessageSetWireFormatContainer, value);
   }
 
   static equals(a: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined, b: TestMessageSetWireFormatContainer | PlainMessage<TestMessageSetWireFormatContainer> | undefined): boolean {

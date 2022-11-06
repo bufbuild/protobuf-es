@@ -69,6 +69,10 @@ export class PublicImportMessageLite extends Message<PublicImportMessageLite> {
     return new PublicImportMessageLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PublicImportMessageLite {
+    return proto2.util.conforms(PublicImportMessageLite, value);
+  }
+
   static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean {
     return proto2.util.equals(PublicImportMessageLite, a, b);
   }

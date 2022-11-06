@@ -79,6 +79,8 @@ export declare class DeprecatedMessage extends Message<DeprecatedMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedMessage;
 
+  static conforms(value: any): value is DeprecatedMessage;
+
   static equals(a: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined, b: DeprecatedMessage | PlainMessage<DeprecatedMessage> | undefined): boolean;
 }
 
@@ -114,6 +116,8 @@ export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessa
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeprecatedFieldMessage;
+
+  static conforms(value: any): value is DeprecatedFieldMessage;
 
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
 }

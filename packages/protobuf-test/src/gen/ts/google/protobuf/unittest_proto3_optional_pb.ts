@@ -191,6 +191,10 @@ export class TestProto3Optional extends Message<TestProto3Optional> {
     return new TestProto3Optional().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestProto3Optional {
+    return proto3.util.conforms(TestProto3Optional, value);
+  }
+
   static equals(a: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined, b: TestProto3Optional | PlainMessage<TestProto3Optional> | undefined): boolean {
     return proto3.util.equals(TestProto3Optional, a, b);
   }
@@ -272,6 +276,10 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
     return new TestProto3Optional_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestProto3Optional_NestedMessage {
+    return proto3.util.conforms(TestProto3Optional_NestedMessage, value);
+  }
+
   static equals(a: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined, b: TestProto3Optional_NestedMessage | PlainMessage<TestProto3Optional_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3Optional_NestedMessage, a, b);
   }
@@ -315,6 +323,10 @@ export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage
     return new TestProto3OptionalMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestProto3OptionalMessage {
+    return proto3.util.conforms(TestProto3OptionalMessage, value);
+  }
+
   static equals(a: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined, b: TestProto3OptionalMessage | PlainMessage<TestProto3OptionalMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3OptionalMessage, a, b);
   }
@@ -352,6 +364,10 @@ export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3O
     return new TestProto3OptionalMessage_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestProto3OptionalMessage_NestedMessage {
+    return proto3.util.conforms(TestProto3OptionalMessage_NestedMessage, value);
+  }
+
   static equals(a: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined, b: TestProto3OptionalMessage_NestedMessage | PlainMessage<TestProto3OptionalMessage_NestedMessage> | undefined): boolean {
     return proto3.util.equals(TestProto3OptionalMessage_NestedMessage, a, b);
   }
@@ -381,6 +397,10 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3OptionalExtensions {
     return new Proto3OptionalExtensions().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Proto3OptionalExtensions {
+    return proto3.util.conforms(Proto3OptionalExtensions, value);
   }
 
   static equals(a: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined, b: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined): boolean {

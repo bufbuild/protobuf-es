@@ -56,6 +56,8 @@ export declare class NestedMessage extends Message<NestedMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedMessage;
 
+  static conforms(value: any): value is NestedMessage;
+
   static equals(a: NestedMessage | PlainMessage<NestedMessage> | undefined, b: NestedMessage | PlainMessage<NestedMessage> | undefined): boolean;
 }
 
@@ -79,6 +81,8 @@ export declare class ArenaMessage extends Message<ArenaMessage> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArenaMessage;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArenaMessage;
+
+  static conforms(value: any): value is ArenaMessage;
 
   static equals(a: ArenaMessage | PlainMessage<ArenaMessage> | undefined, b: ArenaMessage | PlainMessage<ArenaMessage> | undefined): boolean;
 }

@@ -78,6 +78,10 @@ export class ImportedMessage extends Message<ImportedMessage> {
     return new ImportedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ImportedMessage {
+    return proto2.util.conforms(ImportedMessage, value);
+  }
+
   static equals(a: ImportedMessage | PlainMessage<ImportedMessage> | undefined, b: ImportedMessage | PlainMessage<ImportedMessage> | undefined): boolean {
     return proto2.util.equals(ImportedMessage, a, b);
   }
@@ -109,6 +113,10 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
     return new MessageCustomOption().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is MessageCustomOption {
+    return proto2.util.conforms(MessageCustomOption, value);
+  }
+
   static equals(a: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined, b: MessageCustomOption | PlainMessage<MessageCustomOption> | undefined): boolean {
     return proto2.util.equals(MessageCustomOption, a, b);
   }
@@ -138,6 +146,10 @@ export class MessageCustomOption2 extends Message<MessageCustomOption2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageCustomOption2 {
     return new MessageCustomOption2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MessageCustomOption2 {
+    return proto2.util.conforms(MessageCustomOption2, value);
   }
 
   static equals(a: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined, b: MessageCustomOption2 | PlainMessage<MessageCustomOption2> | undefined): boolean {

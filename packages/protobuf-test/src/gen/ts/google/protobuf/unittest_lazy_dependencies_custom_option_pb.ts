@@ -77,6 +77,10 @@ export class LazyMessage extends Message<LazyMessage> {
     return new LazyMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is LazyMessage {
+    return proto2.util.conforms(LazyMessage, value);
+  }
+
   static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean {
     return proto2.util.equals(LazyMessage, a, b);
   }

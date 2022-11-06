@@ -53,3 +53,6 @@ export const MapsMessage = proto3.makeMessageType(
   ],
 );
 
+MapsMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(MapsMessage, value);
+};

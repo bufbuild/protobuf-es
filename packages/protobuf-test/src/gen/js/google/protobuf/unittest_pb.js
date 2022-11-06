@@ -292,6 +292,9 @@ export const TestAllTypes = proto2.makeMessageType(
   ],
 );
 
+TestAllTypes.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypes, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestAllTypes.NestedEnum
  */
@@ -316,6 +319,9 @@ export const TestAllTypes_NestedMessage = proto2.makeMessageType(
   {localName: "TestAllTypes_NestedMessage"},
 );
 
+TestAllTypes_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypes_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
  */
@@ -327,6 +333,9 @@ export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
   {localName: "TestAllTypes_OptionalGroup"},
 );
 
+TestAllTypes_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypes_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
  */
@@ -338,6 +347,9 @@ export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
   {localName: "TestAllTypes_RepeatedGroup"},
 );
 
+TestAllTypes_RepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllTypes_RepeatedGroup, value);
+};
 /**
  * This proto includes a recursively nested message.
  *
@@ -354,6 +366,9 @@ export const NestedTestAllTypes = proto2.makeMessageType(
   ],
 );
 
+NestedTestAllTypes.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedTestAllTypes, value);
+};
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
  */
@@ -365,6 +380,9 @@ export const TestDeprecatedFields = proto2.makeMessageType(
   ],
 );
 
+TestDeprecatedFields.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDeprecatedFields, value);
+};
 /**
  * @generated from message protobuf_unittest.TestDeprecatedMessage
  * @deprecated
@@ -374,6 +392,9 @@ export const TestDeprecatedMessage = proto2.makeMessageType(
   [],
 );
 
+TestDeprecatedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDeprecatedMessage, value);
+};
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
  * that.
@@ -388,6 +409,9 @@ export const ForeignMessage = proto2.makeMessageType(
   ],
 );
 
+ForeignMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(ForeignMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
@@ -396,6 +420,9 @@ export const TestReservedFields = proto2.makeMessageType(
   [],
 );
 
+TestReservedFields.conforms = function conforms(value) {
+ return proto2.util.conforms(TestReservedFields, value);
+};
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
@@ -404,6 +431,9 @@ export const TestAllExtensions = proto2.makeMessageType(
   [],
 );
 
+TestAllExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestAllExtensions, value);
+};
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
  */
@@ -414,6 +444,9 @@ export const OptionalGroup_extension = proto2.makeMessageType(
   ],
 );
 
+OptionalGroup_extension.conforms = function conforms(value) {
+ return proto2.util.conforms(OptionalGroup_extension, value);
+};
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
@@ -424,6 +457,9 @@ export const RepeatedGroup_extension = proto2.makeMessageType(
   ],
 );
 
+RepeatedGroup_extension.conforms = function conforms(value) {
+ return proto2.util.conforms(RepeatedGroup_extension, value);
+};
 /**
  * @generated from message protobuf_unittest.TestGroup
  */
@@ -435,6 +471,9 @@ export const TestGroup = proto2.makeMessageType(
   ],
 );
 
+TestGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestGroup.OptionalGroup
  */
@@ -446,6 +485,9 @@ export const TestGroup_OptionalGroup = proto2.makeMessageType(
   {localName: "TestGroup_OptionalGroup"},
 );
 
+TestGroup_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestGroup_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
@@ -454,6 +496,9 @@ export const TestGroupExtension = proto2.makeMessageType(
   [],
 );
 
+TestGroupExtension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestGroupExtension, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
  */
@@ -462,6 +507,9 @@ export const TestNestedExtension = proto2.makeMessageType(
   [],
 );
 
+TestNestedExtension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedExtension, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedExtension.OptionalGroup_extension
  */
@@ -473,6 +521,9 @@ export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageTyp
   {localName: "TestNestedExtension_OptionalGroup_extension"},
 );
 
+TestNestedExtension_OptionalGroup_extension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedExtension_OptionalGroup_extension, value);
+};
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
@@ -485,6 +536,9 @@ export const TestChildExtension = proto2.makeMessageType(
   ],
 );
 
+TestChildExtension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestChildExtension, value);
+};
 /**
  * Emulates wireformat data of TestChildExtension with dynamic extension
  * (DynamicExtension).
@@ -500,6 +554,9 @@ export const TestChildExtensionData = proto2.makeMessageType(
   ],
 );
 
+TestChildExtensionData.conforms = function conforms(value) {
+ return proto2.util.conforms(TestChildExtensionData, value);
+};
 /**
  * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData
  */
@@ -511,6 +568,9 @@ export const TestChildExtensionData_NestedTestAllExtensionsData = proto2.makeMes
   {localName: "TestChildExtensionData_NestedTestAllExtensionsData"},
 );
 
+TestChildExtensionData_NestedTestAllExtensionsData.conforms = function conforms(value) {
+ return proto2.util.conforms(TestChildExtensionData_NestedTestAllExtensionsData, value);
+};
 /**
  * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions
  */
@@ -523,6 +583,9 @@ export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExt
   {localName: "TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions"},
 );
 
+TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedChildExtension
  */
@@ -534,6 +597,9 @@ export const TestNestedChildExtension = proto2.makeMessageType(
   ],
 );
 
+TestNestedChildExtension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedChildExtension, value);
+};
 /**
  * Emulates wireformat data of TestNestedChildExtension with dynamic extension
  * (DynamicExtension).
@@ -548,6 +614,9 @@ export const TestNestedChildExtensionData = proto2.makeMessageType(
   ],
 );
 
+TestNestedChildExtensionData.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedChildExtensionData, value);
+};
 /**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
@@ -597,6 +666,9 @@ export const TestRequired = proto2.makeMessageType(
   ],
 );
 
+TestRequired.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequired, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
@@ -609,6 +681,9 @@ export const TestRequiredForeign = proto2.makeMessageType(
   ],
 );
 
+TestRequiredForeign.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequiredForeign, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
  */
@@ -621,6 +696,9 @@ export const TestRequiredMessage = proto2.makeMessageType(
   ],
 );
 
+TestRequiredMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequiredMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedRequiredForeign
  */
@@ -633,6 +711,9 @@ export const TestNestedRequiredForeign = proto2.makeMessageType(
   ],
 );
 
+TestNestedRequiredForeign.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedRequiredForeign, value);
+};
 /**
  * Test that we can use NestedMessage from outside TestAllTypes.
  *
@@ -645,6 +726,9 @@ export const TestForeignNested = proto2.makeMessageType(
   ],
 );
 
+TestForeignNested.conforms = function conforms(value) {
+ return proto2.util.conforms(TestForeignNested, value);
+};
 /**
  * TestEmptyMessage is used to test unknown field support.
  *
@@ -655,6 +739,9 @@ export const TestEmptyMessage = proto2.makeMessageType(
   [],
 );
 
+TestEmptyMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEmptyMessage, value);
+};
 /**
  * Like above, but declare all field numbers as potential extensions.  No
  * actual extensions should ever be defined for this type.
@@ -666,6 +753,9 @@ export const TestEmptyMessageWithExtensions = proto2.makeMessageType(
   [],
 );
 
+TestEmptyMessageWithExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEmptyMessageWithExtensions, value);
+};
 /**
  * Needed for a Python test.
  *
@@ -676,6 +766,9 @@ export const TestPickleNestedMessage = proto2.makeMessageType(
   [],
 );
 
+TestPickleNestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPickleNestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage
  */
@@ -687,6 +780,9 @@ export const TestPickleNestedMessage_NestedMessage = proto2.makeMessageType(
   {localName: "TestPickleNestedMessage_NestedMessage"},
 );
 
+TestPickleNestedMessage_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPickleNestedMessage_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
  */
@@ -698,6 +794,9 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.
   {localName: "TestPickleNestedMessage_NestedMessage_NestedNestedMessage"},
 );
 
+TestPickleNestedMessage_NestedMessage_NestedNestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
@@ -706,6 +805,9 @@ export const TestMultipleExtensionRanges = proto2.makeMessageType(
   [],
 );
 
+TestMultipleExtensionRanges.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMultipleExtensionRanges, value);
+};
 /**
  * Test that really large tag numbers don't break anything.
  *
@@ -719,6 +821,9 @@ export const TestReallyLargeTagNumber = proto2.makeMessageType(
   ],
 );
 
+TestReallyLargeTagNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestReallyLargeTagNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
@@ -730,6 +835,9 @@ export const TestRecursiveMessage = proto2.makeMessageType(
   ],
 );
 
+TestRecursiveMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRecursiveMessage, value);
+};
 /**
  * Test that mutual recursion works.
  *
@@ -743,6 +851,9 @@ export const TestMutualRecursionA = proto2.makeMessageType(
   ],
 );
 
+TestMutualRecursionA.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMutualRecursionA, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubMessage
  */
@@ -754,6 +865,9 @@ export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
   {localName: "TestMutualRecursionA_SubMessage"},
 );
 
+TestMutualRecursionA_SubMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMutualRecursionA_SubMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
  */
@@ -766,6 +880,9 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
   {localName: "TestMutualRecursionA_SubGroup"},
 );
 
+TestMutualRecursionA_SubGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMutualRecursionA_SubGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
@@ -777,6 +894,9 @@ export const TestMutualRecursionB = proto2.makeMessageType(
   ],
 );
 
+TestMutualRecursionB.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMutualRecursionB, value);
+};
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
  */
@@ -787,6 +907,9 @@ export const TestIsInitialized = proto2.makeMessageType(
   ],
 );
 
+TestIsInitialized.conforms = function conforms(value) {
+ return proto2.util.conforms(TestIsInitialized, value);
+};
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage
  */
@@ -798,6 +921,9 @@ export const TestIsInitialized_SubMessage = proto2.makeMessageType(
   {localName: "TestIsInitialized_SubMessage"},
 );
 
+TestIsInitialized_SubMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestIsInitialized_SubMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
  */
@@ -809,6 +935,9 @@ export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
   {localName: "TestIsInitialized_SubMessage_SubGroup"},
 );
 
+TestIsInitialized_SubMessage_SubGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestIsInitialized_SubMessage_SubGroup, value);
+};
 /**
  * Test that groups have disjoint field numbers from their siblings and
  * parents.  This is NOT possible in proto1; only google.protobuf.  When attempting
@@ -828,6 +957,9 @@ export const TestDupFieldNumber = proto2.makeMessageType(
   ],
 );
 
+TestDupFieldNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDupFieldNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Foo
  */
@@ -839,6 +971,9 @@ export const TestDupFieldNumber_Foo = proto2.makeMessageType(
   {localName: "TestDupFieldNumber_Foo"},
 );
 
+TestDupFieldNumber_Foo.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDupFieldNumber_Foo, value);
+};
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
  */
@@ -850,6 +985,9 @@ export const TestDupFieldNumber_Bar = proto2.makeMessageType(
   {localName: "TestDupFieldNumber_Bar"},
 );
 
+TestDupFieldNumber_Bar.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDupFieldNumber_Bar, value);
+};
 /**
  * Additional messages for testing lazy fields.
  *
@@ -862,6 +1000,9 @@ export const TestEagerMessage = proto2.makeMessageType(
   ],
 );
 
+TestEagerMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEagerMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
@@ -872,6 +1013,9 @@ export const TestLazyMessage = proto2.makeMessageType(
   ],
 );
 
+TestLazyMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestLazyMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy
  */
@@ -884,6 +1028,9 @@ export const TestEagerMaybeLazy = proto2.makeMessageType(
   ],
 );
 
+TestEagerMaybeLazy.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEagerMaybeLazy, value);
+};
 /**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy.NestedMessage
  */
@@ -895,6 +1042,9 @@ export const TestEagerMaybeLazy_NestedMessage = proto2.makeMessageType(
   {localName: "TestEagerMaybeLazy_NestedMessage"},
 );
 
+TestEagerMaybeLazy_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestEagerMaybeLazy_NestedMessage, value);
+};
 /**
  * Needed for a Python test.
  *
@@ -907,6 +1057,9 @@ export const TestNestedMessageHasBits = proto2.makeMessageType(
   ],
 );
 
+TestNestedMessageHasBits.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedMessageHasBits, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedMessageHasBits.NestedMessage
  */
@@ -919,6 +1072,9 @@ export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
   {localName: "TestNestedMessageHasBits_NestedMessage"},
 );
 
+TestNestedMessageHasBits_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedMessageHasBits_NestedMessage, value);
+};
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
  * standard style.
@@ -943,6 +1099,9 @@ export const TestCamelCaseFieldNames = proto2.makeMessageType(
   ],
 );
 
+TestCamelCaseFieldNames.conforms = function conforms(value) {
+ return proto2.util.conforms(TestCamelCaseFieldNames, value);
+};
 /**
  * We list fields out of order, to ensure that we're using field number and not
  * field index to determine serialization order.
@@ -959,6 +1118,9 @@ export const TestFieldOrderings = proto2.makeMessageType(
   ],
 );
 
+TestFieldOrderings.conforms = function conforms(value) {
+ return proto2.util.conforms(TestFieldOrderings, value);
+};
 /**
  * @generated from message protobuf_unittest.TestFieldOrderings.NestedMessage
  */
@@ -971,6 +1133,9 @@ export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
   {localName: "TestFieldOrderings_NestedMessage"},
 );
 
+TestFieldOrderings_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestFieldOrderings_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
@@ -981,6 +1146,9 @@ export const TestExtensionOrderings1 = proto2.makeMessageType(
   ],
 );
 
+TestExtensionOrderings1.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtensionOrderings1, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
  */
@@ -991,6 +1159,9 @@ export const TestExtensionOrderings2 = proto2.makeMessageType(
   ],
 );
 
+TestExtensionOrderings2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtensionOrderings2, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3
  */
@@ -1002,6 +1173,9 @@ export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessag
   {localName: "TestExtensionOrderings2_TestExtensionOrderings3"},
 );
 
+TestExtensionOrderings2_TestExtensionOrderings3.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtensionOrderings2_TestExtensionOrderings3, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
  */
@@ -1038,6 +1212,9 @@ export const TestExtremeDefaultValues = proto2.makeMessageType(
   ],
 );
 
+TestExtremeDefaultValues.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtremeDefaultValues, value);
+};
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
@@ -1048,6 +1225,9 @@ export const SparseEnumMessage = proto2.makeMessageType(
   ],
 );
 
+SparseEnumMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(SparseEnumMessage, value);
+};
 /**
  * Test String and Bytes: string is for valid UTF-8 strings
  *
@@ -1060,6 +1240,9 @@ export const OneString = proto2.makeMessageType(
   ],
 );
 
+OneString.conforms = function conforms(value) {
+ return proto2.util.conforms(OneString, value);
+};
 /**
  * @generated from message protobuf_unittest.MoreString
  */
@@ -1070,6 +1253,9 @@ export const MoreString = proto2.makeMessageType(
   ],
 );
 
+MoreString.conforms = function conforms(value) {
+ return proto2.util.conforms(MoreString, value);
+};
 /**
  * @generated from message protobuf_unittest.OneBytes
  */
@@ -1080,6 +1266,9 @@ export const OneBytes = proto2.makeMessageType(
   ],
 );
 
+OneBytes.conforms = function conforms(value) {
+ return proto2.util.conforms(OneBytes, value);
+};
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
@@ -1090,6 +1279,9 @@ export const MoreBytes = proto2.makeMessageType(
   ],
 );
 
+MoreBytes.conforms = function conforms(value) {
+ return proto2.util.conforms(MoreBytes, value);
+};
 /**
  * @generated from message protobuf_unittest.ManyOptionalString
  */
@@ -1131,6 +1323,9 @@ export const ManyOptionalString = proto2.makeMessageType(
   ],
 );
 
+ManyOptionalString.conforms = function conforms(value) {
+ return proto2.util.conforms(ManyOptionalString, value);
+};
 /**
  * Test int32, uint32, int64, uint64, and bool are all compatible
  *
@@ -1143,6 +1338,9 @@ export const Int32Message = proto2.makeMessageType(
   ],
 );
 
+Int32Message.conforms = function conforms(value) {
+ return proto2.util.conforms(Int32Message, value);
+};
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
@@ -1153,6 +1351,9 @@ export const Uint32Message = proto2.makeMessageType(
   ],
 );
 
+Uint32Message.conforms = function conforms(value) {
+ return proto2.util.conforms(Uint32Message, value);
+};
 /**
  * @generated from message protobuf_unittest.Int64Message
  */
@@ -1163,6 +1364,9 @@ export const Int64Message = proto2.makeMessageType(
   ],
 );
 
+Int64Message.conforms = function conforms(value) {
+ return proto2.util.conforms(Int64Message, value);
+};
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
@@ -1173,6 +1377,9 @@ export const Uint64Message = proto2.makeMessageType(
   ],
 );
 
+Uint64Message.conforms = function conforms(value) {
+ return proto2.util.conforms(Uint64Message, value);
+};
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
@@ -1183,6 +1390,9 @@ export const BoolMessage = proto2.makeMessageType(
   ],
 );
 
+BoolMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(BoolMessage, value);
+};
 /**
  * Test oneofs.
  *
@@ -1198,6 +1408,9 @@ export const TestOneof = proto2.makeMessageType(
   ],
 );
 
+TestOneof.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneof, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneof.FooGroup
  */
@@ -1210,6 +1423,9 @@ export const TestOneof_FooGroup = proto2.makeMessageType(
   {localName: "TestOneof_FooGroup"},
 );
 
+TestOneof_FooGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneof_FooGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
@@ -1223,6 +1439,9 @@ export const TestOneofBackwardsCompatible = proto2.makeMessageType(
   ],
 );
 
+TestOneofBackwardsCompatible.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneofBackwardsCompatible, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup
  */
@@ -1235,6 +1454,9 @@ export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
   {localName: "TestOneofBackwardsCompatible_FooGroup"},
 );
 
+TestOneofBackwardsCompatible_FooGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneofBackwardsCompatible_FooGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneof2
  */
@@ -1265,6 +1487,9 @@ export const TestOneof2 = proto2.makeMessageType(
   ],
 );
 
+TestOneof2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneof2, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestOneof2.NestedEnum
  */
@@ -1289,6 +1514,9 @@ export const TestOneof2_FooGroup = proto2.makeMessageType(
   {localName: "TestOneof2_FooGroup"},
 );
 
+TestOneof2_FooGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneof2_FooGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
  */
@@ -1301,6 +1529,9 @@ export const TestOneof2_NestedMessage = proto2.makeMessageType(
   {localName: "TestOneof2_NestedMessage"},
 );
 
+TestOneof2_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestOneof2_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
@@ -1313,6 +1544,9 @@ export const TestRequiredOneof = proto2.makeMessageType(
   ],
 );
 
+TestRequiredOneof.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequiredOneof, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof.NestedMessage
  */
@@ -1324,6 +1558,9 @@ export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
   {localName: "TestRequiredOneof_NestedMessage"},
 );
 
+TestRequiredOneof_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRequiredOneof_NestedMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
  */
@@ -1347,6 +1584,9 @@ export const TestPackedTypes = proto2.makeMessageType(
   ],
 );
 
+TestPackedTypes.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPackedTypes, value);
+};
 /**
  * A message with the same fields as TestPackedTypes, but without packing. Used
  * to test packed <-> unpacked wire compatibility.
@@ -1373,6 +1613,9 @@ export const TestUnpackedTypes = proto2.makeMessageType(
   ],
 );
 
+TestUnpackedTypes.conforms = function conforms(value) {
+ return proto2.util.conforms(TestUnpackedTypes, value);
+};
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
@@ -1381,6 +1624,9 @@ export const TestPackedExtensions = proto2.makeMessageType(
   [],
 );
 
+TestPackedExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestPackedExtensions, value);
+};
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
@@ -1389,6 +1635,9 @@ export const TestUnpackedExtensions = proto2.makeMessageType(
   [],
 );
 
+TestUnpackedExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestUnpackedExtensions, value);
+};
 /**
  * Used by ExtensionSetTest/DynamicExtensions.  The test actually builds
  * a set of extensions to TestAllExtensions dynamically, based on the fields
@@ -1409,6 +1658,9 @@ export const TestDynamicExtensions = proto2.makeMessageType(
   ],
 );
 
+TestDynamicExtensions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDynamicExtensions, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType
  */
@@ -1432,6 +1684,9 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
   {localName: "TestDynamicExtensions_DynamicMessageType"},
 );
 
+TestDynamicExtensions_DynamicMessageType.conforms = function conforms(value) {
+ return proto2.util.conforms(TestDynamicExtensions_DynamicMessageType, value);
+};
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
@@ -1447,6 +1702,9 @@ export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
   ],
 );
 
+TestRepeatedScalarDifferentTagSizes.conforms = function conforms(value) {
+ return proto2.util.conforms(TestRepeatedScalarDifferentTagSizes, value);
+};
 /**
  * Test that if an optional or required message/group field appears multiple
  * times in the input, they need to be merged.
@@ -1464,6 +1722,9 @@ export const TestParsingMerge = proto2.makeMessageType(
   ],
 );
 
+TestParsingMerge.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge, value);
+};
 /**
  * RepeatedFieldsGenerator defines matching field types as TestParsingMerge,
  * except that all fields are repeated. In the tests, we will serialize the
@@ -1487,6 +1748,9 @@ export const TestParsingMerge_RepeatedFieldsGenerator = proto2.makeMessageType(
   {localName: "TestParsingMerge_RepeatedFieldsGenerator"},
 );
 
+TestParsingMerge_RepeatedFieldsGenerator.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
  */
@@ -1498,6 +1762,9 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessag
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group1"},
 );
 
+TestParsingMerge_RepeatedFieldsGenerator_Group1.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator_Group1, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
  */
@@ -1509,6 +1776,9 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessag
   {localName: "TestParsingMerge_RepeatedFieldsGenerator_Group2"},
 );
 
+TestParsingMerge_RepeatedFieldsGenerator_Group2.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator_Group2, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
  */
@@ -1520,6 +1790,9 @@ export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
   {localName: "TestParsingMerge_OptionalGroup"},
 );
 
+TestParsingMerge_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
  */
@@ -1531,6 +1804,9 @@ export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
   {localName: "TestParsingMerge_RepeatedGroup"},
 );
 
+TestParsingMerge_RepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestParsingMerge_RepeatedGroup, value);
+};
 /**
  * Test that the correct exception is thrown by parseFrom in a corner case
  * involving merging, extensions, and required fields.
@@ -1544,6 +1820,9 @@ export const TestMergeException = proto2.makeMessageType(
   ],
 );
 
+TestMergeException.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMergeException, value);
+};
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
@@ -1554,6 +1833,9 @@ export const TestCommentInjectionMessage = proto2.makeMessageType(
   ],
 );
 
+TestCommentInjectionMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(TestCommentInjectionMessage, value);
+};
 /**
  * Used to check that the c++ code generator re-orders messages to reduce
  * padding.
@@ -1572,6 +1854,9 @@ export const TestMessageSize = proto2.makeMessageType(
   ],
 );
 
+TestMessageSize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageSize, value);
+};
 /**
  * Test that RPC services work.
  *
@@ -1582,6 +1867,9 @@ export const FooRequest = proto2.makeMessageType(
   [],
 );
 
+FooRequest.conforms = function conforms(value) {
+ return proto2.util.conforms(FooRequest, value);
+};
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
@@ -1590,6 +1878,9 @@ export const FooResponse = proto2.makeMessageType(
   [],
 );
 
+FooResponse.conforms = function conforms(value) {
+ return proto2.util.conforms(FooResponse, value);
+};
 /**
  * @generated from message protobuf_unittest.FooClientMessage
  */
@@ -1598,6 +1889,9 @@ export const FooClientMessage = proto2.makeMessageType(
   [],
 );
 
+FooClientMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(FooClientMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
@@ -1606,6 +1900,9 @@ export const FooServerMessage = proto2.makeMessageType(
   [],
 );
 
+FooServerMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(FooServerMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.BarRequest
  */
@@ -1614,6 +1911,9 @@ export const BarRequest = proto2.makeMessageType(
   [],
 );
 
+BarRequest.conforms = function conforms(value) {
+ return proto2.util.conforms(BarRequest, value);
+};
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
@@ -1622,6 +1922,9 @@ export const BarResponse = proto2.makeMessageType(
   [],
 );
 
+BarResponse.conforms = function conforms(value) {
+ return proto2.util.conforms(BarResponse, value);
+};
 /**
  * @generated from message protobuf_unittest.TestJsonName
  */
@@ -1638,6 +1941,9 @@ export const TestJsonName = proto2.makeMessageType(
   ],
 );
 
+TestJsonName.conforms = function conforms(value) {
+ return proto2.util.conforms(TestJsonName, value);
+};
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
  */
@@ -1661,6 +1967,9 @@ export const TestHugeFieldNumbers = proto2.makeMessageType(
   ],
 );
 
+TestHugeFieldNumbers.conforms = function conforms(value) {
+ return proto2.util.conforms(TestHugeFieldNumbers, value);
+};
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup
  */
@@ -1672,6 +1981,9 @@ export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
   {localName: "TestHugeFieldNumbers_OptionalGroup"},
 );
 
+TestHugeFieldNumbers_OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestHugeFieldNumbers_OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
@@ -1690,6 +2002,9 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
   ],
 );
 
+TestExtensionInsideTable.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtensionInsideTable, value);
+};
 /**
  * NOTE(b/202996544): Intentionally nested to mirror go/glep.
  *
@@ -1702,6 +2017,9 @@ export const TestNestedGroupExtensionOuter = proto2.makeMessageType(
   ],
 );
 
+TestNestedGroupExtensionOuter.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedGroupExtensionOuter, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup
  */
@@ -1714,6 +2032,9 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup = proto2.makeMess
   {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup"},
 );
 
+TestNestedGroupExtensionOuter_Layer1OptionalGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
  */
@@ -1725,6 +2046,9 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGro
   {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup"},
 );
 
+TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
  */
@@ -1736,6 +2060,9 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOpti
   {localName: "TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup"},
 );
 
+TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, value);
+};
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionInnerExtension
  */
@@ -1746,6 +2073,9 @@ export const TestNestedGroupExtensionInnerExtension = proto2.makeMessageType(
   ],
 );
 
+TestNestedGroupExtensionInnerExtension.conforms = function conforms(value) {
+ return proto2.util.conforms(TestNestedGroupExtensionInnerExtension, value);
+};
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
@@ -1759,6 +2089,9 @@ export const TestExtensionRangeSerialize = proto2.makeMessageType(
   ],
 );
 
+TestExtensionRangeSerialize.conforms = function conforms(value) {
+ return proto2.util.conforms(TestExtensionRangeSerialize, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32Simple
  */
@@ -1772,6 +2105,9 @@ export const TestVerifyInt32Simple = proto2.makeMessageType(
   ],
 );
 
+TestVerifyInt32Simple.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyInt32Simple, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32
  */
@@ -1787,6 +2123,9 @@ export const TestVerifyInt32 = proto2.makeMessageType(
   ],
 );
 
+TestVerifyInt32.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyInt32, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyMostlyInt32
  */
@@ -1805,6 +2144,9 @@ export const TestVerifyMostlyInt32 = proto2.makeMessageType(
   ],
 );
 
+TestVerifyMostlyInt32.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyMostlyInt32, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber
  */
@@ -1824,6 +2166,9 @@ export const TestVerifyMostlyInt32BigFieldNumber = proto2.makeMessageType(
   ],
 );
 
+TestVerifyMostlyInt32BigFieldNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyMostlyInt32BigFieldNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32Simple
  */
@@ -1837,6 +2182,9 @@ export const TestVerifyUint32Simple = proto2.makeMessageType(
   ],
 );
 
+TestVerifyUint32Simple.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyUint32Simple, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32
  */
@@ -1852,6 +2200,9 @@ export const TestVerifyUint32 = proto2.makeMessageType(
   ],
 );
 
+TestVerifyUint32.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyUint32, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyOneUint32
  */
@@ -1867,6 +2218,9 @@ export const TestVerifyOneUint32 = proto2.makeMessageType(
   ],
 );
 
+TestVerifyOneUint32.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyOneUint32, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyOneInt32BigFieldNumber
  */
@@ -1883,6 +2237,9 @@ export const TestVerifyOneInt32BigFieldNumber = proto2.makeMessageType(
   ],
 );
 
+TestVerifyOneInt32BigFieldNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyOneInt32BigFieldNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32BigFieldNumber
  */
@@ -1900,6 +2257,9 @@ export const TestVerifyInt32BigFieldNumber = proto2.makeMessageType(
   ],
 );
 
+TestVerifyInt32BigFieldNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyInt32BigFieldNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32BigFieldNumber
  */
@@ -1917,6 +2277,9 @@ export const TestVerifyUint32BigFieldNumber = proto2.makeMessageType(
   ],
 );
 
+TestVerifyUint32BigFieldNumber.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyUint32BigFieldNumber, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32
  */
@@ -1927,6 +2290,9 @@ export const TestVerifyBigFieldNumberUint32 = proto2.makeMessageType(
   ],
 );
 
+TestVerifyBigFieldNumberUint32.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyBigFieldNumberUint32, value);
+};
 /**
  * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested
  */
@@ -1947,3 +2313,6 @@ export const TestVerifyBigFieldNumberUint32_Nested = proto2.makeMessageType(
   {localName: "TestVerifyBigFieldNumberUint32_Nested"},
 );
 
+TestVerifyBigFieldNumberUint32_Nested.conforms = function conforms(value) {
+ return proto2.util.conforms(TestVerifyBigFieldNumberUint32_Nested, value);
+};

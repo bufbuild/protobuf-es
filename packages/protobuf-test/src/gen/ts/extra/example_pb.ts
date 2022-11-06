@@ -63,6 +63,10 @@ export class Example extends Message<Example> {
     return new Example().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Example {
+    return proto3.util.conforms(Example, value);
+  }
+
   static equals(a: Example | PlainMessage<Example> | undefined, b: Example | PlainMessage<Example> | undefined): boolean {
     return proto3.util.equals(Example, a, b);
   }

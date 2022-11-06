@@ -37,6 +37,9 @@ export const TestWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
+TestWellKnownTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(TestWellKnownTypes, value);
+};
 /**
  * A repeated field for each well-known type.
  *
@@ -66,6 +69,9 @@ export const RepeatedWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
+RepeatedWellKnownTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(RepeatedWellKnownTypes, value);
+};
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
  */
@@ -93,6 +99,9 @@ export const OneofWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
+OneofWellKnownTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(OneofWellKnownTypes, value);
+};
 /**
  * A map field for each well-known type. We only
  * need to worry about the value part of the map being the
@@ -124,3 +133,6 @@ export const MapWellKnownTypes = proto3.makeMessageType(
   ],
 );
 
+MapWellKnownTypes.conforms = function conforms(value) {
+ return proto3.util.conforms(MapWellKnownTypes, value);
+};

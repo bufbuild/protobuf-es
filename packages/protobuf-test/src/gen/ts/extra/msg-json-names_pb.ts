@@ -93,6 +93,10 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
     return new JsonNamesMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is JsonNamesMessage {
+    return proto3.util.conforms(JsonNamesMessage, value);
+  }
+
   static equals(a: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined, b: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined): boolean {
     return proto3.util.equals(JsonNamesMessage, a, b);
   }

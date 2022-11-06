@@ -79,6 +79,9 @@ export const TestMessageWithCustomOptions = proto2.makeMessageType(
   ],
 );
 
+TestMessageWithCustomOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageWithCustomOptions, value);
+};
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
  */
@@ -101,6 +104,9 @@ export const CustomOptionFooRequest = proto2.makeMessageType(
   [],
 );
 
+CustomOptionFooRequest.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionFooRequest, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
  */
@@ -109,6 +115,9 @@ export const CustomOptionFooResponse = proto2.makeMessageType(
   [],
 );
 
+CustomOptionFooResponse.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionFooResponse, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
  */
@@ -117,6 +126,9 @@ export const CustomOptionFooClientMessage = proto2.makeMessageType(
   [],
 );
 
+CustomOptionFooClientMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionFooClientMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
  */
@@ -125,6 +137,9 @@ export const CustomOptionFooServerMessage = proto2.makeMessageType(
   [],
 );
 
+CustomOptionFooServerMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionFooServerMessage, value);
+};
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
  */
@@ -133,6 +148,9 @@ export const DummyMessageContainingEnum = proto2.makeMessageType(
   [],
 );
 
+DummyMessageContainingEnum.conforms = function conforms(value) {
+ return proto2.util.conforms(DummyMessageContainingEnum, value);
+};
 /**
  * @generated from enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType
  */
@@ -152,6 +170,9 @@ export const DummyMessageInvalidAsOptionType = proto2.makeMessageType(
   [],
 );
 
+DummyMessageInvalidAsOptionType.conforms = function conforms(value) {
+ return proto2.util.conforms(DummyMessageInvalidAsOptionType, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
  */
@@ -160,6 +181,9 @@ export const CustomOptionMinIntegerValues = proto2.makeMessageType(
   [],
 );
 
+CustomOptionMinIntegerValues.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionMinIntegerValues, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
  */
@@ -168,6 +192,9 @@ export const CustomOptionMaxIntegerValues = proto2.makeMessageType(
   [],
 );
 
+CustomOptionMaxIntegerValues.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionMaxIntegerValues, value);
+};
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
  */
@@ -176,6 +203,9 @@ export const CustomOptionOtherValues = proto2.makeMessageType(
   [],
 );
 
+CustomOptionOtherValues.conforms = function conforms(value) {
+ return proto2.util.conforms(CustomOptionOtherValues, value);
+};
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
  */
@@ -184,6 +214,9 @@ export const SettingRealsFromPositiveInts = proto2.makeMessageType(
   [],
 );
 
+SettingRealsFromPositiveInts.conforms = function conforms(value) {
+ return proto2.util.conforms(SettingRealsFromPositiveInts, value);
+};
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
  */
@@ -192,6 +225,9 @@ export const SettingRealsFromNegativeInts = proto2.makeMessageType(
   [],
 );
 
+SettingRealsFromNegativeInts.conforms = function conforms(value) {
+ return proto2.util.conforms(SettingRealsFromNegativeInts, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
  */
@@ -205,6 +241,9 @@ export const ComplexOptionType1 = proto2.makeMessageType(
   ],
 );
 
+ComplexOptionType1.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOptionType1, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
  */
@@ -218,6 +257,9 @@ export const ComplexOptionType2 = proto2.makeMessageType(
   ],
 );
 
+ComplexOptionType2.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOptionType2, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2.ComplexOptionType4
  */
@@ -229,6 +271,9 @@ export const ComplexOptionType2_ComplexOptionType4 = proto2.makeMessageType(
   {localName: "ComplexOptionType2_ComplexOptionType4"},
 );
 
+ComplexOptionType2_ComplexOptionType4.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOptionType2_ComplexOptionType4, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
@@ -240,6 +285,9 @@ export const ComplexOptionType3 = proto2.makeMessageType(
   ],
 );
 
+ComplexOptionType3.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOptionType3, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
  */
@@ -251,6 +299,9 @@ export const ComplexOptionType3_ComplexOptionType5 = proto2.makeMessageType(
   {localName: "ComplexOptionType3_ComplexOptionType5"},
 );
 
+ComplexOptionType3_ComplexOptionType5.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOptionType3_ComplexOptionType5, value);
+};
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
@@ -261,6 +312,9 @@ export const ComplexOpt6 = proto2.makeMessageType(
   ],
 );
 
+ComplexOpt6.conforms = function conforms(value) {
+ return proto2.util.conforms(ComplexOpt6, value);
+};
 /**
  * Note that we try various different ways of naming the same extension.
  *
@@ -271,6 +325,9 @@ export const VariousComplexOptions = proto2.makeMessageType(
   [],
 );
 
+VariousComplexOptions.conforms = function conforms(value) {
+ return proto2.util.conforms(VariousComplexOptions, value);
+};
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
  */
@@ -279,6 +336,9 @@ export const AggregateMessageSet = proto2.makeMessageType(
   [],
 );
 
+AggregateMessageSet.conforms = function conforms(value) {
+ return proto2.util.conforms(AggregateMessageSet, value);
+};
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
  */
@@ -289,6 +349,9 @@ export const AggregateMessageSetElement = proto2.makeMessageType(
   ],
 );
 
+AggregateMessageSetElement.conforms = function conforms(value) {
+ return proto2.util.conforms(AggregateMessageSetElement, value);
+};
 /**
  * A helper type used to test aggregate option parsing
  *
@@ -306,6 +369,9 @@ export const Aggregate = proto2.makeMessageType(
   ],
 );
 
+Aggregate.conforms = function conforms(value) {
+ return proto2.util.conforms(Aggregate, value);
+};
 /**
  * @generated from message protobuf_unittest.AggregateMessage
  */
@@ -316,6 +382,9 @@ export const AggregateMessage = proto2.makeMessageType(
   ],
 );
 
+AggregateMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(AggregateMessage, value);
+};
 /**
  * Test custom options for nested type.
  *
@@ -326,6 +395,9 @@ export const NestedOptionType = proto2.makeMessageType(
   [],
 );
 
+NestedOptionType.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedOptionType, value);
+};
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
  */
@@ -347,6 +419,9 @@ export const NestedOptionType_NestedMessage = proto2.makeMessageType(
   {localName: "NestedOptionType_NestedMessage"},
 );
 
+NestedOptionType_NestedMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(NestedOptionType_NestedMessage, value);
+};
 /**
  * Custom message option that has a required enum field.
  * WARNING: this is strongly discouraged!
@@ -360,6 +435,9 @@ export const OldOptionType = proto2.makeMessageType(
   ],
 );
 
+OldOptionType.conforms = function conforms(value) {
+ return proto2.util.conforms(OldOptionType, value);
+};
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
  */
@@ -382,6 +460,9 @@ export const NewOptionType = proto2.makeMessageType(
   ],
 );
 
+NewOptionType.conforms = function conforms(value) {
+ return proto2.util.conforms(NewOptionType, value);
+};
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum
  */
@@ -403,3 +484,6 @@ export const TestMessageWithRequiredEnumOption = proto2.makeMessageType(
   [],
 );
 
+TestMessageWithRequiredEnumOption.conforms = function conforms(value) {
+ return proto2.util.conforms(TestMessageWithRequiredEnumOption, value);
+};

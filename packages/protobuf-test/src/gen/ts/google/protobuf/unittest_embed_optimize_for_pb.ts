@@ -83,6 +83,10 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
     return new TestEmbedOptimizedForSize().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestEmbedOptimizedForSize {
+    return proto2.util.conforms(TestEmbedOptimizedForSize, value);
+  }
+
   static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean {
     return proto2.util.equals(TestEmbedOptimizedForSize, a, b);
   }

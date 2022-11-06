@@ -54,3 +54,6 @@ export const LazyMessage = proto2.makeMessageType(
   ],
 );
 
+LazyMessage.conforms = function conforms(value) {
+ return proto2.util.conforms(LazyMessage, value);
+};

@@ -929,6 +929,10 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     return new TestAllTypesProto2().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto2 {
+    return proto2.util.conforms(TestAllTypesProto2, value);
+  }
+
   static equals(a: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined, b: TestAllTypesProto2 | PlainMessage<TestAllTypesProto2> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2, a, b);
   }
@@ -1006,6 +1010,10 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
     return new TestAllTypesProto2_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto2_NestedMessage {
+    return proto2.util.conforms(TestAllTypesProto2_NestedMessage, value);
+  }
+
   static equals(a: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined, b: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_NestedMessage, a, b);
   }
@@ -1051,6 +1059,10 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
     return new TestAllTypesProto2_Data().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto2_Data {
+    return proto2.util.conforms(TestAllTypesProto2_Data, value);
+  }
+
   static equals(a: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined, b: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_Data, a, b);
   }
@@ -1082,6 +1094,10 @@ export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesPr
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MessageSetCorrect {
     return new TestAllTypesProto2_MessageSetCorrect().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrect {
+    return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrect, value);
   }
 
   static equals(a: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined, b: TestAllTypesProto2_MessageSetCorrect | PlainMessage<TestAllTypesProto2_MessageSetCorrect> | undefined): boolean {
@@ -1121,6 +1137,10 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
     return new TestAllTypesProto2_MessageSetCorrectExtension1().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension1 {
+    return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension1, value);
+  }
+
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension1 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension1> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrectExtension1, a, b);
   }
@@ -1158,6 +1178,10 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
     return new TestAllTypesProto2_MessageSetCorrectExtension2().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension2 {
+    return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension2, value);
+  }
+
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrectExtension2, a, b);
   }
@@ -1193,6 +1217,10 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessageProto2 {
     return new ForeignMessageProto2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ForeignMessageProto2 {
+    return proto2.util.conforms(ForeignMessageProto2, value);
   }
 
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean {
@@ -1262,6 +1290,10 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
     return new UnknownToTestAllTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UnknownToTestAllTypes {
+    return proto2.util.conforms(UnknownToTestAllTypes, value);
+  }
+
   static equals(a: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined, b: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined): boolean {
     return proto2.util.equals(UnknownToTestAllTypes, a, b);
   }
@@ -1299,6 +1331,10 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
     return new UnknownToTestAllTypes_OptionalGroup().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UnknownToTestAllTypes_OptionalGroup {
+    return proto2.util.conforms(UnknownToTestAllTypes_OptionalGroup, value);
+  }
+
   static equals(a: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined, b: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(UnknownToTestAllTypes_OptionalGroup, a, b);
   }
@@ -1330,6 +1366,10 @@ export class NullHypothesisProto2 extends Message<NullHypothesisProto2> {
     return new NullHypothesisProto2().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NullHypothesisProto2 {
+    return proto2.util.conforms(NullHypothesisProto2, value);
+  }
+
   static equals(a: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined, b: NullHypothesisProto2 | PlainMessage<NullHypothesisProto2> | undefined): boolean {
     return proto2.util.equals(NullHypothesisProto2, a, b);
   }
@@ -1359,6 +1399,10 @@ export class EnumOnlyProto2 extends Message<EnumOnlyProto2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumOnlyProto2 {
     return new EnumOnlyProto2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is EnumOnlyProto2 {
+    return proto2.util.conforms(EnumOnlyProto2, value);
   }
 
   static equals(a: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined, b: EnumOnlyProto2 | PlainMessage<EnumOnlyProto2> | undefined): boolean {
@@ -1416,6 +1460,10 @@ export class OneStringProto2 extends Message<OneStringProto2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneStringProto2 {
     return new OneStringProto2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is OneStringProto2 {
+    return proto2.util.conforms(OneStringProto2, value);
   }
 
   static equals(a: OneStringProto2 | PlainMessage<OneStringProto2> | undefined, b: OneStringProto2 | PlainMessage<OneStringProto2> | undefined): boolean {

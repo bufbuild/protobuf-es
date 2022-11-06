@@ -134,6 +134,8 @@ export declare class Api extends Message<Api> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Api;
 
+  static conforms(value: any): value is Api;
+
   static equals(a: Api | PlainMessage<Api> | undefined, b: Api | PlainMessage<Api> | undefined): boolean;
 }
 
@@ -203,6 +205,8 @@ export declare class Method extends Message<Method> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Method;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Method;
+
+  static conforms(value: any): value is Method;
 
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean;
 }
@@ -316,6 +320,8 @@ export declare class Mixin extends Message<Mixin> {
   static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Mixin;
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Mixin;
+
+  static conforms(value: any): value is Mixin;
 
   static equals(a: Mixin | PlainMessage<Mixin> | undefined, b: Mixin | PlainMessage<Mixin> | undefined): boolean;
 }

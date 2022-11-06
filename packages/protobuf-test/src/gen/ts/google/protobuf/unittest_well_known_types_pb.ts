@@ -152,6 +152,10 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
     return new TestWellKnownTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestWellKnownTypes {
+    return proto3.util.conforms(TestWellKnownTypes, value);
+  }
+
   static equals(a: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined, b: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(TestWellKnownTypes, a, b);
   }
@@ -293,6 +297,10 @@ export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedWellKnownTypes {
     return new RepeatedWellKnownTypes().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RepeatedWellKnownTypes {
+    return proto3.util.conforms(RepeatedWellKnownTypes, value);
   }
 
   static equals(a: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined, b: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined): boolean {
@@ -457,6 +465,10 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
     return new OneofWellKnownTypes().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OneofWellKnownTypes {
+    return proto3.util.conforms(OneofWellKnownTypes, value);
+  }
+
   static equals(a: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined, b: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined): boolean {
     return proto3.util.equals(OneofWellKnownTypes, a, b);
   }
@@ -598,6 +610,10 @@ export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapWellKnownTypes {
     return new MapWellKnownTypes().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MapWellKnownTypes {
+    return proto3.util.conforms(MapWellKnownTypes, value);
   }
 
   static equals(a: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined, b: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined): boolean {

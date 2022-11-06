@@ -83,6 +83,10 @@ export class TestMessage extends Message<TestMessage> {
     return new TestMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMessage {
+    return proto2.util.conforms(TestMessage, value);
+  }
+
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean {
     return proto2.util.equals(TestMessage, a, b);
   }

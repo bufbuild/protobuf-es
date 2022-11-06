@@ -73,6 +73,10 @@ export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
     return new GetJSONSchemaRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is GetJSONSchemaRequest {
+    return proto3.util.conforms(GetJSONSchemaRequest, value);
+  }
+
   static equals(a: GetJSONSchemaRequest | PlainMessage<GetJSONSchemaRequest> | undefined, b: GetJSONSchemaRequest | PlainMessage<GetJSONSchemaRequest> | undefined): boolean {
     return proto3.util.equals(GetJSONSchemaRequest, a, b);
   }
@@ -113,6 +117,10 @@ export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetJSONSchemaResponse {
     return new GetJSONSchemaResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GetJSONSchemaResponse {
+    return proto3.util.conforms(GetJSONSchemaResponse, value);
   }
 
   static equals(a: GetJSONSchemaResponse | PlainMessage<GetJSONSchemaResponse> | undefined, b: GetJSONSchemaResponse | PlainMessage<GetJSONSchemaResponse> | undefined): boolean {

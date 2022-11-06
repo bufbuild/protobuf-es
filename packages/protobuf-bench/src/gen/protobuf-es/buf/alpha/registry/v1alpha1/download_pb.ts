@@ -64,6 +64,10 @@ export class DownloadRequest extends Message<DownloadRequest> {
     return new DownloadRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DownloadRequest {
+    return proto3.util.conforms(DownloadRequest, value);
+  }
+
   static equals(a: DownloadRequest | PlainMessage<DownloadRequest> | undefined, b: DownloadRequest | PlainMessage<DownloadRequest> | undefined): boolean {
     return proto3.util.equals(DownloadRequest, a, b);
   }
@@ -99,6 +103,10 @@ export class DownloadResponse extends Message<DownloadResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DownloadResponse {
     return new DownloadResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DownloadResponse {
+    return proto3.util.conforms(DownloadResponse, value);
   }
 
   static equals(a: DownloadResponse | PlainMessage<DownloadResponse> | undefined, b: DownloadResponse | PlainMessage<DownloadResponse> | undefined): boolean {

@@ -626,6 +626,10 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
     return new TestAllTypesLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesLite {
+    return proto2.util.conforms(TestAllTypesLite, value);
+  }
+
   static equals(a: TestAllTypesLite | PlainMessage<TestAllTypesLite> | undefined, b: TestAllTypesLite | PlainMessage<TestAllTypesLite> | undefined): boolean {
     return proto2.util.equals(TestAllTypesLite, a, b);
   }
@@ -695,6 +699,10 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
     return new TestAllTypesLite_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesLite_NestedMessage {
+    return proto2.util.conforms(TestAllTypesLite_NestedMessage, value);
+  }
+
   static equals(a: TestAllTypesLite_NestedMessage | PlainMessage<TestAllTypesLite_NestedMessage> | undefined, b: TestAllTypesLite_NestedMessage | PlainMessage<TestAllTypesLite_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypesLite_NestedMessage, a, b);
   }
@@ -730,6 +738,10 @@ export class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_Ne
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_NestedMessage2 {
     return new TestAllTypesLite_NestedMessage2().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestAllTypesLite_NestedMessage2 {
+    return proto2.util.conforms(TestAllTypesLite_NestedMessage2, value);
   }
 
   static equals(a: TestAllTypesLite_NestedMessage2 | PlainMessage<TestAllTypesLite_NestedMessage2> | undefined, b: TestAllTypesLite_NestedMessage2 | PlainMessage<TestAllTypesLite_NestedMessage2> | undefined): boolean {
@@ -769,6 +781,10 @@ export class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_Opt
     return new TestAllTypesLite_OptionalGroup().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesLite_OptionalGroup {
+    return proto2.util.conforms(TestAllTypesLite_OptionalGroup, value);
+  }
+
   static equals(a: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined, b: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestAllTypesLite_OptionalGroup, a, b);
   }
@@ -806,6 +822,10 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
     return new TestAllTypesLite_RepeatedGroup().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestAllTypesLite_RepeatedGroup {
+    return proto2.util.conforms(TestAllTypesLite_RepeatedGroup, value);
+  }
+
   static equals(a: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined, b: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined): boolean {
     return proto2.util.equals(TestAllTypesLite_RepeatedGroup, a, b);
   }
@@ -841,6 +861,10 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessageLite {
     return new ForeignMessageLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ForeignMessageLite {
+    return proto2.util.conforms(ForeignMessageLite, value);
   }
 
   static equals(a: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined, b: ForeignMessageLite | PlainMessage<ForeignMessageLite> | undefined): boolean {
@@ -958,6 +982,10 @@ export class TestPackedTypesLite extends Message<TestPackedTypesLite> {
     return new TestPackedTypesLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestPackedTypesLite {
+    return proto2.util.conforms(TestPackedTypesLite, value);
+  }
+
   static equals(a: TestPackedTypesLite | PlainMessage<TestPackedTypesLite> | undefined, b: TestPackedTypesLite | PlainMessage<TestPackedTypesLite> | undefined): boolean {
     return proto2.util.equals(TestPackedTypesLite, a, b);
   }
@@ -987,6 +1015,10 @@ export class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllExtensionsLite {
     return new TestAllExtensionsLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestAllExtensionsLite {
+    return proto2.util.conforms(TestAllExtensionsLite, value);
   }
 
   static equals(a: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined, b: TestAllExtensionsLite | PlainMessage<TestAllExtensionsLite> | undefined): boolean {
@@ -1026,6 +1058,10 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
     return new OptionalGroup_extension_lite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OptionalGroup_extension_lite {
+    return proto2.util.conforms(OptionalGroup_extension_lite, value);
+  }
+
   static equals(a: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined, b: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined): boolean {
     return proto2.util.equals(OptionalGroup_extension_lite, a, b);
   }
@@ -1063,6 +1099,10 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
     return new RepeatedGroup_extension_lite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is RepeatedGroup_extension_lite {
+    return proto2.util.conforms(RepeatedGroup_extension_lite, value);
+  }
+
   static equals(a: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined, b: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined): boolean {
     return proto2.util.equals(RepeatedGroup_extension_lite, a, b);
   }
@@ -1094,6 +1134,10 @@ export class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> 
     return new TestPackedExtensionsLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestPackedExtensionsLite {
+    return proto2.util.conforms(TestPackedExtensionsLite, value);
+  }
+
   static equals(a: TestPackedExtensionsLite | PlainMessage<TestPackedExtensionsLite> | undefined, b: TestPackedExtensionsLite | PlainMessage<TestPackedExtensionsLite> | undefined): boolean {
     return proto2.util.equals(TestPackedExtensionsLite, a, b);
   }
@@ -1123,6 +1167,10 @@ export class TestNestedExtensionLite extends Message<TestNestedExtensionLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtensionLite {
     return new TestNestedExtensionLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestNestedExtensionLite {
+    return proto2.util.conforms(TestNestedExtensionLite, value);
   }
 
   static equals(a: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined, b: TestNestedExtensionLite | PlainMessage<TestNestedExtensionLite> | undefined): boolean {
@@ -1187,6 +1235,10 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
     return new TestDeprecatedLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestDeprecatedLite {
+    return proto2.util.conforms(TestDeprecatedLite, value);
+  }
+
   static equals(a: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined, b: TestDeprecatedLite | PlainMessage<TestDeprecatedLite> | undefined): boolean {
     return proto2.util.equals(TestDeprecatedLite, a, b);
   }
@@ -1248,6 +1300,10 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite {
     return new TestParsingMergeLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestParsingMergeLite {
+    return proto2.util.conforms(TestParsingMergeLite, value);
   }
 
   static equals(a: TestParsingMergeLite | PlainMessage<TestParsingMergeLite> | undefined, b: TestParsingMergeLite | PlainMessage<TestParsingMergeLite> | undefined): boolean {
@@ -1323,6 +1379,10 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator extends Message<TestPa
     return new TestParsingMergeLite_RepeatedFieldsGenerator().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestParsingMergeLite_RepeatedFieldsGenerator {
+    return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator, value);
+  }
+
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined): boolean {
     return proto2.util.equals(TestParsingMergeLite_RepeatedFieldsGenerator, a, b);
   }
@@ -1358,6 +1418,10 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends Message
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1 {
     return new TestParsingMergeLite_RepeatedFieldsGenerator_Group1().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestParsingMergeLite_RepeatedFieldsGenerator_Group1 {
+    return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator_Group1, value);
   }
 
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined): boolean {
@@ -1397,6 +1461,10 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends Message
     return new TestParsingMergeLite_RepeatedFieldsGenerator_Group2().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestParsingMergeLite_RepeatedFieldsGenerator_Group2 {
+    return proto2.util.conforms(TestParsingMergeLite_RepeatedFieldsGenerator_Group2, value);
+  }
+
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined): boolean {
     return proto2.util.equals(TestParsingMergeLite_RepeatedFieldsGenerator_Group2, a, b);
   }
@@ -1434,6 +1502,10 @@ export class TestParsingMergeLite_OptionalGroup extends Message<TestParsingMerge
     return new TestParsingMergeLite_OptionalGroup().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestParsingMergeLite_OptionalGroup {
+    return proto2.util.conforms(TestParsingMergeLite_OptionalGroup, value);
+  }
+
   static equals(a: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined, b: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined): boolean {
     return proto2.util.equals(TestParsingMergeLite_OptionalGroup, a, b);
   }
@@ -1469,6 +1541,10 @@ export class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMerge
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedGroup {
     return new TestParsingMergeLite_RepeatedGroup().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestParsingMergeLite_RepeatedGroup {
+    return proto2.util.conforms(TestParsingMergeLite_RepeatedGroup, value);
   }
 
   static equals(a: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined, b: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined): boolean {
@@ -1511,6 +1587,10 @@ export class TestMergeExceptionLite extends Message<TestMergeExceptionLite> {
     return new TestMergeExceptionLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMergeExceptionLite {
+    return proto2.util.conforms(TestMergeExceptionLite, value);
+  }
+
   static equals(a: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined, b: TestMergeExceptionLite | PlainMessage<TestMergeExceptionLite> | undefined): boolean {
     return proto2.util.equals(TestMergeExceptionLite, a, b);
   }
@@ -1542,6 +1622,10 @@ export class TestEmptyMessageLite extends Message<TestEmptyMessageLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageLite {
     return new TestEmptyMessageLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestEmptyMessageLite {
+    return proto2.util.conforms(TestEmptyMessageLite, value);
   }
 
   static equals(a: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined, b: TestEmptyMessageLite | PlainMessage<TestEmptyMessageLite> | undefined): boolean {
@@ -1576,6 +1660,10 @@ export class TestEmptyMessageWithExtensionsLite extends Message<TestEmptyMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageWithExtensionsLite {
     return new TestEmptyMessageWithExtensionsLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestEmptyMessageWithExtensionsLite {
+    return proto2.util.conforms(TestEmptyMessageWithExtensionsLite, value);
   }
 
   static equals(a: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined, b: TestEmptyMessageWithExtensionsLite | PlainMessage<TestEmptyMessageWithExtensionsLite> | undefined): boolean {
@@ -1621,6 +1709,10 @@ export class V1MessageLite extends Message<V1MessageLite> {
     return new V1MessageLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is V1MessageLite {
+    return proto2.util.conforms(V1MessageLite, value);
+  }
+
   static equals(a: V1MessageLite | PlainMessage<V1MessageLite> | undefined, b: V1MessageLite | PlainMessage<V1MessageLite> | undefined): boolean {
     return proto2.util.equals(V1MessageLite, a, b);
   }
@@ -1662,6 +1754,10 @@ export class V2MessageLite extends Message<V2MessageLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): V2MessageLite {
     return new V2MessageLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is V2MessageLite {
+    return proto2.util.conforms(V2MessageLite, value);
   }
 
   static equals(a: V2MessageLite | PlainMessage<V2MessageLite> | undefined, b: V2MessageLite | PlainMessage<V2MessageLite> | undefined): boolean {
@@ -1788,6 +1884,10 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
     return new TestHugeFieldNumbersLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestHugeFieldNumbersLite {
+    return proto2.util.conforms(TestHugeFieldNumbersLite, value);
+  }
+
   static equals(a: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined, b: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined): boolean {
     return proto2.util.equals(TestHugeFieldNumbersLite, a, b);
   }
@@ -1823,6 +1923,10 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite_OptionalGroup {
     return new TestHugeFieldNumbersLite_OptionalGroup().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestHugeFieldNumbersLite_OptionalGroup {
+    return proto2.util.conforms(TestHugeFieldNumbersLite_OptionalGroup, value);
   }
 
   static equals(a: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined, b: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined): boolean {
@@ -1924,6 +2028,10 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
     return new TestOneofParsingLite().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestOneofParsingLite {
+    return proto2.util.conforms(TestOneofParsingLite, value);
+  }
+
   static equals(a: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined, b: TestOneofParsingLite | PlainMessage<TestOneofParsingLite> | undefined): boolean {
     return proto2.util.equals(TestOneofParsingLite, a, b);
   }
@@ -1953,6 +2061,10 @@ export class TestMessageSetLite extends Message<TestMessageSetLite> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSetLite {
     return new TestMessageSetLite().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestMessageSetLite {
+    return proto2.util.conforms(TestMessageSetLite, value);
   }
 
   static equals(a: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined, b: TestMessageSetLite | PlainMessage<TestMessageSetLite> | undefined): boolean {
@@ -1996,6 +2108,10 @@ export class PackedInt32 extends Message<PackedInt32> {
     return new PackedInt32().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PackedInt32 {
+    return proto2.util.conforms(PackedInt32, value);
+  }
+
   static equals(a: PackedInt32 | PlainMessage<PackedInt32> | undefined, b: PackedInt32 | PlainMessage<PackedInt32> | undefined): boolean {
     return proto2.util.equals(PackedInt32, a, b);
   }
@@ -2031,6 +2147,10 @@ export class NonPackedInt32 extends Message<NonPackedInt32> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NonPackedInt32 {
     return new NonPackedInt32().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NonPackedInt32 {
+    return proto2.util.conforms(NonPackedInt32, value);
   }
 
   static equals(a: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined, b: NonPackedInt32 | PlainMessage<NonPackedInt32> | undefined): boolean {
@@ -2070,6 +2190,10 @@ export class PackedFixed32 extends Message<PackedFixed32> {
     return new PackedFixed32().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is PackedFixed32 {
+    return proto2.util.conforms(PackedFixed32, value);
+  }
+
   static equals(a: PackedFixed32 | PlainMessage<PackedFixed32> | undefined, b: PackedFixed32 | PlainMessage<PackedFixed32> | undefined): boolean {
     return proto2.util.equals(PackedFixed32, a, b);
   }
@@ -2107,6 +2231,10 @@ export class NonPackedFixed32 extends Message<NonPackedFixed32> {
     return new NonPackedFixed32().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NonPackedFixed32 {
+    return proto2.util.conforms(NonPackedFixed32, value);
+  }
+
   static equals(a: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined, b: NonPackedFixed32 | PlainMessage<NonPackedFixed32> | undefined): boolean {
     return proto2.util.equals(NonPackedFixed32, a, b);
   }
@@ -2138,6 +2266,10 @@ export class DupEnum extends Message<DupEnum> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DupEnum {
     return new DupEnum().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DupEnum {
+    return proto2.util.conforms(DupEnum, value);
   }
 
   static equals(a: DupEnum | PlainMessage<DupEnum> | undefined, b: DupEnum | PlainMessage<DupEnum> | undefined): boolean {
@@ -2219,6 +2351,10 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecursiveMessage {
     return new RecursiveMessage().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is RecursiveMessage {
+    return proto2.util.conforms(RecursiveMessage, value);
   }
 
   static equals(a: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined, b: RecursiveMessage | PlainMessage<RecursiveMessage> | undefined): boolean {

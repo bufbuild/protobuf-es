@@ -42,6 +42,9 @@ export const ScalarValuesMessage = proto3.makeMessageType(
   ],
 );
 
+ScalarValuesMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(ScalarValuesMessage, value);
+};
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
@@ -66,3 +69,6 @@ export const RepeatedScalarValuesMessage = proto3.makeMessageType(
   ],
 );
 
+RepeatedScalarValuesMessage.conforms = function conforms(value) {
+ return proto3.util.conforms(RepeatedScalarValuesMessage, value);
+};

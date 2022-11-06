@@ -131,6 +131,10 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
     return new TestMessageWithCustomOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is TestMessageWithCustomOptions {
+    return proto2.util.conforms(TestMessageWithCustomOptions, value);
+  }
+
   static equals(a: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined, b: TestMessageWithCustomOptions | PlainMessage<TestMessageWithCustomOptions> | undefined): boolean {
     return proto2.util.equals(TestMessageWithCustomOptions, a, b);
   }
@@ -185,6 +189,10 @@ export class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
     return new CustomOptionFooRequest().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CustomOptionFooRequest {
+    return proto2.util.conforms(CustomOptionFooRequest, value);
+  }
+
   static equals(a: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined, b: CustomOptionFooRequest | PlainMessage<CustomOptionFooRequest> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooRequest, a, b);
   }
@@ -214,6 +222,10 @@ export class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionFooResponse {
     return new CustomOptionFooResponse().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CustomOptionFooResponse {
+    return proto2.util.conforms(CustomOptionFooResponse, value);
   }
 
   static equals(a: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined, b: CustomOptionFooResponse | PlainMessage<CustomOptionFooResponse> | undefined): boolean {
@@ -247,6 +259,10 @@ export class CustomOptionFooClientMessage extends Message<CustomOptionFooClientM
     return new CustomOptionFooClientMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CustomOptionFooClientMessage {
+    return proto2.util.conforms(CustomOptionFooClientMessage, value);
+  }
+
   static equals(a: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined, b: CustomOptionFooClientMessage | PlainMessage<CustomOptionFooClientMessage> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooClientMessage, a, b);
   }
@@ -278,6 +294,10 @@ export class CustomOptionFooServerMessage extends Message<CustomOptionFooServerM
     return new CustomOptionFooServerMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CustomOptionFooServerMessage {
+    return proto2.util.conforms(CustomOptionFooServerMessage, value);
+  }
+
   static equals(a: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined, b: CustomOptionFooServerMessage | PlainMessage<CustomOptionFooServerMessage> | undefined): boolean {
     return proto2.util.equals(CustomOptionFooServerMessage, a, b);
   }
@@ -307,6 +327,10 @@ export class DummyMessageContainingEnum extends Message<DummyMessageContainingEn
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DummyMessageContainingEnum {
     return new DummyMessageContainingEnum().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is DummyMessageContainingEnum {
+    return proto2.util.conforms(DummyMessageContainingEnum, value);
   }
 
   static equals(a: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined, b: DummyMessageContainingEnum | PlainMessage<DummyMessageContainingEnum> | undefined): boolean {
@@ -360,6 +384,10 @@ export class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalid
     return new DummyMessageInvalidAsOptionType().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DummyMessageInvalidAsOptionType {
+    return proto2.util.conforms(DummyMessageInvalidAsOptionType, value);
+  }
+
   static equals(a: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined, b: DummyMessageInvalidAsOptionType | PlainMessage<DummyMessageInvalidAsOptionType> | undefined): boolean {
     return proto2.util.equals(DummyMessageInvalidAsOptionType, a, b);
   }
@@ -389,6 +417,10 @@ export class CustomOptionMinIntegerValues extends Message<CustomOptionMinInteger
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionMinIntegerValues {
     return new CustomOptionMinIntegerValues().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CustomOptionMinIntegerValues {
+    return proto2.util.conforms(CustomOptionMinIntegerValues, value);
   }
 
   static equals(a: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined, b: CustomOptionMinIntegerValues | PlainMessage<CustomOptionMinIntegerValues> | undefined): boolean {
@@ -422,6 +454,10 @@ export class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxInteger
     return new CustomOptionMaxIntegerValues().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is CustomOptionMaxIntegerValues {
+    return proto2.util.conforms(CustomOptionMaxIntegerValues, value);
+  }
+
   static equals(a: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined, b: CustomOptionMaxIntegerValues | PlainMessage<CustomOptionMaxIntegerValues> | undefined): boolean {
     return proto2.util.equals(CustomOptionMaxIntegerValues, a, b);
   }
@@ -451,6 +487,10 @@ export class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CustomOptionOtherValues {
     return new CustomOptionOtherValues().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is CustomOptionOtherValues {
+    return proto2.util.conforms(CustomOptionOtherValues, value);
   }
 
   static equals(a: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined, b: CustomOptionOtherValues | PlainMessage<CustomOptionOtherValues> | undefined): boolean {
@@ -484,6 +524,10 @@ export class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositi
     return new SettingRealsFromPositiveInts().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SettingRealsFromPositiveInts {
+    return proto2.util.conforms(SettingRealsFromPositiveInts, value);
+  }
+
   static equals(a: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined, b: SettingRealsFromPositiveInts | PlainMessage<SettingRealsFromPositiveInts> | undefined): boolean {
     return proto2.util.equals(SettingRealsFromPositiveInts, a, b);
   }
@@ -513,6 +557,10 @@ export class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegati
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SettingRealsFromNegativeInts {
     return new SettingRealsFromNegativeInts().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SettingRealsFromNegativeInts {
+    return proto2.util.conforms(SettingRealsFromNegativeInts, value);
   }
 
   static equals(a: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined, b: SettingRealsFromNegativeInts | PlainMessage<SettingRealsFromNegativeInts> | undefined): boolean {
@@ -570,6 +618,10 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
     return new ComplexOptionType1().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ComplexOptionType1 {
+    return proto2.util.conforms(ComplexOptionType1, value);
+  }
+
   static equals(a: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined, b: ComplexOptionType1 | PlainMessage<ComplexOptionType1> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType1, a, b);
   }
@@ -625,6 +677,10 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
     return new ComplexOptionType2().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ComplexOptionType2 {
+    return proto2.util.conforms(ComplexOptionType2, value);
+  }
+
   static equals(a: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined, b: ComplexOptionType2 | PlainMessage<ComplexOptionType2> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType2, a, b);
   }
@@ -660,6 +716,10 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType2_ComplexOptionType4 {
     return new ComplexOptionType2_ComplexOptionType4().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ComplexOptionType2_ComplexOptionType4 {
+    return proto2.util.conforms(ComplexOptionType2_ComplexOptionType4, value);
   }
 
   static equals(a: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined, b: ComplexOptionType2_ComplexOptionType4 | PlainMessage<ComplexOptionType2_ComplexOptionType4> | undefined): boolean {
@@ -705,6 +765,10 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
     return new ComplexOptionType3().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ComplexOptionType3 {
+    return proto2.util.conforms(ComplexOptionType3, value);
+  }
+
   static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType3, a, b);
   }
@@ -740,6 +804,10 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5 {
     return new ComplexOptionType3_ComplexOptionType5().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ComplexOptionType3_ComplexOptionType5 {
+    return proto2.util.conforms(ComplexOptionType3_ComplexOptionType5, value);
   }
 
   static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean {
@@ -779,6 +847,10 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
     return new ComplexOpt6().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is ComplexOpt6 {
+    return proto2.util.conforms(ComplexOpt6, value);
+  }
+
   static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean {
     return proto2.util.equals(ComplexOpt6, a, b);
   }
@@ -812,6 +884,10 @@ export class VariousComplexOptions extends Message<VariousComplexOptions> {
     return new VariousComplexOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is VariousComplexOptions {
+    return proto2.util.conforms(VariousComplexOptions, value);
+  }
+
   static equals(a: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined, b: VariousComplexOptions | PlainMessage<VariousComplexOptions> | undefined): boolean {
     return proto2.util.equals(VariousComplexOptions, a, b);
   }
@@ -841,6 +917,10 @@ export class AggregateMessageSet extends Message<AggregateMessageSet> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSet {
     return new AggregateMessageSet().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is AggregateMessageSet {
+    return proto2.util.conforms(AggregateMessageSet, value);
   }
 
   static equals(a: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined, b: AggregateMessageSet | PlainMessage<AggregateMessageSet> | undefined): boolean {
@@ -878,6 +958,10 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AggregateMessageSetElement {
     return new AggregateMessageSetElement().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is AggregateMessageSetElement {
+    return proto2.util.conforms(AggregateMessageSetElement, value);
   }
 
   static equals(a: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined, b: AggregateMessageSetElement | PlainMessage<AggregateMessageSetElement> | undefined): boolean {
@@ -957,6 +1041,10 @@ export class Aggregate extends Message<Aggregate> {
     return new Aggregate().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Aggregate {
+    return proto2.util.conforms(Aggregate, value);
+  }
+
   static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean {
     return proto2.util.equals(Aggregate, a, b);
   }
@@ -994,6 +1082,10 @@ export class AggregateMessage extends Message<AggregateMessage> {
     return new AggregateMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is AggregateMessage {
+    return proto2.util.conforms(AggregateMessage, value);
+  }
+
   static equals(a: AggregateMessage | PlainMessage<AggregateMessage> | undefined, b: AggregateMessage | PlainMessage<AggregateMessage> | undefined): boolean {
     return proto2.util.equals(AggregateMessage, a, b);
   }
@@ -1025,6 +1117,10 @@ export class NestedOptionType extends Message<NestedOptionType> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedOptionType {
     return new NestedOptionType().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is NestedOptionType {
+    return proto2.util.conforms(NestedOptionType, value);
   }
 
   static equals(a: NestedOptionType | PlainMessage<NestedOptionType> | undefined, b: NestedOptionType | PlainMessage<NestedOptionType> | undefined): boolean {
@@ -1078,6 +1174,10 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
     return new NestedOptionType_NestedMessage().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NestedOptionType_NestedMessage {
+    return proto2.util.conforms(NestedOptionType_NestedMessage, value);
+  }
+
   static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean {
     return proto2.util.equals(NestedOptionType_NestedMessage, a, b);
   }
@@ -1116,6 +1216,10 @@ export class OldOptionType extends Message<OldOptionType> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OldOptionType {
     return new OldOptionType().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is OldOptionType {
+    return proto2.util.conforms(OldOptionType, value);
   }
 
   static equals(a: OldOptionType | PlainMessage<OldOptionType> | undefined, b: OldOptionType | PlainMessage<OldOptionType> | undefined): boolean {
@@ -1171,6 +1275,10 @@ export class NewOptionType extends Message<NewOptionType> {
     return new NewOptionType().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is NewOptionType {
+    return proto2.util.conforms(NewOptionType, value);
+  }
+
   static equals(a: NewOptionType | PlainMessage<NewOptionType> | undefined, b: NewOptionType | PlainMessage<NewOptionType> | undefined): boolean {
     return proto2.util.equals(NewOptionType, a, b);
   }
@@ -1222,6 +1330,10 @@ export class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRe
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithRequiredEnumOption {
     return new TestMessageWithRequiredEnumOption().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is TestMessageWithRequiredEnumOption {
+    return proto2.util.conforms(TestMessageWithRequiredEnumOption, value);
   }
 
   static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean {
