@@ -11,6 +11,7 @@ provided by the library.
   - [Accessing fields](#accessing-fields)
   - [Accessing oneof groups](#accessing-oneof-groups)
   - [Cloning messages](#cloning-messages)
+  - [Checking conformance](#checking-conformance)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
 - [Using enumerations](#using-enumerations)
@@ -197,6 +198,20 @@ message constructor, it is also possible to create a _deep_ clone of a message:
 ```typescript
 example.clone();
 ```
+
+### Checking conformance 
+
+We provide instance methods to test if a given object conforming the message's type:
+
+```typescript
+const conforming = new Example();
+const nonConforming = new OtherType();
+
+Example.conforms(conforming); // true
+Example.conforms(nonConforming); // false
+```
+
+Noet that in Typescript this method also acts as a [type guard](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates).
 
 ### Comparing messages
 
