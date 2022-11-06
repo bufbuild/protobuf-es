@@ -175,6 +175,10 @@ export class Duration extends Message<Duration> {
     return new Duration().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Duration {
+    return new Duration().getType().conforms(value);
+  }
+
   static equals(a: Duration | PlainMessage<Duration> | undefined, b: Duration | PlainMessage<Duration> | undefined): boolean {
     return proto3.util.equals(Duration, a, b);
   }

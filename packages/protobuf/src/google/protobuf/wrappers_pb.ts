@@ -99,6 +99,10 @@ export class DoubleValue extends Message<DoubleValue> {
     return new DoubleValue().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DoubleValue {
+    return new DoubleValue().getType().conforms(value);
+  }
+
   static equals(a: DoubleValue | PlainMessage<DoubleValue> | undefined, b: DoubleValue | PlainMessage<DoubleValue> | undefined): boolean {
     return proto3.util.equals(DoubleValue, a, b);
   }
@@ -166,6 +170,10 @@ export class FloatValue extends Message<FloatValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FloatValue {
     return new FloatValue().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is FloatValue {
+    return new FloatValue().getType().conforms(value);
   }
 
   static equals(a: FloatValue | PlainMessage<FloatValue> | undefined, b: FloatValue | PlainMessage<FloatValue> | undefined): boolean {
@@ -237,6 +245,10 @@ export class Int64Value extends Message<Int64Value> {
     return new Int64Value().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Int64Value {
+    return new Int64Value().getType().conforms(value);
+  }
+
   static equals(a: Int64Value | PlainMessage<Int64Value> | undefined, b: Int64Value | PlainMessage<Int64Value> | undefined): boolean {
     return proto3.util.equals(Int64Value, a, b);
   }
@@ -304,6 +316,10 @@ export class UInt64Value extends Message<UInt64Value> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UInt64Value {
     return new UInt64Value().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UInt64Value {
+    return new UInt64Value().getType().conforms(value);
   }
 
   static equals(a: UInt64Value | PlainMessage<UInt64Value> | undefined, b: UInt64Value | PlainMessage<UInt64Value> | undefined): boolean {
@@ -375,6 +391,10 @@ export class Int32Value extends Message<Int32Value> {
     return new Int32Value().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Int32Value {
+    return new Int32Value().getType().conforms(value);
+  }
+
   static equals(a: Int32Value | PlainMessage<Int32Value> | undefined, b: Int32Value | PlainMessage<Int32Value> | undefined): boolean {
     return proto3.util.equals(Int32Value, a, b);
   }
@@ -444,6 +464,10 @@ export class UInt32Value extends Message<UInt32Value> {
     return new UInt32Value().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UInt32Value {
+    return new UInt32Value().getType().conforms(value);
+  }
+
   static equals(a: UInt32Value | PlainMessage<UInt32Value> | undefined, b: UInt32Value | PlainMessage<UInt32Value> | undefined): boolean {
     return proto3.util.equals(UInt32Value, a, b);
   }
@@ -511,6 +535,10 @@ export class BoolValue extends Message<BoolValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolValue {
     return new BoolValue().fromJsonString(jsonString, options);
+  }
+  
+  static conforms(value: any): value is BoolValue {
+    return new BoolValue().getType().conforms(value);
   }
 
   static equals(a: BoolValue | PlainMessage<BoolValue> | undefined, b: BoolValue | PlainMessage<BoolValue> | undefined): boolean {
@@ -582,6 +610,10 @@ export class StringValue extends Message<StringValue> {
     return new StringValue().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is StringValue {
+    return new StringValue().getType().conforms(value);
+  }
+
   static equals(a: StringValue | PlainMessage<StringValue> | undefined, b: StringValue | PlainMessage<StringValue> | undefined): boolean {
     return proto3.util.equals(StringValue, a, b);
   }
@@ -649,6 +681,10 @@ export class BytesValue extends Message<BytesValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BytesValue {
     return new BytesValue().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is BytesValue {
+    return new BytesValue().getType().conforms(value);
   }
 
   static equals(a: BytesValue | PlainMessage<BytesValue> | undefined, b: BytesValue | PlainMessage<BytesValue> | undefined): boolean {

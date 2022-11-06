@@ -61,6 +61,10 @@ export class SourceContext extends Message<SourceContext> {
     return new SourceContext().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SourceContext {
+    return new SourceContext().getType().conforms(value);
+  }
+
   static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean {
     return proto3.util.equals(SourceContext, a, b);
   }

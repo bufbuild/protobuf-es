@@ -127,6 +127,10 @@ export class Type extends Message<Type> {
     return new Type().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Type {
+    return new Type().getType().conforms(value);
+  }
+
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean {
     return proto3.util.equals(Type, a, b);
   }
@@ -240,6 +244,10 @@ export class Field extends Message<Field> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Field {
     return new Field().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Field {
+    return new Field().getType().conforms(value);
   }
 
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
@@ -519,6 +527,10 @@ export class Enum extends Message<Enum> {
     return new Enum().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Enum {
+    return new Enum().getType().conforms(value);
+  }
+
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
     return proto3.util.equals(Enum, a, b);
   }
@@ -576,6 +588,10 @@ export class EnumValue extends Message<EnumValue> {
     return new EnumValue().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumValue {
+    return new EnumValue().getType().conforms(value);
+  }
+
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
     return proto3.util.equals(EnumValue, a, b);
   }
@@ -630,6 +646,10 @@ export class Option extends Message<Option> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Option {
     return new Option().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is Option {
+    return new Option().getType().conforms(value);
   }
 
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean {

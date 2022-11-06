@@ -66,6 +66,10 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
     return new FileDescriptorSet().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is FileDescriptorSet {
+    return new FileDescriptorSet().getType().conforms(value);
+  }
+
   static equals(a: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined, b: FileDescriptorSet | PlainMessage<FileDescriptorSet> | undefined): boolean {
     return proto2.util.equals(FileDescriptorSet, a, b);
   }
@@ -192,6 +196,10 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
     return new FileDescriptorProto().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is FileDescriptorProto {
+    return new FileDescriptorProto().getType().conforms(value);
+  }
+
   static equals(a: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined, b: FileDescriptorProto | PlainMessage<FileDescriptorProto> | undefined): boolean {
     return proto2.util.equals(FileDescriptorProto, a, b);
   }
@@ -288,6 +296,10 @@ export class DescriptorProto extends Message<DescriptorProto> {
     return new DescriptorProto().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DescriptorProto {
+    return new DescriptorProto().getType().conforms(value);
+  }
+
   static equals(a: DescriptorProto | PlainMessage<DescriptorProto> | undefined, b: DescriptorProto | PlainMessage<DescriptorProto> | undefined): boolean {
     return proto2.util.equals(DescriptorProto, a, b);
   }
@@ -341,6 +353,10 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
     return new DescriptorProto_ExtensionRange().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DescriptorProto_ExtensionRange {
+    return new DescriptorProto_ExtensionRange().getType().conforms(value);
+  }
+
   static equals(a: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined, b: DescriptorProto_ExtensionRange | PlainMessage<DescriptorProto_ExtensionRange> | undefined): boolean {
     return proto2.util.equals(DescriptorProto_ExtensionRange, a, b);
   }
@@ -392,6 +408,10 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
     return new DescriptorProto_ReservedRange().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is DescriptorProto_ReservedRange {
+    return new DescriptorProto_ReservedRange().getType().conforms(value);
+  }
+
   static equals(a: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined, b: DescriptorProto_ReservedRange | PlainMessage<DescriptorProto_ReservedRange> | undefined): boolean {
     return proto2.util.equals(DescriptorProto_ReservedRange, a, b);
   }
@@ -429,6 +449,10 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionRangeOptions {
     return new ExtensionRangeOptions().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ExtensionRangeOptions {
+    return new ExtensionRangeOptions().getType().conforms(value);
   }
 
   static equals(a: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined, b: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined): boolean {
@@ -575,6 +599,10 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldDescriptorProto {
     return new FieldDescriptorProto().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is FieldDescriptorProto {
+    return new FieldDescriptorProto().getType().conforms(value);
   }
 
   static equals(a: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined, b: FieldDescriptorProto | PlainMessage<FieldDescriptorProto> | undefined): boolean {
@@ -788,6 +816,10 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
     return new OneofDescriptorProto().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OneofDescriptorProto {
+    return new OneofDescriptorProto().getType().conforms(value);
+  }
+
   static equals(a: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined, b: OneofDescriptorProto | PlainMessage<OneofDescriptorProto> | undefined): boolean {
     return proto2.util.equals(OneofDescriptorProto, a, b);
   }
@@ -858,6 +890,10 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
     return new EnumDescriptorProto().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumDescriptorProto {
+    return new EnumDescriptorProto().getType().conforms(value);
+  }
+
   static equals(a: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined, b: EnumDescriptorProto | PlainMessage<EnumDescriptorProto> | undefined): boolean {
     return proto2.util.equals(EnumDescriptorProto, a, b);
   }
@@ -912,6 +948,10 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
     return new EnumDescriptorProto_EnumReservedRange().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumDescriptorProto_EnumReservedRange {
+    return new EnumDescriptorProto_EnumReservedRange().getType().conforms(value);
+  }
+
   static equals(a: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined, b: EnumDescriptorProto_EnumReservedRange | PlainMessage<EnumDescriptorProto_EnumReservedRange> | undefined): boolean {
     return proto2.util.equals(EnumDescriptorProto_EnumReservedRange, a, b);
   }
@@ -963,6 +1003,10 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
     return new EnumValueDescriptorProto().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumValueDescriptorProto {
+    return new EnumValueDescriptorProto().getType().conforms(value);
+  }
+
   static equals(a: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined, b: EnumValueDescriptorProto | PlainMessage<EnumValueDescriptorProto> | undefined): boolean {
     return proto2.util.equals(EnumValueDescriptorProto, a, b);
   }
@@ -1012,6 +1056,10 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServiceDescriptorProto {
     return new ServiceDescriptorProto().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ServiceDescriptorProto {
+    return new ServiceDescriptorProto().getType().conforms(value);
   }
 
   static equals(a: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined, b: ServiceDescriptorProto | PlainMessage<ServiceDescriptorProto> | undefined): boolean {
@@ -1088,6 +1136,10 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodDescriptorProto {
     return new MethodDescriptorProto().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MethodDescriptorProto {
+    return new MethodDescriptorProto().getType().conforms(value);
   }
 
   static equals(a: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined, b: MethodDescriptorProto | PlainMessage<MethodDescriptorProto> | undefined): boolean {
@@ -1328,6 +1380,10 @@ export class FileOptions extends Message<FileOptions> {
     return new FileOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is FileOptions {
+    return new FileOptions().getType().conforms(value);
+  }
+
   static equals(a: FileOptions | PlainMessage<FileOptions> | undefined, b: FileOptions | PlainMessage<FileOptions> | undefined): boolean {
     return proto2.util.equals(FileOptions, a, b);
   }
@@ -1475,6 +1531,10 @@ export class MessageOptions extends Message<MessageOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageOptions {
     return new MessageOptions().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MessageOptions {
+    return new MethodOptions().getType().conforms(value);
   }
 
   static equals(a: MessageOptions | PlainMessage<MessageOptions> | undefined, b: MessageOptions | PlainMessage<MessageOptions> | undefined): boolean {
@@ -1627,6 +1687,10 @@ export class FieldOptions extends Message<FieldOptions> {
     return new FieldOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is FileOptions {
+    return new FieldOptions().getType().conforms(value);
+  }
+
   static equals(a: FieldOptions | PlainMessage<FieldOptions> | undefined, b: FieldOptions | PlainMessage<FieldOptions> | undefined): boolean {
     return proto2.util.equals(FieldOptions, a, b);
   }
@@ -1726,6 +1790,10 @@ export class OneofOptions extends Message<OneofOptions> {
     return new OneofOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is OneofOptions {
+    return new OneofOptions().getType().conforms(value);
+  }
+
   static equals(a: OneofOptions | PlainMessage<OneofOptions> | undefined, b: OneofOptions | PlainMessage<OneofOptions> | undefined): boolean {
     return proto2.util.equals(OneofOptions, a, b);
   }
@@ -1785,6 +1853,10 @@ export class EnumOptions extends Message<EnumOptions> {
     return new EnumOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumOptions {
+    return new EnumOptions().getType().conforms(value);
+  }
+
   static equals(a: EnumOptions | PlainMessage<EnumOptions> | undefined, b: EnumOptions | PlainMessage<EnumOptions> | undefined): boolean {
     return proto2.util.equals(EnumOptions, a, b);
   }
@@ -1835,6 +1907,10 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
     return new EnumValueOptions().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is EnumValueOptions {
+    return new EnumValueOptions().getType().conforms(value);
+  }
+
   static equals(a: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined, b: EnumValueOptions | PlainMessage<EnumValueOptions> | undefined): boolean {
     return proto2.util.equals(EnumValueOptions, a, b);
   }
@@ -1883,6 +1959,10 @@ export class ServiceOptions extends Message<ServiceOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServiceOptions {
     return new ServiceOptions().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is ServiceOptions {
+    return new ServiceOptions().getType().conforms(value);
   }
 
   static equals(a: ServiceOptions | PlainMessage<ServiceOptions> | undefined, b: ServiceOptions | PlainMessage<ServiceOptions> | undefined): boolean {
@@ -1939,6 +2019,10 @@ export class MethodOptions extends Message<MethodOptions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MethodOptions {
     return new MethodOptions().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is MethodOptions {
+    return new MethodOptions().getType().conforms(value);
   }
 
   static equals(a: MethodOptions | PlainMessage<MethodOptions> | undefined, b: MethodOptions | PlainMessage<MethodOptions> | undefined): boolean {
@@ -2058,6 +2142,10 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
     return new UninterpretedOption().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is UninterpretedOption {
+    return new UninterpretedOption().getType().conforms(value);
+  }
+
   static equals(a: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined, b: UninterpretedOption | PlainMessage<UninterpretedOption> | undefined): boolean {
     return proto2.util.equals(UninterpretedOption, a, b);
   }
@@ -2105,6 +2193,10 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UninterpretedOption_NamePart {
     return new UninterpretedOption_NamePart().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is UninterpretedOption_NamePart {
+    return new UninterpretedOption_NamePart().getType().conforms(value);
   }
 
   static equals(a: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined, b: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined): boolean {
@@ -2189,6 +2281,10 @@ export class SourceCodeInfo extends Message<SourceCodeInfo> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SourceCodeInfo {
     return new SourceCodeInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is SourceCodeInfo {
+    return new SourceCodeInfo().getType().conforms(value);
   }
 
   static equals(a: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined, b: SourceCodeInfo | PlainMessage<SourceCodeInfo> | undefined): boolean {
@@ -2330,6 +2426,10 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
     return new SourceCodeInfo_Location().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is SourceCodeInfo_Location {
+    return new SourceCodeInfo_Location().getType().conforms(value);
+  }
+
   static equals(a: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined, b: SourceCodeInfo_Location | PlainMessage<SourceCodeInfo_Location> | undefined): boolean {
     return proto2.util.equals(SourceCodeInfo_Location, a, b);
   }
@@ -2372,6 +2472,10 @@ export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeneratedCodeInfo {
     return new GeneratedCodeInfo().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GeneratedCodeInfo {
+    return new GeneratedCodeInfo().getType().conforms(value);
   }
 
   static equals(a: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined, b: GeneratedCodeInfo | PlainMessage<GeneratedCodeInfo> | undefined): boolean {
@@ -2439,6 +2543,10 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeneratedCodeInfo_Annotation {
     return new GeneratedCodeInfo_Annotation().fromJsonString(jsonString, options);
+  }
+
+  static conforms(value: any): value is GeneratedCodeInfo_Annotation {
+    return new GeneratedCodeInfo_Annotation().getType().conforms(value);
   }
 
   static equals(a: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined, b: GeneratedCodeInfo_Annotation | PlainMessage<GeneratedCodeInfo_Annotation> | undefined): boolean {

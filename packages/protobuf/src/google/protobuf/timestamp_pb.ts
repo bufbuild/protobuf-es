@@ -226,6 +226,10 @@ export class Timestamp extends Message<Timestamp> {
     return new Timestamp().fromJsonString(jsonString, options);
   }
 
+  static conforms(value: any): value is Timestamp {
+    return new Timestamp().getType().conforms(value);
+  }
+
   static equals(a: Timestamp | PlainMessage<Timestamp> | undefined, b: Timestamp | PlainMessage<Timestamp> | undefined): boolean {
     return proto3.util.equals(Timestamp, a, b);
   }
