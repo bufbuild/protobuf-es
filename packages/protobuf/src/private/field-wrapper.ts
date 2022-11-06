@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "../message.js";
+import { isMessage, Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { DescField } from "../descriptor-set.js";
 import { ScalarType } from "../field.js";
@@ -44,6 +44,11 @@ export function wrapField<T extends Message<T>>(
   }
   if (type.fieldWrapper) {
     return type.fieldWrapper.wrapField(value);
+  }
+  // Last resort check if the value is indeed a Message and has the same
+  // type as the field.
+  if (isMessage<T>(value) && value.getType().typeName === type.typeName) {
+    return value;
   }
   throw new Error(
     `cannot wrap field value, ${type.typeName} does not define a field wrapper`
