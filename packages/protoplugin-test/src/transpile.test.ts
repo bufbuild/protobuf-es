@@ -12,35 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { CodeGeneratorRequest, FileDescriptorProto } from "@bufbuild/protobuf";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-
-/**
- * Creates a plugin with the given function to generate TypeScript,
- * runs the plugin, and returns a function to retrieve output files.
- */
-function transpile(
-  genTs: (schema: Schema) => void
-): (name: string) => string[] {
-  const req = new CodeGeneratorRequest({
-    parameter: `target=ts+js+dts`,
-  });
-  const plugin = createEcmaScriptPlugin({
-    name: "test-plugin",
-    version: "v99.0.0",
-    generateTs: genTs,
-  });
-  const res = plugin.run(req);
-  return function linesOf(filename: string): string[] {
-    const file = res.file.find((f) => f.name === filename);
-    if (!file) {
-      throw new Error(`did not find file ${filename}`);
-    }
-    const content = file.content ?? "";
-    return content.trim().split("\n");
-  };
-}
+import { FileDescriptorProto } from "@bufbuild/protobuf";
+import { transpile } from "./helpers";
 
 describe("transpile", function () {
   test("ECMAScript types", () => {
