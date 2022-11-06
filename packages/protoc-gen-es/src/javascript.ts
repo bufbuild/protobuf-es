@@ -89,6 +89,9 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print()
   generateWktMethods(schema, f, message)
   generateWktStaticMethods(schema, f, message)
+  f.print(message, ".conforms = function conforms(value) {")
+  f.print(" return ", protoN, ".util.conforms(", message, ", value);")
+  f.print("};")
   for (const nestedEnum of message.nestedEnums) {
     generateEnum(schema, f, nestedEnum);
   }
