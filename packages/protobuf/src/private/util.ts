@@ -69,6 +69,7 @@ export interface Util {
   /**
    * Checks if the given value conformst the given type.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   conforms<T extends Message<T>>(type: MessageType<T>, value: any): value is T;
 
   /**

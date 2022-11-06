@@ -75,6 +75,12 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
   fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T;
 
   /**
+   * Returns true if value conforms this type.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  conforms(value: any): value is T;
+
+  /**
    * Returns true if the given arguments have equal field values, recursively.
    * Will also return true if both messages are `undefined` or `null`.
    */
@@ -82,10 +88,4 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
     a: T | PlainMessage<T> | undefined | null,
     b: T | PlainMessage<T> | undefined | null
   ): boolean;
-
-  /**
-   * Returns true if value conforms this type.
-   * eslint-disable-next-line @typescript-eslint/no-explicit-any
-   */
-  conforms(value: any): value is T;
 }

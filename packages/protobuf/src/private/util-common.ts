@@ -187,6 +187,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     },
     conforms<T extends Message<T>>(
       type: MessageType<T>,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       value: any
     ): value is T {
       if (value instanceof type) return true;
