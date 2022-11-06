@@ -82,4 +82,10 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
     a: T | PlainMessage<T> | undefined | null,
     b: T | PlainMessage<T> | undefined | null
   ): boolean;
+
+  /**
+   * Returns true if value conforms this type.
+   * eslint-disable-next-line @typescript-eslint/no-explicit-any
+   */
+  conforms(value: any): value is T;
 }

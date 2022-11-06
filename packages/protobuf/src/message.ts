@@ -132,25 +132,6 @@ export class Message<T extends Message<T> = AnyMessage> {
     return Object.getPrototypeOf(this).constructor;
   }
 }
-/**
- * isMessage checks if the given value is a Message<T> or not.
- */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any */
-export function isMessage<T extends Message<T>>(value: any): value is T {
-  return (
-    !!value &&
-    typeof value.equals === "function" &&
-    typeof value.clone === "function" &&
-    typeof value.fromBinary === "function" &&
-    typeof value.fromJson === "function" &&
-    typeof value.fromJsonString === "function" &&
-    typeof value.toBinary === "function" &&
-    typeof value.toJson === "function" &&
-    typeof value.toJsonString === "function" &&
-    typeof value.getType === "function"
-  );
-}
-/* eslint-enable */
 
 /**
  * PlainMessage<T> strips all methods from a message, leaving only fields

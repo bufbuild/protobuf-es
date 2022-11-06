@@ -72,6 +72,14 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     ): boolean {
       return runtime.util.equals(type, a, b);
     },
+    /* eslint-disable */
+    conforms(value: any): value is T {
+      if (value instanceof type) return true;
+      if (!value || typeof value.getType !== "function") return false;
+      const valueType = value.getType();
+      return !!valueType && valueType.typeName === type.typeName;
+    },
+    /* eslint-enable */
   });
   return type;
 }
