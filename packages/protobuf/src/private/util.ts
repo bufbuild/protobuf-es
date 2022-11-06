@@ -67,7 +67,7 @@ export interface Util {
   ): boolean;
 
   /**
-   * Checks if the given value conformst the given type.
+   * Checks if the given value conforms the given type.
    */
   conforms<T extends Message<T>>(
     type: MessageType<T>,

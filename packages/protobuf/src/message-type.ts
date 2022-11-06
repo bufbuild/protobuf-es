@@ -75,7 +75,7 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
   fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T;
 
   /**
-   * Returns true if value conforms this type.
+   * Returns true if the given value conforms this type.
    */
   conforms(value: unknown): value is T;
 
