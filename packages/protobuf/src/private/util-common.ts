@@ -185,6 +185,18 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
       });
     },
+    conforms<T extends Message<T>>(
+      type: MessageType<T>,
+      value: any
+    ): value is T {
+      if (value instanceof type) return true;
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (!value || typeof value.getType !== "function") return false;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      const valueType = value.getType();
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      return !!valueType && valueType.typeName === type.typeName;
+    },
     clone<T extends Message<T>>(message: T): T {
       const type = message.getType(),
         target = new type(),

@@ -66,20 +66,15 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T {
       return new type().fromJsonString(jsonString, options);
     },
+    conforms(value: any): value is T {
+      return runtime.util.conforms(type, value);
+    },
     equals(
       a: T | PlainMessage<T> | undefined,
       b: T | PlainMessage<T> | undefined
     ): boolean {
       return runtime.util.equals(type, a, b);
     },
-    /* eslint-disable */
-    conforms(value: any): value is T {
-      if (value instanceof type) return true;
-      if (!value || typeof value.getType !== "function") return false;
-      const valueType = value.getType();
-      return !!valueType && valueType.typeName === type.typeName;
-    },
-    /* eslint-enable */
   });
   return type;
 }

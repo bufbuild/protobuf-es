@@ -67,6 +67,11 @@ export interface Util {
   ): boolean;
 
   /**
+   * Checks if the given value conformst the given type.
+   */
+  conforms<T extends Message<T>>(type: MessageType<T>, value: any): value is T;
+
+  /**
    * Create a deep copy.
    */
   clone<T extends Message<T>>(message: T): T;
