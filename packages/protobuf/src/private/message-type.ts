@@ -66,8 +66,7 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T {
       return new type().fromJsonString(jsonString, options);
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    conforms(value: any): value is T {
+    conforms(value: unknown): value is T {
       return runtime.util.conforms(type, value);
     },
     equals(

@@ -139,7 +139,7 @@ export class Api extends Message<Api> {
     return new Api().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Api {
+  static conforms(value: unknown): value is Api {
     return proto3.util.conforms(Api, value);
   }
 
@@ -232,7 +232,7 @@ export class Method extends Message<Method> {
     return new Method().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Method {
+  static conforms(value: unknown): value is Method {
     return proto3.util.conforms(Method, value);
   }
 
@@ -363,7 +363,7 @@ export class Mixin extends Message<Mixin> {
     return new Mixin().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Mixin {
+  static conforms(value: unknown): value is Mixin {
     return proto3.util.conforms(Mixin, value);
   }
 

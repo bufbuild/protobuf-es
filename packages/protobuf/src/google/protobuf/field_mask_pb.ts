@@ -319,7 +319,7 @@ export class FieldMask extends Message<FieldMask> {
     return new FieldMask().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FieldMask {
+  static conforms(value: unknown): value is FieldMask {
     return proto3.util.conforms(FieldMask, value);
   }
 

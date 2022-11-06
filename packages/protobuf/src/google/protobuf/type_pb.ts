@@ -127,7 +127,7 @@ export class Type extends Message<Type> {
     return new Type().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Type {
+  static conforms(value: unknown): value is Type {
     return proto3.util.conforms(Type, value);
   }
 
@@ -246,7 +246,7 @@ export class Field extends Message<Field> {
     return new Field().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Field {
+  static conforms(value: unknown): value is Field {
     return proto3.util.conforms(Field, value);
   }
 
@@ -527,7 +527,7 @@ export class Enum extends Message<Enum> {
     return new Enum().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Enum {
+  static conforms(value: unknown): value is Enum {
     return proto3.util.conforms(Enum, value);
   }
 
@@ -588,7 +588,7 @@ export class EnumValue extends Message<EnumValue> {
     return new EnumValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumValue {
+  static conforms(value: unknown): value is EnumValue {
     return proto3.util.conforms(EnumValue, value);
   }
 
@@ -648,7 +648,7 @@ export class Option extends Message<Option> {
     return new Option().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Option {
+  static conforms(value: unknown): value is Option {
     return proto3.util.conforms(Option, value);
   }
 

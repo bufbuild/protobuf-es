@@ -226,7 +226,7 @@ export class Timestamp extends Message<Timestamp> {
     return new Timestamp().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Timestamp {
+  static conforms(value: unknown): value is Timestamp {
     return proto3.util.conforms(Timestamp, value);
   }
 

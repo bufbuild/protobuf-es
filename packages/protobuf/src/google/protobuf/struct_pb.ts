@@ -105,7 +105,7 @@ export class Struct extends Message<Struct> {
     return new Struct().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Struct {
+  static conforms(value: unknown): value is Struct {
     return proto3.util.conforms(Struct, value);
   }
 
@@ -249,7 +249,7 @@ export class Value extends Message<Value> {
     return new Value().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Value {
+  static conforms(value: unknown): value is Value {
     return proto3.util.conforms(Value, value);
   }
 
@@ -310,7 +310,7 @@ export class ListValue extends Message<ListValue> {
     return new ListValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListValue {
+  static conforms(value: unknown): value is ListValue {
     return proto3.util.conforms(ListValue, value);
   }
 

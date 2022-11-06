@@ -77,8 +77,7 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
   /**
    * Returns true if value conforms this type.
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  conforms(value: any): value is T;
+  conforms(value: unknown): value is T;
 
   /**
    * Returns true if the given arguments have equal field values, recursively.
