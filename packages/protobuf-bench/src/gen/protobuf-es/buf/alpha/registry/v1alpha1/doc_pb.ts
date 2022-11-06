@@ -65,7 +65,7 @@ export class GetSourceDirectoryInfoRequest extends Message$1<GetSourceDirectoryI
     return new GetSourceDirectoryInfoRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetSourceDirectoryInfoRequest {
+  static conforms(value: unknown): value is GetSourceDirectoryInfoRequest {
     return proto3.util.conforms(GetSourceDirectoryInfoRequest, value);
   }
 
@@ -108,7 +108,7 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
     return new GetSourceDirectoryInfoResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetSourceDirectoryInfoResponse {
+  static conforms(value: unknown): value is GetSourceDirectoryInfoResponse {
     return proto3.util.conforms(GetSourceDirectoryInfoResponse, value);
   }
 
@@ -166,7 +166,7 @@ export class FileInfo extends Message$1<FileInfo> {
     return new FileInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FileInfo {
+  static conforms(value: unknown): value is FileInfo {
     return proto3.util.conforms(FileInfo, value);
   }
 
@@ -229,7 +229,7 @@ export class GetSourceFileRequest extends Message$1<GetSourceFileRequest> {
     return new GetSourceFileRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetSourceFileRequest {
+  static conforms(value: unknown): value is GetSourceFileRequest {
     return proto3.util.conforms(GetSourceFileRequest, value);
   }
 
@@ -274,7 +274,7 @@ export class GetSourceFileResponse extends Message$1<GetSourceFileResponse> {
     return new GetSourceFileResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetSourceFileResponse {
+  static conforms(value: unknown): value is GetSourceFileResponse {
     return proto3.util.conforms(GetSourceFileResponse, value);
   }
 
@@ -329,7 +329,7 @@ export class GetModulePackagesRequest extends Message$1<GetModulePackagesRequest
     return new GetModulePackagesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModulePackagesRequest {
+  static conforms(value: unknown): value is GetModulePackagesRequest {
     return proto3.util.conforms(GetModulePackagesRequest, value);
   }
 
@@ -378,7 +378,7 @@ export class GetModulePackagesResponse extends Message$1<GetModulePackagesRespon
     return new GetModulePackagesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModulePackagesResponse {
+  static conforms(value: unknown): value is GetModulePackagesResponse {
     return proto3.util.conforms(GetModulePackagesResponse, value);
   }
 
@@ -427,7 +427,7 @@ export class ModulePackage extends Message$1<ModulePackage> {
     return new ModulePackage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModulePackage {
+  static conforms(value: unknown): value is ModulePackage {
     return proto3.util.conforms(ModulePackage, value);
   }
 
@@ -482,7 +482,7 @@ export class GetModuleDocumentationRequest extends Message$1<GetModuleDocumentat
     return new GetModuleDocumentationRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModuleDocumentationRequest {
+  static conforms(value: unknown): value is GetModuleDocumentationRequest {
     return proto3.util.conforms(GetModuleDocumentationRequest, value);
   }
 
@@ -525,7 +525,7 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
     return new GetModuleDocumentationResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModuleDocumentationResponse {
+  static conforms(value: unknown): value is GetModuleDocumentationResponse {
     return proto3.util.conforms(GetModuleDocumentationResponse, value);
   }
 
@@ -579,7 +579,7 @@ export class ModuleDocumentation extends Message$1<ModuleDocumentation> {
     return new ModuleDocumentation().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModuleDocumentation {
+  static conforms(value: unknown): value is ModuleDocumentation {
     return proto3.util.conforms(ModuleDocumentation, value);
   }
 
@@ -642,7 +642,7 @@ export class GetPackageDocumentationRequest extends Message$1<GetPackageDocument
     return new GetPackageDocumentationRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPackageDocumentationRequest {
+  static conforms(value: unknown): value is GetPackageDocumentationRequest {
     return proto3.util.conforms(GetPackageDocumentationRequest, value);
   }
 
@@ -685,7 +685,7 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
     return new GetPackageDocumentationResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPackageDocumentationResponse {
+  static conforms(value: unknown): value is GetPackageDocumentationResponse {
     return proto3.util.conforms(GetPackageDocumentationResponse, value);
   }
 
@@ -773,7 +773,7 @@ export class PackageDocumentation extends Message$1<PackageDocumentation> {
     return new PackageDocumentation().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PackageDocumentation {
+  static conforms(value: unknown): value is PackageDocumentation {
     return proto3.util.conforms(PackageDocumentation, value);
   }
 
@@ -837,7 +837,7 @@ export class Location extends Message$1<Location> {
     return new Location().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Location {
+  static conforms(value: unknown): value is Location {
     return proto3.util.conforms(Location, value);
   }
 
@@ -928,7 +928,7 @@ export class Service extends Message$1<Service> {
     return new Service().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Service {
+  static conforms(value: unknown): value is Service {
     return proto3.util.conforms(Service, value);
   }
 
@@ -994,7 +994,7 @@ export class Method extends Message$1<Method> {
     return new Method().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Method {
+  static conforms(value: unknown): value is Method {
     return proto3.util.conforms(Method, value);
   }
 
@@ -1070,7 +1070,7 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
     return new MethodRequestResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MethodRequestResponse {
+  static conforms(value: unknown): value is MethodRequestResponse {
     return proto3.util.conforms(MethodRequestResponse, value);
   }
 
@@ -1160,7 +1160,7 @@ export class Enum extends Message$1<Enum> {
     return new Enum().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Enum {
+  static conforms(value: unknown): value is Enum {
     return proto3.util.conforms(Enum, value);
   }
 
@@ -1220,7 +1220,7 @@ export class EnumValue extends Message$1<EnumValue> {
     return new EnumValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumValue {
+  static conforms(value: unknown): value is EnumValue {
     return proto3.util.conforms(EnumValue, value);
   }
 
@@ -1290,7 +1290,7 @@ export class ImportModuleRef extends Message$1<ImportModuleRef> {
     return new ImportModuleRef().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImportModuleRef {
+  static conforms(value: unknown): value is ImportModuleRef {
     return proto3.util.conforms(ImportModuleRef, value);
   }
 
@@ -1392,7 +1392,7 @@ export class Message extends Message$1<Message> {
     return new Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Message {
+  static conforms(value: unknown): value is Message {
     return proto3.util.conforms(Message, value);
   }
 
@@ -1448,7 +1448,7 @@ export class MessageField extends Message$1<MessageField> {
     return new MessageField().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageField {
+  static conforms(value: unknown): value is MessageField {
     return proto3.util.conforms(MessageField, value);
   }
 
@@ -1497,7 +1497,7 @@ export class Oneof extends Message$1<Oneof> {
     return new Oneof().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Oneof {
+  static conforms(value: unknown): value is Oneof {
     return proto3.util.conforms(Oneof, value);
   }
 
@@ -1606,7 +1606,7 @@ export class Field extends Message$1<Field> {
     return new Field().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Field {
+  static conforms(value: unknown): value is Field {
     return proto3.util.conforms(Field, value);
   }
 
@@ -1676,7 +1676,7 @@ export class MapEntry extends Message$1<MapEntry> {
     return new MapEntry().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MapEntry {
+  static conforms(value: unknown): value is MapEntry {
     return proto3.util.conforms(MapEntry, value);
   }
 
@@ -1754,7 +1754,7 @@ export class FileExtension extends Message$1<FileExtension> {
     return new FileExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FileExtension {
+  static conforms(value: unknown): value is FileExtension {
     return proto3.util.conforms(FileExtension, value);
   }
 

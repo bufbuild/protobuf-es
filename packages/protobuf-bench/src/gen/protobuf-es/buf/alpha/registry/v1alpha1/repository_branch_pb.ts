@@ -79,7 +79,7 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
     return new RepositoryBranch().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryBranch {
+  static conforms(value: unknown): value is RepositoryBranch {
     return proto3.util.conforms(RepositoryBranch, value);
   }
 
@@ -139,7 +139,7 @@ export class CreateRepositoryBranchRequest extends Message<CreateRepositoryBranc
     return new CreateRepositoryBranchRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryBranchRequest {
+  static conforms(value: unknown): value is CreateRepositoryBranchRequest {
     return proto3.util.conforms(CreateRepositoryBranchRequest, value);
   }
 
@@ -180,7 +180,7 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
     return new CreateRepositoryBranchResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryBranchResponse {
+  static conforms(value: unknown): value is CreateRepositoryBranchResponse {
     return proto3.util.conforms(CreateRepositoryBranchResponse, value);
   }
 
@@ -243,7 +243,7 @@ export class ListRepositoryBranchesRequest extends Message<ListRepositoryBranche
     return new ListRepositoryBranchesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryBranchesRequest {
+  static conforms(value: unknown): value is ListRepositoryBranchesRequest {
     return proto3.util.conforms(ListRepositoryBranchesRequest, value);
   }
 
@@ -292,7 +292,7 @@ export class ListRepositoryBranchesResponse extends Message<ListRepositoryBranch
     return new ListRepositoryBranchesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryBranchesResponse {
+  static conforms(value: unknown): value is ListRepositoryBranchesResponse {
     return proto3.util.conforms(ListRepositoryBranchesResponse, value);
   }
 

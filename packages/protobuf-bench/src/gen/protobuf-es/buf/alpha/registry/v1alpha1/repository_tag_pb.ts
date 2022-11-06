@@ -87,7 +87,7 @@ export class RepositoryTag extends Message<RepositoryTag> {
     return new RepositoryTag().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryTag {
+  static conforms(value: unknown): value is RepositoryTag {
     return proto3.util.conforms(RepositoryTag, value);
   }
 
@@ -146,7 +146,7 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
     return new CreateRepositoryTagRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryTagRequest {
+  static conforms(value: unknown): value is CreateRepositoryTagRequest {
     return proto3.util.conforms(CreateRepositoryTagRequest, value);
   }
 
@@ -187,7 +187,7 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
     return new CreateRepositoryTagResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryTagResponse {
+  static conforms(value: unknown): value is CreateRepositoryTagResponse {
     return proto3.util.conforms(CreateRepositoryTagResponse, value);
   }
 
@@ -250,7 +250,7 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
     return new ListRepositoryTagsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTagsRequest {
+  static conforms(value: unknown): value is ListRepositoryTagsRequest {
     return proto3.util.conforms(ListRepositoryTagsRequest, value);
   }
 
@@ -299,7 +299,7 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
     return new ListRepositoryTagsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTagsResponse {
+  static conforms(value: unknown): value is ListRepositoryTagsResponse {
     return proto3.util.conforms(ListRepositoryTagsResponse, value);
   }
 

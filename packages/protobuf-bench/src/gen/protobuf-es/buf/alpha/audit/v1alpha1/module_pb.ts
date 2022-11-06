@@ -119,7 +119,7 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
     return new BufAlphaRegistryV1Alpha1LocalModulePin().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModulePin {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1LocalModulePin {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModulePin, value);
   }
 
@@ -172,7 +172,7 @@ export class BufAlphaRegistryV1Alpha1LocalModuleReference extends Message<BufAlp
     return new BufAlphaRegistryV1Alpha1LocalModuleReference().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModuleReference {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1LocalModuleReference {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModuleReference, value);
   }
 
@@ -225,7 +225,7 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
     return new BufAlphaRegistryV1Alpha1LocalModuleResolveResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1LocalModuleResolveResult {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1LocalModuleResolveResult {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1LocalModuleResolveResult, value);
   }
 

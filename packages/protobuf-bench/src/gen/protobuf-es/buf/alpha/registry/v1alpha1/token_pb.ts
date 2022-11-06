@@ -69,7 +69,7 @@ export class Token extends Message<Token> {
     return new Token().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Token {
+  static conforms(value: unknown): value is Token {
     return proto3.util.conforms(Token, value);
   }
 
@@ -119,7 +119,7 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
     return new CreateTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTokenRequest {
+  static conforms(value: unknown): value is CreateTokenRequest {
     return proto3.util.conforms(CreateTokenRequest, value);
   }
 
@@ -162,7 +162,7 @@ export class CreateTokenResponse extends Message<CreateTokenResponse> {
     return new CreateTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTokenResponse {
+  static conforms(value: unknown): value is CreateTokenResponse {
     return proto3.util.conforms(CreateTokenResponse, value);
   }
 
@@ -203,7 +203,7 @@ export class GetTokenRequest extends Message<GetTokenRequest> {
     return new GetTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTokenRequest {
+  static conforms(value: unknown): value is GetTokenRequest {
     return proto3.util.conforms(GetTokenRequest, value);
   }
 
@@ -244,7 +244,7 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
     return new GetTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTokenResponse {
+  static conforms(value: unknown): value is GetTokenResponse {
     return proto3.util.conforms(GetTokenResponse, value);
   }
 
@@ -299,7 +299,7 @@ export class ListTokensRequest extends Message<ListTokensRequest> {
     return new ListTokensRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTokensRequest {
+  static conforms(value: unknown): value is ListTokensRequest {
     return proto3.util.conforms(ListTokensRequest, value);
   }
 
@@ -348,7 +348,7 @@ export class ListTokensResponse extends Message<ListTokensResponse> {
     return new ListTokensResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTokensResponse {
+  static conforms(value: unknown): value is ListTokensResponse {
     return proto3.util.conforms(ListTokensResponse, value);
   }
 
@@ -389,7 +389,7 @@ export class DeleteTokenRequest extends Message<DeleteTokenRequest> {
     return new DeleteTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteTokenRequest {
+  static conforms(value: unknown): value is DeleteTokenRequest {
     return proto3.util.conforms(DeleteTokenRequest, value);
   }
 
@@ -424,7 +424,7 @@ export class DeleteTokenResponse extends Message<DeleteTokenResponse> {
     return new DeleteTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteTokenResponse {
+  static conforms(value: unknown): value is DeleteTokenResponse {
     return proto3.util.conforms(DeleteTokenResponse, value);
   }
 

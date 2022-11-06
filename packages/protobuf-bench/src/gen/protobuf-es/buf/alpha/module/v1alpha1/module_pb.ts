@@ -97,7 +97,7 @@ export class Module extends Message<Module> {
     return new Module().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Module {
+  static conforms(value: unknown): value is Module {
     return proto3.util.conforms(Module, value);
   }
 
@@ -151,7 +151,7 @@ export class ModuleFile extends Message<ModuleFile> {
     return new ModuleFile().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModuleFile {
+  static conforms(value: unknown): value is ModuleFile {
     return proto3.util.conforms(ModuleFile, value);
   }
 
@@ -214,7 +214,7 @@ export class ModuleReference extends Message<ModuleReference> {
     return new ModuleReference().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModuleReference {
+  static conforms(value: unknown): value is ModuleReference {
     return proto3.util.conforms(ModuleReference, value);
   }
 
@@ -293,7 +293,7 @@ export class ModulePin extends Message<ModulePin> {
     return new ModulePin().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModulePin {
+  static conforms(value: unknown): value is ModulePin {
     return proto3.util.conforms(ModulePin, value);
   }
 

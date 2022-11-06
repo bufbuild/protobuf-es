@@ -112,7 +112,7 @@ export class User extends Message<User> {
     return new User().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is User {
+  static conforms(value: unknown): value is User {
     return proto3.util.conforms(User, value);
   }
 
@@ -171,7 +171,7 @@ export class OrganizationUser extends Message<OrganizationUser> {
     return new OrganizationUser().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OrganizationUser {
+  static conforms(value: unknown): value is OrganizationUser {
     return proto3.util.conforms(OrganizationUser, value);
   }
 
@@ -212,7 +212,7 @@ export class CreateUserRequest extends Message<CreateUserRequest> {
     return new CreateUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateUserRequest {
+  static conforms(value: unknown): value is CreateUserRequest {
     return proto3.util.conforms(CreateUserRequest, value);
   }
 
@@ -253,7 +253,7 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
     return new CreateUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateUserResponse {
+  static conforms(value: unknown): value is CreateUserResponse {
     return proto3.util.conforms(CreateUserResponse, value);
   }
 
@@ -294,7 +294,7 @@ export class GetUserRequest extends Message<GetUserRequest> {
     return new GetUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetUserRequest {
+  static conforms(value: unknown): value is GetUserRequest {
     return proto3.util.conforms(GetUserRequest, value);
   }
 
@@ -335,7 +335,7 @@ export class GetUserResponse extends Message<GetUserResponse> {
     return new GetUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetUserResponse {
+  static conforms(value: unknown): value is GetUserResponse {
     return proto3.util.conforms(GetUserResponse, value);
   }
 
@@ -376,7 +376,7 @@ export class GetUserByUsernameRequest extends Message<GetUserByUsernameRequest> 
     return new GetUserByUsernameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetUserByUsernameRequest {
+  static conforms(value: unknown): value is GetUserByUsernameRequest {
     return proto3.util.conforms(GetUserByUsernameRequest, value);
   }
 
@@ -417,7 +417,7 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
     return new GetUserByUsernameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetUserByUsernameResponse {
+  static conforms(value: unknown): value is GetUserByUsernameResponse {
     return proto3.util.conforms(GetUserByUsernameResponse, value);
   }
 
@@ -480,7 +480,7 @@ export class ListUsersRequest extends Message<ListUsersRequest> {
     return new ListUsersRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUsersRequest {
+  static conforms(value: unknown): value is ListUsersRequest {
     return proto3.util.conforms(ListUsersRequest, value);
   }
 
@@ -529,7 +529,7 @@ export class ListUsersResponse extends Message<ListUsersResponse> {
     return new ListUsersResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUsersResponse {
+  static conforms(value: unknown): value is ListUsersResponse {
     return proto3.util.conforms(ListUsersResponse, value);
   }
 
@@ -590,7 +590,7 @@ export class ListOrganizationUsersRequest extends Message<ListOrganizationUsersR
     return new ListOrganizationUsersRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationUsersRequest {
+  static conforms(value: unknown): value is ListOrganizationUsersRequest {
     return proto3.util.conforms(ListOrganizationUsersRequest, value);
   }
 
@@ -639,7 +639,7 @@ export class ListOrganizationUsersResponse extends Message<ListOrganizationUsers
     return new ListOrganizationUsersResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationUsersResponse {
+  static conforms(value: unknown): value is ListOrganizationUsersResponse {
     return proto3.util.conforms(ListOrganizationUsersResponse, value);
   }
 
@@ -674,7 +674,7 @@ export class DeleteUserRequest extends Message<DeleteUserRequest> {
     return new DeleteUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteUserRequest {
+  static conforms(value: unknown): value is DeleteUserRequest {
     return proto3.util.conforms(DeleteUserRequest, value);
   }
 
@@ -709,7 +709,7 @@ export class DeleteUserResponse extends Message<DeleteUserResponse> {
     return new DeleteUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteUserResponse {
+  static conforms(value: unknown): value is DeleteUserResponse {
     return proto3.util.conforms(DeleteUserResponse, value);
   }
 
@@ -750,7 +750,7 @@ export class DeactivateUserRequest extends Message<DeactivateUserRequest> {
     return new DeactivateUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeactivateUserRequest {
+  static conforms(value: unknown): value is DeactivateUserRequest {
     return proto3.util.conforms(DeactivateUserRequest, value);
   }
 
@@ -785,7 +785,7 @@ export class DeactivateUserResponse extends Message<DeactivateUserResponse> {
     return new DeactivateUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeactivateUserResponse {
+  static conforms(value: unknown): value is DeactivateUserResponse {
     return proto3.util.conforms(DeactivateUserResponse, value);
   }
 
@@ -836,7 +836,7 @@ export class UpdateUserServerRoleRequest extends Message<UpdateUserServerRoleReq
     return new UpdateUserServerRoleRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UpdateUserServerRoleRequest {
+  static conforms(value: unknown): value is UpdateUserServerRoleRequest {
     return proto3.util.conforms(UpdateUserServerRoleRequest, value);
   }
 
@@ -871,7 +871,7 @@ export class UpdateUserServerRoleResponse extends Message<UpdateUserServerRoleRe
     return new UpdateUserServerRoleResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UpdateUserServerRoleResponse {
+  static conforms(value: unknown): value is UpdateUserServerRoleResponse {
     return proto3.util.conforms(UpdateUserServerRoleResponse, value);
   }
 
@@ -914,7 +914,7 @@ export class CountUsersRequest extends Message<CountUsersRequest> {
     return new CountUsersRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CountUsersRequest {
+  static conforms(value: unknown): value is CountUsersRequest {
     return proto3.util.conforms(CountUsersRequest, value);
   }
 
@@ -955,7 +955,7 @@ export class CountUsersResponse extends Message<CountUsersResponse> {
     return new CountUsersResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CountUsersResponse {
+  static conforms(value: unknown): value is CountUsersResponse {
     return proto3.util.conforms(CountUsersResponse, value);
   }
 

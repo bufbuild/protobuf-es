@@ -71,7 +71,7 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
     return new RepositoryTrack().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryTrack {
+  static conforms(value: unknown): value is RepositoryTrack {
     return proto3.util.conforms(RepositoryTrack, value);
   }
 
@@ -122,7 +122,7 @@ export class CreateRepositoryTrackRequest extends Message<CreateRepositoryTrackR
     return new CreateRepositoryTrackRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryTrackRequest {
+  static conforms(value: unknown): value is CreateRepositoryTrackRequest {
     return proto3.util.conforms(CreateRepositoryTrackRequest, value);
   }
 
@@ -163,7 +163,7 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
     return new CreateRepositoryTrackResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryTrackResponse {
+  static conforms(value: unknown): value is CreateRepositoryTrackResponse {
     return proto3.util.conforms(CreateRepositoryTrackResponse, value);
   }
 
@@ -226,7 +226,7 @@ export class ListRepositoryTracksRequest extends Message<ListRepositoryTracksReq
     return new ListRepositoryTracksRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTracksRequest {
+  static conforms(value: unknown): value is ListRepositoryTracksRequest {
     return proto3.util.conforms(ListRepositoryTracksRequest, value);
   }
 
@@ -275,7 +275,7 @@ export class ListRepositoryTracksResponse extends Message<ListRepositoryTracksRe
     return new ListRepositoryTracksResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTracksResponse {
+  static conforms(value: unknown): value is ListRepositoryTracksResponse {
     return proto3.util.conforms(ListRepositoryTracksResponse, value);
   }
 
@@ -330,7 +330,7 @@ export class DeleteRepositoryTrackByNameRequest extends Message<DeleteRepository
     return new DeleteRepositoryTrackByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryTrackByNameRequest {
+  static conforms(value: unknown): value is DeleteRepositoryTrackByNameRequest {
     return proto3.util.conforms(DeleteRepositoryTrackByNameRequest, value);
   }
 
@@ -365,7 +365,7 @@ export class DeleteRepositoryTrackByNameResponse extends Message<DeleteRepositor
     return new DeleteRepositoryTrackByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryTrackByNameResponse {
+  static conforms(value: unknown): value is DeleteRepositoryTrackByNameResponse {
     return proto3.util.conforms(DeleteRepositoryTrackByNameResponse, value);
   }
 
@@ -420,7 +420,7 @@ export class GetRepositoryTrackByNameRequest extends Message<GetRepositoryTrackB
     return new GetRepositoryTrackByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackByNameRequest {
+  static conforms(value: unknown): value is GetRepositoryTrackByNameRequest {
     return proto3.util.conforms(GetRepositoryTrackByNameRequest, value);
   }
 
@@ -461,7 +461,7 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
     return new GetRepositoryTrackByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackByNameResponse {
+  static conforms(value: unknown): value is GetRepositoryTrackByNameResponse {
     return proto3.util.conforms(GetRepositoryTrackByNameResponse, value);
   }
 

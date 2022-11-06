@@ -55,7 +55,7 @@ export class UserCanCreateOrganizationRepositoryRequest extends Message<UserCanC
     return new UserCanCreateOrganizationRepositoryRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationRepositoryRequest {
+  static conforms(value: unknown): value is UserCanCreateOrganizationRepositoryRequest {
     return proto3.util.conforms(UserCanCreateOrganizationRepositoryRequest, value);
   }
 
@@ -96,7 +96,7 @@ export class UserCanCreateOrganizationRepositoryResponse extends Message<UserCan
     return new UserCanCreateOrganizationRepositoryResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationRepositoryResponse {
+  static conforms(value: unknown): value is UserCanCreateOrganizationRepositoryResponse {
     return proto3.util.conforms(UserCanCreateOrganizationRepositoryResponse, value);
   }
 
@@ -140,7 +140,7 @@ export class UserCanSeeRepositorySettingsRequest extends Message<UserCanSeeRepos
     return new UserCanSeeRepositorySettingsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeRepositorySettingsRequest {
+  static conforms(value: unknown): value is UserCanSeeRepositorySettingsRequest {
     return proto3.util.conforms(UserCanSeeRepositorySettingsRequest, value);
   }
 
@@ -181,7 +181,7 @@ export class UserCanSeeRepositorySettingsResponse extends Message<UserCanSeeRepo
     return new UserCanSeeRepositorySettingsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeRepositorySettingsResponse {
+  static conforms(value: unknown): value is UserCanSeeRepositorySettingsResponse {
     return proto3.util.conforms(UserCanSeeRepositorySettingsResponse, value);
   }
 
@@ -225,7 +225,7 @@ export class UserCanSeeOrganizationSettingsRequest extends Message<UserCanSeeOrg
     return new UserCanSeeOrganizationSettingsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeOrganizationSettingsRequest {
+  static conforms(value: unknown): value is UserCanSeeOrganizationSettingsRequest {
     return proto3.util.conforms(UserCanSeeOrganizationSettingsRequest, value);
   }
 
@@ -266,7 +266,7 @@ export class UserCanSeeOrganizationSettingsResponse extends Message<UserCanSeeOr
     return new UserCanSeeOrganizationSettingsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeOrganizationSettingsResponse {
+  static conforms(value: unknown): value is UserCanSeeOrganizationSettingsResponse {
     return proto3.util.conforms(UserCanSeeOrganizationSettingsResponse, value);
   }
 
@@ -317,7 +317,7 @@ export class UserCanReadPluginRequest extends Message<UserCanReadPluginRequest> 
     return new UserCanReadPluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanReadPluginRequest {
+  static conforms(value: unknown): value is UserCanReadPluginRequest {
     return proto3.util.conforms(UserCanReadPluginRequest, value);
   }
 
@@ -358,7 +358,7 @@ export class UserCanReadPluginResponse extends Message<UserCanReadPluginResponse
     return new UserCanReadPluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanReadPluginResponse {
+  static conforms(value: unknown): value is UserCanReadPluginResponse {
     return proto3.util.conforms(UserCanReadPluginResponse, value);
   }
 
@@ -409,7 +409,7 @@ export class UserCanCreatePluginVersionRequest extends Message<UserCanCreatePlug
     return new UserCanCreatePluginVersionRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreatePluginVersionRequest {
+  static conforms(value: unknown): value is UserCanCreatePluginVersionRequest {
     return proto3.util.conforms(UserCanCreatePluginVersionRequest, value);
   }
 
@@ -450,7 +450,7 @@ export class UserCanCreatePluginVersionResponse extends Message<UserCanCreatePlu
     return new UserCanCreatePluginVersionResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreatePluginVersionResponse {
+  static conforms(value: unknown): value is UserCanCreatePluginVersionResponse {
     return proto3.util.conforms(UserCanCreatePluginVersionResponse, value);
   }
 
@@ -501,7 +501,7 @@ export class UserCanCreateTemplateVersionRequest extends Message<UserCanCreateTe
     return new UserCanCreateTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateTemplateVersionRequest {
+  static conforms(value: unknown): value is UserCanCreateTemplateVersionRequest {
     return proto3.util.conforms(UserCanCreateTemplateVersionRequest, value);
   }
 
@@ -542,7 +542,7 @@ export class UserCanCreateTemplateVersionResponse extends Message<UserCanCreateT
     return new UserCanCreateTemplateVersionResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateTemplateVersionResponse {
+  static conforms(value: unknown): value is UserCanCreateTemplateVersionResponse {
     return proto3.util.conforms(UserCanCreateTemplateVersionResponse, value);
   }
 
@@ -586,7 +586,7 @@ export class UserCanCreateOrganizationPluginRequest extends Message<UserCanCreat
     return new UserCanCreateOrganizationPluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationPluginRequest {
+  static conforms(value: unknown): value is UserCanCreateOrganizationPluginRequest {
     return proto3.util.conforms(UserCanCreateOrganizationPluginRequest, value);
   }
 
@@ -627,7 +627,7 @@ export class UserCanCreateOrganizationPluginResponse extends Message<UserCanCrea
     return new UserCanCreateOrganizationPluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationPluginResponse {
+  static conforms(value: unknown): value is UserCanCreateOrganizationPluginResponse {
     return proto3.util.conforms(UserCanCreateOrganizationPluginResponse, value);
   }
 
@@ -671,7 +671,7 @@ export class UserCanCreateOrganizationTemplateRequest extends Message<UserCanCre
     return new UserCanCreateOrganizationTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationTemplateRequest {
+  static conforms(value: unknown): value is UserCanCreateOrganizationTemplateRequest {
     return proto3.util.conforms(UserCanCreateOrganizationTemplateRequest, value);
   }
 
@@ -712,7 +712,7 @@ export class UserCanCreateOrganizationTemplateResponse extends Message<UserCanCr
     return new UserCanCreateOrganizationTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanCreateOrganizationTemplateResponse {
+  static conforms(value: unknown): value is UserCanCreateOrganizationTemplateResponse {
     return proto3.util.conforms(UserCanCreateOrganizationTemplateResponse, value);
   }
 
@@ -763,7 +763,7 @@ export class UserCanSeePluginSettingsRequest extends Message<UserCanSeePluginSet
     return new UserCanSeePluginSettingsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeePluginSettingsRequest {
+  static conforms(value: unknown): value is UserCanSeePluginSettingsRequest {
     return proto3.util.conforms(UserCanSeePluginSettingsRequest, value);
   }
 
@@ -804,7 +804,7 @@ export class UserCanSeePluginSettingsResponse extends Message<UserCanSeePluginSe
     return new UserCanSeePluginSettingsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeePluginSettingsResponse {
+  static conforms(value: unknown): value is UserCanSeePluginSettingsResponse {
     return proto3.util.conforms(UserCanSeePluginSettingsResponse, value);
   }
 
@@ -855,7 +855,7 @@ export class UserCanSeeTemplateSettingsRequest extends Message<UserCanSeeTemplat
     return new UserCanSeeTemplateSettingsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeTemplateSettingsRequest {
+  static conforms(value: unknown): value is UserCanSeeTemplateSettingsRequest {
     return proto3.util.conforms(UserCanSeeTemplateSettingsRequest, value);
   }
 
@@ -896,7 +896,7 @@ export class UserCanSeeTemplateSettingsResponse extends Message<UserCanSeeTempla
     return new UserCanSeeTemplateSettingsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeTemplateSettingsResponse {
+  static conforms(value: unknown): value is UserCanSeeTemplateSettingsResponse {
     return proto3.util.conforms(UserCanSeeTemplateSettingsResponse, value);
   }
 
@@ -940,7 +940,7 @@ export class UserCanAddOrganizationMemberRequest extends Message<UserCanAddOrgan
     return new UserCanAddOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanAddOrganizationMemberRequest {
+  static conforms(value: unknown): value is UserCanAddOrganizationMemberRequest {
     return proto3.util.conforms(UserCanAddOrganizationMemberRequest, value);
   }
 
@@ -984,7 +984,7 @@ export class UserCanAddOrganizationMemberResponse extends Message<UserCanAddOrga
     return new UserCanAddOrganizationMemberResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanAddOrganizationMemberResponse {
+  static conforms(value: unknown): value is UserCanAddOrganizationMemberResponse {
     return proto3.util.conforms(UserCanAddOrganizationMemberResponse, value);
   }
 
@@ -1028,7 +1028,7 @@ export class UserCanUpdateOrganizationMemberRequest extends Message<UserCanUpdat
     return new UserCanUpdateOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanUpdateOrganizationMemberRequest {
+  static conforms(value: unknown): value is UserCanUpdateOrganizationMemberRequest {
     return proto3.util.conforms(UserCanUpdateOrganizationMemberRequest, value);
   }
 
@@ -1072,7 +1072,7 @@ export class UserCanUpdateOrganizationMemberResponse extends Message<UserCanUpda
     return new UserCanUpdateOrganizationMemberResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanUpdateOrganizationMemberResponse {
+  static conforms(value: unknown): value is UserCanUpdateOrganizationMemberResponse {
     return proto3.util.conforms(UserCanUpdateOrganizationMemberResponse, value);
   }
 
@@ -1116,7 +1116,7 @@ export class UserCanRemoveOrganizationMemberRequest extends Message<UserCanRemov
     return new UserCanRemoveOrganizationMemberRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanRemoveOrganizationMemberRequest {
+  static conforms(value: unknown): value is UserCanRemoveOrganizationMemberRequest {
     return proto3.util.conforms(UserCanRemoveOrganizationMemberRequest, value);
   }
 
@@ -1160,7 +1160,7 @@ export class UserCanRemoveOrganizationMemberResponse extends Message<UserCanRemo
     return new UserCanRemoveOrganizationMemberResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanRemoveOrganizationMemberResponse {
+  static conforms(value: unknown): value is UserCanRemoveOrganizationMemberResponse {
     return proto3.util.conforms(UserCanRemoveOrganizationMemberResponse, value);
   }
 
@@ -1204,7 +1204,7 @@ export class UserCanDeleteOrganizationRequest extends Message<UserCanDeleteOrgan
     return new UserCanDeleteOrganizationRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteOrganizationRequest {
+  static conforms(value: unknown): value is UserCanDeleteOrganizationRequest {
     return proto3.util.conforms(UserCanDeleteOrganizationRequest, value);
   }
 
@@ -1245,7 +1245,7 @@ export class UserCanDeleteOrganizationResponse extends Message<UserCanDeleteOrga
     return new UserCanDeleteOrganizationResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteOrganizationResponse {
+  static conforms(value: unknown): value is UserCanDeleteOrganizationResponse {
     return proto3.util.conforms(UserCanDeleteOrganizationResponse, value);
   }
 
@@ -1289,7 +1289,7 @@ export class UserCanDeleteRepositoryRequest extends Message<UserCanDeleteReposit
     return new UserCanDeleteRepositoryRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteRepositoryRequest {
+  static conforms(value: unknown): value is UserCanDeleteRepositoryRequest {
     return proto3.util.conforms(UserCanDeleteRepositoryRequest, value);
   }
 
@@ -1330,7 +1330,7 @@ export class UserCanDeleteRepositoryResponse extends Message<UserCanDeleteReposi
     return new UserCanDeleteRepositoryResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteRepositoryResponse {
+  static conforms(value: unknown): value is UserCanDeleteRepositoryResponse {
     return proto3.util.conforms(UserCanDeleteRepositoryResponse, value);
   }
 
@@ -1374,7 +1374,7 @@ export class UserCanDeleteTemplateRequest extends Message<UserCanDeleteTemplateR
     return new UserCanDeleteTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteTemplateRequest {
+  static conforms(value: unknown): value is UserCanDeleteTemplateRequest {
     return proto3.util.conforms(UserCanDeleteTemplateRequest, value);
   }
 
@@ -1415,7 +1415,7 @@ export class UserCanDeleteTemplateResponse extends Message<UserCanDeleteTemplate
     return new UserCanDeleteTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteTemplateResponse {
+  static conforms(value: unknown): value is UserCanDeleteTemplateResponse {
     return proto3.util.conforms(UserCanDeleteTemplateResponse, value);
   }
 
@@ -1459,7 +1459,7 @@ export class UserCanDeletePluginRequest extends Message<UserCanDeletePluginReque
     return new UserCanDeletePluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeletePluginRequest {
+  static conforms(value: unknown): value is UserCanDeletePluginRequest {
     return proto3.util.conforms(UserCanDeletePluginRequest, value);
   }
 
@@ -1500,7 +1500,7 @@ export class UserCanDeletePluginResponse extends Message<UserCanDeletePluginResp
     return new UserCanDeletePluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeletePluginResponse {
+  static conforms(value: unknown): value is UserCanDeletePluginResponse {
     return proto3.util.conforms(UserCanDeletePluginResponse, value);
   }
 
@@ -1535,7 +1535,7 @@ export class UserCanDeleteUserRequest extends Message<UserCanDeleteUserRequest> 
     return new UserCanDeleteUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteUserRequest {
+  static conforms(value: unknown): value is UserCanDeleteUserRequest {
     return proto3.util.conforms(UserCanDeleteUserRequest, value);
   }
 
@@ -1576,7 +1576,7 @@ export class UserCanDeleteUserResponse extends Message<UserCanDeleteUserResponse
     return new UserCanDeleteUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanDeleteUserResponse {
+  static conforms(value: unknown): value is UserCanDeleteUserResponse {
     return proto3.util.conforms(UserCanDeleteUserResponse, value);
   }
 
@@ -1611,7 +1611,7 @@ export class UserCanSeeServerAdminPanelRequest extends Message<UserCanSeeServerA
     return new UserCanSeeServerAdminPanelRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeServerAdminPanelRequest {
+  static conforms(value: unknown): value is UserCanSeeServerAdminPanelRequest {
     return proto3.util.conforms(UserCanSeeServerAdminPanelRequest, value);
   }
 
@@ -1652,7 +1652,7 @@ export class UserCanSeeServerAdminPanelResponse extends Message<UserCanSeeServer
     return new UserCanSeeServerAdminPanelResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanSeeServerAdminPanelResponse {
+  static conforms(value: unknown): value is UserCanSeeServerAdminPanelResponse {
     return proto3.util.conforms(UserCanSeeServerAdminPanelResponse, value);
   }
 
@@ -1696,7 +1696,7 @@ export class UserCanManageRepositoryContributorsRequest extends Message<UserCanM
     return new UserCanManageRepositoryContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManageRepositoryContributorsRequest {
+  static conforms(value: unknown): value is UserCanManageRepositoryContributorsRequest {
     return proto3.util.conforms(UserCanManageRepositoryContributorsRequest, value);
   }
 
@@ -1740,7 +1740,7 @@ export class UserCanManageRepositoryContributorsResponse extends Message<UserCan
     return new UserCanManageRepositoryContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManageRepositoryContributorsResponse {
+  static conforms(value: unknown): value is UserCanManageRepositoryContributorsResponse {
     return proto3.util.conforms(UserCanManageRepositoryContributorsResponse, value);
   }
 
@@ -1784,7 +1784,7 @@ export class UserCanManagePluginContributorsRequest extends Message<UserCanManag
     return new UserCanManagePluginContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManagePluginContributorsRequest {
+  static conforms(value: unknown): value is UserCanManagePluginContributorsRequest {
     return proto3.util.conforms(UserCanManagePluginContributorsRequest, value);
   }
 
@@ -1828,7 +1828,7 @@ export class UserCanManagePluginContributorsResponse extends Message<UserCanMana
     return new UserCanManagePluginContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManagePluginContributorsResponse {
+  static conforms(value: unknown): value is UserCanManagePluginContributorsResponse {
     return proto3.util.conforms(UserCanManagePluginContributorsResponse, value);
   }
 
@@ -1872,7 +1872,7 @@ export class UserCanManageTemplateContributorsRequest extends Message<UserCanMan
     return new UserCanManageTemplateContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManageTemplateContributorsRequest {
+  static conforms(value: unknown): value is UserCanManageTemplateContributorsRequest {
     return proto3.util.conforms(UserCanManageTemplateContributorsRequest, value);
   }
 
@@ -1916,7 +1916,7 @@ export class UserCanManageTemplateContributorsResponse extends Message<UserCanMa
     return new UserCanManageTemplateContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserCanManageTemplateContributorsResponse {
+  static conforms(value: unknown): value is UserCanManageTemplateContributorsResponse {
     return proto3.util.conforms(UserCanManageTemplateContributorsResponse, value);
   }
 

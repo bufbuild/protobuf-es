@@ -90,7 +90,7 @@ export class PushRequest extends Message<PushRequest> {
     return new PushRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PushRequest {
+  static conforms(value: unknown): value is PushRequest {
     return proto3.util.conforms(PushRequest, value);
   }
 
@@ -131,7 +131,7 @@ export class PushResponse extends Message<PushResponse> {
     return new PushResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PushResponse {
+  static conforms(value: unknown): value is PushResponse {
     return proto3.util.conforms(PushResponse, value);
   }
 

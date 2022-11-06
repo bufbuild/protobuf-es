@@ -90,7 +90,7 @@ export class Reference extends Message<Reference> {
     return new Reference().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Reference {
+  static conforms(value: unknown): value is Reference {
     return proto3.util.conforms(Reference, value);
   }
 
@@ -149,7 +149,7 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
     return new GetReferenceByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetReferenceByNameRequest {
+  static conforms(value: unknown): value is GetReferenceByNameRequest {
     return proto3.util.conforms(GetReferenceByNameRequest, value);
   }
 
@@ -190,7 +190,7 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
     return new GetReferenceByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetReferenceByNameResponse {
+  static conforms(value: unknown): value is GetReferenceByNameResponse {
     return proto3.util.conforms(GetReferenceByNameResponse, value);
   }
 

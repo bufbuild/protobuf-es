@@ -55,7 +55,7 @@ export class Image extends Message<Image> {
     return new Image().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Image {
+  static conforms(value: unknown): value is Image {
     return proto2.util.conforms(Image, value);
   }
 
@@ -184,7 +184,7 @@ export class ImageFile extends Message<ImageFile> {
     return new ImageFile().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImageFile {
+  static conforms(value: unknown): value is ImageFile {
     return proto2.util.conforms(ImageFile, value);
   }
 
@@ -286,7 +286,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
     return new ImageFileExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImageFileExtension {
+  static conforms(value: unknown): value is ImageFileExtension {
     return proto2.util.conforms(ImageFileExtension, value);
   }
 
@@ -344,7 +344,7 @@ export class ModuleInfo extends Message<ModuleInfo> {
     return new ModuleInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModuleInfo {
+  static conforms(value: unknown): value is ModuleInfo {
     return proto2.util.conforms(ModuleInfo, value);
   }
 
@@ -401,7 +401,7 @@ export class ModuleName extends Message<ModuleName> {
     return new ModuleName().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ModuleName {
+  static conforms(value: unknown): value is ModuleName {
     return proto2.util.conforms(ModuleName, value);
   }
 

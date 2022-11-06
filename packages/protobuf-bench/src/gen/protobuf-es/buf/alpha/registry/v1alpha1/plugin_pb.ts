@@ -128,7 +128,7 @@ export class Plugin extends Message<Plugin> {
     return new Plugin().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Plugin {
+  static conforms(value: unknown): value is Plugin {
     return proto3.util.conforms(Plugin, value);
   }
 
@@ -217,7 +217,7 @@ export class PluginVersion extends Message<PluginVersion> {
     return new PluginVersion().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginVersion {
+  static conforms(value: unknown): value is PluginVersion {
     return proto3.util.conforms(PluginVersion, value);
   }
 
@@ -316,7 +316,7 @@ export class Template extends Message<Template> {
     return new Template().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Template {
+  static conforms(value: unknown): value is Template {
     return proto3.util.conforms(Template, value);
   }
 
@@ -386,7 +386,7 @@ export class PluginConfig extends Message<PluginConfig> {
     return new PluginConfig().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginConfig {
+  static conforms(value: unknown): value is PluginConfig {
     return proto3.util.conforms(PluginConfig, value);
   }
 
@@ -467,7 +467,7 @@ export class TemplateVersion extends Message<TemplateVersion> {
     return new TemplateVersion().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TemplateVersion {
+  static conforms(value: unknown): value is TemplateVersion {
     return proto3.util.conforms(TemplateVersion, value);
   }
 
@@ -536,7 +536,7 @@ export class PluginVersionMapping extends Message<PluginVersionMapping> {
     return new PluginVersionMapping().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginVersionMapping {
+  static conforms(value: unknown): value is PluginVersionMapping {
     return proto3.util.conforms(PluginVersionMapping, value);
   }
 
@@ -602,7 +602,7 @@ export class PluginContributor extends Message<PluginContributor> {
     return new PluginContributor().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginContributor {
+  static conforms(value: unknown): value is PluginContributor {
     return proto3.util.conforms(PluginContributor, value);
   }
 
@@ -668,7 +668,7 @@ export class TemplateContributor extends Message<TemplateContributor> {
     return new TemplateContributor().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TemplateContributor {
+  static conforms(value: unknown): value is TemplateContributor {
     return proto3.util.conforms(TemplateContributor, value);
   }
 
@@ -723,7 +723,7 @@ export class ListPluginsRequest extends Message<ListPluginsRequest> {
     return new ListPluginsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginsRequest {
+  static conforms(value: unknown): value is ListPluginsRequest {
     return proto3.util.conforms(ListPluginsRequest, value);
   }
 
@@ -772,7 +772,7 @@ export class ListPluginsResponse extends Message<ListPluginsResponse> {
     return new ListPluginsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginsResponse {
+  static conforms(value: unknown): value is ListPluginsResponse {
     return proto3.util.conforms(ListPluginsResponse, value);
   }
 
@@ -835,7 +835,7 @@ export class ListUserPluginsRequest extends Message<ListUserPluginsRequest> {
     return new ListUserPluginsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserPluginsRequest {
+  static conforms(value: unknown): value is ListUserPluginsRequest {
     return proto3.util.conforms(ListUserPluginsRequest, value);
   }
 
@@ -884,7 +884,7 @@ export class ListUserPluginsResponse extends Message<ListUserPluginsResponse> {
     return new ListUserPluginsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserPluginsResponse {
+  static conforms(value: unknown): value is ListUserPluginsResponse {
     return proto3.util.conforms(ListUserPluginsResponse, value);
   }
 
@@ -947,7 +947,7 @@ export class ListOrganizationPluginsRequest extends Message<ListOrganizationPlug
     return new ListOrganizationPluginsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationPluginsRequest {
+  static conforms(value: unknown): value is ListOrganizationPluginsRequest {
     return proto3.util.conforms(ListOrganizationPluginsRequest, value);
   }
 
@@ -996,7 +996,7 @@ export class ListOrganizationPluginsResponse extends Message<ListOrganizationPlu
     return new ListOrganizationPluginsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationPluginsResponse {
+  static conforms(value: unknown): value is ListOrganizationPluginsResponse {
     return proto3.util.conforms(ListOrganizationPluginsResponse, value);
   }
 
@@ -1055,7 +1055,7 @@ export class GetPluginVersionRequest extends Message<GetPluginVersionRequest> {
     return new GetPluginVersionRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPluginVersionRequest {
+  static conforms(value: unknown): value is GetPluginVersionRequest {
     return proto3.util.conforms(GetPluginVersionRequest, value);
   }
 
@@ -1096,7 +1096,7 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
     return new GetPluginVersionResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPluginVersionResponse {
+  static conforms(value: unknown): value is GetPluginVersionResponse {
     return proto3.util.conforms(GetPluginVersionResponse, value);
   }
 
@@ -1169,7 +1169,7 @@ export class ListPluginVersionsRequest extends Message<ListPluginVersionsRequest
     return new ListPluginVersionsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginVersionsRequest {
+  static conforms(value: unknown): value is ListPluginVersionsRequest {
     return proto3.util.conforms(ListPluginVersionsRequest, value);
   }
 
@@ -1218,7 +1218,7 @@ export class ListPluginVersionsResponse extends Message<ListPluginVersionsRespon
     return new ListPluginVersionsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginVersionsResponse {
+  static conforms(value: unknown): value is ListPluginVersionsResponse {
     return proto3.util.conforms(ListPluginVersionsResponse, value);
   }
 
@@ -1281,7 +1281,7 @@ export class CreatePluginRequest extends Message<CreatePluginRequest> {
     return new CreatePluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreatePluginRequest {
+  static conforms(value: unknown): value is CreatePluginRequest {
     return proto3.util.conforms(CreatePluginRequest, value);
   }
 
@@ -1324,7 +1324,7 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
     return new CreatePluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreatePluginResponse {
+  static conforms(value: unknown): value is CreatePluginResponse {
     return proto3.util.conforms(CreatePluginResponse, value);
   }
 
@@ -1375,7 +1375,7 @@ export class GetPluginRequest extends Message<GetPluginRequest> {
     return new GetPluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPluginRequest {
+  static conforms(value: unknown): value is GetPluginRequest {
     return proto3.util.conforms(GetPluginRequest, value);
   }
 
@@ -1416,7 +1416,7 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
     return new GetPluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetPluginResponse {
+  static conforms(value: unknown): value is GetPluginResponse {
     return proto3.util.conforms(GetPluginResponse, value);
   }
 
@@ -1467,7 +1467,7 @@ export class DeletePluginRequest extends Message<DeletePluginRequest> {
     return new DeletePluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeletePluginRequest {
+  static conforms(value: unknown): value is DeletePluginRequest {
     return proto3.util.conforms(DeletePluginRequest, value);
   }
 
@@ -1502,7 +1502,7 @@ export class DeletePluginResponse extends Message<DeletePluginResponse> {
     return new DeletePluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeletePluginResponse {
+  static conforms(value: unknown): value is DeletePluginResponse {
     return proto3.util.conforms(DeletePluginResponse, value);
   }
 
@@ -1562,7 +1562,7 @@ export class SetPluginContributorRequest extends Message<SetPluginContributorReq
     return new SetPluginContributorRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetPluginContributorRequest {
+  static conforms(value: unknown): value is SetPluginContributorRequest {
     return proto3.util.conforms(SetPluginContributorRequest, value);
   }
 
@@ -1597,7 +1597,7 @@ export class SetPluginContributorResponse extends Message<SetPluginContributorRe
     return new SetPluginContributorResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetPluginContributorResponse {
+  static conforms(value: unknown): value is SetPluginContributorResponse {
     return proto3.util.conforms(SetPluginContributorResponse, value);
   }
 
@@ -1658,7 +1658,7 @@ export class ListPluginContributorsRequest extends Message<ListPluginContributor
     return new ListPluginContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginContributorsRequest {
+  static conforms(value: unknown): value is ListPluginContributorsRequest {
     return proto3.util.conforms(ListPluginContributorsRequest, value);
   }
 
@@ -1707,7 +1707,7 @@ export class ListPluginContributorsResponse extends Message<ListPluginContributo
     return new ListPluginContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListPluginContributorsResponse {
+  static conforms(value: unknown): value is ListPluginContributorsResponse {
     return proto3.util.conforms(ListPluginContributorsResponse, value);
   }
 
@@ -1766,7 +1766,7 @@ export class DeprecatePluginRequest extends Message<DeprecatePluginRequest> {
     return new DeprecatePluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecatePluginRequest {
+  static conforms(value: unknown): value is DeprecatePluginRequest {
     return proto3.util.conforms(DeprecatePluginRequest, value);
   }
 
@@ -1801,7 +1801,7 @@ export class DeprecatePluginResponse extends Message<DeprecatePluginResponse> {
     return new DeprecatePluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecatePluginResponse {
+  static conforms(value: unknown): value is DeprecatePluginResponse {
     return proto3.util.conforms(DeprecatePluginResponse, value);
   }
 
@@ -1852,7 +1852,7 @@ export class UndeprecatePluginRequest extends Message<UndeprecatePluginRequest> 
     return new UndeprecatePluginRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecatePluginRequest {
+  static conforms(value: unknown): value is UndeprecatePluginRequest {
     return proto3.util.conforms(UndeprecatePluginRequest, value);
   }
 
@@ -1887,7 +1887,7 @@ export class UndeprecatePluginResponse extends Message<UndeprecatePluginResponse
     return new UndeprecatePluginResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecatePluginResponse {
+  static conforms(value: unknown): value is UndeprecatePluginResponse {
     return proto3.util.conforms(UndeprecatePluginResponse, value);
   }
 
@@ -1938,7 +1938,7 @@ export class GetTemplateRequest extends Message<GetTemplateRequest> {
     return new GetTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTemplateRequest {
+  static conforms(value: unknown): value is GetTemplateRequest {
     return proto3.util.conforms(GetTemplateRequest, value);
   }
 
@@ -1979,7 +1979,7 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
     return new GetTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTemplateResponse {
+  static conforms(value: unknown): value is GetTemplateResponse {
     return proto3.util.conforms(GetTemplateResponse, value);
   }
 
@@ -2034,7 +2034,7 @@ export class ListTemplatesRequest extends Message<ListTemplatesRequest> {
     return new ListTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplatesRequest {
+  static conforms(value: unknown): value is ListTemplatesRequest {
     return proto3.util.conforms(ListTemplatesRequest, value);
   }
 
@@ -2083,7 +2083,7 @@ export class ListTemplatesResponse extends Message<ListTemplatesResponse> {
     return new ListTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplatesResponse {
+  static conforms(value: unknown): value is ListTemplatesResponse {
     return proto3.util.conforms(ListTemplatesResponse, value);
   }
 
@@ -2146,7 +2146,7 @@ export class ListUserTemplatesRequest extends Message<ListUserTemplatesRequest> 
     return new ListUserTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserTemplatesRequest {
+  static conforms(value: unknown): value is ListUserTemplatesRequest {
     return proto3.util.conforms(ListUserTemplatesRequest, value);
   }
 
@@ -2195,7 +2195,7 @@ export class ListUserTemplatesResponse extends Message<ListUserTemplatesResponse
     return new ListUserTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserTemplatesResponse {
+  static conforms(value: unknown): value is ListUserTemplatesResponse {
     return proto3.util.conforms(ListUserTemplatesResponse, value);
   }
 
@@ -2254,7 +2254,7 @@ export class GetTemplateVersionRequest extends Message<GetTemplateVersionRequest
     return new GetTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTemplateVersionRequest {
+  static conforms(value: unknown): value is GetTemplateVersionRequest {
     return proto3.util.conforms(GetTemplateVersionRequest, value);
   }
 
@@ -2295,7 +2295,7 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
     return new GetTemplateVersionResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetTemplateVersionResponse {
+  static conforms(value: unknown): value is GetTemplateVersionResponse {
     return proto3.util.conforms(GetTemplateVersionResponse, value);
   }
 
@@ -2358,7 +2358,7 @@ export class ListOrganizationTemplatesRequest extends Message<ListOrganizationTe
     return new ListOrganizationTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationTemplatesRequest {
+  static conforms(value: unknown): value is ListOrganizationTemplatesRequest {
     return proto3.util.conforms(ListOrganizationTemplatesRequest, value);
   }
 
@@ -2407,7 +2407,7 @@ export class ListOrganizationTemplatesResponse extends Message<ListOrganizationT
     return new ListOrganizationTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationTemplatesResponse {
+  static conforms(value: unknown): value is ListOrganizationTemplatesResponse {
     return proto3.util.conforms(ListOrganizationTemplatesResponse, value);
   }
 
@@ -2480,7 +2480,7 @@ export class ListTemplateVersionsRequest extends Message<ListTemplateVersionsReq
     return new ListTemplateVersionsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplateVersionsRequest {
+  static conforms(value: unknown): value is ListTemplateVersionsRequest {
     return proto3.util.conforms(ListTemplateVersionsRequest, value);
   }
 
@@ -2529,7 +2529,7 @@ export class ListTemplateVersionsResponse extends Message<ListTemplateVersionsRe
     return new ListTemplateVersionsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplateVersionsResponse {
+  static conforms(value: unknown): value is ListTemplateVersionsResponse {
     return proto3.util.conforms(ListTemplateVersionsResponse, value);
   }
 
@@ -2600,7 +2600,7 @@ export class CreateTemplateRequest extends Message<CreateTemplateRequest> {
     return new CreateTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTemplateRequest {
+  static conforms(value: unknown): value is CreateTemplateRequest {
     return proto3.util.conforms(CreateTemplateRequest, value);
   }
 
@@ -2643,7 +2643,7 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
     return new CreateTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTemplateResponse {
+  static conforms(value: unknown): value is CreateTemplateResponse {
     return proto3.util.conforms(CreateTemplateResponse, value);
   }
 
@@ -2694,7 +2694,7 @@ export class DeleteTemplateRequest extends Message<DeleteTemplateRequest> {
     return new DeleteTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteTemplateRequest {
+  static conforms(value: unknown): value is DeleteTemplateRequest {
     return proto3.util.conforms(DeleteTemplateRequest, value);
   }
 
@@ -2729,7 +2729,7 @@ export class DeleteTemplateResponse extends Message<DeleteTemplateResponse> {
     return new DeleteTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteTemplateResponse {
+  static conforms(value: unknown): value is DeleteTemplateResponse {
     return proto3.util.conforms(DeleteTemplateResponse, value);
   }
 
@@ -2798,7 +2798,7 @@ export class CreateTemplateVersionRequest extends Message<CreateTemplateVersionR
     return new CreateTemplateVersionRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTemplateVersionRequest {
+  static conforms(value: unknown): value is CreateTemplateVersionRequest {
     return proto3.util.conforms(CreateTemplateVersionRequest, value);
   }
 
@@ -2841,7 +2841,7 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
     return new CreateTemplateVersionResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateTemplateVersionResponse {
+  static conforms(value: unknown): value is CreateTemplateVersionResponse {
     return proto3.util.conforms(CreateTemplateVersionResponse, value);
   }
 
@@ -2901,7 +2901,7 @@ export class SetTemplateContributorRequest extends Message<SetTemplateContributo
     return new SetTemplateContributorRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetTemplateContributorRequest {
+  static conforms(value: unknown): value is SetTemplateContributorRequest {
     return proto3.util.conforms(SetTemplateContributorRequest, value);
   }
 
@@ -2936,7 +2936,7 @@ export class SetTemplateContributorResponse extends Message<SetTemplateContribut
     return new SetTemplateContributorResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetTemplateContributorResponse {
+  static conforms(value: unknown): value is SetTemplateContributorResponse {
     return proto3.util.conforms(SetTemplateContributorResponse, value);
   }
 
@@ -2997,7 +2997,7 @@ export class ListTemplateContributorsRequest extends Message<ListTemplateContrib
     return new ListTemplateContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplateContributorsRequest {
+  static conforms(value: unknown): value is ListTemplateContributorsRequest {
     return proto3.util.conforms(ListTemplateContributorsRequest, value);
   }
 
@@ -3046,7 +3046,7 @@ export class ListTemplateContributorsResponse extends Message<ListTemplateContri
     return new ListTemplateContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListTemplateContributorsResponse {
+  static conforms(value: unknown): value is ListTemplateContributorsResponse {
     return proto3.util.conforms(ListTemplateContributorsResponse, value);
   }
 
@@ -3105,7 +3105,7 @@ export class DeprecateTemplateRequest extends Message<DeprecateTemplateRequest> 
     return new DeprecateTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecateTemplateRequest {
+  static conforms(value: unknown): value is DeprecateTemplateRequest {
     return proto3.util.conforms(DeprecateTemplateRequest, value);
   }
 
@@ -3140,7 +3140,7 @@ export class DeprecateTemplateResponse extends Message<DeprecateTemplateResponse
     return new DeprecateTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecateTemplateResponse {
+  static conforms(value: unknown): value is DeprecateTemplateResponse {
     return proto3.util.conforms(DeprecateTemplateResponse, value);
   }
 
@@ -3191,7 +3191,7 @@ export class UndeprecateTemplateRequest extends Message<UndeprecateTemplateReque
     return new UndeprecateTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecateTemplateRequest {
+  static conforms(value: unknown): value is UndeprecateTemplateRequest {
     return proto3.util.conforms(UndeprecateTemplateRequest, value);
   }
 
@@ -3226,7 +3226,7 @@ export class UndeprecateTemplateResponse extends Message<UndeprecateTemplateResp
     return new UndeprecateTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecateTemplateResponse {
+  static conforms(value: unknown): value is UndeprecateTemplateResponse {
     return proto3.util.conforms(UndeprecateTemplateResponse, value);
   }
 

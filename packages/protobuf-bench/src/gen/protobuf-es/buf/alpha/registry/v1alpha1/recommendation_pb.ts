@@ -78,7 +78,7 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
     return new RecommendedRepository().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedRepository {
+  static conforms(value: unknown): value is RecommendedRepository {
     return proto3.util.conforms(RecommendedRepository, value);
   }
 
@@ -140,7 +140,7 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
     return new RecommendedTemplate().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedTemplate {
+  static conforms(value: unknown): value is RecommendedTemplate {
     return proto3.util.conforms(RecommendedTemplate, value);
   }
 
@@ -189,7 +189,7 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
     return new SetRecommendedRepository().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedRepository {
+  static conforms(value: unknown): value is SetRecommendedRepository {
     return proto3.util.conforms(SetRecommendedRepository, value);
   }
 
@@ -238,7 +238,7 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
     return new SetRecommendedTemplate().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedTemplate {
+  static conforms(value: unknown): value is SetRecommendedTemplate {
     return proto3.util.conforms(SetRecommendedTemplate, value);
   }
 
@@ -273,7 +273,7 @@ export class RecommendedRepositoriesRequest extends Message<RecommendedRepositor
     return new RecommendedRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedRepositoriesRequest {
+  static conforms(value: unknown): value is RecommendedRepositoriesRequest {
     return proto3.util.conforms(RecommendedRepositoriesRequest, value);
   }
 
@@ -314,7 +314,7 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
     return new RecommendedRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedRepositoriesResponse {
+  static conforms(value: unknown): value is RecommendedRepositoriesResponse {
     return proto3.util.conforms(RecommendedRepositoriesResponse, value);
   }
 
@@ -349,7 +349,7 @@ export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesReq
     return new RecommendedTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedTemplatesRequest {
+  static conforms(value: unknown): value is RecommendedTemplatesRequest {
     return proto3.util.conforms(RecommendedTemplatesRequest, value);
   }
 
@@ -390,7 +390,7 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
     return new RecommendedTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RecommendedTemplatesResponse {
+  static conforms(value: unknown): value is RecommendedTemplatesResponse {
     return proto3.util.conforms(RecommendedTemplatesResponse, value);
   }
 
@@ -425,7 +425,7 @@ export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedR
     return new ListRecommendedRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRecommendedRepositoriesRequest {
+  static conforms(value: unknown): value is ListRecommendedRepositoriesRequest {
     return proto3.util.conforms(ListRecommendedRepositoriesRequest, value);
   }
 
@@ -466,7 +466,7 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
     return new ListRecommendedRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRecommendedRepositoriesResponse {
+  static conforms(value: unknown): value is ListRecommendedRepositoriesResponse {
     return proto3.util.conforms(ListRecommendedRepositoriesResponse, value);
   }
 
@@ -501,7 +501,7 @@ export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemp
     return new ListRecommendedTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRecommendedTemplatesRequest {
+  static conforms(value: unknown): value is ListRecommendedTemplatesRequest {
     return proto3.util.conforms(ListRecommendedTemplatesRequest, value);
   }
 
@@ -542,7 +542,7 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
     return new ListRecommendedTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRecommendedTemplatesResponse {
+  static conforms(value: unknown): value is ListRecommendedTemplatesResponse {
     return proto3.util.conforms(ListRecommendedTemplatesResponse, value);
   }
 
@@ -583,7 +583,7 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
     return new SetRecommendedRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedRepositoriesRequest {
+  static conforms(value: unknown): value is SetRecommendedRepositoriesRequest {
     return proto3.util.conforms(SetRecommendedRepositoriesRequest, value);
   }
 
@@ -618,7 +618,7 @@ export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRe
     return new SetRecommendedRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedRepositoriesResponse {
+  static conforms(value: unknown): value is SetRecommendedRepositoriesResponse {
     return proto3.util.conforms(SetRecommendedRepositoriesResponse, value);
   }
 
@@ -659,7 +659,7 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
     return new SetRecommendedTemplatesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedTemplatesRequest {
+  static conforms(value: unknown): value is SetRecommendedTemplatesRequest {
     return proto3.util.conforms(SetRecommendedTemplatesRequest, value);
   }
 
@@ -694,7 +694,7 @@ export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTempl
     return new SetRecommendedTemplatesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRecommendedTemplatesResponse {
+  static conforms(value: unknown): value is SetRecommendedTemplatesResponse {
     return proto3.util.conforms(SetRecommendedTemplatesResponse, value);
   }
 

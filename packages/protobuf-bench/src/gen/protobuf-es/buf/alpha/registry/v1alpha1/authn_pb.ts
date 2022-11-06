@@ -46,7 +46,7 @@ export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
     return new GetCurrentUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetCurrentUserRequest {
+  static conforms(value: unknown): value is GetCurrentUserRequest {
     return proto3.util.conforms(GetCurrentUserRequest, value);
   }
 
@@ -87,7 +87,7 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
     return new GetCurrentUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetCurrentUserResponse {
+  static conforms(value: unknown): value is GetCurrentUserResponse {
     return proto3.util.conforms(GetCurrentUserResponse, value);
   }
 
@@ -122,7 +122,7 @@ export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectR
     return new GetCurrentUserSubjectRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetCurrentUserSubjectRequest {
+  static conforms(value: unknown): value is GetCurrentUserSubjectRequest {
     return proto3.util.conforms(GetCurrentUserSubjectRequest, value);
   }
 
@@ -168,7 +168,7 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
     return new GetCurrentUserSubjectResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetCurrentUserSubjectResponse {
+  static conforms(value: unknown): value is GetCurrentUserSubjectResponse {
     return proto3.util.conforms(GetCurrentUserSubjectResponse, value);
   }
 

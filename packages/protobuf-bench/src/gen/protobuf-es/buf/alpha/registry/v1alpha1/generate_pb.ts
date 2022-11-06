@@ -65,7 +65,7 @@ export class File extends Message<File> {
     return new File().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is File {
+  static conforms(value: unknown): value is File {
     return proto3.util.conforms(File, value);
   }
 
@@ -125,7 +125,7 @@ export class RuntimeLibrary extends Message<RuntimeLibrary> {
     return new RuntimeLibrary().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RuntimeLibrary {
+  static conforms(value: unknown): value is RuntimeLibrary {
     return proto3.util.conforms(RuntimeLibrary, value);
   }
 
@@ -195,7 +195,7 @@ export class PluginReference extends Message<PluginReference> {
     return new PluginReference().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginReference {
+  static conforms(value: unknown): value is PluginReference {
     return proto3.util.conforms(PluginReference, value);
   }
 
@@ -268,7 +268,7 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
     return new GeneratePluginsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GeneratePluginsRequest {
+  static conforms(value: unknown): value is GeneratePluginsRequest {
     return proto3.util.conforms(GeneratePluginsRequest, value);
   }
 
@@ -325,7 +325,7 @@ export class GeneratePluginsResponse extends Message<GeneratePluginsResponse> {
     return new GeneratePluginsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GeneratePluginsResponse {
+  static conforms(value: unknown): value is GeneratePluginsResponse {
     return proto3.util.conforms(GeneratePluginsResponse, value);
   }
 
@@ -417,7 +417,7 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
     return new GenerateTemplateRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GenerateTemplateRequest {
+  static conforms(value: unknown): value is GenerateTemplateRequest {
     return proto3.util.conforms(GenerateTemplateRequest, value);
   }
 
@@ -472,7 +472,7 @@ export class GenerateTemplateResponse extends Message<GenerateTemplateResponse> 
     return new GenerateTemplateResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GenerateTemplateResponse {
+  static conforms(value: unknown): value is GenerateTemplateResponse {
     return proto3.util.conforms(GenerateTemplateResponse, value);
   }
 

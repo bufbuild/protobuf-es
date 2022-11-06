@@ -70,7 +70,7 @@ export class Owner extends Message<Owner> {
     return new Owner().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Owner {
+  static conforms(value: unknown): value is Owner {
     return proto3.util.conforms(Owner, value);
   }
 
@@ -113,7 +113,7 @@ export class GetOwnerByNameRequest extends Message<GetOwnerByNameRequest> {
     return new GetOwnerByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetOwnerByNameRequest {
+  static conforms(value: unknown): value is GetOwnerByNameRequest {
     return proto3.util.conforms(GetOwnerByNameRequest, value);
   }
 
@@ -154,7 +154,7 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
     return new GetOwnerByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetOwnerByNameResponse {
+  static conforms(value: unknown): value is GetOwnerByNameResponse {
     return proto3.util.conforms(GetOwnerByNameResponse, value);
   }
 

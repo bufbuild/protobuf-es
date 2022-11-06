@@ -69,7 +69,7 @@ export class LocalModuleReference extends Message<LocalModuleReference> {
     return new LocalModuleReference().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is LocalModuleReference {
+  static conforms(value: unknown): value is LocalModuleReference {
     return proto3.util.conforms(LocalModuleReference, value);
   }
 
@@ -144,7 +144,7 @@ export class LocalModulePin extends Message<LocalModulePin> {
     return new LocalModulePin().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is LocalModulePin {
+  static conforms(value: unknown): value is LocalModulePin {
     return proto3.util.conforms(LocalModulePin, value);
   }
 

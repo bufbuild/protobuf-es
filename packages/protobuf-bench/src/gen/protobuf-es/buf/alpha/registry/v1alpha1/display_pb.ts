@@ -55,7 +55,7 @@ export class DisplayOrganizationElementsRequest extends Message<DisplayOrganizat
     return new DisplayOrganizationElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayOrganizationElementsRequest {
+  static conforms(value: unknown): value is DisplayOrganizationElementsRequest {
     return proto3.util.conforms(DisplayOrganizationElementsRequest, value);
   }
 
@@ -138,7 +138,7 @@ export class DisplayOrganizationElementsResponse extends Message<DisplayOrganiza
     return new DisplayOrganizationElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayOrganizationElementsResponse {
+  static conforms(value: unknown): value is DisplayOrganizationElementsResponse {
     return proto3.util.conforms(DisplayOrganizationElementsResponse, value);
   }
 
@@ -182,7 +182,7 @@ export class DisplayRepositoryElementsRequest extends Message<DisplayRepositoryE
     return new DisplayRepositoryElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayRepositoryElementsRequest {
+  static conforms(value: unknown): value is DisplayRepositoryElementsRequest {
     return proto3.util.conforms(DisplayRepositoryElementsRequest, value);
   }
 
@@ -233,7 +233,7 @@ export class DisplayRepositoryElementsResponse extends Message<DisplayRepository
     return new DisplayRepositoryElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayRepositoryElementsResponse {
+  static conforms(value: unknown): value is DisplayRepositoryElementsResponse {
     return proto3.util.conforms(DisplayRepositoryElementsResponse, value);
   }
 
@@ -277,7 +277,7 @@ export class DisplayPluginElementsRequest extends Message<DisplayPluginElementsR
     return new DisplayPluginElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayPluginElementsRequest {
+  static conforms(value: unknown): value is DisplayPluginElementsRequest {
     return proto3.util.conforms(DisplayPluginElementsRequest, value);
   }
 
@@ -336,7 +336,7 @@ export class DisplayPluginElementsResponse extends Message<DisplayPluginElements
     return new DisplayPluginElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayPluginElementsResponse {
+  static conforms(value: unknown): value is DisplayPluginElementsResponse {
     return proto3.util.conforms(DisplayPluginElementsResponse, value);
   }
 
@@ -380,7 +380,7 @@ export class DisplayTemplateElementsRequest extends Message<DisplayTemplateEleme
     return new DisplayTemplateElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayTemplateElementsRequest {
+  static conforms(value: unknown): value is DisplayTemplateElementsRequest {
     return proto3.util.conforms(DisplayTemplateElementsRequest, value);
   }
 
@@ -439,7 +439,7 @@ export class DisplayTemplateElementsResponse extends Message<DisplayTemplateElem
     return new DisplayTemplateElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayTemplateElementsResponse {
+  static conforms(value: unknown): value is DisplayTemplateElementsResponse {
     return proto3.util.conforms(DisplayTemplateElementsResponse, value);
   }
 
@@ -474,7 +474,7 @@ export class DisplayUserElementsRequest extends Message<DisplayUserElementsReque
     return new DisplayUserElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayUserElementsRequest {
+  static conforms(value: unknown): value is DisplayUserElementsRequest {
     return proto3.util.conforms(DisplayUserElementsRequest, value);
   }
 
@@ -517,7 +517,7 @@ export class DisplayUserElementsResponse extends Message<DisplayUserElementsResp
     return new DisplayUserElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayUserElementsResponse {
+  static conforms(value: unknown): value is DisplayUserElementsResponse {
     return proto3.util.conforms(DisplayUserElementsResponse, value);
   }
 
@@ -552,7 +552,7 @@ export class DisplayServerElementsRequest extends Message<DisplayServerElementsR
     return new DisplayServerElementsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayServerElementsRequest {
+  static conforms(value: unknown): value is DisplayServerElementsRequest {
     return proto3.util.conforms(DisplayServerElementsRequest, value);
   }
 
@@ -595,7 +595,7 @@ export class DisplayServerElementsResponse extends Message<DisplayServerElements
     return new DisplayServerElementsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DisplayServerElementsResponse {
+  static conforms(value: unknown): value is DisplayServerElementsResponse {
     return proto3.util.conforms(DisplayServerElementsResponse, value);
   }
 
@@ -639,7 +639,7 @@ export class ListManageableRepositoryRolesRequest extends Message<ListManageable
     return new ListManageableRepositoryRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableRepositoryRolesRequest {
+  static conforms(value: unknown): value is ListManageableRepositoryRolesRequest {
     return proto3.util.conforms(ListManageableRepositoryRolesRequest, value);
   }
 
@@ -683,7 +683,7 @@ export class ListManageableRepositoryRolesResponse extends Message<ListManageabl
     return new ListManageableRepositoryRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableRepositoryRolesResponse {
+  static conforms(value: unknown): value is ListManageableRepositoryRolesResponse {
     return proto3.util.conforms(ListManageableRepositoryRolesResponse, value);
   }
 
@@ -736,7 +736,7 @@ export class ListManageableUserRepositoryRolesRequest extends Message<ListManage
     return new ListManageableUserRepositoryRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserRepositoryRolesRequest {
+  static conforms(value: unknown): value is ListManageableUserRepositoryRolesRequest {
     return proto3.util.conforms(ListManageableUserRepositoryRolesRequest, value);
   }
 
@@ -780,7 +780,7 @@ export class ListManageableUserRepositoryRolesResponse extends Message<ListManag
     return new ListManageableUserRepositoryRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserRepositoryRolesResponse {
+  static conforms(value: unknown): value is ListManageableUserRepositoryRolesResponse {
     return proto3.util.conforms(ListManageableUserRepositoryRolesResponse, value);
   }
 
@@ -824,7 +824,7 @@ export class ListManageablePluginRolesRequest extends Message<ListManageablePlug
     return new ListManageablePluginRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageablePluginRolesRequest {
+  static conforms(value: unknown): value is ListManageablePluginRolesRequest {
     return proto3.util.conforms(ListManageablePluginRolesRequest, value);
   }
 
@@ -868,7 +868,7 @@ export class ListManageablePluginRolesResponse extends Message<ListManageablePlu
     return new ListManageablePluginRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageablePluginRolesResponse {
+  static conforms(value: unknown): value is ListManageablePluginRolesResponse {
     return proto3.util.conforms(ListManageablePluginRolesResponse, value);
   }
 
@@ -921,7 +921,7 @@ export class ListManageableUserPluginRolesRequest extends Message<ListManageable
     return new ListManageableUserPluginRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserPluginRolesRequest {
+  static conforms(value: unknown): value is ListManageableUserPluginRolesRequest {
     return proto3.util.conforms(ListManageableUserPluginRolesRequest, value);
   }
 
@@ -965,7 +965,7 @@ export class ListManageableUserPluginRolesResponse extends Message<ListManageabl
     return new ListManageableUserPluginRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserPluginRolesResponse {
+  static conforms(value: unknown): value is ListManageableUserPluginRolesResponse {
     return proto3.util.conforms(ListManageableUserPluginRolesResponse, value);
   }
 
@@ -1009,7 +1009,7 @@ export class ListManageableTemplateRolesRequest extends Message<ListManageableTe
     return new ListManageableTemplateRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableTemplateRolesRequest {
+  static conforms(value: unknown): value is ListManageableTemplateRolesRequest {
     return proto3.util.conforms(ListManageableTemplateRolesRequest, value);
   }
 
@@ -1053,7 +1053,7 @@ export class ListManageableTemplateRolesResponse extends Message<ListManageableT
     return new ListManageableTemplateRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableTemplateRolesResponse {
+  static conforms(value: unknown): value is ListManageableTemplateRolesResponse {
     return proto3.util.conforms(ListManageableTemplateRolesResponse, value);
   }
 
@@ -1106,7 +1106,7 @@ export class ListManageableUserTemplateRolesRequest extends Message<ListManageab
     return new ListManageableUserTemplateRolesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserTemplateRolesRequest {
+  static conforms(value: unknown): value is ListManageableUserTemplateRolesRequest {
     return proto3.util.conforms(ListManageableUserTemplateRolesRequest, value);
   }
 
@@ -1150,7 +1150,7 @@ export class ListManageableUserTemplateRolesResponse extends Message<ListManagea
     return new ListManageableUserTemplateRolesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListManageableUserTemplateRolesResponse {
+  static conforms(value: unknown): value is ListManageableUserTemplateRolesResponse {
     return proto3.util.conforms(ListManageableUserTemplateRolesResponse, value);
   }
 

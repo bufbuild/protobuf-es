@@ -114,7 +114,7 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
     return new RepositoryCommit().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryCommit {
+  static conforms(value: unknown): value is RepositoryCommit {
     return proto3.util.conforms(RepositoryCommit, value);
   }
 
@@ -191,7 +191,7 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
     return new ListRepositoryCommitsByBranchRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryCommitsByBranchRequest {
+  static conforms(value: unknown): value is ListRepositoryCommitsByBranchRequest {
     return proto3.util.conforms(ListRepositoryCommitsByBranchRequest, value);
   }
 
@@ -238,7 +238,7 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
     return new ListRepositoryCommitsByBranchResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryCommitsByBranchResponse {
+  static conforms(value: unknown): value is ListRepositoryCommitsByBranchResponse {
     return proto3.util.conforms(ListRepositoryCommitsByBranchResponse, value);
   }
 
@@ -315,7 +315,7 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
     return new ListRepositoryCommitsByReferenceRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryCommitsByReferenceRequest {
+  static conforms(value: unknown): value is ListRepositoryCommitsByReferenceRequest {
     return proto3.util.conforms(ListRepositoryCommitsByReferenceRequest, value);
   }
 
@@ -362,7 +362,7 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
     return new ListRepositoryCommitsByReferenceResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryCommitsByReferenceResponse {
+  static conforms(value: unknown): value is ListRepositoryCommitsByReferenceResponse {
     return proto3.util.conforms(ListRepositoryCommitsByReferenceResponse, value);
   }
 
@@ -421,7 +421,7 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
     return new GetRepositoryCommitByReferenceRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryCommitByReferenceRequest {
+  static conforms(value: unknown): value is GetRepositoryCommitByReferenceRequest {
     return proto3.util.conforms(GetRepositoryCommitByReferenceRequest, value);
   }
 
@@ -462,7 +462,7 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
     return new GetRepositoryCommitByReferenceResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryCommitByReferenceResponse {
+  static conforms(value: unknown): value is GetRepositoryCommitByReferenceResponse {
     return proto3.util.conforms(GetRepositoryCommitByReferenceResponse, value);
   }
 
@@ -529,7 +529,7 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
     return new GetRepositoryCommitBySequenceIdRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryCommitBySequenceIdRequest {
+  static conforms(value: unknown): value is GetRepositoryCommitBySequenceIdRequest {
     return proto3.util.conforms(GetRepositoryCommitBySequenceIdRequest, value);
   }
 
@@ -570,7 +570,7 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
     return new GetRepositoryCommitBySequenceIdResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryCommitBySequenceIdResponse {
+  static conforms(value: unknown): value is GetRepositoryCommitBySequenceIdResponse {
     return proto3.util.conforms(GetRepositoryCommitBySequenceIdResponse, value);
   }
 

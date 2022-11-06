@@ -73,7 +73,7 @@ export class GetJSONSchemaRequest extends Message<GetJSONSchemaRequest> {
     return new GetJSONSchemaRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetJSONSchemaRequest {
+  static conforms(value: unknown): value is GetJSONSchemaRequest {
     return proto3.util.conforms(GetJSONSchemaRequest, value);
   }
 
@@ -119,7 +119,7 @@ export class GetJSONSchemaResponse extends Message<GetJSONSchemaResponse> {
     return new GetJSONSchemaResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetJSONSchemaResponse {
+  static conforms(value: unknown): value is GetJSONSchemaResponse {
     return proto3.util.conforms(GetJSONSchemaResponse, value);
   }
 

@@ -970,7 +970,7 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
     return new ActionBufAlphaRegistryV1Alpha1DownloadInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DownloadInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DownloadInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DownloadInfo, value);
   }
 
@@ -1014,7 +1014,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
     return new ActionBufAlphaRegistryV1Alpha1GetImageInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetImageInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetImageInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetImageInfo, value);
   }
 
@@ -1058,7 +1058,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo, value);
   }
 
@@ -1102,7 +1102,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo, value);
   }
 
@@ -1146,7 +1146,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo, value);
   }
 
@@ -1203,7 +1203,7 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo, value);
   }
 
@@ -1260,7 +1260,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo, value);
   }
 
@@ -1310,7 +1310,7 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo, value);
   }
 
@@ -1372,7 +1372,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
     return new ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo, value);
   }
 
@@ -1428,7 +1428,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
     return new ActionBufAlphaRegistryV1Alpha1CreatePluginInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreatePluginInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreatePluginInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreatePluginInfo, value);
   }
 
@@ -1478,7 +1478,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
     return new ActionBufAlphaRegistryV1Alpha1DeletePluginInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeletePluginInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeletePluginInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeletePluginInfo, value);
   }
 
@@ -1522,7 +1522,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo, value);
   }
 
@@ -1585,7 +1585,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
     return new ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo, value);
   }
 
@@ -1635,7 +1635,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
     return new ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo, value);
   }
 
@@ -1698,7 +1698,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo, value);
   }
 
@@ -1778,7 +1778,7 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
     return new ActionBufAlphaRegistryV1Alpha1PushInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1PushInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1PushInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1PushInfo, value);
   }
 
@@ -1855,7 +1855,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo, value);
   }
 
@@ -1906,7 +1906,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo, value);
   }
 
@@ -1950,7 +1950,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
     return new ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo, value);
   }
 
@@ -1994,7 +1994,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
     return new ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo, value);
   }
 
@@ -2038,7 +2038,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
     return new ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo, value);
   }
 
@@ -2088,7 +2088,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
     return new ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo, value);
   }
 
@@ -2145,7 +2145,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo, value);
   }
 
@@ -2196,7 +2196,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo, value);
   }
 
@@ -2240,7 +2240,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
     return new ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo, value);
   }
 
@@ -2284,7 +2284,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
     return new ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo, value);
   }
 
@@ -2340,7 +2340,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
     return new ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo, value);
   }
 
@@ -2390,7 +2390,7 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
     return new ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo, value);
   }
 
@@ -2446,7 +2446,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
     return new ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo, value);
   }
 
@@ -2502,7 +2502,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
     return new ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo, value);
   }
 
@@ -2552,7 +2552,7 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
     return new ActionBufAlphaRegistryV1Alpha1SearchInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SearchInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1SearchInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SearchInfo, value);
   }
 
@@ -2602,7 +2602,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
     return new ActionBufAlphaRegistryV1Alpha1CreateTokenInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateTokenInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateTokenInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateTokenInfo, value);
   }
 
@@ -2646,7 +2646,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
     return new ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo, value);
   }
 
@@ -2690,7 +2690,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
     return new ActionBufAlphaRegistryV1Alpha1CreateUserInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateUserInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateUserInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateUserInfo, value);
   }
 
@@ -2734,7 +2734,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
     return new ActionBufAlphaRegistryV1Alpha1ListUsersInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1ListUsersInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1ListUsersInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1ListUsersInfo, value);
   }
 
@@ -2778,7 +2778,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
     return new ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo, value);
   }
 
@@ -2829,7 +2829,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
     return new ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo, value);
   }
 
@@ -2885,7 +2885,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
     return new ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo, value);
   }
 
@@ -2941,7 +2941,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
     return new ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo, value);
   }
 
@@ -2985,7 +2985,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
     return new ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo, value);
   }
 
@@ -3029,7 +3029,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
     return new ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo, value);
   }
 
@@ -3073,7 +3073,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
     return new ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo, value);
   }
 
@@ -3117,7 +3117,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
     return new ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo, value);
   }
 
@@ -3161,7 +3161,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo, value);
   }
 
@@ -3205,7 +3205,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
     return new ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo, value);
   }
 
@@ -3249,7 +3249,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionB
     return new ActionBufAlphaRegistryV1Alpha1GetJSONSchema().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ActionBufAlphaRegistryV1Alpha1GetJSONSchema {
+  static conforms(value: unknown): value is ActionBufAlphaRegistryV1Alpha1GetJSONSchema {
     return proto3.util.conforms(ActionBufAlphaRegistryV1Alpha1GetJSONSchema, value);
   }
 
@@ -3712,7 +3712,7 @@ export class Event extends Message<Event> {
     return new Event().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Event {
+  static conforms(value: unknown): value is Event {
     return proto3.util.conforms(Event, value);
   }
 
@@ -3777,7 +3777,7 @@ export class UserActor extends Message<UserActor> {
     return new UserActor().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserActor {
+  static conforms(value: unknown): value is UserActor {
     return proto3.util.conforms(UserActor, value);
   }
 
@@ -3830,7 +3830,7 @@ export class UserObject extends Message<UserObject> {
     return new UserObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserObject {
+  static conforms(value: unknown): value is UserObject {
     return proto3.util.conforms(UserObject, value);
   }
 
@@ -3877,7 +3877,7 @@ export class OrganizationObject extends Message<OrganizationObject> {
     return new OrganizationObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OrganizationObject {
+  static conforms(value: unknown): value is OrganizationObject {
     return proto3.util.conforms(OrganizationObject, value);
   }
 
@@ -3942,7 +3942,7 @@ export class RepositoryObject extends Message<RepositoryObject> {
     return new RepositoryObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryObject {
+  static conforms(value: unknown): value is RepositoryObject {
     return proto3.util.conforms(RepositoryObject, value);
   }
 
@@ -4007,7 +4007,7 @@ export class PluginObject extends Message<PluginObject> {
     return new PluginObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginObject {
+  static conforms(value: unknown): value is PluginObject {
     return proto3.util.conforms(PluginObject, value);
   }
 
@@ -4072,7 +4072,7 @@ export class TemplateObject extends Message<TemplateObject> {
     return new TemplateObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TemplateObject {
+  static conforms(value: unknown): value is TemplateObject {
     return proto3.util.conforms(TemplateObject, value);
   }
 
@@ -4113,7 +4113,7 @@ export class TokenObject extends Message<TokenObject> {
     return new TokenObject().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TokenObject {
+  static conforms(value: unknown): value is TokenObject {
     return proto3.util.conforms(TokenObject, value);
   }
 
@@ -4195,7 +4195,7 @@ export class Object$ extends Message<Object$> {
     return new Object$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Object$ {
+  static conforms(value: unknown): value is Object$ {
     return proto3.util.conforms(Object$, value);
   }
 

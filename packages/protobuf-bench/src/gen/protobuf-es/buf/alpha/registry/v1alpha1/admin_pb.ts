@@ -55,7 +55,7 @@ export class ForceDeleteUserRequest extends Message<ForceDeleteUserRequest> {
     return new ForceDeleteUserRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForceDeleteUserRequest {
+  static conforms(value: unknown): value is ForceDeleteUserRequest {
     return proto3.util.conforms(ForceDeleteUserRequest, value);
   }
 
@@ -130,7 +130,7 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
     return new ForceDeleteUserResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForceDeleteUserResponse {
+  static conforms(value: unknown): value is ForceDeleteUserResponse {
     return proto3.util.conforms(ForceDeleteUserResponse, value);
   }
 

@@ -107,7 +107,7 @@ export class Config extends Message<Config> {
     return new Config().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Config {
+  static conforms(value: unknown): value is Config {
     return proto3.util.conforms(Config, value);
   }
 
@@ -156,7 +156,7 @@ export class IDPaths extends Message<IDPaths> {
     return new IDPaths().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is IDPaths {
+  static conforms(value: unknown): value is IDPaths {
     return proto3.util.conforms(IDPaths, value);
   }
 

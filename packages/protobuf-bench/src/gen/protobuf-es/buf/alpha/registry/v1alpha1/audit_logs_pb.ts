@@ -90,7 +90,7 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
     return new ListAuditLogsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListAuditLogsRequest {
+  static conforms(value: unknown): value is ListAuditLogsRequest {
     return proto3.util.conforms(ListAuditLogsRequest, value);
   }
 
@@ -139,7 +139,7 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
     return new ListAuditLogsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListAuditLogsResponse {
+  static conforms(value: unknown): value is ListAuditLogsResponse {
     return proto3.util.conforms(ListAuditLogsResponse, value);
   }
 

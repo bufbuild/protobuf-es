@@ -64,7 +64,7 @@ export class DownloadRequest extends Message<DownloadRequest> {
     return new DownloadRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DownloadRequest {
+  static conforms(value: unknown): value is DownloadRequest {
     return proto3.util.conforms(DownloadRequest, value);
   }
 
@@ -105,7 +105,7 @@ export class DownloadResponse extends Message<DownloadResponse> {
     return new DownloadResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DownloadResponse {
+  static conforms(value: unknown): value is DownloadResponse {
     return proto3.util.conforms(DownloadResponse, value);
   }
 

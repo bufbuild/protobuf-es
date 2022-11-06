@@ -83,7 +83,7 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
     return new RepositoryTrackCommit().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryTrackCommit {
+  static conforms(value: unknown): value is RepositoryTrackCommit {
     return proto3.util.conforms(RepositoryTrackCommit, value);
   }
 
@@ -130,7 +130,7 @@ export class GetRepositoryTrackCommitByRepositoryCommitRequest extends Message<G
     return new GetRepositoryTrackCommitByRepositoryCommitRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackCommitByRepositoryCommitRequest {
+  static conforms(value: unknown): value is GetRepositoryTrackCommitByRepositoryCommitRequest {
     return proto3.util.conforms(GetRepositoryTrackCommitByRepositoryCommitRequest, value);
   }
 
@@ -171,7 +171,7 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
     return new GetRepositoryTrackCommitByRepositoryCommitResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackCommitByRepositoryCommitResponse {
+  static conforms(value: unknown): value is GetRepositoryTrackCommitByRepositoryCommitResponse {
     return proto3.util.conforms(GetRepositoryTrackCommitByRepositoryCommitResponse, value);
   }
 
@@ -230,7 +230,7 @@ export class ListRepositoryTrackCommitsByRepositoryTrackRequest extends Message<
     return new ListRepositoryTrackCommitsByRepositoryTrackRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTrackCommitsByRepositoryTrackRequest {
+  static conforms(value: unknown): value is ListRepositoryTrackCommitsByRepositoryTrackRequest {
     return proto3.util.conforms(ListRepositoryTrackCommitsByRepositoryTrackRequest, value);
   }
 
@@ -277,7 +277,7 @@ export class ListRepositoryTrackCommitsByRepositoryTrackResponse extends Message
     return new ListRepositoryTrackCommitsByRepositoryTrackResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryTrackCommitsByRepositoryTrackResponse {
+  static conforms(value: unknown): value is ListRepositoryTrackCommitsByRepositoryTrackResponse {
     return proto3.util.conforms(ListRepositoryTrackCommitsByRepositoryTrackResponse, value);
   }
 
@@ -336,7 +336,7 @@ export class GetRepositoryTrackCommitByReferenceRequest extends Message<GetRepos
     return new GetRepositoryTrackCommitByReferenceRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackCommitByReferenceRequest {
+  static conforms(value: unknown): value is GetRepositoryTrackCommitByReferenceRequest {
     return proto3.util.conforms(GetRepositoryTrackCommitByReferenceRequest, value);
   }
 
@@ -377,7 +377,7 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
     return new GetRepositoryTrackCommitByReferenceResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryTrackCommitByReferenceResponse {
+  static conforms(value: unknown): value is GetRepositoryTrackCommitByReferenceResponse {
     return proto3.util.conforms(GetRepositoryTrackCommitByReferenceResponse, value);
   }
 

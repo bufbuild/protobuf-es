@@ -108,7 +108,7 @@ export class GetModulePinsRequest extends Message<GetModulePinsRequest> {
     return new GetModulePinsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModulePinsRequest {
+  static conforms(value: unknown): value is GetModulePinsRequest {
     return proto3.util.conforms(GetModulePinsRequest, value);
   }
 
@@ -149,7 +149,7 @@ export class GetModulePinsResponse extends Message<GetModulePinsResponse> {
     return new GetModulePinsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetModulePinsResponse {
+  static conforms(value: unknown): value is GetModulePinsResponse {
     return proto3.util.conforms(GetModulePinsResponse, value);
   }
 
@@ -190,7 +190,7 @@ export class GetLocalModulePinsRequest extends Message<GetLocalModulePinsRequest
     return new GetLocalModulePinsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetLocalModulePinsRequest {
+  static conforms(value: unknown): value is GetLocalModulePinsRequest {
     return proto3.util.conforms(GetLocalModulePinsRequest, value);
   }
 
@@ -249,7 +249,7 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
     return new LocalModuleResolveResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is LocalModuleResolveResult {
+  static conforms(value: unknown): value is LocalModuleResolveResult {
     return proto3.util.conforms(LocalModuleResolveResult, value);
   }
 
@@ -300,7 +300,7 @@ export class GetLocalModulePinsResponse extends Message<GetLocalModulePinsRespon
     return new GetLocalModulePinsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetLocalModulePinsResponse {
+  static conforms(value: unknown): value is GetLocalModulePinsResponse {
     return proto3.util.conforms(GetLocalModulePinsResponse, value);
   }
 

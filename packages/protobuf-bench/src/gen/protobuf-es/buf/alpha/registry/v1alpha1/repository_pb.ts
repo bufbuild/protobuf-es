@@ -150,7 +150,7 @@ export class Repository extends Message<Repository> {
     return new Repository().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Repository {
+  static conforms(value: unknown): value is Repository {
     return proto3.util.conforms(Repository, value);
   }
 
@@ -216,7 +216,7 @@ export class RepositoryContributor extends Message<RepositoryContributor> {
     return new RepositoryContributor().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositoryContributor {
+  static conforms(value: unknown): value is RepositoryContributor {
     return proto3.util.conforms(RepositoryContributor, value);
   }
 
@@ -260,7 +260,7 @@ export class GetRepositoriesByFullNameRequest extends Message<GetRepositoriesByF
     return new GetRepositoriesByFullNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoriesByFullNameRequest {
+  static conforms(value: unknown): value is GetRepositoriesByFullNameRequest {
     return proto3.util.conforms(GetRepositoriesByFullNameRequest, value);
   }
 
@@ -301,7 +301,7 @@ export class GetRepositoriesByFullNameResponse extends Message<GetRepositoriesBy
     return new GetRepositoriesByFullNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoriesByFullNameResponse {
+  static conforms(value: unknown): value is GetRepositoriesByFullNameResponse {
     return proto3.util.conforms(GetRepositoriesByFullNameResponse, value);
   }
 
@@ -342,7 +342,7 @@ export class GetRepositoryRequest extends Message<GetRepositoryRequest> {
     return new GetRepositoryRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryRequest {
+  static conforms(value: unknown): value is GetRepositoryRequest {
     return proto3.util.conforms(GetRepositoryRequest, value);
   }
 
@@ -383,7 +383,7 @@ export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
     return new GetRepositoryResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryResponse {
+  static conforms(value: unknown): value is GetRepositoryResponse {
     return proto3.util.conforms(GetRepositoryResponse, value);
   }
 
@@ -424,7 +424,7 @@ export class GetRepositoryByFullNameRequest extends Message<GetRepositoryByFullN
     return new GetRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryByFullNameRequest {
+  static conforms(value: unknown): value is GetRepositoryByFullNameRequest {
     return proto3.util.conforms(GetRepositoryByFullNameRequest, value);
   }
 
@@ -465,7 +465,7 @@ export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFull
     return new GetRepositoryByFullNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositoryByFullNameResponse {
+  static conforms(value: unknown): value is GetRepositoryByFullNameResponse {
     return proto3.util.conforms(GetRepositoryByFullNameResponse, value);
   }
 
@@ -520,7 +520,7 @@ export class ListRepositoriesRequest extends Message<ListRepositoriesRequest> {
     return new ListRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoriesRequest {
+  static conforms(value: unknown): value is ListRepositoriesRequest {
     return proto3.util.conforms(ListRepositoriesRequest, value);
   }
 
@@ -569,7 +569,7 @@ export class ListRepositoriesResponse extends Message<ListRepositoriesResponse> 
     return new ListRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoriesResponse {
+  static conforms(value: unknown): value is ListRepositoriesResponse {
     return proto3.util.conforms(ListRepositoriesResponse, value);
   }
 
@@ -632,7 +632,7 @@ export class ListUserRepositoriesRequest extends Message<ListUserRepositoriesReq
     return new ListUserRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserRepositoriesRequest {
+  static conforms(value: unknown): value is ListUserRepositoriesRequest {
     return proto3.util.conforms(ListUserRepositoriesRequest, value);
   }
 
@@ -681,7 +681,7 @@ export class ListUserRepositoriesResponse extends Message<ListUserRepositoriesRe
     return new ListUserRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListUserRepositoriesResponse {
+  static conforms(value: unknown): value is ListUserRepositoriesResponse {
     return proto3.util.conforms(ListUserRepositoriesResponse, value);
   }
 
@@ -736,7 +736,7 @@ export class ListRepositoriesUserCanAccessRequest extends Message<ListRepositori
     return new ListRepositoriesUserCanAccessRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoriesUserCanAccessRequest {
+  static conforms(value: unknown): value is ListRepositoriesUserCanAccessRequest {
     return proto3.util.conforms(ListRepositoriesUserCanAccessRequest, value);
   }
 
@@ -785,7 +785,7 @@ export class ListRepositoriesUserCanAccessResponse extends Message<ListRepositor
     return new ListRepositoriesUserCanAccessResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoriesUserCanAccessResponse {
+  static conforms(value: unknown): value is ListRepositoriesUserCanAccessResponse {
     return proto3.util.conforms(ListRepositoriesUserCanAccessResponse, value);
   }
 
@@ -848,7 +848,7 @@ export class ListOrganizationRepositoriesRequest extends Message<ListOrganizatio
     return new ListOrganizationRepositoriesRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationRepositoriesRequest {
+  static conforms(value: unknown): value is ListOrganizationRepositoriesRequest {
     return proto3.util.conforms(ListOrganizationRepositoriesRequest, value);
   }
 
@@ -897,7 +897,7 @@ export class ListOrganizationRepositoriesResponse extends Message<ListOrganizati
     return new ListOrganizationRepositoriesResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListOrganizationRepositoriesResponse {
+  static conforms(value: unknown): value is ListOrganizationRepositoriesResponse {
     return proto3.util.conforms(ListOrganizationRepositoriesResponse, value);
   }
 
@@ -946,7 +946,7 @@ export class CreateRepositoryByFullNameRequest extends Message<CreateRepositoryB
     return new CreateRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryByFullNameRequest {
+  static conforms(value: unknown): value is CreateRepositoryByFullNameRequest {
     return proto3.util.conforms(CreateRepositoryByFullNameRequest, value);
   }
 
@@ -987,7 +987,7 @@ export class CreateRepositoryByFullNameResponse extends Message<CreateRepository
     return new CreateRepositoryByFullNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CreateRepositoryByFullNameResponse {
+  static conforms(value: unknown): value is CreateRepositoryByFullNameResponse {
     return proto3.util.conforms(CreateRepositoryByFullNameResponse, value);
   }
 
@@ -1028,7 +1028,7 @@ export class DeleteRepositoryRequest extends Message<DeleteRepositoryRequest> {
     return new DeleteRepositoryRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryRequest {
+  static conforms(value: unknown): value is DeleteRepositoryRequest {
     return proto3.util.conforms(DeleteRepositoryRequest, value);
   }
 
@@ -1063,7 +1063,7 @@ export class DeleteRepositoryResponse extends Message<DeleteRepositoryResponse> 
     return new DeleteRepositoryResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryResponse {
+  static conforms(value: unknown): value is DeleteRepositoryResponse {
     return proto3.util.conforms(DeleteRepositoryResponse, value);
   }
 
@@ -1104,7 +1104,7 @@ export class DeleteRepositoryByFullNameRequest extends Message<DeleteRepositoryB
     return new DeleteRepositoryByFullNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryByFullNameRequest {
+  static conforms(value: unknown): value is DeleteRepositoryByFullNameRequest {
     return proto3.util.conforms(DeleteRepositoryByFullNameRequest, value);
   }
 
@@ -1139,7 +1139,7 @@ export class DeleteRepositoryByFullNameResponse extends Message<DeleteRepository
     return new DeleteRepositoryByFullNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeleteRepositoryByFullNameResponse {
+  static conforms(value: unknown): value is DeleteRepositoryByFullNameResponse {
     return proto3.util.conforms(DeleteRepositoryByFullNameResponse, value);
   }
 
@@ -1195,7 +1195,7 @@ export class DeprecateRepositoryByNameRequest extends Message<DeprecateRepositor
     return new DeprecateRepositoryByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecateRepositoryByNameRequest {
+  static conforms(value: unknown): value is DeprecateRepositoryByNameRequest {
     return proto3.util.conforms(DeprecateRepositoryByNameRequest, value);
   }
 
@@ -1236,7 +1236,7 @@ export class DeprecateRepositoryByNameResponse extends Message<DeprecateReposito
     return new DeprecateRepositoryByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DeprecateRepositoryByNameResponse {
+  static conforms(value: unknown): value is DeprecateRepositoryByNameResponse {
     return proto3.util.conforms(DeprecateRepositoryByNameResponse, value);
   }
 
@@ -1283,7 +1283,7 @@ export class UndeprecateRepositoryByNameRequest extends Message<UndeprecateRepos
     return new UndeprecateRepositoryByNameRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecateRepositoryByNameRequest {
+  static conforms(value: unknown): value is UndeprecateRepositoryByNameRequest {
     return proto3.util.conforms(UndeprecateRepositoryByNameRequest, value);
   }
 
@@ -1324,7 +1324,7 @@ export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepo
     return new UndeprecateRepositoryByNameResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UndeprecateRepositoryByNameResponse {
+  static conforms(value: unknown): value is UndeprecateRepositoryByNameResponse {
     return proto3.util.conforms(UndeprecateRepositoryByNameResponse, value);
   }
 
@@ -1384,7 +1384,7 @@ export class SetRepositoryContributorRequest extends Message<SetRepositoryContri
     return new SetRepositoryContributorRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRepositoryContributorRequest {
+  static conforms(value: unknown): value is SetRepositoryContributorRequest {
     return proto3.util.conforms(SetRepositoryContributorRequest, value);
   }
 
@@ -1419,7 +1419,7 @@ export class SetRepositoryContributorResponse extends Message<SetRepositoryContr
     return new SetRepositoryContributorResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SetRepositoryContributorResponse {
+  static conforms(value: unknown): value is SetRepositoryContributorResponse {
     return proto3.util.conforms(SetRepositoryContributorResponse, value);
   }
 
@@ -1480,7 +1480,7 @@ export class ListRepositoryContributorsRequest extends Message<ListRepositoryCon
     return new ListRepositoryContributorsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryContributorsRequest {
+  static conforms(value: unknown): value is ListRepositoryContributorsRequest {
     return proto3.util.conforms(ListRepositoryContributorsRequest, value);
   }
 
@@ -1529,7 +1529,7 @@ export class ListRepositoryContributorsResponse extends Message<ListRepositoryCo
     return new ListRepositoryContributorsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ListRepositoryContributorsResponse {
+  static conforms(value: unknown): value is ListRepositoryContributorsResponse {
     return proto3.util.conforms(ListRepositoryContributorsResponse, value);
   }
 
@@ -1572,7 +1572,7 @@ export class GetRepositorySettingsRequest extends Message<GetRepositorySettingsR
     return new GetRepositorySettingsRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositorySettingsRequest {
+  static conforms(value: unknown): value is GetRepositorySettingsRequest {
     return proto3.util.conforms(GetRepositorySettingsRequest, value);
   }
 
@@ -1616,7 +1616,7 @@ export class GetRepositorySettingsResponse extends Message<GetRepositorySettings
     return new GetRepositorySettingsResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRepositorySettingsResponse {
+  static conforms(value: unknown): value is GetRepositorySettingsResponse {
     return proto3.util.conforms(GetRepositorySettingsResponse, value);
   }
 

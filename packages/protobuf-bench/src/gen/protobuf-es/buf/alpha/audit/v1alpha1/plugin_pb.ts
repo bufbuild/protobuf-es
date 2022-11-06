@@ -95,7 +95,7 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
     return new BufAlphaRegistryV1Alpha1PluginVersionMapping().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginVersionMapping {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1PluginVersionMapping {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginVersionMapping, value);
   }
 
@@ -154,7 +154,7 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
     return new BufAlphaRegistryV1Alpha1PluginConfig().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginConfig {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1PluginConfig {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginConfig, value);
   }
 
@@ -201,7 +201,7 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
     return new BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary, value);
   }
 

@@ -97,7 +97,7 @@ export class BufAlphaRegistryV1Alpha1RepositoryBranch extends Message<BufAlphaRe
     return new BufAlphaRegistryV1Alpha1RepositoryBranch().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryBranch {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1RepositoryBranch {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryBranch, value);
   }
 
@@ -164,7 +164,7 @@ export class BufAlphaRegistryV1Alpha1RepositoryTag extends Message<BufAlphaRegis
     return new BufAlphaRegistryV1Alpha1RepositoryTag().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryTag {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1RepositoryTag {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryTag, value);
   }
 
@@ -247,7 +247,7 @@ export class BufAlphaRegistryV1Alpha1RepositoryCommit extends Message<BufAlphaRe
     return new BufAlphaRegistryV1Alpha1RepositoryCommit().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryCommit {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1RepositoryCommit {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryCommit, value);
   }
 
@@ -302,7 +302,7 @@ export class BufAlphaRegistryV1Alpha1RepositoryTrack extends Message<BufAlphaReg
     return new BufAlphaRegistryV1Alpha1RepositoryTrack().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BufAlphaRegistryV1Alpha1RepositoryTrack {
+  static conforms(value: unknown): value is BufAlphaRegistryV1Alpha1RepositoryTrack {
     return proto3.util.conforms(BufAlphaRegistryV1Alpha1RepositoryTrack, value);
   }
 

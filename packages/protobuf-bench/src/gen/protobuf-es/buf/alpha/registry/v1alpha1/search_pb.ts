@@ -132,7 +132,7 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
     return new RepositorySearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepositorySearchResult {
+  static conforms(value: unknown): value is RepositorySearchResult {
     return proto3.util.conforms(RepositorySearchResult, value);
   }
 
@@ -179,7 +179,7 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
     return new OrganizationSearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OrganizationSearchResult {
+  static conforms(value: unknown): value is OrganizationSearchResult {
     return proto3.util.conforms(OrganizationSearchResult, value);
   }
 
@@ -232,7 +232,7 @@ export class UserSearchResult extends Message<UserSearchResult> {
     return new UserSearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UserSearchResult {
+  static conforms(value: unknown): value is UserSearchResult {
     return proto3.util.conforms(UserSearchResult, value);
   }
 
@@ -285,7 +285,7 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
     return new TeamSearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TeamSearchResult {
+  static conforms(value: unknown): value is TeamSearchResult {
     return proto3.util.conforms(TeamSearchResult, value);
   }
 
@@ -355,7 +355,7 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
     return new PluginSearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PluginSearchResult {
+  static conforms(value: unknown): value is PluginSearchResult {
     return proto3.util.conforms(PluginSearchResult, value);
   }
 
@@ -425,7 +425,7 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
     return new TemplateSearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TemplateSearchResult {
+  static conforms(value: unknown): value is TemplateSearchResult {
     return proto3.util.conforms(TemplateSearchResult, value);
   }
 
@@ -507,7 +507,7 @@ export class SearchResult extends Message<SearchResult> {
     return new SearchResult().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SearchResult {
+  static conforms(value: unknown): value is SearchResult {
     return proto3.util.conforms(SearchResult, value);
   }
 
@@ -574,7 +574,7 @@ export class SearchRequest extends Message<SearchRequest> {
     return new SearchRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SearchRequest {
+  static conforms(value: unknown): value is SearchRequest {
     return proto3.util.conforms(SearchRequest, value);
   }
 
@@ -623,7 +623,7 @@ export class SearchResponse extends Message<SearchResponse> {
     return new SearchResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SearchResponse {
+  static conforms(value: unknown): value is SearchResponse {
     return proto3.util.conforms(SearchResponse, value);
   }
 
