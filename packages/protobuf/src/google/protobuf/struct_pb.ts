@@ -106,7 +106,7 @@ export class Struct extends Message<Struct> {
   }
 
   static conforms(value: any): value is Struct {
-    return new Struct().getType().conforms(value);
+    return proto3.util.conforms(Struct, value);
   }
 
   static equals(a: Struct | PlainMessage<Struct> | undefined, b: Struct | PlainMessage<Struct> | undefined): boolean {
@@ -250,7 +250,7 @@ export class Value extends Message<Value> {
   }
 
   static conforms(value: any): value is Value {
-    return new Value().getType().conforms(value);
+    return proto3.util.conforms(Value, value);
   }
 
   static equals(a: Value | PlainMessage<Value> | undefined, b: Value | PlainMessage<Value> | undefined): boolean {
@@ -311,7 +311,7 @@ export class ListValue extends Message<ListValue> {
   }
 
   static conforms(value: any): value is ListValue {
-    return new ListValue().getType().conforms(value);
+    return proto3.util.conforms(ListValue, value);
   }
 
   static equals(a: ListValue | PlainMessage<ListValue> | undefined, b: ListValue | PlainMessage<ListValue> | undefined): boolean {

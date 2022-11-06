@@ -176,7 +176,7 @@ export class Duration extends Message<Duration> {
   }
 
   static conforms(value: any): value is Duration {
-    return new Duration().getType().conforms(value);
+    return proto3.util.conforms(Duration, value);
   }
 
   static equals(a: Duration | PlainMessage<Duration> | undefined, b: Duration | PlainMessage<Duration> | undefined): boolean {

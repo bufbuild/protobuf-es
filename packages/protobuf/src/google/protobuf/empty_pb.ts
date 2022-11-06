@@ -59,7 +59,7 @@ export class Empty extends Message<Empty> {
   }
 
   static conforms(value: any): value is Empty {
-    return new Empty().getType().conforms(value);
+    return proto3.util.conforms(Empty, value);
   }
 
   static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean {

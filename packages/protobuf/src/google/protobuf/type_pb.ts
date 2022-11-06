@@ -128,7 +128,7 @@ export class Type extends Message<Type> {
   }
 
   static conforms(value: any): value is Type {
-    return new Type().getType().conforms(value);
+    return proto3.util.conforms(Type, value);
   }
 
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean {
@@ -247,7 +247,7 @@ export class Field extends Message<Field> {
   }
 
   static conforms(value: any): value is Field {
-    return new Field().getType().conforms(value);
+    return proto3.util.conforms(Field, value);
   }
 
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean {
@@ -528,7 +528,7 @@ export class Enum extends Message<Enum> {
   }
 
   static conforms(value: any): value is Enum {
-    return new Enum().getType().conforms(value);
+    return proto3.util.conforms(Enum, value);
   }
 
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean {
@@ -589,7 +589,7 @@ export class EnumValue extends Message<EnumValue> {
   }
 
   static conforms(value: any): value is EnumValue {
-    return new EnumValue().getType().conforms(value);
+    return proto3.util.conforms(EnumValue, value);
   }
 
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean {
@@ -649,7 +649,7 @@ export class Option extends Message<Option> {
   }
 
   static conforms(value: any): value is Option {
-    return new Option().getType().conforms(value);
+    return proto3.util.conforms(Option, value);
   }
 
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean {

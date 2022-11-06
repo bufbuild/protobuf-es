@@ -320,7 +320,7 @@ export class FieldMask extends Message<FieldMask> {
   }
 
   static conforms(value: any): value is FieldMask {
-    return new FieldMask().getType().conforms(value);
+    return proto3.util.conforms(FieldMask, value);
   }
 
   static equals(a: FieldMask | PlainMessage<FieldMask> | undefined, b: FieldMask | PlainMessage<FieldMask> | undefined): boolean {

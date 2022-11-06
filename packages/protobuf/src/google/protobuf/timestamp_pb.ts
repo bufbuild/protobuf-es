@@ -227,7 +227,7 @@ export class Timestamp extends Message<Timestamp> {
   }
 
   static conforms(value: any): value is Timestamp {
-    return new Timestamp().getType().conforms(value);
+    return proto3.util.conforms(Timestamp, value);
   }
 
   static equals(a: Timestamp | PlainMessage<Timestamp> | undefined, b: Timestamp | PlainMessage<Timestamp> | undefined): boolean {

@@ -96,7 +96,7 @@ export class Version extends Message<Version> {
   }
 
   static conforms(value: any): value is Version {
-    return new Version().getType().conforms(value);
+    return proto2.util.conforms(Version, value);
   }
 
   static equals(a: Version | PlainMessage<Version> | undefined, b: Version | PlainMessage<Version> | undefined): boolean {
@@ -180,7 +180,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
   }
 
   static conforms(value: any): value is CodeGeneratorRequest {
-    return new CodeGeneratorRequest().getType().conforms(value);
+    return proto2.util.conforms(CodeGeneratorRequest, value);
   }
 
   static equals(a: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined, b: CodeGeneratorRequest | PlainMessage<CodeGeneratorRequest> | undefined): boolean {
@@ -247,7 +247,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
   }
 
   static conforms(value: any): value is CodeGeneratorResponse {
-    return new CodeGeneratorResponse().getType().conforms(value);
+    return proto2.util.conforms(CodeGeneratorResponse, value);
   }
 
   static equals(a: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined, b: CodeGeneratorResponse | PlainMessage<CodeGeneratorResponse> | undefined): boolean {
@@ -386,7 +386,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
   }
 
   static conforms(value: any): value is CodeGeneratorResponse_File {
-    return new CodeGeneratorResponse_File().getType().conforms(value);
+    return proto2.util.conforms(CodeGeneratorResponse_File, value);
   }
 
   static equals(a: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined, b: CodeGeneratorResponse_File | PlainMessage<CodeGeneratorResponse_File> | undefined): boolean {

@@ -262,7 +262,7 @@ export class Any extends Message<Any> {
   }
 
   static conforms(value: any): value is Any {
-    return new Any().getType().conforms(value);
+    return proto3.util.conforms(Any, value);
   }
 
   static equals(a: Any | PlainMessage<Any> | undefined, b: Any | PlainMessage<Any> | undefined): boolean {

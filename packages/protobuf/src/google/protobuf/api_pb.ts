@@ -140,7 +140,7 @@ export class Api extends Message<Api> {
   }
 
   static conforms(value: any): value is Api {
-    return new Api().getType().conforms(value);
+    return proto3.util.conforms(Api, value);
   }
 
   static equals(a: Api | PlainMessage<Api> | undefined, b: Api | PlainMessage<Api> | undefined): boolean {
@@ -233,7 +233,7 @@ export class Method extends Message<Method> {
   }
 
   static conforms(value: any): value is Method {
-    return new Method().getType().conforms(value);
+    return proto3.util.conforms(Method, value);
   }
 
   static equals(a: Method | PlainMessage<Method> | undefined, b: Method | PlainMessage<Method> | undefined): boolean {
@@ -364,7 +364,7 @@ export class Mixin extends Message<Mixin> {
   }
 
   static conforms(value: any): value is Mixin {
-    return new Mixin().getType().conforms(value);
+    return proto3.util.conforms(Mixin, value);
   }
 
   static equals(a: Mixin | PlainMessage<Mixin> | undefined, b: Mixin | PlainMessage<Mixin> | undefined): boolean {

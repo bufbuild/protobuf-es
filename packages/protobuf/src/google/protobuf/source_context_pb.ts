@@ -62,7 +62,7 @@ export class SourceContext extends Message<SourceContext> {
   }
 
   static conforms(value: any): value is SourceContext {
-    return new SourceContext().getType().conforms(value);
+    return proto3.util.conforms(SourceContext, value);
   }
 
   static equals(a: SourceContext | PlainMessage<SourceContext> | undefined, b: SourceContext | PlainMessage<SourceContext> | undefined): boolean {
