@@ -69,9 +69,9 @@ export interface GeneratedFile {
   print(...printables: Printable[]): void;
 
   /**
-   * Add a line of code to the file with tagged template literal.
+   * Add a line of code to the file with tagged template literal and an optional array of Printables. See print(Printable[]) for behavior when printing Printable items.
    */
-  print(fragments: TemplateStringsArray, ...values: Printable[]): void;
+  print(fragments: TemplateStringsArray, ...printables: Printable[]): void;
 
   /**
    * Reserves an identifier in this file.
@@ -137,13 +137,13 @@ export function createGeneratedFile(
         printableOrFragments != null &&
         Object.prototype.hasOwnProperty.call(printableOrFragments, "raw")
       ) {
-        // in the case of called as a tagged template literal
+        // If called with a tagged template literal
         printables = buildPrintablesFromFragments(
           printableOrFragments as TemplateStringsArray,
           rest
         );
       } else {
-        // in the case of called as a normal function call
+        // If called with just an array of Printables
         printables =
           printableOrFragments != null
             ? [printableOrFragments as Printable, ...rest]
