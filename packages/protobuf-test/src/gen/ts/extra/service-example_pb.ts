@@ -109,7 +109,7 @@ export class ExampleRequest extends Message<ExampleRequest> {
     return new ExampleRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ExampleRequest {
+  static conforms(value: unknown): value is ExampleRequest {
     return proto3.util.conforms(ExampleRequest, value);
   }
 
@@ -176,7 +176,7 @@ export class ExampleResponse extends Message<ExampleResponse> {
     return new ExampleResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ExampleResponse {
+  static conforms(value: unknown): value is ExampleResponse {
     return proto3.util.conforms(ExampleResponse, value);
   }
 

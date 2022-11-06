@@ -89,7 +89,7 @@ export declare class ExampleRequest extends Message<ExampleRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleRequest;
 
-  static conforms(value: any): value is ExampleRequest;
+  static conforms(value: unknown): value is ExampleRequest;
 
   static equals(a: ExampleRequest | PlainMessage<ExampleRequest> | undefined, b: ExampleRequest | PlainMessage<ExampleRequest> | undefined): boolean;
 }
@@ -138,7 +138,7 @@ export declare class ExampleResponse extends Message<ExampleResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExampleResponse;
 
-  static conforms(value: any): value is ExampleResponse;
+  static conforms(value: unknown): value is ExampleResponse;
 
   static equals(a: ExampleResponse | PlainMessage<ExampleResponse> | undefined, b: ExampleResponse | PlainMessage<ExampleResponse> | undefined): boolean;
 }

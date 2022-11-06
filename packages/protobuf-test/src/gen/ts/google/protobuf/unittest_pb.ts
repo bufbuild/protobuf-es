@@ -1285,7 +1285,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     return new TestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes {
+  static conforms(value: unknown): value is TestAllTypes {
     return proto2.util.conforms(TestAllTypes, value);
   }
 
@@ -1364,7 +1364,7 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
     return new TestAllTypes_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes_NestedMessage {
+  static conforms(value: unknown): value is TestAllTypes_NestedMessage {
     return proto2.util.conforms(TestAllTypes_NestedMessage, value);
   }
 
@@ -1405,7 +1405,7 @@ export class TestAllTypes_OptionalGroup extends Message<TestAllTypes_OptionalGro
     return new TestAllTypes_OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes_OptionalGroup {
+  static conforms(value: unknown): value is TestAllTypes_OptionalGroup {
     return proto2.util.conforms(TestAllTypes_OptionalGroup, value);
   }
 
@@ -1446,7 +1446,7 @@ export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGro
     return new TestAllTypes_RepeatedGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes_RepeatedGroup {
+  static conforms(value: unknown): value is TestAllTypes_RepeatedGroup {
     return proto2.util.conforms(TestAllTypes_RepeatedGroup, value);
   }
 
@@ -1513,7 +1513,7 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     return new NestedTestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedTestAllTypes {
+  static conforms(value: unknown): value is NestedTestAllTypes {
     return proto2.util.conforms(NestedTestAllTypes, value);
   }
 
@@ -1568,7 +1568,7 @@ export class TestDeprecatedFields extends Message<TestDeprecatedFields> {
     return new TestDeprecatedFields().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDeprecatedFields {
+  static conforms(value: unknown): value is TestDeprecatedFields {
     return proto2.util.conforms(TestDeprecatedFields, value);
   }
 
@@ -1604,7 +1604,7 @@ export class TestDeprecatedMessage extends Message<TestDeprecatedMessage> {
     return new TestDeprecatedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDeprecatedMessage {
+  static conforms(value: unknown): value is TestDeprecatedMessage {
     return proto2.util.conforms(TestDeprecatedMessage, value);
   }
 
@@ -1654,7 +1654,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForeignMessage {
+  static conforms(value: unknown): value is ForeignMessage {
     return proto2.util.conforms(ForeignMessage, value);
   }
 
@@ -1689,7 +1689,7 @@ export class TestReservedFields extends Message<TestReservedFields> {
     return new TestReservedFields().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestReservedFields {
+  static conforms(value: unknown): value is TestReservedFields {
     return proto2.util.conforms(TestReservedFields, value);
   }
 
@@ -1724,7 +1724,7 @@ export class TestAllExtensions extends Message<TestAllExtensions> {
     return new TestAllExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllExtensions {
+  static conforms(value: unknown): value is TestAllExtensions {
     return proto2.util.conforms(TestAllExtensions, value);
   }
 
@@ -1765,7 +1765,7 @@ export class OptionalGroup_extension extends Message<OptionalGroup_extension> {
     return new OptionalGroup_extension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OptionalGroup_extension {
+  static conforms(value: unknown): value is OptionalGroup_extension {
     return proto2.util.conforms(OptionalGroup_extension, value);
   }
 
@@ -1806,7 +1806,7 @@ export class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
     return new RepeatedGroup_extension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepeatedGroup_extension {
+  static conforms(value: unknown): value is RepeatedGroup_extension {
     return proto2.util.conforms(RepeatedGroup_extension, value);
   }
 
@@ -1853,7 +1853,7 @@ export class TestGroup extends Message<TestGroup> {
     return new TestGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestGroup {
+  static conforms(value: unknown): value is TestGroup {
     return proto2.util.conforms(TestGroup, value);
   }
 
@@ -1894,7 +1894,7 @@ export class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
     return new TestGroup_OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestGroup_OptionalGroup {
+  static conforms(value: unknown): value is TestGroup_OptionalGroup {
     return proto2.util.conforms(TestGroup_OptionalGroup, value);
   }
 
@@ -1929,7 +1929,7 @@ export class TestGroupExtension extends Message<TestGroupExtension> {
     return new TestGroupExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestGroupExtension {
+  static conforms(value: unknown): value is TestGroupExtension {
     return proto2.util.conforms(TestGroupExtension, value);
   }
 
@@ -1964,7 +1964,7 @@ export class TestNestedExtension extends Message<TestNestedExtension> {
     return new TestNestedExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedExtension {
+  static conforms(value: unknown): value is TestNestedExtension {
     return proto2.util.conforms(TestNestedExtension, value);
   }
 
@@ -2005,7 +2005,7 @@ export class TestNestedExtension_OptionalGroup_extension extends Message<TestNes
     return new TestNestedExtension_OptionalGroup_extension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedExtension_OptionalGroup_extension {
+  static conforms(value: unknown): value is TestNestedExtension_OptionalGroup_extension {
     return proto2.util.conforms(TestNestedExtension_OptionalGroup_extension, value);
   }
 
@@ -2058,7 +2058,7 @@ export class TestChildExtension extends Message<TestChildExtension> {
     return new TestChildExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestChildExtension {
+  static conforms(value: unknown): value is TestChildExtension {
     return proto2.util.conforms(TestChildExtension, value);
   }
 
@@ -2114,7 +2114,7 @@ export class TestChildExtensionData extends Message<TestChildExtensionData> {
     return new TestChildExtensionData().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestChildExtensionData {
+  static conforms(value: unknown): value is TestChildExtensionData {
     return proto2.util.conforms(TestChildExtensionData, value);
   }
 
@@ -2155,7 +2155,7 @@ export class TestChildExtensionData_NestedTestAllExtensionsData extends Message<
     return new TestChildExtensionData_NestedTestAllExtensionsData().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestChildExtensionData_NestedTestAllExtensionsData {
+  static conforms(value: unknown): value is TestChildExtensionData_NestedTestAllExtensionsData {
     return proto2.util.conforms(TestChildExtensionData_NestedTestAllExtensionsData, value);
   }
 
@@ -2202,7 +2202,7 @@ export class TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExt
     return new TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions {
+  static conforms(value: unknown): value is TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions {
     return proto2.util.conforms(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, value);
   }
 
@@ -2249,7 +2249,7 @@ export class TestNestedChildExtension extends Message<TestNestedChildExtension> 
     return new TestNestedChildExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedChildExtension {
+  static conforms(value: unknown): value is TestNestedChildExtension {
     return proto2.util.conforms(TestNestedChildExtension, value);
   }
 
@@ -2299,7 +2299,7 @@ export class TestNestedChildExtensionData extends Message<TestNestedChildExtensi
     return new TestNestedChildExtensionData().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedChildExtensionData {
+  static conforms(value: unknown): value is TestNestedChildExtensionData {
     return proto2.util.conforms(TestNestedChildExtensionData, value);
   }
 
@@ -2549,7 +2549,7 @@ export class TestRequired extends Message<TestRequired> {
     return new TestRequired().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequired {
+  static conforms(value: unknown): value is TestRequired {
     return proto2.util.conforms(TestRequired, value);
   }
 
@@ -2602,7 +2602,7 @@ export class TestRequiredForeign extends Message<TestRequiredForeign> {
     return new TestRequiredForeign().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequiredForeign {
+  static conforms(value: unknown): value is TestRequiredForeign {
     return proto2.util.conforms(TestRequiredForeign, value);
   }
 
@@ -2655,7 +2655,7 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
     return new TestRequiredMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequiredMessage {
+  static conforms(value: unknown): value is TestRequiredMessage {
     return proto2.util.conforms(TestRequiredMessage, value);
   }
 
@@ -2708,7 +2708,7 @@ export class TestNestedRequiredForeign extends Message<TestNestedRequiredForeign
     return new TestNestedRequiredForeign().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedRequiredForeign {
+  static conforms(value: unknown): value is TestNestedRequiredForeign {
     return proto2.util.conforms(TestNestedRequiredForeign, value);
   }
 
@@ -2751,7 +2751,7 @@ export class TestForeignNested extends Message<TestForeignNested> {
     return new TestForeignNested().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestForeignNested {
+  static conforms(value: unknown): value is TestForeignNested {
     return proto2.util.conforms(TestForeignNested, value);
   }
 
@@ -2788,7 +2788,7 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
     return new TestEmptyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEmptyMessage {
+  static conforms(value: unknown): value is TestEmptyMessage {
     return proto2.util.conforms(TestEmptyMessage, value);
   }
 
@@ -2826,7 +2826,7 @@ export class TestEmptyMessageWithExtensions extends Message<TestEmptyMessageWith
     return new TestEmptyMessageWithExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEmptyMessageWithExtensions {
+  static conforms(value: unknown): value is TestEmptyMessageWithExtensions {
     return proto2.util.conforms(TestEmptyMessageWithExtensions, value);
   }
 
@@ -2863,7 +2863,7 @@ export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
     return new TestPickleNestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage {
     return proto2.util.conforms(TestPickleNestedMessage, value);
   }
 
@@ -2904,7 +2904,7 @@ export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNes
     return new TestPickleNestedMessage_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage {
     return proto2.util.conforms(TestPickleNestedMessage_NestedMessage, value);
   }
 
@@ -2945,7 +2945,7 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
     return new TestPickleNestedMessage_NestedMessage_NestedNestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
     return proto2.util.conforms(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, value);
   }
 
@@ -2980,7 +2980,7 @@ export class TestMultipleExtensionRanges extends Message<TestMultipleExtensionRa
     return new TestMultipleExtensionRanges().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMultipleExtensionRanges {
+  static conforms(value: unknown): value is TestMultipleExtensionRanges {
     return proto2.util.conforms(TestMultipleExtensionRanges, value);
   }
 
@@ -3032,7 +3032,7 @@ export class TestReallyLargeTagNumber extends Message<TestReallyLargeTagNumber> 
     return new TestReallyLargeTagNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestReallyLargeTagNumber {
+  static conforms(value: unknown): value is TestReallyLargeTagNumber {
     return proto2.util.conforms(TestReallyLargeTagNumber, value);
   }
 
@@ -3079,7 +3079,7 @@ export class TestRecursiveMessage extends Message<TestRecursiveMessage> {
     return new TestRecursiveMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRecursiveMessage {
+  static conforms(value: unknown): value is TestRecursiveMessage {
     return proto2.util.conforms(TestRecursiveMessage, value);
   }
 
@@ -3128,7 +3128,7 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
     return new TestMutualRecursionA().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMutualRecursionA {
+  static conforms(value: unknown): value is TestMutualRecursionA {
     return proto2.util.conforms(TestMutualRecursionA, value);
   }
 
@@ -3169,7 +3169,7 @@ export class TestMutualRecursionA_SubMessage extends Message<TestMutualRecursion
     return new TestMutualRecursionA_SubMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMutualRecursionA_SubMessage {
+  static conforms(value: unknown): value is TestMutualRecursionA_SubMessage {
     return proto2.util.conforms(TestMutualRecursionA_SubMessage, value);
   }
 
@@ -3218,7 +3218,7 @@ export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_
     return new TestMutualRecursionA_SubGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMutualRecursionA_SubGroup {
+  static conforms(value: unknown): value is TestMutualRecursionA_SubGroup {
     return proto2.util.conforms(TestMutualRecursionA_SubGroup, value);
   }
 
@@ -3265,7 +3265,7 @@ export class TestMutualRecursionB extends Message<TestMutualRecursionB> {
     return new TestMutualRecursionB().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMutualRecursionB {
+  static conforms(value: unknown): value is TestMutualRecursionB {
     return proto2.util.conforms(TestMutualRecursionB, value);
   }
 
@@ -3306,7 +3306,7 @@ export class TestIsInitialized extends Message<TestIsInitialized> {
     return new TestIsInitialized().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestIsInitialized {
+  static conforms(value: unknown): value is TestIsInitialized {
     return proto2.util.conforms(TestIsInitialized, value);
   }
 
@@ -3347,7 +3347,7 @@ export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubM
     return new TestIsInitialized_SubMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestIsInitialized_SubMessage {
+  static conforms(value: unknown): value is TestIsInitialized_SubMessage {
     return proto2.util.conforms(TestIsInitialized_SubMessage, value);
   }
 
@@ -3388,7 +3388,7 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
     return new TestIsInitialized_SubMessage_SubGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestIsInitialized_SubMessage_SubGroup {
+  static conforms(value: unknown): value is TestIsInitialized_SubMessage_SubGroup {
     return proto2.util.conforms(TestIsInitialized_SubMessage_SubGroup, value);
   }
 
@@ -3450,7 +3450,7 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
     return new TestDupFieldNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDupFieldNumber {
+  static conforms(value: unknown): value is TestDupFieldNumber {
     return proto2.util.conforms(TestDupFieldNumber, value);
   }
 
@@ -3491,7 +3491,7 @@ export class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_Foo> {
     return new TestDupFieldNumber_Foo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDupFieldNumber_Foo {
+  static conforms(value: unknown): value is TestDupFieldNumber_Foo {
     return proto2.util.conforms(TestDupFieldNumber_Foo, value);
   }
 
@@ -3532,7 +3532,7 @@ export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
     return new TestDupFieldNumber_Bar().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDupFieldNumber_Bar {
+  static conforms(value: unknown): value is TestDupFieldNumber_Bar {
     return proto2.util.conforms(TestDupFieldNumber_Bar, value);
   }
 
@@ -3575,7 +3575,7 @@ export class TestEagerMessage extends Message<TestEagerMessage> {
     return new TestEagerMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEagerMessage {
+  static conforms(value: unknown): value is TestEagerMessage {
     return proto2.util.conforms(TestEagerMessage, value);
   }
 
@@ -3616,7 +3616,7 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
     return new TestLazyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestLazyMessage {
+  static conforms(value: unknown): value is TestLazyMessage {
     return proto2.util.conforms(TestLazyMessage, value);
   }
 
@@ -3669,7 +3669,7 @@ export class TestEagerMaybeLazy extends Message<TestEagerMaybeLazy> {
     return new TestEagerMaybeLazy().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEagerMaybeLazy {
+  static conforms(value: unknown): value is TestEagerMaybeLazy {
     return proto2.util.conforms(TestEagerMaybeLazy, value);
   }
 
@@ -3710,7 +3710,7 @@ export class TestEagerMaybeLazy_NestedMessage extends Message<TestEagerMaybeLazy
     return new TestEagerMaybeLazy_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEagerMaybeLazy_NestedMessage {
+  static conforms(value: unknown): value is TestEagerMaybeLazy_NestedMessage {
     return proto2.util.conforms(TestEagerMaybeLazy_NestedMessage, value);
   }
 
@@ -3753,7 +3753,7 @@ export class TestNestedMessageHasBits extends Message<TestNestedMessageHasBits> 
     return new TestNestedMessageHasBits().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedMessageHasBits {
+  static conforms(value: unknown): value is TestNestedMessageHasBits {
     return proto2.util.conforms(TestNestedMessageHasBits, value);
   }
 
@@ -3800,7 +3800,7 @@ export class TestNestedMessageHasBits_NestedMessage extends Message<TestNestedMe
     return new TestNestedMessageHasBits_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedMessageHasBits_NestedMessage {
+  static conforms(value: unknown): value is TestNestedMessageHasBits_NestedMessage {
     return proto2.util.conforms(TestNestedMessageHasBits_NestedMessage, value);
   }
 
@@ -3910,7 +3910,7 @@ export class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldNames> {
     return new TestCamelCaseFieldNames().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestCamelCaseFieldNames {
+  static conforms(value: unknown): value is TestCamelCaseFieldNames {
     return proto2.util.conforms(TestCamelCaseFieldNames, value);
   }
 
@@ -3972,7 +3972,7 @@ export class TestFieldOrderings extends Message<TestFieldOrderings> {
     return new TestFieldOrderings().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestFieldOrderings {
+  static conforms(value: unknown): value is TestFieldOrderings {
     return proto2.util.conforms(TestFieldOrderings, value);
   }
 
@@ -4023,7 +4023,7 @@ export class TestFieldOrderings_NestedMessage extends Message<TestFieldOrderings
     return new TestFieldOrderings_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestFieldOrderings_NestedMessage {
+  static conforms(value: unknown): value is TestFieldOrderings_NestedMessage {
     return proto2.util.conforms(TestFieldOrderings_NestedMessage, value);
   }
 
@@ -4064,7 +4064,7 @@ export class TestExtensionOrderings1 extends Message<TestExtensionOrderings1> {
     return new TestExtensionOrderings1().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtensionOrderings1 {
+  static conforms(value: unknown): value is TestExtensionOrderings1 {
     return proto2.util.conforms(TestExtensionOrderings1, value);
   }
 
@@ -4105,7 +4105,7 @@ export class TestExtensionOrderings2 extends Message<TestExtensionOrderings2> {
     return new TestExtensionOrderings2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtensionOrderings2 {
+  static conforms(value: unknown): value is TestExtensionOrderings2 {
     return proto2.util.conforms(TestExtensionOrderings2, value);
   }
 
@@ -4146,7 +4146,7 @@ export class TestExtensionOrderings2_TestExtensionOrderings3 extends Message<Tes
     return new TestExtensionOrderings2_TestExtensionOrderings3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtensionOrderings2_TestExtensionOrderings3 {
+  static conforms(value: unknown): value is TestExtensionOrderings2_TestExtensionOrderings3 {
     return proto2.util.conforms(TestExtensionOrderings2_TestExtensionOrderings3, value);
   }
 
@@ -4361,7 +4361,7 @@ export class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> 
     return new TestExtremeDefaultValues().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtremeDefaultValues {
+  static conforms(value: unknown): value is TestExtremeDefaultValues {
     return proto2.util.conforms(TestExtremeDefaultValues, value);
   }
 
@@ -4402,7 +4402,7 @@ export class SparseEnumMessage extends Message<SparseEnumMessage> {
     return new SparseEnumMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SparseEnumMessage {
+  static conforms(value: unknown): value is SparseEnumMessage {
     return proto2.util.conforms(SparseEnumMessage, value);
   }
 
@@ -4445,7 +4445,7 @@ export class OneString extends Message<OneString> {
     return new OneString().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneString {
+  static conforms(value: unknown): value is OneString {
     return proto2.util.conforms(OneString, value);
   }
 
@@ -4486,7 +4486,7 @@ export class MoreString extends Message<MoreString> {
     return new MoreString().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MoreString {
+  static conforms(value: unknown): value is MoreString {
     return proto2.util.conforms(MoreString, value);
   }
 
@@ -4527,7 +4527,7 @@ export class OneBytes extends Message<OneBytes> {
     return new OneBytes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneBytes {
+  static conforms(value: unknown): value is OneBytes {
     return proto2.util.conforms(OneBytes, value);
   }
 
@@ -4568,7 +4568,7 @@ export class MoreBytes extends Message<MoreBytes> {
     return new MoreBytes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MoreBytes {
+  static conforms(value: unknown): value is MoreBytes {
     return proto2.util.conforms(MoreBytes, value);
   }
 
@@ -4795,7 +4795,7 @@ export class ManyOptionalString extends Message<ManyOptionalString> {
     return new ManyOptionalString().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ManyOptionalString {
+  static conforms(value: unknown): value is ManyOptionalString {
     return proto2.util.conforms(ManyOptionalString, value);
   }
 
@@ -4838,7 +4838,7 @@ export class Int32Message extends Message<Int32Message> {
     return new Int32Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Int32Message {
+  static conforms(value: unknown): value is Int32Message {
     return proto2.util.conforms(Int32Message, value);
   }
 
@@ -4879,7 +4879,7 @@ export class Uint32Message extends Message<Uint32Message> {
     return new Uint32Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Uint32Message {
+  static conforms(value: unknown): value is Uint32Message {
     return proto2.util.conforms(Uint32Message, value);
   }
 
@@ -4920,7 +4920,7 @@ export class Int64Message extends Message<Int64Message> {
     return new Int64Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Int64Message {
+  static conforms(value: unknown): value is Int64Message {
     return proto2.util.conforms(Int64Message, value);
   }
 
@@ -4961,7 +4961,7 @@ export class Uint64Message extends Message<Uint64Message> {
     return new Uint64Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Uint64Message {
+  static conforms(value: unknown): value is Uint64Message {
     return proto2.util.conforms(Uint64Message, value);
   }
 
@@ -5002,7 +5002,7 @@ export class BoolMessage extends Message<BoolMessage> {
     return new BoolMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BoolMessage {
+  static conforms(value: unknown): value is BoolMessage {
     return proto2.util.conforms(BoolMessage, value);
   }
 
@@ -5072,7 +5072,7 @@ export class TestOneof extends Message<TestOneof> {
     return new TestOneof().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneof {
+  static conforms(value: unknown): value is TestOneof {
     return proto2.util.conforms(TestOneof, value);
   }
 
@@ -5119,7 +5119,7 @@ export class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
     return new TestOneof_FooGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneof_FooGroup {
+  static conforms(value: unknown): value is TestOneof_FooGroup {
     return proto2.util.conforms(TestOneof_FooGroup, value);
   }
 
@@ -5178,7 +5178,7 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
     return new TestOneofBackwardsCompatible().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneofBackwardsCompatible {
+  static conforms(value: unknown): value is TestOneofBackwardsCompatible {
     return proto2.util.conforms(TestOneofBackwardsCompatible, value);
   }
 
@@ -5225,7 +5225,7 @@ export class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBack
     return new TestOneofBackwardsCompatible_FooGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneofBackwardsCompatible_FooGroup {
+  static conforms(value: unknown): value is TestOneofBackwardsCompatible_FooGroup {
     return proto2.util.conforms(TestOneofBackwardsCompatible_FooGroup, value);
   }
 
@@ -5415,7 +5415,7 @@ export class TestOneof2 extends Message<TestOneof2> {
     return new TestOneof2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneof2 {
+  static conforms(value: unknown): value is TestOneof2 {
     return proto2.util.conforms(TestOneof2, value);
   }
 
@@ -5488,7 +5488,7 @@ export class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
     return new TestOneof2_FooGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneof2_FooGroup {
+  static conforms(value: unknown): value is TestOneof2_FooGroup {
     return proto2.util.conforms(TestOneof2_FooGroup, value);
   }
 
@@ -5535,7 +5535,7 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
     return new TestOneof2_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOneof2_NestedMessage {
+  static conforms(value: unknown): value is TestOneof2_NestedMessage {
     return proto2.util.conforms(TestOneof2_NestedMessage, value);
   }
 
@@ -5596,7 +5596,7 @@ export class TestRequiredOneof extends Message<TestRequiredOneof> {
     return new TestRequiredOneof().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequiredOneof {
+  static conforms(value: unknown): value is TestRequiredOneof {
     return proto2.util.conforms(TestRequiredOneof, value);
   }
 
@@ -5637,7 +5637,7 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
     return new TestRequiredOneof_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequiredOneof_NestedMessage {
+  static conforms(value: unknown): value is TestRequiredOneof_NestedMessage {
     return proto2.util.conforms(TestRequiredOneof_NestedMessage, value);
   }
 
@@ -5756,7 +5756,7 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
     return new TestPackedTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPackedTypes {
+  static conforms(value: unknown): value is TestPackedTypes {
     return proto2.util.conforms(TestPackedTypes, value);
   }
 
@@ -5878,7 +5878,7 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
     return new TestUnpackedTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestUnpackedTypes {
+  static conforms(value: unknown): value is TestUnpackedTypes {
     return proto2.util.conforms(TestUnpackedTypes, value);
   }
 
@@ -5913,7 +5913,7 @@ export class TestPackedExtensions extends Message<TestPackedExtensions> {
     return new TestPackedExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPackedExtensions {
+  static conforms(value: unknown): value is TestPackedExtensions {
     return proto2.util.conforms(TestPackedExtensions, value);
   }
 
@@ -5948,7 +5948,7 @@ export class TestUnpackedExtensions extends Message<TestUnpackedExtensions> {
     return new TestUnpackedExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestUnpackedExtensions {
+  static conforms(value: unknown): value is TestUnpackedExtensions {
     return proto2.util.conforms(TestUnpackedExtensions, value);
   }
 
@@ -6029,7 +6029,7 @@ export class TestDynamicExtensions extends Message<TestDynamicExtensions> {
     return new TestDynamicExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDynamicExtensions {
+  static conforms(value: unknown): value is TestDynamicExtensions {
     return proto2.util.conforms(TestDynamicExtensions, value);
   }
 
@@ -6096,7 +6096,7 @@ export class TestDynamicExtensions_DynamicMessageType extends Message<TestDynami
     return new TestDynamicExtensions_DynamicMessageType().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestDynamicExtensions_DynamicMessageType {
+  static conforms(value: unknown): value is TestDynamicExtensions_DynamicMessageType {
     return proto2.util.conforms(TestDynamicExtensions_DynamicMessageType, value);
   }
 
@@ -6177,7 +6177,7 @@ export class TestRepeatedScalarDifferentTagSizes extends Message<TestRepeatedSca
     return new TestRepeatedScalarDifferentTagSizes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRepeatedScalarDifferentTagSizes {
+  static conforms(value: unknown): value is TestRepeatedScalarDifferentTagSizes {
     return proto2.util.conforms(TestRepeatedScalarDifferentTagSizes, value);
   }
 
@@ -6245,7 +6245,7 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
     return new TestParsingMerge().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge {
+  static conforms(value: unknown): value is TestParsingMerge {
     return proto2.util.conforms(TestParsingMerge, value);
   }
 
@@ -6328,7 +6328,7 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
     return new TestParsingMerge_RepeatedFieldsGenerator().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator {
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator {
     return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator, value);
   }
 
@@ -6369,7 +6369,7 @@ export class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Message<Tes
     return new TestParsingMerge_RepeatedFieldsGenerator_Group1().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator_Group1 {
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator_Group1 {
     return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator_Group1, value);
   }
 
@@ -6410,7 +6410,7 @@ export class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Message<Tes
     return new TestParsingMerge_RepeatedFieldsGenerator_Group2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator_Group2 {
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator_Group2 {
     return proto2.util.conforms(TestParsingMerge_RepeatedFieldsGenerator_Group2, value);
   }
 
@@ -6451,7 +6451,7 @@ export class TestParsingMerge_OptionalGroup extends Message<TestParsingMerge_Opt
     return new TestParsingMerge_OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge_OptionalGroup {
+  static conforms(value: unknown): value is TestParsingMerge_OptionalGroup {
     return proto2.util.conforms(TestParsingMerge_OptionalGroup, value);
   }
 
@@ -6492,7 +6492,7 @@ export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_Rep
     return new TestParsingMerge_RepeatedGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedGroup {
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedGroup {
     return proto2.util.conforms(TestParsingMerge_RepeatedGroup, value);
   }
 
@@ -6536,7 +6536,7 @@ export class TestMergeException extends Message<TestMergeException> {
     return new TestMergeException().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMergeException {
+  static conforms(value: unknown): value is TestMergeException {
     return proto2.util.conforms(TestMergeException, value);
   }
 
@@ -6579,7 +6579,7 @@ export class TestCommentInjectionMessage extends Message<TestCommentInjectionMes
     return new TestCommentInjectionMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestCommentInjectionMessage {
+  static conforms(value: unknown): value is TestCommentInjectionMessage {
     return proto2.util.conforms(TestCommentInjectionMessage, value);
   }
 
@@ -6653,7 +6653,7 @@ export class TestMessageSize extends Message<TestMessageSize> {
     return new TestMessageSize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSize {
+  static conforms(value: unknown): value is TestMessageSize {
     return proto2.util.conforms(TestMessageSize, value);
   }
 
@@ -6690,7 +6690,7 @@ export class FooRequest extends Message<FooRequest> {
     return new FooRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FooRequest {
+  static conforms(value: unknown): value is FooRequest {
     return proto2.util.conforms(FooRequest, value);
   }
 
@@ -6725,7 +6725,7 @@ export class FooResponse extends Message<FooResponse> {
     return new FooResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FooResponse {
+  static conforms(value: unknown): value is FooResponse {
     return proto2.util.conforms(FooResponse, value);
   }
 
@@ -6760,7 +6760,7 @@ export class FooClientMessage extends Message<FooClientMessage> {
     return new FooClientMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FooClientMessage {
+  static conforms(value: unknown): value is FooClientMessage {
     return proto2.util.conforms(FooClientMessage, value);
   }
 
@@ -6795,7 +6795,7 @@ export class FooServerMessage extends Message<FooServerMessage> {
     return new FooServerMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FooServerMessage {
+  static conforms(value: unknown): value is FooServerMessage {
     return proto2.util.conforms(FooServerMessage, value);
   }
 
@@ -6830,7 +6830,7 @@ export class BarRequest extends Message<BarRequest> {
     return new BarRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BarRequest {
+  static conforms(value: unknown): value is BarRequest {
     return proto2.util.conforms(BarRequest, value);
   }
 
@@ -6865,7 +6865,7 @@ export class BarResponse extends Message<BarResponse> {
     return new BarResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BarResponse {
+  static conforms(value: unknown): value is BarResponse {
     return proto2.util.conforms(BarResponse, value);
   }
 
@@ -6942,7 +6942,7 @@ export class TestJsonName extends Message<TestJsonName> {
     return new TestJsonName().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestJsonName {
+  static conforms(value: unknown): value is TestJsonName {
     return proto2.util.conforms(TestJsonName, value);
   }
 
@@ -7070,7 +7070,7 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
     return new TestHugeFieldNumbers().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestHugeFieldNumbers {
+  static conforms(value: unknown): value is TestHugeFieldNumbers {
     return proto2.util.conforms(TestHugeFieldNumbers, value);
   }
 
@@ -7111,7 +7111,7 @@ export class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNum
     return new TestHugeFieldNumbers_OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestHugeFieldNumbers_OptionalGroup {
+  static conforms(value: unknown): value is TestHugeFieldNumbers_OptionalGroup {
     return proto2.util.conforms(TestHugeFieldNumbers_OptionalGroup, value);
   }
 
@@ -7200,7 +7200,7 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
     return new TestExtensionInsideTable().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtensionInsideTable {
+  static conforms(value: unknown): value is TestExtensionInsideTable {
     return proto2.util.conforms(TestExtensionInsideTable, value);
   }
 
@@ -7243,7 +7243,7 @@ export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtens
     return new TestNestedGroupExtensionOuter().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter {
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter {
     return proto2.util.conforms(TestNestedGroupExtensionOuter, value);
   }
 
@@ -7290,7 +7290,7 @@ export class TestNestedGroupExtensionOuter_Layer1OptionalGroup extends Message<T
     return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup {
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup {
     return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup, value);
   }
 
@@ -7331,7 +7331,7 @@ export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGro
     return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
     return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, value);
   }
 
@@ -7372,7 +7372,7 @@ export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOpti
     return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
     return proto2.util.conforms(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, value);
   }
 
@@ -7413,7 +7413,7 @@ export class TestNestedGroupExtensionInnerExtension extends Message<TestNestedGr
     return new TestNestedGroupExtensionInnerExtension().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestNestedGroupExtensionInnerExtension {
+  static conforms(value: unknown): value is TestNestedGroupExtensionInnerExtension {
     return proto2.util.conforms(TestNestedGroupExtensionInnerExtension, value);
   }
 
@@ -7472,7 +7472,7 @@ export class TestExtensionRangeSerialize extends Message<TestExtensionRangeSeria
     return new TestExtensionRangeSerialize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestExtensionRangeSerialize {
+  static conforms(value: unknown): value is TestExtensionRangeSerialize {
     return proto2.util.conforms(TestExtensionRangeSerialize, value);
   }
 
@@ -7531,7 +7531,7 @@ export class TestVerifyInt32Simple extends Message<TestVerifyInt32Simple> {
     return new TestVerifyInt32Simple().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyInt32Simple {
+  static conforms(value: unknown): value is TestVerifyInt32Simple {
     return proto2.util.conforms(TestVerifyInt32Simple, value);
   }
 
@@ -7602,7 +7602,7 @@ export class TestVerifyInt32 extends Message<TestVerifyInt32> {
     return new TestVerifyInt32().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyInt32 {
+  static conforms(value: unknown): value is TestVerifyInt32 {
     return proto2.util.conforms(TestVerifyInt32, value);
   }
 
@@ -7691,7 +7691,7 @@ export class TestVerifyMostlyInt32 extends Message<TestVerifyMostlyInt32> {
     return new TestVerifyMostlyInt32().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyMostlyInt32 {
+  static conforms(value: unknown): value is TestVerifyMostlyInt32 {
     return proto2.util.conforms(TestVerifyMostlyInt32, value);
   }
 
@@ -7786,7 +7786,7 @@ export class TestVerifyMostlyInt32BigFieldNumber extends Message<TestVerifyMostl
     return new TestVerifyMostlyInt32BigFieldNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyMostlyInt32BigFieldNumber {
+  static conforms(value: unknown): value is TestVerifyMostlyInt32BigFieldNumber {
     return proto2.util.conforms(TestVerifyMostlyInt32BigFieldNumber, value);
   }
 
@@ -7845,7 +7845,7 @@ export class TestVerifyUint32Simple extends Message<TestVerifyUint32Simple> {
     return new TestVerifyUint32Simple().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyUint32Simple {
+  static conforms(value: unknown): value is TestVerifyUint32Simple {
     return proto2.util.conforms(TestVerifyUint32Simple, value);
   }
 
@@ -7916,7 +7916,7 @@ export class TestVerifyUint32 extends Message<TestVerifyUint32> {
     return new TestVerifyUint32().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyUint32 {
+  static conforms(value: unknown): value is TestVerifyUint32 {
     return proto2.util.conforms(TestVerifyUint32, value);
   }
 
@@ -7987,7 +7987,7 @@ export class TestVerifyOneUint32 extends Message<TestVerifyOneUint32> {
     return new TestVerifyOneUint32().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyOneUint32 {
+  static conforms(value: unknown): value is TestVerifyOneUint32 {
     return proto2.util.conforms(TestVerifyOneUint32, value);
   }
 
@@ -8064,7 +8064,7 @@ export class TestVerifyOneInt32BigFieldNumber extends Message<TestVerifyOneInt32
     return new TestVerifyOneInt32BigFieldNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyOneInt32BigFieldNumber {
+  static conforms(value: unknown): value is TestVerifyOneInt32BigFieldNumber {
     return proto2.util.conforms(TestVerifyOneInt32BigFieldNumber, value);
   }
 
@@ -8147,7 +8147,7 @@ export class TestVerifyInt32BigFieldNumber extends Message<TestVerifyInt32BigFie
     return new TestVerifyInt32BigFieldNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyInt32BigFieldNumber {
+  static conforms(value: unknown): value is TestVerifyInt32BigFieldNumber {
     return proto2.util.conforms(TestVerifyInt32BigFieldNumber, value);
   }
 
@@ -8230,7 +8230,7 @@ export class TestVerifyUint32BigFieldNumber extends Message<TestVerifyUint32BigF
     return new TestVerifyUint32BigFieldNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyUint32BigFieldNumber {
+  static conforms(value: unknown): value is TestVerifyUint32BigFieldNumber {
     return proto2.util.conforms(TestVerifyUint32BigFieldNumber, value);
   }
 
@@ -8271,7 +8271,7 @@ export class TestVerifyBigFieldNumberUint32 extends Message<TestVerifyBigFieldNu
     return new TestVerifyBigFieldNumberUint32().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyBigFieldNumberUint32 {
+  static conforms(value: unknown): value is TestVerifyBigFieldNumberUint32 {
     return proto2.util.conforms(TestVerifyBigFieldNumberUint32, value);
   }
 
@@ -8366,7 +8366,7 @@ export class TestVerifyBigFieldNumberUint32_Nested extends Message<TestVerifyBig
     return new TestVerifyBigFieldNumberUint32_Nested().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestVerifyBigFieldNumberUint32_Nested {
+  static conforms(value: unknown): value is TestVerifyBigFieldNumberUint32_Nested {
     return proto2.util.conforms(TestVerifyBigFieldNumberUint32_Nested, value);
   }
 

@@ -191,7 +191,7 @@ export class TestProto3Optional extends Message<TestProto3Optional> {
     return new TestProto3Optional().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestProto3Optional {
+  static conforms(value: unknown): value is TestProto3Optional {
     return proto3.util.conforms(TestProto3Optional, value);
   }
 
@@ -276,7 +276,7 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
     return new TestProto3Optional_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestProto3Optional_NestedMessage {
+  static conforms(value: unknown): value is TestProto3Optional_NestedMessage {
     return proto3.util.conforms(TestProto3Optional_NestedMessage, value);
   }
 
@@ -323,7 +323,7 @@ export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage
     return new TestProto3OptionalMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestProto3OptionalMessage {
+  static conforms(value: unknown): value is TestProto3OptionalMessage {
     return proto3.util.conforms(TestProto3OptionalMessage, value);
   }
 
@@ -364,7 +364,7 @@ export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3O
     return new TestProto3OptionalMessage_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestProto3OptionalMessage_NestedMessage {
+  static conforms(value: unknown): value is TestProto3OptionalMessage_NestedMessage {
     return proto3.util.conforms(TestProto3OptionalMessage_NestedMessage, value);
   }
 
@@ -399,7 +399,7 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
     return new Proto3OptionalExtensions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto3OptionalExtensions {
+  static conforms(value: unknown): value is Proto3OptionalExtensions {
     return proto3.util.conforms(Proto3OptionalExtensions, value);
   }
 

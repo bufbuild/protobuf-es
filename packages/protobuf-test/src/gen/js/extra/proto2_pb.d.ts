@@ -65,7 +65,7 @@ export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2PackedMessage;
 
-  static conforms(value: any): value is Proto2PackedMessage;
+  static conforms(value: unknown): value is Proto2PackedMessage;
 
   static equals(a: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined, b: Proto2PackedMessage | PlainMessage<Proto2PackedMessage> | undefined): boolean;
 }
@@ -101,7 +101,7 @@ export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnpackedMessage;
 
-  static conforms(value: any): value is Proto2UnpackedMessage;
+  static conforms(value: unknown): value is Proto2UnpackedMessage;
 
   static equals(a: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined, b: Proto2UnpackedMessage | PlainMessage<Proto2UnpackedMessage> | undefined): boolean;
 }
@@ -137,7 +137,7 @@ export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2Unspec
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2UnspecifiedPackedMessage;
 
-  static conforms(value: any): value is Proto2UnspecifiedPackedMessage;
+  static conforms(value: unknown): value is Proto2UnspecifiedPackedMessage;
 
   static equals(a: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined, b: Proto2UnspecifiedPackedMessage | PlainMessage<Proto2UnspecifiedPackedMessage> | undefined): boolean;
 }
@@ -178,7 +178,7 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OptionalMessage;
 
-  static conforms(value: any): value is Proto2OptionalMessage;
+  static conforms(value: unknown): value is Proto2OptionalMessage;
 
   static equals(a: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined, b: Proto2OptionalMessage | PlainMessage<Proto2OptionalMessage> | undefined): boolean;
 }
@@ -219,7 +219,7 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredMessage;
 
-  static conforms(value: any): value is Proto2RequiredMessage;
+  static conforms(value: unknown): value is Proto2RequiredMessage;
 
   static equals(a: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined, b: Proto2RequiredMessage | PlainMessage<Proto2RequiredMessage> | undefined): boolean;
 }
@@ -260,7 +260,7 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RequiredDefaultsMessage;
 
-  static conforms(value: any): value is Proto2RequiredDefaultsMessage;
+  static conforms(value: unknown): value is Proto2RequiredDefaultsMessage;
 
   static equals(a: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined, b: Proto2RequiredDefaultsMessage | PlainMessage<Proto2RequiredDefaultsMessage> | undefined): boolean;
 }
@@ -321,7 +321,7 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2DefaultsMessage;
 
-  static conforms(value: any): value is Proto2DefaultsMessage;
+  static conforms(value: unknown): value is Proto2DefaultsMessage;
 
   static equals(a: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined, b: Proto2DefaultsMessage | PlainMessage<Proto2DefaultsMessage> | undefined): boolean;
 }
@@ -347,7 +347,7 @@ export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2ChildMessage;
 
-  static conforms(value: any): value is Proto2ChildMessage;
+  static conforms(value: unknown): value is Proto2ChildMessage;
 
   static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
 }

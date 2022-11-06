@@ -152,7 +152,7 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
     return new TestWellKnownTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestWellKnownTypes {
+  static conforms(value: unknown): value is TestWellKnownTypes {
     return proto3.util.conforms(TestWellKnownTypes, value);
   }
 
@@ -299,7 +299,7 @@ export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
     return new RepeatedWellKnownTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepeatedWellKnownTypes {
+  static conforms(value: unknown): value is RepeatedWellKnownTypes {
     return proto3.util.conforms(RepeatedWellKnownTypes, value);
   }
 
@@ -465,7 +465,7 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
     return new OneofWellKnownTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofWellKnownTypes {
+  static conforms(value: unknown): value is OneofWellKnownTypes {
     return proto3.util.conforms(OneofWellKnownTypes, value);
   }
 
@@ -612,7 +612,7 @@ export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
     return new MapWellKnownTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MapWellKnownTypes {
+  static conforms(value: unknown): value is MapWellKnownTypes {
     return proto3.util.conforms(MapWellKnownTypes, value);
   }
 

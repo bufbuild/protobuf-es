@@ -55,7 +55,7 @@ export class AddressBook extends Message<AddressBook> {
     return new AddressBook().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is AddressBook {
+  static conforms(value: unknown): value is AddressBook {
     return proto3.util.conforms(AddressBook, value);
   }
 

@@ -118,7 +118,7 @@ export declare class Type extends Message<Type> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Type;
 
-  static conforms(value: any): value is Type;
+  static conforms(value: unknown): value is Type;
 
   static equals(a: Type | PlainMessage<Type> | undefined, b: Type | PlainMessage<Type> | undefined): boolean;
 }
@@ -213,7 +213,7 @@ export declare class Field extends Message<Field> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Field;
 
-  static conforms(value: any): value is Field;
+  static conforms(value: unknown): value is Field;
 
   static equals(a: Field | PlainMessage<Field> | undefined, b: Field | PlainMessage<Field> | undefined): boolean;
 }
@@ -446,7 +446,7 @@ export declare class Enum extends Message<Enum> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Enum;
 
-  static conforms(value: any): value is Enum;
+  static conforms(value: unknown): value is Enum;
 
   static equals(a: Enum | PlainMessage<Enum> | undefined, b: Enum | PlainMessage<Enum> | undefined): boolean;
 }
@@ -490,7 +490,7 @@ export declare class EnumValue extends Message<EnumValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumValue;
 
-  static conforms(value: any): value is EnumValue;
+  static conforms(value: unknown): value is EnumValue;
 
   static equals(a: EnumValue | PlainMessage<EnumValue> | undefined, b: EnumValue | PlainMessage<EnumValue> | undefined): boolean;
 }
@@ -534,7 +534,7 @@ export declare class Option extends Message<Option> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Option;
 
-  static conforms(value: any): value is Option;
+  static conforms(value: unknown): value is Option;
 
   static equals(a: Option | PlainMessage<Option> | undefined, b: Option | PlainMessage<Option> | undefined): boolean;
 }

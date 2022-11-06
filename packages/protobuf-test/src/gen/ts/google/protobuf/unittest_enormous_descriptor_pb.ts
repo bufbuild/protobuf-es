@@ -6069,7 +6069,7 @@ export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
     return new TestEnormousDescriptor().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEnormousDescriptor {
+  static conforms(value: unknown): value is TestEnormousDescriptor {
     return proto2.util.conforms(TestEnormousDescriptor, value);
   }
 

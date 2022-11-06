@@ -258,7 +258,7 @@ export declare class FieldMask extends Message<FieldMask> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldMask;
 
-  static conforms(value: any): value is FieldMask;
+  static conforms(value: unknown): value is FieldMask;
 
   static equals(a: FieldMask | PlainMessage<FieldMask> | undefined, b: FieldMask | PlainMessage<FieldMask> | undefined): boolean;
 }

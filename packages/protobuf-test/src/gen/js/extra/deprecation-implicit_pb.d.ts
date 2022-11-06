@@ -36,7 +36,7 @@ export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDepre
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ImplicitlyDeprecatedMessage;
 
-  static conforms(value: any): value is ImplicitlyDeprecatedMessage;
+  static conforms(value: unknown): value is ImplicitlyDeprecatedMessage;
 
   static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean;
 }

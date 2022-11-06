@@ -135,7 +135,7 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
     return new ScalarValuesMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ScalarValuesMessage {
+  static conforms(value: unknown): value is ScalarValuesMessage {
     return proto3.util.conforms(ScalarValuesMessage, value);
   }
 
@@ -260,7 +260,7 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
     return new RepeatedScalarValuesMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RepeatedScalarValuesMessage {
+  static conforms(value: unknown): value is RepeatedScalarValuesMessage {
     return proto3.util.conforms(RepeatedScalarValuesMessage, value);
   }
 

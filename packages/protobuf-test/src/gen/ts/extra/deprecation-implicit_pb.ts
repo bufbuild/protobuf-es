@@ -46,7 +46,7 @@ export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMes
     return new ImplicitlyDeprecatedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImplicitlyDeprecatedMessage {
+  static conforms(value: unknown): value is ImplicitlyDeprecatedMessage {
     return proto3.util.conforms(ImplicitlyDeprecatedMessage, value);
   }
 

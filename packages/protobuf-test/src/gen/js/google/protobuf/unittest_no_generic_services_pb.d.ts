@@ -68,7 +68,7 @@ export declare class TestMessage extends Message<TestMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessage;
 
-  static conforms(value: any): value is TestMessage;
+  static conforms(value: unknown): value is TestMessage;
 
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
 }

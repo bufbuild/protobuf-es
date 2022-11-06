@@ -89,7 +89,7 @@ export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
     return new Proto3PackedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto3PackedMessage {
+  static conforms(value: unknown): value is Proto3PackedMessage {
     return proto3.util.conforms(Proto3PackedMessage, value);
   }
 
@@ -142,7 +142,7 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
     return new Proto3UnpackedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto3UnpackedMessage {
+  static conforms(value: unknown): value is Proto3UnpackedMessage {
     return proto3.util.conforms(Proto3UnpackedMessage, value);
   }
 
@@ -195,7 +195,7 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
     return new Proto3UnlabelledMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto3UnlabelledMessage {
+  static conforms(value: unknown): value is Proto3UnlabelledMessage {
     return proto3.util.conforms(Proto3UnlabelledMessage, value);
   }
 
@@ -254,7 +254,7 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
     return new Proto3OptionalMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto3OptionalMessage {
+  static conforms(value: unknown): value is Proto3OptionalMessage {
     return proto3.util.conforms(Proto3OptionalMessage, value);
   }
 

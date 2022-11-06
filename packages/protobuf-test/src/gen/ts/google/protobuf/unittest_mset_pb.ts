@@ -75,7 +75,7 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
     return new TestMessageSetContainer().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSetContainer {
+  static conforms(value: unknown): value is TestMessageSetContainer {
     return proto2.util.conforms(TestMessageSetContainer, value);
   }
 
@@ -122,7 +122,7 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
     return new NestedTestMessageSetContainer().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedTestMessageSetContainer {
+  static conforms(value: unknown): value is NestedTestMessageSetContainer {
     return proto2.util.conforms(NestedTestMessageSetContainer, value);
   }
 
@@ -175,7 +175,7 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
     return new TestMessageSetExtension1().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSetExtension1 {
+  static conforms(value: unknown): value is TestMessageSetExtension1 {
     return proto2.util.conforms(TestMessageSetExtension1, value);
   }
 
@@ -216,7 +216,7 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
     return new TestMessageSetExtension2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSetExtension2 {
+  static conforms(value: unknown): value is TestMessageSetExtension2 {
     return proto2.util.conforms(TestMessageSetExtension2, value);
   }
 
@@ -263,7 +263,7 @@ export class NestedTestInt extends Message<NestedTestInt> {
     return new NestedTestInt().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedTestInt {
+  static conforms(value: unknown): value is NestedTestInt {
     return proto2.util.conforms(NestedTestInt, value);
   }
 
@@ -304,7 +304,7 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
     return new TestMessageSetExtension3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSetExtension3 {
+  static conforms(value: unknown): value is TestMessageSetExtension3 {
     return proto2.util.conforms(TestMessageSetExtension3, value);
   }
 
@@ -347,7 +347,7 @@ export class RawMessageSet extends Message<RawMessageSet> {
     return new RawMessageSet().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RawMessageSet {
+  static conforms(value: unknown): value is RawMessageSet {
     return proto2.util.conforms(RawMessageSet, value);
   }
 
@@ -394,7 +394,7 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
     return new RawMessageSet_Item().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is RawMessageSet_Item {
+  static conforms(value: unknown): value is RawMessageSet_Item {
     return proto2.util.conforms(RawMessageSet_Item, value);
   }
 

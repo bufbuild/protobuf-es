@@ -58,7 +58,7 @@ export declare class PublicImportMessageLite extends Message<PublicImportMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicImportMessageLite;
 
-  static conforms(value: any): value is PublicImportMessageLite;
+  static conforms(value: unknown): value is PublicImportMessageLite;
 
   static equals(a: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined, b: PublicImportMessageLite | PlainMessage<PublicImportMessageLite> | undefined): boolean;
 }

@@ -69,7 +69,7 @@ export class TestMessageSet extends Message<TestMessageSet> {
     return new TestMessageSet().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSet {
+  static conforms(value: unknown): value is TestMessageSet {
     return proto2.util.conforms(TestMessageSet, value);
   }
 
@@ -110,7 +110,7 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
     return new TestMessageSetWireFormatContainer().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageSetWireFormatContainer {
+  static conforms(value: unknown): value is TestMessageSetWireFormatContainer {
     return proto2.util.conforms(TestMessageSetWireFormatContainer, value);
   }
 

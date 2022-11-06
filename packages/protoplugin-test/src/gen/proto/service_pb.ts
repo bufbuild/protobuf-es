@@ -114,7 +114,7 @@ export class MessageWithOptions extends Message<MessageWithOptions> {
     return new MessageWithOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageWithOptions {
+  static conforms(value: unknown): value is MessageWithOptions {
     return proto3.util.conforms(MessageWithOptions, value);
   }
 
@@ -149,7 +149,7 @@ export class GetRequest extends Message<GetRequest> {
     return new GetRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetRequest {
+  static conforms(value: unknown): value is GetRequest {
     return proto3.util.conforms(GetRequest, value);
   }
 
@@ -184,7 +184,7 @@ export class GetResponse extends Message<GetResponse> {
     return new GetResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GetResponse {
+  static conforms(value: unknown): value is GetResponse {
     return proto3.util.conforms(GetResponse, value);
   }
 

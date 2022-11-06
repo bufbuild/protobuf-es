@@ -1038,7 +1038,7 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
     return new TestAllTypesProto3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto3 {
+  static conforms(value: unknown): value is TestAllTypesProto3 {
     return proto3.util.conforms(TestAllTypesProto3, value);
   }
 
@@ -1163,7 +1163,7 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
     return new TestAllTypesProto3_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto3_NestedMessage {
+  static conforms(value: unknown): value is TestAllTypesProto3_NestedMessage {
     return proto3.util.conforms(TestAllTypesProto3_NestedMessage, value);
   }
 
@@ -1204,7 +1204,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForeignMessage {
+  static conforms(value: unknown): value is ForeignMessage {
     return proto3.util.conforms(ForeignMessage, value);
   }
 
@@ -1239,7 +1239,7 @@ export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
     return new NullHypothesisProto3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NullHypothesisProto3 {
+  static conforms(value: unknown): value is NullHypothesisProto3 {
     return proto3.util.conforms(NullHypothesisProto3, value);
   }
 
@@ -1274,7 +1274,7 @@ export class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
     return new EnumOnlyProto3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumOnlyProto3 {
+  static conforms(value: unknown): value is EnumOnlyProto3 {
     return proto3.util.conforms(EnumOnlyProto3, value);
   }
 

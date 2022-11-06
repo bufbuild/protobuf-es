@@ -83,7 +83,7 @@ export class Proto2PackedMessage extends Message<Proto2PackedMessage> {
     return new Proto2PackedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2PackedMessage {
+  static conforms(value: unknown): value is Proto2PackedMessage {
     return proto2.util.conforms(Proto2PackedMessage, value);
   }
 
@@ -136,7 +136,7 @@ export class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
     return new Proto2UnpackedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2UnpackedMessage {
+  static conforms(value: unknown): value is Proto2UnpackedMessage {
     return proto2.util.conforms(Proto2UnpackedMessage, value);
   }
 
@@ -189,7 +189,7 @@ export class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPac
     return new Proto2UnspecifiedPackedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2UnspecifiedPackedMessage {
+  static conforms(value: unknown): value is Proto2UnspecifiedPackedMessage {
     return proto2.util.conforms(Proto2UnspecifiedPackedMessage, value);
   }
 
@@ -248,7 +248,7 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
     return new Proto2OptionalMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2OptionalMessage {
+  static conforms(value: unknown): value is Proto2OptionalMessage {
     return proto2.util.conforms(Proto2OptionalMessage, value);
   }
 
@@ -307,7 +307,7 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
     return new Proto2RequiredMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2RequiredMessage {
+  static conforms(value: unknown): value is Proto2RequiredMessage {
     return proto2.util.conforms(Proto2RequiredMessage, value);
   }
 
@@ -366,7 +366,7 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
     return new Proto2RequiredDefaultsMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2RequiredDefaultsMessage {
+  static conforms(value: unknown): value is Proto2RequiredDefaultsMessage {
     return proto2.util.conforms(Proto2RequiredDefaultsMessage, value);
   }
 
@@ -449,7 +449,7 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
     return new Proto2DefaultsMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2DefaultsMessage {
+  static conforms(value: unknown): value is Proto2DefaultsMessage {
     return proto2.util.conforms(Proto2DefaultsMessage, value);
   }
 
@@ -490,7 +490,7 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
     return new Proto2ChildMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Proto2ChildMessage {
+  static conforms(value: unknown): value is Proto2ChildMessage {
     return proto2.util.conforms(Proto2ChildMessage, value);
   }
 

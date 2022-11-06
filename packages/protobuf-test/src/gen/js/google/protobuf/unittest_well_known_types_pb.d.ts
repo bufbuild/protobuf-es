@@ -123,7 +123,7 @@ export declare class TestWellKnownTypes extends Message<TestWellKnownTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestWellKnownTypes;
 
-  static conforms(value: any): value is TestWellKnownTypes;
+  static conforms(value: unknown): value is TestWellKnownTypes;
 
   static equals(a: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined, b: TestWellKnownTypes | PlainMessage<TestWellKnownTypes> | undefined): boolean;
 }
@@ -238,7 +238,7 @@ export declare class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTyp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedWellKnownTypes;
 
-  static conforms(value: any): value is RepeatedWellKnownTypes;
+  static conforms(value: unknown): value is RepeatedWellKnownTypes;
 
   static equals(a: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined, b: RepeatedWellKnownTypes | PlainMessage<RepeatedWellKnownTypes> | undefined): boolean;
 }
@@ -372,7 +372,7 @@ export declare class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneofWellKnownTypes;
 
-  static conforms(value: any): value is OneofWellKnownTypes;
+  static conforms(value: unknown): value is OneofWellKnownTypes;
 
   static equals(a: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined, b: OneofWellKnownTypes | PlainMessage<OneofWellKnownTypes> | undefined): boolean;
 }
@@ -487,7 +487,7 @@ export declare class MapWellKnownTypes extends Message<MapWellKnownTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapWellKnownTypes;
 
-  static conforms(value: any): value is MapWellKnownTypes;
+  static conforms(value: unknown): value is MapWellKnownTypes;
 
   static equals(a: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined, b: MapWellKnownTypes | PlainMessage<MapWellKnownTypes> | undefined): boolean;
 }

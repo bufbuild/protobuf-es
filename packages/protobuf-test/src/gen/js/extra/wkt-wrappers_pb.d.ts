@@ -184,7 +184,7 @@ export declare class WrappersMessage extends Message<WrappersMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WrappersMessage;
 
-  static conforms(value: any): value is WrappersMessage;
+  static conforms(value: unknown): value is WrappersMessage;
 
   static equals(a: WrappersMessage | PlainMessage<WrappersMessage> | undefined, b: WrappersMessage | PlainMessage<WrappersMessage> | undefined): boolean;
 }

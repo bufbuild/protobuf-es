@@ -83,7 +83,7 @@ export class TestMessage extends Message<TestMessage> {
     return new TestMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessage {
+  static conforms(value: unknown): value is TestMessage {
     return proto2.util.conforms(TestMessage, value);
   }
 

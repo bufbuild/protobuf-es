@@ -63,7 +63,7 @@ export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
     return new SelfReferencingMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SelfReferencingMessage {
+  static conforms(value: unknown): value is SelfReferencingMessage {
     return proto3.util.conforms(SelfReferencingMessage, value);
   }
 

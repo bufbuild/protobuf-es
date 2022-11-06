@@ -110,7 +110,7 @@ export declare class ScalarValuesMessage extends Message<ScalarValuesMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ScalarValuesMessage;
 
-  static conforms(value: any): value is ScalarValuesMessage;
+  static conforms(value: unknown): value is ScalarValuesMessage;
 
   static equals(a: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined, b: ScalarValuesMessage | PlainMessage<ScalarValuesMessage> | undefined): boolean;
 }
@@ -206,7 +206,7 @@ export declare class RepeatedScalarValuesMessage extends Message<RepeatedScalarV
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedScalarValuesMessage;
 
-  static conforms(value: any): value is RepeatedScalarValuesMessage;
+  static conforms(value: unknown): value is RepeatedScalarValuesMessage;
 
   static equals(a: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined, b: RepeatedScalarValuesMessage | PlainMessage<RepeatedScalarValuesMessage> | undefined): boolean;
 }

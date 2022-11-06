@@ -97,7 +97,7 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
     return new ImportMessageLite().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImportMessageLite {
+  static conforms(value: unknown): value is ImportMessageLite {
     return proto2.util.conforms(ImportMessageLite, value);
   }
 

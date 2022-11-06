@@ -186,7 +186,7 @@ export class Duration extends Message<Duration> {
     return new Duration().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Duration {
+  static conforms(value: unknown): value is Duration {
     return proto3.util.conforms(Duration, value);
   }
 

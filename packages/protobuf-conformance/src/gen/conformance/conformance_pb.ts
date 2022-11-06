@@ -170,7 +170,7 @@ export class FailureSet extends Message<FailureSet> {
     return new FailureSet().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FailureSet {
+  static conforms(value: unknown): value is FailureSet {
     return proto3.util.conforms(FailureSet, value);
   }
 
@@ -299,7 +299,7 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
     return new ConformanceRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ConformanceRequest {
+  static conforms(value: unknown): value is ConformanceRequest {
     return proto3.util.conforms(ConformanceRequest, value);
   }
 
@@ -427,7 +427,7 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
     return new ConformanceResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ConformanceResponse {
+  static conforms(value: unknown): value is ConformanceResponse {
     return proto3.util.conforms(ConformanceResponse, value);
   }
 
@@ -472,7 +472,7 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
     return new JspbEncodingConfig().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is JspbEncodingConfig {
+  static conforms(value: unknown): value is JspbEncodingConfig {
     return proto3.util.conforms(JspbEncodingConfig, value);
   }
 

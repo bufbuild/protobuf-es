@@ -104,7 +104,7 @@ export declare class EnumMessage extends Message<EnumMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumMessage;
 
-  static conforms(value: any): value is EnumMessage;
+  static conforms(value: unknown): value is EnumMessage;
 
   static equals(a: EnumMessage | PlainMessage<EnumMessage> | undefined, b: EnumMessage | PlainMessage<EnumMessage> | undefined): boolean;
 }

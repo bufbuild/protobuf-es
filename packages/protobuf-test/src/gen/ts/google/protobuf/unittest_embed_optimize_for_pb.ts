@@ -83,7 +83,7 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
     return new TestEmbedOptimizedForSize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEmbedOptimizedForSize {
+  static conforms(value: unknown): value is TestEmbedOptimizedForSize {
     return proto2.util.conforms(TestEmbedOptimizedForSize, value);
   }
 

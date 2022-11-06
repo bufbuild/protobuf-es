@@ -66,7 +66,7 @@ export declare class LazyMessage extends Message<LazyMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LazyMessage;
 
-  static conforms(value: any): value is LazyMessage;
+  static conforms(value: unknown): value is LazyMessage;
 
   static equals(a: LazyMessage | PlainMessage<LazyMessage> | undefined, b: LazyMessage | PlainMessage<LazyMessage> | undefined): boolean;
 }

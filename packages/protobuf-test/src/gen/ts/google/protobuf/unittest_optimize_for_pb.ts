@@ -99,7 +99,7 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
     return new TestOptimizedForSize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOptimizedForSize {
+  static conforms(value: unknown): value is TestOptimizedForSize {
     return proto2.util.conforms(TestOptimizedForSize, value);
   }
 
@@ -140,7 +140,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
     return new TestRequiredOptimizedForSize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestRequiredOptimizedForSize {
+  static conforms(value: unknown): value is TestRequiredOptimizedForSize {
     return proto2.util.conforms(TestRequiredOptimizedForSize, value);
   }
 
@@ -181,7 +181,7 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
     return new TestOptionalOptimizedForSize().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestOptionalOptimizedForSize {
+  static conforms(value: unknown): value is TestOptionalOptimizedForSize {
     return proto2.util.conforms(TestOptionalOptimizedForSize, value);
   }
 

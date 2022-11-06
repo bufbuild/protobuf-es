@@ -78,7 +78,7 @@ export class Person extends Message<Person> {
     return new Person().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Person {
+  static conforms(value: unknown): value is Person {
     return proto3.util.conforms(Person, value);
   }
 
@@ -151,7 +151,7 @@ export class Person_PhoneNumber extends Message<Person_PhoneNumber> {
     return new Person_PhoneNumber().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Person_PhoneNumber {
+  static conforms(value: unknown): value is Person_PhoneNumber {
     return proto3.util.conforms(Person_PhoneNumber, value);
   }
 

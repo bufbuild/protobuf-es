@@ -1071,7 +1071,7 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes;
 
-  static conforms(value: any): value is TestAllTypes;
+  static conforms(value: unknown): value is TestAllTypes;
 
   static equals(a: TestAllTypes | PlainMessage<TestAllTypes> | undefined, b: TestAllTypes | PlainMessage<TestAllTypes> | undefined): boolean;
 }
@@ -1128,7 +1128,7 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_NestedMessage;
 
-  static conforms(value: any): value is TestAllTypes_NestedMessage;
+  static conforms(value: unknown): value is TestAllTypes_NestedMessage;
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean;
 }
@@ -1154,7 +1154,7 @@ export declare class TestAllTypes_OptionalGroup extends Message<TestAllTypes_Opt
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_OptionalGroup;
 
-  static conforms(value: any): value is TestAllTypes_OptionalGroup;
+  static conforms(value: unknown): value is TestAllTypes_OptionalGroup;
 
   static equals(a: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined, b: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined): boolean;
 }
@@ -1180,7 +1180,7 @@ export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_Rep
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_RepeatedGroup;
 
-  static conforms(value: any): value is TestAllTypes_RepeatedGroup;
+  static conforms(value: unknown): value is TestAllTypes_RepeatedGroup;
 
   static equals(a: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined, b: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined): boolean;
 }
@@ -1228,7 +1228,7 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestAllTypes;
 
-  static conforms(value: any): value is NestedTestAllTypes;
+  static conforms(value: unknown): value is NestedTestAllTypes;
 
   static equals(a: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined, b: NestedTestAllTypes | PlainMessage<NestedTestAllTypes> | undefined): boolean;
 }
@@ -1267,7 +1267,7 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDeprecatedFields;
 
-  static conforms(value: any): value is TestDeprecatedFields;
+  static conforms(value: unknown): value is TestDeprecatedFields;
 
   static equals(a: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined, b: TestDeprecatedFields | PlainMessage<TestDeprecatedFields> | undefined): boolean;
 }
@@ -1289,7 +1289,7 @@ export declare class TestDeprecatedMessage extends Message<TestDeprecatedMessage
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDeprecatedMessage;
 
-  static conforms(value: any): value is TestDeprecatedMessage;
+  static conforms(value: unknown): value is TestDeprecatedMessage;
 
   static equals(a: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined, b: TestDeprecatedMessage | PlainMessage<TestDeprecatedMessage> | undefined): boolean;
 }
@@ -1323,7 +1323,7 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessage;
 
-  static conforms(value: any): value is ForeignMessage;
+  static conforms(value: unknown): value is ForeignMessage;
 
   static equals(a: ForeignMessage | PlainMessage<ForeignMessage> | undefined, b: ForeignMessage | PlainMessage<ForeignMessage> | undefined): boolean;
 }
@@ -1344,7 +1344,7 @@ export declare class TestReservedFields extends Message<TestReservedFields> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestReservedFields;
 
-  static conforms(value: any): value is TestReservedFields;
+  static conforms(value: unknown): value is TestReservedFields;
 
   static equals(a: TestReservedFields | PlainMessage<TestReservedFields> | undefined, b: TestReservedFields | PlainMessage<TestReservedFields> | undefined): boolean;
 }
@@ -1365,7 +1365,7 @@ export declare class TestAllExtensions extends Message<TestAllExtensions> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllExtensions;
 
-  static conforms(value: any): value is TestAllExtensions;
+  static conforms(value: unknown): value is TestAllExtensions;
 
   static equals(a: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined, b: TestAllExtensions | PlainMessage<TestAllExtensions> | undefined): boolean;
 }
@@ -1391,7 +1391,7 @@ export declare class OptionalGroup_extension extends Message<OptionalGroup_exten
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OptionalGroup_extension;
 
-  static conforms(value: any): value is OptionalGroup_extension;
+  static conforms(value: unknown): value is OptionalGroup_extension;
 
   static equals(a: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined, b: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined): boolean;
 }
@@ -1417,7 +1417,7 @@ export declare class RepeatedGroup_extension extends Message<RepeatedGroup_exten
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroup_extension;
 
-  static conforms(value: any): value is RepeatedGroup_extension;
+  static conforms(value: unknown): value is RepeatedGroup_extension;
 
   static equals(a: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined, b: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined): boolean;
 }
@@ -1448,7 +1448,7 @@ export declare class TestGroup extends Message<TestGroup> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroup;
 
-  static conforms(value: any): value is TestGroup;
+  static conforms(value: unknown): value is TestGroup;
 
   static equals(a: TestGroup | PlainMessage<TestGroup> | undefined, b: TestGroup | PlainMessage<TestGroup> | undefined): boolean;
 }
@@ -1474,7 +1474,7 @@ export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalG
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroup_OptionalGroup;
 
-  static conforms(value: any): value is TestGroup_OptionalGroup;
+  static conforms(value: unknown): value is TestGroup_OptionalGroup;
 
   static equals(a: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined, b: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined): boolean;
 }
@@ -1495,7 +1495,7 @@ export declare class TestGroupExtension extends Message<TestGroupExtension> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroupExtension;
 
-  static conforms(value: any): value is TestGroupExtension;
+  static conforms(value: unknown): value is TestGroupExtension;
 
   static equals(a: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined, b: TestGroupExtension | PlainMessage<TestGroupExtension> | undefined): boolean;
 }
@@ -1516,7 +1516,7 @@ export declare class TestNestedExtension extends Message<TestNestedExtension> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtension;
 
-  static conforms(value: any): value is TestNestedExtension;
+  static conforms(value: unknown): value is TestNestedExtension;
 
   static equals(a: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined, b: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined): boolean;
 }
@@ -1542,7 +1542,7 @@ export declare class TestNestedExtension_OptionalGroup_extension extends Message
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtension_OptionalGroup_extension;
 
-  static conforms(value: any): value is TestNestedExtension_OptionalGroup_extension;
+  static conforms(value: unknown): value is TestNestedExtension_OptionalGroup_extension;
 
   static equals(a: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined, b: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined): boolean;
 }
@@ -1578,7 +1578,7 @@ export declare class TestChildExtension extends Message<TestChildExtension> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtension;
 
-  static conforms(value: any): value is TestChildExtension;
+  static conforms(value: unknown): value is TestChildExtension;
 
   static equals(a: TestChildExtension | PlainMessage<TestChildExtension> | undefined, b: TestChildExtension | PlainMessage<TestChildExtension> | undefined): boolean;
 }
@@ -1617,7 +1617,7 @@ export declare class TestChildExtensionData extends Message<TestChildExtensionDa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData;
 
-  static conforms(value: any): value is TestChildExtensionData;
+  static conforms(value: unknown): value is TestChildExtensionData;
 
   static equals(a: TestChildExtensionData | PlainMessage<TestChildExtensionData> | undefined, b: TestChildExtensionData | PlainMessage<TestChildExtensionData> | undefined): boolean;
 }
@@ -1643,7 +1643,7 @@ export declare class TestChildExtensionData_NestedTestAllExtensionsData extends 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData;
 
-  static conforms(value: any): value is TestChildExtensionData_NestedTestAllExtensionsData;
+  static conforms(value: unknown): value is TestChildExtensionData_NestedTestAllExtensionsData;
 
   static equals(a: TestChildExtensionData_NestedTestAllExtensionsData | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData> | undefined, b: TestChildExtensionData_NestedTestAllExtensionsData | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData> | undefined): boolean;
 }
@@ -1674,7 +1674,7 @@ export declare class TestChildExtensionData_NestedTestAllExtensionsData_NestedDy
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
 
-  static conforms(value: any): value is TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
+  static conforms(value: unknown): value is TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
 
   static equals(a: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> | undefined, b: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions | PlainMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> | undefined): boolean;
 }
@@ -1705,7 +1705,7 @@ export declare class TestNestedChildExtension extends Message<TestNestedChildExt
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedChildExtension;
 
-  static conforms(value: any): value is TestNestedChildExtension;
+  static conforms(value: unknown): value is TestNestedChildExtension;
 
   static equals(a: TestNestedChildExtension | PlainMessage<TestNestedChildExtension> | undefined, b: TestNestedChildExtension | PlainMessage<TestNestedChildExtension> | undefined): boolean;
 }
@@ -1739,7 +1739,7 @@ export declare class TestNestedChildExtensionData extends Message<TestNestedChil
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedChildExtensionData;
 
-  static conforms(value: any): value is TestNestedChildExtensionData;
+  static conforms(value: unknown): value is TestNestedChildExtensionData;
 
   static equals(a: TestNestedChildExtensionData | PlainMessage<TestNestedChildExtensionData> | undefined, b: TestNestedChildExtensionData | PlainMessage<TestNestedChildExtensionData> | undefined): boolean;
 }
@@ -1941,7 +1941,7 @@ export declare class TestRequired extends Message<TestRequired> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequired;
 
-  static conforms(value: any): value is TestRequired;
+  static conforms(value: unknown): value is TestRequired;
 
   static equals(a: TestRequired | PlainMessage<TestRequired> | undefined, b: TestRequired | PlainMessage<TestRequired> | undefined): boolean;
 }
@@ -1977,7 +1977,7 @@ export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredForeign;
 
-  static conforms(value: any): value is TestRequiredForeign;
+  static conforms(value: unknown): value is TestRequiredForeign;
 
   static equals(a: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined, b: TestRequiredForeign | PlainMessage<TestRequiredForeign> | undefined): boolean;
 }
@@ -2013,7 +2013,7 @@ export declare class TestRequiredMessage extends Message<TestRequiredMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredMessage;
 
-  static conforms(value: any): value is TestRequiredMessage;
+  static conforms(value: unknown): value is TestRequiredMessage;
 
   static equals(a: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined, b: TestRequiredMessage | PlainMessage<TestRequiredMessage> | undefined): boolean;
 }
@@ -2049,7 +2049,7 @@ export declare class TestNestedRequiredForeign extends Message<TestNestedRequire
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedRequiredForeign;
 
-  static conforms(value: any): value is TestNestedRequiredForeign;
+  static conforms(value: unknown): value is TestNestedRequiredForeign;
 
   static equals(a: TestNestedRequiredForeign | PlainMessage<TestNestedRequiredForeign> | undefined, b: TestNestedRequiredForeign | PlainMessage<TestNestedRequiredForeign> | undefined): boolean;
 }
@@ -2077,7 +2077,7 @@ export declare class TestForeignNested extends Message<TestForeignNested> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestForeignNested;
 
-  static conforms(value: any): value is TestForeignNested;
+  static conforms(value: unknown): value is TestForeignNested;
 
   static equals(a: TestForeignNested | PlainMessage<TestForeignNested> | undefined, b: TestForeignNested | PlainMessage<TestForeignNested> | undefined): boolean;
 }
@@ -2100,7 +2100,7 @@ export declare class TestEmptyMessage extends Message<TestEmptyMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessage;
 
-  static conforms(value: any): value is TestEmptyMessage;
+  static conforms(value: unknown): value is TestEmptyMessage;
 
   static equals(a: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined, b: TestEmptyMessage | PlainMessage<TestEmptyMessage> | undefined): boolean;
 }
@@ -2124,7 +2124,7 @@ export declare class TestEmptyMessageWithExtensions extends Message<TestEmptyMes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmptyMessageWithExtensions;
 
-  static conforms(value: any): value is TestEmptyMessageWithExtensions;
+  static conforms(value: unknown): value is TestEmptyMessageWithExtensions;
 
   static equals(a: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined, b: TestEmptyMessageWithExtensions | PlainMessage<TestEmptyMessageWithExtensions> | undefined): boolean;
 }
@@ -2147,7 +2147,7 @@ export declare class TestPickleNestedMessage extends Message<TestPickleNestedMes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage;
 
-  static conforms(value: any): value is TestPickleNestedMessage;
+  static conforms(value: unknown): value is TestPickleNestedMessage;
 
   static equals(a: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined, b: TestPickleNestedMessage | PlainMessage<TestPickleNestedMessage> | undefined): boolean;
 }
@@ -2173,7 +2173,7 @@ export declare class TestPickleNestedMessage_NestedMessage extends Message<TestP
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage_NestedMessage;
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage;
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage;
 
   static equals(a: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage> | undefined): boolean;
 }
@@ -2199,7 +2199,7 @@ export declare class TestPickleNestedMessage_NestedMessage_NestedNestedMessage e
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPickleNestedMessage_NestedMessage_NestedNestedMessage;
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage;
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage;
 
   static equals(a: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined, b: TestPickleNestedMessage_NestedMessage_NestedNestedMessage | PlainMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> | undefined): boolean;
 }
@@ -2220,7 +2220,7 @@ export declare class TestMultipleExtensionRanges extends Message<TestMultipleExt
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMultipleExtensionRanges;
 
-  static conforms(value: any): value is TestMultipleExtensionRanges;
+  static conforms(value: unknown): value is TestMultipleExtensionRanges;
 
   static equals(a: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined, b: TestMultipleExtensionRanges | PlainMessage<TestMultipleExtensionRanges> | undefined): boolean;
 }
@@ -2256,7 +2256,7 @@ export declare class TestReallyLargeTagNumber extends Message<TestReallyLargeTag
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestReallyLargeTagNumber;
 
-  static conforms(value: any): value is TestReallyLargeTagNumber;
+  static conforms(value: unknown): value is TestReallyLargeTagNumber;
 
   static equals(a: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined, b: TestReallyLargeTagNumber | PlainMessage<TestReallyLargeTagNumber> | undefined): boolean;
 }
@@ -2287,7 +2287,7 @@ export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRecursiveMessage;
 
-  static conforms(value: any): value is TestRecursiveMessage;
+  static conforms(value: unknown): value is TestRecursiveMessage;
 
   static equals(a: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined, b: TestRecursiveMessage | PlainMessage<TestRecursiveMessage> | undefined): boolean;
 }
@@ -2320,7 +2320,7 @@ export declare class TestMutualRecursionA extends Message<TestMutualRecursionA> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA;
 
-  static conforms(value: any): value is TestMutualRecursionA;
+  static conforms(value: unknown): value is TestMutualRecursionA;
 
   static equals(a: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined, b: TestMutualRecursionA | PlainMessage<TestMutualRecursionA> | undefined): boolean;
 }
@@ -2346,7 +2346,7 @@ export declare class TestMutualRecursionA_SubMessage extends Message<TestMutualR
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubMessage;
 
-  static conforms(value: any): value is TestMutualRecursionA_SubMessage;
+  static conforms(value: unknown): value is TestMutualRecursionA_SubMessage;
 
   static equals(a: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined, b: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined): boolean;
 }
@@ -2379,7 +2379,7 @@ export declare class TestMutualRecursionA_SubGroup extends Message<TestMutualRec
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroup;
 
-  static conforms(value: any): value is TestMutualRecursionA_SubGroup;
+  static conforms(value: unknown): value is TestMutualRecursionA_SubGroup;
 
   static equals(a: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined, b: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined): boolean;
 }
@@ -2410,7 +2410,7 @@ export declare class TestMutualRecursionB extends Message<TestMutualRecursionB> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionB;
 
-  static conforms(value: any): value is TestMutualRecursionB;
+  static conforms(value: unknown): value is TestMutualRecursionB;
 
   static equals(a: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined, b: TestMutualRecursionB | PlainMessage<TestMutualRecursionB> | undefined): boolean;
 }
@@ -2436,7 +2436,7 @@ export declare class TestIsInitialized extends Message<TestIsInitialized> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized;
 
-  static conforms(value: any): value is TestIsInitialized;
+  static conforms(value: unknown): value is TestIsInitialized;
 
   static equals(a: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined, b: TestIsInitialized | PlainMessage<TestIsInitialized> | undefined): boolean;
 }
@@ -2462,7 +2462,7 @@ export declare class TestIsInitialized_SubMessage extends Message<TestIsInitiali
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage;
 
-  static conforms(value: any): value is TestIsInitialized_SubMessage;
+  static conforms(value: unknown): value is TestIsInitialized_SubMessage;
 
   static equals(a: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined, b: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined): boolean;
 }
@@ -2488,7 +2488,7 @@ export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestI
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage_SubGroup;
 
-  static conforms(value: any): value is TestIsInitialized_SubMessage_SubGroup;
+  static conforms(value: unknown): value is TestIsInitialized_SubMessage_SubGroup;
 
   static equals(a: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined, b: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined): boolean;
 }
@@ -2533,7 +2533,7 @@ export declare class TestDupFieldNumber extends Message<TestDupFieldNumber> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber;
 
-  static conforms(value: any): value is TestDupFieldNumber;
+  static conforms(value: unknown): value is TestDupFieldNumber;
 
   static equals(a: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined, b: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined): boolean;
 }
@@ -2559,7 +2559,7 @@ export declare class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_F
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Foo;
 
-  static conforms(value: any): value is TestDupFieldNumber_Foo;
+  static conforms(value: unknown): value is TestDupFieldNumber_Foo;
 
   static equals(a: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined, b: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined): boolean;
 }
@@ -2585,7 +2585,7 @@ export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_B
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Bar;
 
-  static conforms(value: any): value is TestDupFieldNumber_Bar;
+  static conforms(value: unknown): value is TestDupFieldNumber_Bar;
 
   static equals(a: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined, b: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined): boolean;
 }
@@ -2613,7 +2613,7 @@ export declare class TestEagerMessage extends Message<TestEagerMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMessage;
 
-  static conforms(value: any): value is TestEagerMessage;
+  static conforms(value: unknown): value is TestEagerMessage;
 
   static equals(a: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined, b: TestEagerMessage | PlainMessage<TestEagerMessage> | undefined): boolean;
 }
@@ -2639,7 +2639,7 @@ export declare class TestLazyMessage extends Message<TestLazyMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLazyMessage;
 
-  static conforms(value: any): value is TestLazyMessage;
+  static conforms(value: unknown): value is TestLazyMessage;
 
   static equals(a: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined, b: TestLazyMessage | PlainMessage<TestLazyMessage> | undefined): boolean;
 }
@@ -2675,7 +2675,7 @@ export declare class TestEagerMaybeLazy extends Message<TestEagerMaybeLazy> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy;
 
-  static conforms(value: any): value is TestEagerMaybeLazy;
+  static conforms(value: unknown): value is TestEagerMaybeLazy;
 
   static equals(a: TestEagerMaybeLazy | PlainMessage<TestEagerMaybeLazy> | undefined, b: TestEagerMaybeLazy | PlainMessage<TestEagerMaybeLazy> | undefined): boolean;
 }
@@ -2701,7 +2701,7 @@ export declare class TestEagerMaybeLazy_NestedMessage extends Message<TestEagerM
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEagerMaybeLazy_NestedMessage;
 
-  static conforms(value: any): value is TestEagerMaybeLazy_NestedMessage;
+  static conforms(value: unknown): value is TestEagerMaybeLazy_NestedMessage;
 
   static equals(a: TestEagerMaybeLazy_NestedMessage | PlainMessage<TestEagerMaybeLazy_NestedMessage> | undefined, b: TestEagerMaybeLazy_NestedMessage | PlainMessage<TestEagerMaybeLazy_NestedMessage> | undefined): boolean;
 }
@@ -2729,7 +2729,7 @@ export declare class TestNestedMessageHasBits extends Message<TestNestedMessageH
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageHasBits;
 
-  static conforms(value: any): value is TestNestedMessageHasBits;
+  static conforms(value: unknown): value is TestNestedMessageHasBits;
 
   static equals(a: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined, b: TestNestedMessageHasBits | PlainMessage<TestNestedMessageHasBits> | undefined): boolean;
 }
@@ -2760,7 +2760,7 @@ export declare class TestNestedMessageHasBits_NestedMessage extends Message<Test
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageHasBits_NestedMessage;
 
-  static conforms(value: any): value is TestNestedMessageHasBits_NestedMessage;
+  static conforms(value: unknown): value is TestNestedMessageHasBits_NestedMessage;
 
   static equals(a: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined, b: TestNestedMessageHasBits_NestedMessage | PlainMessage<TestNestedMessageHasBits_NestedMessage> | undefined): boolean;
 }
@@ -2844,7 +2844,7 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCamelCaseFieldNames;
 
-  static conforms(value: any): value is TestCamelCaseFieldNames;
+  static conforms(value: unknown): value is TestCamelCaseFieldNames;
 
   static equals(a: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined, b: TestCamelCaseFieldNames | PlainMessage<TestCamelCaseFieldNames> | undefined): boolean;
 }
@@ -2888,7 +2888,7 @@ export declare class TestFieldOrderings extends Message<TestFieldOrderings> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestFieldOrderings;
 
-  static conforms(value: any): value is TestFieldOrderings;
+  static conforms(value: unknown): value is TestFieldOrderings;
 
   static equals(a: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined, b: TestFieldOrderings | PlainMessage<TestFieldOrderings> | undefined): boolean;
 }
@@ -2923,7 +2923,7 @@ export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldO
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestFieldOrderings_NestedMessage;
 
-  static conforms(value: any): value is TestFieldOrderings_NestedMessage;
+  static conforms(value: unknown): value is TestFieldOrderings_NestedMessage;
 
   static equals(a: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined, b: TestFieldOrderings_NestedMessage | PlainMessage<TestFieldOrderings_NestedMessage> | undefined): boolean;
 }
@@ -2949,7 +2949,7 @@ export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings1;
 
-  static conforms(value: any): value is TestExtensionOrderings1;
+  static conforms(value: unknown): value is TestExtensionOrderings1;
 
   static equals(a: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined, b: TestExtensionOrderings1 | PlainMessage<TestExtensionOrderings1> | undefined): boolean;
 }
@@ -2975,7 +2975,7 @@ export declare class TestExtensionOrderings2 extends Message<TestExtensionOrderi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings2;
 
-  static conforms(value: any): value is TestExtensionOrderings2;
+  static conforms(value: unknown): value is TestExtensionOrderings2;
 
   static equals(a: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined, b: TestExtensionOrderings2 | PlainMessage<TestExtensionOrderings2> | undefined): boolean;
 }
@@ -3001,7 +3001,7 @@ export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Mes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionOrderings2_TestExtensionOrderings3;
 
-  static conforms(value: any): value is TestExtensionOrderings2_TestExtensionOrderings3;
+  static conforms(value: unknown): value is TestExtensionOrderings2_TestExtensionOrderings3;
 
   static equals(a: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined, b: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined): boolean;
 }
@@ -3175,7 +3175,7 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtremeDefaultValues;
 
-  static conforms(value: any): value is TestExtremeDefaultValues;
+  static conforms(value: unknown): value is TestExtremeDefaultValues;
 
   static equals(a: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined, b: TestExtremeDefaultValues | PlainMessage<TestExtremeDefaultValues> | undefined): boolean;
 }
@@ -3201,7 +3201,7 @@ export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SparseEnumMessage;
 
-  static conforms(value: any): value is SparseEnumMessage;
+  static conforms(value: unknown): value is SparseEnumMessage;
 
   static equals(a: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined, b: SparseEnumMessage | PlainMessage<SparseEnumMessage> | undefined): boolean;
 }
@@ -3229,7 +3229,7 @@ export declare class OneString extends Message<OneString> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneString;
 
-  static conforms(value: any): value is OneString;
+  static conforms(value: unknown): value is OneString;
 
   static equals(a: OneString | PlainMessage<OneString> | undefined, b: OneString | PlainMessage<OneString> | undefined): boolean;
 }
@@ -3255,7 +3255,7 @@ export declare class MoreString extends Message<MoreString> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MoreString;
 
-  static conforms(value: any): value is MoreString;
+  static conforms(value: unknown): value is MoreString;
 
   static equals(a: MoreString | PlainMessage<MoreString> | undefined, b: MoreString | PlainMessage<MoreString> | undefined): boolean;
 }
@@ -3281,7 +3281,7 @@ export declare class OneBytes extends Message<OneBytes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OneBytes;
 
-  static conforms(value: any): value is OneBytes;
+  static conforms(value: unknown): value is OneBytes;
 
   static equals(a: OneBytes | PlainMessage<OneBytes> | undefined, b: OneBytes | PlainMessage<OneBytes> | undefined): boolean;
 }
@@ -3307,7 +3307,7 @@ export declare class MoreBytes extends Message<MoreBytes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MoreBytes;
 
-  static conforms(value: any): value is MoreBytes;
+  static conforms(value: unknown): value is MoreBytes;
 
   static equals(a: MoreBytes | PlainMessage<MoreBytes> | undefined, b: MoreBytes | PlainMessage<MoreBytes> | undefined): boolean;
 }
@@ -3488,7 +3488,7 @@ export declare class ManyOptionalString extends Message<ManyOptionalString> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ManyOptionalString;
 
-  static conforms(value: any): value is ManyOptionalString;
+  static conforms(value: unknown): value is ManyOptionalString;
 
   static equals(a: ManyOptionalString | PlainMessage<ManyOptionalString> | undefined, b: ManyOptionalString | PlainMessage<ManyOptionalString> | undefined): boolean;
 }
@@ -3516,7 +3516,7 @@ export declare class Int32Message extends Message<Int32Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int32Message;
 
-  static conforms(value: any): value is Int32Message;
+  static conforms(value: unknown): value is Int32Message;
 
   static equals(a: Int32Message | PlainMessage<Int32Message> | undefined, b: Int32Message | PlainMessage<Int32Message> | undefined): boolean;
 }
@@ -3542,7 +3542,7 @@ export declare class Uint32Message extends Message<Uint32Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint32Message;
 
-  static conforms(value: any): value is Uint32Message;
+  static conforms(value: unknown): value is Uint32Message;
 
   static equals(a: Uint32Message | PlainMessage<Uint32Message> | undefined, b: Uint32Message | PlainMessage<Uint32Message> | undefined): boolean;
 }
@@ -3568,7 +3568,7 @@ export declare class Int64Message extends Message<Int64Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int64Message;
 
-  static conforms(value: any): value is Int64Message;
+  static conforms(value: unknown): value is Int64Message;
 
   static equals(a: Int64Message | PlainMessage<Int64Message> | undefined, b: Int64Message | PlainMessage<Int64Message> | undefined): boolean;
 }
@@ -3594,7 +3594,7 @@ export declare class Uint64Message extends Message<Uint64Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint64Message;
 
-  static conforms(value: any): value is Uint64Message;
+  static conforms(value: unknown): value is Uint64Message;
 
   static equals(a: Uint64Message | PlainMessage<Uint64Message> | undefined, b: Uint64Message | PlainMessage<Uint64Message> | undefined): boolean;
 }
@@ -3620,7 +3620,7 @@ export declare class BoolMessage extends Message<BoolMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolMessage;
 
-  static conforms(value: any): value is BoolMessage;
+  static conforms(value: unknown): value is BoolMessage;
 
   static equals(a: BoolMessage | PlainMessage<BoolMessage> | undefined, b: BoolMessage | PlainMessage<BoolMessage> | undefined): boolean;
 }
@@ -3672,7 +3672,7 @@ export declare class TestOneof extends Message<TestOneof> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof;
 
-  static conforms(value: any): value is TestOneof;
+  static conforms(value: unknown): value is TestOneof;
 
   static equals(a: TestOneof | PlainMessage<TestOneof> | undefined, b: TestOneof | PlainMessage<TestOneof> | undefined): boolean;
 }
@@ -3703,7 +3703,7 @@ export declare class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof_FooGroup;
 
-  static conforms(value: any): value is TestOneof_FooGroup;
+  static conforms(value: unknown): value is TestOneof_FooGroup;
 
   static equals(a: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined, b: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined): boolean;
 }
@@ -3744,7 +3744,7 @@ export declare class TestOneofBackwardsCompatible extends Message<TestOneofBackw
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible;
 
-  static conforms(value: any): value is TestOneofBackwardsCompatible;
+  static conforms(value: unknown): value is TestOneofBackwardsCompatible;
 
   static equals(a: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined, b: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined): boolean;
 }
@@ -3775,7 +3775,7 @@ export declare class TestOneofBackwardsCompatible_FooGroup extends Message<TestO
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible_FooGroup;
 
-  static conforms(value: any): value is TestOneofBackwardsCompatible_FooGroup;
+  static conforms(value: unknown): value is TestOneofBackwardsCompatible_FooGroup;
 
   static equals(a: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined, b: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined): boolean;
 }
@@ -3930,7 +3930,7 @@ export declare class TestOneof2 extends Message<TestOneof2> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2;
 
-  static conforms(value: any): value is TestOneof2;
+  static conforms(value: unknown): value is TestOneof2;
 
   static equals(a: TestOneof2 | PlainMessage<TestOneof2> | undefined, b: TestOneof2 | PlainMessage<TestOneof2> | undefined): boolean;
 }
@@ -3981,7 +3981,7 @@ export declare class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2_FooGroup;
 
-  static conforms(value: any): value is TestOneof2_FooGroup;
+  static conforms(value: unknown): value is TestOneof2_FooGroup;
 
   static equals(a: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined, b: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined): boolean;
 }
@@ -4012,7 +4012,7 @@ export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedM
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2_NestedMessage;
 
-  static conforms(value: any): value is TestOneof2_NestedMessage;
+  static conforms(value: unknown): value is TestOneof2_NestedMessage;
 
   static equals(a: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined, b: TestOneof2_NestedMessage | PlainMessage<TestOneof2_NestedMessage> | undefined): boolean;
 }
@@ -4056,7 +4056,7 @@ export declare class TestRequiredOneof extends Message<TestRequiredOneof> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOneof;
 
-  static conforms(value: any): value is TestRequiredOneof;
+  static conforms(value: unknown): value is TestRequiredOneof;
 
   static equals(a: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined, b: TestRequiredOneof | PlainMessage<TestRequiredOneof> | undefined): boolean;
 }
@@ -4082,7 +4082,7 @@ export declare class TestRequiredOneof_NestedMessage extends Message<TestRequire
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOneof_NestedMessage;
 
-  static conforms(value: any): value is TestRequiredOneof_NestedMessage;
+  static conforms(value: unknown): value is TestRequiredOneof_NestedMessage;
 
   static equals(a: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined, b: TestRequiredOneof_NestedMessage | PlainMessage<TestRequiredOneof_NestedMessage> | undefined): boolean;
 }
@@ -4173,7 +4173,7 @@ export declare class TestPackedTypes extends Message<TestPackedTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedTypes;
 
-  static conforms(value: any): value is TestPackedTypes;
+  static conforms(value: unknown): value is TestPackedTypes;
 
   static equals(a: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined, b: TestPackedTypes | PlainMessage<TestPackedTypes> | undefined): boolean;
 }
@@ -4267,7 +4267,7 @@ export declare class TestUnpackedTypes extends Message<TestUnpackedTypes> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedTypes;
 
-  static conforms(value: any): value is TestUnpackedTypes;
+  static conforms(value: unknown): value is TestUnpackedTypes;
 
   static equals(a: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined, b: TestUnpackedTypes | PlainMessage<TestUnpackedTypes> | undefined): boolean;
 }
@@ -4288,7 +4288,7 @@ export declare class TestPackedExtensions extends Message<TestPackedExtensions> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedExtensions;
 
-  static conforms(value: any): value is TestPackedExtensions;
+  static conforms(value: unknown): value is TestPackedExtensions;
 
   static equals(a: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined, b: TestPackedExtensions | PlainMessage<TestPackedExtensions> | undefined): boolean;
 }
@@ -4309,7 +4309,7 @@ export declare class TestUnpackedExtensions extends Message<TestUnpackedExtensio
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestUnpackedExtensions;
 
-  static conforms(value: any): value is TestUnpackedExtensions;
+  static conforms(value: unknown): value is TestUnpackedExtensions;
 
   static equals(a: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined, b: TestUnpackedExtensions | PlainMessage<TestUnpackedExtensions> | undefined): boolean;
 }
@@ -4369,7 +4369,7 @@ export declare class TestDynamicExtensions extends Message<TestDynamicExtensions
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDynamicExtensions;
 
-  static conforms(value: any): value is TestDynamicExtensions;
+  static conforms(value: unknown): value is TestDynamicExtensions;
 
   static equals(a: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined, b: TestDynamicExtensions | PlainMessage<TestDynamicExtensions> | undefined): boolean;
 }
@@ -4415,7 +4415,7 @@ export declare class TestDynamicExtensions_DynamicMessageType extends Message<Te
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDynamicExtensions_DynamicMessageType;
 
-  static conforms(value: any): value is TestDynamicExtensions_DynamicMessageType;
+  static conforms(value: unknown): value is TestDynamicExtensions_DynamicMessageType;
 
   static equals(a: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined, b: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined): boolean;
 }
@@ -4476,7 +4476,7 @@ export declare class TestRepeatedScalarDifferentTagSizes extends Message<TestRep
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRepeatedScalarDifferentTagSizes;
 
-  static conforms(value: any): value is TestRepeatedScalarDifferentTagSizes;
+  static conforms(value: unknown): value is TestRepeatedScalarDifferentTagSizes;
 
   static equals(a: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined, b: TestRepeatedScalarDifferentTagSizes | PlainMessage<TestRepeatedScalarDifferentTagSizes> | undefined): boolean;
 }
@@ -4525,7 +4525,7 @@ export declare class TestParsingMerge extends Message<TestParsingMerge> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge;
 
-  static conforms(value: any): value is TestParsingMerge;
+  static conforms(value: unknown): value is TestParsingMerge;
 
   static equals(a: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined, b: TestParsingMerge | PlainMessage<TestParsingMerge> | undefined): boolean;
 }
@@ -4587,7 +4587,7 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator extends Message<Te
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator;
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator;
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined): boolean;
 }
@@ -4613,7 +4613,7 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Mes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group1;
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator_Group1;
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator_Group1;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined): boolean;
 }
@@ -4639,7 +4639,7 @@ export declare class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Mes
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group2;
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedFieldsGenerator_Group2;
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedFieldsGenerator_Group2;
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined): boolean;
 }
@@ -4665,7 +4665,7 @@ export declare class TestParsingMerge_OptionalGroup extends Message<TestParsingM
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_OptionalGroup;
 
-  static conforms(value: any): value is TestParsingMerge_OptionalGroup;
+  static conforms(value: unknown): value is TestParsingMerge_OptionalGroup;
 
   static equals(a: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined, b: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined): boolean;
 }
@@ -4691,7 +4691,7 @@ export declare class TestParsingMerge_RepeatedGroup extends Message<TestParsingM
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedGroup;
 
-  static conforms(value: any): value is TestParsingMerge_RepeatedGroup;
+  static conforms(value: unknown): value is TestParsingMerge_RepeatedGroup;
 
   static equals(a: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined, b: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined): boolean;
 }
@@ -4720,7 +4720,7 @@ export declare class TestMergeException extends Message<TestMergeException> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMergeException;
 
-  static conforms(value: any): value is TestMergeException;
+  static conforms(value: unknown): value is TestMergeException;
 
   static equals(a: TestMergeException | PlainMessage<TestMergeException> | undefined, b: TestMergeException | PlainMessage<TestMergeException> | undefined): boolean;
 }
@@ -4748,7 +4748,7 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCommentInjectionMessage;
 
-  static conforms(value: any): value is TestCommentInjectionMessage;
+  static conforms(value: unknown): value is TestCommentInjectionMessage;
 
   static equals(a: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined, b: TestCommentInjectionMessage | PlainMessage<TestCommentInjectionMessage> | undefined): boolean;
 }
@@ -4802,7 +4802,7 @@ export declare class TestMessageSize extends Message<TestMessageSize> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageSize;
 
-  static conforms(value: any): value is TestMessageSize;
+  static conforms(value: unknown): value is TestMessageSize;
 
   static equals(a: TestMessageSize | PlainMessage<TestMessageSize> | undefined, b: TestMessageSize | PlainMessage<TestMessageSize> | undefined): boolean;
 }
@@ -4825,7 +4825,7 @@ export declare class FooRequest extends Message<FooRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooRequest;
 
-  static conforms(value: any): value is FooRequest;
+  static conforms(value: unknown): value is FooRequest;
 
   static equals(a: FooRequest | PlainMessage<FooRequest> | undefined, b: FooRequest | PlainMessage<FooRequest> | undefined): boolean;
 }
@@ -4846,7 +4846,7 @@ export declare class FooResponse extends Message<FooResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooResponse;
 
-  static conforms(value: any): value is FooResponse;
+  static conforms(value: unknown): value is FooResponse;
 
   static equals(a: FooResponse | PlainMessage<FooResponse> | undefined, b: FooResponse | PlainMessage<FooResponse> | undefined): boolean;
 }
@@ -4867,7 +4867,7 @@ export declare class FooClientMessage extends Message<FooClientMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooClientMessage;
 
-  static conforms(value: any): value is FooClientMessage;
+  static conforms(value: unknown): value is FooClientMessage;
 
   static equals(a: FooClientMessage | PlainMessage<FooClientMessage> | undefined, b: FooClientMessage | PlainMessage<FooClientMessage> | undefined): boolean;
 }
@@ -4888,7 +4888,7 @@ export declare class FooServerMessage extends Message<FooServerMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FooServerMessage;
 
-  static conforms(value: any): value is FooServerMessage;
+  static conforms(value: unknown): value is FooServerMessage;
 
   static equals(a: FooServerMessage | PlainMessage<FooServerMessage> | undefined, b: FooServerMessage | PlainMessage<FooServerMessage> | undefined): boolean;
 }
@@ -4909,7 +4909,7 @@ export declare class BarRequest extends Message<BarRequest> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BarRequest;
 
-  static conforms(value: any): value is BarRequest;
+  static conforms(value: unknown): value is BarRequest;
 
   static equals(a: BarRequest | PlainMessage<BarRequest> | undefined, b: BarRequest | PlainMessage<BarRequest> | undefined): boolean;
 }
@@ -4930,7 +4930,7 @@ export declare class BarResponse extends Message<BarResponse> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BarResponse;
 
-  static conforms(value: any): value is BarResponse;
+  static conforms(value: unknown): value is BarResponse;
 
   static equals(a: BarResponse | PlainMessage<BarResponse> | undefined, b: BarResponse | PlainMessage<BarResponse> | undefined): boolean;
 }
@@ -4986,7 +4986,7 @@ export declare class TestJsonName extends Message<TestJsonName> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestJsonName;
 
-  static conforms(value: any): value is TestJsonName;
+  static conforms(value: unknown): value is TestJsonName;
 
   static equals(a: TestJsonName | PlainMessage<TestJsonName> | undefined, b: TestJsonName | PlainMessage<TestJsonName> | undefined): boolean;
 }
@@ -5086,7 +5086,7 @@ export declare class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers;
 
-  static conforms(value: any): value is TestHugeFieldNumbers;
+  static conforms(value: unknown): value is TestHugeFieldNumbers;
 
   static equals(a: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined, b: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined): boolean;
 }
@@ -5112,7 +5112,7 @@ export declare class TestHugeFieldNumbers_OptionalGroup extends Message<TestHuge
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers_OptionalGroup;
 
-  static conforms(value: any): value is TestHugeFieldNumbers_OptionalGroup;
+  static conforms(value: unknown): value is TestHugeFieldNumbers_OptionalGroup;
 
   static equals(a: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined, b: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined): boolean;
 }
@@ -5178,7 +5178,7 @@ export declare class TestExtensionInsideTable extends Message<TestExtensionInsid
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionInsideTable;
 
-  static conforms(value: any): value is TestExtensionInsideTable;
+  static conforms(value: unknown): value is TestExtensionInsideTable;
 
   static equals(a: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined, b: TestExtensionInsideTable | PlainMessage<TestExtensionInsideTable> | undefined): boolean;
 }
@@ -5206,7 +5206,7 @@ export declare class TestNestedGroupExtensionOuter extends Message<TestNestedGro
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter;
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter;
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter;
 
   static equals(a: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined, b: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined): boolean;
 }
@@ -5237,7 +5237,7 @@ export declare class TestNestedGroupExtensionOuter_Layer1OptionalGroup extends M
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup;
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup;
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup;
 
   static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined): boolean;
 }
@@ -5263,7 +5263,7 @@ export declare class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Rep
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup;
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup;
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup;
 
   static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined): boolean;
 }
@@ -5289,7 +5289,7 @@ export declare class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Ano
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup;
 
-  static conforms(value: any): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup;
+  static conforms(value: unknown): value is TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup;
 
   static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined): boolean;
 }
@@ -5315,7 +5315,7 @@ export declare class TestNestedGroupExtensionInnerExtension extends Message<Test
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionInnerExtension;
 
-  static conforms(value: any): value is TestNestedGroupExtensionInnerExtension;
+  static conforms(value: unknown): value is TestNestedGroupExtensionInnerExtension;
 
   static equals(a: TestNestedGroupExtensionInnerExtension | PlainMessage<TestNestedGroupExtensionInnerExtension> | undefined, b: TestNestedGroupExtensionInnerExtension | PlainMessage<TestNestedGroupExtensionInnerExtension> | undefined): boolean;
 }
@@ -5356,7 +5356,7 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestExtensionRangeSerialize;
 
-  static conforms(value: any): value is TestExtensionRangeSerialize;
+  static conforms(value: unknown): value is TestExtensionRangeSerialize;
 
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean;
 }
@@ -5397,7 +5397,7 @@ export declare class TestVerifyInt32Simple extends Message<TestVerifyInt32Simple
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32Simple;
 
-  static conforms(value: any): value is TestVerifyInt32Simple;
+  static conforms(value: unknown): value is TestVerifyInt32Simple;
 
   static equals(a: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined, b: TestVerifyInt32Simple | PlainMessage<TestVerifyInt32Simple> | undefined): boolean;
 }
@@ -5448,7 +5448,7 @@ export declare class TestVerifyInt32 extends Message<TestVerifyInt32> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32;
 
-  static conforms(value: any): value is TestVerifyInt32;
+  static conforms(value: unknown): value is TestVerifyInt32;
 
   static equals(a: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined, b: TestVerifyInt32 | PlainMessage<TestVerifyInt32> | undefined): boolean;
 }
@@ -5514,7 +5514,7 @@ export declare class TestVerifyMostlyInt32 extends Message<TestVerifyMostlyInt32
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32;
 
-  static conforms(value: any): value is TestVerifyMostlyInt32;
+  static conforms(value: unknown): value is TestVerifyMostlyInt32;
 
   static equals(a: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined, b: TestVerifyMostlyInt32 | PlainMessage<TestVerifyMostlyInt32> | undefined): boolean;
 }
@@ -5585,7 +5585,7 @@ export declare class TestVerifyMostlyInt32BigFieldNumber extends Message<TestVer
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyMostlyInt32BigFieldNumber;
 
-  static conforms(value: any): value is TestVerifyMostlyInt32BigFieldNumber;
+  static conforms(value: unknown): value is TestVerifyMostlyInt32BigFieldNumber;
 
   static equals(a: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined, b: TestVerifyMostlyInt32BigFieldNumber | PlainMessage<TestVerifyMostlyInt32BigFieldNumber> | undefined): boolean;
 }
@@ -5626,7 +5626,7 @@ export declare class TestVerifyUint32Simple extends Message<TestVerifyUint32Simp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32Simple;
 
-  static conforms(value: any): value is TestVerifyUint32Simple;
+  static conforms(value: unknown): value is TestVerifyUint32Simple;
 
   static equals(a: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined, b: TestVerifyUint32Simple | PlainMessage<TestVerifyUint32Simple> | undefined): boolean;
 }
@@ -5677,7 +5677,7 @@ export declare class TestVerifyUint32 extends Message<TestVerifyUint32> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32;
 
-  static conforms(value: any): value is TestVerifyUint32;
+  static conforms(value: unknown): value is TestVerifyUint32;
 
   static equals(a: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined, b: TestVerifyUint32 | PlainMessage<TestVerifyUint32> | undefined): boolean;
 }
@@ -5728,7 +5728,7 @@ export declare class TestVerifyOneUint32 extends Message<TestVerifyOneUint32> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneUint32;
 
-  static conforms(value: any): value is TestVerifyOneUint32;
+  static conforms(value: unknown): value is TestVerifyOneUint32;
 
   static equals(a: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined, b: TestVerifyOneUint32 | PlainMessage<TestVerifyOneUint32> | undefined): boolean;
 }
@@ -5784,7 +5784,7 @@ export declare class TestVerifyOneInt32BigFieldNumber extends Message<TestVerify
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyOneInt32BigFieldNumber;
 
-  static conforms(value: any): value is TestVerifyOneInt32BigFieldNumber;
+  static conforms(value: unknown): value is TestVerifyOneInt32BigFieldNumber;
 
   static equals(a: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined, b: TestVerifyOneInt32BigFieldNumber | PlainMessage<TestVerifyOneInt32BigFieldNumber> | undefined): boolean;
 }
@@ -5845,7 +5845,7 @@ export declare class TestVerifyInt32BigFieldNumber extends Message<TestVerifyInt
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyInt32BigFieldNumber;
 
-  static conforms(value: any): value is TestVerifyInt32BigFieldNumber;
+  static conforms(value: unknown): value is TestVerifyInt32BigFieldNumber;
 
   static equals(a: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined, b: TestVerifyInt32BigFieldNumber | PlainMessage<TestVerifyInt32BigFieldNumber> | undefined): boolean;
 }
@@ -5906,7 +5906,7 @@ export declare class TestVerifyUint32BigFieldNumber extends Message<TestVerifyUi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyUint32BigFieldNumber;
 
-  static conforms(value: any): value is TestVerifyUint32BigFieldNumber;
+  static conforms(value: unknown): value is TestVerifyUint32BigFieldNumber;
 
   static equals(a: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined, b: TestVerifyUint32BigFieldNumber | PlainMessage<TestVerifyUint32BigFieldNumber> | undefined): boolean;
 }
@@ -5932,7 +5932,7 @@ export declare class TestVerifyBigFieldNumberUint32 extends Message<TestVerifyBi
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32;
 
-  static conforms(value: any): value is TestVerifyBigFieldNumberUint32;
+  static conforms(value: unknown): value is TestVerifyBigFieldNumberUint32;
 
   static equals(a: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined, b: TestVerifyBigFieldNumberUint32 | PlainMessage<TestVerifyBigFieldNumberUint32> | undefined): boolean;
 }
@@ -6003,7 +6003,7 @@ export declare class TestVerifyBigFieldNumberUint32_Nested extends Message<TestV
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested;
 
-  static conforms(value: any): value is TestVerifyBigFieldNumberUint32_Nested;
+  static conforms(value: unknown): value is TestVerifyBigFieldNumberUint32_Nested;
 
   static equals(a: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined, b: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined): boolean;
 }

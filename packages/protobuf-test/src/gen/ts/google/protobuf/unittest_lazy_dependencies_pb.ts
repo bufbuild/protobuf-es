@@ -78,7 +78,7 @@ export class ImportedMessage extends Message<ImportedMessage> {
     return new ImportedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ImportedMessage {
+  static conforms(value: unknown): value is ImportedMessage {
     return proto2.util.conforms(ImportedMessage, value);
   }
 
@@ -113,7 +113,7 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
     return new MessageCustomOption().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageCustomOption {
+  static conforms(value: unknown): value is MessageCustomOption {
     return proto2.util.conforms(MessageCustomOption, value);
   }
 
@@ -148,7 +148,7 @@ export class MessageCustomOption2 extends Message<MessageCustomOption2> {
     return new MessageCustomOption2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageCustomOption2 {
+  static conforms(value: unknown): value is MessageCustomOption2 {
     return proto2.util.conforms(MessageCustomOption2, value);
   }
 

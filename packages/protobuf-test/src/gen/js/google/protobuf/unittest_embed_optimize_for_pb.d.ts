@@ -71,7 +71,7 @@ export declare class TestEmbedOptimizedForSize extends Message<TestEmbedOptimize
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestEmbedOptimizedForSize;
 
-  static conforms(value: any): value is TestEmbedOptimizedForSize;
+  static conforms(value: unknown): value is TestEmbedOptimizedForSize;
 
   static equals(a: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined, b: TestEmbedOptimizedForSize | PlainMessage<TestEmbedOptimizedForSize> | undefined): boolean;
 }

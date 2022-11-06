@@ -70,7 +70,7 @@ export class Empty extends Message<Empty> {
     return new Empty().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Empty {
+  static conforms(value: unknown): value is Empty {
     return proto3.util.conforms(Empty, value);
   }
 

@@ -60,7 +60,7 @@ export declare class Empty extends Message<Empty> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Empty;
 
-  static conforms(value: any): value is Empty;
+  static conforms(value: unknown): value is Empty;
 
   static equals(a: Empty | PlainMessage<Empty> | undefined, b: Empty | PlainMessage<Empty> | undefined): boolean;
 }

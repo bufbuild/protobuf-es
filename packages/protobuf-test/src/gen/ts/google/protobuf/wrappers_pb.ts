@@ -109,7 +109,7 @@ export class DoubleValue extends Message<DoubleValue> {
     return new DoubleValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DoubleValue {
+  static conforms(value: unknown): value is DoubleValue {
     return proto3.util.conforms(DoubleValue, value);
   }
 
@@ -182,7 +182,7 @@ export class FloatValue extends Message<FloatValue> {
     return new FloatValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FloatValue {
+  static conforms(value: unknown): value is FloatValue {
     return proto3.util.conforms(FloatValue, value);
   }
 
@@ -255,7 +255,7 @@ export class Int64Value extends Message<Int64Value> {
     return new Int64Value().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Int64Value {
+  static conforms(value: unknown): value is Int64Value {
     return proto3.util.conforms(Int64Value, value);
   }
 
@@ -328,7 +328,7 @@ export class UInt64Value extends Message<UInt64Value> {
     return new UInt64Value().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UInt64Value {
+  static conforms(value: unknown): value is UInt64Value {
     return proto3.util.conforms(UInt64Value, value);
   }
 
@@ -401,7 +401,7 @@ export class Int32Value extends Message<Int32Value> {
     return new Int32Value().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Int32Value {
+  static conforms(value: unknown): value is Int32Value {
     return proto3.util.conforms(Int32Value, value);
   }
 
@@ -474,7 +474,7 @@ export class UInt32Value extends Message<UInt32Value> {
     return new UInt32Value().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UInt32Value {
+  static conforms(value: unknown): value is UInt32Value {
     return proto3.util.conforms(UInt32Value, value);
   }
 
@@ -547,7 +547,7 @@ export class BoolValue extends Message<BoolValue> {
     return new BoolValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BoolValue {
+  static conforms(value: unknown): value is BoolValue {
     return proto3.util.conforms(BoolValue, value);
   }
 
@@ -620,7 +620,7 @@ export class StringValue extends Message<StringValue> {
     return new StringValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is StringValue {
+  static conforms(value: unknown): value is StringValue {
     return proto3.util.conforms(StringValue, value);
   }
 
@@ -693,7 +693,7 @@ export class BytesValue extends Message<BytesValue> {
     return new BytesValue().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BytesValue {
+  static conforms(value: unknown): value is BytesValue {
     return proto3.util.conforms(BytesValue, value);
   }
 

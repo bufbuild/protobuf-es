@@ -107,7 +107,7 @@ export class Version extends Message<Version> {
     return new Version().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Version {
+  static conforms(value: unknown): value is Version {
     return proto2.util.conforms(Version, value);
   }
 
@@ -191,7 +191,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
     return new CodeGeneratorRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CodeGeneratorRequest {
+  static conforms(value: unknown): value is CodeGeneratorRequest {
     return proto2.util.conforms(CodeGeneratorRequest, value);
   }
 
@@ -258,7 +258,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
     return new CodeGeneratorResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CodeGeneratorResponse {
+  static conforms(value: unknown): value is CodeGeneratorResponse {
     return proto2.util.conforms(CodeGeneratorResponse, value);
   }
 
@@ -397,7 +397,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
     return new CodeGeneratorResponse_File().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CodeGeneratorResponse_File {
+  static conforms(value: unknown): value is CodeGeneratorResponse_File {
     return proto2.util.conforms(CodeGeneratorResponse_File, value);
   }
 

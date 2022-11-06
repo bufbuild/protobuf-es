@@ -412,7 +412,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     return new TestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes {
+  static conforms(value: unknown): value is TestAllTypes {
     return proto3.util.conforms(TestAllTypes, value);
   }
 
@@ -479,7 +479,7 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
     return new TestAllTypes_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes_NestedMessage {
+  static conforms(value: unknown): value is TestAllTypes_NestedMessage {
     return proto3.util.conforms(TestAllTypes_NestedMessage, value);
   }
 
@@ -520,7 +520,7 @@ export class TestProto2Required extends Message<TestProto2Required> {
     return new TestProto2Required().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestProto2Required {
+  static conforms(value: unknown): value is TestProto2Required {
     return proto3.util.conforms(TestProto2Required, value);
   }
 
@@ -564,7 +564,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForeignMessage {
+  static conforms(value: unknown): value is ForeignMessage {
     return proto3.util.conforms(ForeignMessage, value);
   }
 

@@ -85,7 +85,7 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptimizedForSize;
 
-  static conforms(value: any): value is TestOptimizedForSize;
+  static conforms(value: unknown): value is TestOptimizedForSize;
 
   static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean;
 }
@@ -111,7 +111,7 @@ export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredOptimizedForSize;
 
-  static conforms(value: any): value is TestRequiredOptimizedForSize;
+  static conforms(value: unknown): value is TestRequiredOptimizedForSize;
 
   static equals(a: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined, b: TestRequiredOptimizedForSize | PlainMessage<TestRequiredOptimizedForSize> | undefined): boolean;
 }
@@ -137,7 +137,7 @@ export declare class TestOptionalOptimizedForSize extends Message<TestOptionalOp
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOptionalOptimizedForSize;
 
-  static conforms(value: any): value is TestOptionalOptimizedForSize;
+  static conforms(value: unknown): value is TestOptionalOptimizedForSize;
 
   static equals(a: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined, b: TestOptionalOptimizedForSize | PlainMessage<TestOptionalOptimizedForSize> | undefined): boolean;
 }

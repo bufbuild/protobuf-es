@@ -77,7 +77,7 @@ export class LazyMessage extends Message<LazyMessage> {
     return new LazyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is LazyMessage {
+  static conforms(value: unknown): value is LazyMessage {
     return proto2.util.conforms(LazyMessage, value);
   }
 

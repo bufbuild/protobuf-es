@@ -128,7 +128,7 @@ export class OneofMessage extends Message<OneofMessage> {
     return new OneofMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofMessage {
+  static conforms(value: unknown): value is OneofMessage {
     return proto3.util.conforms(OneofMessage, value);
   }
 
@@ -175,7 +175,7 @@ export class OneofMessageFoo extends Message<OneofMessageFoo> {
     return new OneofMessageFoo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofMessageFoo {
+  static conforms(value: unknown): value is OneofMessageFoo {
     return proto3.util.conforms(OneofMessageFoo, value);
   }
 
@@ -222,7 +222,7 @@ export class OneofMessageBar extends Message<OneofMessageBar> {
     return new OneofMessageBar().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofMessageBar {
+  static conforms(value: unknown): value is OneofMessageBar {
     return proto3.util.conforms(OneofMessageBar, value);
   }
 

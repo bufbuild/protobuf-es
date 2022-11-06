@@ -84,7 +84,7 @@ export declare class Struct extends Message<Struct> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Struct;
 
-  static conforms(value: any): value is Struct;
+  static conforms(value: unknown): value is Struct;
 
   static equals(a: Struct | PlainMessage<Struct> | undefined, b: Struct | PlainMessage<Struct> | undefined): boolean;
 }
@@ -167,7 +167,7 @@ export declare class Value extends Message<Value> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Value;
 
-  static conforms(value: any): value is Value;
+  static conforms(value: unknown): value is Value;
 
   static equals(a: Value | PlainMessage<Value> | undefined, b: Value | PlainMessage<Value> | undefined): boolean;
 }
@@ -199,7 +199,7 @@ export declare class ListValue extends Message<ListValue> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListValue;
 
-  static conforms(value: any): value is ListValue;
+  static conforms(value: unknown): value is ListValue;
 
   static equals(a: ListValue | PlainMessage<ListValue> | undefined, b: ListValue | PlainMessage<ListValue> | undefined): boolean;
 }

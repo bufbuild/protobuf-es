@@ -75,7 +75,7 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JsonNamesMessage;
 
-  static conforms(value: any): value is JsonNamesMessage;
+  static conforms(value: unknown): value is JsonNamesMessage;
 
   static equals(a: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined, b: JsonNamesMessage | PlainMessage<JsonNamesMessage> | undefined): boolean;
 }

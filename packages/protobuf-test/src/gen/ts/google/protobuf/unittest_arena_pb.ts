@@ -67,7 +67,7 @@ export class NestedMessage extends Message<NestedMessage> {
     return new NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedMessage {
+  static conforms(value: unknown): value is NestedMessage {
     return proto2.util.conforms(NestedMessage, value);
   }
 
@@ -108,7 +108,7 @@ export class ArenaMessage extends Message<ArenaMessage> {
     return new ArenaMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ArenaMessage {
+  static conforms(value: unknown): value is ArenaMessage {
     return proto2.util.conforms(ArenaMessage, value);
   }
 

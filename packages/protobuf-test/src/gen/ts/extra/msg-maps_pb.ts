@@ -155,7 +155,7 @@ export class MapsMessage extends Message<MapsMessage> {
     return new MapsMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MapsMessage {
+  static conforms(value: unknown): value is MapsMessage {
     return proto3.util.conforms(MapsMessage, value);
   }
 

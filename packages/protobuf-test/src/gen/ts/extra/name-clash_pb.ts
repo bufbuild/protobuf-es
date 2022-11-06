@@ -45,7 +45,7 @@ export class ReservedPropertyNames extends Message$1<ReservedPropertyNames> {
     return new ReservedPropertyNames().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ReservedPropertyNames {
+  static conforms(value: unknown): value is ReservedPropertyNames {
     return proto3.util.conforms(ReservedPropertyNames, value);
   }
 
@@ -206,7 +206,7 @@ export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNam
     return new ReservedPropertyNames_BuiltIn().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ReservedPropertyNames_BuiltIn {
+  static conforms(value: unknown): value is ReservedPropertyNames_BuiltIn {
     return proto3.util.conforms(ReservedPropertyNames_BuiltIn, value);
   }
 
@@ -313,7 +313,7 @@ export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNam
     return new ReservedPropertyNames_Runtime().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ReservedPropertyNames_Runtime {
+  static conforms(value: unknown): value is ReservedPropertyNames_Runtime {
     return proto3.util.conforms(ReservedPropertyNames_Runtime, value);
   }
 
@@ -381,7 +381,7 @@ export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropert
     return new ReservedPropertyNames_OneofBultIn().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ReservedPropertyNames_OneofBultIn {
+  static conforms(value: unknown): value is ReservedPropertyNames_OneofBultIn {
     return proto3.util.conforms(ReservedPropertyNames_OneofBultIn, value);
   }
 
@@ -484,7 +484,7 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
     return new ReservedPropertyNames_OneofRuntime().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ReservedPropertyNames_OneofRuntime {
+  static conforms(value: unknown): value is ReservedPropertyNames_OneofRuntime {
     return proto3.util.conforms(ReservedPropertyNames_OneofRuntime, value);
   }
 
@@ -521,7 +521,7 @@ export class interface$ extends Message$1<interface$> {
     return new interface$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is interface$ {
+  static conforms(value: unknown): value is interface$ {
     return proto3.util.conforms(interface$, value);
   }
 
@@ -558,7 +558,7 @@ export class function$ extends Message$1<function$> {
     return new function$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is function$ {
+  static conforms(value: unknown): value is function$ {
     return proto3.util.conforms(function$, value);
   }
 
@@ -595,7 +595,7 @@ export class instanceof$ extends Message$1<instanceof$> {
     return new instanceof$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is instanceof$ {
+  static conforms(value: unknown): value is instanceof$ {
     return proto3.util.conforms(instanceof$, value);
   }
 
@@ -632,7 +632,7 @@ export class switch$ extends Message$1<switch$> {
     return new switch$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is switch$ {
+  static conforms(value: unknown): value is switch$ {
     return proto3.util.conforms(switch$, value);
   }
 
@@ -669,7 +669,7 @@ export class case$ extends Message$1<case$> {
     return new case$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is case$ {
+  static conforms(value: unknown): value is case$ {
     return proto3.util.conforms(case$, value);
   }
 
@@ -706,7 +706,7 @@ export class return$ extends Message$1<return$> {
     return new return$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is return$ {
+  static conforms(value: unknown): value is return$ {
     return proto3.util.conforms(return$, value);
   }
 
@@ -743,7 +743,7 @@ export class Message extends Message$1<Message> {
     return new Message().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Message {
+  static conforms(value: unknown): value is Message {
     return proto3.util.conforms(Message, value);
   }
 
@@ -780,7 +780,7 @@ export class PartialMessage extends Message$1<PartialMessage> {
     return new PartialMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PartialMessage {
+  static conforms(value: unknown): value is PartialMessage {
     return proto3.util.conforms(PartialMessage, value);
   }
 
@@ -817,7 +817,7 @@ export class PlainMessage extends Message$1<PlainMessage> {
     return new PlainMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is PlainMessage {
+  static conforms(value: unknown): value is PlainMessage {
     return proto3.util.conforms(PlainMessage, value);
   }
 
@@ -868,7 +868,7 @@ export class Error extends Message$1<Error> {
     return new Error().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Error {
+  static conforms(value: unknown): value is Error {
     return proto3.util.conforms(Error, value);
   }
 
@@ -905,7 +905,7 @@ export class Object$ extends Message$1<Object$> {
     return new Object$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Object$ {
+  static conforms(value: unknown): value is Object$ {
     return proto3.util.conforms(Object$, value);
   }
 
@@ -940,7 +940,7 @@ export class object$ extends Message$1<object$> {
     return new object$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is object$ {
+  static conforms(value: unknown): value is object$ {
     return proto3.util.conforms(object$, value);
   }
 
@@ -977,7 +977,7 @@ export class array extends Message$1<array> {
     return new array().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is array {
+  static conforms(value: unknown): value is array {
     return proto3.util.conforms(array, value);
   }
 
@@ -1014,7 +1014,7 @@ export class string$ extends Message$1<string$> {
     return new string$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is string$ {
+  static conforms(value: unknown): value is string$ {
     return proto3.util.conforms(string$, value);
   }
 
@@ -1051,7 +1051,7 @@ export class number$ extends Message$1<number$> {
     return new number$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is number$ {
+  static conforms(value: unknown): value is number$ {
     return proto3.util.conforms(number$, value);
   }
 
@@ -1088,7 +1088,7 @@ export class boolean$ extends Message$1<boolean$> {
     return new boolean$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is boolean$ {
+  static conforms(value: unknown): value is boolean$ {
     return proto3.util.conforms(boolean$, value);
   }
 
@@ -1125,7 +1125,7 @@ export class bigint$ extends Message$1<bigint$> {
     return new bigint$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is bigint$ {
+  static conforms(value: unknown): value is bigint$ {
     return proto3.util.conforms(bigint$, value);
   }
 
@@ -1162,7 +1162,7 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
     return new Uint8Array$().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Uint8Array$ {
+  static conforms(value: unknown): value is Uint8Array$ {
     return proto3.util.conforms(Uint8Array$, value);
   }
 
@@ -1199,7 +1199,7 @@ export class Array extends Message$1<Array> {
     return new Array().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Array {
+  static conforms(value: unknown): value is Array {
     return proto3.util.conforms(Array, value);
   }
 
@@ -1236,7 +1236,7 @@ export class String extends Message$1<String> {
     return new String().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is String {
+  static conforms(value: unknown): value is String {
     return proto3.util.conforms(String, value);
   }
 
@@ -1273,7 +1273,7 @@ export class Number extends Message$1<Number> {
     return new Number().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Number {
+  static conforms(value: unknown): value is Number {
     return proto3.util.conforms(Number, value);
   }
 
@@ -1310,7 +1310,7 @@ export class Boolean extends Message$1<Boolean> {
     return new Boolean().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Boolean {
+  static conforms(value: unknown): value is Boolean {
     return proto3.util.conforms(Boolean, value);
   }
 
@@ -1347,7 +1347,7 @@ export class BigInt extends Message$1<BigInt> {
     return new BigInt().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is BigInt {
+  static conforms(value: unknown): value is BigInt {
     return proto3.util.conforms(BigInt, value);
   }
 
@@ -1382,7 +1382,7 @@ export class ClashParent extends Message$1<ClashParent> {
     return new ClashParent().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ClashParent {
+  static conforms(value: unknown): value is ClashParent {
     return proto3.util.conforms(ClashParent, value);
   }
 
@@ -1419,7 +1419,7 @@ export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
     return new ClashParent_ClashChild().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ClashParent_ClashChild {
+  static conforms(value: unknown): value is ClashParent_ClashChild {
     return proto3.util.conforms(ClashParent_ClashChild, value);
   }
 
@@ -1502,7 +1502,7 @@ export class NoClashFields extends Message$1<NoClashFields> {
     return new NoClashFields().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NoClashFields {
+  static conforms(value: unknown): value is NoClashFields {
     return proto3.util.conforms(NoClashFields, value);
   }
 
@@ -1596,7 +1596,7 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
     return new NoClashOneof().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NoClashOneof {
+  static conforms(value: unknown): value is NoClashOneof {
     return proto3.util.conforms(NoClashOneof, value);
   }
 
@@ -1637,7 +1637,7 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
     return new NoClashOneofADT().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NoClashOneofADT {
+  static conforms(value: unknown): value is NoClashOneofADT {
     return proto3.util.conforms(NoClashOneofADT, value);
   }
 
@@ -1684,7 +1684,7 @@ export class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
     return new NoClashOneofADT_M().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NoClashOneofADT_M {
+  static conforms(value: unknown): value is NoClashOneofADT_M {
     return proto3.util.conforms(NoClashOneofADT_M, value);
   }
 
@@ -1721,7 +1721,7 @@ export class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
     return new NoClashEnumWrap().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NoClashEnumWrap {
+  static conforms(value: unknown): value is NoClashEnumWrap {
     return proto3.util.conforms(NoClashEnumWrap, value);
   }
 

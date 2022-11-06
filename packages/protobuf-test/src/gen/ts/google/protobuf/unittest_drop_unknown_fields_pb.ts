@@ -73,7 +73,7 @@ export class Foo extends Message<Foo> {
     return new Foo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Foo {
+  static conforms(value: unknown): value is Foo {
     return proto3.util.conforms(Foo, value);
   }
 
@@ -152,7 +152,7 @@ export class FooWithExtraFields extends Message<FooWithExtraFields> {
     return new FooWithExtraFields().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FooWithExtraFields {
+  static conforms(value: unknown): value is FooWithExtraFields {
     return proto3.util.conforms(FooWithExtraFields, value);
   }
 

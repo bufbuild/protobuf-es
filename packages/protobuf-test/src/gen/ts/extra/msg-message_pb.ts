@@ -57,7 +57,7 @@ export class MessageFieldMessage extends Message<MessageFieldMessage> {
     return new MessageFieldMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageFieldMessage {
+  static conforms(value: unknown): value is MessageFieldMessage {
     return proto3.util.conforms(MessageFieldMessage, value);
   }
 
@@ -98,7 +98,7 @@ export class MessageFieldMessage_TestMessage extends Message<MessageFieldMessage
     return new MessageFieldMessage_TestMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageFieldMessage_TestMessage {
+  static conforms(value: unknown): value is MessageFieldMessage_TestMessage {
     return proto3.util.conforms(MessageFieldMessage_TestMessage, value);
   }
 

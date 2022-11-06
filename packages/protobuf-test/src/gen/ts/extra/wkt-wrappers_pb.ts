@@ -221,7 +221,7 @@ export class WrappersMessage extends Message<WrappersMessage> {
     return new WrappersMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is WrappersMessage {
+  static conforms(value: unknown): value is WrappersMessage {
     return proto3.util.conforms(WrappersMessage, value);
   }
 

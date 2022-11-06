@@ -164,7 +164,7 @@ export class MyMessage extends Message<MyMessage> {
     return new MyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MyMessage {
+  static conforms(value: unknown): value is MyMessage {
     return proto3.util.conforms(MyMessage, value);
   }
 
@@ -242,7 +242,7 @@ export class MyMessagePlusExtra extends Message<MyMessagePlusExtra> {
     return new MyMessagePlusExtra().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MyMessagePlusExtra {
+  static conforms(value: unknown): value is MyMessagePlusExtra {
     return proto3.util.conforms(MyMessagePlusExtra, value);
   }
 

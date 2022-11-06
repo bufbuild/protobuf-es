@@ -132,7 +132,7 @@ export class MyMessage extends Message<MyMessage> {
     return new MyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MyMessage {
+  static conforms(value: unknown): value is MyMessage {
     return proto2.util.conforms(MyMessage, value);
   }
 

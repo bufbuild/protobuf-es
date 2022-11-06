@@ -80,7 +80,7 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
     return new TestLiteImportsNonlite().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestLiteImportsNonlite {
+  static conforms(value: unknown): value is TestLiteImportsNonlite {
     return proto2.util.conforms(TestLiteImportsNonlite, value);
   }
 

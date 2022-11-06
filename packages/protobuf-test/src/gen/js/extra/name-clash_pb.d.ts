@@ -35,7 +35,7 @@ export declare class ReservedPropertyNames extends Message$1<ReservedPropertyNam
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames;
 
-  static conforms(value: any): value is ReservedPropertyNames;
+  static conforms(value: unknown): value is ReservedPropertyNames;
 
   static equals(a: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined, b: ReservedPropertyNames | PlainMessage$1<ReservedPropertyNames> | undefined): boolean;
 }
@@ -159,7 +159,7 @@ export declare class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPro
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames_BuiltIn;
 
-  static conforms(value: any): value is ReservedPropertyNames_BuiltIn;
+  static conforms(value: unknown): value is ReservedPropertyNames_BuiltIn;
 
   static equals(a: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined, b: ReservedPropertyNames_BuiltIn | PlainMessage$1<ReservedPropertyNames_BuiltIn> | undefined): boolean;
 }
@@ -243,7 +243,7 @@ export declare class ReservedPropertyNames_Runtime extends Message$1<ReservedPro
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames_Runtime;
 
-  static conforms(value: any): value is ReservedPropertyNames_Runtime;
+  static conforms(value: unknown): value is ReservedPropertyNames_Runtime;
 
   static equals(a: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined, b: ReservedPropertyNames_Runtime | PlainMessage$1<ReservedPropertyNames_Runtime> | undefined): boolean;
 }
@@ -293,7 +293,7 @@ export declare class ReservedPropertyNames_OneofBultIn extends Message$1<Reserve
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames_OneofBultIn;
 
-  static conforms(value: any): value is ReservedPropertyNames_OneofBultIn;
+  static conforms(value: unknown): value is ReservedPropertyNames_OneofBultIn;
 
   static equals(a: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined, b: ReservedPropertyNames_OneofBultIn | PlainMessage$1<ReservedPropertyNames_OneofBultIn> | undefined): boolean;
 }
@@ -373,7 +373,7 @@ export declare class ReservedPropertyNames_OneofRuntime extends Message$1<Reserv
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReservedPropertyNames_OneofRuntime;
 
-  static conforms(value: any): value is ReservedPropertyNames_OneofRuntime;
+  static conforms(value: unknown): value is ReservedPropertyNames_OneofRuntime;
 
   static equals(a: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined, b: ReservedPropertyNames_OneofRuntime | PlainMessage$1<ReservedPropertyNames_OneofRuntime> | undefined): boolean;
 }
@@ -396,7 +396,7 @@ export declare class interface$ extends Message$1<interface$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): interface$;
 
-  static conforms(value: any): value is interface$;
+  static conforms(value: unknown): value is interface$;
 
   static equals(a: interface$ | PlainMessage$1<interface$> | undefined, b: interface$ | PlainMessage$1<interface$> | undefined): boolean;
 }
@@ -419,7 +419,7 @@ export declare class function$ extends Message$1<function$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): function$;
 
-  static conforms(value: any): value is function$;
+  static conforms(value: unknown): value is function$;
 
   static equals(a: function$ | PlainMessage$1<function$> | undefined, b: function$ | PlainMessage$1<function$> | undefined): boolean;
 }
@@ -442,7 +442,7 @@ export declare class instanceof$ extends Message$1<instanceof$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): instanceof$;
 
-  static conforms(value: any): value is instanceof$;
+  static conforms(value: unknown): value is instanceof$;
 
   static equals(a: instanceof$ | PlainMessage$1<instanceof$> | undefined, b: instanceof$ | PlainMessage$1<instanceof$> | undefined): boolean;
 }
@@ -465,7 +465,7 @@ export declare class switch$ extends Message$1<switch$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): switch$;
 
-  static conforms(value: any): value is switch$;
+  static conforms(value: unknown): value is switch$;
 
   static equals(a: switch$ | PlainMessage$1<switch$> | undefined, b: switch$ | PlainMessage$1<switch$> | undefined): boolean;
 }
@@ -488,7 +488,7 @@ export declare class case$ extends Message$1<case$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): case$;
 
-  static conforms(value: any): value is case$;
+  static conforms(value: unknown): value is case$;
 
   static equals(a: case$ | PlainMessage$1<case$> | undefined, b: case$ | PlainMessage$1<case$> | undefined): boolean;
 }
@@ -511,7 +511,7 @@ export declare class return$ extends Message$1<return$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): return$;
 
-  static conforms(value: any): value is return$;
+  static conforms(value: unknown): value is return$;
 
   static equals(a: return$ | PlainMessage$1<return$> | undefined, b: return$ | PlainMessage$1<return$> | undefined): boolean;
 }
@@ -534,7 +534,7 @@ export declare class Message extends Message$1<Message> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Message;
 
-  static conforms(value: any): value is Message;
+  static conforms(value: unknown): value is Message;
 
   static equals(a: Message | PlainMessage$1<Message> | undefined, b: Message | PlainMessage$1<Message> | undefined): boolean;
 }
@@ -557,7 +557,7 @@ export declare class PartialMessage extends Message$1<PartialMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PartialMessage;
 
-  static conforms(value: any): value is PartialMessage;
+  static conforms(value: unknown): value is PartialMessage;
 
   static equals(a: PartialMessage | PlainMessage$1<PartialMessage> | undefined, b: PartialMessage | PlainMessage$1<PartialMessage> | undefined): boolean;
 }
@@ -580,7 +580,7 @@ export declare class PlainMessage extends Message$1<PlainMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PlainMessage;
 
-  static conforms(value: any): value is PlainMessage;
+  static conforms(value: unknown): value is PlainMessage;
 
   static equals(a: PlainMessage | PlainMessage$1<PlainMessage> | undefined, b: PlainMessage | PlainMessage$1<PlainMessage> | undefined): boolean;
 }
@@ -615,7 +615,7 @@ export declare class Error extends Message$1<Error> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Error;
 
-  static conforms(value: any): value is Error;
+  static conforms(value: unknown): value is Error;
 
   static equals(a: Error | PlainMessage$1<Error> | undefined, b: Error | PlainMessage$1<Error> | undefined): boolean;
 }
@@ -638,7 +638,7 @@ export declare class Object$ extends Message$1<Object$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Object$;
 
-  static conforms(value: any): value is Object$;
+  static conforms(value: unknown): value is Object$;
 
   static equals(a: Object$ | PlainMessage$1<Object$> | undefined, b: Object$ | PlainMessage$1<Object$> | undefined): boolean;
 }
@@ -659,7 +659,7 @@ export declare class object$ extends Message$1<object$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): object$;
 
-  static conforms(value: any): value is object$;
+  static conforms(value: unknown): value is object$;
 
   static equals(a: object$ | PlainMessage$1<object$> | undefined, b: object$ | PlainMessage$1<object$> | undefined): boolean;
 }
@@ -682,7 +682,7 @@ export declare class array extends Message$1<array> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): array;
 
-  static conforms(value: any): value is array;
+  static conforms(value: unknown): value is array;
 
   static equals(a: array | PlainMessage$1<array> | undefined, b: array | PlainMessage$1<array> | undefined): boolean;
 }
@@ -705,7 +705,7 @@ export declare class string$ extends Message$1<string$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): string$;
 
-  static conforms(value: any): value is string$;
+  static conforms(value: unknown): value is string$;
 
   static equals(a: string$ | PlainMessage$1<string$> | undefined, b: string$ | PlainMessage$1<string$> | undefined): boolean;
 }
@@ -728,7 +728,7 @@ export declare class number$ extends Message$1<number$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): number$;
 
-  static conforms(value: any): value is number$;
+  static conforms(value: unknown): value is number$;
 
   static equals(a: number$ | PlainMessage$1<number$> | undefined, b: number$ | PlainMessage$1<number$> | undefined): boolean;
 }
@@ -751,7 +751,7 @@ export declare class boolean$ extends Message$1<boolean$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): boolean$;
 
-  static conforms(value: any): value is boolean$;
+  static conforms(value: unknown): value is boolean$;
 
   static equals(a: boolean$ | PlainMessage$1<boolean$> | undefined, b: boolean$ | PlainMessage$1<boolean$> | undefined): boolean;
 }
@@ -774,7 +774,7 @@ export declare class bigint$ extends Message$1<bigint$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): bigint$;
 
-  static conforms(value: any): value is bigint$;
+  static conforms(value: unknown): value is bigint$;
 
   static equals(a: bigint$ | PlainMessage$1<bigint$> | undefined, b: bigint$ | PlainMessage$1<bigint$> | undefined): boolean;
 }
@@ -797,7 +797,7 @@ export declare class Uint8Array$ extends Message$1<Uint8Array$> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Uint8Array$;
 
-  static conforms(value: any): value is Uint8Array$;
+  static conforms(value: unknown): value is Uint8Array$;
 
   static equals(a: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined, b: Uint8Array$ | PlainMessage$1<Uint8Array$> | undefined): boolean;
 }
@@ -820,7 +820,7 @@ export declare class Array extends Message$1<Array> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Array;
 
-  static conforms(value: any): value is Array;
+  static conforms(value: unknown): value is Array;
 
   static equals(a: Array | PlainMessage$1<Array> | undefined, b: Array | PlainMessage$1<Array> | undefined): boolean;
 }
@@ -843,7 +843,7 @@ export declare class String extends Message$1<String> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): String;
 
-  static conforms(value: any): value is String;
+  static conforms(value: unknown): value is String;
 
   static equals(a: String | PlainMessage$1<String> | undefined, b: String | PlainMessage$1<String> | undefined): boolean;
 }
@@ -866,7 +866,7 @@ export declare class Number extends Message$1<Number> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Number;
 
-  static conforms(value: any): value is Number;
+  static conforms(value: unknown): value is Number;
 
   static equals(a: Number | PlainMessage$1<Number> | undefined, b: Number | PlainMessage$1<Number> | undefined): boolean;
 }
@@ -889,7 +889,7 @@ export declare class Boolean extends Message$1<Boolean> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Boolean;
 
-  static conforms(value: any): value is Boolean;
+  static conforms(value: unknown): value is Boolean;
 
   static equals(a: Boolean | PlainMessage$1<Boolean> | undefined, b: Boolean | PlainMessage$1<Boolean> | undefined): boolean;
 }
@@ -912,7 +912,7 @@ export declare class BigInt extends Message$1<BigInt> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BigInt;
 
-  static conforms(value: any): value is BigInt;
+  static conforms(value: unknown): value is BigInt;
 
   static equals(a: BigInt | PlainMessage$1<BigInt> | undefined, b: BigInt | PlainMessage$1<BigInt> | undefined): boolean;
 }
@@ -933,7 +933,7 @@ export declare class ClashParent extends Message$1<ClashParent> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ClashParent;
 
-  static conforms(value: any): value is ClashParent;
+  static conforms(value: unknown): value is ClashParent;
 
   static equals(a: ClashParent | PlainMessage$1<ClashParent> | undefined, b: ClashParent | PlainMessage$1<ClashParent> | undefined): boolean;
 }
@@ -956,7 +956,7 @@ export declare class ClashParent_ClashChild extends Message$1<ClashParent_ClashC
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ClashParent_ClashChild;
 
-  static conforms(value: any): value is ClashParent_ClashChild;
+  static conforms(value: unknown): value is ClashParent_ClashChild;
 
   static equals(a: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined, b: ClashParent_ClashChild | PlainMessage$1<ClashParent_ClashChild> | undefined): boolean;
 }
@@ -1019,7 +1019,7 @@ export declare class NoClashFields extends Message$1<NoClashFields> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashFields;
 
-  static conforms(value: any): value is NoClashFields;
+  static conforms(value: unknown): value is NoClashFields;
 
   static equals(a: NoClashFields | PlainMessage$1<NoClashFields> | undefined, b: NoClashFields | PlainMessage$1<NoClashFields> | undefined): boolean;
 }
@@ -1093,7 +1093,7 @@ export declare class NoClashOneof extends Message$1<NoClashOneof> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneof;
 
-  static conforms(value: any): value is NoClashOneof;
+  static conforms(value: unknown): value is NoClashOneof;
 
   static equals(a: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined, b: NoClashOneof | PlainMessage$1<NoClashOneof> | undefined): boolean;
 }
@@ -1119,7 +1119,7 @@ export declare class NoClashOneofADT extends Message$1<NoClashOneofADT> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT;
 
-  static conforms(value: any): value is NoClashOneofADT;
+  static conforms(value: unknown): value is NoClashOneofADT;
 
   static equals(a: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined, b: NoClashOneofADT | PlainMessage$1<NoClashOneofADT> | undefined): boolean;
 }
@@ -1150,7 +1150,7 @@ export declare class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashOneofADT_M;
 
-  static conforms(value: any): value is NoClashOneofADT_M;
+  static conforms(value: unknown): value is NoClashOneofADT_M;
 
   static equals(a: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined, b: NoClashOneofADT_M | PlainMessage$1<NoClashOneofADT_M> | undefined): boolean;
 }
@@ -1173,7 +1173,7 @@ export declare class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NoClashEnumWrap;
 
-  static conforms(value: any): value is NoClashEnumWrap;
+  static conforms(value: unknown): value is NoClashEnumWrap;
 
   static equals(a: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined, b: NoClashEnumWrap | PlainMessage$1<NoClashEnumWrap> | undefined): boolean;
 }

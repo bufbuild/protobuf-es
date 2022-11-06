@@ -125,7 +125,7 @@ export declare class MapsMessage extends Message<MapsMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MapsMessage;
 
-  static conforms(value: any): value is MapsMessage;
+  static conforms(value: unknown): value is MapsMessage;
 
   static equals(a: MapsMessage | PlainMessage<MapsMessage> | undefined, b: MapsMessage | PlainMessage<MapsMessage> | undefined): boolean;
 }

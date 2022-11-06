@@ -175,7 +175,7 @@ export class MessageWithComments extends Message<MessageWithComments> {
     return new MessageWithComments().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageWithComments {
+  static conforms(value: unknown): value is MessageWithComments {
     return proto3.util.conforms(MessageWithComments, value);
   }
 
@@ -212,7 +212,7 @@ export class EmptyMessageWithComment extends Message<EmptyMessageWithComment> {
     return new EmptyMessageWithComment().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EmptyMessageWithComment {
+  static conforms(value: unknown): value is EmptyMessageWithComment {
     return proto3.util.conforms(EmptyMessageWithComment, value);
   }
 
@@ -303,7 +303,7 @@ export class GoogleCommentExample extends Message<GoogleCommentExample> {
     return new GoogleCommentExample().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GoogleCommentExample {
+  static conforms(value: unknown): value is GoogleCommentExample {
     return proto3.util.conforms(GoogleCommentExample, value);
   }
 

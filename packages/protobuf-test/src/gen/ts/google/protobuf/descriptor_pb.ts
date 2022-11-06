@@ -78,7 +78,7 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
     return new FileDescriptorSet().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FileDescriptorSet {
+  static conforms(value: unknown): value is FileDescriptorSet {
     return proto2.util.conforms(FileDescriptorSet, value);
   }
 
@@ -208,7 +208,7 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
     return new FileDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FileDescriptorProto {
+  static conforms(value: unknown): value is FileDescriptorProto {
     return proto2.util.conforms(FileDescriptorProto, value);
   }
 
@@ -308,7 +308,7 @@ export class DescriptorProto extends Message<DescriptorProto> {
     return new DescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DescriptorProto {
+  static conforms(value: unknown): value is DescriptorProto {
     return proto2.util.conforms(DescriptorProto, value);
   }
 
@@ -365,7 +365,7 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
     return new DescriptorProto_ExtensionRange().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DescriptorProto_ExtensionRange {
+  static conforms(value: unknown): value is DescriptorProto_ExtensionRange {
     return proto2.util.conforms(DescriptorProto_ExtensionRange, value);
   }
 
@@ -420,7 +420,7 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
     return new DescriptorProto_ReservedRange().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DescriptorProto_ReservedRange {
+  static conforms(value: unknown): value is DescriptorProto_ReservedRange {
     return proto2.util.conforms(DescriptorProto_ReservedRange, value);
   }
 
@@ -463,7 +463,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
     return new ExtensionRangeOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ExtensionRangeOptions {
+  static conforms(value: unknown): value is ExtensionRangeOptions {
     return proto2.util.conforms(ExtensionRangeOptions, value);
   }
 
@@ -613,7 +613,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
     return new FieldDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FieldDescriptorProto {
+  static conforms(value: unknown): value is FieldDescriptorProto {
     return proto2.util.conforms(FieldDescriptorProto, value);
   }
 
@@ -828,7 +828,7 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
     return new OneofDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofDescriptorProto {
+  static conforms(value: unknown): value is OneofDescriptorProto {
     return proto2.util.conforms(OneofDescriptorProto, value);
   }
 
@@ -902,7 +902,7 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
     return new EnumDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumDescriptorProto {
+  static conforms(value: unknown): value is EnumDescriptorProto {
     return proto2.util.conforms(EnumDescriptorProto, value);
   }
 
@@ -960,7 +960,7 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
     return new EnumDescriptorProto_EnumReservedRange().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumDescriptorProto_EnumReservedRange {
+  static conforms(value: unknown): value is EnumDescriptorProto_EnumReservedRange {
     return proto2.util.conforms(EnumDescriptorProto_EnumReservedRange, value);
   }
 
@@ -1015,7 +1015,7 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
     return new EnumValueDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumValueDescriptorProto {
+  static conforms(value: unknown): value is EnumValueDescriptorProto {
     return proto2.util.conforms(EnumValueDescriptorProto, value);
   }
 
@@ -1070,7 +1070,7 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
     return new ServiceDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ServiceDescriptorProto {
+  static conforms(value: unknown): value is ServiceDescriptorProto {
     return proto2.util.conforms(ServiceDescriptorProto, value);
   }
 
@@ -1150,7 +1150,7 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
     return new MethodDescriptorProto().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MethodDescriptorProto {
+  static conforms(value: unknown): value is MethodDescriptorProto {
     return proto2.util.conforms(MethodDescriptorProto, value);
   }
 
@@ -1392,7 +1392,7 @@ export class FileOptions extends Message<FileOptions> {
     return new FileOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FileOptions {
+  static conforms(value: unknown): value is FileOptions {
     return proto2.util.conforms(FileOptions, value);
   }
 
@@ -1545,7 +1545,7 @@ export class MessageOptions extends Message<MessageOptions> {
     return new MessageOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MessageOptions {
+  static conforms(value: unknown): value is MessageOptions {
     return proto2.util.conforms(MessageOptions, value);
   }
 
@@ -1699,7 +1699,7 @@ export class FieldOptions extends Message<FieldOptions> {
     return new FieldOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is FieldOptions {
+  static conforms(value: unknown): value is FieldOptions {
     return proto2.util.conforms(FieldOptions, value);
   }
 
@@ -1802,7 +1802,7 @@ export class OneofOptions extends Message<OneofOptions> {
     return new OneofOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneofOptions {
+  static conforms(value: unknown): value is OneofOptions {
     return proto2.util.conforms(OneofOptions, value);
   }
 
@@ -1865,7 +1865,7 @@ export class EnumOptions extends Message<EnumOptions> {
     return new EnumOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumOptions {
+  static conforms(value: unknown): value is EnumOptions {
     return proto2.util.conforms(EnumOptions, value);
   }
 
@@ -1919,7 +1919,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
     return new EnumValueOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumValueOptions {
+  static conforms(value: unknown): value is EnumValueOptions {
     return proto2.util.conforms(EnumValueOptions, value);
   }
 
@@ -1973,7 +1973,7 @@ export class ServiceOptions extends Message<ServiceOptions> {
     return new ServiceOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ServiceOptions {
+  static conforms(value: unknown): value is ServiceOptions {
     return proto2.util.conforms(ServiceOptions, value);
   }
 
@@ -2033,7 +2033,7 @@ export class MethodOptions extends Message<MethodOptions> {
     return new MethodOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is MethodOptions {
+  static conforms(value: unknown): value is MethodOptions {
     return proto2.util.conforms(MethodOptions, value);
   }
 
@@ -2154,7 +2154,7 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
     return new UninterpretedOption().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UninterpretedOption {
+  static conforms(value: unknown): value is UninterpretedOption {
     return proto2.util.conforms(UninterpretedOption, value);
   }
 
@@ -2207,7 +2207,7 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
     return new UninterpretedOption_NamePart().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UninterpretedOption_NamePart {
+  static conforms(value: unknown): value is UninterpretedOption_NamePart {
     return proto2.util.conforms(UninterpretedOption_NamePart, value);
   }
 
@@ -2295,7 +2295,7 @@ export class SourceCodeInfo extends Message<SourceCodeInfo> {
     return new SourceCodeInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SourceCodeInfo {
+  static conforms(value: unknown): value is SourceCodeInfo {
     return proto2.util.conforms(SourceCodeInfo, value);
   }
 
@@ -2438,7 +2438,7 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
     return new SourceCodeInfo_Location().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SourceCodeInfo_Location {
+  static conforms(value: unknown): value is SourceCodeInfo_Location {
     return proto2.util.conforms(SourceCodeInfo_Location, value);
   }
 
@@ -2486,7 +2486,7 @@ export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
     return new GeneratedCodeInfo().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GeneratedCodeInfo {
+  static conforms(value: unknown): value is GeneratedCodeInfo {
     return proto2.util.conforms(GeneratedCodeInfo, value);
   }
 
@@ -2557,7 +2557,7 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
     return new GeneratedCodeInfo_Annotation().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is GeneratedCodeInfo_Annotation {
+  static conforms(value: unknown): value is GeneratedCodeInfo_Annotation {
     return proto2.util.conforms(GeneratedCodeInfo_Annotation, value);
   }
 

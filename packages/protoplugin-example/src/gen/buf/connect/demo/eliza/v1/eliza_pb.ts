@@ -54,7 +54,7 @@ export class SayRequest extends Message<SayRequest> {
     return new SayRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SayRequest {
+  static conforms(value: unknown): value is SayRequest {
     return proto3.util.conforms(SayRequest, value);
   }
 
@@ -97,7 +97,7 @@ export class SayResponse extends Message<SayResponse> {
     return new SayResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SayResponse {
+  static conforms(value: unknown): value is SayResponse {
     return proto3.util.conforms(SayResponse, value);
   }
 
@@ -140,7 +140,7 @@ export class ConverseRequest extends Message<ConverseRequest> {
     return new ConverseRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ConverseRequest {
+  static conforms(value: unknown): value is ConverseRequest {
     return proto3.util.conforms(ConverseRequest, value);
   }
 
@@ -183,7 +183,7 @@ export class ConverseResponse extends Message<ConverseResponse> {
     return new ConverseResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ConverseResponse {
+  static conforms(value: unknown): value is ConverseResponse {
     return proto3.util.conforms(ConverseResponse, value);
   }
 
@@ -226,7 +226,7 @@ export class IntroduceRequest extends Message<IntroduceRequest> {
     return new IntroduceRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is IntroduceRequest {
+  static conforms(value: unknown): value is IntroduceRequest {
     return proto3.util.conforms(IntroduceRequest, value);
   }
 
@@ -269,7 +269,7 @@ export class IntroduceResponse extends Message<IntroduceResponse> {
     return new IntroduceResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is IntroduceResponse {
+  static conforms(value: unknown): value is IntroduceResponse {
     return proto3.util.conforms(IntroduceResponse, value);
   }
 

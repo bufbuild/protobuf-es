@@ -929,7 +929,7 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     return new TestAllTypesProto2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2 {
+  static conforms(value: unknown): value is TestAllTypesProto2 {
     return proto2.util.conforms(TestAllTypesProto2, value);
   }
 
@@ -1010,7 +1010,7 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
     return new TestAllTypesProto2_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2_NestedMessage {
+  static conforms(value: unknown): value is TestAllTypesProto2_NestedMessage {
     return proto2.util.conforms(TestAllTypesProto2_NestedMessage, value);
   }
 
@@ -1059,7 +1059,7 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
     return new TestAllTypesProto2_Data().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2_Data {
+  static conforms(value: unknown): value is TestAllTypesProto2_Data {
     return proto2.util.conforms(TestAllTypesProto2_Data, value);
   }
 
@@ -1096,7 +1096,7 @@ export class TestAllTypesProto2_MessageSetCorrect extends Message<TestAllTypesPr
     return new TestAllTypesProto2_MessageSetCorrect().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrect {
+  static conforms(value: unknown): value is TestAllTypesProto2_MessageSetCorrect {
     return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrect, value);
   }
 
@@ -1137,7 +1137,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
     return new TestAllTypesProto2_MessageSetCorrectExtension1().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension1 {
+  static conforms(value: unknown): value is TestAllTypesProto2_MessageSetCorrectExtension1 {
     return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension1, value);
   }
 
@@ -1178,7 +1178,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
     return new TestAllTypesProto2_MessageSetCorrectExtension2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypesProto2_MessageSetCorrectExtension2 {
+  static conforms(value: unknown): value is TestAllTypesProto2_MessageSetCorrectExtension2 {
     return proto2.util.conforms(TestAllTypesProto2_MessageSetCorrectExtension2, value);
   }
 
@@ -1219,7 +1219,7 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
     return new ForeignMessageProto2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForeignMessageProto2 {
+  static conforms(value: unknown): value is ForeignMessageProto2 {
     return proto2.util.conforms(ForeignMessageProto2, value);
   }
 
@@ -1290,7 +1290,7 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
     return new UnknownToTestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UnknownToTestAllTypes {
+  static conforms(value: unknown): value is UnknownToTestAllTypes {
     return proto2.util.conforms(UnknownToTestAllTypes, value);
   }
 
@@ -1331,7 +1331,7 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
     return new UnknownToTestAllTypes_OptionalGroup().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is UnknownToTestAllTypes_OptionalGroup {
+  static conforms(value: unknown): value is UnknownToTestAllTypes_OptionalGroup {
     return proto2.util.conforms(UnknownToTestAllTypes_OptionalGroup, value);
   }
 
@@ -1366,7 +1366,7 @@ export class NullHypothesisProto2 extends Message<NullHypothesisProto2> {
     return new NullHypothesisProto2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NullHypothesisProto2 {
+  static conforms(value: unknown): value is NullHypothesisProto2 {
     return proto2.util.conforms(NullHypothesisProto2, value);
   }
 
@@ -1401,7 +1401,7 @@ export class EnumOnlyProto2 extends Message<EnumOnlyProto2> {
     return new EnumOnlyProto2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is EnumOnlyProto2 {
+  static conforms(value: unknown): value is EnumOnlyProto2 {
     return proto2.util.conforms(EnumOnlyProto2, value);
   }
 
@@ -1462,7 +1462,7 @@ export class OneStringProto2 extends Message<OneStringProto2> {
     return new OneStringProto2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OneStringProto2 {
+  static conforms(value: unknown): value is OneStringProto2 {
     return proto2.util.conforms(OneStringProto2, value);
   }
 

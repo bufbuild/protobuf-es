@@ -523,7 +523,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     return new TestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes {
+  static conforms(value: unknown): value is TestAllTypes {
     return proto3.util.conforms(TestAllTypes, value);
   }
 
@@ -608,7 +608,7 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
     return new TestAllTypes_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestAllTypes_NestedMessage {
+  static conforms(value: unknown): value is TestAllTypes_NestedMessage {
     return proto3.util.conforms(TestAllTypes_NestedMessage, value);
   }
 
@@ -727,7 +727,7 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
     return new TestPackedTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPackedTypes {
+  static conforms(value: unknown): value is TestPackedTypes {
     return proto3.util.conforms(TestPackedTypes, value);
   }
 
@@ -848,7 +848,7 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
     return new TestUnpackedTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestUnpackedTypes {
+  static conforms(value: unknown): value is TestUnpackedTypes {
     return proto3.util.conforms(TestUnpackedTypes, value);
   }
 
@@ -903,7 +903,7 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     return new NestedTestAllTypes().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedTestAllTypes {
+  static conforms(value: unknown): value is NestedTestAllTypes {
     return proto3.util.conforms(NestedTestAllTypes, value);
   }
 
@@ -947,7 +947,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     return new ForeignMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ForeignMessage {
+  static conforms(value: unknown): value is ForeignMessage {
     return proto3.util.conforms(ForeignMessage, value);
   }
 
@@ -984,7 +984,7 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
     return new TestEmptyMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestEmptyMessage {
+  static conforms(value: unknown): value is TestEmptyMessage {
     return proto3.util.conforms(TestEmptyMessage, value);
   }
 
@@ -1021,7 +1021,7 @@ export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
     return new TestPickleNestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage {
     return proto3.util.conforms(TestPickleNestedMessage, value);
   }
 
@@ -1062,7 +1062,7 @@ export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNes
     return new TestPickleNestedMessage_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage {
     return proto3.util.conforms(TestPickleNestedMessage_NestedMessage, value);
   }
 
@@ -1103,7 +1103,7 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
     return new TestPickleNestedMessage_NestedMessage_NestedNestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
+  static conforms(value: unknown): value is TestPickleNestedMessage_NestedMessage_NestedNestedMessage {
     return proto3.util.conforms(TestPickleNestedMessage_NestedMessage_NestedNestedMessage, value);
   }
 

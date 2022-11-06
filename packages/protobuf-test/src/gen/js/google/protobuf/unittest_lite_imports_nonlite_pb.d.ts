@@ -68,7 +68,7 @@ export declare class TestLiteImportsNonlite extends Message<TestLiteImportsNonli
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLiteImportsNonlite;
 
-  static conforms(value: any): value is TestLiteImportsNonlite;
+  static conforms(value: unknown): value is TestLiteImportsNonlite;
 
   static equals(a: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined, b: TestLiteImportsNonlite | PlainMessage<TestLiteImportsNonlite> | undefined): boolean;
 }

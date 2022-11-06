@@ -45,7 +45,7 @@ export declare class MessageFieldMessage extends Message<MessageFieldMessage> {
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage;
 
-  static conforms(value: any): value is MessageFieldMessage;
+  static conforms(value: unknown): value is MessageFieldMessage;
 
   static equals(a: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined, b: MessageFieldMessage | PlainMessage<MessageFieldMessage> | undefined): boolean;
 }
@@ -71,7 +71,7 @@ export declare class MessageFieldMessage_TestMessage extends Message<MessageFiel
 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
 
-  static conforms(value: any): value is MessageFieldMessage_TestMessage;
+  static conforms(value: unknown): value is MessageFieldMessage_TestMessage;
 
   static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean;
 }

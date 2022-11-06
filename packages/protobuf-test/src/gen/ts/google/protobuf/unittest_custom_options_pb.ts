@@ -131,7 +131,7 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
     return new TestMessageWithCustomOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageWithCustomOptions {
+  static conforms(value: unknown): value is TestMessageWithCustomOptions {
     return proto2.util.conforms(TestMessageWithCustomOptions, value);
   }
 
@@ -189,7 +189,7 @@ export class CustomOptionFooRequest extends Message<CustomOptionFooRequest> {
     return new CustomOptionFooRequest().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionFooRequest {
+  static conforms(value: unknown): value is CustomOptionFooRequest {
     return proto2.util.conforms(CustomOptionFooRequest, value);
   }
 
@@ -224,7 +224,7 @@ export class CustomOptionFooResponse extends Message<CustomOptionFooResponse> {
     return new CustomOptionFooResponse().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionFooResponse {
+  static conforms(value: unknown): value is CustomOptionFooResponse {
     return proto2.util.conforms(CustomOptionFooResponse, value);
   }
 
@@ -259,7 +259,7 @@ export class CustomOptionFooClientMessage extends Message<CustomOptionFooClientM
     return new CustomOptionFooClientMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionFooClientMessage {
+  static conforms(value: unknown): value is CustomOptionFooClientMessage {
     return proto2.util.conforms(CustomOptionFooClientMessage, value);
   }
 
@@ -294,7 +294,7 @@ export class CustomOptionFooServerMessage extends Message<CustomOptionFooServerM
     return new CustomOptionFooServerMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionFooServerMessage {
+  static conforms(value: unknown): value is CustomOptionFooServerMessage {
     return proto2.util.conforms(CustomOptionFooServerMessage, value);
   }
 
@@ -329,7 +329,7 @@ export class DummyMessageContainingEnum extends Message<DummyMessageContainingEn
     return new DummyMessageContainingEnum().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DummyMessageContainingEnum {
+  static conforms(value: unknown): value is DummyMessageContainingEnum {
     return proto2.util.conforms(DummyMessageContainingEnum, value);
   }
 
@@ -384,7 +384,7 @@ export class DummyMessageInvalidAsOptionType extends Message<DummyMessageInvalid
     return new DummyMessageInvalidAsOptionType().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is DummyMessageInvalidAsOptionType {
+  static conforms(value: unknown): value is DummyMessageInvalidAsOptionType {
     return proto2.util.conforms(DummyMessageInvalidAsOptionType, value);
   }
 
@@ -419,7 +419,7 @@ export class CustomOptionMinIntegerValues extends Message<CustomOptionMinInteger
     return new CustomOptionMinIntegerValues().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionMinIntegerValues {
+  static conforms(value: unknown): value is CustomOptionMinIntegerValues {
     return proto2.util.conforms(CustomOptionMinIntegerValues, value);
   }
 
@@ -454,7 +454,7 @@ export class CustomOptionMaxIntegerValues extends Message<CustomOptionMaxInteger
     return new CustomOptionMaxIntegerValues().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionMaxIntegerValues {
+  static conforms(value: unknown): value is CustomOptionMaxIntegerValues {
     return proto2.util.conforms(CustomOptionMaxIntegerValues, value);
   }
 
@@ -489,7 +489,7 @@ export class CustomOptionOtherValues extends Message<CustomOptionOtherValues> {
     return new CustomOptionOtherValues().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is CustomOptionOtherValues {
+  static conforms(value: unknown): value is CustomOptionOtherValues {
     return proto2.util.conforms(CustomOptionOtherValues, value);
   }
 
@@ -524,7 +524,7 @@ export class SettingRealsFromPositiveInts extends Message<SettingRealsFromPositi
     return new SettingRealsFromPositiveInts().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SettingRealsFromPositiveInts {
+  static conforms(value: unknown): value is SettingRealsFromPositiveInts {
     return proto2.util.conforms(SettingRealsFromPositiveInts, value);
   }
 
@@ -559,7 +559,7 @@ export class SettingRealsFromNegativeInts extends Message<SettingRealsFromNegati
     return new SettingRealsFromNegativeInts().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is SettingRealsFromNegativeInts {
+  static conforms(value: unknown): value is SettingRealsFromNegativeInts {
     return proto2.util.conforms(SettingRealsFromNegativeInts, value);
   }
 
@@ -618,7 +618,7 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
     return new ComplexOptionType1().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOptionType1 {
+  static conforms(value: unknown): value is ComplexOptionType1 {
     return proto2.util.conforms(ComplexOptionType1, value);
   }
 
@@ -677,7 +677,7 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
     return new ComplexOptionType2().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOptionType2 {
+  static conforms(value: unknown): value is ComplexOptionType2 {
     return proto2.util.conforms(ComplexOptionType2, value);
   }
 
@@ -718,7 +718,7 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
     return new ComplexOptionType2_ComplexOptionType4().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOptionType2_ComplexOptionType4 {
+  static conforms(value: unknown): value is ComplexOptionType2_ComplexOptionType4 {
     return proto2.util.conforms(ComplexOptionType2_ComplexOptionType4, value);
   }
 
@@ -765,7 +765,7 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
     return new ComplexOptionType3().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOptionType3 {
+  static conforms(value: unknown): value is ComplexOptionType3 {
     return proto2.util.conforms(ComplexOptionType3, value);
   }
 
@@ -806,7 +806,7 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
     return new ComplexOptionType3_ComplexOptionType5().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOptionType3_ComplexOptionType5 {
+  static conforms(value: unknown): value is ComplexOptionType3_ComplexOptionType5 {
     return proto2.util.conforms(ComplexOptionType3_ComplexOptionType5, value);
   }
 
@@ -847,7 +847,7 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
     return new ComplexOpt6().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is ComplexOpt6 {
+  static conforms(value: unknown): value is ComplexOpt6 {
     return proto2.util.conforms(ComplexOpt6, value);
   }
 
@@ -884,7 +884,7 @@ export class VariousComplexOptions extends Message<VariousComplexOptions> {
     return new VariousComplexOptions().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is VariousComplexOptions {
+  static conforms(value: unknown): value is VariousComplexOptions {
     return proto2.util.conforms(VariousComplexOptions, value);
   }
 
@@ -919,7 +919,7 @@ export class AggregateMessageSet extends Message<AggregateMessageSet> {
     return new AggregateMessageSet().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is AggregateMessageSet {
+  static conforms(value: unknown): value is AggregateMessageSet {
     return proto2.util.conforms(AggregateMessageSet, value);
   }
 
@@ -960,7 +960,7 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
     return new AggregateMessageSetElement().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is AggregateMessageSetElement {
+  static conforms(value: unknown): value is AggregateMessageSetElement {
     return proto2.util.conforms(AggregateMessageSetElement, value);
   }
 
@@ -1041,7 +1041,7 @@ export class Aggregate extends Message<Aggregate> {
     return new Aggregate().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is Aggregate {
+  static conforms(value: unknown): value is Aggregate {
     return proto2.util.conforms(Aggregate, value);
   }
 
@@ -1082,7 +1082,7 @@ export class AggregateMessage extends Message<AggregateMessage> {
     return new AggregateMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is AggregateMessage {
+  static conforms(value: unknown): value is AggregateMessage {
     return proto2.util.conforms(AggregateMessage, value);
   }
 
@@ -1119,7 +1119,7 @@ export class NestedOptionType extends Message<NestedOptionType> {
     return new NestedOptionType().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedOptionType {
+  static conforms(value: unknown): value is NestedOptionType {
     return proto2.util.conforms(NestedOptionType, value);
   }
 
@@ -1174,7 +1174,7 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
     return new NestedOptionType_NestedMessage().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NestedOptionType_NestedMessage {
+  static conforms(value: unknown): value is NestedOptionType_NestedMessage {
     return proto2.util.conforms(NestedOptionType_NestedMessage, value);
   }
 
@@ -1218,7 +1218,7 @@ export class OldOptionType extends Message<OldOptionType> {
     return new OldOptionType().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is OldOptionType {
+  static conforms(value: unknown): value is OldOptionType {
     return proto2.util.conforms(OldOptionType, value);
   }
 
@@ -1275,7 +1275,7 @@ export class NewOptionType extends Message<NewOptionType> {
     return new NewOptionType().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is NewOptionType {
+  static conforms(value: unknown): value is NewOptionType {
     return proto2.util.conforms(NewOptionType, value);
   }
 
@@ -1332,7 +1332,7 @@ export class TestMessageWithRequiredEnumOption extends Message<TestMessageWithRe
     return new TestMessageWithRequiredEnumOption().fromJsonString(jsonString, options);
   }
 
-  static conforms(value: any): value is TestMessageWithRequiredEnumOption {
+  static conforms(value: unknown): value is TestMessageWithRequiredEnumOption {
     return proto2.util.conforms(TestMessageWithRequiredEnumOption, value);
   }
 
