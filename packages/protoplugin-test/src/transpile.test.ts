@@ -16,7 +16,11 @@ import { CodeGeneratorRequest, FileDescriptorProto } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 
-export function transpile(
+/**
+ * Creates a plugin with the given function to generate TypeScript,
+ * runs the plugin, and returns a function to retrieve output files.
+ */
+function transpile(
   genTs: (schema: Schema) => void
 ): (name: string) => string[] {
   const req = new CodeGeneratorRequest({
