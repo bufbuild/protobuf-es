@@ -557,7 +557,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BytesValue": {
       f.print(message, ".fieldWrapper = {")
       f.print("  wrapField(value) {")
-      f.print("    return value instanceof ", message, " ? value : new ", message, "({value});")
+      f.print("    return new ", message, "({value});")
       f.print("  },")
       f.print("  unwrapField(value) {")
       f.print("    return value.", localName(ref.value), ";")
