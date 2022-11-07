@@ -67,7 +67,7 @@ export declare class DoubleValue extends Message<DoubleValue> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: number | DoubleValue): DoubleValue,
+    wrapField(value: number): DoubleValue,
     unwrapField(value: DoubleValue): number,
   };
 
@@ -102,7 +102,7 @@ export declare class FloatValue extends Message<FloatValue> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: number | FloatValue): FloatValue,
+    wrapField(value: number): FloatValue,
     unwrapField(value: FloatValue): number,
   };
 
@@ -137,7 +137,7 @@ export declare class Int64Value extends Message<Int64Value> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: bigint | Int64Value): Int64Value,
+    wrapField(value: bigint): Int64Value,
     unwrapField(value: Int64Value): bigint,
   };
 
@@ -172,7 +172,7 @@ export declare class UInt64Value extends Message<UInt64Value> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: bigint | UInt64Value): UInt64Value,
+    wrapField(value: bigint): UInt64Value,
     unwrapField(value: UInt64Value): bigint,
   };
 
@@ -207,7 +207,7 @@ export declare class Int32Value extends Message<Int32Value> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: number | Int32Value): Int32Value,
+    wrapField(value: number): Int32Value,
     unwrapField(value: Int32Value): number,
   };
 
@@ -242,7 +242,7 @@ export declare class UInt32Value extends Message<UInt32Value> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: number | UInt32Value): UInt32Value,
+    wrapField(value: number): UInt32Value,
     unwrapField(value: UInt32Value): number,
   };
 
@@ -277,7 +277,7 @@ export declare class BoolValue extends Message<BoolValue> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: boolean | BoolValue): BoolValue,
+    wrapField(value: boolean): BoolValue,
     unwrapField(value: BoolValue): boolean,
   };
 
@@ -312,7 +312,7 @@ export declare class StringValue extends Message<StringValue> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: string | StringValue): StringValue,
+    wrapField(value: string): StringValue,
     unwrapField(value: StringValue): string,
   };
 
@@ -347,7 +347,7 @@ export declare class BytesValue extends Message<BytesValue> {
   static readonly fields: FieldList;
 
   static readonly fieldWrapper: {
-    wrapField(value: Uint8Array | BytesValue): BytesValue,
+    wrapField(value: Uint8Array): BytesValue,
     unwrapField(value: BytesValue): Uint8Array,
   };
 

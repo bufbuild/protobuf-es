@@ -47,5 +47,14 @@ message WrappersMessage {
     repeated google.protobuf.UInt32Value repeated_uint32_value_field = 27;
     repeated google.protobuf.StringValue repeated_string_value_field = 28;
     repeated google.protobuf.BytesValue repeated_bytes_value_field = 29;
+    map<string, google.protobuf.DoubleValue> map_double_value_field = 31;
+    map<string, google.protobuf.BoolValue> map_bool_value_field = 32;
+    map<string, google.protobuf.FloatValue> map_float_value_field = 33;
+    map<string, google.protobuf.Int64Value> map_int64_value_field = 34;
+    map<string, google.protobuf.UInt64Value> map_uint64_value_field = 35;
+    map<string, google.protobuf.Int32Value> map_int32_value_field = 36;
+    map<string, google.protobuf.UInt32Value> map_uint32_value_field = 37;
+    map<string, google.protobuf.StringValue> map_string_value_field = 38;
+    map<string, google.protobuf.BytesValue> map_bytes_value_field = 39;
 
 }

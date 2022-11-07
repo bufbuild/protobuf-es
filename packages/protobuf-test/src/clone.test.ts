@@ -25,7 +25,7 @@ import {
 import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
 import { testMT } from "./helpers.js";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { BoolValue, protoInt64 } from "@bufbuild/protobuf";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
@@ -131,6 +131,14 @@ describe("clone", function () {
       uint32ValueField: 7,
       stringValueField: "a",
       bytesValueField: new Uint8Array([0xff]),
+      repeatedBoolValueField: [
+        new BoolValue({ value: true }),
+        new BoolValue({ value: false }),
+      ],
+      mapBoolValueField: {
+        foo: new BoolValue({ value: true }),
+        bar: new BoolValue({ value: false }),
+      },
     });
     const b = a.clone();
     expect(b).toStrictEqual(a);
