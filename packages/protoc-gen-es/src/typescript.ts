@@ -581,8 +581,8 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BytesValue": {
       const {typing} = getFieldTyping(ref.value, f);
       f.print("  static readonly fieldWrapper = {")
-      f.print("    wrapField(value: ", typing, " | ", message, "): ", message, " {")
-      f.print("      return value instanceof ", message, " ? value : new ", message, "({value});")
+      f.print("    wrapField(value: ", typing, "): ", message, " {")
+      f.print("      return new ", message, "({value});")
       f.print("    },")
       f.print("    unwrapField(value: ", message, "): ", typing, " {")
       f.print("      return value.", localName(ref.value), ";")

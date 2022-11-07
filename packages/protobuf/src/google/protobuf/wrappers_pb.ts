@@ -79,8 +79,8 @@ export class DoubleValue extends Message<DoubleValue> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: number | DoubleValue): DoubleValue {
-      return value instanceof DoubleValue ? value : new DoubleValue({value});
+    wrapField(value: number): DoubleValue {
+      return new DoubleValue({value});
     },
     unwrapField(value: DoubleValue): number {
       return value.value;
@@ -148,8 +148,8 @@ export class FloatValue extends Message<FloatValue> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: number | FloatValue): FloatValue {
-      return value instanceof FloatValue ? value : new FloatValue({value});
+    wrapField(value: number): FloatValue {
+      return new FloatValue({value});
     },
     unwrapField(value: FloatValue): number {
       return value.value;
@@ -217,8 +217,8 @@ export class Int64Value extends Message<Int64Value> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: bigint | Int64Value): Int64Value {
-      return value instanceof Int64Value ? value : new Int64Value({value});
+    wrapField(value: bigint): Int64Value {
+      return new Int64Value({value});
     },
     unwrapField(value: Int64Value): bigint {
       return value.value;
@@ -286,8 +286,8 @@ export class UInt64Value extends Message<UInt64Value> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: bigint | UInt64Value): UInt64Value {
-      return value instanceof UInt64Value ? value : new UInt64Value({value});
+    wrapField(value: bigint): UInt64Value {
+      return new UInt64Value({value});
     },
     unwrapField(value: UInt64Value): bigint {
       return value.value;
@@ -355,8 +355,8 @@ export class Int32Value extends Message<Int32Value> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: number | Int32Value): Int32Value {
-      return value instanceof Int32Value ? value : new Int32Value({value});
+    wrapField(value: number): Int32Value {
+      return new Int32Value({value});
     },
     unwrapField(value: Int32Value): number {
       return value.value;
@@ -424,8 +424,8 @@ export class UInt32Value extends Message<UInt32Value> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: number | UInt32Value): UInt32Value {
-      return value instanceof UInt32Value ? value : new UInt32Value({value});
+    wrapField(value: number): UInt32Value {
+      return new UInt32Value({value});
     },
     unwrapField(value: UInt32Value): number {
       return value.value;
@@ -493,8 +493,8 @@ export class BoolValue extends Message<BoolValue> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: boolean | BoolValue): BoolValue {
-      return value instanceof BoolValue ? value : new BoolValue({value});
+    wrapField(value: boolean): BoolValue {
+      return new BoolValue({value});
     },
     unwrapField(value: BoolValue): boolean {
       return value.value;
@@ -562,8 +562,8 @@ export class StringValue extends Message<StringValue> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: string | StringValue): StringValue {
-      return value instanceof StringValue ? value : new StringValue({value});
+    wrapField(value: string): StringValue {
+      return new StringValue({value});
     },
     unwrapField(value: StringValue): string {
       return value.value;
@@ -631,8 +631,8 @@ export class BytesValue extends Message<BytesValue> {
   ]);
 
   static readonly fieldWrapper = {
-    wrapField(value: Uint8Array | BytesValue): BytesValue {
-      return value instanceof BytesValue ? value : new BytesValue({value});
+    wrapField(value: Uint8Array): BytesValue {
+      return new BytesValue({value});
     },
     unwrapField(value: BytesValue): Uint8Array {
       return value.value;

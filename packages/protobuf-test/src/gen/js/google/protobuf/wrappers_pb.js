@@ -77,7 +77,7 @@ DoubleValue.prototype.fromJson = function fromJson(json, options) {
 
 DoubleValue.fieldWrapper = {
   wrapField(value) {
-    return value instanceof DoubleValue ? value : new DoubleValue({value});
+    return new DoubleValue({value});
   },
   unwrapField(value) {
     return value.value;
@@ -117,7 +117,7 @@ FloatValue.prototype.fromJson = function fromJson(json, options) {
 
 FloatValue.fieldWrapper = {
   wrapField(value) {
-    return value instanceof FloatValue ? value : new FloatValue({value});
+    return new FloatValue({value});
   },
   unwrapField(value) {
     return value.value;
@@ -157,7 +157,7 @@ Int64Value.prototype.fromJson = function fromJson(json, options) {
 
 Int64Value.fieldWrapper = {
   wrapField(value) {
-    return value instanceof Int64Value ? value : new Int64Value({value});
+    return new Int64Value({value});
   },
   unwrapField(value) {
     return value.value;
@@ -197,7 +197,7 @@ UInt64Value.prototype.fromJson = function fromJson(json, options) {
 
 UInt64Value.fieldWrapper = {
   wrapField(value) {
-    return value instanceof UInt64Value ? value : new UInt64Value({value});
+    return new UInt64Value({value});
   },
   unwrapField(value) {
     return value.value;
@@ -237,7 +237,7 @@ Int32Value.prototype.fromJson = function fromJson(json, options) {
 
 Int32Value.fieldWrapper = {
   wrapField(value) {
-    return value instanceof Int32Value ? value : new Int32Value({value});
+    return new Int32Value({value});
   },
   unwrapField(value) {
     return value.value;
@@ -277,7 +277,7 @@ UInt32Value.prototype.fromJson = function fromJson(json, options) {
 
 UInt32Value.fieldWrapper = {
   wrapField(value) {
-    return value instanceof UInt32Value ? value : new UInt32Value({value});
+    return new UInt32Value({value});
   },
   unwrapField(value) {
     return value.value;
@@ -317,7 +317,7 @@ BoolValue.prototype.fromJson = function fromJson(json, options) {
 
 BoolValue.fieldWrapper = {
   wrapField(value) {
-    return value instanceof BoolValue ? value : new BoolValue({value});
+    return new BoolValue({value});
   },
   unwrapField(value) {
     return value.value;
@@ -357,7 +357,7 @@ StringValue.prototype.fromJson = function fromJson(json, options) {
 
 StringValue.fieldWrapper = {
   wrapField(value) {
-    return value instanceof StringValue ? value : new StringValue({value});
+    return new StringValue({value});
   },
   unwrapField(value) {
     return value.value;
@@ -397,7 +397,7 @@ BytesValue.prototype.fromJson = function fromJson(json, options) {
 
 BytesValue.fieldWrapper = {
   wrapField(value) {
-    return value instanceof BytesValue ? value : new BytesValue({value});
+    return new BytesValue({value});
   },
   unwrapField(value) {
     return value.value;

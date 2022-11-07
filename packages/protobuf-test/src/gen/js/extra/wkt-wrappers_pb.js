@@ -51,6 +51,15 @@ export const WrappersMessage = proto3.makeMessageType(
     { no: 27, name: "repeated_uint32_value_field", kind: "message", T: UInt32Value, repeated: true },
     { no: 28, name: "repeated_string_value_field", kind: "message", T: StringValue, repeated: true },
     { no: 29, name: "repeated_bytes_value_field", kind: "message", T: BytesValue, repeated: true },
+    { no: 31, name: "map_double_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: DoubleValue} },
+    { no: 32, name: "map_bool_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: BoolValue} },
+    { no: 33, name: "map_float_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: FloatValue} },
+    { no: 34, name: "map_int64_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Int64Value} },
+    { no: 35, name: "map_uint64_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: UInt64Value} },
+    { no: 36, name: "map_int32_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Int32Value} },
+    { no: 37, name: "map_uint32_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: UInt32Value} },
+    { no: 38, name: "map_string_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: StringValue} },
+    { no: 39, name: "map_bytes_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: BytesValue} },
   ],
 );
 

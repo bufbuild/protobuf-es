@@ -20,9 +20,8 @@ import type {
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "../json-format.js";
-import type { AnyMessage, Message } from "../message.js";
+import { AnyMessage, Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { unwrapField, wrapField } from "./field-wrapper.js";
 import { FieldInfo, ScalarType } from "../field.js";
 import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
 import { protoInt64 } from "../proto-int64.js";
@@ -243,14 +242,16 @@ export function makeJsonFormatCommon(
                 }
                 continue;
               }
-              const targetMessage: Message =
-                target[localName] === undefined
-                  ? new messageType()
-                  : wrapField(messageType, target[localName]);
-              target[localName] = unwrapField(
-                messageType,
-                targetMessage.fromJson(jsonValue, options)
-              );
+              if (target[localName] instanceof Message) {
+                target[localName].fromJson(jsonValue, options);
+              } else {
+                target[localName] = messageType.fromJson(jsonValue, options);
+                if (messageType.fieldWrapper && !field.oneof) {
+                  target[localName] = messageType.fieldWrapper.unwrapField(
+                    target[localName]
+                  );
+                }
+              }
               break;
             case "enum":
               const enumValue = readEnum(
