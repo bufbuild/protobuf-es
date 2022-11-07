@@ -17,7 +17,6 @@ import {
   FileDescriptorSet,
   CodeGeneratorRequest,
 } from "@bufbuild/protobuf";
-import { createEcmaScriptPlugin, Schema } from "@bufbuild/protoplugin";
 import { readFileSync } from "fs";
 
 /**
@@ -59,26 +58,4 @@ export function getDescriptorSet() {
 function getFileDescriptorSet() {
   const fdsBytes = readFileSync("./descriptorset.bin");
   return FileDescriptorSet.fromBinary(fdsBytes);
-}
-
-export function transpile(
-  genTs: (schema: Schema) => void
-): (name: string) => string[] {
-  const req = new CodeGeneratorRequest({
-    parameter: `target=ts+js+dts`,
-  });
-  const plugin = createEcmaScriptPlugin({
-    name: "test-plugin",
-    version: "v99.0.0",
-    generateTs: genTs,
-  });
-  const res = plugin.run(req);
-  return function linesOf(filename: string): string[] {
-    const file = res.file.find((f) => f.name === filename);
-    if (!file) {
-      throw new Error(`did not find file ${filename}`);
-    }
-    const content = file.content ?? "";
-    return content.trim().split("\n");
-  };
 }
