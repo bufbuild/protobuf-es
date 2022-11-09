@@ -29,11 +29,11 @@ const hamster: Species = 3;
 
 As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-Web](https://github.com/bufbuild/connect-web), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
-### Why `BigInt` for 64-bit integers?
+### Why use `BigInt` to represent 64-bit integers?
 
 TODO
 
-### Why classes instead of interfaces?
+### Why generate classes instead of interfaces?
 
 TODO
 
