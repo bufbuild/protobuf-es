@@ -170,7 +170,7 @@ export declare class Any extends Message<Any> {
 
   unpackTo(target: Message): boolean;
 
-  is(type: MessageType): boolean;
+  is(type: MessageType | string): boolean;
 
   private typeNameToUrl(name: string): string;
 

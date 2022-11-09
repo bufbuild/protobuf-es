@@ -188,7 +188,17 @@ Any.prototype.unpackTo = function unpackTo(target) {
 };
 
 Any.prototype.is = function is(type) {
-  return this.typeUrl === this.typeNameToUrl(type.typeName);
+  if (this.typeUrl === '') {
+    return false;
+  }
+  const name = this.typeUrlToName(this.typeUrl);
+  let typeName = '';
+  if (typeof type === 'string') {
+      typeName = type;
+  } else {
+      typeName = type.typeName;
+  }
+  return name === typeName;
 };
 
 Any.prototype.typeNameToUrl = function typeNameToUrl(name) {
