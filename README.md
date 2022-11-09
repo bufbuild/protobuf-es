@@ -77,6 +77,10 @@ The minimum version of TypeScript supported by Protobuf-ES is **4.1.2**.
 - [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
   Helps to create your own code generator plugin ([source](packages/protoplugin)).
 
+### FAQ
+
+For a list of frequently asked questions, see our [FAQ documentation](docs/faq.md).
+
 
 ### Copyright
 
