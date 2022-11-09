@@ -69,7 +69,9 @@ export interface GeneratedFile {
   print(...printables: Printable[]): void;
 
   /**
-   * Add a line of code to the file with tagged template literal and an optional array of Printables. See print(Printable[]) for behavior when printing Printable items.
+   * Add a line of code to the file with tagged template literal and
+   * an optional array of Printables.
+   * See print(Printable[]) for behavior when printing Printable items.
    */
   print(fragments: TemplateStringsArray, ...printables: Printable[]): void;
 
