@@ -36,8 +36,8 @@
 // @generated from file google/protobuf/unittest_import_lite.proto (package protobuf_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto2} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnumLite

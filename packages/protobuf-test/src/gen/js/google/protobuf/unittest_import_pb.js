@@ -43,7 +43,7 @@
 // In test_util.h we do
 // "using namespace unittest_import = protobuf_unittest_import".
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum

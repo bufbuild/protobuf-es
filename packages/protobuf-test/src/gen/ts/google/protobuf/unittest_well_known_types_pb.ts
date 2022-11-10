@@ -2,9 +2,9 @@
 // @generated from file google/protobuf/unittest_well_known_types.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, Message, proto3, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value} from "@bufbuild/protobuf";
-import {Type} from "./type_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, Message, proto3, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf";
+import { Type } from "./type_pb.js";
 
 /**
  * Test that we can include all well-known types.

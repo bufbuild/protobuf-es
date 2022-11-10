@@ -16,7 +16,7 @@
 // @generated from file extra/msg-scalar.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.ScalarValuesMessage

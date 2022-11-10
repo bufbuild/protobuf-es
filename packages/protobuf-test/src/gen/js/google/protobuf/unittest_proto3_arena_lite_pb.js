@@ -32,9 +32,9 @@
 // @generated from file google/protobuf/unittest_proto3_arena_lite.proto (package proto3_arena_lite_unittest, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
-import {ImportMessage} from "./unittest_import_pb.js";
-import {PublicImportMessage} from "./unittest_import_public_pb.js";
+import { proto3 } from "@bufbuild/protobuf";
+import { ImportMessage } from "./unittest_import_pb.js";
+import { PublicImportMessage } from "./unittest_import_public_pb.js";
 
 /**
  * @generated from enum proto3_arena_lite_unittest.ForeignEnum

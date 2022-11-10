@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import {proto2, protoInt64} from "@bufbuild/protobuf";
+import { proto2, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto2Enum
