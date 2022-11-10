@@ -4,7 +4,14 @@ Protobuf-ES
 A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
-Protocol Buffers are lorem ipsum dolor sit amet.
+The main [Overview](https://developers.google.com/protocol-buffers/docs/overview) page goes into great detail about how they are used, why they are used, and what problems they solve.  The official description of Protocol Buffers states that they are: 
+
+> a language-neutral, platform-neutral extensible mechanism for serializing structured data.
+
+But, in a nutshell, why should you use Protocol Buffers in your JavaScript or TypeScript application?  What benefits does this library provide over simple JSON?
+
+With **Protobuf-ES**
+
 
 For example, the following definition:
 
