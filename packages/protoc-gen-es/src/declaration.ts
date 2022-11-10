@@ -159,7 +159,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print();
       f.print("  unpackTo(target: ", Message, "): boolean;");
       f.print();
-      f.print("  is(type: ", MessageType, "): boolean;");
+      f.print("  is(type: ", MessageType, " | string): boolean;");
       f.print();
       f.print("  private typeNameToUrl(name: string): string;");
       f.print();

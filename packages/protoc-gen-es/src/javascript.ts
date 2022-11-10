@@ -227,7 +227,17 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("};");
       f.print();
       f.print(message, ".prototype.is = function is(type) {")
-      f.print("  return this.", localName(ref.typeUrl), " === this.typeNameToUrl(type.typeName);");
+      f.print("  if (this.typeUrl === '') {");
+      f.print("    return false;");
+      f.print("  }");
+      f.print("  const name = this.typeUrlToName(this.", localName(ref.typeUrl), ");");
+      f.print("  let typeName = '';");
+      f.print("  if (typeof type === 'string') {");
+      f.print("      typeName = type;");
+      f.print("  } else {");
+      f.print("      typeName = type.typeName;");
+      f.print("  }");
+      f.print("  return name === typeName;");
       f.print("};");
       f.print();
       f.print(message, ".prototype.typeNameToUrl = function typeNameToUrl(name) {")
