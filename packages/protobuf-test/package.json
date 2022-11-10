@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "0.2.1",
-    "long": "^5.2.0",
+    "long": "~5.0.1",
     "ts4_1_2": "npm:typescript@4.1.2",
     "ts4_2_4": "npm:typescript@4.2.4",
     "ts4_3_5": "npm:typescript@4.3.5",
