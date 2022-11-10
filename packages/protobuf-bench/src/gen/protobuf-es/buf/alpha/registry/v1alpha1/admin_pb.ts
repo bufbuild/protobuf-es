@@ -16,12 +16,12 @@
 // @generated from file buf/alpha/registry/v1alpha1/admin.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
-import {User} from "./user_pb.js";
-import {Organization} from "./organization_pb.js";
-import {Repository} from "./repository_pb.js";
-import {Plugin, Template} from "./plugin_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
+import { User } from "./user_pb.js";
+import { Organization } from "./organization_pb.js";
+import { Repository } from "./repository_pb.js";
+import { Plugin, Template } from "./plugin_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.ForceDeleteUserRequest

@@ -190,7 +190,7 @@ function elToContent(el: El[], importerPath: string): string {
       const p = names.map(({ name, alias }) =>
         alias == undefined ? name : `${name} as ${alias}`
       );
-      const what = `{${p.join(", ")}}`;
+      const what = `{ ${p.join(", ")} }`;
       if (typeOnly) {
         c.push(`import type ${what} from ${literalString(from)};\n`);
       } else {

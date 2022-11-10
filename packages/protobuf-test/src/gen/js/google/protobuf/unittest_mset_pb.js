@@ -39,8 +39,8 @@
 // @generated from file google/protobuf/unittest_mset.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
-import {TestMessageSet} from "./unittest_mset_wire_format_pb.js";
+import { proto2 } from "@bufbuild/protobuf";
+import { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetContainer

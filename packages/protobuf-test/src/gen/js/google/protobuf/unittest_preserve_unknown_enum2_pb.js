@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/unittest_preserve_unknown_enum2.proto (package proto2_preserve_unknown_enum_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum proto2_preserve_unknown_enum_unittest.MyEnum

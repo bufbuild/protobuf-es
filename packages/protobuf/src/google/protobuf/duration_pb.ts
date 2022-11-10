@@ -16,13 +16,13 @@
 // @generated from file google/protobuf/duration.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {PartialMessage, PlainMessage} from "../../message.js";
-import {Message} from "../../message.js";
-import {protoInt64} from "../../proto-int64.js";
-import {proto3} from "../../proto3.js";
-import type {JsonReadOptions, JsonValue, JsonWriteOptions} from "../../json-format.js";
-import type {FieldList} from "../../field-list.js";
-import type {BinaryReadOptions} from "../../binary-format.js";
+import type { PartialMessage, PlainMessage } from "../../message.js";
+import { Message } from "../../message.js";
+import { protoInt64 } from "../../proto-int64.js";
+import { proto3 } from "../../proto3.js";
+import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
+import type { FieldList } from "../../field-list.js";
+import type { BinaryReadOptions } from "../../binary-format.js";
 
 /**
  * A Duration represents a signed, fixed-length span of time represented

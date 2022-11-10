@@ -16,16 +16,16 @@
 // @generated from file buf/alpha/audit/v1alpha1/envelope.proto (package buf.alpha.audit.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, protoInt64, Timestamp} from "@bufbuild/protobuf";
-import {BufAlphaRegistryV1Alpha1OrganizationRole, BufAlphaRegistryV1Alpha1PluginRole, BufAlphaRegistryV1Alpha1RepositoryRole, BufAlphaRegistryV1Alpha1ServerRole, BufAlphaRegistryV1Alpha1TemplateRole} from "./role_pb.js";
-import {BufAlphaRegistryV1Alpha1PluginConfig, BufAlphaRegistryV1Alpha1PluginVersionMapping, BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary, BufAlphaRegistryV1Alpha1PluginVisibility} from "./plugin_pb.js";
-import {BufAlphaRegistryV1Alpha1RepositoryBranch, BufAlphaRegistryV1Alpha1RepositoryCommit, BufAlphaRegistryV1Alpha1RepositoryTag, BufAlphaRegistryV1Alpha1RepositoryTrack, BufAlphaRegistryV1Alpha1Visibility} from "./repository_pb.js";
-import {ModulePin, ModuleReference} from "../../module/v1alpha1/module_pb.js";
-import {BufAlphaRegistryV1Alpha1LocalModuleReference, BufAlphaRegistryV1Alpha1LocalModuleResolveResult} from "./module_pb.js";
-import {BufAlphaRegistryV1Alpha1SearchFilter} from "./search_pb.js";
-import {BufAlphaRegistryV1Alpha1UserState} from "./user_pb.js";
-import {ErrorCode} from "../../rpc/v1alpha1/error_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { BufAlphaRegistryV1Alpha1OrganizationRole, BufAlphaRegistryV1Alpha1PluginRole, BufAlphaRegistryV1Alpha1RepositoryRole, BufAlphaRegistryV1Alpha1ServerRole, BufAlphaRegistryV1Alpha1TemplateRole } from "./role_pb.js";
+import { BufAlphaRegistryV1Alpha1PluginConfig, BufAlphaRegistryV1Alpha1PluginVersionMapping, BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary, BufAlphaRegistryV1Alpha1PluginVisibility } from "./plugin_pb.js";
+import { BufAlphaRegistryV1Alpha1RepositoryBranch, BufAlphaRegistryV1Alpha1RepositoryCommit, BufAlphaRegistryV1Alpha1RepositoryTag, BufAlphaRegistryV1Alpha1RepositoryTrack, BufAlphaRegistryV1Alpha1Visibility } from "./repository_pb.js";
+import { ModulePin, ModuleReference } from "../../module/v1alpha1/module_pb.js";
+import { BufAlphaRegistryV1Alpha1LocalModuleReference, BufAlphaRegistryV1Alpha1LocalModuleResolveResult } from "./module_pb.js";
+import { BufAlphaRegistryV1Alpha1SearchFilter } from "./search_pb.js";
+import { BufAlphaRegistryV1Alpha1UserState } from "./user_pb.js";
+import { ErrorCode } from "../../rpc/v1alpha1/error_pb.js";
 
 /**
  * @generated from enum buf.alpha.audit.v1alpha1.Action

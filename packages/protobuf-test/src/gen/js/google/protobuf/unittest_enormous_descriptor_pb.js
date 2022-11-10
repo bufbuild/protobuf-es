@@ -40,7 +40,7 @@
 // @generated from file google/protobuf/unittest_enormous_descriptor.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.TestEnormousDescriptor
