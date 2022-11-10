@@ -16,9 +16,9 @@
 // @generated from file buf/alpha/registry/v1alpha1/generate.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {CodeGeneratorResponse, Message, proto3} from "@bufbuild/protobuf";
-import {Image} from "../../image/v1/image_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { CodeGeneratorResponse, Message, proto3 } from "@bufbuild/protobuf";
+import { Image } from "../../image/v1/image_pb.js";
 
 /**
  * File defines a file with a path and some content.

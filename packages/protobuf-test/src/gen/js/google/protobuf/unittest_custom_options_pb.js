@@ -41,7 +41,7 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import {Any, FileOptions, proto2} from "@bufbuild/protobuf";
+import { Any, FileOptions, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.MethodOpt1

@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/unittest_proto3_optional.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional

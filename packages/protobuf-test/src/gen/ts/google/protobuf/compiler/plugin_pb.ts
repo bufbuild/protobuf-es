@@ -48,9 +48,9 @@
 // @generated from file google/protobuf/compiler/plugin.proto (package google.protobuf.compiler, syntax proto2)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto2} from "@bufbuild/protobuf";
-import {FileDescriptorProto, GeneratedCodeInfo} from "../descriptor_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
+import { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
 
 /**
  * The version number of protocol compiler.

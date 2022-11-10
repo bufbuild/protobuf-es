@@ -16,12 +16,12 @@
 // @generated from file buf/alpha/registry/v1alpha1/reference.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
-import {RepositoryBranch} from "./repository_branch_pb.js";
-import {RepositoryTag} from "./repository_tag_pb.js";
-import {RepositoryCommit} from "./repository_commit_pb.js";
-import {RepositoryTrack} from "./repository_track_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
+import { RepositoryBranch } from "./repository_branch_pb.js";
+import { RepositoryTag } from "./repository_tag_pb.js";
+import { RepositoryCommit } from "./repository_commit_pb.js";
+import { RepositoryTrack } from "./repository_track_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.Reference

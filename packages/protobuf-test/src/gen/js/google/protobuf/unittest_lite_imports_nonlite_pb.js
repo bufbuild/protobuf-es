@@ -36,8 +36,8 @@
 // @generated from file google/protobuf/unittest_lite_imports_nonlite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
-import {TestAllTypes, TestRequired} from "./unittest_pb.js";
+import { proto2 } from "@bufbuild/protobuf";
+import { TestAllTypes, TestRequired } from "./unittest_pb.js";
 
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite

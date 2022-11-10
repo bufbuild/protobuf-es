@@ -17,8 +17,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type {JsonValue, Message} from "@bufbuild/protobuf";
-import {SayRequest, SayResponse} from "./eliza_pb.js";
+import type { JsonValue, Message } from "@bufbuild/protobuf";
+import { SayRequest, SayResponse } from "./eliza_pb.js";
 
 /**
  * ElizaService provides a way to talk to the ELIZA, which is a port of

@@ -36,9 +36,9 @@
 // @generated from file google/protobuf/unittest_lite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2, protoInt64} from "@bufbuild/protobuf";
-import {ImportEnumLite, ImportMessageLite} from "./unittest_import_lite_pb.js";
-import {PublicImportMessageLite} from "./unittest_import_public_lite_pb.js";
+import { proto2, protoInt64 } from "@bufbuild/protobuf";
+import { ImportEnumLite, ImportMessageLite } from "./unittest_import_lite_pb.js";
+import { PublicImportMessageLite } from "./unittest_import_public_lite_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.ForeignEnumLite

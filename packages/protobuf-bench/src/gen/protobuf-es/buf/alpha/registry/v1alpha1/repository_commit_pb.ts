@@ -16,9 +16,9 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_commit.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, protoInt64, Timestamp} from "@bufbuild/protobuf";
-import {RepositoryTag} from "./repository_tag_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { RepositoryTag } from "./repository_tag_pb.js";
 
 /**
  * @generated from message buf.alpha.registry.v1alpha1.RepositoryCommit

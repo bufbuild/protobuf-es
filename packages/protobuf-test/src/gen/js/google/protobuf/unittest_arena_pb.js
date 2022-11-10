@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/unittest_arena.proto (package proto2_arena_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message proto2_arena_unittest.NestedMessage

@@ -16,12 +16,12 @@
 // @generated from file google/protobuf/source_context.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {PartialMessage, PlainMessage} from "../../message.js";
-import {Message} from "../../message.js";
-import {proto3} from "../../proto3.js";
-import type {FieldList} from "../../field-list.js";
-import type {BinaryReadOptions} from "../../binary-format.js";
-import type {JsonReadOptions, JsonValue} from "../../json-format.js";
+import type { PartialMessage, PlainMessage } from "../../message.js";
+import { Message } from "../../message.js";
+import { proto3 } from "../../proto3.js";
+import type { FieldList } from "../../field-list.js";
+import type { BinaryReadOptions } from "../../binary-format.js";
+import type { JsonReadOptions, JsonValue } from "../../json-format.js";
 
 /**
  * `SourceContext` represents information about the source of a

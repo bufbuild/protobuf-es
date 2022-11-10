@@ -38,7 +38,7 @@
 // @generated from file google/protobuf/unittest_mset_wire_format.proto (package proto2_wireformat_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * A message with message_set_wire_format.

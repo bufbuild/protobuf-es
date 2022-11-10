@@ -44,9 +44,9 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import {proto2, protoInt64} from "@bufbuild/protobuf";
-import {ImportEnum, ImportMessage} from "./unittest_import_pb.js";
-import {PublicImportMessage} from "./unittest_import_public_pb.js";
+import { proto2, protoInt64 } from "@bufbuild/protobuf";
+import { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
+import { PublicImportMessage } from "./unittest_import_public_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.ForeignEnum

@@ -1,5 +1,5 @@
-import {buildSync} from "esbuild";
-import {brotliCompressSync} from "zlib";
+import { buildSync } from "esbuild";
+import { brotliCompressSync } from "zlib";
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
 const googleProtobuf = gather("src/entry-google-protobuf.js");
@@ -20,38 +20,37 @@ server would usually do.
 | protobuf-javascript | ${googleProtobuf.size}  | ${googleProtobuf.minified} | ${googleProtobuf.compressed} |
 `);
 
-
 function gather(entryPoint) {
-    const bundle = build(entryPoint, false, "esm");
-    const bundleMinified = build(entryPoint, true, "esm");
-    const compressed = compress(bundleMinified);
-    return {
-        entryPoint,
-        size: formatSize(bundle.byteLength),
-        minified: formatSize(bundleMinified.byteLength),
-        compressed: formatSize(compressed.byteLength),
-    };
+  const bundle = build(entryPoint, false, "esm");
+  const bundleMinified = build(entryPoint, true, "esm");
+  const compressed = compress(bundleMinified);
+  return {
+    entryPoint,
+    size: formatSize(bundle.byteLength),
+    minified: formatSize(bundleMinified.byteLength),
+    compressed: formatSize(compressed.byteLength),
+  };
 }
 
 function build(entryPoint, minify, format) {
-    const result = buildSync({
-        entryPoints: [entryPoint],
-        bundle: true,
-        format: format,
-        treeShaking: true,
-        minify: minify,
-        write: false,
-    });
-    if (result.outputFiles.length !== 1) {
-        throw new Error();
-    }
-    return result.outputFiles[0].contents;
+  const result = buildSync({
+    entryPoints: [entryPoint],
+    bundle: true,
+    format: format,
+    treeShaking: true,
+    minify: minify,
+    write: false,
+  });
+  if (result.outputFiles.length !== 1) {
+    throw new Error();
+  }
+  return result.outputFiles[0].contents;
 }
 
 function compress(buf) {
-    return brotliCompressSync(buf);
+  return brotliCompressSync(buf);
 }
 
 function formatSize(bytes) {
-    return new Intl.NumberFormat().format(bytes) + " b";
+  return new Intl.NumberFormat().format(bytes) + " b";
 }

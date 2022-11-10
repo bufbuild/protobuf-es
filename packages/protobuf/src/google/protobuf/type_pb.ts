@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "../../proto3.js";
-import type {PartialMessage, PlainMessage} from "../../message.js";
-import {Message} from "../../message.js";
-import {SourceContext} from "./source_context_pb.js";
-import type {FieldList} from "../../field-list.js";
-import type {BinaryReadOptions} from "../../binary-format.js";
-import type {JsonReadOptions, JsonValue} from "../../json-format.js";
-import {Any} from "./any_pb.js";
+import { proto3 } from "../../proto3.js";
+import type { PartialMessage, PlainMessage } from "../../message.js";
+import { Message } from "../../message.js";
+import { SourceContext } from "./source_context_pb.js";
+import type { FieldList } from "../../field-list.js";
+import type { BinaryReadOptions } from "../../binary-format.js";
+import type { JsonReadOptions, JsonValue } from "../../json-format.js";
+import { Any } from "./any_pb.js";
 
 /**
  * The syntax in which a protocol buffer element is defined.

@@ -321,7 +321,7 @@ Some of the well-known types provide additional methods for convenience:
 ### Timestamp
 
 ````typescript
-import {Timestamp} from "@bufbuild/protobuf";
+import { Timestamp } from "@bufbuild/protobuf";
 
 // Create an instance from a built-in Date object
 let ts = Timestamp.fromDate(new Date(1938, 0, 10));
@@ -336,8 +336,8 @@ ts.toDate();
 ### Any
 
 ```typescript
-import {Any} from "@bufbuild/protobuf";
-import {Timestamp} from "@bufbuild/protobuf";
+import { Any } from "@bufbuild/protobuf";
+import { Timestamp } from "@bufbuild/protobuf";
 
 // Pack a message:
 let any = Any.pack(message);
@@ -427,7 +427,7 @@ In case you simply want to set a field value, for example from an HTML form inpu
 use the provided conversion utility [`protoInt64`][src-proto-int64]:
 
 ```typescript
-import {protoInt64} from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf";
 
 let input: string | number | bigint = "123";
 

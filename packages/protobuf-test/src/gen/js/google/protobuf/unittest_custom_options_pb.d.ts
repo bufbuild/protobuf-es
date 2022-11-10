@@ -41,8 +41,8 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import type {Any, BinaryReadOptions, FieldList, FileOptions, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto2} from "@bufbuild/protobuf";
+import type { Any, BinaryReadOptions, FieldList, FileOptions, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.MethodOpt1

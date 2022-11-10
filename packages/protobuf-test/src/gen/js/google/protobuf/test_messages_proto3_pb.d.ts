@@ -39,8 +39,8 @@
 // @generated from file google/protobuf/test_messages_proto3.proto (package protobuf_test_messages.proto3, syntax proto3)
 /* eslint-disable */
 
-import type {Any, BinaryReadOptions, BoolValue, BytesValue, DoubleValue, Duration, FieldList, FieldMask, FloatValue, Int32Value, Int64Value, JsonReadOptions, JsonValue, ListValue, NullValue, PartialMessage, PlainMessage, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
+import type { Any, BinaryReadOptions, BoolValue, BytesValue, DoubleValue, Duration, FieldList, FieldMask, FloatValue, Int32Value, Int64Value, JsonReadOptions, JsonValue, ListValue, NullValue, PartialMessage, PlainMessage, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum
