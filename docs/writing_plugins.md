@@ -199,9 +199,9 @@ For example:
 
 ```ts
 const name = "UserService";
-f.print`export class ${name}Client {     
-    console.log('Hello world');
-}`;
+f.print`export class ${name}Client {`;   
+f.print`    console.log('Hello world');`;
+f.print`}`;
 ```
 
 The above will generate:
