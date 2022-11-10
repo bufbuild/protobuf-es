@@ -4,6 +4,8 @@ Protobuf-ES
 A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
+Protocol Buffers are lorem ipsum dolor sit amet.
+
 For example, the following definition:
 
 ```protobuf
@@ -30,6 +32,14 @@ pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
+
+### Installation
+
+TODO
+
+### Getting Started
+
+TODO
 
 
 ### How does this compare to protoc's JavaScript generator?
