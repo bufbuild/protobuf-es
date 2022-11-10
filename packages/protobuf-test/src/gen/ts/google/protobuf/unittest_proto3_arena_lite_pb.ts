@@ -32,10 +32,10 @@
 // @generated from file google/protobuf/unittest_proto3_arena_lite.proto (package proto3_arena_lite_unittest, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, protoInt64} from "@bufbuild/protobuf";
-import {ImportMessage} from "./unittest_import_pb.js";
-import {PublicImportMessage} from "./unittest_import_public_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { ImportMessage } from "./unittest_import_pb.js";
+import { PublicImportMessage } from "./unittest_import_public_pb.js";
 
 /**
  * @generated from enum proto3_arena_lite_unittest.ForeignEnum

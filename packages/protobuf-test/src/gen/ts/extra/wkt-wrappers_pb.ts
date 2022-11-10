@@ -16,8 +16,8 @@
 // @generated from file extra/wkt-wrappers.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, Message, proto3, StringValue, UInt32Value, UInt64Value} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, Message, proto3, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.WrappersMessage

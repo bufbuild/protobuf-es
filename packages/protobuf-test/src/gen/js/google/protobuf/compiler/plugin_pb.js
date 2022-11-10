@@ -48,8 +48,8 @@
 // @generated from file google/protobuf/compiler/plugin.proto (package google.protobuf.compiler, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
-import {FileDescriptorProto, GeneratedCodeInfo} from "../descriptor_pb.js";
+import { proto2 } from "@bufbuild/protobuf";
+import { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
 
 /**
  * The version number of protocol compiler.
