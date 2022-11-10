@@ -227,8 +227,18 @@ export class Any extends Message<Any> {
     return true;
   }
 
-  is(type: MessageType): boolean {
-    return this.typeUrl === this.typeNameToUrl(type.typeName);
+  is(type: MessageType | string): boolean {
+    if (this.typeUrl === '') {
+      return false;
+    }
+    const name = this.typeUrlToName(this.typeUrl);
+    let typeName = '';
+    if (typeof type === 'string') {
+        typeName = type;
+    } else {
+        typeName = type.typeName;
+    }
+    return name === typeName;
   }
 
   private typeNameToUrl(name: string): string {
