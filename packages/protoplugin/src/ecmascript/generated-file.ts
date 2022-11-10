@@ -66,7 +66,14 @@ export interface GeneratedFile {
    * - ImportSymbol: Adds an import statement and prints the name of the symbol.
    * - DescMessage or DescEnum: Imports the type if necessary, and prints the name.
    */
-  print(...any: Printable[]): void;
+  print(...printables: Printable[]): void;
+
+  /**
+   * Add a line of code to the file with tagged template literal and
+   * an optional array of Printables.
+   * See print(Printable[]) for behavior when printing Printable items.
+   */
+  print(fragments: TemplateStringsArray, ...printables: Printable[]): void;
 
   /**
    * Reserves an identifier in this file.
@@ -122,8 +129,30 @@ export function createGeneratedFile(
         preambleSettings.tsNocheck
       );
     },
-    print(...any) {
-      printableToEl(any, el, createTypeImport, runtimeImports);
+    print(
+      printableOrFragments?: Printable | TemplateStringsArray,
+      ...rest: Printable[]
+    ) {
+      let printables: Printable[];
+
+      if (
+        printableOrFragments != null &&
+        Object.prototype.hasOwnProperty.call(printableOrFragments, "raw")
+      ) {
+        // If called with a tagged template literal
+        printables = buildPrintablesFromFragments(
+          printableOrFragments as TemplateStringsArray,
+          rest
+        );
+      } else {
+        // If called with just an array of Printables
+        printables =
+          printableOrFragments != null
+            ? [printableOrFragments as Printable, ...rest]
+            : rest;
+      }
+
+      printableToEl(printables, el, createTypeImport, runtimeImports);
       el.push("\n");
     },
     export(name) {
@@ -228,6 +257,21 @@ function printableToEl(
       }
     }
   }
+}
+
+function buildPrintablesFromFragments(
+  fragments: TemplateStringsArray,
+  values: Printable[]
+): Printable[] {
+  const printables: Printable[] = [];
+  fragments.forEach((fragment, i) => {
+    printables.push(fragment);
+    if (fragments.length - 1 !== i) {
+      printables.push(values[i]);
+    }
+  });
+
+  return printables;
 }
 
 type MakeImportStatementFn = (
