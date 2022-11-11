@@ -19,45 +19,19 @@ TODO - Describe what you could do with this library in a web application.
 
 ## Features
 
-Protobuf-ES is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  Some features that set it apart from the others:
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  Some features that set it apart from the others:
 
-- It uses plain properties for fields, where protoc uses getter and setter methods.
-- It implements the canonical JSON format
-- It generates [much smaller bundles](packages/protobuf-bench)
-- It relies on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
-- It implements all proto3 features, including the canonical JSON format.  It also implements all proto2 features, except for extensions and the text format.  
-- The implementation is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
+- Descriptor and reflection support
+- ECMAScript module support
+- First-class TypeScript support
+- Generation of idiomatic JavaScript and TypeScript code.
+- Generation of [much smaller bundles](packages/protobuf-bench)
+- Implementation of all proto3 features, including the canonical JSON format.
+- Implementation of all proto2 features, except for extensions and the text format.  
+- Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+- Compatibility is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
 
-For example, the following definition:
-
-```protobuf
-message Person {
-  string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
-  string email = 3;
-}
-```
-
-Is compiled to an ECMAScript class that can be used like this:
-
-```typescript
-let pete = new Person({
-  name: "pete",
-  id: 123
-});
-
-let bytes = pete.toBinary();
-pete = Person.fromBinary(bytes);
-pete = Person.fromJsonString('{"name": "pete", "id": 123}');
-```
-
-
-
-To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
-the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
-and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
-
-TODO - Move this somewhere where it flows better
+For an overall comparison with other tools in the Protobuf space:
 
 | Feature / Generator                                                                                                                       | [protobuf.js](https://github.com/protobufjs/protobuf.js) | [ts-proto](https://github.com/stephenh/ts-proto) | [protobuf-ts](https://github.com/timostamm/protobuf-ts) | [protoc-gen-ts](https://github.com/thesayyn/protoc-gen-ts) | [Protobuf-ES](https://github.com/bufbuild/protobuf-es) |
 |-------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------|---------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
@@ -67,6 +41,69 @@ TODO - Move this somewhere where it flows better
 | Actively maintained                                                                                                                                | ❌                                                       | ✅                                               | ✅                                                      | ✅                                                         |                                              ✅ |
 | Vanilla JavaScript support                                                                                                                | ✅                                                       | ❌                                               | ✅                                                      | ❌                                                         |                                                     ✅ |
 | Fast code generation                                                                                                                      | ✅                                                       | ✅                                               | ❌                                                      | ❌                                                         |                                                     ✅ |
+
+Perhaps the strongest argument for **Protobuf-ES** is its generation of idiomatic JavaScript and TypeScript code.  It adopts the best features from the community generators. This means no more clunky getters and setters. You can now use things like the spread operator and make use of the same JavaScript semantics you've grown used to.
+
+For example, given a Protobuf file such as:
+
+```protobuf
+syntax="proto3";
+package docs;
+
+message Example {
+  string foo = 1;
+  bool bar = 2;
+  Example baz = 3;
+  repeated string names = 4;
+  map<string, string> statuses = 5;
+}
+```
+
+TODO - Make this example more realistic  and ironed out with the fromBinary and fromJson stuff below
+
+you can use direct property access:
+
+```typescript
+msg.foo = "Hello";
+msg.bar = true;
+msg.baz.foo = "World";
+
+let bytes = msg.toBinary();
+example = Example.fromBinary(bytes);
+example = Example.fromJsonString('{"foo": "pete", "bar": true}');
+```
+
+and you won't get confusing methods like `getNamesList`, `setNamesList`, `getStatusMap`, and `clearStatusMap`.  You won't have to access nested messages by doing things like `msg.getBaz().getNamesList()`.  You will work with the same familiar syntax:
+
+```typescript
+msg.names = [];
+
+const names = foo.names;
+
+msg.statuses = {
+   "bar": "created"
+};
+```
+
+and you can initialize your objects conveniently using the `new` operator or passing an initializer object to constructors:
+
+```typescript
+// Using new
+const message = new Example();
+
+// Using an object in the constructor
+new Example({
+  foo: "Hello",
+  bar: true,
+  baz: {  // you can simply pass an initializer object for this message field
+      foo: "world",
+  },
+});
+```
+
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
+the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
+and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
 ## Installation
 
