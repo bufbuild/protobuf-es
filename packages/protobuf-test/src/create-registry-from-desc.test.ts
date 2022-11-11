@@ -25,7 +25,7 @@ import { assertMessageTypeEquals } from "./helpers.js";
 import {
   ExampleRequest,
   ExampleResponse,
-} from "./gen/ts/extra/service-example_pb";
+} from "./gen/ts/extra/service-example_pb.js";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 const fds = FileDescriptorSet.fromBinary(fdsBytes);

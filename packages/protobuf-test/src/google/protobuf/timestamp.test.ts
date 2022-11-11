@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Timestamp as TS_Timestamp } from "../../gen/ts/google/protobuf/timestamp_pb";
-import { Timestamp as JS_Timestamp } from "../../gen/js/google/protobuf/timestamp_pb";
+import { Timestamp as TS_Timestamp } from "../../gen/ts/google/protobuf/timestamp_pb.js";
+import { Timestamp as JS_Timestamp } from "../../gen/js/google/protobuf/timestamp_pb.js";
 
 describe("google.protobuf.Timestamp", () => {
   describe.each([

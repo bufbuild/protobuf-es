@@ -43,7 +43,7 @@ function verify<T extends Message>(m: T): boolean {
 }
 
 describe("setDefaults", () => {
-  testMT(
+  testMT<TS_Proto2DefaultsMessage>(
     { ts: TS_Proto2DefaultsMessage, js: JS_Proto2DefaultsMessage },
     (messageType) => {
       const msg = new messageType();
@@ -65,7 +65,7 @@ describe("setDefaults", () => {
 });
 
 describe("verify", () => {
-  testMT(
+  testMT<TS_Proto2RequiredDefaultsMessage>(
     {
       ts: TS_Proto2RequiredDefaultsMessage,
       js: JS_Proto2RequiredDefaultsMessage,
@@ -81,7 +81,7 @@ describe("verify", () => {
   );
 });
 
-describeMT(
+describeMT<TS_Proto2RequiredMessage>(
   { ts: TS_Proto2RequiredMessage, js: JS_Proto2RequiredMessage },
   (messageType) => {
     test("has expected defaults", () => {
