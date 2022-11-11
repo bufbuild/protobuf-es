@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as JS from "../../gen/js/google/protobuf/wrappers_pb";
-import * as TS from "../../gen/js/google/protobuf/wrappers_pb";
+import * as JS from "../../gen/js/google/protobuf/wrappers_pb.js";
+import * as TS from "../../gen/js/google/protobuf/wrappers_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
 
 describe("google.protobuf.DoubleValue", () => {
