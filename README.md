@@ -12,11 +12,17 @@ The official description of Protocol Buffers states that they are:
 
 But, in a nutshell, why should you use Protocol Buffers in your JavaScript or TypeScript application?  What benefits does this library provide over simple JSON?
 
-With **Protobuf-ES**
+Lorem ipsum dolor sit amet
 
-- 
-- 
-- 
+
+## Features
+
+Protobuf-ES is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  Some features that set it apart from the others:
+
+- we use plain properties for fields, where protoc uses getter and setter methods
+- we implement the canonical JSON format
+- we generate [much smaller bundles](packages/protobuf-bench)
+- we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 
 For example, the following definition:
 
@@ -41,9 +47,21 @@ pete = Person.fromBinary(bytes);
 pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
+In addition, **Protobuf-ES** implements all proto3 features, including the canonical JSON format.  It also implements all proto2 features, except for extensions and the text format.  
+The implementation is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
+
 To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
+
+| Feature / Generator                                                                                                                       | [protobuf.js](https://github.com/protobufjs/protobuf.js) | [ts-proto](https://github.com/stephenh/ts-proto) | [protobuf-ts](https://github.com/timostamm/protobuf-ts) | [protoc-gen-ts](https://github.com/thesayyn/protoc-gen-ts) | [Protobuf-ES](https://github.com/bufbuild/protobuf-es) |
+|-------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------|---------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| [Standard plugin](https://docs.buf.build/reference/images#plugins)                                                                        | ❌                                                       | ✅                                           | ✅                                                      | ✅                                                      | ✅                                                         |
+| [Conformance tests](https://github.com/protocolbuffers/protobuf/tree/main/conformance#protocol-buffers---googles-data-interchange-format) | ❌                                                       | ❌                                               | ✅                                                      | ❌                                                         |                                                     ✅ |
+| Fully tree-shakeable                                                                                                                      | ❌                                                       | ✅                                               | ✅                                                      | ❌                                                         |                                                     ✅ |
+| Actively maintained                                                                                                                                | ❌                                                       | ✅                                               | ✅                                                      | ✅                                                         |                                              ✅ |
+| Vanilla JavaScript support                                                                                                                | ✅                                                       | ❌                                               | ✅                                                      | ❌                                                         |                                                     ✅ |
+| Fast code generation                                                                                                                      | ✅                                                       | ✅                                               | ❌                                                      | ❌                                                         |                                                     ✅ |
 
 ## Installation
 
@@ -53,13 +71,13 @@ and the documentation for the [runtime API](https://github.com/bufbuild/protobuf
 
 Provides the runtime library, containing base types, generated well-known types, and core functionality.  This installation is required.
 
-### [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
+### [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) ([source](packages/protoc-gen-es))
 
-Provides the code generator plugin `protoc-gen-es` ([source](packages/protoc-gen-es)).  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to generate code from your Protobuf files.
+Provides the code generator plugin `protoc-gen-es` .  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to generate code from your Protobuf files.
   
-### [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
+### [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin) ([source](packages/protoplugin))
 
-Helps to create your own code generator plugin ([source](packages/protoplugin)).  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to write your own code generator plugin.  See [docs](packages/protoplugin) for instructions.
+Helps to create your own code generator plugin.  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to write your own code generator plugin.  See [docs](packages/protoplugin) for instructions.
 
 You will most likely want to install the runtime and the code generator plugin:
 
@@ -85,54 +103,21 @@ As mentioned, if you would like to write your own plugin, you can install `@bufb
 
 ### Usage
 
-To begin using the library, import TODO
+To begin using the library, visit the docs for each individual package:
+
+protobuf
+protoplugin
+protoc-gen-es
 
 
+### Migrating from other implementations
 
-### How does this compare to protoc's JavaScript generator?
-
-[`js_generator.cc`](https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc)
-is rarely updated, and has fallen behind the quickly moving world of JavaScript.
-
-For example:
-- it does not support ECMAScript modules
-- it cannot generate TypeScript (3rd party plugins are necessary)
-- it does not support the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json)
-- it does not carry over comments from your `.proto` files
-
-Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
-
-The main differences of the generated code:
-- we use plain properties for fields, where protoc uses getter and setter methods
-- we implement the canonical JSON format
-- we generate [much smaller bundles](packages/protobuf-bench)
-- we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
-
-See the [migration guides](docs/migrating.md) for details.
-
-
-### What features are implemented
-
-We implement all proto3 features, including the canonical JSON format.  
-We implement all proto2 features, except for extensions and the text format.  
-The implementation is covered by the protocol buffers 
-[conformance tests](packages/protobuf-conformance).
+If you are currently using another implementation and would like to migrate to Protobuf-ES to see what it's all about, check out our [migration guides](docs/migrating.md) for details.
 
 
 ### TypeScript
 
 The minimum version of TypeScript supported by Protobuf-ES is **4.1.2**.
-
-
-### Packages
-
-- [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
-  Provides the code generator plugin `protoc-gen-es` ([source](packages/protoc-gen-es)).   
-  The code it generates depends on `@bufbuild/protobuf`.
-- [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
-  The runtime library for the code generator plugin `protoc-gen-es` ([source](packages/protobuf)).
-- [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
-  Helps to create your own code generator plugin ([source](packages/protoplugin)).
 
 
 ### Copyright
