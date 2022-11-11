@@ -14,17 +14,19 @@ The official description of Protocol Buffers states that they are:
 
 But, in a nutshell, why should you use Protocol Buffers in your JavaScript or TypeScript application?  What benefits does this library provide over simple JSON?
 
-Lorem ipsum dolor sit amet
+TODO - Describe what you could do with this library in a web application.
 
 
 ## Features
 
 Protobuf-ES is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  Some features that set it apart from the others:
 
-- we use plain properties for fields, where protoc uses getter and setter methods
-- we implement the canonical JSON format
-- we generate [much smaller bundles](packages/protobuf-bench)
-- we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+- It uses plain properties for fields, where protoc uses getter and setter methods.
+- It implements the canonical JSON format
+- It generates [much smaller bundles](packages/protobuf-bench)
+- It relies on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+- It implements all proto3 features, including the canonical JSON format.  It also implements all proto2 features, except for extensions and the text format.  
+- The implementation is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
 
 For example, the following definition:
 
@@ -49,12 +51,13 @@ pete = Person.fromBinary(bytes);
 pete = Person.fromJsonString('{"name": "pete", "id": 123}');
 ```
 
-In addition, **Protobuf-ES** implements all proto3 features, including the canonical JSON format.  It also implements all proto2 features, except for extensions and the text format.  
-The implementation is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
+
 
 To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
+
+TODO - Move this somewhere where it flows better
 
 | Feature / Generator                                                                                                                       | [protobuf.js](https://github.com/protobufjs/protobuf.js) | [ts-proto](https://github.com/stephenh/ts-proto) | [protobuf-ts](https://github.com/timostamm/protobuf-ts) | [protoc-gen-ts](https://github.com/thesayyn/protoc-gen-ts) | [Protobuf-ES](https://github.com/bufbuild/protobuf-es) |
 |-------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------|---------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
@@ -107,6 +110,7 @@ As mentioned, if you would like to write your own plugin, you can install `@bufb
 
 To begin using the library, visit the docs for each individual package:
 
+TODO - Make this better worded and link to docs.  Also make sure each individual doc page is good.
 protobuf
 protoplugin
 protoc-gen-es
