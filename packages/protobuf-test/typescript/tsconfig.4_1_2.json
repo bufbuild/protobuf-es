@@ -6,8 +6,7 @@
     // generated, but imported from @bufbuild/protobuf, which is compatible.
     // Users of this version of TypeScript must use them.
     "../src/gen/ts/google/protobuf/*.ts",
-    "../src/google/protobuf/*.test.ts",
-    "../src/message.test.ts"
+    "../src/google/protobuf/*.test.ts"
   ],
   // These are the default compiler options for TypeScript v4.1.2,
   // created with `tsc --init`

@@ -2,12 +2,11 @@
   "include": ["../src/**/*"],
   "exclude": [
     // Exclude WKTs and their usage in tests because they use syntax not
-    // compatible with older versions of TypeScript.  WKTs used by actual
-    // consumers of this library are generated with ts-nocheck so its safe
-    // to ignore them here and still get version compatibility assurance.
+    // compatible with older versions of TypeScript.  WKTs are typically not
+    // generated, but imported from @bufbuild/protobuf, which is compatible.
+    // Users of this version of TypeScript must use them.
     "../src/gen/ts/google/protobuf/*.ts",
-    "../src/google/protobuf/*.test.ts",
-    "../src/message.test.ts"
+    "../src/google/protobuf/*.test.ts"
   ],
   // These are the default compiler options for TypeScript v4.2.4,
   // created with `tsc --init`
