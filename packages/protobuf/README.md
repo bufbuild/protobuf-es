@@ -1,5 +1,7 @@
 # @bufbuild/protobuf
 
+[![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf)
+
 This package provides the runtime library for the code generator plugin
 [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
 
