@@ -3,6 +3,8 @@
 This package helps to create your own code generator plugin using the 
 Protobuf-ES plugin framework.
 
+ [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin)
+
 Protobuf-ES is a complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript, suitable for web browsers and Node.js.  
 
 In addition to a full Protobuf runtime library, it also provides a code generator
