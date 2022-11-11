@@ -44,3 +44,22 @@ TODO
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
   
 TODO
+
+### How does this compare to protoc's JavaScript generator?
+
+[`js_generator.cc`](https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc)
+is rarely updated, and has fallen behind the quickly moving world of JavaScript.
+
+For example:
+- it does not support ECMAScript modules
+- it cannot generate TypeScript (3rd party plugins are necessary)
+- it does not support the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json)
+- it does not carry over comments from your `.proto` files
+
+Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
+
+The main differences of the generated code:
+- we use plain properties for fields, where protoc uses getter and setter methods
+- we implement the canonical JSON format
+- we generate [much smaller bundles](packages/protobuf-bench)
+- we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
