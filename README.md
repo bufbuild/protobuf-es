@@ -1,10 +1,12 @@
 Protobuf-ES
 ===========
+[![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoplugin) 
 
 A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
-The main [Overview](https://developers.google.com/protocol-buffers/docs/overview) page goes into great detail about how they are used, why they are used, and what problems they solve.  The official description of Protocol Buffers states that they are: 
+## What are Protocol Buffers?
+The official description of Protocol Buffers states that they are: 
 
 > a language-neutral, platform-neutral extensible mechanism for serializing structured data.
 
@@ -12,6 +14,9 @@ But, in a nutshell, why should you use Protocol Buffers in your JavaScript or Ty
 
 With **Protobuf-ES**
 
+- 
+- 
+- 
 
 For example, the following definition:
 
@@ -40,13 +45,48 @@ To learn more, have a look at a complete [code example](https://github.com/bufbu
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
-### Installation
+## Installation
 
-TODO
+**Protobuf-ES** contains three packages.  Installation instructions vary depending on your purpose.
 
-### Getting Started
+### [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf) ([source](packages/protobuf))
 
-TODO
+Provides the runtime library, containing base types, generated well-known types, and core functionality.  This installation is required.
+
+### [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
+
+Provides the code generator plugin `protoc-gen-es` ([source](packages/protoc-gen-es)).  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to generate code from your Protobuf files.
+  
+### [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
+
+Helps to create your own code generator plugin ([source](packages/protoplugin)).  The code it generates depends on `@bufbuild/protobuf`.  This installation is only required if you plan to write your own code generator plugin.  See [docs](packages/protoplugin) for instructions.
+
+You will most likely want to install the runtime and the code generator plugin:
+
+Using your package manager of choice:
+  
+**npm**
+```bash
+npm install @bufbuild/protobuf @bufbuild/protoc-gen-es
+```
+
+**pnpm**
+```bash
+pnpm install @bufbuild/protobuf @bufbuild/protoc-gen-es
+```
+
+**Yarn**
+```bash
+yarn add @bufbuild/protobuf @bufbuild/protoc-gen-es
+```
+
+As mentioned, if you would like to write your own plugin, you can install `@bufbuild/protoplugin`.
+
+
+### Usage
+
+To begin using the library, import TODO
+
 
 
 ### How does this compare to protoc's JavaScript generator?
