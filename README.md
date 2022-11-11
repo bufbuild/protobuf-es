@@ -109,6 +109,8 @@ protobuf
 protoplugin
 protoc-gen-es
 
+Another library created by Buf uses Protobuf-ES extensively.  To see a real-world application of this library, take a look at [Connect-Web](https://github.com/bufbuild/connect-web).  Additionally, check out the official [Connect-Web](https://connect.build/docs/web/getting-started) documentation!
+
 
 ### Migrating from other implementations
 
