@@ -1,5 +1,7 @@
 # @bufbuild/protoc-gen-es
 
+ [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
+
 The code generator for Protocol Buffers for ECMAScript. For example, the 
 following definition:
 
