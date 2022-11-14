@@ -14,7 +14,9 @@ From the project root, first install and build all required packages:
 
 ```shell
 npm install -w packages/protoplugin-example
-npm run -w packages/protobuf build && npm run -w packages/protoplugin build && npm run -w packages/protoc-gen-es build
+npm run -w packages/protobuf build
+npm run -w packages/protoplugin build
+npm run -w packages/protoc-gen-es build
 ```
 
 Next, `cd` into the example directory and build:
