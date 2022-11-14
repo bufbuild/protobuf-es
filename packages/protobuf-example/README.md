@@ -18,25 +18,36 @@ You can easily run the example for yourself - you will only need npm or yarn.
 [Download the source](https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip),
 then run the following commands:
 
+From the project root, first build all required packages:
+
 ```shell
-# in the project root:
+npm run -w packages/protobuf build && npm run -w packages/protoplugin build && npm run -w packages/protoc-gen-es build
+```
+
+Next, `cd` into the example directory, install dependencies, and build:
+
+```shell
 cd packages/protobuf-example
 npm install
 npm run build
 ```
 
-```shell
-# To add a person to the address book:
-node dist/esm/add-person.js addressbook.bin
+To add a person to the address book:
 
-# To list all entries of the address book:
+```shell
+node dist/esm/add-person.js addressbook.bin
+```
+
+To list all entries of the address book:
+
+```shell
 node dist/esm/list-people.js addressbook.bin
 ```
 
 ### Generate code yourself
 
 If you want to use [`buf`](https://github.com/bufbuild/buf) to generate the code, 
-simply run `buf generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml) 
+simply run `npm run buf:generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml) 
 contains the plugin configuration.
 
 If you want to use `protoc`, the following command is equivalent:
