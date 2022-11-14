@@ -18,9 +18,10 @@ You can easily run the example for yourself - you will only need npm or yarn.
 [Download the source](https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip),
 then run the following commands:
 
-From the project root, first build all required packages:
+From the project root, first install and build all required packages:
 
 ```shell
+npm install -w packages/protobuf-example
 npm run -w packages/protobuf build && npm run -w packages/protoplugin build && npm run -w packages/protoc-gen-es build
 ```
 
@@ -28,7 +29,6 @@ Next, `cd` into the example directory, install dependencies, and build:
 
 ```shell
 cd packages/protobuf-example
-npm install
 npm run build
 ```
 

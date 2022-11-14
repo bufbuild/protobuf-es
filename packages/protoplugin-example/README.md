@@ -10,9 +10,19 @@ The code generation logic for the actual plugin is located in the following file
 The sample plugin generates a [Twirp](https://twitchtv.github.io/twirp/docs/spec_v7.html) client from service 
 definitions in Protobuf files.  The Twirp client uses base types generated from `protobuf-es`.
 
-To build the plugin:
+From the project root, first install and build all required packages:
 
-`npm run build`
+```shell
+npm install -w packages/protoplugin-example
+npm run -w packages/protobuf build && npm run -w packages/protoplugin build && npm run -w packages/protoc-gen-es build
+```
+
+Next, `cd` into the example directory, install dependencies, and build:
+
+```shell
+cd packages/protoplugin-example
+npm run build
+```
 
 To run the plugin (i.e. generate files):
 
