@@ -25,7 +25,7 @@ npm install -w packages/protobuf-example
 npm run -w packages/protobuf build && npm run -w packages/protoplugin build && npm run -w packages/protoc-gen-es build
 ```
 
-Next, `cd` into the example directory, install dependencies, and build:
+Next, `cd` into the example directory and build:
 
 ```shell
 cd packages/protobuf-example
