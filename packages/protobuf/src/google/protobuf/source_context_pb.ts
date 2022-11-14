@@ -22,6 +22,7 @@ import { proto3 } from "../../proto3.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import type { JsonReadOptions, JsonValue } from "../../json-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * `SourceContext` represents information about the source of a
@@ -29,7 +30,8 @@ import type { JsonReadOptions, JsonValue } from "../../json-format.js";
  *
  * @generated from message google.protobuf.SourceContext
  */
-export class SourceContext extends Message<SourceContext> {
+export class SourceContext extends Message<SourceContext> {  
+  static readonly extensions = new Set<Extension<SourceContext>>();
   /**
    * The path-qualified name of the .proto file that contained the associated
    * protobuf element.  For example: `"google/protobuf/source_context.proto"`.

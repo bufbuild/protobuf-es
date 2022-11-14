@@ -18,6 +18,7 @@ import type {
   IBinaryWriter,
   WireType,
 } from "./binary-encoding.js";
+import type { FieldInfo } from "./field.js";
 
 /**
  * BinaryFormat is the contract for serializing messages to and from binary
@@ -47,6 +48,14 @@ export interface BinaryFormat {
     reader: IBinaryReader,
     length: number,
     options: BinaryReadOptions
+  ): void;
+
+  readField(
+    message: Message,
+    reader: IBinaryReader,
+    options: BinaryReadOptions,
+    wireType: WireType,
+    field: FieldInfo
   ): void;
 
   /**

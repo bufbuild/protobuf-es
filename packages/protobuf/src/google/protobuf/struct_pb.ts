@@ -22,6 +22,7 @@ import { Message } from "../../message.js";
 import type { JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the
@@ -57,6 +58,7 @@ proto3.util.setEnumType(NullValue, "google.protobuf.NullValue", [
  * @generated from message google.protobuf.Struct
  */
 export class Struct extends Message<Struct> {
+  static readonly extensions = new Set<Extension<Struct>>();
   /**
    * Unordered map of dynamically typed values.
    *
@@ -121,6 +123,7 @@ export class Struct extends Message<Struct> {
  * @generated from message google.protobuf.Value
  */
 export class Value extends Message<Value> {
+  static readonly extensions = new Set<Extension<Value>>();
   /**
    * The kind of value.
    *
@@ -258,6 +261,7 @@ export class Value extends Message<Value> {
  * @generated from message google.protobuf.ListValue
  */
 export class ListValue extends Message<ListValue> {
+  static readonly extensions = new Set<Extension<ListValue>>();
   /**
    * Repeated field of dynamically typed values.
    *

@@ -24,6 +24,7 @@ import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import type { JsonReadOptions, JsonValue } from "../../json-format.js";
 import { Any } from "./any_pb.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * The syntax in which a protocol buffer element is defined.
@@ -57,6 +58,7 @@ proto3.util.setEnumType(Syntax, "google.protobuf.Syntax", [
  * @generated from message google.protobuf.Type
  */
 export class Type extends Message<Type> {
+  static readonly extensions = new Set<Extension<Type>>();
   /**
    * The fully qualified message name.
    *
@@ -138,6 +140,7 @@ export class Type extends Message<Type> {
  * @generated from message google.protobuf.Field
  */
 export class Field extends Message<Field> {
+  static readonly extensions = new Set<Extension<Field>>();
   /**
    * The field type.
    *
@@ -457,6 +460,7 @@ proto3.util.setEnumType(Field_Cardinality, "google.protobuf.Field.Cardinality", 
  * @generated from message google.protobuf.Enum
  */
 export class Enum extends Message<Enum> {
+  static readonly extensions = new Set<Extension<Enum>>();
   /**
    * Enum type name.
    *
@@ -530,6 +534,7 @@ export class Enum extends Message<Enum> {
  * @generated from message google.protobuf.EnumValue
  */
 export class EnumValue extends Message<EnumValue> {
+  static readonly extensions = new Set<Extension<EnumValue>>();
   /**
    * Enum value name.
    *
@@ -588,6 +593,7 @@ export class EnumValue extends Message<EnumValue> {
  * @generated from message google.protobuf.Option
  */
 export class Option extends Message<Option> {
+  static readonly extensions = new Set<Extension<Option>>();
   /**
    * The option's name. For protobuf built-in options (options defined in
    * descriptor.proto), this is the short name. For example, `"map_entry"`.

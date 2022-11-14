@@ -23,6 +23,7 @@ import type {
   PlainMessage,
 } from "./message.js";
 import type { FieldWrapper } from "./private/field-wrapper.js";
+import type { Extension } from "./extension.js";
 
 /**
  * MessageType represents a protobuf message. It provides:
@@ -35,6 +36,11 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
    * Create a new instance of this type.
    */
   new (data?: PartialMessage<T>): T;
+
+  /**
+   * The set of registered extensions for this type.
+   */
+  readonly extensions: Set<Extension<T>>;
 
   /**
    * The fully qualified name of the message.

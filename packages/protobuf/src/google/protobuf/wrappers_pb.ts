@@ -34,6 +34,7 @@ import { ScalarType } from "../../field.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import { protoInt64 } from "../../proto-int64.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * Wrapper message for `double`.
@@ -43,6 +44,7 @@ import { protoInt64 } from "../../proto-int64.js";
  * @generated from message google.protobuf.DoubleValue
  */
 export class DoubleValue extends Message<DoubleValue> {
+  static readonly extensions = new Set<Extension<DoubleValue>>();
   /**
    * The double value.
    *
@@ -112,6 +114,7 @@ export class DoubleValue extends Message<DoubleValue> {
  * @generated from message google.protobuf.FloatValue
  */
 export class FloatValue extends Message<FloatValue> {
+  static readonly extensions = new Set<Extension<FloatValue>>();
   /**
    * The float value.
    *
@@ -181,6 +184,7 @@ export class FloatValue extends Message<FloatValue> {
  * @generated from message google.protobuf.Int64Value
  */
 export class Int64Value extends Message<Int64Value> {
+  static readonly extensions = new Set<Extension<Int64Value>>();
   /**
    * The int64 value.
    *
@@ -250,6 +254,7 @@ export class Int64Value extends Message<Int64Value> {
  * @generated from message google.protobuf.UInt64Value
  */
 export class UInt64Value extends Message<UInt64Value> {
+  static readonly extensions = new Set<Extension<UInt64Value>>();
   /**
    * The uint64 value.
    *
@@ -319,6 +324,7 @@ export class UInt64Value extends Message<UInt64Value> {
  * @generated from message google.protobuf.Int32Value
  */
 export class Int32Value extends Message<Int32Value> {
+  static readonly extensions = new Set<Extension<Int32Value>>();
   /**
    * The int32 value.
    *
@@ -388,6 +394,7 @@ export class Int32Value extends Message<Int32Value> {
  * @generated from message google.protobuf.UInt32Value
  */
 export class UInt32Value extends Message<UInt32Value> {
+  static readonly extensions = new Set<Extension<UInt32Value>>();
   /**
    * The uint32 value.
    *
@@ -457,6 +464,7 @@ export class UInt32Value extends Message<UInt32Value> {
  * @generated from message google.protobuf.BoolValue
  */
 export class BoolValue extends Message<BoolValue> {
+  static readonly extensions = new Set<Extension<BoolValue>>();
   /**
    * The bool value.
    *
@@ -526,6 +534,7 @@ export class BoolValue extends Message<BoolValue> {
  * @generated from message google.protobuf.StringValue
  */
 export class StringValue extends Message<StringValue> {
+  static readonly extensions = new Set<Extension<StringValue>>();
   /**
    * The string value.
    *
@@ -595,6 +604,7 @@ export class StringValue extends Message<StringValue> {
  * @generated from message google.protobuf.BytesValue
  */
 export class BytesValue extends Message<BytesValue> {
+  static readonly extensions = new Set<Extension<BytesValue>>();
   /**
    * The bytes value.
    *

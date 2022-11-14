@@ -30,6 +30,7 @@ import { proto2 } from "../../proto2.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import type { JsonReadOptions, JsonValue } from "../../json-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * The protocol compiler can output a FileDescriptorSet containing the .proto
@@ -38,6 +39,7 @@ import type { JsonReadOptions, JsonValue } from "../../json-format.js";
  * @generated from message google.protobuf.FileDescriptorSet
  */
 export class FileDescriptorSet extends Message<FileDescriptorSet> {
+  static readonly extensions = new Set<Extension<FileDescriptorSet>>();
   /**
    * @generated from field: repeated google.protobuf.FileDescriptorProto file = 1;
    */
@@ -77,6 +79,7 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
  * @generated from message google.protobuf.FileDescriptorProto
  */
 export class FileDescriptorProto extends Message<FileDescriptorProto> {
+  static readonly extensions = new Set<Extension<FileDescriptorProto>>();
   /**
    * file name, relative to root of source tree
    *
@@ -203,6 +206,7 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
  * @generated from message google.protobuf.DescriptorProto
  */
 export class DescriptorProto extends Message<DescriptorProto> {
+  static readonly extensions = new Set<Extension<DescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -297,6 +301,7 @@ export class DescriptorProto extends Message<DescriptorProto> {
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
  */
 export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_ExtensionRange> {
+  static readonly extensions = new Set<Extension<DescriptorProto_ExtensionRange>>();
   /**
    * Inclusive.
    *
@@ -354,6 +359,7 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
  * @generated from message google.protobuf.DescriptorProto.ReservedRange
  */
 export class DescriptorProto_ReservedRange extends Message<DescriptorProto_ReservedRange> {
+  static readonly extensions = new Set<Extension<DescriptorProto_ReservedRange>>();
   /**
    * Inclusive.
    *
@@ -401,6 +407,7 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
  * @generated from message google.protobuf.ExtensionRangeOptions
  */
 export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
+  static readonly extensions = new Set<Extension<ExtensionRangeOptions>>();
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -442,6 +449,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
  * @generated from message google.protobuf.FieldDescriptorProto
  */
 export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
+  static readonly extensions = new Set<Extension<FieldDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -754,6 +762,7 @@ proto2.util.setEnumType(FieldDescriptorProto_Label, "google.protobuf.FieldDescri
  * @generated from message google.protobuf.OneofDescriptorProto
  */
 export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
+  static readonly extensions = new Set<Extension<OneofDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -799,6 +808,7 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
  * @generated from message google.protobuf.EnumDescriptorProto
  */
 export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
+  static readonly extensions = new Set<Extension<EnumDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -874,6 +884,7 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
  * @generated from message google.protobuf.EnumDescriptorProto.EnumReservedRange
  */
 export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescriptorProto_EnumReservedRange> {
+  static readonly extensions = new Set<Extension<EnumDescriptorProto_EnumReservedRange>>();
   /**
    * Inclusive.
    *
@@ -923,6 +934,7 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
  * @generated from message google.protobuf.EnumValueDescriptorProto
  */
 export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> {
+  static readonly extensions = new Set<Extension<EnumValueDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -974,6 +986,7 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
  * @generated from message google.protobuf.ServiceDescriptorProto
  */
 export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
+  static readonly extensions = new Set<Extension<ServiceDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -1025,6 +1038,7 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
  * @generated from message google.protobuf.MethodDescriptorProto
  */
 export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
+  static readonly extensions = new Set<Extension<MethodDescriptorProto>>();
   /**
    * @generated from field: optional string name = 1;
    */
@@ -1099,6 +1113,7 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
  * @generated from message google.protobuf.FileOptions
  */
 export class FileOptions extends Message<FileOptions> {
+  static readonly extensions = new Set<Extension<FileOptions>>();
   /**
    * Sets the Java package where classes generated from this .proto will be
    * placed.  By default, the proto package is used, but this is often
@@ -1373,6 +1388,7 @@ proto2.util.setEnumType(FileOptions_OptimizeMode, "google.protobuf.FileOptions.O
  * @generated from message google.protobuf.MessageOptions
  */
 export class MessageOptions extends Message<MessageOptions> {
+  static readonly extensions = new Set<Extension<MessageOptions>>();
   /**
    * Set true to use the old proto1 MessageSet wire format for extensions.
    * This is provided for backwards-compatibility with the MessageSet wire
@@ -1486,6 +1502,7 @@ export class MessageOptions extends Message<MessageOptions> {
  * @generated from message google.protobuf.FieldOptions
  */
 export class FieldOptions extends Message<FieldOptions> {
+  static readonly extensions = new Set<Extension<FieldOptions>>();
   /**
    * The ctype option instructs the C++ code generator to use a different
    * representation of the field than it normally would.  See the specific
@@ -1696,6 +1713,7 @@ proto2.util.setEnumType(FieldOptions_JSType, "google.protobuf.FieldOptions.JSTyp
  * @generated from message google.protobuf.OneofOptions
  */
 export class OneofOptions extends Message<OneofOptions> {
+  static readonly extensions = new Set<Extension<OneofOptions>>();
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -1735,6 +1753,7 @@ export class OneofOptions extends Message<OneofOptions> {
  * @generated from message google.protobuf.EnumOptions
  */
 export class EnumOptions extends Message<EnumOptions> {
+  static readonly extensions = new Set<Extension<EnumOptions>>();
   /**
    * Set this option to true to allow mapping different tag names to the same
    * value.
@@ -1794,6 +1813,7 @@ export class EnumOptions extends Message<EnumOptions> {
  * @generated from message google.protobuf.EnumValueOptions
  */
 export class EnumValueOptions extends Message<EnumValueOptions> {
+  static readonly extensions = new Set<Extension<EnumValueOptions>>();
   /**
    * Is this enum value deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1844,6 +1864,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
  * @generated from message google.protobuf.ServiceOptions
  */
 export class ServiceOptions extends Message<ServiceOptions> {
+  static readonly extensions = new Set<Extension<ServiceOptions>>();
   /**
    * Is this service deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1894,6 +1915,7 @@ export class ServiceOptions extends Message<ServiceOptions> {
  * @generated from message google.protobuf.MethodOptions
  */
 export class MethodOptions extends Message<MethodOptions> {
+  static readonly extensions = new Set<Extension<MethodOptions>>();
   /**
    * Is this method deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1991,6 +2013,7 @@ proto2.util.setEnumType(MethodOptions_IdempotencyLevel, "google.protobuf.MethodO
  * @generated from message google.protobuf.UninterpretedOption
  */
 export class UninterpretedOption extends Message<UninterpretedOption> {
+  static readonly extensions = new Set<Extension<UninterpretedOption>>();
   /**
    * @generated from field: repeated google.protobuf.UninterpretedOption.NamePart name = 2;
    */
@@ -2073,6 +2096,7 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
  * @generated from message google.protobuf.UninterpretedOption.NamePart
  */
 export class UninterpretedOption_NamePart extends Message<UninterpretedOption_NamePart> {
+  static readonly extensions = new Set<Extension<UninterpretedOption_NamePart>>();
   /**
    * @generated from field: required string name_part = 1;
    */
@@ -2119,6 +2143,7 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
  * @generated from message google.protobuf.SourceCodeInfo
  */
 export class SourceCodeInfo extends Message<SourceCodeInfo> {
+  static readonly extensions = new Set<Extension<SourceCodeInfo>>();
   /**
    * A Location identifies a piece of source code in a .proto file which
    * corresponds to a particular definition.  This information is intended
@@ -2200,6 +2225,7 @@ export class SourceCodeInfo extends Message<SourceCodeInfo> {
  * @generated from message google.protobuf.SourceCodeInfo.Location
  */
 export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
+  static readonly extensions = new Set<Extension<SourceCodeInfo_Location>>();
   /**
    * Identifies which part of the FileDescriptorProto was defined at this
    * location.
@@ -2343,6 +2369,7 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
  * @generated from message google.protobuf.GeneratedCodeInfo
  */
 export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
+  static readonly extensions = new Set<Extension<GeneratedCodeInfo>>();
   /**
    * An Annotation connects some span of text in generated code to an element
    * of its generating .proto file.
@@ -2383,6 +2410,7 @@ export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
  * @generated from message google.protobuf.GeneratedCodeInfo.Annotation
  */
 export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Annotation> {
+  static readonly extensions = new Set<Extension<GeneratedCodeInfo_Annotation>>();
   /**
    * Identifies the element in the original source .proto file. This field
    * is formatted the same as SourceCodeInfo.Location.path.

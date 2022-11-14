@@ -23,6 +23,7 @@ import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-fo
 import type { MessageType } from "../../message-type.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -112,6 +113,7 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * @generated from message google.protobuf.Any
  */
 export class Any extends Message<Any> {
+  static readonly extensions = new Set<Extension<Any>>();
   /**
    * A URL/resource name that uniquely identifies the type of the serialized
    * protocol buffer message. This string must contain at least

@@ -23,6 +23,7 @@ import type { JsonReadOptions, JsonValue } from "../json-format.js";
 import type { MessageType } from "../message-type.js";
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { ProtoRuntime } from "./proto-runtime.js";
+import type { Extension } from "../extension.js";
 
 /**
  * Create a new message type using the given runtime.
@@ -54,6 +55,7 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
   }[localName] as unknown as MessageType<T>;
   Object.setPrototypeOf(type.prototype, new Message<T>());
   Object.assign<MessageType<T>, Omit<MessageType<T>, "new">>(type, {
+    extensions: new Set<Extension<T>>(),
     runtime,
     typeName,
     fields: runtime.util.newFieldList(fields),

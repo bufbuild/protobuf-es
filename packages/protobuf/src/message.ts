@@ -20,6 +20,7 @@ import type {
   JsonWriteStringOptions,
 } from "./json-format.js";
 import type { MessageType } from "./message-type.js";
+import type { Extension } from "./extension.js";
 
 /**
  * AnyMessage is an interface implemented by all messages. If you need to
@@ -133,6 +134,43 @@ export class Message<T extends Message<T> = AnyMessage> {
     // implementation of MessageType.
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
     return Object.getPrototypeOf(this).constructor;
+  }
+
+  /**
+   * Get the extension field.
+   * @param extension is the Extension definition.
+   * @returns The extension field if present or undefined.
+   */
+  getExtensionField<F>(extension: Extension<T, F>): F | undefined {
+    const type = this.getType();
+    if (extension.extendee.typeName != type.typeName) {
+      return undefined;
+    }
+    if (!type.extensions.has(extension)) {
+      type.extensions.add(extension);
+    }
+    if (this.hasOwnProperty(extension.field.jsonName)) {
+      return this as unknown as F;
+    }
+    const unknownFields = type.runtime.bin.listUnknownFields(this);
+    for (const uf of unknownFields) {
+      if (extension.field.no !== uf.no) {
+        continue;
+      }
+      const opts = type.runtime.bin.makeReadOptions({
+        readUnknownFields: true,
+      });
+      const reader = opts.readerFactory(uf.data);
+      type.runtime.bin.readField(
+        this,
+        reader,
+        opts,
+        uf.wireType,
+        extension.field
+      );
+      break;
+    }
+    return this as unknown as F;
   }
 }
 

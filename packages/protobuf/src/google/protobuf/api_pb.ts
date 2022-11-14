@@ -24,6 +24,7 @@ import { proto3 } from "../../proto3.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import type { JsonReadOptions, JsonValue } from "../../json-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * Api is a light-weight descriptor for an API Interface.
@@ -39,6 +40,7 @@ import type { JsonReadOptions, JsonValue } from "../../json-format.js";
  * @generated from message google.protobuf.Api
  */
 export class Api extends Message<Api> {
+  static readonly extensions = new Set<Extension<Api>>();
   /**
    * The fully qualified name of this interface, including package name
    * followed by the interface's simple name.
@@ -150,6 +152,7 @@ export class Api extends Message<Api> {
  * @generated from message google.protobuf.Method
  */
 export class Method extends Message<Method> {
+  static readonly extensions = new Set<Extension<Method>>();
   /**
    * The simple name of this method.
    *
@@ -316,6 +319,7 @@ export class Method extends Message<Method> {
  * @generated from message google.protobuf.Mixin
  */
 export class Mixin extends Message<Mixin> {
+  static readonly extensions = new Set<Extension<Mixin>>();
   /**
    * The fully qualified name of the interface which is included.
    *

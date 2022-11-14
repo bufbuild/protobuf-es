@@ -23,6 +23,7 @@ import type { MessageType } from "../message-type.js";
 import { FieldInfo, ScalarType } from "../field.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
+import type { Extension } from "../extension.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 
@@ -208,6 +209,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           copy = cloneSingularField(member, source);
         }
         any[member.localName] = copy;
+      }
+      for (const extension of type.extensions) {
+        target.getExtensionField(extension as Extension<T>);
       }
       return target;
     },

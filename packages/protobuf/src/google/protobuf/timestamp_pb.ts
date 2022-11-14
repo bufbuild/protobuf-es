@@ -23,6 +23,7 @@ import { proto3 } from "../../proto3.js";
 import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local
@@ -122,6 +123,7 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * @generated from message google.protobuf.Timestamp
  */
 export class Timestamp extends Message<Timestamp> {
+  static readonly extensions = new Set<Extension<Timestamp>>();
   /**
    * Represents seconds of UTC time since Unix epoch
    * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to

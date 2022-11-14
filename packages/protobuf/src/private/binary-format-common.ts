@@ -91,6 +91,18 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
         m[unknownFieldsSymbol] = [];
       }
       m[unknownFieldsSymbol].push({ no, wireType, data });
+      const type = message.getType();
+      for (const ext of message.getType().extensions) {
+        if (ext.field.no !== no) {
+          continue;
+        }
+        const opt = type.runtime.bin.makeReadOptions({
+          readUnknownFields: true,
+        });
+        const reader = opt.readerFactory(data);
+        readField(message, reader, opt, wireType, ext.field);
+        break;
+      }
     },
     readMessage<T extends Message<T>>(
       message: T,
@@ -110,76 +122,90 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
           }
           continue;
         }
-        let target = message as any,
-          repeated = field.repeated,
-          localName = field.localName;
-        if (field.oneof) {
-          target = target[field.oneof.localName];
-          if (target.case != localName) {
-            delete target.value;
-          }
-          target.case = localName;
-          localName = "value";
-        }
-        switch (field.kind) {
-          case "scalar":
-          case "enum":
-            const scalarType =
-              field.kind == "enum" ? ScalarType.INT32 : field.T;
-            if (repeated) {
-              let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
-              if (
-                wireType == WireType.LengthDelimited &&
-                scalarType != ScalarType.STRING &&
-                scalarType != ScalarType.BYTES
-              ) {
-                let e = reader.uint32() + reader.pos;
-                while (reader.pos < e) {
-                  arr.push(readScalar(reader, scalarType));
-                }
-              } else {
-                arr.push(readScalar(reader, scalarType));
-              }
-            } else {
-              target[localName] = readScalar(reader, scalarType);
-            }
-            break;
-          case "message":
-            const messageType = field.T;
-            if (repeated) {
-              // safe to assume presence of array, oneof cannot contain repeated values
-              (target[localName] as any[]).push(
-                messageType.fromBinary(reader.bytes(), options)
-              );
-            } else {
-              if (target[localName] instanceof Message) {
-                target[localName].fromBinary(reader.bytes(), options);
-              } else {
-                target[localName] = messageType.fromBinary(
-                  reader.bytes(),
-                  options
-                );
-                if (
-                  messageType.fieldWrapper &&
-                  !field.oneof &&
-                  !field.repeated
-                ) {
-                  target[localName] = messageType.fieldWrapper.unwrapField(
-                    target[localName]
-                  );
-                }
-              }
-            }
-            break;
-          case "map":
-            let [mapKey, mapVal] = readMapEntry(field, reader, options);
-            // safe to assume presence of map object, oneof cannot contain repeated values
-            target[localName][mapKey] = mapVal;
-            break;
-        }
+        readField(message, reader, options, wireType, field);
       }
     },
+    readField(
+      message: Message,
+      reader: IBinaryReader,
+      options: BinaryReadOptions,
+      wireType: WireType,
+      field: FieldInfo
+    ) {
+      readField(message, reader, options, wireType, field);
+    },
   };
+}
+
+// Read a field
+function readField(
+  message: Message,
+  reader: IBinaryReader,
+  options: BinaryReadOptions,
+  wireType: WireType,
+  field: FieldInfo
+) {
+  let target = message as any,
+    repeated = field.repeated,
+    localName = field.localName;
+  if (field.oneof) {
+    target = target[field.oneof.localName];
+    if (target.case != localName) {
+      delete target.value;
+    }
+    target.case = localName;
+    localName = "value";
+  }
+  switch (field.kind) {
+    case "scalar":
+    case "enum":
+      const scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
+      if (repeated) {
+        target[localName] = target[localName] ?? [];
+        let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
+        if (
+          wireType == WireType.LengthDelimited &&
+          scalarType != ScalarType.STRING &&
+          scalarType != ScalarType.BYTES
+        ) {
+          let e = reader.uint32() + reader.pos;
+          while (reader.pos < e) {
+            arr.push(readScalar(reader, scalarType));
+          }
+        } else {
+          arr.push(readScalar(reader, scalarType));
+        }
+      } else {
+        target[localName] = readScalar(reader, scalarType);
+      }
+      break;
+    case "message":
+      const messageType = field.T;
+      if (repeated) {
+        target[localName] = target[localName] ?? [];
+        // safe to assume presence of array, oneof cannot contain repeated values
+        (target[localName] as any[]).push(
+          messageType.fromBinary(reader.bytes(), options)
+        );
+      } else {
+        if (target[localName] instanceof Message) {
+          target[localName].fromBinary(reader.bytes(), options);
+        } else {
+          target[localName] = messageType.fromBinary(reader.bytes(), options);
+          if (messageType.fieldWrapper && !field.oneof && !field.repeated) {
+            target[localName] = messageType.fieldWrapper.unwrapField(
+              target[localName]
+            );
+          }
+        }
+      }
+      break;
+    case "map":
+      let [mapKey, mapVal] = readMapEntry(field, reader, options);
+      // safe to assume presence of map object, oneof cannot contain repeated values
+      target[localName][mapKey] = mapVal;
+      break;
+  }
 }
 
 // Read a map field, expecting key field = 1, value field = 2

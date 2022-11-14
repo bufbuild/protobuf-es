@@ -22,6 +22,7 @@ import { proto3 } from "../../proto3.js";
 import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * `FieldMask` represents a set of symbolic field paths, for example:
@@ -227,6 +228,7 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * @generated from message google.protobuf.FieldMask
  */
 export class FieldMask extends Message<FieldMask> {
+  static readonly extensions = new Set<Extension<FieldMask>>();
   /**
    * The set of field mask paths.
    *

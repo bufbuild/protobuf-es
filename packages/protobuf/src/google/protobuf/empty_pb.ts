@@ -22,6 +22,7 @@ import { proto3 } from "../../proto3.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
 import type { JsonReadOptions, JsonValue } from "../../json-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
@@ -36,6 +37,8 @@ import type { JsonReadOptions, JsonValue } from "../../json-format.js";
  * @generated from message google.protobuf.Empty
  */
 export class Empty extends Message<Empty> {
+  static readonly extensions = new Set<Extension<Empty>>();
+  
   constructor(data?: PartialMessage<Empty>) {
     super();
     proto3.util.initPartial(data, this);

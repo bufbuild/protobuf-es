@@ -23,6 +23,7 @@ import { proto3 } from "../../proto3.js";
 import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
+import type { Extension } from "../../extension.js";
 
 /**
  * A Duration represents a signed, fixed-length span of time represented
@@ -89,6 +90,7 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * @generated from message google.protobuf.Duration
  */
 export class Duration extends Message<Duration> {
+  static readonly extensions = new Set<Extension<Duration>>();
   /**
    * Signed seconds of the span of time. Must be from -315,576,000,000
    * to +315,576,000,000 inclusive. Note: these bounds are computed from:

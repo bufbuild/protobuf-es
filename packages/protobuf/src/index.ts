@@ -30,6 +30,7 @@ export type { FieldList } from "./field-list.js";
 export { ScalarType } from "./field.js";
 
 export type { MessageType } from "./message-type.js";
+export type { Extension } from "./extension.js";
 export type { EnumType, EnumValueInfo } from "./enum.js";
 export type {
   ServiceType,
