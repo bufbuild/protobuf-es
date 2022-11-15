@@ -20,6 +20,7 @@ import type { PartialMessage, PlainMessage } from "../../message.js";
 import { Message } from "../../message.js";
 import { proto3 } from "../../proto3.js";
 import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
+import type { IMessageTypeRegistry } from "../../type-registry.js";
 import type { MessageType } from "../../message-type.js";
 import type { FieldList } from "../../field-list.js";
 import type { BinaryReadOptions } from "../../binary-format.js";
@@ -214,6 +215,17 @@ export class Any extends Message<Any> {
     }
     target.fromBinary(this.value);
     return true;
+  }
+
+  unpack(registry: IMessageTypeRegistry): Message | undefined {
+    if (this.typeUrl === "") {
+      return undefined;
+    }
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      return undefined;
+    }
+    return messageType.fromBinary(this.value);
   }
 
   is(type: MessageType | string): boolean {

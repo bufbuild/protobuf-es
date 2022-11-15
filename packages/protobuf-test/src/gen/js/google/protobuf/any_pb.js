@@ -187,6 +187,17 @@ Any.prototype.unpackTo = function unpackTo(target) {
   return true;
 };
 
+Any.prototype.unpack = function unpack(registry) {
+    if (this.typeUrl === "") {
+      return undefined;
+    }
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      return undefined;
+    }
+    return messageType.fromBinary(this.value);
+  }
+
 Any.prototype.is = function is(type) {
   if (this.typeUrl === '') {
     return false;
