@@ -34,7 +34,7 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum

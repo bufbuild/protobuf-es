@@ -16,8 +16,8 @@
 // @generated from file buf/alpha/image/v1/image.proto (package buf.alpha.image.v1, syntax proto2)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileOptions, Message, proto2, ServiceDescriptorProto, SourceCodeInfo} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileOptions, Message, proto2, ServiceDescriptorProto, SourceCodeInfo } from "@bufbuild/protobuf";
 
 /**
  * Image is an extended FileDescriptorSet.

@@ -16,8 +16,8 @@
 // @generated from file extra/wkt-wrappers.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, Message, proto3, StringValue, UInt32Value, UInt64Value} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, Message, proto3, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.WrappersMessage
@@ -172,6 +172,51 @@ export class WrappersMessage extends Message<WrappersMessage> {
    */
   repeatedBytesValueField: BytesValue[] = [];
 
+  /**
+   * @generated from field: map<string, google.protobuf.DoubleValue> map_double_value_field = 31;
+   */
+  mapDoubleValueField: { [key: string]: DoubleValue } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.BoolValue> map_bool_value_field = 32;
+   */
+  mapBoolValueField: { [key: string]: BoolValue } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.FloatValue> map_float_value_field = 33;
+   */
+  mapFloatValueField: { [key: string]: FloatValue } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.Int64Value> map_int64_value_field = 34;
+   */
+  mapInt64ValueField: { [key: string]: Int64Value } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.UInt64Value> map_uint64_value_field = 35;
+   */
+  mapUint64ValueField: { [key: string]: UInt64Value } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.Int32Value> map_int32_value_field = 36;
+   */
+  mapInt32ValueField: { [key: string]: Int32Value } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.UInt32Value> map_uint32_value_field = 37;
+   */
+  mapUint32ValueField: { [key: string]: UInt32Value } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.StringValue> map_string_value_field = 38;
+   */
+  mapStringValueField: { [key: string]: StringValue } = {};
+
+  /**
+   * @generated from field: map<string, google.protobuf.BytesValue> map_bytes_value_field = 39;
+   */
+  mapBytesValueField: { [key: string]: BytesValue } = {};
+
   constructor(data?: PartialMessage<WrappersMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -207,6 +252,15 @@ export class WrappersMessage extends Message<WrappersMessage> {
     { no: 27, name: "repeated_uint32_value_field", kind: "message", T: UInt32Value, repeated: true },
     { no: 28, name: "repeated_string_value_field", kind: "message", T: StringValue, repeated: true },
     { no: 29, name: "repeated_bytes_value_field", kind: "message", T: BytesValue, repeated: true },
+    { no: 31, name: "map_double_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: DoubleValue} },
+    { no: 32, name: "map_bool_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: BoolValue} },
+    { no: 33, name: "map_float_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: FloatValue} },
+    { no: 34, name: "map_int64_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Int64Value} },
+    { no: 35, name: "map_uint64_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: UInt64Value} },
+    { no: 36, name: "map_int32_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Int32Value} },
+    { no: 37, name: "map_uint32_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: UInt32Value} },
+    { no: 38, name: "map_string_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: StringValue} },
+    { no: 39, name: "map_bytes_value_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: BytesValue} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WrappersMessage {

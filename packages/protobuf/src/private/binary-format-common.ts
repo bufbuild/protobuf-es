@@ -24,9 +24,9 @@ import type {
   BinaryWriteOptions,
 } from "../binary-format.js";
 import type { BinaryFormat } from "../binary-format.js";
-import type { Message } from "../message.js";
+import { Message } from "../message.js";
 import { FieldInfo, ScalarType } from "../field.js";
-import { unwrapField, wrapField } from "./field-wrapper.js";
+import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
 import type { MessageType } from "../message-type.js";
@@ -92,7 +92,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
       }
       m[unknownFieldsSymbol].push({ no, wireType, data });
     },
-    readMessage<T extends Message>(
+    readMessage<T extends Message<T>>(
       message: T,
       reader: IBinaryReader,
       length: number,
@@ -152,16 +152,22 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
                 messageType.fromBinary(reader.bytes(), options)
               );
             } else {
-              if (target[localName] instanceof messageType) {
-                (target[localName] as Message).fromBinary(
+              if (target[localName] instanceof Message) {
+                target[localName].fromBinary(reader.bytes(), options);
+              } else {
+                target[localName] = messageType.fromBinary(
                   reader.bytes(),
                   options
                 );
-              } else {
-                target[localName] = unwrapField(
-                  messageType,
-                  messageType.fromBinary(reader.bytes(), options)
-                );
+                if (
+                  messageType.fieldWrapper &&
+                  !field.oneof &&
+                  !field.repeated
+                ) {
+                  target[localName] = messageType.fieldWrapper.unwrapField(
+                    target[localName]
+                  );
+                }
               }
             }
             break;

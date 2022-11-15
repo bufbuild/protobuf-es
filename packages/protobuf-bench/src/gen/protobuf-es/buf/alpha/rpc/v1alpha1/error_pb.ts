@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/rpc/v1alpha1/error.proto (package buf.alpha.rpc.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * Well defined error codes specified as part of the RPC API.

@@ -16,8 +16,8 @@
 // @generated from file extra/name-clash.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage as PartialMessage$1, PlainMessage as PlainMessage$1} from "@bufbuild/protobuf";
-import {Message as Message$1, proto3} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage as PartialMessage$1, PlainMessage as PlainMessage$1 } from "@bufbuild/protobuf";
+import { Message as Message$1, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.ReservedPropertyNames

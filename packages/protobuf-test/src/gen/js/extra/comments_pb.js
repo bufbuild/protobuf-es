@@ -24,7 +24,7 @@
 
 // Comment before package.
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * Leading comment for enum.

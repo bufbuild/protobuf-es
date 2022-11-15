@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { setEnumType } from "./enum.js";
-import type {
+import {
   AnyMessage,
   Message,
   PartialMessage,
@@ -222,23 +222,13 @@ function cloneSingularField(
   if (value === undefined) {
     return value;
   }
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- unmatched "map" is unsupported
-  switch (field.kind) {
-    case "enum":
-      return value;
-    case "scalar":
-      if (field.T === ScalarType.BYTES) {
-        const c = new Uint8Array((value as Uint8Array).byteLength);
-        c.set(value as Uint8Array);
-        return c;
-      }
-      return value;
-    case "message":
-      if (field.T.fieldWrapper) {
-        return field.T.fieldWrapper.unwrapField(
-          field.T.fieldWrapper.wrapField(value).clone()
-        );
-      }
-      return (value as Message).clone();
+  if (value instanceof Message) {
+    return value.clone();
   }
+  if (value instanceof Uint8Array) {
+    const c = new Uint8Array(value.byteLength);
+    c.set(value);
+    return c;
+  }
+  return value;
 }

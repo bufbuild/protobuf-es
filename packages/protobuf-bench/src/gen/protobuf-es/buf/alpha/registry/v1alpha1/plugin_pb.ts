@@ -16,11 +16,11 @@
 // @generated from file buf/alpha/registry/v1alpha1/plugin.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
-import {RuntimeLibrary} from "./generate_pb.js";
-import {User} from "./user_pb.js";
-import {PluginRole, TemplateRole} from "./role_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
+import { RuntimeLibrary } from "./generate_pb.js";
+import { User } from "./user_pb.js";
+import { PluginRole, TemplateRole } from "./role_pb.js";
 
 /**
  * PluginVisibility defines the visibility options available

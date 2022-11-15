@@ -262,8 +262,18 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    return messageType.fromBinary(this.", localName(ref.value), ");");
       f.print("  }");
       f.print();
-      f.print("  is(type: ", MessageType, "): boolean {");
-      f.print("    return this.", localName(ref.typeUrl), " === this.typeNameToUrl(type.typeName);");
+      f.print("  is(type: ", MessageType, " | string): boolean {");
+      f.print("    if (this.typeUrl === '') {");
+      f.print("      return false;");
+      f.print("    }");
+      f.print("    const name = this.typeUrlToName(this.", localName(ref.typeUrl), ");");
+      f.print("    let typeName = '';");
+      f.print("    if (typeof type === 'string') {");
+      f.print("        typeName = type;");
+      f.print("    } else {");
+      f.print("        typeName = type.typeName;");
+      f.print("    }");
+      f.print("    return name === typeName;");
       f.print("  }");
       f.print();
       f.print("  private typeNameToUrl(name: string): string {");
@@ -593,8 +603,8 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BytesValue": {
       const {typing} = getFieldTyping(ref.value, f);
       f.print("  static readonly fieldWrapper = {")
-      f.print("    wrapField(value: ", typing, " | ", message, "): ", message, " {")
-      f.print("      return value instanceof ", message, " ? value : new ", message, "({value});")
+      f.print("    wrapField(value: ", typing, "): ", message, " {")
+      f.print("      return new ", message, "({value});")
       f.print("    },")
       f.print("    unwrapField(value: ", message, "): ", typing, " {")
       f.print("      return value.", localName(ref.value), ";")

@@ -39,7 +39,7 @@
 // @generated from file google/protobuf/test_messages_proto3.proto (package protobuf_test_messages.proto3, syntax proto3)
 /* eslint-disable */
 
-import {Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, proto3, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value} from "@bufbuild/protobuf";
+import { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, proto3, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum

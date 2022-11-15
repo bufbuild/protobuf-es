@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/role.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * The roles that users can have in a Server.

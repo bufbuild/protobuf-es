@@ -159,7 +159,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print();
       f.print("  unpackTo(target: ", Message, "): boolean;");
       f.print();
-      f.print("  is(type: ", MessageType, "): boolean;");
+      f.print("  is(type: ", MessageType, " | string): boolean;");
       f.print();
       f.print("  private typeNameToUrl(name: string): string;");
       f.print();
@@ -216,7 +216,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BytesValue": {
       const {typing} = getFieldTyping(ref.value, f);
       f.print("  static readonly fieldWrapper: {")
-      f.print("    wrapField(value: ", typing, " | ", message, "): ", message, ",")
+      f.print("    wrapField(value: ", typing, "): ", message, ",")
       f.print("    unwrapField(value: ", message, "): ", typing, ",")
       f.print("  };")
       f.print()

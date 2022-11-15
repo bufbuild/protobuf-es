@@ -226,7 +226,7 @@ export class Any extends Message<Any> {
     target.fromBinary(this.value);
     return true;
   }
-
+  
   unpack(registry: IMessageTypeRegistry): Message | undefined {
     if (this.typeUrl === "") {
       return undefined;
@@ -238,8 +238,18 @@ export class Any extends Message<Any> {
     return messageType.fromBinary(this.value);
   }
 
-  is(type: MessageType): boolean {
-    return this.typeUrl === this.typeNameToUrl(type.typeName);
+  is(type: MessageType | string): boolean {
+    if (this.typeUrl === '') {
+      return false;
+    }
+    const name = this.typeUrlToName(this.typeUrl);
+    let typeName = '';
+    if (typeof type === 'string') {
+        typeName = type;
+    } else {
+        typeName = type.typeName;
+    }
+    return name === typeName;
   }
 
   private typeNameToUrl(name: string): string {
