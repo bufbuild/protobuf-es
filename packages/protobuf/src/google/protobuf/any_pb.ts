@@ -223,7 +223,7 @@ export class Any extends Message<Any> {
     }
     const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
     if (!messageType) {
-      throw new Error(`cannot unpack message: ${this.typeUrl} is not in the type registry`);
+      return undefined;
     }
     return messageType.fromBinary(this.value);
   }

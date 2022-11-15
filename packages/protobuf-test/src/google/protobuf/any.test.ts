@@ -105,17 +105,14 @@ describe("google.protobuf.Any", () => {
       expect(unpacked.kind.value).toBe(1);
     });
 
-    test(`unpack throws if message not in the registry`, () => {
+    test(`unpack returns undefined if message not in the registry`, () => {
       const typeRegistry = createRegistry();
       const val = new Value({
         kind: { case: "numberValue", value: 1 },
       });
       const got = Any.pack(val);
-
-      const t = () => {
-        got.unpack(typeRegistry);
-      };
-      expect(t).toThrow(Error);
+      const unpacked = got.unpack(typeRegistry);
+      expect(unpacked).toBeUndefined();
     });
 
     test(`unpack returns undefined with an empty Any`, () => {
