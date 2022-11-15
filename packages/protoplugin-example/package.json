@@ -18,6 +18,8 @@
     "@bufbuild/protobuf": "^0.2.1",
     "@bufbuild/protoc-gen-es": "^0.2.1",
     "@bufbuild/protoplugin": "^0.2.1",
-    "tsx": "^3.11.0"
+    "tsx": "^3.11.0",
+    "@types/node": "~18.8.0",
+    "typescript": "^4.8.4"
   }
 }
