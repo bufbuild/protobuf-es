@@ -186,6 +186,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     JsonWriteOptions,
     JsonObject,
     MessageType,
+    IMessageTypeRegistry,
     ScalarType: rtScalarType,
     protoInt64,
   } = schema.runtime;
@@ -248,6 +249,17 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    }");
       f.print("    target.fromBinary(this.", localName(ref.value), ");");
       f.print("    return true;");
+      f.print("  }");
+      f.print();
+      f.print("  unpack(registry: ", IMessageTypeRegistry, "): ", Message, " | undefined {");
+      f.print("    if (this.", localName(ref.typeUrl), ` === "") {`);
+      f.print("      return undefined;");
+      f.print("    }");
+      f.print("    const messageType = registry.findMessage(this.typeUrlToName(this.", localName(ref.typeUrl), "));");
+      f.print("    if (!messageType) {");
+      f.print("      throw new Error(`cannot unpack message: ${this.", localName(ref.typeUrl), "} is not in the type registry`);");
+      f.print("    }");
+      f.print("    return messageType.fromBinary(this.", localName(ref.value), ");");
       f.print("  }");
       f.print();
       f.print("  is(type: ", MessageType, " | string): boolean {");
