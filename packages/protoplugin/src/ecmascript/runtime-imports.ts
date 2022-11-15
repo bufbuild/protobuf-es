@@ -34,28 +34,30 @@ export interface RuntimeImports {
   ScalarType: ImportSymbol;
   MethodKind: ImportSymbol;
   MethodIdempotency: ImportSymbol;
+  IMessageTypeRegistry: ImportSymbol;
 }
 
 export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
   // prettier-ignore
   return {
-    proto2:             infoToSymbol("proto2",            bootstrapWkt),
-    proto3:             infoToSymbol("proto3",            bootstrapWkt),
-    Message:            infoToSymbol("Message",           bootstrapWkt),
-    PartialMessage:     infoToSymbol("PartialMessage",    bootstrapWkt),
-    PlainMessage:       infoToSymbol("PlainMessage",      bootstrapWkt),
-    FieldList:          infoToSymbol("FieldList",         bootstrapWkt),
-    MessageType:        infoToSymbol("MessageType",       bootstrapWkt),
-    BinaryReadOptions:  infoToSymbol("BinaryReadOptions", bootstrapWkt),
-    BinaryWriteOptions: infoToSymbol("BinaryWriteOptions",bootstrapWkt),
-    JsonReadOptions:    infoToSymbol("JsonReadOptions",   bootstrapWkt),
-    JsonWriteOptions:   infoToSymbol("JsonWriteOptions",  bootstrapWkt),
-    JsonValue:          infoToSymbol("JsonValue",         bootstrapWkt),
-    JsonObject:         infoToSymbol("JsonObject",        bootstrapWkt),
-    protoInt64:         infoToSymbol("protoInt64",        bootstrapWkt),
-    ScalarType:         infoToSymbol("ScalarType",        bootstrapWkt),
-    MethodKind:         infoToSymbol("MethodKind",        bootstrapWkt),
-    MethodIdempotency:  infoToSymbol("MethodIdempotency", bootstrapWkt),
+    proto2:                infoToSymbol("proto2",               bootstrapWkt),
+    proto3:                infoToSymbol("proto3",               bootstrapWkt),
+    Message:               infoToSymbol("Message",              bootstrapWkt),
+    PartialMessage:        infoToSymbol("PartialMessage",       bootstrapWkt),
+    PlainMessage:          infoToSymbol("PlainMessage",         bootstrapWkt),
+    FieldList:             infoToSymbol("FieldList",            bootstrapWkt),
+    MessageType:           infoToSymbol("MessageType",          bootstrapWkt),
+    BinaryReadOptions:     infoToSymbol("BinaryReadOptions",    bootstrapWkt),
+    BinaryWriteOptions:    infoToSymbol("BinaryWriteOptions",   bootstrapWkt),
+    JsonReadOptions:       infoToSymbol("JsonReadOptions",      bootstrapWkt),
+    JsonWriteOptions:      infoToSymbol("JsonWriteOptions",     bootstrapWkt),
+    JsonValue:             infoToSymbol("JsonValue",            bootstrapWkt),
+    JsonObject:            infoToSymbol("JsonObject",           bootstrapWkt),
+    protoInt64:            infoToSymbol("protoInt64",           bootstrapWkt),
+    ScalarType:            infoToSymbol("ScalarType",           bootstrapWkt),
+    MethodKind:            infoToSymbol("MethodKind",           bootstrapWkt),
+    MethodIdempotency:     infoToSymbol("MethodIdempotency",    bootstrapWkt),
+    IMessageTypeRegistry:  infoToSymbol("IMessageTypeRegistry", bootstrapWkt),
   };
 }
 
