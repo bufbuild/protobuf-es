@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {PartialMessage, PlainMessage} from "../../message.js";
-import {Message} from "../../message.js";
-import {proto3} from "../../proto3.js";
-import type {JsonReadOptions, JsonValue, JsonWriteOptions} from "../../json-format.js";
-import type {IMessageTypeRegistry} from "../../type-registry.js";
-import type {MessageType} from "../../message-type.js";
-import type {FieldList} from "../../field-list.js";
-import type {BinaryReadOptions} from "../../binary-format.js";
+import type { PartialMessage, PlainMessage } from "../../message.js";
+import { Message } from "../../message.js";
+import { proto3 } from "../../proto3.js";
+import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
+import type { IMessageTypeRegistry } from "../../type-registry.js";
+import type { MessageType } from "../../message-type.js";
+import type { FieldList } from "../../field-list.js";
+import type { BinaryReadOptions } from "../../binary-format.js";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -216,7 +216,7 @@ export class Any extends Message<Any> {
     target.fromBinary(this.value);
     return true;
   }
-  
+
   unpack(registry: IMessageTypeRegistry): Message | undefined {
     if (this.typeUrl === "") {
       return undefined;
