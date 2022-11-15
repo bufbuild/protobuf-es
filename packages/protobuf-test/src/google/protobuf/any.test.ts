@@ -101,8 +101,8 @@ describe("google.protobuf.Any", () => {
       const unpacked = got.unpack(typeRegistry) as Value;
 
       expect(unpacked).toBeDefined();
-      expect(unpacked!.kind.case).toBe("numberValue");
-      expect(unpacked!.kind.value).toBe(1);
+      expect(unpacked.kind.case).toBe("numberValue");
+      expect(unpacked.kind.value).toBe(1);
     });
 
     test(`unpack throws if message not in the registry`, () => {
