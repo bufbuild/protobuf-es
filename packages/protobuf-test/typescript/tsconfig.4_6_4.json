@@ -1,13 +1,15 @@
 {
-  "include": ["../src/gen/js/extra/*.js", "../src/gen/ts/extra/*.ts"],
-  // These are the default compiler options for TypeScript v4.6.4, created with `tsc --init` (except where noted)
+  "include": ["../src/**/*"],
+  // These are the default compiler options for TypeScript v4.6.4, created
+  // with `tsc --init` (except where noted in comments below)
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    // To guard against regression and ensure we are remaining backwards compatible, set the skipLibCheck flag to false explicitly.
+    // To guard against regression and ensure we are remaining backwards
+    // compatible, set the skipLibCheck flag to false explicitly.
     "skipLibCheck": false
   }
 }

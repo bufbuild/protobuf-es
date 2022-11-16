@@ -48,7 +48,7 @@ describe("print with tagged template literal", function () {
       f.print`export function foo(): ${Foo} { return new ${Foo}(); };`;
     });
     expect(lines).toStrictEqual([
-      'import {Foo} from "foo";',
+      'import { Foo } from "foo";',
       "",
       "export function foo(): Foo { return new Foo(); };",
     ]);
@@ -61,7 +61,7 @@ describe("print with tagged template literal", function () {
 };`;
     });
     expect(lines).toStrictEqual([
-      'import {Foo} from "foo";',
+      'import { Foo } from "foo";',
       "",
       "export function foo(): Foo {",
       "  return new Foo();",
@@ -79,7 +79,7 @@ export function foo(): ${Foo} {
 `;
     });
     expect(lines).toStrictEqual([
-      'import {Foo} from "foo";',
+      'import { Foo } from "foo";',
       "",
       "",
       "export function foo(): Foo {",
@@ -99,6 +99,6 @@ export function foo(): ${Foo} {
       const Foo = f.import("Foo", "foo");
       f.print`${Foo}`;
     });
-    expect(lines).toStrictEqual(['import {Foo} from "foo";', "", "Foo"]);
+    expect(lines).toStrictEqual(['import { Foo } from "foo";', "", "Foo"]);
   });
 });

@@ -42,7 +42,7 @@
 // @generated from file google/protobuf/wrappers.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3, ScalarType} from "@bufbuild/protobuf";
+import { proto3, ScalarType } from "@bufbuild/protobuf";
 
 /**
  * Wrapper message for `double`.

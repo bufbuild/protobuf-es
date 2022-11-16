@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/timestamp.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3, protoInt64} from "@bufbuild/protobuf";
+import { proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { NoClashOneofADT as TS_NoClashOneofADT } from "./gen/ts/extra/name-clash_pb";
+import { NoClashOneofADT as TS_NoClashOneofADT } from "./gen/ts/extra/name-clash_pb.js";
 
 describe("message looking like a oneof ADT", () => {
   test("takes all fields in constructor", () => {

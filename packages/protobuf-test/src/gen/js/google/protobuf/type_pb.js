@@ -32,9 +32,9 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
-import {SourceContext} from "./source_context_pb.js";
-import {Any} from "./any_pb.js";
+import { proto3 } from "@bufbuild/protobuf";
+import { SourceContext } from "./source_context_pb.js";
+import { Any } from "./any_pb.js";
 
 /**
  * The syntax in which a protocol buffer element is defined.

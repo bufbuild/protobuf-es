@@ -34,7 +34,7 @@
 // @generated from file google/protobuf/unittest_import_public_lite.proto (package protobuf_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessageLite

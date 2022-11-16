@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/audit/v1alpha1/user.proto (package buf.alpha.audit.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1UserState

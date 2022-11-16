@@ -16,10 +16,10 @@
 // @generated from file buf/alpha/module/v1alpha1/module.proto (package buf.alpha.module.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, Timestamp} from "@bufbuild/protobuf";
-import {Config} from "../../breaking/v1/config_pb.js";
-import {Config as Config$1} from "../../lint/v1/config_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Config } from "../../breaking/v1/config_pb.js";
+import { Config as Config$1 } from "../../lint/v1/config_pb.js";
 
 /**
  * Module is a module.

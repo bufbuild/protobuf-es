@@ -16,7 +16,7 @@
 // @generated from file extra/wkt-wrappers.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import {BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, proto3, StringValue, UInt32Value, UInt64Value} from "@bufbuild/protobuf";
+import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, proto3, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.WrappersMessage
