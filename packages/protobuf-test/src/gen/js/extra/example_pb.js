@@ -19,14 +19,17 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message docs.Example
+ * @generated from message docs.User
  */
-export const Example = proto3.makeMessageType(
-  "docs.Example",
+export const User = proto3.makeMessageType(
+  "docs.User",
   () => [
-    { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "baz", kind: "message", T: Example },
+    { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "manager", kind: "message", T: User },
+    { no: 5, name: "locations", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "projects", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ],
 );
 

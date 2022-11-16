@@ -13,30 +13,49 @@
 // limitations under the License.
 
 import type { AnyMessage } from "@bufbuild/protobuf";
-import { Example } from "./gen/ts/extra/example_pb.js";
+import { User } from "./gen/ts/extra/example_pb.js";
 
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/restrict-template-expressions */
 
 describe("iterating fields", function () {
   test("works as expected", function () {
     const r = walkFields(
-      new Example({
-        foo: "abc",
-        bar: true,
-        baz: undefined,
+      new User({
+        firstName: "John",
+        lastName: "Smith",
+        active: true,
+        manager: {
+          firstName: "Jane",
+          lastName: "Jones",
+        },
+        locations: ["PIT", "GER"],
+        projects: {
+          PES: "Protobuf-ES",
+          CWB: "Connect-Web",
+        },
       })
     );
-    expect(r.length).toBe(3);
-    expect(r[0]).toBe("field foo: abc");
-    expect(r[1]).toBe("field bar: true");
-    expect(r[2]).toBe("field baz: undefined");
+    expect(r.length).toBe(6);
+    expect(r[0]).toBe("field firstName: John");
+    expect(r[1]).toBe("field lastName: Smith");
+    expect(r[2]).toBe("field active: true");
+    expect(r[3]).toBe(
+      'field manager: {"firstName":"Jane","lastName":"Jones","active":false,"locations":[],"projects":{}}'
+    );
+    expect(r[4]).toBe("field locations: PIT,GER");
+    expect(r[5]).toBe(
+      'field projects: {"PES":"Protobuf-ES","CWB":"Connect-Web"}'
+    );
   });
 });
 
 function walkFields(message: AnyMessage): string[] {
   const r: string[] = [];
   for (const fieldInfo of message.getType().fields.byNumber()) {
-    const value = message[fieldInfo.localName];
+    let value = message[fieldInfo.localName];
+    if (fieldInfo.kind === "message" || fieldInfo.kind === "map") {
+      value = JSON.stringify(value);
+    }
     r.push(`field ${fieldInfo.localName}: ${value}`);
   }
   return r;

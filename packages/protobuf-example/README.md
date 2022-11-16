@@ -1,6 +1,6 @@
-# Code example
+# Protobuf Example
 
-This directory contains example code that uses protocol buffers to manage an 
+This directory contains example code that uses Protocol Buffers to manage an 
 address book. The script [add-person.ts](./src/add-person.ts) adds a new person
 to an address book, prompting the user to input the person's information. The
 script [list-people.ts](./src/list-people.ts) lists people already in the 
@@ -59,6 +59,6 @@ protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_mo
 ```
 
 Don't forget to run `npm run build` to compile TypeScript to JavaScript, so that 
-Node will understand it. You do not need TypeScript to use `protobuf-es`. Just 
+Node will understand it. You do not need TypeScript to use **Protobuf-ES**. Just 
 set the plugin option `target=js` if you prefer plain JavaScript, or `target=js+dts`
 if you prefer JavaScript with TypeScript declaration files.

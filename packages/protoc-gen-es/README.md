@@ -1,40 +1,11 @@
 # @bufbuild/protoc-gen-es
 
- [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
-
-The code generator for Protocol Buffers for ECMAScript. For example, the 
-following definition:
-
-```protobuf
-message Person {
-  string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
-  string email = 3;
-}
-```
-
-Is compiled to an ECMAScript class that can be used like this:
-
-```typescript
-let pete = new Person({
-  name: "pete",
-  id: 123
-});
-
-let bytes = pete.toBinary();
-pete = Person.fromBinary(bytes);
-pete = Person.fromJsonString('{"name": "pete", "id": 123}');
-```
-
-Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
-
+The code generator plugin for Protocol Buffers for ECMAScript.  Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
 
 ## Installation
 
-`protoc-gen-es` is a code generator plugin for Protocol Buffer compilers,
-like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
-It generates base types - messages and enumerations - from your Protocol Buffer 
-schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
+`protoc-gen-es` generates base types - messages and enumerations - from your Protocol Buffer 
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).  It is compatible with Protocol Buffer compilers  like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
 To install the plugin and the runtime library, run:
 

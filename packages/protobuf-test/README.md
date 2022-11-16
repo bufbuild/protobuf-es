@@ -1,9 +1,9 @@
 # Tests
 
-This package provides test coverage for @bufbuild/protobuf with Jest. 
+This package provides test coverage for `@bufbuild/protobuf` with Jest. 
 
 We also generate code for many of the unit test proto files that are part of 
-github.com/protocolbuffers/protobuf. They cover many edge cases for both code 
+`github.com/protocolbuffers/protobuf`. They cover many edge cases for both code 
 generation and serialization.
 
 Many test cases are run several times, once with the generated TypeScript code, 
@@ -24,9 +24,7 @@ If any compilation error is encountered, the process will exit immediately.
 The versions list is compiled of:
 
 - the earliest TypeScript version we support (4.1.2).
-- the earliest version we support with `skipLibChecks` set to `false`.
-- the current release candidate
-- the latest patch release of all minor versions in between
+- the latest patch release of all minor versions up to the current release.
 
 ### Adding a new version
 
@@ -70,7 +68,7 @@ regressions on newer versions.
 - Add the following `include` property before the `compilerOptions`:
    
   ```bash
-  "include": ["../src/gen/js/extra/*.js", "../src/gen/ts/extra/*.ts"],
+  "include": ["../src/**/*"],
   ```
 
 - Finally, add the version to the `TS_VERSIONS` variable in the Makefile.  

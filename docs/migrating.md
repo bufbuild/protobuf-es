@@ -5,23 +5,51 @@ The following guides show the changes you'll need to switch your existing code b
 [from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts) 
 to Protobuf-ES.
 
+- [Feature Matrix](#feature-matrix)
+- [From protobuf-javascript](#from-protobuf-javascript)
+  - [Generating Code](#generating-code)
+  - [Field Access](#field-access)
+  - [Optional Fields](#optional-fields)
+  - [Well-Known Types](#well-known-types)
+  - [Wrapper Fields](#wrapper-fields)
+  - [Map Fields](#map-fields)
+  - [Repeated Fields](#repeated-fields)
+  - [Oneof Groups](#oneof-groups)
+  - [Message Constructors](#message-constructors)
+  - [Serialization](#serialization)
+  - [Enumerations](#enumerations)
+  - [`toObject()`](#toobject)
+- [From protobuf-ts](#from-protobuf-ts)
+  - [Generating Code](#generating-code-1)
+  - [Well-Known Types](#well-known-types-1)
+  - [Wrapper Fields](#wrapper-fields-1)
+  - [Serialization](#serialization-1)
+  - [Message Constructors](#message-constructors-1)
+  - [Cloning](#cloning)
+  - [Message Type Guards](#message-type-guards)
+  - [Reflection](#reflection)
+  - [Dynamic Messages](#dynamic-messages)
+
+
+# Feature Matrix
+
 | Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
 |------------------------|-------------|---------------------|-------------|
-| Initializers           | ✔️          |                     | ✔️️         |
-| Plain properties       | ✔️          |                     | ✔️️         |
-| `instanceof`           | ✔️          | ✔️                  | ️️          |
-| JSON format            | ✔️          |                     | ✔️          |
-| Binary format          | ✔️          | ✔️                  | ✔️          |
-| TypeScript             | ✔️          | ️                   | ✔️          |
-| Standard module system | ✔️          |                     | ✔️          |
-| Tree shaking           | ✔️          | ️                   | ✔️          |
-| Reflection             | ✔️          |                     | ✔️          |
-| Dynamic messages       | ✔️          | ️                   | ✔️          |
-| Wrappers unboxing      | ✔️          |                     |             |
-| Comments               | ✔️          |                     | ✔️          |
-| Deprecation            | ✔️          |                     | ✔️          |
-| proto2 syntax          | ✔️          | ✔️                  |             |
-| proto2 extensions      | ️           | ✔️                  |             |
+| Initializers           | ✅          | ❌                    | ✅         |
+| Plain properties       | ✅          | ❌                    | ✅         |
+| `instanceof`           | ✅          | ✅                  | ️️❌          |
+| JSON format            | ✅          | ❌                    | ✅          |
+| Binary format          | ✅          | ✅                  | ✅          |
+| TypeScript             | ✅          | ️❌                   | ✅          |
+| Standard module system | ✅          | ❌                    | ✅          |
+| Tree shaking           | ✅          | ️❌                   | ✅          |
+| Reflection             | ✅          | ❌                    | ✅          |
+| Dynamic messages       | ✅          | ️❌                   | ✅          |
+| Wrappers unboxing      | ✅          | ❌                    | ❌            |
+| Comments               | ✅          | ❌                    | ✅          |
+| Deprecation            | ✅          | ❌                    | ✅          |
+| proto2 syntax          | ✅          | ✅                  | ❌            |
+| proto2 extensions      | ️❌            | ✅                  | ❌            |
 
 
 # From protobuf-javascript
