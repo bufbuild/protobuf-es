@@ -83,5 +83,23 @@ describeMT(
         exampleFields.repeatedMessageField[1].name
       );
     });
+    test("JSON.stringify correctly stringifies defaults", () => {
+      const msg = new messageType();
+      const got = JSON.stringify(msg);
+      expect(got).toStrictEqual(
+        msg.toJsonString({
+          emitDefaultValues: true,
+        })
+      );
+    });
+    test("JSON.stringify correctly stringifies fields with values", () => {
+      const msg = new messageType(exampleFields);
+      const got = JSON.stringify(msg);
+      expect(got).toStrictEqual(
+        msg.toJsonString({
+          emitDefaultValues: true,
+        })
+      );
+    });
   }
 );

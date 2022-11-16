@@ -124,6 +124,22 @@ export class Message<T extends Message<T> = AnyMessage> {
   }
 
   /**
+   * Override for serializaton behavior.  This will be invoked when calling
+   * JSON.stringify on this message (i.e. JSON.stringify(msg)).
+   *
+   * Note that this will not serialize google.protobuf.Any with a packed
+   * message because the protobuf JSON format specifies that it needs to be
+   * unpacked, and this is only possible with a type registry to look up the
+   * message type.  As a result, attempting to serialize a message with this
+   * type will throw an Error.
+   */
+  toJSON(): JsonValue {
+    return this.toJson({
+      emitDefaultValues: true,
+    });
+  }
+
+  /**
    * Retrieve the MessageType of this message - a singleton that represents
    * the protobuf message declaration and provides metadata for reflection-
    * based operations.
