@@ -101,9 +101,5 @@ describeMT(
         })
       );
     });
-    test("JSON.stringify round trip", () => {
-      const got = JSON.parse(JSON.stringify(new messageType(exampleFields)));
-      expect(got).toStrictEqual(exampleFields);
-    });
   }
 );
