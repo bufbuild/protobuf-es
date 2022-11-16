@@ -16,7 +16,7 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { Any, proto3 } from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.MessageFieldMessage
@@ -38,47 +38,5 @@ export const MessageFieldMessage_TestMessage = proto3.makeMessageType(
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
   {localName: "MessageFieldMessage_TestMessage"},
-);
-
-/**
- * Message used for testing JSON.stringify and JSON.parse functionality
- *
- * @generated from message spec.MessageStringifyMessage
- */
-export const MessageStringifyMessage = proto3.makeMessageType(
-  "spec.MessageStringifyMessage",
-  () => [
-    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "map_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
-    { no: 6, name: "message_field", kind: "message", T: MessageStringifyMessage_InnerMessage },
-    { no: 7, name: "repeated_message_field", kind: "message", T: MessageStringifyMessage_InnerMessage, repeated: true },
-  ],
-);
-
-/**
- * @generated from message spec.MessageStringifyMessage.InnerMessage
- */
-export const MessageStringifyMessage_InnerMessage = proto3.makeMessageType(
-  "spec.MessageStringifyMessage.InnerMessage",
-  () => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ],
-  {localName: "MessageStringifyMessage_InnerMessage"},
-);
-
-/**
- * Message used for testing JSON.stringify and JSON.parse functionality with an
- * Any field
- *
- * @generated from message spec.MessageStringifyAnyMessage
- */
-export const MessageStringifyAnyMessage = proto3.makeMessageType(
-  "spec.MessageStringifyAnyMessage",
-  () => [
-    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "any_field", kind: "message", T: Any },
-  ],
 );
 

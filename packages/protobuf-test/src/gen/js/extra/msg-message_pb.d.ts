@@ -16,7 +16,7 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { Any, BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -70,112 +70,5 @@ export declare class MessageFieldMessage_TestMessage extends Message<MessageFiel
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageFieldMessage_TestMessage;
 
   static equals(a: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined, b: MessageFieldMessage_TestMessage | PlainMessage<MessageFieldMessage_TestMessage> | undefined): boolean;
-}
-
-/**
- * Message used for testing JSON.stringify and JSON.parse functionality
- *
- * @generated from message spec.MessageStringifyMessage
- */
-export declare class MessageStringifyMessage extends Message<MessageStringifyMessage> {
-  /**
-   * @generated from field: string string_field = 1;
-   */
-  stringField: string;
-
-  /**
-   * @generated from field: int32 int32_field = 2;
-   */
-  int32Field: number;
-
-  /**
-   * @generated from field: bool bool_field = 4;
-   */
-  boolField: boolean;
-
-  /**
-   * @generated from field: map<string, string> map_field = 5;
-   */
-  mapField: { [key: string]: string };
-
-  /**
-   * @generated from field: spec.MessageStringifyMessage.InnerMessage message_field = 6;
-   */
-  messageField?: MessageStringifyMessage_InnerMessage;
-
-  /**
-   * @generated from field: repeated spec.MessageStringifyMessage.InnerMessage repeated_message_field = 7;
-   */
-  repeatedMessageField: MessageStringifyMessage_InnerMessage[];
-
-  constructor(data?: PartialMessage<MessageStringifyMessage>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.MessageStringifyMessage";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageStringifyMessage;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageStringifyMessage;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageStringifyMessage;
-
-  static equals(a: MessageStringifyMessage | PlainMessage<MessageStringifyMessage> | undefined, b: MessageStringifyMessage | PlainMessage<MessageStringifyMessage> | undefined): boolean;
-}
-
-/**
- * @generated from message spec.MessageStringifyMessage.InnerMessage
- */
-export declare class MessageStringifyMessage_InnerMessage extends Message<MessageStringifyMessage_InnerMessage> {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name: string;
-
-  constructor(data?: PartialMessage<MessageStringifyMessage_InnerMessage>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.MessageStringifyMessage.InnerMessage";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageStringifyMessage_InnerMessage;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageStringifyMessage_InnerMessage;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageStringifyMessage_InnerMessage;
-
-  static equals(a: MessageStringifyMessage_InnerMessage | PlainMessage<MessageStringifyMessage_InnerMessage> | undefined, b: MessageStringifyMessage_InnerMessage | PlainMessage<MessageStringifyMessage_InnerMessage> | undefined): boolean;
-}
-
-/**
- * Message used for testing JSON.stringify and JSON.parse functionality with an
- * Any field
- *
- * @generated from message spec.MessageStringifyAnyMessage
- */
-export declare class MessageStringifyAnyMessage extends Message<MessageStringifyAnyMessage> {
-  /**
-   * @generated from field: string string_field = 1;
-   */
-  stringField: string;
-
-  /**
-   * @generated from field: google.protobuf.Any any_field = 2;
-   */
-  anyField?: Any;
-
-  constructor(data?: PartialMessage<MessageStringifyAnyMessage>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.MessageStringifyAnyMessage";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MessageStringifyAnyMessage;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MessageStringifyAnyMessage;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MessageStringifyAnyMessage;
-
-  static equals(a: MessageStringifyAnyMessage | PlainMessage<MessageStringifyAnyMessage> | undefined, b: MessageStringifyAnyMessage | PlainMessage<MessageStringifyAnyMessage> | undefined): boolean;
 }
 

@@ -123,6 +123,13 @@ export class Message<T extends Message<T> = AnyMessage> {
     return JSON.stringify(value, null, options?.prettySpaces ?? 0);
   }
 
+  /**
+   * Override for serializaton behavior.  This will be invoked when calling
+   * JSON.stringify on this message (i.e. JSON.stringify(msg)).
+   *
+   * Note that this will not serialize BigInt or google.protobuf.Any.  As a
+   * result, any message with  those field types will throw an Error.
+   */
   toJSON(): JsonValue {
     return this.toJson({
       emitDefaultValues: true,
