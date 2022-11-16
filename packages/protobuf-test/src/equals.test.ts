@@ -100,13 +100,63 @@ describe("equals", function () {
   );
 
   describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
+    test("different order are equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d", e: "f" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { e: "f", c: "d" } },
+            },
+          })
+        )
+      ).toBeTruthy();
+    });
     test("added key not equal", () => {
       expect(
         new messageType({
-          strStrField: { a: "b" },
+          strMsgField: {
+            a: {},
+          },
         }).equals(
           new messageType({
-            strStrField: { a: "b", c: "d" },
+            strMsgField: {
+              a: {},
+              b: {},
+            },
+          })
+        )
+      ).toBeFalsy();
+    });
+    test("removed key not equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d", e: "f" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { c: "d" } },
+            },
+          })
+        )
+      ).toBeFalsy();
+    });
+    test("changed value not equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { c: "e" } },
+            },
           })
         )
       ).toBeFalsy();
