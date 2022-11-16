@@ -13,8 +13,17 @@
 // limitations under the License.
 
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
-import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
-import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
+import { Any, Struct } from "@bufbuild/protobuf";
+import {
+  MessageFieldMessage as TS_MessageFieldMessage,
+  MessageStringifyMessage as TS_MessageStringifyMessage,
+  MessageStringifyAnyMessage as TS_MessageStringifyAnyMessage,
+} from "./gen/ts/extra/msg-message_pb.js";
+import {
+  MessageFieldMessage as JS_MessageFieldMessage,
+  MessageStringifyMessage as JS_MessageStringifyMessage,
+  MessageStringifyAnyMessage as JS_MessageStringifyAnyMessage,
+} from "./gen/js/extra/msg-message_pb.js";
 import { describeMT } from "./helpers.js";
 
 describeMT(
@@ -85,3 +94,63 @@ describeMT(
     });
   }
 );
+
+describeMT(
+  { ts: TS_MessageStringifyMessage, js: JS_MessageStringifyMessage },
+  (messageType) => {
+    const defaultFieldsString =
+      '{"stringField":"","int32Field":0,"boolField":false,"mapField":{},"repeatedMessageField":[]}';
+
+    const fieldsString =
+      '{"stringField":"test","int32Field":42,"boolField":true,"mapField":{"key1":"value1","key2":"value2"},"repeatedMessageField":[{"name":"a"},{"name":"b"}]}';
+
+    const fieldsJson = {
+      stringField: "test",
+      int32Field: 42,
+      boolField: true,
+      mapField: {
+        key1: "value1",
+        key2: "value2",
+      },
+      repeatedMessageField: [{ name: "a" }, { name: "b" }],
+    };
+
+    test("JSON.stringify correctly stringifies defaults", () => {
+      const got = JSON.stringify(new messageType());
+      expect(got).toStrictEqual(defaultFieldsString);
+    });
+
+    test("JSON.stringify correctly stringifies fields with values", () => {
+      const got = JSON.stringify(new messageType(fieldsJson));
+      expect(got).toStrictEqual(fieldsString);
+    });
+
+    test("round trip", () => {
+      const got = JSON.parse(JSON.stringify(new messageType(fieldsJson)));
+      expect(got).toStrictEqual(fieldsJson);
+    });
+  }
+);
+
+describeMT(
+  { ts: TS_MessageStringifyAnyMessage, js: JS_MessageStringifyAnyMessage },
+  (messageType) => {
+    test("JSON.stringify correctly stringifies any", () => {
+      const str = new Struct({
+        fields: {
+          foo: { kind: { case: "numberValue", value: 1 } },
+        },
+      });
+      const anyMsg = Any.pack(str);
+      const msg = new messageType({
+        anyField: anyMsg,
+      });
+      const t = () => {
+        JSON.stringify(msg);
+      };
+      expect(t).toThrow(Error);
+    });
+  }
+);
+
+// TODO - One for int64/BigInt expecting throws

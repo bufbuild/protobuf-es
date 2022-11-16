@@ -123,6 +123,12 @@ export class Message<T extends Message<T> = AnyMessage> {
     return JSON.stringify(value, null, options?.prettySpaces ?? 0);
   }
 
+  toJSON(): JsonValue {
+    return this.toJson({
+      emitDefaultValues: true,
+    });
+  }
+
   /**
    * Retrieve the MessageType of this message - a singleton that represents
    * the protobuf message declaration and provides metadata for reflection-

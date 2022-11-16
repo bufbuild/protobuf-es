@@ -15,6 +15,7 @@
 syntax = "proto3";
 package spec;
 
+import "google/protobuf/any.proto";
 
 message MessageFieldMessage {
 
@@ -28,4 +29,29 @@ message MessageFieldMessage {
     }
 
 }
+
+// Message used for testing JSON.stringify and JSON.parse functionality
+message MessageStringifyMessage {
+    string string_field = 1;
+    int32 int32_field = 2;
+    bool bool_field = 4;
+    map<string, string> map_field = 5;
+
+    InnerMessage message_field = 6;
+
+    repeated InnerMessage repeated_message_field = 7;
+
+    message InnerMessage {
+        string name = 1;
+    }
+}
+
+// Message used for testing JSON.stringify and JSON.parse functionality with an
+// Any field
+message MessageStringifyAnyMessage {
+    string string_field = 1;
+
+    google.protobuf.Any any_field = 2;
+}
+
 
