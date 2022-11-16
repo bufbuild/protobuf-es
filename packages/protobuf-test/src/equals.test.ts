@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
+import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import { ScalarValuesMessage as TS_ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
@@ -96,4 +98,68 @@ describe("equals", function () {
       });
     }
   );
+
+  describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
+    test("different order are equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d", e: "f" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { e: "f", c: "d" } },
+            },
+          })
+        )
+      ).toBeTruthy();
+    });
+    test("added key not equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: {},
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: {},
+              b: {},
+            },
+          })
+        )
+      ).toBeFalsy();
+    });
+    test("removed key not equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d", e: "f" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { c: "d" } },
+            },
+          })
+        )
+      ).toBeFalsy();
+    });
+    test("changed value not equal", () => {
+      expect(
+        new messageType({
+          strMsgField: {
+            a: { strStrField: { c: "d" } },
+          },
+        }).equals(
+          new messageType({
+            strMsgField: {
+              a: { strStrField: { c: "e" } },
+            },
+          })
+        )
+      ).toBeFalsy();
+    });
+  });
 });

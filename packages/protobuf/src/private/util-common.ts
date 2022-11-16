@@ -163,10 +163,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             }
             throw new Error(`oneof cannot contain ${s.kind}`);
           case "map":
-            const keys = Object.keys(va);
-            if (keys.some((k) => vb[k] === undefined)) {
-              return false;
-            }
+            const keys = Object.keys(va).concat(Object.keys(vb));
             switch (m.V.kind) {
               case "message":
                 const messageType = m.V.T;
