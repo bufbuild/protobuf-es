@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
+import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import { ScalarValuesMessage as TS_ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
@@ -96,4 +98,18 @@ describe("equals", function () {
       });
     }
   );
+
+  describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
+    test("added key not equal", () => {
+      expect(
+        new messageType({
+          strStrField: { a: "b" },
+        }).equals(
+          new messageType({
+            strStrField: { a: "b", c: "d" },
+          })
+        )
+      ).toBeFalsy();
+    });
+  });
 });
