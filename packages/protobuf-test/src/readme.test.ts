@@ -33,14 +33,15 @@ function createUser(): User {
 }
 
 function verifyUser(user: User) {
+  /* eslint-disable @typescript-eslint/no-non-null-assertion */
   expect(user.firstName).toEqual("Homer");
   expect(user.lastName).toEqual("Simpson");
   expect(user.active).toBeTruthy();
   expect(user.locations).toEqual(["Springfield"]);
   expect(user.projects).toEqual({ SPP: "Springfield Power Plant" });
   expect(user.manager).toBeDefined();
-  expect(user.manager.firstName).toEqual("Montgomery");
-  expect(user.manager.lastName).toEqual("Burns");
+  expect(user.manager!.firstName).toEqual("Montgomery");
+  expect(user.manager!.lastName).toEqual("Burns");
 }
 
 describe("README examples work as illustrated", () => {
