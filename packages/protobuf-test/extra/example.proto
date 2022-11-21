@@ -15,8 +15,11 @@
 syntax = "proto3";
 package docs;
 
+import "google/protobuf/timestamp.proto";
+
 message Example {
   string foo = 1;
   bool bar = 2;
   Example baz = 3;
+  google.protobuf.Timestamp created = 4;
 }

@@ -16,7 +16,7 @@
 // @generated from file extra/example.proto (package docs, syntax proto3)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, Timestamp } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -37,6 +37,11 @@ export declare class Example extends Message<Example> {
    * @generated from field: docs.Example baz = 3;
    */
   baz?: Example;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created = 4;
+   */
+  created?: Timestamp;
 
   constructor(data?: PartialMessage<Example>);
 

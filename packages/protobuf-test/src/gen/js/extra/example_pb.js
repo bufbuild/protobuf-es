@@ -16,7 +16,7 @@
 // @generated from file extra/example.proto (package docs, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
  * @generated from message docs.Example
@@ -27,6 +27,7 @@ export const Example = proto3.makeMessageType(
     { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "baz", kind: "message", T: Example },
+    { no: 4, name: "created", kind: "message", T: Timestamp },
   ],
 );
 

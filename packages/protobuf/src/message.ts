@@ -158,7 +158,7 @@ export class Message<T extends Message<T> = AnyMessage> {
  */
 export type PlainMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
-  [P in keyof T as T[P] extends Function ? never : P]: T[P];
+  [P in keyof T as T[P] extends Function ? never : P]: PartialField<T[P]>;
 };
 
 /**
