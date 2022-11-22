@@ -57,40 +57,24 @@ To complement the above advantages of classes, there is also a list of disadvant
   
   If we made this a separate plugin, then it seems to *really* confuse the matter because now users have to configure another plugin.  And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`.  If users want to refactor to use the generated interface, they have to change their import statement path.  If users want to use both, they need two separate imports now.  Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff.
   
-After all this, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members.  Here is an example of a RecursivePlainMessage type that can be used to accomplish this:
+All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members.  As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this.  It can be used as follows:
 
 ```typescript
-import type { Message } from "@bufbuild/protobuf";
+import { PlainMessage } from "@bufbuild/protobuf";
 
-export type Plain<T extends Message> = {
-  // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
-  [P in keyof T as T[P] extends Function ? never : P]: PlainField<T[P]>;
-};
+import { FooMessage } from "protos/foo_pb.js";
 
-// prettier-ignore
-type PlainField<F> =
-  F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
-  : F extends Array<infer U> ? Array<PlainField<U>>
-  : F extends ReadonlyArray<infer U> ? ReadonlyArray<PlainField<U>>
-  : F extends Message ? Plain<F>
-  : F extends OneofSelectedMessage<infer C, infer V> ? { case: C; value: Plain<V> }
-  : F extends { case: string | undefined; value?: unknown } ? F
-  : F extends { [key: string|number]: Message<infer U> } ? { [key: string|number]: Plain<U> }
-  : F;
-
-type OneofSelectedMessage<K extends string, M extends Message> = {
-  case: K;
-  value: M;
-};
+const plainFoo: PlainMessage<FooMessage> = new FooMessage();
 ```
 
-
-### Why do imports have a `.js` extension in the generated TypeScript code?
-
-TODO
+In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups.  All methods will be omitted from the type.  Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.  
 
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
   
+TODO
+
+### Why do imports have a `.js` extension in the generated TypeScript code?
+
 TODO
 
 ### How does this compare to protoc's JavaScript generator?
