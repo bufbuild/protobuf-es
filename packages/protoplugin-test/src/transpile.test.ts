@@ -88,7 +88,7 @@ describe("transpile", function () {
       f.print("export const j: ", schema.runtime.JsonValue, " = 1;");
     });
     expect(linesOf("test.ts")).toStrictEqual([
-      'import type {JsonValue} from "@bufbuild/protobuf";',
+      'import type { JsonValue } from "@bufbuild/protobuf";',
       "",
       "export const j: JsonValue = 1;",
     ]);
@@ -158,7 +158,7 @@ describe("transpile", function () {
       f.print("export function foo() { return new ", Foo, "(); };");
     });
     expect(linesOf("test.ts")).toStrictEqual([
-      'import {Foo} from "foo";',
+      'import { Foo } from "foo";',
       "",
       "export function foo() { return new Foo(); };",
     ]);
@@ -176,7 +176,7 @@ describe("transpile", function () {
       f.print("export function foo(): ", Foo, " { return new ", Foo, "(); };");
     });
     expect(linesOf("test.ts")).toStrictEqual([
-      'import {Foo} from "foo";',
+      'import { Foo } from "foo";',
       "",
       "export function foo(): Foo { return new Foo(); };",
     ]);

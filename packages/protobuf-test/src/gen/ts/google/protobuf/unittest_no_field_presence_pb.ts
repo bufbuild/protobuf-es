@@ -34,9 +34,9 @@
 // @generated from file google/protobuf/unittest_no_field_presence.proto (package proto2_nofieldpresence_unittest, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, protoInt64} from "@bufbuild/protobuf";
-import {TestAllTypes as TestAllTypes$1, TestRequired} from "./unittest_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { TestAllTypes as TestAllTypes$1, TestRequired } from "./unittest_pb.js";
 
 /**
  * @generated from enum proto2_nofieldpresence_unittest.ForeignEnum

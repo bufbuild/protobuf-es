@@ -32,7 +32,7 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
+import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -187,8 +187,29 @@ Any.prototype.unpackTo = function unpackTo(target) {
   return true;
 };
 
+Any.prototype.unpack = function unpack(registry) {
+    if (this.typeUrl === "") {
+      return undefined;
+    }
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      return undefined;
+    }
+    return messageType.fromBinary(this.value);
+  }
+
 Any.prototype.is = function is(type) {
-  return this.typeUrl === this.typeNameToUrl(type.typeName);
+  if (this.typeUrl === '') {
+    return false;
+  }
+  const name = this.typeUrlToName(this.typeUrl);
+  let typeName = '';
+  if (typeof type === 'string') {
+      typeName = type;
+  } else {
+      typeName = type.typeName;
+  }
+  return name === typeName;
 };
 
 Any.prototype.typeNameToUrl = function typeNameToUrl(name) {

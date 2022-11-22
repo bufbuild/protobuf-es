@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { MessageFieldMessage } from "./gen/ts/extra/msg-message_pb";
+import { MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import type { AnyMessage, Message, MessageType } from "@bufbuild/protobuf";
 import { ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
 

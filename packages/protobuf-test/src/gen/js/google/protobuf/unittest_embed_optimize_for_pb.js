@@ -38,8 +38,8 @@
 // @generated from file google/protobuf/unittest_embed_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import {proto2} from "@bufbuild/protobuf";
-import {TestOptimizedForSize} from "./unittest_optimize_for_pb.js";
+import { proto2 } from "@bufbuild/protobuf";
+import { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize

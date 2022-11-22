@@ -42,7 +42,7 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import {proto2} from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.lazy_imports.LazyEnum

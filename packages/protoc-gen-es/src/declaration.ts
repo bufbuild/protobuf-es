@@ -152,6 +152,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
   const {
     Message,
     MessageType,
+    IMessageTypeRegistry
   } = schema.runtime;
   switch (ref.typeName) {
     case "google.protobuf.Any":
@@ -159,7 +160,9 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print();
       f.print("  unpackTo(target: ", Message, "): boolean;");
       f.print();
-      f.print("  is(type: ", MessageType, "): boolean;");
+      f.print("  unpack(registry: ", IMessageTypeRegistry, "): Message | undefined;");
+      f.print();
+      f.print("  is(type: ", MessageType, " | string): boolean;");
       f.print();
       f.print("  private typeNameToUrl(name: string): string;");
       f.print();

@@ -186,6 +186,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     JsonWriteOptions,
     JsonObject,
     MessageType,
+    IMessageTypeRegistry,
     ScalarType: rtScalarType,
     protoInt64,
   } = schema.runtime;
@@ -250,8 +251,29 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    return true;");
       f.print("  }");
       f.print();
-      f.print("  is(type: ", MessageType, "): boolean {");
-      f.print("    return this.", localName(ref.typeUrl), " === this.typeNameToUrl(type.typeName);");
+      f.print("  unpack(registry: ", IMessageTypeRegistry, "): ", Message, " | undefined {");
+      f.print("    if (this.", localName(ref.typeUrl), ` === "") {`);
+      f.print("      return undefined;");
+      f.print("    }");
+      f.print("    const messageType = registry.findMessage(this.typeUrlToName(this.", localName(ref.typeUrl), "));");
+      f.print("    if (!messageType) {");
+      f.print("      return undefined;");
+      f.print("    }");
+      f.print("    return messageType.fromBinary(this.", localName(ref.value), ");");
+      f.print("  }");
+      f.print();
+      f.print("  is(type: ", MessageType, " | string): boolean {");
+      f.print("    if (this.typeUrl === '') {");
+      f.print("      return false;");
+      f.print("    }");
+      f.print("    const name = this.typeUrlToName(this.", localName(ref.typeUrl), ");");
+      f.print("    let typeName = '';");
+      f.print("    if (typeof type === 'string') {");
+      f.print("        typeName = type;");
+      f.print("    } else {");
+      f.print("        typeName = type.typeName;");
+      f.print("    }");
+      f.print("    return name === typeName;");
       f.print("  }");
       f.print();
       f.print("  private typeNameToUrl(name: string): string {");

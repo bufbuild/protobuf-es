@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, MessageType, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, IMessageTypeRegistry, JsonReadOptions, JsonValue, MessageType, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -170,7 +170,9 @@ export declare class Any extends Message<Any> {
 
   unpackTo(target: Message): boolean;
 
-  is(type: MessageType): boolean;
+  unpack(registry: IMessageTypeRegistry): Message | undefined;
+
+  is(type: MessageType | string): boolean;
 
   private typeNameToUrl(name: string): string;
 

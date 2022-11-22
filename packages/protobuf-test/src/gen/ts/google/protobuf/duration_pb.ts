@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/duration.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, protoInt64} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * A Duration represents a signed, fixed-length span of time represented

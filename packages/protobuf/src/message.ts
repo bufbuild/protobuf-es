@@ -42,14 +42,17 @@ export class Message<T extends Message<T> = AnyMessage> {
    * Compare with a message of the same type.
    */
   equals(other: T | PlainMessage<T> | undefined | null): boolean {
-    return this.getType().runtime.util.equals(this.getType(), this, other);
+    return this.getType().runtime.util.equals(
+      this.getType(),
+      this as unknown as T,
+      other
+    );
   }
 
   /**
    * Create a deep copy.
    */
   clone(): T {
-    // return this.getType().runtime.util.clone(this);
     return this.getType().runtime.util.clone(this as unknown as T);
   }
 
@@ -121,6 +124,22 @@ export class Message<T extends Message<T> = AnyMessage> {
   }
 
   /**
+   * Override for serializaton behavior.  This will be invoked when calling
+   * JSON.stringify on this message (i.e. JSON.stringify(msg)).
+   *
+   * Note that this will not serialize google.protobuf.Any with a packed
+   * message because the protobuf JSON format specifies that it needs to be
+   * unpacked, and this is only possible with a type registry to look up the
+   * message type.  As a result, attempting to serialize a message with this
+   * type will throw an Error.
+   */
+  toJSON(): JsonValue {
+    return this.toJson({
+      emitDefaultValues: true,
+    });
+  }
+
+  /**
    * Retrieve the MessageType of this message - a singleton that represents
    * the protobuf message declaration and provides metadata for reflection-
    * based operations.
@@ -137,7 +156,7 @@ export class Message<T extends Message<T> = AnyMessage> {
  * PlainMessage<T> strips all methods from a message, leaving only fields
  * and oneof groups.
  */
-export type PlainMessage<T extends Message> = {
+export type PlainMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
   [P in keyof T as T[P] extends Function ? never : P]: T[P];
 };
@@ -150,7 +169,7 @@ export type PlainMessage<T extends Message> = {
  * PartialMessage is similar to the built-in type Partial<T>, but recursive,
  * and respects `oneof` groups.
  */
-export type PartialMessage<T extends Message> = {
+export type PartialMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
   [P in keyof T as T[P] extends Function ? never : P]?: PartialField<T[P]>;
 };
@@ -159,13 +178,13 @@ type PartialField<F> =
   F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
   : F extends Array<infer U> ? Array<PartialField<U>>
   : F extends ReadonlyArray<infer U> ? ReadonlyArray<PartialField<U>>
-  : F extends Message ? PartialMessage<F>
+  : F extends Message<infer U> ? PartialMessage<U>
   : F extends OneofSelectedMessage<infer C, infer V> ? {case: C; value: PartialMessage<V>}
   : F extends { case: string | undefined; value?: unknown; } ? F
   : F extends {[key: string|number]: Message<infer U>} ? {[key: string|number]: PartialMessage<U>}
   : F ;
 
-type OneofSelectedMessage<K extends string, M extends Message> = {
+type OneofSelectedMessage<K extends string, M extends Message<M>> = {
   case: K;
   value: M;
 };

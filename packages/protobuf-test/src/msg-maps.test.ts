@@ -14,8 +14,8 @@
 
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
-import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb";
-import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb";
+import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
+import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {

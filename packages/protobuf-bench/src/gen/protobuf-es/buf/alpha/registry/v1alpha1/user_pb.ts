@@ -16,9 +16,9 @@
 // @generated from file buf/alpha/registry/v1alpha1/user.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3, Timestamp} from "@bufbuild/protobuf";
-import {OrganizationRole, ServerRole} from "./role_pb.js";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { OrganizationRole, ServerRole } from "./role_pb.js";
 
 /**
  * @generated from enum buf.alpha.registry.v1alpha1.UserState

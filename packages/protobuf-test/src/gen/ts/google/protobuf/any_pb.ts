@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, IMessageTypeRegistry, JsonReadOptions, JsonValue, JsonWriteOptions, MessageType, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -227,8 +227,29 @@ export class Any extends Message<Any> {
     return true;
   }
 
-  is(type: MessageType): boolean {
-    return this.typeUrl === this.typeNameToUrl(type.typeName);
+  unpack(registry: IMessageTypeRegistry): Message | undefined {
+    if (this.typeUrl === "") {
+      return undefined;
+    }
+    const messageType = registry.findMessage(this.typeUrlToName(this.typeUrl));
+    if (!messageType) {
+      return undefined;
+    }
+    return messageType.fromBinary(this.value);
+  }
+
+  is(type: MessageType | string): boolean {
+    if (this.typeUrl === '') {
+      return false;
+    }
+    const name = this.typeUrlToName(this.typeUrl);
+    let typeName = '';
+    if (typeof type === 'string') {
+        typeName = type;
+    } else {
+        typeName = type.typeName;
+    }
+    return name === typeName;
   }
 
   private typeNameToUrl(name: string): string {

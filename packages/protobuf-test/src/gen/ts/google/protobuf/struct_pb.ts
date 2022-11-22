@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/struct.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type {BinaryReadOptions, FieldList, JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage} from "@bufbuild/protobuf";
-import {Message, proto3} from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonObject, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the

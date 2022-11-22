@@ -32,9 +32,9 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import {proto3} from "@bufbuild/protobuf";
-import {Option, Syntax} from "./type_pb.js";
-import {SourceContext} from "./source_context_pb.js";
+import { proto3 } from "@bufbuild/protobuf";
+import { Option, Syntax } from "./type_pb.js";
+import { SourceContext } from "./source_context_pb.js";
 
 /**
  * Api is a light-weight descriptor for an API Interface.

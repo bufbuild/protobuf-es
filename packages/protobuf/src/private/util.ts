@@ -61,7 +61,7 @@ export interface Util {
    * Will also return true if both messages are `undefined` or `null`.
    */
   equals<T extends Message<T>>(
-    type: MessageType,
+    type: MessageType<T>,
     a: T | PlainMessage<T> | undefined | null,
     b: T | PlainMessage<T> | undefined | null
   ): boolean;

@@ -70,6 +70,58 @@ describe("google.protobuf.Any", () => {
       });
     });
 
+    test(`is correctly identifies by message and type name`, () => {
+      const val = new Value({
+        kind: { case: "numberValue", value: 1 },
+      });
+      const got = Any.pack(val);
+
+      expect(got.is(Value)).toBe(true);
+      expect(got.is("google.protobuf.Value")).toBe(true);
+
+      // The typeUrl set in the Any doesn't have to start with a URL prefix
+      expect(got.is("type.googleapis.com/google.protobuf.Value")).toBe(false);
+    });
+
+    test(`is returns false for an empty Any`, () => {
+      const got = new Any();
+
+      expect(got.is(Value)).toBe(false);
+      expect(got.is("google.protobuf.Value")).toBe(false);
+      expect(got.is("")).toBe(false);
+    });
+
+    test(`unpack correctly unpacks a message in the registry`, () => {
+      const typeRegistry = createRegistry(Value);
+      const val = new Value({
+        kind: { case: "numberValue", value: 1 },
+      });
+      const got = Any.pack(val);
+
+      const unpacked = got.unpack(typeRegistry) as Value;
+
+      expect(unpacked).toBeDefined();
+      expect(unpacked.kind.case).toBe("numberValue");
+      expect(unpacked.kind.value).toBe(1);
+    });
+
+    test(`unpack returns undefined if message not in the registry`, () => {
+      const typeRegistry = createRegistry();
+      const val = new Value({
+        kind: { case: "numberValue", value: 1 },
+      });
+      const got = Any.pack(val);
+      const unpacked = got.unpack(typeRegistry);
+      expect(unpacked).toBeUndefined();
+    });
+
+    test(`unpack returns undefined with an empty Any`, () => {
+      const typeRegistry = createRegistry(Value);
+      const got = new Any();
+      const unpacked = got.unpack(typeRegistry);
+      expect(unpacked).toBeUndefined();
+    });
+
     test(`encodes ${Value.typeName} with ${Struct.typeName} to JSON`, () => {
       const typeRegistry = createRegistry(Struct, Value);
       const want = {

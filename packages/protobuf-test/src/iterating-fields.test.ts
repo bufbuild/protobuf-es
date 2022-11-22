@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { AnyMessage } from "@bufbuild/protobuf";
-import { Example } from "./gen/ts/extra/example_pb";
+import { Example } from "./gen/ts/extra/example_pb.js";
 
 /* eslint-disable @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/restrict-template-expressions */
 
