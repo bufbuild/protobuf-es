@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message docs.Example
@@ -38,11 +38,6 @@ export class Example extends Message<Example> {
    */
   baz?: Example;
 
-  /**
-   * @generated from field: google.protobuf.Timestamp created = 4;
-   */
-  created?: Timestamp;
-
   constructor(data?: PartialMessage<Example>) {
     super();
     proto3.util.initPartial(data, this);
@@ -54,7 +49,6 @@ export class Example extends Message<Example> {
     { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 3, name: "baz", kind: "message", T: Example },
-    { no: 4, name: "created", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Example {

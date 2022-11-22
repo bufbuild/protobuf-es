@@ -154,17 +154,29 @@ export class Message<T extends Message<T> = AnyMessage> {
 
 /**
  * PlainMessage<T> strips all methods from a message, leaving only fields
- * and oneof groups.
+ * and oneof groups.  It is recursive, meaning it applies this same logic to all
+ * nested message fields as well.
  */
 export type PlainMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
-  [P in keyof T as T[P] extends Function ? never : P]: T[P];
+  [P in keyof T as T[P] extends Function ? never : P]: PlainField<T[P]>;
 };
+
+// prettier-ignore
+type PlainField<F> =
+  F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
+  : F extends Array<infer U> ? Array<PlainField<U>>
+  : F extends ReadonlyArray<infer U> ? ReadonlyArray<PlainField<U>>
+  : F extends Message<infer U> ? PlainMessage<U>
+  : F extends OneofSelectedMessage<infer C, infer V> ? { case: C; value: PlainField<V> }
+  : F extends { case: string | undefined; value?: unknown } ? F
+  : F extends { [key: string|number]: Message<infer U> } ? { [key: string|number]: PlainField<U> }
+  : F ;
 
 /**
  * PartialMessage<T> constructs a type from a message. The resulting type
  * only contains the protobuf field members of the message, and all of them
- * are optional.
+ * are optional.  The optionality of the fields is the major difference between PartialMessage and PlainMessage.
  *
  * PartialMessage is similar to the built-in type Partial<T>, but recursive,
  * and respects `oneof` groups.
@@ -173,6 +185,7 @@ export type PartialMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
   [P in keyof T as T[P] extends Function ? never : P]?: PartialField<T[P]>;
 };
+
 // prettier-ignore
 type PartialField<F> =
   F extends (Date | Uint8Array | bigint | boolean | string | number) ? F

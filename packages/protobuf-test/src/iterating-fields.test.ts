@@ -26,7 +26,7 @@ describe("iterating fields", function () {
         baz: undefined,
       })
     );
-    expect(r.length).toBe(4);
+    expect(r.length).toBe(3);
     expect(r[0]).toBe("field foo: abc");
     expect(r[1]).toBe("field bar: true");
     expect(r[2]).toBe("field baz: undefined");
