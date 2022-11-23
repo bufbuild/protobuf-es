@@ -12,79 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { PlainMessage, PartialMessage, Timestamp } from "@bufbuild/protobuf";
-import { describeMT } from "./helpers.js";
+import type { PlainMessage } from "@bufbuild/protobuf";
+import { Timestamp } from "@bufbuild/protobuf";
 
-import { TestAllTypesProto3 as TS_TestAllTypesProto3 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
-import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
+import {
+  TestAllTypesProto3,
+  // TestAllTypesProto3_NestedEnum,
+} from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
 describe("PlainMessage", () => {
-  const plainTimestamp: PlainMessage<Timestamp> = Timestamp.now();
   test("keeps regular fields", () => {
-    // Regular fields are untouched.
-    expect(plainTimestamp.nanos).toBeDefined();
-  });
-  test("removes standard methods and wkt methods from type system", () => {
+    const msg = new TestAllTypesProto3({
+      optionalTimestamp: Timestamp.now(),
+    });
+    // const t: PlainMessage<TestAllTypesProto3> = {
+    //   optionalInt32: 0,
+    //   // ...
+    //   optionalNestedMessage: {
+    //     a: 123,
+    //   },
+    //   repeatedBoolWrapper: [{ value: true }],
+    //   optionalBool: false,
+    //   optionalString: "",
+    //   optionalBytes: new Uint8Array(0),
+    //   optionalNestedEnum: TestAllTypesProto3_NestedEnum.FOO,
+    //   optionalAny: {
+    //     value: new Uint8Array(0),
+    //     typeUrl: "",
+    //   },
+    //   // ...
+    // };
+    //
+
+    const plain: PlainMessage<TestAllTypesProto3> = msg;
+
+    expect(msg).toBeDefined();
+    expect(plain).toBeDefined();
     // We want to test that the type system sees this function as undefined even though it's still actually there.  So
     // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
     // @ts-expect-error TS2339
-    expect(plainTimestamp.toBinary).toBeDefined();
+    expect(plain.toBinary).toBeDefined();
     // Custom methods of well-known types are removed as well.
     // @ts-expect-error TS2339
-    expect(plainTimestamp.toDate).toBeDefined();
+    expect(plain.optionalTimestamp.toDate).toBeDefined();
   });
-  describeMT(
-    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
-    (messageType) => {
-      test("is recursive", () => {
-        const msg: PlainMessage<TS_TestAllTypesProto3 | JS_TestAllTypesProto3> =
-          new messageType();
-        msg.optionalTimestamp = Timestamp.now();
-
-        // We want to test that the type system sees this function as undefined even though it's still actually there.  So
-        // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
-        // @ts-expect-error TS2339
-        expect(msg.optionalTimestamp.toBinary).toBeDefined();
-        // Custom methods of well-known types are removed as well.
-        // @ts-expect-error TS2339
-        expect(msg.optionalTimestamp.toDate).toBeDefined();
-      });
-    }
-  );
-});
-
-describe("PartialMessage", () => {
-  const partialTimestamp: PartialMessage<Timestamp> = Timestamp.now();
-  test("keeps regular fields", () => {
-    // Regular fields are untouched.
-    expect(partialTimestamp.nanos).toBeDefined();
-  });
-  test("removes standard methods and wkt methods from type system", () => {
-    // We want to test that the type system sees this function as undefined even though it's still actually there.  So
-    // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
-    // @ts-expect-error TS2339
-    expect(partialTimestamp.toBinary).toBeDefined();
-    // Custom methods of well-known types are removed as well.
-    // @ts-expect-error TS2339
-    expect(partialTimestamp.toDate).toBeDefined();
-  });
-  describeMT(
-    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
-    (messageType) => {
-      test("is recursive", () => {
-        const msg: PartialMessage<
-          TS_TestAllTypesProto3 | JS_TestAllTypesProto3
-        > = new messageType();
-        msg.optionalTimestamp = Timestamp.now();
-
-        // We want to test that the type system sees this function as undefined even though it's still actually there.  So
-        // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
-        // @ts-expect-error TS2339
-        expect(msg.optionalTimestamp.toBinary).toBeDefined();
-        // Custom methods of well-known types are removed as well.
-        // @ts-expect-error TS2339
-        expect(msg.optionalTimestamp.toDate).toBeDefined();
-      });
-    }
-  );
 });
