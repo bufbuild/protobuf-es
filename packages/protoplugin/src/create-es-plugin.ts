@@ -20,7 +20,7 @@ import { transpile } from "./ecmascript/transpile.js";
 import { PluginOptionError } from "./error.js";
 import type { RewriteImports } from "./ecmascript/import-path.js";
 
-interface PluginInit {
+export interface PluginInit {
   /**
    * Name of this code generator plugin.
    */
@@ -84,7 +84,7 @@ interface PluginInit {
   ) => FileInfo[];
 }
 
-type PluginOptionParseFn = (key: string, value: string | undefined) => void;
+export type PluginOptionParseFn = (key: string, value: string | undefined) => void;
 
 /**
  * Create a new code generator plugin for ECMAScript.

@@ -16,3 +16,4 @@ export { Plugin } from "./plugin.js";
 export { Schema } from "./ecmascript/schema.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
+export type { PluginInit, PluginOptionParseFn } from "./create-es-plugin.js";
