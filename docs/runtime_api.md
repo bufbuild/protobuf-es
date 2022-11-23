@@ -602,6 +602,7 @@ if that business logic is never concerned with serialization, and does not need
 
 Note that any `T` (assuming `T` extends `Message`) is assignable to a variable of type `PlainMessage<T>`.
 
+
 ### AnyMessage
 
 If you want to handle messages of unknown type, the type [`AnyMessage`][src-any-message] 
