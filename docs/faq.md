@@ -31,7 +31,9 @@ As a result, there is a range of Protobuf features we would not be able to model
 
 ### Why use `BigInt` to represent 64-bit integers?
 
-TODO
+The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf.  `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#64-bit-integral-types).  
+
+While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's [`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1.  However, this is obviously only effective if you can guarantee that no number in that field will ever exceed JavaScript's `MAX_SAFE_INTEGER`.  This could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
 
 ### Why generate classes instead of interfaces?
 
@@ -71,11 +73,7 @@ In the above code, `plainFoo` will be a type with only its fields and `oneOf` gr
 
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
   
-TODO
-
-### Why do imports have a `.js` extension in the generated TypeScript code?
-
-TODO
+Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
 
 ### How does this compare to protoc's JavaScript generator?
 
