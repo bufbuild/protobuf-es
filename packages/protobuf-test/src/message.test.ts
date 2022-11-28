@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { PlainMessage } from "@bufbuild/protobuf";
-import { NullValue, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { NullValue, protoInt64 } from "@bufbuild/protobuf";
 import {
   TestAllTypesProto3,
   TestAllTypesProto3_NestedEnum,
@@ -150,17 +150,54 @@ describe("PlainMessage", () => {
       FieldName18: 0,
     };
 
-    msg.optionalTimestamp = Timestamp.now();
+    // When assigning an object literal to a type, the TypeScript compiler
+    // does structural matching, so by assigning these literals to their
+    // respective fields with only the members, we can verify that these
+    // fields on PlainMessage do not have any methods associated.  Because
+    // otherwise, if optionalTimestamp, for example,  expected methods such as
+    // toDate, this assignment would fail compilation.
+    // Same applies for the below optional member assignments.
+    msg.optionalTimestamp = {
+      nanos: 0,
+      seconds: protoInt64.zero,
+    };
+
+    msg.optionalDuration = {
+      nanos: 0,
+      seconds: protoInt64.zero,
+    };
+
+    msg.optionalAny = {
+      typeUrl: "",
+      value: new Uint8Array(0),
+    };
+
+    msg.optionalNestedMessage = {
+      a: 0,
+    };
+
+    // To test recursion we also need to use the above assumption to assign to
+    // repeated fields, maps, and oneofs as well.
+    msg.repeatedDuration = [
+      {
+        nanos: 0,
+        seconds: protoInt64.zero,
+      },
+    ];
+
+    msg.mapStringNestedMessage = {
+      key: {
+        a: 0,
+      },
+    };
+
+    msg.oneofField = {
+      case: "oneofNestedMessage",
+      value: {
+        a: 0,
+      },
+    };
 
     expect(msg).toBeDefined();
-
-    // @ts-expect-error TS2339
-    expect(msg.toBinary).toBeUndefined();
-
-    // Test that PlainMessage is recursive w/r/t to nested fields
-    // We want to test that the type system sees this function as undefined even though it's still actually there.  So
-    // we expect TS error  TS2339, but add a simple test so Jest doesn't complain there's no expectations.
-    // @ts-expect-error TS2339
-    expect(msg.optionalTimestamp.toDate).toBeDefined();
   });
 });

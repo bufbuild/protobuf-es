@@ -176,7 +176,10 @@ type PlainField<F> =
 /**
  * PartialMessage<T> constructs a type from a message. The resulting type
  * only contains the protobuf field members of the message, and all of them
- * are optional.  The optionality of the fields is the major difference between PartialMessage and PlainMessage.
+ * are optional.
+ *
+ * Note that the optionality of the fields is the only difference between
+ * PartialMessage and PlainMessage.
  *
  * PartialMessage is similar to the built-in type Partial<T>, but recursive,
  * and respects `oneof` groups.
