@@ -585,7 +585,7 @@ provided. For example:
 let plain: PlainMessage<Example> = {
   foo: "abc",
   bar: false,
-  baz: 42,
+  baz: undefined,
 };
 ```
 
