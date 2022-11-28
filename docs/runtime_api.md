@@ -579,24 +579,17 @@ sendExample(new Example());
 their methods. 
 
 In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
-provided. And since it is not recursive, message fields must provide the exact type.
-For example:
+provided. For example:
 
 ```typescript
 let plain: PlainMessage<Example> = {
   foo: "abc",
   bar: false,
-  baz: undefined,
+  baz: 42,
 };
 ```
 
-`PlainMessage` is an exact representation of a message cloned with the spread operator:
-
-```typescript
-let plain: PlainMessage<Example> = {...example};
-```
-
-As such, `PlainMessage<T>` can be a great fit to use in throughout your business logic,
+As such, `PlainMessage<T>` can be a great fit to use throughout your business logic,
 if that business logic is never concerned with serialization, and does not need 
 `instanceof`.
 
