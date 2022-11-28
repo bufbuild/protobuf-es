@@ -22,7 +22,7 @@ import {
 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
 describe("PlainMessage", () => {
-  test("keeps regular fields", () => {
+  test("recursively removes methods from types", () => {
     const msg: PlainMessage<TestAllTypesProto3> = {
       optionalInt32: 0,
       optionalInt64: protoInt64.zero,
@@ -197,6 +197,12 @@ describe("PlainMessage", () => {
         a: 0,
       },
     };
+
+    expect(msg).toBeDefined();
+  });
+
+  test("a T that extends Message can be assigned to PlainMessage<T>", () => {
+    const msg: PlainMessage<TestAllTypesProto3> = new TestAllTypesProto3();
 
     expect(msg).toBeDefined();
   });
