@@ -12,24 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin, Schema } from "@bufbuild/protoplugin";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import { assert, getCodeGeneratorRequest } from "./helpers";
 
 /**
  * Generates a single file using the plugin framework and the given print function.
+ * Uses descriptorset.bin for the code generator request.
  * The returned string array represents the generated file content created using printFn.
  */
-function generateSingleFile(printFn: (f: GeneratedFile) => void): string[] {
-  const req = new CodeGeneratorRequest({
-    parameter: `target=ts`,
-  });
+function generate(
+  printFn: (f: GeneratedFile, schema: Schema) => void
+): string[] {
+  const req = getCodeGeneratorRequest("target=ts", []);
   const plugin = createEcmaScriptPlugin({
     name: "test-plugin",
     version: "v99.0.0",
     generateTs: (schema: Schema) => {
       const f = schema.generateFile("test.ts");
-      printFn(f);
+      printFn(f, schema);
     },
   });
   const res = plugin.run(req);
@@ -41,64 +42,128 @@ function generateSingleFile(printFn: (f: GeneratedFile) => void): string[] {
   return content.trim().split("\n");
 }
 
-describe("print with tagged template literal", function () {
-  test("one line with symbol", () => {
-    const lines = generateSingleFile((f) => {
-      const Foo = f.import("Foo", "foo");
-      f.print`export function foo(): ${Foo} { return new ${Foo}(); };`;
+describe("generated file", () => {
+  it("should print runtime imports", function () {
+    const lines = generate((f, schema) => {
+      f.print`${schema.runtime.ScalarType}.INT32`;
     });
     expect(lines).toStrictEqual([
-      'import { Foo } from "foo";',
+      'import { ScalarType } from "@bufbuild/protobuf";',
       "",
-      "export function foo(): Foo { return new Foo(); };",
+      "ScalarType.INT32",
     ]);
   });
-  test("multi lines with symbol", () => {
-    const lines = generateSingleFile((f) => {
-      const Foo = f.import("Foo", "foo");
-      f.print`export function foo(): ${Foo} {
+  it("should print npm import", function () {
+    const lines = generate((f, schema) => {
+      const exampleDesc = schema.allFiles
+        .find((f) => f.name == "proto/person")
+        ?.messages.find((m) => m.typeName == "example.Person");
+      assert(exampleDesc);
+      const Foo = f.import("Foo", "@scope/pkg");
+      f.print`${Foo}`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Foo } from "@scope/pkg";',
+      "",
+      "Foo",
+    ]);
+  });
+  it("should print relative import", function () {
+    const lines = generate((f) => {
+      const Foo = f.import("Foo", "./foo_zz.js");
+      f.print`${Foo}`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Foo } from "./foo_zz.js";',
+      "",
+      "Foo",
+    ]);
+  });
+  it("should print https import", function () {
+    const lines = generate((f) => {
+      const Foo = f.import("Foo", "https://example.com/foo.js");
+      f.print`${Foo}`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Foo } from "https://example.com/foo.js";',
+      "",
+      "Foo",
+    ]);
+  });
+  it("should print descriptor imports", function () {
+    const lines = generate((f, schema) => {
+      const exampleDesc = schema.allFiles
+        .find((f) => f.name == "proto/person")
+        ?.messages.find((m) => m.typeName == "example.Person");
+      assert(exampleDesc);
+      f.print`${exampleDesc}.typeName`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Person } from "./proto/person_pb.js";',
+      "",
+      "Person.typeName",
+    ]);
+  });
+
+  describe("print with tagged template literal", function () {
+    test("one line with symbol", () => {
+      const lines = generate((f) => {
+        const Foo = f.import("Foo", "foo");
+        f.print`export function foo(): ${Foo} { return new ${Foo}(); };`;
+      });
+      expect(lines).toStrictEqual([
+        'import { Foo } from "foo";',
+        "",
+        "export function foo(): Foo { return new Foo(); };",
+      ]);
+    });
+    test("multi lines with symbol", () => {
+      const lines = generate((f) => {
+        const Foo = f.import("Foo", "foo");
+        f.print`export function foo(): ${Foo} {
   return new ${Foo}();
 };`;
+      });
+      expect(lines).toStrictEqual([
+        'import { Foo } from "foo";',
+        "",
+        "export function foo(): Foo {",
+        "  return new Foo();",
+        "};",
+      ]);
     });
-    expect(lines).toStrictEqual([
-      'import { Foo } from "foo";',
-      "",
-      "export function foo(): Foo {",
-      "  return new Foo();",
-      "};",
-    ]);
-  });
-  test("with empty lines", () => {
-    const lines = generateSingleFile((f) => {
-      const Foo = f.import("Foo", "foo");
-      f.print`
+    test("with empty lines", () => {
+      const lines = generate((f) => {
+        const Foo = f.import("Foo", "foo");
+        f.print`
 export function foo(): ${Foo} {
 
   return new ${Foo}();
 };
 `;
+      });
+      expect(lines).toStrictEqual([
+        'import { Foo } from "foo";',
+        "",
+        "",
+        "export function foo(): Foo {",
+        "",
+        "  return new Foo();",
+        "};",
+      ]);
     });
-    expect(lines).toStrictEqual([
-      'import { Foo } from "foo";',
-      "",
-      "",
-      "export function foo(): Foo {",
-      "",
-      "  return new Foo();",
-      "};",
-    ]);
-  });
-  test("empty literal", () => {
-    const lines = generateSingleFile((f) => {
-      f.print``;
+    test("empty literal", () => {
+      const lines = generate((f) => {
+        f.print``;
+      });
+      expect(lines).toStrictEqual([""]);
     });
-    expect(lines).toStrictEqual([""]);
-  });
-  test("with only symbol", () => {
-    const lines = generateSingleFile((f) => {
-      const Foo = f.import("Foo", "foo");
-      f.print`${Foo}`;
+    test("with only symbol", () => {
+      const lines = generate((f) => {
+        const Foo = f.import("Foo", "foo");
+        f.print`${Foo}`;
+      });
+      expect(lines).toStrictEqual(['import { Foo } from "foo";', "", "Foo"]);
     });
-    expect(lines).toStrictEqual(['import { Foo } from "foo";', "", "Foo"]);
   });
 });

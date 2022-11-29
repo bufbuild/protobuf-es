@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Target } from "./ecmascript";
-import { Schema, createSchema, toResponse } from "./ecmascript/schema.js";
+import { createSchema, Schema, toResponse } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";
@@ -103,6 +103,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         tsNocheck,
         bootstrapWkt,
         rewriteImports,
+        importExtension,
         keepEmptyFiles,
       } = parseParameter(req.parameter, init.parseOption);
       const { schema, getFileInfo } = createSchema(
@@ -113,6 +114,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         tsNocheck,
         bootstrapWkt,
         rewriteImports,
+        importExtension,
         keepEmptyFiles
       );
 
@@ -199,6 +201,7 @@ function parseParameter(
   let bootstrapWkt = false;
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
+  let importExtension = ".js";
   for (const { key, value } of splitParameter(parameter)) {
     switch (key) {
       case "target":
@@ -258,6 +261,10 @@ function parseParameter(
         rewriteImports.push({ pattern, target });
         break;
       }
+      case "import_extension": {
+        importExtension = value;
+        break;
+      }
       case "keep_empty_files": {
         switch (value) {
           case "true":
@@ -285,7 +292,14 @@ function parseParameter(
         break;
     }
   }
-  return { targets, tsNocheck, bootstrapWkt, rewriteImports, keepEmptyFiles };
+  return {
+    targets,
+    tsNocheck,
+    bootstrapWkt,
+    rewriteImports,
+    importExtension,
+    keepEmptyFiles,
+  };
 }
 
 function splitParameter(

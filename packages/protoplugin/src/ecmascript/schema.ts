@@ -20,16 +20,16 @@ import type {
   DescriptorSet,
 } from "@bufbuild/protobuf";
 import {
-  codegenInfo,
   CodeGeneratorResponse,
   CodeGeneratorResponse_Feature,
+  codegenInfo,
   createDescriptorSet,
   protoInt64,
 } from "@bufbuild/protobuf";
 import type {
+  FileInfo,
   GeneratedFile,
   GenerateFileToFileInfo,
-  FileInfo,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
@@ -37,9 +37,9 @@ import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import {
   deriveImportPath,
-  RewriteImports,
   makeImportPath,
   rewriteImportPath,
+  RewriteImports,
 } from "./import-path.js";
 
 /**
@@ -91,6 +91,7 @@ export function createSchema(
   tsNocheck: boolean,
   bootstrapWkt: boolean,
   rewriteImports: RewriteImports,
+  importExtension: string,
   keepEmptyFiles: boolean
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
@@ -98,10 +99,7 @@ export function createSchema(
   const runtime = createRuntimeImports(bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
     const name = codegenInfo.localName(desc);
-    const from = rewriteImportPath(
-      makeImportPath(desc.file, bootstrapWkt, filesToGenerate),
-      rewriteImports
-    );
+    const from = makeImportPath(desc.file, bootstrapWkt, filesToGenerate);
     return createImportSymbol(name, from);
   };
   const generatedFiles: GenerateFileToFileInfo[] = [];
@@ -112,13 +110,11 @@ export function createSchema(
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
-      const importPath = rewriteImportPath(
-        deriveImportPath(name),
-        rewriteImports
-      );
       const genFile = createGeneratedFile(
         name,
-        importPath,
+        deriveImportPath(name),
+        (importPath: string) =>
+          rewriteImportPath(importPath, rewriteImports, importExtension),
         createTypeImport,
         runtime,
         {

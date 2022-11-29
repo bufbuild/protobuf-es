@@ -124,11 +124,26 @@ By default, we generate JavaScript and TypeScript declaration files, which
 produces the smallest code size. If you prefer to generate TypeScript, use
 `target=ts`.
 
+### `import_extension=.js`
+
+By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
+uses a `.js` file extensions in import paths, even in TypeScript files.
+
+This is unintuitive, but necessary for [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html).
+Unfortunately, not all bundlers and tools have caught up yet, and Deno 
+requires `.ts`. With this plugin option, you can replace `.js` extensions 
+in import paths with the given value. For example, set
+
+- `import_extension=` to remove the `.js` extension
+- `import_extension=.ts` to replace the `.js` extension with `.ts`
+
+
 ### `keep_empty_files=true`
 
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin)) 
-omit empty files from the plugin output. This option disables pruning of 
-empty files, to allow for smooth interoperation with Bazel and similar 
+By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
+omit empty files from the plugin output. This option disables pruning of
+empty files, to allow for smooth interoperation with Bazel and similar
 tooling that requires all output files to be declared ahead of time.
 Unless you use Bazel, it is very unlikely that you need this option.
