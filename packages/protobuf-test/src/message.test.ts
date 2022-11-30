@@ -15,10 +15,10 @@
 import type { PlainMessage } from "@bufbuild/protobuf";
 import { NullValue, protoInt64 } from "@bufbuild/protobuf";
 import {
-  TestAllTypesProto3,
-  TestAllTypesProto3_NestedEnum,
   ForeignEnum,
+  TestAllTypesProto3,
   TestAllTypesProto3_AliasedEnum,
+  TestAllTypesProto3_NestedEnum,
 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
 describe("PlainMessage", () => {
@@ -205,5 +205,15 @@ describe("PlainMessage", () => {
     const msg: PlainMessage<TestAllTypesProto3> = new TestAllTypesProto3();
 
     expect(msg).toBeDefined();
+  });
+});
+
+describe("Message.fromJsonString()", function () {
+  test("raises wrapped error on parse error", () => {
+    expect(() =>
+      TestAllTypesProto3.fromJsonString("this is not json")
+    ).toThrowError(
+      "cannot decode protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token h in JSON at position 1"
+    );
   });
 });
