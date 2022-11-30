@@ -135,7 +135,7 @@ Unfortunately, not all bundlers and tools have caught up yet, and Deno
 requires `.ts`. With this plugin option, you can replace `.js` extensions 
 in import paths with the given value. For example, set
 
-- `import_extension=` to remove the `.js` extension
+- `import_extension=none` to remove the `.js` extension
 - `import_extension=.ts` to replace the `.js` extension with `.ts`
 
 

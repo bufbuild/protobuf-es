@@ -262,7 +262,7 @@ function parseParameter(
         break;
       }
       case "import_extension": {
-        importExtension = value;
+        importExtension = value === "none" ? "" : value;
         break;
       }
       case "keep_empty_files": {

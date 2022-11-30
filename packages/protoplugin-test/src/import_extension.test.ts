@@ -60,6 +60,20 @@ describe("import_extension", function () {
       "Bar",
     ]);
   });
+  test("should be removed with 'none'", () => {
+    const lines = generate(
+      (f) => {
+        const Bar = f.import("Bar", "./foo/bar_pb.js");
+        f.print`${Bar}`;
+      },
+      ["import_extension=none"]
+    );
+    expect(lines).toStrictEqual([
+      'import { Bar } from "./foo/bar_pb";',
+      "",
+      "Bar",
+    ]);
+  });
   test("should be removed with ''", () => {
     const lines = generate(
       (f) => {
