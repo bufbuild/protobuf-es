@@ -64,7 +64,7 @@ The implementation is covered by the protocol buffers
 
 ### TypeScript
 
-The generated code is compatible with TypeScript v4.1.2 or later, with the default compiler settings.
+The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
 
 
 ### Packages
