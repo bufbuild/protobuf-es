@@ -14,7 +14,8 @@
 
 import { createEcmaScriptPlugin, Schema } from "@bufbuild/protoplugin";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
-import { assert, getCodeGeneratorRequest } from "./helpers";
+import { assert, getDescriptorSet } from "./helpers";
+import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 
 /**
  * Generates a single file using the plugin framework and the given print function.
@@ -24,7 +25,7 @@ import { assert, getCodeGeneratorRequest } from "./helpers";
 function generate(
   printFn: (f: GeneratedFile, schema: Schema) => void
 ): string[] {
-  const req = getCodeGeneratorRequest("target=ts", []);
+  const req = new CodeGeneratorRequest({ parameter: "target=ts" });
   const plugin = createEcmaScriptPlugin({
     name: "test-plugin",
     version: "v99.0.0",
@@ -54,10 +55,8 @@ describe("generated file", () => {
     ]);
   });
   it("should print npm import", function () {
-    const lines = generate((f, schema) => {
-      const exampleDesc = schema.allFiles
-        .find((f) => f.name == "proto/person")
-        ?.messages.find((m) => m.typeName == "example.Person");
+    const lines = generate((f) => {
+      const exampleDesc = getDescriptorSet().messages.get("example.Person");
       assert(exampleDesc);
       const Foo = f.import("Foo", "@scope/pkg");
       f.print`${Foo}`;
@@ -91,10 +90,8 @@ describe("generated file", () => {
     ]);
   });
   it("should print descriptor imports", function () {
-    const lines = generate((f, schema) => {
-      const exampleDesc = schema.allFiles
-        .find((f) => f.name == "proto/person")
-        ?.messages.find((m) => m.typeName == "example.Person");
+    const lines = generate((f) => {
+      const exampleDesc = getDescriptorSet().messages.get("example.Person");
       assert(exampleDesc);
       f.print`${exampleDesc}.typeName`;
     });
