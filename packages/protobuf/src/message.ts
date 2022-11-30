@@ -88,8 +88,17 @@ export class Message<T extends Message<T> = AnyMessage> {
    * Parse a message from a JSON string.
    */
   fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): this {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- assigning to JsonValue is safe here
-    return this.fromJson(JSON.parse(jsonString), options);
+    let json: JsonValue;
+    try {
+      json = JSON.parse(jsonString) as JsonValue;
+    } catch (e) {
+      throw new Error(
+        `cannot decode ${this.getType().typeName} from JSON: ${
+          e instanceof Error ? e.message : String(e)
+        }`
+      );
+    }
+    return this.fromJson(json, options);
   }
 
   /**
@@ -124,7 +133,7 @@ export class Message<T extends Message<T> = AnyMessage> {
   }
 
   /**
-   * Override for serializaton behavior.  This will be invoked when calling
+   * Override for serialization behavior. This will be invoked when calling
    * JSON.stringify on this message (i.e. JSON.stringify(msg)).
    *
    * Note that this will not serialize google.protobuf.Any with a packed

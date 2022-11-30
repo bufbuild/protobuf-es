@@ -71,6 +71,14 @@ describe("google.protobuf.Value", () => {
       });
       expect(value.toJsonString()).toBe("true");
     });
+    test("encoding unset value to JSON raises error", () => {
+      // Absence of any variant indicates an error.
+      // See struct.proto
+      const value = new Value();
+      expect(() => value.toJson()).toThrowError(
+        "google.protobuf.Value must have a value"
+      );
+    });
     test("decodes from JSON", () => {
       const value = Value.fromJsonString("true");
       expect(value.kind.case).toBe("boolValue");
