@@ -58,11 +58,13 @@ const cache = new WeakMap<
 >();
 
 /**
- * Apply import rewrites to the given path.
+ * Apply import rewrites to the given import path, and change all .js extensions
+ * to the given import extension.
  */
 export function rewriteImportPath(
   importPath: string,
-  rewriteImports: RewriteImports
+  rewriteImports: RewriteImports,
+  importExtension: string
 ): string {
   let ri = cache.get(rewriteImports);
   if (ri === undefined) {
@@ -76,10 +78,18 @@ export function rewriteImportPath(
   }
   for (const { pattern, target } of ri) {
     if (pattern.test(importPath)) {
-      return (
-        target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/")
-      );
+      if (relativePathRE.test(importPath)) {
+        importPath =
+          target.replace(/\/$/, "") + importPath.replace(relativePathRE, "/");
+      } else {
+        importPath = target;
+      }
+      break;
     }
+  }
+  if (importExtension != ".js" && importPath.endsWith(".js")) {
+    importPath =
+      importPath.substring(0, importPath.length - 3) + importExtension;
   }
   return importPath;
 }
