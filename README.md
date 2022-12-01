@@ -42,7 +42,7 @@ The implementation is covered by the protocol buffers
 
 ### TypeScript
 
-The minimum version of TypeScript supported by Protobuf-ES is **4.1.2**.
+The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
 
 
 ### Packages

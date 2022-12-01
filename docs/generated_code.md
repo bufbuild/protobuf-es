@@ -264,6 +264,9 @@ So the entire oneof group is turned into an object `result` with two properties:
 Refer to the [runtime API documentation](runtime_api.md#accessing-oneof-groups) for 
 details on how to use this object.
 
+> **Note:** This feature requires the TypeScript compiler option `strictNullChecks` 
+> to be true. See the [documentation](https://www.typescriptlang.org/tsconfig#strictNullChecks) for details.
+
 
 ### Enumerations
 
