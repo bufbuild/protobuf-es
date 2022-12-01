@@ -104,9 +104,12 @@ export interface GenerateFileToFileInfo {
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
 
+type RewriteImportPathFn = (path: string) => string;
+
 export function createGeneratedFile(
   name: string,
   importPath: string,
+  rewriteImportPath: RewriteImportPathFn,
   createTypeImport: CreateTypeImportFn,
   runtimeImports: RuntimeImports,
   preambleSettings: {
@@ -166,7 +169,7 @@ export function createGeneratedFile(
       return createTypeImport(typeOrName);
     },
     getFileInfo() {
-      const content = elToContent(el, importPath);
+      const content = elToContent(el, importPath, rewriteImportPath);
       if (!keepEmpty && content.length === 0) {
         return;
       }
@@ -181,11 +184,16 @@ export function createGeneratedFile(
 
 type El = ImportSymbol | string;
 
-function elToContent(el: El[], importerPath: string): string {
+function elToContent(
+  el: El[],
+  importerPath: string,
+  rewriteImportPath: RewriteImportPathFn
+): string {
   const c: string[] = [];
   const symbolToIdentifier = processImports(
     el,
     importerPath,
+    rewriteImportPath,
     (typeOnly, from, names) => {
       const p = names.map(({ name, alias }) =>
         alias == undefined ? name : `${name} as ${alias}`
@@ -283,6 +291,7 @@ type MakeImportStatementFn = (
 function processImports(
   el: El[],
   importerPath: string,
+  rewriteImportPath: RewriteImportPathFn,
   makeImportStatement: MakeImportStatementFn
 ) {
   // identifiers to use in the output
@@ -380,7 +389,10 @@ function processImports(
       // should never happen
       continue;
     }
-    const from = makeImportPathRelative(importerPath, s.from);
+    const from = makeImportPathRelative(
+      importerPath,
+      rewriteImportPath(s.from)
+    );
     if (i.types.size > 0) {
       makeImportStatement(true, from, buildNames(i.types));
     }
