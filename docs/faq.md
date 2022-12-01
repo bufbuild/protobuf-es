@@ -29,6 +29,15 @@ const hamster: Species = 3;
 
 As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-Web](https://github.com/bufbuild/connect-web), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
+### Why aren't `enum` values generated in PascalCase?
+
+We generate our `enum` values based on how they are written in the source Protobuf file.  The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the proto and this makes it very easy to encode/decode JSON.
+
+The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
+
+We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are important.  The more options there are, the less approachable the plugin becomes.  This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
+
+
 ### Why use `BigInt` to represent 64-bit integers?
 
 The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf.  `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).  
