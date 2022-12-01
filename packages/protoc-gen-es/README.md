@@ -121,8 +121,8 @@ Multiple values can be given by separating them with `+`, for example
 `target=js+dts`.
 
 By default, we generate JavaScript and TypeScript declaration files, which
-produces the smallest code size. If you prefer to generate TypeScript, use
-`target=ts`.
+produces the smallest code size and is the most compatible with various 
+bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
 ### `import_extension=.js`
 
