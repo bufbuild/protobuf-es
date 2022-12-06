@@ -141,8 +141,15 @@ export class Message<T extends Message<T> = AnyMessage> {
    * unpacked, and this is only possible with a type registry to look up the
    * message type.  As a result, attempting to serialize a message with this
    * type will throw an Error.
+   *
+   * Note that this function is private because users should not need to invoke
+   * it directly -- they can use JSON.stringify.  Additionally, if it is public
+   * it shows as part of the Message API to users which can be confusing when
+   * listed with the other toJson method
    */
-  toJSON(): JsonValue {
+  //  eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //  @ts-ignore
+  private toJSON(): JsonValue {
     return this.toJson({
       emitDefaultValues: true,
     });
