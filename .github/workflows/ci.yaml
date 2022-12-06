@@ -12,6 +12,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v3
         with:
+          github_token: ${{ github.token }}
+        with:
           path: |
             ~/.tmp
             .tmp
