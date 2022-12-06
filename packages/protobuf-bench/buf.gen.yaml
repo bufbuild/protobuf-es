@@ -3,6 +3,8 @@
 # your choice.
 # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
 version: v1
+managed:
+  enabled: true
 plugins:
   - name: es
     path: packages/protoc-gen-es/bin/protoc-gen-es
