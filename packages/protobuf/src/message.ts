@@ -149,7 +149,7 @@ export class Message<T extends Message<T> = AnyMessage> {
    */
   //  eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //  @ts-ignore
-  private toJSON(): JsonValue {
+  protected toJSON(): JsonValue {
     return this.toJson({
       emitDefaultValues: true,
     });
