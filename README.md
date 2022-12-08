@@ -32,14 +32,6 @@ the documentation for the [generated code](https://github.com/bufbuild/protobuf-
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
 
-### What features are implemented
-
-We implement all proto3 features, including the canonical JSON format.  
-We implement all proto2 features, except for extensions and the text format.  
-The implementation is covered by the protocol buffers 
-[conformance tests](packages/protobuf-conformance).
-
-
 ### TypeScript
 
 The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
