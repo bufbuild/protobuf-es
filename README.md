@@ -32,27 +32,6 @@ And voila, your schema comes to life.  It is used with a consistent approach thr
 
 Finally as the official description states, Protocol Buffers allow you to serialize this structured data.  So, your application running in the browser can send a `Foo` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
-## Features
-
-**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
-
-Some additional features that set it apart from the others:
-
-- ECMAScript module support
-- First-class TypeScript support
-- Generation of idiomatic JavaScript and TypeScript code.
-- Generation of [much smaller bundles](packages/protobuf-bench)
-- Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
-- Implementation of all proto2 features, except for extensions and the text format.  
-- Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
-- Compatibility is covered by the protocol buffers [conformance tests](packages/protobuf-conformance).
-- Descriptor and reflection support
-
-To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
-the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
-and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
-
-
 ## Quickstart
 
 To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](docs/generating_code.md) for the `protoc-gen-es` plugin.
