@@ -31,7 +31,7 @@ As a result, there is a range of Protobuf features we would not be able to model
 
 ### Why aren't `enum` values generated in PascalCase?
 
-We generate our `enum` values based on how they are written in the source Protobuf file.  The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the proto and this makes it very easy to encode/decode JSON.
+We generate our `enum` values based on how they are written in the source Protobuf file.  The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and this makes it very easy to encode/decode JSON.
 
 The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
 
@@ -58,7 +58,7 @@ This is definitely something we considered.  We are aware of the debates on whet
 
 - We want the generated code to be approachable.  While the behavior of classes under the hood may be surprising as to how they're constructed and represented, they make for a very easy-to-read representation of a message.  The encapsulation they provide and some assurances that TypeScript provides on top of them make for a compelling argument to readability.
 
-So, in summary, yes, we know that JavaScript is not an OOP language and classes were shoehorned in, but our use case seems to be the reason they were added.
+So, in summary, yes, we know that classes were shoehorned in, but our use case seems to be the reason they were added.
 
 To complement the above advantages of classes, there is also a list of disadvantages to using interfaces that we found counterproductive:
 
