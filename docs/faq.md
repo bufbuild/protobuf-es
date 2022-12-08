@@ -3,7 +3,7 @@ Frequently Asked Questions
 
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
-TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they aren't compatible with plain JavaScript, so the generated objects are a bit odd. Admittedly, `{ species: "DOG" }` looks nicer than `{ species: Species.DOG }`, and past experience has shown that unions of `enum` don't work out.
+TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript. Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
 
 But `enums` also have some nice properties.  For example, the numeric values can actually be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.  You can also attach comments to enum values, but not to elements of union types (see [this TypeScript issue](https://github.com/microsoft/TypeScript/issues/38106) for an example).
 
