@@ -22,7 +22,6 @@ the documentation for the [generated code](https://github.com/bufbuild/protobuf-
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
 
-
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
 TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript. 
@@ -32,7 +31,7 @@ But `enum`s also have some nice properties that union types don't provide.  For 
 be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.  
 You can also attach comments and metadata to enum values, but not to elements of union types (see [this TypeScript issue](https://github.com/microsoft/TypeScript/issues/38106) for an example).
 
-Protobuf-ES actually makes use of this ability and attaches metadata to the enum object in our generated code to 
+**Protobuf-ES** actually makes use of this ability and attaches metadata to the enum object in our generated code to 
 implement the JSON format. This would not be possible with a union type.
 
 TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf: Similar to enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example, consider the following Protobuf file:
