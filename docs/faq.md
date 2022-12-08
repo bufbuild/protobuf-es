@@ -1,6 +1,28 @@
 Frequently Asked Questions
 ========================
 
+### What features are implemented?
+
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
+
+Some additional features that set it apart from the others:
+
+- ECMAScript module support
+- First-class TypeScript support
+- Generation of idiomatic JavaScript and TypeScript code.
+- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-bench)
+- Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
+- Implementation of all proto2 features, except for extensions and the text format.  
+- Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+- Compatibility is covered by the protocol buffers [conformance tests](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance).
+- Descriptor and reflection support
+
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
+the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
+and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
+
+
+
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
 TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript. 
