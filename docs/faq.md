@@ -73,27 +73,29 @@ While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit
 
 ### Why generate classes instead of interfaces?
 
-This is definitely something we considered.  We are aware of the debates on whether JavaScript classes should be used and whether they're actually worthwhile.  We chose to generate classes for a few reasons:
+This is definitely something we considered.  We are aware of the debates on whether JavaScript classes should be used and whether they're actually worthwhile.  We chose to generate classes instead of interfaces for a few reasons:
 
-- Protobuf messages and classes are very similar in how they represent data.  They are both encapsulating objects that contain properties that describe the overall entity.  A class is a great way to model this relationship.  The [official MDN documentation on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_Classes#why_classes) states:
+- Protobuf messages and classes are very similar in how they represent data.  They are both encapsulating objects that contain properties describing the overall entity.  A class is a great way to model this relationship.  The [official MDN documentation on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_Classes#why_classes) states:
 
   > In general, you should consider using classes when you want to create objects that store their own internal data and expose a lot of behavior.
 
   Which is exactly what our aim is when generating code from a Protobuf file.
 
-- Our messages contain numerous additional functions such as constructing an object, serializing to and from JSON, serializing to and from binary data, and cloning.  Most of this functionality is reusable, so using inheritance with a `Message` super class is beneficial.
+- Our messages contain numerous additional functions such as constructing an object, serializing to and from JSON, serializing to and from binary data, and cloning.  Most of this functionality is reusable, so using inheritance with a `Message` super class is beneficial.  If we only generated interfaces, we would be unable to augment the generated code with this additional behavior.
 
 - We want the generated code to be approachable.  While the behavior of classes under the hood may be surprising as to how they're constructed and represented, they make for a very easy-to-read representation of a message.  The encapsulation they provide and some assurances that TypeScript provides on top of them make for a compelling argument to readability.
 
-So, in summary, yes, we know that classes were shoehorned in, but our use case seems to be the reason they were added.
+So, in summary, yes, we know that some argue classes were shoehorned into the language, but our use case seems to be the reason they were added.
 
-To complement the above advantages of classes, there is also a list of disadvantages to using interfaces that we found counterproductive:
+### OK, so why not generate *both* classes **and** interfaces?
 
-- How should they be generated?  As part of the current `protoc-gen-es` plugin?  In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.  
+This is also something we considered.  However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.  
 
-  If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing.  We also are striving to limit the number of options in our plugin as we find that only makes the plugin less-approachable.
+One of the major questions was "how should they be generated?"  As part of the current `protoc-gen-es` plugin?  In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.  
+
+  If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing.  A new user attempting to configure their codebase to begin using the library would most likely not know whether they needed classes or interfaces until they actually started using the library.  If they decided they wanted the alternate option, they would need to conduct a pretty invasive refactoring of their code.
   
-  If we made this a separate plugin, then it seems to *really* confuse the matter because now users have to configure another plugin.  And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`.  If users want to refactor to use the generated interface, they have to change their import statement path.  If users want to use both, they need two separate imports now.  Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff.
+  If we made this a separate plugin, then it seems to *really* confuse the matter because now users have to configure another plugin and face the same uncertainty mentioned above.  And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`.  If users want to use both classes and interfaces, they would now need two separate imports.  Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff.  In the end, we decided that simply generating classes provided the most benefits to the users.
   
 All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members.  As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this.  It can be used as follows:
 
