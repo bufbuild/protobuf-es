@@ -34,7 +34,7 @@ Finally as the official description states, Protocol Buffers allow you to serial
 
 ## Quickstart
 
-To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](docs/generating_code.md) for the `protoc-gen-es` plugin.
+To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md) for the `protoc-gen-es` plugin.
 
 ### Installation
 
@@ -158,7 +158,7 @@ If you are currently using another implementation and would like to migrate to *
 The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
 
 
-### FAQ
+## FAQ
 
 For a list of frequently asked questions, see our [FAQ documentation](docs/faq.md).
 
