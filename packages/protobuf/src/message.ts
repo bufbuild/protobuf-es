@@ -88,8 +88,17 @@ export class Message<T extends Message<T> = AnyMessage> {
    * Parse a message from a JSON string.
    */
   fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): this {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- assigning to JsonValue is safe here
-    return this.fromJson(JSON.parse(jsonString), options);
+    let json: JsonValue;
+    try {
+      json = JSON.parse(jsonString) as JsonValue;
+    } catch (e) {
+      throw new Error(
+        `cannot decode ${this.getType().typeName} from JSON: ${
+          e instanceof Error ? e.message : String(e)
+        }`
+      );
+    }
+    return this.fromJson(json, options);
   }
 
   /**
@@ -124,7 +133,7 @@ export class Message<T extends Message<T> = AnyMessage> {
   }
 
   /**
-   * Override for serializaton behavior.  This will be invoked when calling
+   * Override for serialization behavior. This will be invoked when calling
    * JSON.stringify on this message (i.e. JSON.stringify(msg)).
    *
    * Note that this will not serialize google.protobuf.Any with a packed
@@ -154,17 +163,32 @@ export class Message<T extends Message<T> = AnyMessage> {
 
 /**
  * PlainMessage<T> strips all methods from a message, leaving only fields
- * and oneof groups.
+ * and oneof groups.  It is recursive, meaning it applies this same logic to all
+ * nested message fields as well.
  */
 export type PlainMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
-  [P in keyof T as T[P] extends Function ? never : P]: T[P];
+  [P in keyof T as T[P] extends Function ? never : P]: PlainField<T[P]>;
 };
+
+// prettier-ignore
+type PlainField<F> =
+  F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
+  : F extends Array<infer U> ? Array<PlainField<U>>
+  : F extends ReadonlyArray<infer U> ? ReadonlyArray<PlainField<U>>
+  : F extends Message<infer U> ? PlainMessage<U>
+  : F extends OneofSelectedMessage<infer C, infer V> ? { case: C; value: PlainField<V> }
+  : F extends { case: string | undefined; value?: unknown } ? F
+  : F extends { [key: string|number]: Message<infer U> } ? { [key: string|number]: PlainField<U> }
+  : F ;
 
 /**
  * PartialMessage<T> constructs a type from a message. The resulting type
  * only contains the protobuf field members of the message, and all of them
  * are optional.
+ *
+ * Note that the optionality of the fields is the only difference between
+ * PartialMessage and PlainMessage.
  *
  * PartialMessage is similar to the built-in type Partial<T>, but recursive,
  * and respects `oneof` groups.
@@ -173,6 +197,7 @@ export type PartialMessage<T extends Message<T>> = {
   // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
   [P in keyof T as T[P] extends Function ? never : P]?: PartialField<T[P]>;
 };
+
 // prettier-ignore
 type PartialField<F> =
   F extends (Date | Uint8Array | bigint | boolean | string | number) ? F

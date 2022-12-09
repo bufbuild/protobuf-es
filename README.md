@@ -155,8 +155,12 @@ If you are currently using another implementation and would like to migrate to *
 
 ## TypeScript
 
-The minimum version of TypeScript supported by **Protobuf-ES** is **4.1.2**.
+The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
 
+
+### FAQ
+
+For a list of frequently asked questions, see our [FAQ documentation](docs/faq.md).
 
 ## Copyright
 
