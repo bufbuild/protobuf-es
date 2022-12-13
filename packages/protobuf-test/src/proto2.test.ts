@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import {
   Proto2DefaultsMessage as TS_Proto2DefaultsMessage,
   Proto2Enum as TS_Proto2Enum,

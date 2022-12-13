@@ -75,7 +75,7 @@ regressions on newer versions.
 - Add the following `include` property before the `compilerOptions`:
    
   ```bash
-  "include": ["../src/gen/js/extra/*.js", "../src/gen/ts/extra/*.ts"],
+  "include": ["../src/**/*"],
   ```
 
 - Finally, add the version to the `TS_VERSIONS` variable in the Makefile.  

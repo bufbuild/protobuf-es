@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";

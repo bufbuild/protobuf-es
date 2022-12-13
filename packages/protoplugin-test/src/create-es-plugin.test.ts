@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { beforeEach, describe, expect, test } from "@jest/globals";
 import { getCodeGeneratorRequest } from "./helpers.js";
 import type { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin, Plugin } from "@bufbuild/protoplugin";
