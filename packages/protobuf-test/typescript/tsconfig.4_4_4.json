@@ -1,15 +1,11 @@
 {
   "include": ["../src/**/*"],
-  // These are the default compiler options for TypeScript v4.4.4,
-  // with `tsc --init` (except where noted in comments below)
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    // To guard against regression and ensure we are remaining backwards
-    // compatible, set the skipLibCheck flag to false explicitly.
     "skipLibCheck": true
   }
 }
