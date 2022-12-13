@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { expect, test } from "@jest/globals";
 import { TestAllTypesProto3 as TS_TestAllTypesProto3 } from "../../gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "../../gen/js/google/protobuf/test_messages_proto3_pb.js";
 import { describeMT } from "../../helpers.js";

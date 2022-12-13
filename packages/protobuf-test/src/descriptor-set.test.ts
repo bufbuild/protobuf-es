@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { readFileSync } from "fs";
 import { createDescriptorSet, proto3, ScalarType } from "@bufbuild/protobuf";
 import { JsonNamesMessage } from "./gen/ts/extra/msg-json-names_pb.js";

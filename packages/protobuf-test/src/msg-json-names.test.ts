@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { expect, test } from "@jest/globals";
 import { describeMT } from "./helpers.js";
 import { JsonNamesMessage as TS_JsonNamesMessage } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JsonNamesMessage as JS_JsonNamesMessage } from "./gen/js/extra/msg-json-names_pb.js";

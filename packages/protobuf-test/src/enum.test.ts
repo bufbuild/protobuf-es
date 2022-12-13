@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { SimpleEnum as SimpleEnum_TS } from "./gen/ts/extra/enum_pb.js";
 import { SimpleEnum as SimpleEnum_JS } from "./gen/js/extra/enum_pb.js";
 import { AliasEnum as AliasEnum_TS } from "./gen/ts/extra/enum_pb.js";
