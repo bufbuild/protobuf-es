@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { FieldMask as TS_FieldMask } from "../../gen/ts/google/protobuf/field_mask_pb.js";
 import { FieldMask as JS_FieldMask } from "../../gen/js/google/protobuf/field_mask_pb.js";
 

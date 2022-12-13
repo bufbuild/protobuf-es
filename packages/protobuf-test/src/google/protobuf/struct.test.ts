@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { JsonObject } from "@bufbuild/protobuf";
 import * as TS from "../../gen/ts/google/protobuf/struct_pb.js";
 import * as JS from "../../gen/js/google/protobuf/struct_pb.js";
