@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { NoClashOneofADT as TS_NoClashOneofADT } from "./gen/ts/extra/name-clash_pb.js";
 
 describe("message looking like a oneof ADT", () => {

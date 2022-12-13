@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { beforeEach, describe, expect, test } from "@jest/globals";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
 import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";

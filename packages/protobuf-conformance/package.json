@@ -13,7 +13,6 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "0.4.0",
-    "@types/node": "^18.8.0"
+    "@bufbuild/protobuf": "0.4.0"
   }
 }

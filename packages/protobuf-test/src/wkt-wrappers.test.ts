@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
 import { describeMT } from "./helpers.js";

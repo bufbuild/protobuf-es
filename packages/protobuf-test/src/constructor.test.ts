@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect } from "@jest/globals";
 import {
   TestAllTypesProto3 as TS_TestAllTypesProto3,
   TestAllTypesProto3_NestedMessage as TS_TestAllTypesProto3_NestedMessage,

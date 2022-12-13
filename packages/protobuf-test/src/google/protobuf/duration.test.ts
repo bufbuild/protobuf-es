@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { describe, expect, test } from "@jest/globals";
 import { Duration as TS_Duration } from "../../gen/ts/google/protobuf/duration_pb.js";
 import { Duration as JS_Duration } from "../../gen/js/google/protobuf/duration_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";

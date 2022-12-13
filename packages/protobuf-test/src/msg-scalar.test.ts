@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { expect, test } from "@jest/globals";
 import {
   RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as TS_ScalarValuesMessage,
