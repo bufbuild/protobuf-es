@@ -9,16 +9,12 @@ suitable for web browsers and Node.js, created by [Buf](https://buf.build).
 
 ## What are Protocol Buffers?
 
-The official description of Protocol Buffers states that they are: 
-
-> a language-neutral, platform-neutral extensible mechanism for serializing structured data.
-
-While accurate, this definition doesn't fully explain their benefits.  In a nutshell, Protocol Buffers have two main functions:
+In a nutshell, Protocol Buffers have two main functions:
 
 - They are a language for writing schemas for your data.
 - They define a binary format for serializing your data.
 
-These two functions are independent, but also work together to provide common definitions for all aspects of your data.  This allows your project and everyone who interacts with it to all define messages, fields, and service APIs in the exact same way.   In a practical sense as it relates to **Protobuf-ES**, this means no more disparate JSON types all over the place.  Instead, you define a common schema in a Protobuf file, such as:
+These two independent traits functions work together to allow your project and everyone who interacts with it to define messages, fields, and service APIs in the exact same way.   In a practical sense as it relates to **Protobuf-ES**, this means no more disparate JSON types all over the place.  Instead, you define a common schema in a Protobuf file, such as:
 
 ```proto
 message Foo {
@@ -28,9 +24,9 @@ message Foo {
 }
 ```
 
-And voila, your schema comes to life.  It is used with a consistent approach throughout your code.  But, the benefits aren't just limited to *your* application.  They can extend to all others that interact with it as well.  This is because, as mentioned above, the Protobuf file can be used to generate types in many languages.  So, now all applications can use the same definition of `Foo` as defined above.  And when everyone agrees on what a `Foo` is, communication occurs much more easily.  The added bonus is that no one has to write any boilerplate code to create these types in their application.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
+And now your schema can be used with a consistent approach throughout your code.  The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file can be used to generate types in many languages.  So, now all applications can use the same definition of `Foo` as defined above.  And when everyone agrees on what a `Foo` is, communication occurs much more easily.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Finally as the official description states, Protocol Buffers allow you to serialize this structured data.  So, your application running in the browser can send a `Foo` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
+Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `Foo` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
