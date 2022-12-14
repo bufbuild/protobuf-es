@@ -35,10 +35,13 @@ For the following examples, we will use the following message definition [exampl
 syntax="proto3";
 package docs;
 
-message Example {
-  string foo = 1;
-  bool bar = 2;
-  Example baz = 3;
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  bool active = 3;
+  User manager = 4;
+  repeated string locations = 5;
+  map<string, string> projects = 6;
 }
 ```
 
@@ -47,18 +50,18 @@ message Example {
 You can create an instance with the `new` keyword:
 
 ```typescript
-const message = new Example();
+const user = new User();
 ```
 
 
 For convenience, constructors accept an initializer object:
 
 ```typescript
-new Example({
-  foo: "hello",
-  bar: true,
-  baz: {  // you can simply pass an initializer object for this message field
-    foo: "world",
+new User({
+  firstName: "Homer",
+  active: true,
+  manager: {  // you can simply pass an initializer object for this message field
+    lastName: "Burns",
   },
 });
 ```
@@ -74,9 +77,9 @@ with a default value are class properties with a default value:
 
 ```typescript
 /**
- * @generated from field: string foo = 1;
+ * @generated from field: string firstName = 1;
  */
-foo = "";
+firstName = "";
 ```
 
 Protobuf fields map to default values as follows:
@@ -99,17 +102,17 @@ Fields translate to plain properties. You can set and get field values with simp
 access:
 
 ```javascript
-message.foo = "hello";
-message.baz = new Example();
+user.firstName = "Homer";
+user.manager = new User();
 
-message.foo; // "hello" 
-message.baz?.bar; // false 
+user.firstName; // "Homer" 
+user.manager?.active; // false 
 ```
 
 You can also use a destructuring assignment:
 
 ````javascript
-let {foo, bar} = message;
+let {firstName, lastName} = user;
 ````
 
 
@@ -122,10 +125,13 @@ grouped into an object property.
 With the following oneof group: 
 
 ```diff
-message Example {
-  string foo = 1;
-  bool bar = 2;
-  Example baz = 3;
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  bool active = 3;
+  User manager = 4;
+  repeated string locations = 5;
+  map<string, string> projects = 6;
 + oneof result {
 +   int32 number = 4;
 +   string error = 5;
@@ -157,27 +163,27 @@ result:
 To select a field, simply replace the `result` object:
 
 ```typescript
-message.result = {case: "number", value: 123};
-message.result = {case: undefined};
+user.result = {case: "number", value: 123};
+user.result = {case: undefined};
 ```
 
 To query a oneof group, you can use if-blocks:
 
 ```typescript
-if (message.result.case === "number") {
-  message.result.value; // a number
+if (user.result.case === "number") {
+  user.result.value; // a number
 }
 ```
 
 Or a switch statement:
 
 ```typescript
-switch (message.result.case) {
+switch (user.result.case) {
   case "number":
-    message.result.value; // a number
+    user.result.value; // a number
     break;
   case "error":
-    message.result.value; // a string
+    user.result.value; // a string
     break;
 }
 ```
@@ -195,7 +201,7 @@ While a shallow copy of a message can be created by using the spread operator wi
 message constructor, it is also possible to create a _deep_ clone of a message:
 
 ```typescript
-example.clone();
+user.clone();
 ```
 
 ### Comparing messages
@@ -204,14 +210,14 @@ We provide instance methods as well as static methods to test if two messages of
 are equal:
 
 ```typescript
-example.equals(example); // true
-example.equals(null); // false
-Example.equals(example, example); // true 
-Example.equals(example, null); // false 
+user.equals(user); // true
+user.equals(null); // false
+User.equals(user, user); // true 
+User.equals(user, null); // false 
 ```
 
 ```typescript
-Example.typeName; // docs.Example
+User.typeName; // docs.User
 ```
 
 ### Serializing messages
@@ -219,15 +225,15 @@ Example.typeName; // docs.Example
 Serializing to the binary format is very straight-forward:
 
 ```typescript
-const bytes: Uint8Array = example.toBinary();
-Example.fromBinary(bytes);
+const bytes: Uint8Array = user.toBinary();
+User.fromBinary(bytes);
 ```
 
 Serializing to the JSON format is equally simple:
 
 ```typescript
-const json = example.toJson();
-Example.fromJson(json);
+const json = user.toJson();
+User.fromJson(json);
 ```
 
 But the result will be a [JSON value][src-json-value] – a primitive JavaScript that can 
@@ -236,8 +242,8 @@ convenience, we also provide methods that include the stringify step:
 
 
 ```typescript
-const json = example.toJsonString();
-Example.fromJsonString(json);
+const json = user.toJsonString();
+User.fromJsonString(json);
 ```
 
 Note that the JSON format is great for debugging, but the binary format is more resilient
@@ -340,15 +346,15 @@ import { Any } from "@bufbuild/protobuf";
 import { Timestamp } from "@bufbuild/protobuf";
 
 // Pack a message:
-let any = Any.pack(message);
-any.typeUrl; // type.googleapis.com/docs.Example
+let any = Any.pack(user);
+any.typeUrl; // type.googleapis.com/docs.User
 
 // Check what an Any contains:
-any.is(Example); // true
+any.is(User); // true
 any.is(Timestamp); // false
 
 // Unpack an Any by providing a blank instance:
-message = new Example();
+message = new User();
 any.unpackTo(message); // true
 
 let ts = new Timestamp();
@@ -395,10 +401,13 @@ We use the `bigint` primitive to represent 64-bit integral types, because JavaSc
 For the following field definitions:
 
 ```diff
-message Example {
-  string foo = 1;
-  bool bar = 2;
-  Example baz = 3;
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  bool active = 3;
+  User manager = 4;
+  repeated string locations = 5;
+  map<string, string> projects = 6;
 + uint64 ulong = 4;
 + int64 long = 5;
 }
@@ -407,11 +416,11 @@ message Example {
 You can use `bigint` as expected:
 
 ```typescript
-example.ulong = 123n;
-example.long = -123n;
+user.ulong = 123n;
+user.long = -123n;
 
-example.ulong + 1n; // 124n
-example.long + 1n; // -122n
+user.ulong + 1n; // 124n
+user.long + 1n; // -122n
 ```
 
 ### `bigint` in unsupported environments
@@ -431,8 +440,8 @@ import { protoInt64 } from "@bufbuild/protobuf";
 
 let input: string | number | bigint = "123";
 
-example.long  = protoInt64.parse(input);
-example.ulong = protoInt64.uParse(input);
+user.long  = protoInt64.parse(input);
+user.ulong = protoInt64.uParse(input);
 ```
 
 If you want to perform arithmetic on `bigint` fields, you will need to use a
@@ -451,14 +460,17 @@ Such a type can actually be created at run time. We can take a peek at the [gene
 code](../packages/protobuf-test/src/gen/ts/extra/example_pb.ts) to get some insights:
 
 ```typescript
-class Example extends Message<Example> {
+class User extends Message<User> {
   //...
   static readonly runtime = proto3;
-  static readonly typeName = "docs.Example"; 
+  static readonly typeName = "docs.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "baz", kind: "message", T: Example },
+    { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "manager", kind: "message", T: User },
+    { no: 5, name: "locations", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "projects", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 ```
 
@@ -470,17 +482,20 @@ We can observe three properties here:
 This is actually all the information we need to re-create this message type at run time:
 
 ```typescript
-const Example = proto3.makeMessageType(
-  "docs.Example",
+const User = proto3.makeMessageType(
+  "docs.User",
   () => [
-    { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "baz", kind: "message", T: Example },
+    { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "manager", kind: "message", T: User },
+    { no: 5, name: "locations", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "projects", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ],
 );
 ```
 
-The resulting `Example` is completely equivalent to the generated TypeScript class. In fact,
+The resulting `User` is completely equivalent to the generated TypeScript class. In fact,
 this exact piece of code is generated with the plugin option `target=js`, because if saves us
 quite a bit of code size.
 
@@ -508,7 +523,7 @@ compiler:
 const registry = createRegistryFromDescriptors(
   readFileSync("image.bin")
 );
-const Example = registry.findMessage("doc.Example");
+const User = registry.findMessage("doc.User");
 ```
 
 ### Iterating over message fields
@@ -523,10 +538,13 @@ function walkFields(message: AnyMessage) {
   }
 }
 
-walkFields(message);
-// field foo: abc
-// field bar: true
-// field baz: undefined
+walkFields(user);
+// field firstName: Homer
+// field lastName: Simpson
+// field active: true
+// field manager: undefined
+// field locations: SPRINGFIELD
+// field projects: {"SPP":"Springfield Power Plant"}
 ```
 
 Note that the example does not handle oneof groups. Please consult the sources code 
@@ -548,28 +566,28 @@ users provide message data, consider accepting `PartialMessage<T>`, so that user
 simply give an object literal with only the non-default values they want. Note that any
 `T` is assignable to `PartialMessage<T>`.
 
-For example, let's say you have a protobuf `message Foo`, and you want to provide a 
+For example, let's say you have a protobuf `message User`, and you want to provide a 
 function to your users that processes this message:
 
 ```ts
-export function sendExample(example: PartialMessage<Example>) {
+export function sendUser(user: PartialMessage<User>) {
   // convert partial messages into their full representation if necessary
-  const e = example instanceof Example ? example : new Example(example);
+  const u = user instanceof User ? user : new User(user);
   // process further...
-  const bytes = e.toBinary();
+  const bytes = u.toBinary();
 }
 ```
 
 All three examples below are valid input for your function:
 
 ```ts
-sendExample({foo: "abc"});
+sendUser({firstName: "Homer"});
 
-const e = new Example();
-e.foo = "abc";
-sendExample(e);
+const u = new User();
+u.firstName = "Homer";
+sendUser(u);
 
-sendExample(new Example());
+sendUser(new User());
 ```
 
 
@@ -582,10 +600,13 @@ In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
 provided. For example:
 
 ```typescript
-let plain: PlainMessage<Example> = {
-  foo: "abc",
-  bar: false,
-  baz: undefined,
+let plain: PlainMessage<User> = {
+  firstName: "Homer",
+  lastName: "Simpson",
+  active: true,
+  manager: undefined,
+  locations: [],
+  projects: {}
 };
 ```
 
@@ -602,8 +623,8 @@ If you want to handle messages of unknown type, the type [`AnyMessage`][src-any-
 provides a convenient index signature to access fields:
 
 ```typescript
-const anyMessage: AnyMessage = example;
-example["foo"];
+const anyMessage: AnyMessage = user;
+user["firstName"];
 ```
 
 Note that any message is assignable to `AnyMessage`.

@@ -20,51 +20,69 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message docs.Example
+ * @generated from message docs.User
  */
-export class Example extends Message<Example> {
+export class User extends Message<User> {
   /**
-   * @generated from field: string foo = 1;
+   * @generated from field: string first_name = 1;
    */
-  foo = "";
+  firstName = "";
 
   /**
-   * @generated from field: bool bar = 2;
+   * @generated from field: string last_name = 2;
    */
-  bar = false;
+  lastName = "";
 
   /**
-   * @generated from field: docs.Example baz = 3;
+   * @generated from field: bool active = 3;
    */
-  baz?: Example;
+  active = false;
 
-  constructor(data?: PartialMessage<Example>) {
+  /**
+   * @generated from field: docs.User manager = 4;
+   */
+  manager?: User;
+
+  /**
+   * @generated from field: repeated string locations = 5;
+   */
+  locations: string[] = [];
+
+  /**
+   * @generated from field: map<string, string> projects = 6;
+   */
+  projects: { [key: string]: string } = {};
+
+  constructor(data?: PartialMessage<User>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime = proto3;
-  static readonly typeName = "docs.Example";
+  static readonly typeName = "docs.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "bar", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "baz", kind: "message", T: Example },
+    { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "manager", kind: "message", T: User },
+    { no: 5, name: "locations", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "projects", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Example {
-    return new Example().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {
+    return new User().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Example {
-    return new Example().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Example {
-    return new Example().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Example | PlainMessage<Example> | undefined, b: Example | PlainMessage<Example> | undefined): boolean {
-    return proto3.util.equals(Example, a, b);
+  static equals(a: User | PlainMessage<User> | undefined, b: User | PlainMessage<User> | undefined): boolean {
+    return proto3.util.equals(User, a, b);
   }
 }
 
