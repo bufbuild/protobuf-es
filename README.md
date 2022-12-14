@@ -30,7 +30,6 @@ message User {
 And it is compiled to an ECMAScript class that can be used like this:
 
 ```typescript
-// Note:  All fields in the constructor object are optional.
 let user = new User({
   firstName: "Homer",
   lastName: "Simpson",
@@ -38,7 +37,6 @@ let user = new User({
   locations: ["Springfield"],
   projects: { SPP: "Springfield Power Plant" },
   manager: {
-    // You can simply pass an initializer object for this nested message field
     firstName: "Montgomery",
     lastName: "Burns",
   },
