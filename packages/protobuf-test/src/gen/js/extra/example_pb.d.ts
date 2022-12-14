@@ -20,36 +20,51 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message docs.Example
+ * @generated from message docs.User
  */
-export declare class Example extends Message<Example> {
+export declare class User extends Message<User> {
   /**
-   * @generated from field: string foo = 1;
+   * @generated from field: string first_name = 1;
    */
-  foo: string;
+  firstName: string;
 
   /**
-   * @generated from field: bool bar = 2;
+   * @generated from field: string last_name = 2;
    */
-  bar: boolean;
+  lastName: string;
 
   /**
-   * @generated from field: docs.Example baz = 3;
+   * @generated from field: bool active = 3;
    */
-  baz?: Example;
+  active: boolean;
 
-  constructor(data?: PartialMessage<Example>);
+  /**
+   * @generated from field: docs.User manager = 4;
+   */
+  manager?: User;
+
+  /**
+   * @generated from field: repeated string locations = 5;
+   */
+  locations: string[];
+
+  /**
+   * @generated from field: map<string, string> projects = 6;
+   */
+  projects: { [key: string]: string };
+
+  constructor(data?: PartialMessage<User>);
 
   static readonly runtime: typeof proto3;
-  static readonly typeName = "docs.Example";
+  static readonly typeName = "docs.User";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Example;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Example;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): User;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Example;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): User;
 
-  static equals(a: Example | PlainMessage<Example> | undefined, b: Example | PlainMessage<Example> | undefined): boolean;
+  static equals(a: User | PlainMessage<User> | undefined, b: User | PlainMessage<User> | undefined): boolean;
 }
 

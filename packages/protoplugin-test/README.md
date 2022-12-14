@@ -1,3 +1,3 @@
 # Tests
 
-This package provides test coverage for @bufbuild/protoplugin with Jest. 
+This package provides test coverage for `@bufbuild/protoplugin` with Jest.
