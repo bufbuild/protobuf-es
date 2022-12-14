@@ -53,7 +53,7 @@ Protocol Buffers also allow you to serialize this structured data.  So, your app
 
 ## Quickstart
 
-To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md) for the `protoc-gen-es` plugin.
+To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  
 
 1. Install the code generator and the runtime library:
 
@@ -97,35 +97,28 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 - [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
   Helps to create your own code generator plugin.  The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoplugin)).
 
+## Documentation
+
+* [Code example](packages/protobuf-example) - Example code that uses protocol buffers to manage an address book.
+* [Generated Code](docs/generated_code.md) - How to generate, and what code precisely is generated for any given protobuf definition.
+* [Runtime API](docs/runtime_api.md) - A detailed overview of the features provided by the library `@bufbuild/protobuf`.
+* [FAQ](docs/faq.md) - Frequently asked Questions.
+* [Migrating to Protobuf-ES](docs/migrating.md) - Shows the changes you'll need to switch your existing code base.
+* [Writing Plugins](docs/writing_plugins.md) - An overview of the process of writing a plugin using `@bufbuild/protoplugin`.
 
 ## Ecosystem
 
 * [connect-web](https://github.com/bufbuild/connect-web):
-  TypeScript clients for web browsers
+  TypeScript clients for web browsers, based on Protobuf-ES.
 * [connect-web-integration](https://github.com/bufbuild/connect-web-integration):
   Example projects using Connect-Web with various JS frameworks and tooling
-* [connect-go](https://github.com/bufbuild/connect-go):
-  Go implementation of gRPC, gRPC-Web, and Connect
-* [connect-demo](https://github.com/bufbuild/connect-demo):
-  Demonstration service powering demo.connect.build
 * [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
-* [connect-crosstest](https://github.com/bufbuild/connect-crosstest):
-  gRPC-Web and Connect interoperability tests
-  
-
-## Migrating from other implementations
-
-If you are currently using another implementation and would like to migrate to **Protobuf-ES** to see what it's all about, check out our [migration guides](docs/migrating.md) for details.
 
 
 ## TypeScript
 
 The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
 
-
-## FAQ
-
-For a list of frequently asked questions, see our [FAQ documentation](docs/faq.md).
 
 ## Copyright
 
