@@ -17,132 +17,103 @@ In a nutshell, Protocol Buffers have two main functions:
 These two independent traits functions work together to allow your project and everyone who interacts with it to define messages, fields, and service APIs in the exact same way.   In a practical sense as it relates to **Protobuf-ES**, this means no more disparate JSON types all over the place.  Instead, you define a common schema in a Protobuf file, such as:
 
 ```proto
-message Foo {
-   string bar = 1;
-   boolean baz = 2;
-   int32 bing = 3;
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  bool active = 3;
+  User manager = 4;
+  repeated string locations = 5;
+  map<string, string> projects = 6;
 }
 ```
 
-And now your schema can be used with a consistent approach throughout your code.  The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file can be used to generate types in many languages.  So, now all applications can use the same definition of `Foo` as defined above.  And when everyone agrees on what a `Foo` is, communication occurs much more easily.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
-
-Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `Foo` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
-
-## Quickstart
-
-To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md) for the `protoc-gen-es` plugin.
-
-### Installation
-
-Install the necessary packages.  For details on each package, see [below](#packages).  The statement listed below is the most likely one you will need.
-
-```bash
-npm install @bufbuild/protobuf
-npm install --save-dev @bufbuild/protoc-gen-es
-```
-
-### Code Generation
-
-Once installed, download the example file [example.proto](https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-test/extra/example.proto) and place it into a `protos/` directory.
-
-Next, create a `buf.gen.yaml` file in your project root that looks like this:
-
-```yaml
-# Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
-version: v1
-plugins:
-  - name: es
-    path: ./node_modules/.bin/protoc-gen-es
-    opt: target=ts
-    out: src/gen
-```
-
-Finally, run `buf generate`.  You should now see a generated file at `src/gen/example_pb.ts` that contains a class named `User`.  From here, you can begin to work with your schema.
-
-### Usage
-
-You can initialize your objects conveniently using an empty `new` operator and then using direct property access:
+And it is compiled to an ECMAScript class that can be used like this:
 
 ```typescript
-const user = new User();
-user.firstName = "Homer";
-user.lastName = "Simpson";
-user.active = true;
-user.locations = ["Springfield"];
-user.projects = {
-  SPP: "Springfield Power Plant",
-};
-
-const mgr = new User();
-mgr.firstName = "Montgomery";
-mgr.lastName = "Burns";
-
-user.manager = mgr;
-```
-
-or by passing an initializer object to constructors (note that all fields are optional).
-
-```typescript
-const user = new User({
+// Note:  All fields in the constructor object are optional.
+let user = new User({
   firstName: "Homer",
   lastName: "Simpson",
   active: true,
   locations: ["Springfield"],
   projects: { SPP: "Springfield Power Plant" },
   manager: {
-    // you can simply pass an initializer object for this nested message field
+    // You can simply pass an initializer object for this nested message field
     firstName: "Montgomery",
     lastName: "Burns",
   },
 });
+
+const bytes = user.toBinary();
+user = User.fromBinary(bytes);
+user = User.fromJsonString('{"firstName": "Homer", "lastName": "Simpson"}');
 ```
 
-The generated code also contains functions for serializing and deserializing your data using various formats.  You can serialize your data to and from bytes:
+The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file above can be used to generate types in many languages.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-```typescript
-const bytes = user.toBinary()
-// ...
-const deserialized = User.fromBinary(bytes);    // deserialized is equal to the original user
-```
+Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
-You can also serialize and deserialize with JSON:
+## Quickstart
 
-```typescript
-const json = user.toJson();
-// ...
-const deserialized = User.fromJson(json);    // deserialized is equal to the original user
-```
+To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  For full instructions on generating code, visit the [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md) for the `protoc-gen-es` plugin.
 
-Each generated message can also be stringified using `JSON.stringify` and recreated with that JSON string:
+1. Install the code generator and the runtime library:
 
-```typescript
-const str = JSON.stringify(user);
-// ...
-const deserialized = User.fromJsonString(str);    // deserialized is equal to the original user
-```
+   ```bash
+   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es
+   ```
+
+2. Create a `buf.gen.yaml` file that looks like this:
+
+   ```yaml
+   # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
+   version: v1
+   plugins:
+      - name: es
+        path: ./node_modules/.bin/protoc-gen-es
+        opt: target=ts
+        out: src/gen
+   ```
+
+3. Download the [example.proto](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-test/extra/example.proto) into a `/proto` directory:
+
+   ```bash
+   mkdir proto
+   curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-test/extra/example.proto > proto/example.proto
+   ```
+
+4. Generate your code:
+
+   ```bash
+   buf generate proto
+   ```
+
+You should now see a generated file at `src/gen/example_pb.ts` that contains a class named `User`.  From here, you can begin to work with your schema.
 
 ## Packages
 
-There are three main packages comprising the **Protobuf-ES** library:
+- [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
+  Provides the runtime library, containing base types, generated well-known types, and core functionality. ([source code](packages/protobuf)).
+- [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
+  Provides the code generator plugin `protoc-gen-es`.  The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoc-gen-es)).
+- [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
+  Helps to create your own code generator plugin.  The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoplugin)).
 
-[**@bufbuild/protobuf**](https://www.npmjs.com/package/@bufbuild/protobuf)  ([Docs](packages/protobuf))
 
-Provides the runtime library, containing base types, generated well-known types, and core functionality.
+## Ecosystem
 
-[**@bufbuild/protoc-gen-es**](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)  ([Docs](packages/protoc-gen-es))
-
-Provides the code generator plugin `protoc-gen-es` .  The code it generates depends on `@bufbuild/protobuf`.
+* [connect-web](https://github.com/bufbuild/connect-web):
+  TypeScript clients for web browsers
+* [connect-web-integration](https://github.com/bufbuild/connect-web-integration):
+  Example projects using Connect-Web with various JS frameworks and tooling
+* [connect-go](https://github.com/bufbuild/connect-go):
+  Go implementation of gRPC, gRPC-Web, and Connect
+* [connect-demo](https://github.com/bufbuild/connect-demo):
+  Demonstration service powering demo.connect.build
+* [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
+* [connect-crosstest](https://github.com/bufbuild/connect-crosstest):
+  gRPC-Web and Connect interoperability tests
   
-[**@bufbuild/protoplugin**](https://www.npmjs.com/package/@bufbuild/protoplugin)  ([Docs](packages/protoplugin))
-
-Helps to create your own code generator plugin.  The code it generates depends on `@bufbuild/protobuf`.
-
-
-## Examples
-
-To see a real-world application of **Protobuf-ES**, take a look at [Connect-Web](https://github.com/bufbuild/connect-web), which is foundationally based on **Protobuf-ES**.  Additionally, check out the [Connect-Web](https://connect.build/docs/web/getting-started) documentation if you're interested in generating RPC artifacts from your Protobuf files.
-
-For more information on Buf, visit the official [Buf documentation](https://docs.buf.build/introduction).
 
 ## Migrating from other implementations
 
