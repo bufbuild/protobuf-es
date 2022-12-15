@@ -85,6 +85,8 @@ If you do require support for the legacy CommonJS format, you can generate TypeS
 transpile it, for example with the extremely fast [esbuild](https://github.com/evanw/esbuild)
 bundler.
 
+It is also possible to modify the extension used in the import paths via the [`import_extension`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs) plugin option.  This option allows you to choose which extension will
+used in the imports, providing flexibility for different environments.
 
 
 ### Messages
