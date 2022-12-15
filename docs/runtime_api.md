@@ -353,9 +353,13 @@ any.typeUrl; // type.googleapis.com/docs.User
 any.is(User); // true
 any.is(Timestamp); // false
 
+// Unpack an Any using a type registry
+const typeRegistry = createRegistry(User);
+any.unpack(typeRegistry); // Message of type User
+
 // Unpack an Any by providing a blank instance:
-message = new User();
-any.unpackTo(message); // true
+let user = new User();
+any.unpackTo(user); // true
 
 let ts = new Timestamp();
 any.unpackTo(ts); // false, you provided an instance of the wrong type
