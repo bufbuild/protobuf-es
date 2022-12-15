@@ -354,8 +354,12 @@ any.is(User); // true
 any.is(Timestamp); // false
 
 // Unpack an Any by providing a blank instance:
-message = new User();
-any.unpackTo(message); // true
+let user = new User();
+any.unpackTo(user); // true
+
+// Alternative: Unpack an Any using a type registry:
+const typeRegistry = createRegistry(User, Timestamp);
+any.unpack(typeRegistry); // Message of type User
 
 let ts = new Timestamp();
 any.unpackTo(ts); // false, you provided an instance of the wrong type
@@ -506,7 +510,19 @@ quite a bit of code size.
 
 ### Registries
 
-As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+**Protobuf-ES** does not provide a global registry of types because it can lead to runtime errors and also hampers tree-shaking.  However, it is possible to create your own registry using [`createRegistry()`](https://github.com/bufbuild/protobuf-es/blob/31ab04b1109520096a57f3c9b696c5d78b7b6caf/packages/protobuf/src/create-registry.ts).  For example:
+
+```typescript
+import { createRegistry } from "@bufbuild/protobuf";
+import { MessageA, MessageB } from "./generated"
+
+const registry = createRegistry(
+  MessageA, 
+  MessageB,
+);
+```
+
+In addition, you can also create a registry without any generated code.  As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
 Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
 `.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
 
@@ -524,6 +540,22 @@ const registry = createRegistryFromDescriptors(
   readFileSync("image.bin")
 );
 const User = registry.findMessage("doc.User");
+```
+
+### Descriptor Interfaces
+
+**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+
+```
+-- DescFile
+   |--- DescEnum
+   |--- DescMessage
+      |--- DescField
+      |--- DescOneof
+   |--- DescService
+      |--- DescMethod
 ```
 
 ### Iterating over message fields
