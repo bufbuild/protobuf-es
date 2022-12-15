@@ -357,7 +357,7 @@ any.is(Timestamp); // false
 let user = new User();
 any.unpackTo(user); // true
 
-// Alternative: Unpack an Any using a type registry
+// Alternative: Unpack an Any using a type registry:
 const typeRegistry = createRegistry(User, Timestamp);
 any.unpack(typeRegistry); // Message of type User
 
