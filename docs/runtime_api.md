@@ -510,7 +510,19 @@ quite a bit of code size.
 
 ### Registries
 
-As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+**Protobuf-ES** does not provide a global registry of types because it can lead to runtime errors and also hampers tree-shaking.  However, it is possible to create your own registry using [`createRegistry()`](https://github.com/bufbuild/protobuf-es/blob/31ab04b1109520096a57f3c9b696c5d78b7b6caf/packages/protobuf/src/create-registry.ts).  For example:
+
+```typescript
+import { createRegistry } from "@bufbuild/protobuf";
+import { MessageA, MessageB } from "./generated"
+
+const registry = createRegistry(
+  MessageA, 
+  MessageB,
+);
+```
+
+In addition, you can also create a registry without any generated code.  As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
 Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
 `.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
 
