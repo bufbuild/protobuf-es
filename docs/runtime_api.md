@@ -354,7 +354,7 @@ any.is(User); // true
 any.is(Timestamp); // false
 
 // Unpack an Any using a type registry
-const typeRegistry = createRegistry(User);
+const typeRegistry = createRegistry(User, Timestamp);
 any.unpack(typeRegistry); // Message of type User
 
 // Unpack an Any by providing a blank instance:
