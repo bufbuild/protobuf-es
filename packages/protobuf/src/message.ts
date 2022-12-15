@@ -142,8 +142,10 @@ export class Message<T extends Message<T> = AnyMessage> {
    * message type.  As a result, attempting to serialize a message with this
    * type will throw an Error.
    *
-   * Note that this method is protected because users should not need to invoke
-   * it directly -- they can use JSON.stringify.
+   * This method is protected because users should not need to invoke it
+   * directly -- they should use JSON.stringify or toJsonString for
+   * stringified JSON.  Alternatively, if actual JSON is desired, users should
+   * use toJson.
    */
   protected toJSON(): JsonValue {
     return this.toJson({
