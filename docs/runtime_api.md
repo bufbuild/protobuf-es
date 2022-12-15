@@ -530,6 +530,22 @@ const registry = createRegistryFromDescriptors(
 const User = registry.findMessage("doc.User");
 ```
 
+### Descriptor Interfaces
+
+**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+
+```
+-- DescFile
+   |--- DescEnum
+   |--- DescMessage
+      |--- DescField
+      |--- DescOneof
+   |--- DescService
+      |--- DescMethod
+```
+
 ### Iterating over message fields
 
 The following example shows how to iterate over the fields of an arbitrary message.
