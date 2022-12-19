@@ -33,6 +33,7 @@ import type { EnumType } from "../enum.js";
 // Default options for parsing JSON.
 const jsonReadDefaults: Readonly<JsonReadOptions> = {
   ignoreUnknownFields: false,
+  defaultsImmutable: false,
 };
 
 // Default options for serializing to JSON.
@@ -84,7 +85,7 @@ export function makeJsonFormatCommon(
           )}`
         );
       }
-      message = message ?? new type();
+      message = message ?? new type(undefined, options);
       const oneofSeen: { [oneof: string]: string } = {};
       for (const [jsonKey, jsonValue] of Object.entries(json)) {
         const field = type.fields.findJsonName(jsonKey);
@@ -123,6 +124,9 @@ export function makeJsonFormatCommon(
                 field.name
               } from JSON: ${this.debug(jsonValue)}`
             );
+          }
+          if (Object.isFrozen(target[localName])) {
+            target[localName] = [];
           }
           const targetArray = target[localName] as unknown[];
           for (const jsonItem of jsonValue) {
@@ -169,6 +173,9 @@ export function makeJsonFormatCommon(
                 field.name
               } from JSON: ${this.debug(jsonValue)}`
             );
+          }
+          if (Object.isFrozen(target[localName])) {
+            target[localName] = {};
           }
           const targetMap = target[localName] as { [k: string]: unknown };
           for (const [jsonMapKey, jsonMapValue] of Object.entries(jsonValue)) {

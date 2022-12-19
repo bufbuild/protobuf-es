@@ -16,7 +16,7 @@ import type { FieldListSource } from "./field-list.js";
 import type { FieldList } from "../field-list.js";
 import type { EnumObject } from "./enum.js";
 import type { Message, PartialMessage, PlainMessage } from "../message.js";
-import type { MessageType } from "../message-type.js";
+import type { MessageType, TypeCreateOptions } from "../message-type.js";
 import type { EnumValueInfo } from "../enum.js";
 
 /**
@@ -46,7 +46,7 @@ export interface Util {
   /**
    * Set default field values on the target message.
    */
-  initFields(target: Message): void;
+  initFields(target: Message, options?: TypeCreateOptions): void;
 
   /**
    * Set specified field values on the target message, recursively.

@@ -109,6 +109,14 @@ export interface BinaryReadOptions {
   readUnknownFields: boolean;
 
   /**
+   * Should arrays and objects for default values be immutable?
+   * Immutable defaults share a common array or object instance, which reduces memory consumption
+   * when instatiating large numbers of default values.
+   * NOTE: This is only supported for message types with JavaScript declaration files.
+   */
+  defaultsImmutable: boolean;
+
+  /**
    * Allows to use a custom implementation to decode binary data.
    */
   readerFactory: (bytes: Uint8Array) => IBinaryReader;

@@ -24,6 +24,13 @@ import type {
 } from "./message.js";
 import type { FieldWrapper } from "./private/field-wrapper.js";
 
+export interface TypeCreateOptions {
+  /**
+   * Should arrays and objects for default values be immutable?
+   */
+  defaultsImmutable?: boolean;
+}
+
 /**
  * MessageType represents a protobuf message. It provides:
  * - a constructor that produces an instance of the message
@@ -34,7 +41,7 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
   /**
    * Create a new instance of this type.
    */
-  new (data?: PartialMessage<T>): T;
+  new (data?: PartialMessage<T>, options?: TypeCreateOptions): T;
 
   /**
    * The fully qualified name of the message.

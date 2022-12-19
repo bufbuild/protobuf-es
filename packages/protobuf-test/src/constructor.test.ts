@@ -154,3 +154,32 @@ describe("constructor takes partial message for map value", function () {
     }
   );
 });
+
+describe("constructor takes option for immutable default values", function () {
+  testMT(
+    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+    (messageType) => {
+      if (messageType === TS_TestAllTypesProto3) {
+        // This feature is not implemented for TypeScript message types
+        return;
+      }
+      const m = new messageType(undefined, {
+        defaultsImmutable: true
+      });
+
+      for (const k in m) {
+        const value = (m as any)[k];
+        // All the repeated arrays are the same frozen array
+        if (k.startsWith('repeated')) {
+          expect(value).toBe(m.repeatedInt32);
+          expect(Object.isFrozen(value)).toBe(true);
+        }
+        // All the default maps are the same frozen object
+        if (k.startsWith('map')) {
+          expect(value).toBe(m.mapInt32Int32);
+          expect(Object.isFrozen(value)).toBe(true);
+        }
+      }
+    }
+  );
+});

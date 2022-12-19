@@ -88,6 +88,14 @@ export interface JsonReadOptions {
   ignoreUnknownFields: boolean;
 
   /**
+   * Should arrays and objects for default values be immutable?
+   * Immutable defaults share a common array or object instance, which reduces memory consumption
+   * when instatiating large numbers of default values.
+   * NOTE: This is only supported for message types with JavaScript declaration files.
+   */
+  defaultsImmutable: boolean;
+
+  /**
    * This option is required to read `google.protobuf.Any`
    * from JSON format.
    */

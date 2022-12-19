@@ -31,6 +31,8 @@ import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
 import type { MessageType } from "../message-type.js";
 
+const isFrozen = Object.isFrozen;
+
 /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition, no-case-declarations, prefer-const */
 
 const unknownFieldsSymbol = Symbol("@bufbuild/protobuf/unknown-fields");
@@ -38,6 +40,7 @@ const unknownFieldsSymbol = Symbol("@bufbuild/protobuf/unknown-fields");
 // Default options for parsing binary data.
 const readDefaults: Readonly<BinaryReadOptions> = {
   readUnknownFields: true,
+  defaultsImmutable: false,
   readerFactory: (bytes) => new BinaryReader(bytes),
 };
 
@@ -121,6 +124,9 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
           target.case = localName;
           localName = "value";
         }
+        if (repeated && isFrozen(target[localName])) {
+          target[localName] = [];
+        }
         switch (field.kind) {
           case "scalar":
           case "enum":
@@ -172,6 +178,9 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             }
             break;
           case "map":
+            if (isFrozen(target[localName])) {
+              target[localName] = {};
+            }
             let [mapKey, mapVal] = readMapEntry(field, reader, options);
             // safe to assume presence of map object, oneof cannot contain repeated values
             target[localName][mapKey] = mapVal;

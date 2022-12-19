@@ -47,8 +47,8 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
   const localName =
     opt?.localName ?? typeName.substring(typeName.lastIndexOf(".") + 1);
   const type = {
-    [localName]: function (this: T, data?: PartialMessage<T>) {
-      runtime.util.initFields(this);
+    [localName]: function (this: T, data?: PartialMessage<T>, options?: Partial<BinaryReadOptions>) {
+      runtime.util.initFields(this, options);
       runtime.util.initPartial(data, this);
     },
   }[localName] as unknown as MessageType<T>;
@@ -58,13 +58,13 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     typeName,
     fields: runtime.util.newFieldList(fields),
     fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): T {
-      return new type().fromBinary(bytes, options);
+      return new type(undefined, options).fromBinary(bytes, options);
     },
     fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): T {
-      return new type().fromJson(jsonValue, options);
+      return new type(undefined, options).fromJson(jsonValue, options);
     },
     fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): T {
-      return new type().fromJsonString(jsonString, options);
+      return new type(undefined, options).fromJsonString(jsonString, options);
     },
     equals(
       a: T | PlainMessage<T> | undefined,

@@ -19,10 +19,14 @@ import { makeUtilCommon } from "./private/util-common.js";
 import { FieldListSource, InternalFieldList } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
+import type { TypeCreateOptions } from "./message-type.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { FieldInfo, ScalarType } from "./field.js";
 import { InternalOneofInfo } from "./private/field.js";
 import { localFieldName, fieldJsonName } from "./private/names.js";
+
+const EMPTY_ARRAY = Object.freeze([])
+const EMPTY_MAP = Object.freeze({})
 
 /**
  * Provides functionality for messages defined with the proto3 syntax.
@@ -36,7 +40,7 @@ export const proto3 = makeProtoRuntime(
     newFieldList(fields: FieldListSource): FieldList {
       return new InternalFieldList(fields, normalizeFieldInfosProto3);
     },
-    initFields(target: Message): void {
+    initFields(target: Message, options?: TypeCreateOptions): void {
       for (const member of target.getType().fields.byMember()) {
         if (member.opt) {
           continue;
@@ -44,7 +48,7 @@ export const proto3 = makeProtoRuntime(
         const name = member.localName,
           t = target as AnyMessage;
         if (member.repeated) {
-          t[name] = [];
+          t[name] = options?.defaultsImmutable ? EMPTY_ARRAY : [];
           continue;
         }
         switch (member.kind) {
@@ -55,7 +59,7 @@ export const proto3 = makeProtoRuntime(
             t[name] = 0;
             break;
           case "map":
-            t[name] = {};
+            t[name] = options?.defaultsImmutable ? EMPTY_MAP : {};
             break;
           case "scalar":
             t[name] = scalarDefaultValue(member.T); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
