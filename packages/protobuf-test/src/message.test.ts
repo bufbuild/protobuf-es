@@ -211,10 +211,12 @@ describe("PlainMessage", () => {
 
 describe("Message.fromJsonString()", function () {
   test("raises wrapped error on parse error", () => {
+    // The regex is so that this test passes in Node 18 and Node 19.
+    // The error message text changed across major versions.
     expect(() =>
       TestAllTypesProto3.fromJsonString("this is not json")
     ).toThrowError(
-      /^cannot decode protobuf_test_messages\.proto3\.TestAllTypesProto3 from JSON: Unexpected token '?h'? in JSON at position 1$/
+      /^cannot decode protobuf_test_messages\.proto3\.TestAllTypesProto3 from JSON: Unexpected token '?h'?/
     );
   });
 });
