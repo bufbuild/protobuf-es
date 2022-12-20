@@ -214,7 +214,7 @@ describe("Message.fromJsonString()", function () {
     expect(() =>
       TestAllTypesProto3.fromJsonString("this is not json")
     ).toThrowError(
-      "cannot decode protobuf_test_messages.proto3.TestAllTypesProto3 from JSON"
+      /^cannot decode protobuf_test_messages\.proto3\.TestAllTypesProto3 from JSON: Unexpected token '?h'? in JSON at position 1$/
     );
   });
 });
