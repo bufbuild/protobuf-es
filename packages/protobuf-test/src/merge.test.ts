@@ -2,11 +2,12 @@ import { proto3 } from "@bufbuild/protobuf";
 import { it, describe, expect } from "@jest/globals";
 import { MessageFieldMessage } from "./gen/ts/extra/msg-message_pb";
 import { RepeatedScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb";
-import { makeMessageTypeDynamic } from "./helpers";
+import { makeMessageTypeDynamic, testMT } from "./helpers";
 import {
   TestAllTypesProto3 as TS_TestAllTypesProto3,
   // TestAllTypesProto3_NestedMessage as TS_TestAllTypesProto3_NestedMessage,
 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 
 describe("mergePartial", () => {
   describe("with scalar fields", () => {
@@ -168,7 +169,7 @@ describe("mergePartial", () => {
       expect(m.recursiveMessage?.optionalInt32).toBe(125);
     });
 
-    it("merges fully formed messages", () => {
+    it("merges fully-formed message", () => {
       const messageType = makeMessageTypeDynamic(TS_TestAllTypesProto3);
       const m1 = new messageType({
         recursiveMessage: new messageType({
@@ -184,6 +185,36 @@ describe("mergePartial", () => {
       expect(m1.recursiveMessage?.optionalInt32).toBe(123);
       proto3.util.mergePartial(m1, m2);
       expect(m1.recursiveMessage?.optionalInt32).toBe(125);
+    });
+  });
+
+  describe("with oneof fields", () => {
+    describe("takes partial message for oneof field", function () {
+      testMT(
+        { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+        (messageType) => {
+          const m = new messageType({
+            oneofField: {
+              case: "oneofNestedMessage",
+              value: {
+                corecursive: {
+                  optionalInt32: 123,
+                },
+              },
+            },
+          });
+
+          expect(m.oneofField.case).toBe("oneofNestedMessage");
+          proto3.util.mergePartial(m, {
+            oneofField: {
+              case: "oneofBool",
+              value: true,
+            },
+          });
+          expect(m.oneofField.case).toBe("oneofBool");
+          expect(m.oneofField.value).toBe(true);
+        }
+      );
     });
   });
 });

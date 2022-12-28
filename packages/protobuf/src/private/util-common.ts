@@ -225,6 +225,22 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
 
         switch (member.kind) {
+          case "oneof":
+            const sk = s[localName].case;
+            if (sk === undefined) {
+              continue;
+            }
+            const sourceField = member.findField(sk);
+            let val = s[localName].value;
+            if (
+              sourceField &&
+              sourceField.kind == "message" &&
+              !(val instanceof sourceField.T)
+            ) {
+              val = new sourceField.T(val);
+            }
+            t[localName] = { case: sk, value: val };
+            break;
           case "scalar":
           case "enum":
             t[localName] = s[localName];
