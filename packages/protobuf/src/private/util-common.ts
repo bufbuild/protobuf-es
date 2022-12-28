@@ -208,6 +208,30 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
       }
       return target;
     },
+    mergePartial<T extends Message<T>>(
+      target: T,
+      source: PartialMessage<T>
+    ): void {
+      if (source === undefined) {
+        return;
+      }
+      const type = target.getType();
+      for (const member of type.fields.byMember()) {
+        const localName = member.localName,
+          t = target as AnyMessage,
+          s = source as PartialMessage<AnyMessage>;
+        if (s[localName] === undefined) {
+          continue;
+        }
+
+        switch (member.kind) {
+          case "scalar":
+          case "enum":
+            t[localName] = s[localName];
+            break;
+        }
+      }
+    },
   };
 }
 

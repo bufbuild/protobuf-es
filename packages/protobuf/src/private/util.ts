@@ -70,4 +70,12 @@ export interface Util {
    * Create a deep copy.
    */
   clone<T extends Message<T>>(message: T): T;
+
+  /**
+   * Partially update a message with the given values.
+   */
+  mergePartial<T extends Message<T>>(
+    target: T,
+    source: PartialMessage<T>
+  ): void;
 }
