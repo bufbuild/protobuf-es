@@ -229,6 +229,24 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           case "enum":
             t[localName] = s[localName];
             break;
+
+          case "message":
+            const mt = member.T;
+            if (member.repeated) {
+              t[localName] = (s[localName] as any[]).map((val) =>
+                val instanceof mt ? val : new mt(val)
+              );
+            } else if (s[localName] === undefined) {
+              t[localName] = new mt(s[localName]); // nothing to merge with
+            } else {
+              const val = s[localName];
+              if (mt.fieldWrapper) {
+                t[localName] = val;
+              } else {
+                this.mergePartial(t[localName], val);
+              }
+            }
+            break;
         }
       }
     },
