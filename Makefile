@@ -179,7 +179,7 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 		&& BUF_BIGINT_DISABLE=1 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js
 
 .PHONY: test-ts-compat
-test-ts-compat: $(GEN)/protobuf-test node_modules 
+test-ts-compat: $(GEN)/protobuf-test node_modules
 	@for number in $(TS_VERSIONS) ; do \
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		dirname=packages/protobuf-test/typescript ; \
