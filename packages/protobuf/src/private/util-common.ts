@@ -279,7 +279,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (member.repeated) {
               t[localName] = (s[localName] as any[]).map((val) => {
                 let newVal = val instanceof mt ? val : new mt(val);
-                this.mergePartial(newVal, val);
+                this.mergePartial(newVal, val, useDefaults);
                 return newVal;
               });
             } else if (s[localName] === undefined) {
