@@ -286,7 +286,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               t[localName] = new mt(); // nothing to merge with
             } else {
               const val = s[localName];
-              this.mergePartial(t[localName], val);
+              this.mergePartial(t[localName], val, useDefaults);
             }
             break;
         }
