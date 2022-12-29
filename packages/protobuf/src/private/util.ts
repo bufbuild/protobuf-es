@@ -76,6 +76,7 @@ export interface Util {
    */
   mergePartial<T extends Message<T>>(
     target: T,
-    source: PartialMessage<T>
+    source: PartialMessage<T>,
+    useDefaults?: boolean
   ): void;
 }

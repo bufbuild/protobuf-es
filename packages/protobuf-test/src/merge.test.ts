@@ -11,7 +11,7 @@ import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/pro
 
 describe("mergePartial", () => {
   describe("with scalar fields", () => {
-    it("can merge scalar types from left to right", () => {
+    it("can merge repeated scalar types from right to left", () => {
       const msgType = makeMessageTypeDynamic(RepeatedScalarValuesMessage);
 
       const msg = new msgType({
@@ -23,6 +23,59 @@ describe("mergePartial", () => {
       });
 
       expect(msg.doubleField).toEqual([0.5]);
+    });
+
+    it("can merge scalar types from right to left", () => {
+      const msgType = makeMessageTypeDynamic(TS_TestAllTypesProto3);
+
+      const msg = new msgType({
+        optionalInt32: 123,
+        fieldname1: 10, // It should merge this field into the new result.
+      });
+
+      proto3.util.mergePartial(msg, {
+        optionalInt32: 125,
+      });
+
+      expect(msg.fieldname1).toEqual(10);
+      expect(msg.optionalInt32).toEqual(125);
+    });
+
+    it("can merge scalar messages", () => {
+      const msgType = makeMessageTypeDynamic(TS_TestAllTypesProto3);
+
+      const m1 = new msgType({
+        optionalInt32: 123,
+        fieldname1: 10, // It should merge this field into the new result.
+      });
+
+      const m2 = new msgType({
+        optionalInt32: 125,
+      });
+
+      proto3.util.mergePartial(m1, m2);
+
+      expect(m1.fieldname1).toEqual(10);
+      expect(m1.optionalInt32).toEqual(125);
+    });
+
+    it("can set field back to default value", () => {
+      const msgType = makeMessageTypeDynamic(TS_TestAllTypesProto3);
+
+      const m1 = new msgType({
+        optionalInt32: 123,
+        fieldname1: 10,
+      });
+
+      const m2 = new msgType({
+        optionalInt32: 0,
+        fieldname1: 0,
+      });
+
+      proto3.util.mergePartial(m1, m2, true);
+
+      expect(m1.fieldname1).toEqual(0);
+      expect(m1.optionalInt32).toEqual(0);
     });
 
     it("new value overwrites old value", () => {
@@ -53,6 +106,20 @@ describe("mergePartial", () => {
       expect(msg.doubleField).toEqual([0]);
     });
 
+    it("new undefined value overwrites keeps old value", () => {
+      const msgType = makeMessageTypeDynamic(RepeatedScalarValuesMessage);
+
+      const msg = new msgType({
+        doubleField: [0.75],
+      });
+
+      proto3.util.mergePartial(msg, {
+        doubleField: undefined,
+      });
+
+      expect(msg.doubleField).toEqual([0.75]);
+    });
+
     it("omitted value does not overwrite existing value", () => {
       const msgType = makeMessageTypeDynamic(RepeatedScalarValuesMessage);
 
@@ -64,6 +131,7 @@ describe("mergePartial", () => {
 
       expect(msg.doubleField).toEqual([0.75]);
     });
+
     it("repeated fields are overwritten", () => {
       const msgType = makeMessageTypeDynamic(RepeatedScalarValuesMessage);
 
@@ -157,6 +225,7 @@ describe("mergePartial", () => {
       const m = new messageType({
         recursiveMessage: new messageType({
           optionalInt32: 123,
+          fieldname1: 10, // It should merge this field into the new result.
         }),
       });
       expect(m.recursiveMessage?.optionalInt32).toBe(123);
@@ -167,6 +236,7 @@ describe("mergePartial", () => {
       });
 
       expect(m.recursiveMessage?.optionalInt32).toBe(125);
+      expect(m.recursiveMessage?.fieldname1).toBe(10);
     });
 
     it("merges fully-formed message", () => {
@@ -174,6 +244,7 @@ describe("mergePartial", () => {
       const m1 = new messageType({
         recursiveMessage: new messageType({
           optionalInt32: 123,
+          fieldname1: 10, // It should merge this field into the new result.
         }),
       });
       const m2 = new messageType({
@@ -185,6 +256,7 @@ describe("mergePartial", () => {
       expect(m1.recursiveMessage?.optionalInt32).toBe(123);
       proto3.util.mergePartial(m1, m2);
       expect(m1.recursiveMessage?.optionalInt32).toBe(125);
+      expect(m1.recursiveMessage?.fieldname1).toBe(10);
     });
   });
 

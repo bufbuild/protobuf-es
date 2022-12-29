@@ -210,7 +210,8 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     },
     mergePartial<T extends Message<T>>(
       target: T,
-      source: PartialMessage<T>
+      source: PartialMessage<T>,
+      useDefaults?: boolean
     ): void {
       if (source === undefined) {
         return;
@@ -243,24 +244,49 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             break;
           case "scalar":
           case "enum":
-            t[localName] = s[localName];
+            let isZero = isZeroScalarValue(member, s);
+            if (useDefaults && isZero) {
+              isZero = false;
+            }
+            if (!isZero) {
+              t[localName] = s[localName];
+            }
+            break;
+
+          case "map":
+            switch (member.V.kind) {
+              case "scalar":
+              case "enum":
+                Object.assign(t[localName], s[localName]);
+                break;
+              case "message":
+                const messageType = member.V.T;
+                for (const k of Object.keys(s[localName])) {
+                  let val = s[localName][k];
+                  if (!messageType.fieldWrapper) {
+                    // We only take partial input for messages that are not a wrapper type.
+                    // For those messages, we recursively normalize the partial input.
+                    val = new messageType(val);
+                  }
+                  t[localName][k] = val;
+                }
+                break;
+            }
             break;
 
           case "message":
             const mt = member.T;
             if (member.repeated) {
-              t[localName] = (s[localName] as any[]).map((val) =>
-                val instanceof mt ? val : new mt(val)
-              );
+              t[localName] = (s[localName] as any[]).map((val) => {
+                let newVal = val instanceof mt ? val : new mt(val);
+                this.mergePartial(newVal, val);
+                return newVal;
+              });
             } else if (s[localName] === undefined) {
-              t[localName] = new mt(s[localName]); // nothing to merge with
+              t[localName] = new mt(); // nothing to merge with
             } else {
               const val = s[localName];
-              if (mt.fieldWrapper) {
-                t[localName] = val;
-              } else {
-                this.mergePartial(t[localName], val);
-              }
+              this.mergePartial(t[localName], val);
             }
             break;
         }
@@ -286,4 +312,40 @@ function cloneSingularField(
     return c;
   }
   return value;
+}
+
+function isZeroScalarValue(member: FieldInfo, s: PartialMessage<AnyMessage>) {
+  let isZero = false;
+  let localName = member.localName;
+  if (member.kind != "scalar") {
+    return false;
+  }
+
+  switch (member.T) {
+    case ScalarType.STRING:
+      isZero = s[localName] === "";
+      break;
+    case ScalarType.BYTES:
+      isZero = s[localName].length === 0;
+      break;
+    case ScalarType.BOOL:
+      isZero = s[localName] === false;
+      break;
+    case ScalarType.INT32:
+    case ScalarType.INT64:
+    case ScalarType.UINT32:
+    case ScalarType.UINT64:
+    case ScalarType.SINT32:
+    case ScalarType.SINT64:
+    case ScalarType.FIXED32:
+    case ScalarType.FIXED64:
+    case ScalarType.SFIXED32:
+    case ScalarType.SFIXED64:
+    case ScalarType.FLOAT:
+    case ScalarType.DOUBLE:
+      isZero = s[localName] === 0;
+      break;
+  }
+
+  return isZero;
 }
