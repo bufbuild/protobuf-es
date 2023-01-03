@@ -27,6 +27,14 @@ git fetch upstream
 Make sure that the tests and the linters pass (you'll need `node`, `bazel`,
 `buf`, `bash` and the latest stable Go release installed):
 
+Note that your Bazel installation should be `v5.4.0` or earlier as the version
+of Protocol Buffers in use during our `make` process is incompatible with Bazel
+`v6.0` and above.  If you use [Bazelisk](https://github.com/bazelbuild/bazelisk)
+to manage Bazel installations, then this should be seamless as our Makefile
+uses Bazelisk syntax to invoke Bazel.  However, if you have installed Bazel via
+other means (Homebrew, etc.) then you will have to downgrade to successfully
+run the below command.
+
 ```
 make 
 ```
