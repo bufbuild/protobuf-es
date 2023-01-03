@@ -29,16 +29,14 @@ $(PB):
 	tar -xzf $(TMP)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz -C $(TMP)/
 
 $(BIN)/protoc: $(PB)
-	export USE_BAZEL_VERSION=$(BAZEL_VERSION)
 	@mkdir -p $(@D)
-	cd $(PB) && bazel build protoc
+	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build protoc
 	cp -f $(PB)/bazel-bin/protoc $(@D)
 	@touch $(@)
 
 $(BIN)/conformance_test_runner: $(PB)
-	export USE_BAZEL_VERSION=$(BAZEL_VERSION)
 	@mkdir -p $(@D)
-	cd $(PB) && bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
+	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
 	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
 	@touch $(@)
 
