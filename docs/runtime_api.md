@@ -229,6 +229,16 @@ const bytes: Uint8Array = user.toBinary();
 User.fromBinary(bytes);
 ```
 
+Serializing to the base64 format is one step further, using the exposed methods from `protoBase64`:
+
+```typescript
+import { protoBase64 } from '@bufbuild/protobuf';
+
+const bytes: Uint8Array = user.toBinary();
+const base64: string = protoBase64.enc(bytes)
+User.fromBinary(protoBase64.dec(base64));
+```
+
 Serializing to the JSON format is equally simple:
 
 ```typescript
