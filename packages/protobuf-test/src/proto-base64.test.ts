@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { protoBase64 } from "@bufbuild/protobuf";
-import { User } from "./gen/ts/extra/example_pb";
+import { User } from "./gen/ts/extra/example_pb.js";
 
 /**
  * Inspiration for data source taken from https://github.com/jsdom/abab
