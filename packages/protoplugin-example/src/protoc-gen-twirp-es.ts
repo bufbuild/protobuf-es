@@ -76,10 +76,10 @@ function generateTs(schema: Schema) {
             f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
             f.print("        );");
         }
+        f.print("    }");
       }
-      f.print("    }");
+      f.print("}");
     }
-    f.print("}");
   }
 }
 
