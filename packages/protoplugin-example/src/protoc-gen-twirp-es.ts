@@ -67,7 +67,7 @@ function generateTs(schema: Schema) {
             f.print(makeJsDoc(method, "    "));
             f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
             f.print("        const promise = this.request(");
-            f.print("            ", literalString(service.typeName), ", ");
+            f.print("            ", literalString(service.typeName), ",");
             f.print("            ", literalString(method.name), ",");
             f.print('            "application/json",');
             f.print("            request");
@@ -75,11 +75,11 @@ function generateTs(schema: Schema) {
             f.print("        return promise.then(async (data) =>");
             f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
             f.print("        );");
+            f.print("    }");
         }
       }
-      f.print("    }");
+      f.print("}");
     }
-    f.print("}");
   }
 }
 
