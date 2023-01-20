@@ -75,8 +75,8 @@ function generateTs(schema: Schema) {
             f.print("        return promise.then(async (data) =>");
             f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
             f.print("        );");
+            f.print("    }");
         }
-        f.print("    }");
       }
       f.print("}");
     }
