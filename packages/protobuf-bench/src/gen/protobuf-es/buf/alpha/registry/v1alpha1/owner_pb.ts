@@ -121,7 +121,7 @@ export class GetOwnerByNameResponse extends Message<GetOwnerByNameResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Owner owner = 1;
    */
-  owner?: Owner;
+  owner?: Owner | undefined;
 
   constructor(data?: PartialMessage<GetOwnerByNameResponse>) {
     super();

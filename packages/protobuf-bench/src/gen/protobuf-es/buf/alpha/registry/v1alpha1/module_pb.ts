@@ -110,7 +110,7 @@ export class LocalModulePin extends Message<LocalModulePin> {
   /**
    * @generated from field: google.protobuf.Timestamp create_time = 7;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<LocalModulePin>) {
     super();

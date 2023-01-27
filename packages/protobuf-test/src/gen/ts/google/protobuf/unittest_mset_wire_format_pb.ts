@@ -81,7 +81,7 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
-  messageSet?: TestMessageSet;
+  messageSet?: TestMessageSet | undefined;
 
   constructor(data?: PartialMessage<TestMessageSetWireFormatContainer>) {
     super();

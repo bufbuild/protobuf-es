@@ -35,7 +35,7 @@ export class RepositoryTrack extends Message<RepositoryTrack> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * We reserve field number '3' for the update_time.
@@ -130,7 +130,7 @@ export class CreateRepositoryTrackResponse extends Message<CreateRepositoryTrack
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrack repository_track = 1;
    */
-  repositoryTrack?: RepositoryTrack;
+  repositoryTrack?: RepositoryTrack | undefined;
 
   constructor(data?: PartialMessage<CreateRepositoryTrackResponse>) {
     super();
@@ -404,7 +404,7 @@ export class GetRepositoryTrackByNameResponse extends Message<GetRepositoryTrack
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrack repository_track = 1;
    */
-  repositoryTrack?: RepositoryTrack;
+  repositoryTrack?: RepositoryTrack | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryTrackByNameResponse>) {
     super();

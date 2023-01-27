@@ -42,7 +42,7 @@ export class NestedMessage extends Message<NestedMessage> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  d?: number;
+  d?: number | undefined;
 
   constructor(data?: PartialMessage<NestedMessage>) {
     super();

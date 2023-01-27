@@ -76,7 +76,7 @@ export class DownloadResponse extends Message<DownloadResponse> {
   /**
    * @generated from field: buf.alpha.module.v1alpha1.Module module = 1;
    */
-  module?: Module;
+  module?: Module | undefined;
 
   constructor(data?: PartialMessage<DownloadResponse>) {
     super();

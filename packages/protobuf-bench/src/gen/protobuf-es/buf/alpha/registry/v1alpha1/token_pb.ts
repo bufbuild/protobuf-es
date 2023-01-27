@@ -31,12 +31,12 @@ export class Token extends Message<Token> {
   /**
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * @generated from field: google.protobuf.Timestamp expire_time = 3;
    */
-  expireTime?: Timestamp;
+  expireTime?: Timestamp | undefined;
 
   /**
    * @generated from field: string note = 4;
@@ -89,7 +89,7 @@ export class CreateTokenRequest extends Message<CreateTokenRequest> {
    *
    * @generated from field: google.protobuf.Timestamp expire_time = 2;
    */
-  expireTime?: Timestamp;
+  expireTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<CreateTokenRequest>) {
     super();
@@ -203,7 +203,7 @@ export class GetTokenResponse extends Message<GetTokenResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Token token = 1;
    */
-  token?: Token;
+  token?: Token | undefined;
 
   constructor(data?: PartialMessage<GetTokenResponse>) {
     super();

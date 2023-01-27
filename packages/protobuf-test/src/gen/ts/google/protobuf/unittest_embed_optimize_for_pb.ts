@@ -52,7 +52,7 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
    *
    * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
    */
-  optionalMessage?: TestOptimizedForSize;
+  optionalMessage?: TestOptimizedForSize | undefined;
 
   /**
    * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;

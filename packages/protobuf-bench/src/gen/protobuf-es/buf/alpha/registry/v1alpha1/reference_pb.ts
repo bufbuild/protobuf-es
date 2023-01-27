@@ -157,7 +157,7 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Reference reference = 1;
    */
-  reference?: Reference;
+  reference?: Reference | undefined;
 
   constructor(data?: PartialMessage<GetReferenceByNameResponse>) {
     super();

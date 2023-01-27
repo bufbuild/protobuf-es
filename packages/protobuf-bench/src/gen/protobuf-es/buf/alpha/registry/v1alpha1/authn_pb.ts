@@ -58,7 +58,7 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   constructor(data?: PartialMessage<GetCurrentUserResponse>) {
     super();

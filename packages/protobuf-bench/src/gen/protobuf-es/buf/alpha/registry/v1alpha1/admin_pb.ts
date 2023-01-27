@@ -69,7 +69,7 @@ export class ForceDeleteUserResponse extends Message<ForceDeleteUserResponse> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   /**
    * The deleted organizations.

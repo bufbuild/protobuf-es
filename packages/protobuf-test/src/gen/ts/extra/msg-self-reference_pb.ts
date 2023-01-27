@@ -26,7 +26,7 @@ export class SelfReferencingMessage extends Message<SelfReferencingMessage> {
   /**
    * @generated from field: spec.SelfReferencingMessage self = 1;
    */
-  self?: SelfReferencingMessage;
+  self?: SelfReferencingMessage | undefined;
 
   /**
    * @generated from field: repeated spec.SelfReferencingMessage self_list = 2;

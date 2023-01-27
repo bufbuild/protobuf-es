@@ -528,7 +528,7 @@ export class PluginContributor extends Message<PluginContributor> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   /**
    * The ID of the plugin which the role belongs to.
@@ -590,7 +590,7 @@ export class TemplateContributor extends Message<TemplateContributor> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   /**
    * The ID of the template which the role belongs to.
@@ -1011,7 +1011,7 @@ export class GetPluginVersionResponse extends Message<GetPluginVersionResponse> 
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.PluginVersion plugin_version = 1;
    */
-  pluginVersion?: PluginVersion;
+  pluginVersion?: PluginVersion | undefined;
 
   constructor(data?: PartialMessage<GetPluginVersionResponse>) {
     super();
@@ -1223,7 +1223,7 @@ export class CreatePluginResponse extends Message<CreatePluginResponse> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.Plugin plugin = 1;
    */
-  plugin?: Plugin;
+  plugin?: Plugin | undefined;
 
   constructor(data?: PartialMessage<CreatePluginResponse>) {
     super();
@@ -1307,7 +1307,7 @@ export class GetPluginResponse extends Message<GetPluginResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Plugin plugin = 1;
    */
-  plugin?: Plugin;
+  plugin?: Plugin | undefined;
 
   constructor(data?: PartialMessage<GetPluginResponse>) {
     super();
@@ -1822,7 +1822,7 @@ export class GetTemplateResponse extends Message<GetTemplateResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Template template = 1;
    */
-  template?: Template;
+  template?: Template | undefined;
 
   constructor(data?: PartialMessage<GetTemplateResponse>) {
     super();
@@ -2114,7 +2114,7 @@ export class GetTemplateVersionResponse extends Message<GetTemplateVersionRespon
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.TemplateVersion template_version = 1;
    */
-  templateVersion?: TemplateVersion;
+  templateVersion?: TemplateVersion | undefined;
 
   constructor(data?: PartialMessage<GetTemplateVersionResponse>) {
     super();
@@ -2438,7 +2438,7 @@ export class CreateTemplateResponse extends Message<CreateTemplateResponse> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.Template template = 1;
    */
-  template?: Template;
+  template?: Template | undefined;
 
   constructor(data?: PartialMessage<CreateTemplateResponse>) {
     super();
@@ -2620,7 +2620,7 @@ export class CreateTemplateVersionResponse extends Message<CreateTemplateVersion
    *
    * @generated from field: buf.alpha.registry.v1alpha1.TemplateVersion template_version = 1;
    */
-  templateVersion?: TemplateVersion;
+  templateVersion?: TemplateVersion | undefined;
 
   constructor(data?: PartialMessage<CreateTemplateVersionResponse>) {
     super();

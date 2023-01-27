@@ -72,7 +72,7 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  d?: number;
+  d?: number | undefined;
 
   constructor(data?: PartialMessage<ImportMessageLite>) {
     super();

@@ -2452,7 +2452,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
   /**
    * @generated from field: google.protobuf.Timestamp expire_time = 2;
    */
-  expireTime?: Timestamp;
+  expireTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<ActionBufAlphaRegistryV1Alpha1CreateTokenInfo>) {
     super();
@@ -2964,7 +2964,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack track = 1;
    */
-  track?: BufAlphaRegistryV1Alpha1RepositoryTrack;
+  track?: BufAlphaRegistryV1Alpha1RepositoryTrack | undefined;
 
   constructor(data?: PartialMessage<ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo>) {
     super();
@@ -3104,7 +3104,7 @@ export class Event extends Message<Event> {
    *
    * @generated from field: google.protobuf.Timestamp event_time = 3;
    */
-  eventTime?: Timestamp;
+  eventTime?: Timestamp | undefined;
 
   /**
    * The name of the service to which the request belongs.

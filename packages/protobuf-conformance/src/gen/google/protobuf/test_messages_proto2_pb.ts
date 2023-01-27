@@ -85,112 +85,112 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  optionalInt32?: number;
+  optionalInt32?: number | undefined;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  optionalInt64?: bigint;
+  optionalInt64?: bigint | undefined;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  optionalUint32?: number;
+  optionalUint32?: number | undefined;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  optionalUint64?: bigint;
+  optionalUint64?: bigint | undefined;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  optionalSint32?: number;
+  optionalSint32?: number | undefined;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  optionalSint64?: bigint;
+  optionalSint64?: bigint | undefined;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  optionalFixed32?: number;
+  optionalFixed32?: number | undefined;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  optionalFixed64?: bigint;
+  optionalFixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  optionalSfixed32?: number;
+  optionalSfixed32?: number | undefined;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  optionalSfixed64?: bigint;
+  optionalSfixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  optionalFloat?: number;
+  optionalFloat?: number | undefined;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  optionalDouble?: number;
+  optionalDouble?: number | undefined;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  optionalBool?: boolean;
+  optionalBool?: boolean | undefined;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  optionalString?: string;
+  optionalString?: string | undefined;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes?: Uint8Array | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypesProto2_NestedMessage;
+  optionalNestedMessage?: TestAllTypesProto2_NestedMessage | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessageProto2;
+  optionalForeignMessage?: ForeignMessageProto2 | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum optional_nested_enum = 21;
    */
-  optionalNestedEnum?: TestAllTypesProto2_NestedEnum;
+  optionalNestedEnum?: TestAllTypesProto2_NestedEnum | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignEnumProto2 optional_foreign_enum = 22;
    */
-  optionalForeignEnum?: ForeignEnumProto2;
+  optionalForeignEnum?: ForeignEnumProto2 | undefined;
 
   /**
    * @generated from field: optional string optional_string_piece = 24;
    */
-  optionalStringPiece?: string;
+  optionalStringPiece?: string | undefined;
 
   /**
    * @generated from field: optional string optional_cord = 25;
    */
-  optionalCord?: string;
+  optionalCord?: string | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 recursive_message = 27;
    */
-  recursiveMessage?: TestAllTypesProto2;
+  recursiveMessage?: TestAllTypesProto2 | undefined;
 
   /**
    * Repeated
@@ -602,84 +602,84 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.Data data = 201;
    */
-  data?: TestAllTypesProto2_Data;
+  data?: TestAllTypesProto2_Data | undefined;
 
   /**
    * default values
    *
    * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
    */
-  defaultInt32?: number;
+  defaultInt32?: number | undefined;
 
   /**
    * @generated from field: optional int64 default_int64 = 242 [default = -9123456789123456789];
    */
-  defaultInt64?: bigint;
+  defaultInt64?: bigint | undefined;
 
   /**
    * @generated from field: optional uint32 default_uint32 = 243 [default = 2123456789];
    */
-  defaultUint32?: number;
+  defaultUint32?: number | undefined;
 
   /**
    * @generated from field: optional uint64 default_uint64 = 244 [default = 10123456789123456789];
    */
-  defaultUint64?: bigint;
+  defaultUint64?: bigint | undefined;
 
   /**
    * @generated from field: optional sint32 default_sint32 = 245 [default = -123456789];
    */
-  defaultSint32?: number;
+  defaultSint32?: number | undefined;
 
   /**
    * @generated from field: optional sint64 default_sint64 = 246 [default = -9123456789123456789];
    */
-  defaultSint64?: bigint;
+  defaultSint64?: bigint | undefined;
 
   /**
    * @generated from field: optional fixed32 default_fixed32 = 247 [default = 2123456789];
    */
-  defaultFixed32?: number;
+  defaultFixed32?: number | undefined;
 
   /**
    * @generated from field: optional fixed64 default_fixed64 = 248 [default = 10123456789123456789];
    */
-  defaultFixed64?: bigint;
+  defaultFixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional sfixed32 default_sfixed32 = 249 [default = -123456789];
    */
-  defaultSfixed32?: number;
+  defaultSfixed32?: number | undefined;
 
   /**
    * @generated from field: optional sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
    */
-  defaultSfixed64?: bigint;
+  defaultSfixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional float default_float = 251 [default = 9e+09];
    */
-  defaultFloat?: number;
+  defaultFloat?: number | undefined;
 
   /**
    * @generated from field: optional double default_double = 252 [default = 7e+22];
    */
-  defaultDouble?: number;
+  defaultDouble?: number | undefined;
 
   /**
    * @generated from field: optional bool default_bool = 253 [default = true];
    */
-  defaultBool?: boolean;
+  defaultBool?: boolean | undefined;
 
   /**
    * @generated from field: optional string default_string = 254 [default = "Rosebud"];
    */
-  defaultString?: string;
+  defaultString?: string | undefined;
 
   /**
    * @generated from field: optional bytes default_bytes = 255 [default = "joshua"];
    */
-  defaultBytes?: Uint8Array;
+  defaultBytes?: Uint8Array | undefined;
 
   /**
    * Test field-name-to-JSON-name convention.
@@ -687,92 +687,92 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    *
    * @generated from field: optional int32 fieldname1 = 401;
    */
-  fieldname1?: number;
+  fieldname1?: number | undefined;
 
   /**
    * @generated from field: optional int32 field_name2 = 402;
    */
-  fieldName2?: number;
+  fieldName2?: number | undefined;
 
   /**
    * @generated from field: optional int32 _field_name3 = 403;
    */
-  FieldName3?: number;
+  FieldName3?: number | undefined;
 
   /**
    * @generated from field: optional int32 field__name4_ = 404;
    */
-  fieldName4?: number;
+  fieldName4?: number | undefined;
 
   /**
    * @generated from field: optional int32 field0name5 = 405;
    */
-  field0name5?: number;
+  field0name5?: number | undefined;
 
   /**
    * @generated from field: optional int32 field_0_name6 = 406;
    */
-  field0Name6?: number;
+  field0Name6?: number | undefined;
 
   /**
    * @generated from field: optional int32 fieldName7 = 407;
    */
-  fieldName7?: number;
+  fieldName7?: number | undefined;
 
   /**
    * @generated from field: optional int32 FieldName8 = 408;
    */
-  FieldName8?: number;
+  FieldName8?: number | undefined;
 
   /**
    * @generated from field: optional int32 field_Name9 = 409;
    */
-  fieldName9?: number;
+  fieldName9?: number | undefined;
 
   /**
    * @generated from field: optional int32 Field_Name10 = 410;
    */
-  FieldName10?: number;
+  FieldName10?: number | undefined;
 
   /**
    * @generated from field: optional int32 FIELD_NAME11 = 411;
    */
-  FIELDNAME11?: number;
+  FIELDNAME11?: number | undefined;
 
   /**
    * @generated from field: optional int32 FIELD_name12 = 412;
    */
-  FIELDName12?: number;
+  FIELDName12?: number | undefined;
 
   /**
    * @generated from field: optional int32 __field_name13 = 413;
    */
-  FieldName13?: number;
+  FieldName13?: number | undefined;
 
   /**
    * @generated from field: optional int32 __Field_name14 = 414;
    */
-  FieldName14?: number;
+  FieldName14?: number | undefined;
 
   /**
    * @generated from field: optional int32 field__name15 = 415;
    */
-  fieldName15?: number;
+  fieldName15?: number | undefined;
 
   /**
    * @generated from field: optional int32 field__Name16 = 416;
    */
-  fieldName16?: number;
+  fieldName16?: number | undefined;
 
   /**
    * @generated from field: optional int32 field_name17__ = 417;
    */
-  fieldName17?: number;
+  fieldName17?: number | undefined;
 
   /**
    * @generated from field: optional int32 Field_name18__ = 418;
    */
-  FieldName18?: number;
+  FieldName18?: number | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto2>) {
     super();
@@ -975,12 +975,12 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a?: number | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 corecursive = 2;
    */
-  corecursive?: TestAllTypesProto2;
+  corecursive?: TestAllTypesProto2 | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_NestedMessage>) {
     super();
@@ -1020,12 +1020,12 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
   /**
    * @generated from field: optional int32 group_int32 = 202;
    */
-  groupInt32?: number;
+  groupInt32?: number | undefined;
 
   /**
    * @generated from field: optional uint32 group_uint32 = 203;
    */
-  groupUint32?: number;
+  groupUint32?: number | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_Data>) {
     super();
@@ -1096,7 +1096,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
   /**
    * @generated from field: optional string str = 25;
    */
-  str?: string;
+  str?: string | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrectExtension1>) {
     super();
@@ -1133,7 +1133,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
   /**
    * @generated from field: optional int32 i = 9;
    */
-  i?: number;
+  i?: number | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrectExtension2>) {
     super();
@@ -1170,7 +1170,7 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c?: number;
+  c?: number | undefined;
 
   constructor(data?: PartialMessage<ForeignMessageProto2>) {
     super();
@@ -1207,27 +1207,27 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
   /**
    * @generated from field: optional int32 optional_int32 = 1001;
    */
-  optionalInt32?: number;
+  optionalInt32?: number | undefined;
 
   /**
    * @generated from field: optional string optional_string = 1002;
    */
-  optionalString?: string;
+  optionalString?: string | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 nested_message = 1003;
    */
-  nestedMessage?: ForeignMessageProto2;
+  nestedMessage?: ForeignMessageProto2 | undefined;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup optionalgroup = 1004;
    */
-  optionalgroup?: UnknownToTestAllTypes_OptionalGroup;
+  optionalgroup?: UnknownToTestAllTypes_OptionalGroup | undefined;
 
   /**
    * @generated from field: optional bool optional_bool = 1006;
    */
-  optionalBool?: boolean;
+  optionalBool?: boolean | undefined;
 
   /**
    * @generated from field: repeated int32 repeated_int32 = 1011;
@@ -1274,7 +1274,7 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a?: number | undefined;
 
   constructor(data?: PartialMessage<UnknownToTestAllTypes_OptionalGroup>) {
     super();
@@ -1393,7 +1393,7 @@ export class OneStringProto2 extends Message<OneStringProto2> {
   /**
    * @generated from field: optional string data = 1;
    */
-  data?: string;
+  data?: string | undefined;
 
   constructor(data?: PartialMessage<OneStringProto2>) {
     super();

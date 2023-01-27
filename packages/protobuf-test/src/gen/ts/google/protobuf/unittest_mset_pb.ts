@@ -50,7 +50,7 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
-  messageSet?: TestMessageSet;
+  messageSet?: TestMessageSet | undefined;
 
   constructor(data?: PartialMessage<TestMessageSetContainer>) {
     super();
@@ -87,12 +87,12 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
   /**
    * @generated from field: optional protobuf_unittest.TestMessageSetContainer container = 1;
    */
-  container?: TestMessageSetContainer;
+  container?: TestMessageSetContainer | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer child = 2;
    */
-  child?: NestedTestMessageSetContainer;
+  child?: NestedTestMessageSetContainer | undefined;
 
   constructor(data?: PartialMessage<NestedTestMessageSetContainer>) {
     super();
@@ -130,17 +130,17 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
   /**
    * @generated from field: optional int32 i = 15;
    */
-  i?: number;
+  i?: number | undefined;
 
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
    */
-  recursive?: TestMessageSet;
+  recursive?: TestMessageSet | undefined;
 
   /**
    * @generated from field: optional string test_aliasing = 17;
    */
-  testAliasing?: string;
+  testAliasing?: string | undefined;
 
   constructor(data?: PartialMessage<TestMessageSetExtension1>) {
     super();
@@ -179,7 +179,7 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
   /**
    * @generated from field: optional string str = 25;
    */
-  str?: string;
+  str?: string | undefined;
 
   constructor(data?: PartialMessage<TestMessageSetExtension2>) {
     super();
@@ -216,12 +216,12 @@ export class NestedTestInt extends Message<NestedTestInt> {
   /**
    * @generated from field: optional fixed32 a = 1;
    */
-  a?: number;
+  a?: number | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
    */
-  child?: NestedTestInt;
+  child?: NestedTestInt | undefined;
 
   constructor(data?: PartialMessage<NestedTestInt>) {
     super();
@@ -259,7 +259,7 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
   /**
    * @generated from field: optional protobuf_unittest.NestedTestInt msg = 35;
    */
-  msg?: NestedTestInt;
+  msg?: NestedTestInt | undefined;
 
   constructor(data?: PartialMessage<TestMessageSetExtension3>) {
     super();
@@ -335,12 +335,12 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   /**
    * @generated from field: required int32 type_id = 2;
    */
-  typeId?: number;
+  typeId?: number | undefined;
 
   /**
    * @generated from field: required bytes message = 3;
    */
-  message?: Uint8Array;
+  message?: Uint8Array | undefined;
 
   constructor(data?: PartialMessage<RawMessageSet_Item>) {
     super();

@@ -17,99 +17,99 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
   /**
    * @generated from field: google.protobuf.Any any_field = 1;
    */
-  anyField?: Any;
+  anyField?: Any | undefined;
 
   /**
    * @generated from field: google.protobuf.Api api_field = 2;
    */
-  apiField?: Api;
+  apiField?: Api | undefined;
 
   /**
    * @generated from field: google.protobuf.Duration duration_field = 3;
    */
-  durationField?: Duration;
+  durationField?: Duration | undefined;
 
   /**
    * @generated from field: google.protobuf.Empty empty_field = 4;
    */
-  emptyField?: Empty;
+  emptyField?: Empty | undefined;
 
   /**
    * @generated from field: google.protobuf.FieldMask field_mask_field = 5;
    */
-  fieldMaskField?: FieldMask;
+  fieldMaskField?: FieldMask | undefined;
 
   /**
    * @generated from field: google.protobuf.SourceContext source_context_field = 6;
    */
-  sourceContextField?: SourceContext;
+  sourceContextField?: SourceContext | undefined;
 
   /**
    * @generated from field: google.protobuf.Struct struct_field = 7;
    */
-  structField?: Struct;
+  structField?: Struct | undefined;
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 8;
    */
-  timestampField?: Timestamp;
+  timestampField?: Timestamp | undefined;
 
   /**
    * @generated from field: google.protobuf.Type type_field = 9;
    */
-  typeField?: Type;
+  typeField?: Type | undefined;
 
   /**
    * @generated from field: google.protobuf.DoubleValue double_field = 10;
    */
-  doubleField?: number;
+  doubleField?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.FloatValue float_field = 11;
    */
-  floatField?: number;
+  floatField?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.Int64Value int64_field = 12;
    */
-  int64Field?: bigint;
+  int64Field?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt64Value uint64_field = 13;
    */
-  uint64Field?: bigint;
+  uint64Field?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.Int32Value int32_field = 14;
    */
-  int32Field?: number;
+  int32Field?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt32Value uint32_field = 15;
    */
-  uint32Field?: number;
+  uint32Field?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.BoolValue bool_field = 16;
    */
-  boolField?: boolean;
+  boolField?: boolean | undefined;
 
   /**
    * @generated from field: google.protobuf.StringValue string_field = 17;
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: google.protobuf.BytesValue bytes_field = 18;
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * Part of struct, but useful to be able to test separately
    *
    * @generated from field: google.protobuf.Value value_field = 19;
    */
-  valueField?: Value;
+  valueField?: Value | undefined;
 
   constructor(data?: PartialMessage<TestWellKnownTypes>) {
     super();

@@ -36,7 +36,7 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * The digest of the commit.
@@ -413,7 +413,7 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryCommit repository_commit = 1;
    */
-  repositoryCommit?: RepositoryCommit;
+  repositoryCommit?: RepositoryCommit | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryCommitByReferenceResponse>) {
     super();
@@ -513,7 +513,7 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryCommit repository_commit = 1;
    */
-  repositoryCommit?: RepositoryCommit;
+  repositoryCommit?: RepositoryCommit | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryCommitBySequenceIdResponse>) {
     super();

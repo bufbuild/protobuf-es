@@ -52,7 +52,7 @@ export class LazyMessage extends Message<LazyMessage> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a?: number | undefined;
 
   constructor(data?: PartialMessage<LazyMessage>) {
     super();

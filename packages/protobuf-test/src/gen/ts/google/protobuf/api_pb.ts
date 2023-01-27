@@ -106,7 +106,7 @@ export class Api extends Message<Api> {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContext;
+  sourceContext?: SourceContext | undefined;
 
   /**
    * Included interfaces. See [Mixin][].

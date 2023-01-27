@@ -153,17 +153,17 @@ export class TestAllTypes extends Message<TestAllTypes> {
   /**
    * @generated from field: proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypes_NestedMessage;
+  optionalNestedMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: proto2_nofieldpresence_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: protobuf_unittest.TestAllTypes optional_proto2_message = 20;
    */
-  optionalProto2Message?: TestAllTypes$1;
+  optionalProto2Message?: TestAllTypes$1 | undefined;
 
   /**
    * @generated from field: proto2_nofieldpresence_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
@@ -192,7 +192,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
   /**
    * @generated from field: proto2_nofieldpresence_unittest.TestAllTypes.NestedMessage optional_lazy_message = 30;
    */
-  optionalLazyMessage?: TestAllTypes_NestedMessage;
+  optionalLazyMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * Repeated
@@ -487,7 +487,7 @@ export class TestProto2Required extends Message<TestProto2Required> {
   /**
    * @generated from field: protobuf_unittest.TestRequired proto2 = 1;
    */
-  proto2?: TestRequired;
+  proto2?: TestRequired | undefined;
 
   constructor(data?: PartialMessage<TestProto2Required>) {
     super();

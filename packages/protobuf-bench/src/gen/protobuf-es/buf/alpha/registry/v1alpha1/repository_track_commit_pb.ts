@@ -34,7 +34,7 @@ export class RepositoryTrackCommit extends Message<RepositoryTrackCommit> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * immutable
@@ -138,7 +138,7 @@ export class GetRepositoryTrackCommitByRepositoryCommitResponse extends Message<
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrackCommit repository_track_commit = 1;
    */
-  repositoryTrackCommit?: RepositoryTrackCommit;
+  repositoryTrackCommit?: RepositoryTrackCommit | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryTrackCommitByRepositoryCommitResponse>) {
     super();
@@ -328,7 +328,7 @@ export class GetRepositoryTrackCommitByReferenceResponse extends Message<GetRepo
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTrackCommit repository_track_commit = 1;
    */
-  repositoryTrackCommit?: RepositoryTrackCommit;
+  repositoryTrackCommit?: RepositoryTrackCommit | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryTrackCommitByReferenceResponse>) {
     super();

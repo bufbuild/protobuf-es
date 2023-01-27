@@ -76,12 +76,12 @@ export class ImageFile extends Message<ImageFile> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name?: string | undefined;
 
   /**
    * @generated from field: optional string package = 2;
    */
-  package?: string;
+  package?: string | undefined;
 
   /**
    * @generated from field: repeated string dependency = 3;
@@ -121,17 +121,17 @@ export class ImageFile extends Message<ImageFile> {
   /**
    * @generated from field: optional google.protobuf.FileOptions options = 8;
    */
-  options?: FileOptions;
+  options?: FileOptions | undefined;
 
   /**
    * @generated from field: optional google.protobuf.SourceCodeInfo source_code_info = 9;
    */
-  sourceCodeInfo?: SourceCodeInfo;
+  sourceCodeInfo?: SourceCodeInfo | undefined;
 
   /**
    * @generated from field: optional string syntax = 12;
    */
-  syntax?: string;
+  syntax?: string | undefined;
 
   /**
    * buf_extension contains buf-specific extensions to FileDescriptorProtos.
@@ -143,7 +143,7 @@ export class ImageFile extends Message<ImageFile> {
    *
    * @generated from field: optional buf.alpha.image.v1.ImageFileExtension buf_extension = 8042;
    */
-  bufExtension?: ImageFileExtension;
+  bufExtension?: ImageFileExtension | undefined;
 
   constructor(data?: PartialMessage<ImageFile>) {
     super();
@@ -212,7 +212,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
    *
    * @generated from field: optional bool is_import = 1;
    */
-  isImport?: boolean;
+  isImport?: boolean | undefined;
 
   /**
    * ModuleInfo contains information about the Buf module this file belongs to.
@@ -221,7 +221,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
    *
    * @generated from field: optional buf.alpha.image.v1.ModuleInfo module_info = 2;
    */
-  moduleInfo?: ModuleInfo;
+  moduleInfo?: ModuleInfo | undefined;
 
   /**
    * is_syntax_unspecified denotes whether the file did not have a syntax
@@ -239,7 +239,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
    *
    * @generated from field: optional bool is_syntax_unspecified = 3;
    */
-  isSyntaxUnspecified?: boolean;
+  isSyntaxUnspecified?: boolean | undefined;
 
   /**
    * unused_dependency are the indexes within the dependency field on
@@ -297,7 +297,7 @@ export class ModuleInfo extends Message<ModuleInfo> {
    *
    * @generated from field: optional buf.alpha.image.v1.ModuleName name = 1;
    */
-  name?: ModuleName;
+  name?: ModuleName | undefined;
 
   /**
    * commit is the repository commit.
@@ -306,7 +306,7 @@ export class ModuleInfo extends Message<ModuleInfo> {
    *
    * @generated from field: optional string commit = 2;
    */
-  commit?: string;
+  commit?: string | undefined;
 
   constructor(data?: PartialMessage<ModuleInfo>) {
     super();
@@ -348,17 +348,17 @@ export class ModuleName extends Message<ModuleName> {
   /**
    * @generated from field: optional string remote = 1;
    */
-  remote?: string;
+  remote?: string | undefined;
 
   /**
    * @generated from field: optional string owner = 2;
    */
-  owner?: string;
+  owner?: string | undefined;
 
   /**
    * @generated from field: optional string repository = 3;
    */
-  repository?: string;
+  repository?: string | undefined;
 
   constructor(data?: PartialMessage<ModuleName>) {
     super();

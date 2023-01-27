@@ -41,7 +41,7 @@ export class User extends Message<User> {
   /**
    * @generated from field: docs.User manager = 4;
    */
-  manager?: User;
+  manager?: User | undefined;
 
   /**
    * @generated from field: repeated string locations = 5;

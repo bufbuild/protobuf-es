@@ -63,14 +63,14 @@ export class Repository extends Message<Repository> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * mutable
    *
    * @generated from field: google.protobuf.Timestamp update_time = 3;
    */
-  updateTime?: Timestamp;
+  updateTime?: Timestamp | undefined;
 
   /**
    * unique, mutable
@@ -162,7 +162,7 @@ export class RepositoryContributor extends Message<RepositoryContributor> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   /**
    * The ID of the for which the role belongs to.
@@ -338,7 +338,7 @@ export class GetRepositoryResponse extends Message<GetRepositoryResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
-  repository?: Repository;
+  repository?: Repository | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryResponse>) {
     super();
@@ -412,7 +412,7 @@ export class GetRepositoryByFullNameResponse extends Message<GetRepositoryByFull
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
-  repository?: Repository;
+  repository?: Repository | undefined;
 
   constructor(data?: PartialMessage<GetRepositoryByFullNameResponse>) {
     super();
@@ -894,7 +894,7 @@ export class CreateRepositoryByFullNameResponse extends Message<CreateRepository
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
-  repository?: Repository;
+  repository?: Repository | undefined;
 
   constructor(data?: PartialMessage<CreateRepositoryByFullNameResponse>) {
     super();
@@ -1119,7 +1119,7 @@ export class DeprecateRepositoryByNameResponse extends Message<DeprecateReposito
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
-  repository?: Repository;
+  repository?: Repository | undefined;
 
   constructor(data?: PartialMessage<DeprecateRepositoryByNameResponse>) {
     super();
@@ -1199,7 +1199,7 @@ export class UndeprecateRepositoryByNameResponse extends Message<UndeprecateRepo
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Repository repository = 1;
    */
-  repository?: Repository;
+  repository?: Repository | undefined;
 
   constructor(data?: PartialMessage<UndeprecateRepositoryByNameResponse>) {
     super();

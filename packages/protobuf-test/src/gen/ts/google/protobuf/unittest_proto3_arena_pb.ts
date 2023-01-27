@@ -156,17 +156,17 @@ export class TestAllTypes extends Message<TestAllTypes> {
   /**
    * @generated from field: proto3_arena_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypes_NestedMessage;
+  optionalNestedMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: proto3_arena_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: protobuf_unittest_import.ImportMessage optional_import_message = 20;
    */
-  optionalImportMessage?: ImportMessage;
+  optionalImportMessage?: ImportMessage | undefined;
 
   /**
    * @generated from field: proto3_arena_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
@@ -193,22 +193,22 @@ export class TestAllTypes extends Message<TestAllTypes> {
    *
    * @generated from field: protobuf_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
-  optionalPublicImportMessage?: PublicImportMessage;
+  optionalPublicImportMessage?: PublicImportMessage | undefined;
 
   /**
    * @generated from field: proto3_arena_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
    */
-  optionalLazyMessage?: TestAllTypes_NestedMessage;
+  optionalLazyMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: proto3_arena_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
    */
-  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: protobuf_unittest_import.ImportMessage optional_lazy_import_message = 115;
    */
-  optionalLazyImportMessage?: ImportMessage;
+  optionalLazyImportMessage?: ImportMessage | undefined;
 
   /**
    * Repeated
@@ -292,77 +292,77 @@ export class TestAllTypes extends Message<TestAllTypes> {
    *
    * @generated from field: optional int32 proto3_optional_int32 = 116;
    */
-  proto3OptionalInt32?: number;
+  proto3OptionalInt32?: number | undefined;
 
   /**
    * @generated from field: optional int64 proto3_optional_int64 = 117;
    */
-  proto3OptionalInt64?: bigint;
+  proto3OptionalInt64?: bigint | undefined;
 
   /**
    * @generated from field: optional uint32 proto3_optional_uint32 = 118;
    */
-  proto3OptionalUint32?: number;
+  proto3OptionalUint32?: number | undefined;
 
   /**
    * @generated from field: optional uint64 proto3_optional_uint64 = 119;
    */
-  proto3OptionalUint64?: bigint;
+  proto3OptionalUint64?: bigint | undefined;
 
   /**
    * @generated from field: optional sint32 proto3_optional_sint32 = 120;
    */
-  proto3OptionalSint32?: number;
+  proto3OptionalSint32?: number | undefined;
 
   /**
    * @generated from field: optional sint64 proto3_optional_sint64 = 121;
    */
-  proto3OptionalSint64?: bigint;
+  proto3OptionalSint64?: bigint | undefined;
 
   /**
    * @generated from field: optional fixed32 proto3_optional_fixed32 = 122;
    */
-  proto3OptionalFixed32?: number;
+  proto3OptionalFixed32?: number | undefined;
 
   /**
    * @generated from field: optional fixed64 proto3_optional_fixed64 = 123;
    */
-  proto3OptionalFixed64?: bigint;
+  proto3OptionalFixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional sfixed32 proto3_optional_sfixed32 = 124;
    */
-  proto3OptionalSfixed32?: number;
+  proto3OptionalSfixed32?: number | undefined;
 
   /**
    * @generated from field: optional sfixed64 proto3_optional_sfixed64 = 125;
    */
-  proto3OptionalSfixed64?: bigint;
+  proto3OptionalSfixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional float proto3_optional_float = 126;
    */
-  proto3OptionalFloat?: number;
+  proto3OptionalFloat?: number | undefined;
 
   /**
    * @generated from field: optional double proto3_optional_double = 127;
    */
-  proto3OptionalDouble?: number;
+  proto3OptionalDouble?: number | undefined;
 
   /**
    * @generated from field: optional bool proto3_optional_bool = 128;
    */
-  proto3OptionalBool?: boolean;
+  proto3OptionalBool?: boolean | undefined;
 
   /**
    * @generated from field: optional string proto3_optional_string = 129;
    */
-  proto3OptionalString?: string;
+  proto3OptionalString?: string | undefined;
 
   /**
    * @generated from field: optional bytes proto3_optional_bytes = 130;
    */
-  proto3OptionalBytes?: Uint8Array;
+  proto3OptionalBytes?: Uint8Array | undefined;
 
   /**
    * @generated from field: repeated proto3_arena_unittest.TestAllTypes.NestedMessage repeated_nested_message = 48;
@@ -850,12 +850,12 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
   /**
    * @generated from field: proto3_arena_unittest.NestedTestAllTypes child = 1;
    */
-  child?: NestedTestAllTypes;
+  child?: NestedTestAllTypes | undefined;
 
   /**
    * @generated from field: proto3_arena_unittest.TestAllTypes payload = 2;
    */
-  payload?: TestAllTypes;
+  payload?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto3_arena_unittest.NestedTestAllTypes repeated_child = 3;

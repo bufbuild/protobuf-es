@@ -107,7 +107,7 @@ export class ImportMessage extends Message<ImportMessage> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  d?: number;
+  d?: number | undefined;
 
   constructor(data?: PartialMessage<ImportMessage>) {
     super();

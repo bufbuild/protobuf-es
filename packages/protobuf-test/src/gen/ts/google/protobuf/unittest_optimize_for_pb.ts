@@ -49,12 +49,12 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i?: number;
+  i?: number | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;
    */
-  msg?: ForeignMessage;
+  msg?: ForeignMessage | undefined;
 
   /**
    * @generated from oneof protobuf_unittest.TestOptimizedForSize.foo
@@ -111,7 +111,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   /**
    * @generated from field: required int32 x = 1;
    */
-  x?: number;
+  x?: number | undefined;
 
   constructor(data?: PartialMessage<TestRequiredOptimizedForSize>) {
     super();
@@ -148,7 +148,7 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
   /**
    * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
    */
-  o?: TestRequiredOptimizedForSize;
+  o?: TestRequiredOptimizedForSize | undefined;
 
   constructor(data?: PartialMessage<TestOptionalOptimizedForSize>) {
     super();

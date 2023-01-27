@@ -88,7 +88,7 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
   /**
    * @generated from field: optional string field1 = 1;
    */
-  field1?: string;
+  field1?: string | undefined;
 
   /**
    * @generated from oneof protobuf_unittest.TestMessageWithCustomOptions.AnOneof
@@ -527,17 +527,17 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   /**
    * @generated from field: optional int32 foo = 1;
    */
-  foo?: number;
+  foo?: number | undefined;
 
   /**
    * @generated from field: optional int32 foo2 = 2;
    */
-  foo2?: number;
+  foo2?: number | undefined;
 
   /**
    * @generated from field: optional int32 foo3 = 3;
    */
-  foo3?: number;
+  foo3?: number | undefined;
 
   /**
    * @generated from field: repeated int32 foo4 = 4;
@@ -582,17 +582,17 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType1 bar = 1;
    */
-  bar?: ComplexOptionType1;
+  bar?: ComplexOptionType1 | undefined;
 
   /**
    * @generated from field: optional int32 baz = 2;
    */
-  baz?: number;
+  baz?: number | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
    */
-  fred?: ComplexOptionType2_ComplexOptionType4;
+  fred?: ComplexOptionType2_ComplexOptionType4 | undefined;
 
   /**
    * @generated from field: repeated protobuf_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
@@ -637,7 +637,7 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
   /**
    * @generated from field: optional int32 waldo = 1;
    */
-  waldo?: number;
+  waldo?: number | undefined;
 
   constructor(data?: PartialMessage<ComplexOptionType2_ComplexOptionType4>) {
     super();
@@ -674,12 +674,12 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   /**
    * @generated from field: optional int32 moo = 1;
    */
-  moo?: number;
+  moo?: number | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
    */
-  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
+  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5 | undefined;
 
   constructor(data?: PartialMessage<ComplexOptionType3>) {
     super();
@@ -717,7 +717,7 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
   /**
    * @generated from field: optional int32 plugh = 3;
    */
-  plugh?: number;
+  plugh?: number | undefined;
 
   constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>) {
     super();
@@ -754,7 +754,7 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
   /**
    * @generated from field: optional int32 xyzzy = 7593951;
    */
-  xyzzy?: number;
+  xyzzy?: number | undefined;
 
   constructor(data?: PartialMessage<ComplexOpt6>) {
     super();
@@ -855,7 +855,7 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   /**
    * @generated from field: optional string s = 1;
    */
-  s?: string;
+  s?: string | undefined;
 
   constructor(data?: PartialMessage<AggregateMessageSetElement>) {
     super();
@@ -894,40 +894,40 @@ export class Aggregate extends Message<Aggregate> {
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i?: number;
+  i?: number | undefined;
 
   /**
    * @generated from field: optional string s = 2;
    */
-  s?: string;
+  s?: string | undefined;
 
   /**
    * A nested object
    *
    * @generated from field: optional protobuf_unittest.Aggregate sub = 3;
    */
-  sub?: Aggregate;
+  sub?: Aggregate | undefined;
 
   /**
    * To test the parsing of extensions inside aggregate values
    *
    * @generated from field: optional google.protobuf.FileOptions file = 4;
    */
-  file?: FileOptions;
+  file?: FileOptions | undefined;
 
   /**
    * An embedded message set
    *
    * @generated from field: optional protobuf_unittest.AggregateMessageSet mset = 5;
    */
-  mset?: AggregateMessageSet;
+  mset?: AggregateMessageSet | undefined;
 
   /**
    * An any
    *
    * @generated from field: optional google.protobuf.Any any = 6;
    */
-  any?: Any;
+  any?: Any | undefined;
 
   constructor(data?: PartialMessage<Aggregate>) {
     super();
@@ -969,7 +969,7 @@ export class AggregateMessage extends Message<AggregateMessage> {
   /**
    * @generated from field: optional int32 fieldname = 1;
    */
-  fieldname?: number;
+  fieldname?: number | undefined;
 
   constructor(data?: PartialMessage<AggregateMessage>) {
     super();
@@ -1053,7 +1053,7 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
   /**
    * @generated from field: optional int32 nested_field = 1;
    */
-  nestedField?: number;
+  nestedField?: number | undefined;
 
   constructor(data?: PartialMessage<NestedOptionType_NestedMessage>) {
     super();
@@ -1093,7 +1093,7 @@ export class OldOptionType extends Message<OldOptionType> {
   /**
    * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
    */
-  value?: OldOptionType_TestEnum;
+  value?: OldOptionType_TestEnum | undefined;
 
   constructor(data?: PartialMessage<OldOptionType>) {
     super();
@@ -1146,7 +1146,7 @@ export class NewOptionType extends Message<NewOptionType> {
   /**
    * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
    */
-  value?: NewOptionType_TestEnum;
+  value?: NewOptionType_TestEnum | undefined;
 
   constructor(data?: PartialMessage<NewOptionType>) {
     super();

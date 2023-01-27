@@ -68,7 +68,7 @@ export class MyMessage extends Message<MyMessage> {
   /**
    * @generated from field: optional proto2_preserve_unknown_enum_unittest.MyEnum e = 1;
    */
-  e?: MyEnum;
+  e?: MyEnum | undefined;
 
   /**
    * @generated from field: repeated proto2_preserve_unknown_enum_unittest.MyEnum repeated_e = 2;

@@ -44,97 +44,97 @@ export class TestProto3Optional extends Message<TestProto3Optional> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  optionalInt32?: number;
+  optionalInt32?: number | undefined;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  optionalInt64?: bigint;
+  optionalInt64?: bigint | undefined;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  optionalUint32?: number;
+  optionalUint32?: number | undefined;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  optionalUint64?: bigint;
+  optionalUint64?: bigint | undefined;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  optionalSint32?: number;
+  optionalSint32?: number | undefined;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  optionalSint64?: bigint;
+  optionalSint64?: bigint | undefined;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  optionalFixed32?: number;
+  optionalFixed32?: number | undefined;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  optionalFixed64?: bigint;
+  optionalFixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  optionalSfixed32?: number;
+  optionalSfixed32?: number | undefined;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  optionalSfixed64?: bigint;
+  optionalSfixed64?: bigint | undefined;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  optionalFloat?: number;
+  optionalFloat?: number | undefined;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  optionalDouble?: number;
+  optionalDouble?: number | undefined;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  optionalBool?: boolean;
+  optionalBool?: boolean | undefined;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  optionalString?: string;
+  optionalString?: string | undefined;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes?: Uint8Array | undefined;
 
   /**
    * @generated from field: optional string optional_cord = 16;
    */
-  optionalCord?: string;
+  optionalCord?: string | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestProto3Optional_NestedMessage;
+  optionalNestedMessage?: TestProto3Optional_NestedMessage | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedMessage lazy_nested_message = 19;
    */
-  lazyNestedMessage?: TestProto3Optional_NestedMessage;
+  lazyNestedMessage?: TestProto3Optional_NestedMessage | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedEnum optional_nested_enum = 21;
    */
-  optionalNestedEnum?: TestProto3Optional_NestedEnum;
+  optionalNestedEnum?: TestProto3Optional_NestedEnum | undefined;
 
   /**
    * Add some non-optional fields to verify we can mix them.
@@ -247,7 +247,7 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
    *
    * @generated from field: optional int32 bb = 1;
    */
-  bb?: number;
+  bb?: number | undefined;
 
   constructor(data?: PartialMessage<TestProto3Optional_NestedMessage>) {
     super();
@@ -284,12 +284,12 @@ export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage
   /**
    * @generated from field: protobuf_unittest.TestProto3OptionalMessage.NestedMessage nested_message = 1;
    */
-  nestedMessage?: TestProto3OptionalMessage_NestedMessage;
+  nestedMessage?: TestProto3OptionalMessage_NestedMessage | undefined;
 
   /**
    * @generated from field: optional protobuf_unittest.TestProto3OptionalMessage.NestedMessage optional_nested_message = 2;
    */
-  optionalNestedMessage?: TestProto3OptionalMessage_NestedMessage;
+  optionalNestedMessage?: TestProto3OptionalMessage_NestedMessage | undefined;
 
   constructor(data?: PartialMessage<TestProto3OptionalMessage>) {
     super();

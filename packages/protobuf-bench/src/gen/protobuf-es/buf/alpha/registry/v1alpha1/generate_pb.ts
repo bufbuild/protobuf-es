@@ -205,7 +205,7 @@ export class GeneratePluginsRequest extends Message<GeneratePluginsRequest> {
    *
    * @generated from field: buf.alpha.image.v1.Image image = 1;
    */
-  image?: Image;
+  image?: Image | undefined;
 
   /**
    * The array of plugins to use.
@@ -327,7 +327,7 @@ export class GenerateTemplateRequest extends Message<GenerateTemplateRequest> {
    *
    * @generated from field: buf.alpha.image.v1.Image image = 1;
    */
-  image?: Image;
+  image?: Image | undefined;
 
   /**
    * The owner of the template which identifies the

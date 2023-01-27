@@ -61,17 +61,17 @@ export class Version extends Message<Version> {
   /**
    * @generated from field: optional int32 major = 1;
    */
-  major?: number;
+  major?: number | undefined;
 
   /**
    * @generated from field: optional int32 minor = 2;
    */
-  minor?: number;
+  minor?: number | undefined;
 
   /**
    * @generated from field: optional int32 patch = 3;
    */
-  patch?: number;
+  patch?: number | undefined;
 
   /**
    * A suffix for alpha, beta or rc release, e.g., "alpha-1", "rc2". It should
@@ -79,7 +79,7 @@ export class Version extends Message<Version> {
    *
    * @generated from field: optional string suffix = 4;
    */
-  suffix?: string;
+  suffix?: string | undefined;
 
   constructor(data?: PartialMessage<Version>) {
     super();
@@ -132,7 +132,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
    *
    * @generated from field: optional string parameter = 2;
    */
-  parameter?: string;
+  parameter?: string | undefined;
 
   /**
    * FileDescriptorProtos for all files in files_to_generate and everything
@@ -159,7 +159,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
    *
    * @generated from field: optional google.protobuf.compiler.Version compiler_version = 3;
    */
-  compilerVersion?: Version;
+  compilerVersion?: Version | undefined;
 
   constructor(data?: PartialMessage<CodeGeneratorRequest>) {
     super();
@@ -210,7 +210,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
    *
    * @generated from field: optional string error = 1;
    */
-  error?: string;
+  error?: string | undefined;
 
   /**
    * A bitmask of supported features that the code generator supports.
@@ -218,7 +218,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
    *
    * @generated from field: optional uint64 supported_features = 2;
    */
-  supportedFeatures?: bigint;
+  supportedFeatures?: bigint | undefined;
 
   /**
    * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
@@ -298,7 +298,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name?: string | undefined;
 
   /**
    * If non-empty, indicates that the named file should already exist, and the
@@ -341,14 +341,14 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
    *
    * @generated from field: optional string insertion_point = 2;
    */
-  insertionPoint?: string;
+  insertionPoint?: string | undefined;
 
   /**
    * The file contents.
    *
    * @generated from field: optional string content = 15;
    */
-  content?: string;
+  content?: string | undefined;
 
   /**
    * Information describing the file content being inserted. If an insertion
@@ -357,7 +357,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
    *
    * @generated from field: optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
    */
-  generatedCodeInfo?: GeneratedCodeInfo;
+  generatedCodeInfo?: GeneratedCodeInfo | undefined;
 
   constructor(data?: PartialMessage<CodeGeneratorResponse_File>) {
     super();

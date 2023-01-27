@@ -43,7 +43,7 @@ export class PushRequest extends Message<PushRequest> {
   /**
    * @generated from field: buf.alpha.module.v1alpha1.Module module = 4;
    */
-  module?: Module;
+  module?: Module | undefined;
 
   /**
    * Optional; if provided, the provided tags
@@ -102,7 +102,7 @@ export class PushResponse extends Message<PushResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.LocalModulePin local_module_pin = 5;
    */
-  localModulePin?: LocalModulePin;
+  localModulePin?: LocalModulePin | undefined;
 
   constructor(data?: PartialMessage<PushResponse>) {
     super();

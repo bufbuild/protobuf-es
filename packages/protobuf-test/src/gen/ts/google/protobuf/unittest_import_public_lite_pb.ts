@@ -44,7 +44,7 @@ export class PublicImportMessageLite extends Message<PublicImportMessageLite> {
   /**
    * @generated from field: optional int32 e = 1;
    */
-  e?: number;
+  e?: number | undefined;
 
   constructor(data?: PartialMessage<PublicImportMessageLite>) {
     super();

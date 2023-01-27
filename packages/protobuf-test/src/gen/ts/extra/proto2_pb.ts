@@ -193,22 +193,22 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: optional bytes bytes_field = 2;
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: optional spec.Proto2Enum enum_field = 3;
    */
-  enumField?: Proto2Enum;
+  enumField?: Proto2Enum | undefined;
 
   /**
    * @generated from field: optional spec.Proto2ChildMessage message_field = 4;
    */
-  messageField?: Proto2ChildMessage;
+  messageField?: Proto2ChildMessage | undefined;
 
   constructor(data?: PartialMessage<Proto2OptionalMessage>) {
     super();
@@ -248,22 +248,22 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   /**
    * @generated from field: required string string_field = 1;
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: required bytes bytes_field = 2;
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 3;
    */
-  enumField?: Proto2Enum;
+  enumField?: Proto2Enum | undefined;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 4;
    */
-  messageField?: Proto2ChildMessage;
+  messageField?: Proto2ChildMessage | undefined;
 
   constructor(data?: PartialMessage<Proto2RequiredMessage>) {
     super();
@@ -303,22 +303,22 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   /**
    * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
    */
-  enumField?: Proto2Enum;
+  enumField?: Proto2Enum | undefined;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 4;
    */
-  messageField?: Proto2ChildMessage;
+  messageField?: Proto2ChildMessage | undefined;
 
   constructor(data?: PartialMessage<Proto2RequiredDefaultsMessage>) {
     super();
@@ -358,42 +358,42 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
   /**
    * @generated from field: optional string string_field = 1 [default = "hello \" *\/ "];
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: optional bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: optional int32 int32_field = 3 [default = 128];
    */
-  int32Field?: number;
+  int32Field?: number | undefined;
 
   /**
    * @generated from field: optional int64 int46_field = 4 [default = -256];
    */
-  int46Field?: bigint;
+  int46Field?: bigint | undefined;
 
   /**
    * @generated from field: optional float float_field = 5 [default = -512.13];
    */
-  floatField?: number;
+  floatField?: number | undefined;
 
   /**
    * @generated from field: optional bool bool_field = 6 [default = true];
    */
-  boolField?: boolean;
+  boolField?: boolean | undefined;
 
   /**
    * @generated from field: optional spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
-  enumField?: Proto2Enum;
+  enumField?: Proto2Enum | undefined;
 
   /**
    * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
    */
-  messageField?: Proto2ChildMessage;
+  messageField?: Proto2ChildMessage | undefined;
 
   constructor(data?: PartialMessage<Proto2DefaultsMessage>) {
     super();
@@ -437,7 +437,7 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   constructor(data?: PartialMessage<Proto2ChildMessage>) {
     super();

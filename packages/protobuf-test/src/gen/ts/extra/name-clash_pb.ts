@@ -1484,7 +1484,7 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
   /**
    * @generated from field: spec.NoClashOneofADT.M m = 1;
    */
-  m?: NoClashOneofADT_M;
+  m?: NoClashOneofADT_M | undefined;
 
   constructor(data?: PartialMessage$1<NoClashOneofADT>) {
     super();
@@ -1526,7 +1526,7 @@ export class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
   /**
    * @generated from field: optional string value = 2;
    */
-  value?: string;
+  value?: string | undefined;
 
   constructor(data?: PartialMessage$1<NoClashOneofADT_M>) {
     super();

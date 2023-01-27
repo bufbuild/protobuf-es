@@ -50,7 +50,7 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
    *
    * @generated from field: google.protobuf.Timestamp start_time = 4;
    */
-  startTime?: Timestamp;
+  startTime?: Timestamp | undefined;
 
   /**
    * Optionally specifies an end time for the query.
@@ -61,7 +61,7 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
    *
    * @generated from field: google.protobuf.Timestamp end_time = 5;
    */
-  endTime?: Timestamp;
+  endTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<ListAuditLogsRequest>) {
     super();

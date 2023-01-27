@@ -53,7 +53,7 @@ export class ImportedMessage extends Message<ImportedMessage> {
   /**
    * @generated from field: optional protobuf_unittest.lazy_imports.LazyMessage lazy_message = 1;
    */
-  lazyMessage?: LazyMessage;
+  lazyMessage?: LazyMessage | undefined;
 
   constructor(data?: PartialMessage<ImportedMessage>) {
     super();

@@ -35,7 +35,7 @@ export class RepositoryTag extends Message<RepositoryTag> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * We reserve field number '3' for the update_time.
@@ -154,7 +154,7 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryTag repository_tag = 1;
    */
-  repositoryTag?: RepositoryTag;
+  repositoryTag?: RepositoryTag | undefined;
 
   constructor(data?: PartialMessage<CreateRepositoryTagResponse>) {
     super();

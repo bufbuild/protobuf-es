@@ -36,14 +36,14 @@ export class Organization extends Message<Organization> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * mutable
    *
    * @generated from field: google.protobuf.Timestamp update_time = 3;
    */
-  updateTime?: Timestamp;
+  updateTime?: Timestamp | undefined;
 
   /**
    * unique, mutable
@@ -93,7 +93,7 @@ export class OrganizationMembership extends Message<OrganizationMembership> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
-  organization?: Organization;
+  organization?: Organization | undefined;
 
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.OrganizationRole organization_role = 2;
@@ -173,7 +173,7 @@ export class GetOrganizationResponse extends Message<GetOrganizationResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
-  organization?: Organization;
+  organization?: Organization | undefined;
 
   constructor(data?: PartialMessage<GetOrganizationResponse>) {
     super();
@@ -247,7 +247,7 @@ export class GetOrganizationByNameResponse extends Message<GetOrganizationByName
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
-  organization?: Organization;
+  organization?: Organization | undefined;
 
   constructor(data?: PartialMessage<GetOrganizationByNameResponse>) {
     super();
@@ -523,7 +523,7 @@ export class CreateOrganizationResponse extends Message<CreateOrganizationRespon
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Organization organization = 1;
    */
-  organization?: Organization;
+  organization?: Organization | undefined;
 
   constructor(data?: PartialMessage<CreateOrganizationResponse>) {
     super();

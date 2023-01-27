@@ -163,7 +163,7 @@ export class GetImageResponse extends Message<GetImageResponse> {
   /**
    * @generated from field: buf.alpha.image.v1.Image image = 1;
    */
-  image?: Image;
+  image?: Image | undefined;
 
   constructor(data?: PartialMessage<GetImageResponse>) {
     super();

@@ -39,7 +39,7 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
   /**
    * @generated from field: google.protobuf.Timestamp create_time = 3;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * @generated from field: string description = 4;

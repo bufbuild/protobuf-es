@@ -160,12 +160,12 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
   /**
    * @generated from field: protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypesProto3_NestedMessage;
+  optionalNestedMessage?: TestAllTypesProto3_NestedMessage | undefined;
 
   /**
    * @generated from field: protobuf_test_messages.proto3.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum optional_nested_enum = 21;
@@ -195,7 +195,7 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
   /**
    * @generated from field: protobuf_test_messages.proto3.TestAllTypesProto3 recursive_message = 27;
    */
-  recursiveMessage?: TestAllTypesProto3;
+  recursiveMessage?: TestAllTypesProto3 | undefined;
 
   /**
    * Repeated
@@ -615,47 +615,47 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
    *
    * @generated from field: google.protobuf.BoolValue optional_bool_wrapper = 201;
    */
-  optionalBoolWrapper?: boolean;
+  optionalBoolWrapper?: boolean | undefined;
 
   /**
    * @generated from field: google.protobuf.Int32Value optional_int32_wrapper = 202;
    */
-  optionalInt32Wrapper?: number;
+  optionalInt32Wrapper?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.Int64Value optional_int64_wrapper = 203;
    */
-  optionalInt64Wrapper?: bigint;
+  optionalInt64Wrapper?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt32Value optional_uint32_wrapper = 204;
    */
-  optionalUint32Wrapper?: number;
+  optionalUint32Wrapper?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt64Value optional_uint64_wrapper = 205;
    */
-  optionalUint64Wrapper?: bigint;
+  optionalUint64Wrapper?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.FloatValue optional_float_wrapper = 206;
    */
-  optionalFloatWrapper?: number;
+  optionalFloatWrapper?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.DoubleValue optional_double_wrapper = 207;
    */
-  optionalDoubleWrapper?: number;
+  optionalDoubleWrapper?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.StringValue optional_string_wrapper = 208;
    */
-  optionalStringWrapper?: string;
+  optionalStringWrapper?: string | undefined;
 
   /**
    * @generated from field: google.protobuf.BytesValue optional_bytes_wrapper = 209;
    */
-  optionalBytesWrapper?: Uint8Array;
+  optionalBytesWrapper?: Uint8Array | undefined;
 
   /**
    * @generated from field: repeated google.protobuf.BoolValue repeated_bool_wrapper = 211;
@@ -705,32 +705,32 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
   /**
    * @generated from field: google.protobuf.Duration optional_duration = 301;
    */
-  optionalDuration?: Duration;
+  optionalDuration?: Duration | undefined;
 
   /**
    * @generated from field: google.protobuf.Timestamp optional_timestamp = 302;
    */
-  optionalTimestamp?: Timestamp;
+  optionalTimestamp?: Timestamp | undefined;
 
   /**
    * @generated from field: google.protobuf.FieldMask optional_field_mask = 303;
    */
-  optionalFieldMask?: FieldMask;
+  optionalFieldMask?: FieldMask | undefined;
 
   /**
    * @generated from field: google.protobuf.Struct optional_struct = 304;
    */
-  optionalStruct?: Struct;
+  optionalStruct?: Struct | undefined;
 
   /**
    * @generated from field: google.protobuf.Any optional_any = 305;
    */
-  optionalAny?: Any;
+  optionalAny?: Any | undefined;
 
   /**
    * @generated from field: google.protobuf.Value optional_value = 306;
    */
-  optionalValue?: Value;
+  optionalValue?: Value | undefined;
 
   /**
    * @generated from field: google.protobuf.NullValue optional_null_value = 307;
@@ -1133,7 +1133,7 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
   /**
    * @generated from field: protobuf_test_messages.proto3.TestAllTypesProto3 corecursive = 2;
    */
-  corecursive?: TestAllTypesProto3;
+  corecursive?: TestAllTypesProto3 | undefined;
 
   constructor(data?: PartialMessage<TestAllTypesProto3_NestedMessage>) {
     super();

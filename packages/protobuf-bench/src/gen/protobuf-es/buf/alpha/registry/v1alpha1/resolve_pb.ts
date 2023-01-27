@@ -196,14 +196,14 @@ export class LocalModuleResolveResult extends Message<LocalModuleResolveResult> 
    *
    * @generated from field: buf.alpha.registry.v1alpha1.LocalModuleReference reference = 1;
    */
-  reference?: LocalModuleReference;
+  reference?: LocalModuleReference | undefined;
 
   /**
    * The pin the reference resolved to.
    *
    * @generated from field: buf.alpha.registry.v1alpha1.LocalModulePin pin = 2;
    */
-  pin?: LocalModulePin;
+  pin?: LocalModulePin | undefined;
 
   /**
    * The type the reference resolved as.

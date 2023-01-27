@@ -26,7 +26,7 @@ export class MessageFieldMessage extends Message<MessageFieldMessage> {
   /**
    * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
    */
-  messageField?: MessageFieldMessage_TestMessage;
+  messageField?: MessageFieldMessage_TestMessage | undefined;
 
   /**
    * @generated from field: repeated spec.MessageFieldMessage.TestMessage repeated_message_field = 2;

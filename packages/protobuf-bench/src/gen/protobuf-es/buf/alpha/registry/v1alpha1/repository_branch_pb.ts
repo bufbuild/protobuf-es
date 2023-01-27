@@ -35,7 +35,7 @@ export class RepositoryBranch extends Message<RepositoryBranch> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * We reserve field number '3' for the update_time.
@@ -147,7 +147,7 @@ export class CreateRepositoryBranchResponse extends Message<CreateRepositoryBran
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.RepositoryBranch repository_branch = 1;
    */
-  repositoryBranch?: RepositoryBranch;
+  repositoryBranch?: RepositoryBranch | undefined;
 
   constructor(data?: PartialMessage<CreateRepositoryBranchResponse>) {
     super();

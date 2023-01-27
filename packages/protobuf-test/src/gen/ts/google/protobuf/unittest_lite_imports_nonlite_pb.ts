@@ -47,14 +47,14 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
    */
-  message?: TestAllTypes;
+  message?: TestAllTypes | undefined;
 
   /**
    * Verifies that transitive required fields generates valid code.
    *
    * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
    */
-  messageWithRequired?: TestRequired;
+  messageWithRequired?: TestRequired | undefined;
 
   constructor(data?: PartialMessage<TestLiteImportsNonlite>) {
     super();

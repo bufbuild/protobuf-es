@@ -89,7 +89,7 @@ export class BufAlphaRegistryV1Alpha1LocalModulePin extends Message<BufAlphaRegi
   /**
    * @generated from field: google.protobuf.Timestamp create_time = 7;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<BufAlphaRegistryV1Alpha1LocalModulePin>) {
     super();
@@ -180,12 +180,12 @@ export class BufAlphaRegistryV1Alpha1LocalModuleResolveResult extends Message<Bu
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference reference = 1;
    */
-  reference?: BufAlphaRegistryV1Alpha1LocalModuleReference;
+  reference?: BufAlphaRegistryV1Alpha1LocalModuleReference | undefined;
 
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModulePin pin = 2;
    */
-  pin?: BufAlphaRegistryV1Alpha1LocalModulePin;
+  pin?: BufAlphaRegistryV1Alpha1LocalModulePin | undefined;
 
   /**
    * @generated from field: buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType resolved_reference_type = 3;

@@ -58,7 +58,7 @@ export class TestMessage extends Message<TestMessage> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a?: number | undefined;
 
   constructor(data?: PartialMessage<TestMessage>) {
     super();

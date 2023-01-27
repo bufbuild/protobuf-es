@@ -162,7 +162,7 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     getFieldIntrinsicDefaultValue(field);
   const { typing, optional } = getFieldTyping(field, f);
   if (optional || defaultValue === undefined) {
-    e.push("?: ", typing);
+    e.push("?: ", typing, " | undefined");
   } else if (!typingInferrable) {
     e.push(": ", typing);
   }

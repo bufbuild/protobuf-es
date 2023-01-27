@@ -62,14 +62,14 @@ export class User extends Message<User> {
    *
    * @generated from field: google.protobuf.Timestamp create_time = 2;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * mutable
    *
    * @generated from field: google.protobuf.Timestamp update_time = 3;
    */
-  updateTime?: Timestamp;
+  updateTime?: Timestamp | undefined;
 
   /**
    * unique, mutable
@@ -126,7 +126,7 @@ export class OrganizationUser extends Message<OrganizationUser> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   /**
    * The ID of the organization for which the role belongs to.
@@ -216,7 +216,7 @@ export class CreateUserResponse extends Message<CreateUserResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   constructor(data?: PartialMessage<CreateUserResponse>) {
     super();
@@ -290,7 +290,7 @@ export class GetUserResponse extends Message<GetUserResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   constructor(data?: PartialMessage<GetUserResponse>) {
     super();
@@ -364,7 +364,7 @@ export class GetUserByUsernameResponse extends Message<GetUserByUsernameResponse
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.User user = 1;
    */
-  user?: User;
+  user?: User | undefined;
 
   constructor(data?: PartialMessage<GetUserByUsernameResponse>) {
     super();

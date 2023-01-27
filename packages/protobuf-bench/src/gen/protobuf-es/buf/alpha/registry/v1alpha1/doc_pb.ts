@@ -79,7 +79,7 @@ export class GetSourceDirectoryInfoResponse extends Message$1<GetSourceDirectory
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.FileInfo root = 1;
    */
-  root?: FileInfo;
+  root?: FileInfo | undefined;
 
   constructor(data?: PartialMessage<GetSourceDirectoryInfoResponse>) {
     super();
@@ -464,7 +464,7 @@ export class GetModuleDocumentationResponse extends Message$1<GetModuleDocumenta
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.ModuleDocumentation module_documentation = 1;
    */
-  moduleDocumentation?: ModuleDocumentation;
+  moduleDocumentation?: ModuleDocumentation | undefined;
 
   constructor(data?: PartialMessage<GetModuleDocumentationResponse>) {
     super();
@@ -612,7 +612,7 @@ export class GetPackageDocumentationResponse extends Message$1<GetPackageDocumen
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.PackageDocumentation package_documentation = 1;
    */
-  packageDocumentation?: PackageDocumentation;
+  packageDocumentation?: PackageDocumentation | undefined;
 
   constructor(data?: PartialMessage<GetPackageDocumentationResponse>) {
     super();
@@ -832,7 +832,7 @@ export class Service extends Message$1<Service> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
    */
-  location?: Location;
+  location?: Location | undefined;
 
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Method methods = 7;
@@ -897,12 +897,12 @@ export class Method extends Message$1<Method> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse request = 3;
    */
-  request?: MethodRequestResponse;
+  request?: MethodRequestResponse | undefined;
 
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.MethodRequestResponse response = 4;
    */
-  response?: MethodRequestResponse;
+  response?: MethodRequestResponse | undefined;
 
   constructor(data?: PartialMessage<Method>) {
     super();
@@ -965,7 +965,7 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Message message = 4;
    */
-  message?: Message;
+  message?: Message | undefined;
 
   /**
    * import_module_ref is included if the request or response is an imported type.
@@ -973,7 +973,7 @@ export class MethodRequestResponse extends Message$1<MethodRequestResponse> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 5;
    */
-  importModuleRef?: ImportModuleRef;
+  importModuleRef?: ImportModuleRef | undefined;
 
   constructor(data?: PartialMessage<MethodRequestResponse>) {
     super();
@@ -1052,7 +1052,7 @@ export class Enum extends Message$1<Enum> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Location location = 6;
    */
-  location?: Location;
+  location?: Location | undefined;
 
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.EnumValue values = 7;
@@ -1270,7 +1270,7 @@ export class Message extends Message$1<Message> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Location location = 8;
    */
-  location?: Location;
+  location?: Location | undefined;
 
   /**
    * @generated from field: repeated buf.alpha.registry.v1alpha1.Field message_extensions = 9;
@@ -1461,7 +1461,7 @@ export class Field extends Message$1<Field> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.MapEntry map_entry = 7;
    */
-  mapEntry?: MapEntry;
+  mapEntry?: MapEntry | undefined;
 
   /**
    * import_module_ref is included if the field is an imported type.
@@ -1469,7 +1469,7 @@ export class Field extends Message$1<Field> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef import_module_ref = 8;
    */
-  importModuleRef?: ImportModuleRef;
+  importModuleRef?: ImportModuleRef | undefined;
 
   /**
    * Extendee is the name of the type that is being extended if the field is an extension.
@@ -1548,7 +1548,7 @@ export class MapEntry extends Message$1<MapEntry> {
    *
    * @generated from field: buf.alpha.registry.v1alpha1.ImportModuleRef value_import_module_ref = 4;
    */
-  valueImportModuleRef?: ImportModuleRef;
+  valueImportModuleRef?: ImportModuleRef | undefined;
 
   constructor(data?: PartialMessage<MapEntry>) {
     super();
@@ -1614,7 +1614,7 @@ export class FileExtension extends Message$1<FileExtension> {
   /**
    * @generated from field: buf.alpha.registry.v1alpha1.Location location = 4;
    */
-  location?: Location;
+  location?: Location | undefined;
 
   /**
    * fields are all the fields that are associated with the extension.

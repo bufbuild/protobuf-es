@@ -61,14 +61,14 @@ export class Module extends Message<Module> {
    *
    * @generated from field: buf.alpha.breaking.v1.Config breaking_config = 4;
    */
-  breakingConfig?: Config;
+  breakingConfig?: Config | undefined;
 
   /**
    * lint_config is the lint configuration set for the module.
    *
    * @generated from field: buf.alpha.lint.v1.Config lint_config = 5;
    */
-  lintConfig?: Config$1;
+  lintConfig?: Config$1 | undefined;
 
   constructor(data?: PartialMessage<Module>) {
     super();
@@ -250,7 +250,7 @@ export class ModulePin extends Message<ModulePin> {
   /**
    * @generated from field: google.protobuf.Timestamp create_time = 7;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<ModulePin>) {
     super();

@@ -49,7 +49,7 @@ export class Person extends Message<Person> {
   /**
    * @generated from field: google.protobuf.Timestamp last_updated = 5;
    */
-  lastUpdated?: Timestamp;
+  lastUpdated?: Timestamp | undefined;
 
   constructor(data?: PartialMessage<Person>) {
     super();

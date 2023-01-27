@@ -199,22 +199,22 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  stringField?: string;
+  stringField?: string | undefined;
 
   /**
    * @generated from field: optional bytes bytes_field = 2;
    */
-  bytesField?: Uint8Array;
+  bytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: optional spec.Proto3Enum enum_field = 3;
    */
-  enumField?: Proto3Enum;
+  enumField?: Proto3Enum | undefined;
 
   /**
    * @generated from field: optional spec.Proto3OptionalMessage message_field = 4;
    */
-  messageField?: Proto3OptionalMessage;
+  messageField?: Proto3OptionalMessage | undefined;
 
   constructor(data?: PartialMessage<Proto3OptionalMessage>) {
     super();
