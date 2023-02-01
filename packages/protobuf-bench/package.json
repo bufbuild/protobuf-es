@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "1.0.0",
-    "esbuild": "^0.16.12",
+    "esbuild": "^0.17.5",
     "google-protobuf": "3.21.0"
   }
 }
