@@ -70,7 +70,7 @@ export class ElizaServiceClient {
      */
     async say(request: SayRequest): Promise<SayResponse> {
         const promise = this.request(
-            "buf.connect.demo.eliza.v1.ElizaService", 
+            "buf.connect.demo.eliza.v1.ElizaService",
             "Say",
             "application/json",
             request
