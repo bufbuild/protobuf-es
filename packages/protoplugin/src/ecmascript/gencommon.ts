@@ -62,7 +62,9 @@ export function makeFilePreamble(
     // rewrite_imports can be noisy and is more of an implementation detail
     // so we strip it out of the preamble
     const stripped = stripParameter(parameter, "rewrite_imports");
-    builder.push(` with parameter "${stripped}"`);
+    if (stripped != "") {
+      builder.push(` with parameter "${stripped}"`);
+    }
   }
   builder.push("\n");
   builder.push(`// @generated from file ${file.name}.proto (`);
@@ -80,7 +82,7 @@ export function makeFilePreamble(
 }
 
 function stripParameter(parameters: string, strip: string): string {
-  if (strip === "") {
+  if (parameters === "" || strip === "" || !parameters.includes(strip)) {
     return parameters;
   }
   return parameters
