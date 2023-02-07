@@ -204,7 +204,7 @@ function parseParameter(
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   let importExtension = ".js";
-  let pluginParameter = "";
+  const renderParams = [];
   for (const { key, value } of splitParameter(parameter)) {
     // Whether this key/value plugin parameter pair should be
     // printed to the generated file preamble
@@ -301,9 +301,11 @@ function parseParameter(
         break;
     }
     if (printToFile) {
-      pluginParameter += `${key}=${value}`;
+      renderParams.push(`${key}=${value}`);
     }
   }
+
+  const pluginParameter = renderParams.join(",");
   return {
     targets,
     tsNocheck,
