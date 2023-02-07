@@ -105,6 +105,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         rewriteImports,
         importExtension,
         keepEmptyFiles,
+        pluginParameter,
       } = parseParameter(req.parameter, init.parseOption);
       const { schema, getFileInfo } = createSchema(
         req,
@@ -115,7 +116,8 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         bootstrapWkt,
         rewriteImports,
         importExtension,
-        keepEmptyFiles
+        keepEmptyFiles,
+        pluginParameter
       );
 
       const targetTs = schema.targets.includes("ts");
@@ -202,7 +204,11 @@ function parseParameter(
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   let importExtension = ".js";
+  let pluginParameter = "";
   for (const { key, value } of splitParameter(parameter)) {
+    // Whether this key/value plugin parameter pair should be
+    // printed to the generated file preamble
+    let printToFile = true;
     switch (key) {
       case "target":
         targets = [];
@@ -259,6 +265,9 @@ function parseParameter(
         }
         const [pattern, target] = parts;
         rewriteImports.push({ pattern, target });
+        // rewrite_imports can be noisy and is more of an implementation detail
+        // so we strip it out of the preamble
+        printToFile = false;
         break;
       }
       case "import_extension": {
@@ -291,6 +300,9 @@ function parseParameter(
         }
         break;
     }
+    if (printToFile) {
+      pluginParameter += `${key}=${value}`;
+    }
   }
   return {
     targets,
@@ -299,6 +311,7 @@ function parseParameter(
     rewriteImports,
     importExtension,
     keepEmptyFiles,
+    pluginParameter,
   };
 }
 
