@@ -110,13 +110,13 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       const { schema, getFileInfo } = createSchema(
         req,
         targets,
-        init.name,
-        init.version,
         tsNocheck,
         bootstrapWkt,
         rewriteImports,
         importExtension,
         keepEmptyFiles,
+        init.name,
+        init.version,
         pluginParameter
       );
 
@@ -204,8 +204,8 @@ function parseParameter(
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   let importExtension = ".js";
-  const renderParams = [];
-  for (const { key, value } of splitParameter(parameter)) {
+  const rawParameters: string[] = [];
+  for (const { key, value, raw } of splitParameter(parameter)) {
     // Whether this key/value plugin parameter pair should be
     // printed to the generated file preamble
     let printToFile = true;
@@ -301,11 +301,12 @@ function parseParameter(
         break;
     }
     if (printToFile) {
-      renderParams.push(`${key}=${value}`);
+      rawParameters.push(raw);
     }
   }
 
-  const pluginParameter = renderParams.join(",");
+  const pluginParameter = rawParameters.join(",");
+
   return {
     targets,
     tsNocheck,
@@ -319,7 +320,7 @@ function parseParameter(
 
 function splitParameter(
   parameter: string | undefined
-): { key: string; value: string }[] {
+): { key: string; value: string; raw: string }[] {
   if (parameter == undefined) {
     return [];
   }
@@ -328,6 +329,7 @@ function splitParameter(
     return {
       key: i === -1 ? pair : pair.substring(0, i),
       value: i === -1 ? "" : pair.substring(i + 1),
+      raw: pair,
     };
   });
 }

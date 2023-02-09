@@ -86,13 +86,13 @@ interface SchemaController {
 export function createSchema(
   request: CodeGeneratorRequest,
   targets: Target[],
-  pluginName: string,
-  pluginVersion: string,
   tsNocheck: boolean,
   bootstrapWkt: boolean,
   rewriteImports: RewriteImports,
   importExtension: string,
   keepEmptyFiles: boolean,
+  pluginName: string,
+  pluginVersion: string,
   pluginParameter: string
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
@@ -121,7 +121,7 @@ export function createSchema(
         {
           pluginName,
           pluginVersion,
-          parameter: pluginParameter,
+          pluginParameter,
           tsNocheck,
         },
         keepEmptyFiles
