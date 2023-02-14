@@ -1,6 +1,10 @@
 name: ci
 on:
   push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 jobs:
   ci:
@@ -8,7 +12,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-      - uses: bufbuild/buf-setup-action@v1.11.0
+      - uses: bufbuild/buf-setup-action@v1.13.1
         with:
           github_token: ${{ github.token }}
       - name: Cache
