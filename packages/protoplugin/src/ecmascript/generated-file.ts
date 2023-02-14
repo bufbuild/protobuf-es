@@ -115,7 +115,7 @@ export function createGeneratedFile(
   preambleSettings: {
     pluginName: string;
     pluginVersion: string;
-    parameter: string | undefined;
+    pluginParameter: string;
     tsNocheck: boolean;
   },
   keepEmpty: boolean
@@ -128,7 +128,7 @@ export function createGeneratedFile(
         file,
         preambleSettings.pluginName,
         preambleSettings.pluginVersion,
-        preambleSettings.parameter,
+        preambleSettings.pluginParameter,
         preambleSettings.tsNocheck
       );
     },
