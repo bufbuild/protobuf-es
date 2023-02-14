@@ -105,17 +105,19 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         rewriteImports,
         importExtension,
         keepEmptyFiles,
+        pluginParameter,
       } = parseParameter(req.parameter, init.parseOption);
       const { schema, getFileInfo } = createSchema(
         req,
         targets,
-        init.name,
-        init.version,
         tsNocheck,
         bootstrapWkt,
         rewriteImports,
         importExtension,
-        keepEmptyFiles
+        keepEmptyFiles,
+        init.name,
+        init.version,
+        pluginParameter
       );
 
       const targetTs = schema.targets.includes("ts");
@@ -202,7 +204,11 @@ function parseParameter(
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   let importExtension = ".js";
-  for (const { key, value } of splitParameter(parameter)) {
+  const rawParameters: string[] = [];
+  for (const { key, value, raw } of splitParameter(parameter)) {
+    // Whether this key/value plugin parameter pair should be
+    // printed to the generated file preamble
+    let printToFile = true;
     switch (key) {
       case "target":
         targets = [];
@@ -259,6 +265,9 @@ function parseParameter(
         }
         const [pattern, target] = parts;
         rewriteImports.push({ pattern, target });
+        // rewrite_imports can be noisy and is more of an implementation detail
+        // so we strip it out of the preamble
+        printToFile = false;
         break;
       }
       case "import_extension": {
@@ -291,7 +300,13 @@ function parseParameter(
         }
         break;
     }
+    if (printToFile) {
+      rawParameters.push(raw);
+    }
   }
+
+  const pluginParameter = rawParameters.join(",");
+
   return {
     targets,
     tsNocheck,
@@ -299,20 +314,22 @@ function parseParameter(
     rewriteImports,
     importExtension,
     keepEmptyFiles,
+    pluginParameter,
   };
 }
 
 function splitParameter(
   parameter: string | undefined
-): { key: string; value: string }[] {
+): { key: string; value: string; raw: string }[] {
   if (parameter == undefined) {
     return [];
   }
-  return parameter.split(",").map((pair) => {
-    const i = pair.indexOf("=");
+  return parameter.split(",").map((raw) => {
+    const i = raw.indexOf("=");
     return {
-      key: i === -1 ? pair : pair.substring(0, i),
-      value: i === -1 ? "" : pair.substring(i + 1),
+      key: i === -1 ? raw : raw.substring(0, i),
+      value: i === -1 ? "" : raw.substring(i + 1),
+      raw,
     };
   });
 }
