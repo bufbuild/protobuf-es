@@ -324,12 +324,12 @@ function splitParameter(
   if (parameter == undefined) {
     return [];
   }
-  return parameter.split(",").map((pair) => {
-    const i = pair.indexOf("=");
+  return parameter.split(",").map((raw) => {
+    const i = raw.indexOf("=");
     return {
-      key: i === -1 ? pair : pair.substring(0, i),
-      value: i === -1 ? "" : pair.substring(i + 1),
-      raw: pair,
+      key: i === -1 ? raw : raw.substring(0, i),
+      value: i === -1 ? "" : raw.substring(i + 1),
+      raw,
     };
   });
 }
