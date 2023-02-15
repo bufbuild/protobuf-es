@@ -80,13 +80,7 @@ export function localFieldName(protoName: string, inOneof: boolean) {
     // oneof member names are not properties, but values of the `case` property.
     return name;
   }
-  if (
-    reservedObjectProperties.has(name) ||
-    reservedMessageProperties.has(name)
-  ) {
-    fallback(name);
-  }
-  return name;
+  return safeMessageProperty(name);
 }
 
 /**
@@ -276,28 +270,42 @@ const reservedMessageProperties = new Set([
   "toObject",
 ]);
 
-type Fallback<T extends string> = `${T}$`;
+const fallback = <T extends string>(name: T) => `${name}$` as const;
 
-const fallback = <T extends string>(word: T): Fallback<T> => `${word}$`;
+/**
+ * Will wrap names that are Object prototype properties or names reserved
+ * for `Message`s.
+ */
+const safeMessageProperty = (name: string): string => {
+  if (
+    reservedObjectProperties.has(name) ||
+    reservedMessageProperties.has(name)
+  ) {
+    fallback(name);
+  }
+  return name;
+}
 
 /**
  * Names that cannot be used for object properties because they are reserved
  * by built-in JavaScript properties.
  */
-export const safeObjectProperty = (word: string): string => {
-  if (reservedObjectProperties.has(word)) {
-    return fallback(word);
+export const safeObjectProperty = (name: string): string => {
+  if (reservedObjectProperties.has(name)) {
+    return fallback(name);
   }
-  return word;
+  return name;
 };
 
 /**
- * Names that cannot be used for identifiers, such as class names,
- * but _can_ be used for object properties.
+ * Names that can be used for identifiers or class properties
  */
-export const safeIdentifier = (word: string): string => {
-  if (reservedIdentifiers.has(word)) {
-    return fallback(word);
+export const safeIdentifier = (name: string): string => {
+  if (
+    reservedObjectProperties.has(name) ||
+    reservedIdentifiers.has(name)
+  ) {
+    return fallback(name);
   }
-  return word;
+  return name;
 };
