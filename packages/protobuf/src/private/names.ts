@@ -50,10 +50,7 @@ export function localName(
       const pkg = desc.file.proto.package;
       const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
-      if (reservedIdent[name]) {
-        return name + "$";
-      }
-      return name;
+      return safeIdentifier(name);
     }
     case "enum_value": {
       const sharedPrefix = desc.parent.sharedPrefix;
@@ -61,10 +58,7 @@ export function localName(
         return desc.name;
       }
       const name = desc.name.substring(sharedPrefix.length);
-      if (reservedObjectProperties[name]) {
-        return name + "$";
-      }
-      return name;
+      return safeObjectProperty(name);
     }
     case "rpc": {
       let name = desc.name;
@@ -72,10 +66,7 @@ export function localName(
         return name;
       }
       name = name[0].toLowerCase() + name.substring(1);
-      if (reservedObjectProperties[name]) {
-        return name + "$";
-      }
-      return name;
+      return safeObjectProperty(name);
     }
   }
 }
@@ -89,7 +80,7 @@ export function localFieldName(protoName: string, inOneof: boolean) {
     // oneof member names are not properties, but values of the `case` property.
     return name;
   }
-  if (reservedObjectProperties[name] || reservedMessageProperties[name]) {
+  if (isReservedObjectProperty(name) || reservedMessageProperties[name]) {
     name = name + "$";
   }
   return name;
@@ -182,7 +173,7 @@ function protoCamelCase(snakeCase: string): string {
 
 // Names that cannot be used for identifiers, such as class names,
 // but _can_ be used for object properties.
-const reservedIdent: { [k: string]: boolean } = {
+const reservedIdent = {
   // ECMAScript 2015 keywords
   break: true,
   case: true,
@@ -246,17 +237,17 @@ const reservedIdent: { [k: string]: boolean } = {
   globalThis: true,
   Uint8Array: true,
   Partial: true,
-};
+} satisfies { [k: string]: boolean };
 
 // Names that cannot be used for object properties because they are reserved
 // by built-in JavaScript properties.
-const reservedObjectProperties: { [k: string]: boolean } = {
+const reservedObjectProperties = {
   // names reserved by JavaScript
   constructor: true,
   toString: true,
   toJSON: true,
   valueOf: true,
-};
+} satisfies { [k: string]: boolean };
 
 // Names that cannot be used for object properties because they are reserved
 // by the runtime.
@@ -274,4 +265,44 @@ const reservedMessageProperties: { [k: string]: boolean } = {
 
   // names reserved by the runtime for the future
   toObject: true,
+};
+
+type Fallback<T extends string> = `${T}$`;
+
+const fallback = <T extends string>(word: T): Fallback<T> => `${word}$`;
+
+type ReservedObjectProperty = keyof typeof reservedObjectProperties;
+
+const isReservedObjectProperty = <T extends string>(
+  word: T | ReservedObjectProperty
+): word is ReservedObjectProperty =>
+  reservedObjectProperties[word as ReservedObjectProperty];
+
+export const safeObjectProperty = <T extends string>(
+  word: T
+): T extends ReservedObjectProperty ? Fallback<T> : T => {
+  if (isReservedObjectProperty(word)) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
+    return fallback(word) as any;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
+  return word as any;
+};
+
+type ReservedIdentifier = keyof typeof reservedIdent;
+
+const isReservedIdentifier = <T extends string>(
+  word: T | ReservedIdentifier
+): word is ReservedIdentifier =>
+  reservedIdent[word as ReservedIdentifier];
+
+export const safeIdentifier = <T extends string>(
+  word: T
+): T extends ReservedIdentifier ? Fallback<T> : T => {
+  if (isReservedIdentifier(word)) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
+    return fallback(word) as any;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
+  return word as any;
 };
