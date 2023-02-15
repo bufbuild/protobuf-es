@@ -4,49 +4,45 @@ import { describe, expect, test } from "@jest/globals";
 describe("safeIdentifier", () => {
   const { safeIdentifier } = codegenInfo;
 
-  // prettier-ignore
   test("sanitized reserved identifiers", () => {
-    expect<"break$">(safeIdentifier("break")).toBe("break$");
-    expect<"case$">(safeIdentifier("case")).toBe("case$");
-    expect<"catch$">(safeIdentifier("catch")).toBe("catch$");
-    expect<"class$">(safeIdentifier("class")).toBe("class$");
-    expect<"const$">(safeIdentifier("const")).toBe("const$");
-    expect<"continue$">(safeIdentifier("continue")).toBe("continue$");
-    expect<"debugger$">(safeIdentifier("debugger")).toBe("debugger$");
-    expect<"default$">(safeIdentifier("default")).toBe("default$");
-    expect<"delete$">(safeIdentifier("delete")).toBe("delete$");
+    expect(safeIdentifier("break")).toBe("break$");
+    expect(safeIdentifier("case")).toBe("case$");
+    expect(safeIdentifier("catch")).toBe("catch$");
+    expect(safeIdentifier("class")).toBe("class$");
+    expect(safeIdentifier("const")).toBe("const$");
+    expect(safeIdentifier("continue")).toBe("continue$");
+    expect(safeIdentifier("debugger")).toBe("debugger$");
+    expect(safeIdentifier("default")).toBe("default$");
+    expect(safeIdentifier("delete")).toBe("delete$");
   });
 
-  // prettier-ignore
   test("does not modify other inputs which are not reserved identifiers", () => {
-    expect<"constructor">(safeIdentifier("constructor")).toBe("constructor");
-    expect<"toString">(safeIdentifier("toString")).toBe("toString");
-    expect<"toJSON">(safeIdentifier("toJSON")).toBe("toJSON");
-    expect<"valueOf">(safeIdentifier("valueOf")).toBe("valueOf");
+    expect(safeIdentifier("constructor")).toBe("constructor");
+    expect(safeIdentifier("toString")).toBe("toString");
+    expect(safeIdentifier("toJSON")).toBe("toJSON");
+    expect(safeIdentifier("valueOf")).toBe("valueOf");
   });
 });
 
 describe("safeObjectProperty", () => {
   const { safeObjectProperty } = codegenInfo;
 
-  // prettier-ignore
   test("sanitizes reserved object property names", () => {
-    expect<"constructor$">(safeObjectProperty("constructor")).toBe("constructor$");
-    expect<"toString$">(safeObjectProperty("toString")).toBe("toString$");
-    expect<"toJSON$">(safeObjectProperty("toJSON")).toBe("toJSON$");
-    expect<"valueOf$">(safeObjectProperty("valueOf")).toBe("valueOf$");
+    expect(safeObjectProperty("constructor")).toBe("constructor$");
+    expect(safeObjectProperty("toString")).toBe("toString$");
+    expect(safeObjectProperty("toJSON")).toBe("toJSON$");
+    expect(safeObjectProperty("valueOf")).toBe("valueOf$");
   });
 
-  // prettier-ignore
   test("does not modify other inputs which are not reserved object properties", () => {
-    expect<"break">(safeObjectProperty("break")).toBe("break");
-    expect<"case">(safeObjectProperty("case")).toBe("case");
-    expect<"catch">(safeObjectProperty("catch")).toBe("catch");
-    expect<"class">(safeObjectProperty("class")).toBe("class");
-    expect<"const">(safeObjectProperty("const")).toBe("const");
-    expect<"continue">(safeObjectProperty("continue")).toBe("continue");
-    expect<"debugger">(safeObjectProperty("debugger")).toBe("debugger");
-    expect<"default">(safeObjectProperty("default")).toBe("default");
-    expect<"delete">(safeObjectProperty("delete")).toBe("delete");
+    expect(safeObjectProperty("break")).toBe("break");
+    expect(safeObjectProperty("case")).toBe("case");
+    expect(safeObjectProperty("catch")).toBe("catch");
+    expect(safeObjectProperty("class")).toBe("class");
+    expect(safeObjectProperty("const")).toBe("const");
+    expect(safeObjectProperty("continue")).toBe("continue");
+    expect(safeObjectProperty("debugger")).toBe("debugger");
+    expect(safeObjectProperty("default")).toBe("default");
+    expect(safeObjectProperty("delete")).toBe("delete");
   });
 });

@@ -75,13 +75,16 @@ export function localName(
  * Returns the name of a field in generated code.
  */
 export function localFieldName(protoName: string, inOneof: boolean) {
-  let name = protoCamelCase(protoName);
+  const name = protoCamelCase(protoName);
   if (inOneof) {
     // oneof member names are not properties, but values of the `case` property.
     return name;
   }
-  if (isReservedObjectProperty(name) || reservedMessageProperties[name]) {
-    name = name + "$";
+  if (
+    reservedObjectProperties.has(name) ||
+    reservedMessageProperties.has(name)
+  ) {
+    fallback(name);
   }
   return name;
 }
@@ -171,138 +174,130 @@ function protoCamelCase(snakeCase: string): string {
   return b.join("");
 }
 
-// Names that cannot be used for identifiers, such as class names,
-// but _can_ be used for object properties.
-const reservedIdent = {
+/**
+ * Names that cannot be used for identifiers, such as class names,
+ * but _can_ be used for object properties.
+ */
+const reservedIdentifiers = new Set([
   // ECMAScript 2015 keywords
-  break: true,
-  case: true,
-  catch: true,
-  class: true,
-  const: true,
-  continue: true,
-  debugger: true,
-  default: true,
-  delete: true,
-  do: true,
-  else: true,
-  export: true,
-  extends: true,
-  false: true,
-  finally: true,
-  for: true,
-  function: true,
-  if: true,
-  import: true,
-  in: true,
-  instanceof: true,
-  new: true,
-  null: true,
-  return: true,
-  super: true,
-  switch: true,
-  this: true,
-  throw: true,
-  true: true,
-  try: true,
-  typeof: true,
-  var: true,
-  void: true,
-  while: true,
-  with: true,
-  yield: true,
+  "break",
+  "case",
+  "catch",
+  "class",
+  "const",
+  "continue",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "else",
+  "export",
+  "extends",
+  "false",
+  "finally",
+  "for",
+  "function",
+  "if",
+  "import",
+  "in",
+  "instanceof",
+  "new",
+  "null",
+  "return",
+  "super",
+  "switch",
+  "this",
+  "throw",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with",
+  "yield",
 
   // ECMAScript 2015 future reserved keywords
-  enum: true,
-  implements: true,
-  interface: true,
-  let: true,
-  package: true,
-  private: true,
-  protected: true,
-  public: true,
-  static: true,
+  "enum",
+  "implements",
+  "interface",
+  "let",
+  "package",
+  "private",
+  "protected",
+  "public",
+  "static",
 
   // Class name cannot be 'Object' when targeting ES5 with module CommonJS
-  Object: true,
+  "Object",
 
   // TypeScript keywords that cannot be used for types (as opposed to variables)
-  bigint: true,
-  number: true,
-  boolean: true,
-  string: true,
-  object: true,
+  "bigint",
+  "number",
+  "boolean",
+  "string",
+  "object",
 
   // Identifiers reserved for the runtime, so we can generate legible code
-  globalThis: true,
-  Uint8Array: true,
-  Partial: true,
-} satisfies { [k: string]: boolean };
+  "globalThis",
+  "Uint8Array",
+  "Partial",
+]);
 
-// Names that cannot be used for object properties because they are reserved
-// by built-in JavaScript properties.
-const reservedObjectProperties = {
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by built-in JavaScript properties.
+ */
+const reservedObjectProperties = new Set([
   // names reserved by JavaScript
-  constructor: true,
-  toString: true,
-  toJSON: true,
-  valueOf: true,
-} satisfies { [k: string]: boolean };
+  "constructor",
+  "toString",
+  "toJSON",
+  "valueOf",
+]);
 
-// Names that cannot be used for object properties because they are reserved
-// by the runtime.
-const reservedMessageProperties: { [k: string]: boolean } = {
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by the runtime.
+ */
+const reservedMessageProperties = new Set([
   // names reserved by the runtime
-  getType: true,
-  clone: true,
-  equals: true,
-  fromBinary: true,
-  fromJson: true,
-  fromJsonString: true,
-  toBinary: true,
-  toJson: true,
-  toJsonString: true,
+  "getType",
+  "clone",
+  "equals",
+  "fromBinary",
+  "fromJson",
+  "fromJsonString",
+  "toBinary",
+  "toJson",
+  "toJsonString",
 
   // names reserved by the runtime for the future
-  toObject: true,
-};
+  "toObject",
+]);
 
 type Fallback<T extends string> = `${T}$`;
 
 const fallback = <T extends string>(word: T): Fallback<T> => `${word}$`;
 
-type ReservedObjectProperty = keyof typeof reservedObjectProperties;
-
-const isReservedObjectProperty = <T extends string>(
-  word: T | ReservedObjectProperty
-): word is ReservedObjectProperty =>
-  reservedObjectProperties[word as ReservedObjectProperty];
-
-export const safeObjectProperty = <T extends string>(
-  word: T
-): T extends ReservedObjectProperty ? Fallback<T> : T => {
-  if (isReservedObjectProperty(word)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
-    return fallback(word) as any;
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by built-in JavaScript properties.
+ */
+export const safeObjectProperty = (word: string): string => {
+  if (reservedObjectProperties.has(word)) {
+    return fallback(word);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
-  return word as any;
+  return word;
 };
 
-type ReservedIdentifier = keyof typeof reservedIdent;
-
-const isReservedIdentifier = <T extends string>(
-  word: T | ReservedIdentifier
-): word is ReservedIdentifier =>
-  reservedIdent[word as ReservedIdentifier];
-
-export const safeIdentifier = <T extends string>(
-  word: T
-): T extends ReservedIdentifier ? Fallback<T> : T => {
-  if (isReservedIdentifier(word)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
-    return fallback(word) as any;
+/**
+ * Names that cannot be used for identifiers, such as class names,
+ * but _can_ be used for object properties.
+ */
+export const safeIdentifier = (word: string): string => {
+  if (reservedIdentifiers.has(word)) {
+    return fallback(word);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any -- required for narrowing
-  return word as any;
+  return word;
 };
