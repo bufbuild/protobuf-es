@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { localName, safeIdentifier, safeObjectProperty } from "./private/names.js";
+import {
+  localName,
+  safeIdentifier,
+  safeObjectProperty,
+} from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";

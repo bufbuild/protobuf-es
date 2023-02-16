@@ -281,7 +281,7 @@ const safeMessageProperty = (name: string): string => {
     return fallback(name);
   }
   return name;
-}
+};
 
 /**
  * Names that cannot be used for object properties because they are reserved
