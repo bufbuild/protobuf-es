@@ -50,7 +50,7 @@ export function localName(
       const pkg = desc.file.proto.package;
       const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
-      return safeIdentifier(name);
+      return safeObjectProperty(safeIdentifier(name));
     }
     case "enum_value": {
       const sharedPrefix = desc.parent.sharedPrefix;
@@ -80,7 +80,7 @@ export function localFieldName(protoName: string, inOneof: boolean) {
     // oneof member names are not properties, but values of the `case` property.
     return name;
   }
-  return safeMessageProperty(name);
+  return safeObjectProperty(safeMessageProperty(name));
 }
 
 /**
@@ -277,11 +277,8 @@ const fallback = <T extends string>(name: T) => `${name}$` as const;
  * for `Message`s.
  */
 const safeMessageProperty = (name: string): string => {
-  if (
-    reservedObjectProperties.has(name) ||
-    reservedMessageProperties.has(name)
-  ) {
-    fallback(name);
+  if (reservedMessageProperties.has(name)) {
+    return fallback(name);
   }
   return name;
 }
@@ -301,10 +298,7 @@ export const safeObjectProperty = (name: string): string => {
  * Names that can be used for identifiers or class properties
  */
 export const safeIdentifier = (name: string): string => {
-  if (
-    reservedObjectProperties.has(name) ||
-    reservedIdentifiers.has(name)
-  ) {
+  if (reservedIdentifiers.has(name)) {
     return fallback(name);
   }
   return name;
