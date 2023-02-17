@@ -66,7 +66,6 @@ Protocol Buffers also allow you to serialize this structured data.  So, your app
    version: v1
    plugins:
       - name: es
-        path: ./node_modules/.bin/protoc-gen-es
         opt: target=ts
         out: src/gen
    ```
