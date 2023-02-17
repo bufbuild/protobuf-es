@@ -53,12 +53,10 @@ Protocol Buffers also allow you to serialize this structured data.  So, your app
 
 ## Quickstart
 
-To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  
-
-1. Install the code generator and the runtime library:
+1. Install the code generator, the runtime library, and the [Buf CLI](https://docs.buf.build/build/usage):
 
    ```bash
-   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es
+   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
    ```
 
 2. Create a `buf.gen.yaml` file that looks like this:
@@ -83,8 +81,10 @@ To get started generating code right away, first make sure you have [Buf](https:
 4. Generate your code:
 
    ```bash
-   buf generate proto
+   npx buf generate proto
    ```
+
+   ** Note you can also use `protoc` if desired.
 
 You should now see a generated file at `src/gen/example_pb.ts` that contains a class named `User`.  From here, you can begin to work with your schema.
 
