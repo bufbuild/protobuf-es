@@ -111,7 +111,7 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 * [connect-es](https://github.com/bufbuild/connect-es):
   Type-safe APIs with Protobuf and TypeScript.
 * [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
-  Illustrates the integration of Connect-ES in various JS frameworks and tooling
+  Illustrates the integration of Connect in various JS frameworks and tooling
 * [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
 
 
