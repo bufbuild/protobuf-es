@@ -74,7 +74,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_mod
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
-	npm run -w packages/protoplugin-example generate
+	npx -w packages/protoplugin-example buf generate buf.build/bufbuild/eliza
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
