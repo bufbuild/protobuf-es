@@ -49,7 +49,7 @@ user = User.fromJsonString('{"firstName": "Homer", "lastName": "Simpson"}');
 
 The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file above can be used to generate types in many languages.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
+Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-ES](https://github.com/bufbuild/connect-es), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
@@ -108,10 +108,10 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 
 ## Ecosystem
 
-* [connect-web](https://github.com/bufbuild/connect-web):
-  TypeScript clients for web browsers, based on Protobuf-ES.
-* [connect-web-integration](https://github.com/bufbuild/connect-web-integration):
-  Example projects using Connect-Web with various JS frameworks and tooling
+* [connect-es](https://github.com/bufbuild/connect-es):
+  Type-safe APIs with Protobuf and TypeScript.
+* [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
+  Examples for using Connect with various TypeScript web frameworks and tooling
 * [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
 
 
