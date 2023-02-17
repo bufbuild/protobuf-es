@@ -6,7 +6,7 @@
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "buf:build": "buf build -o descriptorset.bin",
-    "buf:generate": "buf generate",
+    "generate": "buf generate",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "type": "module",
@@ -16,6 +16,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
+    "@bufbuild/buf": "^1.14.0",
     "@bufbuild/protoplugin": "1.0.0"
   }
 }
