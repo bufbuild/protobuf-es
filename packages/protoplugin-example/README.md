@@ -25,9 +25,11 @@ cd packages/protoplugin-example
 npm run build
 ```
 
-To run the plugin (i.e. generate files):
+To run the plugin (i.e. generate files), use the following command. This will generate files based on the 
+[Eliza module](https://buf.build/bufbuild/eliza) in the Buf Schema Registry (BSR).  You can change this path to generate
+additional files locally or from the BSR.
 
-`npm run generate`
+`npx buf generate buf.build/bufbuild/eliza`
 
 To run the example webpage and see the generated code in action:
 
