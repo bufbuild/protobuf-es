@@ -74,7 +74,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_mod
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
-	npm run -w packages/protoplugin-example buf:generate
+	npm run -w packages/protoplugin-example generate
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -120,7 +120,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
 	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
 	@npm run -w packages/protoplugin-test buf:build
-	@npm run -w packages/protoplugin-test buf:generate
+	@npm run -w packages/protoplugin-test generate
 
 $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@rm -rf packages/protobuf-conformance/src/gen/*
@@ -134,13 +134,13 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 
 $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
 	@rm -rf packages/protobuf-example/src/gen/*
-	npm run -w packages/protobuf-example buf:generate
+	npm run -w packages/protobuf-example generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(GEN)/protobuf-bench: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
 	@rm -rf packages/protobuf-bench/src/gen/*
-	buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
+	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
 	@mkdir -p $(@D)
 	@touch $(@)
 

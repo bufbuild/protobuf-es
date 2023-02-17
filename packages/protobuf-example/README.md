@@ -49,7 +49,7 @@ node dist/esm/list-people.js addressbook.bin
 ### Generate code yourself
 
 If you want to use [`buf`](https://github.com/bufbuild/buf) to generate the code, 
-simply run `npm run buf:generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml) 
+simply run `npm run generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml) 
 contains the plugin configuration.
 
 If you want to use `protoc`, the following command is equivalent:
