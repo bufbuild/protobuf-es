@@ -32,7 +32,7 @@ describe("iterating fields", function () {
         locations: ["PIT", "GER"],
         projects: {
           PES: "Protobuf-ES",
-          CWB: "Connect-Web",
+          CES: "Connect-ES",
         },
       })
     );
@@ -45,7 +45,7 @@ describe("iterating fields", function () {
     );
     expect(r[4]).toBe("field locations: PIT,GER");
     expect(r[5]).toBe(
-      'field projects: {"PES":"Protobuf-ES","CWB":"Connect-Web"}'
+      'field projects: {"PES":"Protobuf-ES","CES":"Connect-ES"}'
     );
   });
 });
