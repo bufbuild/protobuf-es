@@ -96,7 +96,6 @@ import { Message, proto3 } from "@bufbuild/protobuf";
  * microsecond should be expressed in JSON format as "3.000001s".
  *
  *
- *
  * @generated from message google.protobuf.Duration
  */
 export declare class Duration extends Message<Duration> {

@@ -64,6 +64,18 @@ export const NestedTestMessageSetContainer = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.NestedTestInt
+ */
+export const NestedTestInt = proto2.makeMessageType(
+  "protobuf_unittest.NestedTestInt",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
+    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "child", kind: "message", T: NestedTestInt, opt: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
 export const TestMessageSetExtension1 = proto2.makeMessageType(
@@ -86,23 +98,13 @@ export const TestMessageSetExtension2 = proto2.makeMessageType(
 );
 
 /**
- * @generated from message protobuf_unittest.NestedTestInt
- */
-export const NestedTestInt = proto2.makeMessageType(
-  "protobuf_unittest.NestedTestInt",
-  () => [
-    { no: 1, name: "a", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
-    { no: 2, name: "child", kind: "message", T: NestedTestInt, opt: true },
-  ],
-);
-
-/**
  * @generated from message protobuf_unittest.TestMessageSetExtension3
  */
 export const TestMessageSetExtension3 = proto2.makeMessageType(
   "protobuf_unittest.TestMessageSetExtension3",
   () => [
     { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
+    { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
 );
 

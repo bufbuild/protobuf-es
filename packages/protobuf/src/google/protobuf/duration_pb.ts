@@ -85,7 +85,6 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * microsecond should be expressed in JSON format as "3.000001s".
  *
  *
- *
  * @generated from message google.protobuf.Duration
  */
 export class Duration extends Message<Duration> {

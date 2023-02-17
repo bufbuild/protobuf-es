@@ -55,7 +55,7 @@ export enum WireFormat {
   JSON = 2,
 
   /**
-   * Google internal only. Opensource testees just skip it.
+   * Only used inside Google. Opensource testees just skip it.
    *
    * @generated from enum value: JSPB = 3;
    */
@@ -110,7 +110,8 @@ export enum TestCategory {
   JSON_IGNORE_UNKNOWN_PARSING_TEST = 3,
 
   /**
-   * Test jspb wire format. Google internal only. Opensource testees just skip it.
+   * Test jspb wire format. Only used inside Google. Opensource testees just
+   * skip it.
    *
    * @generated from enum value: JSPB_TEST = 4;
    */
@@ -190,10 +191,6 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
    * protobuf_test_messages.proto3.TestAllTypes proto (as defined in
    * src/google/protobuf/proto3_test_messages.proto).
    *
-   * TODO(haberman): if/when we expand the conformance tests to support proto2,
-   * we will want to include a field that lets the payload/response be a
-   * protobuf_test_messages.google.protobuf.TestAllTypes message instead.
-   *
    * @generated from oneof conformance.ConformanceRequest.payload
    */
   payload: {
@@ -210,7 +207,7 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
     case: "jsonPayload";
   } | {
     /**
-     * Google internal only.  Opensource testees just skip it.
+     * Only used inside Google.  Opensource testees just skip it.
      *
      * @generated from field: string jspb_payload = 7;
      */
@@ -242,8 +239,8 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
 
   /**
    * Each test is given a specific test category. Some category may need
-   * specific support in testee programs. Refer to the definition of TestCategory
-   * for more information.
+   * specific support in testee programs. Refer to the definition of
+   * TestCategory for more information.
    *
    * @generated from field: conformance.TestCategory test_category = 5;
    */
@@ -333,6 +330,16 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
     case: "serializeError";
   } | {
     /**
+     * This should be set if the test program timed out.  The string should
+     * provide more information about what the child process was doing when it
+     * was killed.
+     *
+     * @generated from field: string timeout_error = 9;
+     */
+    value: string;
+    case: "timeoutError";
+  } | {
+    /**
      * This should be set if some other error occurred.  This will always
      * indicate that the test failed.  The string can provide more information
      * about the failure.
@@ -371,8 +378,8 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
   } | {
     /**
      * If the input was successfully parsed and the requested output was JSPB,
-     * serialize to JSPB and set it in this field. JSPB is google internal only
-     * format. Opensource testees can just skip it.
+     * serialize to JSPB and set it in this field. JSPB is only used inside
+     * Google. Opensource testees can just skip it.
      *
      * @generated from field: string jspb_payload = 7;
      */
@@ -399,6 +406,7 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "parse_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
     { no: 6, name: "serialize_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
+    { no: 9, name: "timeout_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
     { no: 2, name: "runtime_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
     { no: 3, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "result" },
     { no: 4, name: "json_payload", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },

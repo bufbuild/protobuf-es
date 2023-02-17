@@ -39,7 +39,7 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
   a: string;
 
   /**
-   * @generated from field: string b = 4 [json_name = "sameJsonName"];
+   * @generated from field: string b = 4;
    */
   b: string;
 
@@ -49,7 +49,7 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
   c: string;
 
   /**
-   * @generated from field: string d = 6 [json_name = "c"];
+   * @generated from field: string d = 6;
    */
   d: string;
 

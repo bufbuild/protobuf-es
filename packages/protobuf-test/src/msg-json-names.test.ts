@@ -33,8 +33,10 @@ describeMT(
       expect(got).toStrictEqual({
         "": "e",
         "@type": "f",
+        b: "b",
         c: "c",
-        sameJsonName: "b",
+        d: "c",
+        sameJsonName: "a",
       });
     });
     test("json_name clash with Any.@type is not prevented", () => {
@@ -45,8 +47,10 @@ describeMT(
       expect(got).toStrictEqual({
         "": "e",
         "@type": "type.googleapis.com/spec.JsonNamesMessage",
+        b: "b",
         c: "c",
-        sameJsonName: "b",
+        d: "c",
+        sameJsonName: "a",
       });
     });
   }

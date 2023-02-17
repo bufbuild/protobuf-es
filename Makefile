@@ -36,7 +36,7 @@ $(BIN)/protoc: $(PB)
 
 $(BIN)/conformance_test_runner: $(PB)
 	@mkdir -p $(@D)
-	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
+	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_cc_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
 	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
 	@touch $(@)
 

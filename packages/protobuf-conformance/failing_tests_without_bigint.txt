@@ -28,3 +28,9 @@ Required.Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
 Required.Proto3.JsonInput.Int64FieldTooLarge
 Required.Proto3.JsonInput.Int64FieldTooSmall
 Required.Proto3.JsonInput.Uint64FieldTooLarge
+
+# New in v22.0
+Recommended.ValueRejectInfNumberValue.JsonOutput
+Recommended.ValueRejectNanNumberValue.JsonOutput
+Required.Proto3.JsonInput.DurationNegativeNanos.JsonOutput
+Required.Proto3.JsonInput.DurationNegativeNanos.ProtobufOutput

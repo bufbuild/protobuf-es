@@ -70,6 +70,16 @@ export declare enum ForeignEnum {
 }
 
 /**
+ * @generated from enum protobuf_unittest.TestReservedEnumFields
+ */
+export declare enum TestReservedEnumFields {
+  /**
+   * @generated from enum value: UNKNOWN = 0;
+   */
+  UNKNOWN = 0,
+}
+
+/**
  * Test an enum that has multiple values with the same number.
  *
  * @generated from enum protobuf_unittest.TestEnumWithDupValue
@@ -1234,6 +1244,18 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
   deprecatedInt32?: number;
 
   /**
+   * @generated from field: repeated string deprecated_repeated_string = 4 [deprecated = true];
+   * @deprecated
+   */
+  deprecatedRepeatedString: string[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage deprecated_message = 3 [deprecated = true];
+   * @deprecated
+   */
+  deprecatedMessage?: TestAllTypes_NestedMessage;
+
+  /**
    * @generated from oneof protobuf_unittest.TestDeprecatedFields.oneof_fields
    */
   oneofFields: {
@@ -1244,6 +1266,11 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
     value: number;
     case: "deprecatedInt32InOneof";
   } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDeprecatedFields nested = 5;
+   */
+  nested?: TestDeprecatedFields;
 
   constructor(data?: PartialMessage<TestDeprecatedFields>);
 
@@ -1399,6 +1426,35 @@ export declare class RepeatedGroup_extension extends Message<RepeatedGroup_exten
 }
 
 /**
+ * @generated from message protobuf_unittest.TestMixedFieldsAndExtensions
+ */
+export declare class TestMixedFieldsAndExtensions extends Message<TestMixedFieldsAndExtensions> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: repeated fixed32 b = 3;
+   */
+  b: number[];
+
+  constructor(data?: PartialMessage<TestMixedFieldsAndExtensions>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMixedFieldsAndExtensions";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMixedFieldsAndExtensions;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMixedFieldsAndExtensions;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMixedFieldsAndExtensions;
+
+  static equals(a: TestMixedFieldsAndExtensions | PlainMessage<TestMixedFieldsAndExtensions> | undefined, b: TestMixedFieldsAndExtensions | PlainMessage<TestMixedFieldsAndExtensions> | undefined): boolean;
+}
+
+/**
  * @generated from message protobuf_unittest.TestGroup
  */
 export declare class TestGroup extends Message<TestGroup> {
@@ -1435,6 +1491,13 @@ export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalG
    * @generated from field: optional int32 a = 17;
    */
   a?: number;
+
+  /**
+   * fast table size must be at least 16, for this
+   *
+   * @generated from field: optional int32 zz = 89;
+   */
+  zz?: number;
 
   constructor(data?: PartialMessage<TestGroup_OptionalGroup>);
 
@@ -1916,6 +1979,13 @@ export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
    * @generated from field: optional int32 dummy = 3;
    */
   dummy?: number;
+
+  /**
+   * Missing required fields must not affect verification of child messages.
+   *
+   * @generated from field: optional protobuf_unittest.NestedTestAllTypes optional_lazy_message = 4;
+   */
+  optionalLazyMessage?: NestedTestAllTypes;
 
   constructor(data?: PartialMessage<TestRequiredForeign>);
 
@@ -3888,6 +3958,12 @@ export declare class TestRequiredOneof extends Message<TestRequiredOneof> {
      */
     value: TestRequiredOneof_NestedMessage;
     case: "fooMessage";
+  } | {
+    /**
+     * @generated from field: protobuf_unittest.TestRequiredOneof.NestedMessage foo_lazy_message = 4;
+     */
+    value: TestRequiredOneof_NestedMessage;
+    case: "fooLazyMessage";
   } | { case: undefined; value?: undefined };
 
   constructor(data?: PartialMessage<TestRequiredOneof>);
@@ -4248,6 +4324,45 @@ export declare class TestDynamicExtensions_DynamicMessageType extends Message<Te
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDynamicExtensions_DynamicMessageType;
 
   static equals(a: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined, b: TestDynamicExtensions_DynamicMessageType | PlainMessage<TestDynamicExtensions_DynamicMessageType> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestRepeatedString
+ */
+export declare class TestRepeatedString extends Message<TestRepeatedString> {
+  /**
+   * @generated from field: repeated string repeated_string1 = 1;
+   */
+  repeatedString1: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string2 = 2;
+   */
+  repeatedString2: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes11 = 11;
+   */
+  repeatedBytes11: Uint8Array[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes12 = 12;
+   */
+  repeatedBytes12: Uint8Array[];
+
+  constructor(data?: PartialMessage<TestRepeatedString>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRepeatedString";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRepeatedString;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRepeatedString;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRepeatedString;
+
+  static equals(a: TestRepeatedString | PlainMessage<TestRepeatedString> | undefined, b: TestRepeatedString | PlainMessage<TestRepeatedString> | undefined): boolean;
 }
 
 /**
@@ -5760,5 +5875,787 @@ export declare class TestVerifyBigFieldNumberUint32_Nested extends Message<TestV
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestVerifyBigFieldNumberUint32_Nested;
 
   static equals(a: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined, b: TestVerifyBigFieldNumberUint32_Nested | PlainMessage<TestVerifyBigFieldNumberUint32_Nested> | undefined): boolean;
+}
+
+/**
+ * This message contains different kind of enums to exercise the different
+ * parsers in table-driven.
+ *
+ * @generated from message protobuf_unittest.EnumParseTester
+ */
+export declare class EnumParseTester extends Message<EnumParseTester> {
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_lowfield = 1;
+   */
+  optionalSeqSmall0Lowfield?: EnumParseTester_SeqSmall0;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_midfield = 1001;
+   */
+  optionalSeqSmall0Midfield?: EnumParseTester_SeqSmall0;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_hifield = 1000001;
+   */
+  optionalSeqSmall0Hifield?: EnumParseTester_SeqSmall0;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_lowfield = 2;
+   */
+  repeatedSeqSmall0Lowfield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_midfield = 1002;
+   */
+  repeatedSeqSmall0Midfield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_hifield = 1000002;
+   */
+  repeatedSeqSmall0Hifield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_lowfield = 3 [packed = true];
+   */
+  packedSeqSmall0Lowfield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_midfield = 1003 [packed = true];
+   */
+  packedSeqSmall0Midfield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_hifield = 1000003 [packed = true];
+   */
+  packedSeqSmall0Hifield: EnumParseTester_SeqSmall0[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_lowfield = 4;
+   */
+  optionalSeqSmall1Lowfield?: EnumParseTester_SeqSmall1;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_midfield = 1004;
+   */
+  optionalSeqSmall1Midfield?: EnumParseTester_SeqSmall1;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_hifield = 1000004;
+   */
+  optionalSeqSmall1Hifield?: EnumParseTester_SeqSmall1;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_lowfield = 5;
+   */
+  repeatedSeqSmall1Lowfield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_midfield = 1005;
+   */
+  repeatedSeqSmall1Midfield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_hifield = 1000005;
+   */
+  repeatedSeqSmall1Hifield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_lowfield = 6 [packed = true];
+   */
+  packedSeqSmall1Lowfield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_midfield = 1006 [packed = true];
+   */
+  packedSeqSmall1Midfield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_hifield = 1000006 [packed = true];
+   */
+  packedSeqSmall1Hifield: EnumParseTester_SeqSmall1[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_lowfield = 7;
+   */
+  optionalSeqLargeLowfield?: EnumParseTester_SeqLarge;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_midfield = 1007;
+   */
+  optionalSeqLargeMidfield?: EnumParseTester_SeqLarge;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_hifield = 1000007;
+   */
+  optionalSeqLargeHifield?: EnumParseTester_SeqLarge;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_lowfield = 8;
+   */
+  repeatedSeqLargeLowfield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_midfield = 1008;
+   */
+  repeatedSeqLargeMidfield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_hifield = 1000008;
+   */
+  repeatedSeqLargeHifield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_lowfield = 9 [packed = true];
+   */
+  packedSeqLargeLowfield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_midfield = 1009 [packed = true];
+   */
+  packedSeqLargeMidfield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_hifield = 1000009 [packed = true];
+   */
+  packedSeqLargeHifield: EnumParseTester_SeqLarge[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_lowfield = 10;
+   */
+  optionalArbitraryLowfield?: EnumParseTester_Arbitrary;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_midfield = 1010;
+   */
+  optionalArbitraryMidfield?: EnumParseTester_Arbitrary;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_hifield = 1000010;
+   */
+  optionalArbitraryHifield?: EnumParseTester_Arbitrary;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_lowfield = 11;
+   */
+  repeatedArbitraryLowfield: EnumParseTester_Arbitrary[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_midfield = 1011;
+   */
+  repeatedArbitraryMidfield: EnumParseTester_Arbitrary[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_hifield = 1000011;
+   */
+  repeatedArbitraryHifield: EnumParseTester_Arbitrary[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_lowfield = 12 [packed = true];
+   */
+  packedArbitraryLowfield: EnumParseTester_Arbitrary[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_midfield = 1012 [packed = true];
+   */
+  packedArbitraryMidfield: EnumParseTester_Arbitrary[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_hifield = 1000012 [packed = true];
+   */
+  packedArbitraryHifield: EnumParseTester_Arbitrary[];
+
+  /**
+   * An arbitrary field we can append to to break the runs of repeated fields.
+   *
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+
+  constructor(data?: PartialMessage<EnumParseTester>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.EnumParseTester";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumParseTester;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumParseTester;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumParseTester;
+
+  static equals(a: EnumParseTester | PlainMessage<EnumParseTester> | undefined, b: EnumParseTester | PlainMessage<EnumParseTester> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall0
+ */
+export declare enum EnumParseTester_SeqSmall0 {
+  /**
+   * @generated from enum value: SEQ_SMALL_0_DEFAULT = 0;
+   */
+  SEQ_SMALL_0_DEFAULT = 0,
+
+  /**
+   * @generated from enum value: SEQ_SMALL_0_1 = 1;
+   */
+  SEQ_SMALL_0_1 = 1,
+
+  /**
+   * @generated from enum value: SEQ_SMALL_0_2 = 2;
+   */
+  SEQ_SMALL_0_2 = 2,
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall1
+ */
+export declare enum EnumParseTester_SeqSmall1 {
+  /**
+   * @generated from enum value: SEQ_SMALL_1_DEFAULT = 1;
+   */
+  SEQ_SMALL_1_DEFAULT = 1,
+
+  /**
+   * @generated from enum value: SEQ_SMALL_1_2 = 2;
+   */
+  SEQ_SMALL_1_2 = 2,
+
+  /**
+   * @generated from enum value: SEQ_SMALL_1_3 = 3;
+   */
+  SEQ_SMALL_1_3 = 3,
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqLarge
+ */
+export declare enum EnumParseTester_SeqLarge {
+  /**
+   * @generated from enum value: SEQ_LARGE_DEFAULT = -1;
+   */
+  SEQ_LARGE_DEFAULT = -1,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_0 = 0;
+   */
+  SEQ_LARGE_0 = 0,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_1 = 1;
+   */
+  SEQ_LARGE_1 = 1,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_2 = 2;
+   */
+  SEQ_LARGE_2 = 2,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_3 = 3;
+   */
+  SEQ_LARGE_3 = 3,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_4 = 4;
+   */
+  SEQ_LARGE_4 = 4,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_5 = 5;
+   */
+  SEQ_LARGE_5 = 5,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_6 = 6;
+   */
+  SEQ_LARGE_6 = 6,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_7 = 7;
+   */
+  SEQ_LARGE_7 = 7,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_8 = 8;
+   */
+  SEQ_LARGE_8 = 8,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_9 = 9;
+   */
+  SEQ_LARGE_9 = 9,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_10 = 10;
+   */
+  SEQ_LARGE_10 = 10,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_11 = 11;
+   */
+  SEQ_LARGE_11 = 11,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_12 = 12;
+   */
+  SEQ_LARGE_12 = 12,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_13 = 13;
+   */
+  SEQ_LARGE_13 = 13,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_14 = 14;
+   */
+  SEQ_LARGE_14 = 14,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_15 = 15;
+   */
+  SEQ_LARGE_15 = 15,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_16 = 16;
+   */
+  SEQ_LARGE_16 = 16,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_17 = 17;
+   */
+  SEQ_LARGE_17 = 17,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_18 = 18;
+   */
+  SEQ_LARGE_18 = 18,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_19 = 19;
+   */
+  SEQ_LARGE_19 = 19,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_20 = 20;
+   */
+  SEQ_LARGE_20 = 20,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_21 = 21;
+   */
+  SEQ_LARGE_21 = 21,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_22 = 22;
+   */
+  SEQ_LARGE_22 = 22,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_23 = 23;
+   */
+  SEQ_LARGE_23 = 23,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_24 = 24;
+   */
+  SEQ_LARGE_24 = 24,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_25 = 25;
+   */
+  SEQ_LARGE_25 = 25,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_26 = 26;
+   */
+  SEQ_LARGE_26 = 26,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_27 = 27;
+   */
+  SEQ_LARGE_27 = 27,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_28 = 28;
+   */
+  SEQ_LARGE_28 = 28,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_29 = 29;
+   */
+  SEQ_LARGE_29 = 29,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_30 = 30;
+   */
+  SEQ_LARGE_30 = 30,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_31 = 31;
+   */
+  SEQ_LARGE_31 = 31,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_32 = 32;
+   */
+  SEQ_LARGE_32 = 32,
+
+  /**
+   * @generated from enum value: SEQ_LARGE_33 = 33;
+   */
+  SEQ_LARGE_33 = 33,
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.Arbitrary
+ */
+export declare enum EnumParseTester_Arbitrary {
+  /**
+   * @generated from enum value: ARBITRARY_DEFAULT = -123123;
+   */
+  ARBITRARY_DEFAULT = -123123,
+
+  /**
+   * @generated from enum value: ARBITRARY_1 = -123;
+   */
+  ARBITRARY_1 = -123,
+
+  /**
+   * @generated from enum value: ARBITRARY_2 = 213;
+   */
+  ARBITRARY_2 = 213,
+
+  /**
+   * @generated from enum value: ARBITRARY_3 = 213213;
+   */
+  ARBITRARY_3 = 213213,
+
+  /**
+   * @generated from enum value: ARBITRARY_MIN = -2147483648;
+   */
+  ARBITRARY_MIN = -2147483648,
+
+  /**
+   * @generated from enum value: ARBITRARY_MAX = 2147483647;
+   */
+  ARBITRARY_MAX = 2147483647,
+}
+
+/**
+ * This message contains different kind of bool fields to exercise the different
+ * parsers in table-drived.
+ *
+ * @generated from message protobuf_unittest.BoolParseTester
+ */
+export declare class BoolParseTester extends Message<BoolParseTester> {
+  /**
+   * @generated from field: optional bool optional_bool_lowfield = 1;
+   */
+  optionalBoolLowfield?: boolean;
+
+  /**
+   * @generated from field: optional bool optional_bool_midfield = 1001;
+   */
+  optionalBoolMidfield?: boolean;
+
+  /**
+   * @generated from field: optional bool optional_bool_hifield = 1000001;
+   */
+  optionalBoolHifield?: boolean;
+
+  /**
+   * @generated from field: repeated bool repeated_bool_lowfield = 2;
+   */
+  repeatedBoolLowfield: boolean[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_midfield = 1002;
+   */
+  repeatedBoolMidfield: boolean[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_hifield = 1000002;
+   */
+  repeatedBoolHifield: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_lowfield = 3 [packed = true];
+   */
+  packedBoolLowfield: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_midfield = 1003 [packed = true];
+   */
+  packedBoolMidfield: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_hifield = 1000003 [packed = true];
+   */
+  packedBoolHifield: boolean[];
+
+  /**
+   * An arbitrary field we can append to to break the runs of repeated fields.
+   *
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+
+  constructor(data?: PartialMessage<BoolParseTester>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.BoolParseTester";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BoolParseTester;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BoolParseTester;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BoolParseTester;
+
+  static equals(a: BoolParseTester | PlainMessage<BoolParseTester> | undefined, b: BoolParseTester | PlainMessage<BoolParseTester> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.Int32ParseTester
+ */
+export declare class Int32ParseTester extends Message<Int32ParseTester> {
+  /**
+   * @generated from field: optional int32 optional_int32_lowfield = 1;
+   */
+  optionalInt32Lowfield?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_midfield = 1001;
+   */
+  optionalInt32Midfield?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_hifield = 1000001;
+   */
+  optionalInt32Hifield?: number;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_lowfield = 2;
+   */
+  repeatedInt32Lowfield: number[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_midfield = 1002;
+   */
+  repeatedInt32Midfield: number[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_hifield = 1000002;
+   */
+  repeatedInt32Hifield: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_lowfield = 3 [packed = true];
+   */
+  packedInt32Lowfield: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_midfield = 1003 [packed = true];
+   */
+  packedInt32Midfield: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_hifield = 1000003 [packed = true];
+   */
+  packedInt32Hifield: number[];
+
+  /**
+   * An arbitrary field we can append to to break the runs of repeated fields.
+   *
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+
+  constructor(data?: PartialMessage<Int32ParseTester>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.Int32ParseTester";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Int32ParseTester;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Int32ParseTester;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int32ParseTester;
+
+  static equals(a: Int32ParseTester | PlainMessage<Int32ParseTester> | undefined, b: Int32ParseTester | PlainMessage<Int32ParseTester> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.Int64ParseTester
+ */
+export declare class Int64ParseTester extends Message<Int64ParseTester> {
+  /**
+   * @generated from field: optional int64 optional_int64_lowfield = 1;
+   */
+  optionalInt64Lowfield?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_midfield = 1001;
+   */
+  optionalInt64Midfield?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_hifield = 1000001;
+   */
+  optionalInt64Hifield?: bigint;
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_lowfield = 2;
+   */
+  repeatedInt64Lowfield: bigint[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_midfield = 1002;
+   */
+  repeatedInt64Midfield: bigint[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_hifield = 1000002;
+   */
+  repeatedInt64Hifield: bigint[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_lowfield = 3 [packed = true];
+   */
+  packedInt64Lowfield: bigint[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_midfield = 1003 [packed = true];
+   */
+  packedInt64Midfield: bigint[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_hifield = 1000003 [packed = true];
+   */
+  packedInt64Hifield: bigint[];
+
+  /**
+   * An arbitrary field we can append to to break the runs of repeated fields.
+   *
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+
+  constructor(data?: PartialMessage<Int64ParseTester>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.Int64ParseTester";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Int64ParseTester;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Int64ParseTester;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Int64ParseTester;
+
+  static equals(a: Int64ParseTester | PlainMessage<Int64ParseTester> | undefined, b: Int64ParseTester | PlainMessage<Int64ParseTester> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.StringParseTester
+ */
+export declare class StringParseTester extends Message<StringParseTester> {
+  /**
+   * @generated from field: optional string optional_string_lowfield = 1;
+   */
+  optionalStringLowfield?: string;
+
+  /**
+   * @generated from field: optional string optional_string_midfield = 1001;
+   */
+  optionalStringMidfield?: string;
+
+  /**
+   * @generated from field: optional string optional_string_hifield = 1000001;
+   */
+  optionalStringHifield?: string;
+
+  /**
+   * @generated from field: repeated string repeated_string_lowfield = 2;
+   */
+  repeatedStringLowfield: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_midfield = 1002;
+   */
+  repeatedStringMidfield: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_hifield = 1000002;
+   */
+  repeatedStringHifield: string[];
+
+  constructor(data?: PartialMessage<StringParseTester>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.StringParseTester";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StringParseTester;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StringParseTester;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StringParseTester;
+
+  static equals(a: StringParseTester | PlainMessage<StringParseTester> | undefined, b: StringParseTester | PlainMessage<StringParseTester> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.BadFieldNames
+ */
+export declare class BadFieldNames extends Message<BadFieldNames> {
+  /**
+   * @generated from field: optional int32 OptionalInt32 = 1;
+   */
+  OptionalInt32?: number;
+
+  /**
+   * @generated from field: optional int32 for = 2;
+   */
+  for?: number;
+
+  constructor(data?: PartialMessage<BadFieldNames>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.BadFieldNames";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BadFieldNames;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BadFieldNames;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BadFieldNames;
+
+  static equals(a: BadFieldNames | PlainMessage<BadFieldNames> | undefined, b: BadFieldNames | PlainMessage<BadFieldNames> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.RedactedFields
+ */
+export declare class RedactedFields extends Message<RedactedFields> {
+  /**
+   * @generated from field: optional string optional_redacted_string = 1;
+   */
+  optionalRedactedString?: string;
+
+  constructor(data?: PartialMessage<RedactedFields>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.RedactedFields";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RedactedFields;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RedactedFields;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RedactedFields;
+
+  static equals(a: RedactedFields | PlainMessage<RedactedFields> | undefined, b: RedactedFields | PlainMessage<RedactedFields> | undefined): boolean;
 }
 

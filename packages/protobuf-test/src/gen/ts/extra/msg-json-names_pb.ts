@@ -39,7 +39,7 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
   a = "";
 
   /**
-   * @generated from field: string b = 4 [json_name = "sameJsonName"];
+   * @generated from field: string b = 4;
    */
   b = "";
 
@@ -49,7 +49,7 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
   c = "";
 
   /**
-   * @generated from field: string d = 6 [json_name = "c"];
+   * @generated from field: string d = 6;
    */
   d = "";
 
@@ -74,9 +74,9 @@ export class JsonNamesMessage extends Message<JsonNamesMessage> {
     { no: 1, name: "scalar_field", jsonName: "scalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "repeated_scalar_field", jsonName: "repeatedScalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 3, name: "a", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "b", jsonName: "sameJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "d", jsonName: "c", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "d", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "e", jsonName: "", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "f", jsonName: "@type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);

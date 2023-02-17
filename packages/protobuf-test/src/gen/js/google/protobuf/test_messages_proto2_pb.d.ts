@@ -1113,3 +1113,37 @@ export declare class OneStringProto2 extends Message<OneStringProto2> {
   static equals(a: OneStringProto2 | PlainMessage<OneStringProto2> | undefined, b: OneStringProto2 | PlainMessage<OneStringProto2> | undefined): boolean;
 }
 
+/**
+ * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
+ */
+export declare class ProtoWithKeywords extends Message<ProtoWithKeywords> {
+  /**
+   * @generated from field: optional int32 inline = 1;
+   */
+  inline?: number;
+
+  /**
+   * @generated from field: optional string concept = 2;
+   */
+  concept?: string;
+
+  /**
+   * @generated from field: repeated string requires = 3;
+   */
+  requires: string[];
+
+  constructor(data?: PartialMessage<ProtoWithKeywords>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.ProtoWithKeywords";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProtoWithKeywords;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProtoWithKeywords;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProtoWithKeywords;
+
+  static equals(a: ProtoWithKeywords | PlainMessage<ProtoWithKeywords> | undefined, b: ProtoWithKeywords | PlainMessage<ProtoWithKeywords> | undefined): boolean;
+}
+

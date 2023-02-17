@@ -83,7 +83,6 @@ export class Api extends Message<Api> {
    * experimental, non-GA interfaces.
    *
    *
-   *
    * @generated from field: string version = 4;
    */
   version = "";
