@@ -1,0 +1,2 @@
+Recommended.ValueRejectInfNumberValue.JsonOutput
+Recommended.ValueRejectNanNumberValue.JsonOutput

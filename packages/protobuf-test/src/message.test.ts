@@ -210,15 +210,6 @@ describe("PlainMessage", () => {
 });
 
 describe("Message.fromJsonString()", function () {
-  test("json", () => {
-    // #ERROR, test=Required.Proto3.JsonInput.DurationNegativeNanos.JsonOutput: Output was not equivalent to reference message: modified: optional_duration.nanos: -500000000 -> 500000000
-    // , request=json_payload: "{\"optionalDuration\": \"-0.5s\"}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalDuration\":\"0.500s\"}"
-    const msg = TestAllTypesProto3.fromJson({
-      optionalDuration: "-0.5s",
-    });
-    expect(msg.optionalDuration).toEqual("barf");
-  });
-
   test("raises wrapped error on parse error", () => {
     // The regex is so that this test passes in Node 18 and Node 19.
     // The error message text changed across major versions.

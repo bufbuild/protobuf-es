@@ -22,15 +22,30 @@ describe("google.protobuf.Duration", () => {
     { Duration: TS_Duration, name: `(generated ts)` },
     { Duration: JS_Duration, name: `(generated js)` },
   ])("$name", ({ Duration }) => {
+    // json representations
     const json3s = "3s";
     const json3s1ms = "3.000001s";
     const json3s1ns = "3.000000001s";
+    const jsonneg3s1ns = "-3.000000001s";
+    const json0s5ns = "0.000000005s";
+    const jsonneg0s5ns = "-0.000000005s";
+
+    // durations
     const dura3s = new Duration({ seconds: protoInt64.parse(3), nanos: 0 });
     const dura3s1ms = new Duration({
       seconds: protoInt64.parse(3),
       nanos: 1000,
     });
     const dura3s1ns = new Duration({ seconds: protoInt64.parse(3), nanos: 1 });
+    const duraneg3s1ns = new Duration({
+      seconds: protoInt64.parse(-3),
+      nanos: -1,
+    });
+    const dura0s5ns = new Duration({ seconds: protoInt64.parse(0), nanos: 5 });
+    const duraneg0s5ns = new Duration({
+      seconds: protoInt64.parse(0),
+      nanos: -5,
+    });
 
     test("encodes 3s to JSON", () => {
       expect(dura3s.toJson()).toBe(json3s);
@@ -41,6 +56,15 @@ describe("google.protobuf.Duration", () => {
     test("encodes 3s 1ns to JSON", () => {
       expect(dura3s1ns.toJson()).toBe(json3s1ns);
     });
+    test("encodes -3s 1ns to JSON", () => {
+      expect(duraneg3s1ns.toJson()).toBe(jsonneg3s1ns);
+    });
+    test("encodes 0s 5ns to JSON", () => {
+      expect(dura0s5ns.toJson()).toBe(json0s5ns);
+    });
+    test("encodes 0s -5ns to JSON", () => {
+      expect(duraneg0s5ns.toJson()).toBe(jsonneg0s5ns);
+    });
 
     test("decodes 3s from JSON", () => {
       expect(Duration.fromJson(json3s)).toStrictEqual(dura3s);
@@ -50,6 +74,15 @@ describe("google.protobuf.Duration", () => {
     });
     test("decodes 3s 1ns from JSON", () => {
       expect(Duration.fromJson(json3s1ns)).toStrictEqual(dura3s1ns);
+    });
+    test("decodes -3s 1ns from JSON", () => {
+      expect(Duration.fromJson(jsonneg3s1ns)).toStrictEqual(duraneg3s1ns);
+    });
+    test("decodes 0s 5ns from JSON", () => {
+      expect(Duration.fromJson(json0s5ns)).toStrictEqual(dura0s5ns);
+    });
+    test("decodes 0s -5ns from JSON", () => {
+      expect(Duration.fromJson(jsonneg0s5ns)).toStrictEqual(duraneg0s5ns);
     });
   });
 });
