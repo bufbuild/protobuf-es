@@ -29,5 +29,3 @@ Required.Proto3.JsonInput.Int64FieldTooLarge
 Required.Proto3.JsonInput.Int64FieldTooSmall
 Required.Proto3.JsonInput.Uint64FieldTooLarge
 
-Recommended.ValueRejectInfNumberValue.JsonOutput
-Recommended.ValueRejectNanNumberValue.JsonOutput

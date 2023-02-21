@@ -1,2 +1,0 @@
-Required.Proto3.JsonInput.DurationMinValue.JsonOutput
-Required.Proto3.JsonInput.DurationRepeatedValue.JsonOutput

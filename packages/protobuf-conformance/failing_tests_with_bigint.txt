@@ -6,5 +6,3 @@ Recommended.Proto2.JsonInput.FieldNameExtension.Validator
 #ERROR, test=Recommended.ValueRejectNanNumberValue.JsonOutput: Should have failed to serialize, but didn't., request=protobuf_payload: "\222\023\t\021\000\000\000\000\000\000\370\177" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalValue\":null}"
 
 #ERROR, test=Recommended.ValueRejectInfNumberValue.JsonOutput: Should have failed to serialize, but didn't., request=protobuf_payload: "\222\023\t\021\000\000\000\000\000\000\360\177" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalValue\":null}"
-Recommended.ValueRejectInfNumberValue.JsonOutput
-Recommended.ValueRejectNanNumberValue.JsonOutput

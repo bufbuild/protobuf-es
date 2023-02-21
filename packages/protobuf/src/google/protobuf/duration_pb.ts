@@ -126,12 +126,11 @@ export class Duration extends Message<Duration> {
     if (longSeconds > 315576000000 || longSeconds < -315576000000) {
       throw new Error(`cannot decode google.protobuf.Duration from JSON: ${proto3.json.debug(json)}`);
     }
-
     this.seconds = protoInt64.parse(longSeconds);
     if (typeof match[2] == "string") {
-      let nanosStr = match[2] + "0".repeat(9 - match[2].length);
+      const nanosStr = match[2] + "0".repeat(9 - match[2].length);
       this.nanos = parseInt(nanosStr);
-      if (longSeconds < protoInt64.zero || match[1] === "-0") {
+      if (longSeconds < protoInt64.zero || match[1] === '-0') {
         this.nanos = -this.nanos;
       }
     }
@@ -152,9 +151,8 @@ export class Duration extends Message<Duration> {
         nanosStr = nanosStr.substring(0, 6);
       }
       text += "." + nanosStr;
-        console.log(this.nanos);
-      if (this.nanos < 0) {
-        text = "-" + text;
+      if (this.nanos < 0 && this.seconds === protoInt64.zero) {
+          text = "-" + text;
       }
     }
     return text + "s";
