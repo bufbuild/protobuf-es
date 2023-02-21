@@ -5,9 +5,12 @@ Recommended.Proto2.JsonInput.FieldNameExtension.Validator
 # New in v22.0
 # ERROR, test=Required.Proto3.JsonInput.DurationNegativeNanos.ProtobufOutput: Output was not equivalent to reference message: modified: optional_duration.nanos: -500000000 -> 500000000
 , request=json_payload: "{\"optionalDuration\": \"-0.5s\"}" requested_output_format: PROTOBUF message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=protobuf_payload: "\352\022\006\020\200\312\265\356\001"
+
 #ERROR, test=Required.Proto3.JsonInput.DurationNegativeNanos.JsonOutput: Output was not equivalent to reference message: modified: optional_duration.nanos: -500000000 -> 500000000
 , request=json_payload: "{\"optionalDuration\": \"-0.5s\"}" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalDuration\":\"0.500s\"}"
+
 #ERROR, test=Recommended.ValueRejectNanNumberValue.JsonOutput: Should have failed to serialize, but didn't., request=protobuf_payload: "\222\023\t\021\000\000\000\000\000\000\370\177" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalValue\":null}"
+
 #ERROR, test=Recommended.ValueRejectInfNumberValue.JsonOutput: Should have failed to serialize, but didn't., request=protobuf_payload: "\222\023\t\021\000\000\000\000\000\000\360\177" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalValue\":null}"
 Recommended.ValueRejectInfNumberValue.JsonOutput
 Recommended.ValueRejectNanNumberValue.JsonOutput
