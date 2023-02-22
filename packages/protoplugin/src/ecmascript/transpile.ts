@@ -45,7 +45,7 @@ const defaultOptions: ts.CompilerOptions = {
 
   // Language and Environment
   lib: [],
-  moduleDetection: ts.ModuleDetectionKind.Force,
+  moduleDetection: "force",
   target: ts.ScriptTarget.ES2017,
 
   // Completeness
