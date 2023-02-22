@@ -92,26 +92,30 @@ describe("google.protobuf.Value", () => {
       const got = Value.fromBinary(want.toBinary());
       expect(got).toStrictEqual(want);
     });
-    test("fails on NaN", () => {
-      // const val = Value.fromJson(NaN);
-      // #ERROR, test=Recommended.ValueRejectNanNumberValue.JsonOutput: Should have failed to serialize, but didn't., request=protobuf_payload: "\222\023\t\021\000\000\000\000\000\000\370\177" requested_output_format: JSON message_type: "protobuf_test_messages.proto3.TestAllTypesProto3" test_category: JSON_TEST, response=json_payload: "{\"optionalValue\":null}"
-      //
-      // const want = new Value({
-      //   kind: { case: "numberValue", value: 0 },
-      // });
+    test("numberValue must be finite", () => {
       expect(() => {
-        const bina = new Uint8Array([17, 0, 0, 0, 0, 0, 0, 248, 127]);
-        const val = Value.fromBinary(bina);
-        val.toJson();
-      }).toThrowError("google.protobuf.Value cannot be NaN");
-      // const bin = Value.fromJson(NaN);
-      // console.log(bin.toBinary());
-      // console.log(Value.fromBinary(new Uint8Array(["222\023"])));
-      // const bytes
-      // Value.fromBinary();
-      // const want = new Value({
-      // kind: { case: "numberValue", value: 5 },
-      // });
+        new Value({
+          kind: { case: "numberValue", value: NaN },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Infinity },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
     });
   });
 });

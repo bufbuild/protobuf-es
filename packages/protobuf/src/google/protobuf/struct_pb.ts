@@ -188,8 +188,8 @@ export class Value extends Message<Value> {
       case "boolValue":
         return this.kind.value;
       case "numberValue":
-        if (Number.isNaN(this.kind.value)) {
-          throw new Error("google.protobuf.Value cannot be NaN");
+        if (!isFinite(this.kind.value)) {
+          throw new Error("google.protobuf.Value cannot be NaN or Infinity");
         }
         return this.kind.value;
       case "stringValue":
@@ -204,7 +204,7 @@ export class Value extends Message<Value> {
   override fromJson(json: JsonValue, options?: Partial<JsonReadOptions>): this {
     switch (typeof json) {
       case "number":
-        if (Number.isNaN(json)) {
+        if (!isFinite(json)) {
             throw new Error("cannot decode google.protobuf.Value from JSON " + proto3.json.debug(json));
         }
         this.kind = { case: "numberValue", value: json };

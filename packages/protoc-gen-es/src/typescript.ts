@@ -418,8 +418,8 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`      case "`, localName(ref.boolValue), `":`)
       f.print(`        return this.`, localName(ref.kind), `.value;`);
       f.print(`      case "`, localName(ref.numberValue), `":`)
-      f.print(`        if (Number.isNaN(this.`, localName(ref.kind), `.value)) {`);
-      f.print(`          throw new Error("google.protobuf.Value cannot be NaN");`);
+      f.print(`        if (!isFinite(this.`, localName(ref.kind), `.value)) {`);
+      f.print(`          throw new Error("google.protobuf.Value cannot be NaN or Infinity");`);
       f.print(`        }`);
       f.print(`        return this.`, localName(ref.kind), `.value;`);
       f.print(`      case "`, localName(ref.stringValue), `":`)
@@ -434,7 +434,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  override fromJson(json: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): this {")
       f.print("    switch (typeof json) {")
       f.print(`      case "number":`)
-      f.print(`        if (Number.isNaN(json)) {`);
+      f.print(`        if (!isFinite(json)) {`);
       f.print(`            throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print(`        }`);
       f.print(`        this.kind = { case: "`, localName(ref.numberValue), `", value: json };`)
