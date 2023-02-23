@@ -185,7 +185,7 @@ test-ts-compat: $(GEN)/protobuf-test node_modules
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
 		dirname=packages/protobuf-test/typescript ; \
 		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit || exit ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --outDir $$dirname/out/$$formatted || exit ; \
 	done
 
 .PHONY: lint
