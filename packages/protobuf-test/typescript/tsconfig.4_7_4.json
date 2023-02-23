@@ -12,6 +12,8 @@
     // compatible, set the skipLibCheck flag to false explicitly.
     "skipLibCheck": false,
     // To test forward-compatibility, set to NodeNext
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "declarationMap": true
   }
 }
