@@ -12,6 +12,10 @@
     // compatible, set the skipLibCheck flag to false explicitly.
     "skipLibCheck": false,
     // To test forward-compatibility, set to NodeNext
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    // Certain errors are only triggered by actually emitting declaration files,
+    // see https://github.com/bufbuild/protobuf-es/pull/398
+    "declaration": true,
+    "declarationMap": true
   }
 }

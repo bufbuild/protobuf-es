@@ -183,9 +183,9 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 test-ts-compat: $(GEN)/protobuf-test node_modules 
 	@for number in $(TS_VERSIONS) ; do \
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		dirname=packages/protobuf-test/typescript ; \
+		dirname=packages/protobuf-test ; \
 		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit || exit ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/typescript/tsconfig.$${formatted}.json --outDir $$dirname/dist/typescript/$$formatted || exit ; \
 	done
 
 .PHONY: lint

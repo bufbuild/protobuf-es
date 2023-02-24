@@ -74,7 +74,7 @@ export class BufAlphaRegistryV1Alpha1PluginVersionMapping extends Message<BufAlp
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionMapping";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -129,7 +129,7 @@ export class BufAlphaRegistryV1Alpha1PluginConfig extends Message<BufAlphaRegist
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "plugin_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -174,7 +174,7 @@ export class BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary extends Message
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },

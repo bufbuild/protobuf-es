@@ -109,7 +109,7 @@ export class MyMessage extends Message<MyMessage> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "proto2_preserve_unknown_enum_unittest.MyMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "e", kind: "enum", T: proto2.getEnumType(MyEnum), opt: true },

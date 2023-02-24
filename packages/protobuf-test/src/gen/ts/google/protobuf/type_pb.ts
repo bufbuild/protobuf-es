@@ -116,7 +116,7 @@ export class Type extends Message<Type> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Type";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -227,7 +227,7 @@ export class Field extends Message<Field> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Field";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "kind", kind: "enum", T: proto3.getEnumType(Field_Kind) },
@@ -509,7 +509,7 @@ export class Enum extends Message<Enum> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Enum";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -568,7 +568,7 @@ export class EnumValue extends Message<EnumValue> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.EnumValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -625,7 +625,7 @@ export class Option extends Message<Option> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Option";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },

@@ -61,7 +61,7 @@ export class TestLiteImportsNonlite extends Message<TestLiteImportsNonlite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestLiteImportsNonlite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true },

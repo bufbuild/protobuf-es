@@ -69,7 +69,7 @@ export class Reference extends Message<Reference> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.Reference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "branch", kind: "message", T: RepositoryBranch, oneof: "reference" },
@@ -125,7 +125,7 @@ export class GetReferenceByNameRequest extends Message<GetReferenceByNameRequest
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -164,7 +164,7 @@ export class GetReferenceByNameResponse extends Message<GetReferenceByNameRespon
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetReferenceByNameResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "message", T: Reference },

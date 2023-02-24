@@ -52,7 +52,7 @@ export class TestMessageSet extends Message<TestMessageSet> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "proto2_wireformat_unittest.TestMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -88,7 +88,7 @@ export class TestMessageSetWireFormatContainer extends Message<TestMessageSetWir
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "proto2_wireformat_unittest.TestMessageSetWireFormatContainer";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true },

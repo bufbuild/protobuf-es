@@ -89,7 +89,7 @@ export class RepositoryCommit extends Message<RepositoryCommit> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryCommit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -164,7 +164,7 @@ export class ListRepositoryCommitsByBranchRequest extends Message<ListRepository
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -211,7 +211,7 @@ export class ListRepositoryCommitsByBranchResponse extends Message<ListRepositor
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByBranchResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true },
@@ -280,7 +280,7 @@ export class ListRepositoryCommitsByReferenceRequest extends Message<ListReposit
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -327,7 +327,7 @@ export class ListRepositoryCommitsByReferenceResponse extends Message<ListReposi
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryCommitsByReferenceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_commits", kind: "message", T: RepositoryCommit, repeated: true },
@@ -381,7 +381,7 @@ export class GetRepositoryCommitByReferenceRequest extends Message<GetRepository
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -420,7 +420,7 @@ export class GetRepositoryCommitByReferenceResponse extends Message<GetRepositor
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitByReferenceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit },
@@ -480,7 +480,7 @@ export class GetRepositoryCommitBySequenceIdRequest extends Message<GetRepositor
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -520,7 +520,7 @@ export class GetRepositoryCommitBySequenceIdResponse extends Message<GetReposito
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetRepositoryCommitBySequenceIdResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_commit", kind: "message", T: RepositoryCommit },

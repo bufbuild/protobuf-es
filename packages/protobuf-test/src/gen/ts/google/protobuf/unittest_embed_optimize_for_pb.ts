@@ -64,7 +64,7 @@ export class TestEmbedOptimizedForSize extends Message<TestEmbedOptimizedForSize
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestEmbedOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true },
