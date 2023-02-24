@@ -5052,7 +5052,7 @@ export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestEnormousDescriptor";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "long_field_name_is_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "long default value is also loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong" },

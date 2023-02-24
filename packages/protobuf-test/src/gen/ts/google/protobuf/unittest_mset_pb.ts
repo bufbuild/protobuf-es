@@ -57,7 +57,7 @@ export class TestMessageSetContainer extends Message<TestMessageSetContainer> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetContainer";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "message_set", kind: "message", T: TestMessageSet, opt: true },
@@ -99,7 +99,7 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.NestedTestMessageSetContainer";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "container", kind: "message", T: TestMessageSetContainer, opt: true },
@@ -147,7 +147,7 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 15, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -186,7 +186,7 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -228,7 +228,7 @@ export class NestedTestInt extends Message<NestedTestInt> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.NestedTestInt";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "a", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
@@ -266,7 +266,7 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
@@ -305,7 +305,7 @@ export class RawMessageSet extends Message<RawMessageSet> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
@@ -347,7 +347,7 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },

@@ -870,7 +870,7 @@ export class TestAllTypesProto3 extends Message<TestAllTypesProto3> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_test_messages.proto3.TestAllTypesProto3";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1140,7 +1140,7 @@ export class TestAllTypesProto3_NestedMessage extends Message<TestAllTypesProto3
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1178,7 +1178,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_test_messages.proto3.ForeignMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1210,7 +1210,7 @@ export class NullHypothesisProto3 extends Message<NullHypothesisProto3> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_test_messages.proto3.NullHypothesisProto3";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1241,7 +1241,7 @@ export class EnumOnlyProto3 extends Message<EnumOnlyProto3> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_test_messages.proto3.EnumOnlyProto3";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

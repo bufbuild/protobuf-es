@@ -68,7 +68,7 @@ export class ListAuditLogsRequest extends Message<ListAuditLogsRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "page_size", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
@@ -116,7 +116,7 @@ export class ListAuditLogsResponse extends Message<ListAuditLogsResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListAuditLogsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "audit_logs", kind: "message", T: Event, repeated: true },

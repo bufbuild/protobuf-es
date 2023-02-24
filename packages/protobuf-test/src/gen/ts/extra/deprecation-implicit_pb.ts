@@ -29,7 +29,7 @@ export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

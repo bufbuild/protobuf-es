@@ -103,7 +103,7 @@ export class ScalarValuesMessage extends Message<ScalarValuesMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ScalarValuesMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
@@ -224,7 +224,7 @@ export class RepeatedScalarValuesMessage extends Message<RepeatedScalarValuesMes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.RepeatedScalarValuesMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
