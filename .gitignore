@@ -1,6 +1,5 @@
 node_modules
 /packages/*/dist
-/packages/protobuf-test/typescript/out
 /packages/protobuf-test/descriptorset.bin
 /packages/protoplugin-test/descriptorset.bin
 /.tmp
