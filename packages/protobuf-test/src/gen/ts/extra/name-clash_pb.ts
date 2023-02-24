@@ -28,7 +28,7 @@ export class ReservedPropertyNames extends Message$1<ReservedPropertyNames> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ReservedPropertyNames";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -181,7 +181,7 @@ export class ReservedPropertyNames_BuiltIn extends Message$1<ReservedPropertyNam
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.BuiltIn";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -279,7 +279,7 @@ export class ReservedPropertyNames_Runtime extends Message$1<ReservedPropertyNam
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.Runtime";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -348,7 +348,7 @@ export class ReservedPropertyNames_OneofBultIn extends Message$1<ReservedPropert
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.OneofBultIn";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
@@ -442,7 +442,7 @@ export class ReservedPropertyNames_OneofRuntime extends Message$1<ReservedProper
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ReservedPropertyNames.OneofRuntime";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
@@ -484,7 +484,7 @@ export class interface$ extends Message$1<interface$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.interface";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -517,7 +517,7 @@ export class function$ extends Message$1<function$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.function";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -550,7 +550,7 @@ export class instanceof$ extends Message$1<instanceof$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.instanceof";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -583,7 +583,7 @@ export class switch$ extends Message$1<switch$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.switch";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -616,7 +616,7 @@ export class case$ extends Message$1<case$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.case";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -649,7 +649,7 @@ export class return$ extends Message$1<return$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.return";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -682,7 +682,7 @@ export class Message extends Message$1<Message> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Message";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -715,7 +715,7 @@ export class PartialMessage extends Message$1<PartialMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.PartialMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -748,7 +748,7 @@ export class PlainMessage extends Message$1<PlainMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.PlainMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -793,7 +793,7 @@ export class Error extends Message$1<Error> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Error";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -828,7 +828,7 @@ export class Object$ extends Message$1<Object$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Object";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -859,7 +859,7 @@ export class object$ extends Message$1<object$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.object";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -892,7 +892,7 @@ export class array extends Message$1<array> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.array";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -925,7 +925,7 @@ export class string$ extends Message$1<string$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.string";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -958,7 +958,7 @@ export class number$ extends Message$1<number$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.number";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -991,7 +991,7 @@ export class boolean$ extends Message$1<boolean$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.boolean";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1024,7 +1024,7 @@ export class bigint$ extends Message$1<bigint$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.bigint";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1057,7 +1057,7 @@ export class Uint8Array$ extends Message$1<Uint8Array$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Uint8Array";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1090,7 +1090,7 @@ export class Array extends Message$1<Array> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Array";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1123,7 +1123,7 @@ export class String extends Message$1<String> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.String";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1156,7 +1156,7 @@ export class Number extends Message$1<Number> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Number";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1189,7 +1189,7 @@ export class Boolean extends Message$1<Boolean> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Boolean";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1222,7 +1222,7 @@ export class BigInt extends Message$1<BigInt> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.BigInt";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1253,7 +1253,7 @@ export class ClashParent extends Message$1<ClashParent> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ClashParent";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1286,7 +1286,7 @@ export class ClashParent_ClashChild extends Message$1<ClashParent_ClashChild> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ClashParent.ClashChild";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1359,7 +1359,7 @@ export class NoClashFields extends Message$1<NoClashFields> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.NoClashFields";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1449,7 +1449,7 @@ export class NoClashOneof extends Message$1<NoClashOneof> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.NoClashOneof";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
@@ -1491,7 +1491,7 @@ export class NoClashOneofADT extends Message$1<NoClashOneofADT> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.NoClashOneofADT";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "m", kind: "message", T: NoClashOneofADT_M },
@@ -1533,7 +1533,7 @@ export class NoClashOneofADT_M extends Message$1<NoClashOneofADT_M> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.NoClashOneofADT.M";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1568,7 +1568,7 @@ export class NoClashEnumWrap extends Message$1<NoClashEnumWrap> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.NoClashEnumWrap";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

@@ -110,7 +110,7 @@ export class RepositorySearchResult extends Message<RepositorySearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositorySearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -156,7 +156,7 @@ export class OrganizationSearchResult extends Message<OrganizationSearchResult> 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.OrganizationSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -204,7 +204,7 @@ export class UserSearchResult extends Message<UserSearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.UserSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -253,7 +253,7 @@ export class TeamSearchResult extends Message<TeamSearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TeamSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -317,7 +317,7 @@ export class PluginSearchResult extends Message<PluginSearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PluginSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -383,7 +383,7 @@ export class TemplateSearchResult extends Message<TemplateSearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.TemplateSearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -460,7 +460,7 @@ export class SearchResult extends Message<SearchResult> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchResult";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository", kind: "message", T: RepositorySearchResult, oneof: "item" },
@@ -525,7 +525,7 @@ export class SearchRequest extends Message<SearchRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -572,7 +572,7 @@ export class SearchResponse extends Message<SearchResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SearchResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "search_results", kind: "message", T: SearchResult, repeated: true },

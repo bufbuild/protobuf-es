@@ -60,7 +60,7 @@ export class ImportedMessage extends Message<ImportedMessage> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.lazy_imports.ImportedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "lazy_message", kind: "message", T: LazyMessage, opt: true },
@@ -92,7 +92,7 @@ export class MessageCustomOption extends Message<MessageCustomOption> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -123,7 +123,7 @@ export class MessageCustomOption2 extends Message<MessageCustomOption2> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.lazy_imports.MessageCustomOption2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);

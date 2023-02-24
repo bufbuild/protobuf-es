@@ -48,7 +48,7 @@ export class FileDescriptorSet extends Message<FileDescriptorSet> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FileDescriptorSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "file", kind: "message", T: FileDescriptorProto, repeated: true },
@@ -163,7 +163,7 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FileDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -261,7 +261,7 @@ export class DescriptorProto extends Message<DescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.DescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -321,7 +321,7 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.DescriptorProto.ExtensionRange";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -373,7 +373,7 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.DescriptorProto.ReservedRange";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -413,7 +413,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.ExtensionRangeOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
@@ -549,7 +549,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FieldDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -769,7 +769,7 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.OneofDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -836,7 +836,7 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.EnumDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -893,7 +893,7 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.EnumDescriptorProto.EnumReservedRange";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -943,7 +943,7 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.EnumValueDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -994,7 +994,7 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.ServiceDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1067,7 +1067,7 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.MethodDescriptorProto";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1290,7 +1290,7 @@ export class FileOptions extends Message<FileOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FileOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "java_package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1455,7 +1455,7 @@ export class MessageOptions extends Message<MessageOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.MessageOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "message_set_wire_format", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -1602,7 +1602,7 @@ export class FieldOptions extends Message<FieldOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FieldOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "ctype", kind: "enum", T: proto2.getEnumType(FieldOptions_CType), opt: true, default: FieldOptions_CType.STRING },
@@ -1708,7 +1708,7 @@ export class OneofOptions extends Message<OneofOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.OneofOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
@@ -1765,7 +1765,7 @@ export class EnumOptions extends Message<EnumOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.EnumOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2, name: "allow_alias", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -1816,7 +1816,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.EnumValueOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -1866,7 +1866,7 @@ export class ServiceOptions extends Message<ServiceOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.ServiceOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -1921,7 +1921,7 @@ export class MethodOptions extends Message<MethodOptions> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.MethodOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -2034,7 +2034,7 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.UninterpretedOption";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2, name: "name", kind: "message", T: UninterpretedOption_NamePart, repeated: true },
@@ -2088,7 +2088,7 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.UninterpretedOption.NamePart";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2173,7 +2173,7 @@ export class SourceCodeInfo extends Message<SourceCodeInfo> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.SourceCodeInfo";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "location", kind: "message", T: SourceCodeInfo_Location, repeated: true },
@@ -2308,7 +2308,7 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.SourceCodeInfo.Location";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -2356,7 +2356,7 @@ export class GeneratedCodeInfo extends Message<GeneratedCodeInfo> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.GeneratedCodeInfo";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "annotation", kind: "message", T: GeneratedCodeInfo_Annotation, repeated: true },
@@ -2420,7 +2420,7 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.GeneratedCodeInfo.Annotation";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },

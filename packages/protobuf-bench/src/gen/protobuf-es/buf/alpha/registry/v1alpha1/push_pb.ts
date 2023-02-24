@@ -67,7 +67,7 @@ export class PushRequest extends Message<PushRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PushRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -109,7 +109,7 @@ export class PushResponse extends Message<PushResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.PushResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 5, name: "local_module_pin", kind: "message", T: LocalModulePin },

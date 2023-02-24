@@ -438,7 +438,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestAllTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -586,7 +586,7 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestAllTypes.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -688,7 +688,7 @@ export class TestPackedTypes extends Message<TestPackedTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestPackedTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -805,7 +805,7 @@ export class TestUnpackedTypes extends Message<TestUnpackedTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestUnpackedTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: false },
@@ -867,7 +867,7 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.NestedTestAllTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes },
@@ -909,7 +909,7 @@ export class ForeignMessage extends Message<ForeignMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.ForeignMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -943,7 +943,7 @@ export class TestEmptyMessage extends Message<TestEmptyMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestEmptyMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -976,7 +976,7 @@ export class TestPickleNestedMessage extends Message<TestPickleNestedMessage> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestPickleNestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -1012,7 +1012,7 @@ export class TestPickleNestedMessage_NestedMessage extends Message<TestPickleNes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestPickleNestedMessage.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1049,7 +1049,7 @@ export class TestPickleNestedMessage_NestedMessage_NestedNestedMessage extends M
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cc", kind: "scalar", T: 5 /* ScalarType.INT32 */ },

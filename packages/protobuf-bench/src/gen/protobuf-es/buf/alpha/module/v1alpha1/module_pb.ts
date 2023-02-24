@@ -75,7 +75,7 @@ export class Module extends Message<Module> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.Module";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "files", kind: "message", T: ModuleFile, repeated: true },
@@ -128,7 +128,7 @@ export class ModuleFile extends Message<ModuleFile> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModuleFile";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -185,7 +185,7 @@ export class ModuleReference extends Message<ModuleReference> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModuleReference";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -257,7 +257,7 @@ export class ModulePin extends Message<ModulePin> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.module.v1alpha1.ModulePin";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */ },
