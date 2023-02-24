@@ -86,7 +86,7 @@ export class Version extends Message<Version> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.compiler.Version";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "major", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -166,7 +166,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorRequest";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "file_to_generate", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
@@ -230,7 +230,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorResponse";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -364,7 +364,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.compiler.CodeGeneratorResponse.File";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },

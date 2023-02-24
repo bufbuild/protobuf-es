@@ -79,7 +79,7 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest_import.ImportMessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },

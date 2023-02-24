@@ -952,7 +952,7 @@ export class ActionBufAlphaRegistryV1Alpha1DownloadInfo extends Message<ActionBu
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DownloadInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -992,7 +992,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetImageInfo extends Message<ActionBu
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetImageInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1032,7 +1032,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo extends Messag
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateOrganizationInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1072,7 +1072,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo extends Messag
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteOrganizationInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1112,7 +1112,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo extends 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteOrganizationByNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1163,7 +1163,7 @@ export class ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo extends Mes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1AddOrganizationMemberInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1216,7 +1216,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo extends 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateOrganizationMemberInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1263,7 +1263,7 @@ export class ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo extends 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1RemoveOrganizationMemberInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1319,7 +1319,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo extend
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateOrganizationSettingsInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1372,7 +1372,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreatePluginInfo extends Message<Acti
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreatePluginInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1419,7 +1419,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeletePluginInfo extends Message<Acti
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeletePluginInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1460,7 +1460,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo extends Messag
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetTemplateVersionInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1516,7 +1516,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo extends Message<Ac
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTemplateInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1564,7 +1564,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo extends Message<Ac
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteTemplateInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1621,7 +1621,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo extends Mes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTemplateVersionInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1694,7 +1694,7 @@ export class ActionBufAlphaRegistryV1Alpha1PushInfo extends Message<ActionBufAlp
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1PushInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1769,7 +1769,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo extends Messag
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetReferenceByNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1819,7 +1819,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo extends Me
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryBranchInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1860,7 +1860,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo ext
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByBranchInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1900,7 +1900,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListRepositoryCommitsByReferenceInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1940,7 +1940,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo ex
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitByReferenceInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -1985,7 +1985,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo e
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetRepositoryCommitBySequenceIDInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_branch_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2037,7 +2037,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo extends Messa
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryTagInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2085,7 +2085,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo extend
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryByFullNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2126,7 +2126,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo extends Message<
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteRepositoryInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2166,7 +2166,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo extend
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteRepositoryByFullNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2216,7 +2216,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo extends
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeprecateRepositoryByNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2263,7 +2263,7 @@ export class ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo exten
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UndeprecateRepositoryByNameInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2314,7 +2314,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo extends Message<Act
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetModulePinsInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "module_references", kind: "message", T: ModuleReference, repeated: true },
@@ -2366,7 +2366,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo extends Messag
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetLocalModulePinsInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "local_module_references", kind: "message", T: BufAlphaRegistryV1Alpha1LocalModuleReference, repeated: true },
@@ -2413,7 +2413,7 @@ export class ActionBufAlphaRegistryV1Alpha1SearchInfo extends Message<ActionBufA
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SearchInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2459,7 +2459,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateTokenInfo extends Message<Actio
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateTokenInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2500,7 +2500,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo extends Message<Actio
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeleteTokenInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "token_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2540,7 +2540,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateUserInfo extends Message<Action
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateUserInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2580,7 +2580,7 @@ export class ActionBufAlphaRegistryV1Alpha1ListUsersInfo extends Message<ActionB
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1ListUsersInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user_state_filter", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1UserState) },
@@ -2620,7 +2620,7 @@ export class ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo extends Message<Ac
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1DeactivateUserInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2666,7 +2666,7 @@ export class ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo extends Mess
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1UpdateUserServerRoleInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2717,7 +2717,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo exten
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2769,7 +2769,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataIn
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1CreatePluginVersionMetadataInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2811,7 +2811,7 @@ export class ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo exten
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryinternalV1Alpha1DeletePluginVersionInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -2851,7 +2851,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo extends 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetRepositoryContributorInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_role", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1RepositoryRole) },
@@ -2891,7 +2891,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo extends Mess
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetPluginContributorInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "plugin_role", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1PluginRole) },
@@ -2931,7 +2931,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo extends Me
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetTemplateContributorInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "template_role", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1TemplateRole) },
@@ -2971,7 +2971,7 @@ export class ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo extends Mes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1CreateRepositoryTrackInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "track", kind: "message", T: BufAlphaRegistryV1Alpha1RepositoryTrack },
@@ -3011,7 +3011,7 @@ export class ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo extends Mes
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1SetOrganizationMemberInfo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_role", kind: "enum", T: proto3.getEnumType(BufAlphaRegistryV1Alpha1OrganizationRole) },
@@ -3051,7 +3051,7 @@ export class ActionBufAlphaRegistryV1Alpha1GetJSONSchema extends Message<ActionB
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.ActionBufAlphaRegistryV1Alpha1GetJSONSchema";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "reference", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3454,7 +3454,7 @@ export class Event extends Message<Event> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.Event";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "event_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3567,7 +3567,7 @@ export class UserActor extends Message<UserActor> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.UserActor";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3618,7 +3618,7 @@ export class UserObject extends Message<UserObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.UserObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3662,7 +3662,7 @@ export class OrganizationObject extends Message<OrganizationObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.OrganizationObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3720,7 +3720,7 @@ export class RepositoryObject extends Message<RepositoryObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.RepositoryObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3781,7 +3781,7 @@ export class PluginObject extends Message<PluginObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.PluginObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3842,7 +3842,7 @@ export class TemplateObject extends Message<TemplateObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.TemplateObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3883,7 +3883,7 @@ export class TokenObject extends Message<TokenObject> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.TokenObject";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -3956,7 +3956,7 @@ export class Object$ extends Message<Object$> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.audit.v1alpha1.Object";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: UserObject, oneof: "type" },

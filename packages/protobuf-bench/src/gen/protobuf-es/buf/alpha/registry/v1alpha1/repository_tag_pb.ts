@@ -65,7 +65,7 @@ export class RepositoryTag extends Message<RepositoryTag> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RepositoryTag";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -122,7 +122,7 @@ export class CreateRepositoryTagRequest extends Message<CreateRepositoryTagReque
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -161,7 +161,7 @@ export class CreateRepositoryTagResponse extends Message<CreateRepositoryTagResp
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_tag", kind: "message", T: RepositoryTag },
@@ -217,7 +217,7 @@ export class ListRepositoryTagsRequest extends Message<ListRepositoryTagsRequest
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -264,7 +264,7 @@ export class ListRepositoryTagsResponse extends Message<ListRepositoryTagsRespon
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_tags", kind: "message", T: RepositoryTag, repeated: true },

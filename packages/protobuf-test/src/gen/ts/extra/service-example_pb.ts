@@ -88,7 +88,7 @@ export class ExampleRequest extends Message<ExampleRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ExampleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -151,7 +151,7 @@ export class ExampleResponse extends Message<ExampleResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ExampleResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */ },

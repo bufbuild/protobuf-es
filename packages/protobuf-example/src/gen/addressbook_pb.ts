@@ -56,7 +56,7 @@ export class Person extends Message<Person> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "example.Person";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -128,7 +128,7 @@ export class Person_PhoneNumber extends Message<Person_PhoneNumber> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "example.Person.PhoneNumber";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "number", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -168,7 +168,7 @@ export class AddressBook extends Message<AddressBook> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "example.AddressBook";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "people", kind: "message", T: Person, repeated: true },
