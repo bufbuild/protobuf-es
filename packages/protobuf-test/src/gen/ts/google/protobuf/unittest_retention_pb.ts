@@ -75,7 +75,7 @@ export class OptionsMessage extends Message<OptionsMessage> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.OptionsMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "plain_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -109,7 +109,7 @@ export class Extendee extends Message<Extendee> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.Extendee";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -156,7 +156,7 @@ export class TopLevelMessage extends Message<TopLevelMessage> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TopLevelMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "f", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
@@ -203,7 +203,7 @@ export class TopLevelMessage_NestedMessage extends Message<TopLevelMessage_Neste
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TopLevelMessage.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);

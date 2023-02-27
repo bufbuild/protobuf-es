@@ -78,7 +78,7 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -118,7 +118,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -155,7 +155,7 @@ export class TestOptionalOptimizedForSize extends Message<TestOptionalOptimizedF
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestOptionalOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true },

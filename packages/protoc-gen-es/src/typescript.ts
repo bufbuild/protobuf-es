@@ -101,7 +101,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print("  }");
   f.print();
   generateWktMethods(schema, f, message);
-  f.print("  static readonly runtime = ", protoN, ";");
+  f.print("  static readonly runtime: typeof ", protoN, " = ", protoN, ";");
   f.print('  static readonly typeName = ', literalString(message.typeName), ';');
   f.print("  static readonly fields: ", FieldList, " = ", protoN, ".util.newFieldList(() => [");
   for (const field of message.fields) {
@@ -415,12 +415,12 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    switch (this.", localName(ref.kind), ".case) {")
       f.print(`      case "`, localName(ref.nullValue), `":`)
       f.print("        return null;")
-      f.print(`      case "`, localName(ref.boolValue), `":`)
-      f.print(`        return this.`, localName(ref.kind), `.value;`);
       f.print(`      case "`, localName(ref.numberValue), `":`)
-      f.print(`        if (!isFinite(this.`, localName(ref.kind), `.value)) {`);
+      f.print(`        if (!Number.isFinite(this.`, localName(ref.kind), `.value)) {`);
       f.print(`          throw new Error("google.protobuf.Value cannot be NaN or Infinity");`);
       f.print(`        }`);
+      f.print(`        return this.`, localName(ref.kind), `.value;`);
+      f.print(`      case "`, localName(ref.boolValue), `":`)
       f.print(`        return this.`, localName(ref.kind), `.value;`);
       f.print(`      case "`, localName(ref.stringValue), `":`)
       f.print("        return this.", localName(ref.kind), ".value;")
@@ -434,9 +434,6 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  override fromJson(json: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): this {")
       f.print("    switch (typeof json) {")
       f.print(`      case "number":`)
-      f.print(`        if (!isFinite(json)) {`);
-      f.print(`            throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
-      f.print(`        }`);
       f.print(`        this.kind = { case: "`, localName(ref.numberValue), `", value: json };`)
       f.print("        break;")
       f.print(`      case "string":`)

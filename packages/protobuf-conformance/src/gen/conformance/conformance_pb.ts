@@ -153,7 +153,7 @@ export class FailureSet extends Message<FailureSet> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "conformance.FailureSet";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "failure", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
@@ -266,7 +266,7 @@ export class ConformanceRequest extends Message<ConformanceRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "conformance.ConformanceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "protobuf_payload", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "payload" },
@@ -401,7 +401,7 @@ export class ConformanceResponse extends Message<ConformanceResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "conformance.ConformanceResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "parse_error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "result" },
@@ -450,7 +450,7 @@ export class JspbEncodingConfig extends Message<JspbEncodingConfig> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "conformance.JspbEncodingConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "use_jspb_array_any_format", kind: "scalar", T: 8 /* ScalarType.BOOL */ },

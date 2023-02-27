@@ -146,7 +146,7 @@ export class TestWellKnownTypes extends Message<TestWellKnownTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.TestWellKnownTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "any_field", kind: "message", T: Any },
@@ -290,7 +290,7 @@ export class RepeatedWellKnownTypes extends Message<RepeatedWellKnownTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.RepeatedWellKnownTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "any_field", kind: "message", T: Any, repeated: true },
@@ -452,7 +452,7 @@ export class OneofWellKnownTypes extends Message<OneofWellKnownTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.OneofWellKnownTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "any_field", kind: "message", T: Any, oneof: "oneof_field" },
@@ -595,7 +595,7 @@ export class MapWellKnownTypes extends Message<MapWellKnownTypes> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.MapWellKnownTypes";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "any_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Any} },

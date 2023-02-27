@@ -25,18 +25,12 @@ describeMT(
     msg.a = "a";
     msg.b = "b";
     msg.c = "c";
-    msg.d = "c";
-    msg.e = "e";
-    msg.f = "f";
     test("serializes as expected", () => {
       const got = msg.toJson();
       expect(got).toStrictEqual({
-        "": "e",
-        "@type": "f",
-        b: "b",
-        c: "c",
-        d: "c",
-        sameJsonName: "a",
+        "@type": "c",
+        "": "b",
+        a: "a",
       });
     });
     test("json_name clash with Any.@type is not prevented", () => {
@@ -45,12 +39,9 @@ describeMT(
         typeRegistry: createRegistry(JsonNamesMessage),
       });
       expect(got).toStrictEqual({
-        "": "e",
         "@type": "type.googleapis.com/spec.JsonNamesMessage",
-        b: "b",
-        c: "c",
-        d: "c",
-        sameJsonName: "a",
+        "": "b",
+        a: "a",
       });
     });
   }

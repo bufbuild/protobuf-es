@@ -37,7 +37,7 @@ export class Image extends Message<Image> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "buf.alpha.image.v1.Image";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "file", kind: "message", T: ImageFile, repeated: true },
@@ -150,7 +150,7 @@ export class ImageFile extends Message<ImageFile> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "buf.alpha.image.v1.ImageFile";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -257,7 +257,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "buf.alpha.image.v1.ImageFileExtension";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "is_import", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -313,7 +313,7 @@ export class ModuleInfo extends Message<ModuleInfo> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "buf.alpha.image.v1.ModuleInfo";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "name", kind: "message", T: ModuleName, opt: true },
@@ -365,7 +365,7 @@ export class ModuleName extends Message<ModuleName> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "buf.alpha.image.v1.ModuleName";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "remote", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },

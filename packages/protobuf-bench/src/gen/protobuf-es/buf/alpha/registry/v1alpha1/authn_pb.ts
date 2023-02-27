@@ -29,7 +29,7 @@ export class GetCurrentUserRequest extends Message<GetCurrentUserRequest> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -65,7 +65,7 @@ export class GetCurrentUserResponse extends Message<GetCurrentUserResponse> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: User },
@@ -97,7 +97,7 @@ export class GetCurrentUserSubjectRequest extends Message<GetCurrentUserSubjectR
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -138,7 +138,7 @@ export class GetCurrentUserSubjectResponse extends Message<GetCurrentUserSubject
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },

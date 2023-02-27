@@ -112,13 +112,11 @@ Value.prototype.toJson = function toJson(options) {
   switch (this.kind.case) {
     case "nullValue":
       return null;
-    case "boolValue":
-      return this.kind.value;
     case "numberValue":
-      if (!isFinite(this.kind.value)) {
+      if (!Number.isFinite(this.kind.value)) {
           throw new Error("google.protobuf.Value cannot be NaN or Infinity");
       }
-      return this.kind.value;
+    case "boolValue":
     case "stringValue":
       return this.kind.value;
     case "structValue":
@@ -131,9 +129,6 @@ Value.prototype.toJson = function toJson(options) {
 Value.prototype.fromJson = function fromJson(json, options) {
   switch (typeof json) {
     case "number":
-      if (!isFinite(json)) {
-          throw new Error("cannot decode google.protobuf.Value from JSON " + proto3.json.debug(json));
-      }
       this.kind = { case: "numberValue", value: json };
       break;
     case "string":

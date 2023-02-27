@@ -530,7 +530,7 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -676,7 +676,7 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -714,7 +714,7 @@ export class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_Ne
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.NestedMessage2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "dd", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -751,7 +751,7 @@ export class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_Opt
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -788,7 +788,7 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllTypesLite.RepeatedGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -825,7 +825,7 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.ForeignMessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -927,7 +927,7 @@ export class TestPackedTypesLite extends Message<TestPackedTypesLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestPackedTypesLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -972,7 +972,7 @@ export class TestAllExtensionsLite extends Message<TestAllExtensionsLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestAllExtensionsLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1008,7 +1008,7 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.OptionalGroup_extension_lite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1045,7 +1045,7 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RepeatedGroup_extension_lite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1077,7 +1077,7 @@ export class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestPackedExtensionsLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1108,7 +1108,7 @@ export class TestNestedExtensionLite extends Message<TestNestedExtensionLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestNestedExtensionLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1166,7 +1166,7 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestDeprecatedLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "deprecated_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1228,7 +1228,7 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite },
@@ -1299,7 +1299,7 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator extends Message<TestPa
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "field1", kind: "message", T: TestAllTypesLite, repeated: true },
@@ -1342,7 +1342,7 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends Message
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 11, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
@@ -1379,7 +1379,7 @@ export class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends Message
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 21, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
@@ -1416,7 +1416,7 @@ export class TestParsingMergeLite_OptionalGroup extends Message<TestParsingMerge
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
@@ -1453,7 +1453,7 @@ export class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMerge
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
@@ -1493,7 +1493,7 @@ export class TestMergeExceptionLite extends Message<TestMergeExceptionLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMergeExceptionLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensionsLite, opt: true },
@@ -1527,7 +1527,7 @@ export class TestEmptyMessageLite extends Message<TestEmptyMessageLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestEmptyMessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1561,7 +1561,7 @@ export class TestEmptyMessageWithExtensionsLite extends Message<TestEmptyMessage
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestEmptyMessageWithExtensionsLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1602,7 +1602,7 @@ export class V1MessageLite extends Message<V1MessageLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.V1MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1645,7 +1645,7 @@ export class V2MessageLite extends Message<V2MessageLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.V2MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -1757,7 +1757,7 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestHugeFieldNumbersLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1807,7 +1807,7 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1898,7 +1898,7 @@ export class TestOneofParsingLite extends Message<TestOneofParsingLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestOneofParsingLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "oneof_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_field" },
@@ -1938,7 +1938,7 @@ export class TestMessageSetLite extends Message<TestMessageSetLite> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestMessageSetLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -1978,7 +1978,7 @@ export class PackedInt32 extends Message<PackedInt32> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.PackedInt32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -2015,7 +2015,7 @@ export class NonPackedInt32 extends Message<NonPackedInt32> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.NonPackedInt32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2048, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -2052,7 +2052,7 @@ export class PackedFixed32 extends Message<PackedFixed32> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.PackedFixed32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true, packed: true },
@@ -2089,7 +2089,7 @@ export class NonPackedFixed32 extends Message<NonPackedFixed32> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.NonPackedFixed32";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2048, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
@@ -2123,7 +2123,7 @@ export class DupEnum extends Message<DupEnum> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.DupEnum";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
   ]);
@@ -2202,7 +2202,7 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RecursiveMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "recurse", kind: "message", T: RecursiveMessage, opt: true },

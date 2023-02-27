@@ -390,13 +390,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  switch (this.", localName(ref.kind), ".case) {")
       f.print(`    case "`, localName(ref.nullValue), `":`)
       f.print("      return null;")
-      f.print(`    case "`, localName(ref.boolValue), `":`)
-      f.print(`      return this.`, localName(ref.kind), `.value;`);
       f.print(`    case "`, localName(ref.numberValue), `":`)
-      f.print(`      if (!isFinite(this.`, localName(ref.kind), `.value)) {`);
+      f.print(`      if (!Number.isFinite(this.`, localName(ref.kind), `.value)) {`);
       f.print(`          throw new Error("google.protobuf.Value cannot be NaN or Infinity");`);
       f.print(`      }`);
-      f.print(`      return this.kind.value;`);
+      f.print(`    case "`, localName(ref.boolValue), `":`)
       f.print(`    case "`, localName(ref.stringValue), `":`)
       f.print("      return this.", localName(ref.kind), ".value;")
       f.print(`    case "`, localName(ref.structValue), `":`)
@@ -409,9 +407,6 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
       f.print("  switch (typeof json) {")
       f.print(`    case "number":`)
-      f.print(`      if (!isFinite(json)) {`);
-      f.print(`          throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
-      f.print(`      }`);
       f.print(`      this.kind = { case: "`, localName(ref.numberValue), `", value: json };`)
       f.print("      break;")
       f.print(`    case "string":`)

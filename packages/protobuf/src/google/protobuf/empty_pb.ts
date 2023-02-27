@@ -41,7 +41,7 @@ export class Empty extends Message<Empty> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Empty";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

@@ -21,11 +21,8 @@ message JsonNamesMessage {
     string scalar_field = 1 [json_name = "scalarFieldJsonName"];
     repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
 
-    string a = 3 [json_name = "sameJsonName"];
-    string b = 4 [json_name = "b"];
-    string c = 5;
-    string d = 6 [json_name = "d"];
-    string e = 7 [json_name = ""];
-    string f = 8 [json_name = "@type"];
+    string a = 3;
+    string b = 4 [json_name = ""];
+    string c = 5 [json_name = "@type"];
 
 }
