@@ -336,7 +336,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`  if (typeof match[2] == "string") {`)
       f.print(`    const nanosStr = match[2] + "0".repeat(9 - match[2].length);`)
       f.print("    this.", localName(ref.nanos), " = parseInt(nanosStr);")
-      f.print("    if (longSeconds < ", protoInt64, ".zero || match[1] === '-0') {")
+      f.print("    if (longSeconds < 0 || Object.is(longSeconds, -0)) {");
       f.print("      this.", localName(ref.nanos), " = -this.", localName(ref.nanos), ";")
       f.print("    }")
       f.print("  }")
