@@ -50,6 +50,10 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  *     if (any.is(Foo.class)) {
  *       foo = any.unpack(Foo.class);
  *     }
+ *     // or ...
+ *     if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+ *       foo = any.unpack(Foo.getDefaultInstance());
+ *     }
  *
  * Example 3: Pack and unpack a message in Python.
  *
@@ -79,7 +83,6 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * methods only use the fully qualified type name after the last '/'
  * in the type URL, for example "foo.bar.com/x/y.z" will yield type
  * name "y.z".
- *
  *
  * JSON
  *
@@ -258,7 +261,7 @@ export class Any extends Message<Any> {
     return name;
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Any";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },

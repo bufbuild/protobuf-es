@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rm -rf src/gen",
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
-    "buf:generate": "buf generate buf.build/bufbuild/eliza",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza"
   },
   "author": "Buf",
@@ -15,10 +14,11 @@
     "node": ">=14"
   },
   "dependencies": {
+    "@bufbuild/buf": "^1.14.0-1",
     "@bufbuild/protobuf": "^1.0.0",
     "@bufbuild/protoc-gen-es": "^1.0.0",
     "@bufbuild/protoplugin": "^1.0.0",
-    "tsx": "^3.12.2",
-    "typescript": "^4.9.4"
+    "tsx": "^3.12.3",
+    "typescript": "^4.9.5"
   }
 }

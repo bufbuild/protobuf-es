@@ -92,6 +92,31 @@ describe("google.protobuf.Value", () => {
       const got = Value.fromBinary(want.toBinary());
       expect(got).toStrictEqual(want);
     });
+    test("numberValue must be finite", () => {
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: NaN },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Infinity },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+
+      expect(() => {
+        new Value({
+          kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
+        }).toJson();
+      }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+    });
   });
 });
 

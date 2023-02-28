@@ -87,7 +87,7 @@ export class Struct extends Message<Struct> {
     return this;
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Struct";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "fields", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Value} },
@@ -185,8 +185,13 @@ export class Value extends Message<Value> {
     switch (this.kind.case) {
       case "nullValue":
         return null;
-      case "boolValue":
       case "numberValue":
+        if (!Number.isFinite(this.kind.value)) {
+          throw new Error("google.protobuf.Value cannot be NaN or Infinity");
+        }
+        return this.kind.value;
+      case "boolValue":
+        return this.kind.value;
       case "stringValue":
         return this.kind.value;
       case "structValue":
@@ -222,7 +227,7 @@ export class Value extends Message<Value> {
     return this;
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Value";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "null_value", kind: "enum", T: proto3.getEnumType(NullValue), oneof: "kind" },
@@ -284,7 +289,7 @@ export class ListValue extends Message<ListValue> {
     return this;
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.ListValue";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "values", kind: "message", T: Value, repeated: true },

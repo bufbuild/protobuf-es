@@ -348,3 +348,15 @@ export const OneStringProto2 = proto2.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
+ */
+export const ProtoWithKeywords = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.ProtoWithKeywords",
+  () => [
+    { no: 1, name: "inline", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "concept", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "requires", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+

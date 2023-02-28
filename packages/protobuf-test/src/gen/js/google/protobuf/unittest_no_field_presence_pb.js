@@ -34,6 +34,8 @@
 // @generated from file google/protobuf/unittest_no_field_presence.proto (package proto2_nofieldpresence_unittest, syntax proto3)
 /* eslint-disable */
 
+// We want to test embedded proto2 messages, so include some proto2 types.
+
 import { proto3 } from "@bufbuild/protobuf";
 import { TestAllTypes as TestAllTypes$1, TestRequired } from "./unittest_pb.js";
 

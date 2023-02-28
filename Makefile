@@ -14,9 +14,9 @@ PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
 LICENSE_HEADER_YEAR_RANGE := 2021-2023
 LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-GOOGLE_PROTOBUF_VERSION = 21.12
+GOOGLE_PROTOBUF_VERSION = 22.0
 BAZEL_VERSION = 5.4.0
-TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4
+TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 5.0.0-beta
 
 node_modules: package-lock.json
 	npm ci
@@ -24,7 +24,7 @@ node_modules: package-lock.json
 $(PB):
 	echo $(PB)
 	@mkdir -p $(TMP)
-	curl -L https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGLE_PROTOBUF_VERSION)/protobuf-all-$(GOOGLE_PROTOBUF_VERSION).tar.gz \
+	curl -L https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGLE_PROTOBUF_VERSION)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz \
 		> $(TMP)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz
 	tar -xzf $(TMP)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz -C $(TMP)/
 
@@ -36,7 +36,7 @@ $(BIN)/protoc: $(PB)
 
 $(BIN)/conformance_test_runner: $(PB)
 	@mkdir -p $(@D)
-	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
+	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_cc_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
 	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
 	@touch $(@)
 
@@ -74,7 +74,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_mod
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
-	npm run -w packages/protoplugin-example buf:generate
+	npx -w packages/protoplugin-example buf generate buf.build/bufbuild/eliza
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -120,7 +120,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
 	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
 	@npm run -w packages/protoplugin-test buf:build
-	@npm run -w packages/protoplugin-test buf:generate
+	@npm run -w packages/protoplugin-test generate
 
 $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@rm -rf packages/protobuf-conformance/src/gen/*
@@ -134,13 +134,13 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 
 $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
 	@rm -rf packages/protobuf-example/src/gen/*
-	npm run -w packages/protobuf-example buf:generate
+	npm run -w packages/protobuf-example generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(GEN)/protobuf-bench: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
 	@rm -rf packages/protobuf-bench/src/gen/*
-	buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
+	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -183,9 +183,9 @@ test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 test-ts-compat: $(GEN)/protobuf-test node_modules 
 	@for number in $(TS_VERSIONS) ; do \
 		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		dirname=packages/protobuf-test/typescript ; \
+		dirname=packages/protobuf-test ; \
 		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/tsconfig.$${formatted}.json --noEmit || exit ; \
+		node_modules/ts$$formatted/bin/tsc -p $$dirname/typescript/tsconfig.$${formatted}.json --outDir $$dirname/dist/typescript/$$formatted || exit ; \
 	done
 
 .PHONY: lint

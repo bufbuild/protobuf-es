@@ -23,6 +23,7 @@
     "ts4_5_2": "npm:typescript@4.5.2",
     "ts4_6_4": "npm:typescript@4.6.4",
     "ts4_7_4": "npm:typescript@4.7.4",
-    "ts4_8_4": "npm:typescript@4.8.4"
+    "ts4_8_4": "npm:typescript@4.8.4",
+    "ts5_0_0-beta": "npm:typescript@5.0.0-beta"
   }
 }

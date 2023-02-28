@@ -28,6 +28,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+// Copyright 2009 Google Inc.  All rights reserved.
 // Author: kenton@google.com (Kenton Varda)
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
@@ -44,6 +45,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
+ * clang-format off
+ *
  * @generated from message protobuf_unittest.TestEnormousDescriptor
  */
 export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
@@ -5052,7 +5055,7 @@ export class TestEnormousDescriptor extends Message<TestEnormousDescriptor> {
     proto2.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto2;
+  static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestEnormousDescriptor";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "long_field_name_is_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "long default value is also loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong" },

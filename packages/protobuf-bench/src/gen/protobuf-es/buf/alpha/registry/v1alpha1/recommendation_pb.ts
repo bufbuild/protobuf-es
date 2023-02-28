@@ -56,7 +56,7 @@ export class RecommendedRepository extends Message<RecommendedRepository> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedRepository";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -115,7 +115,7 @@ export class RecommendedTemplate extends Message<RecommendedTemplate> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedTemplate";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -162,7 +162,7 @@ export class SetRecommendedRepository extends Message<SetRecommendedRepository> 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedRepository";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repository_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -207,7 +207,7 @@ export class SetRecommendedTemplate extends Message<SetRecommendedTemplate> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedTemplate";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "template_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -240,7 +240,7 @@ export class RecommendedRepositoriesRequest extends Message<RecommendedRepositor
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -276,7 +276,7 @@ export class RecommendedRepositoriesResponse extends Message<RecommendedReposito
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true },
@@ -308,7 +308,7 @@ export class RecommendedTemplatesRequest extends Message<RecommendedTemplatesReq
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -344,7 +344,7 @@ export class RecommendedTemplatesResponse extends Message<RecommendedTemplatesRe
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true },
@@ -376,7 +376,7 @@ export class ListRecommendedRepositoriesRequest extends Message<ListRecommendedR
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -412,7 +412,7 @@ export class ListRecommendedRepositoriesResponse extends Message<ListRecommended
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repositories", kind: "message", T: RecommendedRepository, repeated: true },
@@ -444,7 +444,7 @@ export class ListRecommendedTemplatesRequest extends Message<ListRecommendedTemp
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -480,7 +480,7 @@ export class ListRecommendedTemplatesResponse extends Message<ListRecommendedTem
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "templates", kind: "message", T: RecommendedTemplate, repeated: true },
@@ -517,7 +517,7 @@ export class SetRecommendedRepositoriesRequest extends Message<SetRecommendedRep
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "repositories", kind: "message", T: SetRecommendedRepository, repeated: true },
@@ -549,7 +549,7 @@ export class SetRecommendedRepositoriesResponse extends Message<SetRecommendedRe
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
@@ -585,7 +585,7 @@ export class SetRecommendedTemplatesRequest extends Message<SetRecommendedTempla
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "templates", kind: "message", T: SetRecommendedTemplate, repeated: true },
@@ -617,7 +617,7 @@ export class SetRecommendedTemplatesResponse extends Message<SetRecommendedTempl
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

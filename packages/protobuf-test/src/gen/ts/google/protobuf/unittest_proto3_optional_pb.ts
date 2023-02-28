@@ -153,7 +153,7 @@ export class TestProto3Optional extends Message<TestProto3Optional> {
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.TestProto3Optional";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -254,7 +254,7 @@ export class TestProto3Optional_NestedMessage extends Message<TestProto3Optional
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.TestProto3Optional.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -296,7 +296,7 @@ export class TestProto3OptionalMessage extends Message<TestProto3OptionalMessage
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.TestProto3OptionalMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "nested_message", kind: "message", T: TestProto3OptionalMessage_NestedMessage },
@@ -334,7 +334,7 @@ export class TestProto3OptionalMessage_NestedMessage extends Message<TestProto3O
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.TestProto3OptionalMessage.NestedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "s", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -366,7 +366,7 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
     proto3.util.initPartial(data, this);
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "protobuf_unittest.Proto3OptionalExtensions";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);

@@ -96,7 +96,6 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
  * microsecond should be expressed in JSON format as "3.000001s".
  *
  *
- *
  * @generated from message google.protobuf.Duration
  */
 export class Duration extends Message<Duration> {
@@ -142,7 +141,7 @@ export class Duration extends Message<Duration> {
     if (typeof match[2] == "string") {
       const nanosStr = match[2] + "0".repeat(9 - match[2].length);
       this.nanos = parseInt(nanosStr);
-      if (longSeconds < protoInt64.zero) {
+      if (longSeconds < 0 || Object.is(longSeconds, -0)) {
         this.nanos = -this.nanos;
       }
     }
@@ -163,11 +162,14 @@ export class Duration extends Message<Duration> {
         nanosStr = nanosStr.substring(0, 6);
       }
       text += "." + nanosStr;
+      if (this.nanos < 0 && this.seconds === protoInt64.zero) {
+          text = "-" + text;
+      }
     }
     return text + "s";
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Duration";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },

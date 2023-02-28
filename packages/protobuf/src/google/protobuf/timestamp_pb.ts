@@ -75,7 +75,6 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  *     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
  *         .setNanos((int) ((millis % 1000) * 1000000)).build();
  *
- *
  * Example 5: Compute Timestamp from Java `Instant.now()`.
  *
  *     Instant now = Instant.now();
@@ -83,7 +82,6 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  *     Timestamp timestamp =
  *         Timestamp.newBuilder().setSeconds(now.getEpochSecond())
  *             .setNanos(now.getNano()).build();
- *
  *
  * Example 6: Compute Timestamp from current time in Python.
  *
@@ -116,7 +114,6 @@ import type { BinaryReadOptions } from "../../binary-format.js";
  * the Joda Time's [`ISODateTimeFormat.dateTime()`](
  * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
  * ) to obtain a formatter capable of generating timestamps in this format.
- *
  *
  *
  * @generated from message google.protobuf.Timestamp
@@ -195,7 +192,7 @@ export class Timestamp extends Message<Timestamp> {
     return new Date(Number(this.seconds) * 1000 + Math.ceil(this.nanos / 1000000));
   }
 
-  static readonly runtime = proto3;
+  static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "google.protobuf.Timestamp";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
