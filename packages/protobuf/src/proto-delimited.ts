@@ -38,7 +38,7 @@ export const protoDelimited = {
   },
 
   /**
-   * Parse a size-delimited message.
+   * Parse a size-delimited message, ignoring extra bytes.
    */
   dec<T extends Message<T>>(
     type: MessageType<T>,
@@ -47,6 +47,42 @@ export const protoDelimited = {
   ): T {
     const opt = makeBinaryFormatCommon().makeReadOptions(options);
     return type.fromBinary(opt.readerFactory(bytes).bytes(), opt);
+  },
+
+  /**
+   * Parse a stream of size-delimited messages.
+   */
+  async *decStream<T extends Message<T>>(
+    type: MessageType<T>,
+    iterable: AsyncIterable<Uint8Array>
+  ) {
+    // append chunk to buffer, returning updated buffer
+    function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
+      const n = new Uint8Array(buffer.byteLength + chunk.byteLength);
+      n.set(buffer);
+      n.set(chunk, buffer.length);
+      return n;
+    }
+    let buffer = new Uint8Array(0);
+    for await (const chunk of iterable) {
+      buffer = append(buffer, chunk);
+      for (;;) {
+        const size = protoDelimited.peekSize(buffer);
+        if (size.eof) {
+          // size is incomplete, buffer more data
+          break;
+        }
+        if (size.offset + size.size > buffer.byteLength) {
+          // message is incomplete, buffer more data
+          break;
+        }
+        yield protoDelimited.dec(type, buffer);
+        buffer = buffer.subarray(size.offset + size.size);
+      }
+    }
+    if (buffer.byteLength > 0) {
+      throw new Error("incomplete data");
+    }
   },
 
   /**

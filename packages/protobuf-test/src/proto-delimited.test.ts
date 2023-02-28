@@ -16,12 +16,15 @@ import { describe, expect, it } from "@jest/globals";
 import {
   BinaryReader,
   BinaryWriter,
-  Message,
   MessageType,
   protoDelimited,
   WireType,
+  Message,
 } from "@bufbuild/protobuf";
 import { TestAllTypesProto3 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { createReadStream, createWriteStream } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
 
 describe("protoDelimited", function () {
   const testMessages = [
@@ -89,6 +92,66 @@ describe("protoDelimited", function () {
       const serialized = protoDelimited.enc(testMessages[0]);
       const parsed = protoDelimited.dec(TestAllTypesProto3, serialized);
       expect(TestAllTypesProto3.equals(parsed, testMessages[0])).toBeTruthy();
+    });
+  });
+
+  describe("decStream", function () {
+    describe("with async generator", function () {
+      async function* createAsyncIterableBytes(
+        bytes: Uint8Array,
+        chunkSize = 2,
+        delay = 5
+      ): AsyncIterable<Uint8Array> {
+        let offset = 0;
+        for (;;) {
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          const end = Math.min(offset + chunkSize, bytes.byteLength);
+          yield bytes.slice(offset, end);
+          offset = end;
+          if (offset === bytes.length) {
+            break;
+          }
+        }
+      }
+      it("should decode stream", async function () {
+        const stream = createAsyncIterableBytes(
+          new BinaryWriter()
+            .uint32(testMessagesSizes[0])
+            .raw(testMessagesBytes[0])
+            .uint32(testMessagesSizes[1])
+            .raw(testMessagesBytes[1])
+            .finish()
+        );
+        let i = 0;
+        for await (const dec of protoDelimited.decStream(
+          TestAllTypesProto3,
+          stream
+        )) {
+          expect(TestAllTypesProto3.equals(dec, testMessages[i])).toBeTruthy();
+          i++;
+        }
+        expect(i).toBe(2);
+      });
+    });
+    describe("with Node.js APIS", function () {
+      it("should decode stream", async function () {
+        const path = join(tmpdir(), "protoDelimited.bin");
+        const writeStream = createWriteStream(path, { encoding: "binary" });
+        for (const m of testMessages) {
+          writeStream.write(protoDelimited.enc(m));
+        }
+        writeStream.end();
+        writeStream.close();
+        const readStream = createReadStream(path);
+        let i = 0;
+        for await (const m of protoDelimited.decStream(
+          TestAllTypesProto3,
+          readStream
+        )) {
+          expect(TestAllTypesProto3.equals(m, testMessages[i])).toBe(true);
+          i++;
+        }
+      });
     });
   });
 
