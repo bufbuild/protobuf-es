@@ -39,6 +39,10 @@ run the below command.
 make 
 ```
 
+If you are on Apple M1 and see the error `symbol not found in flat namespace (_CFRelease)`, 
+when building protoc, you may need to install XCode from the Apple App Store.
+
+
 ## Making Changes
 
 Start by creating a new branch for your changes:
