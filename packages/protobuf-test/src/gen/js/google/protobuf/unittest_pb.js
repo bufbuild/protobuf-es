@@ -61,6 +61,16 @@ export const ForeignEnum = proto2.makeEnum(
 );
 
 /**
+ * @generated from enum protobuf_unittest.TestReservedEnumFields
+ */
+export const TestReservedEnumFields = proto2.makeEnum(
+  "protobuf_unittest.TestReservedEnumFields",
+  [
+    {no: 0, name: "UNKNOWN"},
+  ],
+);
+
+/**
  * Test an enum that has multiple values with the same number.
  *
  * @generated from enum protobuf_unittest.TestEnumWithDupValue
@@ -361,7 +371,10 @@ export const TestDeprecatedFields = proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedFields",
   () => [
     { no: 1, name: "deprecated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "deprecated_repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "deprecated_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 2, name: "deprecated_int32_in_oneof", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "oneof_fields" },
+    { no: 5, name: "nested", kind: "message", T: TestDeprecatedFields, opt: true },
   ],
 );
 
@@ -425,6 +438,17 @@ export const RepeatedGroup_extension = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.TestMixedFieldsAndExtensions
+ */
+export const TestMixedFieldsAndExtensions = proto2.makeMessageType(
+  "protobuf_unittest.TestMixedFieldsAndExtensions",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 3, name: "b", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.TestGroup
  */
 export const TestGroup = proto2.makeMessageType(
@@ -442,6 +466,7 @@ export const TestGroup_OptionalGroup = proto2.makeMessageType(
   "protobuf_unittest.TestGroup.OptionalGroup",
   () => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 89, name: "zz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestGroup_OptionalGroup"},
 );
@@ -606,6 +631,7 @@ export const TestRequiredForeign = proto2.makeMessageType(
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
     { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
     { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "optional_lazy_message", kind: "message", T: NestedTestAllTypes, opt: true },
   ],
 );
 
@@ -1310,6 +1336,7 @@ export const TestRequiredOneof = proto2.makeMessageType(
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
     { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
     { no: 3, name: "foo_message", kind: "message", T: TestRequiredOneof_NestedMessage, oneof: "foo" },
+    { no: 4, name: "foo_lazy_message", kind: "message", T: TestRequiredOneof_NestedMessage, oneof: "foo" },
   ],
 );
 
@@ -1430,6 +1457,19 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
     { no: 2100, name: "dynamic_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestDynamicExtensions_DynamicMessageType"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestRepeatedString
+ */
+export const TestRepeatedString = proto2.makeMessageType(
+  "protobuf_unittest.TestRepeatedString",
+  () => [
+    { no: 1, name: "repeated_string1", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "repeated_string2", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 11, name: "repeated_bytes11", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 12, name: "repeated_bytes12", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+  ],
 );
 
 /**
@@ -1945,5 +1985,233 @@ export const TestVerifyBigFieldNumberUint32_Nested = proto2.makeMessageType(
     { no: 10, name: "repeated_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, repeated: true },
   ],
   {localName: "TestVerifyBigFieldNumberUint32_Nested"},
+);
+
+/**
+ * This message contains different kind of enums to exercise the different
+ * parsers in table-driven.
+ *
+ * @generated from message protobuf_unittest.EnumParseTester
+ */
+export const EnumParseTester = proto2.makeMessageType(
+  "protobuf_unittest.EnumParseTester",
+  () => [
+    { no: 1, name: "optional_seq_small_0_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), opt: true },
+    { no: 1001, name: "optional_seq_small_0_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), opt: true },
+    { no: 1000001, name: "optional_seq_small_0_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), opt: true },
+    { no: 2, name: "repeated_seq_small_0_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true },
+    { no: 1002, name: "repeated_seq_small_0_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true },
+    { no: 1000002, name: "repeated_seq_small_0_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true },
+    { no: 3, name: "packed_seq_small_0_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true, packed: true },
+    { no: 1003, name: "packed_seq_small_0_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true, packed: true },
+    { no: 1000003, name: "packed_seq_small_0_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), repeated: true, packed: true },
+    { no: 4, name: "optional_seq_small_1_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), opt: true },
+    { no: 1004, name: "optional_seq_small_1_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), opt: true },
+    { no: 1000004, name: "optional_seq_small_1_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), opt: true },
+    { no: 5, name: "repeated_seq_small_1_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true },
+    { no: 1005, name: "repeated_seq_small_1_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true },
+    { no: 1000005, name: "repeated_seq_small_1_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true },
+    { no: 6, name: "packed_seq_small_1_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true, packed: true },
+    { no: 1006, name: "packed_seq_small_1_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true, packed: true },
+    { no: 1000006, name: "packed_seq_small_1_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall1), repeated: true, packed: true },
+    { no: 7, name: "optional_seq_large_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), opt: true },
+    { no: 1007, name: "optional_seq_large_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), opt: true },
+    { no: 1000007, name: "optional_seq_large_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), opt: true },
+    { no: 8, name: "repeated_seq_large_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true },
+    { no: 1008, name: "repeated_seq_large_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true },
+    { no: 1000008, name: "repeated_seq_large_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true },
+    { no: 9, name: "packed_seq_large_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true, packed: true },
+    { no: 1009, name: "packed_seq_large_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true, packed: true },
+    { no: 1000009, name: "packed_seq_large_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqLarge), repeated: true, packed: true },
+    { no: 10, name: "optional_arbitrary_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), opt: true },
+    { no: 1010, name: "optional_arbitrary_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), opt: true },
+    { no: 1000010, name: "optional_arbitrary_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), opt: true },
+    { no: 11, name: "repeated_arbitrary_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true },
+    { no: 1011, name: "repeated_arbitrary_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true },
+    { no: 1000011, name: "repeated_arbitrary_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true },
+    { no: 12, name: "packed_arbitrary_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true, packed: true },
+    { no: 1012, name: "packed_arbitrary_midfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true, packed: true },
+    { no: 1000012, name: "packed_arbitrary_hifield", kind: "enum", T: proto2.getEnumType(EnumParseTester_Arbitrary), repeated: true, packed: true },
+    { no: 99, name: "other_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall0
+ */
+export const EnumParseTester_SeqSmall0 = proto2.makeEnum(
+  "protobuf_unittest.EnumParseTester.SeqSmall0",
+  [
+    {no: 0, name: "SEQ_SMALL_0_DEFAULT"},
+    {no: 1, name: "SEQ_SMALL_0_1"},
+    {no: 2, name: "SEQ_SMALL_0_2"},
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall1
+ */
+export const EnumParseTester_SeqSmall1 = proto2.makeEnum(
+  "protobuf_unittest.EnumParseTester.SeqSmall1",
+  [
+    {no: 1, name: "SEQ_SMALL_1_DEFAULT"},
+    {no: 2, name: "SEQ_SMALL_1_2"},
+    {no: 3, name: "SEQ_SMALL_1_3"},
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.SeqLarge
+ */
+export const EnumParseTester_SeqLarge = proto2.makeEnum(
+  "protobuf_unittest.EnumParseTester.SeqLarge",
+  [
+    {no: -1, name: "SEQ_LARGE_DEFAULT"},
+    {no: 0, name: "SEQ_LARGE_0"},
+    {no: 1, name: "SEQ_LARGE_1"},
+    {no: 2, name: "SEQ_LARGE_2"},
+    {no: 3, name: "SEQ_LARGE_3"},
+    {no: 4, name: "SEQ_LARGE_4"},
+    {no: 5, name: "SEQ_LARGE_5"},
+    {no: 6, name: "SEQ_LARGE_6"},
+    {no: 7, name: "SEQ_LARGE_7"},
+    {no: 8, name: "SEQ_LARGE_8"},
+    {no: 9, name: "SEQ_LARGE_9"},
+    {no: 10, name: "SEQ_LARGE_10"},
+    {no: 11, name: "SEQ_LARGE_11"},
+    {no: 12, name: "SEQ_LARGE_12"},
+    {no: 13, name: "SEQ_LARGE_13"},
+    {no: 14, name: "SEQ_LARGE_14"},
+    {no: 15, name: "SEQ_LARGE_15"},
+    {no: 16, name: "SEQ_LARGE_16"},
+    {no: 17, name: "SEQ_LARGE_17"},
+    {no: 18, name: "SEQ_LARGE_18"},
+    {no: 19, name: "SEQ_LARGE_19"},
+    {no: 20, name: "SEQ_LARGE_20"},
+    {no: 21, name: "SEQ_LARGE_21"},
+    {no: 22, name: "SEQ_LARGE_22"},
+    {no: 23, name: "SEQ_LARGE_23"},
+    {no: 24, name: "SEQ_LARGE_24"},
+    {no: 25, name: "SEQ_LARGE_25"},
+    {no: 26, name: "SEQ_LARGE_26"},
+    {no: 27, name: "SEQ_LARGE_27"},
+    {no: 28, name: "SEQ_LARGE_28"},
+    {no: 29, name: "SEQ_LARGE_29"},
+    {no: 30, name: "SEQ_LARGE_30"},
+    {no: 31, name: "SEQ_LARGE_31"},
+    {no: 32, name: "SEQ_LARGE_32"},
+    {no: 33, name: "SEQ_LARGE_33"},
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumParseTester.Arbitrary
+ */
+export const EnumParseTester_Arbitrary = proto2.makeEnum(
+  "protobuf_unittest.EnumParseTester.Arbitrary",
+  [
+    {no: -123123, name: "ARBITRARY_DEFAULT"},
+    {no: -123, name: "ARBITRARY_1"},
+    {no: 213, name: "ARBITRARY_2"},
+    {no: 213213, name: "ARBITRARY_3"},
+    {no: -2147483648, name: "ARBITRARY_MIN"},
+    {no: 2147483647, name: "ARBITRARY_MAX"},
+  ],
+);
+
+/**
+ * This message contains different kind of bool fields to exercise the different
+ * parsers in table-drived.
+ *
+ * @generated from message protobuf_unittest.BoolParseTester
+ */
+export const BoolParseTester = proto2.makeMessageType(
+  "protobuf_unittest.BoolParseTester",
+  () => [
+    { no: 1, name: "optional_bool_lowfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 1001, name: "optional_bool_midfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 1000001, name: "optional_bool_hifield", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 2, name: "repeated_bool_lowfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 1002, name: "repeated_bool_midfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 1000002, name: "repeated_bool_hifield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 3, name: "packed_bool_lowfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true },
+    { no: 1003, name: "packed_bool_midfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true },
+    { no: 1000003, name: "packed_bool_hifield", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true, packed: true },
+    { no: 99, name: "other_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.Int32ParseTester
+ */
+export const Int32ParseTester = proto2.makeMessageType(
+  "protobuf_unittest.Int32ParseTester",
+  () => [
+    { no: 1, name: "optional_int32_lowfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1001, name: "optional_int32_midfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1000001, name: "optional_int32_hifield", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "repeated_int32_lowfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 1002, name: "repeated_int32_midfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 1000002, name: "repeated_int32_hifield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 3, name: "packed_int32_lowfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 1003, name: "packed_int32_midfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 1000003, name: "packed_int32_hifield", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
+    { no: 99, name: "other_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.Int64ParseTester
+ */
+export const Int64ParseTester = proto2.makeMessageType(
+  "protobuf_unittest.Int64ParseTester",
+  () => [
+    { no: 1, name: "optional_int64_lowfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1001, name: "optional_int64_midfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1000001, name: "optional_int64_hifield", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 2, name: "repeated_int64_lowfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 1002, name: "repeated_int64_midfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 1000002, name: "repeated_int64_hifield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 3, name: "packed_int64_lowfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true },
+    { no: 1003, name: "packed_int64_midfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true },
+    { no: 1000003, name: "packed_int64_hifield", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true, packed: true },
+    { no: 99, name: "other_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.StringParseTester
+ */
+export const StringParseTester = proto2.makeMessageType(
+  "protobuf_unittest.StringParseTester",
+  () => [
+    { no: 1, name: "optional_string_lowfield", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 1001, name: "optional_string_midfield", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 1000001, name: "optional_string_hifield", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "repeated_string_lowfield", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1002, name: "repeated_string_midfield", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1000002, name: "repeated_string_hifield", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.BadFieldNames
+ */
+export const BadFieldNames = proto2.makeMessageType(
+  "protobuf_unittest.BadFieldNames",
+  () => [
+    { no: 1, name: "OptionalInt32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "for", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.RedactedFields
+ */
+export const RedactedFields = proto2.makeMessageType(
+  "protobuf_unittest.RedactedFields",
+  () => [
+    { no: 1, name: "optional_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
 );
 

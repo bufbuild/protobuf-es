@@ -85,7 +85,6 @@ import { proto3, protoInt64 } from "@bufbuild/protobuf";
  *     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
  *         .setNanos((int) ((millis % 1000) * 1000000)).build();
  *
- *
  * Example 5: Compute Timestamp from Java `Instant.now()`.
  *
  *     Instant now = Instant.now();
@@ -93,7 +92,6 @@ import { proto3, protoInt64 } from "@bufbuild/protobuf";
  *     Timestamp timestamp =
  *         Timestamp.newBuilder().setSeconds(now.getEpochSecond())
  *             .setNanos(now.getNano()).build();
- *
  *
  * Example 6: Compute Timestamp from current time in Python.
  *
@@ -126,7 +124,6 @@ import { proto3, protoInt64 } from "@bufbuild/protobuf";
  * the Joda Time's [`ISODateTimeFormat.dateTime()`](
  * http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
  * ) to obtain a formatter capable of generating timestamps in this format.
- *
  *
  *
  * @generated from message google.protobuf.Timestamp

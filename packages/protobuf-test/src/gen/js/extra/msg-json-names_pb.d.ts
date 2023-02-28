@@ -34,34 +34,19 @@ export declare class JsonNamesMessage extends Message<JsonNamesMessage> {
   repeatedScalarField: string[];
 
   /**
-   * @generated from field: string a = 3 [json_name = "sameJsonName"];
+   * @generated from field: string a = 3;
    */
   a: string;
 
   /**
-   * @generated from field: string b = 4 [json_name = "sameJsonName"];
+   * @generated from field: string b = 4 [json_name = ""];
    */
   b: string;
 
   /**
-   * @generated from field: string c = 5;
+   * @generated from field: string c = 5 [json_name = "@type"];
    */
   c: string;
-
-  /**
-   * @generated from field: string d = 6 [json_name = "c"];
-   */
-  d: string;
-
-  /**
-   * @generated from field: string e = 7 [json_name = ""];
-   */
-  e: string;
-
-  /**
-   * @generated from field: string f = 8 [json_name = "@type"];
-   */
-  f: string;
 
   constructor(data?: PartialMessage<JsonNamesMessage>);
 

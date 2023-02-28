@@ -361,7 +361,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`    if (typeof match[2] == "string") {`)
       f.print(`      const nanosStr = match[2] + "0".repeat(9 - match[2].length);`)
       f.print("      this.", localName(ref.nanos), " = parseInt(nanosStr);")
-      f.print("      if (longSeconds < ", protoInt64, ".zero) {")
+      f.print("      if (longSeconds < 0 || Object.is(longSeconds, -0)) {");
       f.print("        this.", localName(ref.nanos), " = -this.", localName(ref.nanos), ";")
       f.print("      }")
       f.print("    }")
@@ -382,6 +382,9 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("        nanosStr = nanosStr.substring(0, 6);")
       f.print(`      }`)
       f.print(`      text += "." + nanosStr;`)
+      f.print("      if (this.", localName(ref.nanos), " < 0 && this.", localName(ref.seconds), " === ", protoInt64, ".zero) {");
+      f.print(`          text = "-" + text;`);
+      f.print(`      }`);      
       f.print("    }")
       f.print(`    return text + "s";`)
       f.print("  }")
@@ -412,8 +415,13 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    switch (this.", localName(ref.kind), ".case) {")
       f.print(`      case "`, localName(ref.nullValue), `":`)
       f.print("        return null;")
-      f.print(`      case "`, localName(ref.boolValue), `":`)
       f.print(`      case "`, localName(ref.numberValue), `":`)
+      f.print(`        if (!Number.isFinite(this.`, localName(ref.kind), `.value)) {`);
+      f.print(`          throw new Error("google.protobuf.Value cannot be NaN or Infinity");`);
+      f.print(`        }`);
+      f.print(`        return this.`, localName(ref.kind), `.value;`);
+      f.print(`      case "`, localName(ref.boolValue), `":`)
+      f.print(`        return this.`, localName(ref.kind), `.value;`);
       f.print(`      case "`, localName(ref.stringValue), `":`)
       f.print("        return this.", localName(ref.kind), ".value;")
       f.print(`      case "`, localName(ref.structValue), `":`)

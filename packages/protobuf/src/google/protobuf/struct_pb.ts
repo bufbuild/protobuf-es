@@ -185,8 +185,13 @@ export class Value extends Message<Value> {
     switch (this.kind.case) {
       case "nullValue":
         return null;
-      case "boolValue":
       case "numberValue":
+        if (!Number.isFinite(this.kind.value)) {
+          throw new Error("google.protobuf.Value cannot be NaN or Infinity");
+        }
+        return this.kind.value;
+      case "boolValue":
+        return this.kind.value;
       case "stringValue":
         return this.kind.value;
       case "structValue":
