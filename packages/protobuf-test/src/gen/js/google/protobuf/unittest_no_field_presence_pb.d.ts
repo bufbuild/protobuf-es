@@ -34,6 +34,8 @@
 // @generated from file google/protobuf/unittest_no_field_presence.proto (package proto2_nofieldpresence_unittest, syntax proto3)
 /* eslint-disable */
 
+// We want to test embedded proto2 messages, so include some proto2 types.
+
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 import type { TestAllTypes as TestAllTypes$1, TestRequired } from "./unittest_pb.js";
@@ -167,7 +169,8 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   /**
    * N.B.: proto2-enum-type fields not allowed, because their default values
    * might not be zero.
-   * optional protobuf_unittest.ForeignEnum          optional_proto2_enum     = 23;
+   * optional protobuf_unittest.ForeignEnum          optional_proto2_enum     =
+   * 23;
    *
    * @generated from field: proto2_nofieldpresence_unittest.ForeignEnum optional_foreign_enum = 22;
    */

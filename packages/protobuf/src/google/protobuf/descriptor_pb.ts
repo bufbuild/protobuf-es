@@ -152,11 +152,20 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
 
   /**
    * The syntax of the proto file.
-   * The supported values are "proto2" and "proto3".
+   * The supported values are "proto2", "proto3", and "editions".
+   *
+   * If `edition` is present, this value must be "editions".
    *
    * @generated from field: optional string syntax = 12;
    */
   syntax?: string;
+
+  /**
+   * The edition of the proto file, which is an opaque string.
+   *
+   * @generated from field: optional string edition = 13;
+   */
+  edition?: string;
 
   constructor(data?: PartialMessage<FileDescriptorProto>) {
     super();
@@ -178,6 +187,7 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
     { no: 8, name: "options", kind: "message", T: FileOptions, opt: true },
     { no: 9, name: "source_code_info", kind: "message", T: SourceCodeInfo, opt: true },
     { no: 12, name: "syntax", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 13, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileDescriptorProto {
@@ -1417,6 +1427,10 @@ export class MessageOptions extends Message<MessageOptions> {
   deprecated?: boolean;
 
   /**
+   * NOTE: Do not set the option in .proto files. Always use the maps syntax
+   * instead. The option should only be implicitly set by the proto compiler
+   * parser.
+   *
    * Whether the message is an automatically generated map entry type for the
    * maps field.
    *
@@ -1435,13 +1449,26 @@ export class MessageOptions extends Message<MessageOptions> {
    * The reflection APIs in such implementations still need to work as
    * if the field is a repeated message field.
    *
-   * NOTE: Do not set the option in .proto files. Always use the maps syntax
-   * instead. The option should only be implicitly set by the proto compiler
-   * parser.
-   *
    * @generated from field: optional bool map_entry = 7;
    */
   mapEntry?: boolean;
+
+  /**
+   * Enable the legacy handling of JSON field name conflicts.  This lowercases
+   * and strips underscored from the fields before comparison in proto3 only.
+   * The new behavior takes `json_name` into account and applies to proto2 as
+   * well.
+   *
+   * This should only be used as a temporary measure against broken builds due
+   * to the change in behavior for JSON field name conflicts.
+   *
+   * TODO(b/261750190) This is legacy behavior we plan to remove once downstream
+   * teams have had time to migrate.
+   *
+   * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 11 [deprecated = true];
+   * @deprecated
+   */
+  deprecatedLegacyJsonFieldConflicts?: boolean;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -1462,6 +1489,7 @@ export class MessageOptions extends Message<MessageOptions> {
     { no: 2, name: "no_standard_descriptor_accessor", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 7, name: "map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 11, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -1542,7 +1570,6 @@ export class FieldOptions extends Message<FieldOptions> {
    * call from multiple threads concurrently, while non-const methods continue
    * to require exclusive access.
    *
-   *
    * Note that implementations may choose not to check required fields within
    * a lazy sub-message.  That is, calling IsInitialized() on the outer message
    * may return true even if the inner message has missing required fields.
@@ -1554,11 +1581,8 @@ export class FieldOptions extends Message<FieldOptions> {
    * check its required fields, regardless of whether or not the message has
    * been parsed.
    *
-   * As of 2021, lazy does no correctness checks on the byte stream during
-   * parsing.  This may lead to crashes if and when an invalid byte stream is
-   * finally parsed upon access.
-   *
-   * TODO(b/211906113):  Enable validation on lazy fields.
+   * As of May 2022, lazy verifies the contents of the byte stream during
+   * parsing.  An invalid byte stream will cause the overall parsing to fail.
    *
    * @generated from field: optional bool lazy = 5 [default = false];
    */
@@ -1591,6 +1615,24 @@ export class FieldOptions extends Message<FieldOptions> {
   weak?: boolean;
 
   /**
+   * Indicate that the field value should not be printed out when using debug
+   * formats, e.g. when the field contains sensitive credentials.
+   *
+   * @generated from field: optional bool debug_redact = 16 [default = false];
+   */
+  debugRedact?: boolean;
+
+  /**
+   * @generated from field: optional google.protobuf.FieldOptions.OptionRetention retention = 17;
+   */
+  retention?: FieldOptions_OptionRetention;
+
+  /**
+   * @generated from field: optional google.protobuf.FieldOptions.OptionTargetType target = 18;
+   */
+  target?: FieldOptions_OptionTargetType;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1612,6 +1654,9 @@ export class FieldOptions extends Message<FieldOptions> {
     { no: 15, name: "unverified_lazy", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 10, name: "weak", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 16, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 17, name: "retention", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionRetention), opt: true },
+    { no: 18, name: "target", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -1693,6 +1738,109 @@ proto2.util.setEnumType(FieldOptions_JSType, "google.protobuf.FieldOptions.JSTyp
 ]);
 
 /**
+ * If set to RETENTION_SOURCE, the option will be omitted from the binary.
+ * Note: as of January 2023, support for this is in progress and does not yet
+ * have an effect (b/264593489).
+ *
+ * @generated from enum google.protobuf.FieldOptions.OptionRetention
+ */
+export enum FieldOptions_OptionRetention {
+  /**
+   * @generated from enum value: RETENTION_UNKNOWN = 0;
+   */
+  RETENTION_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: RETENTION_RUNTIME = 1;
+   */
+  RETENTION_RUNTIME = 1,
+
+  /**
+   * @generated from enum value: RETENTION_SOURCE = 2;
+   */
+  RETENTION_SOURCE = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FieldOptions_OptionRetention)
+proto2.util.setEnumType(FieldOptions_OptionRetention, "google.protobuf.FieldOptions.OptionRetention", [
+  { no: 0, name: "RETENTION_UNKNOWN" },
+  { no: 1, name: "RETENTION_RUNTIME" },
+  { no: 2, name: "RETENTION_SOURCE" },
+]);
+
+/**
+ * This indicates the types of entities that the field may apply to when used
+ * as an option. If it is unset, then the field may be freely used as an
+ * option on any kind of entity. Note: as of January 2023, support for this is
+ * in progress and does not yet have an effect (b/264593489).
+ *
+ * @generated from enum google.protobuf.FieldOptions.OptionTargetType
+ */
+export enum FieldOptions_OptionTargetType {
+  /**
+   * @generated from enum value: TARGET_TYPE_UNKNOWN = 0;
+   */
+  TARGET_TYPE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_FILE = 1;
+   */
+  TARGET_TYPE_FILE = 1,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_EXTENSION_RANGE = 2;
+   */
+  TARGET_TYPE_EXTENSION_RANGE = 2,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_MESSAGE = 3;
+   */
+  TARGET_TYPE_MESSAGE = 3,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_FIELD = 4;
+   */
+  TARGET_TYPE_FIELD = 4,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_ONEOF = 5;
+   */
+  TARGET_TYPE_ONEOF = 5,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_ENUM = 6;
+   */
+  TARGET_TYPE_ENUM = 6,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_ENUM_ENTRY = 7;
+   */
+  TARGET_TYPE_ENUM_ENTRY = 7,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_SERVICE = 8;
+   */
+  TARGET_TYPE_SERVICE = 8,
+
+  /**
+   * @generated from enum value: TARGET_TYPE_METHOD = 9;
+   */
+  TARGET_TYPE_METHOD = 9,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FieldOptions_OptionTargetType)
+proto2.util.setEnumType(FieldOptions_OptionTargetType, "google.protobuf.FieldOptions.OptionTargetType", [
+  { no: 0, name: "TARGET_TYPE_UNKNOWN" },
+  { no: 1, name: "TARGET_TYPE_FILE" },
+  { no: 2, name: "TARGET_TYPE_EXTENSION_RANGE" },
+  { no: 3, name: "TARGET_TYPE_MESSAGE" },
+  { no: 4, name: "TARGET_TYPE_FIELD" },
+  { no: 5, name: "TARGET_TYPE_ONEOF" },
+  { no: 6, name: "TARGET_TYPE_ENUM" },
+  { no: 7, name: "TARGET_TYPE_ENUM_ENTRY" },
+  { no: 8, name: "TARGET_TYPE_SERVICE" },
+  { no: 9, name: "TARGET_TYPE_METHOD" },
+]);
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export class OneofOptions extends Message<OneofOptions> {
@@ -1754,6 +1902,19 @@ export class EnumOptions extends Message<EnumOptions> {
   deprecated?: boolean;
 
   /**
+   * Enable the legacy handling of JSON field name conflicts.  This lowercases
+   * and strips underscored from the fields before comparison in proto3 only.
+   * The new behavior takes `json_name` into account and applies to proto2 as
+   * well.
+   * TODO(b/261750190) Remove this legacy behavior once downstream teams have
+   * had time to migrate.
+   *
+   * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 6 [deprecated = true];
+   * @deprecated
+   */
+  deprecatedLegacyJsonFieldConflicts?: boolean;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1770,6 +1931,7 @@ export class EnumOptions extends Message<EnumOptions> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 2, name: "allow_alias", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 6, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2408,12 +2570,17 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
 
   /**
    * Identifies the ending offset in bytes in the generated code that
-   * relates to the identified offset. The end offset should be one past
+   * relates to the identified object. The end offset should be one past
    * the last relevant byte (so the length of the text = end - begin).
    *
    * @generated from field: optional int32 end = 4;
    */
   end?: number;
+
+  /**
+   * @generated from field: optional google.protobuf.GeneratedCodeInfo.Annotation.Semantic semantic = 5;
+   */
+  semantic?: GeneratedCodeInfo_Annotation_Semantic;
 
   constructor(data?: PartialMessage<GeneratedCodeInfo_Annotation>) {
     super();
@@ -2427,6 +2594,7 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
     { no: 2, name: "source_file", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 3, name: "begin", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 4, name: "end", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 5, name: "semantic", kind: "enum", T: proto2.getEnumType(GeneratedCodeInfo_Annotation_Semantic), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeneratedCodeInfo_Annotation {
@@ -2445,4 +2613,39 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
     return proto2.util.equals(GeneratedCodeInfo_Annotation, a, b);
   }
 }
+
+/**
+ * Represents the identified object's effect on the element in the original
+ * .proto file.
+ *
+ * @generated from enum google.protobuf.GeneratedCodeInfo.Annotation.Semantic
+ */
+export enum GeneratedCodeInfo_Annotation_Semantic {
+  /**
+   * There is no effect or the effect is indescribable.
+   *
+   * @generated from enum value: NONE = 0;
+   */
+  NONE = 0,
+
+  /**
+   * The element is set or otherwise mutated.
+   *
+   * @generated from enum value: SET = 1;
+   */
+  SET = 1,
+
+  /**
+   * An alias to the element is returned.
+   *
+   * @generated from enum value: ALIAS = 2;
+   */
+  ALIAS = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(GeneratedCodeInfo_Annotation_Semantic)
+proto2.util.setEnumType(GeneratedCodeInfo_Annotation_Semantic, "google.protobuf.GeneratedCodeInfo.Annotation.Semantic", [
+  { no: 0, name: "NONE" },
+  { no: 1, name: "SET" },
+  { no: 2, name: "ALIAS" },
+]);
 

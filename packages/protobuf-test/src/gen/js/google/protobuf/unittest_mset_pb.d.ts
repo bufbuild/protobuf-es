@@ -97,6 +97,40 @@ export declare class NestedTestMessageSetContainer extends Message<NestedTestMes
 }
 
 /**
+ * @generated from message protobuf_unittest.NestedTestInt
+ */
+export declare class NestedTestInt extends Message<NestedTestInt> {
+  /**
+   * @generated from field: optional fixed32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 3;
+   */
+  b?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
+   */
+  child?: NestedTestInt;
+
+  constructor(data?: PartialMessage<NestedTestInt>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.NestedTestInt";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestInt;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestInt;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestInt;
+
+  static equals(a: NestedTestInt | PlainMessage<NestedTestInt> | undefined, b: NestedTestInt | PlainMessage<NestedTestInt> | undefined): boolean;
+}
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
  */
 export declare class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> {
@@ -155,35 +189,6 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
 }
 
 /**
- * @generated from message protobuf_unittest.NestedTestInt
- */
-export declare class NestedTestInt extends Message<NestedTestInt> {
-  /**
-   * @generated from field: optional fixed32 a = 1;
-   */
-  a?: number;
-
-  /**
-   * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
-   */
-  child?: NestedTestInt;
-
-  constructor(data?: PartialMessage<NestedTestInt>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.NestedTestInt";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestInt;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): NestedTestInt;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NestedTestInt;
-
-  static equals(a: NestedTestInt | PlainMessage<NestedTestInt> | undefined, b: NestedTestInt | PlainMessage<NestedTestInt> | undefined): boolean;
-}
-
-/**
  * @generated from message protobuf_unittest.TestMessageSetExtension3
  */
 export declare class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> {
@@ -191,6 +196,11 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
    * @generated from field: optional protobuf_unittest.NestedTestInt msg = 35;
    */
   msg?: NestedTestInt;
+
+  /**
+   * @generated from field: required int32 required_int = 36;
+   */
+  requiredInt: number;
 
   constructor(data?: PartialMessage<TestMessageSetExtension3>);
 

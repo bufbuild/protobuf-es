@@ -1423,3 +1423,52 @@ export class OneStringProto2 extends Message<OneStringProto2> {
   }
 }
 
+/**
+ * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
+ */
+export class ProtoWithKeywords extends Message<ProtoWithKeywords> {
+  /**
+   * @generated from field: optional int32 inline = 1;
+   */
+  inline?: number;
+
+  /**
+   * @generated from field: optional string concept = 2;
+   */
+  concept?: string;
+
+  /**
+   * @generated from field: repeated string requires = 3;
+   */
+  requires: string[] = [];
+
+  constructor(data?: PartialMessage<ProtoWithKeywords>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.ProtoWithKeywords";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "inline", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "concept", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "requires", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProtoWithKeywords {
+    return new ProtoWithKeywords().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProtoWithKeywords {
+    return new ProtoWithKeywords().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProtoWithKeywords {
+    return new ProtoWithKeywords().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProtoWithKeywords | PlainMessage<ProtoWithKeywords> | undefined, b: ProtoWithKeywords | PlainMessage<ProtoWithKeywords> | undefined): boolean {
+    return proto2.util.equals(ProtoWithKeywords, a, b);
+  }
+}
+
