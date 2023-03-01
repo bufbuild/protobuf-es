@@ -141,7 +141,9 @@ describe("protoDelimited", function () {
           writeStream.write(protoDelimited.enc(m));
         }
         writeStream.end();
-        writeStream.close();
+        await new Promise<void>((resolve, reject) =>
+          writeStream.close(err => err ? reject(err) : resolve())
+        );
         const readStream = createReadStream(path);
         let i = 0;
         for await (const m of protoDelimited.decStream(
