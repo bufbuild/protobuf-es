@@ -245,6 +245,5 @@ release: all ## Release @bufbuild/protobuf
 
 .PHONY: checkdiff
 checkdiff:
-	@# Used in CI to verify that `make` doesn't produce a diff, but ignore changes in benchmarks
-	git checkout packages/protobuf-bench/README.md
+	@# Used in CI to verify that `make` doesn't produce a diff
 	test -z "$$(git status --porcelain | tee /dev/stderr)"
