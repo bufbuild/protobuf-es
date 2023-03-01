@@ -17,6 +17,7 @@ provided by the library.
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
 - [64-bit-integral-types](#64-bit-integral-types)
+- [Size-delimited messages](#size-delimited-messages)
 - [Reflection](#reflection)
   - [Iterating over message fields](#iterating-over-message-fields)
   - [Registries](#registries)
@@ -264,6 +265,8 @@ JSON.
 Conformance with the binary and the JSON format is ensured by the
 [conformance tests](../packages/protobuf-conformance). We do not implement the text format.
 
+For serializing multiple messages of the same type, also see [size-delimited messages](#size-delimited-messages).
+
 
 
 ## Using enumerations
@@ -460,6 +463,55 @@ user.ulong = protoInt64.uParse(input);
 
 If you want to perform arithmetic on `bigint` fields, you will need to use a
 third party library like [Long.js](https://www.npmjs.com/package/long).
+
+
+## Size-delimited messages
+
+Protobuf-ES supports the size-delimited format for messages. It lets you serialize
+multiple messages to a stream, and parse multiple messages from a stream.
+
+A size-delimited message is a varint size in bytes, followed by exactly
+that many bytes of a message serialized with the binary format. This implementation 
+is compatible with the counterparts in [C++](https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h),
+[Java](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-), 
+[Go](https://github.com/golang/protobuf/issues/1382), and others.
+
+
+You create such a message with `protoDelimited.enc`:
+
+```typescript
+import { protoDelimited } from "@bufbuild/protobuf";
+
+const bytes = protoDelimited.enc(new User({ firstName: "John" }));
+const user = protoDelimited.dec(User, bytes);
+```
+
+With `protoDelimited.decStream`, you can parse messages from a stream. The 
+method expects an `AsyncIterable<Uint8Array>` as a stream input, so it works
+with Node.js streams out of the box, and can be easily adapted to other 
+stream APIs:
+
+```typescript
+import { protoDelimited } from "@bufbuild/protobuf";
+import { createReadStream, createWriteStream } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
+
+// Let's write a couple of messages to a file
+const ws = createWriteStream("protoDelimited.bin", {encoding: "binary"});
+ws.write(protoDelimited.enc(new User({ firstName: "John" })));
+ws.write(protoDelimited.enc(new User({ firstName: "Max" })));
+ws.write(protoDelimited.enc(new User({ firstName: "Max" })));
+ws.end();
+ws.close();
+
+// Now we can parse them from the stream
+const readStream = createReadStream("protoDelimited.bin");
+for await (const user of protoDelimited.decStream(User, readStream)) {
+  console.log(user);
+}
+```
+
 
 
 
