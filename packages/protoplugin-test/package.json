@@ -16,7 +16,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.14.0-1",
+    "@bufbuild/buf": "^1.15.0",
     "@bufbuild/protoplugin": "1.0.0"
   }
 }
