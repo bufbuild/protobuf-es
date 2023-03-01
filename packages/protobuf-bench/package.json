@@ -6,7 +6,7 @@
     "clean": "rm -rf README.md src/gen"
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.14.0-1",
+    "@bufbuild/buf": "^1.15.0",
     "@bufbuild/protobuf": "1.0.0",
     "esbuild": "^0.17.10",
     "fflate": "^0.7.4",
