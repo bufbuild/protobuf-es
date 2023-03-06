@@ -26,24 +26,24 @@ import { describeMT } from "./helpers.js";
 describe("equals", function () {
   describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
     test("oneof scalars are equal", () => {
-      let a = new messageType({ scalar: { case: "value", value: 1 } });
-      let b = new messageType({ scalar: { case: "value", value: 1 } });
+      const a = new messageType({ scalar: { case: "value", value: 1 } });
+      const b = new messageType({ scalar: { case: "value", value: 1 } });
       expect(a).toStrictEqual(b);
       expect(a.equals(b)).toBeTruthy();
     });
 
     test("oneof scalars are not equal", () => {
-      let a = new messageType({ scalar: { case: "value", value: 1 } });
-      let b = new messageType({ scalar: { case: "value", value: 2 } });
+      const a = new messageType({ scalar: { case: "value", value: 1 } });
+      const b = new messageType({ scalar: { case: "value", value: 2 } });
       expect(a).not.toStrictEqual(b);
       expect(a.equals(b)).toBeFalsy();
     });
 
     test("oneof messages are equal", () => {
-      let a = new messageType({
+      const a = new messageType({
         message: { case: "foo", value: { name: "a" } },
       });
-      let b = new messageType({
+      const b = new messageType({
         message: { case: "foo", value: { name: "a" } },
       });
       expect(a).toStrictEqual(b);
@@ -51,10 +51,10 @@ describe("equals", function () {
     });
 
     test("oneof messages are not equal", () => {
-      let a = new messageType({
+      const a = new messageType({
         message: { case: "foo", value: { name: "a" } },
       });
-      let b = new messageType({
+      const b = new messageType({
         message: { case: "foo", value: { name: "b" } },
       });
       expect(a).not.toStrictEqual(b);
@@ -62,10 +62,10 @@ describe("equals", function () {
     });
 
     test("oneof messages are different", () => {
-      let a = new messageType({
+      const a = new messageType({
         message: { case: "foo", value: { name: "a" } },
       });
-      let b = new messageType({
+      const b = new messageType({
         message: { case: "bar", value: { a: 1 } },
       });
       expect(a).not.toStrictEqual(b);
@@ -73,15 +73,15 @@ describe("equals", function () {
     });
 
     test("oneof enums are equal", () => {
-      let a = new messageType({ enum: { case: "e", value: 1 } });
-      let b = new messageType({ enum: { case: "e", value: 1 } });
+      const a = new messageType({ enum: { case: "e", value: 1 } });
+      const b = new messageType({ enum: { case: "e", value: 1 } });
       expect(a).toStrictEqual(b);
       expect(a.equals(b)).toBeTruthy();
     });
 
     test("oneof enums are not equal", () => {
-      let a = new messageType({ enum: { case: "e", value: 1 } });
-      let b = new messageType({ enum: { case: "e", value: 2 } });
+      const a = new messageType({ enum: { case: "e", value: 1 } });
+      const b = new messageType({ enum: { case: "e", value: 2 } });
       expect(a).not.toStrictEqual(b);
       expect(a.equals(b)).toBeFalsy();
     });

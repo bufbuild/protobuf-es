@@ -147,7 +147,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (va.case !== vb.case) {
               return false;
             }
-            let s = m.findField(va.case);
+            const s = m.findField(va.case);
             if (s === undefined) {
               return true;
             }
