@@ -147,19 +147,18 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (va.case !== vb.case) {
               return false;
             }
-            const k = va.case,
-              s = m.findField(k);
+            let s = m.findField(va.case);
             if (s === undefined) {
               return true;
             }
             // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- oneof fields are never "map"
             switch (s.kind) {
               case "message":
-                return s.T.equals(va[k], vb[k]);
+                return s.T.equals(va.value, vb.value);
               case "enum":
-                return scalarEquals(ScalarType.INT32, va, vb);
+                return scalarEquals(ScalarType.INT32, va.value, vb.value);
               case "scalar":
-                return scalarEquals(s.T, va, vb);
+                return scalarEquals(s.T, va.value, vb.value);
             }
             throw new Error(`oneof cannot contain ${s.kind}`);
           case "map":
