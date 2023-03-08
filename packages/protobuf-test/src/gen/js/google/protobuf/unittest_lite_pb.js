@@ -183,6 +183,7 @@ export const TestAllTypesLite_NestedMessage = proto2.makeMessageType(
   () => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "cc", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "dd", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
   ],
   {localName: "TestAllTypesLite_NestedMessage"},
 );
