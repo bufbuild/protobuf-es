@@ -19,9 +19,73 @@ import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/ms
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import { ScalarValuesMessage as TS_ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
 import { ScalarValuesMessage as JS_ScalarValuesMessage } from "./gen/js/extra/msg-scalar_pb.js";
+import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";
+import { OneofMessage as JS_OneofMessage } from "./gen/js/extra/msg-oneof_pb.js";
 import { describeMT } from "./helpers.js";
 
 describe("equals", function () {
+  describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
+    test("oneof scalars are equal", () => {
+      const a = new messageType({ scalar: { case: "value", value: 1 } });
+      const b = new messageType({ scalar: { case: "value", value: 1 } });
+      expect(a).toStrictEqual(b);
+      expect(a.equals(b)).toBeTruthy();
+    });
+
+    test("oneof scalars are not equal", () => {
+      const a = new messageType({ scalar: { case: "value", value: 1 } });
+      const b = new messageType({ scalar: { case: "value", value: 2 } });
+      expect(a).not.toStrictEqual(b);
+      expect(a.equals(b)).toBeFalsy();
+    });
+
+    test("oneof messages are equal", () => {
+      const a = new messageType({
+        message: { case: "foo", value: { name: "a" } },
+      });
+      const b = new messageType({
+        message: { case: "foo", value: { name: "a" } },
+      });
+      expect(a).toStrictEqual(b);
+      expect(a.equals(b)).toBeTruthy();
+    });
+
+    test("oneof messages are not equal", () => {
+      const a = new messageType({
+        message: { case: "foo", value: { name: "a" } },
+      });
+      const b = new messageType({
+        message: { case: "foo", value: { name: "b" } },
+      });
+      expect(a).not.toStrictEqual(b);
+      expect(a.equals(b)).toBeFalsy();
+    });
+
+    test("oneof messages are different", () => {
+      const a = new messageType({
+        message: { case: "foo", value: { name: "a" } },
+      });
+      const b = new messageType({
+        message: { case: "bar", value: { a: 1 } },
+      });
+      expect(a).not.toStrictEqual(b);
+      expect(a.equals(b)).toBeFalsy();
+    });
+
+    test("oneof enums are equal", () => {
+      const a = new messageType({ enum: { case: "e", value: 1 } });
+      const b = new messageType({ enum: { case: "e", value: 1 } });
+      expect(a).toStrictEqual(b);
+      expect(a.equals(b)).toBeTruthy();
+    });
+
+    test("oneof enums are not equal", () => {
+      const a = new messageType({ enum: { case: "e", value: 1 } });
+      const b = new messageType({ enum: { case: "e", value: 2 } });
+      expect(a).not.toStrictEqual(b);
+      expect(a.equals(b)).toBeFalsy();
+    });
+  });
   describeMT(
     { ts: TS_MessageFieldMessage, js: JS_MessageFieldMessage },
     (messageType) => {
