@@ -559,6 +559,11 @@ export declare class TestAllTypesLite_NestedMessage extends Message<TestAllTypes
    */
   cc?: bigint;
 
+  /**
+   * @generated from field: repeated int32 dd = 3 [packed = true];
+   */
+  dd: number[];
+
   constructor(data?: PartialMessage<TestAllTypesLite_NestedMessage>);
 
   static readonly runtime: typeof proto2;

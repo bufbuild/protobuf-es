@@ -671,6 +671,11 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
    */
   cc?: bigint;
 
+  /**
+   * @generated from field: repeated int32 dd = 3 [packed = true];
+   */
+  dd: number[] = [];
+
   constructor(data?: PartialMessage<TestAllTypesLite_NestedMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -681,6 +686,7 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "cc", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "dd", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_NestedMessage {
