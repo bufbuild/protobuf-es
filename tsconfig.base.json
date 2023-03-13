@@ -10,6 +10,7 @@
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
+    "exactOptionalPropertyTypes": true,
     "noImplicitThis": true,
     "useUnknownInCatchVariables": true,
     "noUnusedLocals": true,

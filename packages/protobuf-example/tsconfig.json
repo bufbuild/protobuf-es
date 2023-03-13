@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es2016",
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "moduleResolution": "Node"
   }
 }
