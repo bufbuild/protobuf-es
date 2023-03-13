@@ -76,8 +76,9 @@ const defaultOptions: ts.CompilerOptions = {
  * npm does not support that yet.
  */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
+  const { target } = options;
   const fsMap = createDefaultMapFromNodeModules({
-    target: options.target,
+    ...(target !== undefined ? { target } : {}),
   });
 
   files.forEach((file) => {

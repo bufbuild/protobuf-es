@@ -37,7 +37,7 @@ function transpile(
     name: "test-plugin",
     version: "v99.0.0",
     generateTs: genTs,
-    parseOption,
+    ...(parseOption !== undefined ? { parseOption } : {}),
   });
   const res = plugin.run(req);
   return function linesOf(filename: string): string[] {
@@ -124,16 +124,12 @@ describe("transpile", function () {
         return {
           leadingDetached: [],
           sourcePath: [],
-          leading: undefined,
-          trailing: undefined,
         };
       },
       getSyntaxComments() {
         return {
           leadingDetached: [],
           sourcePath: [],
-          leading: undefined,
-          trailing: undefined,
         };
       },
     };

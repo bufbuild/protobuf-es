@@ -213,6 +213,10 @@ function addEnum(
   cart: Cart
 ): void {
   assert(proto.name, `invalid EnumDescriptorProto: missing name`);
+  const sharedPrefix = findEnumSharedPrefix(
+    proto.name,
+    proto.value.map((v) => v.name ?? "")
+  );
   const desc: DescEnum = {
     kind: "enum",
     proto,
@@ -222,10 +226,7 @@ function addEnum(
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     values: [],
-    sharedPrefix: findEnumSharedPrefix(
-      proto.name,
-      proto.value.map((v) => v.name ?? "")
-    ),
+    ...(sharedPrefix !== undefined ? { sharedPrefix } : {}),
     toString(): string {
       return `enum ${this.typeName}`;
     },
@@ -429,7 +430,7 @@ function newMethod(
     methodKind,
     input,
     output,
-    idempotency,
+    ...(idempotency !== undefined ? { idempotency } : {}),
     toString() {
       return `rpc ${parent.typeName}.${name}`;
     },
@@ -867,10 +868,12 @@ function findComments(
     if (location.path.some((value, index) => sourcePath[index] !== value)) {
       continue;
     }
+    const leading = location.leadingComments;
+    const trailing = location.trailingComments;
     return {
       leadingDetached: location.leadingDetachedComments,
-      leading: location.leadingComments,
-      trailing: location.trailingComments,
+      ...(leading !== undefined ? { leading } : {}),
+      ...(trailing !== undefined ? { trailing } : {}),
       sourcePath,
     };
   }

@@ -285,7 +285,7 @@ function buildPrintablesFromFragments(
 type MakeImportStatementFn = (
   typeOnly: boolean,
   from: string,
-  names: { name: string; alias?: string }[]
+  names: { name: string; alias?: string | undefined }[]
 ) => void;
 
 function processImports(
@@ -374,7 +374,7 @@ function processImports(
   // Make import statements.
   const handledSource = new Set<string>();
   const buildNames = (map: Map<string, string | undefined>) => {
-    const names: { name: string; alias?: string }[] = [];
+    const names: { name: string; alias: string | undefined }[] = [];
     map.forEach((value, key) => names.push({ name: key, alias: value }));
     names.sort((a, b) => a.name.localeCompare(b.name));
     return names;

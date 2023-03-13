@@ -197,7 +197,7 @@ export function createRegistryFromDescriptors(
           idempotency: method.idempotency,
           // We do not surface options at this time
           // options: {},
-        };
+        } as MethodInfo;
       }
       return (services[typeName] = {
         typeName: desc.typeName,
@@ -232,11 +232,12 @@ function makeMapFieldInfo(
   field: DescField & { fieldKind: "map" },
   resolver: Resolver
 ): PartialFieldInfo {
+  const jsonName = field.jsonName;
   const base = {
     kind: "map",
     no: field.number,
     name: field.name,
-    jsonName: field.jsonName,
+    ...(jsonName !== undefined ? { jsonName } : {}),
     K: field.mapKey,
   } as const;
   if (field.mapValue.message) {
@@ -281,11 +282,12 @@ function makeMapFieldInfo(
 function makeScalarFieldInfo(
   field: DescField & { fieldKind: "scalar" }
 ): PartialFieldInfo {
+  const jsonName = field.jsonName;
   const base = {
     kind: "scalar",
     no: field.number,
     name: field.name,
-    jsonName: field.jsonName,
+    ...(jsonName !== undefined ? { jsonName } : {}),
     T: field.scalar,
   } as const;
   if (field.repeated) {
@@ -321,11 +323,12 @@ function makeMessageFieldInfo(
     messageType,
     `message "${field.message.typeName}" for ${field.toString()} not found`
   );
+  const jsonName = field.jsonName;
   const base = {
     kind: "message",
     no: field.number,
     name: field.name,
-    jsonName: field.jsonName,
+    ...(jsonName !== undefined ? { jsonName } : {}),
     T: messageType,
   } as const;
   if (field.repeated) {
@@ -360,11 +363,12 @@ function makeEnumFieldInfo(
     enumType,
     `enum "${field.enum.typeName}" for ${field.toString()} not found`
   );
+  const jsonName = field.jsonName;
   const base = {
     kind: "enum",
     no: field.number,
     name: field.name,
-    jsonName: field.jsonName,
+    ...(jsonName !== undefined ? { jsonName } : {}),
     T: enumType,
   } as const;
   if (field.repeated) {
