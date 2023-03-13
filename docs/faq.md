@@ -62,7 +62,9 @@ We generate our `enum` values based on how they are written in the source Protob
 
 The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
 
-We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are important.  The more options there are, the less approachable the plugin becomes.  This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
+We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are necessary.  This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
+
+For more information on our thoughts on options, see this [question](#options).
 
 
 ### Why use `BigInt` to represent 64-bit integers?
@@ -131,3 +133,20 @@ The main differences of the generated code:
 - we implement the canonical JSON format
 - we generate [much smaller bundles](packages/protobuf-bench)
 - we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+
+### <a name="options"></a>What is your stance on adding options to the plugin?
+
+In general, we feel that an abundance of options tends to make the plugin less approachable. It can be daunting to a 
+new user to have to sift through numerous configuration choices when all they want to do is start generating code. Our
+default position is to try to be as opinionated as possible about the generated code and this tends to result in fewer
+knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It 
+is much easier to reason about the generated code when it conforms to a predictable standard.
+
+This is not to say that we are completely against adding _any_ options to the plugin. There are obviously cases where
+adding an option is necessary. However, for cases such as stylistic choices or user preferences, we tend to err on the
+side of caution.
+
+
+
+
+
