@@ -42,8 +42,6 @@ export const protoBase64 = {
   dec(base64Str: string): Uint8Array {
     // estimate byte size, not accounting for inner padding and whitespace
     let es = (base64Str.length * 3) / 4;
-    // if (es % 3 !== 0)
-    // throw new Error("invalid base64 string");
     if (base64Str[base64Str.length - 2] == "=") es -= 2;
     else if (base64Str[base64Str.length - 1] == "=") es -= 1;
 
