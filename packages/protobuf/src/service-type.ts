@@ -41,8 +41,6 @@ export interface ServiceType {
  * call. All methods provide the following properties:
  *
  * - "name": The original name of the protobuf rpc.
- * - "localName": A variation of the name that follows the lowerCamelCase
- *    naming convention in ECMAScript.
  * - "I": The input message type.
  * - "O": The output message type.
  * - "kind": The method type.
