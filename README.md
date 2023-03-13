@@ -111,6 +111,8 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
   Type-safe APIs with Protobuf and TypeScript.
 * [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
   Examples for using Connect with various TypeScript web frameworks and tooling
+* [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance):
+  A repository running the Protobuf conformance tests against various libraries.
 * [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
 
 
