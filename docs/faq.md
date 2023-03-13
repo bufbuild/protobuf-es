@@ -137,7 +137,7 @@ The main differences of the generated code:
 ### <a name="options"></a>What is your stance on adding options to the plugin?
 
 In general, we feel that an abundance of options tends to make the plugin less approachable. It can be daunting to a 
-new user to have to sift through numerous configuration choices when all they want to do is start generating code. Our
+new user to have to sift through numerous configuration choices when they are just beginning to use the plugin. Our
 default position is to try to be as opinionated as possible about the generated code and this tends to result in fewer
 knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It 
 is much easier to reason about the generated code when it conforms to a predictable standard.
