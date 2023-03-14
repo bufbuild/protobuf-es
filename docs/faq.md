@@ -142,6 +142,10 @@ default position is to try to be as opinionated as possible about the generated 
 knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It 
 is much easier to reason about the generated code when it conforms to a predictable standard.
 
+However, there are more concrete reasons why we prefer to add options judiciously. Consider a popular option request,
+which is to add the ability to generate `snake_case` field names as opposed to `camelCase`. If we were to provide this
+as an option, that means that any plugin downstream must also have this option enabled. k=
+
 This is not to say that we are completely against adding _any_ options to the plugin. There are obviously cases where
 adding an option is necessary. However, for cases such as stylistic choices or user preferences, we tend to err on the
 side of caution.
