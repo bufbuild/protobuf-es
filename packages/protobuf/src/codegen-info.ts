@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { localName } from "./private/names.js";
+import {
+  localName,
+  safeIdentifier,
+  safeObjectProperty,
+} from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";
@@ -25,6 +29,8 @@ interface CodegenInfo {
   readonly wktSourceFiles: readonly string[];
   readonly scalarDefaultValue: typeof scalarDefaultValue;
   readonly reifyWkt: typeof reifyWkt;
+  readonly safeIdentifier: typeof safeIdentifier;
+  readonly safeObjectProperty: typeof safeObjectProperty;
 }
 
 type RuntimeSymbolName =
@@ -61,6 +67,8 @@ export const codegenInfo: CodegenInfo = {
   reifyWkt,
   getUnwrappedFieldType,
   scalarDefaultValue,
+  safeIdentifier,
+  safeObjectProperty,
   // prettier-ignore
   symbols: {
     proto2:               {typeOnly: false, privateImportPath: "./proto2.js",        publicImportPath: packageName},
