@@ -50,10 +50,12 @@ export function localName(
       const pkg = desc.file.proto.package;
       const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
-      if (reservedIdent[name]) {
-        return name + "$";
-      }
-      return name;
+      // For services, we only care about safe identifiers, not safe object properties,
+      // but we have shipped v1 with a bug that respected object properties, and we
+      // do not want to introduce a breaking change, so we continue to escape for
+      // safe object properties.
+      // See https://github.com/bufbuild/protobuf-es/pull/391
+      return safeObjectProperty(safeIdentifier(name));
     }
     case "enum_value": {
       const sharedPrefix = desc.parent.sharedPrefix;
@@ -61,10 +63,7 @@ export function localName(
         return desc.name;
       }
       const name = desc.name.substring(sharedPrefix.length);
-      if (reservedObjectProperties[name]) {
-        return name + "$";
-      }
-      return name;
+      return safeObjectProperty(name);
     }
     case "rpc": {
       let name = desc.name;
@@ -72,10 +71,7 @@ export function localName(
         return name;
       }
       name = name[0].toLowerCase() + name.substring(1);
-      if (reservedObjectProperties[name]) {
-        return name + "$";
-      }
-      return name;
+      return safeObjectProperty(name);
     }
   }
 }
@@ -84,15 +80,12 @@ export function localName(
  * Returns the name of a field in generated code.
  */
 export function localFieldName(protoName: string, inOneof: boolean) {
-  let name = protoCamelCase(protoName);
+  const name = protoCamelCase(protoName);
   if (inOneof) {
     // oneof member names are not properties, but values of the `case` property.
     return name;
   }
-  if (reservedObjectProperties[name] || reservedMessageProperties[name]) {
-    name = name + "$";
-  }
-  return name;
+  return safeObjectProperty(safeMessageProperty(name));
 }
 
 /**
@@ -180,98 +173,138 @@ function protoCamelCase(snakeCase: string): string {
   return b.join("");
 }
 
-// Names that cannot be used for identifiers, such as class names,
-// but _can_ be used for object properties.
-const reservedIdent: { [k: string]: boolean } = {
+/**
+ * Names that cannot be used for identifiers, such as class names,
+ * but _can_ be used for object properties.
+ */
+const reservedIdentifiers = new Set([
   // ECMAScript 2015 keywords
-  break: true,
-  case: true,
-  catch: true,
-  class: true,
-  const: true,
-  continue: true,
-  debugger: true,
-  default: true,
-  delete: true,
-  do: true,
-  else: true,
-  export: true,
-  extends: true,
-  false: true,
-  finally: true,
-  for: true,
-  function: true,
-  if: true,
-  import: true,
-  in: true,
-  instanceof: true,
-  new: true,
-  null: true,
-  return: true,
-  super: true,
-  switch: true,
-  this: true,
-  throw: true,
-  true: true,
-  try: true,
-  typeof: true,
-  var: true,
-  void: true,
-  while: true,
-  with: true,
-  yield: true,
+  "break",
+  "case",
+  "catch",
+  "class",
+  "const",
+  "continue",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "else",
+  "export",
+  "extends",
+  "false",
+  "finally",
+  "for",
+  "function",
+  "if",
+  "import",
+  "in",
+  "instanceof",
+  "new",
+  "null",
+  "return",
+  "super",
+  "switch",
+  "this",
+  "throw",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with",
+  "yield",
 
   // ECMAScript 2015 future reserved keywords
-  enum: true,
-  implements: true,
-  interface: true,
-  let: true,
-  package: true,
-  private: true,
-  protected: true,
-  public: true,
-  static: true,
+  "enum",
+  "implements",
+  "interface",
+  "let",
+  "package",
+  "private",
+  "protected",
+  "public",
+  "static",
 
   // Class name cannot be 'Object' when targeting ES5 with module CommonJS
-  Object: true,
+  "Object",
 
   // TypeScript keywords that cannot be used for types (as opposed to variables)
-  bigint: true,
-  number: true,
-  boolean: true,
-  string: true,
-  object: true,
+  "bigint",
+  "number",
+  "boolean",
+  "string",
+  "object",
 
   // Identifiers reserved for the runtime, so we can generate legible code
-  globalThis: true,
-  Uint8Array: true,
-  Partial: true,
-};
+  "globalThis",
+  "Uint8Array",
+  "Partial",
+]);
 
-// Names that cannot be used for object properties because they are reserved
-// by built-in JavaScript properties.
-const reservedObjectProperties: { [k: string]: boolean } = {
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by built-in JavaScript properties.
+ */
+const reservedObjectProperties = new Set([
   // names reserved by JavaScript
-  constructor: true,
-  toString: true,
-  toJSON: true,
-  valueOf: true,
-};
+  "constructor",
+  "toString",
+  "toJSON",
+  "valueOf",
+]);
 
-// Names that cannot be used for object properties because they are reserved
-// by the runtime.
-const reservedMessageProperties: { [k: string]: boolean } = {
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by the runtime.
+ */
+const reservedMessageProperties = new Set([
   // names reserved by the runtime
-  getType: true,
-  clone: true,
-  equals: true,
-  fromBinary: true,
-  fromJson: true,
-  fromJsonString: true,
-  toBinary: true,
-  toJson: true,
-  toJsonString: true,
+  "getType",
+  "clone",
+  "equals",
+  "fromBinary",
+  "fromJson",
+  "fromJsonString",
+  "toBinary",
+  "toJson",
+  "toJsonString",
 
   // names reserved by the runtime for the future
-  toObject: true,
+  "toObject",
+]);
+
+const fallback = <T extends string>(name: T) => `${name}$` as const;
+
+/**
+ * Will wrap names that are Object prototype properties or names reserved
+ * for `Message`s.
+ */
+const safeMessageProperty = (name: string): string => {
+  if (reservedMessageProperties.has(name)) {
+    return fallback(name);
+  }
+  return name;
+};
+
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by built-in JavaScript properties.
+ */
+export const safeObjectProperty = (name: string): string => {
+  if (reservedObjectProperties.has(name)) {
+    return fallback(name);
+  }
+  return name;
+};
+
+/**
+ * Names that can be used for identifiers or class properties
+ */
+export const safeIdentifier = (name: string): string => {
+  if (reservedIdentifiers.has(name)) {
+    return fallback(name);
+  }
+  return name;
 };
