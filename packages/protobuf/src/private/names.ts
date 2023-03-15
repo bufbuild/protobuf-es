@@ -81,8 +81,11 @@ export function localName(
  */
 export function localFieldName(protoName: string, inOneof: boolean) {
   const name = protoCamelCase(protoName);
-  // oneof member names are not properties, but values of the `case` property.
-  return inOneof ? name : safeName(name, reservedMessageProperties);
+  if (inOneof) {
+    // oneof member names are not properties, but values of the `case` property.
+    return name;
+  }
+  return safeObjectProperty(safeMessageProperty(name));
 }
 
 /**
@@ -121,19 +124,6 @@ export function findEnumSharedPrefix(
   }
   return prefix;
 }
-
-/**
- * Names that cannot be used for object properties because they are reserved
- * by built-in JavaScript properties.
- */
-export const safeObjectProperty = (name: string): string =>
-  safeName(name, reservedObjectProperties);
-
-/**
- * Names that can be used for identifiers or class properties
- */
-export const safeIdentifier = (name: string): string =>
-  safeName(name, reservedIdentifiers);
 
 /**
  * Converts lowerCamelCase or UpperCamelCase into lower_snake_case.
@@ -184,111 +174,137 @@ function protoCamelCase(snakeCase: string): string {
 }
 
 /**
- * Escapes a given name if it is contained in the record.
- */
-function safeName(name: string, properties: Record<string, true>): string {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-boolean-literal-compare,@typescript-eslint/no-unnecessary-condition -- the properties object inherits from Object, so we use strict comparison to true
-  return properties[name] === true ? name + "$" : name;
-}
-
-/**
  * Names that cannot be used for identifiers, such as class names,
  * but _can_ be used for object properties.
  */
-const reservedIdentifiers = {
+const reservedIdentifiers = new Set([
   // ECMAScript 2015 keywords
-  break: true,
-  case: true,
-  catch: true,
-  class: true,
-  const: true,
-  continue: true,
-  debugger: true,
-  default: true,
-  delete: true,
-  do: true,
-  else: true,
-  export: true,
-  extends: true,
-  false: true,
-  finally: true,
-  for: true,
-  function: true,
-  if: true,
-  import: true,
-  in: true,
-  instanceof: true,
-  new: true,
-  null: true,
-  return: true,
-  super: true,
-  switch: true,
-  this: true,
-  throw: true,
-  true: true,
-  try: true,
-  typeof: true,
-  var: true,
-  void: true,
-  while: true,
-  with: true,
-  yield: true,
+  "break",
+  "case",
+  "catch",
+  "class",
+  "const",
+  "continue",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "else",
+  "export",
+  "extends",
+  "false",
+  "finally",
+  "for",
+  "function",
+  "if",
+  "import",
+  "in",
+  "instanceof",
+  "new",
+  "null",
+  "return",
+  "super",
+  "switch",
+  "this",
+  "throw",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with",
+  "yield",
 
   // ECMAScript 2015 future reserved keywords
-  enum: true,
-  implements: true,
-  interface: true,
-  let: true,
-  package: true,
-  private: true,
-  protected: true,
-  public: true,
-  static: true,
+  "enum",
+  "implements",
+  "interface",
+  "let",
+  "package",
+  "private",
+  "protected",
+  "public",
+  "static",
 
   // Class name cannot be 'Object' when targeting ES5 with module CommonJS
-  Object: true,
+  "Object",
 
   // TypeScript keywords that cannot be used for types (as opposed to variables)
-  bigint: true,
-  number: true,
-  boolean: true,
-  string: true,
-  object: true,
+  "bigint",
+  "number",
+  "boolean",
+  "string",
+  "object",
 
   // Identifiers reserved for the runtime, so we can generate legible code
-  globalThis: true,
-  Uint8Array: true,
-  Partial: true,
-} as const;
+  "globalThis",
+  "Uint8Array",
+  "Partial",
+]);
 
 /**
  * Names that cannot be used for object properties because they are reserved
  * by built-in JavaScript properties.
  */
-const reservedObjectProperties = {
+const reservedObjectProperties = new Set([
   // names reserved by JavaScript
-  constructor: true,
-  toString: true,
-  toJSON: true,
-  valueOf: true,
-} as const;
+  "constructor",
+  "toString",
+  "toJSON",
+  "valueOf",
+]);
 
 /**
  * Names that cannot be used for object properties because they are reserved
- * by built-in JavaScript properties, or by our runtime.
+ * by the runtime.
  */
-const reservedMessageProperties = {
-  ...reservedObjectProperties,
+const reservedMessageProperties = new Set([
   // names reserved by the runtime
-  getType: true,
-  clone: true,
-  equals: true,
-  fromBinary: true,
-  fromJson: true,
-  fromJsonString: true,
-  toBinary: true,
-  toJson: true,
-  toJsonString: true,
+  "getType",
+  "clone",
+  "equals",
+  "fromBinary",
+  "fromJson",
+  "fromJsonString",
+  "toBinary",
+  "toJson",
+  "toJsonString",
+
   // names reserved by the runtime for the future
-  toObject: true,
-} as const;
+  "toObject",
+]);
+
+const fallback = <T extends string>(name: T) => `${name}$` as const;
+
+/**
+ * Will wrap names that are Object prototype properties or names reserved
+ * for `Message`s.
+ */
+const safeMessageProperty = (name: string): string => {
+  if (reservedMessageProperties.has(name)) {
+    return fallback(name);
+  }
+  return name;
+};
+
+/**
+ * Names that cannot be used for object properties because they are reserved
+ * by built-in JavaScript properties.
+ */
+export const safeObjectProperty = (name: string): string => {
+  if (reservedObjectProperties.has(name)) {
+    return fallback(name);
+  }
+  return name;
+};
+
+/**
+ * Names that can be used for identifiers or class properties
+ */
+export const safeIdentifier = (name: string): string => {
+  if (reservedIdentifiers.has(name)) {
+    return fallback(name);
+  }
+  return name;
+};
