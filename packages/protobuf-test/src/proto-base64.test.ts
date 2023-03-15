@@ -151,7 +151,7 @@ describe("protoBase64", function () {
       locations: ["PIT", "GER"],
       projects: {
         PES: "Protobuf-ES",
-        CWB: "Connect-Web",
+        CES: "Connect-ES",
       },
     });
 

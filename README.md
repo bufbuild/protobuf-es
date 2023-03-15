@@ -49,16 +49,14 @@ user = User.fromJsonString('{"firstName": "Homer", "lastName": "Simpson"}');
 
 The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file above can be used to generate types in many languages.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-Web](https://github.com/bufbuild/connect-web), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
+Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-ES](https://github.com/bufbuild/connect-es), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
-To get started generating code right away, first make sure you have [Buf](https://docs.buf.build/installation) installed.  If desired, you can also use `protoc`.  
-
-1. Install the code generator and the runtime library:
+1. Install the code generator, the runtime library, and the [Buf CLI](https://docs.buf.build/build/usage):
 
    ```bash
-   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es
+   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
    ```
 
 2. Create a `buf.gen.yaml` file that looks like this:
@@ -68,7 +66,6 @@ To get started generating code right away, first make sure you have [Buf](https:
    version: v1
    plugins:
       - name: es
-        path: ./node_modules/.bin/protoc-gen-es
         opt: target=ts
         out: src/gen
    ```
@@ -83,8 +80,10 @@ To get started generating code right away, first make sure you have [Buf](https:
 4. Generate your code:
 
    ```bash
-   buf generate proto
+   npx buf generate proto
    ```
+
+   ** Note you can also use `protoc` if desired.
 
 You should now see a generated file at `src/gen/example_pb.ts` that contains a class named `User`.  From here, you can begin to work with your schema.
 
@@ -108,10 +107,12 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 
 ## Ecosystem
 
-* [connect-web](https://github.com/bufbuild/connect-web):
-  TypeScript clients for web browsers, based on Protobuf-ES.
-* [connect-web-integration](https://github.com/bufbuild/connect-web-integration):
-  Example projects using Connect-Web with various JS frameworks and tooling
+* [connect-es](https://github.com/bufbuild/connect-es):
+  Type-safe APIs with Protobuf and TypeScript.
+* [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
+  Examples for using Connect with various TypeScript web frameworks and tooling
+* [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance):
+  A repository running the Protobuf conformance tests against various libraries.
 * [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
 
 

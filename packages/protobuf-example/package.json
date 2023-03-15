@@ -7,12 +7,13 @@
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "add-person": "node dist/esm/add-person.js addressbook.bin",
     "list-people": "node dist/esm/list-people.js addressbook.bin",
-    "buf:generate": "buf generate"
+    "generate": "buf generate"
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/protobuf": "1.0.0",
-    "@bufbuild/protoc-gen-es": "1.0.0",
-    "typescript": "^4.9.4"
+    "@bufbuild/buf": "^1.15.0-1",
+    "@bufbuild/protobuf": "1.1.1",
+    "@bufbuild/protoc-gen-es": "1.1.1",
+    "typescript": "^4.9.5"
   }
 }

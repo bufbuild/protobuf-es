@@ -189,16 +189,15 @@ export function createRegistryFromDescriptors(
             method.output.typeName
           }" for ${method.toString()} not found`
         );
-        const m = {
+        methods[localName(method)] = {
           name: method.name,
-          localName: localName(method),
           I,
           O,
           kind: method.methodKind,
           idempotency: method.idempotency,
-          options: {},
+          // We do not surface options at this time
+          // options: {},
         };
-        methods[m.localName] = m;
       }
       return (services[typeName] = {
         typeName: desc.typeName,
