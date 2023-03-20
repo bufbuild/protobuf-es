@@ -430,7 +430,7 @@ function newMethod(
     methodKind,
     input,
     output,
-    ...(idempotency !== undefined ? { idempotency } : {}),
+    idempotency,
     toString() {
       return `rpc ${parent.typeName}.${name}`;
     },

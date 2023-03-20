@@ -101,7 +101,7 @@ interface miShared<
   readonly name: string;
   readonly I: MessageType<I>;
   readonly O: MessageType<O>;
-  readonly idempotency?: MethodIdempotency;
+  readonly idempotency?: MethodIdempotency | undefined;
   // We do not surface options at this time
   // options: OptionsMap;
 }

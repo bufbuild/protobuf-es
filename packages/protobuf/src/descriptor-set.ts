@@ -671,7 +671,7 @@ export interface DescMethod {
   /**
    * The idempotency level declared in the protobuf source, if any.
    */
-  readonly idempotency?: MethodIdempotency;
+  readonly idempotency?: MethodIdempotency | undefined;
   /**
    * Marked as deprecated in the protobuf source.
    */
