@@ -15,12 +15,17 @@ npm install @bufbuild/protobuf
 ```
 
 We use peer dependencies to ensure that code generator and runtime library are
-compatible with each other. Note that yarn and pnpm only emit a warning in this case.
+compatible with each other. Note that npm installs them automatically, but yarn 
+and pnpm do not.
 
 
 ## Generating code
 
 ### With buf
+
+```bash
+npm install --save-dev @bufbuild/buf
+```
 
 Add a new configuration file `buf.gen.yaml`:
 
@@ -32,26 +37,15 @@ plugins:
   # This will invoke protoc-gen-es and write output to src/gen
   - name: es
     out: src/gen
-    opt: target=ts
-```
-
-Add the following script to your `package.json`:
-
-```json
-{
-  "name": "your-package",
-  "version": "1.0.0",
-  "scripts": {
-    "generate": "buf generate"
-  },
-  // ...
-}
+    opt: 
+      # Add more plugin options here
+      - target=ts
 ```
 
 To generate code for all protobuf files within your project, simply run:
 
 ```bash
-npm run generate
+npx buf generate
 ```
 
 Note that `buf` can generate from various [inputs](https://docs.buf.build/reference/inputs),
