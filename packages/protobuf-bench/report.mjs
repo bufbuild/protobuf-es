@@ -1,5 +1,5 @@
 import { buildSync } from "esbuild";
-import {compress} from "brotli";
+import { compress } from "brotli";
 
 const protobufEs = gather("src/entry-protobuf-es.ts");
 const googleProtobuf = gather("src/entry-google-protobuf.js");
