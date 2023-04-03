@@ -13,14 +13,11 @@
 // limitations under the License.
 
 import { setEnumType } from "./enum.js";
-import {
-  AnyMessage,
-  Message,
-  PartialMessage,
-  PlainMessage,
-} from "../message.js";
+import { Message } from "../message.js";
+import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { FieldInfo, ScalarType } from "../field.js";
+import { ScalarType } from "../field.js";
+import type { FieldInfo } from "../field.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
 

@@ -15,7 +15,8 @@
 import type { AnyMessage, Message } from "../message.js";
 import type { BinaryFormat, BinaryWriteOptions } from "../binary-format.js";
 import type { IBinaryWriter } from "../binary-encoding.js";
-import { FieldInfo, ScalarType } from "../field.js";
+import type { FieldInfo } from "../field.js";
+import { ScalarType } from "../field.js";
 import {
   makeBinaryFormatCommon,
   writeMapEntry,

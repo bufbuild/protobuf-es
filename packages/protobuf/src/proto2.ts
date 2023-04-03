@@ -15,7 +15,8 @@
 import { makeProtoRuntime } from "./private/proto-runtime.js";
 import { makeBinaryFormatProto2 } from "./private/binary-format-proto2.js";
 import { makeUtilCommon } from "./private/util-common.js";
-import { FieldListSource, InternalFieldList } from "./private/field-list.js";
+import { InternalFieldList } from "./private/field-list.js";
+import type { FieldListSource } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
 import type { FieldInfo } from "./field.js";

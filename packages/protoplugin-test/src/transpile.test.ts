@@ -13,11 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import {
-  CodeGeneratorRequest,
-  DescFile,
-  FileDescriptorProto,
-} from "@bufbuild/protobuf";
+import { CodeGeneratorRequest, FileDescriptorProto } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 

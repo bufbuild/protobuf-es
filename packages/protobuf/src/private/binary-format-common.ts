@@ -12,20 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  BinaryReader,
-  BinaryWriter,
-  IBinaryReader,
-  IBinaryWriter,
-  WireType,
-} from "../binary-encoding.js";
+import { BinaryReader, BinaryWriter, WireType } from "../binary-encoding.js";
+import type { IBinaryReader, IBinaryWriter } from "../binary-encoding.js";
 import type {
   BinaryReadOptions,
   BinaryWriteOptions,
 } from "../binary-format.js";
 import type { BinaryFormat } from "../binary-format.js";
 import { Message } from "../message.js";
-import { FieldInfo, ScalarType } from "../field.js";
+import { ScalarType } from "../field.js";
+import type { FieldInfo } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";

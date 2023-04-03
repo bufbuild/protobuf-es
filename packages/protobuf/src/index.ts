@@ -19,12 +19,8 @@ export { protoBase64 } from "./proto-base64.js";
 export { protoDelimited } from "./proto-delimited.js";
 export { codegenInfo } from "./codegen-info.js";
 
-export {
-  Message,
-  AnyMessage,
-  PartialMessage,
-  PlainMessage,
-} from "./message.js";
+export { Message } from "./message.js";
+export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
 
 export type { FieldInfo } from "./field.js";
 export type { FieldList } from "./field-list.js";
@@ -50,7 +46,7 @@ export type {
   BinaryReadOptions,
 } from "./binary-format.js";
 
-export {
+export type {
   JsonFormat,
   JsonObject,
   JsonValue,
@@ -59,7 +55,7 @@ export {
   JsonWriteStringOptions,
 } from "./json-format.js";
 
-export {
+export type {
   DescriptorSet,
   AnyDesc,
   DescFile,
@@ -74,7 +70,7 @@ export {
   DescComments,
 } from "./descriptor-set.js";
 export { createDescriptorSet } from "./create-descriptor-set.js";
-export { IMessageTypeRegistry } from "./type-registry.js";
+export type { IMessageTypeRegistry } from "./type-registry.js";
 export { createRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
 
