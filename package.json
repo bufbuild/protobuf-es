@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "@typescript/vfs": "1.0.0",
-    "jest": "^29.4.3"
+    "jest": "^29.5.0"
   }
 }
