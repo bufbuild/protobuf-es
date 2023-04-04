@@ -18,7 +18,7 @@
     "@bufbuild/protobuf": "^1.2.0",
     "@bufbuild/protoc-gen-es": "^1.2.0",
     "@bufbuild/protoplugin": "^1.2.0",
-    "tsx": "^3.12.3",
+    "tsx": "^3.12.6",
     "typescript": "^5.0.3"
   }
 }
