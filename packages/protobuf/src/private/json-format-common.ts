@@ -20,9 +20,11 @@ import type {
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "../json-format.js";
-import { AnyMessage, Message } from "../message.js";
+import { Message } from "../message.js";
+import type { AnyMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { FieldInfo, ScalarType } from "../field.js";
+import { ScalarType } from "../field.js";
+import type { FieldInfo } from "../field.js";
 import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { protoBase64 } from "../proto-base64.js";

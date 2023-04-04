@@ -1,6 +1,6 @@
 {
   "include": ["../src/**/*"],
-  // These are the default compiler options for TypeScript v5.0.0-beta, created
+  // These are the default compiler options for TypeScript v4.9.5, created
   // with `tsc --init` (except where noted in comments below)
   "compilerOptions": {
     "target": "es2016",

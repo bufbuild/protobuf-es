@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import { ScalarType } from "../field.js";
-import { IBinaryWriter, WireType } from "../binary-encoding.js";
+import type { IBinaryWriter } from "../binary-encoding.js";
+import { WireType } from "../binary-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

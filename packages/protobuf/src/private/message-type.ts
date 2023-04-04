@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  AnyMessage,
-  Message,
-  PartialMessage,
-  PlainMessage,
-} from "../message.js";
+import { Message } from "../message.js";
+import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { FieldListSource } from "./field-list.js";
 import type { JsonReadOptions, JsonValue } from "../json-format.js";
 import type { MessageType } from "../message-type.js";
