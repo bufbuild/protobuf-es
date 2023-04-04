@@ -16,11 +16,11 @@ import { describe, expect, it } from "@jest/globals";
 import {
   BinaryReader,
   BinaryWriter,
-  MessageType,
   protoDelimited,
   WireType,
   Message,
 } from "@bufbuild/protobuf";
+import type { MessageType } from "@bufbuild/protobuf";
 import { TestAllTypesProto3 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { createReadStream, createWriteStream } from "fs";
 import { tmpdir } from "os";

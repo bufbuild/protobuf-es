@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es2017",
     "esModuleInterop": false,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,

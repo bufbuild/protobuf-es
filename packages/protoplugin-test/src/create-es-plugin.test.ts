@@ -15,7 +15,8 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import { getCodeGeneratorRequest } from "./helpers.js";
 import type { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import { createEcmaScriptPlugin, Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { Plugin } from "@bufbuild/protoplugin";
 import type { Schema, Target } from "@bufbuild/protoplugin/ecmascript";
 import { makeJsDoc } from "@bufbuild/protoplugin/ecmascript";
 

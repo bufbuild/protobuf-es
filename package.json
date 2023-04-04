@@ -18,14 +18,14 @@
     "npm": ">=8"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.35.0",
-    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-import-resolver-typescript": "^3.5.4",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
-    "prettier": "^2.8.4",
-    "typescript": "^4.9.5"
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.3"
   },
   "dependencies": {
     "@typescript/vfs": "1.0.0",

@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createEcmaScriptPlugin, Schema } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { Schema } from "@bufbuild/protoplugin";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
 import { assert, getDescriptorSet } from "./helpers";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
