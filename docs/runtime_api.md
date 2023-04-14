@@ -221,14 +221,114 @@ User.equals(user, null); // false
 User.typeName; // docs.User
 ```
 
-### Serializing messages
+### Serializing and parsing messages
 
-Serializing to the binary format is very straight-forward:
+Protobuf-ES supports the binary and JSON format and provides methods for serializing and parsing across these formats.
+
+#### Binary
+
+Serializing to the binary format can be done via the `toBinary` method on all message instances. The method accepts an
+options object which can be used to customize the serialization behavior. Supported options are:
+
+| Option                 | Description                                                                     | Type      | Default |
+|------------------------|---------------------------------------------------------------------------------|-----------|---------|
+| `readUnknownFields`    | Retain unknown fields during parsing and include them in the serialized output. | `boolean` | `true`
+| `readerFactory`        | Allows specifying a custom implementation to decode binary data.                | `(bytes: Uint8Array) => IBinaryReader`
+
+For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
 
 ```typescript
 const bytes: Uint8Array = user.toBinary();
 User.fromBinary(bytes);
 ```
+
+
+Options
+fromBinary BinaryReadOptions {
+  readUnknownFields: boolean;
+
+  /**
+   * Allows to use a custom implementation to decode binary data.
+   */
+  readerFactory: (bytes: Uint8Array) => IBinaryReader;
+}
+
+toBinary BinaryWriteOptions
+  /**
+   * Include unknown fields in the serialized output? The default behavior
+   * is to retain unknown fields and include them in the serialized output.
+   *
+   * For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   */
+  writeUnknownFields: boolean;
+
+  /**
+   * Allows to use a custom implementation to encode binary data.
+   */
+  writerFactory: () => IBinaryWriter;
+}
+/**
+ * Options for parsing JSON data.
+ */
+fromJson / fromJsonString
+JsonReadOptions {
+  /**
+   * Ignore unknown fields: Proto3 JSON parser should reject unknown fields
+   * by default. This option ignores unknown fields in parsing, as well as
+   * unrecognized enum string representations.
+   */
+  ignoreUnknownFields: boolean;
+
+  /**
+   * This option is required to read `google.protobuf.Any`
+   * from JSON format.
+   */
+  typeRegistry?: IMessageTypeRegistry;
+}
+
+/**
+ * Options for serializing to JSON.
+ */
+ toJson
+JsonWriteOptions {
+  /**
+   * Emit fields with default values: Fields with default values are omitted
+   * by default in proto3 JSON output. This option overrides this behavior
+   * and outputs fields with their default values.
+   */
+  emitDefaultValues: boolean;
+
+  /**
+   * Emit enum values as integers instead of strings: The name of an enum
+   * value is used by default in JSON output. An option may be provided to
+   * use the numeric value of the enum value instead.
+   */
+  enumAsInteger: boolean;
+
+  /**
+   * Use proto field name instead of lowerCamelCase name: By default proto3
+   * JSON printer should convert the field name to lowerCamelCase and use
+   * that as the JSON name. An implementation may provide an option to use
+   * proto field name as the JSON name instead. Proto3 JSON parsers are
+   * required to accept both the converted lowerCamelCase name and the proto
+   * field name.
+   */
+  useProtoFieldName: boolean;
+
+  /**
+   * This option is required to write `google.protobuf.Any`
+   * to JSON format.
+   */
+  typeRegistry?: IMessageTypeRegistry;
+}
+
+## toJsonString
+JsonWriteStringOptions extends JsonWriteOptions {
+  prettySpaces: number;
+}
+
+=================================================
+
 
 Serializing to the base64 format is one step further, using the exposed methods from `protoBase64`:
 
