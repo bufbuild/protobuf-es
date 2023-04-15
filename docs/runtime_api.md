@@ -237,7 +237,8 @@ The `toBinary` function also accepts an options object which can be used to cust
 
 ```typescript
 {
-   // Indicates whether to include unknown fields in the serialized output. Defaults to `true`.
+   // Indicates whether to include unknown fields in the serialized output. 
+   // Defaults to `true`.
    // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
    writeUnknownFields?: boolean;
    
@@ -258,7 +259,8 @@ The `fromBinary` function also accepts an options object which can be used to cu
 
 ```typescript
 {
-   // Indicates whether to retain unknown fields during parsing and include them in the serialized output. Defaults to `true`.
+   // Indicates whether to retain unknown fields during parsing and include them 
+   // in the serialized output. Defaults to `true`.
    // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
    readUnknownFields?: boolean;
    
@@ -279,18 +281,23 @@ The `toJson` function also accepts an options object which can be used to custom
 
 ```typescript
 {
-   // Indicates whether to emit fields with default values. Fields with default values are omitted by default in proto3 JSON output. 
-   // This option overrides this behavior and outputs fields with their default values.
+   // Indicates whether to emit fields with default values. 
+   // Fields with default values are omitted by default in proto3 JSON output. 
+   // This option overrides this behavior and outputs fields with 
+   // their default values.
    emitDefaultValues?: boolean;
    
    // Indicates whether to emit enum values as integers instead of strings.
-   // The name of an enum value is used by default in JSON output. An option may be provided to use the numeric value of the enum value instead.
+   // The name of an enum value is used by default in JSON output. An option 
+   // may be provided to use the numeric value of the enum value instead.
    enumAsInteger?: boolean;
    
-   // Whether to use the proto field name instead of converting to lowerCamelCase.
-   // By default the proto3 JSON printer should convert the field name to lowerCamelCase and use that as the JSON name. 
-   // An implementation may provide an option to use the proto field name as the JSON name instead. 
-   // Proto3 JSON parsers are required to accept both the converted lowerCamelCase name and the proto field name.
+   // Whether to use the proto field name instead of converting 
+   // to lowerCamelCase. By default the proto3 JSON printer should 
+   // convert the field name to lowerCamelCase and use that as the JSON name. 
+   // An implementation may provide an option to use the proto field name as 
+   // the JSON name instead. Proto3 JSON parsers are required to accept both 
+   // the converted lowerCamelCase name and the proto field name.
    useProtoFieldName?: boolean;
 }
 ```
