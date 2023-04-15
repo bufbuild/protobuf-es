@@ -12,7 +12,7 @@ provided by the library.
   - [Accessing oneof groups](#accessing-oneof-groups)
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
-  - [Serializing messages](#serializing-messages)
+- [Serialization and parsing](#serialization-and-parsing)
 - [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
@@ -221,50 +221,79 @@ User.equals(user, null); // false
 User.typeName; // docs.User
 ```
 
-### Serializing and parsing messages
+## Serialization and parsing
 
-Protobuf-ES supports the binary and JSON format and provides methods for serializing and parsing across these formats.
+All messages provide functions for serializing and parsing data between the binary and JSON formats.
 
-#### Binary
+### `toBinary`
 
-Serializing to the binary format can be done via the `toBinary` method on all message instances. The method returns a `Uint8Array` and accepts an
-options object which can be used to customize the serialization behavior. Supported options are:
-
-| Option                 | Description                                                                     | Type      |
-|------------------------|---------------------------------------------------------------------------------|-----------|
-| `writeUnknownFields`   | Include unknown fields in the serialized output.<br>Defaults to `true`<br>For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns| `boolean` |
-| `writerFactory`        | Allows specifying a custom implementation to encode binary data.                | `() => IBinaryWriter` |
-
-Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. It returns a message instance and accepts a `Uint8Array` with an options object that can be used to customize the parsing behavior. Supported options are:
-
-| Option                 | Description                                                                     | Type      |
-|------------------------|---------------------------------------------------------------------------------|-----------|
-| `readUnknownFields`    | Retain unknown fields during parsing and include them in the serialized output.<br>Defaults to `true`.<br>For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns| `boolean` |
-| `readerFactory`        | Allows specifying a custom implementation to decode binary data.                | `(bytes: Uint8Array) => IBinaryReader` |
-
+Serializing to the binary format is very straight-forward and is done via the `toBinary` function on all message instances.
 
 ```typescript
 const bytes: Uint8Array = user.toBinary();
+```
+
+The `toBinary` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
+
+```typescript
+{
+   // Indicates whether to include unknown fields in the serialized output. Defaults to `true`.
+   // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   writeUnknownFields?: boolean;
+   
+   // A function for specifying a custom implementation to encode binary data.
+   writerFactory?: () => IBinaryWriter;
+}
+```
+
+### `fromBinary`
+
+Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. 
+
+```typescript
 User.fromBinary(bytes);
 ```
 
-TBD - Divide by binary/json or by serializing/deserializing (the latter is what's done now)
+The `fromBinary` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
 
-#### JSON
+```typescript
+{
+   // Indicates whether to retain unknown fields during parsing and include them in the serialized output. Defaults to `true`.
+   // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   readUnknownFields?: boolean;
+   
+   // A function for specifying a custom implementation to encode binary data.
+   readerFactory?: (bytes: Uint8Array) => IBinaryReader;
+}
+```
 
-Serializing to JSON can be done via the `toJson` method on all message instances. The method returns a `JsonValue` type and accepts an options object which can be used to customize the serialization behavior. Supported options are:
+### `toJson`
 
-| Option                 | Description                                                                     | Type      |
-|------------------------|---------------------------------------------------------------------------------|-----------|
-| `emitDefaultValues`   | Emit fields with default values. Fields with default values are omitted by default in proto3 JSON output. This option overrides this behavior and outputs fields with their default values. | `boolean` |
-| `enumAsInteger`        | Emit enum values as integers instead of strings: The name of an enum value is used by default in JSON output. An option may be provided to use the numeric value of the enum value instead.              | `boolean` |
-| `useProtoFieldName`        |    Use proto field name instead of lowerCamelCase name: By default proto3
-   * JSON printer should convert the field name to lowerCamelCase and use
-   * that as the JSON name. An implementation may provide an option to use
-   * proto field name as the JSON name instead. Proto3 JSON parsers are
-   * required to accept both the converted lowerCamelCase name and the proto
-   * field name.             | `boolean` |
+Serializing to JSON can be done via the `toJson` method on all message instances. 
 
+```typescript
+const json = user.toJson();
+```
+
+The `toJson` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
+
+```typescript
+{
+   // Indicates whether to emit fields with default values. Fields with default values are omitted by default in proto3 JSON output. 
+   // This option overrides this behavior and outputs fields with their default values.
+   emitDefaultValues?: boolean;
+   
+   // Indicates whether to emit enum values as integers instead of strings.
+   // The name of an enum value is used by default in JSON output. An option may be provided to use the numeric value of the enum value instead.
+   enumAsInteger?: boolean;
+   
+   // Whether to use the proto field name instead of converting to lowerCamelCase.
+   // By default the proto3 JSON printer should convert the field name to lowerCamelCase and use that as the JSON name. 
+   // An implementation may provide an option to use the proto field name as the JSON name instead. 
+   // Proto3 JSON parsers are required to accept both the converted lowerCamelCase name and the proto field name.
+   useProtoFieldName?: boolean;
+}
+```
 
 
 /**
