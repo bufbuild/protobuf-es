@@ -223,9 +223,18 @@ User.typeName; // docs.User
 
 ## Serialization and parsing
 
-All messages provide functions for serializing and parsing data between the binary and JSON formats.
+All messages provide functions for serializing and parsing data between the binary and JSON formats. 
+The JSON format is great for debugging, but the binary format is more resilient
+to changes. For example, you can rename a field, and still parse binary data serialized
+with the previous version. In general, the binary format is also more performant than
+JSON.
 
-### `toBinary`
+Conformance with the binary and the JSON format is ensured by the
+[conformance tests](../packages/protobuf-conformance). We do not implement the text format.
+
+For serializing multiple messages of the same type, also see [size-delimited messages](#size-delimited-messages).
+
+### Binary
 
 Serializing to the binary format is very straight-forward and is done via the `toBinary` function on all message instances.
 
@@ -258,9 +267,6 @@ const base64: string = protoBase64.enc(bytes)
 User.fromBinary(protoBase64.dec(base64));
 ```
 
-
-### `fromBinary`
-
 Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. 
 
 ```typescript
@@ -281,7 +287,7 @@ The `fromBinary` function also accepts an options object which can be used to cu
 }
 ```
 
-### `toJson`
+### JSON
 
 Serializing to JSON can be done via the `toJson` method on all message instances. 
 
@@ -312,52 +318,11 @@ The `toJson` function also accepts an options object which can be used to custom
    // the converted lowerCamelCase name and the proto field name.
    useProtoFieldName?: boolean;
    
-     /**
-   * This option is required to write `google.protobuf.Any`
-   * to JSON format.
-   */
+
+  // Required to write `google.protobuf.Any` to JSON format.
   typeRegistry?: IMessageTypeRegistry;
 }
 ```
-
-Note that the result of `toJson` will be a [JSON value][src-json-value] – a primitive JavaScript object that can 
-be converted to a JSON string with the built-in function `JSON.stringify()`. For 
-convenience, we also provide methods that include the stringify step:
-
-```typescript
-// Equivalent to:
-// const json = user.toJson();
-// const jsonStr = JSON.stringify(json);
-
-const jsonStr = user.toJsonString();
-```
-
-The `toJsonString` function also accepts an options object which is the same as the `toJson` options plus one additional option:
-
-```typescript
-{
-   // A convenience property for the `space` option to `JSON.stringify`.
-   // It is used to insert white space (including indentation, line break 
-   // characters, etc.) into the output JSON string for readability purposes.
-   // It indicates the number of space characters to be used as indentation, clamped to 10 
-   // (that is, any number greater than 10 is treated as if it were 10). 
-   // Values less than 1 indicate that no space should be used.
-   // For more information, see [`JSON.stringify`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
-   prettySpaces?: number;
-}
-```
-
-Note that the JSON format is great for debugging, but the binary format is more resilient
-to changes. For example, you can rename a field, and still parse binary data serialized
-with the previous version. In general, the binary format is also more performant than
-JSON.
-
-Conformance with the binary and the JSON format is ensured by the
-[conformance tests](../packages/protobuf-conformance). We do not implement the text format.
-
-For serializing multiple messages of the same type, also see [size-delimited messages](#size-delimited-messages).
-
-### `fromJson`
 
 Parsing JSON data is done with the `fromJson` method, which is a static method on all messages. 
 
@@ -378,6 +343,37 @@ The `fromJson` function also accepts an options object for customizing the parsi
   typeRegistry?: IMessageTypeRegistry;
 }
 ```
+
+
+
+Note that the result of `toJson` will be a [JSON value][src-json-value] – a primitive JavaScript object that can 
+be converted to a JSON string with the built-in function `JSON.stringify()`. For 
+convenience, we also provide methods that include the stringify step:
+
+```typescript
+// Equivalent to:
+// const json = user.toJson();
+// const jsonStr = JSON.stringify(json);
+
+const jsonStr = user.toJsonString();
+```
+
+Since `toJsonString` calls `toJson` under the hood, it accepts the same options object as `toJson` as well as additional
+options for the stringify step:
+
+```typescript
+{
+   // ... all toJson options
+   
+   // A convenience property for the space option to `JSON.stringify`.
+   // It indicates the number of space characters to be used as indentation, clamped to 10 
+   // (that is, any number greater than 10 is treated as if it were 10). 
+   // Values less than 1 indicate that no space should be used.
+   // For more information, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify.
+   prettySpaces?: number;
+}
+```
+
 
 ## Using enumerations
 
