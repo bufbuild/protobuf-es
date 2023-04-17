@@ -247,6 +247,18 @@ The `toBinary` function also accepts an options object which can be used to cust
 }
 ```
 
+It is also possible to serialize to the base64 format from the binary format 
+using the exposed methods from `protoBase64`:
+
+```typescript
+import { protoBase64 } from '@bufbuild/protobuf';
+
+const bytes: Uint8Array = user.toBinary();
+const base64: string = protoBase64.enc(bytes)
+User.fromBinary(protoBase64.dec(base64));
+```
+
+
 ### `fromBinary`
 
 Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. 
@@ -299,98 +311,40 @@ The `toJson` function also accepts an options object which can be used to custom
    // the JSON name instead. Proto3 JSON parsers are required to accept both 
    // the converted lowerCamelCase name and the proto field name.
    useProtoFieldName?: boolean;
-}
-```
-
-
-/**
- * Options for parsing JSON data.
- */
-fromJson / fromJsonString
-JsonReadOptions {
-  /**
-   * Ignore unknown fields: Proto3 JSON parser should reject unknown fields
-   * by default. This option ignores unknown fields in parsing, as well as
-   * unrecognized enum string representations.
-   */
-  ignoreUnknownFields: boolean;
-
-  /**
-   * This option is required to read `google.protobuf.Any`
-   * from JSON format.
-   */
-  typeRegistry?: IMessageTypeRegistry;
-}
-
-/**
- * Options for serializing to JSON.
- */
- toJson
-JsonWriteOptions {
-  /**
-   * Emit fields with default values: Fields with default values are omitted
-   * by default in proto3 JSON output. This option overrides this behavior
-   * and outputs fields with their default values.
-   */
-  emitDefaultValues: boolean;
-
-  /**
-   * Emit enum values as integers instead of strings: The name of an enum
-   * value is used by default in JSON output. An option may be provided to
-   * use the numeric value of the enum value instead.
-   */
-  enumAsInteger: boolean;
-
-  /**
-   * Use proto field name instead of lowerCamelCase name: By default proto3
-   * JSON printer should convert the field name to lowerCamelCase and use
-   * that as the JSON name. An implementation may provide an option to use
-   * proto field name as the JSON name instead. Proto3 JSON parsers are
-   * required to accept both the converted lowerCamelCase name and the proto
-   * field name.
-   */
-  useProtoFieldName: boolean;
-
-  /**
+   
+     /**
    * This option is required to write `google.protobuf.Any`
    * to JSON format.
    */
   typeRegistry?: IMessageTypeRegistry;
 }
-
-## toJsonString
-JsonWriteStringOptions extends JsonWriteOptions {
-  prettySpaces: number;
-}
-
-=================================================
-
-
-Serializing to the base64 format is one step further, using the exposed methods from `protoBase64`:
-
-```typescript
-import { protoBase64 } from '@bufbuild/protobuf';
-
-const bytes: Uint8Array = user.toBinary();
-const base64: string = protoBase64.enc(bytes)
-User.fromBinary(protoBase64.dec(base64));
 ```
 
-Serializing to the JSON format is equally simple:
-
-```typescript
-const json = user.toJson();
-User.fromJson(json);
-```
-
-But the result will be a [JSON value][src-json-value] – a primitive JavaScript that can 
+Note that the result of `toJson` will be a [JSON value][src-json-value] – a primitive JavaScript object that can 
 be converted to a JSON string with the built-in function `JSON.stringify()`. For 
 convenience, we also provide methods that include the stringify step:
 
+```typescript
+// Equivalent to:
+// const json = user.toJson();
+// const jsonStr = JSON.stringify(json);
+
+const jsonStr = user.toJsonString();
+```
+
+The `toJsonString` function also accepts an options object which is the same as the `toJson` options plus one additional option:
 
 ```typescript
-const json = user.toJsonString();
-User.fromJsonString(json);
+{
+   // A convenience property for the `space` option to `JSON.stringify`.
+   // It is used to insert white space (including indentation, line break 
+   // characters, etc.) into the output JSON string for readability purposes.
+   // It indicates the number of space characters to be used as indentation, clamped to 10 
+   // (that is, any number greater than 10 is treated as if it were 10). 
+   // Values less than 1 indicate that no space should be used.
+   // For more information, see [`JSON.stringify`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+   prettySpaces?: number;
+}
 ```
 
 Note that the JSON format is great for debugging, but the binary format is more resilient
@@ -403,7 +357,27 @@ Conformance with the binary and the JSON format is ensured by the
 
 For serializing multiple messages of the same type, also see [size-delimited messages](#size-delimited-messages).
 
+### `fromJson`
 
+Parsing JSON data is done with the `fromJson` method, which is a static method on all messages. 
+
+```typescript
+User.fromJson(json);
+```
+
+The `fromJson` function also accepts an options object for customizing the parsing behavior:
+
+```typescript
+{
+  // Ignore unknown fields: Proto3 JSON parser should reject unknown fields
+  // by default. This option ignores unknown fields in parsing, as well as
+  // unrecognized enum string representations.
+  ignoreUnknownFields?: boolean;
+
+  // Required to read `google.protobuf.Any` from JSON format.
+  typeRegistry?: IMessageTypeRegistry;
+}
+```
 
 ## Using enumerations
 
