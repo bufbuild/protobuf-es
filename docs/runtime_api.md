@@ -12,7 +12,7 @@ provided by the library.
   - [Accessing oneof groups](#accessing-oneof-groups)
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
-- [Serialization and parsing](#serialization-and-parsing)
+- [Serialization](#serialization)
 - [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
@@ -221,20 +221,18 @@ User.equals(user, null); // false
 User.typeName; // docs.User
 ```
 
-## Serialization and parsing
+## Serialization
 
 All messages provide functions for serializing and parsing data between the binary and JSON formats. 
-The JSON format is great for debugging, but the binary format is more resilient
-to changes. For example, you can rename a field, and still parse binary data serialized
-with the previous version. In general, the binary format is also more performant than
-JSON.
 
-Conformance with the binary and the JSON format is ensured by the
-[conformance tests](../packages/protobuf-conformance). We do not implement the text format.
+Conformance with both formats is ensured by the
+[conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
 
-For serializing multiple messages of the same type, also see [size-delimited messages](#size-delimited-messages).
+For serializing multiple messages of the same type, see [size-delimited messages](#size-delimited-messages).
 
 ### Binary
+
+**`toBinary`**
 
 Serializing to the binary format is very straight-forward and is done via the `toBinary` function on all message instances.
 
@@ -267,6 +265,8 @@ const base64: string = protoBase64.enc(bytes)
 User.fromBinary(protoBase64.dec(base64));
 ```
 
+**`fromBinary`**
+
 Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. 
 
 ```typescript
@@ -289,6 +289,13 @@ The `fromBinary` function also accepts an options object which can be used to cu
 
 ### JSON
 
+The JSON format is great for debugging, but the binary format is more resilient
+to changes. For example, you can rename a field, and still parse binary data serialized
+with the previous version. In general, the binary format is also more performant than
+JSON.
+
+**`toJson`**
+
 Serializing to JSON can be done via the `toJson` method on all message instances. 
 
 ```typescript
@@ -310,7 +317,7 @@ The `toJson` function also accepts an options object which can be used to custom
    // may be provided to use the numeric value of the enum value instead.
    enumAsInteger?: boolean;
    
-   // Whether to use the proto field name instead of converting 
+   // Indicates whether to use the proto field name instead of converting 
    // to lowerCamelCase. By default the proto3 JSON printer should 
    // convert the field name to lowerCamelCase and use that as the JSON name. 
    // An implementation may provide an option to use the proto field name as 
@@ -318,37 +325,15 @@ The `toJson` function also accepts an options object which can be used to custom
    // the converted lowerCamelCase name and the proto field name.
    useProtoFieldName?: boolean;
    
-
-  // Required to write `google.protobuf.Any` to JSON format.
+  // A type registry to use when parsing. This is required to write 
+  // google.protobuf.Any to JSON format.
   typeRegistry?: IMessageTypeRegistry;
 }
 ```
-
-Parsing JSON data is done with the `fromJson` method, which is a static method on all messages. 
-
-```typescript
-User.fromJson(json);
-```
-
-The `fromJson` function also accepts an options object for customizing the parsing behavior:
-
-```typescript
-{
-  // Ignore unknown fields: Proto3 JSON parser should reject unknown fields
-  // by default. This option ignores unknown fields in parsing, as well as
-  // unrecognized enum string representations.
-  ignoreUnknownFields?: boolean;
-
-  // Required to read `google.protobuf.Any` from JSON format.
-  typeRegistry?: IMessageTypeRegistry;
-}
-```
-
-
 
 Note that the result of `toJson` will be a [JSON value][src-json-value] – a primitive JavaScript object that can 
 be converted to a JSON string with the built-in function `JSON.stringify()`. For 
-convenience, we also provide methods that include the stringify step:
+convenience, we also provide a method that includes the stringify step:
 
 ```typescript
 // Equivalent to:
@@ -369,10 +354,47 @@ options for the stringify step:
    // It indicates the number of space characters to be used as indentation, clamped to 10 
    // (that is, any number greater than 10 is treated as if it were 10). 
    // Values less than 1 indicate that no space should be used.
-   // For more information, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify.
+   // For more information, see 
+   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify.
    prettySpaces?: number;
 }
 ```
+
+**`fromJson`**
+
+Parsing JSON data is done with the `fromJson` method, which is a static method on all messages. 
+
+```typescript
+User.fromJson(json);
+```
+
+The `fromJson` function also accepts an options object for customizing the parsing behavior:
+
+```typescript
+{
+  // Whether to ignore unknown fields: Proto3 JSON parser should reject unknown fields
+  // by default. This option ignores unknown fields in parsing, as well as
+  // unrecognized enum string representations.
+  ignoreUnknownFields?: boolean;
+
+  // A type registry to use when parsing. This is required to read google.protobuf.Any
+  // from JSON format.
+  typeRegistry?: IMessageTypeRegistry;
+}
+```
+
+Note that `fromJson` expects a [JSON value][src-json-value] – a primitive JavaScript object - as its 
+argument. For convenience, we also provide a function that accepts a JSON string which will first be
+converted to a JSON value and then passed to `fromJson`:
+
+```typescript
+const json = user.toJson();
+const jsonStr = JSON.stringify(json);
+
+user = User.fromJsonString(jsonStr);
+```
+
+The `fromJsonString` function accepts the same options object as `fromJson`.
 
 
 ## Using enumerations
