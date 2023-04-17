@@ -145,14 +145,14 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                messageType.fromBinary(reader.bytes(), options)
+                reader.messageField(new messageType(), options)
               );
             } else {
               if (target[localName] instanceof Message) {
-                target[localName].fromBinary(reader.bytes(), options);
+                reader.messageField(target[localName], options);
               } else {
-                target[localName] = messageType.fromBinary(
-                  reader.bytes(),
+                target[localName] = reader.messageField(
+                  new messageType(),
                   options
                 );
                 if (
@@ -235,8 +235,34 @@ function readMapEntry(
 }
 
 function readScalar(reader: IBinaryReader, type: ScalarType): any {
-  let [, method] = scalarTypeInfo(type);
-  return reader[method]();
+  switch (type) {
+    case ScalarType.STRING:
+      return reader.string();
+    case ScalarType.BOOL:
+      return reader.bool();
+    case ScalarType.DOUBLE:
+      return reader.double();
+    case ScalarType.FLOAT:
+      return reader.float();
+    case ScalarType.INT32:
+      return reader.int32();
+    case ScalarType.INT64:
+      return reader.int64();
+    case ScalarType.UINT64:
+      return reader.uint64();
+    case ScalarType.FIXED64:
+      return reader.fixed64();
+    case ScalarType.BYTES:
+      return reader.bytes();
+    case ScalarType.FIXED32:
+      return reader.fixed32();
+    case ScalarType.SFIXED32:
+      return reader.sfixed32();
+    case ScalarType.SFIXED64:
+      return reader.sfixed64();
+    case ScalarType.SINT64:
+      return reader.sint64();
+  }
 }
 
 export function writeMapEntry(

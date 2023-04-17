@@ -66,10 +66,8 @@ export class Message<T extends Message<T> = AnyMessage> {
    * new data.
    */
   fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): this {
-    const type = this.getType(),
-      format = type.runtime.bin,
-      opt = format.makeReadOptions(options);
-    format.readMessage(this, opt.readerFactory(bytes), bytes.byteLength, opt);
+    const opt = this.getType().runtime.bin.makeReadOptions(options);
+    opt.readerFactory(bytes).message(this, bytes.byteLength, opt);
     return this;
   }
 
