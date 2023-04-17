@@ -262,6 +262,10 @@ function readScalar(reader: IBinaryReader, type: ScalarType): any {
       return reader.sfixed64();
     case ScalarType.SINT64:
       return reader.sint64();
+    case ScalarType.UINT32:
+      return reader.uint32();
+    case ScalarType.SINT32:
+      return reader.sint32();
   }
 }
 

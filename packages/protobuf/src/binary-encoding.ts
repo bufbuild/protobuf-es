@@ -770,9 +770,7 @@ export class BinaryReader implements IBinaryReader {
     length: number,
     options: BinaryReadOptions
   ): T {
-    const type = message.getType(),
-      format = type.runtime.bin;
-
+    const format = message.getType().runtime.bin;
     format.readMessage(message, this, length, options);
     return message;
   }
