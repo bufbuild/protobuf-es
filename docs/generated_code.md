@@ -48,7 +48,7 @@ the following content:
 # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
 version: v1
 plugins:
-  - name: es
+  - plugin: es
     path: ./node_modules/.bin/protoc-gen-es
     opt: target=ts
     out: src/gen
