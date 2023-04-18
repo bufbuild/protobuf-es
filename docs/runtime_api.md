@@ -571,28 +571,67 @@ for examples how to include them. The JSON and binary serialization mechanisms u
 technique. 
 
 ### Accessing enumerations
-- show how to use getEnumType() to list enum values, and to get the JSON string value from a runtime enum value)
 
-For enumerations, we lean on TypeScript enums. A quick refresher about them:
+For enumerations, we lean on TypeScript enums. For a quick refresher about them, see
+the [TypeScript docs](https://www.typescriptlang.org/docs/handbook/enums.html).
 
-- It is possible to look up the name for an enum value:
-  ```typescript
-  let val: MyEnum = MyEnum.FOO;
-  let name = MyEnum[val]; // => "FOO"
-  ``` 
-- and to look up an enum value by name:
-  ```typescript
-  let val: MyEnum = MyEnum["FOO"];
-  ``` 
-- TypeScript enums are just plain objects in JavaScript.
-- TypeScript enums support aliases - as does protobuf with the `allow_alias` option.
+In addition to the basic characteristics of TypeScript enums, it is worth nothing that
+TypeScript enums support aliases - as does Protobuf with the `allow_alias` option.
 
-However, similar to MessageType, there is also [`EnumType`][src-enum-type].
-It provides the fully qualified protobuf type name, as well as the original values and 
+It is possible to look up the an enum name by value and vice versa. For example, 
+given the following enum definition:
+
+```protobuf
+enum Country {
+    UNSPECIFIED = 0;
+    USA = 1;
+    CANADA = 2;
+}
+```
+
+It is possible to look up the name by value:
+
+```typescript
+let val: Country = Country.USA;
+let name = Country[val]; // => "USA"
+``` 
+  
+And to look up the enum value by name:
+```typescript
+let val: Country = Country["USA"]; // => 1
+``` 
+
+Similar to `MessageType`, there is also [`EnumType`][src-enum-type].
+It provides the fully qualified Protobuf type name, as well as the original values and 
 their names. Use  [`proto3.getEnumType()`][src-proto3-getEnumType] to retrieve the 
-EnumType for a given enum.
+`EnumType` for a given enum. You can then use the `EnumType` to list the enum values:
+
+```typescript
+import { proto3, EnumType } from "@bufbuild/protobuf";
+
+const country: EnumType = proto3.getEnumType(Country);
+country.values.forEach((val) => console.log(val));
+
+//  { no: 0, name: 'UNSPECIFIED', localName: 'UNSPECIFIED' },
+//  { no: 1, name: 'USA', localName: 'USA' },
+//  { no: 2, name: 'CANADA', localName: 'CANADA' },
+```
 
 Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
+
+```typescript
+import { proto3 } from "@bufbuild/protobuf";
+
+const Country = proto3.makeEnum(
+  "spec.Country",
+  [
+    {no: 0, name: "UNSPECIFIED", localName: "UNSPECIFIED"},
+    {no: 1, name: "USA", localName: "USA"},
+    {no: 2, name: "CANADA", localName: "CANADA"},
+  ],
+);
+```
+
 
 ## Descriptors
 
