@@ -565,12 +565,68 @@ The resulting `User` is completely equivalent to the generated TypeScript class.
 this exact piece of code is generated with the plugin option `target=js`, because if saves us
 quite a bit of code size.
 
-
-
 ## Reflection
 
+### Iterating over message fields
+
+The following example shows how to iterate over the fields of an arbitrary message.
+
+```typescript
+function walkFields(message: AnyMessage) {
+  for (const fieldInfo of message.getType().fields.byNumber()) {
+    const value = message[fieldInfo.localName];
+    console.log(`field ${fieldInfo.localName}: ${value}`);
+  }
+}
+
+walkFields(user);
+// field firstName: Homer
+// field lastName: Simpson
+// field active: true
+// field manager: undefined
+// field locations: SPRINGFIELD
+// field projects: {"SPP":"Springfield Power Plant"}
+```
+
+Note that the example does not handle oneof groups. Please consult the sources code 
+for examples how to include them. The JSON and binary serialization mechanisms use this 
+technique. 
+
+### Accessing enumerations
+- show how to use getEnumType() to list enum values, and to get the JSON string value from a runtime enum value)
+
+## Descriptors
+
+### Intro:
+
+explain that proto compilers compile to descriptors (protobuf messages themselves!) - they are foundational in protobuf, and used for protobuf plugins too
+
+explain their idiosyncrasies, and that protobuf-es provides a convenient abstraction with Descriptor Interfaces
+
+### Descriptor interfaces
+
+what we have documented is good, but
+   we are missing a reference to DescriptorSet, and 
+   we need to explain createDescriptorSet() with an example, and 
+   we have to explain that those exact types are used for plugins with @bufbuild/protoplugin
+
+**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+
+```
+-- DescFile
+   |--- DescEnum
+   |--- DescMessage
+      |--- DescField
+      |--- DescOneof
+   |--- DescService
+      |--- DescMethod
+```
 
 ### Registries
+
+> what we have documented is good, but with the sections above, we can tie it together, and explain that createRegistryFromDescriptors() also takes a DescriptorSet 
 
 **Protobuf-ES** does not provide a global registry of types because it can lead to runtime errors and also hampers tree-shaking.  However, it is possible to create your own registry using [`createRegistry()`](https://github.com/bufbuild/protobuf-es/blob/31ab04b1109520096a57f3c9b696c5d78b7b6caf/packages/protobuf/src/create-registry.ts).  For example:
 
@@ -604,46 +660,7 @@ const registry = createRegistryFromDescriptors(
 const User = registry.findMessage("doc.User");
 ```
 
-### Descriptor Interfaces
-
-**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
-
-The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
-
-```
--- DescFile
-   |--- DescEnum
-   |--- DescMessage
-      |--- DescField
-      |--- DescOneof
-   |--- DescService
-      |--- DescMethod
-```
-
-### Iterating over message fields
-
-The following example shows how to iterate over the fields of an arbitrary message.
-
-```typescript
-function walkFields(message: AnyMessage) {
-  for (const fieldInfo of message.getType().fields.byNumber()) {
-    const value = message[fieldInfo.localName];
-    console.log(`field ${fieldInfo.localName}: ${value}`);
-  }
-}
-
-walkFields(user);
-// field firstName: Homer
-// field lastName: Simpson
-// field active: true
-// field manager: undefined
-// field locations: SPRINGFIELD
-// field projects: {"SPP":"Springfield Power Plant"}
-```
-
-Note that the example does not handle oneof groups. Please consult the sources code 
-for examples how to include them. The JSON and binary serialization mechanisms use this 
-technique. 
+==============================================
 
 
 ## Advanced TypeScript types
