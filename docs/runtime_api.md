@@ -269,28 +269,6 @@ For serializing multiple messages of the same type, also see [size-delimited mes
 
 
 
-## Using enumerations
-
-For enumerations, we lean on TypeScript enums. A quick refresher about them:
-
-- It is possible to look up the name for an enum value:
-  ```typescript
-  let val: MyEnum = MyEnum.FOO;
-  let name = MyEnum[val]; // => "FOO"
-  ``` 
-- and to look up an enum value by name:
-  ```typescript
-  let val: MyEnum = MyEnum["FOO"];
-  ``` 
-- TypeScript enums are just plain objects in JavaScript.
-- TypeScript enums support aliases - as does protobuf with the `allow_alias` option.
-
-However, similar to MessageType, there is also [`EnumType`][src-enum-type].
-It provides the fully qualified protobuf type name, as well as the original values and 
-their names. Use  [`proto3.getEnumType()`][src-proto3-getEnumType] to retrieve the 
-EnumType for a given enum.
-
-Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
 
 
 ## Well-known types
@@ -594,6 +572,27 @@ technique.
 
 ### Accessing enumerations
 - show how to use getEnumType() to list enum values, and to get the JSON string value from a runtime enum value)
+
+For enumerations, we lean on TypeScript enums. A quick refresher about them:
+
+- It is possible to look up the name for an enum value:
+  ```typescript
+  let val: MyEnum = MyEnum.FOO;
+  let name = MyEnum[val]; // => "FOO"
+  ``` 
+- and to look up an enum value by name:
+  ```typescript
+  let val: MyEnum = MyEnum["FOO"];
+  ``` 
+- TypeScript enums are just plain objects in JavaScript.
+- TypeScript enums support aliases - as does protobuf with the `allow_alias` option.
+
+However, similar to MessageType, there is also [`EnumType`][src-enum-type].
+It provides the fully qualified protobuf type name, as well as the original values and 
+their names. Use  [`proto3.getEnumType()`][src-proto3-getEnumType] to retrieve the 
+EnumType for a given enum.
+
+Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
 
 ## Descriptors
 
