@@ -13,15 +13,25 @@ provided by the library.
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
-- [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
-- [Message types](#message-types)
+  - [Additional convenience methods](#additional-convenience-methods)
+    - [`Timestamp`](#timestamp)
+    - [`Any`](#any)
+    - [`Struct`](#struct)
 - [64-bit-integral-types](#64-bit-integral-types)
+  - [`bigint` in unsupported environments](#bigint-in-unsupported-environments)
 - [Size-delimited messages](#size-delimited-messages)
+- [Message types](#message-types)
 - [Reflection](#reflection)
   - [Iterating over message fields](#iterating-over-message-fields)
+  - [Accessing enumerations](#accessing-enumerations)
+- [Descriptors](#descriptors)
+  - [Descriptor Interfaces](#descriptor-interfaces)
   - [Registries](#registries)
 - [Advanced TypeScript types](#advanced-typescript-types)
+  - [`PartialMessage`](#partialmessage)
+  - [`PlainMessage`](#plainmessage)
+  - [`AnyMessage`](#anymessage)
 
 
 ## Message class
@@ -312,10 +322,11 @@ Protocol buffers have a small standard library of well-known types.
 | [`Value`](../packages/protobuf/src/google/protobuf/struct_pb.ts)                 | message | [google/protobuf/struct.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto)                 |
 </details>
 
+### Additional convenience methods
+
 Some of the well-known types provide additional methods for convenience:
 
-
-### Timestamp
+#### Timestamp
 
 ````typescript
 import { Timestamp } from "@bufbuild/protobuf";
@@ -330,7 +341,7 @@ ts = Timestamp.now()
 ts.toDate();
 ````
 
-### Any
+#### Any
 
 ```typescript
 import { Any } from "@bufbuild/protobuf";
@@ -357,8 +368,7 @@ any.unpackTo(ts); // false, you provided an instance of the wrong type
 
 ```
 
-
-### Struct
+#### Struct
 
 `google.protobuf.Struct` can represent anything JSON can represent. But it is a bit
 cumbersome to construct a `Struct`:
