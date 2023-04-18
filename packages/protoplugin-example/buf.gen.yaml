@@ -4,10 +4,10 @@
 # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
 version: v1
 plugins:
-  - name: es
+  - plugin: es
     opt: target=ts
     out: src/gen
-  - name: twirp-es
+  - plugin: twirp-es
     path: ./src/protoc-gen-twirp-es.ts
     opt: target=ts
     out: src/gen
