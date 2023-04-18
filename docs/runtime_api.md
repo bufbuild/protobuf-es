@@ -647,24 +647,19 @@ const Country = proto3.makeEnum(
 The concept of descriptors is foundational in Protobuf. A descriptor is used to describe the properties of individual types in the Protobuf grammar. 
 Descriptors are also Protobuf messages themselves and are defined in Protobuf's [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) file.
 
-When Protobuf compilers such as `protoc` or `buf` are run against Protobuf files, they generate these descriptors. They can then be used in a variety of ways, such as generating code using Protobuf plugins.
+When Protobuf compilers such as `protoc` or `buf` are run against Protobuf files, they generate these descriptors. They can then be used in a variety of ways, such as generating code using Protobuf plugins. Each descriptor corresponds to the various types inside the .proto files such as `EnumDescriptorProto`, `ServiceDescriptorProto`, `FieldDescriptorProto`, and `DescriptorProto` (for message types). These descriptors are encapsulated inside a `FileDescriptorProto` representing the entire file. At the top of this hierarchy sits the `FileDescriptorSet`, which is simply a list of `FileDescriptorProto`s and represents all the files the compiler parsed.
 
 Descriptors are very powerful and can be extremely convenient. However, they are not without their idiosyncrasies:
 
 * list of idiosyncrasies
 
-To help alleviate the difficulty of working with these peculiarities, Protobuf-ES provides a convenient abstraction with Descriptor Interfaces.
+To help alleviate the difficulty of working with these peculiarities, **Protobuf-ES** provides a convenient abstraction with Descriptor Interfaces.
 
 ### Descriptor Interfaces
 
-what we have documented is good, but
-   we are missing a reference to DescriptorSet, and 
-   we need to explain createDescriptorSet() with an example, and 
-   we have to explain that those exact types are used for plugins with @bufbuild/protoplugin
+**Protobuf-ES** uses its own interfaces that mostly correspond to the descriptors listed above. Each of the framework interfaces for a single file is prefixed with `Desc`, i.e. `DescFile`, `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
 
-**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
-
-The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types, each of which are an abstraction for the actual Protobuf descriptor types.  For example:
 
 ```
 -- DescFile
@@ -674,6 +669,31 @@ The hierarchy starts with `DescFile`, which represents the contents of a Protobu
       |--- DescOneof
    |--- DescService
       |--- DescMethod
+```
+
+In addition, `FileDescriptorSet` also has its own convenient interface in **Protobuf-ES** named `DescriptorSet`. The `DescriptorSet` resolves references between the descriptors and provides simple access to all descriptors in the set via their fully-qualified type name.
+
+These `Desc` types are the exact types used for plugins with the [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin) package. In the plugin framework, a `DescriptorSet` is created from the list of `FileDescriptor`s generated during compile time. So, when writing a plugin, you will interface with these convenience types to generate code.
+
+It is also possible to create a `DescriptorSet` at runtime via the `createDescriptorSet` function exported by **Protobuf-ES**. This function accepts either a `FileDescriptorSet`, an array of `FileDescriptorProto` objects, or a `Uint8Array` as its input. One example use case is reading a [Buf image](https://buf.build/docs/reference/images) generated from a module and creating a `DescriptorSet` from the image. For example, suppose you generate a Buf image using `buf build`:
+
+```bash
+buf build -o descriptorset.bin
+```
+
+This will create a file named `descriptorset.bin` that you can then read in at runtime and create a `DescriptorSet` on-demand like so:
+
+```typescript
+import { readFileSync } from "fs";
+import {
+  createDescriptorSet,
+  FileDescriptorSet,
+} from "@bufbuild/protobuf";
+
+const fdsBytes = readFileSync("./descriptorset.bin")
+const fds = FileDescriptorSet.fromBinary(fdsBytes);
+
+const descSet = createDescriptorSet(fds.file);
 ```
 
 ### Registries
