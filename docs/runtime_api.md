@@ -617,13 +617,13 @@ country.values.forEach((val) => console.log(val));
 //  { no: 2, name: 'CANADA', localName: 'CANADA' },
 ```
 
-Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
+Similar to messages, enums can also be created at runtime, via [`proto3.makeEnum()`][src-proto3-makeEnum].
 
 ```typescript
 import { proto3 } from "@bufbuild/protobuf";
 
 const Country = proto3.makeEnum(
-  "spec.Country",
+  "proto.Country",
   [
     {no: 0, name: "UNSPECIFIED", localName: "UNSPECIFIED"},
     {no: 1, name: "USA", localName: "USA"},
@@ -632,16 +632,20 @@ const Country = proto3.makeEnum(
 );
 ```
 
-
 ## Descriptors
 
-### Intro:
+The concept of descriptors is foundational in Protobuf. A descriptor is used to describe the properties of individual types in the Protobuf grammar. 
+Descriptors are also Protobuf messages themselves and are defined in Protobuf's [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) file.
 
-explain that proto compilers compile to descriptors (protobuf messages themselves!) - they are foundational in protobuf, and used for protobuf plugins too
+When Protobuf compilers such as `protoc` or `buf` are run against Protobuf files, they generate these descriptors. They can then be used in a variety of ways, such as generating code using Protobuf plugins.
 
-explain their idiosyncrasies, and that protobuf-es provides a convenient abstraction with Descriptor Interfaces
+Descriptors are very powerful and can be extremely convenient. However, they are not without their idiosyncrasies:
 
-### Descriptor interfaces
+* list of idiosyncrasies
+
+To help alleviate the difficulty of working with these peculiarities, Protobuf-ES provides a convenient abstraction with Descriptor Interfaces.
+
+### Descriptor Interfaces
 
 what we have documented is good, but
    we are missing a reference to DescriptorSet, and 
@@ -697,9 +701,6 @@ const registry = createRegistryFromDescriptors(
 );
 const User = registry.findMessage("doc.User");
 ```
-
-==============================================
-
 
 ## Advanced TypeScript types
 
