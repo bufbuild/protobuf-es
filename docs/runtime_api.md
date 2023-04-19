@@ -301,6 +301,8 @@ customize the serialization behavior. Supported options are:
    A type registry to use when parsing. This is required to write 
    `google.protobuf.Any` to JSON format.
 
+### `toJsonString`
+
 Note that the result of `toJson` will be a [JSON value][src-json-value] – a 
 primitive JavaScript object that can be converted to a JSON string with the 
 built-in function `JSON.stringify()`. For convenience, we also provide a method 
@@ -324,6 +326,13 @@ object as `toJson` as well as additional options for the stringify step:
    Values less than 1 indicate that no space should be used.
    For more information, see the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
 
+Note that messages also contain a protected `toJSON` function, which is invoked
+when `JSON.stringify` is used. For more information, see the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#tojson_behavior).
+However, you should never need to invoke this function, which is why
+it is marked as protected. 
+
+As a rule of thumb, use `JSON.stringify` or `toJsonString` for stringified JSON. 
+If actual JSON is desired, use `toJson`.
 
 ### `fromJson`
 
@@ -350,6 +359,8 @@ const jsonStr = JSON.stringify(json);
 user = User.fromJsonString(jsonStr);
 ```
 
+### `fromJsonString`
+
 The `fromJsonString` function accepts the same options object as `fromJson`.
 
 The JSON format is great for debugging, but the binary format is more resilient
@@ -357,8 +368,10 @@ to changes. For example, you can rename a field, and still parse binary data ser
 with the previous version. In general, the binary format is also more performant than
 JSON.
 
-Conformance with both formats is ensured by the
+Conformance with the binary and JSON formats is ensured by the
 [conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
+
+
 
 
 ## Using enumerations
