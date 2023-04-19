@@ -647,7 +647,7 @@ const Country = proto3.makeEnum(
 The concept of descriptors is foundational in Protobuf. A descriptor is used to describe the properties of individual types in the Protobuf grammar. 
 Descriptors are also Protobuf messages themselves and are defined in Protobuf's [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) file.
 
-When Protobuf compilers such as `protoc` or `buf` are run against Protobuf files, they generate these descriptors. They can then be used in a variety of ways, such as generating code using Protobuf plugins. Each descriptor corresponds to the various types inside the .proto files such as `EnumDescriptorProto`, `ServiceDescriptorProto`, `FieldDescriptorProto`, and `DescriptorProto` (for message types). These descriptors are encapsulated inside a `FileDescriptorProto` representing the entire file. At the top of this hierarchy sits the `FileDescriptorSet`, which is simply a list of `FileDescriptorProto`s and represents all the files the compiler parsed.
+The descriptors are generated when Protobuf compilers such as `protoc` or `buf` are run against Protobuf files. They can then be used in a variety of ways, such as generating code using Protobuf plugins. Each descriptor corresponds to the various types inside the .proto files such as `EnumDescriptorProto`, `ServiceDescriptorProto`, `FieldDescriptorProto`, and `DescriptorProto` (for message types). These descriptors are encapsulated inside a `FileDescriptorProto` representing the entire file. At the top of this hierarchy sits the `FileDescriptorSet`, which is simply a list of `FileDescriptorProto` messages and represents all the files the compiler parsed.
 
 Descriptors are very powerful and can be extremely convenient. However, they are not without their idiosyncrasies:
 
@@ -677,11 +677,12 @@ These `Desc` types are the exact types used for plugins with the [@bufbuild/prot
 
 It is also possible to create a `DescriptorSet` at runtime via the `createDescriptorSet` function exported by **Protobuf-ES**. This function accepts either a `FileDescriptorSet`, an array of `FileDescriptorProto` objects, or a `Uint8Array` as its input. One example use case is reading a [Buf image](https://buf.build/docs/reference/images) generated from a module and creating a `DescriptorSet` from the image. For example, suppose you generate a Buf image using `buf build`:
 
-```bash
-buf build -o descriptorset.bin
+```sh
+# generate an image (compatible to a `google.protobuf.FileDescriptorSet`)
+buf generate --output image.bin
 ```
 
-This will create a file named `descriptorset.bin` that you can then read in at runtime and create a `DescriptorSet` on-demand like so:
+This will create a file named `image.bin` that you can then read in at runtime and create a `DescriptorSet` on-demand like so:
 
 ```typescript
 import { readFileSync } from "fs";
@@ -690,15 +691,13 @@ import {
   FileDescriptorSet,
 } from "@bufbuild/protobuf";
 
-const fdsBytes = readFileSync("./descriptorset.bin")
+const fdsBytes = readFileSync("./image.bin")
 const fds = FileDescriptorSet.fromBinary(fdsBytes);
 
 const descSet = createDescriptorSet(fds.file);
 ```
 
 ### Registries
-
-> what we have documented is good, but with the sections above, we can tie it together, and explain that createRegistryFromDescriptors() also takes a DescriptorSet 
 
 **Protobuf-ES** does not provide a global registry of types because it can lead to runtime errors and also hampers tree-shaking.  However, it is possible to create your own registry using [`createRegistry()`](https://github.com/bufbuild/protobuf-es/blob/31ab04b1109520096a57f3c9b696c5d78b7b6caf/packages/protobuf/src/create-registry.ts).  For example:
 
@@ -712,9 +711,7 @@ const registry = createRegistry(
 );
 ```
 
-In addition, you can also create a registry without any generated code.  As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
-Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
-`.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
+In addition, you can also create a registry without any generated code.
 
 ```sh
 # generate an image (compatible to a `google.protobuf.FileDescriptorSet`)
@@ -722,13 +719,20 @@ buf generate --output image.bin
 ```
 
 Using [`createRegistryFromDescriptors()`][src-create-registry-from-desc], you
-can create types at run time from a set of descriptors created by a protocol buffers
+can create types at runtime from a set of descriptors created by a protocol buffers
 compiler:
 
 ```typescript
 const registry = createRegistryFromDescriptors(
   readFileSync("image.bin")
 );
+const User = registry.findMessage("doc.User");
+```
+
+Additionally, `createRegistryFromDescriptors` also accepts a `DescriptorSet` as an argument:
+
+```typescript
+const registry = createRegistryFromDescriptors(descSet);
 const User = registry.findMessage("doc.User");
 ```
 
