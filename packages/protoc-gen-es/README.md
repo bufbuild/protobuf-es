@@ -35,7 +35,7 @@ Add a new configuration file `buf.gen.yaml`:
 version: v1
 plugins:
   # This will invoke protoc-gen-es and write output to src/gen
-  - name: es
+  - plugin: es
     out: src/gen
     opt: 
       # Add more plugin options here

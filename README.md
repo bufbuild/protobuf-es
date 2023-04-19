@@ -65,7 +65,7 @@ Protocol Buffers also allow you to serialize this structured data.  So, your app
    # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
    version: v1
    plugins:
-      - name: es
+      - plugin: es
         opt: target=ts
         out: src/gen
    ```
