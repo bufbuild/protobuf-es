@@ -12,7 +12,7 @@ provided by the library.
   - [Accessing oneof groups](#accessing-oneof-groups)
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
-- [Serialization](#serialization)
+  - [Serializing messages](#serializing-messages)
 - [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
@@ -223,35 +223,14 @@ User.typeName; // docs.User
 
 ## Serialization
 
-All messages provide functions for serializing and parsing data between the binary and JSON formats. 
+All messages provide functions for serializing and parsing data between the 
+binary and JSON formats. 
 
-Conformance with both formats is ensured by the
-[conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
-
-For serializing multiple messages of the same type, see [size-delimited messages](#size-delimited-messages).
-
-### Binary
-
-**`toBinary`**
-
-Serializing to the binary format is very straight-forward and is done via the `toBinary` function on all message instances.
+For example, to serialize to and from the binary format:
 
 ```typescript
 const bytes: Uint8Array = user.toBinary();
-```
-
-The `toBinary` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
-
-```typescript
-{
-   // Indicates whether to include unknown fields in the serialized output. 
-   // Defaults to `true`.
-   // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
-   writeUnknownFields?: boolean;
-   
-   // A function for specifying a custom implementation to encode binary data.
-   writerFactory?: () => IBinaryWriter;
-}
+User.fromBinary(bytes);
 ```
 
 It is also possible to serialize to the base64 format from the binary format 
@@ -265,75 +244,67 @@ const base64: string = protoBase64.enc(bytes)
 User.fromBinary(protoBase64.dec(base64));
 ```
 
-**`fromBinary`**
+### `toBinary`
 
-Parsing binary data is done with the `fromBinary` method, which is a static method on all messages. 
+The `toBinary` function accepts an options object which can be used to 
+customize the serialization behavior. Supported options are:
 
-```typescript
-User.fromBinary(bytes);
-```
+- `writeUnknownFields?: boolean`<br/>
+   By default, unknown fields are included in the serialized output. This option
+   allows for overriding that behavior.
+   For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+- `writerFactory?: () => IBinaryWriter`<br/>
+  A function for specifying a custom implementation to encode binary data.
 
-The `fromBinary` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
+For serializing multiple messages of the same type, see [size-delimited messages](#size-delimited-messages).
 
-```typescript
-{
-   // Indicates whether to retain unknown fields during parsing and include them 
-   // in the serialized output. Defaults to `true`.
-   // For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
-   readUnknownFields?: boolean;
-   
-   // A function for specifying a custom implementation to encode binary data.
-   readerFactory?: (bytes: Uint8Array) => IBinaryReader;
-}
-```
+### `fromBinary`
 
-### JSON
+The `fromBinary` function also accepts an options object which can be used to 
+customize the serialization behavior. Supported options are:
 
-The JSON format is great for debugging, but the binary format is more resilient
-to changes. For example, you can rename a field, and still parse binary data serialized
-with the previous version. In general, the binary format is also more performant than
-JSON.
+- `readUnknownFields?: boolean`<br/>
+   By default, unknown fields are retained during parsing and included in the 
+   serialized output. This option allows for overriding this behavior.
+   For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+- `readerFactory?: (bytes: Uint8Array) => IBinaryReader`<br/>
+  A function for specifying a custom implementation to decode binary data.
 
-**`toJson`**
 
-Serializing to JSON can be done via the `toJson` method on all message instances. 
+Serializing to and from JSON can be done in a similar fashion:
 
 ```typescript
 const json = user.toJson();
+User.fromJson(json);
 ```
 
-The `toJson` function also accepts an options object which can be used to customize the serialization behavior. Supported options are:
+### `toJson`
 
-```typescript
-{
-   // Indicates whether to emit fields with default values. 
-   // Fields with default values are omitted by default in proto3 JSON output. 
-   // This option overrides this behavior and outputs fields with 
-   // their default values.
-   emitDefaultValues?: boolean;
-   
-   // Indicates whether to emit enum values as integers instead of strings.
-   // The name of an enum value is used by default in JSON output. An option 
-   // may be provided to use the numeric value of the enum value instead.
-   enumAsInteger?: boolean;
-   
-   // Indicates whether to use the proto field name instead of converting 
-   // to lowerCamelCase. By default the proto3 JSON printer should 
-   // convert the field name to lowerCamelCase and use that as the JSON name. 
-   // An implementation may provide an option to use the proto field name as 
-   // the JSON name instead. Proto3 JSON parsers are required to accept both 
-   // the converted lowerCamelCase name and the proto field name.
-   useProtoFieldName?: boolean;
-   
-  // A type registry to use when parsing. This is required to write 
-  // google.protobuf.Any to JSON format.
-  typeRegistry?: IMessageTypeRegistry;
-}
-```
+The `toJson` function also accepts an options object which can be used to 
+customize the serialization behavior. Supported options are:
 
-Note that the result of `toJson` will be a [JSON value][src-json-value] – a primitive JavaScript object that can 
-be converted to a JSON string with the built-in function `JSON.stringify()`. For 
-convenience, we also provide a method that includes the stringify step:
+- `emitDefaultValues?: boolean`<br/>
+   Fields with default values are omitted by default in proto3 JSON output. 
+   This option overrides this behavior and outputs fields with 
+   their default values.
+- `enumAsInteger?: boolean`<br/>
+   The name of an enum value is used by default in JSON output. This option 
+   allows for overriding this behavior to use the numeric value of the
+   enum value instead.
+- `useProtoFieldName?: boolean`<br/>
+   By default the proto3 JSON printer should convert the field name to 
+   lowerCamelCase and use that as the JSON name. An implementation may provide 
+   an option to use the proto field name as the JSON name instead. Proto3 JSON 
+   parsers are required to accept both the converted lowerCamelCase name and the 
+   proto field name.
+- `typeRegistry?: IMessageTypeRegistry`<br/>
+   A type registry to use when parsing. This is required to write 
+   `google.protobuf.Any` to JSON format.
+
+Note that the result of `toJson` will be a [JSON value][src-json-value] – a 
+primitive JavaScript object that can be converted to a JSON string with the 
+built-in function `JSON.stringify()`. For convenience, we also provide a method 
+`toJsonString` that includes the stringify step:
 
 ```typescript
 // Equivalent to:
@@ -343,49 +314,34 @@ convenience, we also provide a method that includes the stringify step:
 const jsonStr = user.toJsonString();
 ```
 
-Since `toJsonString` calls `toJson` under the hood, it accepts the same options object as `toJson` as well as additional
-options for the stringify step:
+Since `toJsonString` calls `toJson` under the hood, it accepts the same options 
+object as `toJson` as well as additional options for the stringify step:
 
-```typescript
-{
-   // ... all toJson options
-   
-   // A convenience property for the space option to `JSON.stringify`.
-   // It indicates the number of space characters to be used as indentation, clamped to 10 
-   // (that is, any number greater than 10 is treated as if it were 10). 
-   // Values less than 1 indicate that no space should be used.
-   // For more information, see 
-   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify.
-   prettySpaces?: number;
-}
-```
+- `emitDefaultValues?: boolean`<br/>
+   A convenience property for the space option to `JSON.stringify`.
+   It indicates the number of space characters to be used as indentation, clamped to 10 
+   (that is, any number greater than 10 is treated as if it were 10). 
+   Values less than 1 indicate that no space should be used.
+   For more information, see the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
 
-**`fromJson`**
 
-Parsing JSON data is done with the `fromJson` method, which is a static method on all messages. 
+### `fromJson`
 
-```typescript
-User.fromJson(json);
-```
+The `fromJson` function also accepts an options object for customizing the 
+parsing behavior:
 
-The `fromJson` function also accepts an options object for customizing the parsing behavior:
+- `ignoreUnknownFields?: boolean`<br/>
+   By default, the Proto3 JSON parser should reject unknown fields
+   This option overrides this behavior and ignores unknown fields in parsing, as 
+   well as unrecognized enum string representations.
+- `typeRegistry?: IMessageTypeRegistry`<br/>
+   A type registry to use when parsing. This is required to read 
+   `google.protobuf.Any` from JSON format.
 
-```typescript
-{
-  // Whether to ignore unknown fields: Proto3 JSON parser should reject unknown fields
-  // by default. This option ignores unknown fields in parsing, as well as
-  // unrecognized enum string representations.
-  ignoreUnknownFields?: boolean;
-
-  // A type registry to use when parsing. This is required to read google.protobuf.Any
-  // from JSON format.
-  typeRegistry?: IMessageTypeRegistry;
-}
-```
-
-Note that `fromJson` expects a [JSON value][src-json-value] – a primitive JavaScript object - as its 
-argument. For convenience, we also provide a function that accepts a JSON string which will first be
-converted to a JSON value and then passed to `fromJson`:
+Note that `fromJson` expects a [JSON value][src-json-value] – a primitive 
+JavaScript object - as its argument. For convenience, we also provide a function 
+that accepts a JSON string which will first be converted to a JSON value and 
+then passed to `fromJson`:
 
 ```typescript
 const json = user.toJson();
@@ -395,6 +351,14 @@ user = User.fromJsonString(jsonStr);
 ```
 
 The `fromJsonString` function accepts the same options object as `fromJson`.
+
+The JSON format is great for debugging, but the binary format is more resilient
+to changes. For example, you can rename a field, and still parse binary data serialized
+with the previous version. In general, the binary format is also more performant than
+JSON.
+
+Conformance with both formats is ensured by the
+[conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
 
 
 ## Using enumerations
