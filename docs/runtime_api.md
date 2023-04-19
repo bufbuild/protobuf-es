@@ -599,14 +599,14 @@ enum Country {
 }
 ```
 
-It is possible to look up the name by value:
+You can look up the name by value:
 
 ```typescript
 let val: Country = Country.USA;
 let name = Country[val]; // => "USA"
 ``` 
   
-And to look up the enum value by name:
+And look up the enum value by name:
 ```typescript
 let val: Country = Country["USA"]; // => 1
 ``` 
