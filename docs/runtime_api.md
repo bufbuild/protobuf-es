@@ -252,7 +252,7 @@ customize the serialization behavior. Supported options are:
 - `writeUnknownFields?: boolean`<br/>
    By default, unknown fields are included in the serialized output. This option
    allows for overriding that behavior.
-   For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   For more details see https://protobuf.dev/programming-guides/proto3/#unknowns.
 - `writerFactory?: () => IBinaryWriter`<br/>
   A function for specifying a custom implementation to encode binary data.
 
@@ -266,7 +266,7 @@ customize the serialization behavior. Supported options are:
 - `readUnknownFields?: boolean`<br/>
    By default, unknown fields are retained during parsing and included in the 
    serialized output. This option allows for overriding this behavior.
-   For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   For more details see https://protobuf.dev/programming-guides/proto3/#unknowns.
 - `readerFactory?: (bytes: Uint8Array) => IBinaryReader`<br/>
   A function for specifying a custom implementation to decode binary data.
 
