@@ -13,6 +13,12 @@ provided by the library.
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
+    - [`toBinary`](#tobinary)  
+    - [`fromBinary`](#frombinary)  
+    - [`toJson`](#tojson)  
+    - [`toJsonString`](#tojsonstring)  
+    - [`fromJson`](#fromjson)  
+    - [`fromJsonString`](#fromjsonstring)  
 - [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
@@ -270,6 +276,7 @@ customize the serialization behavior. Supported options are:
 - `readerFactory?: (bytes: Uint8Array) => IBinaryReader`<br/>
   A function for specifying a custom implementation to decode binary data.
 
+##
 
 Serializing to and from JSON can be done in a similar fashion:
 
