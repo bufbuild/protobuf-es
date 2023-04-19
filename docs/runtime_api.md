@@ -221,7 +221,7 @@ User.equals(user, null); // false
 User.typeName; // docs.User
 ```
 
-## Serialization
+## Serializing messages
 
 All messages provide functions for serializing and parsing data between the 
 binary and JSON formats. 
