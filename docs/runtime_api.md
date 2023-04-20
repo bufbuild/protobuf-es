@@ -13,12 +13,8 @@ provided by the library.
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
-    - [`toBinary`](#tobinary)  
-    - [`fromBinary`](#frombinary)  
-    - [`toJson`](#tojson)  
-    - [`toJsonString`](#tojsonstring)  
-    - [`fromJson`](#fromjson)  
-    - [`fromJsonString`](#fromjsonstring)  
+    - [Binary](#binary)  
+    - [JSON](#json)  
 - [Using enumerations](#using-enumerations)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
@@ -232,6 +228,8 @@ User.typeName; // docs.User
 All messages provide methods for serializing and parsing data between the 
 binary and JSON formats. 
 
+### Binary
+
 For example, to serialize to and from the binary format:
 
 ```typescript
@@ -250,8 +248,6 @@ const base64: string = protoBase64.enc(bytes)
 User.fromBinary(protoBase64.dec(base64));
 ```
 
-### `toBinary`
-
 The `toBinary` method accepts an options object which can be used to 
 customize the serialization behavior. Supported options are:
 
@@ -264,8 +260,6 @@ customize the serialization behavior. Supported options are:
 
 For serializing multiple messages of the same type, see [size-delimited messages](#size-delimited-messages).
 
-### `fromBinary`
-
 The `fromBinary` function also accepts an options object which can be used to 
 customize the serialization behavior. Supported options are:
 
@@ -276,7 +270,7 @@ customize the serialization behavior. Supported options are:
 - `readerFactory?: (bytes: Uint8Array) => IBinaryReader`<br/>
   A function for specifying a custom implementation to decode binary data.
 
-##
+### JSON
 
 Serializing to and from JSON can be done in a similar fashion:
 
@@ -284,8 +278,6 @@ Serializing to and from JSON can be done in a similar fashion:
 const json = user.toJson();
 User.fromJson(json);
 ```
-
-### `toJson`
 
 The `toJson` method also accepts an options object which can be used to 
 customize the serialization behavior. Supported options are:
@@ -308,8 +300,6 @@ customize the serialization behavior. Supported options are:
    A type registry to use when parsing. This is required to write 
    `google.protobuf.Any` to JSON format.
 
-### `toJsonString`
-
 Note that the result of `toJson` will be a [JSON value][src-json-value] – a 
 primitive JavaScript object that can be converted to a JSON string with the 
 built-in function `JSON.stringify()`. For convenience, we also provide a method 
@@ -330,15 +320,19 @@ object as `toJson` as well as additional options for the stringify step:
    A convenience property for the `space` option to `JSON.stringify`, which controls indentation for prettier output. 
    See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
 
-Note that messages also contain a protected `toJSON` function, which is invoked
-when `JSON.stringify` is used. For more information, see the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#tojson_behavior).
-However, you should never need to invoke this function, which is why
-it is marked as protected. 
 
-As a rule of thumb, use `JSON.stringify` or `toJsonString` for stringified JSON. 
-If actual JSON is desired, use `toJson`.
+Note that all messages have a `toJSON` method as well. If you serialize a 
+message with `JSON.stringify()`, it will automatically call this method. By 
+providing `toJSON`, we make sure that messages are always serialized to the 
+well-defined Protobuf JSON format since it uses our JSON serialization
+internally. Otherwise, `JSON.stringify()` would crash on 
+`BigInt` values, and would not serialize `oneof`, enumerations, and other types 
+correctly. Serializing a message with `JSON.stringify()` is equivalent to 
+`message.toJsonString({emitDefaultValues: true})`.
 
-### `fromJson`
+The `toJSON` method is marked as protected since You should never need to invoke 
+this function directly. As a rule of thumb, use `JSON.stringify` or 
+`toJsonString` for stringified JSON. If actual JSON is desired, use `toJson`.
 
 The `fromJson` method also accepts an options object for customizing the 
 parsing behavior:
@@ -363,8 +357,6 @@ const jsonStr = JSON.stringify(json);
 user = User.fromJsonString(jsonStr);
 ```
 
-### `fromJsonString`
-
 The `fromJsonString` function accepts the same options object as `fromJson`.
 
 The JSON format is great for debugging, but the binary format is more resilient
@@ -374,9 +366,6 @@ JSON.
 
 Conformance with the binary and JSON formats is ensured by the
 [conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
-
-
-
 
 ## Using enumerations
 
