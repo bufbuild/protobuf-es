@@ -326,7 +326,7 @@ const jsonStr = user.toJsonString();
 Since `toJsonString` calls `toJson` under the hood, it accepts the same options 
 object as `toJson` as well as additional options for the stringify step:
 
-- `emitDefaultValues?: boolean`<br/>
+- `prettySpaces?: boolean`<br/>
    A convenience property for the `space` option to `JSON.stringify`, which controls indentation for prettier output. 
    See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
 
