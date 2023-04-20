@@ -327,11 +327,8 @@ Since `toJsonString` calls `toJson` under the hood, it accepts the same options
 object as `toJson` as well as additional options for the stringify step:
 
 - `emitDefaultValues?: boolean`<br/>
-   A convenience property for the space option to `JSON.stringify`.
-   It indicates the number of space characters to be used as indentation, clamped to 10 
-   (that is, any number greater than 10 is treated as if it were 10). 
-   Values less than 1 indicate that no space should be used.
-   For more information, see the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify).
+   A convenience property for the `space` option to `JSON.stringify`, which controls indentation for prettier output. 
+   See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
 
 Note that messages also contain a protected `toJSON` function, which is invoked
 when `JSON.stringify` is used. For more information, see the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#tojson_behavior).
