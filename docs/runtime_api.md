@@ -343,7 +343,7 @@ If actual JSON is desired, use `toJson`.
 
 ### `fromJson`
 
-The `fromJson` function also accepts an options object for customizing the 
+The `fromJson` method also accepts an options object for customizing the 
 parsing behavior:
 
 - `ignoreUnknownFields?: boolean`<br/>
