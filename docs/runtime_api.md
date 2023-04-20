@@ -229,7 +229,7 @@ User.typeName; // docs.User
 
 ## Serializing messages
 
-All messages provide functions for serializing and parsing data between the 
+All messages provide methods for serializing and parsing data between the 
 binary and JSON formats. 
 
 For example, to serialize to and from the binary format:
