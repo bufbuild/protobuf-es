@@ -115,6 +115,14 @@ In the above code, `plainFoo` will be a type with only its fields and `oneOf` gr
   
 Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
 
+### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
+
+The topic of JSON and the nuances of using it in Protobuf-ES is a very common 
+source of confusion. Hopefully, this answer can clear it up. First, a bit of 
+context on how JSON works with regards to Protobuf in general:
+
+
+
 ### How does this compare to protoc's JavaScript generator?
 
 [`js_generator.cc`](https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc)
