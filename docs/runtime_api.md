@@ -252,7 +252,7 @@ User.fromBinary(protoBase64.dec(base64));
 
 ### `toBinary`
 
-The `toBinary` function accepts an options object which can be used to 
+The `toBinary` method accepts an options object which can be used to 
 customize the serialization behavior. Supported options are:
 
 - `writeUnknownFields?: boolean`<br/>
