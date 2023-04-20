@@ -287,7 +287,7 @@ User.fromJson(json);
 
 ### `toJson`
 
-The `toJson` function also accepts an options object which can be used to 
+The `toJson` method also accepts an options object which can be used to 
 customize the serialization behavior. Supported options are:
 
 - `emitDefaultValues?: boolean`<br/>
