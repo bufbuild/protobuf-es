@@ -55,10 +55,12 @@ const user = new User();
 ```
 
 
-For convenience, constructors accept an initializer object:
+For convenience, constructors accept an initializer object. All fields in the 
+initializer object are optional, and if not provided, the default value for the 
+field is used.
 
 ```typescript
-new User({
+const user = new User({
   firstName: "Homer",
   active: true,
   manager: {  // you can simply pass an initializer object for this message field
@@ -67,8 +69,42 @@ new User({
 });
 ```
 
-Note that all fields in the initializer object are optional, and if not
-provided, the default value for the field is used.
+The initializer object accepted by all message constructors is of type 
+[`PartialMessage<T>`](src-partial-message) where `T` is your message type. So 
+in the above example, the initializer object is of type `PartialMessage<User>`. 
+`PartialMessage` is similar to the TypeScript built-in type `Partial`, but works 
+recursively. For more details, see the below section on [Advanced TypeScript types](#advanced-typescript-types).
+
+If you need to define the initializer object independent of the constructor,
+then be sure to use a type assertion, otherwise you may see unexpected compile
+errors with `oneof` fields. In TypeScript 4.9 and above, it is recommended to 
+use `satisfies`.
+
+```typescript
+const obj = {
+  firstName: "Homer",
+  active: true,
+  manager: {  
+    lastName: "Burns",
+  },
+} satisfies PartialMessage<User>;
+
+const user = new User(obj);
+```
+
+Otherwise, use the `as` keyword:
+
+```typescript
+const obj = {
+  firstName: "Homer",
+  active: true,
+  manager: {  
+    lastName: "Burns",
+  },
+} as PartialMessage<User>;
+
+const user = new User(obj);
+```
 
 ### Default field values
 

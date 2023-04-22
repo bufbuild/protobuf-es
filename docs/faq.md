@@ -121,7 +121,61 @@ The topic of JSON and the nuances of using it in Protobuf-ES is a very common
 source of confusion. Hopefully, this answer can clear it up. First, a bit of 
 context on how JSON works with regards to Protobuf in general:
 
+Proto3 supports a canonical encoding in JSON with well-defined rules for how 
+implementations should read inputs and write outputs.
 
+For the most part, the rules around outputs are not super surprising. The one
+item of interest though involves default values. If a Protobuf field has a 
+default value and if the field does not support [field presence](https://github.com/protocolbuffers/protobuf/blob/main/docs/field_presence.md), 
+it will be omitted from the output by default. Fields that have a 
+value set and that support field presence always include the field value in the 
+JSON-encoded output, even if it is the default value.
+
+However, all proto3 JSON implementations are permitted to provide serialization 
+options that can modify the shape of the JSON output:
+- As mentioned above, fields with default values and no field presence support 
+  are omitted by default, but implementations can provide an option to output 
+  fields with their default values.
+- Unknown fields are rejected by default, but implementations may provide an 
+  option to ignore them.
+- Field names should be converted to lowerCamelCase and used as the JSON name, 
+  but implementations may provide an option to use the proto field name. In 
+  addition, the expected lowerCamelCase name can be modified with the `json_name`
+  field option.
+- The name of an enum value is emitted by default, but implementations can provide
+  an option to use the enum's numeric value instead.
+
+As a result of the above, implementations must be lenient about their 
+JSON inputs since the JSON structure could have been modified by any of the
+serialization options. To properly support proto3 JSON and make sure it 
+interoperates correctly with other language implementations, Protobuf-ES has to 
+support all variants of the input.
+
+Therefore, the following rules apply when parsing JSON into a Protobuf message:
+- If a value is missing or null, it should be interpreted as that field type's 
+  default value.
+- Field names can be the proto field name, or the lowerCamelCase JSON name or 
+  if present, the `json_name` field option.
+- Enums can be given as integers or by their enum value name
+- All numeric types are accepted as string or number
+- Doubles can also be given in exponent notation or be one of the special strings
+  of NaN, Infinity or -Infinity.
+
+Taking all of the above conditions into account, it becomes obvious that the 
+types of the inputs are not always the same as the types of the outputs. Protobuf 
+supports a much more robust range of types than JSON. So, there is not a 1:1 
+relationship with types. To further complicate this, the above rules ensure that 
+the types for inputs and outputs can vary. Input types need to include all 
+variations and output types vary based on the options used during serialization.
+
+A good example for this is a Protobuf `bytes` field. The best representation in 
+TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
+proto3 JSON, a `bytes` field is serialized by base64 encoding the data, which 
+means it becomes a JSON string. 
+
+In short, a Protobuf message is not the same as a JSON object. So, it is not
+feasible to generate code for the JSON structure. The Protobuf-ES type `JsonValue`
+is the best we can do to represent these structures.
 
 ### How does this compare to protoc's JavaScript generator?
 
