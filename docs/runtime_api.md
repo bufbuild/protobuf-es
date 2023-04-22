@@ -686,10 +686,6 @@ technique.
 
 ### PartialMessage
 
-The object initializers accepted by message constructors are defined by the type 
-[`PartialMessage<T>`][src-partial-message]. It is similar to the TypeScript built-in type 
-`Partial`, but works recursively. 
-
 This type is well suited in case you know the type of a message, but want to allow 
 an instance to be given in the most flexible way. If you want to offer an API that lets 
 users provide message data, consider accepting `PartialMessage<T>`, so that users can 
