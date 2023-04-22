@@ -117,11 +117,10 @@ Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/
 
 ### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
 
-The topic of JSON and the nuances of using it in Protobuf-ES is a very common 
-source of confusion. The short answer for this is that the structure of a parsed
+The short answer for this is that the structure of a parsed
 Protobuf message is not the same as the JSON representation of the same data. They can
 and will differ in naming, types, and structure. Therefore, it is impractical to generate
-interfaces for the JSON representation in any meaningful way.
+interfaces for the JSON representation in any meaningful way.  The long answer is as follows:
 
 Proto3 supports a canonical encoding in JSON with well-defined rules for how 
 implementations should read inputs and write outputs. It defines how fields and their
