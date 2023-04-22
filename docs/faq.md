@@ -118,11 +118,16 @@ Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/
 ### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
 
 The topic of JSON and the nuances of using it in Protobuf-ES is a very common 
-source of confusion. Hopefully, this answer can clear it up. First, a bit of 
-context on how JSON works with regards to Protobuf in general:
+source of confusion. The short answer for this is that the structure of a parsed
+Protobuf message is not the same as the JSON representation of the same data. They can
+and will differ in naming, types, and structure. Therefore, it impractical to generate
+code for JSON in any meaningful way.
+
+The reasons why are as follows:
 
 Proto3 supports a canonical encoding in JSON with well-defined rules for how 
-implementations should read inputs and write outputs.
+implementations should read inputs and write outputs. It defines how fields and their
+types should be represented under all possible conditions.
 
 For the most part, the rules around outputs are not super surprising. The one
 item of interest though involves default values. If a Protobuf field has a 
@@ -145,7 +150,7 @@ options that can modify the shape of the JSON output:
 - The name of an enum value is emitted by default, but implementations can provide
   an option to use the enum's numeric value instead.
 
-As a result of the above, implementations must be lenient about their 
+Consequently, implementations must be lenient about their 
 JSON inputs since the JSON structure could have been modified by any of the
 serialization options. To properly support proto3 JSON and make sure it 
 interoperates correctly with other language implementations, Protobuf-ES has to 
@@ -162,11 +167,10 @@ Therefore, the following rules apply when parsing JSON into a Protobuf message:
   of NaN, Infinity or -Infinity.
 
 Taking all of the above conditions into account, it becomes obvious that the 
-types of the inputs are not always the same as the types of the outputs. Protobuf 
+types of the inputs are not always the same as the types of the outputs. Additionally, Protobuf 
 supports a much more robust range of types than JSON. So, there is not a 1:1 
-relationship with types. To further complicate this, the above rules ensure that 
-the types for inputs and outputs can vary. Input types need to include all 
-variations and output types vary based on the options used during serialization.
+relationship. Input types need to allow all variations and output types 
+can vary based on the options used during serialization.
 
 A good example for this is a Protobuf `bytes` field. The best representation in 
 TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
@@ -175,7 +179,7 @@ means it becomes a JSON string.
 
 In short, a Protobuf message is not the same as a JSON object. So, it is not
 feasible to generate code for the JSON structure. The Protobuf-ES type `JsonValue`
-is the best we can do to represent these structures.
+is the best we can do to represent a generic type for these structures.
 
 ### How does this compare to protoc's JavaScript generator?
 
