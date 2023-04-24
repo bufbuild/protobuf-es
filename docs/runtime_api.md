@@ -291,11 +291,8 @@ customize the serialization behavior. Supported options are:
    allows for overriding this behavior to use the numeric value of the
    enum value instead.
 - `useProtoFieldName?: boolean`<br/>
-   By default the proto3 JSON printer should convert the field name to 
-   lowerCamelCase and use that as the JSON name. An implementation may provide 
-   an option to use the proto field name as the JSON name instead. Proto3 JSON 
-   parsers are required to accept both the converted lowerCamelCase name and the 
-   proto field name.
+   Field names are converted to lowerCamelCase by default in JSON output. This 
+   allows for overriding this behavior to use the proto field name instead.
 - `typeRegistry?: IMessageTypeRegistry`<br/>
    A type registry to use when parsing. This is required to write 
    `google.protobuf.Any` to JSON format.
@@ -320,7 +317,6 @@ object as `toJson` as well as additional options for the stringify step:
    A convenience property for the `space` option to `JSON.stringify`, which controls indentation for prettier output. 
    See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
 
-
 Note that all messages have a `toJSON` method as well. If you serialize a 
 message with `JSON.stringify()`, it will automatically call this method. By 
 providing `toJSON`, we make sure that messages are always serialized to the 
@@ -338,7 +334,7 @@ The `fromJson` method also accepts an options object for customizing the
 parsing behavior:
 
 - `ignoreUnknownFields?: boolean`<br/>
-   By default, the Proto3 JSON parser should reject unknown fields
+   By default, unknown fields are rejected.u
    This option overrides this behavior and ignores unknown fields in parsing, as 
    well as unrecognized enum string representations.
 - `typeRegistry?: IMessageTypeRegistry`<br/>
