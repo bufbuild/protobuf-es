@@ -283,7 +283,7 @@ The `toJson` method also accepts an options object which can be used to
 customize the serialization behavior. Supported options are:
 
 - `emitDefaultValues?: boolean`<br/>
-   Fields with default values are omitted by default in proto3 JSON output. 
+   Fields with default values are omitted by default in JSON output. 
    This option overrides this behavior and outputs fields with 
    their default values.
 - `enumAsInteger?: boolean`<br/>
