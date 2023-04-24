@@ -133,27 +133,19 @@ it will be omitted from the output by default. Fields that have a
 value set and that support field presence always include the field value in the 
 JSON-encoded output, even if it is the default value.
 
-However, all proto3 JSON implementations are permitted to provide serialization 
-options that can modify the shape of the JSON output:
-- As mentioned above, fields with default values and no field presence support 
-  are omitted by default, but implementations can provide an option to output 
-  fields with their default values.
-- Unknown fields are rejected by default, but implementations may provide an 
-  option to ignore them.
-- Field names should be converted to lowerCamelCase and used as the JSON name, 
-  but implementations may provide an option to use the proto field name. In 
-  addition, the expected lowerCamelCase name can be modified with the `json_name`
-  field option.
-- The name of an enum value is emitted by default, but implementations can provide
-  an option to use the enum's numeric value instead.
+However, libraries are permitted to provide serialization options that can modify 
+the shape of the JSON output, such as:
+- Output fields with their default values rather than omit them.
+- Ignore unknown fields rather than reject them.
+- Use the proto field name as the JSON name instead of converting to lowerCamelCase.
+  Also, important to note that the expected lowerCamelCase name can be modified with 
+  the `json_name` field option.
+- Use an enum's numeric value instead of the enum name.
 
-Consequently, implementations must be lenient about their 
-JSON inputs since the JSON structure could have been modified by any of the
-serialization options. To properly support proto3 JSON and make sure it 
-interoperates correctly with other language implementations, Protobuf-ES has to 
-support all variants of the input.
+Consequently, to properly support proto3 JSON and make sure it interoperates correctly 
+with other language implementations, Protobuf-ES has to support all variants of the input,
+which include:
 
-Therefore, the following rules apply when parsing JSON into a Protobuf message:
 - If a value is missing or null, it should be interpreted as that field type's 
   default value.
 - Field names can be the proto field name, or the lowerCamelCase JSON name or 
