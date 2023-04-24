@@ -2,10 +2,16 @@
 
 # Protobuf-ES
 
-[![License](https://img.shields.io/github/license/bufbuild/protobuf-es?color=blue)](./LICENSE) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) 
+[![License](https://img.shields.io/github/license/bufbuild/protobuf-es?color=blue)](./LICENSE) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 
 A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js, created by [Buf](https://buf.build).
+
+Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes the
+Protobuf conformance tests. [Read more on our blog.](https://buf.build/blog/protobuf-conformance)
+
+Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/bufbuild/connect-es),
+which fully supports the Connect and gRPC-Web protocols.
 
 ## What are Protocol Buffers?
 
@@ -123,6 +129,6 @@ The generated code is compatible with TypeScript **v4.1.2** or later, with the d
 
 ## Copyright
 
-The [code to encode and decode varint](packages/protobuf/src/google/varint.ts) is Copyright 2008 Google Inc., licensed 
-under BSD-3-Clause.  
+The [code to encode and decode varint](packages/protobuf/src/google/varint.ts) is Copyright 2008 Google Inc., licensed
+under BSD-3-Clause.
 All other files are licensed under Apache-2.0, see [LICENSE](LICENSE).
