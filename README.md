@@ -11,7 +11,7 @@ Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes 
 Protobuf conformance tests. [Read more on our blog.](https://buf.build/blog/protobuf-conformance)
 
 Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/bufbuild/connect-es),
-which fully supports the Connect and gRPC-Web protocols.
+which fully supports the Connect, gRPC, and gRPC-Web protocols.
 
 ## What are Protocol Buffers?
 
