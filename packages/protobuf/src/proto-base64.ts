@@ -92,15 +92,7 @@ export const protoBase64 = {
     return bytes.subarray(0, bytePos);
   },
   /**
-   * Decodes a base64 string to a byte array.
-   *
-   * - ignores white-space, including line breaks and tabs
-   * - allows inner padding (can decode concatenated base64 strings)
-   * - does not require padding
-   * - understands base64url encoding:
-   *   "-" instead of "+",
-   *   "_" instead of "/",
-   *   no padding
+   * Encode a byte array to a base64 string.
    */
   enc(bytes: Uint8Array): string {
     let base64 = "",
@@ -129,7 +121,7 @@ export const protoBase64 = {
       }
     }
 
-    // padding required?
+    // add output padding
     if (groupPos) {
       base64 += encTable[p];
       base64 += "=";
