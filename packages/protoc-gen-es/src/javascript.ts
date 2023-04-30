@@ -67,7 +67,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
   const protoN = schema.runtime[message.file.syntax];
   f.print(makeJsDoc(message));
-  f.print("export const ", message, " = ", protoN, ".makeMessageType(")
+  f.print("export const ", message, " = /*@__PURE__*/ ", protoN, ".makeMessageType(")
   f.print(`  `, literalString(message.typeName), `,`)
   if (message.fields.length == 0) {
     f.print("  [],")
