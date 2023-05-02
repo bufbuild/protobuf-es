@@ -53,6 +53,10 @@ export interface GeneratedFile {
    *
    * The preamble is always placed at the very top of the generated file,
    * above import statements.
+   *
+   * A file with a preamble but no other content is still considered empty,
+   * and will not be generated unless the plugin option keep_empty_files=true
+   * is set.
    */
   preamble(file: DescFile): void;
 
