@@ -56,6 +56,13 @@ export declare enum Syntax {
    * @generated from enum value: SYNTAX_PROTO3 = 1;
    */
   PROTO3 = 1,
+
+  /**
+   * Syntax `editions`.
+   *
+   * @generated from enum value: SYNTAX_EDITIONS = 2;
+   */
+  EDITIONS = 2,
 }
 
 /**
@@ -105,6 +112,13 @@ export declare class Type extends Message<Type> {
    * @generated from field: google.protobuf.Syntax syntax = 6;
    */
   syntax: Syntax;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 7;
+   */
+  edition: string;
 
   constructor(data?: PartialMessage<Type>);
 
@@ -429,6 +443,13 @@ export declare class Enum extends Message<Enum> {
    * @generated from field: google.protobuf.Syntax syntax = 5;
    */
   syntax: Syntax;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 6;
+   */
+  edition: string;
 
   constructor(data?: PartialMessage<Enum>);
 
