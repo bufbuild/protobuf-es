@@ -136,7 +136,38 @@ export const ExtensionRangeOptions = proto2.makeMessageType(
   "google.protobuf.ExtensionRangeOptions",
   () => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
+    { no: 2, name: "declaration", kind: "message", T: ExtensionRangeOptions_Declaration, repeated: true },
+    { no: 3, name: "verification", kind: "enum", T: proto2.getEnumType(ExtensionRangeOptions_VerificationState), opt: true, default: ExtensionRangeOptions_VerificationState.UNVERIFIED },
   ],
+);
+
+/**
+ * The verification state of the extension range.
+ *
+ * @generated from enum google.protobuf.ExtensionRangeOptions.VerificationState
+ */
+export const ExtensionRangeOptions_VerificationState = proto2.makeEnum(
+  "google.protobuf.ExtensionRangeOptions.VerificationState",
+  [
+    {no: 0, name: "DECLARATION"},
+    {no: 1, name: "UNVERIFIED"},
+  ],
+);
+
+/**
+ * @generated from message google.protobuf.ExtensionRangeOptions.Declaration
+ */
+export const ExtensionRangeOptions_Declaration = proto2.makeMessageType(
+  "google.protobuf.ExtensionRangeOptions.Declaration",
+  () => [
+    { no: 1, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "is_repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 5, name: "reserved", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 6, name: "repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+  ],
+  {localName: "ExtensionRangeOptions_Declaration"},
 );
 
 /**
@@ -368,6 +399,7 @@ export const FieldOptions = proto2.makeMessageType(
     { no: 16, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 17, name: "retention", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionRetention), opt: true },
     { no: 18, name: "target", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), opt: true },
+    { no: 19, name: "targets", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), repeated: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );

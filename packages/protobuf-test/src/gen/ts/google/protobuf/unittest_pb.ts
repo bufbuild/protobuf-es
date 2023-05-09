@@ -3053,6 +3053,11 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
    */
   subgroup?: TestMutualRecursionA_SubGroup;
 
+  /**
+   * @generated from field: repeated protobuf_unittest.TestMutualRecursionA.SubGroupR subgroupr = 5;
+   */
+  subgroupr: TestMutualRecursionA_SubGroupR[] = [];
+
   constructor(data?: PartialMessage<TestMutualRecursionA>) {
     super();
     proto2.util.initPartial(data, this);
@@ -3063,6 +3068,7 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
     { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true },
+    { no: 5, name: "subgroupr", kind: "message", T: TestMutualRecursionA_SubGroupR, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA {
@@ -3161,6 +3167,43 @@ export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_
 
   static equals(a: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined, b: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionA_SubGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroupR
+ */
+export class TestMutualRecursionA_SubGroupR extends Message<TestMutualRecursionA_SubGroupR> {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes payload = 6;
+   */
+  payload?: TestAllTypes;
+
+  constructor(data?: PartialMessage<TestMutualRecursionA_SubGroupR>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestMutualRecursionA.SubGroupR";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 6, name: "payload", kind: "message", T: TestAllTypes, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA_SubGroupR {
+    return new TestMutualRecursionA_SubGroupR().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroupR {
+    return new TestMutualRecursionA_SubGroupR().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroupR {
+    return new TestMutualRecursionA_SubGroupR().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMutualRecursionA_SubGroupR | PlainMessage<TestMutualRecursionA_SubGroupR> | undefined, b: TestMutualRecursionA_SubGroupR | PlainMessage<TestMutualRecursionA_SubGroupR> | undefined): boolean {
+    return proto2.util.equals(TestMutualRecursionA_SubGroupR, a, b);
   }
 }
 
@@ -5092,6 +5135,12 @@ export class TestOneof2 extends Message<TestOneof2> {
      */
     value: TestOneof2_NestedMessage;
     case: "fooLazyMessage";
+  } | {
+    /**
+     * @generated from field: bytes foo_bytes_cord = 30;
+     */
+    value: Uint8Array;
+    case: "fooBytesCord";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
@@ -5186,6 +5235,7 @@ export class TestOneof2 extends Message<TestOneof2> {
     { no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
     { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo" },
     { no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
+    { no: 30, name: "foo_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar" },
     { no: 13, name: "bar_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "STRING", oneof: "bar" },
     { no: 14, name: "bar_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "CORD", oneof: "bar" },
@@ -8893,6 +8943,70 @@ export class Int64ParseTester extends Message<Int64ParseTester> {
 }
 
 /**
+ * @generated from message protobuf_unittest.InlinedStringIdxRegressionProto
+ */
+export class InlinedStringIdxRegressionProto extends Message<InlinedStringIdxRegressionProto> {
+  /**
+   * We mix data to make sure aux ids and inlined string idx do not match.
+   * aux_idx == inlined_string_idx == 1
+   *
+   * @generated from field: optional string str1 = 1;
+   */
+  str1?: string;
+
+  /**
+   * aux_idx == 2
+   *
+   * @generated from field: optional protobuf_unittest.InlinedStringIdxRegressionProto sub = 2;
+   */
+  sub?: InlinedStringIdxRegressionProto;
+
+  /**
+   * aux_idx == 3, inlined_string_idx == 2
+   *
+   * @generated from field: optional string str2 = 3;
+   */
+  str2?: string;
+
+  /**
+   * aux_idx == 4, inlined_string_idx == 3
+   *
+   * @generated from field: optional bytes str3 = 4;
+   */
+  str3?: Uint8Array;
+
+  constructor(data?: PartialMessage<InlinedStringIdxRegressionProto>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.InlinedStringIdxRegressionProto";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "sub", kind: "message", T: InlinedStringIdxRegressionProto, opt: true },
+    { no: 3, name: "str2", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "str3", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InlinedStringIdxRegressionProto {
+    return new InlinedStringIdxRegressionProto().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InlinedStringIdxRegressionProto {
+    return new InlinedStringIdxRegressionProto().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InlinedStringIdxRegressionProto {
+    return new InlinedStringIdxRegressionProto().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: InlinedStringIdxRegressionProto | PlainMessage<InlinedStringIdxRegressionProto> | undefined, b: InlinedStringIdxRegressionProto | PlainMessage<InlinedStringIdxRegressionProto> | undefined): boolean {
+    return proto2.util.equals(InlinedStringIdxRegressionProto, a, b);
+  }
+}
+
+/**
  * @generated from message protobuf_unittest.StringParseTester
  */
 export class StringParseTester extends Message<StringParseTester> {
@@ -9036,6 +9150,49 @@ export class RedactedFields extends Message<RedactedFields> {
 
   static equals(a: RedactedFields | PlainMessage<RedactedFields> | undefined, b: RedactedFields | PlainMessage<RedactedFields> | undefined): boolean {
     return proto2.util.equals(RedactedFields, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_unittest.TestCord
+ */
+export class TestCord extends Message<TestCord> {
+  /**
+   * @generated from field: optional bytes optional_bytes_cord = 1;
+   */
+  optionalBytesCord?: Uint8Array;
+
+  /**
+   * @generated from field: optional bytes optional_bytes_cord_default = 2 [default = "hello"];
+   */
+  optionalBytesCordDefault?: Uint8Array;
+
+  constructor(data?: PartialMessage<TestCord>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestCord";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 2, name: "optional_bytes_cord_default", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x68, 0x65, 0x6C, 0x6C, 0x6F]) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestCord {
+    return new TestCord().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestCord {
+    return new TestCord().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCord {
+    return new TestCord().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestCord | PlainMessage<TestCord> | undefined, b: TestCord | PlainMessage<TestCord> | undefined): boolean {
+    return proto2.util.equals(TestCord, a, b);
   }
 }
 
