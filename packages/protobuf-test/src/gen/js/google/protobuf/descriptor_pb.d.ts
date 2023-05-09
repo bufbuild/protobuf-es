@@ -341,6 +341,25 @@ export declare class ExtensionRangeOptions extends Message<ExtensionRangeOptions
    */
   uninterpretedOption: UninterpretedOption[];
 
+  /**
+   * go/protobuf-stripping-extension-declarations
+   * Like Metadata, but we use a repeated field to hold all extension
+   * declarations. This should avoid the size increases of transforming a large
+   * extension range into small ranges in generated binaries.
+   *
+   * @generated from field: repeated google.protobuf.ExtensionRangeOptions.Declaration declaration = 2;
+   */
+  declaration: ExtensionRangeOptions_Declaration[];
+
+  /**
+   * The verification state of the range.
+   * TODO(b/278783756): flip the default to DECLARATION once all empty ranges
+   * are marked as UNVERIFIED.
+   *
+   * @generated from field: optional google.protobuf.ExtensionRangeOptions.VerificationState verification = 3 [default = UNVERIFIED];
+   */
+  verification?: ExtensionRangeOptions_VerificationState;
+
   constructor(data?: PartialMessage<ExtensionRangeOptions>);
 
   static readonly runtime: typeof proto2;
@@ -354,6 +373,93 @@ export declare class ExtensionRangeOptions extends Message<ExtensionRangeOptions
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionRangeOptions;
 
   static equals(a: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined, b: ExtensionRangeOptions | PlainMessage<ExtensionRangeOptions> | undefined): boolean;
+}
+
+/**
+ * The verification state of the extension range.
+ *
+ * @generated from enum google.protobuf.ExtensionRangeOptions.VerificationState
+ */
+export declare enum ExtensionRangeOptions_VerificationState {
+  /**
+   * All the extensions of the range must be declared.
+   *
+   * @generated from enum value: DECLARATION = 0;
+   */
+  DECLARATION = 0,
+
+  /**
+   * @generated from enum value: UNVERIFIED = 1;
+   */
+  UNVERIFIED = 1,
+}
+
+/**
+ * @generated from message google.protobuf.ExtensionRangeOptions.Declaration
+ */
+export declare class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOptions_Declaration> {
+  /**
+   * The extension number declared within the extension range.
+   *
+   * @generated from field: optional int32 number = 1;
+   */
+  number?: number;
+
+  /**
+   * The fully-qualified name of the extension field. There must be a leading
+   * dot in front of the full name.
+   *
+   * @generated from field: optional string full_name = 2;
+   */
+  fullName?: string;
+
+  /**
+   * The fully-qualified type name of the extension field. Unlike
+   * Metadata.type, Declaration.type must have a leading dot for messages
+   * and enums.
+   *
+   * @generated from field: optional string type = 3;
+   */
+  type?: string;
+
+  /**
+   * Deprecated. Please use "repeated".
+   *
+   * @generated from field: optional bool is_repeated = 4 [deprecated = true];
+   * @deprecated
+   */
+  isRepeated?: boolean;
+
+  /**
+   * If true, indicates that the number is reserved in the extension range,
+   * and any extension field with the number will fail to compile. Set this
+   * when a declared extension field is deleted.
+   *
+   * @generated from field: optional bool reserved = 5;
+   */
+  reserved?: boolean;
+
+  /**
+   * If true, indicates that the extension must be defined as repeated.
+   * Otherwise the extension must be defined as optional.
+   *
+   * @generated from field: optional bool repeated = 6;
+   */
+  repeated?: boolean;
+
+  constructor(data?: PartialMessage<ExtensionRangeOptions_Declaration>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "google.protobuf.ExtensionRangeOptions.Declaration";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtensionRangeOptions_Declaration;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtensionRangeOptions_Declaration;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionRangeOptions_Declaration;
+
+  static equals(a: ExtensionRangeOptions_Declaration | PlainMessage<ExtensionRangeOptions_Declaration> | undefined, b: ExtensionRangeOptions_Declaration | PlainMessage<ExtensionRangeOptions_Declaration> | undefined): boolean;
 }
 
 /**
@@ -1227,8 +1333,10 @@ export declare class FieldOptions extends Message<FieldOptions> {
   /**
    * The ctype option instructs the C++ code generator to use a different
    * representation of the field than it normally would.  See the specific
-   * options below.  This option is not yet implemented in the open source
-   * release -- sorry, we'll try to include it in a future version!
+   * options below.  This option is only implemented to support use of
+   * [ctype=CORD] and [ctype=STRING] (the default) on non-repeated fields of
+   * type "bytes" in the open source release -- sorry, we'll try to include
+   * other types in a future version!
    *
    * @generated from field: optional google.protobuf.FieldOptions.CType ctype = 1 [default = STRING];
    */
@@ -1338,9 +1446,15 @@ export declare class FieldOptions extends Message<FieldOptions> {
   retention?: FieldOptions_OptionRetention;
 
   /**
-   * @generated from field: optional google.protobuf.FieldOptions.OptionTargetType target = 18;
+   * @generated from field: optional google.protobuf.FieldOptions.OptionTargetType target = 18 [deprecated = true];
+   * @deprecated
    */
   target?: FieldOptions_OptionTargetType;
+
+  /**
+   * @generated from field: repeated google.protobuf.FieldOptions.OptionTargetType targets = 19;
+   */
+  targets: FieldOptions_OptionTargetType[];
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -1376,6 +1490,13 @@ export declare enum FieldOptions_CType {
   STRING = 0,
 
   /**
+   * The option [ctype=CORD] may be applied to a non-repeated field of type
+   * "bytes". It indicates that in C++, the data should be stored in a Cord
+   * instead of a string.  For very large strings, this may reduce memory
+   * fragmentation. It may also allow better performance when parsing from a
+   * Cord, or when parsing with aliasing enabled, as the parsed Cord may then
+   * alias the original buffer.
+   *
    * @generated from enum value: CORD = 1;
    */
   CORD = 1,

@@ -360,3 +360,124 @@ export const ProtoWithKeywords = proto2.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2
+ */
+export const TestAllRequiredTypesProto2 = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2",
+  () => [
+    { no: 1, name: "required_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "required_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "required_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: "required_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: "required_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */ },
+    { no: 6, name: "required_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */ },
+    { no: 7, name: "required_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 8, name: "required_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
+    { no: 9, name: "required_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */ },
+    { no: 10, name: "required_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */ },
+    { no: 11, name: "required_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 12, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 13, name: "required_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: "required_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 15, name: "required_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 18, name: "required_nested_message", kind: "message", T: TestAllRequiredTypesProto2_NestedMessage },
+    { no: 19, name: "required_foreign_message", kind: "message", T: ForeignMessageProto2 },
+    { no: 21, name: "required_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllRequiredTypesProto2_NestedEnum) },
+    { no: 22, name: "required_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumProto2) },
+    { no: 24, name: "required_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 25, name: "required_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 27, name: "recursive_message", kind: "message", T: TestAllRequiredTypesProto2 },
+    { no: 28, name: "optional_recursive_message", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
+    { no: 201, name: "data", kind: "message", T: TestAllRequiredTypesProto2_Data },
+    { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: -123456789 },
+    { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, default: protoInt64.parse("-9123456789123456789") },
+    { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, default: 2123456789 },
+    { no: 244, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, default: protoInt64.uParse("10123456789123456789") },
+    { no: 245, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, default: -123456789 },
+    { no: 246, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, default: protoInt64.parse("-9123456789123456789") },
+    { no: 247, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, default: 2123456789 },
+    { no: 248, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, default: protoInt64.uParse("10123456789123456789") },
+    { no: 249, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, default: -123456789 },
+    { no: 250, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, default: protoInt64.parse("-9123456789123456789") },
+    { no: 251, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, default: 9000000000 },
+    { no: 252, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, default: 7e+22 },
+    { no: 253, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, default: true },
+    { no: 254, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "Rosebud" },
+    { no: 255, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]) },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum
+ */
+export const TestAllRequiredTypesProto2_NestedEnum = proto2.makeEnum(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum",
+  [
+    {no: 0, name: "FOO"},
+    {no: 1, name: "BAR"},
+    {no: 2, name: "BAZ"},
+    {no: -1, name: "NEG"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage
+ */
+export const TestAllRequiredTypesProto2_NestedMessage = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "corecursive", kind: "message", T: TestAllRequiredTypesProto2 },
+    { no: 3, name: "optional_corecursive", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
+  ],
+  {localName: "TestAllRequiredTypesProto2_NestedMessage"},
+);
+
+/**
+ * groups
+ *
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data
+ */
+export const TestAllRequiredTypesProto2_Data = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data",
+  () => [
+    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  ],
+  {localName: "TestAllRequiredTypesProto2_Data"},
+);
+
+/**
+ * message_set test case.
+ *
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrect = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect",
+  [],
+  {localName: "TestAllRequiredTypesProto2_MessageSetCorrect"},
+);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1 = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1",
+  () => [
+    { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+  {localName: "TestAllRequiredTypesProto2_MessageSetCorrectExtension1"},
+);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2",
+  () => [
+    { no: 9, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ],
+  {localName: "TestAllRequiredTypesProto2_MessageSetCorrectExtension2"},
+);
+
