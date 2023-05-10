@@ -20,6 +20,7 @@ import type {
   JsonWriteStringOptions,
 } from "./json-format.js";
 import type { MessageType } from "./message-type.js";
+import { BinaryReaderUtil } from "./private/binary-reader-util.js";
 
 /**
  * AnyMessage is an interface implemented by all messages. If you need to
@@ -67,7 +68,12 @@ export class Message<T extends Message<T> = AnyMessage> {
    */
   fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): this {
     const opt = this.getType().runtime.bin.makeReadOptions(options);
-    opt.readerFactory(bytes).message(this, bytes.byteLength, opt);
+    BinaryReaderUtil.readMessage(
+      opt.readerFactory(bytes),
+      this,
+      bytes.byteLength,
+      opt
+    );
     return this;
   }
 

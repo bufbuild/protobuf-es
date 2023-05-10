@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { BinaryReadOptions } from "./binary-format.js";
 import {
   varint32read,
   varint32write,
   varint64read,
   varint64write,
 } from "./google/varint.js";
-import { Message } from "./message.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "./private/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 
@@ -166,23 +164,6 @@ export interface IBinaryReader {
    * Read a `bytes` field, length-delimited arbitrary data.
    */
   bytes(): Uint8Array;
-
-  /**
-   * Reads a message of length `length` into `message` and returns the message.
-   */
-  message<T extends Message>(
-    message: T,
-    length: number,
-    options: Partial<BinaryReadOptions>
-  ): T;
-
-  /**
-   * Reads a length-delimited message into `message` and returns it.
-   */
-  messageField<T extends Message>(
-    message: T,
-    options: Partial<BinaryReadOptions>
-  ): T;
 
   /**
    * Read a `string` field, length-delimited data converted to UTF-8 text.
@@ -763,19 +744,5 @@ export class BinaryReader implements IBinaryReader {
    */
   string(): string {
     return this.textDecoder.decode(this.bytes());
-  }
-
-  message<T extends Message>(
-    message: T,
-    length: number,
-    options: BinaryReadOptions
-  ): T {
-    const format = message.getType().runtime.bin;
-    format.readMessage(message, this, length, options);
-    return message;
-  }
-
-  messageField<T extends Message>(message: T, options: BinaryReadOptions): T {
-    return this.message(message, this.uint32(), options);
   }
 }

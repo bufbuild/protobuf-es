@@ -26,6 +26,7 @@ import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
 import type { MessageType } from "../message-type.js";
+import { BinaryReaderUtil } from "./binary-reader-util.js";
 
 /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition, no-case-declarations, prefer-const */
 
@@ -145,13 +146,22 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                reader.messageField(new messageType(), options)
+                BinaryReaderUtil.readMessageField(
+                  reader,
+                  new messageType(),
+                  options
+                )
               );
             } else {
               if (target[localName] instanceof Message) {
-                reader.messageField(target[localName], options);
+                BinaryReaderUtil.readMessageField(
+                  reader,
+                  target[localName],
+                  options
+                );
               } else {
-                target[localName] = reader.messageField(
+                target[localName] = BinaryReaderUtil.readMessageField(
+                  reader,
                   new messageType(),
                   options
                 );
