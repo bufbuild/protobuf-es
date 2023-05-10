@@ -46,6 +46,7 @@ export const Syntax = proto3.makeEnum(
   [
     {no: 0, name: "SYNTAX_PROTO2", localName: "PROTO2"},
     {no: 1, name: "SYNTAX_PROTO3", localName: "PROTO3"},
+    {no: 2, name: "SYNTAX_EDITIONS", localName: "EDITIONS"},
   ],
 );
 
@@ -63,6 +64,7 @@ export const Type = proto3.makeMessageType(
     { no: 4, name: "options", kind: "message", T: Option, repeated: true },
     { no: 5, name: "source_context", kind: "message", T: SourceContext },
     { no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
+    { no: 7, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 
@@ -145,6 +147,7 @@ export const Enum = proto3.makeMessageType(
     { no: 3, name: "options", kind: "message", T: Option, repeated: true },
     { no: 4, name: "source_context", kind: "message", T: SourceContext },
     { no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
+    { no: 6, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

@@ -56,11 +56,19 @@ export enum Syntax {
    * @generated from enum value: SYNTAX_PROTO3 = 1;
    */
   PROTO3 = 1,
+
+  /**
+   * Syntax `editions`.
+   *
+   * @generated from enum value: SYNTAX_EDITIONS = 2;
+   */
+  EDITIONS = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(Syntax)
 proto3.util.setEnumType(Syntax, "google.protobuf.Syntax", [
   { no: 0, name: "SYNTAX_PROTO2" },
   { no: 1, name: "SYNTAX_PROTO3" },
+  { no: 2, name: "SYNTAX_EDITIONS" },
 ]);
 
 /**
@@ -111,6 +119,13 @@ export class Type extends Message<Type> {
    */
   syntax = Syntax.PROTO2;
 
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 7;
+   */
+  edition = "";
+
   constructor(data?: PartialMessage<Type>) {
     super();
     proto3.util.initPartial(data, this);
@@ -125,6 +140,7 @@ export class Type extends Message<Type> {
     { no: 4, name: "options", kind: "message", T: Option, repeated: true },
     { no: 5, name: "source_context", kind: "message", T: SourceContext },
     { no: 6, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
+    { no: 7, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Type {
@@ -504,6 +520,13 @@ export class Enum extends Message<Enum> {
    */
   syntax = Syntax.PROTO2;
 
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 6;
+   */
+  edition = "";
+
   constructor(data?: PartialMessage<Enum>) {
     super();
     proto3.util.initPartial(data, this);
@@ -517,6 +540,7 @@ export class Enum extends Message<Enum> {
     { no: 3, name: "options", kind: "message", T: Option, repeated: true },
     { no: 4, name: "source_context", kind: "message", T: SourceContext },
     { no: 5, name: "syntax", kind: "enum", T: proto3.getEnumType(Syntax) },
+    { no: 6, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Enum {

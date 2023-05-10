@@ -766,6 +766,7 @@ export const TestMutualRecursionA = proto2.makeMessageType(
   () => [
     { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
     { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true },
+    { no: 5, name: "subgroupr", kind: "message", T: TestMutualRecursionA_SubGroupR, repeated: true },
   ],
 );
 
@@ -790,6 +791,17 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
     { no: 4, name: "not_in_this_scc", kind: "message", T: TestAllTypes, opt: true },
   ],
   {localName: "TestMutualRecursionA_SubGroup"},
+);
+
+/**
+ * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroupR
+ */
+export const TestMutualRecursionA_SubGroupR = proto2.makeMessageType(
+  "protobuf_unittest.TestMutualRecursionA.SubGroupR",
+  () => [
+    { no: 6, name: "payload", kind: "message", T: TestAllTypes, opt: true },
+  ],
+  {localName: "TestMutualRecursionA_SubGroupR"},
 );
 
 /**
@@ -1276,6 +1288,7 @@ export const TestOneof2 = proto2.makeMessageType(
     { no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
     { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo" },
     { no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
+    { no: 30, name: "foo_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar" },
     { no: 13, name: "bar_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "STRING", oneof: "bar" },
     { no: 14, name: "bar_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "CORD", oneof: "bar" },
@@ -2180,6 +2193,19 @@ export const Int64ParseTester = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.InlinedStringIdxRegressionProto
+ */
+export const InlinedStringIdxRegressionProto = proto2.makeMessageType(
+  "protobuf_unittest.InlinedStringIdxRegressionProto",
+  () => [
+    { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "sub", kind: "message", T: InlinedStringIdxRegressionProto, opt: true },
+    { no: 3, name: "str2", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "str3", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.StringParseTester
  */
 export const StringParseTester = proto2.makeMessageType(
@@ -2212,6 +2238,17 @@ export const RedactedFields = proto2.makeMessageType(
   "protobuf_unittest.RedactedFields",
   () => [
     { no: 1, name: "optional_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestCord
+ */
+export const TestCord = proto2.makeMessageType(
+  "protobuf_unittest.TestCord",
+  () => [
+    { no: 1, name: "optional_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 2, name: "optional_bytes_cord_default", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x68, 0x65, 0x6C, 0x6C, 0x6F]) },
   ],
 );
 
