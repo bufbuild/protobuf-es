@@ -118,8 +118,7 @@ function makeInt64Support(): Int64Support {
   const dv = new DataView(new ArrayBuffer(8));
   // note that Safari 14 implements BigInt, but not the DataView methods
   const ok =
-    typeof globalThis !== "undefined" &&
-    (globalThis.BigInt as unknown) !== undefined &&
+    typeof BigInt !== "undefined" &&
     typeof dv.getBigInt64 === "function" &&
     typeof dv.getBigUint64 === "function" &&
     typeof dv.setBigInt64 === "function" &&
