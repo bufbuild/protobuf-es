@@ -41,7 +41,7 @@ describe("google.protobuf.FieldMask", () => {
       expect(() => {
         fieldMask.toJson();
       }).toThrow(
-        'cannot encode google.protobuf.FieldMask from JSON: lowerCamelCase of path name "user.displayName" is irreversible'
+        'cannot encode google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible'
       );
     });
     test("fromJson fails on invalid json", () => {

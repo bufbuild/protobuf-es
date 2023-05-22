@@ -282,7 +282,7 @@ FieldMask.prototype.toJson = function toJson(options) {
   }
   return this.paths.map(p => {
     if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
-      throw new Error("cannot encode google.protobuf.FieldMask from JSON: lowerCamelCase of path name \"" + p + "\" is irreversible");
+      throw new Error("cannot encode google.protobuf.FieldMask to JSON: lowerCamelCase of path name \"" + p + "\" is irreversible");
     }
     return protoCamelCase(p);
   }).join(",");
