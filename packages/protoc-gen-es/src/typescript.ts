@@ -384,7 +384,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`      text += "." + nanosStr;`)
       f.print("      if (this.", localName(ref.nanos), " < 0 && this.", localName(ref.seconds), " === ", protoInt64, ".zero) {");
       f.print(`          text = "-" + text;`);
-      f.print(`      }`);      
+      f.print(`      }`);
       f.print("    }")
       f.print(`    return text + "s";`)
       f.print("  }")
@@ -513,7 +513,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`    }`)
       f.print(`    return this.`, localName(ref.paths), `.map(p => {`)
       f.print(`      if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {`)
-      f.print(`        throw new Error("cannot decode `, message.typeName, ` from JSON: lowerCamelCase of path name \\"" + p + "\\" is irreversible");`)
+      f.print(`        throw new Error("cannot encode `, message.typeName, ` to JSON: lowerCamelCase of path name \\"" + p + "\\" is irreversible");`)
       f.print(`      }`)
       f.print(`      return protoCamelCase(p);`)
       f.print(`    }).join(",");`)
