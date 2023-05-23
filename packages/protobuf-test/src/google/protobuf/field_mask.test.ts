@@ -34,5 +34,23 @@ describe("google.protobuf.FieldMask", () => {
       });
       expect(FieldMask.fromJson(json)).toStrictEqual(want);
     });
+    test("toJson fails on invalid fieldmask paths", () => {
+      const fieldMask = new FieldMask({
+        paths: ["user.displayName", "photo"],
+      });
+      expect(() => {
+        fieldMask.toJson();
+      }).toThrow(
+        'cannot encode google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible'
+      );
+    });
+    test("fromJson fails on invalid json", () => {
+      const json = "user.display_name,photo";
+      expect(() => {
+        FieldMask.fromJson(json);
+      }).toThrow(
+        "cannot decode google.protobuf.FieldMask from JSON: path names must be lowerCamelCase"
+      );
+    });
   });
 });
