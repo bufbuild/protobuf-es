@@ -5,7 +5,8 @@
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:esm+types && npm run build:copy-gen-js",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen"
+    "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
+    "perf": "tsx src/perf.ts"
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -15,6 +16,8 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "1.2.0",
+    "@types/benchmark": "^2.1.2",
+    "benchmark": "^2.1.4",
     "long": "~5.0.1",
     "ts4_1_2": "npm:typescript@4.1.2",
     "ts4_2_4": "npm:typescript@4.2.4",
