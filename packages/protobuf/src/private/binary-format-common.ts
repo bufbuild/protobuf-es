@@ -26,7 +26,6 @@ import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
 import type { MessageType } from "../message-type.js";
-import { BinaryReaderUtil } from "./binary-reader-util.js";
 
 /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition, no-case-declarations, prefer-const */
 
@@ -146,21 +145,13 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                BinaryReaderUtil.readMessageField(
-                  reader,
-                  new messageType(),
-                  options
-                )
+                readMessageField(reader, new messageType(), options)
               );
             } else {
               if (target[localName] instanceof Message) {
-                BinaryReaderUtil.readMessageField(
-                  reader,
-                  target[localName],
-                  options
-                );
+                readMessageField(reader, target[localName], options);
               } else {
-                target[localName] = BinaryReaderUtil.readMessageField(
+                target[localName] = readMessageField(
                   reader,
                   new messageType(),
                   options
@@ -188,6 +179,18 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
   };
 }
 
+// Read a message, avoiding MessageType.fromBinary() to re-use the
+// BinaryReadOptions and the IBinaryReader.
+function readMessageField<T extends Message>(
+  reader: IBinaryReader,
+  message: T,
+  options: BinaryReadOptions
+): T {
+  const format = message.getType().runtime.bin;
+  format.readMessage(message, reader, reader.uint32(), options);
+  return message;
+}
+
 // Read a map field, expecting key field = 1, value field = 2
 function readMapEntry(
   field: FieldInfo & { kind: "map" },
@@ -212,11 +215,7 @@ function readMapEntry(
             val = reader.int32();
             break;
           case "message":
-            val = BinaryReaderUtil.readMessageField(
-                reader,
-                new field.V.T(),
-                options
-            );
+            val = readMessageField(reader, new field.V.T(), options);
             break;
         }
         break;
@@ -249,38 +248,8 @@ function readMapEntry(
 }
 
 function readScalar(reader: IBinaryReader, type: ScalarType): any {
-  switch (type) {
-    case ScalarType.STRING:
-      return reader.string();
-    case ScalarType.BOOL:
-      return reader.bool();
-    case ScalarType.DOUBLE:
-      return reader.double();
-    case ScalarType.FLOAT:
-      return reader.float();
-    case ScalarType.INT32:
-      return reader.int32();
-    case ScalarType.INT64:
-      return reader.int64();
-    case ScalarType.UINT64:
-      return reader.uint64();
-    case ScalarType.FIXED64:
-      return reader.fixed64();
-    case ScalarType.BYTES:
-      return reader.bytes();
-    case ScalarType.FIXED32:
-      return reader.fixed32();
-    case ScalarType.SFIXED32:
-      return reader.sfixed32();
-    case ScalarType.SFIXED64:
-      return reader.sfixed64();
-    case ScalarType.SINT64:
-      return reader.sint64();
-    case ScalarType.UINT32:
-      return reader.uint32();
-    case ScalarType.SINT32:
-      return reader.sint32();
-  }
+  let [, method] = scalarTypeInfo(type);
+  return reader[method]();
 }
 
 export function writeMapEntry(
