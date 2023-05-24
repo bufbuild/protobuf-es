@@ -133,13 +133,13 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@touch $(@)
 
 $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
-	@rm -rf packages/protobuf-example/src/gen/*
+	npm run -w packages/protobuf-example clean
 	npm run -w packages/protobuf-example generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(GEN)/protobuf-bench: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
-	@rm -rf packages/protobuf-bench/src/gen/*
+	npm run -w packages/protobuf-bench clean
 	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -205,6 +205,10 @@ format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Forma
 .PHONY: bench
 bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size
 	npm run -w packages/protobuf-bench report
+
+.PHONY: perf
+perf: $(BUILD)/protobuf-test
+	npm run -w packages/protobuf-test perf
 
 .PHONY: boostrapwkt
 bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header ## Generate the well-known types in @bufbuild/protobuf
