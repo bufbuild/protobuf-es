@@ -212,7 +212,11 @@ function readMapEntry(
             val = reader.int32();
             break;
           case "message":
-            val = field.V.T.fromBinary(reader.bytes(), options);
+            val = BinaryReaderUtil.readMessageField(
+                reader,
+                new field.V.T(),
+                options
+            );
             break;
         }
         break;
