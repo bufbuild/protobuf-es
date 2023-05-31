@@ -534,7 +534,21 @@ function newField(
           ...getMapFieldTypes(mapEntry),
         };
       }
-      const message = cart.messages.get(trimLeadingDot(proto.typeName));
+
+      const trimmedName = trimLeadingDot(proto.typeName);
+      let message = cart.messages.get(trimmedName);
+      if (message === undefined && !trimmedName.includes('.')) {
+        const parts = parent.typeName.split('.');
+        while (parts.length > 0) {
+          const parentName = parts.join('.');
+          message = cart.messages.get(`${parentName}.${trimmedName}`);
+          if (message !== undefined) {
+              break;
+          }
+          parts.pop();
+        }
+      }
+
       assert(
         message !== undefined,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`
