@@ -30,6 +30,6 @@
     "ts4_9_5": "npm:typescript@4.9.5"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9"
+    "@types/node": "^20.2.5"
   }
 }
