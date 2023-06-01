@@ -14,7 +14,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.15.0-1",
+    "@bufbuild/buf": "^1.15.0",
     "@bufbuild/protobuf": "^1.2.1",
     "@bufbuild/protoc-gen-es": "^1.2.1",
     "@bufbuild/protoplugin": "^1.2.1",
