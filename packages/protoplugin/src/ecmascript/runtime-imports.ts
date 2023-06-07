@@ -30,6 +30,7 @@ export interface RuntimeImports {
   JsonWriteOptions: ImportSymbol;
   JsonValue: ImportSymbol;
   JsonObject: ImportSymbol;
+  protoDouble: ImportSymbol;
   protoInt64: ImportSymbol;
   ScalarType: ImportSymbol;
   MethodKind: ImportSymbol;
@@ -53,6 +54,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     JsonWriteOptions:      infoToSymbol("JsonWriteOptions",     bootstrapWkt),
     JsonValue:             infoToSymbol("JsonValue",            bootstrapWkt),
     JsonObject:            infoToSymbol("JsonObject",           bootstrapWkt),
+    protoDouble:           infoToSymbol("protoDouble",          bootstrapWkt),
     protoInt64:            infoToSymbol("protoInt64",           bootstrapWkt),
     ScalarType:            infoToSymbol("ScalarType",           bootstrapWkt),
     MethodKind:            infoToSymbol("MethodKind",           bootstrapWkt),
