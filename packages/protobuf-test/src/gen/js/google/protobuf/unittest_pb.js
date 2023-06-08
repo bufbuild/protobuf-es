@@ -44,7 +44,7 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import { proto2, protoInt64 } from "@bufbuild/protobuf";
+import { proto2, protoDouble, protoInt64 } from "@bufbuild/protobuf";
 import { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
 import { PublicImportMessage } from "./unittest_import_public_pb.js";
 
@@ -1061,12 +1061,12 @@ export const TestExtremeDefaultValues = proto2.makeMessageType(
     { no: 11, name: "negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1.5 },
     { no: 12, name: "large_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 200000000 },
     { no: 13, name: "small_negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -8e-28 },
-    { no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.POSITIVE_INFINITY },
-    { no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY },
-    { no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Number.NaN },
-    { no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.POSITIVE_INFINITY },
-    { no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NEGATIVE_INFINITY },
-    { no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Number.NaN },
+    { no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.POSITIVE_INFINITY },
+    { no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.NEGATIVE_INFINITY },
+    { no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.NaN },
+    { no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.POSITIVE_INFINITY },
+    { no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.NEGATIVE_INFINITY },
+    { no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.NaN },
     { no: 20, name: "cpp_trigraph", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "? ? ?? ?? ??? ??/ ??-" },
     { no: 23, name: "string_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hel lo" },
     { no: 24, name: "bytes_with_zero", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x00, 0x6C, 0x64]) },
