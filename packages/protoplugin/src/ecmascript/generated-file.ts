@@ -410,13 +410,13 @@ function processImports(
 
 function literalNumber(value: number): string {
   if (Number.isNaN(value)) {
-    return "Number.NaN";
+    return "globalThis.Number.NaN";
   }
   if (value === Number.POSITIVE_INFINITY) {
-    return "Number.POSITIVE_INFINITY";
+    return "globalThis.Number.POSITIVE_INFINITY";
   }
   if (value === Number.NEGATIVE_INFINITY) {
-    return "Number.NEGATIVE_INFINITY";
+    return "globalThis.Number.NEGATIVE_INFINITY";
   }
   return value.toString(10);
 }
