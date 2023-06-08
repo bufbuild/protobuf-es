@@ -47,6 +47,7 @@ type RuntimeSymbolName =
   | "JsonWriteOptions"
   | "JsonValue"
   | "JsonObject"
+  | "protoDouble"
   | "protoInt64"
   | "ScalarType"
   | "MethodKind"
@@ -84,6 +85,7 @@ export const codegenInfo: CodegenInfo = {
     JsonWriteOptions:     {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
     JsonValue:            {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
     JsonObject:           {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
+    protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
     protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
     ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
     MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},

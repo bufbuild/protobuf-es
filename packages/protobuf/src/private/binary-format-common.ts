@@ -145,14 +145,15 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                messageType.fromBinary(reader.bytes(), options)
+                readMessageField(reader, new messageType(), options)
               );
             } else {
               if (target[localName] instanceof Message) {
-                target[localName].fromBinary(reader.bytes(), options);
+                readMessageField(reader, target[localName], options);
               } else {
-                target[localName] = messageType.fromBinary(
-                  reader.bytes(),
+                target[localName] = readMessageField(
+                  reader,
+                  new messageType(),
                   options
                 );
                 if (
@@ -176,6 +177,18 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
       }
     },
   };
+}
+
+// Read a message, avoiding MessageType.fromBinary() to re-use the
+// BinaryReadOptions and the IBinaryReader.
+function readMessageField<T extends Message>(
+  reader: IBinaryReader,
+  message: T,
+  options: BinaryReadOptions
+): T {
+  const format = message.getType().runtime.bin;
+  format.readMessage(message, reader, reader.uint32(), options);
+  return message;
 }
 
 // Read a map field, expecting key field = 1, value field = 2
@@ -202,7 +215,7 @@ function readMapEntry(
             val = reader.int32();
             break;
           case "message":
-            val = field.V.T.fromBinary(reader.bytes(), options);
+            val = readMessageField(reader, new field.V.T(), options);
             break;
         }
         break;
@@ -234,9 +247,40 @@ function readMapEntry(
   return [key, val];
 }
 
+// Does not use scalarTypeInfo() for better performance.
 function readScalar(reader: IBinaryReader, type: ScalarType): any {
-  let [, method] = scalarTypeInfo(type);
-  return reader[method]();
+  switch (type) {
+    case ScalarType.STRING:
+      return reader.string();
+    case ScalarType.BOOL:
+      return reader.bool();
+    case ScalarType.DOUBLE:
+      return reader.double();
+    case ScalarType.FLOAT:
+      return reader.float();
+    case ScalarType.INT32:
+      return reader.int32();
+    case ScalarType.INT64:
+      return reader.int64();
+    case ScalarType.UINT64:
+      return reader.uint64();
+    case ScalarType.FIXED64:
+      return reader.fixed64();
+    case ScalarType.BYTES:
+      return reader.bytes();
+    case ScalarType.FIXED32:
+      return reader.fixed32();
+    case ScalarType.SFIXED32:
+      return reader.sfixed32();
+    case ScalarType.SFIXED64:
+      return reader.sfixed64();
+    case ScalarType.SINT64:
+      return reader.sint64();
+    case ScalarType.UINT32:
+      return reader.uint32();
+    case ScalarType.SINT32:
+      return reader.sint32();
+  }
 }
 
 export function writeMapEntry(
