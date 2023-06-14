@@ -53,6 +53,10 @@ export interface GeneratedFile {
    *
    * The preamble is always placed at the very top of the generated file,
    * above import statements.
+   *
+   * A file with a preamble but no other content is still considered empty,
+   * and will not be generated unless the plugin option keep_empty_files=true
+   * is set.
    */
   preamble(file: DescFile): void;
 
@@ -237,7 +241,7 @@ function printableToEl(
           el.push(p);
           break;
         case "number":
-          el.push(literalNumber(p));
+          el.push(...literalNumber(p, runtimeImports));
           break;
         case "boolean":
           el.push(p.toString());
@@ -404,15 +408,18 @@ function processImports(
   return symbolToIdentifier;
 }
 
-function literalNumber(value: number): string {
+function literalNumber(
+  value: number,
+  runtimeImports: RuntimeImports
+): El[] | string {
   if (Number.isNaN(value)) {
-    return "globalThis.Number.NaN";
+    return [runtimeImports.protoDouble, ".NaN"];
   }
   if (value === Number.POSITIVE_INFINITY) {
-    return "globalThis.Number.POSITIVE_INFINITY";
+    return [runtimeImports.protoDouble, ".POSITIVE_INFINITY"];
   }
   if (value === Number.NEGATIVE_INFINITY) {
-    return "globalThis.Number.NEGATIVE_INFINITY";
+    return [runtimeImports.protoDouble, ".NEGATIVE_INFINITY"];
   }
   return value.toString(10);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin-example",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "",
   "scripts": {
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@bufbuild/buf": "^1.15.0-1",
-    "@bufbuild/protobuf": "^1.2.0",
-    "@bufbuild/protoc-gen-es": "^1.2.0",
-    "@bufbuild/protoplugin": "^1.2.0",
-    "tsx": "^3.12.6",
+    "@bufbuild/protobuf": "^1.2.1",
+    "@bufbuild/protoc-gen-es": "^1.2.1",
+    "@bufbuild/protoplugin": "^1.2.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.0.3"
   }
 }
