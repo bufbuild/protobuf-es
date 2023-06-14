@@ -45,7 +45,7 @@ export function generateJs(schema: Schema) {
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   const protoN = schema.runtime[enumeration.file.syntax];
   f.print(makeJsDoc(enumeration));
-  f.print("export const ", enumeration, " = ", protoN, ".makeEnum(")
+  f.print("export const ", enumeration, " = /*@__PURE__*/ ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
   if (enumeration.sharedPrefix === undefined) {
