@@ -33,6 +33,7 @@ export function makeJsonFormatProto3(): JsonFormat {
       value: any,
       options: JsonWriteOptions
     ): JsonValue | undefined {
+      if (value === undefined || value === null) { return undefined; }
       if (field.kind == "map") {
         const jsonObj: JsonObject = {};
         switch (field.V.kind) {
