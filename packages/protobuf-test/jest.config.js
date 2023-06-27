@@ -23,6 +23,8 @@ const config = {
 
   // The root directory that Jest should scan for tests and modules within
   rootDir: "dist/esm",
+  // Enabled so jest would stop complaining about serializing BigInt.  See https://github.com/jestjs/jest/issues/11617#issuecomment-1458155552 for details
+  workerThreads: true,
 
   transform: {},
 };

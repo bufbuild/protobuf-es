@@ -92,6 +92,11 @@ export declare enum PrefixEnum {
  * @generated from message spec.EnumMessage
  */
 export declare class EnumMessage extends Message<EnumMessage> {
+  /**
+   * @generated from field: spec.EnumMessage.NestedEnum enum_field = 1;
+   */
+  enumField: EnumMessage_NestedEnum;
+
   constructor(data?: PartialMessage<EnumMessage>);
 
   static readonly runtime: typeof proto3;
