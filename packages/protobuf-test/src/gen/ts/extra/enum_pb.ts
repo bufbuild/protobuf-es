@@ -113,6 +113,11 @@ proto3.util.setEnumType(PrefixEnum, "spec.PrefixEnum", [
  * @generated from message spec.EnumMessage
  */
 export class EnumMessage extends Message<EnumMessage> {
+  /**
+   * @generated from field: spec.EnumMessage.NestedEnum enum_field = 1;
+   */
+  enumField = EnumMessage_NestedEnum.NESTED_ZERO;
+
   constructor(data?: PartialMessage<EnumMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -121,6 +126,7 @@ export class EnumMessage extends Message<EnumMessage> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.EnumMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "enum_field", kind: "enum", T: proto3.getEnumType(EnumMessage_NestedEnum) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumMessage {

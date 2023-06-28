@@ -72,7 +72,9 @@ export const PrefixEnum = proto3.makeEnum(
  */
 export const EnumMessage = proto3.makeMessageType(
   "spec.EnumMessage",
-  [],
+  () => [
+    { no: 1, name: "enum_field", kind: "enum", T: proto3.getEnumType(EnumMessage_NestedEnum) },
+  ],
 );
 
 /**
