@@ -26,9 +26,6 @@ import type { AnyMessage, PlainMessage } from "./message.js";
 export function toPlainMessage<T extends Message<T>>(
   message: T
 ): PlainMessage<T> {
-  if (typeof structuredClone === "function") {
-    return structuredClone(message) as PlainMessage<T>;
-  }
   const type = message.getType();
   const target = {} as AnyMessage;
   for (const member of type.fields.byMember()) {

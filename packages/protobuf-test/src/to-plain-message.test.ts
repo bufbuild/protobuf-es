@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test, beforeEach, afterEach } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import { ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
 import { toPlainMessage, protoInt64 } from "@bufbuild/protobuf";
 import type { PlainMessage } from "@bufbuild/protobuf";
@@ -26,7 +26,7 @@ import { MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { EnumMessage, EnumMessage_NestedEnum } from "./gen/ts/extra/enum_pb.js";
 import { WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 
-describeToPlainMessage(() => {
+describe("toPlainMessage", () => {
   describe("on scalar", () => {
     test("returns unset defaults", () => {
       const defaultValue: PlainMessage<ScalarValuesMessage> = {
@@ -262,27 +262,6 @@ describeToPlainMessage(() => {
     expect(act).toEqual(exp);
   });
 });
-
-function describeToPlainMessage(testBlock: () => void) {
-  describe("toPlainMessage", () => {
-    describe("with structuredClone", () => {
-      if (typeof structuredClone !== "function")
-        throw new Error("structuredClone is not available");
-      testBlock();
-    });
-    describe("without structuredClone", () => {
-      const structuredCloneCopy = global.structuredClone;
-      beforeEach(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any
-        delete (global as any).structuredClone;
-      });
-      afterEach(() => {
-        global.structuredClone = structuredCloneCopy;
-      });
-      testBlock();
-    });
-  });
-}
 
 function expectPlainObject(value: unknown) {
   expect(Object.getPrototypeOf(value)).toEqual(Object.prototype);
