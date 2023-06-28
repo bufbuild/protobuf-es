@@ -24,6 +24,7 @@ import {
 import { MapsEnum, MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
 import { MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { EnumMessage, EnumMessage_NestedEnum } from "./gen/ts/extra/enum_pb.js";
+import { WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 
 describeToPlainMessage(() => {
   describe("on scalar", () => {
@@ -223,6 +224,42 @@ describeToPlainMessage(() => {
       expect(act).toEqual(exp);
       expectPlainObject(act);
     });
+  });
+  describe("on wrapper messages", () => {
+    const exp: PlainMessage<WrappersMessage> = {
+      mapStringValueField: {},
+      mapBoolValueField: {},
+      mapBytesValueField: {},
+      oneofFields: {
+        case: undefined,
+      },
+      repeatedDoubleValueField: [],
+      repeatedBoolValueField: [],
+      repeatedFloatValueField: [],
+      repeatedInt64ValueField: [],
+      repeatedUint64ValueField: [],
+      repeatedInt32ValueField: [],
+      repeatedUint32ValueField: [],
+      repeatedStringValueField: [],
+      repeatedBytesValueField: [],
+      mapDoubleValueField: {},
+      mapFloatValueField: {},
+      mapInt64ValueField: {},
+      mapUint64ValueField: {},
+      mapInt32ValueField: {},
+      mapUint32ValueField: {},
+      boolValueField: true,
+      bytesValueField: new Uint8Array(),
+      doubleValueField: 1.2,
+      floatValueField: 1.2,
+      int32ValueField: 1,
+      int64ValueField: protoInt64.parse(1),
+      stringValueField: "some",
+      uint32ValueField: 1,
+      uint64ValueField: protoInt64.uParse(1),
+    };
+    const act = toPlainMessage(new WrappersMessage(exp));
+    expect(act).toEqual(exp);
   });
 });
 

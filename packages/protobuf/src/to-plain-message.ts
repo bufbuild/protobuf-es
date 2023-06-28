@@ -30,56 +30,41 @@ export function toPlainMessage<T extends Message<T>>(
     return structuredClone(message) as PlainMessage<T>;
   }
   const type = message.getType();
-  const source = message as AnyMessage;
-  const target = {} as PlainMessage<AnyMessage>;
+  const target = {} as AnyMessage;
   for (const member of type.fields.byMember()) {
-    const localName = member.localName;
-    switch (member.kind) {
-      case "scalar":
-      case "enum":
-        target[localName] = source[localName];
-        break;
-      case "message":
-        if (member.repeated) {
-          target[localName] = (source[localName] as any[]).map((val) =>
-            toPlainMessage(val)
-          );
-        } else if (source[localName] !== undefined) {
-          target[localName] = toPlainMessage(source[localName]);
-        } else {
-          target[localName] = undefined;
-        }
-        break;
-      case "oneof":
-        const _case = source[localName].case;
-        if (_case === undefined) {
-          target[localName] = { case: undefined };
-          break;
-        }
-        let value = source[localName].value;
-        const sourceField = member.findField(_case);
-        if (sourceField !== undefined && sourceField.kind === "message") {
-          value = toPlainMessage(value);
-        }
-        target[localName] = { case: _case, value: value };
-        break;
-      case "map":
-        const plainMap: Record<string, any> = {};
-        switch (member.V.kind) {
-          case "enum":
-          case "scalar":
-            Object.assign(plainMap, source[localName]);
-            break;
-          case "message":
-            const msgMap = source[localName];
-            for (const k of Object.keys(msgMap)) {
-              plainMap[k] = toPlainMessage(msgMap[k]);
-            }
-            break;
-        }
-        target[localName] = plainMap;
-        break;
+    const source = (message as AnyMessage)[member.localName];
+    let copy: any;
+    if (member.repeated) {
+      copy = (source as any[]).map((e) => toPlainValue(e));
+    } else if (member.kind == "map") {
+      copy = {};
+      for (const [key, v] of Object.entries(source)) {
+        copy[key] = toPlainValue(v);
+      }
+    } else if (member.kind == "oneof") {
+      const f = member.findField(source.case);
+      copy = f
+        ? { case: source.case, value: toPlainValue(source.value) }
+        : { case: undefined };
+    } else {
+      copy = toPlainValue(source);
     }
+    target[member.localName] = copy;
   }
   return target as PlainMessage<T>;
+}
+
+function toPlainValue(value: any) {
+  if (value === undefined) {
+    return value;
+  }
+  if (value instanceof Message) {
+    return toPlainMessage(value);
+  }
+  if (value instanceof Uint8Array) {
+    const c = new Uint8Array(value.byteLength);
+    c.set(value);
+    return c;
+  }
+  return value;
 }
