@@ -27,7 +27,8 @@
     "ts4_6_4": "npm:typescript@4.6.4",
     "ts4_7_4": "npm:typescript@4.7.4",
     "ts4_8_4": "npm:typescript@4.8.4",
-    "ts4_9_5": "npm:typescript@4.9.5"
+    "ts4_9_5": "npm:typescript@4.9.5",
+    "ts5_0_4": "npm:typescript@5.0.4"
   },
   "devDependencies": {
     "@types/node": "^18.11.9"
