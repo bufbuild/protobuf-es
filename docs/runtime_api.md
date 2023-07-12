@@ -386,6 +386,11 @@ EnumType for a given enum.
 
 Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
 
+Note that in Protobuf-ES, all enums are ["open"][protobuf-dev-enum], meaning that old 
+generated code can contain a value in an enum field that was added in a new version of 
+the schema. With TypeScript v5 and later, enums are closed in the type system. With 
+earlier versions of TypeScript, they are open.
+
 
 ## Well-known types
 
@@ -830,3 +835,4 @@ Note that any message is assignable to `AnyMessage`.
 [src-plain-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
 [src-any-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
 [pkg-protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
+[protobuf-dev-enum]: https://protobuf.dev/programming-guides/enum/
