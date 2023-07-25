@@ -57,10 +57,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             } else if (
               sourceField &&
               sourceField.kind === "scalar" &&
-              sourceField.T === ScalarType.BYTES &&
-              !(val instanceof Uint8Array)
+              sourceField.T === ScalarType.BYTES
             ) {
-              val = new Uint8Array(val);
+              val = toU8Arr(val);
             }
             t[localName] = { case: sk, value: val };
             break;
@@ -68,15 +67,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           case "enum":
             let target = s[localName];
             if (member.T === ScalarType.BYTES) {
-              if (!member.repeated && !(target instanceof Uint8Array)) {
-                target = new Uint8Array(target);
-              } else if (member.repeated) {
-                const val = [];
-                for (const v of target) {
-                  val.push(v instanceof Uint8Array ? v : new Uint8Array(v));
-                }
-                target = val;
-              }
+              target = member.repeated
+                ? (target as ArrayLike<number>[]).map(toU8Arr)
+                : toU8Arr(target);
             }
             t[localName] = target;
             break;
@@ -86,14 +79,12 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               case "enum":
                 let target = s[localName];
                 if (member.V.T === ScalarType.BYTES) {
-                  const val: any = {};
-                  for (const [k, v] of Object.entries(target)) {
-                    val[k] =
-                      v instanceof Uint8Array
-                        ? v
-                        : new Uint8Array(v as number[]);
-                  }
-                  target = val;
+                  target = Object.fromEntries(
+                    Object.entries(target).map(([k, v]) => [
+                      k,
+                      toU8Arr(v as ArrayLike<number>),
+                    ])
+                  );
                 }
                 Object.assign(t[localName], target);
                 break;
@@ -122,10 +113,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               if (mt.fieldWrapper) {
                 if (
                   // We can't use BytesValue.typeName as that will create a circular import
-                  mt.typeName === "google.protobuf.BytesValue" &&
-                  !(val instanceof Uint8Array)
+                  mt.typeName === "google.protobuf.BytesValue"
                 ) {
-                  t[localName] = new Uint8Array(val);
+                  t[localName] = toU8Arr(val);
                 } else {
                   t[localName] = val;
                 }
@@ -258,4 +248,9 @@ function cloneSingularField(value: any): any {
     return c;
   }
   return value;
+}
+
+// converts any ArrayLike<number> to Uint8Array if necessary.
+function toU8Arr(input: ArrayLike<number>) {
+  return input instanceof Uint8Array ? input : new Uint8Array(input);
 }
