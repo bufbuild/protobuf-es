@@ -105,4 +105,21 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
     const got = { ...messageType.fromJson(exampleJson) };
     expect(got).toStrictEqual(exampleFields);
   });
+  test("allow number[] for bytes field", () => {
+    const bytes = [0xff];
+    const got = {
+      ...new messageType({
+        ...defaultFields,
+        strBytesField: {
+          a: bytes as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+        },
+      }),
+    };
+    expect(got).toStrictEqual({
+      ...defaultFields,
+      strBytesField: {
+        a: new Uint8Array(bytes),
+      },
+    });
+  });
 });

@@ -65,4 +65,17 @@ describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
     const got = { ...messageType.fromJson(exampleJson) };
     expect(got).toStrictEqual(exampleFields);
   });
+  test("allows number[] for bytes field", () => {
+    const bytes = [0xff];
+    const got = {
+      ...new messageType({
+        ...defaultFields,
+        scalar: { case: "bytes", value: bytes as any }, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+      }),
+    };
+    expect(got).toStrictEqual({
+      ...defaultFields,
+      scalar: { case: "bytes", value: new Uint8Array(bytes) },
+    });
+  });
 });

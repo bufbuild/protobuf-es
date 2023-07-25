@@ -17,7 +17,6 @@ import { Message } from "../message.js";
 import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import { ScalarType } from "../field.js";
-import type { FieldInfo } from "../field.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
 
@@ -55,18 +54,48 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               !(val instanceof sourceField.T)
             ) {
               val = new sourceField.T(val);
+            } else if (
+              sourceField &&
+              sourceField.kind === "scalar" &&
+              sourceField.T === ScalarType.BYTES &&
+              !(val instanceof Uint8Array)
+            ) {
+              val = new Uint8Array(val);
             }
             t[localName] = { case: sk, value: val };
             break;
           case "scalar":
           case "enum":
-            t[localName] = s[localName];
+            let target = s[localName];
+            if (member.T === ScalarType.BYTES) {
+              if (!member.repeated && !(target instanceof Uint8Array)) {
+                target = new Uint8Array(target);
+              } else if (member.repeated) {
+                const val = [];
+                for (const v of target) {
+                  val.push(v instanceof Uint8Array ? v : new Uint8Array(v));
+                }
+                target = val;
+              }
+            }
+            t[localName] = target;
             break;
           case "map":
             switch (member.V.kind) {
               case "scalar":
               case "enum":
-                Object.assign(t[localName], s[localName]);
+                let target = s[localName];
+                if (member.V.T === ScalarType.BYTES) {
+                  const val: any = {};
+                  for (const [k, v] of Object.entries(target)) {
+                    val[k] =
+                      v instanceof Uint8Array
+                        ? v
+                        : new Uint8Array(v as number[]);
+                  }
+                  target = val;
+                }
+                Object.assign(t[localName], target);
                 break;
               case "message":
                 const messageType = member.V.T;
@@ -91,7 +120,15 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             } else if (s[localName] !== undefined) {
               const val = s[localName];
               if (mt.fieldWrapper) {
-                t[localName] = val;
+                if (
+                  // We can't use BytesValue.typeName as that will create a circular import
+                  mt.typeName === "google.protobuf.BytesValue" &&
+                  !(val instanceof Uint8Array)
+                ) {
+                  t[localName] = new Uint8Array(val);
+                } else {
+                  t[localName] = val;
+                }
               } else {
                 t[localName] = val instanceof mt ? val : new mt(val);
               }
@@ -186,19 +223,19 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         const source = (message as AnyMessage)[member.localName];
         let copy: any;
         if (member.repeated) {
-          copy = (source as any[]).map((e) => cloneSingularField(member, e));
+          copy = (source as any[]).map((e) => cloneSingularField(e));
         } else if (member.kind == "map") {
           copy = any[member.localName];
           for (const [key, v] of Object.entries(source)) {
-            copy[key] = cloneSingularField(member.V, v);
+            copy[key] = cloneSingularField(v);
           }
         } else if (member.kind == "oneof") {
           const f = member.findField(source.case);
           copy = f
-            ? { case: source.case, value: cloneSingularField(f, source.value) }
+            ? { case: source.case, value: cloneSingularField(source.value) }
             : { case: undefined };
         } else {
-          copy = cloneSingularField(member, source);
+          copy = cloneSingularField(source);
         }
         any[member.localName] = copy;
       }
@@ -208,10 +245,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
 }
 
 // clone a single field value - i.e. the element type of repeated fields, the value type of maps
-function cloneSingularField(
-  field: FieldInfo | (FieldInfo & { kind: "map" })["V"],
-  value: any
-): any {
+function cloneSingularField(value: any): any {
   if (value === undefined) {
     return value;
   }

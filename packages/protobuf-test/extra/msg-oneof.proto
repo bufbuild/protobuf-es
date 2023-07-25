@@ -19,6 +19,7 @@ message OneofMessage {
     oneof scalar {
         int32 value = 1;
         string error = 2;
+        bytes bytes = 3;
     }
     oneof message {
         OneofMessageFoo foo = 11;
