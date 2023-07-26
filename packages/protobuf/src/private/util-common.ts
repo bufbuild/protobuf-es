@@ -80,8 +80,8 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                 let target = s[localName];
                 if (member.V.T === ScalarType.BYTES) {
                   target = {};
-                  for (const k of Object.keys(s[localName])) {
-                    target[k] = toU8Arr(s[localName][k] as ArrayLike<number>);
+                  for (const [k, v] of Object.entries(s[localName])) {
+                    target[k] = toU8Arr(v as ArrayLike<number>);
                   }
                 }
                 Object.assign(t[localName], target);
