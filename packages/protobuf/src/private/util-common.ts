@@ -213,7 +213,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         const source = (message as AnyMessage)[member.localName];
         let copy: any;
         if (member.repeated) {
-          copy = (source as any[]).map((e) => cloneSingularField(e));
+          copy = (source as any[]).map(cloneSingularField);
         } else if (member.kind == "map") {
           copy = any[member.localName];
           for (const [key, v] of Object.entries(source)) {
