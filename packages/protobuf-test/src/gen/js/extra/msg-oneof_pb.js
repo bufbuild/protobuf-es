@@ -38,6 +38,7 @@ export const OneofMessage = proto3.makeMessageType(
   () => [
     { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "scalar" },
     { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "scalar" },
+    { no: 3, name: "bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "scalar" },
     { no: 11, name: "foo", kind: "message", T: OneofMessageFoo, oneof: "message" },
     { no: 12, name: "bar", kind: "message", T: OneofMessageBar, oneof: "message" },
     { no: 13, name: "baz", kind: "message", T: OneofMessageBar, oneof: "message" },
