@@ -65,26 +65,25 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             break;
           case "scalar":
           case "enum":
-            let target = s[localName];
+            let copy = s[localName];
             if (member.T === ScalarType.BYTES) {
-              target = member.repeated
-                ? (target as ArrayLike<number>[]).map(toU8Arr)
-                : toU8Arr(target);
+              copy = member.repeated
+                ? (copy as ArrayLike<number>[]).map(toU8Arr)
+                : toU8Arr(copy);
             }
-            t[localName] = target;
+            t[localName] = copy;
             break;
           case "map":
             switch (member.V.kind) {
               case "scalar":
               case "enum":
-                let target = s[localName];
                 if (member.V.T === ScalarType.BYTES) {
-                  target = {};
                   for (const [k, v] of Object.entries(s[localName])) {
-                    target[k] = toU8Arr(v as ArrayLike<number>);
+                    t[localName][k] = toU8Arr(v as ArrayLike<number>);
                   }
+                } else {
+                  Object.assign(t[localName], s[localName]);
                 }
-                Object.assign(t[localName], target);
                 break;
               case "message":
                 const messageType = member.V.T;
