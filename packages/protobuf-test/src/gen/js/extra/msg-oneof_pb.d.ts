@@ -58,6 +58,12 @@ export declare class OneofMessage extends Message<OneofMessage> {
      */
     value: string;
     case: "error";
+  } | {
+    /**
+     * @generated from field: bytes bytes = 3;
+     */
+    value: Uint8Array;
+    case: "bytes";
   } | { case: undefined; value?: undefined };
 
   /**
