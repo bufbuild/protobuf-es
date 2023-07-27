@@ -191,6 +191,8 @@ test-ts-compat: $(GEN)/protobuf-test node_modules
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
 	npx eslint --max-warnings 0 .
+	npm run -w packages/protobuf lint:types
+	npm run -w packages/protoplugin lint:types
 
 .PHONY: format
 format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers

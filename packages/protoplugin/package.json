@@ -13,17 +13,30 @@
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:cjs && npm run build:esm+types",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types"
+    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types && cp ./dist/types/index.d.ts ./dist/types/index.d.cts && cp ./dist/types/ecmascript/index.d.ts ./dist/types/ecmascript/index.d.cts",
+    "lint:types": "attw --pack"
   },
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/cjs/index.js"
+      }
     },
     "./ecmascript": {
-      "import": "./dist/esm/ecmascript/index.js",
-      "require": "./dist/cjs/ecmascript/index.js"
+      "import": {
+        "types": "./dist/types/ecmascript/index.d.ts",
+        "default": "./dist/esm/ecmascript/index.js"
+      },
+      "require": {
+        "types": "./dist/types/ecmascript/index.d.cts",
+        "default": "./dist/cjs/ecmascript/index.js"
+      }
     }
   },
   "types": "./dist/types/index.d.ts",
