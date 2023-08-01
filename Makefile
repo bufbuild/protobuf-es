@@ -194,7 +194,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 
 .PHONY: format
 format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers
-	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --loglevel error
+	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
 	$(BIN)/git-ls-files-unstaged | \
 		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
 		xargs $(BIN)/license-header \
