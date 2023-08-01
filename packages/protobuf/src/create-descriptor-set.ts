@@ -891,13 +891,13 @@ enum FieldNumber {
   FileDescriptorProto_Service = 6,
   FileDescriptorProto_Extension = 7,
   FileDescriptorProto_Syntax = 12,
-  DescriptorProto_Field = 2,
+  DescriptorProto_Field = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
   DescriptorProto_NestedType = 3,
-  DescriptorProto_EnumType = 4,
-  DescriptorProto_Extension = 6,
+  DescriptorProto_EnumType = 4, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
+  DescriptorProto_Extension = 6, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
   DescriptorProto_OneofDecl = 8,
-  EnumDescriptorProto_Value = 2,
-  ServiceDescriptorProto_Method = 2,
+  EnumDescriptorProto_Value = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
+  ServiceDescriptorProto_Method = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
 }
 
 /**

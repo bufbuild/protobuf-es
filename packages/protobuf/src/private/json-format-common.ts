@@ -458,6 +458,7 @@ function readEnum(
       break;
     case "string":
       const value = type.findName(json);
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       if (value || ignoreUnknownFields) {
         return value?.no;
       }
