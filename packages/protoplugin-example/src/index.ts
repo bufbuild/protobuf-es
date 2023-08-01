@@ -21,7 +21,7 @@ const client = new ElizaServiceClient("https://demo.connect.build");
 
 // Query for the common elements and cache them.
 const containerEl = document.getElementById(
-  "conversation-container"
+  "conversation-container",
 ) as HTMLDivElement;
 const inputEl = document.getElementById("user-input") as HTMLInputElement;
 

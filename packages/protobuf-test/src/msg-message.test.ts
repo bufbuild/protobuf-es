@@ -47,41 +47,41 @@ describeMT(
     test("defaults decodes from JSON", () => {
       const got = messageType.fromJson(defaultJson);
       expect(got.messageField?.name).toStrictEqual(
-        defaultFields.messageField?.name
+        defaultFields.messageField?.name,
       );
       expect(got.repeatedMessageField.length).toStrictEqual(
-        defaultFields.repeatedMessageField.length
+        defaultFields.repeatedMessageField.length,
       );
     });
     test("example encodes to JSON", () => {
       /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access */
       const got = new messageType(exampleFields).toJson();
       expect((got as any).messageField?.name).toStrictEqual(
-        (exampleJson as any).messageField?.name
+        (exampleJson as any).messageField?.name,
       );
       expect((got as any).repeatedMessageField.length).toStrictEqual(
-        (exampleJson as any).repeatedMessageField.length
+        (exampleJson as any).repeatedMessageField.length,
       );
       expect((got as any).repeatedMessageField[0].name).toStrictEqual(
-        (exampleJson as any).repeatedMessageField[0].name
+        (exampleJson as any).repeatedMessageField[0].name,
       );
       expect((got as any).repeatedMessageField[1].name).toStrictEqual(
-        (exampleJson as any).repeatedMessageField[1].name
+        (exampleJson as any).repeatedMessageField[1].name,
       );
     });
     test("example decodes from JSON", () => {
       const got = messageType.fromJson(exampleJson);
       expect(got.messageField?.name).toStrictEqual(
-        exampleFields.messageField.name
+        exampleFields.messageField.name,
       );
       expect(got.repeatedMessageField.length).toStrictEqual(
-        exampleFields.repeatedMessageField.length
+        exampleFields.repeatedMessageField.length,
       );
       expect(got.repeatedMessageField[0].name).toStrictEqual(
-        exampleFields.repeatedMessageField[0].name
+        exampleFields.repeatedMessageField[0].name,
       );
       expect(got.repeatedMessageField[1].name).toStrictEqual(
-        exampleFields.repeatedMessageField[1].name
+        exampleFields.repeatedMessageField[1].name,
       );
     });
     test("JSON.stringify correctly stringifies defaults", () => {
@@ -90,7 +90,7 @@ describeMT(
       expect(got).toStrictEqual(
         msg.toJsonString({
           emitDefaultValues: true,
-        })
+        }),
       );
     });
     test("JSON.stringify correctly stringifies fields with values", () => {
@@ -99,8 +99,8 @@ describeMT(
       expect(got).toStrictEqual(
         msg.toJsonString({
           emitDefaultValues: true,
-        })
+        }),
       );
     });
-  }
+  },
 );

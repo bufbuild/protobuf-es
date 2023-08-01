@@ -43,7 +43,7 @@ export const protoDelimited = {
   dec<T extends Message<T>>(
     type: MessageType<T>,
     bytes: Uint8Array,
-    options?: BinaryReadOptions
+    options?: BinaryReadOptions,
   ): T {
     const opt = makeBinaryFormatCommon().makeReadOptions(options);
     return type.fromBinary(opt.readerFactory(bytes).bytes(), opt);
@@ -54,7 +54,7 @@ export const protoDelimited = {
    */
   async *decStream<T extends Message<T>>(
     type: MessageType<T>,
-    iterable: AsyncIterable<Uint8Array>
+    iterable: AsyncIterable<Uint8Array>,
   ) {
     // append chunk to buffer, returning updated buffer
     function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
@@ -104,7 +104,7 @@ export const protoDelimited = {
    * from a stream.
    */
   peekSize(
-    data: Uint8Array
+    data: Uint8Array,
   ):
     | { readonly eof: false; readonly size: number; readonly offset: number }
     | { readonly eof: true; readonly size: null; readonly offset: null } {

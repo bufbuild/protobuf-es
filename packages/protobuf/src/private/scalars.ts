@@ -25,7 +25,7 @@ import { protoInt64 } from "../proto-int64.js";
 export function scalarEquals(
   type: ScalarType,
   a: string | boolean | number | bigint | Uint8Array | undefined,
-  b: string | boolean | number | bigint | Uint8Array | undefined
+  b: string | boolean | number | bigint | Uint8Array | undefined,
 ): boolean {
   if (a === b) {
     // This correctly matches equal values except BYTES and (possibly) 64-bit integers.
@@ -102,11 +102,11 @@ export function scalarDefaultValue(type: ScalarType): any {
  */
 export function scalarTypeInfo(
   type: ScalarType,
-  value?: any
+  value?: any,
 ): [
   WireType,
   Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
-  boolean
+  boolean,
 ] {
   const isUndefined = value === undefined;
   let wireType = WireType.Varint;

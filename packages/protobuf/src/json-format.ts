@@ -29,14 +29,14 @@ export interface JsonFormat {
    * Provide options for parsing JSON data.
    */
   makeReadOptions(
-    options?: Partial<JsonReadOptions>
+    options?: Partial<JsonReadOptions>,
   ): Readonly<JsonReadOptions>;
 
   /**
    * Provide options for serializing to JSON.
    */
   makeWriteOptions(
-    options?: Partial<JsonWriteStringOptions>
+    options?: Partial<JsonWriteStringOptions>,
   ): Readonly<JsonWriteStringOptions>;
 
   /**
@@ -46,7 +46,7 @@ export interface JsonFormat {
     type: MessageType<T>,
     jsonValue: JsonValue,
     options: JsonReadOptions,
-    message?: T
+    message?: T,
   ): T;
 
   /**
@@ -67,7 +67,7 @@ export interface JsonFormat {
   writeScalar(
     type: ScalarType,
     value: any,
-    emitDefaultValues: boolean
+    emitDefaultValues: boolean,
   ): JsonValue | undefined;
 
   /**

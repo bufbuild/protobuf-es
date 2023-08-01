@@ -27,7 +27,7 @@ import { CodeGeneratorRequest } from "@bufbuild/protobuf";
  */
 function generate(
   printFn: (f: GeneratedFile, schema: Schema) => void,
-  options: string[]
+  options: string[],
 ): string[] {
   const req = new CodeGeneratorRequest({
     parameter: `target=ts,${options.join(",")}`,
@@ -57,7 +57,7 @@ describe("rewrite_imports", function () {
         const Baz = f.import("Baz", "./foo/bar/baz_pb.js");
         f.print`console.log(${Bar}, ${Baz});`;
       },
-      ["rewrite_imports=./foo/**/*_pb.js:@scope/pkg"]
+      ["rewrite_imports=./foo/**/*_pb.js:@scope/pkg"],
     );
     expect(lines).toStrictEqual([
       'import { Bar } from "@scope/pkg/foo/bar_pb.js";',
@@ -71,7 +71,7 @@ describe("rewrite_imports", function () {
       (f, schema) => {
         f.print`${schema.runtime.ScalarType}.INT32`;
       },
-      ["rewrite_imports=@bufbuild/protobuf:@scope/pkg"]
+      ["rewrite_imports=@bufbuild/protobuf:@scope/pkg"],
     );
     expect(lines).toStrictEqual([
       'import { ScalarType } from "@scope/pkg";',
@@ -87,7 +87,7 @@ describe("rewrite_imports", function () {
         const Foo = f.import("Foo", "@scope/pkg");
         f.print`${Foo}`;
       },
-      ["rewrite_imports=@scope/pkg:@other-scope/other-pkg"]
+      ["rewrite_imports=@scope/pkg:@other-scope/other-pkg"],
     );
     expect(lines).toStrictEqual([
       'import { Foo } from "@other-scope/other-pkg";',

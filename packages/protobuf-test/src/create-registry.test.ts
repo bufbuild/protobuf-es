@@ -27,13 +27,13 @@ describe("createRegistry()", () => {
   test("finds message", () => {
     const reg = createRegistry(MessageFieldMessage);
     expect(reg.findMessage(MessageFieldMessage.typeName)).toBe(
-      MessageFieldMessage
+      MessageFieldMessage,
     );
   });
   test("finds message through field", () => {
     const reg = createRegistry(MessageFieldMessage);
     expect(reg.findMessage(MessageFieldMessage_TestMessage.typeName)).toBe(
-      MessageFieldMessage_TestMessage
+      MessageFieldMessage_TestMessage,
     );
   });
 });

@@ -577,7 +577,7 @@ export class BinaryReader implements IBinaryReader {
       wireType = tag & 7;
     if (fieldNo <= 0 || wireType < 0 || wireType > 5)
       throw new Error(
-        "illegal tag: field no " + fieldNo + " wire type " + wireType
+        "illegal tag: field no " + fieldNo + " wire type " + wireType,
       );
     return [fieldNo, wireType];
   }

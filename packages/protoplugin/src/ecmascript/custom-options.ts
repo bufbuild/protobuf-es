@@ -29,7 +29,7 @@ import {
 export function findCustomScalarOption<T extends ScalarType>(
   desc: AnyDesc,
   extensionNumber: number,
-  scalarType: T
+  scalarType: T,
 ): ScalarValue<T> | undefined {
   const reader = createBinaryReader(desc, extensionNumber);
   if (reader) {
@@ -86,7 +86,7 @@ export function findCustomScalarOption<T extends ScalarType>(
 export function findCustomMessageOption<T extends Message<T>>(
   desc: AnyDesc,
   extensionNumber: number,
-  msgType: MessageType<T>
+  msgType: MessageType<T>,
 ): T | undefined {
   const reader = createBinaryReader(desc, extensionNumber);
   if (reader) {
@@ -109,7 +109,7 @@ export function findCustomMessageOption<T extends Message<T>>(
  */
 export function findCustomEnumOption(
   desc: AnyDesc,
-  extensionNumber: number
+  extensionNumber: number,
 ): number | undefined {
   return findCustomScalarOption(desc, extensionNumber, ScalarType.INT32);
 }
@@ -156,7 +156,7 @@ type ScalarValue<T> = T extends ScalarType.STRING
  */
 function createBinaryReader(
   desc: AnyDesc,
-  extensionNumber: number
+  extensionNumber: number,
 ): BinaryReader | undefined {
   const opt = desc.proto.options;
   let reader: BinaryReader | undefined = undefined;

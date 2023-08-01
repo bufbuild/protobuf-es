@@ -37,7 +37,7 @@ export function localName(
     | DescOneof
     | DescField
     | DescService
-    | DescMethod
+    | DescMethod,
 ): string {
   switch (desc.kind) {
     case "field":
@@ -106,7 +106,7 @@ export const fieldJsonName = protoCamelCase;
  */
 export function findEnumSharedPrefix(
   enumName: string,
-  valueNames: string[]
+  valueNames: string[],
 ): string | undefined {
   const prefix = camelToSnakeCase(enumName) + "_";
   for (const name of valueNames) {

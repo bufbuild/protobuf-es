@@ -165,5 +165,5 @@ describeMT(
         expect(wJson.mapBoolValueField["bar"].value).toBe(false);
       });
     });
-  }
+  },
 );

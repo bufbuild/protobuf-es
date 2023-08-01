@@ -34,7 +34,7 @@ export function assert(condition: unknown, msg?: string): asserts condition {
  */
 export function getCodeGeneratorRequest(
   parameter = "",
-  fileToGenerate: string[]
+  fileToGenerate: string[],
 ) {
   const fds = getFileDescriptorSet();
   return new CodeGeneratorRequest({

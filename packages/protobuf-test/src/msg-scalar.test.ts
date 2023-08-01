@@ -119,7 +119,7 @@ describeMT(
         bytesField: new Uint8Array(bytes),
       });
     });
-  }
+  },
 );
 
 describeMT(
@@ -224,5 +224,5 @@ describeMT(
         bytesField: [new Uint8Array(bytes)],
       });
     });
-  }
+  },
 );

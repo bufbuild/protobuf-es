@@ -43,7 +43,7 @@ export interface ProtoRuntime {
       localName?: string;
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): MessageType<T>;
 
   /**
@@ -61,7 +61,7 @@ export interface ProtoRuntime {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): EnumObject;
 
   /**
@@ -75,7 +75,7 @@ export interface ProtoRuntime {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): EnumType;
 
   /**
@@ -90,7 +90,7 @@ export function makeProtoRuntime(
   syntax: string,
   json: JsonFormat,
   bin: BinaryFormat,
-  util: Util
+  util: Util,
 ): ProtoRuntime {
   return {
     syntax,
@@ -103,7 +103,7 @@ export function makeProtoRuntime(
       opt?: {
         localName?: string;
         options?: { readonly [extensionName: string]: JsonValue };
-      }
+      },
     ) {
       return makeMessageType(this, typeName, fields, opt);
     },

@@ -127,7 +127,7 @@ describe("protoBase64", function () {
       `should throw an error trying to decode %s`,
       (input) => {
         expect(() => protoBase64.dec(input)).toThrow("invalid base64 string.");
-      }
+      },
     );
   });
 
