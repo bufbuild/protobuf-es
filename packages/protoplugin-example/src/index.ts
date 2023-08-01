@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ElizaServiceClient } from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
-import { SayRequest } from "./gen/buf/connect/demo/eliza/v1/eliza_pb.js";
+import { ElizaServiceClient } from "./gen/connectrpc/eliza/v1/eliza_twirp.js";
+import { SayRequest } from "./gen/connectrpc/eliza/v1/eliza_pb.js";
 
 let introFinished = false;
 
-const client = new ElizaServiceClient("https://demo.connect.build");
+const client = new ElizaServiceClient("https://demo.connectrpc.com");
 
 // Query for the common elements and cache them.
 const containerEl = document.getElementById(
