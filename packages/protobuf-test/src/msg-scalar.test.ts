@@ -106,6 +106,19 @@ describeMT(
       const got = { ...messageType.fromJson(exampleJson) };
       expect(got).toStrictEqual(exampleFields);
     });
+    test("allow number[] for bytes field", () => {
+      const bytes = [0xff];
+      const got = {
+        ...new messageType({
+          ...defaultFields,
+          bytesField: bytes as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+        }),
+      };
+      expect(got).toStrictEqual({
+        ...defaultFields,
+        bytesField: new Uint8Array(bytes),
+      });
+    });
   }
 );
 
@@ -197,6 +210,19 @@ describeMT(
     test("example decodes from JSON", () => {
       const got = { ...messageType.fromJson(exampleJson) };
       expect(got).toStrictEqual(exampleFields);
+    });
+    test("allow number[] for bytes field", () => {
+      const bytes = [0xff];
+      const got = {
+        ...new messageType({
+          ...defaultFields,
+          bytesField: [bytes] as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+        }),
+      };
+      expect(got).toStrictEqual({
+        ...defaultFields,
+        bytesField: [new Uint8Array(bytes)],
+      });
     });
   }
 );
