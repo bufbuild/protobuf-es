@@ -49,7 +49,7 @@ export interface ServiceType {
  */
 export type MethodInfo<
   I extends Message<I> = AnyMessage,
-  O extends Message<O> = AnyMessage
+  O extends Message<O> = AnyMessage,
 > =
   | MethodInfoUnary<I, O>
   | MethodInfoServerStreaming<I, O>
@@ -69,7 +69,7 @@ export interface MethodInfoUnary<I extends Message<I>, O extends Message<O>>
  */
 export interface MethodInfoServerStreaming<
   I extends Message<I>,
-  O extends Message<O>
+  O extends Message<O>,
 > extends miShared<I, O> {
   readonly kind: MethodKind.ServerStreaming;
 }
@@ -79,7 +79,7 @@ export interface MethodInfoServerStreaming<
  */
 export interface MethodInfoClientStreaming<
   I extends Message<I>,
-  O extends Message<O>
+  O extends Message<O>,
 > extends miShared<I, O> {
   readonly kind: MethodKind.ClientStreaming;
 }
@@ -89,14 +89,14 @@ export interface MethodInfoClientStreaming<
  */
 export interface MethodInfoBiDiStreaming<
   I extends Message<I>,
-  O extends Message<O>
+  O extends Message<O>,
 > extends miShared<I, O> {
   readonly kind: MethodKind.BiDiStreaming;
 }
 
 interface miShared<
   I extends Message<I> = AnyMessage,
-  O extends Message<O> = AnyMessage
+  O extends Message<O> = AnyMessage,
 > {
   readonly name: string;
   readonly I: MessageType<I>;

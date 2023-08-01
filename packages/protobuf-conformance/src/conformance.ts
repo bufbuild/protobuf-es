@@ -43,7 +43,7 @@ const registry = createRegistry(
   Int32Value,
   TestAllTypesProto3,
   TestAllTypesProto2,
-  Any
+  Any,
 );
 
 function main() {
@@ -54,7 +54,7 @@ function main() {
     }
   } catch (e) {
     process.stderr.write(
-      `conformance.ts: exiting after ${testCount} tests: ${String(e)}`
+      `conformance.ts: exiting after ${testCount} tests: ${String(e)}`,
     );
     process.exit(1);
   }
@@ -149,7 +149,7 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
 // Returns true if the test ran successfully, false on legitimate EOF.
 // If EOF is encountered in an unexpected place, raises IOError.
 function testIo(
-  test: (request: ConformanceRequest) => ConformanceResponse["result"]
+  test: (request: ConformanceRequest) => ConformanceResponse["result"],
 ): boolean {
   setBlockingStdout();
   const requestLengthBuf = readBuffer(4);
@@ -198,7 +198,7 @@ function writeBuffer(buffer: Buffer): void {
       1,
       buffer,
       totalWritten,
-      buffer.length - totalWritten
+      buffer.length - totalWritten,
     );
   }
 }

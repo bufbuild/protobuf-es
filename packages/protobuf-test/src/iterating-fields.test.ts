@@ -34,18 +34,18 @@ describe("iterating fields", function () {
           PES: "Protobuf-ES",
           CES: "Connect-ES",
         },
-      })
+      }),
     );
     expect(r.length).toBe(6);
     expect(r[0]).toBe("field firstName: John");
     expect(r[1]).toBe("field lastName: Smith");
     expect(r[2]).toBe("field active: true");
     expect(r[3]).toBe(
-      'field manager: {"firstName":"Jane","lastName":"Jones","active":false,"locations":[],"projects":{}}'
+      'field manager: {"firstName":"Jane","lastName":"Jones","active":false,"locations":[],"projects":{}}',
     );
     expect(r[4]).toBe("field locations: PIT,GER");
     expect(r[5]).toBe(
-      'field projects: {"PES":"Protobuf-ES","CES":"Connect-ES"}'
+      'field projects: {"PES":"Protobuf-ES","CES":"Connect-ES"}',
     );
   });
 });

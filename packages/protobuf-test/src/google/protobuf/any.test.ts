@@ -141,7 +141,7 @@ describe("google.protobuf.Any", () => {
               },
             }),
           },
-        })
+        }),
       ).toJson({ typeRegistry });
       expect(got).toStrictEqual(want);
     });
@@ -156,7 +156,7 @@ describe("google.protobuf.Any", () => {
           "@type": "type.googleapis.com/google.protobuf.Value",
           value: 1,
         },
-        { typeRegistry }
+        { typeRegistry },
       );
       const got = new Value();
       expect(any.unpackTo(got)).toBe(true);

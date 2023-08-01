@@ -40,7 +40,7 @@ export interface Util {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): void;
 
   /**
@@ -53,7 +53,7 @@ export interface Util {
    */
   initPartial<T extends Message<T>>(
     source: PartialMessage<T> | undefined,
-    target: T
+    target: T,
   ): void;
 
   /**
@@ -63,7 +63,7 @@ export interface Util {
   equals<T extends Message<T>>(
     type: MessageType<T>,
     a: T | PlainMessage<T> | undefined | null,
-    b: T | PlainMessage<T> | undefined | null
+    b: T | PlainMessage<T> | undefined | null,
   ): boolean;
 
   /**

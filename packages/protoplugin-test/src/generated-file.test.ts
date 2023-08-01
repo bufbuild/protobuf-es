@@ -25,7 +25,7 @@ import { CodeGeneratorRequest } from "@bufbuild/protobuf";
  * The returned string array represents the generated file content created using printFn.
  */
 function generate(
-  printFn: (f: GeneratedFile, schema: Schema) => void
+  printFn: (f: GeneratedFile, schema: Schema) => void,
 ): string[] {
   const req = new CodeGeneratorRequest({ parameter: "target=ts" });
   const plugin = createEcmaScriptPlugin({

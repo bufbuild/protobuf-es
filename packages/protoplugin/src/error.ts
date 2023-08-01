@@ -17,7 +17,7 @@ export class PluginOptionError extends Error {
     super(
       reason === undefined
         ? `invalid option "${option}`
-        : `invalid option "${option}: ${reasonToString(reason)}`
+        : `invalid option "${option}: ${reasonToString(reason)}`,
     );
   }
 }

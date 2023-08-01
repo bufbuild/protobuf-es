@@ -80,6 +80,6 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
    */
   equals(
     a: T | PlainMessage<T> | undefined | null,
-    b: T | PlainMessage<T> | undefined | null
+    b: T | PlainMessage<T> | undefined | null,
   ): boolean;
 }

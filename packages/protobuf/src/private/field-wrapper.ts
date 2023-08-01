@@ -38,7 +38,7 @@ export interface FieldWrapper<T extends Message<T> = any, U = any> {
  */
 export function wrapField<T extends Message<T>>(
   type: MessageType<T>,
-  value: any
+  value: any,
 ): T {
   if (value instanceof Message || !type.fieldWrapper) {
     return value as T;
@@ -51,7 +51,7 @@ export function wrapField<T extends Message<T>>(
  * the primitive type it wraps.
  */
 export function getUnwrappedFieldType(
-  field: DescField
+  field: DescField,
 ): ScalarType | undefined {
   if (field.fieldKind !== "message") {
     return undefined;

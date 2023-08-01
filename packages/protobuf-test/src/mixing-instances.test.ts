@@ -44,7 +44,7 @@ describe("mixing message instances in the constructor", () => {
     });
     expect(message.messageField?.name).toBe("foo");
     expect(message.messageField).toBeInstanceOf(
-      TS_MessageFieldMessage_TestMessage
+      TS_MessageFieldMessage_TestMessage,
     );
   });
 });
