@@ -18,6 +18,8 @@ GOOGLE_PROTOBUF_VERSION = 23.4
 BAZEL_VERSION = 5.4.0
 TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5 5.0.4
 
+# test
+
 node_modules: package-lock.json
 	npm ci
 
