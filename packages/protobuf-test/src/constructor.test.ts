@@ -30,7 +30,7 @@ describe("constructor takes message partial for message field", function () {
         },
       });
       expect(m.recursiveMessage?.optionalInt32).toBe(123);
-    }
+    },
   );
 });
 
@@ -44,7 +44,7 @@ describe("constructor takes message instance for message field", function () {
         }),
       });
       expect(m.recursiveMessage?.optionalInt32).toBe(123);
-    }
+    },
   );
 });
 
@@ -68,7 +68,7 @@ describe("constructor takes partial message for oneof field", function () {
         expect(m.oneofField.value.corecursive).not.toBeUndefined();
         expect(m.oneofField.value.corecursive?.optionalInt32).toBe(123);
       }
-    }
+    },
   );
 });
 
@@ -91,10 +91,10 @@ describe("constructor takes partial message for map value", function () {
         expect(m.mapStringNestedMessage["key"].a).toBe(0);
         expect(m.mapStringNestedMessage["key"].corecursive).not.toBeUndefined();
         expect(m.mapStringNestedMessage["key"].corecursive?.optionalInt32).toBe(
-          123
+          123,
         );
       }
-    }
+    },
   );
   testMT(
     { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
@@ -136,21 +136,21 @@ describe("constructor takes partial message for map value", function () {
       });
       expect(t.optionalNestedMessage?.a).toBe(123);
       expect(
-        t.optionalNestedMessage?.corecursive?.optionalNestedMessage?.a
+        t.optionalNestedMessage?.corecursive?.optionalNestedMessage?.a,
       ).toBe(456);
       expect(
         t.optionalNestedMessage?.corecursive?.optionalNestedMessage?.corecursive
-          ?.optionalNestedMessage?.a
+          ?.optionalNestedMessage?.a,
       ).toBe(0);
       expect(t.repeatedNestedMessage.length).toBe(1);
       expect(t.repeatedNestedMessage[0]?.a).toBe(123);
       expect(
-        t.repeatedNestedMessage[0]?.corecursive?.repeatedNestedMessage[0]?.a
+        t.repeatedNestedMessage[0]?.corecursive?.repeatedNestedMessage[0]?.a,
       ).toBe(456);
       expect(
         t.repeatedNestedMessage[0]?.corecursive?.repeatedNestedMessage[0]
-          ?.corecursive?.repeatedNestedMessage[0]?.a
+          ?.corecursive?.repeatedNestedMessage[0]?.a,
       ).toBe(0);
-    }
+    },
   );
 });

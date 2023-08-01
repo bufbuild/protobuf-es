@@ -80,7 +80,7 @@ interface PluginInit {
   transpile?: (
     files: FileInfo[],
     transpileJs: boolean,
-    transpileDts: boolean
+    transpileDts: boolean,
   ) => FileInfo[];
 }
 
@@ -117,7 +117,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         keepEmptyFiles,
         init.name,
         init.version,
-        pluginParameter
+        pluginParameter,
       );
 
       const targetTs = schema.targets.includes("ts");
@@ -175,7 +175,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       let files = getFileInfo();
       if (!targetTs && tsFiles.length > 0) {
         files = files.filter(
-          (file) => !tsFiles.some((tsFile) => tsFile.name === file.name)
+          (file) => !tsFiles.some((tsFile) => tsFile.name === file.name),
         );
       }
 
@@ -196,7 +196,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
 function parseParameter(
   parameter: string | undefined,
-  parseOption: PluginOptionParseFn | undefined
+  parseOption: PluginOptionParseFn | undefined,
 ) {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
@@ -260,7 +260,7 @@ function parseParameter(
         if (parts.length !== 2) {
           throw new PluginOptionError(
             `${key}=${value}`,
-            "must be in the form of <pattern>:<target>"
+            "must be in the form of <pattern>:<target>",
           );
         }
         const [pattern, target] = parts;
@@ -319,7 +319,7 @@ function parseParameter(
 }
 
 function splitParameter(
-  parameter: string | undefined
+  parameter: string | undefined,
 ): { key: string; value: string; raw: string }[] {
   if (parameter == undefined) {
     return [];

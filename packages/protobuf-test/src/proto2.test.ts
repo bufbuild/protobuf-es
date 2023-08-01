@@ -54,14 +54,14 @@ describe("setDefaults", () => {
         new Uint8Array([
           0x00, 0x78, 0x5c, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
           0x08, 0x0c, 0x0a, 0x0d, 0x09, 0x0b,
-        ])
+        ]),
       );
       expect(msg.int32Field).toBe(128);
       expect(msg.int46Field).toBe(protoInt64.parse("-256"));
       expect(msg.floatField).toBe(-512.13);
       expect(msg.enumField).toBe(TS_Proto2Enum.YES);
       expect(msg.messageField).toBe(undefined);
-    }
+    },
   );
 });
 
@@ -78,7 +78,7 @@ describe("verify", () => {
       expect(verify(msg)).toBe(false);
       setDefaults(msg);
       expect(verify(msg)).toBe(true);
-    }
+    },
   );
 });
 
@@ -96,9 +96,9 @@ describeMT<TS_Proto2RequiredMessage>(
           messageField: {},
           bytesField: new Uint8Array(0),
           stringField: "",
-        }).toJson()
+        }).toJson(),
       ).toThrow(
-        `cannot encode field ${messageType.typeName}.enum_field to JSON: required field not set`
+        `cannot encode field ${messageType.typeName}.enum_field to JSON: required field not set`,
       );
     });
     test("encode to binary errors on missing required field", () => {
@@ -108,12 +108,12 @@ describeMT<TS_Proto2RequiredMessage>(
           messageField: {},
           bytesField: new Uint8Array(0),
           stringField: "",
-        }).toBinary()
+        }).toBinary(),
       ).toThrow(
-        `cannot encode field ${messageType.typeName}.enum_field to binary: required field not set`
+        `cannot encode field ${messageType.typeName}.enum_field to binary: required field not set`,
       );
     });
-  }
+  },
 );
 
 describeMT(
@@ -123,5 +123,5 @@ describeMT(
       const got = { ...new messageType() };
       expect(got).toStrictEqual({});
     });
-  }
+  },
 );

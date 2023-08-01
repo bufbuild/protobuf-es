@@ -187,7 +187,7 @@ describe("protoInt64", function () {
     test("should fail to encode invalid", () => {
       if (protoInt64.supported) {
         expect(() => protoInt64.enc(BigInt("18446744073709551615"))).toThrow(
-          "int64 invalid: 18446744073709551615"
+          "int64 invalid: 18446744073709551615",
         );
       }
     });
@@ -217,21 +217,21 @@ describe("protoInt64", function () {
     test("should fail to encode invalid", () => {
       if (protoInt64.supported) {
         expect(() => protoInt64.uEnc(BigInt(-127))).toThrow(
-          "uint64 invalid: -127"
+          "uint64 invalid: -127",
         );
         expect(() => protoInt64.uEnc(BigInt("-9007199254740991"))).toThrow(
-          "uint64 invalid: -9007199254740991"
+          "uint64 invalid: -9007199254740991",
         );
         expect(() => protoInt64.uEnc(BigInt("-9223372036854775808"))).toThrow(
-          "uint64 invalid: -9223372036854775808"
+          "uint64 invalid: -9223372036854775808",
         );
       }
       expect(() => protoInt64.uEnc(-127)).toThrow("uint64 invalid: -127");
       expect(() => protoInt64.uEnc("-9007199254740991")).toThrow(
-        "uint64 invalid: -9007199254740991"
+        "uint64 invalid: -9007199254740991",
       );
       expect(() => protoInt64.uEnc("-9223372036854775808")).toThrow(
-        "uint64 invalid: -9223372036854775808"
+        "uint64 invalid: -9223372036854775808",
       );
     });
   });

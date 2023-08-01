@@ -24,7 +24,7 @@ import type { AnyMessage, PlainMessage } from "./message.js";
  * same logic to all nested message fields as well.
  */
 export function toPlainMessage<T extends Message<T>>(
-  message: T
+  message: T,
 ): PlainMessage<T> {
   const type = message.getType();
   const target = {} as AnyMessage;

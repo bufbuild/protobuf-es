@@ -121,7 +121,7 @@ describe("equals", function () {
         a.repeatedMessageField[0].name = "changed";
         expect(a.equals(b)).toBeFalsy();
       });
-    }
+    },
   );
 
   describeMT(
@@ -161,7 +161,7 @@ describe("equals", function () {
         expect(a).not.toStrictEqual(b);
         expect(a.equals(b)).toBeFalsy();
       });
-    }
+    },
   );
 
   describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
@@ -176,8 +176,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { e: "f", c: "d" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeTruthy();
     });
     test("added key not equal", () => {
@@ -192,8 +192,8 @@ describe("equals", function () {
               a: {},
               b: {},
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
     test("removed key not equal", () => {
@@ -207,8 +207,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { c: "d" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
     test("changed value not equal", () => {
@@ -222,8 +222,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { c: "e" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
   });

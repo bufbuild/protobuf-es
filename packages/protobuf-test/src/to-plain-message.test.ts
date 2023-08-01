@@ -99,7 +99,7 @@ describe("toPlainMessage", () => {
             case: "e",
             value: OneofEnum.A,
           },
-        })
+        }),
       );
       expect(act).toEqual({
         enum: { case: "e", value: OneofEnum.A },
@@ -115,7 +115,7 @@ describe("toPlainMessage", () => {
             case: "foo",
             value: new OneofMessageFoo(),
           },
-        })
+        }),
       );
       expect(act).toEqual({
         message: {
@@ -137,7 +137,7 @@ describe("toPlainMessage", () => {
             case: "value",
             value: 1,
           },
-        })
+        }),
       );
       expect(act).toEqual({
         scalar: { case: "value", value: 1 },

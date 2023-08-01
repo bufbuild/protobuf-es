@@ -64,7 +64,7 @@ const cache = new WeakMap<
 export function rewriteImportPath(
   importPath: string,
   rewriteImports: RewriteImports,
-  importExtension: string
+  importExtension: string,
 ): string {
   let ri = cache.get(rewriteImports);
   if (ri === undefined) {
@@ -137,7 +137,7 @@ function starToRegExp(star: string): RegExp {
 export function makeImportPath(
   file: DescFile,
   bootstrapWkt: boolean,
-  filesToGenerate: DescFile[]
+  filesToGenerate: DescFile[],
 ): string {
   // Well-known types are published with the runtime package. We usually want
   // the generated code to import them from the runtime package, with the
@@ -179,7 +179,7 @@ export function deriveImportPath(filename: string): string {
  */
 export function makeImportPathRelative(
   importer: string,
-  importPath: string
+  importPath: string,
 ): string {
   if (!relativePathRE.test(importPath)) {
     // We don't touch absolute imports, like @bufbuild/protobuf

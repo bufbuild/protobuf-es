@@ -47,7 +47,7 @@ describe("google.protobuf.Struct", () => {
     test("decodes from JSON", () => {
       const got = Struct.fromJson(json);
       expect(Object.keys(got.fields).length).toBe(
-        Object.keys(struct.fields).length
+        Object.keys(struct.fields).length,
       );
       expect(got.fields["a"].kind.case).toBe(struct.fields["a"].kind.case);
       expect(got.fields["a"].kind.value).toBe(struct.fields["a"].kind.value);
@@ -77,7 +77,7 @@ describe("google.protobuf.Value", () => {
       // See struct.proto
       const value = new Value();
       expect(() => value.toJson()).toThrowError(
-        "google.protobuf.Value must have a value"
+        "google.protobuf.Value must have a value",
       );
     });
     test("decodes from JSON", () => {

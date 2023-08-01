@@ -55,7 +55,7 @@ import { protoInt64 } from "./proto-int64.js";
  * files in topological order.
  */
 export function createDescriptorSet(
-  input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array
+  input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
 ): DescriptorSet {
   const cart = {
     enums: new Map<string, DescEnum>(),
@@ -95,7 +95,7 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
     proto.syntax === undefined || proto.syntax === "proto3",
     `invalid FileDescriptorProto: unsupported syntax: ${
       proto.syntax ?? "undefined"
-    }`
+    }`,
   );
   const file: DescFile = {
     kind: "file",
@@ -177,7 +177,7 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
  */
 function addFields(message: DescMessage, cart: Cart): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message)
+    newOneof(proto, message),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
@@ -210,7 +210,7 @@ function addEnum(
   proto: EnumDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
 ): void {
   assert(proto.name, `invalid EnumDescriptorProto: missing name`);
   const desc: DescEnum = {
@@ -224,7 +224,7 @@ function addEnum(
     values: [],
     sharedPrefix: findEnumSharedPrefix(
       proto.name,
-      proto.value.map((v) => v.name ?? "")
+      proto.value.map((v) => v.name ?? ""),
     ),
     toString(): string {
       return `enum ${this.typeName}`;
@@ -248,7 +248,7 @@ function addEnum(
     assert(proto.name, `invalid EnumValueDescriptorProto: missing name`);
     assert(
       proto.number !== undefined,
-      `invalid EnumValueDescriptorProto: missing number`
+      `invalid EnumValueDescriptorProto: missing number`,
     );
     desc.values.push({
       kind: "enum_value",
@@ -288,7 +288,7 @@ function addMessage(
   proto: DescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
 ): void {
   assert(proto.name, `invalid DescriptorProto: missing name`);
   const desc: DescMessage = {
@@ -343,7 +343,7 @@ function addMessage(
 function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
-  cart: Cart
+  cart: Cart,
 ): void {
   assert(proto.name, `invalid ServiceDescriptorProto: missing name`);
   const desc: DescService = {
@@ -378,13 +378,13 @@ function addService(
 function newMethod(
   proto: MethodDescriptorProto,
   parent: DescService,
-  cart: Cart
+  cart: Cart,
 ): DescMethod {
   assert(proto.name, `invalid MethodDescriptorProto: missing name`);
   assert(proto.inputType, `invalid MethodDescriptorProto: missing input_type`);
   assert(
     proto.outputType,
-    `invalid MethodDescriptorProto: missing output_type`
+    `invalid MethodDescriptorProto: missing output_type`,
   );
   let methodKind: MethodKind;
   if (proto.clientStreaming === true && proto.serverStreaming === true) {
@@ -413,11 +413,11 @@ function newMethod(
   const output = cart.messages.get(trimLeadingDot(proto.outputType));
   assert(
     input,
-    `invalid MethodDescriptorProto: input_type ${proto.inputType} not found`
+    `invalid MethodDescriptorProto: input_type ${proto.inputType} not found`,
   );
   assert(
     output,
-    `invalid MethodDescriptorProto: output_type ${proto.inputType} not found`
+    `invalid MethodDescriptorProto: output_type ${proto.inputType} not found`,
   );
   const name = proto.name;
   return {
@@ -478,7 +478,7 @@ function newField(
   file: DescFile,
   parent: DescMessage,
   oneof: DescOneof | undefined,
-  cart: Cart
+  cart: Cart,
 ): DescField {
   assert(proto.name, `invalid FieldDescriptorProto: missing name`);
   assert(proto.number, `invalid FieldDescriptorProto: missing number`);
@@ -524,7 +524,7 @@ function newField(
       if (mapEntry !== undefined) {
         assert(
           repeated,
-          `invalid FieldDescriptorProto: expected map entry to be repeated`
+          `invalid FieldDescriptorProto: expected map entry to be repeated`,
         );
         return {
           ...common,
@@ -537,7 +537,7 @@ function newField(
       const message = cart.messages.get(trimLeadingDot(proto.typeName));
       assert(
         message !== undefined,
-        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`
+        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       return {
         ...common,
@@ -552,7 +552,7 @@ function newField(
       const e = cart.enums.get(trimLeadingDot(proto.typeName));
       assert(
         e !== undefined,
-        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`
+        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       return {
         ...common,
@@ -567,7 +567,7 @@ function newField(
       const scalar = fieldTypeToScalarType[proto.type];
       assert(
         scalar,
-        `invalid FieldDescriptorProto: unknown type ${proto.type}`
+        `invalid FieldDescriptorProto: unknown type ${proto.type}`,
       );
       return {
         ...common,
@@ -588,7 +588,7 @@ function newExtension(
   proto: FieldDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
 ): DescExtension {
   assert(proto.extendee, `invalid FieldDescriptorProto: missing extendee`);
   const field = newField(
@@ -596,12 +596,12 @@ function newExtension(
     file,
     null as unknown as DescMessage, // to safe us many lines of duplicated code, we trick the type system
     undefined,
-    cart
+    cart,
   );
   const extendee = cart.messages.get(trimLeadingDot(proto.extendee));
   assert(
     extendee,
-    `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`
+    `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
   );
   return {
     ...field,
@@ -652,7 +652,7 @@ function makeTypeName(
     | EnumDescriptorProto
     | FieldDescriptorProto,
   parent: DescMessage | DescService | undefined,
-  file: DescFile
+  file: DescFile,
 ): string {
   assert(proto.name, `invalid ${proto.getType().typeName}: missing name`);
   let typeName: string;
@@ -674,22 +674,22 @@ function trimLeadingDot(typeName: string): string {
 }
 
 function getMapFieldTypes(
-  mapEntry: DescMessage
+  mapEntry: DescMessage,
 ): Pick<DescField & { fieldKind: "map" }, "mapKey" | "mapValue"> {
   assert(
     mapEntry.proto.options?.mapEntry,
-    `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`
+    `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`,
   );
   assert(
     mapEntry.fields.length === 2,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} has ${
       mapEntry.fields.length
-    } fields`
+    } fields`,
   );
   const keyField = mapEntry.fields.find((f) => f.proto.number === 1);
   assert(
     keyField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing key field`
+    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing key field`,
   );
   const mapKey = keyField.scalar;
   assert(
@@ -699,12 +699,12 @@ function getMapFieldTypes(
       mapKey !== ScalarType.DOUBLE,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} has unexpected key type ${
       keyField.proto.type ?? -1
-    }`
+    }`,
   );
   const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
   assert(
     valueField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`
+    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`,
   );
   switch (valueField.fieldKind) {
     case "scalar":
@@ -733,7 +733,7 @@ function getMapFieldTypes(
       };
     default:
       throw new Error(
-        "invalid DescriptorProto: unsupported map entry value field"
+        "invalid DescriptorProto: unsupported map entry value field",
       );
   }
 }
@@ -744,7 +744,7 @@ function getMapFieldTypes(
  */
 function findOneof(
   proto: FieldDescriptorProto,
-  allOneofs: DescOneof[]
+  allOneofs: DescOneof[],
 ): DescOneof | undefined {
   const oneofIndex = proto.oneofIndex;
   if (oneofIndex === undefined) {
@@ -757,7 +757,7 @@ function findOneof(
       oneof,
       `invalid FieldDescriptorProto: oneof #${oneofIndex} for field #${
         proto.number ?? -1
-      } not found`
+      } not found`,
     );
   }
   return oneof;
@@ -769,7 +769,7 @@ function findOneof(
  */
 function isOptionalField(
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3"
+  syntax: "proto2" | "proto3",
 ): boolean {
   switch (syntax) {
     case "proto2":
@@ -787,7 +787,7 @@ function isOptionalField(
  */
 export function isPackedFieldByDefault(
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3"
+  syntax: "proto2" | "proto3",
 ): boolean {
   assert(proto.type, `invalid FieldDescriptorProto: missing type`);
   if (syntax === "proto3") {
@@ -852,7 +852,7 @@ const fieldTypeToScalarType: Record<
  */
 function findComments(
   sourceCodeInfo: SourceCodeInfo | undefined,
-  sourcePath: number[]
+  sourcePath: number[],
 ): DescComments {
   if (!sourceCodeInfo) {
     return {
@@ -979,7 +979,7 @@ function declarationString(this: DescField | DescExtension): string {
  * Parses a text-encoded default value (proto2) of a scalar or enum field.
  */
 function getDefaultValue(
-  this: DescField | DescExtension
+  this: DescField | DescExtension,
 ): number | boolean | string | bigint | Uint8Array | undefined {
   const d = this.proto.defaultValue;
   if (d === undefined) {
@@ -999,7 +999,7 @@ function getDefaultValue(
           const u = unescapeBytesDefaultValue(d);
           if (u === false) {
             throw new Error(
-              `cannot parse ${this.toString()} default value: ${d}`
+              `cannot parse ${this.toString()} default value: ${d}`,
             );
           }
           return u;
@@ -1157,7 +1157,7 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
                 chunk[4],
                 chunk[5],
                 chunk[6],
-                chunk[7]
+                chunk[7],
               );
               break;
             }

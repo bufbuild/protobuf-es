@@ -25,7 +25,7 @@ import { CodeGeneratorRequest } from "@bufbuild/protobuf";
  */
 function generate(
   printFn: (f: GeneratedFile, schema: Schema) => void,
-  options: string[]
+  options: string[],
 ): string[] {
   const req = new CodeGeneratorRequest({
     parameter: `target=ts,${options.join(",")}`,
@@ -54,7 +54,7 @@ describe("import_extension", function () {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
         f.print`${Bar}`;
       },
-      ["import_extension=.ts"]
+      ["import_extension=.ts"],
     );
     expect(lines).toStrictEqual([
       'import { Bar } from "./foo/bar_pb.ts";',
@@ -68,7 +68,7 @@ describe("import_extension", function () {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
         f.print`${Bar}`;
       },
-      ["import_extension=none"]
+      ["import_extension=none"],
     );
     expect(lines).toStrictEqual([
       'import { Bar } from "./foo/bar_pb";',
@@ -82,7 +82,7 @@ describe("import_extension", function () {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
         f.print`${Bar}`;
       },
-      ["import_extension="]
+      ["import_extension="],
     );
     expect(lines).toStrictEqual([
       'import { Bar } from "./foo/bar_pb";',
@@ -96,7 +96,7 @@ describe("import_extension", function () {
         const json = f.import("json", "./foo/bar_pb.json");
         f.print`${json}`;
       },
-      ["import_extension=.ts"]
+      ["import_extension=.ts"],
     );
     expect(lines).toStrictEqual([
       'import { json } from "./foo/bar_pb.json";',
