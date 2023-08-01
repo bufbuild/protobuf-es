@@ -328,7 +328,7 @@ export function makeJsonFormatCommon(
   };
 }
 
-function debugJsonValue(json: JsonValue): string {
+function debugJsonValue(json: unknown): string {
   if (json === null) {
     return "null";
   }
@@ -338,7 +338,7 @@ function debugJsonValue(json: JsonValue): string {
     case "string":
       return json.length > 100 ? "string" : `"${json.split('"').join('\\"')}"`;
     default:
-      return json.toString();
+      return String(json);
   }
 }
 
