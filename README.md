@@ -115,7 +115,7 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 
 * [connect-es](https://github.com/bufbuild/connect-es):
   Type-safe APIs with Protobuf and TypeScript.
-* [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
+* [connect-es Examples](https://github.com/connectrpc/examples-es):
   Examples for using Connect with various TypeScript web frameworks and tooling
 * [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance):
   A repository running the Protobuf conformance tests against various libraries.
