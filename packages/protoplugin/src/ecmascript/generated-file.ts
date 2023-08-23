@@ -122,7 +122,7 @@ export function createGeneratedFile(
     pluginParameter: string;
     tsNocheck: boolean;
   },
-  keepEmpty: boolean
+  keepEmpty: boolean,
 ): GeneratedFile & GenerateFileToFileInfo {
   let preamble: string | undefined;
   const el: El[] = [];
@@ -133,7 +133,7 @@ export function createGeneratedFile(
         preambleSettings.pluginName,
         preambleSettings.pluginVersion,
         preambleSettings.pluginParameter,
-        preambleSettings.tsNocheck
+        preambleSettings.tsNocheck,
       );
     },
     print(
@@ -149,7 +149,7 @@ export function createGeneratedFile(
         // If called with a tagged template literal
         printables = buildPrintablesFromFragments(
           printableOrFragments as TemplateStringsArray,
-          rest
+          rest,
         );
       } else {
         // If called with just an array of Printables
@@ -191,7 +191,7 @@ type El = ImportSymbol | string;
 function elToContent(
   el: El[],
   importerPath: string,
-  rewriteImportPath: RewriteImportPathFn
+  rewriteImportPath: RewriteImportPathFn,
 ): string {
   const c: string[] = [];
   const symbolToIdentifier = processImports(
@@ -200,7 +200,7 @@ function elToContent(
     rewriteImportPath,
     (typeOnly, from, names) => {
       const p = names.map(({ name, alias }) =>
-        alias == undefined ? name : `${name} as ${alias}`
+        alias == undefined ? name : `${name} as ${alias}`,
       );
       const what = `{ ${p.join(", ")} }`;
       if (typeOnly) {
@@ -208,7 +208,7 @@ function elToContent(
       } else {
         c.push(`import ${what} from ${literalString(from)};\n`);
       }
-    }
+    },
   );
   if (c.length > 0) {
     c.push("\n");
@@ -230,7 +230,7 @@ function printableToEl(
   printables: Printable[],
   el: El[],
   createTypeImport: CreateTypeImportFn,
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
 ): void {
   for (const p of printables) {
     if (Array.isArray(p)) {
@@ -241,7 +241,7 @@ function printableToEl(
           el.push(p);
           break;
         case "number":
-          el.push(literalNumber(p));
+          el.push(...literalNumber(p, runtimeImports));
           break;
         case "boolean":
           el.push(p.toString());
@@ -273,7 +273,7 @@ function printableToEl(
 
 function buildPrintablesFromFragments(
   fragments: TemplateStringsArray,
-  values: Printable[]
+  values: Printable[],
 ): Printable[] {
   const printables: Printable[] = [];
   fragments.forEach((fragment, i) => {
@@ -289,14 +289,14 @@ function buildPrintablesFromFragments(
 type MakeImportStatementFn = (
   typeOnly: boolean,
   from: string,
-  names: { name: string; alias?: string }[]
+  names: { name: string; alias?: string }[],
 ) => void;
 
 function processImports(
   el: El[],
   importerPath: string,
   rewriteImportPath: RewriteImportPathFn,
-  makeImportStatement: MakeImportStatementFn
+  makeImportStatement: MakeImportStatementFn,
 ) {
   // identifiers to use in the output
   const symbolToIdentifier = new Map<string, string>();
@@ -395,7 +395,7 @@ function processImports(
     }
     const from = makeImportPathRelative(
       importerPath,
-      rewriteImportPath(s.from)
+      rewriteImportPath(s.from),
     );
     if (i.types.size > 0) {
       makeImportStatement(true, from, buildNames(i.types));
@@ -408,15 +408,18 @@ function processImports(
   return symbolToIdentifier;
 }
 
-function literalNumber(value: number): string {
+function literalNumber(
+  value: number,
+  runtimeImports: RuntimeImports,
+): El[] | string {
   if (Number.isNaN(value)) {
-    return "globalThis.Number.NaN";
+    return [runtimeImports.protoDouble, ".NaN"];
   }
   if (value === Number.POSITIVE_INFINITY) {
-    return "globalThis.Number.POSITIVE_INFINITY";
+    return [runtimeImports.protoDouble, ".POSITIVE_INFINITY"];
   }
   if (value === Number.NEGATIVE_INFINITY) {
-    return "globalThis.Number.NEGATIVE_INFINITY";
+    return [runtimeImports.protoDouble, ".NEGATIVE_INFINITY"];
   }
   return value.toString(10);
 }

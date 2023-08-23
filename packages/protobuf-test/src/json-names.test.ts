@@ -88,7 +88,7 @@ function getProtocJsonName(protoName: string): string | false {
     ["-I", tempDir, inFilename, "--descriptor_set_out", outFilename],
     {
       encoding: "utf-8",
-    }
+    },
   );
   if (result.stderr.length > 0) {
     if (result.stderr.indexOf("Expected field name.") >= 0) {
@@ -105,7 +105,7 @@ function getProtocJsonName(protoName: string): string | false {
     }
     if (
       result.stderr.indexOf(
-        "Invalid control characters encountered in text."
+        "Invalid control characters encountered in text.",
       ) >= 0
     ) {
       return false;

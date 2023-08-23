@@ -93,7 +93,7 @@ export function createSchema(
   keepEmptyFiles: boolean,
   pluginName: string,
   pluginVersion: string,
-  pluginParameter: string
+  pluginParameter: string,
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
@@ -124,7 +124,7 @@ export function createSchema(
           pluginParameter,
           tsNocheck,
         },
-        keepEmptyFiles
+        keepEmptyFiles,
       );
       generatedFiles.push(genFile);
       return genFile;
@@ -148,7 +148,7 @@ export function createSchema(
 export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
   return new CodeGeneratorResponse({
     supportedFeatures: protoInt64.parse(
-      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
+      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL,
     ),
     file: files.map((f) => {
       if (f.preamble !== undefined) {
@@ -161,15 +161,17 @@ export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
 
 function findFilesToGenerate(
   descriptorSet: DescriptorSet,
-  request: CodeGeneratorRequest
+  request: CodeGeneratorRequest,
 ) {
   const missing = request.fileToGenerate.filter((fileToGenerate) =>
-    descriptorSet.files.every((file) => fileToGenerate !== file.name + ".proto")
+    descriptorSet.files.every(
+      (file) => fileToGenerate !== file.name + ".proto",
+    ),
   );
   if (missing.length) {
     throw `files_to_generate missing in the request: ${missing.join(", ")}`;
   }
   return descriptorSet.files.filter((file) =>
-    request.fileToGenerate.includes(file.name + ".proto")
+    request.fileToGenerate.includes(file.name + ".proto"),
   );
 }

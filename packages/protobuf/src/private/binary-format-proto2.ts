@@ -33,7 +33,7 @@ export function makeBinaryFormatProto2(): BinaryFormat {
     writeMessage(
       message: Message,
       writer: IBinaryWriter,
-      options: BinaryWriteOptions
+      options: BinaryWriteOptions,
     ): IBinaryWriter {
       const type = message.getType();
       let field: FieldInfo | undefined;
@@ -54,7 +54,7 @@ export function makeBinaryFormatProto2(): BinaryFormat {
             // field is missing a value.
             if (value === undefined && !field.oneof && !field.opt) {
               throw new Error(
-                `cannot encode field ${type.typeName}.${field.name} to binary: required field not set`
+                `cannot encode field ${type.typeName}.${field.name} to binary: required field not set`,
               );
             }
           }

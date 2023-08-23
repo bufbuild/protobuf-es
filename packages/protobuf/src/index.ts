@@ -14,6 +14,7 @@
 
 export { proto3 } from "./proto3.js";
 export { proto2 } from "./proto2.js";
+export { protoDouble } from "./proto-double.js";
 export { protoInt64 } from "./proto-int64.js";
 export { protoBase64 } from "./proto-base64.js";
 export { protoDelimited } from "./proto-delimited.js";
@@ -73,6 +74,7 @@ export { createDescriptorSet } from "./create-descriptor-set.js";
 export type { IMessageTypeRegistry } from "./type-registry.js";
 export { createRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
+export { toPlainMessage } from "./to-plain-message.js";
 
 // ideally, we would export these types with sub-path exports:
 export * from "./google/protobuf/compiler/plugin_pb.js";

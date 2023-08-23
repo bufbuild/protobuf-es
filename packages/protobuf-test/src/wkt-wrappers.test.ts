@@ -70,6 +70,15 @@ describeMT(
         const want = `{"boolValueField":true}`;
         expect(got).toBe(want);
       });
+      test("allow number[] for bytes field", () => {
+        const bytes = [0xff];
+        const got = {
+          ...new messageType({
+            bytesValueField: bytes as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+          }),
+        };
+        expect(got.bytesValueField).toStrictEqual(new Uint8Array(bytes));
+      });
     });
     describe("oneof fields", () => {
       const w = new messageType({
@@ -156,5 +165,5 @@ describeMT(
         expect(wJson.mapBoolValueField["bar"].value).toBe(false);
       });
     });
-  }
+  },
 );

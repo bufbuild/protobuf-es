@@ -14,9 +14,9 @@ PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
 LICENSE_HEADER_YEAR_RANGE := 2021-2023
 LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-GOOGLE_PROTOBUF_VERSION = 23.0
+GOOGLE_PROTOBUF_VERSION = 23.4
 BAZEL_VERSION = 5.4.0
-TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5
+TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5 5.0.4
 
 node_modules: package-lock.json
 	npm ci
@@ -74,7 +74,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_mod
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
-	npx -w packages/protoplugin-example buf generate buf.build/bufbuild/eliza
+	npx -w packages/protoplugin-example buf generate buf.build/connectrpc/eliza
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -133,13 +133,13 @@ $(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
 	@touch $(@)
 
 $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
-	@rm -rf packages/protobuf-example/src/gen/*
+	npm run -w packages/protobuf-example clean
 	npm run -w packages/protobuf-example generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(GEN)/protobuf-bench: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
-	@rm -rf packages/protobuf-bench/src/gen/*
+	npm run -w packages/protobuf-bench clean
 	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -194,7 +194,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 
 .PHONY: format
 format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers
-	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --loglevel error
+	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
 	$(BIN)/git-ls-files-unstaged | \
 		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
 		xargs $(BIN)/license-header \
@@ -205,6 +205,10 @@ format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Forma
 .PHONY: bench
 bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size
 	npm run -w packages/protobuf-bench report
+
+.PHONY: perf
+perf: $(BUILD)/protobuf-test
+	npm run -w packages/protobuf-test perf
 
 .PHONY: boostrapwkt
 bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header ## Generate the well-known types in @bufbuild/protobuf

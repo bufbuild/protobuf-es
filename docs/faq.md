@@ -12,26 +12,26 @@ Some additional features that set it apart from the others:
 - Generation of idiomatic JavaScript and TypeScript code.
 - Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-bench)
 - Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
-- Implementation of all proto2 features, except for extensions and the text format.  
+- Implementation of all proto2 features, except for extensions and the text format.
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 - Compatibility is covered by the protocol buffers [conformance tests](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance).
 - Descriptor and reflection support
 
-To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example), 
-the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md), 
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example),
+the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md),
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
 
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
-TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript. 
+TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript.
 Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
 
-But `enum`s also have some nice properties that union types don't provide.  For example, the numeric values can actually 
-be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.  
+But `enum`s also have some nice properties that union types don't provide.  For example, the numeric values can actually
+be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
 You can also attach comments and metadata to enum values, but not to elements of union types (see [this TypeScript issue](https://github.com/microsoft/TypeScript/issues/38106) for an example).
 
-**Protobuf-ES** actually makes use of this ability and attaches metadata to the enum object in our generated code to 
+**Protobuf-ES** actually makes use of this ability and attaches metadata to the enum object in our generated code to
 implement the JSON format. This would not be possible with a union type.
 
 TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf: Similar to enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example, consider the following Protobuf file:
@@ -54,7 +54,7 @@ enum Species {
 const hamster: Species = 3;
 ```
 
-As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/bufbuild/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
+As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/connectrpc/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
 ### Why aren't `enum` values generated in PascalCase?
 
@@ -69,7 +69,7 @@ For more information on our thoughts on options, see this [question](#options).
 
 ### Why use `BigInt` to represent 64-bit integers?
 
-The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf.  `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).  
+The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf.  `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).
 
 While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's [`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1.  However, this is obviously only effective if you can guarantee that no number in that field will ever exceed this range.  This could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
 
@@ -91,14 +91,14 @@ So, in summary, yes, we know that some argue classes were shoehorned into the la
 
 ### OK, so why not generate *both* classes **and** interfaces?
 
-This is also something we considered.  However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.  
+This is also something we considered.  However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.
 
-One of the major questions was "how should they be generated?"  As part of the current `protoc-gen-es` plugin?  In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.  
+One of the major questions was "how should they be generated?"  As part of the current `protoc-gen-es` plugin?  In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.
 
   If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing.  A new user attempting to configure their codebase to begin using the library would most likely not know whether they needed classes or interfaces until they actually started using the library.  If they decided they wanted the alternate option, they would need to conduct a pretty invasive refactoring of their code.
-  
+
   If we made this a separate plugin, then it seems to *really* confuse the matter because now users have to configure another plugin and face the same uncertainty mentioned above.  And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`.  If users want to use both classes and interfaces, they would now need two separate imports.  Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff.  In the end, we decided that simply generating classes provided the most benefits to the users.
-  
+
 All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members.  As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this.  It can be used as follows:
 
 ```typescript
@@ -109,10 +109,10 @@ import { FooMessage } from "protos/foo_pb.js";
 const plainFoo: PlainMessage<FooMessage> = new FooMessage();
 ```
 
-In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups.  All methods will be omitted from the type.  Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.  
+In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups.  All methods will be omitted from the type.  Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.
 
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
-  
+
 Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
 
 ### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
@@ -191,18 +191,18 @@ The main differences of the generated code:
 
 ### <a name="options"></a>What is your stance on adding options to the plugin?
 
-In general, we feel that an abundance of options tends to make the plugin less approachable. It can be daunting to a 
+In general, we feel that an abundance of options tends to make the plugin less approachable. It can be daunting to a
 new user to have to sift through numerous configuration choices when they are just beginning to use the plugin. Our
 default position is to try to be as opinionated as possible about the generated code and this tends to result in fewer
-knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It 
+knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It
 is much easier to reason about the generated code when it conforms to a predictable standard.
 
 There are also more concrete reasons why we prefer to add options judiciously. Consider a popular option request,
 which is to add the ability to generate `snake_case` field names as opposed to `camelCase`. If we were to provide this
 as an option, that means that any plugin downstream that accesses these fields or uses the base types has to also
-support this option and ensure that it is set to the same value across plugins every time files are generated. In 
+support this option and ensure that it is set to the same value across plugins every time files are generated. In
 addition, any functionality that uses the generated code must also now stay in sync. Exposing options, especially those
-that affect the generated code, introduces an entirely new way for breaking changes to happen. The generated code is no 
+that affect the generated code, introduces an entirely new way for breaking changes to happen. The generated code is no
 longer predictable, which defeats the purpose of generating code.
 
 This is not to say that we are completely against adding _any_ options to the plugin. There are obviously cases where

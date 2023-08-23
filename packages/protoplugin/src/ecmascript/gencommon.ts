@@ -35,7 +35,7 @@ export function makeFilePreamble(
   pluginName: string,
   pluginVersion: string,
   parameter: string,
-  tsNoCheck: boolean
+  tsNoCheck: boolean,
 ): string {
   const builder: string[] = [];
   const trimSuffix = (str: string, suffix: string): string =>
@@ -103,7 +103,7 @@ export function makeJsDoc(
     | DescField
     | DescService
     | DescMethod,
-  indentation = ""
+  indentation = "",
 ): Printable {
   const comments = desc.getComments();
   let text = "";
@@ -166,7 +166,7 @@ export function makeJsDoc(
  */
 export function getFieldTyping(
   field: DescField,
-  file: GeneratedFile
+  file: GeneratedFile,
 ): { typing: Printable; optional: boolean } {
   const typing: Printable = [];
   let optional = false;
@@ -264,12 +264,12 @@ export function literalString(value: string): string {
 
 export function getFieldExplicitDefaultValue(
   field: DescField,
-  protoInt64Symbol: ImportSymbol
+  protoInt64Symbol: ImportSymbol,
 ): Printable | undefined {
   switch (field.fieldKind) {
     case "enum": {
       const value = field.enum.values.find(
-        (v) => v.number === field.getDefaultValue()
+        (v) => v.number === field.getDefaultValue(),
       );
       if (value !== undefined) {
         return [value.parent, ".", localName(value)];

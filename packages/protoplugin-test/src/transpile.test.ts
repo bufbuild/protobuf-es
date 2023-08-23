@@ -25,7 +25,7 @@ import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 function transpile(
   genTs: (schema: Schema) => void,
   parameter = "target=ts+js+dts",
-  parseOption?: (key: string, value: string | undefined) => void
+  parseOption?: (key: string, value: string | undefined) => void,
 ): (name: string) => string[] {
   const req = new CodeGeneratorRequest({
     parameter,
@@ -167,7 +167,7 @@ describe("transpile", function () {
         "target=ts+js+dts,rewrite_imports=./test/*_pb.js:@buf/test,rewrite_imports=./test/*_web.js:@buf/web,keep_empty_files=true,foo,bar=",
         () => {
           /* custom parse fn to allow for custom options without erroring*/
-        }
+        },
       );
 
       expect(linesOf("test.ts")).toStrictEqual([

@@ -69,7 +69,7 @@ function generateDts(schema: Schema) {
 function verifyOutFiles(
   plugin: Plugin,
   fixture: OutFixture,
-  req?: CodeGeneratorRequest
+  req?: CodeGeneratorRequest,
 ) {
   const targets = Object.keys(fixture);
   req =
@@ -84,7 +84,7 @@ function verifyOutFiles(
   // given fixture.
   const totalExpectedFiles = Object.values(fixture).reduce(
     (prev, curr) => prev + curr.length,
-    0
+    0,
   );
   expect(resp.file.length).toEqual(totalExpectedFiles);
 
@@ -239,7 +239,7 @@ describe("only request one file to generate with variant target outs", function 
         js: ["proto/address_book_proto.js"],
         dts: ["proto/address_book_proto.dts"],
       },
-      req
+      req,
     );
   });
   test("all targets with no dts generator", () => {
@@ -259,7 +259,7 @@ describe("only request one file to generate with variant target outs", function 
         js: ["proto/address_book_proto.js"],
         dts: ["proto/address_book_proto.d.ts"],
       },
-      req
+      req,
     );
   });
   test("all targets with no js or dts generator", () => {
@@ -278,7 +278,7 @@ describe("only request one file to generate with variant target outs", function 
         js: ["proto/address_book_proto.js"],
         dts: ["proto/address_book_proto.d.ts"],
       },
-      req
+      req,
     );
   });
 });

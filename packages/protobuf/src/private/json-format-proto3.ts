@@ -31,7 +31,7 @@ export function makeJsonFormatProto3(): JsonFormat {
     return function writeField(
       field: FieldInfo,
       value: any,
-      options: JsonWriteOptions
+      options: JsonWriteOptions,
     ): JsonValue | undefined {
       if (field.kind == "map") {
         const jsonObj: JsonObject = {};
@@ -47,7 +47,7 @@ export function makeJsonFormatProto3(): JsonFormat {
             for (const [entryKey, entryValue] of Object.entries(value)) {
               // JSON standard allows only (double quoted) string as property key
               jsonObj[entryKey.toString()] = (entryValue as Message).toJson(
-                options
+                options,
               );
             }
             break;
@@ -59,7 +59,7 @@ export function makeJsonFormatProto3(): JsonFormat {
                 enumType,
                 entryValue as number,
                 true,
-                options.enumAsInteger
+                options.enumAsInteger,
               );
               assert(val !== undefined);
               jsonObj[entryKey.toString()] = val; // JSON standard allows only (double quoted) string as property key
@@ -84,8 +84,8 @@ export function makeJsonFormatProto3(): JsonFormat {
                   field.T,
                   value[i],
                   true,
-                  options.enumAsInteger
-                ) as JsonValue
+                  options.enumAsInteger,
+                ) as JsonValue,
               );
             }
             break;
@@ -104,14 +104,14 @@ export function makeJsonFormatProto3(): JsonFormat {
             return writeScalar(
               field.T,
               value,
-              !!field.oneof || field.opt || options.emitDefaultValues
+              !!field.oneof || field.opt || options.emitDefaultValues,
             );
           case "enum":
             return writeEnum(
               field.T,
               value,
               !!field.oneof || field.opt || options.emitDefaultValues,
-              options.enumAsInteger
+              options.enumAsInteger,
             );
           case "message":
             return value !== undefined

@@ -49,7 +49,7 @@ describe("createRegistryFromDescriptors()", () => {
 });
 
 function assertExpectedRegistry(
-  registry: ReturnType<typeof createRegistry>
+  registry: ReturnType<typeof createRegistry>,
 ): void {
   expect(registry.findEnum("foo.Foo")).toBeUndefined();
   const mt = registry.findMessage(TestAllTypes.typeName);

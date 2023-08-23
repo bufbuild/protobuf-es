@@ -38,7 +38,7 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     localName?: string;
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
-  }
+  },
 ): MessageType<T> {
   const localName =
     opt?.localName ?? typeName.substring(typeName.lastIndexOf(".") + 1);
@@ -64,7 +64,7 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     },
     equals(
       a: T | PlainMessage<T> | undefined,
-      b: T | PlainMessage<T> | undefined
+      b: T | PlainMessage<T> | undefined,
     ): boolean {
       return runtime.util.equals(type, a, b);
     },

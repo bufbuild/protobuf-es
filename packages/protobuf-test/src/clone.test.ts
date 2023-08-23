@@ -45,7 +45,7 @@ describe("clone", function () {
         b.messageField.name = "123";
       }
       expect(b.messageField?.name).not.toBe(a.messageField?.name);
-    }
+    },
   );
 
   testMT(
@@ -82,7 +82,7 @@ describe("clone", function () {
       const c = a.clone();
       c.bytesField.set([0, 1], 0);
       expect(c.bytesField).not.toStrictEqual(a.bytesField);
-    }
+    },
   );
 
   testMT(
@@ -118,7 +118,7 @@ describe("clone", function () {
       expect(b).toStrictEqual(a);
       a.doubleField.push(1.2);
       expect(b.doubleField).not.toBe(a.doubleField);
-    }
+    },
   );
 
   testMT({ ts: TS_WrappersMessage, js: JS_WrappersMessage }, (messageType) => {

@@ -100,7 +100,7 @@ describe("protoDelimited", function () {
       async function* createAsyncIterableBytes(
         bytes: Uint8Array,
         chunkSize = 2,
-        delay = 5
+        delay = 5,
       ): AsyncIterable<Uint8Array> {
         let offset = 0;
         for (;;) {
@@ -120,12 +120,12 @@ describe("protoDelimited", function () {
             .raw(testMessagesBytes[0])
             .uint32(testMessagesSizes[1])
             .raw(testMessagesBytes[1])
-            .finish()
+            .finish(),
         );
         let i = 0;
         for await (const dec of protoDelimited.decStream(
           TestAllTypesProto3,
-          stream
+          stream,
         )) {
           expect(TestAllTypesProto3.equals(dec, testMessages[i])).toBeTruthy();
           i++;
@@ -142,13 +142,13 @@ describe("protoDelimited", function () {
         }
         writeStream.end();
         await new Promise<void>((resolve, reject) =>
-          writeStream.close((err) => (err ? reject(err) : resolve()))
+          writeStream.close((err) => (err ? reject(err) : resolve())),
         );
         const readStream = createReadStream(path);
         let i = 0;
         for await (const m of protoDelimited.decStream(
           TestAllTypesProto3,
-          readStream
+          readStream,
         )) {
           expect(TestAllTypesProto3.equals(m, testMessages[i])).toBe(true);
           i++;
@@ -170,7 +170,7 @@ describe("protoDelimited", function () {
           const got = protoDelimited.peekSize(bytes);
           expect(got.offset).toBe(bytes.byteLength);
         });
-      }
+      },
     );
     describe("with incomplete varint", function () {
       const complete = new BinaryWriter().uint32(0xffffffff).finish(); // uint32 max is 5 bytes as varint
@@ -203,7 +203,7 @@ describe("protoDelimited", function () {
       it("should return expected offset", function () {
         const got = protoDelimited.peekSize(bytes);
         expect(got.offset).toBe(
-          bytes.byteLength - testMessagesBytes[0].byteLength
+          bytes.byteLength - testMessagesBytes[0].byteLength,
         );
       });
     });
@@ -211,7 +211,7 @@ describe("protoDelimited", function () {
       async function* createAsyncIterableBytes(
         bytes: Uint8Array,
         chunkSize = 2,
-        delay = 5
+        delay = 5,
       ): AsyncIterable<Uint8Array> {
         let offset = 0;
         for (;;) {
@@ -230,7 +230,7 @@ describe("protoDelimited", function () {
           .raw(testMessagesBytes[0])
           .uint32(testMessagesSizes[1])
           .raw(testMessagesBytes[1])
-          .finish()
+          .finish(),
       );
       /**
        * An example implementation for a function decoding size-delimited messages
@@ -239,7 +239,7 @@ describe("protoDelimited", function () {
        */
       async function* decStream<T extends Message<T>>(
         iterable: AsyncIterable<Uint8Array>,
-        type: MessageType<T>
+        type: MessageType<T>,
       ) {
         // append chunk to buffer, returning updated buffer
         function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {

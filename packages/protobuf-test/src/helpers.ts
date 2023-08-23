@@ -33,7 +33,7 @@ export function describeMT<T extends Message<T>>(
     ts: MessageType<T>;
     js: MessageType<T>;
   },
-  fn: (type: MessageType<T>) => void
+  fn: (type: MessageType<T>) => void,
 ) {
   const tsDynType = makeMessageTypeDynamic(opt.ts);
   type testCase = { name: string; messageType: MessageType<T> };
@@ -57,7 +57,7 @@ export function testMT<T extends Message<T>>(
     ts: MessageType<T>;
     js: MessageType<T>;
   },
-  fn: (type: MessageType<T>) => void
+  fn: (type: MessageType<T>) => void,
 ) {
   const tsDynType = makeMessageTypeDynamic(opt.ts);
   type testCase = { name: string; messageType: MessageType<T> };
@@ -73,7 +73,7 @@ export function testMT<T extends Message<T>>(
 const dr = createRegistryFromDescriptors(readFileSync("./descriptorset.bin"));
 
 export function makeMessageTypeDynamic<T extends Message<T>>(
-  type: MessageType<T>
+  type: MessageType<T>,
 ): MessageType<T> {
   const dyn = dr.findMessage(type.typeName);
   if (!dyn) {

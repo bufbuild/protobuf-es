@@ -31,7 +31,7 @@ describe("DescriptorSet", () => {
   const set = createDescriptorSet(fdsBytes);
   test("knows extension", () => {
     const ext = set.extensions.get(
-      "protobuf_unittest.optional_int32_extension"
+      "protobuf_unittest.optional_int32_extension",
     );
     expect(ext).toBeDefined();
     expect(ext?.name).toBe("optional_int32_extension");
@@ -42,28 +42,28 @@ describe("DescriptorSet", () => {
     expect(ext?.fieldKind).toBe("scalar");
     expect(ext?.scalar).toBe(ScalarType.INT32);
     expect(ext?.toString()).toBe(
-      "extension protobuf_unittest.optional_int32_extension"
+      "extension protobuf_unittest.optional_int32_extension",
     );
     expect(ext?.declarationString()).toBe(
-      "optional int32 optional_int32_extension = 1"
+      "optional int32 optional_int32_extension = 1",
     );
   });
   test("knows nested extension", () => {
     const ext = set.extensions.get(
-      "protobuf_unittest.TestNestedExtension.nested_string_extension"
+      "protobuf_unittest.TestNestedExtension.nested_string_extension",
     );
     expect(ext).toBeDefined();
     expect(ext?.name).toBe("nested_string_extension");
     expect(ext?.typeName).toBe(
-      "protobuf_unittest.TestNestedExtension.nested_string_extension"
+      "protobuf_unittest.TestNestedExtension.nested_string_extension",
     );
     expect(ext?.extendee.typeName).toBe(TestAllExtensions.typeName);
     expect(ext?.scalar).toBe(ScalarType.STRING);
     expect(ext?.toString()).toBe(
-      "extension protobuf_unittest.TestNestedExtension.nested_string_extension"
+      "extension protobuf_unittest.TestNestedExtension.nested_string_extension",
     );
     expect(ext?.declarationString()).toBe(
-      "optional string nested_string_extension = 1003"
+      "optional string nested_string_extension = 1003",
     );
     const ext2 = set.messages
       .get(TestNestedExtension.typeName)
@@ -77,7 +77,7 @@ describe("DescriptorSet", () => {
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
         expect(field?.declarationString()).toBe(
-          'string scalar_field = 1 [json_name = "scalarFieldJsonName"]'
+          'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
         );
       }
     });
@@ -87,7 +87,7 @@ describe("DescriptorSet", () => {
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
         expect(field?.declarationString()).toBe(
-          "repeated double double_field = 1"
+          "repeated double double_field = 1",
         );
       }
     });
@@ -110,15 +110,15 @@ describe("DescriptorSet", () => {
     describe("for file", () => {
       const file = set.files.find((file) =>
         file.messages.some(
-          (message) => message.typeName === MessageWithComments.typeName
-        )
+          (message) => message.typeName === MessageWithComments.typeName,
+        ),
       );
       test("syntax", () => {
         const comments = file?.getSyntaxComments();
         expect(comments).toBeDefined();
         if (comments) {
           expect(comments.leadingDetached[0]).toMatch(
-            / Copyright .* Buf Technologies/
+            / Copyright .* Buf Technologies/,
           );
           expect(comments.leading).toBe(" Comment before syntax.\n");
           expect(comments.trailing).toBe(" Comment next to syntax.\n");
@@ -159,7 +159,7 @@ describe("DescriptorSet", () => {
           "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
         ]);
         expect(comments.leading).toBe(
-          " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n"
+          " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n",
         );
         expect(comments.trailing).toBe(" Comment next to field.\n");
       }

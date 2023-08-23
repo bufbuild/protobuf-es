@@ -32,7 +32,7 @@ export class InternalFieldList implements FieldList {
 
   constructor(
     fields: FieldListSource,
-    normalizer: (p: FieldListSource) => FieldInfo[]
+    normalizer: (p: FieldListSource) => FieldInfo[],
   ) {
     this._fields = fields;
     this._normalizer = normalizer;

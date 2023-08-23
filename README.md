@@ -10,7 +10,7 @@ suitable for web browsers and Node.js, created by [Buf](https://buf.build).
 Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes the
 Protobuf conformance tests. [Read more on our blog.](https://buf.build/blog/protobuf-conformance)
 
-Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/bufbuild/connect-es),
+Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/connectrpc/connect-es),
 which supports the Connect, gRPC, and gRPC-Web protocols.
 
 ## What are Protocol Buffers?
@@ -55,7 +55,7 @@ user = User.fromJsonString('{"firstName": "Homer", "lastName": "Simpson"}');
 
 The benefits can extend to any application that interacts with yours as well.  This is because the Protobuf file above can be used to generate types in many languages.  The added bonus is that no one has to write any boilerplate code to make this happen.  [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-ES](https://github.com/bufbuild/connect-es), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
+Protocol Buffers also allow you to serialize this structured data.  So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition.  Using an RPC framework like [Connect-ES](https://github.com/connectrpc/connect-es), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
@@ -113,13 +113,13 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 
 ## Ecosystem
 
-* [connect-es](https://github.com/bufbuild/connect-es):
+* [connect-es](https://github.com/connectrpc/connect-es):
   Type-safe APIs with Protobuf and TypeScript.
-* [connect-es-integration](https://github.com/bufbuild/connect-es-integration):
+* [connect-es Examples](https://github.com/connectrpc/examples-es):
   Examples for using Connect with various TypeScript web frameworks and tooling
 * [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance):
   A repository running the Protobuf conformance tests against various libraries.
-* [Buf Studio](https://studio.buf.build/): Web UI for ad-hoc RPCs
+* [Buf Studio](https://buf.build/studio): Web UI for ad-hoc RPCs
 
 
 ## TypeScript
