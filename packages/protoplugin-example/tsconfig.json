@@ -2,10 +2,11 @@
   "include": ["src/**/*.ts", "test/*.ts"],
   "compilerOptions": {
     "target": "es2017",
+    "moduleResolution": "Node",
     "esModuleInterop": false,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "resolveJsonModule": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true
   }
 }
