@@ -1,36 +1,50 @@
 # Protoplugin Example
 
-This directory contains an example plugin, which shows how to work with the
-plugin framework.  It also contains a separate webpage which shows the generated files working with a remote server.
+This example shows how to write a custom plugin. We generate [Twirp](https://twitchtv.github.io/twirp/docs/spec_v7.html) 
+clients from service definitions in Protobuf files.
 
-The code generation logic for the actual plugin is located in [`protoc-gen-twirp-es.ts`](src/protoc-gen-twirp-es.ts).
 
-The sample plugin generates a [Twirp](https://twitchtv.github.io/twirp/docs/spec_v7.html) client from service
-definitions in Protobuf files.  The Twirp client uses base types generated from
-[`@bufbuild/protobuf-es`](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
+## Run the example
 
-From the project root, first install and build all required packages:
+You will need [Node](https://nodejs.org/en/download/) in version 18.17.0 or later installed. 
+Download the example project and install its dependencies:
 
 ```shell
-npm install -w packages/protoplugin-example
-npm run -w packages/protobuf build
-npm run -w packages/protoplugin build
-npm run -w packages/protoc-gen-es build
+curl -L https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip > protobuf-es-main.zip
+unzip protobuf-es-main.zip 'protobuf-es-main/packages/protoplugin-example/*'
+
+cd protobuf-es-main/packages/protoplugin-example
+npm install
 ```
 
-Next, `cd` into the example directory and build:
+To see the client in action:
 
 ```shell
-cd packages/protoplugin-example
-npm run build
+npm start
 ```
 
-To run the plugin (i.e. generate files), use the following command. This will generate files based on the
-[Eliza module](https://buf.build/connectrpc/eliza) in the Buf Schema Registry (BSR).  You can change this path to generate
-additional files locally or from the BSR.
+Open http://127.0.0.1:3000/ in your browser. 
 
-`npx buf generate buf.build/connectrpc/eliza`
 
-To run the example webpage and see the generated code in action:
+To re-generate code:
 
-`npm run start`
+```shell
+npx buf generate buf.build/connectrpc/eliza
+```
+
+This will generate the [Eliza module](https://buf.build/connectrpc/eliza) from the Buf Schema Registry (BSR). 
+You can change this path to generate additional files locally or from the BSR.
+
+Test the generated code:
+
+```shell
+npm test
+```
+
+## About this example
+
+This example is a starting point - we encourage you to try it out and experiment.
+
+Take a look at the code generation logic in [protoc-gen-twirp-es.ts](./src/protoc-gen-twirp-es.ts), 
+and at [buf.gen.yaml](./buf.gen.yaml) for how it is invoked.
+

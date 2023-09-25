@@ -535,9 +535,12 @@ const enumVal: FooEnum | undefined = findCustomEnumOption(descMessage, 50001);  
 
 ## Testing
 
-There is no specific formula for how to test an individual plugin.  The official [protoc-gen-es](../packages/protoc-gen-es) plugin is extensively tested and could provide some guidance.  In addition, there are examples of testing the framework in the [protoplugin-test package](../packages/protoplugin-test). 
+We recommend to test generated code just like handwritten code. Identify a 
+representative protobuf file for your use case, generate code, and then simply
+run tests against the generated code.
 
-A helpful suggestion is to generate specific use cases that are expected for your plugin and then test that the output is what is expected.  It is a bit difficult to test discrete functionality so verifying the output is valid is the recommended approach.  To test the transpilation process specifically, it may be helpful to generate your own JavaScript and declaration files and then verify that they match transpilation.  
+If you implement your own generator functions for the `js` and `dts` targets,
+we recommend to run all tests against both.
 
 
 ## Examples
