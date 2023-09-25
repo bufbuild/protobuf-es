@@ -1,7 +1,10 @@
 {
-  "files": ["src/protoc-gen-twirp-es.ts", "src/index.ts"],
-  "extends": "../../tsconfig.base.json",
+  "include": ["src/**/*.ts", "test/*.ts"],
   "compilerOptions": {
+    "target": "es2017",
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true
   }

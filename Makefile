@@ -173,6 +173,10 @@ test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
 test-protoplugin: $(BUILD)/protoplugin-test packages/protoplugin-test/jest.config.js
 	npm run -w packages/protoplugin-test test
 
+.PHONY: test-protoplugin-example
+test-protoplugin-example: $(BUILD)/protoplugin-example
+	npm run -w packages/protoplugin-example test
+
 .PHONY: test-conformance
 test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 	cd packages/protobuf-conformance \
