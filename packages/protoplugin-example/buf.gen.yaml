@@ -8,6 +8,8 @@ plugins:
     opt: target=ts
     out: src/gen
   - plugin: twirp-es
-    path: ./src/protoc-gen-twirp-es.ts
+    # Override the path to the plugin binary.
+    # See https://buf.build/docs/configuration/v1/buf-gen-yaml#path
+    path: ["tsx", "./src/protoc-gen-twirp-es.ts"]
     opt: target=ts
     out: src/gen
