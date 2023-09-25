@@ -7,7 +7,8 @@
     "clean": "rm -rf src/gen",
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
-    "test": "node --loader tsx --test test/*.ts"
+    "test": "node --loader tsx --test test/*.ts",
+    "generate": "buf generate buf.build/connectrpc/eliza"
   },
   "license": "Apache-2.0",
   "dependencies": {
