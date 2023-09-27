@@ -16,6 +16,7 @@
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
     "attw": "attw --pack"
   },
+  "main": "./dist/cjs/index.js",
   "type": "module",
   "exports": {
     ".": {
