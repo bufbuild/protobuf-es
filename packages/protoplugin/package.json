@@ -14,7 +14,7 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
-    "lint:types": "attw --pack"
+    "attw": "attw --pack"
   },
   "type": "module",
   "exports": {
@@ -39,11 +39,10 @@
       }
     }
   },
-  "types": "./dist/esm/index.d.ts",
   "typesVersions": {
     "*": {
       "ecmascript": [
-        "./dist/esm/ecmascript/index.d.ts"
+        "./dist/cjs/ecmascript/index.d.ts"
       ]
     }
   },

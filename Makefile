@@ -18,8 +18,6 @@ GOOGLE_PROTOBUF_VERSION = 23.4
 BAZEL_VERSION = 5.4.0
 TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5 5.0.4
 
-# test
-
 node_modules: package-lock.json
 	npm ci
 
@@ -195,10 +193,11 @@ test-ts-compat: $(GEN)/protobuf-test node_modules
 	done
 
 .PHONY: lint
-lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
+lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(BUILD)/protoplugin $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
 	npx eslint --max-warnings 0 .
-	npm run -w packages/protobuf lint:types
-	npm run -w packages/protoplugin lint:types
+	@# Check type exports on npm packages to verify they're correct
+	npm run -w packages/protobuf attw
+	npm run -w packages/protoplugin attw
 
 .PHONY: format
 format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers
