@@ -39,5 +39,5 @@ describeMT(
       > = { ...new messageType() };
       expect(got).toStrictEqual(want);
     });
-  }
+  },
 );

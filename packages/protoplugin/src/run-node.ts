@@ -36,7 +36,7 @@ export function runNodeJs(plugin: Plugin): void {
   }
   if (args.length !== 0) {
     process.stderr.write(
-      `${plugin.name} accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout\n`
+      `${plugin.name} accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout\n`,
     );
     process.exit(1);
     return;

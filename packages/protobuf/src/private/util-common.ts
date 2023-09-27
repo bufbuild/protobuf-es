@@ -27,7 +27,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     setEnumType,
     initPartial<T extends Message<T>>(
       source: PartialMessage<T> | undefined,
-      target: T
+      target: T,
     ): void {
       if (source === undefined) {
         return;
@@ -103,7 +103,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             const mt = member.T;
             if (member.repeated) {
               t[localName] = (s[localName] as any[]).map((val) =>
-                val instanceof mt ? val : new mt(val)
+                val instanceof mt ? val : new mt(val),
               );
             } else if (s[localName] !== undefined) {
               const val = s[localName];
@@ -127,7 +127,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     equals<T extends Message<T>>(
       type: MessageType<T>,
       a: T | PlainMessage<T> | undefined | null,
-      b: T | PlainMessage<T> | undefined | null
+      b: T | PlainMessage<T> | undefined | null,
     ): boolean {
       if (a === b) {
         return true;
@@ -148,11 +148,11 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               return (va as any[]).every((a, i) => m.T.equals(a, vb[i]));
             case "scalar":
               return (va as any[]).every((a: any, i: number) =>
-                scalarEquals(m.T, a, vb[i])
+                scalarEquals(m.T, a, vb[i]),
               );
             case "enum":
               return (va as any[]).every((a: any, i: number) =>
-                scalarEquals(ScalarType.INT32, a, vb[i])
+                scalarEquals(ScalarType.INT32, a, vb[i]),
               );
           }
           throw new Error(`repeated cannot contain ${m.kind}`);
@@ -190,12 +190,12 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                 return keys.every((k) => messageType.equals(va[k], vb[k]));
               case "enum":
                 return keys.every((k) =>
-                  scalarEquals(ScalarType.INT32, va[k], vb[k])
+                  scalarEquals(ScalarType.INT32, va[k], vb[k]),
                 );
               case "scalar":
                 const scalarType = m.V.T;
                 return keys.every((k) =>
-                  scalarEquals(scalarType, va[k], vb[k])
+                  scalarEquals(scalarType, va[k], vb[k]),
                 );
             }
             break;

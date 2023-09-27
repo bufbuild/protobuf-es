@@ -44,13 +44,13 @@ const writeDefaults: Readonly<BinaryWriteOptions> = {
 };
 
 function makeReadOptions(
-  options?: Partial<BinaryReadOptions>
+  options?: Partial<BinaryReadOptions>,
 ): Readonly<BinaryReadOptions> {
   return options ? { ...readDefaults, ...options } : readDefaults;
 }
 
 function makeWriteOptions(
-  options?: Partial<BinaryWriteOptions>
+  options?: Partial<BinaryWriteOptions>,
 ): Readonly<BinaryWriteOptions> {
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
@@ -60,7 +60,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
     makeReadOptions,
     makeWriteOptions,
     listUnknownFields(
-      message: Message
+      message: Message,
     ): ReadonlyArray<{ no: number; wireType: WireType; data: Uint8Array }> {
       return (message as any)[unknownFieldsSymbol] ?? [];
     },
@@ -80,7 +80,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
       message: Message,
       no: number,
       wireType: WireType,
-      data: Uint8Array
+      data: Uint8Array,
     ): void {
       const m = message as any;
       if (!Array.isArray(m[unknownFieldsSymbol])) {
@@ -92,7 +92,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
       message: T,
       reader: IBinaryReader,
       length: number,
-      options: BinaryReadOptions
+      options: BinaryReadOptions,
     ): void {
       const type = message.getType();
       const end = length === undefined ? reader.len : reader.pos + length;
@@ -145,7 +145,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                readMessageField(reader, new messageType(), options)
+                readMessageField(reader, new messageType(), options),
               );
             } else {
               if (target[localName] instanceof Message) {
@@ -154,7 +154,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
                 target[localName] = readMessageField(
                   reader,
                   new messageType(),
-                  options
+                  options,
                 );
                 if (
                   messageType.fieldWrapper &&
@@ -162,7 +162,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
                   !field.repeated
                 ) {
                   target[localName] = messageType.fieldWrapper.unwrapField(
-                    target[localName]
+                    target[localName],
                   );
                 }
               }
@@ -184,7 +184,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
 function readMessageField<T extends Message>(
   reader: IBinaryReader,
   message: T,
-  options: BinaryReadOptions
+  options: BinaryReadOptions,
 ): T {
   const format = message.getType().runtime.bin;
   format.readMessage(message, reader, reader.uint32(), options);
@@ -195,7 +195,7 @@ function readMessageField<T extends Message>(
 function readMapEntry(
   field: FieldInfo & { kind: "map" },
   reader: IBinaryReader,
-  options: BinaryReadOptions
+  options: BinaryReadOptions,
 ): [string | number, any] {
   const length = reader.uint32(),
     end = reader.pos + length;
@@ -288,7 +288,7 @@ export function writeMapEntry(
   options: BinaryWriteOptions,
   field: FieldInfo & { kind: "map" },
   key: any,
-  value: any
+  value: any,
 ): void {
   writer.tag(field.no, WireType.LengthDelimited);
   writer.fork();
@@ -335,7 +335,7 @@ export function writeMessageField(
   options: BinaryWriteOptions,
   type: MessageType,
   fieldNo: number,
-  value: any
+  value: any,
 ): void {
   if (value !== undefined) {
     const message = wrapField(type, value);
@@ -350,7 +350,7 @@ export function writeScalar(
   type: ScalarType,
   fieldNo: number,
   value: any,
-  emitIntrinsicDefault: boolean
+  emitIntrinsicDefault: boolean,
 ): void {
   let [wireType, method, isIntrinsicDefault] = scalarTypeInfo(type, value);
   if (!isIntrinsicDefault || emitIntrinsicDefault) {
@@ -362,7 +362,7 @@ export function writePacked(
   writer: IBinaryWriter,
   type: ScalarType,
   fieldNo: number,
-  value: any[]
+  value: any[],
 ): void {
   if (!value.length) {
     return;

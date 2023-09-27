@@ -30,7 +30,7 @@ describe("google.protobuf.DoubleValue", () => {
     });
     test("unwraps", () => {
       const got = DoubleValue.fieldWrapper.unwrapField(
-        new DoubleValue({ value: primitive })
+        new DoubleValue({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -50,7 +50,7 @@ describe("google.protobuf.FloatValue", () => {
     });
     test("unwraps", () => {
       const got = FloatValue.fieldWrapper.unwrapField(
-        new FloatValue({ value: primitive })
+        new FloatValue({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -70,7 +70,7 @@ describe("google.protobuf.Int64Value", () => {
     });
     test("unwraps", () => {
       const got = Int64Value.fieldWrapper.unwrapField(
-        new Int64Value({ value: primitive })
+        new Int64Value({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -90,7 +90,7 @@ describe("google.protobuf.UInt64Value", () => {
     });
     test("unwraps", () => {
       const got = UInt64Value.fieldWrapper.unwrapField(
-        new UInt64Value({ value: primitive })
+        new UInt64Value({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -110,7 +110,7 @@ describe("google.protobuf.Int32Value", () => {
     });
     test("unwraps", () => {
       const got = Int32Value.fieldWrapper.unwrapField(
-        new Int32Value({ value: primitive })
+        new Int32Value({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -130,7 +130,7 @@ describe("google.protobuf.UInt32Value", () => {
     });
     test("unwraps", () => {
       const got = UInt32Value.fieldWrapper.unwrapField(
-        new UInt32Value({ value: primitive })
+        new UInt32Value({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -151,7 +151,7 @@ describe("google.protobuf.BoolValue", () => {
     });
     test("unwraps", () => {
       const got = BoolValue.fieldWrapper.unwrapField(
-        new BoolValue({ value: primitive })
+        new BoolValue({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -171,7 +171,7 @@ describe("google.protobuf.StringValue", () => {
     });
     test("unwraps", () => {
       const got = StringValue.fieldWrapper.unwrapField(
-        new StringValue({ value: primitive })
+        new StringValue({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });
@@ -191,7 +191,7 @@ describe("google.protobuf.BytesValue", () => {
     });
     test("unwraps", () => {
       const got = BytesValue.fieldWrapper.unwrapField(
-        new BytesValue({ value: primitive })
+        new BytesValue({ value: primitive }),
       );
       expect(got).toBe(primitive);
     });

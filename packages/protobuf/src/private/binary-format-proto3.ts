@@ -32,7 +32,7 @@ export function makeBinaryFormatProto3(): BinaryFormat {
     writeMessage(
       message: Message,
       writer: IBinaryWriter,
-      options: BinaryWriteOptions
+      options: BinaryWriteOptions,
     ): IBinaryWriter {
       const type = message.getType();
       for (const field of type.fields.byNumber()) {
@@ -69,7 +69,7 @@ export function makeBinaryFormatProto3(): BinaryFormat {
                   scalarType,
                   field.no,
                   value,
-                  !!field.oneof || field.opt
+                  !!field.oneof || field.opt,
                 );
               }
             }

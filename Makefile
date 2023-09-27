@@ -76,7 +76,7 @@ $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_mod
 
 $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-example/buf.gen.yaml node_modules tsconfig.base.json packages/protoplugin-example/tsconfig.json $(shell find packages/protoplugin-example/src -name '*.ts')
 	npm run -w packages/protoplugin-example clean
-	npx -w packages/protoplugin-example buf generate buf.build/bufbuild/eliza
+	npm run -w packages/protoplugin-example generate
 	npm run -w packages/protoplugin-example build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -175,6 +175,10 @@ test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
 test-protoplugin: $(BUILD)/protoplugin-test packages/protoplugin-test/jest.config.js
 	npm run -w packages/protoplugin-test test
 
+.PHONY: test-protoplugin-example
+test-protoplugin-example: $(BUILD)/protoplugin-example
+	npm run -w packages/protoplugin-example test
+
 .PHONY: test-conformance
 test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
 	cd packages/protobuf-conformance \
@@ -198,7 +202,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 
 .PHONY: format
 format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers
-	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --loglevel error
+	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
 	$(BIN)/git-ls-files-unstaged | \
 		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
 		xargs $(BIN)/license-header \

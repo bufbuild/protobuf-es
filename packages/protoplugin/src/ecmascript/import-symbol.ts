@@ -57,7 +57,7 @@ export type ImportSymbol = {
 export function createImportSymbol(
   name: string,
   from: string,
-  typeOnly?: boolean
+  typeOnly?: boolean,
 ): ImportSymbol {
   const id = `import("${from}").${name}`;
   const s: ImportSymbol = {

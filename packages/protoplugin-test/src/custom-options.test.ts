@@ -35,7 +35,7 @@ describe("custom options", function () {
       for (const file of descriptorSet.files) {
         if (file.name === fileName) {
           expect(
-            findCustomScalarOption(file, 50000, ScalarType.STRING)
+            findCustomScalarOption(file, 50000, ScalarType.STRING),
           ).toEqual("Hello");
         }
       }
@@ -44,7 +44,7 @@ describe("custom options", function () {
       const enumeration = descriptorSet.enums.get(enumName);
       assert(enumeration);
       expect(
-        findCustomScalarOption(enumeration, 50004, ScalarType.BOOL)
+        findCustomScalarOption(enumeration, 50004, ScalarType.BOOL),
       ).toBeTruthy();
     });
     test("enum value options", () => {
@@ -53,11 +53,11 @@ describe("custom options", function () {
       for (const enumValue of enumeration.values) {
         if (enumValue.name === "ACTIVE") {
           expect(
-            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
+            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32),
           ).toEqual(321);
         } else {
           expect(
-            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32)
+            findCustomScalarOption(enumValue, 50005, ScalarType.UINT32),
           ).toBeUndefined();
         }
       }
@@ -66,7 +66,7 @@ describe("custom options", function () {
       const msg = descriptorSet.messages.get(msgName);
       assert(msg);
       expect(findCustomScalarOption(msg, 50001, ScalarType.INT32)).toEqual(
-        1234
+        1234,
       );
     });
     test("field options", () => {
@@ -76,7 +76,7 @@ describe("custom options", function () {
         switch (member.kind) {
           case "oneof":
             expect(
-              findCustomScalarOption(member, 50003, ScalarType.INT64)
+              findCustomScalarOption(member, 50003, ScalarType.INT64),
             ).toEqual(BigInt(42));
             break;
           default: {
@@ -99,7 +99,7 @@ describe("custom options", function () {
       assert(service);
       const enumVal: ServiceStatus | undefined = findCustomEnumOption(
         service,
-        50006
+        50006,
       );
       expect(enumVal).toEqual(ServiceStatus.EXPERIMENTAL);
     });
@@ -122,7 +122,7 @@ describe("custom options", function () {
       for (const file of descriptorSet.files) {
         if (file.name === fileName) {
           expect(
-            findCustomScalarOption(file, 99999, ScalarType.STRING)
+            findCustomScalarOption(file, 99999, ScalarType.STRING),
           ).toBeUndefined();
         }
       }
@@ -131,7 +131,7 @@ describe("custom options", function () {
       const enumeration = descriptorSet.enums.get(enumName);
       assert(enumeration);
       expect(
-        findCustomScalarOption(enumeration, 99999, ScalarType.BOOL)
+        findCustomScalarOption(enumeration, 99999, ScalarType.BOOL),
       ).toBeUndefined();
     });
     test("enum value options", () => {
@@ -139,7 +139,7 @@ describe("custom options", function () {
       assert(enumeration);
       for (const enumValue of enumeration.values) {
         expect(
-          findCustomScalarOption(enumValue, 99999, ScalarType.UINT32)
+          findCustomScalarOption(enumValue, 99999, ScalarType.UINT32),
         ).toBeUndefined();
       }
     });
@@ -147,7 +147,7 @@ describe("custom options", function () {
       const msg = descriptorSet.messages.get(msgName);
       assert(msg);
       expect(
-        findCustomScalarOption(msg, 99999, ScalarType.INT32)
+        findCustomScalarOption(msg, 99999, ScalarType.INT32),
       ).toBeUndefined();
     });
     test("field options", () => {
@@ -157,14 +157,14 @@ describe("custom options", function () {
       assert(quxField);
       assert(quxField.kind === "oneof");
       expect(
-        findCustomScalarOption(quxField, 99999, ScalarType.INT64)
+        findCustomScalarOption(quxField, 99999, ScalarType.INT64),
       ).toBeUndefined();
 
       const fooField = msg?.members.find((m) => m.name === "foo");
       assert(fooField);
       assert(fooField.kind === "field");
       expect(
-        findCustomScalarOption(fooField, 99999, ScalarType.FLOAT)
+        findCustomScalarOption(fooField, 99999, ScalarType.FLOAT),
       ).toBeUndefined();
     });
     test("service options", () => {
@@ -177,7 +177,7 @@ describe("custom options", function () {
       assert(service);
       for (const method of service.methods) {
         expect(
-          findCustomMessageOption(method, 99999, Configuration)
+          findCustomMessageOption(method, 99999, Configuration),
         ).toBeUndefined();
       }
     });

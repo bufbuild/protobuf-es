@@ -90,7 +90,7 @@ const wkEnums = [getEnumType(NullValue)];
  */
 export function createRegistryFromDescriptors(
   input: DescriptorSet | FileDescriptorSet | Uint8Array,
-  replaceWkt = true
+  replaceWkt = true,
 ): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
   const set: DescriptorSet =
     input instanceof Uint8Array || input instanceof FileDescriptorSet
@@ -128,9 +128,9 @@ export function createRegistryFromDescriptors(
             no: u.number,
             name: u.name,
             localName: localName(u),
-          })
+          }),
         ),
-        {}
+        {},
       );
       enums[typeName] = type;
       return type;
@@ -181,13 +181,13 @@ export function createRegistryFromDescriptors(
           I,
           `message "${
             method.input.typeName
-          }" for ${method.toString()} not found`
+          }" for ${method.toString()} not found`,
         );
         assert(
           O,
           `output message "${
             method.output.typeName
-          }" for ${method.toString()} not found`
+          }" for ${method.toString()} not found`,
         );
         methods[localName(method)] = {
           name: method.name,
@@ -230,7 +230,7 @@ function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
 
 function makeMapFieldInfo(
   field: DescField & { fieldKind: "map" },
-  resolver: Resolver
+  resolver: Resolver,
 ): PartialFieldInfo {
   const base = {
     kind: "map",
@@ -245,7 +245,7 @@ function makeMapFieldInfo(
       messageType,
       `message "${
         field.mapValue.message.typeName
-      }" for ${field.toString()} not found`
+      }" for ${field.toString()} not found`,
     );
     return {
       ...base,
@@ -259,7 +259,9 @@ function makeMapFieldInfo(
     const enumType = resolver.findEnum(field.mapValue.enum.typeName);
     assert(
       enumType,
-      `enum "${field.mapValue.enum.typeName}" for ${field.toString()} not found`
+      `enum "${
+        field.mapValue.enum.typeName
+      }" for ${field.toString()} not found`,
     );
     return {
       ...base,
@@ -279,7 +281,7 @@ function makeMapFieldInfo(
 }
 
 function makeScalarFieldInfo(
-  field: DescField & { fieldKind: "scalar" }
+  field: DescField & { fieldKind: "scalar" },
 ): PartialFieldInfo {
   const base = {
     kind: "scalar",
@@ -314,12 +316,12 @@ function makeScalarFieldInfo(
 
 function makeMessageFieldInfo(
   field: DescField & { fieldKind: "message" },
-  resolver: Resolver
+  resolver: Resolver,
 ): PartialFieldInfo {
   const messageType = resolver.findMessage(field.message.typeName);
   assert(
     messageType,
-    `message "${field.message.typeName}" for ${field.toString()} not found`
+    `message "${field.message.typeName}" for ${field.toString()} not found`,
   );
   const base = {
     kind: "message",
@@ -353,12 +355,12 @@ function makeMessageFieldInfo(
 
 function makeEnumFieldInfo(
   field: DescField & { fieldKind: "enum" },
-  resolver: Resolver
+  resolver: Resolver,
 ): PartialFieldInfo {
   const enumType = resolver.findEnum(field.enum.typeName);
   assert(
     enumType,
-    `enum "${field.enum.typeName}" for ${field.toString()} not found`
+    `enum "${field.enum.typeName}" for ${field.toString()} not found`,
   );
   const base = {
     kind: "enum",

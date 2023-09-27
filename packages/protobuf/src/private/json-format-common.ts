@@ -46,13 +46,13 @@ const jsonWriteDefaults: Readonly<JsonWriteStringOptions> = {
 };
 
 function makeReadOptions(
-  options?: Partial<JsonReadOptions>
+  options?: Partial<JsonReadOptions>,
 ): Readonly<JsonReadOptions> {
   return options ? { ...jsonReadDefaults, ...options } : jsonReadDefaults;
 }
 
 function makeWriteOptions(
-  options?: Partial<JsonWriteStringOptions>
+  options?: Partial<JsonWriteStringOptions>,
 ): Readonly<JsonWriteStringOptions> {
   return options ? { ...jsonWriteDefaults, ...options } : jsonWriteDefaults;
 }
@@ -60,14 +60,14 @@ function makeWriteOptions(
 type JsonFormatWriteFieldFn = (
   field: FieldInfo,
   value: any,
-  options: JsonWriteOptions
+  options: JsonWriteOptions,
 ) => JsonValue | undefined;
 
 export function makeJsonFormatCommon(
   makeWriteField: (
     writeEnumFn: typeof writeEnum,
-    writeScalarFn: typeof writeScalar
-  ) => JsonFormatWriteFieldFn
+    writeScalarFn: typeof writeScalar,
+  ) => JsonFormatWriteFieldFn,
 ): JsonFormat {
   const writeField = makeWriteField(writeEnum, writeScalar);
   return {
@@ -77,13 +77,13 @@ export function makeJsonFormatCommon(
       type: MessageType<T>,
       json: JsonValue,
       options: JsonReadOptions,
-      message?: T
+      message?: T,
     ): T {
       if (json == null || Array.isArray(json) || typeof json != "object") {
         throw new Error(
           `cannot decode message ${type.typeName} from JSON: ${this.debug(
-            json
-          )}`
+            json,
+          )}`,
         );
       }
       message = message ?? new type();
@@ -93,7 +93,7 @@ export function makeJsonFormatCommon(
         if (!field) {
           if (!options.ignoreUnknownFields) {
             throw new Error(
-              `cannot decode message ${type.typeName} from JSON: key "${jsonKey}" is unknown`
+              `cannot decode message ${type.typeName} from JSON: key "${jsonKey}" is unknown`,
             );
           }
           continue;
@@ -108,7 +108,7 @@ export function makeJsonFormatCommon(
           const seen = oneofSeen[field.oneof.localName];
           if (seen) {
             throw new Error(
-              `cannot decode message ${type.typeName} from JSON: multiple keys for oneof "${field.oneof.name}" present: "${seen}", "${jsonKey}"`
+              `cannot decode message ${type.typeName} from JSON: multiple keys for oneof "${field.oneof.name}" present: "${seen}", "${jsonKey}"`,
             );
           }
           oneofSeen[field.oneof.localName] = jsonKey;
@@ -123,7 +123,7 @@ export function makeJsonFormatCommon(
             throw new Error(
               `cannot decode field ${type.typeName}.${
                 field.name
-              } from JSON: ${this.debug(jsonValue)}`
+              } from JSON: ${this.debug(jsonValue)}`,
             );
           }
           const targetArray = target[localName] as unknown[];
@@ -132,7 +132,7 @@ export function makeJsonFormatCommon(
               throw new Error(
                 `cannot decode field ${type.typeName}.${
                   field.name
-                } from JSON: ${this.debug(jsonItem)}`
+                } from JSON: ${this.debug(jsonItem)}`,
               );
             }
             let val;
@@ -169,14 +169,14 @@ export function makeJsonFormatCommon(
             throw new Error(
               `cannot decode field ${type.typeName}.${
                 field.name
-              } from JSON: ${this.debug(jsonValue)}`
+              } from JSON: ${this.debug(jsonValue)}`,
             );
           }
           const targetMap = target[localName] as { [k: string]: unknown };
           for (const [jsonMapKey, jsonMapValue] of Object.entries(jsonValue)) {
             if (jsonMapValue === null) {
               throw new Error(
-                `cannot decode field ${type.typeName}.${field.name} from JSON: map value null`
+                `cannot decode field ${type.typeName}.${field.name} from JSON: map value null`,
               );
             }
             let val;
@@ -188,7 +188,7 @@ export function makeJsonFormatCommon(
                 val = readEnum(
                   field.V.T,
                   jsonMapValue,
-                  options.ignoreUnknownFields
+                  options.ignoreUnknownFields,
                 );
                 if (val === undefined) continue;
                 break;
@@ -216,7 +216,7 @@ export function makeJsonFormatCommon(
                       : jsonMapKey == "false"
                       ? false
                       : jsonMapKey
-                    : jsonMapKey
+                    : jsonMapKey,
                 ).toString()
               ] = val;
             } catch (e) {
@@ -239,7 +239,7 @@ export function makeJsonFormatCommon(
               ) {
                 if (field.oneof) {
                   throw new Error(
-                    `cannot decode field ${type.typeName}.${field.name} from JSON: null is invalid for oneof field "${jsonKey}"`
+                    `cannot decode field ${type.typeName}.${field.name} from JSON: null is invalid for oneof field "${jsonKey}"`,
                   );
                 }
                 continue;
@@ -250,7 +250,7 @@ export function makeJsonFormatCommon(
                 target[localName] = messageType.fromJson(jsonValue, options);
                 if (messageType.fieldWrapper && !field.oneof) {
                   target[localName] = messageType.fieldWrapper.unwrapField(
-                    target[localName]
+                    target[localName],
                   );
                 }
               }
@@ -259,7 +259,7 @@ export function makeJsonFormatCommon(
               const enumValue = readEnum(
                 field.T,
                 jsonValue,
-                options.ignoreUnknownFields
+                options.ignoreUnknownFields,
               );
               if (enumValue !== undefined) {
                 target[localName] = enumValue;
@@ -305,7 +305,7 @@ export function makeJsonFormatCommon(
             jsonValue = writeField(
               field,
               (message as AnyMessage)[field.localName],
-              options
+              options,
             );
           }
           if (jsonValue !== undefined) {
@@ -328,7 +328,7 @@ export function makeJsonFormatCommon(
   };
 }
 
-function debugJsonValue(json: JsonValue): string {
+function debugJsonValue(json: unknown): string {
   if (json === null) {
     return "null";
   }
@@ -338,7 +338,7 @@ function debugJsonValue(json: JsonValue): string {
     case "string":
       return json.length > 100 ? "string" : `"${json.split('"').join('\\"')}"`;
     default:
-      return json.toString();
+      return String(json);
   }
 }
 
@@ -443,7 +443,7 @@ function readScalar(type: ScalarType, json: JsonValue): any {
 function readEnum(
   type: EnumType,
   json: JsonValue,
-  ignoreUnknownFields: boolean
+  ignoreUnknownFields: boolean,
 ): number | undefined {
   if (json === null) {
     // proto3 requires 0 to be default value for all enums
@@ -458,13 +458,14 @@ function readEnum(
       break;
     case "string":
       const value = type.findName(json);
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       if (value || ignoreUnknownFields) {
         return value?.no;
       }
       break;
   }
   throw new Error(
-    `cannot decode enum ${type.typeName} from JSON: ${debugJsonValue(json)}`
+    `cannot decode enum ${type.typeName} from JSON: ${debugJsonValue(json)}`,
   );
 }
 
@@ -472,7 +473,7 @@ function writeEnum(
   type: EnumType,
   value: number | undefined,
   emitIntrinsicDefault: boolean,
-  enumAsInteger: boolean
+  enumAsInteger: boolean,
 ): JsonValue | undefined {
   if (value === undefined) {
     return value;
@@ -494,7 +495,7 @@ function writeEnum(
 function writeScalar(
   type: ScalarType,
   value: any,
-  emitIntrinsicDefault: boolean
+  emitIntrinsicDefault: boolean,
 ): JsonValue | undefined {
   if (value === undefined) {
     return undefined;
@@ -539,7 +540,7 @@ function writeScalar(
       assert(
         typeof value == "bigint" ||
           typeof value == "string" ||
-          typeof value == "number"
+          typeof value == "number",
       );
       // We use implicit conversion with `value != 0` to catch both 0n and "0"
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment

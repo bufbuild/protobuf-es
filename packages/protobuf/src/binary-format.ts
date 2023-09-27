@@ -29,14 +29,14 @@ export interface BinaryFormat {
    * Provide options for parsing binary data.
    */
   makeReadOptions(
-    options?: Partial<BinaryReadOptions>
+    options?: Partial<BinaryReadOptions>,
   ): Readonly<BinaryReadOptions>;
 
   /**
    * Provide options for serializing binary data.
    */
   makeWriteOptions(
-    options?: Partial<BinaryWriteOptions>
+    options?: Partial<BinaryWriteOptions>,
   ): Readonly<BinaryWriteOptions>;
 
   /**
@@ -46,7 +46,7 @@ export interface BinaryFormat {
     message: Message,
     reader: IBinaryReader,
     length: number,
-    options: BinaryReadOptions
+    options: BinaryReadOptions,
   ): void;
 
   /**
@@ -55,7 +55,7 @@ export interface BinaryFormat {
   writeMessage(
     message: Message,
     writer: IBinaryWriter,
-    options: BinaryWriteOptions
+    options: BinaryWriteOptions,
   ): void;
 
   /**
@@ -67,7 +67,7 @@ export interface BinaryFormat {
    * For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
    */
   listUnknownFields(
-    message: Message
+    message: Message,
   ): ReadonlyArray<{ no: number; wireType: WireType; data: Uint8Array }>;
 
   /**
@@ -92,7 +92,7 @@ export interface BinaryFormat {
     message: Message,
     no: number,
     wireType: WireType,
-    data: Uint8Array
+    data: Uint8Array,
   ): void;
 }
 
