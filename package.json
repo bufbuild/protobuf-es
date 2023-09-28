@@ -18,6 +18,7 @@
     "npm": ">=8"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.10.2",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "eslint": "^8.46.0",
