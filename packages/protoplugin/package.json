@@ -8,36 +8,27 @@
     "url": "https://github.com/bufbuild/protobuf-es.git",
     "directory": "packages/protoplugin"
   },
-  "sideEffects": false,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/esm/*",
-    "build": "npm run build:cjs && npm run build:esm",
+    "clean": "rm -rf ./dist/*",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
+    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . ecmascript",
     "attw": "attw --pack"
   },
-  "main": "./dist/cjs/index.js",
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+      "module": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/proxy/index.js"
     },
     "./ecmascript": {
-      "import": {
-        "types": "./dist/esm/ecmascript/index.d.ts",
-        "default": "./dist/esm/ecmascript/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/ecmascript/index.d.ts",
-        "default": "./dist/cjs/ecmascript/index.js"
-      }
+      "module": "./dist/esm/ecmascript/index.js",
+      "require": "./dist/cjs/ecmascript/index.js",
+      "import": "./dist/proxy/ecmascript/index.js"
     }
   },
   "typesVersions": {
