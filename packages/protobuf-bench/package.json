@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "report": "node report.mjs > README.md",
-    "clean": "rm -rf README.md src/gen"
+    "clean": "rm -rf src/gen"
   },
   "dependencies": {
     "@bufbuild/buf": "^1.25.0",
