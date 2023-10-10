@@ -25,7 +25,7 @@ git fetch upstream
 ```
 
 Make sure that the tests and the linters pass (you'll need `node`, `bazel`,
-`buf`, `bash` and the latest stable Go release installed):
+`buf`, and `bash`):
 
 Note that your Bazel installation should be `v5.4.0` or earlier as the version
 of Protocol Buffers in use during our `make` process is incompatible with Bazel

@@ -11,8 +11,6 @@ BIN   = .tmp/bin
 BUILD = .tmp/build
 GEN   = .tmp/gen
 PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
-LICENSE_HEADER_YEAR_RANGE := 2021-2023
-LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
 GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
 GOOGLE_PROTOBUF_VERSION = 23.4
 BAZEL_VERSION = 5.4.0
@@ -39,14 +37,6 @@ $(BIN)/conformance_test_runner: $(PB)
 	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_cc_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
 	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
 	@touch $(@)
-
-$(BIN)/license-header: Makefile
-	@mkdir -p $(@D)
-	GOBIN=$(abspath $(BIN)) go install github.com/bufbuild/buf/private/pkg/licenseheader/cmd/license-header@v1.1.0
-
-$(BIN)/git-ls-files-unstaged: Makefile
-	@mkdir -p $(@D)
-	GOBIN=$(abspath $(BIN)) go install github.com/bufbuild/buf/private/pkg/git/cmd/git-ls-files-unstaged@v1.1.0
 
 $(BUILD)/protobuf: node_modules tsconfig.base.json packages/protobuf/tsconfig.json $(shell find packages/protobuf/src -name '*.ts')
 	npm run -w packages/protobuf clean
@@ -200,14 +190,14 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 	npm run -w packages/protoplugin attw
 
 .PHONY: format
-format: node_modules $(BIN)/git-ls-files-unstaged $(BIN)/license-header ## Format all files, adding license headers
+format: node_modules ## Format all files, adding license headers
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
-	$(BIN)/git-ls-files-unstaged | \
-		grep -v $(patsubst %,-e %,$(sort $(LICENSE_HEADER_IGNORES))) | \
-		xargs $(BIN)/license-header \
-			--license-type "apache" \
-			--copyright-holder "Buf Technologies, Inc." \
-			--year-range "$(LICENSE_HEADER_YEAR_RANGE)"
+	npx license-header \
+		--ignore .tmp \
+		--ignore packages/protobuf/src/google/varint.ts \
+		--ignore 'packages/protobuf-bench/src/gen/**/*' \
+		--ignore 'packages/protobuf-conformance/src/gen/**/*' \
+		--ignore 'packages/protobuf-test/src/gen/**/*'
 
 .PHONY: bench
 bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size
@@ -218,17 +208,13 @@ perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
 .PHONY: boostrapwkt
-bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header ## Generate the well-known types in @bufbuild/protobuf
+bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es node_modules ## Generate the well-known types in @bufbuild/protobuf
 	@rm -rf $(TMP)/bootstrapwkt
 	@mkdir -p $(TMP)/bootstrapwkt
 	$(BIN)/protoc \
 		--plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out $(TMP)/bootstrapwkt --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts \
 		--proto_path $(PB)/src $(GOOGLE_PROTOBUF_WKT)
-	find $(TMP)/bootstrapwkt -name '*.ts' | \
-		xargs $(BIN)/license-header \
-			--license-type "apache" \
-			--copyright-holder "Buf Technologies, Inc." \
-			--year-range "$(LICENSE_HEADER_YEAR_RANGE)"
+	npx license-header $(TMP)/bootstrapwkt
 	@# If the generated code differs, use it, and run tests again
 	diff >/dev/null -r packages/protobuf/src/google/protobuf $(TMP)/bootstrapwkt/google/protobuf || \
 		(cp -r $(TMP)/bootstrapwkt/google/protobuf packages/protobuf/src/google/ && $(MAKE) build test format lint)
