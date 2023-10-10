@@ -13,15 +13,17 @@ GEN   = .tmp/gen
 PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
 LICENSE_HEADER_YEAR_RANGE := 2021-2023
 LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
-GOOGLE_PROTOBUF_WKT = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-GOOGLE_PROTOBUF_VERSION = 23.4
+GOOGLE_PROTOBUF_VERSION = 24.4
+GOOGLE_PROTOBUF_WKT_PROTOS = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
+# TODO add the following files again once we have sufficient support for editions: google/protobuf/unittest_preserve_unknown_enum2.proto google/protobuf/unittest_preserve_unknown_enum.proto google/protobuf/unittest_no_field_presence.proto google/protobuf/unittest_lazy_dependencies_enum.proto google/protobuf/unittest_lazy_dependencies.proto google/protobuf/unittest_arena.proto google/protobuf/unittest_drop_unknown_fields.proto google/protobuf/unittest_lazy_dependencies_custom_option.proto
+GOOGLE_PROTOBUF_UNITTEST_PROTOS = google/protobuf/unittest_optimize_for.proto google/protobuf/unittest_proto3_bad_macros.proto google/protobuf/unittest_well_known_types.proto google/protobuf/unittest_enormous_descriptor.proto google/protobuf/unittest_embed_optimize_for.proto google/protobuf/unittest_invalid_features.proto google/protobuf/unittest_features.proto google/protobuf/unittest_lite.proto google/protobuf/unittest_proto3_arena.proto google/protobuf/unittest_proto3.proto google/protobuf/unittest_import.proto google/protobuf/unittest_no_generic_services.proto google/protobuf/unittest_proto3_optional.proto google/protobuf/unittest_import_public.proto google/protobuf/unittest_retention.proto google/protobuf/unittest.proto google/protobuf/unittest_mset_wire_format.proto google/protobuf/unittest_empty.proto google/protobuf/unittest_import_public_lite.proto google/protobuf/unittest_mset.proto google/protobuf/unittest_import_lite.proto google/protobuf/unittest_proto3_lite.proto google/protobuf/unittest_proto3_arena_lite.proto google/protobuf/unittest_lite_imports_nonlite.proto google/protobuf/unittest_custom_options.proto
 BAZEL_VERSION = 5.4.0
 TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5 5.0.4
 
 node_modules: package-lock.json
 	npm ci
 
-$(PB):
+$(PB): Makefile
 	echo $(PB)
 	@mkdir -p $(TMP)
 	curl -L https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGLE_PROTOBUF_VERSION)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz \
@@ -97,7 +99,7 @@ $(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json pac
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto')
+$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto') Makefile
 	@rm -rf packages/protobuf-test/src/gen/ts/* packages/protobuf-test/src/gen/js/* packages/protobuf-test/descriptorset.bin
 	$(BIN)/protoc \
 		--descriptor_set_out packages/protobuf-test/descriptorset.bin --include_imports --include_source_info \
@@ -105,7 +107,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
 		--proto_path $(PB) --proto_path $(PB)/src -I packages/protobuf-test \
 		$(shell cd packages/protobuf-test && find . -name '*.proto' | cut -sd / -f 2-) \
-		$(shell cd $(PB)/src && find . -name 'unittest*.proto' | cut -sd / -f 2-) \
+		$(GOOGLE_PROTOBUF_UNITTEST_PROTOS) \
 		google/protobuf/type.proto \
 		google/protobuf/test_messages_proto2.proto \
 		google/protobuf/test_messages_proto3.proto
@@ -113,7 +115,7 @@ $(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages
 		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
 		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
 		--proto_path $(PB)/src \
-		$(GOOGLE_PROTOBUF_WKT)
+		$(GOOGLE_PROTOBUF_WKT_PROTOS)
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -218,12 +220,12 @@ perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
 .PHONY: boostrapwkt
-bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header ## Generate the well-known types in @bufbuild/protobuf
+bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es $(BIN)/license-header Makefile ## Generate the well-known types in @bufbuild/protobuf
 	@rm -rf $(TMP)/bootstrapwkt
 	@mkdir -p $(TMP)/bootstrapwkt
 	$(BIN)/protoc \
 		--plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out $(TMP)/bootstrapwkt --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts \
-		--proto_path $(PB)/src $(GOOGLE_PROTOBUF_WKT)
+		--proto_path $(PB)/src $(GOOGLE_PROTOBUF_WKT_PROTOS)
 	find $(TMP)/bootstrapwkt -name '*.ts' | \
 		xargs $(BIN)/license-header \
 			--license-type "apache" \
