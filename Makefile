@@ -207,7 +207,7 @@ bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code si
 perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
-.PHONY: boostrapwkt
+.PHONY: bootstrapwkt
 bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es node_modules ## Generate the well-known types in @bufbuild/protobuf
 	@rm -rf $(TMP)/bootstrapwkt
 	@mkdir -p $(TMP)/bootstrapwkt
