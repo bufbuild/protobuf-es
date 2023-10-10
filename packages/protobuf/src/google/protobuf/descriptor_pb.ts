@@ -419,14 +419,20 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
   uninterpretedOption: UninterpretedOption[] = [];
 
   /**
-   * go/protobuf-stripping-extension-declarations
-   * Like Metadata, but we use a repeated field to hold all extension
-   * declarations. This should avoid the size increases of transforming a large
-   * extension range into small ranges in generated binaries.
+   * For external users: DO NOT USE. We are in the process of open sourcing
+   * extension declaration and executing internal cleanups before it can be
+   * used externally.
    *
    * @generated from field: repeated google.protobuf.ExtensionRangeOptions.Declaration declaration = 2;
    */
   declaration: ExtensionRangeOptions_Declaration[] = [];
+
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 50;
+   */
+  features?: FeatureSet;
 
   /**
    * The verification state of the range.
@@ -447,6 +453,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
     { no: 2, name: "declaration", kind: "message", T: ExtensionRangeOptions_Declaration, repeated: true },
+    { no: 50, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 3, name: "verification", kind: "enum", T: proto2.getEnumType(ExtensionRangeOptions_VerificationState), opt: true, default: ExtensionRangeOptions_VerificationState.UNVERIFIED },
   ]);
 
@@ -520,14 +527,6 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
   type?: string;
 
   /**
-   * Deprecated. Please use "repeated".
-   *
-   * @generated from field: optional bool is_repeated = 4 [deprecated = true];
-   * @deprecated
-   */
-  isRepeated?: boolean;
-
-  /**
    * If true, indicates that the number is reserved in the extension range,
    * and any extension field with the number will fail to compile. Set this
    * when a declared extension field is deleted.
@@ -555,7 +554,6 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
     { no: 1, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "is_repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 5, name: "reserved", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 6, name: "repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
   ]);
@@ -1419,6 +1417,13 @@ export class FileOptions extends Message<FileOptions> {
   rubyPackage?: string;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 50;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here.
    * See the documentation for the "Options" section above.
    *
@@ -1454,6 +1459,7 @@ export class FileOptions extends Message<FileOptions> {
     { no: 41, name: "php_namespace", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 44, name: "php_metadata_namespace", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 45, name: "ruby_package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 50, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -1602,6 +1608,13 @@ export class MessageOptions extends Message<MessageOptions> {
   deprecatedLegacyJsonFieldConflicts?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 12;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1621,6 +1634,7 @@ export class MessageOptions extends Message<MessageOptions> {
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 7, name: "map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 11, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 12, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -1761,15 +1775,21 @@ export class FieldOptions extends Message<FieldOptions> {
   retention?: FieldOptions_OptionRetention;
 
   /**
-   * @generated from field: optional google.protobuf.FieldOptions.OptionTargetType target = 18 [deprecated = true];
-   * @deprecated
-   */
-  target?: FieldOptions_OptionTargetType;
-
-  /**
    * @generated from field: repeated google.protobuf.FieldOptions.OptionTargetType targets = 19;
    */
   targets: FieldOptions_OptionTargetType[] = [];
+
+  /**
+   * @generated from field: repeated google.protobuf.FieldOptions.EditionDefault edition_defaults = 20;
+   */
+  editionDefaults: FieldOptions_EditionDefault[] = [];
+
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 21;
+   */
+  features?: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -1795,8 +1815,9 @@ export class FieldOptions extends Message<FieldOptions> {
     { no: 10, name: "weak", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 16, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 17, name: "retention", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionRetention), opt: true },
-    { no: 18, name: "target", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), opt: true },
     { no: 19, name: "targets", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), repeated: true },
+    { no: 20, name: "edition_defaults", kind: "message", T: FieldOptions_EditionDefault, repeated: true },
+    { no: 21, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -1988,9 +2009,61 @@ proto2.util.setEnumType(FieldOptions_OptionTargetType, "google.protobuf.FieldOpt
 ]);
 
 /**
+ * @generated from message google.protobuf.FieldOptions.EditionDefault
+ */
+export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDefault> {
+  /**
+   * @generated from field: optional string edition = 1;
+   */
+  edition?: string;
+
+  /**
+   * Textproto value.
+   *
+   * @generated from field: optional string value = 2;
+   */
+  value?: string;
+
+  constructor(data?: PartialMessage<FieldOptions_EditionDefault>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "google.protobuf.FieldOptions.EditionDefault";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldOptions_EditionDefault {
+    return new FieldOptions_EditionDefault().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldOptions_EditionDefault {
+    return new FieldOptions_EditionDefault().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldOptions_EditionDefault {
+    return new FieldOptions_EditionDefault().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FieldOptions_EditionDefault | PlainMessage<FieldOptions_EditionDefault> | undefined, b: FieldOptions_EditionDefault | PlainMessage<FieldOptions_EditionDefault> | undefined): boolean {
+    return proto2.util.equals(FieldOptions_EditionDefault, a, b);
+  }
+}
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export class OneofOptions extends Message<OneofOptions> {
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 1;
+   */
+  features?: FeatureSet;
+
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -2006,6 +2079,7 @@ export class OneofOptions extends Message<OneofOptions> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.OneofOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2062,6 +2136,13 @@ export class EnumOptions extends Message<EnumOptions> {
   deprecatedLegacyJsonFieldConflicts?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 7;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -2079,6 +2160,7 @@ export class EnumOptions extends Message<EnumOptions> {
     { no: 2, name: "allow_alias", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 6, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 7, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2114,6 +2196,22 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
   deprecated?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 2;
+   */
+  features?: FeatureSet;
+
+  /**
+   * Indicate that fields annotated with this enum value should not be printed
+   * out when using debug formats, e.g. when the field contains sensitive
+   * credentials.
+   *
+   * @generated from field: optional bool debug_redact = 3 [default = false];
+   */
+  debugRedact?: boolean;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -2129,6 +2227,8 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
   static readonly typeName = "google.protobuf.EnumValueOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 3, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2154,6 +2254,13 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
  */
 export class ServiceOptions extends Message<ServiceOptions> {
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 34;
+   */
+  features?: FeatureSet;
+
+  /**
    * Is this service deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
    * for the service, or it will be completely ignored; in the very least,
@@ -2178,6 +2285,7 @@ export class ServiceOptions extends Message<ServiceOptions> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.ServiceOptions";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 34, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
@@ -2219,6 +2327,13 @@ export class MethodOptions extends Message<MethodOptions> {
   idempotencyLevel?: MethodOptions_IdempotencyLevel;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 35;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -2235,6 +2350,7 @@ export class MethodOptions extends Message<MethodOptions> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 34, name: "idempotency_level", kind: "enum", T: proto2.getEnumType(MethodOptions_IdempotencyLevel), opt: true, default: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN },
+    { no: 35, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2420,6 +2536,254 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
     return proto2.util.equals(UninterpretedOption_NamePart, a, b);
   }
 }
+
+/**
+ * TODO(b/274655146) Enums in C++ gencode (and potentially other languages) are
+ * not well scoped.  This means that each of the feature enums below can clash
+ * with each other.  The short names we've chosen maximize call-site
+ * readability, but leave us very open to this scenario.  A future feature will
+ * be designed and implemented to handle this, hopefully before we ever hit a
+ * conflict here.
+ *
+ * @generated from message google.protobuf.FeatureSet
+ */
+export class FeatureSet extends Message<FeatureSet> {
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.FieldPresence field_presence = 1;
+   */
+  fieldPresence?: FeatureSet_FieldPresence;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.EnumType enum_type = 2;
+   */
+  enumType?: FeatureSet_EnumType;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.RepeatedFieldEncoding repeated_field_encoding = 3;
+   */
+  repeatedFieldEncoding?: FeatureSet_RepeatedFieldEncoding;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.StringFieldValidation string_field_validation = 4;
+   */
+  stringFieldValidation?: FeatureSet_StringFieldValidation;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.MessageEncoding message_encoding = 5;
+   */
+  messageEncoding?: FeatureSet_MessageEncoding;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.JsonFormat json_format = 6;
+   */
+  jsonFormat?: FeatureSet_JsonFormat;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet raw_features = 999;
+   */
+  rawFeatures?: FeatureSet;
+
+  constructor(data?: PartialMessage<FeatureSet>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "google.protobuf.FeatureSet";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "field_presence", kind: "enum", T: proto2.getEnumType(FeatureSet_FieldPresence), opt: true },
+    { no: 2, name: "enum_type", kind: "enum", T: proto2.getEnumType(FeatureSet_EnumType), opt: true },
+    { no: 3, name: "repeated_field_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_RepeatedFieldEncoding), opt: true },
+    { no: 4, name: "string_field_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_StringFieldValidation), opt: true },
+    { no: 5, name: "message_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_MessageEncoding), opt: true },
+    { no: 6, name: "json_format", kind: "enum", T: proto2.getEnumType(FeatureSet_JsonFormat), opt: true },
+    { no: 999, name: "raw_features", kind: "message", T: FeatureSet, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSet {
+    return new FeatureSet().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FeatureSet {
+    return new FeatureSet().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FeatureSet {
+    return new FeatureSet().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FeatureSet | PlainMessage<FeatureSet> | undefined, b: FeatureSet | PlainMessage<FeatureSet> | undefined): boolean {
+    return proto2.util.equals(FeatureSet, a, b);
+  }
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.FieldPresence
+ */
+export enum FeatureSet_FieldPresence {
+  /**
+   * @generated from enum value: FIELD_PRESENCE_UNKNOWN = 0;
+   */
+  FIELD_PRESENCE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: EXPLICIT = 1;
+   */
+  EXPLICIT = 1,
+
+  /**
+   * @generated from enum value: IMPLICIT = 2;
+   */
+  IMPLICIT = 2,
+
+  /**
+   * @generated from enum value: LEGACY_REQUIRED = 3;
+   */
+  LEGACY_REQUIRED = 3,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_FieldPresence)
+proto2.util.setEnumType(FeatureSet_FieldPresence, "google.protobuf.FeatureSet.FieldPresence", [
+  { no: 0, name: "FIELD_PRESENCE_UNKNOWN" },
+  { no: 1, name: "EXPLICIT" },
+  { no: 2, name: "IMPLICIT" },
+  { no: 3, name: "LEGACY_REQUIRED" },
+]);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.EnumType
+ */
+export enum FeatureSet_EnumType {
+  /**
+   * @generated from enum value: ENUM_TYPE_UNKNOWN = 0;
+   */
+  ENUM_TYPE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: OPEN = 1;
+   */
+  OPEN = 1,
+
+  /**
+   * @generated from enum value: CLOSED = 2;
+   */
+  CLOSED = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_EnumType)
+proto2.util.setEnumType(FeatureSet_EnumType, "google.protobuf.FeatureSet.EnumType", [
+  { no: 0, name: "ENUM_TYPE_UNKNOWN" },
+  { no: 1, name: "OPEN" },
+  { no: 2, name: "CLOSED" },
+]);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding
+ */
+export enum FeatureSet_RepeatedFieldEncoding {
+  /**
+   * @generated from enum value: REPEATED_FIELD_ENCODING_UNKNOWN = 0;
+   */
+  REPEATED_FIELD_ENCODING_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: PACKED = 1;
+   */
+  PACKED = 1,
+
+  /**
+   * @generated from enum value: EXPANDED = 2;
+   */
+  EXPANDED = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_RepeatedFieldEncoding)
+proto2.util.setEnumType(FeatureSet_RepeatedFieldEncoding, "google.protobuf.FeatureSet.RepeatedFieldEncoding", [
+  { no: 0, name: "REPEATED_FIELD_ENCODING_UNKNOWN" },
+  { no: 1, name: "PACKED" },
+  { no: 2, name: "EXPANDED" },
+]);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.StringFieldValidation
+ */
+export enum FeatureSet_StringFieldValidation {
+  /**
+   * @generated from enum value: STRING_FIELD_VALIDATION_UNKNOWN = 0;
+   */
+  STRING_FIELD_VALIDATION_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: MANDATORY = 1;
+   */
+  MANDATORY = 1,
+
+  /**
+   * @generated from enum value: HINT = 2;
+   */
+  HINT = 2,
+
+  /**
+   * @generated from enum value: NONE = 3;
+   */
+  NONE = 3,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_StringFieldValidation)
+proto2.util.setEnumType(FeatureSet_StringFieldValidation, "google.protobuf.FeatureSet.StringFieldValidation", [
+  { no: 0, name: "STRING_FIELD_VALIDATION_UNKNOWN" },
+  { no: 1, name: "MANDATORY" },
+  { no: 2, name: "HINT" },
+  { no: 3, name: "NONE" },
+]);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.MessageEncoding
+ */
+export enum FeatureSet_MessageEncoding {
+  /**
+   * @generated from enum value: MESSAGE_ENCODING_UNKNOWN = 0;
+   */
+  MESSAGE_ENCODING_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: LENGTH_PREFIXED = 1;
+   */
+  LENGTH_PREFIXED = 1,
+
+  /**
+   * @generated from enum value: DELIMITED = 2;
+   */
+  DELIMITED = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_MessageEncoding)
+proto2.util.setEnumType(FeatureSet_MessageEncoding, "google.protobuf.FeatureSet.MessageEncoding", [
+  { no: 0, name: "MESSAGE_ENCODING_UNKNOWN" },
+  { no: 1, name: "LENGTH_PREFIXED" },
+  { no: 2, name: "DELIMITED" },
+]);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.JsonFormat
+ */
+export enum FeatureSet_JsonFormat {
+  /**
+   * @generated from enum value: JSON_FORMAT_UNKNOWN = 0;
+   */
+  JSON_FORMAT_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: ALLOW = 1;
+   */
+  ALLOW = 1,
+
+  /**
+   * @generated from enum value: LEGACY_BEST_EFFORT = 2;
+   */
+  LEGACY_BEST_EFFORT = 2,
+}
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_JsonFormat)
+proto2.util.setEnumType(FeatureSet_JsonFormat, "google.protobuf.FeatureSet.JsonFormat", [
+  { no: 0, name: "JSON_FORMAT_UNKNOWN" },
+  { no: 1, name: "ALLOW" },
+  { no: 2, name: "LEGACY_BEST_EFFORT" },
+]);
 
 /**
  * Encapsulates information about the original source file from which a

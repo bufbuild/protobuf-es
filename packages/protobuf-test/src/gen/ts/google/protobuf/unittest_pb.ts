@@ -3570,6 +3570,43 @@ export class TestLazyMessage extends Message<TestLazyMessage> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestLazyMessageRepeated
+ */
+export class TestLazyMessageRepeated extends Message<TestLazyMessageRepeated> {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestLazyMessage repeated_message = 1;
+   */
+  repeatedMessage: TestLazyMessage[] = [];
+
+  constructor(data?: PartialMessage<TestLazyMessageRepeated>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestLazyMessageRepeated";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "repeated_message", kind: "message", T: TestLazyMessage, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLazyMessageRepeated {
+    return new TestLazyMessageRepeated().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLazyMessageRepeated {
+    return new TestLazyMessageRepeated().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLazyMessageRepeated {
+    return new TestLazyMessageRepeated().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestLazyMessageRepeated | PlainMessage<TestLazyMessageRepeated> | undefined, b: TestLazyMessageRepeated | PlainMessage<TestLazyMessageRepeated> | undefined): boolean {
+    return proto2.util.equals(TestLazyMessageRepeated, a, b);
+  }
+}
+
+/**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy
  */
 export class TestEagerMaybeLazy extends Message<TestEagerMaybeLazy> {
@@ -9117,6 +9154,49 @@ export class BadFieldNames extends Message<BadFieldNames> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestNestedMessageRedaction
+ */
+export class TestNestedMessageRedaction extends Message<TestNestedMessageRedaction> {
+  /**
+   * @generated from field: optional string optional_unredacted_nested_string = 1;
+   */
+  optionalUnredactedNestedString?: string;
+
+  /**
+   * @generated from field: optional string optional_redacted_nested_string = 2;
+   */
+  optionalRedactedNestedString?: string;
+
+  constructor(data?: PartialMessage<TestNestedMessageRedaction>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedMessageRedaction";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "optional_unredacted_nested_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "optional_redacted_nested_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedMessageRedaction {
+    return new TestNestedMessageRedaction().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedMessageRedaction {
+    return new TestNestedMessageRedaction().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageRedaction {
+    return new TestNestedMessageRedaction().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestNestedMessageRedaction | PlainMessage<TestNestedMessageRedaction> | undefined, b: TestNestedMessageRedaction | PlainMessage<TestNestedMessageRedaction> | undefined): boolean {
+    return proto2.util.equals(TestNestedMessageRedaction, a, b);
+  }
+}
+
+/**
  * @generated from message protobuf_unittest.RedactedFields
  */
 export class RedactedFields extends Message<RedactedFields> {
@@ -9124,6 +9204,51 @@ export class RedactedFields extends Message<RedactedFields> {
    * @generated from field: optional string optional_redacted_string = 1;
    */
   optionalRedactedString?: string;
+
+  /**
+   * @generated from field: optional string optional_unredacted_string = 2;
+   */
+  optionalUnredactedString?: string;
+
+  /**
+   * @generated from field: repeated string repeated_redacted_string = 3;
+   */
+  repeatedRedactedString: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_unredacted_string = 4;
+   */
+  repeatedUnredactedString: string[] = [];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_redacted_message = 5;
+   */
+  optionalRedactedMessage?: TestNestedMessageRedaction;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_unredacted_message = 6;
+   */
+  optionalUnredactedMessage?: TestNestedMessageRedaction;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_redacted_message = 7;
+   */
+  repeatedRedactedMessage: TestNestedMessageRedaction[] = [];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_unredacted_message = 8;
+   */
+  repeatedUnredactedMessage: TestNestedMessageRedaction[] = [];
+
+  /**
+   * @generated from field: map<string, string> map_redacted_string = 9;
+   */
+  mapRedactedString: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: map<string, string> map_unredacted_string = 10;
+   */
+  mapUnredactedString: { [key: string]: string } = {};
 
   constructor(data?: PartialMessage<RedactedFields>) {
     super();
@@ -9134,6 +9259,15 @@ export class RedactedFields extends Message<RedactedFields> {
   static readonly typeName = "protobuf_unittest.RedactedFields";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "optional_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "optional_unredacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "repeated_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "repeated_unredacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "optional_redacted_message", kind: "message", T: TestNestedMessageRedaction, opt: true },
+    { no: 6, name: "optional_unredacted_message", kind: "message", T: TestNestedMessageRedaction, opt: true },
+    { no: 7, name: "repeated_redacted_message", kind: "message", T: TestNestedMessageRedaction, repeated: true },
+    { no: 8, name: "repeated_unredacted_message", kind: "message", T: TestNestedMessageRedaction, repeated: true },
+    { no: 9, name: "map_redacted_string", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 10, name: "map_unredacted_string", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RedactedFields {
@@ -9195,4 +9329,73 @@ export class TestCord extends Message<TestCord> {
     return proto2.util.equals(TestCord, a, b);
   }
 }
+
+/**
+ * @generated from message protobuf_unittest.TestPackedEnumSmallRange
+ */
+export class TestPackedEnumSmallRange extends Message<TestPackedEnumSmallRange> {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestPackedEnumSmallRange.NestedEnum vals = 1 [packed = true];
+   */
+  vals: TestPackedEnumSmallRange_NestedEnum[] = [];
+
+  constructor(data?: PartialMessage<TestPackedEnumSmallRange>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestPackedEnumSmallRange";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "vals", kind: "enum", T: proto2.getEnumType(TestPackedEnumSmallRange_NestedEnum), repeated: true, packed: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedEnumSmallRange {
+    return new TestPackedEnumSmallRange().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestPackedEnumSmallRange {
+    return new TestPackedEnumSmallRange().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedEnumSmallRange {
+    return new TestPackedEnumSmallRange().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestPackedEnumSmallRange | PlainMessage<TestPackedEnumSmallRange> | undefined, b: TestPackedEnumSmallRange | PlainMessage<TestPackedEnumSmallRange> | undefined): boolean {
+    return proto2.util.equals(TestPackedEnumSmallRange, a, b);
+  }
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum
+ */
+export enum TestPackedEnumSmallRange_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 3;
+   */
+  BAZ = 3,
+}
+// Retrieve enum metadata with: proto2.getEnumType(TestPackedEnumSmallRange_NestedEnum)
+proto2.util.setEnumType(TestPackedEnumSmallRange_NestedEnum, "protobuf_unittest.TestPackedEnumSmallRange.NestedEnum", [
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "FOO" },
+  { no: 2, name: "BAR" },
+  { no: 3, name: "BAZ" },
+]);
 

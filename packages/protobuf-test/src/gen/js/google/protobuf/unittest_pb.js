@@ -911,6 +911,16 @@ export const TestLazyMessage = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.TestLazyMessageRepeated
+ */
+export const TestLazyMessageRepeated = proto2.makeMessageType(
+  "protobuf_unittest.TestLazyMessageRepeated",
+  () => [
+    { no: 1, name: "repeated_message", kind: "message", T: TestLazyMessage, repeated: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy
  */
 export const TestEagerMaybeLazy = proto2.makeMessageType(
@@ -2232,12 +2242,32 @@ export const BadFieldNames = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.TestNestedMessageRedaction
+ */
+export const TestNestedMessageRedaction = proto2.makeMessageType(
+  "protobuf_unittest.TestNestedMessageRedaction",
+  () => [
+    { no: 1, name: "optional_unredacted_nested_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "optional_redacted_nested_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.RedactedFields
  */
 export const RedactedFields = proto2.makeMessageType(
   "protobuf_unittest.RedactedFields",
   () => [
     { no: 1, name: "optional_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "optional_unredacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "repeated_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "repeated_unredacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "optional_redacted_message", kind: "message", T: TestNestedMessageRedaction, opt: true },
+    { no: 6, name: "optional_unredacted_message", kind: "message", T: TestNestedMessageRedaction, opt: true },
+    { no: 7, name: "repeated_redacted_message", kind: "message", T: TestNestedMessageRedaction, repeated: true },
+    { no: 8, name: "repeated_unredacted_message", kind: "message", T: TestNestedMessageRedaction, repeated: true },
+    { no: 9, name: "map_redacted_string", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 10, name: "map_unredacted_string", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
   ],
 );
 
@@ -2249,6 +2279,29 @@ export const TestCord = proto2.makeMessageType(
   () => [
     { no: 1, name: "optional_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 2, name: "optional_bytes_cord_default", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x68, 0x65, 0x6C, 0x6C, 0x6F]) },
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestPackedEnumSmallRange
+ */
+export const TestPackedEnumSmallRange = proto2.makeMessageType(
+  "protobuf_unittest.TestPackedEnumSmallRange",
+  () => [
+    { no: 1, name: "vals", kind: "enum", T: proto2.getEnumType(TestPackedEnumSmallRange_NestedEnum), repeated: true, packed: true },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum
+ */
+export const TestPackedEnumSmallRange_NestedEnum = proto2.makeEnum(
+  "protobuf_unittest.TestPackedEnumSmallRange.NestedEnum",
+  [
+    {no: 0, name: "UNSPECIFIED"},
+    {no: 1, name: "FOO"},
+    {no: 2, name: "BAR"},
+    {no: 3, name: "BAZ"},
   ],
 );
 

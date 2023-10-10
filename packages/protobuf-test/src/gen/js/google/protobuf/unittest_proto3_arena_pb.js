@@ -213,6 +213,7 @@ export const NestedTestAllTypes = proto3.makeMessageType(
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes },
     { no: 2, name: "payload", kind: "message", T: TestAllTypes },
     { no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true },
+    { no: 4, name: "lazy_payload", kind: "message", T: TestAllTypes },
   ],
 );
 
