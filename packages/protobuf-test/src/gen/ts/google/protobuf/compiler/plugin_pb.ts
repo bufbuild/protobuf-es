@@ -136,6 +136,11 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
    * they import.  The files will appear in topological order, so each file
    * appears before any file that imports it.
    *
+   * Note: the files listed in files_to_generate will include runtime-retention
+   * options only, but all other files will include source-retention options.
+   * The source_file_descriptors field below is available in case you need
+   * source-retention options for files_to_generate.
+   *
    * protoc guarantees that all proto_files will be written after
    * the fields above, even though this is not technically guaranteed by the
    * protobuf wire format.  This theoretically could allow a plugin to stream
@@ -150,6 +155,15 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
    * @generated from field: repeated google.protobuf.FileDescriptorProto proto_file = 15;
    */
   protoFile: FileDescriptorProto[] = [];
+
+  /**
+   * File descriptors with all options, including source-retention options.
+   * These descriptors are only provided for the files listed in
+   * files_to_generate.
+   *
+   * @generated from field: repeated google.protobuf.FileDescriptorProto source_file_descriptors = 17;
+   */
+  sourceFileDescriptors: FileDescriptorProto[] = [];
 
   /**
    * The version number of protocol compiler.
@@ -169,6 +183,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
     { no: 1, name: "file_to_generate", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 2, name: "parameter", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 15, name: "proto_file", kind: "message", T: FileDescriptorProto, repeated: true },
+    { no: 17, name: "source_file_descriptors", kind: "message", T: FileDescriptorProto, repeated: true },
     { no: 3, name: "compiler_version", kind: "message", T: Version, opt: true },
   ]);
 
@@ -267,11 +282,17 @@ export enum CodeGeneratorResponse_Feature {
    * @generated from enum value: FEATURE_PROTO3_OPTIONAL = 1;
    */
   PROTO3_OPTIONAL = 1,
+
+  /**
+   * @generated from enum value: FEATURE_SUPPORTS_EDITIONS = 2;
+   */
+  SUPPORTS_EDITIONS = 2,
 }
 // Retrieve enum metadata with: proto2.getEnumType(CodeGeneratorResponse_Feature)
 proto2.util.setEnumType(CodeGeneratorResponse_Feature, "google.protobuf.compiler.CodeGeneratorResponse.Feature", [
   { no: 0, name: "FEATURE_NONE" },
   { no: 1, name: "FEATURE_PROTO3_OPTIONAL" },
+  { no: 2, name: "FEATURE_SUPPORTS_EDITIONS" },
 ]);
 
 /**

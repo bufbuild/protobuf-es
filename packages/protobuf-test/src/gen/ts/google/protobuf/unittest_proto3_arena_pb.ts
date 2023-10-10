@@ -862,6 +862,11 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
    */
   repeatedChild: NestedTestAllTypes[] = [];
 
+  /**
+   * @generated from field: proto3_arena_unittest.TestAllTypes lazy_payload = 4;
+   */
+  lazyPayload?: TestAllTypes;
+
   constructor(data?: PartialMessage<NestedTestAllTypes>) {
     super();
     proto3.util.initPartial(data, this);
@@ -873,6 +878,7 @@ export class NestedTestAllTypes extends Message<NestedTestAllTypes> {
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes },
     { no: 2, name: "payload", kind: "message", T: TestAllTypes },
     { no: 3, name: "repeated_child", kind: "message", T: NestedTestAllTypes, repeated: true },
+    { no: 4, name: "lazy_payload", kind: "message", T: TestAllTypes },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestAllTypes {
