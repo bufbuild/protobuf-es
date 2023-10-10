@@ -74,6 +74,7 @@ export const CodeGeneratorRequest = proto2.makeMessageType(
     { no: 1, name: "file_to_generate", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 2, name: "parameter", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 15, name: "proto_file", kind: "message", T: FileDescriptorProto, repeated: true },
+    { no: 17, name: "source_file_descriptors", kind: "message", T: FileDescriptorProto, repeated: true },
     { no: 3, name: "compiler_version", kind: "message", T: Version, opt: true },
   ],
 );
@@ -102,6 +103,7 @@ export const CodeGeneratorResponse_Feature = proto2.makeEnum(
   [
     {no: 0, name: "FEATURE_NONE", localName: "NONE"},
     {no: 1, name: "FEATURE_PROTO3_OPTIONAL", localName: "PROTO3_OPTIONAL"},
+    {no: 2, name: "FEATURE_SUPPORTS_EDITIONS", localName: "SUPPORTS_EDITIONS"},
   ],
 );
 

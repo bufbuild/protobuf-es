@@ -137,6 +137,7 @@ export const ExtensionRangeOptions = proto2.makeMessageType(
   () => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
     { no: 2, name: "declaration", kind: "message", T: ExtensionRangeOptions_Declaration, repeated: true },
+    { no: 50, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 3, name: "verification", kind: "enum", T: proto2.getEnumType(ExtensionRangeOptions_VerificationState), opt: true, default: ExtensionRangeOptions_VerificationState.UNVERIFIED },
   ],
 );
@@ -163,7 +164,6 @@ export const ExtensionRangeOptions_Declaration = proto2.makeMessageType(
     { no: 1, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "full_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "is_repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 5, name: "reserved", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 6, name: "repeated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
   ],
@@ -350,6 +350,7 @@ export const FileOptions = proto2.makeMessageType(
     { no: 41, name: "php_namespace", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 44, name: "php_metadata_namespace", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 45, name: "ruby_package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 50, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -379,6 +380,7 @@ export const MessageOptions = proto2.makeMessageType(
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 7, name: "map_entry", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 11, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 12, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -398,8 +400,9 @@ export const FieldOptions = proto2.makeMessageType(
     { no: 10, name: "weak", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 16, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 17, name: "retention", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionRetention), opt: true },
-    { no: 18, name: "target", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), opt: true },
     { no: 19, name: "targets", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), repeated: true },
+    { no: 20, name: "edition_defaults", kind: "message", T: FieldOptions_EditionDefault, repeated: true },
+    { no: 21, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -469,11 +472,24 @@ export const FieldOptions_OptionTargetType = proto2.makeEnum(
 );
 
 /**
+ * @generated from message google.protobuf.FieldOptions.EditionDefault
+ */
+export const FieldOptions_EditionDefault = proto2.makeMessageType(
+  "google.protobuf.FieldOptions.EditionDefault",
+  () => [
+    { no: 1, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+  {localName: "FieldOptions_EditionDefault"},
+);
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export const OneofOptions = proto2.makeMessageType(
   "google.protobuf.OneofOptions",
   () => [
+    { no: 1, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -487,6 +503,7 @@ export const EnumOptions = proto2.makeMessageType(
     { no: 2, name: "allow_alias", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 3, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 6, name: "deprecated_legacy_json_field_conflicts", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 7, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -498,6 +515,8 @@ export const EnumValueOptions = proto2.makeMessageType(
   "google.protobuf.EnumValueOptions",
   () => [
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 3, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -508,6 +527,7 @@ export const EnumValueOptions = proto2.makeMessageType(
 export const ServiceOptions = proto2.makeMessageType(
   "google.protobuf.ServiceOptions",
   () => [
+    { no: 34, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
@@ -521,6 +541,7 @@ export const MethodOptions = proto2.makeMessageType(
   () => [
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 34, name: "idempotency_level", kind: "enum", T: proto2.getEnumType(MethodOptions_IdempotencyLevel), opt: true, default: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN },
+    { no: 35, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -580,6 +601,103 @@ export const UninterpretedOption_NamePart = proto2.makeMessageType(
     { no: 2, name: "is_extension", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ],
   {localName: "UninterpretedOption_NamePart"},
+);
+
+/**
+ * TODO(b/274655146) Enums in C++ gencode (and potentially other languages) are
+ * not well scoped.  This means that each of the feature enums below can clash
+ * with each other.  The short names we've chosen maximize call-site
+ * readability, but leave us very open to this scenario.  A future feature will
+ * be designed and implemented to handle this, hopefully before we ever hit a
+ * conflict here.
+ *
+ * @generated from message google.protobuf.FeatureSet
+ */
+export const FeatureSet = proto2.makeMessageType(
+  "google.protobuf.FeatureSet",
+  () => [
+    { no: 1, name: "field_presence", kind: "enum", T: proto2.getEnumType(FeatureSet_FieldPresence), opt: true },
+    { no: 2, name: "enum_type", kind: "enum", T: proto2.getEnumType(FeatureSet_EnumType), opt: true },
+    { no: 3, name: "repeated_field_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_RepeatedFieldEncoding), opt: true },
+    { no: 4, name: "string_field_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_StringFieldValidation), opt: true },
+    { no: 5, name: "message_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_MessageEncoding), opt: true },
+    { no: 6, name: "json_format", kind: "enum", T: proto2.getEnumType(FeatureSet_JsonFormat), opt: true },
+    { no: 999, name: "raw_features", kind: "message", T: FeatureSet, opt: true },
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.FieldPresence
+ */
+export const FeatureSet_FieldPresence = proto2.makeEnum(
+  "google.protobuf.FeatureSet.FieldPresence",
+  [
+    {no: 0, name: "FIELD_PRESENCE_UNKNOWN"},
+    {no: 1, name: "EXPLICIT"},
+    {no: 2, name: "IMPLICIT"},
+    {no: 3, name: "LEGACY_REQUIRED"},
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.EnumType
+ */
+export const FeatureSet_EnumType = proto2.makeEnum(
+  "google.protobuf.FeatureSet.EnumType",
+  [
+    {no: 0, name: "ENUM_TYPE_UNKNOWN"},
+    {no: 1, name: "OPEN"},
+    {no: 2, name: "CLOSED"},
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding
+ */
+export const FeatureSet_RepeatedFieldEncoding = proto2.makeEnum(
+  "google.protobuf.FeatureSet.RepeatedFieldEncoding",
+  [
+    {no: 0, name: "REPEATED_FIELD_ENCODING_UNKNOWN"},
+    {no: 1, name: "PACKED"},
+    {no: 2, name: "EXPANDED"},
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.StringFieldValidation
+ */
+export const FeatureSet_StringFieldValidation = proto2.makeEnum(
+  "google.protobuf.FeatureSet.StringFieldValidation",
+  [
+    {no: 0, name: "STRING_FIELD_VALIDATION_UNKNOWN"},
+    {no: 1, name: "MANDATORY"},
+    {no: 2, name: "HINT"},
+    {no: 3, name: "NONE"},
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.MessageEncoding
+ */
+export const FeatureSet_MessageEncoding = proto2.makeEnum(
+  "google.protobuf.FeatureSet.MessageEncoding",
+  [
+    {no: 0, name: "MESSAGE_ENCODING_UNKNOWN"},
+    {no: 1, name: "LENGTH_PREFIXED"},
+    {no: 2, name: "DELIMITED"},
+  ],
+);
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.JsonFormat
+ */
+export const FeatureSet_JsonFormat = proto2.makeEnum(
+  "google.protobuf.FeatureSet.JsonFormat",
+  [
+    {no: 0, name: "JSON_FORMAT_UNKNOWN"},
+    {no: 1, name: "ALLOW"},
+    {no: 2, name: "LEGACY_BEST_EFFORT"},
+  ],
 );
 
 /**

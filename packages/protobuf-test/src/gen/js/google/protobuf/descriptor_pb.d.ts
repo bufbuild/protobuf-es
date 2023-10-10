@@ -342,14 +342,20 @@ export declare class ExtensionRangeOptions extends Message<ExtensionRangeOptions
   uninterpretedOption: UninterpretedOption[];
 
   /**
-   * go/protobuf-stripping-extension-declarations
-   * Like Metadata, but we use a repeated field to hold all extension
-   * declarations. This should avoid the size increases of transforming a large
-   * extension range into small ranges in generated binaries.
+   * For external users: DO NOT USE. We are in the process of open sourcing
+   * extension declaration and executing internal cleanups before it can be
+   * used externally.
    *
    * @generated from field: repeated google.protobuf.ExtensionRangeOptions.Declaration declaration = 2;
    */
   declaration: ExtensionRangeOptions_Declaration[];
+
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 50;
+   */
+  features?: FeatureSet;
 
   /**
    * The verification state of the range.
@@ -421,14 +427,6 @@ export declare class ExtensionRangeOptions_Declaration extends Message<Extension
    * @generated from field: optional string type = 3;
    */
   type?: string;
-
-  /**
-   * Deprecated. Please use "repeated".
-   *
-   * @generated from field: optional bool is_repeated = 4 [deprecated = true];
-   * @deprecated
-   */
-  isRepeated?: boolean;
 
   /**
    * If true, indicates that the number is reserved in the extension range,
@@ -1161,6 +1159,13 @@ export declare class FileOptions extends Message<FileOptions> {
   rubyPackage?: string;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 50;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here.
    * See the documentation for the "Options" section above.
    *
@@ -1305,6 +1310,13 @@ export declare class MessageOptions extends Message<MessageOptions> {
   deprecatedLegacyJsonFieldConflicts?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 12;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1446,15 +1458,21 @@ export declare class FieldOptions extends Message<FieldOptions> {
   retention?: FieldOptions_OptionRetention;
 
   /**
-   * @generated from field: optional google.protobuf.FieldOptions.OptionTargetType target = 18 [deprecated = true];
-   * @deprecated
-   */
-  target?: FieldOptions_OptionTargetType;
-
-  /**
    * @generated from field: repeated google.protobuf.FieldOptions.OptionTargetType targets = 19;
    */
   targets: FieldOptions_OptionTargetType[];
+
+  /**
+   * @generated from field: repeated google.protobuf.FieldOptions.EditionDefault edition_defaults = 20;
+   */
+  editionDefaults: FieldOptions_EditionDefault[];
+
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 21;
+   */
+  features?: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -1618,9 +1636,47 @@ export declare enum FieldOptions_OptionTargetType {
 }
 
 /**
+ * @generated from message google.protobuf.FieldOptions.EditionDefault
+ */
+export declare class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDefault> {
+  /**
+   * @generated from field: optional string edition = 1;
+   */
+  edition?: string;
+
+  /**
+   * Textproto value.
+   *
+   * @generated from field: optional string value = 2;
+   */
+  value?: string;
+
+  constructor(data?: PartialMessage<FieldOptions_EditionDefault>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "google.protobuf.FieldOptions.EditionDefault";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldOptions_EditionDefault;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldOptions_EditionDefault;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldOptions_EditionDefault;
+
+  static equals(a: FieldOptions_EditionDefault | PlainMessage<FieldOptions_EditionDefault> | undefined, b: FieldOptions_EditionDefault | PlainMessage<FieldOptions_EditionDefault> | undefined): boolean;
+}
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export declare class OneofOptions extends Message<OneofOptions> {
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 1;
+   */
+  features?: FeatureSet;
+
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
@@ -1679,6 +1735,13 @@ export declare class EnumOptions extends Message<EnumOptions> {
   deprecatedLegacyJsonFieldConflicts?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 7;
+   */
+  features?: FeatureSet;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1715,6 +1778,22 @@ export declare class EnumValueOptions extends Message<EnumValueOptions> {
   deprecated?: boolean;
 
   /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 2;
+   */
+  features?: FeatureSet;
+
+  /**
+   * Indicate that fields annotated with this enum value should not be printed
+   * out when using debug formats, e.g. when the field contains sensitive
+   * credentials.
+   *
+   * @generated from field: optional bool debug_redact = 3 [default = false];
+   */
+  debugRedact?: boolean;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1740,6 +1819,13 @@ export declare class EnumValueOptions extends Message<EnumValueOptions> {
  * @generated from message google.protobuf.ServiceOptions
  */
 export declare class ServiceOptions extends Message<ServiceOptions> {
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 34;
+   */
+  features?: FeatureSet;
+
   /**
    * Is this service deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
@@ -1790,6 +1876,13 @@ export declare class MethodOptions extends Message<MethodOptions> {
    * @generated from field: optional google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];
    */
   idempotencyLevel?: MethodOptions_IdempotencyLevel;
+
+  /**
+   * Any features defined in the specific edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet features = 35;
+   */
+  features?: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -1938,6 +2031,197 @@ export declare class UninterpretedOption_NamePart extends Message<UninterpretedO
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UninterpretedOption_NamePart;
 
   static equals(a: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined, b: UninterpretedOption_NamePart | PlainMessage<UninterpretedOption_NamePart> | undefined): boolean;
+}
+
+/**
+ * TODO(b/274655146) Enums in C++ gencode (and potentially other languages) are
+ * not well scoped.  This means that each of the feature enums below can clash
+ * with each other.  The short names we've chosen maximize call-site
+ * readability, but leave us very open to this scenario.  A future feature will
+ * be designed and implemented to handle this, hopefully before we ever hit a
+ * conflict here.
+ *
+ * @generated from message google.protobuf.FeatureSet
+ */
+export declare class FeatureSet extends Message<FeatureSet> {
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.FieldPresence field_presence = 1;
+   */
+  fieldPresence?: FeatureSet_FieldPresence;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.EnumType enum_type = 2;
+   */
+  enumType?: FeatureSet_EnumType;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.RepeatedFieldEncoding repeated_field_encoding = 3;
+   */
+  repeatedFieldEncoding?: FeatureSet_RepeatedFieldEncoding;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.StringFieldValidation string_field_validation = 4;
+   */
+  stringFieldValidation?: FeatureSet_StringFieldValidation;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.MessageEncoding message_encoding = 5;
+   */
+  messageEncoding?: FeatureSet_MessageEncoding;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet.JsonFormat json_format = 6;
+   */
+  jsonFormat?: FeatureSet_JsonFormat;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet raw_features = 999;
+   */
+  rawFeatures?: FeatureSet;
+
+  constructor(data?: PartialMessage<FeatureSet>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "google.protobuf.FeatureSet";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSet;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FeatureSet;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FeatureSet;
+
+  static equals(a: FeatureSet | PlainMessage<FeatureSet> | undefined, b: FeatureSet | PlainMessage<FeatureSet> | undefined): boolean;
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.FieldPresence
+ */
+export declare enum FeatureSet_FieldPresence {
+  /**
+   * @generated from enum value: FIELD_PRESENCE_UNKNOWN = 0;
+   */
+  FIELD_PRESENCE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: EXPLICIT = 1;
+   */
+  EXPLICIT = 1,
+
+  /**
+   * @generated from enum value: IMPLICIT = 2;
+   */
+  IMPLICIT = 2,
+
+  /**
+   * @generated from enum value: LEGACY_REQUIRED = 3;
+   */
+  LEGACY_REQUIRED = 3,
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.EnumType
+ */
+export declare enum FeatureSet_EnumType {
+  /**
+   * @generated from enum value: ENUM_TYPE_UNKNOWN = 0;
+   */
+  ENUM_TYPE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: OPEN = 1;
+   */
+  OPEN = 1,
+
+  /**
+   * @generated from enum value: CLOSED = 2;
+   */
+  CLOSED = 2,
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding
+ */
+export declare enum FeatureSet_RepeatedFieldEncoding {
+  /**
+   * @generated from enum value: REPEATED_FIELD_ENCODING_UNKNOWN = 0;
+   */
+  REPEATED_FIELD_ENCODING_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: PACKED = 1;
+   */
+  PACKED = 1,
+
+  /**
+   * @generated from enum value: EXPANDED = 2;
+   */
+  EXPANDED = 2,
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.StringFieldValidation
+ */
+export declare enum FeatureSet_StringFieldValidation {
+  /**
+   * @generated from enum value: STRING_FIELD_VALIDATION_UNKNOWN = 0;
+   */
+  STRING_FIELD_VALIDATION_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: MANDATORY = 1;
+   */
+  MANDATORY = 1,
+
+  /**
+   * @generated from enum value: HINT = 2;
+   */
+  HINT = 2,
+
+  /**
+   * @generated from enum value: NONE = 3;
+   */
+  NONE = 3,
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.MessageEncoding
+ */
+export declare enum FeatureSet_MessageEncoding {
+  /**
+   * @generated from enum value: MESSAGE_ENCODING_UNKNOWN = 0;
+   */
+  MESSAGE_ENCODING_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: LENGTH_PREFIXED = 1;
+   */
+  LENGTH_PREFIXED = 1,
+
+  /**
+   * @generated from enum value: DELIMITED = 2;
+   */
+  DELIMITED = 2,
+}
+
+/**
+ * @generated from enum google.protobuf.FeatureSet.JsonFormat
+ */
+export declare enum FeatureSet_JsonFormat {
+  /**
+   * @generated from enum value: JSON_FORMAT_UNKNOWN = 0;
+   */
+  JSON_FORMAT_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: ALLOW = 1;
+   */
+  ALLOW = 1,
+
+  /**
+   * @generated from enum value: LEGACY_BEST_EFFORT = 2;
+   */
+  LEGACY_BEST_EFFORT = 2,
 }
 
 /**

@@ -702,6 +702,11 @@ export declare class NestedTestAllTypes extends Message<NestedTestAllTypes> {
    */
   repeatedChild: NestedTestAllTypes[];
 
+  /**
+   * @generated from field: proto3_arena_unittest.TestAllTypes lazy_payload = 4;
+   */
+  lazyPayload?: TestAllTypes;
+
   constructor(data?: PartialMessage<NestedTestAllTypes>);
 
   static readonly runtime: typeof proto3;

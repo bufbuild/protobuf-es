@@ -2648,6 +2648,30 @@ export declare class TestLazyMessage extends Message<TestLazyMessage> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestLazyMessageRepeated
+ */
+export declare class TestLazyMessageRepeated extends Message<TestLazyMessageRepeated> {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestLazyMessage repeated_message = 1;
+   */
+  repeatedMessage: TestLazyMessage[];
+
+  constructor(data?: PartialMessage<TestLazyMessageRepeated>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestLazyMessageRepeated";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestLazyMessageRepeated;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestLazyMessageRepeated;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestLazyMessageRepeated;
+
+  static equals(a: TestLazyMessageRepeated | PlainMessage<TestLazyMessageRepeated> | undefined, b: TestLazyMessageRepeated | PlainMessage<TestLazyMessageRepeated> | undefined): boolean;
+}
+
+/**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy
  */
 export declare class TestEagerMaybeLazy extends Message<TestEagerMaybeLazy> {
@@ -6719,6 +6743,35 @@ export declare class BadFieldNames extends Message<BadFieldNames> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestNestedMessageRedaction
+ */
+export declare class TestNestedMessageRedaction extends Message<TestNestedMessageRedaction> {
+  /**
+   * @generated from field: optional string optional_unredacted_nested_string = 1;
+   */
+  optionalUnredactedNestedString?: string;
+
+  /**
+   * @generated from field: optional string optional_redacted_nested_string = 2;
+   */
+  optionalRedactedNestedString?: string;
+
+  constructor(data?: PartialMessage<TestNestedMessageRedaction>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestNestedMessageRedaction";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedMessageRedaction;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedMessageRedaction;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedMessageRedaction;
+
+  static equals(a: TestNestedMessageRedaction | PlainMessage<TestNestedMessageRedaction> | undefined, b: TestNestedMessageRedaction | PlainMessage<TestNestedMessageRedaction> | undefined): boolean;
+}
+
+/**
  * @generated from message protobuf_unittest.RedactedFields
  */
 export declare class RedactedFields extends Message<RedactedFields> {
@@ -6726,6 +6779,51 @@ export declare class RedactedFields extends Message<RedactedFields> {
    * @generated from field: optional string optional_redacted_string = 1;
    */
   optionalRedactedString?: string;
+
+  /**
+   * @generated from field: optional string optional_unredacted_string = 2;
+   */
+  optionalUnredactedString?: string;
+
+  /**
+   * @generated from field: repeated string repeated_redacted_string = 3;
+   */
+  repeatedRedactedString: string[];
+
+  /**
+   * @generated from field: repeated string repeated_unredacted_string = 4;
+   */
+  repeatedUnredactedString: string[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_redacted_message = 5;
+   */
+  optionalRedactedMessage?: TestNestedMessageRedaction;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_unredacted_message = 6;
+   */
+  optionalUnredactedMessage?: TestNestedMessageRedaction;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_redacted_message = 7;
+   */
+  repeatedRedactedMessage: TestNestedMessageRedaction[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_unredacted_message = 8;
+   */
+  repeatedUnredactedMessage: TestNestedMessageRedaction[];
+
+  /**
+   * @generated from field: map<string, string> map_redacted_string = 9;
+   */
+  mapRedactedString: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, string> map_unredacted_string = 10;
+   */
+  mapUnredactedString: { [key: string]: string };
 
   constructor(data?: PartialMessage<RedactedFields>);
 
@@ -6769,5 +6867,54 @@ export declare class TestCord extends Message<TestCord> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestCord;
 
   static equals(a: TestCord | PlainMessage<TestCord> | undefined, b: TestCord | PlainMessage<TestCord> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_unittest.TestPackedEnumSmallRange
+ */
+export declare class TestPackedEnumSmallRange extends Message<TestPackedEnumSmallRange> {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestPackedEnumSmallRange.NestedEnum vals = 1 [packed = true];
+   */
+  vals: TestPackedEnumSmallRange_NestedEnum[];
+
+  constructor(data?: PartialMessage<TestPackedEnumSmallRange>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestPackedEnumSmallRange";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestPackedEnumSmallRange;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestPackedEnumSmallRange;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestPackedEnumSmallRange;
+
+  static equals(a: TestPackedEnumSmallRange | PlainMessage<TestPackedEnumSmallRange> | undefined, b: TestPackedEnumSmallRange | PlainMessage<TestPackedEnumSmallRange> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum
+ */
+export declare enum TestPackedEnumSmallRange_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 3;
+   */
+  BAZ = 3,
 }
 
