@@ -29,7 +29,7 @@ describe("custom plugin", async () => {
       assert.ok(client !== undefined);
       assert.equal(
         (client as unknown as Record<string, unknown>).baseUrl,
-        "https://example.com"
+        "https://example.com",
       );
     });
     it("should have method for unary RPC", () => {
@@ -45,7 +45,7 @@ describe("custom plugin", async () => {
           new Response('{"sentence":"ho"}', {
             status: 200,
             headers: { "Content-Type": "application/json" },
-          })
+          }),
       );
       const client = new ElizaServiceClient("https://example.com");
       const res = await client.say(new SayRequest({ sentence: "hi" }));
@@ -54,12 +54,12 @@ describe("custom plugin", async () => {
       const [argInput, argInit] = fetch.mock.calls[0].arguments;
       assert.strictEqual(
         argInput,
-        "https://example.com/connectrpc.eliza.v1.ElizaService/Say"
+        "https://example.com/connectrpc.eliza.v1.ElizaService/Say",
       );
       assert.equal(argInit?.method, "POST");
       assert.equal(
         new Headers(argInit?.headers).get("Content-Type"),
-        "application/json"
+        "application/json",
       );
       assert.equal(argInit?.body, '{"sentence":"hi"}');
     });
