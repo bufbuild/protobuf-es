@@ -261,6 +261,14 @@ describe("toPlainMessage", () => {
     const act = toPlainMessage(new WrappersMessage(exp));
     expect(act).toEqual(exp);
   });
+  describe("on plain messages", () => {
+    const exp: PlainMessage<MessageFieldMessage> = {
+      messageField: undefined,
+      repeatedMessageField: [],
+    };
+    const act = toPlainMessage(exp);
+    expect(act).toBe(exp);
+  });
 });
 
 function expectPlainObject(value: unknown) {

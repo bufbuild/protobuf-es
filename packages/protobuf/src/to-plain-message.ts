@@ -18,14 +18,21 @@ import { Message } from "./message.js";
 import type { AnyMessage, PlainMessage } from "./message.js";
 
 /**
- * toPlainMessage returns a new object by striping
+ * toPlainMessage returns a new object by stripping
  * all methods from a message, leaving only fields and
  * oneof groups. It is recursive, meaning it applies this
  * same logic to all nested message fields as well.
+ *
+ * If the argument is already a plain message, it is
+ * returned as-is.
  */
 export function toPlainMessage<T extends Message<T>>(
-  message: T,
+  message: T | PlainMessage<T>,
 ): PlainMessage<T> {
+  if (!(message instanceof Message)) {
+    return message;
+  }
+
   const type = message.getType();
   const target = {} as AnyMessage;
   for (const member of type.fields.byMember()) {
