@@ -91,8 +91,7 @@ $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.ge
 	@touch $(@)
 
 $(GEN)/protobuf-bench: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
-	npm run -w packages/protobuf-bench clean
-	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
+	npm run -w packages/protobuf-bench generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
