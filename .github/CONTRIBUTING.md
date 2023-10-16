@@ -24,23 +24,12 @@ git remote add upstream https://github.com/bufbuild/protobuf-es.git
 git fetch upstream
 ```
 
-Make sure that the tests and the linters pass (you'll need `node`, `bazel`,
-`buf`, and `bash`):
-
-Note that your Bazel installation should be `v5.4.0` or earlier as the version
-of Protocol Buffers in use during our `make` process is incompatible with Bazel
-`v6.0` and above.  If you use [Bazelisk](https://github.com/bazelbuild/bazelisk)
-to manage Bazel installations, then this should be seamless as our Makefile
-uses Bazelisk syntax to invoke Bazel.  However, if you have installed Bazel via
-other means (Homebrew, etc.) then you will have to downgrade to successfully
-run the below command.
+Make sure that the tests and the linters pass (you'll need Node.js in the
+version specified in .nvmrc, `bash`, and `make`):
 
 ```
 make 
 ```
-
-If you are on Apple M1 and see the error `symbol not found in flat namespace (_CFRelease)`, 
-when building protoc, you may need to install XCode from the Apple App Store.
 
 
 ## Making Changes

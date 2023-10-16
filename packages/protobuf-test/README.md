@@ -1,4 +1,4 @@
-# Tests
+# Tests for @bufbuild/protobuf
 
 This package provides test coverage for `@bufbuild/protobuf` with Jest. 
 

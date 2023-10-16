@@ -79,7 +79,7 @@ module.exports = {
     {
       files: ["**/*.{js,mjs,cjs}"],
       parserOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 13, // ES2022 - https://eslint.org/docs/latest/use/configure/language-options#specifying-environments
       },
       extends: ["eslint:recommended", "plugin:node/recommended"],
       rules: {
@@ -94,6 +94,10 @@ module.exports = {
         "node/prefer-promises/dns": "error",
         "node/prefer-promises/fs": "error",
         "no-process-exit": "off",
+        "node/no-unsupported-features/node-builtins": ["error", {
+          "version": ">=16.0.0",
+          "ignores": []
+        }]
       },
     },
   ],

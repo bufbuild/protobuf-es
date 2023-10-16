@@ -14,6 +14,10 @@
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
     "build:proxy": "node ../../scripts/gen-esm-proxy.mjs .",
+    "prebootstrap": "rm -rf .tmp && mkdir -p .tmp/google/protobuf && cp -rp src/google/protobuf/* .tmp/google/protobuf",
+    "bootstrap": "protoc --es_out=src --es_opt=bootstrap_wkt=true,ts_nocheck=false,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt)",
+    "postbootstrap": "license-header src/google/protobuf",
+    "bootstrap-diff": "diff >/dev/null -r .tmp/google/protobuf src/google/protobuf && cp -rp .tmp/google/protobuf/* src/google/protobuf",
     "attw": "attw --pack"
   },
   "type": "module",
@@ -25,6 +29,9 @@
       "require": "./dist/cjs/index.js",
       "import": "./dist/proxy/index.js"
     }
+  },
+  "devDependencies": {
+    "upstream-protobuf": "*"
   },
   "files": [
     "dist/**"

@@ -10,36 +10,14 @@ TMP   = .tmp
 BIN   = .tmp/bin
 BUILD = .tmp/build
 GEN   = .tmp/gen
-PB   =  .tmp/protobuf-$(GOOGLE_PROTOBUF_VERSION)
-LICENSE_HEADER_YEAR_RANGE := 2021-2023
-LICENSE_HEADER_IGNORES := .tmp\/ node_module\/ packages\/protobuf-conformance\/bin\/conformance_esm.js packages\/protobuf-conformance\/src\/gen\/ packages\/protobuf-test\/src\/gen\/ packages\/protobuf\/src\/google\/varint.ts packages\/protobuf-bench\/src\/gen\/ packages\/protobuf\/dist\/ packages\/protobuf-test\/dist\/ scripts\/ packages\/protoplugin-example/src/protoc-gen-twirp-es.ts
-GOOGLE_PROTOBUF_VERSION = 24.4
-GOOGLE_PROTOBUF_WKT_PROTOS = google/protobuf/api.proto google/protobuf/any.proto google/protobuf/compiler/plugin.proto google/protobuf/descriptor.proto google/protobuf/duration.proto google/protobuf/descriptor.proto google/protobuf/empty.proto google/protobuf/field_mask.proto google/protobuf/source_context.proto google/protobuf/struct.proto google/protobuf/timestamp.proto google/protobuf/type.proto google/protobuf/wrappers.proto
-# TODO add the following files again once we have sufficient support for editions: google/protobuf/unittest_preserve_unknown_enum2.proto google/protobuf/unittest_preserve_unknown_enum.proto google/protobuf/unittest_no_field_presence.proto google/protobuf/unittest_lazy_dependencies_enum.proto google/protobuf/unittest_lazy_dependencies.proto google/protobuf/unittest_arena.proto google/protobuf/unittest_drop_unknown_fields.proto google/protobuf/unittest_lazy_dependencies_custom_option.proto
-GOOGLE_PROTOBUF_UNITTEST_PROTOS = google/protobuf/unittest_optimize_for.proto google/protobuf/unittest_proto3_bad_macros.proto google/protobuf/unittest_well_known_types.proto google/protobuf/unittest_enormous_descriptor.proto google/protobuf/unittest_embed_optimize_for.proto google/protobuf/unittest_invalid_features.proto google/protobuf/unittest_features.proto google/protobuf/unittest_lite.proto google/protobuf/unittest_proto3_arena.proto google/protobuf/unittest_proto3.proto google/protobuf/unittest_import.proto google/protobuf/unittest_no_generic_services.proto google/protobuf/unittest_proto3_optional.proto google/protobuf/unittest_import_public.proto google/protobuf/unittest_retention.proto google/protobuf/unittest.proto google/protobuf/unittest_mset_wire_format.proto google/protobuf/unittest_empty.proto google/protobuf/unittest_import_public_lite.proto google/protobuf/unittest_mset.proto google/protobuf/unittest_import_lite.proto google/protobuf/unittest_proto3_lite.proto google/protobuf/unittest_proto3_arena_lite.proto google/protobuf/unittest_lite_imports_nonlite.proto google/protobuf/unittest_custom_options.proto
-BAZEL_VERSION = 5.4.0
 TS_VERSIONS = 4.1.2 4.2.4 4.3.5 4.4.4 4.5.2 4.6.4 4.7.4 4.8.4 4.9.5 5.0.4
 
 node_modules: package-lock.json
 	npm ci
 
-$(PB): Makefile
-	echo $(PB)
-	@mkdir -p $(TMP)
-	curl -L https://github.com/protocolbuffers/protobuf/releases/download/v$(GOOGLE_PROTOBUF_VERSION)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz \
-		> $(TMP)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz
-	tar -xzf $(TMP)/protobuf-$(GOOGLE_PROTOBUF_VERSION).tar.gz -C $(TMP)/
-
-$(BIN)/protoc: $(PB)
+$(BUILD)/upstream-protobuf: node_modules packages/upstream-protobuf/version.txt $(shell find packages/upstream-protobuf -name '*.mjs' -not -path "*/node_modules/*")
 	@mkdir -p $(@D)
-	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build protoc
-	cp -f $(PB)/bazel-bin/protoc $(@D)
-	@touch $(@)
-
-$(BIN)/conformance_test_runner: $(PB)
-	@mkdir -p $(@D)
-	cd $(PB) && USE_BAZEL_VERSION=$(BAZEL_VERSION) bazel build test_messages_proto3_cc_proto conformance:conformance_proto conformance:conformance_test conformance:conformance_test_runner
-	cp -f $(PB)/bazel-bin/conformance/conformance_test_runner $(@D)
+	npm run -w packages/upstream-protobuf build
 	@touch $(@)
 
 $(BUILD)/protobuf: node_modules tsconfig.base.json packages/protobuf/tsconfig.json $(shell find packages/protobuf/src -name '*.ts')
@@ -91,23 +69,8 @@ $(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json pac
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-test: $(BIN)/protoc $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto') Makefile
-	@rm -rf packages/protobuf-test/src/gen/ts/* packages/protobuf-test/src/gen/js/* packages/protobuf-test/descriptorset.bin
-	$(BIN)/protoc \
-		--descriptor_set_out packages/protobuf-test/descriptorset.bin --include_imports --include_source_info \
-		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
-		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
-		--proto_path $(PB) --proto_path $(PB)/src -I packages/protobuf-test \
-		$(shell cd packages/protobuf-test && find . -name '*.proto' | cut -sd / -f 2-) \
-		$(GOOGLE_PROTOBUF_UNITTEST_PROTOS) \
-		google/protobuf/type.proto \
-		google/protobuf/test_messages_proto2.proto \
-		google/protobuf/test_messages_proto3.proto
-	$(BIN)/protoc \
-		--plugin protoc-gen-a=packages/protoc-gen-es/bin/protoc-gen-es --a_out packages/protobuf-test/src/gen/ts --a_opt ts_nocheck=false,target=ts \
-		--plugin protoc-gen-b=packages/protoc-gen-es/bin/protoc-gen-es --b_out packages/protobuf-test/src/gen/js --b_opt ts_nocheck=false,target=js+dts \
-		--proto_path $(PB)/src \
-		$(GOOGLE_PROTOBUF_WKT_PROTOS)
+$(GEN)/protobuf-test: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto')
+	npm run -w packages/protobuf-test generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -116,13 +79,8 @@ $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugi
 	@npm run -w packages/protoplugin-test buf:build
 	@npm run -w packages/protoplugin-test generate
 
-$(GEN)/protobuf-conformance: $(BIN)/protoc $(BUILD)/protoc-gen-es Makefile
-	@rm -rf packages/protobuf-conformance/src/gen/*
-	$(BIN)/protoc --plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out packages/protobuf-conformance/src/gen --es_opt ts_nocheck=false,target=ts \
-		--proto_path $(PB) --proto_path $(PB)/src \
-		conformance/conformance.proto \
-		google/protobuf/test_messages_proto2.proto \
-		google/protobuf/test_messages_proto3.proto
+$(GEN)/protobuf-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es
+	npm run -w packages/protobuf-conformance generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -132,7 +90,7 @@ $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.ge
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-bench: $(BIN)/protoc $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
+$(GEN)/protobuf-bench: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
 	npm run -w packages/protobuf-bench clean
 	npx buf generate buf.build/bufbuild/buf:4505cba5e5a94a42af02ebc7ac3a0a04 --template packages/protobuf-bench/buf.gen.yaml --output packages/protobuf-bench
 	@mkdir -p $(@D)
@@ -159,9 +117,7 @@ test: test-protobuf test-protoplugin test-conformance test-ts-compat ## Run all 
 
 .PHONY: test-protobuf
 test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
-	cd packages/protobuf-test \
-		&& BUF_BIGINT_DISABLE=0 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
-		&& BUF_BIGINT_DISABLE=1 PATH="$(abspath $(BIN)):$(PATH)" NODE_OPTIONS=--experimental-vm-modules npx jest \
+	npm run -w packages/protobuf-test test
 
 .PHONY: test-protoplugin
 test-protoplugin: $(BUILD)/protoplugin-test packages/protoplugin-test/jest.config.js
@@ -172,10 +128,8 @@ test-protoplugin-example: $(BUILD)/protoplugin-example
 	npm run -w packages/protoplugin-example test
 
 .PHONY: test-conformance
-test-conformance: $(BIN)/conformance_test_runner $(BUILD)/protobuf-conformance
-	cd packages/protobuf-conformance \
-		&& BUF_BIGINT_DISABLE=0 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_with_bigint.txt    --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js \
-		&& BUF_BIGINT_DISABLE=1 $(abspath $(BIN)/conformance_test_runner) --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js
+test-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protobuf-conformance
+	npm run -w packages/protobuf-conformance test
 
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test node_modules
@@ -196,12 +150,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 .PHONY: format
 format: node_modules ## Format all files, adding license headers
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
-	npx license-header \
-		--ignore .tmp \
-		--ignore packages/protobuf/src/google/varint.ts \
-		--ignore 'packages/protobuf-bench/src/gen/**/*' \
-		--ignore 'packages/protobuf-conformance/src/gen/**/*' \
-		--ignore 'packages/protobuf-test/src/gen/**/*'
+	npx license-header --ignore packages/protobuf/src/google/varint.ts
 
 .PHONY: bench
 bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size
@@ -212,16 +161,10 @@ perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
 .PHONY: bootstrapwkt
-bootstrapwkt: $(BIN)/protoc $(BUILD)/protoc-gen-es node_modules ## Generate the well-known types in @bufbuild/protobuf
-	@rm -rf $(TMP)/bootstrapwkt
-	@mkdir -p $(TMP)/bootstrapwkt
-	$(BIN)/protoc \
-		--plugin packages/protoc-gen-es/bin/protoc-gen-es --es_out $(TMP)/bootstrapwkt --es_opt bootstrap_wkt=true,ts_nocheck=false,target=ts \
-		--proto_path $(PB)/src $(GOOGLE_PROTOBUF_WKT_PROTOS)
-	npx license-header $(TMP)/bootstrapwkt
+bootstrapwkt: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Generate the well-known types in @bufbuild/protobuf
+	npm run -w packages/protobuf bootstrap
 	@# If the generated code differs, use it, and run tests again
-	diff >/dev/null -r packages/protobuf/src/google/protobuf $(TMP)/bootstrapwkt/google/protobuf || \
-		(cp -r $(TMP)/bootstrapwkt/google/protobuf packages/protobuf/src/google/ && $(MAKE) build test format lint)
+	npm run -w packages/protobuf bootstrap-diff || $(MAKE) build test format lint
 
 .PHONY: setversion
 setversion: ## Set a new version in for the project, i.e. make setversion SET_VERSION=1.2.3

@@ -9,7 +9,8 @@
     "./packages/protobuf-test",
     "./packages/protobuf-conformance",
     "./packages/protobuf-bench",
-    "./packages/protobuf-example"
+    "./packages/protobuf-example",
+    "./packages/upstream-protobuf"
   ],
   "type": "module",
   "engineStrict": true,
