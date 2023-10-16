@@ -15,11 +15,13 @@
 import { describe, expect, test } from "@jest/globals";
 import { FieldMask as TS_FieldMask } from "../../gen/ts/google/protobuf/field_mask_pb.js";
 import { FieldMask as JS_FieldMask } from "../../gen/js/google/protobuf/field_mask_pb.js";
+import { FieldMask as PKG_FieldMask } from "@bufbuild/protobuf";
 
 describe("google.protobuf.FieldMask", () => {
   describe.each([
     { FieldMask: TS_FieldMask, name: `(generated ts)` },
     { FieldMask: JS_FieldMask, name: `(generated js)` },
+    { FieldMask: PKG_FieldMask, name: `(from package)` },
   ])("$name", ({ FieldMask }) => {
     const fieldMask = new FieldMask({
       paths: ["user.display_name", "photo"],

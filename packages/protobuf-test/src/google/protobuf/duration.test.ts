@@ -15,12 +15,14 @@
 import { describe, expect, test } from "@jest/globals";
 import { Duration as TS_Duration } from "../../gen/ts/google/protobuf/duration_pb.js";
 import { Duration as JS_Duration } from "../../gen/js/google/protobuf/duration_pb.js";
+import { Duration as PKG_Duration } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 
 describe("google.protobuf.Duration", () => {
   describe.each([
     { Duration: TS_Duration, name: `(generated ts)` },
     { Duration: JS_Duration, name: `(generated js)` },
+    { Duration: PKG_Duration, name: `(from package)` },
   ])("$name", ({ Duration }) => {
     // json representations
     const json3s = "3s";
