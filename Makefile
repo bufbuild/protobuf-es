@@ -85,7 +85,6 @@ $(GEN)/protobuf-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es
 	@touch $(@)
 
 $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.gen.yaml $(shell find packages/protobuf-example -name '*.proto')
-	npm run -w packages/protobuf-example clean
 	npm run -w packages/protobuf-example generate
 	@mkdir -p $(@D)
 	@touch $(@)
