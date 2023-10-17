@@ -7,6 +7,7 @@
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "add-person": "node dist/esm/add-person.js addressbook.bin",
     "list-people": "node dist/esm/list-people.js addressbook.bin",
+    "pregenerate": "rm -rf src/gen",
     "generate": "buf generate"
   },
   "type": "module",

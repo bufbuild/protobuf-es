@@ -1,0 +1,19 @@
+{
+  "name": "upstream-protobuf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node bin/upstream-warmup.mjs"
+  },
+  "bin": {
+    "protoc": "bin/protoc.mjs",
+    "conformance_test_runner": "bin/conformance_test_runner.mjs",
+    "upstream-files": "bin/upstream-files.mjs",
+    "upstream-include": "bin/upstream-include.mjs",
+    "upstream-warmup": "bin/upstream-warmup.mjs"
+  },
+  "dependencies": {
+    "fflate": "^0.8.1",
+    "micromatch": "^4.0.5"
+  }
+}
