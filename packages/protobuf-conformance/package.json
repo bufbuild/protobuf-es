@@ -4,7 +4,13 @@
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/types/*",
     "build": "npm run build:esm+types",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types"
+    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
+    "pregenerate": "rm -rf src/gen/*",
+    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
+    "postgenerate": "license-header src/gen",
+    "test": "npm run test:bigint && npm run test:string",
+    "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js",
+    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance_esm.js"
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -14,5 +20,8 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "1.3.3"
+  },
+  "devDependencies": {
+    "upstream-protobuf": "*"
   }
 }
