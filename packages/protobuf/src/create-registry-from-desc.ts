@@ -17,6 +17,7 @@ import type { MessageType } from "./message-type.js";
 import { proto3 } from "./proto3.js";
 import { proto2 } from "./proto2.js";
 import type { PartialFieldInfo } from "./field.js";
+import { LongType } from "./field.js";
 import type { EnumType, EnumValueInfo } from "./enum.js";
 import type {
   IEnumTypeRegistry,
@@ -283,12 +284,19 @@ function makeMapFieldInfo(
 function makeScalarFieldInfo(
   field: DescField & { fieldKind: "scalar" },
 ): PartialFieldInfo {
+  // We are creating _partial_ field info here, so we omit long type bigint,
+  // which is the default.
+  const longType =
+    field.longType == LongType.STRING
+      ? ({ L: LongType.STRING } as const)
+      : ({} as const);
   const base = {
     kind: "scalar",
     no: field.number,
     name: field.name,
     jsonName: field.jsonName,
     T: field.scalar,
+    ...longType,
   } as const;
   if (field.repeated) {
     return {

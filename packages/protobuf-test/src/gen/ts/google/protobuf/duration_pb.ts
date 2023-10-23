@@ -146,7 +146,7 @@ export class Duration extends Message<Duration> {
         nanosStr = nanosStr.substring(0, 6);
       }
       text += "." + nanosStr;
-      if (this.nanos < 0 && this.seconds === protoInt64.zero) {
+      if (this.nanos < 0 && Number(this.seconds) == 0) {
           text = "-" + text;
       }
     }

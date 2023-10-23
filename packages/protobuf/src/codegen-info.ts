@@ -50,6 +50,7 @@ type RuntimeSymbolName =
   | "protoDouble"
   | "protoInt64"
   | "ScalarType"
+  | "LongType"
   | "MethodKind"
   | "MethodIdempotency"
   | "IMessageTypeRegistry";
@@ -88,6 +89,7 @@ export const codegenInfo: CodegenInfo = {
     protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
     protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
     ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
+    LongType:             {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
     MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},

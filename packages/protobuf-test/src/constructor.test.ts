@@ -18,7 +18,32 @@ import {
   TestAllTypesProto3_NestedMessage as TS_TestAllTypesProto3_NestedMessage,
 } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
+import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/jstype_pb.js";
+import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
 import { testMT } from "./helpers.js";
+
+describe("constructor initializes jstype=JS_STRING with string", function () {
+  testMT(
+    { ts: TS_JSTypeStringMessage, js: JS_JSTypeStringMessage },
+    (messageType) => {
+      const m = new messageType({
+        fixed64Field: "123",
+        repeatedFixed64Field: ["123"],
+      });
+      expect(m.fixed64Field).toBe("123");
+      expect(m.int64Field).toBe("0");
+      expect(m.sfixed64Field).toBe("0");
+      expect(m.sint64Field).toBe("0");
+      expect(m.uint64Field).toBe("0");
+      expect(m.repeatedFixed64Field.length).toBe(1);
+      expect(m.repeatedFixed64Field).toStrictEqual(["123"]);
+      expect(m.repeatedInt64Field.length).toBe(0);
+      expect(m.repeatedSfixed64Field.length).toBe(0);
+      expect(m.repeatedSint64Field.length).toBe(0);
+      expect(m.repeatedUint64Field.length).toBe(0);
+    },
+  );
+});
 
 describe("constructor takes message partial for message field", function () {
   testMT(

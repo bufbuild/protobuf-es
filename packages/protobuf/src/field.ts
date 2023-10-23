@@ -120,6 +120,27 @@ interface fiScalar extends fiShared {
   readonly T: ScalarType;
 
   /**
+   * JavaScript representation of 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   *
+   * By default, this is LongType.BIGINT. Generated code will use the BigInt
+   * primitive.
+   *
+   * With LongType.STRING, generated code will use the String primitive instead.
+   * This can be specified per field with the option `[jstype = JS_STRING]`:
+   *
+   * ```protobuf
+   * uint64 field_a = 1; // BigInt
+   * uint64 field_b = 2 [jstype = JS_NORMAL]; // BigInt
+   * uint64 field_b = 2 [jstype = JS_NUMBER]; // BigInt
+   * uint64 field_b = 2 [jstype = JS_STRING]; // String
+   * ```
+   *
+   * This property is ignored for other scalar types.
+   */
+  readonly L: LongType;
+
+  /**
    * Is the field repeated?
    */
   readonly repeated: boolean;
@@ -245,11 +266,11 @@ type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt"> & 
   | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: OneofInfo; });
 
 // prettier-ignore
-type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default"> & (
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; });
+type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default" | "L"> & (
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; L?: LongType;  }
+  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType;  }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; L?: LongType; });
 
 /**
  * Scalar value types. This is a subset of field types declared by protobuf
@@ -287,4 +308,33 @@ export enum ScalarType {
   SFIXED64 = 16,
   SINT32 = 17, // Uses ZigZag encoding.
   SINT64 = 18, // Uses ZigZag encoding.
+}
+
+/**
+ * JavaScript representation of fields with 64 bit integral types (int64, uint64,
+ * sint64, fixed64, sfixed64).
+ *
+ * This is a subset of google.protobuf.FieldOptions.JSType, which defines JS_NORMAL,
+ * JS_STRING, and JS_NUMBER. Protobuf-ES uses BigInt by default, but will use
+ * String if `[jstype = JS_STRING]` is specified.
+ *
+ * ```protobuf
+ * uint64 field_a = 1; // BigInt
+ * uint64 field_b = 2 [jstype = JS_NORMAL]; // BigInt
+ * uint64 field_b = 2 [jstype = JS_NUMBER]; // BigInt
+ * uint64 field_b = 2 [jstype = JS_STRING]; // String
+ * ```
+ */
+export enum LongType {
+  /**
+   * Use JavaScript BigInt.
+   */
+  BIGINT = 0,
+
+  /**
+   * Use JavaScript String.
+   *
+   * Field option `[jstype = JS_STRING]`.
+   */
+  STRING = 1,
 }

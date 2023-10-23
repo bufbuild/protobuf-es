@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
-import { proto2, proto3, ScalarType } from "@bufbuild/protobuf";
+import { LongType, proto2, proto3, ScalarType } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
@@ -109,6 +109,9 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   switch (field.fieldKind) {
     case "scalar":
       e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
+      if (field.longType != LongType.BIGINT) {
+          e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
+      }
       break;
     case "map":
       e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);

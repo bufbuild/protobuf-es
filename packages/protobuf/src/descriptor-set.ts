@@ -22,7 +22,7 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
-import type { ScalarType } from "./field.js";
+import type { ScalarType, LongType } from "./field.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
 
 /**
@@ -390,6 +390,11 @@ interface DescFieldScalar {
    */
   readonly scalar: ScalarType;
   /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: LongType;
+  /**
    * The message type, if it is a message field.
    */
   readonly message: undefined;
@@ -430,6 +435,11 @@ interface DescFieldMessage {
    */
   readonly scalar: undefined;
   /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
+  /**
    * The message type, if it is a message field.
    */
   readonly message: DescMessage;
@@ -457,6 +467,12 @@ interface DescFieldEnum {
    * Scalar type, if it is a scalar field.
    */
   readonly scalar: undefined;
+  /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
+
   /**
    * The message type, if it is a message field.
    */
@@ -497,6 +513,11 @@ interface DescFieldMap {
    * Scalar type, if it is a scalar field.
    */
   readonly scalar: undefined;
+  /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
   /**
    * The message type, if it is a message field.
    */
