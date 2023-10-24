@@ -21,5 +21,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "1.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "upstream-protobuf": "*"
+  }
 }

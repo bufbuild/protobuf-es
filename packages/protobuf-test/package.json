@@ -42,6 +42,7 @@
     "ts5_0_4": "npm:typescript@5.0.4"
   },
   "devDependencies": {
-    "@types/node": "~18.11.9"
+    "@types/node": "~18.11.9",
+    "upstream-protobuf": "*"
   }
 }

@@ -89,6 +89,8 @@ function syncDeps(packages) {
           wantVersion = "~" + wantVersion;
         } else if (version.startsWith("=")) {
           wantVersion = "=" + wantVersion;
+        } else if (version === "*") {
+          wantVersion = "*";
         }
         if (wantVersion === version) {
           continue;
