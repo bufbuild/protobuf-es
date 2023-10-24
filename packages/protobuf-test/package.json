@@ -26,7 +26,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.3.3",
+    "@bufbuild/protobuf": "1.4.0",
     "@types/benchmark": "^2.1.3",
     "benchmark": "^2.1.4",
     "long": "~5.2.3",
@@ -42,7 +42,6 @@
     "ts5_0_4": "npm:typescript@5.0.4"
   },
   "devDependencies": {
-    "@types/node": "~18.11.9",
-    "upstream-protobuf": "*"
+    "@types/node": "~18.11.9"
   }
 }
