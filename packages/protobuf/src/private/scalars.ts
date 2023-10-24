@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ScalarType } from "../field.js";
+import { LongType, ScalarType } from "../field.js";
 import type { IBinaryWriter } from "../binary-encoding.js";
 import { WireType } from "../binary-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
@@ -66,7 +66,7 @@ export function scalarEquals(
  * Returns the default value for the given scalar type, following
  * proto3 semantics.
  */
-export function scalarDefaultValue(type: ScalarType): any {
+export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
   switch (type) {
     case ScalarType.BOOL:
       return false;
@@ -75,7 +75,8 @@ export function scalarDefaultValue(type: ScalarType): any {
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      return protoInt64.zero;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
+      return longType == 0 ? protoInt64.zero : "0";
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
       return 0.0;
@@ -127,13 +128,13 @@ export function scalarTypeInfo(
       wireType = WireType.Bit32;
       break;
     case ScalarType.INT64:
-      isIntrinsicDefault = isUndefined || value == 0;
+      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
       break;
     case ScalarType.UINT64:
-      isIntrinsicDefault = isUndefined || value == 0;
+      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
       break;
     case ScalarType.FIXED64:
-      isIntrinsicDefault = isUndefined || value == 0;
+      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
       wireType = WireType.Bit64;
       break;
     case ScalarType.BYTES:

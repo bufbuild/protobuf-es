@@ -21,7 +21,7 @@ import type { FieldListSource } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
 import { scalarDefaultValue } from "./private/scalars.js";
-import { ScalarType } from "./field.js";
+import { LongType, ScalarType } from "./field.js";
 import type { FieldInfo } from "./field.js";
 import { InternalOneofInfo } from "./private/field.js";
 import { localFieldName, fieldJsonName } from "./private/names.js";
@@ -60,7 +60,7 @@ export const proto3 = makeProtoRuntime(
             t[name] = {};
             break;
           case "scalar":
-            t[name] = scalarDefaultValue(member.T); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+            t[name] = scalarDefaultValue(member.T, member.L); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
             break;
           case "message":
             // message fields are always optional in proto3
@@ -83,6 +83,9 @@ function normalizeFieldInfosProto3(fieldInfos: FieldListSource): FieldInfo[] {
     f.localName = localFieldName(field.name, field.oneof !== undefined);
     f.jsonName = field.jsonName ?? fieldJsonName(field.name);
     f.repeated = field.repeated ?? false;
+    if (field.kind == "scalar") {
+      f.L = field.L ?? LongType.BIGINT;
+    }
     // From the proto3 language guide:
     // > In proto3, repeated fields of scalar numeric types are packed by default.
     // This information is incomplete - according to the conformance tests, BOOL
