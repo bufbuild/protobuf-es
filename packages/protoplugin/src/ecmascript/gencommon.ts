@@ -23,6 +23,7 @@ import {
   DescMethod,
   DescOneof,
   DescService,
+  LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
 import type { GeneratedFile, Printable } from "./generated-file.js";
@@ -172,13 +173,13 @@ export function getFieldTyping(
   let optional = false;
   switch (field.fieldKind) {
     case "scalar":
-      typing.push(scalarTypeScriptType(field.scalar));
+      typing.push(scalarTypeScriptType(field.scalar, field.longType));
       optional = field.optional;
       break;
     case "message": {
       const baseType = getUnwrappedFieldType(field);
       if (baseType !== undefined) {
-        typing.push(scalarTypeScriptType(baseType));
+        typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
       } else {
         typing.push(file.import(field.message).toTypeOnly());
       }
@@ -206,7 +207,10 @@ export function getFieldTyping(
       let valueType;
       switch (field.mapValue.kind) {
         case "scalar":
-          valueType = scalarTypeScriptType(field.mapValue.scalar);
+          valueType = scalarTypeScriptType(
+            field.mapValue.scalar,
+            LongType.BIGINT,
+          );
           break;
         case "message":
           valueType = file.import(field.mapValue.message).toTypeOnly();
@@ -227,7 +231,10 @@ export function getFieldTyping(
   return { typing, optional };
 }
 
-export function scalarTypeScriptType(type: ScalarType): Printable {
+export function scalarTypeScriptType(
+  type: ScalarType,
+  longType: LongType,
+): Printable {
   switch (type) {
     case ScalarType.STRING:
       return "string";
@@ -238,6 +245,9 @@ export function scalarTypeScriptType(type: ScalarType): Printable {
     case ScalarType.FIXED64:
     case ScalarType.SINT64:
     case ScalarType.INT64:
+      if (longType === LongType.STRING) {
+        return "string";
+      }
       return "bigint";
     case ScalarType.BYTES:
       return "Uint8Array";
@@ -361,7 +371,10 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
             defaultValue = literalString("");
           } else {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-            defaultValue = scalarDefaultValue(field.scalar);
+            defaultValue = scalarDefaultValue(field.scalar, field.longType);
+            if (typeof defaultValue === "string") {
+              defaultValue = literalString(defaultValue);
+            }
           }
         }
         break;

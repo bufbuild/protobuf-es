@@ -18,21 +18,21 @@ import type {
   DescMessage,
   DescOneof,
 } from "@bufbuild/protobuf";
-import { ScalarType } from "@bufbuild/protobuf";
+import { LongType, ScalarType } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
 import {
-  localName,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
+  literalString,
+  localName,
   makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo } from "./javascript.js";
-import { literalString } from "@bufbuild/protoplugin/ecmascript";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
@@ -188,6 +188,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     MessageType,
     IMessageTypeRegistry,
     ScalarType: rtScalarType,
+    LongType: rtLongType,
     protoInt64,
   } = schema.runtime;
   const protoN = schema.runtime[message.file.syntax];
@@ -309,7 +310,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`    if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {`);
       f.print("      throw new Error(`cannot decode message ", message.typeName, " from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);");
       f.print("    }");
-      f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(ms / 1000);");
+      if (ref.seconds.longType === LongType.STRING) {
+        f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(ms / 1000).toString();");
+      } else {
+        f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(ms / 1000);");
+      }
       f.print("    this.", localName(ref.nanos), " = 0;");
       f.print("    if (matches[7]) {");
       f.print(`      this.`, localName(ref.nanos), ` = (parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) - 1000000000);` );
@@ -357,7 +362,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    if (longSeconds > 315576000000 || longSeconds < -315576000000) {")
       f.print("      throw new Error(`cannot decode ", message.typeName, " from JSON: ${", protoN, ".json.debug(json)}`);")
       f.print("    }")
-      f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(longSeconds);")
+      if (ref.seconds.longType === LongType.STRING) {
+        f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(longSeconds).toString();")
+      } else {
+        f.print("    this.", localName(ref.seconds), " = ", protoInt64, ".parse(longSeconds);")
+      }
       f.print(`    if (typeof match[2] == "string") {`)
       f.print(`      const nanosStr = match[2] + "0".repeat(9 - match[2].length);`)
       f.print("      this.", localName(ref.nanos), " = parseInt(nanosStr);")
@@ -382,7 +391,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("        nanosStr = nanosStr.substring(0, 6);")
       f.print(`      }`)
       f.print(`      text += "." + nanosStr;`)
-      f.print("      if (this.", localName(ref.nanos), " < 0 && this.", localName(ref.seconds), " === ", protoInt64, ".zero) {");
+      f.print("      if (this.", localName(ref.nanos), " < 0 && Number(this.", localName(ref.seconds), ") == 0) {");
       f.print(`          text = "-" + text;`);
       f.print(`      }`);
       f.print("    }")
@@ -553,7 +562,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print()
       f.print("  override fromJson(json: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): this {")
       f.print("    try {")
-      f.print("      this.value = ", protoN, ".json.readScalar(", rtScalarType, ".", ScalarType[ref.value.scalar], ", json);")
+      if (ref.value.longType === LongType.STRING) {
+        f.print("      this.value = ", protoN, ".json.readScalar(", rtScalarType, ".", ScalarType[ref.value.scalar], ", json, ", rtLongType, ".", LongType[ref.value.longType] ,");")
+      } else {
+        f.print("      this.value = ", protoN, ".json.readScalar(", rtScalarType, ".", ScalarType[ref.value.scalar], ", json);")
+      }
       f.print("    } catch (e) {")
       f.print("      let m = `cannot decode message ", message.typeName, " from JSON\"`;")
       f.print("      if (e instanceof Error && e.message.length > 0) {")
@@ -594,7 +607,11 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
       f.print("  static fromDate(date: Date): ", message, " {")
       f.print("    const ms = date.getTime();")
       f.print("    return new ", message, "({")
-      f.print("      ", localName(ref.seconds), ": ", protoInt64, ".parse(Math.floor(ms / 1000)),")
+      if (ref.seconds.longType === LongType.STRING) {
+        f.print("      ", localName(ref.seconds), ": ", protoInt64, ".parse(Math.floor(ms / 1000)).toString(),")
+      } else {
+        f.print("      ", localName(ref.seconds), ": ", protoInt64, ".parse(Math.floor(ms / 1000)),")
+      }
       f.print("      ", localName(ref.nanos), ": (ms % 1000) * 1000000,")
       f.print("    });")
       f.print("  }")

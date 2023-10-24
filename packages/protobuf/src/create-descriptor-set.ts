@@ -21,6 +21,7 @@ import type {
 import {
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
+  FieldOptions_JSType,
   FileDescriptorProto,
   FileDescriptorSet,
   MethodDescriptorProto,
@@ -41,9 +42,9 @@ import type {
   DescriptorSet,
   DescService,
 } from "./descriptor-set.js";
-import { ScalarType } from "./field.js";
+import { LongType, ScalarType } from "./field.js";
 import { MethodIdempotency, MethodKind } from "./service-type.js";
-import { findEnumSharedPrefix, fieldJsonName } from "./private/names.js";
+import { fieldJsonName, findEnumSharedPrefix } from "./private/names.js";
 import { protoInt64 } from "./proto-int64.js";
 
 /**
@@ -497,6 +498,7 @@ function newField(
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
+    longType: undefined,
     message: undefined,
     enum: undefined,
     mapKey: undefined,
@@ -576,6 +578,10 @@ function newField(
         getDefaultValue,
         repeated,
         scalar,
+        longType:
+          proto.options?.jstype == FieldOptions_JSType.JS_STRING
+            ? LongType.STRING
+            : LongType.BIGINT,
       };
     }
   }
@@ -965,6 +971,9 @@ function declarationString(this: DescField | DescExtension): string {
   }
   if (this.jsonName !== undefined) {
     options.push(`json_name = "${this.jsonName}"`);
+  }
+  if (this.proto.options?.jstype !== undefined) {
+    options.push(`jstype = ${FieldOptions_JSType[this.proto.options.jstype]}`);
   }
   if (this.proto.options?.deprecated === true) {
     options.push(`deprecated = true`);

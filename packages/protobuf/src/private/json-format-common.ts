@@ -20,11 +20,11 @@ import type {
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "../json-format.js";
-import { Message } from "../message.js";
 import type { AnyMessage } from "../message.js";
+import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { ScalarType } from "../field.js";
 import type { FieldInfo } from "../field.js";
+import { LongType, ScalarType } from "../field.js";
 import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { protoBase64 } from "../proto-base64.js";
@@ -147,7 +147,7 @@ export function makeJsonFormatCommon(
                 break;
               case "scalar":
                 try {
-                  val = readScalar(field.T, jsonItem);
+                  val = readScalar(field.T, jsonItem, field.L);
                 } catch (e) {
                   let m = `cannot decode field ${type.typeName}.${
                     field.name
@@ -194,7 +194,7 @@ export function makeJsonFormatCommon(
                 break;
               case "scalar":
                 try {
-                  val = readScalar(field.V.T, jsonMapValue);
+                  val = readScalar(field.V.T, jsonMapValue, LongType.BIGINT);
                 } catch (e) {
                   let m = `cannot decode map value for field ${type.typeName}.${
                     field.name
@@ -217,6 +217,7 @@ export function makeJsonFormatCommon(
                       ? false
                       : jsonMapKey
                     : jsonMapKey,
+                  LongType.BIGINT,
                 ).toString()
               ] = val;
             } catch (e) {
@@ -267,7 +268,7 @@ export function makeJsonFormatCommon(
               break;
             case "scalar":
               try {
-                target[localName] = readScalar(field.T, jsonValue);
+                target[localName] = readScalar(field.T, jsonValue, field.L);
               } catch (e) {
                 let m = `cannot decode field ${type.typeName}.${
                   field.name
@@ -344,7 +345,11 @@ function debugJsonValue(json: unknown): string {
 
 // May throw an error. If the error message is non-blank, it should be shown.
 // It is up to the caller to provide context.
-function readScalar(type: ScalarType, json: JsonValue): any {
+function readScalar(
+  type: ScalarType,
+  json: JsonValue,
+  longType: LongType,
+): any {
   // every valid case in the switch below returns, and every fall
   // through is regarded as a failure.
   switch (type) {
@@ -402,12 +407,16 @@ function readScalar(type: ScalarType, json: JsonValue): any {
     case ScalarType.SINT64:
       if (json === null) return protoInt64.zero;
       if (typeof json != "number" && typeof json != "string") break;
-      return protoInt64.parse(json);
+      const long = protoInt64.parse(json);
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      return longType ? long.toString() : long;
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
       if (json === null) return protoInt64.zero;
       if (typeof json != "number" && typeof json != "string") break;
-      return protoInt64.uParse(json);
+      const uLong = protoInt64.uParse(json);
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      return longType ? uLong.toString() : uLong;
 
     // bool:
     case ScalarType.BOOL:

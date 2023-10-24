@@ -162,13 +162,20 @@ as `optional`. Protobuf types map to ECMAScript types as follows:
 
 ### 64-bit integral types
 
-We use the `bigint` primitive to represent 64-bit integral types. If bigint
-is unavailable, we fall back to a string representation, which means that
-all values typed as `bigint` will actually be strings.
+We use the `BigInt` primitive to represent 64-bit integral types. `BigInt` has 
+been available in all major runtimes since 2020.
 
-For presentation purposes, it is always safe to simply call `toString()` on
-the field value. For more detailed information, see the conversion utility
-[`protoInt64`][src-proto-int64] provided by [@bufbuild/protobuf][pkg-protobuf].
+If you prefer to avoid `BigInt` in generated code, you can set the field option
+`jstype = JS_STRING` to generate `String` instead:
+
+```protobuf
+int64 my_field = 1 [jstype = JS_STRING]; // will generate `myField: string`
+```
+
+If `BigInt` is unavailable in your environment, Protobuf-ES falls back to the
+string representation. This means all values typed as `bigint` will be a `string`
+at runtime. For detailed information on how to handle both variants, see the 
+conversion utility [`protoInt64`][src-proto-int64] provided by [@bufbuild/protobuf][pkg-protobuf].
 
 
 ### Message fields
