@@ -1,0 +1,11 @@
+{
+  "name": "ts4.4",
+  "scripts": {
+    "test": "node_modules/.bin/tsc --outDir dist"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf-test": "*",
+    "@types/node": "ts4.4",
+    "typescript": "4.4.x"
+  }
+}
