@@ -55,5 +55,4 @@ function printAddressBook(addressBook: AddressBook): void {
 function print(line: string): void {
   process.stdout.write(line);
   process.stdout.write("\n");
-  process.exit(1);
 }

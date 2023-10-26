@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Copyright 2021-2022 Buf Technologies, Inc.
+// Copyright 2021-2023 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,6 +89,8 @@ function syncDeps(packages) {
           wantVersion = "~" + wantVersion;
         } else if (version.startsWith("=")) {
           wantVersion = "=" + wantVersion;
+        } else if (version === "*") {
+          wantVersion = "*";
         }
         if (wantVersion === version) {
           continue;

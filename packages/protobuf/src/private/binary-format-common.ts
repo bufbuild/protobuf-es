@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { BinaryReader, BinaryWriter, WireType } from "../binary-encoding.js";
 import type { IBinaryReader, IBinaryWriter } from "../binary-encoding.js";
+import { BinaryReader, BinaryWriter, WireType } from "../binary-encoding.js";
 import type {
+  BinaryFormat,
   BinaryReadOptions,
   BinaryWriteOptions,
 } from "../binary-format.js";
-import type { BinaryFormat } from "../binary-format.js";
 import { Message } from "../message.js";
-import { ScalarType } from "../field.js";
 import type { FieldInfo } from "../field.js";
+import { LongType, ScalarType } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
@@ -122,6 +122,11 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
           case "enum":
             const scalarType =
               field.kind == "enum" ? ScalarType.INT32 : field.T;
+            let read = readScalar;
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
+            if (field.kind == "scalar" && field.L > 0) {
+              read = readScalarLTString;
+            }
             if (repeated) {
               let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
               if (
@@ -131,13 +136,13 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
               ) {
                 let e = reader.uint32() + reader.pos;
                 while (reader.pos < e) {
-                  arr.push(readScalar(reader, scalarType));
+                  arr.push(read(reader, scalarType));
                 }
               } else {
-                arr.push(readScalar(reader, scalarType));
+                arr.push(read(reader, scalarType));
               }
             } else {
-              target[localName] = readScalar(reader, scalarType);
+              target[localName] = read(reader, scalarType);
             }
             break;
           case "message":
@@ -222,7 +227,7 @@ function readMapEntry(
     }
   }
   if (key === undefined) {
-    let keyRaw = scalarDefaultValue(field.K);
+    let keyRaw = scalarDefaultValue(field.K, LongType.BIGINT);
     key =
       field.K == ScalarType.BOOL
         ? keyRaw.toString()
@@ -234,7 +239,7 @@ function readMapEntry(
   if (val === undefined) {
     switch (field.V.kind) {
       case "scalar":
-        val = scalarDefaultValue(field.V.T);
+        val = scalarDefaultValue(field.V.T, LongType.BIGINT);
         break;
       case "enum":
         val = 0;
@@ -245,6 +250,13 @@ function readMapEntry(
     }
   }
   return [key, val];
+}
+
+// Read a scalar value, but return 64 bit integral types (int64, uint64,
+// sint64, fixed64, sfixed64) as string instead of bigint.
+export function readScalarLTString(reader: IBinaryReader, type: ScalarType) {
+  const v = readScalar(reader, type);
+  return typeof v == "bigint" ? v.toString() : v;
 }
 
 // Does not use scalarTypeInfo() for better performance.

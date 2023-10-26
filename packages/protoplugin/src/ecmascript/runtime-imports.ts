@@ -33,6 +33,7 @@ export interface RuntimeImports {
   protoDouble: ImportSymbol;
   protoInt64: ImportSymbol;
   ScalarType: ImportSymbol;
+  LongType: ImportSymbol;
   MethodKind: ImportSymbol;
   MethodIdempotency: ImportSymbol;
   IMessageTypeRegistry: ImportSymbol;
@@ -57,6 +58,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     protoDouble:           infoToSymbol("protoDouble",          bootstrapWkt),
     protoInt64:            infoToSymbol("protoInt64",           bootstrapWkt),
     ScalarType:            infoToSymbol("ScalarType",           bootstrapWkt),
+    LongType:              infoToSymbol("LongType",             bootstrapWkt),
     MethodKind:            infoToSymbol("MethodKind",           bootstrapWkt),
     MethodIdempotency:     infoToSymbol("MethodIdempotency",    bootstrapWkt),
     IMessageTypeRegistry:  infoToSymbol("IMessageTypeRegistry", bootstrapWkt),

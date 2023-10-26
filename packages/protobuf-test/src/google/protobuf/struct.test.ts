@@ -16,11 +16,13 @@ import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { JsonObject } from "@bufbuild/protobuf";
 import * as TS from "../../gen/ts/google/protobuf/struct_pb.js";
 import * as JS from "../../gen/js/google/protobuf/struct_pb.js";
+import * as PKG from "@bufbuild/protobuf";
 
 describe("google.protobuf.Struct", () => {
   describe.each([
     { Struct: TS.Struct, name: `(generated ts)` },
     { Struct: JS.Struct, name: `(generated js)` },
+    { Struct: PKG.Struct, name: `(from package)` },
   ])("$name", ({ Struct }) => {
     let json: JsonObject;
     let struct: TS.Struct;
@@ -65,6 +67,7 @@ describe("google.protobuf.Value", () => {
   describe.each([
     { Value: TS.Value, name: `(generated ts)` },
     { Value: JS.Value, name: `(generated js)` },
+    { Value: PKG.Value, name: `(from package)` },
   ])("$name", ({ Value }) => {
     test("encodes to JSON", () => {
       const value = new Value({
@@ -124,6 +127,7 @@ describe("google.protobuf.Value with Struct field", () => {
   describe.each([
     { Value: TS.Value, Struct: TS.Struct, name: `(generated ts)` },
     { Value: JS.Value, Struct: JS.Struct, name: `(generated js)` },
+    { Value: PKG.Value, Struct: PKG.Struct, name: `(from package)` },
   ])("$name", ({ Value, Struct }) => {
     let json: JsonObject;
     let value: TS.Value;

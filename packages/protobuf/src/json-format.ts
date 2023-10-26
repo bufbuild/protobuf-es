@@ -15,6 +15,7 @@
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
 import type { ScalarType } from "./field.js";
+import { LongType } from "./field.js";
 import type { IMessageTypeRegistry } from "./type-registry.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -56,10 +57,11 @@ export interface JsonFormat {
 
   /**
    * Parse a single scalar value from JSON.
+   *
    * This method may throw an error, but it may have a blank error message.
    * Callers are expected to provide context.
    */
-  readScalar(type: ScalarType, json: JsonValue): any;
+  readScalar(type: ScalarType, json: JsonValue, longType?: LongType): any;
 
   /**
    * Serialize a single scalar value to JSON.

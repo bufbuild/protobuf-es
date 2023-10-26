@@ -16,11 +16,13 @@ import { describe, expect, test } from "@jest/globals";
 import * as JS from "../../gen/js/google/protobuf/wrappers_pb.js";
 import * as TS from "../../gen/js/google/protobuf/wrappers_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
+import * as PKG from "@bufbuild/protobuf";
 
 describe("google.protobuf.DoubleValue", () => {
   describe.each([
     { DoubleValue: TS.DoubleValue, name: `(generated ts)` },
     { DoubleValue: JS.DoubleValue, name: `(generated js)` },
+    { DoubleValue: PKG.DoubleValue, name: `(from package)` },
   ])("$name", ({ DoubleValue }) => {
     const primitive = 12.3;
     test("wraps", () => {
@@ -41,6 +43,7 @@ describe("google.protobuf.FloatValue", () => {
   describe.each([
     { FloatValue: TS.FloatValue, name: `(generated ts)` },
     { FloatValue: JS.FloatValue, name: `(generated js)` },
+    { FloatValue: PKG.FloatValue, name: `(from package)` },
   ])("$name", ({ FloatValue }) => {
     const primitive = 12.3;
     test("wraps", () => {
@@ -61,6 +64,7 @@ describe("google.protobuf.Int64Value", () => {
   describe.each([
     { Int64Value: TS.Int64Value, name: `(generated ts)` },
     { Int64Value: JS.Int64Value, name: `(generated js)` },
+    { Int64Value: PKG.Int64Value, name: `(from package)` },
   ])("$name", ({ Int64Value }) => {
     const primitive = protoInt64.parse("-5100100100");
     test("wraps", () => {
@@ -81,6 +85,7 @@ describe("google.protobuf.UInt64Value", () => {
   describe.each([
     { UInt64Value: TS.UInt64Value, name: `(generated ts)` },
     { UInt64Value: JS.UInt64Value, name: `(generated js)` },
+    { UInt64Value: PKG.UInt64Value, name: `(from package)` },
   ])("$name", ({ UInt64Value }) => {
     const primitive = protoInt64.uParse("5100100100");
     test("wraps", () => {
@@ -101,6 +106,7 @@ describe("google.protobuf.Int32Value", () => {
   describe.each([
     { Int32Value: TS.Int32Value, name: `(generated ts)` },
     { Int32Value: JS.Int32Value, name: `(generated js)` },
+    { Int32Value: PKG.Int32Value, name: `(from package)` },
   ])("$name", ({ Int32Value }) => {
     const primitive = -123;
     test("wraps", () => {
@@ -121,6 +127,7 @@ describe("google.protobuf.UInt32Value", () => {
   describe.each([
     { UInt32Value: TS.UInt32Value, name: `(generated ts)` },
     { UInt32Value: JS.UInt32Value, name: `(generated js)` },
+    { UInt32Value: PKG.UInt32Value, name: `(from package)` },
   ])("$name", ({ UInt32Value }) => {
     const primitive = 123;
     test("wraps", () => {
@@ -143,6 +150,8 @@ describe("google.protobuf.BoolValue", () => {
     { BoolValue: TS.BoolValue, name: `(generated ts)`, primitive: false },
     { BoolValue: JS.BoolValue, name: `(generated js)`, primitive: true },
     { BoolValue: JS.BoolValue, name: `(generated js)`, primitive: false },
+    { BoolValue: PKG.BoolValue, name: `(from package)`, primitive: true },
+    { BoolValue: PKG.BoolValue, name: `(from package)`, primitive: false },
   ])("$name", ({ BoolValue, primitive }) => {
     test("wraps", () => {
       const got = BoolValue.fieldWrapper.wrapField(primitive);
@@ -162,6 +171,7 @@ describe("google.protobuf.StringValue", () => {
   describe.each([
     { StringValue: TS.StringValue, name: `(generated ts)` },
     { StringValue: JS.StringValue, name: `(generated js)` },
+    { StringValue: PKG.StringValue, name: `(from package)` },
   ])("$name", ({ StringValue }) => {
     const primitive = "hello world";
     test("wraps", () => {
@@ -182,6 +192,7 @@ describe("google.protobuf.BytesValue", () => {
   describe.each([
     { BytesValue: TS.BytesValue, name: `(generated ts)` },
     { BytesValue: JS.BytesValue, name: `(generated js)` },
+    { BytesValue: PKG.BytesValue, name: `(from package)` },
   ])("$name", ({ BytesValue }) => {
     const primitive = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
     test("wraps", () => {

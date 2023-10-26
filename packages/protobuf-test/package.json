@@ -6,7 +6,18 @@
     "build": "npm run build:esm+types && npm run build:copy-gen-js",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
-    "perf": "tsx src/perf.ts"
+    "pregenerate": "rm -rf src/gen/*/* descriptorset.*",
+    "generate": "npm run generate:ts && npm run generate:js && npm run generate:wkt:ts && npm run generate:wkt:js && npm run generate:desc",
+    "generate:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
+    "generate:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
+    "generate:wkt:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts     $(upstream-files wkt)",
+    "generate:wkt:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts $(upstream-files wkt)",
+    "generate:desc": "protoc --descriptor_set_out descriptorset.bin --include_imports --include_source_info --proto_path=. --proto_path=$(upstream-include test) $(buf ls-files extra) $(upstream-files test)",
+    "postgenerate": "license-header src/gen",
+    "perf": "tsx src/perf.ts",
+    "test": "npm run test:bigint && npm run test:string",
+    "test:bigint": "BUF_BIGINT_DISABLE=0 NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -15,22 +26,10 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.3.3",
+    "@bufbuild/protobuf": "1.4.0",
     "@types/benchmark": "^2.1.3",
     "benchmark": "^2.1.4",
     "long": "~5.2.3",
-    "ts4_1_2": "npm:typescript@4.1.2",
-    "ts4_2_4": "npm:typescript@4.2.4",
-    "ts4_3_5": "npm:typescript@4.3.5",
-    "ts4_4_4": "npm:typescript@4.4.4",
-    "ts4_5_2": "npm:typescript@4.5.2",
-    "ts4_6_4": "npm:typescript@4.6.4",
-    "ts4_7_4": "npm:typescript@4.7.4",
-    "ts4_8_4": "npm:typescript@4.8.4",
-    "ts4_9_5": "npm:typescript@4.9.5",
-    "ts5_0_4": "npm:typescript@5.0.4"
-  },
-  "devDependencies": {
-    "@types/node": "~18.11.9"
+    "upstream-protobuf": "*"
   }
 }
