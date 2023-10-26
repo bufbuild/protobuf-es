@@ -22,7 +22,9 @@ module.exports = {
     node: true,
   },
   ignorePatterns: [
+    "packages/typescript-compat/*/dist/**",
     "packages/*/dist/**",
+    "packages/*/.tmp/**",
     "node_modules/**",
   ],
   plugins: ["@typescript-eslint", "node", "import"],
