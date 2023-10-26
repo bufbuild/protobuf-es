@@ -27,23 +27,22 @@ npm run -w packages/protoplugin build
 npm run -w packages/protoc-gen-es build
 ```
 
-Next, `cd` into the example directory and build:
+Next, `cd` into the example directory:
 
 ```shell
 cd packages/protobuf-example
-npm run build
 ```
 
 To add a person to the address book:
 
 ```shell
-node dist/esm/add-person.js addressbook.bin
+npm run add-person
 ```
 
 To list all entries of the address book:
 
 ```shell
-node dist/esm/list-people.js addressbook.bin
+npm run list-people
 ```
 
 ### Generate code yourself
@@ -58,7 +57,5 @@ If you want to use `protoc`, the following command is equivalent:
 protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es addressbook.proto
 ```
 
-Don't forget to run `npm run build` to compile TypeScript to JavaScript, so that 
-Node will understand it. You do not need TypeScript to use **Protobuf-ES**. Just 
-set the plugin option `target=js` if you prefer plain JavaScript, or `target=js+dts`
-if you prefer JavaScript with TypeScript declaration files.
+You do not need TypeScript to use **Protobuf-ES**. Just set the plugin option `target=js` if you prefer plain JavaScript, 
+or `target=js+dts` if you prefer JavaScript with TypeScript declaration files.

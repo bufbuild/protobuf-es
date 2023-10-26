@@ -63,7 +63,6 @@ $(BUILD)/protobuf-conformance: $(GEN)/protobuf-conformance node_modules tsconfig
 	@touch $(@)
 
 $(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json packages/protobuf-example/tsconfig.json $(shell find packages/protobuf-example/src -name '*.ts')
-	npm run -w packages/protobuf-example clean
 	npm run -w packages/protobuf-example build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -101,6 +100,10 @@ help: ## Describe useful make targets
 .PHONY: all
 all: build test format lint bench bootstrapwkt ## build, test, format, lint, bench, and bootstrapwkt (default)
 
+.PHONY: ci
+ci: build test-protobuf test-protoplugin test-conformance format lint bench bootstrapwkt #
+	$(MAKE) checkdiff
+
 .PHONY: clean
 clean: ## Delete build artifacts and installed dependencies
 	@# -X only removes untracked files, -d recurses into directories, -f actually removes files/dirs
@@ -129,13 +132,8 @@ test-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protobuf-conformance
 	npm run -w packages/protobuf-conformance test
 
 .PHONY: test-ts-compat
-test-ts-compat: $(GEN)/protobuf-test node_modules
-	@for number in $(TS_VERSIONS) ; do \
-		formatted=$$(echo "$${number}" | sed -r 's/[\.]/_/g'); \
-		dirname=packages/protobuf-test ; \
-		echo "Testing TypeScript `node_modules/ts$$formatted/bin/tsc --version`" ; \
-		node_modules/ts$$formatted/bin/tsc -p $$dirname/typescript/tsconfig.$${formatted}.json --outDir $$dirname/dist/typescript/$$formatted || exit ; \
-	done
+test-ts-compat: $(GEN)/protobuf-test $(BUILD)/protobuf node_modules
+	node packages/typescript-compat/typescript-compat.mjs
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(BUILD)/protoplugin $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
