@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "@bufbuild/buf": "^1.25.0",
-    "@bufbuild/protoplugin": "1.4.0"
+    "@bufbuild/protoplugin": "1.4.1"
   }
 }
