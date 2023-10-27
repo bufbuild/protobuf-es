@@ -18,6 +18,19 @@ import type { ServiceType } from "./service-type.js";
 
 /**
  * IMessageTypeRegistry provides look-up for message types.
+ *
+ * You can conveniently create a registry using the createRegistry()
+ * function:
+ *
+ * ```ts
+ * import { createRegistry } from "@bufbuild/protobuf";
+ * import { MyMessage, MyOtherMessage } from "./gen/my_message_pb.js";
+ *
+ * const reg: IMessageTypeRegistry = createRegistry(
+ *   MyMessage,
+ *   MyOtherMessage,
+ * );
+ * ```
  */
 export interface IMessageTypeRegistry {
   /**
