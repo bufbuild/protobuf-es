@@ -16,6 +16,7 @@
 
 import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { existsSync } from "node:fs";
 
 if (process.argv.length < 3) {
   process.stderr.write(
@@ -126,11 +127,13 @@ function readPackagesByPath(packagesDir) {
       continue;
     }
     const path = join(packagesDir, entry.name, "package.json");
-    const pkg = JSON.parse(readFileSync(path, "utf-8"));
-    if (!pkg.name) {
-      throw new Error(`${path} is missing "name"`);
+    if (existsSync(path)) {
+      const pkg = JSON.parse(readFileSync(path, "utf-8"));
+      if (!pkg.name) {
+        throw new Error(`${path} is missing "name"`);
+      }
+      packages[path] = pkg;
     }
-    packages[path] = pkg;
   }
   return packages;
 }
