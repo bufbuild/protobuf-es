@@ -118,7 +118,7 @@ export const codegenInfo: CodegenInfo = {
     MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},
-    },
+  },
   wktSourceFiles: [
     "google/protobuf/compiler/plugin.proto",
     "google/protobuf/any.proto",
