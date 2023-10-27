@@ -20,17 +20,42 @@ import {
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";
+import type {
+  DescEnum,
+  DescEnumValue,
+  DescField,
+  DescMessage,
+  DescMethod,
+  DescOneof,
+  DescService,
+} from "./descriptor-set";
+import { LongType, ScalarType } from "./field.js";
 
 interface CodegenInfo {
+  /**
+   * Name of the runtime library NPM package.
+   */
   readonly packageName: string;
-  readonly localName: typeof localName;
+  readonly localName: (
+    desc:
+      | DescEnum
+      | DescEnumValue
+      | DescMessage
+      | DescOneof
+      | DescField
+      | DescService
+      | DescMethod,
+  ) => string;
   readonly symbols: Record<RuntimeSymbolName, RuntimeSymbolInfo>;
-  readonly getUnwrappedFieldType: typeof getUnwrappedFieldType;
+  readonly getUnwrappedFieldType: (field: DescField) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
-  readonly scalarDefaultValue: typeof scalarDefaultValue;
+  readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  /**
+   * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
+   */
   readonly reifyWkt: typeof reifyWkt;
-  readonly safeIdentifier: typeof safeIdentifier;
-  readonly safeObjectProperty: typeof safeObjectProperty;
+  readonly safeIdentifier: (name: string) => string;
+  readonly safeObjectProperty: (name: string) => string;
 }
 
 type RuntimeSymbolName =
@@ -64,7 +89,7 @@ type RuntimeSymbolInfo = {
 const packageName = "@bufbuild/protobuf";
 
 export const codegenInfo: CodegenInfo = {
-  packageName,
+  packageName: "@bufbuild/protobuf",
   localName,
   reifyWkt,
   getUnwrappedFieldType,
@@ -108,4 +133,4 @@ export const codegenInfo: CodegenInfo = {
     "google/protobuf/type.proto",
     "google/protobuf/wrappers.proto",
   ],
-} as const;
+};
