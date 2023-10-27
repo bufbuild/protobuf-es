@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
-import { ScalarType } from "../field.js";
+import type { DescField, DescMessage, DescOneof } from "@bufbuild/protobuf";
+import { ScalarType } from "@bufbuild/protobuf";
 
 type DescWkt =
   | {
@@ -91,8 +91,6 @@ type DescWkt =
     };
 
 /**
- * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
- *
  * Reifies a given DescMessage into a more concrete object representing its
  * respective well-known type.  The returned object will contain properties
  * representing the WKT's defined fields.
