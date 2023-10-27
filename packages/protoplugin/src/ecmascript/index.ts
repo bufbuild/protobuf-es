@@ -13,14 +13,14 @@
 // limitations under the License.
 
 import { codegenInfo } from "@bufbuild/protobuf";
-
+export { reifyWkt } from "./reify-wkt.js";
 export { Target } from "./target.js";
 export { Schema } from "./schema.js";
 export { RuntimeImports } from "./runtime-imports.js";
 export { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
 export { ImportSymbol } from "./import-symbol.js";
 
-export const { localName, reifyWkt } = codegenInfo;
+export const { localName } = codegenInfo;
 
 export {
   createJsDocBlock,

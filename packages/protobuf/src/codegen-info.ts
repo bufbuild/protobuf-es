@@ -20,17 +20,42 @@ import {
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";
+import type {
+  DescEnum,
+  DescEnumValue,
+  DescField,
+  DescMessage,
+  DescMethod,
+  DescOneof,
+  DescService,
+} from "./descriptor-set";
+import { LongType, ScalarType } from "./field.js";
 
 interface CodegenInfo {
+  /**
+   * Name of the runtime library NPM package.
+   */
   readonly packageName: string;
-  readonly localName: typeof localName;
+  readonly localName: (
+    desc:
+      | DescEnum
+      | DescEnumValue
+      | DescMessage
+      | DescOneof
+      | DescField
+      | DescService
+      | DescMethod,
+  ) => string;
   readonly symbols: Record<RuntimeSymbolName, RuntimeSymbolInfo>;
-  readonly getUnwrappedFieldType: typeof getUnwrappedFieldType;
+  readonly getUnwrappedFieldType: (field: DescField) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
-  readonly scalarDefaultValue: typeof scalarDefaultValue;
+  readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  /**
+   * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
+   */
   readonly reifyWkt: typeof reifyWkt;
-  readonly safeIdentifier: typeof safeIdentifier;
-  readonly safeObjectProperty: typeof safeObjectProperty;
+  readonly safeIdentifier: (name: string) => string;
+  readonly safeObjectProperty: (name: string) => string;
 }
 
 type RuntimeSymbolName =
@@ -64,7 +89,7 @@ type RuntimeSymbolInfo = {
 const packageName = "@bufbuild/protobuf";
 
 export const codegenInfo: CodegenInfo = {
-  packageName,
+  packageName: "@bufbuild/protobuf",
   localName,
   reifyWkt,
   getUnwrappedFieldType,
@@ -73,27 +98,27 @@ export const codegenInfo: CodegenInfo = {
   safeObjectProperty,
   // prettier-ignore
   symbols: {
-    proto2:               {typeOnly: false, privateImportPath: "./proto2.js",        publicImportPath: packageName},
-    proto3:               {typeOnly: false, privateImportPath: "./proto3.js",        publicImportPath: packageName},
-    Message:              {typeOnly: false, privateImportPath: "./message.js",       publicImportPath: packageName},
-    PartialMessage:       {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
-    PlainMessage:         {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
-    FieldList:            {typeOnly: true,  privateImportPath: "./field-list.js",    publicImportPath: packageName},
-    MessageType:          {typeOnly: true,  privateImportPath: "./message-type.js",  publicImportPath: packageName},
-    BinaryReadOptions:    {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
-    BinaryWriteOptions:   {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
-    JsonReadOptions:      {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
-    JsonWriteOptions:     {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
-    JsonValue:            {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
-    JsonObject:           {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
-    protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
-    protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
-    ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
-    LongType:             {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
-    MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
-    MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
-    IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},
-  },
+        proto2:               {typeOnly: false, privateImportPath: "./proto2.js",        publicImportPath: packageName},
+        proto3:               {typeOnly: false, privateImportPath: "./proto3.js",        publicImportPath: packageName},
+        Message:              {typeOnly: false, privateImportPath: "./message.js",       publicImportPath: packageName},
+        PartialMessage:       {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
+        PlainMessage:         {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
+        FieldList:            {typeOnly: true,  privateImportPath: "./field-list.js",    publicImportPath: packageName},
+        MessageType:          {typeOnly: true,  privateImportPath: "./message-type.js",  publicImportPath: packageName},
+        BinaryReadOptions:    {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
+        BinaryWriteOptions:   {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
+        JsonReadOptions:      {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
+        JsonWriteOptions:     {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
+        JsonValue:            {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
+        JsonObject:           {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
+        protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
+        protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
+        ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
+        LongType:             {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
+        MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
+        MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
+        IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},
+    },
   wktSourceFiles: [
     "google/protobuf/compiler/plugin.proto",
     "google/protobuf/any.proto",
@@ -108,4 +133,4 @@ export const codegenInfo: CodegenInfo = {
     "google/protobuf/type.proto",
     "google/protobuf/wrappers.proto",
   ],
-} as const;
+};
