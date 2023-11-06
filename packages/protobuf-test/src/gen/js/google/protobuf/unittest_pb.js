@@ -41,6 +41,7 @@ export const ForeignEnum = proto2.makeEnum(
     {no: 4, name: "FOREIGN_FOO"},
     {no: 5, name: "FOREIGN_BAR"},
     {no: 6, name: "FOREIGN_BAZ"},
+    {no: 32, name: "FOREIGN_BAX"},
   ],
 );
 
@@ -283,6 +284,9 @@ export const TestAllTypes = proto2.makeMessageType(
     { no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
     { no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
     { no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
+    { no: 115, name: "oneof_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 116, name: "oneof_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 117, name: "oneof_lazy_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
   ],
 );
 
@@ -558,6 +562,101 @@ export const TestNestedChildExtensionData = proto2.makeMessageType(
 );
 
 /**
+ * Required and closed enum fields are considered unknown fields if the value is
+ * not valid. We need to make sure it functions as expected.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnum
+ */
+export const TestRequiredEnum = proto2.makeMessageType(
+  "protobuf_unittest.TestRequiredEnum",
+  () => [
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * TestRequiredEnum + using enum values that won't fit to 64 bitmask.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnumNoMask
+ */
+export const TestRequiredEnumNoMask = proto2.makeMessageType(
+  "protobuf_unittest.TestRequiredEnumNoMask",
+  () => [
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum) },
+    { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum
+ */
+export const TestRequiredEnumNoMask_NestedEnum = proto2.makeEnum(
+  "protobuf_unittest.TestRequiredEnumNoMask.NestedEnum",
+  [
+    {no: 0, name: "UNSPECIFIED"},
+    {no: 2, name: "FOO"},
+    {no: 100, name: "BAR"},
+    {no: -1, name: "BAZ"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredEnumMulti
+ */
+export const TestRequiredEnumMulti = proto2.makeMessageType(
+  "protobuf_unittest.TestRequiredEnumMulti",
+  () => [
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum
+ */
+export const TestRequiredEnumMulti_NestedEnum = proto2.makeEnum(
+  "protobuf_unittest.TestRequiredEnumMulti.NestedEnum",
+  [
+    {no: 0, name: "UNSPECIFIED"},
+    {no: 1, name: "FOO"},
+    {no: 2, name: "BAR"},
+    {no: 100, name: "BAZ"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredNoMaskMulti
+ */
+export const TestRequiredNoMaskMulti = proto2.makeMessageType(
+  "protobuf_unittest.TestRequiredNoMaskMulti",
+  () => [
+    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum
+ */
+export const TestRequiredNoMaskMulti_NestedEnum = proto2.makeEnum(
+  "protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum",
+  [
+    {no: 0, name: "UNSPECIFIED"},
+    {no: 1, name: "FOO"},
+    {no: 2, name: "BAR"},
+    {no: 100, name: "BAZ"},
+  ],
+);
+
+/**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
  * do anything with it.  Note that we don't need to test every type of
@@ -640,6 +739,10 @@ export const TestNestedRequiredForeign = proto2.makeMessageType(
     { no: 1, name: "child", kind: "message", T: TestNestedRequiredForeign, opt: true },
     { no: 2, name: "payload", kind: "message", T: TestRequiredForeign, opt: true },
     { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 5, name: "required_enum", kind: "message", T: TestRequiredEnum, opt: true },
+    { no: 6, name: "required_enum_no_mask", kind: "message", T: TestRequiredEnumNoMask, opt: true },
+    { no: 7, name: "required_enum_multi", kind: "message", T: TestRequiredEnumMulti, opt: true },
+    { no: 9, name: "required_no_mask", kind: "message", T: TestRequiredNoMaskMulti, opt: true },
   ],
 );
 
@@ -1738,7 +1841,7 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
 );
 
 /**
- * NOTE(b/202996544): Intentionally nested to mirror go/glep.
+ * NOTE: Intentionally nested to mirror go/glep.
  *
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
  */
@@ -2286,6 +2389,132 @@ export const TestPackedEnumSmallRange_NestedEnum = proto2.makeEnum(
     {no: 1, name: "FOO"},
     {no: 2, name: "BAR"},
     {no: 3, name: "BAZ"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.EnumsForBenchmark
+ */
+export const EnumsForBenchmark = proto2.makeMessageType(
+  "protobuf_unittest.EnumsForBenchmark",
+  [],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Flat
+ */
+export const EnumsForBenchmark_Flat = proto2.makeEnum(
+  "protobuf_unittest.EnumsForBenchmark.Flat",
+  [
+    {no: 0, name: "A0"},
+    {no: 1, name: "A1"},
+    {no: 2, name: "A2"},
+    {no: 3, name: "A3"},
+    {no: 4, name: "A4"},
+    {no: 5, name: "A5"},
+    {no: 6, name: "A6"},
+    {no: 7, name: "A7"},
+    {no: 8, name: "A8"},
+    {no: 9, name: "A9"},
+    {no: 10, name: "A10"},
+    {no: 11, name: "A11"},
+    {no: 12, name: "A12"},
+    {no: 13, name: "A13"},
+    {no: 14, name: "A14"},
+    {no: 15, name: "A15"},
+  ],
+);
+
+/**
+ * Has a few holes, bitmap can be used.
+ *
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.AlmostFlat
+ */
+export const EnumsForBenchmark_AlmostFlat = proto2.makeEnum(
+  "protobuf_unittest.EnumsForBenchmark.AlmostFlat",
+  [
+    {no: 0, name: "B0"},
+    {no: 1, name: "B1"},
+    {no: 2, name: "B2"},
+    {no: 3, name: "B3"},
+    {no: 5, name: "B5"},
+    {no: 6, name: "B6"},
+    {no: 7, name: "B7"},
+    {no: 8, name: "B8"},
+    {no: 9, name: "B9"},
+    {no: 11, name: "B11"},
+    {no: 12, name: "B12"},
+    {no: 13, name: "B13"},
+    {no: 14, name: "B14"},
+    {no: 15, name: "B15"},
+    {no: 17, name: "B17"},
+    {no: 19, name: "B19"},
+  ],
+);
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Sparse
+ */
+export const EnumsForBenchmark_Sparse = proto2.makeEnum(
+  "protobuf_unittest.EnumsForBenchmark.Sparse",
+  [
+    {no: 536, name: "C536"},
+    {no: 8387, name: "C8387"},
+    {no: 9673, name: "C9673"},
+    {no: 10285, name: "C10285"},
+    {no: 13318, name: "C13318"},
+    {no: 15963, name: "C15963"},
+    {no: 16439, name: "C16439"},
+    {no: 18197, name: "C18197"},
+    {no: 19430, name: "C19430"},
+    {no: 20361, name: "C20361"},
+    {no: 20706, name: "C20706"},
+    {no: 21050, name: "C21050"},
+    {no: 21906, name: "C21906"},
+    {no: 27265, name: "C27265"},
+    {no: 30109, name: "C30109"},
+    {no: 31670, name: "C31670"},
+  ],
+);
+
+/**
+ * @generated from message protobuf_unittest.TestMessageWithManyRepeatedPtrFields
+ */
+export const TestMessageWithManyRepeatedPtrFields = proto2.makeMessageType(
+  "protobuf_unittest.TestMessageWithManyRepeatedPtrFields",
+  () => [
+    { no: 1, name: "repeated_string_1", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "repeated_string_2", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "repeated_string_3", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "repeated_string_4", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "repeated_string_5", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "repeated_string_6", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: "repeated_string_7", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "repeated_string_8", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: "repeated_string_9", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: "repeated_string_10", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 11, name: "repeated_string_11", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 12, name: "repeated_string_12", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 13, name: "repeated_string_13", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 14, name: "repeated_string_14", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 15, name: "repeated_string_15", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 16, name: "repeated_string_16", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 17, name: "repeated_string_17", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 18, name: "repeated_string_18", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 19, name: "repeated_string_19", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 20, name: "repeated_string_20", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 21, name: "repeated_string_21", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 22, name: "repeated_string_22", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 23, name: "repeated_string_23", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 24, name: "repeated_string_24", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 25, name: "repeated_string_25", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 26, name: "repeated_string_26", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 27, name: "repeated_string_27", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 28, name: "repeated_string_28", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 29, name: "repeated_string_29", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 30, name: "repeated_string_30", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 31, name: "repeated_string_31", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 32, name: "repeated_string_32", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ],
 );
 

@@ -20,21 +20,26 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message pb.TestInvalid
+ * @generated from message pb.TestInvalidFeatures
  */
-export declare class TestInvalid extends Message<TestInvalid> {
-  constructor(data?: PartialMessage<TestInvalid>);
+export declare class TestInvalidFeatures extends Message<TestInvalidFeatures> {
+  /**
+   * @generated from field: repeated int32 repeated_feature = 1;
+   */
+  repeatedFeature: number[];
+
+  constructor(data?: PartialMessage<TestInvalidFeatures>);
 
   static readonly runtime: typeof proto2;
-  static readonly typeName = "pb.TestInvalid";
+  static readonly typeName = "pb.TestInvalidFeatures";
   static readonly fields: FieldList;
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestInvalid;
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestInvalidFeatures;
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestInvalid;
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestInvalidFeatures;
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestInvalid;
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestInvalidFeatures;
 
-  static equals(a: TestInvalid | PlainMessage<TestInvalid> | undefined, b: TestInvalid | PlainMessage<TestInvalid> | undefined): boolean;
+  static equals(a: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined, b: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined): boolean;
 }
 

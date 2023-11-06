@@ -27,6 +27,26 @@
 import { proto2 } from "@bufbuild/protobuf";
 
 /**
+ * The full set of known editions.
+ *
+ * @generated from enum google.protobuf.Edition
+ */
+export const Edition = proto2.makeEnum(
+  "google.protobuf.Edition",
+  [
+    {no: 0, name: "EDITION_UNKNOWN"},
+    {no: 998, name: "EDITION_PROTO2"},
+    {no: 999, name: "EDITION_PROTO3"},
+    {no: 1000, name: "EDITION_2023"},
+    {no: 1, name: "EDITION_1_TEST_ONLY"},
+    {no: 2, name: "EDITION_2_TEST_ONLY"},
+    {no: 99997, name: "EDITION_99997_TEST_ONLY"},
+    {no: 99998, name: "EDITION_99998_TEST_ONLY"},
+    {no: 99999, name: "EDITION_99999_TEST_ONLY"},
+  ],
+);
+
+/**
  * The protocol compiler can output a FileDescriptorSet containing the .proto
  * files it parses.
  *
@@ -59,7 +79,7 @@ export const FileDescriptorProto = proto2.makeMessageType(
     { no: 8, name: "options", kind: "message", T: FileOptions, opt: true },
     { no: 9, name: "source_code_info", kind: "message", T: SourceCodeInfo, opt: true },
     { no: 12, name: "syntax", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 13, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 14, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
   ],
 );
 
@@ -210,8 +230,8 @@ export const FieldDescriptorProto_Label = proto2.makeEnum(
   "google.protobuf.FieldDescriptorProto.Label",
   [
     {no: 1, name: "LABEL_OPTIONAL", localName: "OPTIONAL"},
-    {no: 2, name: "LABEL_REQUIRED", localName: "REQUIRED"},
     {no: 3, name: "LABEL_REPEATED", localName: "REPEATED"},
+    {no: 2, name: "LABEL_REQUIRED", localName: "REQUIRED"},
   ],
 );
 
@@ -461,7 +481,7 @@ export const FieldOptions_OptionTargetType = proto2.makeEnum(
 export const FieldOptions_EditionDefault = proto2.makeMessageType(
   "google.protobuf.FieldOptions.EditionDefault",
   () => [
-    { no: 1, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
     { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "FieldOptions_EditionDefault"},
@@ -588,7 +608,7 @@ export const UninterpretedOption_NamePart = proto2.makeMessageType(
 );
 
 /**
- * TODO(b/274655146) Enums in C++ gencode (and potentially other languages) are
+ * TODO Enums in C++ gencode (and potentially other languages) are
  * not well scoped.  This means that each of the feature enums below can clash
  * with each other.  The short names we've chosen maximize call-site
  * readability, but leave us very open to this scenario.  A future feature will
@@ -603,10 +623,9 @@ export const FeatureSet = proto2.makeMessageType(
     { no: 1, name: "field_presence", kind: "enum", T: proto2.getEnumType(FeatureSet_FieldPresence), opt: true },
     { no: 2, name: "enum_type", kind: "enum", T: proto2.getEnumType(FeatureSet_EnumType), opt: true },
     { no: 3, name: "repeated_field_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_RepeatedFieldEncoding), opt: true },
-    { no: 4, name: "string_field_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_StringFieldValidation), opt: true },
+    { no: 4, name: "utf8_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_Utf8Validation), opt: true },
     { no: 5, name: "message_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_MessageEncoding), opt: true },
     { no: 6, name: "json_format", kind: "enum", T: proto2.getEnumType(FeatureSet_JsonFormat), opt: true },
-    { no: 999, name: "raw_features", kind: "message", T: FeatureSet, opt: true },
   ],
 );
 
@@ -648,15 +667,14 @@ export const FeatureSet_RepeatedFieldEncoding = proto2.makeEnum(
 );
 
 /**
- * @generated from enum google.protobuf.FeatureSet.StringFieldValidation
+ * @generated from enum google.protobuf.FeatureSet.Utf8Validation
  */
-export const FeatureSet_StringFieldValidation = proto2.makeEnum(
-  "google.protobuf.FeatureSet.StringFieldValidation",
+export const FeatureSet_Utf8Validation = proto2.makeEnum(
+  "google.protobuf.FeatureSet.Utf8Validation",
   [
-    {no: 0, name: "STRING_FIELD_VALIDATION_UNKNOWN"},
-    {no: 1, name: "MANDATORY"},
-    {no: 2, name: "HINT"},
-    {no: 3, name: "NONE"},
+    {no: 0, name: "UTF8_VALIDATION_UNKNOWN"},
+    {no: 1, name: "NONE"},
+    {no: 2, name: "VERIFY"},
   ],
 );
 
@@ -682,6 +700,40 @@ export const FeatureSet_JsonFormat = proto2.makeEnum(
     {no: 1, name: "ALLOW"},
     {no: 2, name: "LEGACY_BEST_EFFORT"},
   ],
+);
+
+/**
+ * A compiled specification for the defaults of a set of features.  These
+ * messages are generated from FeatureSet extensions and can be used to seed
+ * feature resolution. The resolution with this object becomes a simple search
+ * for the closest matching edition, followed by proto merges.
+ *
+ * @generated from message google.protobuf.FeatureSetDefaults
+ */
+export const FeatureSetDefaults = proto2.makeMessageType(
+  "google.protobuf.FeatureSetDefaults",
+  () => [
+    { no: 1, name: "defaults", kind: "message", T: FeatureSetDefaults_FeatureSetEditionDefault, repeated: true },
+    { no: 4, name: "minimum_edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 5, name: "maximum_edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+  ],
+);
+
+/**
+ * A map from every known edition with a unique set of defaults to its
+ * defaults. Not all editions may be contained here.  For a given edition,
+ * the defaults at the closest matching edition ordered at or before it should
+ * be used.  This field must be in strict ascending order by edition.
+ *
+ * @generated from message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
+ */
+export const FeatureSetDefaults_FeatureSetEditionDefault = proto2.makeMessageType(
+  "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault",
+  () => [
+    { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+  ],
+  {localName: "FeatureSetDefaults_FeatureSetEditionDefault"},
 );
 
 /**

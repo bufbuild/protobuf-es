@@ -65,6 +65,11 @@ export declare class NestedTestMessageSetContainer extends Message<NestedTestMes
    */
   child?: NestedTestMessageSetContainer;
 
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer lazy_child = 3;
+   */
+  lazyChild?: NestedTestMessageSetContainer;
+
   constructor(data?: PartialMessage<NestedTestMessageSetContainer>);
 
   static readonly runtime: typeof proto2;
