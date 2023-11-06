@@ -28,6 +28,84 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
+ * The full set of known editions.
+ *
+ * @generated from enum google.protobuf.Edition
+ */
+export enum Edition {
+  /**
+   * A placeholder for an unknown edition value.
+   *
+   * @generated from enum value: EDITION_UNKNOWN = 0;
+   */
+  EDITION_UNKNOWN = 0,
+
+  /**
+   * Legacy syntax "editions".  These pre-date editions, but behave much like
+   * distinct editions.  These can't be used to specify the edition of proto
+   * files, but feature definitions must supply proto2/proto3 defaults for
+   * backwards compatibility.
+   *
+   * @generated from enum value: EDITION_PROTO2 = 998;
+   */
+  EDITION_PROTO2 = 998,
+
+  /**
+   * @generated from enum value: EDITION_PROTO3 = 999;
+   */
+  EDITION_PROTO3 = 999,
+
+  /**
+   * Editions that have been released.  The specific values are arbitrary and
+   * should not be depended on, but they will always be time-ordered for easy
+   * comparison.
+   *
+   * @generated from enum value: EDITION_2023 = 1000;
+   */
+  EDITION_2023 = 1000,
+
+  /**
+   * Placeholder editions for testing feature resolution.  These should not be
+   * used or relyed on outside of tests.
+   *
+   * @generated from enum value: EDITION_1_TEST_ONLY = 1;
+   */
+  EDITION_1_TEST_ONLY = 1,
+
+  /**
+   * @generated from enum value: EDITION_2_TEST_ONLY = 2;
+   */
+  EDITION_2_TEST_ONLY = 2,
+
+  /**
+   * @generated from enum value: EDITION_99997_TEST_ONLY = 99997;
+   */
+  EDITION_99997_TEST_ONLY = 99997,
+
+  /**
+   * @generated from enum value: EDITION_99998_TEST_ONLY = 99998;
+   */
+  EDITION_99998_TEST_ONLY = 99998,
+
+  /**
+   * @generated from enum value: EDITION_99999_TEST_ONLY = 99999;
+   */
+  EDITION_99999_TEST_ONLY = 99999,
+}
+// Retrieve enum metadata with: proto2.getEnumType(Edition)
+proto2.util.setEnumType(Edition, "google.protobuf.Edition", [
+  { no: 0, name: "EDITION_UNKNOWN" },
+  { no: 998, name: "EDITION_PROTO2" },
+  { no: 999, name: "EDITION_PROTO3" },
+  { no: 1000, name: "EDITION_2023" },
+  { no: 1, name: "EDITION_1_TEST_ONLY" },
+  { no: 2, name: "EDITION_2_TEST_ONLY" },
+  { no: 99997, name: "EDITION_99997_TEST_ONLY" },
+  { no: 99998, name: "EDITION_99998_TEST_ONLY" },
+  { no: 99999, name: "EDITION_99999_TEST_ONLY" },
+]);
+
+/**
  * The protocol compiler can output a FileDescriptorSet containing the .proto
  * files it parses.
  *
@@ -157,11 +235,11 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
   syntax?: string;
 
   /**
-   * The edition of the proto file, which is an opaque string.
+   * The edition of the proto file.
    *
-   * @generated from field: optional string edition = 13;
+   * @generated from field: optional google.protobuf.Edition edition = 14;
    */
-  edition?: string;
+  edition?: Edition;
 
   constructor(data?: PartialMessage<FileDescriptorProto>) {
     super();
@@ -183,7 +261,7 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
     { no: 8, name: "options", kind: "message", T: FileOptions, opt: true },
     { no: 9, name: "source_code_info", kind: "message", T: SourceCodeInfo, opt: true },
     { no: 12, name: "syntax", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 13, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 14, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FileDescriptorProto {
@@ -432,7 +510,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
 
   /**
    * The verification state of the range.
-   * TODO(b/278783756): flip the default to DECLARATION once all empty ranges
+   * TODO: flip the default to DECLARATION once all empty ranges
    * are marked as UNVERIFIED.
    *
    * @generated from field: optional google.protobuf.ExtensionRangeOptions.VerificationState verification = 3 [default = UNVERIFIED];
@@ -777,9 +855,10 @@ export enum FieldDescriptorProto_Type {
 
   /**
    * Tag-delimited aggregate.
-   * Group type is deprecated and not supported in proto3. However, Proto3
+   * Group type is deprecated and not supported after google.protobuf. However, Proto3
    * implementations should still be able to parse the group wire format and
-   * treat group fields as unknown fields.
+   * treat group fields as unknown fields.  In Editions, the group wire format
+   * can be enabled via the `message_encoding` feature.
    *
    * @generated from enum value: TYPE_GROUP = 10;
    */
@@ -867,20 +946,24 @@ export enum FieldDescriptorProto_Label {
   OPTIONAL = 1,
 
   /**
-   * @generated from enum value: LABEL_REQUIRED = 2;
-   */
-  REQUIRED = 2,
-
-  /**
    * @generated from enum value: LABEL_REPEATED = 3;
    */
   REPEATED = 3,
+
+  /**
+   * The required label is only allowed in google.protobuf.  In proto3 and Editions
+   * it's explicitly prohibited.  In Editions, the `field_presence` feature
+   * can be used to get this behavior.
+   *
+   * @generated from enum value: LABEL_REQUIRED = 2;
+   */
+  REQUIRED = 2,
 }
 // Retrieve enum metadata with: proto2.getEnumType(FieldDescriptorProto_Label)
 proto2.util.setEnumType(FieldDescriptorProto_Label, "google.protobuf.FieldDescriptorProto.Label", [
   { no: 1, name: "LABEL_OPTIONAL" },
-  { no: 2, name: "LABEL_REQUIRED" },
   { no: 3, name: "LABEL_REPEATED" },
+  { no: 2, name: "LABEL_REQUIRED" },
 ]);
 
 /**
@@ -1595,7 +1678,7 @@ export class MessageOptions extends Message<MessageOptions> {
    * This should only be used as a temporary measure against broken builds due
    * to the change in behavior for JSON field name conflicts.
    *
-   * TODO(b/261750190) This is legacy behavior we plan to remove once downstream
+   * TODO This is legacy behavior we plan to remove once downstream
    * teams have had time to migrate.
    *
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 11 [deprecated = true];
@@ -1672,7 +1755,9 @@ export class FieldOptions extends Message<FieldOptions> {
    * a more efficient representation on the wire. Rather than repeatedly
    * writing the tag and type for each element, the entire array is encoded as
    * a single length-delimited blob. In proto3, only explicit setting it to
-   * false will avoid using packed encoding.
+   * false will avoid using packed encoding.  This option is prohibited in
+   * Editions, but the `repeated_field_encoding` feature can be used to control
+   * the behavior.
    *
    * @generated from field: optional bool packed = 2;
    */
@@ -2009,9 +2094,9 @@ proto2.util.setEnumType(FieldOptions_OptionTargetType, "google.protobuf.FieldOpt
  */
 export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDefault> {
   /**
-   * @generated from field: optional string edition = 1;
+   * @generated from field: optional google.protobuf.Edition edition = 3;
    */
-  edition?: string;
+  edition?: Edition;
 
   /**
    * Textproto value.
@@ -2028,7 +2113,7 @@ export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDef
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.FieldOptions.EditionDefault";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "edition", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
     { no: 2, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
@@ -2123,7 +2208,7 @@ export class EnumOptions extends Message<EnumOptions> {
    * and strips underscored from the fields before comparison in proto3 only.
    * The new behavior takes `json_name` into account and applies to proto2 as
    * well.
-   * TODO(b/261750190) Remove this legacy behavior once downstream teams have
+   * TODO Remove this legacy behavior once downstream teams have
    * had time to migrate.
    *
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 6 [deprecated = true];
@@ -2534,7 +2619,7 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
 }
 
 /**
- * TODO(b/274655146) Enums in C++ gencode (and potentially other languages) are
+ * TODO Enums in C++ gencode (and potentially other languages) are
  * not well scoped.  This means that each of the feature enums below can clash
  * with each other.  The short names we've chosen maximize call-site
  * readability, but leave us very open to this scenario.  A future feature will
@@ -2560,9 +2645,9 @@ export class FeatureSet extends Message<FeatureSet> {
   repeatedFieldEncoding?: FeatureSet_RepeatedFieldEncoding;
 
   /**
-   * @generated from field: optional google.protobuf.FeatureSet.StringFieldValidation string_field_validation = 4;
+   * @generated from field: optional google.protobuf.FeatureSet.Utf8Validation utf8_validation = 4;
    */
-  stringFieldValidation?: FeatureSet_StringFieldValidation;
+  utf8Validation?: FeatureSet_Utf8Validation;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.MessageEncoding message_encoding = 5;
@@ -2573,11 +2658,6 @@ export class FeatureSet extends Message<FeatureSet> {
    * @generated from field: optional google.protobuf.FeatureSet.JsonFormat json_format = 6;
    */
   jsonFormat?: FeatureSet_JsonFormat;
-
-  /**
-   * @generated from field: optional google.protobuf.FeatureSet raw_features = 999;
-   */
-  rawFeatures?: FeatureSet;
 
   constructor(data?: PartialMessage<FeatureSet>) {
     super();
@@ -2590,10 +2670,9 @@ export class FeatureSet extends Message<FeatureSet> {
     { no: 1, name: "field_presence", kind: "enum", T: proto2.getEnumType(FeatureSet_FieldPresence), opt: true },
     { no: 2, name: "enum_type", kind: "enum", T: proto2.getEnumType(FeatureSet_EnumType), opt: true },
     { no: 3, name: "repeated_field_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_RepeatedFieldEncoding), opt: true },
-    { no: 4, name: "string_field_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_StringFieldValidation), opt: true },
+    { no: 4, name: "utf8_validation", kind: "enum", T: proto2.getEnumType(FeatureSet_Utf8Validation), opt: true },
     { no: 5, name: "message_encoding", kind: "enum", T: proto2.getEnumType(FeatureSet_MessageEncoding), opt: true },
     { no: 6, name: "json_format", kind: "enum", T: proto2.getEnumType(FeatureSet_JsonFormat), opt: true },
-    { no: 999, name: "raw_features", kind: "message", T: FeatureSet, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSet {
@@ -2698,35 +2777,29 @@ proto2.util.setEnumType(FeatureSet_RepeatedFieldEncoding, "google.protobuf.Featu
 ]);
 
 /**
- * @generated from enum google.protobuf.FeatureSet.StringFieldValidation
+ * @generated from enum google.protobuf.FeatureSet.Utf8Validation
  */
-export enum FeatureSet_StringFieldValidation {
+export enum FeatureSet_Utf8Validation {
   /**
-   * @generated from enum value: STRING_FIELD_VALIDATION_UNKNOWN = 0;
+   * @generated from enum value: UTF8_VALIDATION_UNKNOWN = 0;
    */
-  STRING_FIELD_VALIDATION_UNKNOWN = 0,
+  UTF8_VALIDATION_UNKNOWN = 0,
 
   /**
-   * @generated from enum value: MANDATORY = 1;
+   * @generated from enum value: NONE = 1;
    */
-  MANDATORY = 1,
+  NONE = 1,
 
   /**
-   * @generated from enum value: HINT = 2;
+   * @generated from enum value: VERIFY = 2;
    */
-  HINT = 2,
-
-  /**
-   * @generated from enum value: NONE = 3;
-   */
-  NONE = 3,
+  VERIFY = 2,
 }
-// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_StringFieldValidation)
-proto2.util.setEnumType(FeatureSet_StringFieldValidation, "google.protobuf.FeatureSet.StringFieldValidation", [
-  { no: 0, name: "STRING_FIELD_VALIDATION_UNKNOWN" },
-  { no: 1, name: "MANDATORY" },
-  { no: 2, name: "HINT" },
-  { no: 3, name: "NONE" },
+// Retrieve enum metadata with: proto2.getEnumType(FeatureSet_Utf8Validation)
+proto2.util.setEnumType(FeatureSet_Utf8Validation, "google.protobuf.FeatureSet.Utf8Validation", [
+  { no: 0, name: "UTF8_VALIDATION_UNKNOWN" },
+  { no: 1, name: "NONE" },
+  { no: 2, name: "VERIFY" },
 ]);
 
 /**
@@ -2780,6 +2853,114 @@ proto2.util.setEnumType(FeatureSet_JsonFormat, "google.protobuf.FeatureSet.JsonF
   { no: 1, name: "ALLOW" },
   { no: 2, name: "LEGACY_BEST_EFFORT" },
 ]);
+
+/**
+ * A compiled specification for the defaults of a set of features.  These
+ * messages are generated from FeatureSet extensions and can be used to seed
+ * feature resolution. The resolution with this object becomes a simple search
+ * for the closest matching edition, followed by proto merges.
+ *
+ * @generated from message google.protobuf.FeatureSetDefaults
+ */
+export class FeatureSetDefaults extends Message<FeatureSetDefaults> {
+  /**
+   * @generated from field: repeated google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault defaults = 1;
+   */
+  defaults: FeatureSetDefaults_FeatureSetEditionDefault[] = [];
+
+  /**
+   * The minimum supported edition (inclusive) when this was constructed.
+   * Editions before this will not have defaults.
+   *
+   * @generated from field: optional google.protobuf.Edition minimum_edition = 4;
+   */
+  minimumEdition?: Edition;
+
+  /**
+   * The maximum known edition (inclusive) when this was constructed. Editions
+   * after this will not have reliable defaults.
+   *
+   * @generated from field: optional google.protobuf.Edition maximum_edition = 5;
+   */
+  maximumEdition?: Edition;
+
+  constructor(data?: PartialMessage<FeatureSetDefaults>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "google.protobuf.FeatureSetDefaults";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "defaults", kind: "message", T: FeatureSetDefaults_FeatureSetEditionDefault, repeated: true },
+    { no: 4, name: "minimum_edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 5, name: "maximum_edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSetDefaults {
+    return new FeatureSetDefaults().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FeatureSetDefaults {
+    return new FeatureSetDefaults().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FeatureSetDefaults {
+    return new FeatureSetDefaults().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FeatureSetDefaults | PlainMessage<FeatureSetDefaults> | undefined, b: FeatureSetDefaults | PlainMessage<FeatureSetDefaults> | undefined): boolean {
+    return proto2.util.equals(FeatureSetDefaults, a, b);
+  }
+}
+
+/**
+ * A map from every known edition with a unique set of defaults to its
+ * defaults. Not all editions may be contained here.  For a given edition,
+ * the defaults at the closest matching edition ordered at or before it should
+ * be used.  This field must be in strict ascending order by edition.
+ *
+ * @generated from message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
+ */
+export class FeatureSetDefaults_FeatureSetEditionDefault extends Message<FeatureSetDefaults_FeatureSetEditionDefault> {
+  /**
+   * @generated from field: optional google.protobuf.Edition edition = 3;
+   */
+  edition?: Edition;
+
+  /**
+   * @generated from field: optional google.protobuf.FeatureSet features = 2;
+   */
+  features?: FeatureSet;
+
+  constructor(data?: PartialMessage<FeatureSetDefaults_FeatureSetEditionDefault>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSetDefaults_FeatureSetEditionDefault {
+    return new FeatureSetDefaults_FeatureSetEditionDefault().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FeatureSetDefaults_FeatureSetEditionDefault {
+    return new FeatureSetDefaults_FeatureSetEditionDefault().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FeatureSetDefaults_FeatureSetEditionDefault {
+    return new FeatureSetDefaults_FeatureSetEditionDefault().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FeatureSetDefaults_FeatureSetEditionDefault | PlainMessage<FeatureSetDefaults_FeatureSetEditionDefault> | undefined, b: FeatureSetDefaults_FeatureSetEditionDefault | PlainMessage<FeatureSetDefaults_FeatureSetEditionDefault> | undefined): boolean {
+    return proto2.util.equals(FeatureSetDefaults_FeatureSetEditionDefault, a, b);
+  }
+}
 
 /**
  * Encapsulates information about the original source file from which a

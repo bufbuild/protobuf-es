@@ -78,6 +78,11 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
    */
   child?: NestedTestMessageSetContainer;
 
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer lazy_child = 3;
+   */
+  lazyChild?: NestedTestMessageSetContainer;
+
   constructor(data?: PartialMessage<NestedTestMessageSetContainer>) {
     super();
     proto2.util.initPartial(data, this);
@@ -88,6 +93,7 @@ export class NestedTestMessageSetContainer extends Message<NestedTestMessageSetC
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "container", kind: "message", T: TestMessageSetContainer, opt: true },
     { no: 2, name: "child", kind: "message", T: NestedTestMessageSetContainer, opt: true },
+    { no: 3, name: "lazy_child", kind: "message", T: NestedTestMessageSetContainer, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NestedTestMessageSetContainer {

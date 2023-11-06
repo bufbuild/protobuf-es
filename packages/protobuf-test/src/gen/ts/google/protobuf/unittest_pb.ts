@@ -51,12 +51,20 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
+
+  /**
+   * (1 << 32) to generate a 64b bitmask would be incorrect.
+   *
+   * @generated from enum value: FOREIGN_BAX = 32;
+   */
+  FOREIGN_BAX = 32,
 }
 // Retrieve enum metadata with: proto2.getEnumType(ForeignEnum)
 proto2.util.setEnumType(ForeignEnum, "protobuf_unittest.ForeignEnum", [
   { no: 4, name: "FOREIGN_FOO" },
   { no: 5, name: "FOREIGN_BAR" },
   { no: 6, name: "FOREIGN_BAZ" },
+  { no: 32, name: "FOREIGN_BAX" },
 ]);
 
 /**
@@ -1183,6 +1191,24 @@ export class TestAllTypes extends Message<TestAllTypes> {
      */
     value: Uint8Array;
     case: "oneofBytes";
+  } | {
+    /**
+     * @generated from field: string oneof_cord = 115;
+     */
+    value: string;
+    case: "oneofCord";
+  } | {
+    /**
+     * @generated from field: string oneof_string_piece = 116;
+     */
+    value: string;
+    case: "oneofStringPiece";
+  } | {
+    /**
+     * @generated from field: protobuf_unittest.TestAllTypes.NestedMessage oneof_lazy_nested_message = 117;
+     */
+    value: TestAllTypes_NestedMessage;
+    case: "oneofLazyNestedMessage";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<TestAllTypes>) {
@@ -1269,6 +1295,9 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 112, name: "oneof_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
     { no: 113, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
     { no: 114, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
+    { no: 115, name: "oneof_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 116, name: "oneof_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
+    { no: 117, name: "oneof_lazy_nested_message", kind: "message", T: TestAllTypes_NestedMessage, oneof: "oneof_field" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes {
@@ -2286,6 +2315,334 @@ export class TestNestedChildExtensionData extends Message<TestNestedChildExtensi
 }
 
 /**
+ * Required and closed enum fields are considered unknown fields if the value is
+ * not valid. We need to make sure it functions as expected.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnum
+ */
+export class TestRequiredEnum extends Message<TestRequiredEnum> {
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum = 1;
+   */
+  requiredEnum?: ForeignEnum;
+
+  /**
+   * A dummy optional field.
+   *
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+
+  constructor(data?: PartialMessage<TestRequiredEnum>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnum";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnum {
+    return new TestRequiredEnum().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnum {
+    return new TestRequiredEnum().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnum {
+    return new TestRequiredEnum().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestRequiredEnum | PlainMessage<TestRequiredEnum> | undefined, b: TestRequiredEnum | PlainMessage<TestRequiredEnum> | undefined): boolean {
+    return proto2.util.equals(TestRequiredEnum, a, b);
+  }
+}
+
+/**
+ * TestRequiredEnum + using enum values that won't fit to 64 bitmask.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnumNoMask
+ */
+export class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMask> {
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumNoMask.NestedEnum required_enum = 1;
+   */
+  requiredEnum?: TestRequiredEnumNoMask_NestedEnum;
+
+  /**
+   * A dummy optional field.
+   *
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+
+  constructor(data?: PartialMessage<TestRequiredEnumNoMask>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnumNoMask";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum) },
+    { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnumNoMask {
+    return new TestRequiredEnumNoMask().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnumNoMask {
+    return new TestRequiredEnumNoMask().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnumNoMask {
+    return new TestRequiredEnumNoMask().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestRequiredEnumNoMask | PlainMessage<TestRequiredEnumNoMask> | undefined, b: TestRequiredEnumNoMask | PlainMessage<TestRequiredEnumNoMask> | undefined): boolean {
+    return proto2.util.equals(TestRequiredEnumNoMask, a, b);
+  }
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum
+ */
+export enum TestRequiredEnumNoMask_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 2;
+   */
+  FOO = 2,
+
+  /**
+   * @generated from enum value: BAR = 100;
+   */
+  BAR = 100,
+
+  /**
+   * Intentionally negative.
+   *
+   * @generated from enum value: BAZ = -1;
+   */
+  BAZ = -1,
+}
+// Retrieve enum metadata with: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum)
+proto2.util.setEnumType(TestRequiredEnumNoMask_NestedEnum, "protobuf_unittest.TestRequiredEnumNoMask.NestedEnum", [
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 2, name: "FOO" },
+  { no: 100, name: "BAR" },
+  { no: -1, name: "BAZ" },
+]);
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredEnumMulti
+ */
+export class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
+  /**
+   * Intentionally placed in descending field number to force sorting in closed
+   * enum verification.
+   *
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4?: TestRequiredEnumMulti_NestedEnum;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2?: TestRequiredEnumMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1?: ForeignEnum;
+
+  constructor(data?: PartialMessage<TestRequiredEnumMulti>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnumMulti";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnumMulti {
+    return new TestRequiredEnumMulti().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnumMulti {
+    return new TestRequiredEnumMulti().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnumMulti {
+    return new TestRequiredEnumMulti().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestRequiredEnumMulti | PlainMessage<TestRequiredEnumMulti> | undefined, b: TestRequiredEnumMulti | PlainMessage<TestRequiredEnumMulti> | undefined): boolean {
+    return proto2.util.equals(TestRequiredEnumMulti, a, b);
+  }
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum
+ */
+export enum TestRequiredEnumMulti_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 100;
+   */
+  BAZ = 100,
+}
+// Retrieve enum metadata with: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum)
+proto2.util.setEnumType(TestRequiredEnumMulti_NestedEnum, "protobuf_unittest.TestRequiredEnumMulti.NestedEnum", [
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "FOO" },
+  { no: 2, name: "BAR" },
+  { no: 100, name: "BAZ" },
+]);
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredNoMaskMulti
+ */
+export class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
+  /**
+   * Intentionally placed in descending field number to force sorting in closed
+   * enum verification. Also, using large field numbers to use tag only
+   * matching for required fields.
+   *
+   * @generated from field: required fixed32 required_fixed32_80 = 80;
+   */
+  requiredFixed3280?: number;
+
+  /**
+   * @generated from field: required fixed32 required_fixed32_70 = 70;
+   */
+  requiredFixed3270?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_64 = 64;
+   */
+  requiredEnum64?: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4?: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2?: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1?: ForeignEnum;
+
+  constructor(data?: PartialMessage<TestRequiredNoMaskMulti>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredNoMaskMulti";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
+    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredNoMaskMulti {
+    return new TestRequiredNoMaskMulti().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredNoMaskMulti {
+    return new TestRequiredNoMaskMulti().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredNoMaskMulti {
+    return new TestRequiredNoMaskMulti().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestRequiredNoMaskMulti | PlainMessage<TestRequiredNoMaskMulti> | undefined, b: TestRequiredNoMaskMulti | PlainMessage<TestRequiredNoMaskMulti> | undefined): boolean {
+    return proto2.util.equals(TestRequiredNoMaskMulti, a, b);
+  }
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum
+ */
+export enum TestRequiredNoMaskMulti_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 100;
+   */
+  BAZ = 100,
+}
+// Retrieve enum metadata with: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum)
+proto2.util.setEnumType(TestRequiredNoMaskMulti_NestedEnum, "protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum", [
+  { no: 0, name: "UNSPECIFIED" },
+  { no: 1, name: "FOO" },
+  { no: 2, name: "BAR" },
+  { no: 100, name: "BAZ" },
+]);
+
+/**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
  * do anything with it.  Note that we don't need to test every type of
@@ -2656,6 +3013,28 @@ export class TestNestedRequiredForeign extends Message<TestNestedRequiredForeign
    */
   dummy?: number;
 
+  /**
+   * optional message to test required closed enum.
+   *
+   * @generated from field: optional protobuf_unittest.TestRequiredEnum required_enum = 5;
+   */
+  requiredEnum?: TestRequiredEnum;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumNoMask required_enum_no_mask = 6;
+   */
+  requiredEnumNoMask?: TestRequiredEnumNoMask;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumMulti required_enum_multi = 7;
+   */
+  requiredEnumMulti?: TestRequiredEnumMulti;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredNoMaskMulti required_no_mask = 9;
+   */
+  requiredNoMask?: TestRequiredNoMaskMulti;
+
   constructor(data?: PartialMessage<TestNestedRequiredForeign>) {
     super();
     proto2.util.initPartial(data, this);
@@ -2667,6 +3046,10 @@ export class TestNestedRequiredForeign extends Message<TestNestedRequiredForeign
     { no: 1, name: "child", kind: "message", T: TestNestedRequiredForeign, opt: true },
     { no: 2, name: "payload", kind: "message", T: TestRequiredForeign, opt: true },
     { no: 3, name: "dummy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 5, name: "required_enum", kind: "message", T: TestRequiredEnum, opt: true },
+    { no: 6, name: "required_enum_no_mask", kind: "message", T: TestRequiredEnumNoMask, opt: true },
+    { no: 7, name: "required_enum_multi", kind: "message", T: TestRequiredEnumMulti, opt: true },
+    { no: 9, name: "required_no_mask", kind: "message", T: TestRequiredNoMaskMulti, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedRequiredForeign {
@@ -7016,7 +7399,7 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
 }
 
 /**
- * NOTE(b/202996544): Intentionally nested to mirror go/glep.
+ * NOTE: Intentionally nested to mirror go/glep.
  *
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
  */
@@ -9382,4 +9765,572 @@ proto2.util.setEnumType(TestPackedEnumSmallRange_NestedEnum, "protobuf_unittest.
   { no: 2, name: "BAR" },
   { no: 3, name: "BAZ" },
 ]);
+
+/**
+ * @generated from message protobuf_unittest.EnumsForBenchmark
+ */
+export class EnumsForBenchmark extends Message<EnumsForBenchmark> {
+  constructor(data?: PartialMessage<EnumsForBenchmark>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.EnumsForBenchmark";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumsForBenchmark {
+    return new EnumsForBenchmark().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumsForBenchmark {
+    return new EnumsForBenchmark().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumsForBenchmark {
+    return new EnumsForBenchmark().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: EnumsForBenchmark | PlainMessage<EnumsForBenchmark> | undefined, b: EnumsForBenchmark | PlainMessage<EnumsForBenchmark> | undefined): boolean {
+    return proto2.util.equals(EnumsForBenchmark, a, b);
+  }
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Flat
+ */
+export enum EnumsForBenchmark_Flat {
+  /**
+   * @generated from enum value: A0 = 0;
+   */
+  A0 = 0,
+
+  /**
+   * @generated from enum value: A1 = 1;
+   */
+  A1 = 1,
+
+  /**
+   * @generated from enum value: A2 = 2;
+   */
+  A2 = 2,
+
+  /**
+   * @generated from enum value: A3 = 3;
+   */
+  A3 = 3,
+
+  /**
+   * @generated from enum value: A4 = 4;
+   */
+  A4 = 4,
+
+  /**
+   * @generated from enum value: A5 = 5;
+   */
+  A5 = 5,
+
+  /**
+   * @generated from enum value: A6 = 6;
+   */
+  A6 = 6,
+
+  /**
+   * @generated from enum value: A7 = 7;
+   */
+  A7 = 7,
+
+  /**
+   * @generated from enum value: A8 = 8;
+   */
+  A8 = 8,
+
+  /**
+   * @generated from enum value: A9 = 9;
+   */
+  A9 = 9,
+
+  /**
+   * @generated from enum value: A10 = 10;
+   */
+  A10 = 10,
+
+  /**
+   * @generated from enum value: A11 = 11;
+   */
+  A11 = 11,
+
+  /**
+   * @generated from enum value: A12 = 12;
+   */
+  A12 = 12,
+
+  /**
+   * @generated from enum value: A13 = 13;
+   */
+  A13 = 13,
+
+  /**
+   * @generated from enum value: A14 = 14;
+   */
+  A14 = 14,
+
+  /**
+   * @generated from enum value: A15 = 15;
+   */
+  A15 = 15,
+}
+// Retrieve enum metadata with: proto2.getEnumType(EnumsForBenchmark_Flat)
+proto2.util.setEnumType(EnumsForBenchmark_Flat, "protobuf_unittest.EnumsForBenchmark.Flat", [
+  { no: 0, name: "A0" },
+  { no: 1, name: "A1" },
+  { no: 2, name: "A2" },
+  { no: 3, name: "A3" },
+  { no: 4, name: "A4" },
+  { no: 5, name: "A5" },
+  { no: 6, name: "A6" },
+  { no: 7, name: "A7" },
+  { no: 8, name: "A8" },
+  { no: 9, name: "A9" },
+  { no: 10, name: "A10" },
+  { no: 11, name: "A11" },
+  { no: 12, name: "A12" },
+  { no: 13, name: "A13" },
+  { no: 14, name: "A14" },
+  { no: 15, name: "A15" },
+]);
+
+/**
+ * Has a few holes, bitmap can be used.
+ *
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.AlmostFlat
+ */
+export enum EnumsForBenchmark_AlmostFlat {
+  /**
+   * @generated from enum value: B0 = 0;
+   */
+  B0 = 0,
+
+  /**
+   * @generated from enum value: B1 = 1;
+   */
+  B1 = 1,
+
+  /**
+   * @generated from enum value: B2 = 2;
+   */
+  B2 = 2,
+
+  /**
+   * @generated from enum value: B3 = 3;
+   */
+  B3 = 3,
+
+  /**
+   * @generated from enum value: B5 = 5;
+   */
+  B5 = 5,
+
+  /**
+   * @generated from enum value: B6 = 6;
+   */
+  B6 = 6,
+
+  /**
+   * @generated from enum value: B7 = 7;
+   */
+  B7 = 7,
+
+  /**
+   * @generated from enum value: B8 = 8;
+   */
+  B8 = 8,
+
+  /**
+   * @generated from enum value: B9 = 9;
+   */
+  B9 = 9,
+
+  /**
+   * @generated from enum value: B11 = 11;
+   */
+  B11 = 11,
+
+  /**
+   * @generated from enum value: B12 = 12;
+   */
+  B12 = 12,
+
+  /**
+   * @generated from enum value: B13 = 13;
+   */
+  B13 = 13,
+
+  /**
+   * @generated from enum value: B14 = 14;
+   */
+  B14 = 14,
+
+  /**
+   * @generated from enum value: B15 = 15;
+   */
+  B15 = 15,
+
+  /**
+   * @generated from enum value: B17 = 17;
+   */
+  B17 = 17,
+
+  /**
+   * @generated from enum value: B19 = 19;
+   */
+  B19 = 19,
+}
+// Retrieve enum metadata with: proto2.getEnumType(EnumsForBenchmark_AlmostFlat)
+proto2.util.setEnumType(EnumsForBenchmark_AlmostFlat, "protobuf_unittest.EnumsForBenchmark.AlmostFlat", [
+  { no: 0, name: "B0" },
+  { no: 1, name: "B1" },
+  { no: 2, name: "B2" },
+  { no: 3, name: "B3" },
+  { no: 5, name: "B5" },
+  { no: 6, name: "B6" },
+  { no: 7, name: "B7" },
+  { no: 8, name: "B8" },
+  { no: 9, name: "B9" },
+  { no: 11, name: "B11" },
+  { no: 12, name: "B12" },
+  { no: 13, name: "B13" },
+  { no: 14, name: "B14" },
+  { no: 15, name: "B15" },
+  { no: 17, name: "B17" },
+  { no: 19, name: "B19" },
+]);
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Sparse
+ */
+export enum EnumsForBenchmark_Sparse {
+  /**
+   * @generated from enum value: C536 = 536;
+   */
+  C536 = 536,
+
+  /**
+   * @generated from enum value: C8387 = 8387;
+   */
+  C8387 = 8387,
+
+  /**
+   * @generated from enum value: C9673 = 9673;
+   */
+  C9673 = 9673,
+
+  /**
+   * @generated from enum value: C10285 = 10285;
+   */
+  C10285 = 10285,
+
+  /**
+   * @generated from enum value: C13318 = 13318;
+   */
+  C13318 = 13318,
+
+  /**
+   * @generated from enum value: C15963 = 15963;
+   */
+  C15963 = 15963,
+
+  /**
+   * @generated from enum value: C16439 = 16439;
+   */
+  C16439 = 16439,
+
+  /**
+   * @generated from enum value: C18197 = 18197;
+   */
+  C18197 = 18197,
+
+  /**
+   * @generated from enum value: C19430 = 19430;
+   */
+  C19430 = 19430,
+
+  /**
+   * @generated from enum value: C20361 = 20361;
+   */
+  C20361 = 20361,
+
+  /**
+   * @generated from enum value: C20706 = 20706;
+   */
+  C20706 = 20706,
+
+  /**
+   * @generated from enum value: C21050 = 21050;
+   */
+  C21050 = 21050,
+
+  /**
+   * @generated from enum value: C21906 = 21906;
+   */
+  C21906 = 21906,
+
+  /**
+   * @generated from enum value: C27265 = 27265;
+   */
+  C27265 = 27265,
+
+  /**
+   * @generated from enum value: C30109 = 30109;
+   */
+  C30109 = 30109,
+
+  /**
+   * @generated from enum value: C31670 = 31670;
+   */
+  C31670 = 31670,
+}
+// Retrieve enum metadata with: proto2.getEnumType(EnumsForBenchmark_Sparse)
+proto2.util.setEnumType(EnumsForBenchmark_Sparse, "protobuf_unittest.EnumsForBenchmark.Sparse", [
+  { no: 536, name: "C536" },
+  { no: 8387, name: "C8387" },
+  { no: 9673, name: "C9673" },
+  { no: 10285, name: "C10285" },
+  { no: 13318, name: "C13318" },
+  { no: 15963, name: "C15963" },
+  { no: 16439, name: "C16439" },
+  { no: 18197, name: "C18197" },
+  { no: 19430, name: "C19430" },
+  { no: 20361, name: "C20361" },
+  { no: 20706, name: "C20706" },
+  { no: 21050, name: "C21050" },
+  { no: 21906, name: "C21906" },
+  { no: 27265, name: "C27265" },
+  { no: 30109, name: "C30109" },
+  { no: 31670, name: "C31670" },
+]);
+
+/**
+ * @generated from message protobuf_unittest.TestMessageWithManyRepeatedPtrFields
+ */
+export class TestMessageWithManyRepeatedPtrFields extends Message<TestMessageWithManyRepeatedPtrFields> {
+  /**
+   * @generated from field: repeated string repeated_string_1 = 1;
+   */
+  repeatedString1: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_2 = 2;
+   */
+  repeatedString2: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_3 = 3;
+   */
+  repeatedString3: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_4 = 4;
+   */
+  repeatedString4: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_5 = 5;
+   */
+  repeatedString5: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_6 = 6;
+   */
+  repeatedString6: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_7 = 7;
+   */
+  repeatedString7: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_8 = 8;
+   */
+  repeatedString8: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_9 = 9;
+   */
+  repeatedString9: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_10 = 10;
+   */
+  repeatedString10: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_11 = 11;
+   */
+  repeatedString11: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_12 = 12;
+   */
+  repeatedString12: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_13 = 13;
+   */
+  repeatedString13: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_14 = 14;
+   */
+  repeatedString14: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_15 = 15;
+   */
+  repeatedString15: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_16 = 16;
+   */
+  repeatedString16: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_17 = 17;
+   */
+  repeatedString17: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_18 = 18;
+   */
+  repeatedString18: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_19 = 19;
+   */
+  repeatedString19: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_20 = 20;
+   */
+  repeatedString20: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_21 = 21;
+   */
+  repeatedString21: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_22 = 22;
+   */
+  repeatedString22: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_23 = 23;
+   */
+  repeatedString23: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_24 = 24;
+   */
+  repeatedString24: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_25 = 25;
+   */
+  repeatedString25: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_26 = 26;
+   */
+  repeatedString26: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_27 = 27;
+   */
+  repeatedString27: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_28 = 28;
+   */
+  repeatedString28: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_29 = 29;
+   */
+  repeatedString29: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_30 = 30;
+   */
+  repeatedString30: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_31 = 31;
+   */
+  repeatedString31: string[] = [];
+
+  /**
+   * @generated from field: repeated string repeated_string_32 = 32;
+   */
+  repeatedString32: string[] = [];
+
+  constructor(data?: PartialMessage<TestMessageWithManyRepeatedPtrFields>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageWithManyRepeatedPtrFields";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "repeated_string_1", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "repeated_string_2", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "repeated_string_3", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: "repeated_string_4", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: "repeated_string_5", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: "repeated_string_6", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: "repeated_string_7", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 8, name: "repeated_string_8", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: "repeated_string_9", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: "repeated_string_10", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 11, name: "repeated_string_11", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 12, name: "repeated_string_12", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 13, name: "repeated_string_13", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 14, name: "repeated_string_14", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 15, name: "repeated_string_15", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 16, name: "repeated_string_16", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 17, name: "repeated_string_17", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 18, name: "repeated_string_18", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 19, name: "repeated_string_19", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 20, name: "repeated_string_20", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 21, name: "repeated_string_21", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 22, name: "repeated_string_22", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 23, name: "repeated_string_23", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 24, name: "repeated_string_24", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 25, name: "repeated_string_25", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 26, name: "repeated_string_26", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 27, name: "repeated_string_27", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 28, name: "repeated_string_28", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 29, name: "repeated_string_29", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 30, name: "repeated_string_30", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 31, name: "repeated_string_31", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 32, name: "repeated_string_32", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithManyRepeatedPtrFields {
+    return new TestMessageWithManyRepeatedPtrFields().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithManyRepeatedPtrFields {
+    return new TestMessageWithManyRepeatedPtrFields().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithManyRepeatedPtrFields {
+    return new TestMessageWithManyRepeatedPtrFields().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined, b: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined): boolean {
+    return proto2.util.equals(TestMessageWithManyRepeatedPtrFields, a, b);
+  }
+}
 

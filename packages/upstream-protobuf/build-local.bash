@@ -8,7 +8,7 @@ set -eo pipefail
 # you may need to install XCode from the Apple App Store.
 
 GOOGLE_PROTOBUF_VERSION=24.4
-export USE_BAZEL_VERSION=5.4.0
+export USE_BAZEL_VERSION=6.4.0
 TMP=".tmp/local${GOOGLE_PROTOBUF_VERSION}"
 
 # Download full release

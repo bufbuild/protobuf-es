@@ -51,6 +51,13 @@ export declare enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
+
+  /**
+   * (1 << 32) to generate a 64b bitmask would be incorrect.
+   *
+   * @generated from enum value: FOREIGN_BAX = 32;
+   */
+  FOREIGN_BAX = 32,
 }
 
 /**
@@ -1051,6 +1058,24 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
      */
     value: Uint8Array;
     case: "oneofBytes";
+  } | {
+    /**
+     * @generated from field: string oneof_cord = 115;
+     */
+    value: string;
+    case: "oneofCord";
+  } | {
+    /**
+     * @generated from field: string oneof_string_piece = 116;
+     */
+    value: string;
+    case: "oneofStringPiece";
+  } | {
+    /**
+     * @generated from field: protobuf_unittest.TestAllTypes.NestedMessage oneof_lazy_nested_message = 117;
+     */
+    value: TestAllTypes_NestedMessage;
+    case: "oneofLazyNestedMessage";
   } | { case: undefined; value?: undefined };
 
   constructor(data?: PartialMessage<TestAllTypes>);
@@ -1746,6 +1771,250 @@ export declare class TestNestedChildExtensionData extends Message<TestNestedChil
 }
 
 /**
+ * Required and closed enum fields are considered unknown fields if the value is
+ * not valid. We need to make sure it functions as expected.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnum
+ */
+export declare class TestRequiredEnum extends Message<TestRequiredEnum> {
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum = 1;
+   */
+  requiredEnum: ForeignEnum;
+
+  /**
+   * A dummy optional field.
+   *
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+
+  constructor(data?: PartialMessage<TestRequiredEnum>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnum";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnum;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnum;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnum;
+
+  static equals(a: TestRequiredEnum | PlainMessage<TestRequiredEnum> | undefined, b: TestRequiredEnum | PlainMessage<TestRequiredEnum> | undefined): boolean;
+}
+
+/**
+ * TestRequiredEnum + using enum values that won't fit to 64 bitmask.
+ *
+ * @generated from message protobuf_unittest.TestRequiredEnumNoMask
+ */
+export declare class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMask> {
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumNoMask.NestedEnum required_enum = 1;
+   */
+  requiredEnum: TestRequiredEnumNoMask_NestedEnum;
+
+  /**
+   * A dummy optional field.
+   *
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+
+  constructor(data?: PartialMessage<TestRequiredEnumNoMask>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnumNoMask";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnumNoMask;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnumNoMask;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnumNoMask;
+
+  static equals(a: TestRequiredEnumNoMask | PlainMessage<TestRequiredEnumNoMask> | undefined, b: TestRequiredEnumNoMask | PlainMessage<TestRequiredEnumNoMask> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum
+ */
+export declare enum TestRequiredEnumNoMask_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 2;
+   */
+  FOO = 2,
+
+  /**
+   * @generated from enum value: BAR = 100;
+   */
+  BAR = 100,
+
+  /**
+   * Intentionally negative.
+   *
+   * @generated from enum value: BAZ = -1;
+   */
+  BAZ = -1,
+}
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredEnumMulti
+ */
+export declare class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
+  /**
+   * Intentionally placed in descending field number to force sorting in closed
+   * enum verification.
+   *
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4: TestRequiredEnumMulti_NestedEnum;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2: TestRequiredEnumMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1: ForeignEnum;
+
+  constructor(data?: PartialMessage<TestRequiredEnumMulti>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredEnumMulti";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnumMulti;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredEnumMulti;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredEnumMulti;
+
+  static equals(a: TestRequiredEnumMulti | PlainMessage<TestRequiredEnumMulti> | undefined, b: TestRequiredEnumMulti | PlainMessage<TestRequiredEnumMulti> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum
+ */
+export declare enum TestRequiredEnumMulti_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 100;
+   */
+  BAZ = 100,
+}
+
+/**
+ * @generated from message protobuf_unittest.TestRequiredNoMaskMulti
+ */
+export declare class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
+  /**
+   * Intentionally placed in descending field number to force sorting in closed
+   * enum verification. Also, using large field numbers to use tag only
+   * matching for required fields.
+   *
+   * @generated from field: required fixed32 required_fixed32_80 = 80;
+   */
+  requiredFixed3280: number;
+
+  /**
+   * @generated from field: required fixed32 required_fixed32_70 = 70;
+   */
+  requiredFixed3270: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_64 = 64;
+   */
+  requiredEnum64: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2: TestRequiredNoMaskMulti_NestedEnum;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1: ForeignEnum;
+
+  constructor(data?: PartialMessage<TestRequiredNoMaskMulti>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestRequiredNoMaskMulti";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredNoMaskMulti;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestRequiredNoMaskMulti;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestRequiredNoMaskMulti;
+
+  static equals(a: TestRequiredNoMaskMulti | PlainMessage<TestRequiredNoMaskMulti> | undefined, b: TestRequiredNoMaskMulti | PlainMessage<TestRequiredNoMaskMulti> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum
+ */
+export declare enum TestRequiredNoMaskMulti_NestedEnum {
+  /**
+   * @generated from enum value: UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: FOO = 1;
+   */
+  FOO = 1,
+
+  /**
+   * @generated from enum value: BAR = 2;
+   */
+  BAR = 2,
+
+  /**
+   * @generated from enum value: BAZ = 100;
+   */
+  BAZ = 100,
+}
+
+/**
  * We have separate messages for testing required fields because it's
  * annoying to have to fill in required fields in TestProto in order to
  * do anything with it.  Note that we don't need to test every type of
@@ -2038,6 +2307,28 @@ export declare class TestNestedRequiredForeign extends Message<TestNestedRequire
    * @generated from field: optional int32 dummy = 3;
    */
   dummy?: number;
+
+  /**
+   * optional message to test required closed enum.
+   *
+   * @generated from field: optional protobuf_unittest.TestRequiredEnum required_enum = 5;
+   */
+  requiredEnum?: TestRequiredEnum;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumNoMask required_enum_no_mask = 6;
+   */
+  requiredEnumNoMask?: TestRequiredEnumNoMask;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumMulti required_enum_multi = 7;
+   */
+  requiredEnumMulti?: TestRequiredEnumMulti;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredNoMaskMulti required_no_mask = 9;
+   */
+  requiredNoMask?: TestRequiredNoMaskMulti;
 
   constructor(data?: PartialMessage<TestNestedRequiredForeign>);
 
@@ -5132,7 +5423,7 @@ export declare class TestExtensionInsideTable extends Message<TestExtensionInsid
 }
 
 /**
- * NOTE(b/202996544): Intentionally nested to mirror go/glep.
+ * NOTE: Intentionally nested to mirror go/glep.
  *
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
  */
@@ -6900,5 +7191,460 @@ export declare enum TestPackedEnumSmallRange_NestedEnum {
    * @generated from enum value: BAZ = 3;
    */
   BAZ = 3,
+}
+
+/**
+ * @generated from message protobuf_unittest.EnumsForBenchmark
+ */
+export declare class EnumsForBenchmark extends Message<EnumsForBenchmark> {
+  constructor(data?: PartialMessage<EnumsForBenchmark>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.EnumsForBenchmark";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnumsForBenchmark;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EnumsForBenchmark;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EnumsForBenchmark;
+
+  static equals(a: EnumsForBenchmark | PlainMessage<EnumsForBenchmark> | undefined, b: EnumsForBenchmark | PlainMessage<EnumsForBenchmark> | undefined): boolean;
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Flat
+ */
+export declare enum EnumsForBenchmark_Flat {
+  /**
+   * @generated from enum value: A0 = 0;
+   */
+  A0 = 0,
+
+  /**
+   * @generated from enum value: A1 = 1;
+   */
+  A1 = 1,
+
+  /**
+   * @generated from enum value: A2 = 2;
+   */
+  A2 = 2,
+
+  /**
+   * @generated from enum value: A3 = 3;
+   */
+  A3 = 3,
+
+  /**
+   * @generated from enum value: A4 = 4;
+   */
+  A4 = 4,
+
+  /**
+   * @generated from enum value: A5 = 5;
+   */
+  A5 = 5,
+
+  /**
+   * @generated from enum value: A6 = 6;
+   */
+  A6 = 6,
+
+  /**
+   * @generated from enum value: A7 = 7;
+   */
+  A7 = 7,
+
+  /**
+   * @generated from enum value: A8 = 8;
+   */
+  A8 = 8,
+
+  /**
+   * @generated from enum value: A9 = 9;
+   */
+  A9 = 9,
+
+  /**
+   * @generated from enum value: A10 = 10;
+   */
+  A10 = 10,
+
+  /**
+   * @generated from enum value: A11 = 11;
+   */
+  A11 = 11,
+
+  /**
+   * @generated from enum value: A12 = 12;
+   */
+  A12 = 12,
+
+  /**
+   * @generated from enum value: A13 = 13;
+   */
+  A13 = 13,
+
+  /**
+   * @generated from enum value: A14 = 14;
+   */
+  A14 = 14,
+
+  /**
+   * @generated from enum value: A15 = 15;
+   */
+  A15 = 15,
+}
+
+/**
+ * Has a few holes, bitmap can be used.
+ *
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.AlmostFlat
+ */
+export declare enum EnumsForBenchmark_AlmostFlat {
+  /**
+   * @generated from enum value: B0 = 0;
+   */
+  B0 = 0,
+
+  /**
+   * @generated from enum value: B1 = 1;
+   */
+  B1 = 1,
+
+  /**
+   * @generated from enum value: B2 = 2;
+   */
+  B2 = 2,
+
+  /**
+   * @generated from enum value: B3 = 3;
+   */
+  B3 = 3,
+
+  /**
+   * @generated from enum value: B5 = 5;
+   */
+  B5 = 5,
+
+  /**
+   * @generated from enum value: B6 = 6;
+   */
+  B6 = 6,
+
+  /**
+   * @generated from enum value: B7 = 7;
+   */
+  B7 = 7,
+
+  /**
+   * @generated from enum value: B8 = 8;
+   */
+  B8 = 8,
+
+  /**
+   * @generated from enum value: B9 = 9;
+   */
+  B9 = 9,
+
+  /**
+   * @generated from enum value: B11 = 11;
+   */
+  B11 = 11,
+
+  /**
+   * @generated from enum value: B12 = 12;
+   */
+  B12 = 12,
+
+  /**
+   * @generated from enum value: B13 = 13;
+   */
+  B13 = 13,
+
+  /**
+   * @generated from enum value: B14 = 14;
+   */
+  B14 = 14,
+
+  /**
+   * @generated from enum value: B15 = 15;
+   */
+  B15 = 15,
+
+  /**
+   * @generated from enum value: B17 = 17;
+   */
+  B17 = 17,
+
+  /**
+   * @generated from enum value: B19 = 19;
+   */
+  B19 = 19,
+}
+
+/**
+ * @generated from enum protobuf_unittest.EnumsForBenchmark.Sparse
+ */
+export declare enum EnumsForBenchmark_Sparse {
+  /**
+   * @generated from enum value: C536 = 536;
+   */
+  C536 = 536,
+
+  /**
+   * @generated from enum value: C8387 = 8387;
+   */
+  C8387 = 8387,
+
+  /**
+   * @generated from enum value: C9673 = 9673;
+   */
+  C9673 = 9673,
+
+  /**
+   * @generated from enum value: C10285 = 10285;
+   */
+  C10285 = 10285,
+
+  /**
+   * @generated from enum value: C13318 = 13318;
+   */
+  C13318 = 13318,
+
+  /**
+   * @generated from enum value: C15963 = 15963;
+   */
+  C15963 = 15963,
+
+  /**
+   * @generated from enum value: C16439 = 16439;
+   */
+  C16439 = 16439,
+
+  /**
+   * @generated from enum value: C18197 = 18197;
+   */
+  C18197 = 18197,
+
+  /**
+   * @generated from enum value: C19430 = 19430;
+   */
+  C19430 = 19430,
+
+  /**
+   * @generated from enum value: C20361 = 20361;
+   */
+  C20361 = 20361,
+
+  /**
+   * @generated from enum value: C20706 = 20706;
+   */
+  C20706 = 20706,
+
+  /**
+   * @generated from enum value: C21050 = 21050;
+   */
+  C21050 = 21050,
+
+  /**
+   * @generated from enum value: C21906 = 21906;
+   */
+  C21906 = 21906,
+
+  /**
+   * @generated from enum value: C27265 = 27265;
+   */
+  C27265 = 27265,
+
+  /**
+   * @generated from enum value: C30109 = 30109;
+   */
+  C30109 = 30109,
+
+  /**
+   * @generated from enum value: C31670 = 31670;
+   */
+  C31670 = 31670,
+}
+
+/**
+ * @generated from message protobuf_unittest.TestMessageWithManyRepeatedPtrFields
+ */
+export declare class TestMessageWithManyRepeatedPtrFields extends Message<TestMessageWithManyRepeatedPtrFields> {
+  /**
+   * @generated from field: repeated string repeated_string_1 = 1;
+   */
+  repeatedString1: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_2 = 2;
+   */
+  repeatedString2: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_3 = 3;
+   */
+  repeatedString3: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_4 = 4;
+   */
+  repeatedString4: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_5 = 5;
+   */
+  repeatedString5: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_6 = 6;
+   */
+  repeatedString6: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_7 = 7;
+   */
+  repeatedString7: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_8 = 8;
+   */
+  repeatedString8: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_9 = 9;
+   */
+  repeatedString9: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_10 = 10;
+   */
+  repeatedString10: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_11 = 11;
+   */
+  repeatedString11: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_12 = 12;
+   */
+  repeatedString12: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_13 = 13;
+   */
+  repeatedString13: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_14 = 14;
+   */
+  repeatedString14: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_15 = 15;
+   */
+  repeatedString15: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_16 = 16;
+   */
+  repeatedString16: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_17 = 17;
+   */
+  repeatedString17: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_18 = 18;
+   */
+  repeatedString18: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_19 = 19;
+   */
+  repeatedString19: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_20 = 20;
+   */
+  repeatedString20: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_21 = 21;
+   */
+  repeatedString21: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_22 = 22;
+   */
+  repeatedString22: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_23 = 23;
+   */
+  repeatedString23: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_24 = 24;
+   */
+  repeatedString24: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_25 = 25;
+   */
+  repeatedString25: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_26 = 26;
+   */
+  repeatedString26: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_27 = 27;
+   */
+  repeatedString27: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_28 = 28;
+   */
+  repeatedString28: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_29 = 29;
+   */
+  repeatedString29: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_30 = 30;
+   */
+  repeatedString30: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_31 = 31;
+   */
+  repeatedString31: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_32 = 32;
+   */
+  repeatedString32: string[];
+
+  constructor(data?: PartialMessage<TestMessageWithManyRepeatedPtrFields>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_unittest.TestMessageWithManyRepeatedPtrFields";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageWithManyRepeatedPtrFields;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMessageWithManyRepeatedPtrFields;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMessageWithManyRepeatedPtrFields;
+
+  static equals(a: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined, b: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined): boolean;
 }
 
