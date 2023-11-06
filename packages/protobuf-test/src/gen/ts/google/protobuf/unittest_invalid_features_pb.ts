@@ -20,33 +20,39 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message pb.TestInvalid
+ * @generated from message pb.TestInvalidFeatures
  */
-export class TestInvalid extends Message<TestInvalid> {
-  constructor(data?: PartialMessage<TestInvalid>) {
+export class TestInvalidFeatures extends Message<TestInvalidFeatures> {
+  /**
+   * @generated from field: repeated int32 repeated_feature = 1;
+   */
+  repeatedFeature: number[] = [];
+
+  constructor(data?: PartialMessage<TestInvalidFeatures>) {
     super();
     proto2.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "pb.TestInvalid";
+  static readonly typeName = "pb.TestInvalidFeatures";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "repeated_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestInvalid {
-    return new TestInvalid().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestInvalidFeatures {
+    return new TestInvalidFeatures().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestInvalid {
-    return new TestInvalid().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestInvalidFeatures {
+    return new TestInvalidFeatures().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestInvalid {
-    return new TestInvalid().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestInvalidFeatures {
+    return new TestInvalidFeatures().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TestInvalid | PlainMessage<TestInvalid> | undefined, b: TestInvalid | PlainMessage<TestInvalid> | undefined): boolean {
-    return proto2.util.equals(TestInvalid, a, b);
+  static equals(a: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined, b: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined): boolean {
+    return proto2.util.equals(TestInvalidFeatures, a, b);
   }
 }
 

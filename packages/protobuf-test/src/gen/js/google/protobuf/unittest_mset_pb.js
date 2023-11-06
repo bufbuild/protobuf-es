@@ -44,6 +44,7 @@ export const NestedTestMessageSetContainer = proto2.makeMessageType(
   () => [
     { no: 1, name: "container", kind: "message", T: TestMessageSetContainer, opt: true },
     { no: 2, name: "child", kind: "message", T: NestedTestMessageSetContainer, opt: true },
+    { no: 3, name: "lazy_child", kind: "message", T: NestedTestMessageSetContainer, opt: true },
   ],
 );
 

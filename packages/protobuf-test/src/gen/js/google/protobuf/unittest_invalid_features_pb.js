@@ -19,10 +19,12 @@
 import { proto2 } from "@bufbuild/protobuf";
 
 /**
- * @generated from message pb.TestInvalid
+ * @generated from message pb.TestInvalidFeatures
  */
-export const TestInvalid = proto2.makeMessageType(
-  "pb.TestInvalid",
-  [],
+export const TestInvalidFeatures = proto2.makeMessageType(
+  "pb.TestInvalidFeatures",
+  () => [
+    { no: 1, name: "repeated_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+  ],
 );
 
