@@ -21,14 +21,14 @@
   "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
-      "module": "./dist/esm/index.js",
+      "import": "./dist/proxy/index.js",
       "require": "./dist/cjs/index.js",
-      "import": "./dist/proxy/index.js"
+      "module": "./dist/esm/index.js"
     },
     "./ecmascript": {
-      "module": "./dist/esm/ecmascript/index.js",
+      "import": "./dist/proxy/ecmascript/index.js",
       "require": "./dist/cjs/ecmascript/index.js",
-      "import": "./dist/proxy/ecmascript/index.js"
+      "module": "./dist/esm/ecmascript/index.js"
     }
   },
   "typesVersions": {
