@@ -22,8 +22,8 @@
   "exports": {
     ".": {
       "node": {
-        "require": "./dist/esm/index.js",
-        "import": "./dist/cjs/index.js"
+        "require": "./dist/cjs/index.js",
+        "import": "./dist/proxy/index.js"
       },
       "module": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
