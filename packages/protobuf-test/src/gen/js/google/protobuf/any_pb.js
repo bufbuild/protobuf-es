@@ -208,7 +208,7 @@ Any.prototype.typeUrlToName = function typeUrlToName(url) {
     throw new Error(`invalid type url: ${url}`);
   }
   const slash = url.lastIndexOf("/");
-  const name = slash > 0 ? url.substring(slash + 1) : url;
+  const name = slash >= 0 ? url.substring(slash + 1) : url;
   if (!name.length) {
     throw new Error(`invalid type url: ${url}`);
   }
