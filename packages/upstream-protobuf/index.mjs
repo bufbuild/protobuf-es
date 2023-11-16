@@ -13,15 +13,18 @@
 // limitations under the License.
 
 import {
-  existsSync,
-  writeFileSync,
-  readFileSync,
-  mkdirSync,
   chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
   readdirSync,
+  readFileSync,
+  writeFileSync,
+  rmSync,
 } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { join as joinPath, dirname, relative as relativePath } from "node:path";
+import { dirname, join as joinPath, relative as relativePath } from "node:path";
 import os from "node:os";
 import { unzipSync } from "fflate";
 import micromatch from "micromatch";
@@ -115,6 +118,71 @@ export class UpstreamProtobuf {
       this.#extractConformanceRelease(),
       this.#extractProtobufSourceTestProtos(),
     ]);
+  }
+
+  /**
+   * @param {Record<string, string>} files
+   * @return {Promise<Buffer>}
+   */
+  async compileToDescriptorSet(files) {
+    const protocPath = await this.getProtocPath();
+    const tempDir = mkdtempSync(
+      joinPath(this.#temp, "compile-descriptor-set-"),
+    );
+    try {
+      writeTree(Object.entries(files), tempDir);
+      const outPath = joinPath(tempDir, "desc.bin");
+      execFileSync(
+        protocPath,
+        [
+          "--descriptor_set_out",
+          outPath,
+          "--proto_path",
+          tempDir,
+          ...Object.keys(files),
+        ],
+        {
+          shell: false,
+          stdio: "ignore",
+        },
+      );
+      return readFileSync(outPath);
+    } finally {
+      rmSync(tempDir, { recursive: true });
+    }
+  }
+
+  /**
+   * @param {string} [minimumEdition]
+   * @param {string} [maximumEdition]
+   * @return Promise<Buffer>
+   */
+  async getFeatureSetDefaults(minimumEdition, maximumEdition) {
+    const binPath = this.#getTempPath(
+      "feature-set-defaults",
+      `min-${minimumEdition ?? "default"}-max-${
+        maximumEdition ?? "default"
+      }.bin`,
+    );
+    if (!existsSync(binPath)) {
+      const protocPath = await this.getProtocPath();
+      const args = [
+        "--experimental_edition_defaults_out",
+        binPath,
+        "google/protobuf/descriptor.proto",
+      ];
+      if (minimumEdition !== undefined) {
+        args.push("--experimental_edition_defaults_minimum", minimumEdition);
+      }
+      if (maximumEdition !== undefined) {
+        args.push("--experimental_edition_defaults_maximum", maximumEdition);
+      }
+      execFileSync(protocPath, args, {
+        shell: false,
+        stdio: "ignore",
+      });
+    }
+    return readFileSync(binPath);
   }
 
   /**
@@ -420,7 +488,7 @@ export class UpstreamProtobuf {
 }
 
 /**
- * @param {Array<[string, Uint8Array]>} files
+ * @param {Array<[string, Uint8Array|string]>} files
  * @param {string} [dir]
  */
 function writeTree(files, dir = ".") {
@@ -439,6 +507,7 @@ function writeTree(files, dir = ".") {
  */
 function lsfiles(dir) {
   const hits = [];
+
   function ls(dir) {
     for (const ent of readdirSync(dir, { withFileTypes: true })) {
       const entPath = joinPath(dir, ent.name);
@@ -449,6 +518,7 @@ function lsfiles(dir) {
       }
     }
   }
+
   ls(dir);
   return hits.map((path) => relativePath(dir, path));
 }

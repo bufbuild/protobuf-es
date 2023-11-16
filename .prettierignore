@@ -1,5 +1,5 @@
 /node_modules
-/packages/*/bin
+/packages/*/.tmp
 /packages/*/dist
 /packages/*/src/gen
 /packages/protobuf/src/google

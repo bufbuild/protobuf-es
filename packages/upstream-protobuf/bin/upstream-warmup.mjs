@@ -14,11 +14,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {exit, stderr} from "node:process";
-import {UpstreamProtobuf} from "../lib.mjs";
+import { exit, stderr } from "node:process";
+import { UpstreamProtobuf } from "../index.mjs";
 
 const upstream = new UpstreamProtobuf();
-upstream.warmup().then(() => exit(0), reason => {
+upstream.warmup().then(
+  () => exit(0),
+  (reason) => {
     stderr.write(`${String(reason)}\n`);
     exit(1);
-})
+  },
+);
