@@ -43,7 +43,6 @@ async function main(args) {
             exitUsage();
     }
     stdout.write(protoInclude.files.join(" "));
-    exit(0);
 }
 
 /**

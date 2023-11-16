@@ -20,6 +20,7 @@ import {
   chmodSync,
   readdirSync,
 } from "node:fs";
+import { createHash } from "node:crypto";
 import { join as joinPath, dirname, relative as relativePath } from "node:path";
 import os from "node:os";
 import { unzipSync } from "fflate";
@@ -87,10 +88,6 @@ export class UpstreamProtobuf {
    * @param {string} [version]
    */
   constructor(temp, version) {
-    if (typeof temp !== "string") {
-      temp = new URL(".tmp", import.meta.url).pathname;
-    }
-    this.#temp = temp;
     if (typeof version !== "string") {
       version = readFileSync(
         new URL("version.txt", import.meta.url).pathname,
@@ -98,6 +95,15 @@ export class UpstreamProtobuf {
       ).trim();
     }
     this.#version = version;
+    if (typeof temp !== "string") {
+      const thisFilePath = new URL(import.meta.url).pathname;
+      const thisFileContent = readFileSync(new URL(import.meta.url).pathname);
+      const hashObj = createHash("sha256");
+      hashObj.update(thisFileContent);
+      const digest = hashObj.digest("hex");
+      temp = joinPath(thisFilePath, "..", ".tmp", this.#version + "-" + digest);
+    }
+    this.#temp = temp;
   }
 
   /**
@@ -154,7 +160,7 @@ export class UpstreamProtobuf {
    * @param {...string[]} paths
    */
   #getTempPath(...paths) {
-    const p = joinPath(this.#temp, this.#version, ...paths);
+    const p = joinPath(this.#temp, ...paths);
     if (!existsSync(dirname(p))) {
       mkdirSync(dirname(p), { recursive: true });
     }
