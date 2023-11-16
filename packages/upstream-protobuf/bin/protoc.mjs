@@ -16,18 +16,20 @@
 
 import { execFileSync } from "node:child_process";
 import { argv, exit, stderr } from "node:process";
-import { UpstreamProtobuf } from "../lib.mjs";
+import { UpstreamProtobuf } from "../index.mjs";
 
 const upstream = new UpstreamProtobuf();
 
-upstream.getProtocPath()
-    .then(path => {
-        execFileSync(path, argv.slice(2), {
-            shell: false,
-            stdio: "inherit",
-            maxBuffer: 1024 * 1024 * 100,
-        });
-    }).catch(reason => {
+upstream
+  .getProtocPath()
+  .then((path) => {
+    execFileSync(path, argv.slice(2), {
+      shell: false,
+      stdio: "inherit",
+      maxBuffer: 1024 * 1024 * 100,
+    });
+  })
+  .catch((reason) => {
     stderr.write(String(reason) + "\n");
     exit(1);
-});
+  });

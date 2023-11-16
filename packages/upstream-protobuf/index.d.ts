@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Copyright 2021-2023 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { execFileSync } from "node:child_process";
-import { argv, exit, stderr } from "node:process";
-import { UpstreamProtobuf } from "../index.mjs";
+export declare class UpstreamProtobuf {
+  constructor(temp?: string, version?: string);
 
-const upstream = new UpstreamProtobuf();
+  getProtocPath(): Promise<string>;
 
-upstream
-  .getConformanceTestRunnerPath()
-  .then((path) => {
-    execFileSync(path, argv.slice(2), {
-      shell: false,
-      stdio: "inherit",
-      maxBuffer: 1024 * 1024 * 100,
-    });
-  })
-  .catch((reason) => {
-    stderr.write(String(reason) + "\n");
-    exit(1);
-  });
+  getFeatureSetDefaults(
+    minimumEdition?: string,
+    maximumEdition?: string,
+  ): Promise<Uint8Array>;
+
+  compileToDescriptorSet(files: Record<string, string>): Promise<Uint8Array>;
+}
