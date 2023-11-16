@@ -14,44 +14,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {argv, exit, stdout, stderr} from "node:process";
-import {parseArgs} from "node:util";
-import {readFileSync, writeFileSync} from "node:fs";
-import {UpstreamProtobuf} from "../index.mjs";
+import { argv, exit, stdout, stderr } from "node:process";
+import { parseArgs } from "node:util";
+import { readFileSync, writeFileSync } from "node:fs";
+import { UpstreamProtobuf } from "../index.mjs";
 
 void main(argv.slice(2));
 
 async function main(args) {
-    let min, max, positionals;
-    try {
-        ({values: {min, max}, positionals} = parseArgs({
-            args,
-            options: {
-                min: { type: 'string' },
-                max: { type: 'string' },
-            },
-            allowPositionals: true,
-        }));
-    } catch {
-        exitUsage();
+  let min, max, positionals;
+  try {
+    ({
+      values: { min, max },
+      positionals,
+    } = parseArgs({
+      args,
+      options: {
+        min: { type: "string" },
+        max: { type: "string" },
+      },
+      allowPositionals: true,
+    }));
+  } catch {
+    exitUsage();
+  }
+  const upstream = new UpstreamProtobuf();
+  const defaults = await upstream.getFeatureSetDefaults(min, max);
+  stdout.write(
+    `Injecting google.protobuf.FeatureSetDefaults into ${positionals.length} files...\n`,
+  );
+  for (const path of positionals) {
+    const content = readFileSync(path, "utf-8");
+    const r = inject(content, `"${defaults.toString("base64url")}"`);
+    if (!r.ok) {
+      stderr.write(`Error injecting into ${path}: ${r.message}\n`);
+      exit(1);
     }
-    const upstream = new UpstreamProtobuf();
-    const defaults = await upstream.getFeatureSetDefaults(min, max);
-    stdout.write(`Injecting google.protobuf.FeatureSetDefaults into ${positionals.length} files...\n`);
-    for (const path of positionals) {
-        const content = readFileSync(path, "utf-8");
-        const r = inject(content, `"${defaults.toString("base64url")}"`);
-        if (!r.ok) {
-            stderr.write(`Error injecting into ${path}: ${r.message}\n`);
-            exit(1);
-        }
-        if (r.newContent === content) {
-            stdout.write(`- ${path} - no changes\n`);
-            continue;
-        }
-        writeFileSync(path, r.newContent);
-        stdout.write(`- ${path} - updated\n`);
+    if (r.newContent === content) {
+      stdout.write(`- ${path} - no changes\n`);
+      continue;
     }
+    writeFileSync(path, r.newContent);
+    stdout.write(`- ${path} - updated\n`);
+  }
 }
 
 /**
@@ -70,26 +75,28 @@ async function main(args) {
  * @return {InjectSuccess | InjectError}
  */
 function inject(content, contentToInject) {
-    const tokenStart = "/*upstream-inject-feature-defaults-start*/";
-    const tokenEnd = "/*upstream-inject-feature-defaults-end*/";
-    const indexStart = content.indexOf(tokenStart);
-    const indexEnd = content.indexOf(tokenEnd);
-    if (indexStart < 0 || indexEnd < 0) {
-        return {ok: false, message: "missing comment annotations"};
-    }
-    if (indexEnd < indexStart) {
-        return {ok: false, message: "invalid comment annotations"};
-    }
-    const head = content.substring(0, indexStart + tokenStart.length);
-    const foot = content.substring(indexEnd);
-    const newContent = head + contentToInject + foot;
-    return {ok: true, newContent};
+  const tokenStart = "/*upstream-inject-feature-defaults-start*/";
+  const tokenEnd = "/*upstream-inject-feature-defaults-end*/";
+  const indexStart = content.indexOf(tokenStart);
+  const indexEnd = content.indexOf(tokenEnd);
+  if (indexStart < 0 || indexEnd < 0) {
+    return { ok: false, message: "missing comment annotations" };
+  }
+  if (indexEnd < indexStart) {
+    return { ok: false, message: "invalid comment annotations" };
+  }
+  const head = content.substring(0, indexStart + tokenStart.length);
+  const foot = content.substring(indexEnd);
+  const newContent = head + contentToInject + foot;
+  return { ok: true, newContent };
 }
 
 /**
  * @return never
  */
 function exitUsage() {
-    stderr.write(`USAGE: upstream-inject-feature-defaults [--min <mininum supported edition>] [--max <maximum supported edition>] <file-to-inject-into>\n`);
-    exit(1);
+  stderr.write(
+    `USAGE: upstream-inject-feature-defaults [--min <mininum supported edition>] [--max <maximum supported edition>] <file-to-inject-into>\n`,
+  );
+  exit(1);
 }
