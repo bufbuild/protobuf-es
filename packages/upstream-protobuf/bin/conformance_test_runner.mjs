@@ -16,7 +16,7 @@
 
 import { execFileSync } from "node:child_process";
 import { argv, exit, stderr } from "node:process";
-import { UpstreamProtobuf } from "../lib.mjs";
+import { UpstreamProtobuf } from "../index.mjs";
 
 const upstream = new UpstreamProtobuf();
 

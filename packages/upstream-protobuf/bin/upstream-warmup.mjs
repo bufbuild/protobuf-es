@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import {exit, stderr} from "node:process";
-import {UpstreamProtobuf} from "../lib.mjs";
+import {UpstreamProtobuf} from "../index.mjs";
 
 const upstream = new UpstreamProtobuf();
 upstream.warmup().then(() => exit(0), reason => {
