@@ -286,7 +286,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("      throw new Error(`invalid type url: ${url}`);");
       f.print("    }");
       f.print(`    const slash = url.lastIndexOf("/");`);
-      f.print("    const name = slash > 0 ? url.substring(slash + 1) : url;");
+      f.print("    const name = slash >= 0 ? url.substring(slash + 1) : url;");
       f.print("    if (!name.length) {");
       f.print("      throw new Error(`invalid type url: ${url}`);");
       f.print("    }");
