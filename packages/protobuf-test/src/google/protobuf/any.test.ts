@@ -84,6 +84,11 @@ describe("google.protobuf.Any", () => {
       expect(got.is("type.googleapis.com/google.protobuf.Value")).toBe(false);
     });
 
+    test(`matches type name with leading slash`, () => {
+      const any = new Any({ typeUrl: "/google.protobuf.Value" });
+      expect(any.is(Value)).toBe(true);
+    });
+
     test(`is returns false for an empty Any`, () => {
       const got = new Any();
 
@@ -100,6 +105,21 @@ describe("google.protobuf.Any", () => {
       const got = Any.pack(val);
 
       const unpacked = got.unpack(typeRegistry) as Value;
+
+      expect(unpacked).toBeDefined();
+      expect(unpacked.kind.case).toBe("numberValue");
+      expect(unpacked.kind.value).toBe(1);
+    });
+
+    test(`unpack correctly unpacks a message with a leading slash type url in the registry`, () => {
+      const typeRegistry = createRegistry(Value);
+      const val = new Value({
+        kind: { case: "numberValue", value: 1 },
+      });
+      const { value } = Any.pack(val);
+      const any = new Any({ typeUrl: "/google.protobuf.Value", value });
+
+      const unpacked = any.unpack(typeRegistry) as Value;
 
       expect(unpacked).toBeDefined();
       expect(unpacked.kind.case).toBe("numberValue");
