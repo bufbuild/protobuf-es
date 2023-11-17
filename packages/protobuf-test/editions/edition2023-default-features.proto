@@ -1,0 +1,38 @@
+// Copyright 2021-2023 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+edition = "2023";
+
+package spec;
+
+// This file tests the default features in the absence of any dependencies.
+// Also see protobuf/src/google/protobuf/editions/proto/test_editions_default_features.proto
+
+enum EditionsDefaultEnum {
+  EDITIONS_DEFAULT_ENUM_UNKNOWN = 0;
+  EDITIONS_DEFAULT_ENUM_VALUE1 = 1;
+}
+
+message EditionsDefaultMessage {
+  int32 int32_field = 1;
+  string string_field = 2;
+  EditionsDefaultEnum enum_field = 3;
+
+  repeated int32 repeated_int32_field = 4;
+
+  message SubMessage {
+    int32 nested_int32_field = 1;
+  }
+  SubMessage sub_message_field = 6;
+}

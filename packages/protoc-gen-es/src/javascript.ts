@@ -26,6 +26,7 @@ import {
   makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
+import { getNonEditionRuntime } from "./editions.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
@@ -43,7 +44,7 @@ export function generateJs(schema: Schema) {
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  const protoN = schema.runtime[enumeration.file.syntax];
+  const protoN = getNonEditionRuntime(schema, enumeration.file);
   f.print(makeJsDoc(enumeration));
   f.print("export const ", enumeration, " = ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
@@ -65,7 +66,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   f.print(makeJsDoc(message));
   f.print("export const ", message, " = ", protoN, ".makeMessageType(")
   f.print(`  `, literalString(message.typeName), `,`)
@@ -100,7 +101,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 
 // prettier-ignore
 export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
-  const protoN = schema.runtime[field.parent.file.syntax];
+  const protoN = getNonEditionRuntime(schema, field.parent.file);
   const e: Printable = [];
   e.push("    { no: ", field.number, `, name: "`, field.name, `", `);
   if (field.jsonName !== undefined) {
@@ -168,7 +169,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     ScalarType: rtScalarType,
     protoInt64,
   } = schema.runtime;
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   switch (ref.typeName) {
     case "google.protobuf.Any":
       f.print(message, ".prototype.toJson = function toJson(options) {")
