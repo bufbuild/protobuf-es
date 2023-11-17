@@ -159,8 +159,6 @@ perf: $(BUILD)/protobuf-test
 bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Bootstrap well-known types and edition features-set defaults in @bufbuild/protobuf from upstream protobuf
 	npm run -w packages/protobuf bootstrap:wkt
 	npm run -w packages/protobuf bootstrap:featureset-defaults
-	@# If the generated code differs, use it, and run tests again
-	#npm run -w packages/protobuf bootstrap-diff || $(MAKE) build test format lint
 
 .PHONY: setversion
 setversion: ## Set a new version in for the project, i.e. make setversion SET_VERSION=1.2.3

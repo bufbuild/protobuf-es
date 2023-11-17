@@ -45,7 +45,7 @@ async function main(args) {
   );
   for (const path of positionals) {
     const content = readFileSync(path, "utf-8");
-    const r = inject(content, `"${defaults.toString("base64url")}"`);
+    const r = inject(content, ` "${defaults.toString("base64url")}" `);
     if (!r.ok) {
       stderr.write(`Error injecting into ${path}: ${r.message}\n`);
       exit(1);

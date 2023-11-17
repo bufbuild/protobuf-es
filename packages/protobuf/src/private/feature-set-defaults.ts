@@ -17,6 +17,6 @@ import { protoBase64 } from "../proto-base64.js";
 
 export const featureSetDefaults = FeatureSetDefaults.fromBinary(
   protoBase64.dec(
-    /*upstream-inject-feature-defaults-start*/"ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH"/*upstream-inject-feature-defaults-end*/,
+    /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
   ),
 );
