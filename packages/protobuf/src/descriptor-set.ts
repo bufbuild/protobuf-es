@@ -14,6 +14,7 @@
 
 import type {
   DescriptorProto,
+  Edition,
   EnumDescriptorProto,
   EnumValueDescriptorProto,
   FieldDescriptorProto,
@@ -85,7 +86,19 @@ export interface DescFile {
   /**
    * The syntax specified in the protobuf source.
    */
-  readonly syntax: "proto3" | "proto2";
+  readonly syntax: "proto3" | "proto2" | "editions";
+  /**
+   * The edition of the protobuf file. Will be EDITION_PROTO2 for syntax="proto2",
+   * EDITION_PROTO3 for syntax="proto3";
+   */
+  readonly edition: Omit<
+    Edition,
+    | Edition.EDITION_1_TEST_ONLY
+    | Edition.EDITION_2_TEST_ONLY
+    | Edition.EDITION_99997_TEST_ONLY
+    | Edition.EDITION_99998_TEST_ONLY
+    | Edition.EDITION_99999_TEST_ONLY
+  >;
   /**
    * The name of the file, excluding the .proto suffix.
    * For a protobuf file `foo/bar.proto`, this is `foo/bar`.

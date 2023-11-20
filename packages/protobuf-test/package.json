@@ -12,7 +12,7 @@
     "generate:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
     "generate:wkt:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts     $(upstream-files wkt)",
     "generate:wkt:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts $(upstream-files wkt)",
-    "generate:desc": "protoc --descriptor_set_out descriptorset.bin --include_imports --include_source_info --proto_path=. --proto_path=$(upstream-include test) $(buf ls-files extra) $(upstream-files test)",
+    "generate:desc": "protoc --experimental_editions --descriptor_set_out descriptorset.bin --include_imports --include_source_info --proto_path=. --proto_path=$(upstream-include test) $(buf ls-files extra) $(upstream-files test) --proto_path=. $(buf ls-files editions)",
     "postgenerate": "license-header src/gen",
     "perf": "tsx src/perf.ts",
     "test": "npm run test:bigint && npm run test:string",
