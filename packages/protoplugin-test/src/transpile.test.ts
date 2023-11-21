@@ -18,7 +18,7 @@ import {
   Edition,
   FileDescriptorProto,
 } from "@bufbuild/protobuf";
-import type { DescFile } from "@bufbuild/protobuf";
+import type { DescFile, FeatureSet } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 
@@ -137,6 +137,9 @@ describe("transpile", function () {
           leading: undefined,
           trailing: undefined,
         };
+      },
+      getFeatures(): FeatureSet & Required<FeatureSet> {
+        return null as unknown as FeatureSet & Required<FeatureSet>;
       },
     };
     test("generates correctly", () => {

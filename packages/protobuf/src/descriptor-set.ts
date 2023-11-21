@@ -23,8 +23,9 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
-import type { ScalarType, LongType } from "./field.js";
+import type { LongType, ScalarType } from "./field.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
+import type { MergedFeatureSet } from "./private/feature-set.js";
 
 /**
  * DescriptorSet provides a convenient interface for working with a set
@@ -142,6 +143,11 @@ export interface DescFile {
    */
   getPackageComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -189,6 +195,11 @@ export interface DescEnum {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -228,6 +239,11 @@ export interface DescEnumValue {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }
@@ -295,6 +311,11 @@ export interface DescMessage {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -358,10 +379,14 @@ interface DescFieldCommon {
    */
   readonly packed: boolean;
   /**
-   * Is this field packed by default? Only valid for enum fields, and for
-   * scalar fields except BYTES and STRING.
+   * Is this field packed by default? Only valid for repeated enum fields, and
+   * for repeated scalar fields except BYTES and STRING.
+   *
    * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
    * are unpacked by default.
+   *
+   * With editions, the default is whatever the edition specifies as a default.
+   * In edition 2023, fields are packed by default.
    */
   readonly packedByDefault: boolean;
   /**
@@ -388,6 +413,11 @@ interface DescFieldCommon {
    * protobuf source.
    */
   declarationString(): string;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }
@@ -636,6 +666,11 @@ export interface DescOneof {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -673,6 +708,11 @@ export interface DescService {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }
@@ -719,6 +759,11 @@ export interface DescMethod {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }
