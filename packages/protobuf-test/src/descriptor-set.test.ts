@@ -29,6 +29,7 @@ import {
   TestAllExtensions,
   TestNestedExtension,
 } from "./gen/ts/google/protobuf/unittest_pb.js";
+import { UpstreamProtobuf } from "upstream-protobuf";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 
@@ -53,6 +54,50 @@ describe("DescriptorSet", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("editions");
     expect(descFile?.edition).toBe(Edition.EDITION_2023);
+  });
+  describe("repeated field packing", () => {
+    test("proto2 is unpacked by default", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        syntax="proto2";
+        message M {
+          optional int32 not_packable = 1;
+          repeated bytes also_not_packable = 2;
+          repeated int32 default = 3;
+          repeated int32 explicitly_packed = 4 [packed = true];
+          repeated int32 explicitly_expanded = 5 [packed = false];
+        }
+      `);
+      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+      expect(fields?.[0].packedByDefault).toBe(false);
+      expect(fields?.[1].packedByDefault).toBe(false);
+      expect(fields?.[2].packedByDefault).toBe(false);
+      expect(fields?.[0].packed).toBe(false);
+      expect(fields?.[1].packed).toBe(false);
+      expect(fields?.[2].packed).toBe(false);
+      expect(fields?.[3].packed).toBe(true);
+      expect(fields?.[4].packed).toBe(false);
+    });
+    test("proto3 is packed by default", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        syntax="proto3";
+        message M {
+          int32 not_packable = 1;
+          repeated bytes also_not_packable = 2;
+          repeated int32 default = 3;
+          repeated int32 explicitly_packed = 4 [packed = true];
+          repeated int32 explicitly_expanded = 5 [packed = false];
+        }
+      `);
+      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+      expect(fields?.[0].packedByDefault).toBe(true);
+      expect(fields?.[1].packedByDefault).toBe(false);
+      expect(fields?.[2].packedByDefault).toBe(true);
+      expect(fields?.[0].packed).toBe(true);
+      expect(fields?.[1].packed).toBe(false);
+      expect(fields?.[2].packed).toBe(true);
+      expect(fields?.[3].packed).toBe(true);
+      expect(fields?.[4].packed).toBe(false);
+    });
   });
   test("knows extension", () => {
     const ext = set.extensions.get(

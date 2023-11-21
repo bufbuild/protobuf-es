@@ -121,20 +121,25 @@ export class UpstreamProtobuf {
   }
 
   /**
-   * @param {Record<string, string>} files
+   * @param {Record<string, string>|string} filesOrFileContent
    * @return {Promise<Buffer>}
    */
-  async compileToDescriptorSet(files) {
+  async compileToDescriptorSet(filesOrFileContent) {
     const protocPath = await this.getProtocPath();
     const tempDir = mkdtempSync(
       joinPath(this.#temp, "compile-descriptor-set-"),
     );
+    const files =
+      typeof filesOrFileContent == "string"
+        ? { "input.proto": filesOrFileContent }
+        : filesOrFileContent;
     try {
       writeTree(Object.entries(files), tempDir);
       const outPath = joinPath(tempDir, "desc.bin");
       execFileSync(
         protocPath,
         [
+          "--experimental_editions",
           "--descriptor_set_out",
           outPath,
           "--proto_path",

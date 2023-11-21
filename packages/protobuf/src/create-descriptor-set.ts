@@ -640,7 +640,7 @@ function parseFileSyntax(
   syntax: string | undefined,
   edition: Edition | undefined,
 ) {
-  let e: Omit<
+  let e: Exclude<
     Edition,
     | Edition.EDITION_1_TEST_ONLY
     | Edition.EDITION_2_TEST_ONLY

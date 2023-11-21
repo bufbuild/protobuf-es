@@ -22,5 +22,6 @@ export declare class UpstreamProtobuf {
     maximumEdition?: string,
   ): Promise<Uint8Array>;
 
+  compileToDescriptorSet(fileContent: string): Promise<Uint8Array>;
   compileToDescriptorSet(files: Record<string, string>): Promise<Uint8Array>;
 }
