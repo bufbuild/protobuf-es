@@ -91,7 +91,7 @@ export interface DescFile {
    * The edition of the protobuf file. Will be EDITION_PROTO2 for syntax="proto2",
    * EDITION_PROTO3 for syntax="proto3";
    */
-  readonly edition: Omit<
+  readonly edition: Exclude<
     Edition,
     | Edition.EDITION_1_TEST_ONLY
     | Edition.EDITION_2_TEST_ONLY
