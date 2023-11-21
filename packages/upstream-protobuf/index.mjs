@@ -121,10 +121,15 @@ export class UpstreamProtobuf {
   }
 
   /**
+   * @typedef CompileToDescriptorSetOptions
+   * @property {boolean} [includeSourceInfo]
+   */
+  /**
    * @param {Record<string, string>|string} filesOrFileContent
+   * @param {CompileToDescriptorSetOptions} [opt]
    * @return {Promise<Buffer>}
    */
-  async compileToDescriptorSet(filesOrFileContent) {
+  async compileToDescriptorSet(filesOrFileContent, opt) {
     const protocPath = await this.getProtocPath();
     const tempDir = mkdtempSync(
       joinPath(this.#temp, "compile-descriptor-set-"),
@@ -136,21 +141,20 @@ export class UpstreamProtobuf {
     try {
       writeTree(Object.entries(files), tempDir);
       const outPath = joinPath(tempDir, "desc.bin");
-      execFileSync(
-        protocPath,
-        [
-          "--experimental_editions",
-          "--descriptor_set_out",
-          outPath,
-          "--proto_path",
-          tempDir,
-          ...Object.keys(files),
-        ],
-        {
-          shell: false,
-          stdio: "ignore",
-        },
-      );
+      const args = [
+        "--experimental_editions",
+        "--descriptor_set_out",
+        outPath,
+        "--proto_path",
+        tempDir,
+        ...Object.keys(files),
+      ];
+      if (opt?.includeSourceInfo) {
+        args.unshift("--include_source_info");
+      }
+      execFileSync(protocPath, args, {
+        shell: false,
+      });
       return readFileSync(outPath);
     } finally {
       rmSync(tempDir, { recursive: true });
