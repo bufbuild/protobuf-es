@@ -962,7 +962,7 @@ function isPackedFieldByDefault(
   resolveFeatures: FeatureResolverFn,
 ) {
   const { repeatedFieldEncoding } = resolveFeatures(file.edition);
-  if (repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.EXPANDED) {
+  if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
     return false;
   }
   // From the proto3 language guide:
