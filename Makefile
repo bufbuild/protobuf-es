@@ -101,7 +101,7 @@ help: ## Describe useful make targets
 all: build test format lint bench bootstrap ## build, test, format, lint, bench, and bootstrap (default)
 
 .PHONY: ci
-ci: build test-protobuf test-protoplugin test-conformance format lint bench bootstrap #
+ci: build test-protobuf test-protoplugin test-protoplugin-example test-conformance format lint bench bootstrap #
 	$(MAKE) checkdiff
 
 .PHONY: clean
