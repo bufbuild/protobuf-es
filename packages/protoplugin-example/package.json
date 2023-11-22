@@ -5,7 +5,7 @@
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
-    "test": "node --loader tsx --test test/*.ts",
+    "test": "tsx --test test/*.ts",
     "pregenerate": "rm -rf src/gen",
     "generate": "buf generate buf.build/connectrpc/eliza"
   },
