@@ -52,8 +52,15 @@ export type FeatureResolverFn = (
 export function createFeatureResolver(
   compiledFeatureSetDefaults: FeatureSetDefaults,
 ): FeatureResolverFn {
-  const min = compiledFeatureSetDefaults.minimumEdition ?? 0;
-  const max = compiledFeatureSetDefaults.maximumEdition ?? 0;
+  const min = compiledFeatureSetDefaults.minimumEdition;
+  const max = compiledFeatureSetDefaults.maximumEdition;
+  if (
+    min === undefined ||
+    max === undefined ||
+    compiledFeatureSetDefaults.defaults.some((d) => d.edition === undefined)
+  ) {
+    throw new Error("Invalid FeatureSetDefaults");
+  }
   const defaultsBinByEdition = new Map<Edition, Uint8Array>();
   return (edition: Edition, ...rest): MergedFeatureSet => {
     let defaultsBin: Uint8Array | undefined = defaultsBinByEdition.get(edition);
