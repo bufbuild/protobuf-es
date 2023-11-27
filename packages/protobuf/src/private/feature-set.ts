@@ -131,7 +131,7 @@ function validateMergedFeatures(
   featureSet: FeatureSet,
 ): featureSet is MergedFeatureSet {
   for (const fi of FeatureSet.fields.list()) {
-    const v = featureSet[fi.localName as keyof FeatureSet];
+    const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
     if (v === undefined) {
       return false;
     }
