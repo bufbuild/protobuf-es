@@ -113,15 +113,12 @@ export function createFeatureResolver(
 function validateMergedFeatures(
   featureSet: FeatureSet,
 ): featureSet is MergedFeatureSet {
-  for (const p of [
-    "fieldPresence",
-    "enumType",
-    "repeatedFieldEncoding",
-    "utf8Validation",
-    "messageEncoding",
-    "jsonFormat",
-  ] as const) {
-    if (featureSet[p] === undefined || (featureSet[p] as number) === 0) {
+  for (const fi of FeatureSet.fields.list()) {
+    const v = featureSet[fi.localName as keyof FeatureSet];
+    if (v === undefined) {
+      return false;
+    }
+    if (fi.kind == "enum" && v === 0) {
       return false;
     }
   }
