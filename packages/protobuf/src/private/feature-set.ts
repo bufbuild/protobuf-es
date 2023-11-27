@@ -110,6 +110,23 @@ export function createFeatureResolver(
   };
 }
 
+// When protoc generates google.protobuf.FeatureSetDefaults, it ensures that
+// fields are not repeated or required, do not use oneof, and have a default
+// value.
+//
+// When features for an element are resolved, features of the element and its
+// parents are merged into the default FeatureSet for the edition. Because unset
+// fields in the FeatureSet of an element do not unset the default FeatureSet
+// values, a resolved FeatureSet is guaranteed to have all fields set. This is
+// also the case for extensions to FeatureSet that a user might provide, and for
+// features from the future.
+//
+// We cannot exhaustively validate correctness of FeatureSetDefaults at runtime
+// without knowing the schema: If no value for a feature is provided, we do not
+// know that it exists at all.
+//
+// As a sanity check, we validate that all fields known to our version of
+// FeatureSet are set.
 function validateMergedFeatures(
   featureSet: FeatureSet,
 ): featureSet is MergedFeatureSet {
