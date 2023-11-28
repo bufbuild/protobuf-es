@@ -20,6 +20,8 @@ import type {
 } from "./google/protobuf/descriptor_pb.js";
 import {
   Edition,
+  FeatureSet_RepeatedFieldEncoding,
+  FeatureSetDefaults,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
   FieldOptions_JSType,
@@ -50,6 +52,11 @@ import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
 } from "./private/text-format.js";
+import type { FeatureResolverFn } from "./private/feature-set.js";
+import {
+  createFeatureResolver,
+  featureSetDefaults,
+} from "./private/feature-set.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -61,6 +68,7 @@ import {
  */
 export function createDescriptorSet(
   input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
+  options?: CreateDescriptorSetOptions,
 ): DescriptorSet {
   const cart = {
     enums: new Map<string, DescEnum>(),
@@ -68,6 +76,9 @@ export function createDescriptorSet(
     services: new Map<string, DescService>(),
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
+    resolveFeatures: createFeatureResolver(
+      options?.featureSetDefaults ?? featureSetDefaults,
+    ),
   };
   const fileDescriptors =
     input instanceof FileDescriptorSet
@@ -80,6 +91,25 @@ export function createDescriptorSet(
 }
 
 /**
+ * Options to createDescriptorSet()
+ */
+interface CreateDescriptorSetOptions {
+  /**
+   * Editions support language-specific features with extensions to
+   * google.protobuf.FeatureSet. They can define defaults, and specify on
+   * which targets the features can be set.
+   *
+   * To create a DescriptorSet that provides your language-specific features,
+   * you have to provide a google.protobuf.FeatureSetDefaults message in this
+   * option.
+   *
+   * The defaults can be generated with `protoc` - see the flag
+   * `--experimental_edition_defaults_out`.
+   */
+  featureSetDefaults?: FeatureSetDefaults;
+}
+
+/**
  * Cart is an implementation detail. It captures a few variables we
  * use to resolve reference when creating descriptors.
  */
@@ -89,6 +119,7 @@ interface Cart {
   services: Map<string, DescService>;
   extensions: Map<string, DescExtension>;
   mapEntries: Map<string, DescMessage>;
+  resolveFeatures: FeatureResolverFn;
 }
 
 /**
@@ -119,6 +150,9 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
       return findComments(this.proto.sourceCodeInfo, [
         FieldNumber.FileDescriptorProto_Package,
       ]);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(this.edition, this.proto.options?.features);
     },
   };
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
@@ -176,7 +210,7 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
  */
 function addFields(message: DescMessage, cart: Cart): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message),
+    newOneof(proto, message, cart),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
@@ -241,6 +275,15 @@ function addEnum(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      const parentFeatures =
+        this.parent?.getFeatures() ?? this.file.getFeatures();
+      return cart.resolveFeatures(
+        this.file.edition,
+        parentFeatures,
+        this.proto.options?.features,
+      );
+    },
   };
   cart.enums.set(desc.typeName, desc);
   proto.value.forEach((proto) => {
@@ -273,6 +316,13 @@ function addEnum(
           this.parent.proto.value.indexOf(this.proto),
         ];
         return findComments(file.proto.sourceCodeInfo, path);
+      },
+      getFeatures() {
+        return cart.resolveFeatures(
+          this.parent.file.edition,
+          this.parent.getFeatures(),
+          this.proto.options?.features,
+        );
       },
     });
   });
@@ -320,6 +370,15 @@ function addMessage(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      const parentFeatures =
+        this.parent?.getFeatures() ?? this.file.getFeatures();
+      return cart.resolveFeatures(
+        this.file.edition,
+        parentFeatures,
+        this.proto.options?.features,
+      );
+    },
   };
   if (proto.options?.mapEntry === true) {
     cart.mapEntries.set(desc.typeName, desc);
@@ -362,6 +421,13 @@ function addService(
         this.file.proto.service.indexOf(this.proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.file.edition,
+        this.file.getFeatures(),
+        this.proto.options?.features,
+      );
     },
   };
   file.services.push(desc);
@@ -440,13 +506,24 @@ function newMethod(
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.parent.file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
+    },
   };
 }
 
 /**
  * Create a descriptor for a oneof group.
  */
-function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
+function newOneof(
+  proto: OneofDescriptorProto,
+  parent: DescMessage,
+  cart: Cart,
+): DescOneof {
   assert(proto.name, `invalid OneofDescriptorProto: missing name`);
   return {
     kind: "oneof",
@@ -466,6 +543,13 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.parent.file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
+    },
   };
 }
 
@@ -482,7 +566,6 @@ function newField(
   assert(proto.name, `invalid FieldDescriptorProto: missing name`);
   assert(proto.number, `invalid FieldDescriptorProto: missing number`);
   assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  const packedByDefault = isPackedFieldByDefault(proto, file.syntax);
   const common = {
     proto,
     deprecated: proto.options?.deprecated ?? false,
@@ -491,8 +574,8 @@ function newField(
     parent,
     oneof,
     optional: isOptionalField(proto, file.syntax),
-    packed: proto.options?.packed ?? packedByDefault,
-    packedByDefault,
+    packedByDefault: isPackedFieldByDefault(file, proto, cart.resolveFeatures),
+    packed: isPackedField(file, parent, proto, cart.resolveFeatures),
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
@@ -501,11 +584,11 @@ function newField(
     enum: undefined,
     mapKey: undefined,
     mapValue: undefined,
+    declarationString,
+    // toString, getComments, getFeatures are overridden in newExtension
     toString(): string {
-      // note that newExtension() calls us with parent = null
       return `field ${this.parent.typeName}.${this.name}`;
     },
-    declarationString,
     getComments() {
       const path = [
         ...this.parent.getComments().sourcePath,
@@ -513,6 +596,13 @@ function newField(
         this.parent.proto.field.indexOf(this.proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(
+        file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
     },
   };
   const repeated = proto.label === FieldDescriptorProto_Label.REPEATED;
@@ -614,6 +704,8 @@ function newExtension(
     parent,
     file,
     extendee,
+    // Must override toString, getComments, getFeatures from newField, because we
+    // call newField with parent undefined.
     toString(): string {
       return `extension ${this.typeName}`;
     },
@@ -629,6 +721,13 @@ function newExtension(
             this.file.proto.extension.indexOf(proto),
           ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.file.edition,
+        (this.parent ?? this.file).getFeatures(),
+        this.proto.options?.features,
+      );
     },
   };
 }
@@ -850,44 +949,74 @@ function isOptionalField(
 }
 
 /**
- * Get the default `packed` state of a repeated field.
+ * Is this field packed by default? Only valid for repeated enum fields, and
+ * for repeated scalar fields except BYTES and STRING.
+ *
+ * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
+ * are unpacked by default. With editions, the default is whatever the edition
+ * specifies as a default. In edition 2023, fields are packed by default.
  */
-export function isPackedFieldByDefault(
+function isPackedFieldByDefault(
+  file: DescFile,
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3" | "editions",
-): boolean {
-  assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  switch (syntax) {
-    case "proto3":
-      switch (proto.type) {
-        case FieldDescriptorProto_Type.DOUBLE:
-        case FieldDescriptorProto_Type.FLOAT:
-        case FieldDescriptorProto_Type.INT64:
-        case FieldDescriptorProto_Type.UINT64:
-        case FieldDescriptorProto_Type.INT32:
-        case FieldDescriptorProto_Type.FIXED64:
-        case FieldDescriptorProto_Type.FIXED32:
-        case FieldDescriptorProto_Type.UINT32:
-        case FieldDescriptorProto_Type.SFIXED32:
-        case FieldDescriptorProto_Type.SFIXED64:
-        case FieldDescriptorProto_Type.SINT32:
-        case FieldDescriptorProto_Type.SINT64:
-        case FieldDescriptorProto_Type.BOOL:
-        case FieldDescriptorProto_Type.ENUM:
-          // From the proto3 language guide:
-          // > In proto3, repeated fields of scalar numeric types are packed by default.
-          // This information is incomplete - according to the conformance tests, BOOL
-          // and ENUM are packed by default as well. This means only STRING and BYTES
-          // are not packed by default, which makes sense because they are length-delimited.
-          return true;
-        default:
-          return false;
-      }
-    case "proto2":
+  resolveFeatures: FeatureResolverFn,
+) {
+  const { repeatedFieldEncoding } = resolveFeatures(file.edition);
+  if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
+    return false;
+  }
+  // From the proto3 language guide:
+  // > In proto3, repeated fields of scalar numeric types are packed by default.
+  // This information is incomplete - according to the conformance tests, BOOL
+  // and ENUM are packed by default as well. This means only STRING and BYTES
+  // are not packed by default, which makes sense because they are length-delimited.
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
       return false;
-    case "editions":
-      // TODO support edition featureset
+    default:
       return true;
+  }
+}
+
+/**
+ * Pack this repeated field?
+ *
+ * Respects field type, proto2/proto3 defaults and the `packed` option, or
+ * edition defaults and the edition features.repeated_field_encoding options.
+ */
+function isPackedField(
+  file: DescFile,
+  parent: DescMessage | undefined,
+  proto: FieldDescriptorProto,
+  resolveFeatures: FeatureResolverFn,
+) {
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      // length-delimited types cannot be packed
+      return false;
+    default:
+      switch (file.edition) {
+        case Edition.EDITION_PROTO2:
+          return proto.options?.packed ?? false;
+        case Edition.EDITION_PROTO3:
+          return proto.options?.packed ?? true;
+        default: {
+          const { repeatedFieldEncoding } = resolveFeatures(
+            file.edition,
+            parent?.getFeatures() ?? file.getFeatures(),
+            proto.options?.features,
+          );
+          return (
+            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
+          );
+        }
+      }
   }
 }
 
