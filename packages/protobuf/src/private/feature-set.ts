@@ -52,8 +52,15 @@ export type FeatureResolverFn = (
 export function createFeatureResolver(
   compiledFeatureSetDefaults: FeatureSetDefaults,
 ): FeatureResolverFn {
-  const min = compiledFeatureSetDefaults.minimumEdition ?? 0;
-  const max = compiledFeatureSetDefaults.maximumEdition ?? 0;
+  const min = compiledFeatureSetDefaults.minimumEdition;
+  const max = compiledFeatureSetDefaults.maximumEdition;
+  if (
+    min === undefined ||
+    max === undefined ||
+    compiledFeatureSetDefaults.defaults.some((d) => d.edition === undefined)
+  ) {
+    throw new Error("Invalid FeatureSetDefaults");
+  }
   const defaultsBinByEdition = new Map<Edition, Uint8Array>();
   return (edition: Edition, ...rest): MergedFeatureSet => {
     let defaultsBin: Uint8Array | undefined = defaultsBinByEdition.get(edition);
@@ -103,18 +110,32 @@ export function createFeatureResolver(
   };
 }
 
+// When protoc generates google.protobuf.FeatureSetDefaults, it ensures that
+// fields are not repeated or required, do not use oneof, and have a default
+// value.
+//
+// When features for an element are resolved, features of the element and its
+// parents are merged into the default FeatureSet for the edition. Because unset
+// fields in the FeatureSet of an element do not unset the default FeatureSet
+// values, a resolved FeatureSet is guaranteed to have all fields set. This is
+// also the case for extensions to FeatureSet that a user might provide, and for
+// features from the future.
+//
+// We cannot exhaustively validate correctness of FeatureSetDefaults at runtime
+// without knowing the schema: If no value for a feature is provided, we do not
+// know that it exists at all.
+//
+// As a sanity check, we validate that all fields known to our version of
+// FeatureSet are set.
 function validateMergedFeatures(
   featureSet: FeatureSet,
 ): featureSet is MergedFeatureSet {
-  for (const p of [
-    "fieldPresence",
-    "enumType",
-    "repeatedFieldEncoding",
-    "utf8Validation",
-    "messageEncoding",
-    "jsonFormat",
-  ] as const) {
-    if (featureSet[p] === undefined || (featureSet[p] as number) === 0) {
+  for (const fi of FeatureSet.fields.list()) {
+    const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
+    if (v === undefined) {
+      return false;
+    }
+    if (fi.kind == "enum" && v === 0) {
       return false;
     }
   }
