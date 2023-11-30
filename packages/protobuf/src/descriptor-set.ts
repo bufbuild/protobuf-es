@@ -316,6 +316,12 @@ export interface DescMessage {
    */
   getFeatures(): MergedFeatureSet;
 
+  /**
+   * Is this message a proto2 group?
+   * Groups are a deprecated feature.
+   */
+  isLegacyProto2Group(): boolean;
+
   toString(): string;
 }
 

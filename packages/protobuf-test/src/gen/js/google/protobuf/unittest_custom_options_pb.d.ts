@@ -449,10 +449,6 @@ export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
    */
   moo?: number;
 
-  /**
-   * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
-   */
-  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
 
   constructor(data?: PartialMessage<ComplexOptionType3>);
 
@@ -467,54 +463,6 @@ export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3;
 
   static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
- */
-export declare class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOptionType3_ComplexOptionType5> {
-  /**
-   * @generated from field: optional int32 plugh = 3;
-   */
-  plugh?: number;
-
-  constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.ComplexOptionType3.ComplexOptionType5";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3_ComplexOptionType5;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5;
-
-  static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.ComplexOpt6
- */
-export declare class ComplexOpt6 extends Message<ComplexOpt6> {
-  /**
-   * @generated from field: optional int32 xyzzy = 7593951;
-   */
-  xyzzy?: number;
-
-  constructor(data?: PartialMessage<ComplexOpt6>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.ComplexOpt6";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOpt6;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOpt6;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOpt6;
-
-  static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean;
 }
 
 /**

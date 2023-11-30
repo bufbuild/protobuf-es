@@ -101,19 +101,6 @@ export const TestMessageSetExtension3 = proto2.makeMessageType(
 export const RawMessageSet = proto2.makeMessageType(
   "protobuf_unittest.RawMessageSet",
   () => [
-    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
   ],
-);
-
-/**
- * @generated from message protobuf_unittest.RawMessageSet.Item
- */
-export const RawMessageSet_Item = proto2.makeMessageType(
-  "protobuf_unittest.RawMessageSet.Item",
-  () => [
-    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-  ],
-  {localName: "RawMessageSet_Item"},
 );
 

@@ -871,10 +871,6 @@ export class TestAllTypes extends Message<TestAllTypes> {
    */
   optionalBytes?: Uint8Array;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes.OptionalGroup optionalgroup = 16;
-   */
-  optionalgroup?: TestAllTypes_OptionalGroup;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
@@ -1010,10 +1006,6 @@ export class TestAllTypes extends Message<TestAllTypes> {
    */
   repeatedBytes: Uint8Array[] = [];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestAllTypes.RepeatedGroup repeatedgroup = 46;
-   */
-  repeatedgroup: TestAllTypes_RepeatedGroup[] = [];
 
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypes.NestedMessage repeated_nested_message = 48;
@@ -1234,7 +1226,6 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypes_OptionalGroup, opt: true },
     { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage, opt: true },
     { no: 20, name: "optional_import_message", kind: "message", T: ImportMessage, opt: true },
@@ -1261,7 +1252,6 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
     { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
-    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypes_RepeatedGroup, repeated: true },
     { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
     { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true },
     { no: 50, name: "repeated_import_message", kind: "message", T: ImportMessage, repeated: true },
@@ -1389,80 +1379,6 @@ export class TestAllTypes_NestedMessage extends Message<TestAllTypes_NestedMessa
 
   static equals(a: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined, b: TestAllTypes_NestedMessage | PlainMessage<TestAllTypes_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypes_NestedMessage, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
- */
-export class TestAllTypes_OptionalGroup extends Message<TestAllTypes_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestAllTypes_OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestAllTypes.OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes_OptionalGroup {
-    return new TestAllTypes_OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes_OptionalGroup {
-    return new TestAllTypes_OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_OptionalGroup {
-    return new TestAllTypes_OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined, b: TestAllTypes_OptionalGroup | PlainMessage<TestAllTypes_OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(TestAllTypes_OptionalGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
- */
-export class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_RepeatedGroup> {
-  /**
-   * @generated from field: optional int32 a = 47;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestAllTypes_RepeatedGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestAllTypes.RepeatedGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypes_RepeatedGroup {
-    return new TestAllTypes_RepeatedGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypes_RepeatedGroup {
-    return new TestAllTypes_RepeatedGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypes_RepeatedGroup {
-    return new TestAllTypes_RepeatedGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined, b: TestAllTypes_RepeatedGroup | PlainMessage<TestAllTypes_RepeatedGroup> | undefined): boolean {
-    return proto2.util.equals(TestAllTypes_RepeatedGroup, a, b);
   }
 }
 
@@ -1741,80 +1657,6 @@ export class TestAllExtensions extends Message<TestAllExtensions> {
 }
 
 /**
- * @generated from message protobuf_unittest.OptionalGroup_extension
- */
-export class OptionalGroup_extension extends Message<OptionalGroup_extension> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<OptionalGroup_extension>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.OptionalGroup_extension";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OptionalGroup_extension {
-    return new OptionalGroup_extension().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OptionalGroup_extension {
-    return new OptionalGroup_extension().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OptionalGroup_extension {
-    return new OptionalGroup_extension().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined, b: OptionalGroup_extension | PlainMessage<OptionalGroup_extension> | undefined): boolean {
-    return proto2.util.equals(OptionalGroup_extension, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.RepeatedGroup_extension
- */
-export class RepeatedGroup_extension extends Message<RepeatedGroup_extension> {
-  /**
-   * @generated from field: optional int32 a = 47;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<RepeatedGroup_extension>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.RepeatedGroup_extension";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedGroup_extension {
-    return new RepeatedGroup_extension().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RepeatedGroup_extension {
-    return new RepeatedGroup_extension().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroup_extension {
-    return new RepeatedGroup_extension().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined, b: RepeatedGroup_extension | PlainMessage<RepeatedGroup_extension> | undefined): boolean {
-    return proto2.util.equals(RepeatedGroup_extension, a, b);
-  }
-}
-
-/**
  * @generated from message protobuf_unittest.TestMixedFieldsAndExtensions
  */
 export class TestMixedFieldsAndExtensions extends Message<TestMixedFieldsAndExtensions> {
@@ -1861,10 +1703,6 @@ export class TestMixedFieldsAndExtensions extends Message<TestMixedFieldsAndExte
  * @generated from message protobuf_unittest.TestGroup
  */
 export class TestGroup extends Message<TestGroup> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestGroup.OptionalGroup optionalgroup = 16;
-   */
-  optionalgroup?: TestGroup_OptionalGroup;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum optional_foreign_enum = 22;
@@ -1879,7 +1717,6 @@ export class TestGroup extends Message<TestGroup> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, opt: true },
     { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
   ]);
 
@@ -1897,51 +1734,6 @@ export class TestGroup extends Message<TestGroup> {
 
   static equals(a: TestGroup | PlainMessage<TestGroup> | undefined, b: TestGroup | PlainMessage<TestGroup> | undefined): boolean {
     return proto2.util.equals(TestGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestGroup.OptionalGroup
- */
-export class TestGroup_OptionalGroup extends Message<TestGroup_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  /**
-   * fast table size must be at least 16, for this
-   *
-   * @generated from field: optional int32 zz = 89;
-   */
-  zz?: number;
-
-  constructor(data?: PartialMessage<TestGroup_OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestGroup.OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 89, name: "zz", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestGroup_OptionalGroup {
-    return new TestGroup_OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestGroup_OptionalGroup {
-    return new TestGroup_OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestGroup_OptionalGroup {
-    return new TestGroup_OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined, b: TestGroup_OptionalGroup | PlainMessage<TestGroup_OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(TestGroup_OptionalGroup, a, b);
   }
 }
 
@@ -2004,43 +1796,6 @@ export class TestNestedExtension extends Message<TestNestedExtension> {
 
   static equals(a: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined, b: TestNestedExtension | PlainMessage<TestNestedExtension> | undefined): boolean {
     return proto2.util.equals(TestNestedExtension, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestNestedExtension.OptionalGroup_extension
- */
-export class TestNestedExtension_OptionalGroup_extension extends Message<TestNestedExtension_OptionalGroup_extension> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestNestedExtension_OptionalGroup_extension>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestNestedExtension.OptionalGroup_extension";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedExtension_OptionalGroup_extension {
-    return new TestNestedExtension_OptionalGroup_extension().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedExtension_OptionalGroup_extension {
-    return new TestNestedExtension_OptionalGroup_extension().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedExtension_OptionalGroup_extension {
-    return new TestNestedExtension_OptionalGroup_extension().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined, b: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined): boolean {
-    return proto2.util.equals(TestNestedExtension_OptionalGroup_extension, a, b);
   }
 }
 
@@ -3415,15 +3170,7 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
    */
   bb?: TestMutualRecursionB;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestMutualRecursionA.SubGroup subgroup = 2;
-   */
-  subgroup?: TestMutualRecursionA_SubGroup;
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestMutualRecursionA.SubGroupR subgroupr = 5;
-   */
-  subgroupr: TestMutualRecursionA_SubGroupR[] = [];
 
   constructor(data?: PartialMessage<TestMutualRecursionA>) {
     super();
@@ -3434,8 +3181,6 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
   static readonly typeName = "protobuf_unittest.TestMutualRecursionA";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
-    { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true },
-    { no: 5, name: "subgroupr", kind: "message", T: TestMutualRecursionA_SubGroupR, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA {
@@ -3489,88 +3234,6 @@ export class TestMutualRecursionA_SubMessage extends Message<TestMutualRecursion
 
   static equals(a: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined, b: TestMutualRecursionA_SubMessage | PlainMessage<TestMutualRecursionA_SubMessage> | undefined): boolean {
     return proto2.util.equals(TestMutualRecursionA_SubMessage, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
- */
-export class TestMutualRecursionA_SubGroup extends Message<TestMutualRecursionA_SubGroup> {
-  /**
-   * Needed because of bug in javatest
-   *
-   * @generated from field: optional protobuf_unittest.TestMutualRecursionA.SubMessage sub_message = 3;
-   */
-  subMessage?: TestMutualRecursionA_SubMessage;
-
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes not_in_this_scc = 4;
-   */
-  notInThisScc?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestMutualRecursionA_SubGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestMutualRecursionA.SubGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 3, name: "sub_message", kind: "message", T: TestMutualRecursionA_SubMessage, opt: true },
-    { no: 4, name: "not_in_this_scc", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA_SubGroup {
-    return new TestMutualRecursionA_SubGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroup {
-    return new TestMutualRecursionA_SubGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroup {
-    return new TestMutualRecursionA_SubGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined, b: TestMutualRecursionA_SubGroup | PlainMessage<TestMutualRecursionA_SubGroup> | undefined): boolean {
-    return proto2.util.equals(TestMutualRecursionA_SubGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroupR
- */
-export class TestMutualRecursionA_SubGroupR extends Message<TestMutualRecursionA_SubGroupR> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes payload = 6;
-   */
-  payload?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestMutualRecursionA_SubGroupR>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestMutualRecursionA.SubGroupR";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 6, name: "payload", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA_SubGroupR {
-    return new TestMutualRecursionA_SubGroupR().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroupR {
-    return new TestMutualRecursionA_SubGroupR().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMutualRecursionA_SubGroupR {
-    return new TestMutualRecursionA_SubGroupR().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestMutualRecursionA_SubGroupR | PlainMessage<TestMutualRecursionA_SubGroupR> | undefined, b: TestMutualRecursionA_SubGroupR | PlainMessage<TestMutualRecursionA_SubGroupR> | undefined): boolean {
-    return proto2.util.equals(TestMutualRecursionA_SubGroupR, a, b);
   }
 }
 
@@ -3658,10 +3321,6 @@ export class TestIsInitialized extends Message<TestIsInitialized> {
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage
  */
 export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubMessage> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1;
-   */
-  subgroup?: TestIsInitialized_SubMessage_SubGroup;
 
   constructor(data?: PartialMessage<TestIsInitialized_SubMessage>) {
     super();
@@ -3671,7 +3330,6 @@ export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubM
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestIsInitialized.SubMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestIsInitialized_SubMessage {
@@ -3688,43 +3346,6 @@ export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubM
 
   static equals(a: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined, b: TestIsInitialized_SubMessage | PlainMessage<TestIsInitialized_SubMessage> | undefined): boolean {
     return proto2.util.equals(TestIsInitialized_SubMessage, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
- */
-export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitialized_SubMessage_SubGroup> {
-  /**
-   * @generated from field: required int32 i = 2;
-   */
-  i?: number;
-
-  constructor(data?: PartialMessage<TestIsInitialized_SubMessage_SubGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestIsInitialized.SubMessage.SubGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestIsInitialized_SubMessage_SubGroup {
-    return new TestIsInitialized_SubMessage_SubGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage_SubGroup {
-    return new TestIsInitialized_SubMessage_SubGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestIsInitialized_SubMessage_SubGroup {
-    return new TestIsInitialized_SubMessage_SubGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined, b: TestIsInitialized_SubMessage_SubGroup | PlainMessage<TestIsInitialized_SubMessage_SubGroup> | undefined): boolean {
-    return proto2.util.equals(TestIsInitialized_SubMessage_SubGroup, a, b);
   }
 }
 
@@ -3746,15 +3367,7 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
    */
   a?: number;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestDupFieldNumber.Foo foo = 2;
-   */
-  foo?: TestDupFieldNumber_Foo;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestDupFieldNumber.Bar bar = 3;
-   */
-  bar?: TestDupFieldNumber_Bar;
 
   constructor(data?: PartialMessage<TestDupFieldNumber>) {
     super();
@@ -3765,8 +3378,6 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
   static readonly typeName = "protobuf_unittest.TestDupFieldNumber";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "foo", kind: "message", T: TestDupFieldNumber_Foo, opt: true },
-    { no: 3, name: "bar", kind: "message", T: TestDupFieldNumber_Bar, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestDupFieldNumber {
@@ -3783,80 +3394,6 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
 
   static equals(a: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined, b: TestDupFieldNumber | PlainMessage<TestDupFieldNumber> | undefined): boolean {
     return proto2.util.equals(TestDupFieldNumber, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestDupFieldNumber.Foo
- */
-export class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_Foo> {
-  /**
-   * @generated from field: optional int32 a = 1;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestDupFieldNumber_Foo>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestDupFieldNumber.Foo";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestDupFieldNumber_Foo {
-    return new TestDupFieldNumber_Foo().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Foo {
-    return new TestDupFieldNumber_Foo().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Foo {
-    return new TestDupFieldNumber_Foo().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined, b: TestDupFieldNumber_Foo | PlainMessage<TestDupFieldNumber_Foo> | undefined): boolean {
-    return proto2.util.equals(TestDupFieldNumber_Foo, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
- */
-export class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_Bar> {
-  /**
-   * @generated from field: optional int32 a = 1;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestDupFieldNumber_Bar>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestDupFieldNumber.Bar";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestDupFieldNumber_Bar {
-    return new TestDupFieldNumber_Bar().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Bar {
-    return new TestDupFieldNumber_Bar().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestDupFieldNumber_Bar {
-    return new TestDupFieldNumber_Bar().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined, b: TestDupFieldNumber_Bar | PlainMessage<TestDupFieldNumber_Bar> | undefined): boolean {
-    return proto2.util.equals(TestDupFieldNumber_Bar, a, b);
   }
 }
 
@@ -5298,12 +4835,6 @@ export class TestOneof extends Message<TestOneof> {
      */
     value: TestAllTypes;
     case: "fooMessage";
-  } | {
-    /**
-     * @generated from field: protobuf_unittest.TestOneof.FooGroup foogroup = 4;
-     */
-    value: TestOneof_FooGroup;
-    case: "foogroup";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<TestOneof>) {
@@ -5317,7 +4848,6 @@ export class TestOneof extends Message<TestOneof> {
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
     { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
     { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, oneof: "foo" },
-    { no: 4, name: "foogroup", kind: "message", T: TestOneof_FooGroup, oneof: "foo" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneof {
@@ -5334,49 +4864,6 @@ export class TestOneof extends Message<TestOneof> {
 
   static equals(a: TestOneof | PlainMessage<TestOneof> | undefined, b: TestOneof | PlainMessage<TestOneof> | undefined): boolean {
     return proto2.util.equals(TestOneof, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestOneof.FooGroup
- */
-export class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
-  /**
-   * @generated from field: optional int32 a = 5;
-   */
-  a?: number;
-
-  /**
-   * @generated from field: optional string b = 6;
-   */
-  b?: string;
-
-  constructor(data?: PartialMessage<TestOneof_FooGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestOneof.FooGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneof_FooGroup {
-    return new TestOneof_FooGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOneof_FooGroup {
-    return new TestOneof_FooGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof_FooGroup {
-    return new TestOneof_FooGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined, b: TestOneof_FooGroup | PlainMessage<TestOneof_FooGroup> | undefined): boolean {
-    return proto2.util.equals(TestOneof_FooGroup, a, b);
   }
 }
 
@@ -5399,10 +4886,6 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
    */
   fooMessage?: TestAllTypes;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestOneofBackwardsCompatible.FooGroup foogroup = 4;
-   */
-  foogroup?: TestOneofBackwardsCompatible_FooGroup;
 
   constructor(data?: PartialMessage<TestOneofBackwardsCompatible>) {
     super();
@@ -5415,7 +4898,6 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, opt: true },
-    { no: 4, name: "foogroup", kind: "message", T: TestOneofBackwardsCompatible_FooGroup, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneofBackwardsCompatible {
@@ -5432,49 +4914,6 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
 
   static equals(a: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined, b: TestOneofBackwardsCompatible | PlainMessage<TestOneofBackwardsCompatible> | undefined): boolean {
     return proto2.util.equals(TestOneofBackwardsCompatible, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup
- */
-export class TestOneofBackwardsCompatible_FooGroup extends Message<TestOneofBackwardsCompatible_FooGroup> {
-  /**
-   * @generated from field: optional int32 a = 5;
-   */
-  a?: number;
-
-  /**
-   * @generated from field: optional string b = 6;
-   */
-  b?: string;
-
-  constructor(data?: PartialMessage<TestOneofBackwardsCompatible_FooGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestOneofBackwardsCompatible.FooGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 6, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneofBackwardsCompatible_FooGroup {
-    return new TestOneofBackwardsCompatible_FooGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible_FooGroup {
-    return new TestOneofBackwardsCompatible_FooGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneofBackwardsCompatible_FooGroup {
-    return new TestOneofBackwardsCompatible_FooGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined, b: TestOneofBackwardsCompatible_FooGroup | PlainMessage<TestOneofBackwardsCompatible_FooGroup> | undefined): boolean {
-    return proto2.util.equals(TestOneofBackwardsCompatible_FooGroup, a, b);
   }
 }
 
@@ -5527,12 +4966,6 @@ export class TestOneof2 extends Message<TestOneof2> {
      */
     value: TestOneof2_NestedMessage;
     case: "fooMessage";
-  } | {
-    /**
-     * @generated from field: protobuf_unittest.TestOneof2.FooGroup foogroup = 8;
-     */
-    value: TestOneof2_FooGroup;
-    case: "foogroup";
   } | {
     /**
      * @generated from field: protobuf_unittest.TestOneof2.NestedMessage foo_lazy_message = 11;
@@ -5637,7 +5070,6 @@ export class TestOneof2 extends Message<TestOneof2> {
     { no: 5, name: "foo_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 6, name: "foo_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), oneof: "foo" },
     { no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
-    { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo" },
     { no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
     { no: 30, name: "foo_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar" },
@@ -5696,49 +5128,6 @@ proto2.util.setEnumType(TestOneof2_NestedEnum, "protobuf_unittest.TestOneof2.Nes
   { no: 2, name: "BAR" },
   { no: 3, name: "BAZ" },
 ]);
-
-/**
- * @generated from message protobuf_unittest.TestOneof2.FooGroup
- */
-export class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
-  /**
-   * @generated from field: optional int32 a = 9;
-   */
-  a?: number;
-
-  /**
-   * @generated from field: optional string b = 10;
-   */
-  b?: string;
-
-  constructor(data?: PartialMessage<TestOneof2_FooGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestOneof2.FooGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 9, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 10, name: "b", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneof2_FooGroup {
-    return new TestOneof2_FooGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestOneof2_FooGroup {
-    return new TestOneof2_FooGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestOneof2_FooGroup {
-    return new TestOneof2_FooGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined, b: TestOneof2_FooGroup | PlainMessage<TestOneof2_FooGroup> | undefined): boolean {
-    return proto2.util.equals(TestOneof2_FooGroup, a, b);
-  }
-}
 
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
@@ -6473,15 +5862,7 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
    */
   repeatedAllTypes: TestAllTypes[] = [];
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestParsingMerge.OptionalGroup optionalgroup = 10;
-   */
-  optionalgroup?: TestParsingMerge_OptionalGroup;
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedGroup repeatedgroup = 20;
-   */
-  repeatedgroup: TestParsingMerge_RepeatedGroup[] = [];
 
   constructor(data?: PartialMessage<TestParsingMerge>) {
     super();
@@ -6494,8 +5875,6 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
     { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
-    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, opt: true },
-    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMerge_RepeatedGroup, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge {
@@ -6540,15 +5919,7 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
    */
   field3: TestAllTypes[] = [];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1 group1 = 10;
-   */
-  group1: TestParsingMerge_RepeatedFieldsGenerator_Group1[] = [];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2 group2 = 20;
-   */
-  group2: TestParsingMerge_RepeatedFieldsGenerator_Group2[] = [];
 
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypes ext1 = 1000;
@@ -6571,8 +5942,6 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
     { no: 1, name: "field1", kind: "message", T: TestAllTypes, repeated: true },
     { no: 2, name: "field2", kind: "message", T: TestAllTypes, repeated: true },
     { no: 3, name: "field3", kind: "message", T: TestAllTypes, repeated: true },
-    { no: 10, name: "group1", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group1, repeated: true },
-    { no: 20, name: "group2", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group2, repeated: true },
     { no: 1000, name: "ext1", kind: "message", T: TestAllTypes, repeated: true },
     { no: 1001, name: "ext2", kind: "message", T: TestAllTypes, repeated: true },
   ]);
@@ -6591,154 +5960,6 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
 
   static equals(a: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator> | undefined): boolean {
     return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
- */
-export class TestParsingMerge_RepeatedFieldsGenerator_Group1 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group1> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 11;
-   */
-  field1?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 11, name: "field1", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group1 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group1().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group1 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group1().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group1 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group1().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> | undefined): boolean {
-    return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator_Group1, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
- */
-export class TestParsingMerge_RepeatedFieldsGenerator_Group2 extends Message<TestParsingMerge_RepeatedFieldsGenerator_Group2> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 21;
-   */
-  field1?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 21, name: "field1", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group2 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group2().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group2 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group2().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedFieldsGenerator_Group2 {
-    return new TestParsingMerge_RepeatedFieldsGenerator_Group2().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMerge_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> | undefined): boolean {
-    return proto2.util.equals(TestParsingMerge_RepeatedFieldsGenerator_Group2, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
- */
-export class TestParsingMerge_OptionalGroup extends Message<TestParsingMerge_OptionalGroup> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes optional_group_all_types = 11;
-   */
-  optionalGroupAllTypes?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestParsingMerge_OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMerge.OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge_OptionalGroup {
-    return new TestParsingMerge_OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMerge_OptionalGroup {
-    return new TestParsingMerge_OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_OptionalGroup {
-    return new TestParsingMerge_OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined, b: TestParsingMerge_OptionalGroup | PlainMessage<TestParsingMerge_OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(TestParsingMerge_OptionalGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
- */
-export class TestParsingMerge_RepeatedGroup extends Message<TestParsingMerge_RepeatedGroup> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypes repeated_group_all_types = 21;
-   */
-  repeatedGroupAllTypes?: TestAllTypes;
-
-  constructor(data?: PartialMessage<TestParsingMerge_RepeatedGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMerge.RepeatedGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypes, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge_RepeatedGroup {
-    return new TestParsingMerge_RepeatedGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedGroup {
-    return new TestParsingMerge_RepeatedGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMerge_RepeatedGroup {
-    return new TestParsingMerge_RepeatedGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined, b: TestParsingMerge_RepeatedGroup | PlainMessage<TestParsingMerge_RepeatedGroup> | undefined): boolean {
-    return proto2.util.equals(TestParsingMerge_RepeatedGroup, a, b);
   }
 }
 
@@ -7196,10 +6417,6 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
    */
   optionalMessage?: ForeignMessage;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestHugeFieldNumbers.OptionalGroup optionalgroup = 536870008;
-   */
-  optionalgroup?: TestHugeFieldNumbers_OptionalGroup;
 
   /**
    * @generated from field: map<string, string> string_string_map = 536870010;
@@ -7251,7 +6468,6 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
     { no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessage, opt: true },
-    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbers_OptionalGroup, opt: true },
     { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
     { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypes, oneof: "oneof_field" },
@@ -7273,43 +6489,6 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
 
   static equals(a: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined, b: TestHugeFieldNumbers | PlainMessage<TestHugeFieldNumbers> | undefined): boolean {
     return proto2.util.equals(TestHugeFieldNumbers, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup
- */
-export class TestHugeFieldNumbers_OptionalGroup extends Message<TestHugeFieldNumbers_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 group_a = 536870009;
-   */
-  groupA?: number;
-
-  constructor(data?: PartialMessage<TestHugeFieldNumbers_OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestHugeFieldNumbers.OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestHugeFieldNumbers_OptionalGroup {
-    return new TestHugeFieldNumbers_OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers_OptionalGroup {
-    return new TestHugeFieldNumbers_OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbers_OptionalGroup {
-    return new TestHugeFieldNumbers_OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined, b: TestHugeFieldNumbers_OptionalGroup | PlainMessage<TestHugeFieldNumbers_OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(TestHugeFieldNumbers_OptionalGroup, a, b);
   }
 }
 
@@ -7404,10 +6583,6 @@ export class TestExtensionInsideTable extends Message<TestExtensionInsideTable> 
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
  */
 export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtensionOuter> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup layer1optionalgroup = 1;
-   */
-  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup;
 
   constructor(data?: PartialMessage<TestNestedGroupExtensionOuter>) {
     super();
@@ -7417,7 +6592,6 @@ export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtens
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter {
@@ -7434,123 +6608,6 @@ export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtens
 
   static equals(a: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined, b: TestNestedGroupExtensionOuter | PlainMessage<TestNestedGroupExtensionOuter> | undefined): boolean {
     return proto2.util.equals(TestNestedGroupExtensionOuter, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup
- */
-export class TestNestedGroupExtensionOuter_Layer1OptionalGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup> {
-  /**
-   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup layer2repeatedgroup = 2;
-   */
-  layer2repeatedgroup: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup[] = [];
-
-  /**
-   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup layer2anotheroptionalrepeatedgroup = 4;
-   */
-  layer2anotheroptionalrepeatedgroup: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup[] = [];
-
-  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, repeated: true },
-    { no: 4, name: "layer2anotheroptionalrepeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
- */
-export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> {
-  /**
-   * @generated from field: optional string another_field = 6;
-   */
-  anotherField?: string;
-
-  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 6, name: "another_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> | undefined): boolean {
-    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
- */
-export class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup extends Message<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> {
-  /**
-   * @generated from field: optional string but_why_tho = 5;
-   */
-  butWhyTho?: string;
-
-  constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 5, name: "but_why_tho", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup {
-    return new TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined, b: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup | PlainMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> | undefined): boolean {
-    return proto2.util.equals(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, a, b);
   }
 }
 

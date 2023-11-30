@@ -578,10 +578,6 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     case: "oneofEnum";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
-  /**
-   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.Data data = 201;
-   */
-  data?: TestAllTypesProto2_Data;
 
   /**
    * default values
@@ -860,7 +856,6 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     { no: 117, name: "oneof_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "oneof_field" },
     { no: 118, name: "oneof_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "oneof_field" },
     { no: 119, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesProto2_NestedEnum), oneof: "oneof_field" },
-    { no: 201, name: "data", kind: "message", T: TestAllTypesProto2_Data, opt: true },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 2123456789 },
@@ -987,51 +982,6 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
 
   static equals(a: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined, b: TestAllTypesProto2_NestedMessage | PlainMessage<TestAllTypesProto2_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllTypesProto2_NestedMessage, a, b);
-  }
-}
-
-/**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.Data
- */
-export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
-  /**
-   * @generated from field: optional int32 group_int32 = 202;
-   */
-  groupInt32?: number;
-
-  /**
-   * @generated from field: optional uint32 group_uint32 = 203;
-   */
-  groupUint32?: number;
-
-  constructor(data?: PartialMessage<TestAllTypesProto2_Data>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.TestAllTypesProto2.Data";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2_Data {
-    return new TestAllTypesProto2_Data().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesProto2_Data {
-    return new TestAllTypesProto2_Data().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_Data {
-    return new TestAllTypesProto2_Data().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined, b: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined): boolean {
-    return proto2.util.equals(TestAllTypesProto2_Data, a, b);
   }
 }
 
@@ -1198,10 +1148,6 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
    */
   nestedMessage?: ForeignMessageProto2;
 
-  /**
-   * @generated from field: optional protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup optionalgroup = 1004;
-   */
-  optionalgroup?: UnknownToTestAllTypes_OptionalGroup;
 
   /**
    * @generated from field: optional bool optional_bool = 1006;
@@ -1224,7 +1170,6 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
     { no: 1001, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 1002, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 1003, name: "nested_message", kind: "message", T: ForeignMessageProto2, opt: true },
-    { no: 1004, name: "optionalgroup", kind: "message", T: UnknownToTestAllTypes_OptionalGroup, opt: true },
     { no: 1006, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 1011, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ]);
@@ -1243,43 +1188,6 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
 
   static equals(a: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined, b: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined): boolean {
     return proto2.util.equals(UnknownToTestAllTypes, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
- */
-export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAllTypes_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 a = 1;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<UnknownToTestAllTypes_OptionalGroup>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UnknownToTestAllTypes_OptionalGroup {
-    return new UnknownToTestAllTypes_OptionalGroup().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes_OptionalGroup {
-    return new UnknownToTestAllTypes_OptionalGroup().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes_OptionalGroup {
-    return new UnknownToTestAllTypes_OptionalGroup().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined, b: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined): boolean {
-    return proto2.util.equals(UnknownToTestAllTypes_OptionalGroup, a, b);
   }
 }
 
@@ -1572,10 +1480,6 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
    */
   optionalRecursiveMessage?: TestAllRequiredTypesProto2;
 
-  /**
-   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data data = 201;
-   */
-  data?: TestAllRequiredTypesProto2_Data;
 
   /**
    * default values
@@ -1685,7 +1589,6 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
     { no: 25, name: "required_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 27, name: "recursive_message", kind: "message", T: TestAllRequiredTypesProto2 },
     { no: 28, name: "optional_recursive_message", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
-    { no: 201, name: "data", kind: "message", T: TestAllRequiredTypesProto2_Data },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, default: 2123456789 },
@@ -1800,51 +1703,6 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
 
   static equals(a: TestAllRequiredTypesProto2_NestedMessage | PlainMessage<TestAllRequiredTypesProto2_NestedMessage> | undefined, b: TestAllRequiredTypesProto2_NestedMessage | PlainMessage<TestAllRequiredTypesProto2_NestedMessage> | undefined): boolean {
     return proto2.util.equals(TestAllRequiredTypesProto2_NestedMessage, a, b);
-  }
-}
-
-/**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data
- */
-export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredTypesProto2_Data> {
-  /**
-   * @generated from field: required int32 group_int32 = 202;
-   */
-  groupInt32?: number;
-
-  /**
-   * @generated from field: required uint32 group_uint32 = 203;
-   */
-  groupUint32?: number;
-
-  constructor(data?: PartialMessage<TestAllRequiredTypesProto2_Data>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2_Data {
-    return new TestAllRequiredTypesProto2_Data().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllRequiredTypesProto2_Data {
-    return new TestAllRequiredTypesProto2_Data().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllRequiredTypesProto2_Data {
-    return new TestAllRequiredTypesProto2_Data().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestAllRequiredTypesProto2_Data | PlainMessage<TestAllRequiredTypesProto2_Data> | undefined, b: TestAllRequiredTypesProto2_Data | PlainMessage<TestAllRequiredTypesProto2_Data> | undefined): boolean {
-    return proto2.util.equals(TestAllRequiredTypesProto2_Data, a, b);
   }
 }
 

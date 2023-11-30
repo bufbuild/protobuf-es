@@ -220,28 +220,6 @@ export const ComplexOptionType3 = proto2.makeMessageType(
   "protobuf_unittest.ComplexOptionType3",
   () => [
     { no: 1, name: "moo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
-  ],
-);
-
-/**
- * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
- */
-export const ComplexOptionType3_ComplexOptionType5 = proto2.makeMessageType(
-  "protobuf_unittest.ComplexOptionType3.ComplexOptionType5",
-  () => [
-    { no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-  {localName: "ComplexOptionType3_ComplexOptionType5"},
-);
-
-/**
- * @generated from message protobuf_unittest.ComplexOpt6
- */
-export const ComplexOpt6 = proto2.makeMessageType(
-  "protobuf_unittest.ComplexOpt6",
-  () => [
-    { no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
 

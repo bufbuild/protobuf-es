@@ -572,10 +572,6 @@ export declare class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     case: "oneofEnum";
   } | { case: undefined; value?: undefined };
 
-  /**
-   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.Data data = 201;
-   */
-  data?: TestAllTypesProto2_Data;
 
   /**
    * default values
@@ -819,37 +815,6 @@ export declare class TestAllTypesProto2_NestedMessage extends Message<TestAllTyp
 }
 
 /**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.Data
- */
-export declare class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
-  /**
-   * @generated from field: optional int32 group_int32 = 202;
-   */
-  groupInt32?: number;
-
-  /**
-   * @generated from field: optional uint32 group_uint32 = 203;
-   */
-  groupUint32?: number;
-
-  constructor(data?: PartialMessage<TestAllTypesProto2_Data>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.TestAllTypesProto2.Data";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2_Data;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesProto2_Data;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_Data;
-
-  static equals(a: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined, b: TestAllTypesProto2_Data | PlainMessage<TestAllTypesProto2_Data> | undefined): boolean;
-}
-
-/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -961,10 +926,6 @@ export declare class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes
    */
   nestedMessage?: ForeignMessageProto2;
 
-  /**
-   * @generated from field: optional protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup optionalgroup = 1004;
-   */
-  optionalgroup?: UnknownToTestAllTypes_OptionalGroup;
 
   /**
    * @generated from field: optional bool optional_bool = 1006;
@@ -989,30 +950,6 @@ export declare class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes;
 
   static equals(a: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined, b: UnknownToTestAllTypes | PlainMessage<UnknownToTestAllTypes> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
- */
-export declare class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAllTypes_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 a = 1;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<UnknownToTestAllTypes_OptionalGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UnknownToTestAllTypes_OptionalGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes_OptionalGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnknownToTestAllTypes_OptionalGroup;
-
-  static equals(a: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined, b: UnknownToTestAllTypes_OptionalGroup | PlainMessage<UnknownToTestAllTypes_OptionalGroup> | undefined): boolean;
 }
 
 /**
@@ -1247,10 +1184,6 @@ export declare class TestAllRequiredTypesProto2 extends Message<TestAllRequiredT
    */
   optionalRecursiveMessage?: TestAllRequiredTypesProto2;
 
-  /**
-   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data data = 201;
-   */
-  data?: TestAllRequiredTypesProto2_Data;
 
   /**
    * default values
@@ -1403,37 +1336,6 @@ export declare class TestAllRequiredTypesProto2_NestedMessage extends Message<Te
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllRequiredTypesProto2_NestedMessage;
 
   static equals(a: TestAllRequiredTypesProto2_NestedMessage | PlainMessage<TestAllRequiredTypesProto2_NestedMessage> | undefined, b: TestAllRequiredTypesProto2_NestedMessage | PlainMessage<TestAllRequiredTypesProto2_NestedMessage> | undefined): boolean;
-}
-
-/**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data
- */
-export declare class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredTypesProto2_Data> {
-  /**
-   * @generated from field: required int32 group_int32 = 202;
-   */
-  groupInt32: number;
-
-  /**
-   * @generated from field: required uint32 group_uint32 = 203;
-   */
-  groupUint32: number;
-
-  constructor(data?: PartialMessage<TestAllRequiredTypesProto2_Data>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2_Data;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllRequiredTypesProto2_Data;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllRequiredTypesProto2_Data;
-
-  static equals(a: TestAllRequiredTypesProto2_Data | PlainMessage<TestAllRequiredTypesProto2_Data> | undefined, b: TestAllRequiredTypesProto2_Data | PlainMessage<TestAllRequiredTypesProto2_Data> | undefined): boolean;
 }
 
 /**

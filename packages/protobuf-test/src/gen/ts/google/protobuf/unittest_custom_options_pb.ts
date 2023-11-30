@@ -660,10 +660,6 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
    */
   moo?: number;
 
-  /**
-   * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
-   */
-  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
 
   constructor(data?: PartialMessage<ComplexOptionType3>) {
     super();
@@ -674,7 +670,6 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static readonly typeName = "protobuf_unittest.ComplexOptionType3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "moo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3 {
@@ -691,80 +686,6 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
 
   static equals(a: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined, b: ComplexOptionType3 | PlainMessage<ComplexOptionType3> | undefined): boolean {
     return proto2.util.equals(ComplexOptionType3, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
- */
-export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOptionType3_ComplexOptionType5> {
-  /**
-   * @generated from field: optional int32 plugh = 3;
-   */
-  plugh?: number;
-
-  constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.ComplexOptionType3.ComplexOptionType5";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 3, name: "plugh", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3_ComplexOptionType5 {
-    return new ComplexOptionType3_ComplexOptionType5().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5 {
-    return new ComplexOptionType3_ComplexOptionType5().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOptionType3_ComplexOptionType5 {
-    return new ComplexOptionType3_ComplexOptionType5().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined, b: ComplexOptionType3_ComplexOptionType5 | PlainMessage<ComplexOptionType3_ComplexOptionType5> | undefined): boolean {
-    return proto2.util.equals(ComplexOptionType3_ComplexOptionType5, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.ComplexOpt6
- */
-export class ComplexOpt6 extends Message<ComplexOpt6> {
-  /**
-   * @generated from field: optional int32 xyzzy = 7593951;
-   */
-  xyzzy?: number;
-
-  constructor(data?: PartialMessage<ComplexOpt6>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.ComplexOpt6";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 7593951, name: "xyzzy", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOpt6 {
-    return new ComplexOpt6().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ComplexOpt6 {
-    return new ComplexOpt6().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ComplexOpt6 {
-    return new ComplexOpt6().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined, b: ComplexOpt6 | PlainMessage<ComplexOpt6> | undefined): boolean {
-    return proto2.util.equals(ComplexOpt6, a, b);
   }
 }
 

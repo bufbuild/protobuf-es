@@ -80,7 +80,6 @@ export const TestAllTypesLite = proto2.makeMessageType(
     { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypesLite_OptionalGroup, opt: true },
     { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, opt: true },
     { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessageLite, opt: true },
     { no: 20, name: "optional_import_message", kind: "message", T: ImportMessageLite, opt: true },
@@ -107,7 +106,6 @@ export const TestAllTypesLite = proto2.makeMessageType(
     { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
     { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
-    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypesLite_RepeatedGroup, repeated: true },
     { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypesLite_NestedMessage, repeated: true },
     { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessageLite, repeated: true },
     { no: 50, name: "repeated_import_message", kind: "message", T: ImportMessageLite, repeated: true },
@@ -184,28 +182,6 @@ export const TestAllTypesLite_NestedMessage2 = proto2.makeMessageType(
 );
 
 /**
- * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
- */
-export const TestAllTypesLite_OptionalGroup = proto2.makeMessageType(
-  "protobuf_unittest.TestAllTypesLite.OptionalGroup",
-  () => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-  {localName: "TestAllTypesLite_OptionalGroup"},
-);
-
-/**
- * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
- */
-export const TestAllTypesLite_RepeatedGroup = proto2.makeMessageType(
-  "protobuf_unittest.TestAllTypesLite.RepeatedGroup",
-  () => [
-    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-  {localName: "TestAllTypesLite_RepeatedGroup"},
-);
-
-/**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
 export const ForeignMessageLite = proto2.makeMessageType(
@@ -244,26 +220,6 @@ export const TestPackedTypesLite = proto2.makeMessageType(
 export const TestAllExtensionsLite = proto2.makeMessageType(
   "protobuf_unittest.TestAllExtensionsLite",
   [],
-);
-
-/**
- * @generated from message protobuf_unittest.OptionalGroup_extension_lite
- */
-export const OptionalGroup_extension_lite = proto2.makeMessageType(
-  "protobuf_unittest.OptionalGroup_extension_lite",
-  () => [
-    { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-);
-
-/**
- * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
- */
-export const RepeatedGroup_extension_lite = proto2.makeMessageType(
-  "protobuf_unittest.RepeatedGroup_extension_lite",
-  () => [
-    { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
 );
 
 /**
@@ -309,8 +265,6 @@ export const TestParsingMergeLite = proto2.makeMessageType(
     { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypesLite, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true },
-    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, opt: true },
-    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMergeLite_RepeatedGroup, repeated: true },
   ],
 );
 
@@ -323,56 +277,10 @@ export const TestParsingMergeLite_RepeatedFieldsGenerator = proto2.makeMessageTy
     { no: 1, name: "field1", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 2, name: "field2", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 3, name: "field3", kind: "message", T: TestAllTypesLite, repeated: true },
-    { no: 10, name: "group1", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group1, repeated: true },
-    { no: 20, name: "group2", kind: "message", T: TestParsingMergeLite_RepeatedFieldsGenerator_Group2, repeated: true },
     { no: 1000, name: "ext1", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 1001, name: "ext2", kind: "message", T: TestAllTypesLite, repeated: true },
   ],
   {localName: "TestParsingMergeLite_RepeatedFieldsGenerator"},
-);
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1
- */
-export const TestParsingMergeLite_RepeatedFieldsGenerator_Group1 = proto2.makeMessageType(
-  "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1",
-  () => [
-    { no: 11, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
-  ],
-  {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group1"},
-);
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
- */
-export const TestParsingMergeLite_RepeatedFieldsGenerator_Group2 = proto2.makeMessageType(
-  "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2",
-  () => [
-    { no: 21, name: "field1", kind: "message", T: TestAllTypesLite, opt: true },
-  ],
-  {localName: "TestParsingMergeLite_RepeatedFieldsGenerator_Group2"},
-);
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
- */
-export const TestParsingMergeLite_OptionalGroup = proto2.makeMessageType(
-  "protobuf_unittest.TestParsingMergeLite.OptionalGroup",
-  () => [
-    { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
-  ],
-  {localName: "TestParsingMergeLite_OptionalGroup"},
-);
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
- */
-export const TestParsingMergeLite_RepeatedGroup = proto2.makeMessageType(
-  "protobuf_unittest.TestParsingMergeLite.RepeatedGroup",
-  () => [
-    { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypesLite, opt: true },
-  ],
-  {localName: "TestParsingMergeLite_RepeatedGroup"},
 );
 
 /**
@@ -445,24 +353,12 @@ export const TestHugeFieldNumbersLite = proto2.makeMessageType(
     { no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessageLite, opt: true },
-    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbersLite_OptionalGroup, opt: true },
     { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
     { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypesLite, oneof: "oneof_field" },
     { no: 536870013, name: "oneof_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "oneof_field" },
     { no: 536870014, name: "oneof_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "oneof_field" },
   ],
-);
-
-/**
- * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
- */
-export const TestHugeFieldNumbersLite_OptionalGroup = proto2.makeMessageType(
-  "protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup",
-  () => [
-    { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-  {localName: "TestHugeFieldNumbersLite_OptionalGroup"},
 );
 
 /**

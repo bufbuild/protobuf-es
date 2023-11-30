@@ -209,6 +209,49 @@ describe("DescriptorSet", () => {
       );
     });
   });
+  describe("proto2 groups", () => {
+    test("simple group isLegacyProto2Group", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        syntax="proto2";
+        message M {
+          optional group G = 1 {}
+        }
+      `);
+      const { messages } = createDescriptorSet(bin);
+      const M = messages.get("M");
+      expect(M?.isLegacyProto2Group()).toBe(false);
+      const G = messages.get("M.G");
+      expect(G?.isLegacyProto2Group()).toBe(true);
+      expect(M?.fields[0].message).toBe(G);
+    });
+    test("nested group isLegacyProto2Group", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        syntax="proto2";
+        message M {
+          optional group GroupA = 1 {
+            optional group GroupB = 1 {}
+          }
+        }
+      `);
+      const { messages } = createDescriptorSet(bin);
+      const GroupB = messages.get("M.GroupA.GroupB");
+      expect(GroupB?.isLegacyProto2Group()).toBe(true);
+    });
+    test("extension with group isLegacyProto2Group", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        syntax="proto2";
+        message M {
+          extensions 100 to 1010;
+        }
+        extend M {
+          optional group G = 100 {}
+        }
+      `);
+      const { messages } = createDescriptorSet(bin);
+      const G = messages.get("G");
+      expect(G?.isLegacyProto2Group()).toBe(true);
+    });
+  });
   describe("repeated field packing", () => {
     test("proto2 is unpacked by default", async () => {
       const bin = await new UpstreamProtobuf().compileToDescriptorSet(`

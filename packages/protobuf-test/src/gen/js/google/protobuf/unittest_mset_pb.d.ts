@@ -212,10 +212,6 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
  * @generated from message protobuf_unittest.RawMessageSet
  */
 export declare class RawMessageSet extends Message<RawMessageSet> {
-  /**
-   * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
-   */
-  item: RawMessageSet_Item[];
 
   constructor(data?: PartialMessage<RawMessageSet>);
 
@@ -230,34 +226,5 @@ export declare class RawMessageSet extends Message<RawMessageSet> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet;
 
   static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.RawMessageSet.Item
- */
-export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
-  /**
-   * @generated from field: required int32 type_id = 2;
-   */
-  typeId: number;
-
-  /**
-   * @generated from field: required bytes message = 3;
-   */
-  message: Uint8Array;
-
-  constructor(data?: PartialMessage<RawMessageSet_Item>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item;
-
-  static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean;
 }
 

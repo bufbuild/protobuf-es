@@ -297,10 +297,6 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
  * @generated from message protobuf_unittest.RawMessageSet
  */
 export class RawMessageSet extends Message<RawMessageSet> {
-  /**
-   * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
-   */
-  item: RawMessageSet_Item[] = [];
 
   constructor(data?: PartialMessage<RawMessageSet>) {
     super();
@@ -310,7 +306,6 @@ export class RawMessageSet extends Message<RawMessageSet> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet {
@@ -327,49 +322,6 @@ export class RawMessageSet extends Message<RawMessageSet> {
 
   static equals(a: RawMessageSet | PlainMessage<RawMessageSet> | undefined, b: RawMessageSet | PlainMessage<RawMessageSet> | undefined): boolean {
     return proto2.util.equals(RawMessageSet, a, b);
-  }
-}
-
-/**
- * @generated from message protobuf_unittest.RawMessageSet.Item
- */
-export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
-  /**
-   * @generated from field: required int32 type_id = 2;
-   */
-  typeId?: number;
-
-  /**
-   * @generated from field: required bytes message = 3;
-   */
-  message?: Uint8Array;
-
-  constructor(data?: PartialMessage<RawMessageSet_Item>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item {
-    return new RawMessageSet_Item().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RawMessageSet_Item {
-    return new RawMessageSet_Item().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RawMessageSet_Item {
-    return new RawMessageSet_Item().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined, b: RawMessageSet_Item | PlainMessage<RawMessageSet_Item> | undefined): boolean {
-    return proto2.util.equals(RawMessageSet_Item, a, b);
   }
 }
 

@@ -76,6 +76,7 @@ export function createDescriptorSet(
     services: new Map<string, DescService>(),
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
+    groups: new Set<string>(),
     resolveFeatures: createFeatureResolver(
       options?.featureSetDefaults ?? featureSetDefaults,
     ),
@@ -119,6 +120,7 @@ interface Cart {
   services: Map<string, DescService>;
   extensions: Map<string, DescExtension>;
   mapEntries: Map<string, DescMessage>;
+  groups: Set<string>;
   resolveFeatures: FeatureResolverFn;
 }
 
@@ -189,6 +191,7 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
         const ext = newExtension(proto, desc, undefined, cart);
         desc.extensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
+        detectLegacyProto2Group(ext, cart);
       }
       break;
     case "message":
@@ -196,6 +199,7 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
         const ext = newExtension(proto, desc.file, desc, cart);
         desc.nestedExtensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
+        detectLegacyProto2Group(ext, cart);
       }
       for (const message of desc.nestedMessages) {
         addExtensions(message, cart);
@@ -226,6 +230,7 @@ function addFields(message: DescMessage, cart: Cart): void {
         message.members.push(oneof);
       }
     }
+    detectLegacyProto2Group(field, cart);
   }
   for (const oneof of allOneofs.filter((o) => oneofsSeen.has(o))) {
     message.oneofs.push(oneof);
@@ -378,6 +383,9 @@ function addMessage(
         parentFeatures,
         this.proto.options?.features,
       );
+    },
+    isLegacyProto2Group() {
+      return cart.groups.has(this.typeName);
     },
   };
   if (proto.options?.mapEntry === true) {
@@ -1017,6 +1025,22 @@ function isPackedField(
           );
         }
       }
+  }
+}
+
+/**
+ * If the given field descriptor (or extension) is a proto2 group, mark the
+ * message descriptor it points to, so that isLegacyProto2Group can return
+ * true.
+ */
+function detectLegacyProto2Group(desc: DescField | DescExtension, cart: Cart) {
+  const isGroup =
+    desc.fieldKind === "message" &&
+    desc.proto.type === FieldDescriptorProto_Type.GROUP &&
+    (desc.kind == "field" ? desc.parent : desc).file.edition ==
+      Edition.EDITION_PROTO2;
+  if (isGroup) {
+    cart.groups.add(desc.message.typeName);
   }
 }
 

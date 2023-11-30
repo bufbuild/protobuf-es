@@ -63,6 +63,10 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
+  if (message.isLegacyProto2Group()) {
+    // The proto2 groups feature is deprecated and not supported in protobuf-es
+    return;
+  }
   const protoN = getNonEditionRuntime(schema, message.file);
   const {
     PartialMessage,
@@ -118,8 +122,13 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
   f.print(makeJsDoc(oneof, "  "));
   f.print("  ", localName(oneof), ": {");
+  let fieldsPrinted = 0;
   for (const field of oneof.fields) {
-    if (oneof.fields.indexOf(field) > 0) {
+    if (field.fieldKind == "message" && field.message.isLegacyProto2Group()) {
+      // The proto2 groups feature is deprecated and not supported in protobuf-es
+      continue;
+    }
+    if (fieldsPrinted++ > 0) {
       f.print(`  } | {`);
     }
     f.print(makeJsDoc(field, "    "));
@@ -131,6 +140,10 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 }
 
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
+  if (field.fieldKind == "message" && field.message.isLegacyProto2Group()) {
+    // The proto2 groups feature is deprecated and not supported in protobuf-es
+    return;
+  }
   f.print(makeJsDoc(field, "  "));
   const e: Printable = [];
   e.push("  ", localName(field));

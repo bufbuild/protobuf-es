@@ -153,10 +153,6 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
    */
   optionalBytes?: Uint8Array;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypesLite.OptionalGroup optionalgroup = 16;
-   */
-  optionalgroup?: TestAllTypesLite_OptionalGroup;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_nested_message = 18;
@@ -292,10 +288,6 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
    */
   repeatedBytes: Uint8Array[];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestAllTypesLite.RepeatedGroup repeatedgroup = 46;
-   */
-  repeatedgroup: TestAllTypesLite_RepeatedGroup[];
 
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypesLite.NestedMessage repeated_nested_message = 48;
@@ -588,54 +580,6 @@ export declare class TestAllTypesLite_NestedMessage2 extends Message<TestAllType
 }
 
 /**
- * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
- */
-export declare class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestAllTypesLite_OptionalGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestAllTypesLite.OptionalGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_OptionalGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesLite_OptionalGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_OptionalGroup;
-
-  static equals(a: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined, b: TestAllTypesLite_OptionalGroup | PlainMessage<TestAllTypesLite_OptionalGroup> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
- */
-export declare class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_RepeatedGroup> {
-  /**
-   * @generated from field: optional int32 a = 47;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<TestAllTypesLite_RepeatedGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestAllTypesLite.RepeatedGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesLite_RepeatedGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesLite_RepeatedGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesLite_RepeatedGroup;
-
-  static equals(a: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined, b: TestAllTypesLite_RepeatedGroup | PlainMessage<TestAllTypesLite_RepeatedGroup> | undefined): boolean;
-}
-
-/**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
 export declare class ForeignMessageLite extends Message<ForeignMessageLite> {
@@ -768,54 +712,6 @@ export declare class TestAllExtensionsLite extends Message<TestAllExtensionsLite
 }
 
 /**
- * @generated from message protobuf_unittest.OptionalGroup_extension_lite
- */
-export declare class OptionalGroup_extension_lite extends Message<OptionalGroup_extension_lite> {
-  /**
-   * @generated from field: optional int32 a = 17;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<OptionalGroup_extension_lite>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.OptionalGroup_extension_lite";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OptionalGroup_extension_lite;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OptionalGroup_extension_lite;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OptionalGroup_extension_lite;
-
-  static equals(a: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined, b: OptionalGroup_extension_lite | PlainMessage<OptionalGroup_extension_lite> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
- */
-export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extension_lite> {
-  /**
-   * @generated from field: optional int32 a = 47;
-   */
-  a?: number;
-
-  constructor(data?: PartialMessage<RepeatedGroup_extension_lite>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.RepeatedGroup_extension_lite";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedGroup_extension_lite;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RepeatedGroup_extension_lite;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroup_extension_lite;
-
-  static equals(a: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined, b: RepeatedGroup_extension_lite | PlainMessage<RepeatedGroup_extension_lite> | undefined): boolean;
-}
-
-/**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
  */
 export declare class TestPackedExtensionsLite extends Message<TestPackedExtensionsLite> {
@@ -920,15 +816,7 @@ export declare class TestParsingMergeLite extends Message<TestParsingMergeLite> 
    */
   repeatedAllTypes: TestAllTypesLite[];
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestParsingMergeLite.OptionalGroup optionalgroup = 10;
-   */
-  optionalgroup?: TestParsingMergeLite_OptionalGroup;
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMergeLite.RepeatedGroup repeatedgroup = 20;
-   */
-  repeatedgroup: TestParsingMergeLite_RepeatedGroup[];
 
   constructor(data?: PartialMessage<TestParsingMergeLite>);
 
@@ -964,15 +852,7 @@ export declare class TestParsingMergeLite_RepeatedFieldsGenerator extends Messag
    */
   field3: TestAllTypesLite[];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1 group1 = 10;
-   */
-  group1: TestParsingMergeLite_RepeatedFieldsGenerator_Group1[];
 
-  /**
-   * @generated from field: repeated protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2 group2 = 20;
-   */
-  group2: TestParsingMergeLite_RepeatedFieldsGenerator_Group2[];
 
   /**
    * @generated from field: repeated protobuf_unittest.TestAllTypesLite ext1 = 1000;
@@ -997,102 +877,6 @@ export declare class TestParsingMergeLite_RepeatedFieldsGenerator extends Messag
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator;
 
   static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1
- */
-export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group1 extends Message<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypesLite field1 = 11;
-   */
-  field1?: TestAllTypesLite;
-
-  constructor(data?: PartialMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group1;
-
-  static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group1 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
- */
-export declare class TestParsingMergeLite_RepeatedFieldsGenerator_Group2 extends Message<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypesLite field1 = 21;
-   */
-  field1?: TestAllTypesLite;
-
-  constructor(data?: PartialMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group2;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group2;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedFieldsGenerator_Group2;
-
-  static equals(a: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined, b: TestParsingMergeLite_RepeatedFieldsGenerator_Group2 | PlainMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
- */
-export declare class TestParsingMergeLite_OptionalGroup extends Message<TestParsingMergeLite_OptionalGroup> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypesLite optional_group_all_types = 11;
-   */
-  optionalGroupAllTypes?: TestAllTypesLite;
-
-  constructor(data?: PartialMessage<TestParsingMergeLite_OptionalGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMergeLite.OptionalGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_OptionalGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMergeLite_OptionalGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_OptionalGroup;
-
-  static equals(a: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined, b: TestParsingMergeLite_OptionalGroup | PlainMessage<TestParsingMergeLite_OptionalGroup> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
- */
-export declare class TestParsingMergeLite_RepeatedGroup extends Message<TestParsingMergeLite_RepeatedGroup> {
-  /**
-   * @generated from field: optional protobuf_unittest.TestAllTypesLite repeated_group_all_types = 21;
-   */
-  repeatedGroupAllTypes?: TestAllTypesLite;
-
-  constructor(data?: PartialMessage<TestParsingMergeLite_RepeatedGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestParsingMergeLite.RepeatedGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMergeLite_RepeatedGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestParsingMergeLite_RepeatedGroup;
-
-  static equals(a: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined, b: TestParsingMergeLite_RepeatedGroup | PlainMessage<TestParsingMergeLite_RepeatedGroup> | undefined): boolean;
 }
 
 /**
@@ -1267,10 +1051,6 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
    */
   optionalMessage?: ForeignMessageLite;
 
-  /**
-   * @generated from field: optional protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup optionalgroup = 536870008;
-   */
-  optionalgroup?: TestHugeFieldNumbersLite_OptionalGroup;
 
   /**
    * @generated from field: map<string, string> string_string_map = 536870010;
@@ -1319,30 +1099,6 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite;
 
   static equals(a: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined, b: TestHugeFieldNumbersLite | PlainMessage<TestHugeFieldNumbersLite> | undefined): boolean;
-}
-
-/**
- * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
- */
-export declare class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFieldNumbersLite_OptionalGroup> {
-  /**
-   * @generated from field: optional int32 group_a = 536870009;
-   */
-  groupA?: number;
-
-  constructor(data?: PartialMessage<TestHugeFieldNumbersLite_OptionalGroup>);
-
-  static readonly runtime: typeof proto2;
-  static readonly typeName = "protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestHugeFieldNumbersLite_OptionalGroup;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite_OptionalGroup;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestHugeFieldNumbersLite_OptionalGroup;
-
-  static equals(a: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined, b: TestHugeFieldNumbersLite_OptionalGroup | PlainMessage<TestHugeFieldNumbersLite_OptionalGroup> | undefined): boolean;
 }
 
 /**

@@ -66,6 +66,10 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
+  if (message.isLegacyProto2Group()) {
+    // The proto2 groups feature is deprecated and not supported in protobuf-es
+    return;
+  }
   const protoN = getNonEditionRuntime(schema, message.file);
   f.print(makeJsDoc(message));
   f.print("export const ", message, " = ", protoN, ".makeMessageType(")
@@ -101,6 +105,10 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 
 // prettier-ignore
 export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
+  if (field.fieldKind == "message" && field.message.isLegacyProto2Group()) {
+    // The proto2 groups feature is deprecated and not supported in protobuf-es
+    return;
+  }
   const protoN = getNonEditionRuntime(schema, field.parent.file);
   const e: Printable = [];
   e.push("    { no: ", field.number, `, name: "`, field.name, `", `);

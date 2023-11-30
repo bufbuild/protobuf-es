@@ -145,7 +145,6 @@ export const TestAllTypesProto2 = proto2.makeMessageType(
     { no: 117, name: "oneof_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "oneof_field" },
     { no: 118, name: "oneof_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "oneof_field" },
     { no: 119, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesProto2_NestedEnum), oneof: "oneof_field" },
-    { no: 201, name: "data", kind: "message", T: TestAllTypesProto2_Data, opt: true },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 2123456789 },
@@ -208,20 +207,6 @@ export const TestAllTypesProto2_NestedMessage = proto2.makeMessageType(
 );
 
 /**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.Data
- */
-export const TestAllTypesProto2_Data = proto2.makeMessageType(
-  "protobuf_test_messages.proto2.TestAllTypesProto2.Data",
-  () => [
-    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
-  ],
-  {localName: "TestAllTypesProto2_Data"},
-);
-
-/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -273,21 +258,9 @@ export const UnknownToTestAllTypes = proto2.makeMessageType(
     { no: 1001, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 1002, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 1003, name: "nested_message", kind: "message", T: ForeignMessageProto2, opt: true },
-    { no: 1004, name: "optionalgroup", kind: "message", T: UnknownToTestAllTypes_OptionalGroup, opt: true },
     { no: 1006, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 1011, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ],
-);
-
-/**
- * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
- */
-export const UnknownToTestAllTypes_OptionalGroup = proto2.makeMessageType(
-  "protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup",
-  () => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-  ],
-  {localName: "UnknownToTestAllTypes_OptionalGroup"},
 );
 
 /**
@@ -368,7 +341,6 @@ export const TestAllRequiredTypesProto2 = proto2.makeMessageType(
     { no: 25, name: "required_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 27, name: "recursive_message", kind: "message", T: TestAllRequiredTypesProto2 },
     { no: 28, name: "optional_recursive_message", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
-    { no: 201, name: "data", kind: "message", T: TestAllRequiredTypesProto2_Data },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, default: 2123456789 },
@@ -411,20 +383,6 @@ export const TestAllRequiredTypesProto2_NestedMessage = proto2.makeMessageType(
     { no: 3, name: "optional_corecursive", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
   ],
   {localName: "TestAllRequiredTypesProto2_NestedMessage"},
-);
-
-/**
- * groups
- *
- * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data
- */
-export const TestAllRequiredTypesProto2_Data = proto2.makeMessageType(
-  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data",
-  () => [
-    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-  ],
-  {localName: "TestAllRequiredTypesProto2_Data"},
 );
 
 /**
