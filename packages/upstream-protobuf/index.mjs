@@ -332,9 +332,7 @@ export class UpstreamProtobuf {
         }
         break;
     }
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${
-      this.#version
-    }/protoc-${this.#version}-${build}.zip`;
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${this.#version}-${build}.zip`;
     return this.#download(url, "protoc.zip");
   }
 
@@ -413,9 +411,7 @@ export class UpstreamProtobuf {
         `Unable to find conformance runner binary release for ${os.platform()} / ${os.arch()}`,
       );
     }
-    const url = `https://github.com/bufbuild/protobuf-conformance/releases/download/v${
-      this.#version
-    }/conformance_test_runner-${this.#version}-${build}.zip`;
+    const url = `https://github.com/bufbuild/protobuf-conformance/releases/download/v${this.#version}/conformance_test_runner-${this.#version}-${build}.zip`;
     return this.#download(url, "conformance_test_runner.zip");
   }
 
@@ -423,9 +419,7 @@ export class UpstreamProtobuf {
    * @return {Promise<string>}
    */
   async #downloadProtobufSource() {
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${
-      this.#version
-    }/protobuf-${this.#version}.zip`;
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protobuf-${this.#version}.zip`;
     return this.#download(url, "protobuf.zip");
   }
 
