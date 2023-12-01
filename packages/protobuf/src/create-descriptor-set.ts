@@ -84,8 +84,8 @@ export function createDescriptorSet(
     input instanceof FileDescriptorSet
       ? input.file
       : input instanceof Uint8Array
-      ? FileDescriptorSet.fromBinary(input).file
-      : input;
+        ? FileDescriptorSet.fromBinary(input).file
+        : input;
   const files = fileDescriptors.map((proto) => newFile(proto, cart));
   return { files, ...cart };
 }
