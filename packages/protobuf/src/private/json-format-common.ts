@@ -214,8 +214,8 @@ export function makeJsonFormatCommon(
                     ? jsonMapKey == "true"
                       ? true
                       : jsonMapKey == "false"
-                      ? false
-                      : jsonMapKey
+                        ? false
+                        : jsonMapKey
                     : jsonMapKey,
                   LongType.BIGINT,
                 ).toString()
