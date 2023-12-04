@@ -40,6 +40,7 @@ import type { MessageType } from "./message-type.js";
  *
  * - "oneof": If the field is member of a oneof group.
  * - "default": Only proto2: An explicit default value.
+ * - "delimited": Only proto2: Use the tag-delimited group encoding.
  */
 export type FieldInfo =
   | fiRules<fiScalar>
@@ -73,6 +74,7 @@ export interface OneofInfo {
   readonly packed: false;
   readonly opt: false;
   readonly default: undefined;
+  readonly delimited: undefined;
   readonly fields: readonly FieldInfo[];
 
   /**
@@ -162,6 +164,14 @@ interface fiScalar extends fiShared {
    * Only proto2: An explicit default value.
    */
   readonly default: number | boolean | string | bigint | Uint8Array | undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited: undefined;
 }
 
 interface fiMessage extends fiShared {
@@ -186,6 +196,14 @@ interface fiMessage extends fiShared {
    * An explicit default value (only proto2). Never set for messages.
    */
   readonly default: undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited: boolean;
 }
 
 interface fiEnum extends fiShared {
@@ -217,6 +235,14 @@ interface fiEnum extends fiShared {
    * Only proto2: An explicit default value.
    */
   readonly default: number | undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited: undefined;
 }
 
 interface fiMap extends fiShared {
@@ -256,6 +282,14 @@ interface fiMap extends fiShared {
    * An explicit default value (only proto2). Never set for maps.
    */
   readonly default: undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited: undefined;
 }
 
 // prettier-ignore
@@ -266,11 +300,11 @@ type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt"> & 
   | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: OneofInfo; });
 
 // prettier-ignore
-type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default" | "L"> & (
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; L?: LongType;  }
-  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType;  }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; L?: LongType; });
+type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default" | "L" | "delimited"> & (
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; L?: LongType; delimited?: boolean; });
 
 /**
  * Scalar value types. This is a subset of field types declared by protobuf

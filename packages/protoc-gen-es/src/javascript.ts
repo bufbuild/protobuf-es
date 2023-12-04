@@ -13,7 +13,13 @@
 // limitations under the License.
 
 import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
-import { LongType, proto2, proto3, ScalarType } from "@bufbuild/protobuf";
+import {
+  FieldDescriptorProto_Type,
+  LongType,
+  proto2,
+  proto3,
+  ScalarType,
+} from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
@@ -130,6 +136,9 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
       break;
     case "message":
       e.push(`kind: "message", T: `, field.message, `, `);
+      if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
+        e.push(`delimited: true, `);
+      }
       break;
     case "enum":
       e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);

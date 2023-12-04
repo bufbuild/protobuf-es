@@ -75,3 +75,22 @@ enum Proto2Enum {
 message Proto2ChildMessage {
   optional string string_field = 1;
 }
+
+message Proto2GroupsMessage {
+  optional group Group = 1 {
+    optional int32 int32_field = 1;
+    optional group NestedGroup = 2 {
+      optional string string_field = 1;
+    }
+  }
+  repeated group RepeatedGroup = 2 {
+    optional int32 int32_field = 1;
+  }
+  oneof oneof_with_group {
+    group OneofGroup = 3 {
+      optional bool bool_field = 1;
+    }
+  }
+  optional Group message_field_using_group = 4;
+  optional Group.NestedGroup message_field_using_nested_group = 5;
+}

@@ -674,7 +674,7 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   static readonly typeName = "protobuf_unittest.ComplexOptionType3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "moo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
+    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, delimited: true, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ComplexOptionType3 {

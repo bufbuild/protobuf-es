@@ -25,7 +25,6 @@ import { LongType, ScalarType } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
 import { assert } from "./assert.js";
-import type { MessageType } from "../message-type.js";
 
 /* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition, no-case-declarations, prefer-const */
 
@@ -91,14 +90,22 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
     readMessage<T extends Message<T>>(
       message: T,
       reader: IBinaryReader,
-      length: number,
+      lengthOrEndTagFieldNo: number,
       options: BinaryReadOptions,
+      delimitedMessageEncoding?: boolean,
     ): void {
       const type = message.getType();
-      const end = length === undefined ? reader.len : reader.pos + length;
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      const end = delimitedMessageEncoding
+        ? reader.len
+        : reader.pos + lengthOrEndTagFieldNo;
+      let fieldNo: number | undefined, wireType: WireType | undefined;
       while (reader.pos < end) {
-        const [fieldNo, wireType] = reader.tag(),
-          field = type.fields.find(fieldNo);
+        [fieldNo, wireType] = reader.tag();
+        if (wireType == WireType.EndGroup) {
+          break;
+        }
+        const field = type.fields.find(fieldNo);
         if (!field) {
           const data = reader.skip(wireType);
           if (options.readUnknownFields) {
@@ -150,16 +157,17 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             if (repeated) {
               // safe to assume presence of array, oneof cannot contain repeated values
               (target[localName] as any[]).push(
-                readMessageField(reader, new messageType(), options),
+                readMessageField(reader, new messageType(), options, field),
               );
             } else {
               if (target[localName] instanceof Message) {
-                readMessageField(reader, target[localName], options);
+                readMessageField(reader, target[localName], options, field);
               } else {
                 target[localName] = readMessageField(
                   reader,
                   new messageType(),
                   options,
+                  field,
                 );
                 if (
                   messageType.fieldWrapper &&
@@ -180,6 +188,12 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
             break;
         }
       }
+      if (
+        delimitedMessageEncoding && // eslint-disable-line @typescript-eslint/strict-boolean-expressions
+        (wireType != WireType.EndGroup || fieldNo !== lengthOrEndTagFieldNo)
+      ) {
+        throw new Error(`invalid end group tag`);
+      }
     },
   };
 }
@@ -190,9 +204,17 @@ function readMessageField<T extends Message>(
   reader: IBinaryReader,
   message: T,
   options: BinaryReadOptions,
+  field: { kind: "message"; no: number; delimited: boolean } | undefined,
 ): T {
   const format = message.getType().runtime.bin;
-  format.readMessage(message, reader, reader.uint32(), options);
+  const delimited = field?.delimited;
+  format.readMessage(
+    message,
+    reader,
+    delimited ? field?.no : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
+    options,
+    delimited,
+  );
   return message;
 }
 
@@ -220,7 +242,7 @@ function readMapEntry(
             val = reader.int32();
             break;
           case "message":
-            val = readMessageField(reader, new field.V.T(), options);
+            val = readMessageField(reader, new field.V.T(), options, undefined);
             break;
         }
         break;
@@ -335,7 +357,7 @@ export function writeMapEntry(
       writeScalar(writer, ScalarType.INT32, 2, value, true);
       break;
     case "message":
-      writeMessageField(writer, options, field.V.T, 2, value);
+      writer.tag(2, WireType.LengthDelimited).bytes(value.toBinary(options));
       break;
   }
 
@@ -345,15 +367,20 @@ export function writeMapEntry(
 export function writeMessageField(
   writer: IBinaryWriter,
   options: BinaryWriteOptions,
-  type: MessageType,
-  fieldNo: number,
+  field: FieldInfo & { kind: "message" },
   value: any,
 ): void {
   if (value !== undefined) {
-    const message = wrapField(type, value);
-    writer
-      .tag(fieldNo, WireType.LengthDelimited)
-      .bytes(message.toBinary(options));
+    const message = wrapField(field.T, value);
+    if (field.delimited)
+      writer
+        .tag(field.no, WireType.StartGroup)
+        .raw(message.toBinary(options))
+        .tag(field.no, WireType.EndGroup);
+    else
+      writer
+        .tag(field.no, WireType.LengthDelimited)
+        .bytes(message.toBinary(options));
   }
 }
 

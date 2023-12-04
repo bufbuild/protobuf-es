@@ -41,12 +41,22 @@ export interface BinaryFormat {
 
   /**
    * Parse a message from binary data, merging fields.
+   *
+   * Supports two message encodings:
+   * - length-prefixed: delimitedMessageEncoding is false or omitted, and
+   *   lengthOrEndTagFieldNo is the expected length of the message in the reader.
+   * - delimited: delimitedMessageEncoding is true, and lengthOrEndTagFieldNo is
+   *   the field number in a tag with wire type end-group signalling the end of
+   *   the message in the reader.
+   *
+   * delimitedMessageEncoding is optional for backwards compatibility.
    */
   readMessage(
     message: Message,
     reader: IBinaryReader,
-    length: number,
+    lengthOrEndTagFieldNo: number,
     options: BinaryReadOptions,
+    delimitedMessageEncoding?: boolean,
   ): void;
 
   /**

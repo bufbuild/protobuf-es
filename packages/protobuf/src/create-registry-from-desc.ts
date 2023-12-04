@@ -49,7 +49,10 @@ import {
   UInt32Value,
   UInt64Value,
 } from "./google/protobuf/wrappers_pb.js";
-import { FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
+import {
+  FieldDescriptorProto_Type,
+  FileDescriptorSet,
+} from "./google/protobuf/descriptor_pb.js";
 import type { DescField, DescriptorSet } from "./descriptor-set.js";
 import { createDescriptorSet } from "./create-descriptor-set.js";
 
@@ -337,6 +340,7 @@ function makeMessageFieldInfo(
     name: field.name,
     jsonName: field.jsonName,
     T: messageType,
+    delimited: field.proto.type == FieldDescriptorProto_Type.GROUP,
   } as const;
   if (field.repeated) {
     return {
