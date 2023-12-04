@@ -204,7 +204,7 @@ function readMessageField<T extends Message>(
   reader: IBinaryReader,
   message: T,
   options: BinaryReadOptions,
-  field: { kind: "message"; no: number; delimited: boolean } | undefined,
+  field: { kind: "message"; no: number; delimited?: boolean } | undefined,
 ): T {
   const format = message.getType().runtime.bin;
   const delimited = field?.delimited;
@@ -372,7 +372,8 @@ export function writeMessageField(
 ): void {
   if (value !== undefined) {
     const message = wrapField(field.T, value);
-    if (field.delimited)
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (field?.delimited)
       writer
         .tag(field.no, WireType.StartGroup)
         .raw(message.toBinary(options))

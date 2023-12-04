@@ -74,7 +74,7 @@ export interface OneofInfo {
   readonly packed: false;
   readonly opt: false;
   readonly default: undefined;
-  readonly delimited: undefined;
+  readonly delimited?: undefined;
   readonly fields: readonly FieldInfo[];
 
   /**
@@ -171,7 +171,7 @@ interface fiScalar extends fiShared {
    *
    * Only valid for message fields.
    */
-  readonly delimited: undefined;
+  readonly delimited?: undefined;
 }
 
 interface fiMessage extends fiShared {
@@ -203,7 +203,7 @@ interface fiMessage extends fiShared {
    *
    * Only valid for message fields.
    */
-  readonly delimited: boolean;
+  readonly delimited?: boolean;
 }
 
 interface fiEnum extends fiShared {
@@ -242,7 +242,7 @@ interface fiEnum extends fiShared {
    *
    * Only valid for message fields.
    */
-  readonly delimited: undefined;
+  readonly delimited?: undefined;
 }
 
 interface fiMap extends fiShared {
@@ -289,7 +289,7 @@ interface fiMap extends fiShared {
    *
    * Only valid for message fields.
    */
-  readonly delimited: undefined;
+  readonly delimited?: undefined;
 }
 
 // prettier-ignore
