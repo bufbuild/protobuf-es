@@ -15,17 +15,6 @@
 import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto2_pb.js";
 import * as JS from "./gen/js/extra/proto2_pb.js";
-import {
-  Proto2DefaultsMessage as TS_Proto2DefaultsMessage,
-  Proto2Enum as TS_Proto2Enum,
-  Proto2RequiredDefaultsMessage as TS_Proto2RequiredDefaultsMessage,
-  Proto2RequiredMessage as TS_Proto2RequiredMessage,
-} from "./gen/ts/extra/proto2_pb.js";
-import {
-  Proto2DefaultsMessage as JS_Proto2DefaultsMessage,
-  Proto2RequiredDefaultsMessage as JS_Proto2RequiredDefaultsMessage,
-  Proto2RequiredMessage as JS_Proto2RequiredMessage,
-} from "./gen/js/extra/proto2_pb.js";
 import { describeMT, testMT } from "./helpers.js";
 import type { AnyMessage, Message } from "@bufbuild/protobuf";
 import {
@@ -51,8 +40,8 @@ function verify<T extends Message>(m: T): boolean {
 }
 
 describe("setDefaults", () => {
-  testMT<TS_Proto2DefaultsMessage>(
-    { ts: TS_Proto2DefaultsMessage, js: JS_Proto2DefaultsMessage },
+  testMT<TS.Proto2DefaultsMessage>(
+    { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
     (messageType) => {
       const msg = new messageType();
       setDefaults(msg);
@@ -66,17 +55,17 @@ describe("setDefaults", () => {
       expect(msg.int32Field).toBe(128);
       expect(msg.int46Field).toBe(protoInt64.parse("-256"));
       expect(msg.floatField).toBe(-512.13);
-      expect(msg.enumField).toBe(TS_Proto2Enum.YES);
+      expect(msg.enumField).toBe(TS.Proto2Enum.YES);
       expect(msg.messageField).toBe(undefined);
     },
   );
 });
 
 describe("verify", () => {
-  testMT<TS_Proto2RequiredDefaultsMessage>(
+  testMT<TS.Proto2RequiredDefaultsMessage>(
     {
-      ts: TS_Proto2RequiredDefaultsMessage,
-      js: JS_Proto2RequiredDefaultsMessage,
+      ts: TS.Proto2RequiredDefaultsMessage,
+      js: JS.Proto2RequiredDefaultsMessage,
     },
     (messageType) => {
       const msg = new messageType({
@@ -89,8 +78,8 @@ describe("verify", () => {
   );
 });
 
-describeMT<TS_Proto2RequiredMessage>(
-  { ts: TS_Proto2RequiredMessage, js: JS_Proto2RequiredMessage },
+describeMT<TS.Proto2RequiredMessage>(
+  { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
   (messageType) => {
     test("has expected defaults", () => {
       const got = { ...new messageType() };
@@ -124,7 +113,7 @@ describeMT<TS_Proto2RequiredMessage>(
 );
 
 describeMT(
-  { ts: TS_Proto2DefaultsMessage, js: JS_Proto2DefaultsMessage },
+  { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
   (messageType) => {
     test("has no default values", () => {
       const got = { ...new messageType() };
