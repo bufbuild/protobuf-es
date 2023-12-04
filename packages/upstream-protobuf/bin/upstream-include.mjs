@@ -14,42 +14,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {argv, exit, stderr, stdout} from "node:process";
-import {UpstreamProtobuf} from "../lib.mjs";
+import { argv, exit, stderr, stdout } from "node:process";
+import { UpstreamProtobuf } from "../index.mjs";
 
 void main(argv.slice(2));
 
 async function main(args) {
-    /**
-     * @typedef ProtoInclude
-     * @property {string} dir
-     * @property {string[]} files
-     */
+  /**
+   * @typedef ProtoInclude
+   * @property {string} dir
+   * @property {string[]} files
+   */
 
-    const upstream = new UpstreamProtobuf();
-    /** @type ProtoInclude */
-    let protoInclude;
-    switch (args[0]) {
-        case "wkt":
-            protoInclude = await upstream.getWktProtoInclude();
-            break;
-        case "conformance":
-            protoInclude = await upstream.getConformanceProtoInclude();
-            break;
-        case "test":
-            protoInclude = await upstream.getTestProtoInclude();
-            break;
-        default:
-            exitUsage();
-    }
-    stdout.write(protoInclude.dir);
-    exit(0);
+  const upstream = new UpstreamProtobuf();
+  /** @type ProtoInclude */
+  let protoInclude;
+  switch (args[0]) {
+    case "wkt":
+      protoInclude = await upstream.getWktProtoInclude();
+      break;
+    case "conformance":
+      protoInclude = await upstream.getConformanceProtoInclude();
+      break;
+    case "test":
+      protoInclude = await upstream.getTestProtoInclude();
+      break;
+    default:
+      exitUsage();
+  }
+  stdout.write(protoInclude.dir);
 }
 
 /**
  * @return never
  */
 function exitUsage() {
-    stderr.write(`USAGE: upstream-include wkt|conformance|test\n`);
-    exit(1);
+  stderr.write(`USAGE: upstream-include wkt|conformance|test\n`);
+  exit(1);
 }

@@ -98,10 +98,10 @@ help: ## Describe useful make targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: build test format lint bench bootstrapwkt ## build, test, format, lint, bench, and bootstrapwkt (default)
+all: build test format lint bench bootstrap ## build, test, format, lint, bench, and bootstrap (default)
 
 .PHONY: ci
-ci: build test-protobuf test-protoplugin test-conformance format lint bench bootstrapwkt #
+ci: build test-protobuf test-protoplugin test-protoplugin-example test-conformance format lint bench bootstrap #
 	$(MAKE) checkdiff
 
 .PHONY: clean
@@ -144,7 +144,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 
 .PHONY: format
 format: node_modules ## Format all files, adding license headers
-	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs}' --log-level error
+	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs,cjs}' --log-level error
 	npx license-header --ignore packages/protobuf/src/google/varint.ts
 
 .PHONY: bench
@@ -155,11 +155,10 @@ bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code si
 perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
-.PHONY: bootstrapwkt
-bootstrapwkt: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Generate the well-known types in @bufbuild/protobuf
-	npm run -w packages/protobuf bootstrap
-	@# If the generated code differs, use it, and run tests again
-	npm run -w packages/protobuf bootstrap-diff || $(MAKE) build test format lint
+.PHONY: bootstrap
+bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Bootstrap well-known types and edition features-set defaults in @bufbuild/protobuf from upstream protobuf
+	npm run -w packages/protobuf bootstrap:wkt
+	npm run -w packages/protobuf bootstrap:featureset-defaults
 
 .PHONY: setversion
 setversion: ## Set a new version in for the project, i.e. make setversion SET_VERSION=1.2.3

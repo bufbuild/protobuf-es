@@ -30,6 +30,7 @@ import {
   makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
+import { getNonEditionRuntime } from "./editions.js";
 
 export function generateDts(schema: Schema) {
   for (const file of schema.files) {
@@ -62,7 +63,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   const {
     PartialMessage,
     FieldList,

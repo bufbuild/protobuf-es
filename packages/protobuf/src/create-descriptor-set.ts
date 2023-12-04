@@ -19,6 +19,9 @@ import type {
   OneofDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
 import {
+  Edition,
+  FeatureSet_RepeatedFieldEncoding,
+  FeatureSetDefaults,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
   FieldOptions_JSType,
@@ -45,7 +48,15 @@ import type {
 import { LongType, ScalarType } from "./field.js";
 import { MethodIdempotency, MethodKind } from "./service-type.js";
 import { fieldJsonName, findEnumSharedPrefix } from "./private/names.js";
-import { protoInt64 } from "./proto-int64.js";
+import {
+  parseTextFormatEnumValue,
+  parseTextFormatScalarValue,
+} from "./private/text-format.js";
+import type { FeatureResolverFn } from "./private/feature-set.js";
+import {
+  createFeatureResolver,
+  featureSetDefaults,
+} from "./private/feature-set.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -57,6 +68,7 @@ import { protoInt64 } from "./proto-int64.js";
  */
 export function createDescriptorSet(
   input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
+  options?: CreateDescriptorSetOptions,
 ): DescriptorSet {
   const cart = {
     enums: new Map<string, DescEnum>(),
@@ -64,15 +76,37 @@ export function createDescriptorSet(
     services: new Map<string, DescService>(),
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
+    resolveFeatures: createFeatureResolver(
+      options?.featureSetDefaults ?? featureSetDefaults,
+    ),
   };
   const fileDescriptors =
     input instanceof FileDescriptorSet
       ? input.file
       : input instanceof Uint8Array
-      ? FileDescriptorSet.fromBinary(input).file
-      : input;
+        ? FileDescriptorSet.fromBinary(input).file
+        : input;
   const files = fileDescriptors.map((proto) => newFile(proto, cart));
   return { files, ...cart };
+}
+
+/**
+ * Options to createDescriptorSet()
+ */
+interface CreateDescriptorSetOptions {
+  /**
+   * Editions support language-specific features with extensions to
+   * google.protobuf.FeatureSet. They can define defaults, and specify on
+   * which targets the features can be set.
+   *
+   * To create a DescriptorSet that provides your language-specific features,
+   * you have to provide a google.protobuf.FeatureSetDefaults message in this
+   * option.
+   *
+   * The defaults can be generated with `protoc` - see the flag
+   * `--experimental_edition_defaults_out`.
+   */
+  featureSetDefaults?: FeatureSetDefaults;
 }
 
 /**
@@ -85,6 +119,7 @@ interface Cart {
   services: Map<string, DescService>;
   extensions: Map<string, DescExtension>;
   mapEntries: Map<string, DescMessage>;
+  resolveFeatures: FeatureResolverFn;
 }
 
 /**
@@ -92,17 +127,11 @@ interface Cart {
  */
 function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
   assert(proto.name, `invalid FileDescriptorProto: missing name`);
-  assert(
-    proto.syntax === undefined || proto.syntax === "proto3",
-    `invalid FileDescriptorProto: unsupported syntax: ${
-      proto.syntax ?? "undefined"
-    }`,
-  );
   const file: DescFile = {
     kind: "file",
     proto,
     deprecated: proto.options?.deprecated ?? false,
-    syntax: proto.syntax === "proto3" ? "proto3" : "proto2",
+    ...parseFileSyntax(proto.syntax, proto.edition),
     name: proto.name.replace(/\.proto/, ""),
     enums: [],
     messages: [],
@@ -121,6 +150,9 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
       return findComments(this.proto.sourceCodeInfo, [
         FieldNumber.FileDescriptorProto_Package,
       ]);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(this.edition, this.proto.options?.features);
     },
   };
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
@@ -178,7 +210,7 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
  */
 function addFields(message: DescMessage, cart: Cart): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message),
+    newOneof(proto, message, cart),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
@@ -243,6 +275,15 @@ function addEnum(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      const parentFeatures =
+        this.parent?.getFeatures() ?? this.file.getFeatures();
+      return cart.resolveFeatures(
+        this.file.edition,
+        parentFeatures,
+        this.proto.options?.features,
+      );
+    },
   };
   cart.enums.set(desc.typeName, desc);
   proto.value.forEach((proto) => {
@@ -275,6 +316,13 @@ function addEnum(
           this.parent.proto.value.indexOf(this.proto),
         ];
         return findComments(file.proto.sourceCodeInfo, path);
+      },
+      getFeatures() {
+        return cart.resolveFeatures(
+          this.parent.file.edition,
+          this.parent.getFeatures(),
+          this.proto.options?.features,
+        );
       },
     });
   });
@@ -322,6 +370,15 @@ function addMessage(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      const parentFeatures =
+        this.parent?.getFeatures() ?? this.file.getFeatures();
+      return cart.resolveFeatures(
+        this.file.edition,
+        parentFeatures,
+        this.proto.options?.features,
+      );
+    },
   };
   if (proto.options?.mapEntry === true) {
     cart.mapEntries.set(desc.typeName, desc);
@@ -364,6 +421,13 @@ function addService(
         this.file.proto.service.indexOf(this.proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.file.edition,
+        this.file.getFeatures(),
+        this.proto.options?.features,
+      );
     },
   };
   file.services.push(desc);
@@ -442,13 +506,24 @@ function newMethod(
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.parent.file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
+    },
   };
 }
 
 /**
  * Create a descriptor for a oneof group.
  */
-function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
+function newOneof(
+  proto: OneofDescriptorProto,
+  parent: DescMessage,
+  cart: Cart,
+): DescOneof {
   assert(proto.name, `invalid OneofDescriptorProto: missing name`);
   return {
     kind: "oneof",
@@ -468,6 +543,13 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.parent.file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
+    },
   };
 }
 
@@ -484,7 +566,6 @@ function newField(
   assert(proto.name, `invalid FieldDescriptorProto: missing name`);
   assert(proto.number, `invalid FieldDescriptorProto: missing number`);
   assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  const packedByDefault = isPackedFieldByDefault(proto, file.syntax);
   const common = {
     proto,
     deprecated: proto.options?.deprecated ?? false,
@@ -493,8 +574,8 @@ function newField(
     parent,
     oneof,
     optional: isOptionalField(proto, file.syntax),
-    packed: proto.options?.packed ?? packedByDefault,
-    packedByDefault,
+    packedByDefault: isPackedFieldByDefault(file, proto, cart.resolveFeatures),
+    packed: isPackedField(file, parent, proto, cart.resolveFeatures),
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
@@ -503,11 +584,11 @@ function newField(
     enum: undefined,
     mapKey: undefined,
     mapValue: undefined,
+    declarationString,
+    // toString, getComments, getFeatures are overridden in newExtension
     toString(): string {
-      // note that newExtension() calls us with parent = null
       return `field ${this.parent.typeName}.${this.name}`;
     },
-    declarationString,
     getComments() {
       const path = [
         ...this.parent.getComments().sourcePath,
@@ -515,6 +596,13 @@ function newField(
         this.parent.proto.field.indexOf(this.proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return cart.resolveFeatures(
+        file.edition,
+        this.parent.getFeatures(),
+        this.proto.options?.features,
+      );
     },
   };
   const repeated = proto.label === FieldDescriptorProto_Label.REPEATED;
@@ -616,6 +704,8 @@ function newExtension(
     parent,
     file,
     extendee,
+    // Must override toString, getComments, getFeatures from newField, because we
+    // call newField with parent undefined.
     toString(): string {
       return `extension ${this.typeName}`;
     },
@@ -632,6 +722,74 @@ function newExtension(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return cart.resolveFeatures(
+        this.file.edition,
+        (this.parent ?? this.file).getFeatures(),
+        this.proto.options?.features,
+      );
+    },
+  };
+}
+
+/**
+ * Parse the "syntax" and "edition" fields, stripping test editions.
+ */
+function parseFileSyntax(
+  syntax: string | undefined,
+  edition: Edition | undefined,
+) {
+  let e: Exclude<
+    Edition,
+    | Edition.EDITION_1_TEST_ONLY
+    | Edition.EDITION_2_TEST_ONLY
+    | Edition.EDITION_99997_TEST_ONLY
+    | Edition.EDITION_99998_TEST_ONLY
+    | Edition.EDITION_99999_TEST_ONLY
+  >;
+  let s: "proto2" | "proto3" | "editions";
+  switch (syntax) {
+    case undefined:
+    case "proto2":
+      s = "proto2";
+      e = Edition.EDITION_PROTO2;
+      break;
+    case "proto3":
+      s = "proto3";
+      e = Edition.EDITION_PROTO3;
+      break;
+    case "editions":
+      s = "editions";
+      switch (edition) {
+        case undefined:
+        case Edition.EDITION_1_TEST_ONLY:
+        case Edition.EDITION_2_TEST_ONLY:
+        case Edition.EDITION_99997_TEST_ONLY:
+        case Edition.EDITION_99998_TEST_ONLY:
+        case Edition.EDITION_99999_TEST_ONLY:
+        case Edition.EDITION_UNKNOWN:
+          e = Edition.EDITION_UNKNOWN;
+          break;
+        default:
+          e = edition;
+          break;
+      }
+      break;
+    default:
+      throw new Error(
+        `invalid FileDescriptorProto: unsupported syntax: ${syntax}`,
+      );
+  }
+  if (syntax === "editions" && edition === Edition.EDITION_UNKNOWN) {
+    throw new Error(
+      `invalid FileDescriptorProto: syntax ${syntax} cannot have edition ${String(
+        edition,
+      )}`,
+    );
+  }
+  return {
+    syntax: s,
+    edition: e,
   };
 }
 
@@ -775,7 +933,7 @@ function findOneof(
  */
 function isOptionalField(
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3",
+  syntax: "proto2" | "proto3" | "editions",
 ): boolean {
   switch (syntax) {
     case "proto2":
@@ -785,44 +943,81 @@ function isOptionalField(
       );
     case "proto3":
       return proto.proto3Optional === true;
+    case "editions":
+      return false;
   }
 }
 
 /**
- * Get the default `packed` state of a repeated field.
+ * Is this field packed by default? Only valid for repeated enum fields, and
+ * for repeated scalar fields except BYTES and STRING.
+ *
+ * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
+ * are unpacked by default. With editions, the default is whatever the edition
+ * specifies as a default. In edition 2023, fields are packed by default.
  */
-export function isPackedFieldByDefault(
+function isPackedFieldByDefault(
+  file: DescFile,
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3",
-): boolean {
-  assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  if (syntax === "proto3") {
-    switch (proto.type) {
-      case FieldDescriptorProto_Type.DOUBLE:
-      case FieldDescriptorProto_Type.FLOAT:
-      case FieldDescriptorProto_Type.INT64:
-      case FieldDescriptorProto_Type.UINT64:
-      case FieldDescriptorProto_Type.INT32:
-      case FieldDescriptorProto_Type.FIXED64:
-      case FieldDescriptorProto_Type.FIXED32:
-      case FieldDescriptorProto_Type.UINT32:
-      case FieldDescriptorProto_Type.SFIXED32:
-      case FieldDescriptorProto_Type.SFIXED64:
-      case FieldDescriptorProto_Type.SINT32:
-      case FieldDescriptorProto_Type.SINT64:
-      case FieldDescriptorProto_Type.BOOL:
-      case FieldDescriptorProto_Type.ENUM:
-        // From the proto3 language guide:
-        // > In proto3, repeated fields of scalar numeric types are packed by default.
-        // This information is incomplete - according to the conformance tests, BOOL
-        // and ENUM are packed by default as well. This means only STRING and BYTES
-        // are not packed by default, which makes sense because they are length-delimited.
-        return true;
-      default:
-        return false;
-    }
+  resolveFeatures: FeatureResolverFn,
+) {
+  const { repeatedFieldEncoding } = resolveFeatures(file.edition);
+  if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
+    return false;
   }
-  return false;
+  // From the proto3 language guide:
+  // > In proto3, repeated fields of scalar numeric types are packed by default.
+  // This information is incomplete - according to the conformance tests, BOOL
+  // and ENUM are packed by default as well. This means only STRING and BYTES
+  // are not packed by default, which makes sense because they are length-delimited.
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      return false;
+    default:
+      return true;
+  }
+}
+
+/**
+ * Pack this repeated field?
+ *
+ * Respects field type, proto2/proto3 defaults and the `packed` option, or
+ * edition defaults and the edition features.repeated_field_encoding options.
+ */
+function isPackedField(
+  file: DescFile,
+  parent: DescMessage | undefined,
+  proto: FieldDescriptorProto,
+  resolveFeatures: FeatureResolverFn,
+) {
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      // length-delimited types cannot be packed
+      return false;
+    default:
+      switch (file.edition) {
+        case Edition.EDITION_PROTO2:
+          return proto.options?.packed ?? false;
+        case Edition.EDITION_PROTO3:
+          return proto.options?.packed ?? true;
+        default: {
+          const { repeatedFieldEncoding } = resolveFeatures(
+            file.edition,
+            parent?.getFeatures() ?? file.getFeatures(),
+            proto.options?.features,
+          );
+          return (
+            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
+          );
+        }
+      }
+  }
 }
 
 /**
@@ -995,187 +1190,11 @@ function getDefaultValue(
     return undefined;
   }
   switch (this.fieldKind) {
-    case "enum": {
-      const enumValue = this.enum.values.find((v) => v.name === d);
-      assert(enumValue, `cannot parse ${this.toString()} default value: ${d}`);
-      return enumValue.number;
-    }
+    case "enum":
+      return parseTextFormatEnumValue(this.enum, d);
     case "scalar":
-      switch (this.scalar) {
-        case ScalarType.STRING:
-          return d;
-        case ScalarType.BYTES: {
-          const u = unescapeBytesDefaultValue(d);
-          if (u === false) {
-            throw new Error(
-              `cannot parse ${this.toString()} default value: ${d}`,
-            );
-          }
-          return u;
-        }
-        case ScalarType.INT64:
-        case ScalarType.SFIXED64:
-        case ScalarType.SINT64:
-          return protoInt64.parse(d);
-        case ScalarType.UINT64:
-        case ScalarType.FIXED64:
-          return protoInt64.uParse(d);
-        case ScalarType.DOUBLE:
-        case ScalarType.FLOAT:
-          switch (d) {
-            case "inf":
-              return Number.POSITIVE_INFINITY;
-            case "-inf":
-              return Number.NEGATIVE_INFINITY;
-            case "nan":
-              return Number.NaN;
-            default:
-              return parseFloat(d);
-          }
-        case ScalarType.BOOL:
-          return d === "true";
-        case ScalarType.INT32:
-        case ScalarType.UINT32:
-        case ScalarType.SINT32:
-        case ScalarType.FIXED32:
-        case ScalarType.SFIXED32:
-          return parseInt(d, 10);
-      }
-      break;
+      return parseTextFormatScalarValue(this.scalar, d);
     default:
       return undefined;
   }
-}
-
-/**
- * Parses a text-encoded default value (proto2) of a BYTES field.
- */
-function unescapeBytesDefaultValue(str: string): Uint8Array | false {
-  const b: number[] = [];
-  const input = {
-    tail: str,
-    c: "",
-    next(): boolean {
-      if (this.tail.length == 0) {
-        return false;
-      }
-      this.c = this.tail[0];
-      this.tail = this.tail.substring(1);
-      return true;
-    },
-    take(n: number): string | false {
-      if (this.tail.length >= n) {
-        const r = this.tail.substring(0, n);
-        this.tail = this.tail.substring(n);
-        return r;
-      }
-      return false;
-    },
-  };
-  while (input.next()) {
-    switch (input.c) {
-      case "\\":
-        if (input.next()) {
-          switch (input.c as string) {
-            case "\\":
-              b.push(input.c.charCodeAt(0));
-              break;
-            case "b":
-              b.push(0x08);
-              break;
-            case "f":
-              b.push(0x0c);
-              break;
-            case "n":
-              b.push(0x0a);
-              break;
-            case "r":
-              b.push(0x0d);
-              break;
-            case "t":
-              b.push(0x09);
-              break;
-            case "v":
-              b.push(0x0b);
-              break;
-            case "0":
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7": {
-              const s = input.c;
-              const t = input.take(2);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 8);
-              if (isNaN(n)) {
-                return false;
-              }
-              b.push(n);
-              break;
-            }
-            case "x": {
-              const s = input.c;
-              const t = input.take(2);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
-                return false;
-              }
-              b.push(n);
-              break;
-            }
-            case "u": {
-              const s = input.c;
-              const t = input.take(4);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
-                return false;
-              }
-              const chunk = new Uint8Array(4);
-              const view = new DataView(chunk.buffer);
-              view.setInt32(0, n, true);
-              b.push(chunk[0], chunk[1], chunk[2], chunk[3]);
-              break;
-            }
-            case "U": {
-              const s = input.c;
-              const t = input.take(8);
-              if (t === false) {
-                return false;
-              }
-              const tc = protoInt64.uEnc(s + t);
-              const chunk = new Uint8Array(8);
-              const view = new DataView(chunk.buffer);
-              view.setInt32(0, tc.lo, true);
-              view.setInt32(4, tc.hi, true);
-              b.push(
-                chunk[0],
-                chunk[1],
-                chunk[2],
-                chunk[3],
-                chunk[4],
-                chunk[5],
-                chunk[6],
-                chunk[7],
-              );
-              break;
-            }
-          }
-        }
-        break;
-      default:
-        b.push(input.c.charCodeAt(0));
-    }
-  }
-  return new Uint8Array(b);
 }

@@ -114,6 +114,7 @@ export function findCustomEnumOption(
   return findCustomScalarOption(desc, extensionNumber, ScalarType.INT32);
 }
 
+// prettier-ignore
 /**
  * ScalarValue is a conditional type that pairs a ScalarType value with its concrete type.
  */

@@ -13,8 +13,12 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest, FileDescriptorProto } from "@bufbuild/protobuf";
-import type { DescFile } from "@bufbuild/protobuf";
+import {
+  CodeGeneratorRequest,
+  Edition,
+  FileDescriptorProto,
+} from "@bufbuild/protobuf";
+import type { DescFile, FeatureSet } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 
@@ -108,6 +112,7 @@ describe("transpile", function () {
       kind: "file",
       name: "test",
       syntax: "proto3",
+      edition: Edition.EDITION_PROTO3,
       messages: [],
       deprecated: false,
       enums: [],
@@ -132,6 +137,9 @@ describe("transpile", function () {
           leading: undefined,
           trailing: undefined,
         };
+      },
+      getFeatures(): FeatureSet & Required<FeatureSet> {
+        return null as unknown as FeatureSet & Required<FeatureSet>;
       },
     };
     test("generates correctly", () => {

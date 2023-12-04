@@ -1,22 +1,22 @@
 {
   "name": "@bufbuild/protoplugin-example",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
-    "test": "node --loader tsx --test test/*.ts",
+    "test": "tsx --test test/*.ts",
     "pregenerate": "rm -rf src/gen",
     "generate": "buf generate buf.build/connectrpc/eliza"
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bufbuild/buf": "^1.27.2",
-    "@bufbuild/protobuf": "^1.4.2",
-    "@bufbuild/protoc-gen-es": "^1.4.2",
-    "@bufbuild/protoplugin": "^1.4.2",
+    "@bufbuild/buf": "^1.28.1",
+    "@bufbuild/protobuf": "^1.5.0",
+    "@bufbuild/protoc-gen-es": "^1.5.0",
+    "@bufbuild/protoplugin": "^1.5.0",
     "typescript": "^5.2.2",
-    "tsx": "^3.13.0",
+    "tsx": "^4.6.1",
     "@types/node": "~20.8.6"
   }
 }

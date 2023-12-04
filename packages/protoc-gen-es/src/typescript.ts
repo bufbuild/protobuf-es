@@ -33,6 +33,7 @@ import {
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo } from "./javascript.js";
+import { getNonEditionRuntime } from "./editions.js";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
@@ -50,7 +51,7 @@ export function generateTs(schema: Schema) {
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  const protoN = schema.runtime[enumeration.file.syntax];
+  const protoN = getNonEditionRuntime(schema, enumeration.file);
   f.print(makeJsDoc(enumeration));
   f.print("export enum ", enumeration, " {");
   for (const value of enumeration.values) {
@@ -72,7 +73,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   const {
     PartialMessage,
     FieldList,
@@ -191,7 +192,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     LongType: rtLongType,
     protoInt64,
   } = schema.runtime;
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   switch (ref.typeName) {
     case "google.protobuf.Any":
       f.print("  override toJson(options?: Partial<", JsonWriteOptions, ">): ", JsonValue, " {");
@@ -286,7 +287,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("      throw new Error(`invalid type url: ${url}`);");
       f.print("    }");
       f.print(`    const slash = url.lastIndexOf("/");`);
-      f.print("    const name = slash > 0 ? url.substring(slash + 1) : url;");
+      f.print("    const name = slash >= 0 ? url.substring(slash + 1) : url;");
       f.print("    if (!name.length) {");
       f.print("      throw new Error(`invalid type url: ${url}`);");
       f.print("    }");

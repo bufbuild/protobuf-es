@@ -13,14 +13,18 @@
 // limitations under the License.
 
 import {
-  existsSync,
-  writeFileSync,
-  readFileSync,
-  mkdirSync,
   chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
   readdirSync,
+  readFileSync,
+  writeFileSync,
+  rmSync,
 } from "node:fs";
-import { join as joinPath, dirname, relative as relativePath } from "node:path";
+import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { dirname, join as joinPath, relative as relativePath } from "node:path";
 import os from "node:os";
 import { unzipSync } from "fflate";
 import micromatch from "micromatch";
@@ -87,10 +91,6 @@ export class UpstreamProtobuf {
    * @param {string} [version]
    */
   constructor(temp, version) {
-    if (typeof temp !== "string") {
-      temp = new URL(".tmp", import.meta.url).pathname;
-    }
-    this.#temp = temp;
     if (typeof version !== "string") {
       version = readFileSync(
         new URL("version.txt", import.meta.url).pathname,
@@ -98,6 +98,15 @@ export class UpstreamProtobuf {
       ).trim();
     }
     this.#version = version;
+    if (typeof temp !== "string") {
+      const thisFilePath = new URL(import.meta.url).pathname;
+      const thisFileContent = readFileSync(new URL(import.meta.url).pathname);
+      const hashObj = createHash("sha256");
+      hashObj.update(thisFileContent);
+      const digest = hashObj.digest("hex");
+      temp = joinPath(thisFilePath, "..", ".tmp", this.#version + "-" + digest);
+    }
+    this.#temp = temp;
   }
 
   /**
@@ -109,6 +118,80 @@ export class UpstreamProtobuf {
       this.#extractConformanceRelease(),
       this.#extractProtobufSourceTestProtos(),
     ]);
+  }
+
+  /**
+   * @typedef CompileToDescriptorSetOptions
+   * @property {boolean} [includeSourceInfo]
+   */
+  /**
+   * @param {Record<string, string>|string} filesOrFileContent
+   * @param {CompileToDescriptorSetOptions} [opt]
+   * @return {Promise<Buffer>}
+   */
+  async compileToDescriptorSet(filesOrFileContent, opt) {
+    const protocPath = await this.getProtocPath();
+    const tempDir = mkdtempSync(
+      joinPath(this.#temp, "compile-descriptor-set-"),
+    );
+    const files =
+      typeof filesOrFileContent == "string"
+        ? { "input.proto": filesOrFileContent }
+        : filesOrFileContent;
+    try {
+      writeTree(Object.entries(files), tempDir);
+      const outPath = joinPath(tempDir, "desc.bin");
+      const args = [
+        "--experimental_editions",
+        "--descriptor_set_out",
+        outPath,
+        "--proto_path",
+        tempDir,
+        ...Object.keys(files),
+      ];
+      if (opt?.includeSourceInfo) {
+        args.unshift("--include_source_info");
+      }
+      execFileSync(protocPath, args, {
+        shell: false,
+      });
+      return readFileSync(outPath);
+    } finally {
+      rmSync(tempDir, { recursive: true });
+    }
+  }
+
+  /**
+   * @param {string} [minimumEdition]
+   * @param {string} [maximumEdition]
+   * @return Promise<Buffer>
+   */
+  async getFeatureSetDefaults(minimumEdition, maximumEdition) {
+    const binPath = this.#getTempPath(
+      "feature-set-defaults",
+      `min-${minimumEdition ?? "default"}-max-${
+        maximumEdition ?? "default"
+      }.bin`,
+    );
+    if (!existsSync(binPath)) {
+      const protocPath = await this.getProtocPath();
+      const args = [
+        "--experimental_edition_defaults_out",
+        binPath,
+        "google/protobuf/descriptor.proto",
+      ];
+      if (minimumEdition !== undefined) {
+        args.push("--experimental_edition_defaults_minimum", minimumEdition);
+      }
+      if (maximumEdition !== undefined) {
+        args.push("--experimental_edition_defaults_maximum", maximumEdition);
+      }
+      execFileSync(protocPath, args, {
+        shell: false,
+        stdio: "ignore",
+      });
+    }
+    return readFileSync(binPath);
   }
 
   /**
@@ -154,7 +237,7 @@ export class UpstreamProtobuf {
    * @param {...string[]} paths
    */
   #getTempPath(...paths) {
-    const p = joinPath(this.#temp, this.#version, ...paths);
+    const p = joinPath(this.#temp, ...paths);
     if (!existsSync(dirname(p))) {
       mkdirSync(dirname(p), { recursive: true });
     }
@@ -249,9 +332,7 @@ export class UpstreamProtobuf {
         }
         break;
     }
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${
-      this.#version
-    }/protoc-${this.#version}-${build}.zip`;
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${this.#version}-${build}.zip`;
     return this.#download(url, "protoc.zip");
   }
 
@@ -330,9 +411,7 @@ export class UpstreamProtobuf {
         `Unable to find conformance runner binary release for ${os.platform()} / ${os.arch()}`,
       );
     }
-    const url = `https://github.com/bufbuild/protobuf-conformance/releases/download/v${
-      this.#version
-    }/conformance_test_runner-${this.#version}-${build}.zip`;
+    const url = `https://github.com/bufbuild/protobuf-conformance/releases/download/v${this.#version}/conformance_test_runner-${this.#version}-${build}.zip`;
     return this.#download(url, "conformance_test_runner.zip");
   }
 
@@ -340,9 +419,7 @@ export class UpstreamProtobuf {
    * @return {Promise<string>}
    */
   async #downloadProtobufSource() {
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${
-      this.#version
-    }/protobuf-${this.#version}.zip`;
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protobuf-${this.#version}.zip`;
     return this.#download(url, "protobuf.zip");
   }
 
@@ -414,7 +491,7 @@ export class UpstreamProtobuf {
 }
 
 /**
- * @param {Array<[string, Uint8Array]>} files
+ * @param {Array<[string, Uint8Array|string]>} files
  * @param {string} [dir]
  */
 function writeTree(files, dir = ".") {
@@ -433,6 +510,7 @@ function writeTree(files, dir = ".") {
  */
 function lsfiles(dir) {
   const hits = [];
+
   function ls(dir) {
     for (const ent of readdirSync(dir, { withFileTypes: true })) {
       const entPath = joinPath(dir, ent.name);
@@ -443,6 +521,7 @@ function lsfiles(dir) {
       }
     }
   }
+
   ls(dir);
   return hits.map((path) => relativePath(dir, path));
 }
