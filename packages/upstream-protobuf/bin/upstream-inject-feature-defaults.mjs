@@ -36,7 +36,7 @@ async function main(args) {
       allowPositionals: true,
     }));
   } catch {
-    exitUsage();
+    return exitUsage();
   }
   const upstream = new UpstreamProtobuf();
   const defaults = await upstream.getFeatureSetDefaults(min, max);
@@ -47,8 +47,10 @@ async function main(args) {
     const content = readFileSync(path, "utf-8");
     const r = inject(content, ` "${defaults.toString("base64url")}" `);
     if (!r.ok) {
-      stderr.write(`Error injecting into ${path}: ${r.message}\n`);
-      exit(1);
+      stderr.write(`Error injecting into ${path}: ${r.message}\n`, () =>
+        exit(1),
+      );
+      return;
     }
     if (r.newContent === content) {
       stdout.write(`- ${path} - no changes\n`);
@@ -92,11 +94,11 @@ function inject(content, contentToInject) {
 }
 
 /**
- * @return never
+ * @return void
  */
 function exitUsage() {
   stderr.write(
     `USAGE: upstream-inject-feature-defaults [--min <mininum supported edition>] [--max <maximum supported edition>] <file-to-inject-into>\n`,
+    () => exit(1),
   );
-  exit(1);
 }
