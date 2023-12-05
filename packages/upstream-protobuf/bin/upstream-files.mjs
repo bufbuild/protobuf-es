@@ -40,15 +40,14 @@ async function main(args) {
       protoInclude = await upstream.getTestProtoInclude();
       break;
     default:
-      exitUsage();
+      return exitUsage();
   }
   stdout.write(protoInclude.files.join(" "));
 }
 
 /**
- * @return never
+ * @return void
  */
 function exitUsage() {
-  stderr.write(`USAGE: upstream-files wkt|conformance|test\n`);
-  exit(1);
+  stderr.write(`USAGE: upstream-files wkt|conformance|test\n`, () => exit(1));
 }
