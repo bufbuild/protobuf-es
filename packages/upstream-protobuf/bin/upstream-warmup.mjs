@@ -21,7 +21,6 @@ const upstream = new UpstreamProtobuf();
 upstream.warmup().then(
   () => exit(0),
   (reason) => {
-    stderr.write(`${String(reason)}\n`);
-    exit(1);
+    stderr.write(`${String(reason)}\n`, () => exit(1));
   },
 );

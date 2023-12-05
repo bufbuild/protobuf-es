@@ -30,6 +30,5 @@ upstream
     });
   })
   .catch((reason) => {
-    stderr.write(String(reason) + "\n");
-    exit(1);
+    stderr.write(String(reason) + "\n", () => exit(1));
   });
