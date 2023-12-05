@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {beforeEach, describe, expect, test} from "@jest/globals";
-import {CodeGeneratorRequest} from "@bufbuild/protobuf";
-import type {Plugin} from "@bufbuild/protoplugin";
-import {createEcmaScriptPlugin} from "@bufbuild/protoplugin";
+import { beforeEach, describe, expect, test } from "@jest/globals";
+import { CodeGeneratorRequest } from "@bufbuild/protobuf";
+import type { Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("custom plugin options", () => {
   let foo: number | undefined;
