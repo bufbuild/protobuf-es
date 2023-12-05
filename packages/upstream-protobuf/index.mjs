@@ -122,7 +122,9 @@ export class UpstreamProtobuf {
 
   /**
    * @typedef CompileToDescriptorSetOptions
-   * @property {boolean} [includeSourceInfo]
+   * @property {boolean} [includeImports] Also include all dependencies of the input files in the set, so that the set is self-contained.
+   * @property {boolean} [includeSourceInfo] Do not strip SourceCodeInfo from the FileDescriptorProto.
+   * @property {boolean} [retainOptions] Do not strip any options from the FileDescriptorProto.
    */
   /**
    * @param {Record<string, string>|string} filesOrFileContent
@@ -149,12 +151,59 @@ export class UpstreamProtobuf {
         tempDir,
         ...Object.keys(files),
       ];
+      if (opt?.includeImports) {
+        args.unshift("--include_imports");
+      }
       if (opt?.includeSourceInfo) {
         args.unshift("--include_source_info");
+      }
+      if (opt?.retainOptions) {
+        args.unshift("--retain_options");
       }
       execFileSync(protocPath, args, {
         shell: false,
       });
+      return readFileSync(outPath);
+    } finally {
+      rmSync(tempDir, { recursive: true });
+    }
+  }
+
+  /**
+   * @typedef CreateCodeGeneratorRequestOptions
+   * @property {Array<string>} [filesToGenerate]
+   * @property {string} parameter
+   */
+  /**
+   * @param {Record<string, string>|string} filesOrFileContent
+   * @param {CreateCodeGeneratorRequestOptions} [opt]
+   * @return {Promise<Buffer>}
+   */
+  async createCodeGeneratorRequest(filesOrFileContent, opt) {
+    const protocPath = await this.getProtocPath();
+    const tempDir = mkdtempSync(joinPath(this.#temp, "create-codegenreq-"));
+    const files =
+      typeof filesOrFileContent == "string"
+        ? { "input.proto": filesOrFileContent }
+        : filesOrFileContent;
+    try {
+      writeTree(Object.entries(files), tempDir);
+      const args = [
+        "--experimental_editions",
+        "--dumpcodegenreq_out",
+        ".",
+        "--proto_path",
+        ".",
+        ...(opt?.filesToGenerate ?? Object.keys(files)),
+      ];
+      if (opt?.parameter !== undefined && opt.parameter.length > 0) {
+        args.unshift("--dumpcodegenreq_opt", opt.parameter);
+      }
+      execFileSync(protocPath, args, {
+        shell: false,
+        cwd: tempDir,
+      });
+      const outPath = joinPath(tempDir, "dumpcodegenreq.bin");
       return readFileSync(outPath);
     } finally {
       rmSync(tempDir, { recursive: true });

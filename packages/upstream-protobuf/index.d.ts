@@ -30,8 +30,33 @@ export declare class UpstreamProtobuf {
     files: Record<string, string>,
     opt?: CompileToDescriptorSetOptions,
   ): Promise<Uint8Array>;
+
+  createCodeGeneratorRequest(
+    fileContent: string,
+    opt?: CreateCodeGeneratorRequestOptions,
+  ): Promise<Uint8Array>;
+  createCodeGeneratorRequest(
+    files: Record<string, string>,
+    opt?: CreateCodeGeneratorRequestOptions,
+  ): Promise<Uint8Array>;
+}
+
+interface CreateCodeGeneratorRequestOptions {
+  filesToGenerate?: string[];
+  parameter?: string;
 }
 
 interface CompileToDescriptorSetOptions {
+  /**
+   * Also include all dependencies of the input files in the set, so that the set is self-contained.
+   */
+  includeImports?: boolean;
+  /**
+   * Do not strip SourceCodeInfo from the FileDescriptorProto.
+   */
   includeSourceInfo?: boolean;
+  /**
+   * Do not strip any options from the FileDescriptorProto.
+   */
+  retainOptions?: boolean;
 }
