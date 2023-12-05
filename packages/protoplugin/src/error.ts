@@ -14,10 +14,11 @@
 
 export class PluginOptionError extends Error {
   constructor(option: string, reason?: unknown) {
+    const detail = reason !== undefined ? reasonToString(reason) : "";
     super(
-      reason === undefined
-        ? `invalid option "${option}`
-        : `invalid option "${option}: ${reasonToString(reason)}`,
+      detail.length > 0
+        ? `invalid option "${option}": ${detail}`
+        : `invalid option "${option}"`,
     );
   }
 }
