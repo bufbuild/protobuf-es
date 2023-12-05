@@ -310,7 +310,7 @@ export class RawMessageSet extends Message<RawMessageSet> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
+    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, delimited: true, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet {
