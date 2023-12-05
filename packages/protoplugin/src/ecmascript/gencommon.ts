@@ -23,6 +23,7 @@ import {
   DescMethod,
   DescOneof,
   DescService,
+  Edition,
   LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
@@ -67,7 +68,24 @@ export function makeFilePreamble(
   if (file.proto.package !== undefined) {
     builder.push(`package ${file.proto.package}, `);
   }
-  builder.push(`syntax ${file.syntax})\n`);
+  switch (file.edition) {
+    case Edition.EDITION_PROTO2:
+      builder.push(`syntax proto2)\n`);
+      break;
+    case Edition.EDITION_PROTO3:
+      builder.push(`syntax proto3)\n`);
+      break;
+    default: {
+      const editionString = Edition[file.edition] as string | undefined;
+      if (typeof editionString == "string") {
+        const e = editionString.replace("EDITION_", "").toLowerCase();
+        builder.push(`edition ${e})\n`);
+      } else {
+        builder.push(`unknown edition\n`);
+      }
+      break;
+    }
+  }
   builder.push("/* eslint-disable */\n");
   if (tsNoCheck) {
     builder.push("// @ts-nocheck\n");
