@@ -1234,7 +1234,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 13, name: "optional_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 14, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 15, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypes_OptionalGroup, opt: true },
+    { no: 16, name: "optionalgroup", kind: "message", T: TestAllTypes_OptionalGroup, delimited: true, opt: true },
     { no: 18, name: "optional_nested_message", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
     { no: 19, name: "optional_foreign_message", kind: "message", T: ForeignMessage, opt: true },
     { no: 20, name: "optional_import_message", kind: "message", T: ImportMessage, opt: true },
@@ -1261,7 +1261,7 @@ export class TestAllTypes extends Message<TestAllTypes> {
     { no: 43, name: "repeated_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
     { no: 44, name: "repeated_string", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 45, name: "repeated_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
-    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypes_RepeatedGroup, repeated: true },
+    { no: 46, name: "repeatedgroup", kind: "message", T: TestAllTypes_RepeatedGroup, delimited: true, repeated: true },
     { no: 48, name: "repeated_nested_message", kind: "message", T: TestAllTypes_NestedMessage, repeated: true },
     { no: 49, name: "repeated_foreign_message", kind: "message", T: ForeignMessage, repeated: true },
     { no: 50, name: "repeated_import_message", kind: "message", T: ImportMessage, repeated: true },
@@ -1879,7 +1879,7 @@ export class TestGroup extends Message<TestGroup> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, opt: true },
+    { no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, delimited: true, opt: true },
     { no: 22, name: "optional_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), opt: true },
   ]);
 
@@ -3434,8 +3434,8 @@ export class TestMutualRecursionA extends Message<TestMutualRecursionA> {
   static readonly typeName = "protobuf_unittest.TestMutualRecursionA";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
-    { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, opt: true },
-    { no: 5, name: "subgroupr", kind: "message", T: TestMutualRecursionA_SubGroupR, repeated: true },
+    { no: 2, name: "subgroup", kind: "message", T: TestMutualRecursionA_SubGroup, delimited: true, opt: true },
+    { no: 5, name: "subgroupr", kind: "message", T: TestMutualRecursionA_SubGroupR, delimited: true, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMutualRecursionA {
@@ -3671,7 +3671,7 @@ export class TestIsInitialized_SubMessage extends Message<TestIsInitialized_SubM
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestIsInitialized.SubMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, opt: true },
+    { no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, delimited: true, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestIsInitialized_SubMessage {
@@ -3765,8 +3765,8 @@ export class TestDupFieldNumber extends Message<TestDupFieldNumber> {
   static readonly typeName = "protobuf_unittest.TestDupFieldNumber";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "foo", kind: "message", T: TestDupFieldNumber_Foo, opt: true },
-    { no: 3, name: "bar", kind: "message", T: TestDupFieldNumber_Bar, opt: true },
+    { no: 2, name: "foo", kind: "message", T: TestDupFieldNumber_Foo, delimited: true, opt: true },
+    { no: 3, name: "bar", kind: "message", T: TestDupFieldNumber_Bar, delimited: true, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestDupFieldNumber {
@@ -5317,7 +5317,7 @@ export class TestOneof extends Message<TestOneof> {
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
     { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "foo" },
     { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, oneof: "foo" },
-    { no: 4, name: "foogroup", kind: "message", T: TestOneof_FooGroup, oneof: "foo" },
+    { no: 4, name: "foogroup", kind: "message", T: TestOneof_FooGroup, delimited: true, oneof: "foo" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneof {
@@ -5415,7 +5415,7 @@ export class TestOneofBackwardsCompatible extends Message<TestOneofBackwardsComp
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 2, name: "foo_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 3, name: "foo_message", kind: "message", T: TestAllTypes, opt: true },
-    { no: 4, name: "foogroup", kind: "message", T: TestOneofBackwardsCompatible_FooGroup, opt: true },
+    { no: 4, name: "foogroup", kind: "message", T: TestOneofBackwardsCompatible_FooGroup, delimited: true, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneofBackwardsCompatible {
@@ -5637,7 +5637,7 @@ export class TestOneof2 extends Message<TestOneof2> {
     { no: 5, name: "foo_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 6, name: "foo_enum", kind: "enum", T: proto2.getEnumType(TestOneof2_NestedEnum), oneof: "foo" },
     { no: 7, name: "foo_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
-    { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, oneof: "foo" },
+    { no: 8, name: "foogroup", kind: "message", T: TestOneof2_FooGroup, delimited: true, oneof: "foo" },
     { no: 11, name: "foo_lazy_message", kind: "message", T: TestOneof2_NestedMessage, oneof: "foo" },
     { no: 30, name: "foo_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "foo" },
     { no: 12, name: "bar_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: 5, oneof: "bar" },
@@ -6494,8 +6494,8 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
     { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
-    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, opt: true },
-    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMerge_RepeatedGroup, repeated: true },
+    { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, delimited: true, opt: true },
+    { no: 20, name: "repeatedgroup", kind: "message", T: TestParsingMerge_RepeatedGroup, delimited: true, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestParsingMerge {
@@ -6571,8 +6571,8 @@ export class TestParsingMerge_RepeatedFieldsGenerator extends Message<TestParsin
     { no: 1, name: "field1", kind: "message", T: TestAllTypes, repeated: true },
     { no: 2, name: "field2", kind: "message", T: TestAllTypes, repeated: true },
     { no: 3, name: "field3", kind: "message", T: TestAllTypes, repeated: true },
-    { no: 10, name: "group1", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group1, repeated: true },
-    { no: 20, name: "group2", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group2, repeated: true },
+    { no: 10, name: "group1", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group1, delimited: true, repeated: true },
+    { no: 20, name: "group2", kind: "message", T: TestParsingMerge_RepeatedFieldsGenerator_Group2, delimited: true, repeated: true },
     { no: 1000, name: "ext1", kind: "message", T: TestAllTypes, repeated: true },
     { no: 1001, name: "ext2", kind: "message", T: TestAllTypes, repeated: true },
   ]);
@@ -7251,7 +7251,7 @@ export class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> {
     { no: 536870005, name: "optional_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 536870006, name: "optional_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 536870007, name: "optional_message", kind: "message", T: ForeignMessage, opt: true },
-    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbers_OptionalGroup, opt: true },
+    { no: 536870008, name: "optionalgroup", kind: "message", T: TestHugeFieldNumbers_OptionalGroup, delimited: true, opt: true },
     { no: 536870010, name: "string_string_map", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 536870011, name: "oneof_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, oneof: "oneof_field" },
     { no: 536870012, name: "oneof_test_all_types", kind: "message", T: TestAllTypes, oneof: "oneof_field" },
@@ -7417,7 +7417,7 @@ export class TestNestedGroupExtensionOuter extends Message<TestNestedGroupExtens
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, opt: true },
+    { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, delimited: true, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter {
@@ -7459,8 +7459,8 @@ export class TestNestedGroupExtensionOuter_Layer1OptionalGroup extends Message<T
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, repeated: true },
-    { no: 4, name: "layer2anotheroptionalrepeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, repeated: true },
+    { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, delimited: true, repeated: true },
+    { no: 4, name: "layer2anotheroptionalrepeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, delimited: true, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestNestedGroupExtensionOuter_Layer1OptionalGroup {

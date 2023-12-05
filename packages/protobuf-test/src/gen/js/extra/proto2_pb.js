@@ -131,3 +131,62 @@ export const Proto2ChildMessage = proto2.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message spec.Proto2GroupsMessage
+ */
+export const Proto2GroupsMessage = proto2.makeMessageType(
+  "spec.Proto2GroupsMessage",
+  () => [
+    { no: 1, name: "group", kind: "message", T: Proto2GroupsMessage_Group, delimited: true, opt: true },
+    { no: 2, name: "repeatedgroup", kind: "message", T: Proto2GroupsMessage_RepeatedGroup, delimited: true, repeated: true },
+    { no: 3, name: "oneofgroup", kind: "message", T: Proto2GroupsMessage_OneofGroup, delimited: true, oneof: "oneof_with_group" },
+    { no: 4, name: "message_field_using_group", kind: "message", T: Proto2GroupsMessage_Group, opt: true },
+    { no: 5, name: "message_field_using_nested_group", kind: "message", T: Proto2GroupsMessage_Group_NestedGroup, opt: true },
+  ],
+);
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group
+ */
+export const Proto2GroupsMessage_Group = proto2.makeMessageType(
+  "spec.Proto2GroupsMessage.Group",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "nestedgroup", kind: "message", T: Proto2GroupsMessage_Group_NestedGroup, delimited: true, opt: true },
+  ],
+  {localName: "Proto2GroupsMessage_Group"},
+);
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
+ */
+export const Proto2GroupsMessage_Group_NestedGroup = proto2.makeMessageType(
+  "spec.Proto2GroupsMessage.Group.NestedGroup",
+  () => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ],
+  {localName: "Proto2GroupsMessage_Group_NestedGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
+ */
+export const Proto2GroupsMessage_RepeatedGroup = proto2.makeMessageType(
+  "spec.Proto2GroupsMessage.RepeatedGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2GroupsMessage_RepeatedGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.OneofGroup
+ */
+export const Proto2GroupsMessage_OneofGroup = proto2.makeMessageType(
+  "spec.Proto2GroupsMessage.OneofGroup",
+  () => [
+    { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+  ],
+  {localName: "Proto2GroupsMessage_OneofGroup"},
+);
+

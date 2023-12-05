@@ -467,3 +467,224 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   }
 }
 
+/**
+ * @generated from message spec.Proto2GroupsMessage
+ */
+export class Proto2GroupsMessage extends Message<Proto2GroupsMessage> {
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group group = 1;
+   */
+  group?: Proto2GroupsMessage_Group;
+
+  /**
+   * @generated from field: repeated spec.Proto2GroupsMessage.RepeatedGroup repeatedgroup = 2;
+   */
+  repeatedgroup: Proto2GroupsMessage_RepeatedGroup[] = [];
+
+  /**
+   * @generated from oneof spec.Proto2GroupsMessage.oneof_with_group
+   */
+  oneofWithGroup: {
+    /**
+     * @generated from field: spec.Proto2GroupsMessage.OneofGroup oneofgroup = 3;
+     */
+    value: Proto2GroupsMessage_OneofGroup;
+    case: "oneofgroup";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group message_field_using_group = 4;
+   */
+  messageFieldUsingGroup?: Proto2GroupsMessage_Group;
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group.NestedGroup message_field_using_nested_group = 5;
+   */
+  messageFieldUsingNestedGroup?: Proto2GroupsMessage_Group_NestedGroup;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "group", kind: "message", T: Proto2GroupsMessage_Group, delimited: true, opt: true },
+    { no: 2, name: "repeatedgroup", kind: "message", T: Proto2GroupsMessage_RepeatedGroup, delimited: true, repeated: true },
+    { no: 3, name: "oneofgroup", kind: "message", T: Proto2GroupsMessage_OneofGroup, delimited: true, oneof: "oneof_with_group" },
+    { no: 4, name: "message_field_using_group", kind: "message", T: Proto2GroupsMessage_Group, opt: true },
+    { no: 5, name: "message_field_using_nested_group", kind: "message", T: Proto2GroupsMessage_Group_NestedGroup, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage {
+    return new Proto2GroupsMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage {
+    return new Proto2GroupsMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage {
+    return new Proto2GroupsMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto2GroupsMessage | PlainMessage<Proto2GroupsMessage> | undefined, b: Proto2GroupsMessage | PlainMessage<Proto2GroupsMessage> | undefined): boolean {
+    return proto2.util.equals(Proto2GroupsMessage, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group
+ */
+export class Proto2GroupsMessage_Group extends Message<Proto2GroupsMessage_Group> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group.NestedGroup nestedgroup = 2;
+   */
+  nestedgroup?: Proto2GroupsMessage_Group_NestedGroup;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_Group>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.Group";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "nestedgroup", kind: "message", T: Proto2GroupsMessage_Group_NestedGroup, delimited: true, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_Group {
+    return new Proto2GroupsMessage_Group().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group {
+    return new Proto2GroupsMessage_Group().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group {
+    return new Proto2GroupsMessage_Group().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto2GroupsMessage_Group | PlainMessage<Proto2GroupsMessage_Group> | undefined, b: Proto2GroupsMessage_Group | PlainMessage<Proto2GroupsMessage_Group> | undefined): boolean {
+    return proto2.util.equals(Proto2GroupsMessage_Group, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
+ */
+export class Proto2GroupsMessage_Group_NestedGroup extends Message<Proto2GroupsMessage_Group_NestedGroup> {
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_Group_NestedGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.Group.NestedGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_Group_NestedGroup {
+    return new Proto2GroupsMessage_Group_NestedGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group_NestedGroup {
+    return new Proto2GroupsMessage_Group_NestedGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group_NestedGroup {
+    return new Proto2GroupsMessage_Group_NestedGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto2GroupsMessage_Group_NestedGroup | PlainMessage<Proto2GroupsMessage_Group_NestedGroup> | undefined, b: Proto2GroupsMessage_Group_NestedGroup | PlainMessage<Proto2GroupsMessage_Group_NestedGroup> | undefined): boolean {
+    return proto2.util.equals(Proto2GroupsMessage_Group_NestedGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
+ */
+export class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2GroupsMessage_RepeatedGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_RepeatedGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.RepeatedGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_RepeatedGroup {
+    return new Proto2GroupsMessage_RepeatedGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_RepeatedGroup {
+    return new Proto2GroupsMessage_RepeatedGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_RepeatedGroup {
+    return new Proto2GroupsMessage_RepeatedGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto2GroupsMessage_RepeatedGroup | PlainMessage<Proto2GroupsMessage_RepeatedGroup> | undefined, b: Proto2GroupsMessage_RepeatedGroup | PlainMessage<Proto2GroupsMessage_RepeatedGroup> | undefined): boolean {
+    return proto2.util.equals(Proto2GroupsMessage_RepeatedGroup, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.OneofGroup
+ */
+export class Proto2GroupsMessage_OneofGroup extends Message<Proto2GroupsMessage_OneofGroup> {
+  /**
+   * @generated from field: optional bool bool_field = 1;
+   */
+  boolField?: boolean;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_OneofGroup>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.OneofGroup";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_OneofGroup {
+    return new Proto2GroupsMessage_OneofGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_OneofGroup {
+    return new Proto2GroupsMessage_OneofGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_OneofGroup {
+    return new Proto2GroupsMessage_OneofGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto2GroupsMessage_OneofGroup | PlainMessage<Proto2GroupsMessage_OneofGroup> | undefined, b: Proto2GroupsMessage_OneofGroup | PlainMessage<Proto2GroupsMessage_OneofGroup> | undefined): boolean {
+    return proto2.util.equals(Proto2GroupsMessage_OneofGroup, a, b);
+  }
+}
+

@@ -220,7 +220,7 @@ export const ComplexOptionType3 = proto2.makeMessageType(
   "protobuf_unittest.ComplexOptionType3",
   () => [
     { no: 1, name: "moo", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, opt: true },
+    { no: 2, name: "complexoptiontype5", kind: "message", T: ComplexOptionType3_ComplexOptionType5, delimited: true, opt: true },
   ],
 );
 

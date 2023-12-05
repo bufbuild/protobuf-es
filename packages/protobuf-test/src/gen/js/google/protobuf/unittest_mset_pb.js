@@ -101,7 +101,7 @@ export const TestMessageSetExtension3 = proto2.makeMessageType(
 export const RawMessageSet = proto2.makeMessageType(
   "protobuf_unittest.RawMessageSet",
   () => [
-    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, repeated: true },
+    { no: 1, name: "item", kind: "message", T: RawMessageSet_Item, delimited: true, repeated: true },
   ],
 );
 

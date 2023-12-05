@@ -53,14 +53,13 @@ export enum WireType {
   LengthDelimited = 2,
 
   /**
-   * Used for groups
-   * @deprecated
+   * Start of a tag-delimited aggregate, such as a proto2 group, or a message
+   * in editions with message_encoding = DELIMITED.
    */
   StartGroup = 3,
 
   /**
-   * Used for groups
-   * @deprecated
+   * End of a tag-delimited aggregate.
    */
   EndGroup = 4,
 

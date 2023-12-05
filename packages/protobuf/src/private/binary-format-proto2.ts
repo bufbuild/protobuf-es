@@ -82,10 +82,10 @@ export function makeBinaryFormatProto2(): BinaryFormat {
             case "message":
               if (repeated) {
                 for (const item of value) {
-                  writeMessageField(writer, options, field.T, field.no, item);
+                  writeMessageField(writer, options, field, item);
                 }
               } else {
-                writeMessageField(writer, options, field.T, field.no, value);
+                writeMessageField(writer, options, field, value);
               }
               break;
             case "map":

@@ -336,3 +336,154 @@ export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   static equals(a: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined, b: Proto2ChildMessage | PlainMessage<Proto2ChildMessage> | undefined): boolean;
 }
 
+/**
+ * @generated from message spec.Proto2GroupsMessage
+ */
+export declare class Proto2GroupsMessage extends Message<Proto2GroupsMessage> {
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group group = 1;
+   */
+  group?: Proto2GroupsMessage_Group;
+
+  /**
+   * @generated from field: repeated spec.Proto2GroupsMessage.RepeatedGroup repeatedgroup = 2;
+   */
+  repeatedgroup: Proto2GroupsMessage_RepeatedGroup[];
+
+  /**
+   * @generated from oneof spec.Proto2GroupsMessage.oneof_with_group
+   */
+  oneofWithGroup: {
+    /**
+     * @generated from field: spec.Proto2GroupsMessage.OneofGroup oneofgroup = 3;
+     */
+    value: Proto2GroupsMessage_OneofGroup;
+    case: "oneofgroup";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group message_field_using_group = 4;
+   */
+  messageFieldUsingGroup?: Proto2GroupsMessage_Group;
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group.NestedGroup message_field_using_nested_group = 5;
+   */
+  messageFieldUsingNestedGroup?: Proto2GroupsMessage_Group_NestedGroup;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage;
+
+  static equals(a: Proto2GroupsMessage | PlainMessage<Proto2GroupsMessage> | undefined, b: Proto2GroupsMessage | PlainMessage<Proto2GroupsMessage> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group
+ */
+export declare class Proto2GroupsMessage_Group extends Message<Proto2GroupsMessage_Group> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: optional spec.Proto2GroupsMessage.Group.NestedGroup nestedgroup = 2;
+   */
+  nestedgroup?: Proto2GroupsMessage_Group_NestedGroup;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_Group>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.Group";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_Group;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group;
+
+  static equals(a: Proto2GroupsMessage_Group | PlainMessage<Proto2GroupsMessage_Group> | undefined, b: Proto2GroupsMessage_Group | PlainMessage<Proto2GroupsMessage_Group> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
+ */
+export declare class Proto2GroupsMessage_Group_NestedGroup extends Message<Proto2GroupsMessage_Group_NestedGroup> {
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_Group_NestedGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.Group.NestedGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_Group_NestedGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group_NestedGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_Group_NestedGroup;
+
+  static equals(a: Proto2GroupsMessage_Group_NestedGroup | PlainMessage<Proto2GroupsMessage_Group_NestedGroup> | undefined, b: Proto2GroupsMessage_Group_NestedGroup | PlainMessage<Proto2GroupsMessage_Group_NestedGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
+ */
+export declare class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2GroupsMessage_RepeatedGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_RepeatedGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.RepeatedGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_RepeatedGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_RepeatedGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_RepeatedGroup;
+
+  static equals(a: Proto2GroupsMessage_RepeatedGroup | PlainMessage<Proto2GroupsMessage_RepeatedGroup> | undefined, b: Proto2GroupsMessage_RepeatedGroup | PlainMessage<Proto2GroupsMessage_RepeatedGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2GroupsMessage.OneofGroup
+ */
+export declare class Proto2GroupsMessage_OneofGroup extends Message<Proto2GroupsMessage_OneofGroup> {
+  /**
+   * @generated from field: optional bool bool_field = 1;
+   */
+  boolField?: boolean;
+
+  constructor(data?: PartialMessage<Proto2GroupsMessage_OneofGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2GroupsMessage.OneofGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2GroupsMessage_OneofGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_OneofGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2GroupsMessage_OneofGroup;
+
+  static equals(a: Proto2GroupsMessage_OneofGroup | PlainMessage<Proto2GroupsMessage_OneofGroup> | undefined, b: Proto2GroupsMessage_OneofGroup | PlainMessage<Proto2GroupsMessage_OneofGroup> | undefined): boolean;
+}
+

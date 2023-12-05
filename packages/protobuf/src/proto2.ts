@@ -83,8 +83,6 @@ function normalizeFieldInfosProto2(fieldInfos: FieldListSource): FieldInfo[] {
     if (field.kind == "scalar") {
       f.L = field.L ?? LongType.BIGINT;
     }
-    // In contrast to proto3, repeated fields are unpacked except when explicitly specified.
-    f.packed = field.packed ?? false;
     // We do not surface options at this time
     // f.options = field.options ?? emptyReadonlyObject;
     if (field.oneof !== undefined) {
@@ -96,6 +94,12 @@ function normalizeFieldInfosProto2(fieldInfos: FieldListSource): FieldInfo[] {
       f.oneof = o;
       o.addField(f);
     }
+    // proto2 specific:
+    if (field.kind == "message") {
+      f.delimited = field.delimited ?? false;
+    }
+    // In contrast to proto3, repeated fields are unpacked except when explicitly specified.
+    f.packed = field.packed ?? false;
     r.push(f);
   }
   return r;
