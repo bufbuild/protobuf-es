@@ -32,10 +32,10 @@ interface PluginInit {
   version: string;
 
   /**
-   * A optional parsing function which can be used to customize parameter
-   * parsing of the plugin.
+   * An optional parsing function which can be used to parse your own plugin
+   * options.
    */
-  parseOption?: PluginOptionParseFn;
+  parseOption?: (key: string, value: string) => void;
 
   /**
    * A function which will generate TypeScript files based on proto input.
@@ -83,8 +83,6 @@ interface PluginInit {
     transpileDts: boolean,
   ) => FileInfo[];
 }
-
-type PluginOptionParseFn = (key: string, value: string | undefined) => void;
 
 /**
  * Create a new code generator plugin for ECMAScript.
@@ -196,7 +194,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
 function parseParameter(
   parameter: string | undefined,
-  parseOption: PluginOptionParseFn | undefined,
+  parseOption: PluginInit["parseOption"],
 ) {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
@@ -222,7 +220,7 @@ function parseParameter(
               }
               break;
             default:
-              throw new PluginOptionError(`${key}=${value}`);
+              throw new PluginOptionError(raw);
           }
         }
         value.split("+");
@@ -238,7 +236,7 @@ function parseParameter(
             tsNocheck = false;
             break;
           default:
-            throw new PluginOptionError(`${key}=${value}`);
+            throw new PluginOptionError(raw);
         }
         break;
       case "bootstrap_wkt":
@@ -252,14 +250,14 @@ function parseParameter(
             bootstrapWkt = false;
             break;
           default:
-            throw new PluginOptionError(`${key}=${value}`);
+            throw new PluginOptionError(raw);
         }
         break;
       case "rewrite_imports": {
         const parts = value.split(":");
         if (parts.length !== 2) {
           throw new PluginOptionError(
-            `${key}=${value}`,
+            raw,
             "must be in the form of <pattern>:<target>",
           );
         }
@@ -285,18 +283,18 @@ function parseParameter(
             keepEmptyFiles = false;
             break;
           default:
-            throw new PluginOptionError(`${key}=${value}`);
+            throw new PluginOptionError(raw);
         }
         break;
       }
       default:
         if (parseOption === undefined) {
-          throw new PluginOptionError(`${key}=${value}`);
+          throw new PluginOptionError(raw);
         }
         try {
           parseOption(key, value);
         } catch (e) {
-          throw new PluginOptionError(`${key}=${value}`, e);
+          throw new PluginOptionError(raw, e);
         }
         break;
     }
