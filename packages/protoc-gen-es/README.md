@@ -98,12 +98,25 @@ By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-e
 uses a `.js` file extensions in import paths, even in TypeScript files.
 
 This is unintuitive, but necessary for [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html).
-Unfortunately, not all bundlers and tools have caught up yet, and Deno 
-requires `.ts`. With this plugin option, you can replace `.js` extensions 
+Unfortunately, not all bundlers and tools have caught up yet, and Deno
+requires `.ts`. With this plugin option, you can replace `.js` extensions
 in import paths with the given value. For example, set
 
-- `import_extension=none` to remove the `.js` extension
-- `import_extension=.ts` to replace the `.js` extension with `.ts`
+- `import_extension=none` to remove the `.js` extension.
+- `import_extension=.ts` to replace the `.js` extension with `.ts`.
+
+### `js_import_style`
+
+By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
+generate ECMAScript `import` and `export` statements. For use cases where 
+CommonJS is difficult to avoid, this option can be used to generate CommonJS 
+`require()` calls.
+
+Possible values:
+- `js_import_style=module` generate ECMAScript `import` / `export` statements - 
+  the default behavior.
+- `js_import_style=legacy_commonjs` generate CommonJS `require()` calls.
 
 
 ### `keep_empty_files=true`

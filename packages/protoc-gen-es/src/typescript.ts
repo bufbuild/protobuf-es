@@ -53,7 +53,7 @@ export function generateTs(schema: Schema) {
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   const protoN = getNonEditionRuntime(schema, enumeration.file);
   f.print(makeJsDoc(enumeration));
-  f.print("export enum ", enumeration, " {");
+  f.print(f.exportDecl("enum", enumeration), " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
@@ -84,7 +84,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     JsonValue
   } = schema.runtime;
   f.print(makeJsDoc(message));
-  f.print("export class ", message, " extends ", Message, "<", message, "> {");
+  f.print(f.exportDecl("class", message), " extends ", Message, "<", message, "> {");
   for (const member of message.members) {
     switch (member.kind) {
       case "oneof":

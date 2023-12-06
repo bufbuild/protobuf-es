@@ -97,7 +97,12 @@ In most cases, implementing the `generateTs` function only and letting the plugi
 As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will use its own TypeScript compiler to generate these files for you.  This process uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions.  However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.  
 
 ```ts
-transpile(fileInfo: FileInfo[], transpileJs: boolean, transpileDts: boolean): FileInfo[]
+transpile(
+  fileInfo: FileInfo[], 
+  transpileJs: boolean, 
+  transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
+): FileInfo[]
 ```
 
 The function will be invoked with an array of `FileInfo` objects representing the TypeScript file content
@@ -334,36 +339,34 @@ The natural instinct would be to simply print your own import statements as `f.p
 
 ### Exporting
 
-Working with exports is accomplished via the `export` function on the generated file object.  Let's walk through an example:
+To export a declaration from you code, use `exportDecl`:
 
-Suppose you generate a validation function for every message.  If you have a nested message, such as:
-
-```proto
-message Bar {
-   Foo foo = 1;
-}
+```typescript
+const name = "foo";
+f.exportDecl("const", name);
 ```
 
-You may want to import and use the validation function generated for message `Foo` when generating the code for message `Bar`.  To generate the validation function, you would use `export` as follows:
+This method takes two arguments:
+1. The declaration, for example `const`, `enum`, `abstract class`, or anything 
+   you might need.
+2. The name of the declaration, which is also used for the export.
 
-```ts
-const fn = f.export("validateFoo");
-f.print("function ", fn, "() {");
-f.print("   return true;");
-f.print("}");
+The return value of the method can be passed to `print`: 
+
+```typescript
+const name = "foo";
+f.print(f.exportDecl("const", name), " = 123;");
 ```
 
-Note that `export` returns an `ImportSymbol` that can then be used by another dependency.  The trick is to store this `ImportSymbol` and use it when you generate the validation function for `Bar`.  Storing the symbol is as simple as putting it in a global map:
+The example above will generate the following code:
 
-```ts
-const exportMap = new Map<DescMessage, ImportSymbol>()
+```typescript
+export const foo = 123;
 ```
 
-That way, when you need to use it for `Bar`, you can simply access the map:
+If the plugin option `js_import_style=legacy_commonjs` is set, the example will
+automatically generate the correct export for CommonJS.
 
-```ts
-const fooValidationFn = exportMap.get(bar);  // bar is of type DescMessage
-```
 
 ### Parsing plugin options
 

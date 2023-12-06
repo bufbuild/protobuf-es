@@ -52,7 +52,7 @@ export function generateJs(schema: Schema) {
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   const protoN = getNonEditionRuntime(schema, enumeration.file);
   f.print(makeJsDoc(enumeration));
-  f.print("export const ", enumeration, " = ", protoN, ".makeEnum(")
+  f.print(f.exportDecl("const", enumeration), " = ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
   if (enumeration.sharedPrefix === undefined) {
@@ -74,7 +74,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
   const protoN = getNonEditionRuntime(schema, message.file);
   f.print(makeJsDoc(message));
-  f.print("export const ", message, " = ", protoN, ".makeMessageType(")
+  f.print(f.exportDecl("const", message), " = ", protoN, ".makeMessageType(")
   f.print(`  `, literalString(message.typeName), `,`)
   if (message.fields.length == 0) {
     f.print("  [],")

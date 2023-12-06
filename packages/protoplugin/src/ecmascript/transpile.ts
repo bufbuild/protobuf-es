@@ -98,12 +98,17 @@ export function transpile(
   files: FileInfo[],
   transpileJs: boolean,
   transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
 ): FileInfo[] {
   const options: ts.CompilerOptions = {
     ...defaultOptions,
     declaration: transpileDts,
     emitDeclarationOnly: transpileDts && !transpileJs,
   };
+
+  if (jsImportStyle == "legacy_commonjs") {
+    options.module = ts.ModuleKind.CommonJS;
+  }
 
   // Create the transpiler (a ts.Program object)
   const program = createTranspiler(options, files);
