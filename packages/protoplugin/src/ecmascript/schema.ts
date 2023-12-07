@@ -29,7 +29,7 @@ import {
 import type {
   FileInfo,
   GeneratedFile,
-  GenerateFileToFileInfo,
+  GeneratedFileController,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
@@ -39,8 +39,8 @@ import {
   deriveImportPath,
   makeImportPath,
   rewriteImportPath,
-  RewriteImports,
 } from "./import-path.js";
+import { ParsedParameter } from "./parameter";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -78,69 +78,72 @@ export interface Schema {
   readonly proto: CodeGeneratorRequest;
 }
 
-interface SchemaController {
-  schema: Schema;
+interface SchemaController extends Schema {
   getFileInfo: () => FileInfo[];
+  prepareGenerate(jsImportStyle: "module" | "legacy_commonjs"): void;
 }
 
 export function createSchema(
   request: CodeGeneratorRequest,
-  targets: Target[],
-  tsNocheck: boolean,
-  bootstrapWkt: boolean,
-  rewriteImports: RewriteImports,
-  importExtension: string,
-  keepEmptyFiles: boolean,
+  parameter: Omit<ParsedParameter, "jsImportStyle">,
   pluginName: string,
   pluginVersion: string,
-  pluginParameter: string,
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile);
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
-  const runtime = createRuntimeImports(bootstrapWkt);
+  const runtime = createRuntimeImports(parameter.bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
     const name = codegenInfo.localName(desc);
-    const from = makeImportPath(desc.file, bootstrapWkt, filesToGenerate);
+    const from = makeImportPath(
+      desc.file,
+      parameter.bootstrapWkt,
+      filesToGenerate,
+    );
     return createImportSymbol(name, from);
   };
-  const generatedFiles: GenerateFileToFileInfo[] = [];
-  const schema: Schema = {
-    targets,
+  let jsImportStyle: "module" | "legacy_commonjs" | undefined;
+  const generatedFiles: GeneratedFileController[] = [];
+  return {
+    targets: parameter.targets,
     runtime,
     proto: request,
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
+      if (jsImportStyle === undefined) {
+        throw new Error(
+          "prepareGenerate() must be called before generateFile()",
+        );
+      }
       const genFile = createGeneratedFile(
         name,
         deriveImportPath(name),
+        jsImportStyle,
         (importPath: string) =>
-          rewriteImportPath(importPath, rewriteImports, importExtension),
+          rewriteImportPath(
+            importPath,
+            parameter.rewriteImports,
+            parameter.importExtension,
+          ),
         createTypeImport,
         runtime,
         {
           pluginName,
           pluginVersion,
-          pluginParameter,
-          tsNocheck,
+          pluginParameter: parameter.sanitizedParameter,
+          tsNocheck: parameter.tsNocheck,
         },
-        keepEmptyFiles,
       );
       generatedFiles.push(genFile);
       return genFile;
     },
-  };
-  return {
-    schema,
     getFileInfo() {
-      return generatedFiles.flatMap((file) => {
-        const fileInfo = file.getFileInfo();
-        // undefined is returned if the file has no content
-        if (!fileInfo) {
-          return [];
-        }
-        return [fileInfo];
-      });
+      return generatedFiles
+        .map((f) => f.getFileInfo())
+        .filter((fi) => parameter.keepEmptyFiles || fi.content.length > 0);
+    },
+    prepareGenerate(newJsImportStyle) {
+      jsImportStyle = newJsImportStyle;
     },
   };
 }

@@ -14,11 +14,11 @@
 
 import { codegenInfo } from "@bufbuild/protobuf";
 export { reifyWkt } from "./reify-wkt.js";
-export { Target } from "./target.js";
-export { Schema } from "./schema.js";
-export { RuntimeImports } from "./runtime-imports.js";
-export { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
-export { ImportSymbol } from "./import-symbol.js";
+export type { Target } from "./target.js";
+export type { Schema } from "./schema.js";
+export type { RuntimeImports } from "./runtime-imports.js";
+export type { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
+export type { ImportSymbol } from "./import-symbol.js";
 
 export const { localName } = codegenInfo;
 

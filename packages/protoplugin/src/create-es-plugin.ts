@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Target } from "./ecmascript";
 import { createSchema, Schema, toResponse } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";
-import { PluginOptionError } from "./error.js";
-import type { RewriteImports } from "./ecmascript/import-path.js";
+import { parseParameter } from "./ecmascript/parameter.js";
 
 interface PluginInit {
   /**
@@ -70,17 +68,23 @@ interface PluginInit {
   generateDts?: (schema: Schema, target: "dts") => void;
 
   /**
-   * A optional function which will transpile a given set of files.
+   * An optional function which will transpile a given set of files.
    *
-   * This funcion is meant to be used in place of either generateJs,
+   * This function is meant to be used in place of either generateJs,
    * generateDts, or both.  However, those functions will take precedence.
    * This means that if generateJs, generateDts, and this transpile function
    * are all provided, this transpile function will be ignored.
+   *
+   * If jsImportStyle is "module" (the standard behavior), the function is
+   * expected to use ECMAScript module import and export statements when
+   * transpiling to JS. If jsImportStyle is "legacy_commonjs", the function is
+   * expected to use CommonJs require() and exports when transpiling to JS.
    */
   transpile?: (
     files: FileInfo[],
     transpileJs: boolean,
     transpileDts: boolean,
+    jsImportStyle: "module" | "legacy_commonjs",
   ) => FileInfo[];
 }
 
@@ -96,27 +100,8 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     name: init.name,
     version: init.version,
     run(req) {
-      const {
-        targets,
-        tsNocheck,
-        bootstrapWkt,
-        rewriteImports,
-        importExtension,
-        keepEmptyFiles,
-        pluginParameter,
-      } = parseParameter(req.parameter, init.parseOption);
-      const { schema, getFileInfo } = createSchema(
-        req,
-        targets,
-        tsNocheck,
-        bootstrapWkt,
-        rewriteImports,
-        importExtension,
-        keepEmptyFiles,
-        init.name,
-        init.version,
-        pluginParameter,
-      );
+      const parameter = parseParameter(req.parameter, init.parseOption);
+      const schema = createSchema(req, parameter, init.name, init.version);
 
       const targetTs = schema.targets.includes("ts");
       const targetJs = schema.targets.includes("js");
@@ -134,6 +119,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         (targetJs && !init.generateJs) ||
         (targetDts && !init.generateDts)
       ) {
+        schema.prepareGenerate("module");
         init.generateTs(schema, "ts");
 
         // Save off the generated TypeScript files so that we can pass these
@@ -146,11 +132,12 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         // a generateJs function and expect to transpile declarations.
         // 3.  Transpiling is somewhat expensive and situations with an
         // extremely large amount of files could have performance impacts.
-        tsFiles = getFileInfo();
+        tsFiles = schema.getFileInfo();
       }
 
       if (targetJs) {
         if (init.generateJs) {
+          schema.prepareGenerate(parameter.jsImportStyle);
           init.generateJs(schema, "js");
         } else {
           transpileJs = true;
@@ -159,6 +146,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetDts) {
         if (init.generateDts) {
+          schema.prepareGenerate("module");
           init.generateDts(schema, "dts");
         } else {
           transpileDts = true;
@@ -170,7 +158,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       // generated TypeScript files to assist in transpilation.  If they were
       // generated but not specified in the target out, we shouldn't produce
       // these files in the CodeGeneratorResponse.
-      let files = getFileInfo();
+      let files = schema.getFileInfo();
       if (!targetTs && tsFiles.length > 0) {
         files = files.filter(
           (file) => !tsFiles.some((tsFile) => tsFile.name === file.name),
@@ -183,151 +171,16 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       if (transpileJs || transpileDts) {
         const transpileFn = init.transpile ?? transpile;
         // Transpile the TypeScript files and add to the master list of files
-        const transpiledFiles = transpileFn(tsFiles, transpileJs, transpileDts);
+        const transpiledFiles = transpileFn(
+          tsFiles,
+          transpileJs,
+          transpileDts,
+          parameter.jsImportStyle,
+        );
         files.push(...transpiledFiles);
       }
 
       return toResponse(files);
     },
   };
-}
-
-function parseParameter(
-  parameter: string | undefined,
-  parseOption: PluginInit["parseOption"],
-) {
-  let targets: Target[] = ["js", "dts"];
-  let tsNocheck = true;
-  let bootstrapWkt = false;
-  let keepEmptyFiles = false;
-  const rewriteImports: RewriteImports = [];
-  let importExtension = ".js";
-  const rawParameters: string[] = [];
-  for (const { key, value, raw } of splitParameter(parameter)) {
-    // Whether this key/value plugin parameter pair should be
-    // printed to the generated file preamble
-    let printToFile = true;
-    switch (key) {
-      case "target":
-        targets = [];
-        for (const rawTarget of value.split("+")) {
-          switch (rawTarget) {
-            case "js":
-            case "ts":
-            case "dts":
-              if (targets.indexOf(rawTarget) < 0) {
-                targets.push(rawTarget);
-              }
-              break;
-            default:
-              throw new PluginOptionError(raw);
-          }
-        }
-        value.split("+");
-        break;
-      case "ts_nocheck":
-        switch (value) {
-          case "true":
-          case "1":
-            tsNocheck = true;
-            break;
-          case "false":
-          case "0":
-            tsNocheck = false;
-            break;
-          default:
-            throw new PluginOptionError(raw);
-        }
-        break;
-      case "bootstrap_wkt":
-        switch (value) {
-          case "true":
-          case "1":
-            bootstrapWkt = true;
-            break;
-          case "false":
-          case "0":
-            bootstrapWkt = false;
-            break;
-          default:
-            throw new PluginOptionError(raw);
-        }
-        break;
-      case "rewrite_imports": {
-        const parts = value.split(":");
-        if (parts.length !== 2) {
-          throw new PluginOptionError(
-            raw,
-            "must be in the form of <pattern>:<target>",
-          );
-        }
-        const [pattern, target] = parts;
-        rewriteImports.push({ pattern, target });
-        // rewrite_imports can be noisy and is more of an implementation detail
-        // so we strip it out of the preamble
-        printToFile = false;
-        break;
-      }
-      case "import_extension": {
-        importExtension = value === "none" ? "" : value;
-        break;
-      }
-      case "keep_empty_files": {
-        switch (value) {
-          case "true":
-          case "1":
-            keepEmptyFiles = true;
-            break;
-          case "false":
-          case "0":
-            keepEmptyFiles = false;
-            break;
-          default:
-            throw new PluginOptionError(raw);
-        }
-        break;
-      }
-      default:
-        if (parseOption === undefined) {
-          throw new PluginOptionError(raw);
-        }
-        try {
-          parseOption(key, value);
-        } catch (e) {
-          throw new PluginOptionError(raw, e);
-        }
-        break;
-    }
-    if (printToFile) {
-      rawParameters.push(raw);
-    }
-  }
-
-  const pluginParameter = rawParameters.join(",");
-
-  return {
-    targets,
-    tsNocheck,
-    bootstrapWkt,
-    rewriteImports,
-    importExtension,
-    keepEmptyFiles,
-    pluginParameter,
-  };
-}
-
-function splitParameter(
-  parameter: string | undefined,
-): { key: string; value: string; raw: string }[] {
-  if (parameter == undefined) {
-    return [];
-  }
-  return parameter.split(",").map((raw) => {
-    const i = raw.indexOf("=");
-    return {
-      key: i === -1 ? raw : raw.substring(0, i),
-      value: i === -1 ? "" : raw.substring(i + 1),
-      raw,
-    };
-  });
 }
