@@ -26,7 +26,6 @@ import type {
 import {
   getFieldTyping,
   localName,
-  makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
@@ -47,13 +46,13 @@ export function generateDts(schema: Schema) {
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  f.print(makeJsDoc(enumeration));
+  f.print(f.jsDoc(enumeration));
   f.print("export declare enum ", enumeration, " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
     }
-    f.print(makeJsDoc(value, "  "));
+    f.print(f.jsDoc(value, "  "));
     f.print("  ", localName(value), " = ", value.number, ",");
   }
   f.print("}");
@@ -72,7 +71,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     JsonReadOptions,
     JsonValue
   } = schema.runtime;
-  f.print(makeJsDoc(message));
+  f.print(f.jsDoc(message));
   f.print("export declare class ", message, " extends ", Message, "<", message, "> {");
   for (const member of message.members) {
     switch (member.kind) {
@@ -115,13 +114,13 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 
 // prettier-ignore
 function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
-  f.print(makeJsDoc(oneof, "  "));
+  f.print(f.jsDoc(oneof, "  "));
   f.print("  ", localName(oneof), ": {");
   for (const field of oneof.fields) {
     if (oneof.fields.indexOf(field) > 0) {
       f.print(`  } | {`);
     }
-    f.print(makeJsDoc(field, "    "));
+    f.print(f.jsDoc(field, "    "));
     const { typing } = getFieldTyping(field, f);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
@@ -130,7 +129,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 }
 
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
-  f.print(makeJsDoc(field, "  "));
+  f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
   e.push("  ", localName(field));
   const { typing, optional } = getFieldTyping(field, f);

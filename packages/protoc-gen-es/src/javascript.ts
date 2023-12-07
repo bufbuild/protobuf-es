@@ -28,7 +28,6 @@ import type {
 import {
   getFieldExplicitDefaultValue,
   localName,
-  makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
@@ -50,7 +49,7 @@ export function generateJs(schema: Schema) {
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   const protoN = getNonEditionRuntime(schema, enumeration.file);
-  f.print(makeJsDoc(enumeration));
+  f.print(f.jsDoc(enumeration));
   f.print(f.exportDecl("const", enumeration), " = ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
@@ -72,7 +71,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
   const protoN = getNonEditionRuntime(schema, message.file);
-  f.print(makeJsDoc(message));
+  f.print(f.jsDoc(message));
   f.print(f.exportDecl("const", message), " = ", protoN, ".makeMessageType(")
   f.print(`  `, f.string(message.typeName), `,`)
   if (message.fields.length == 0) {
