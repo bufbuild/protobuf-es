@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import { codegenInfo } from "@bufbuild/protobuf";
+import { literalString as literalStringInternal } from "./gencommon.js";
+
 export { reifyWkt } from "./reify-wkt.js";
 export type { Target } from "./target.js";
 export type { Schema } from "./schema.js";
@@ -28,7 +30,6 @@ export {
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
   makeJsDoc,
-  literalString,
 } from "./gencommon.js";
 
 export {
@@ -36,3 +37,10 @@ export {
   findCustomMessageOption,
   findCustomEnumOption,
 } from "./custom-options.js";
+
+/**
+ * @deprecated Please use GeneratedFile.string() instead
+ */
+export function literalString(value: string): string {
+  return literalStringInternal(value);
+}

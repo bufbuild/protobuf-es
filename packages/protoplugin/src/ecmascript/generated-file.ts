@@ -88,6 +88,11 @@ export interface GeneratedFile {
   export(name: string): ImportSymbol;
 
   /**
+   * Create a string literal.
+   */
+  string(string: string): Printable;
+
+  /**
    * Create a printable export statement. For example:
    *
    * ```ts
@@ -197,6 +202,9 @@ export function createGeneratedFile(
     },
     exportDecl(declaration, name) {
       return createExportDeclaration(declaration, name);
+    },
+    string(string) {
+      return literalString(string);
     },
     import(typeOrName: DescMessage | DescEnum | string, from?: string) {
       if (typeof typeOrName == "string") {
