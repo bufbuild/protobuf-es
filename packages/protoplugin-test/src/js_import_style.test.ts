@@ -50,7 +50,7 @@ describe("js_import_style", () => {
     test(`uses CommonJs with target "js"`, () => {
       const lines = testGenerate(`js_import_style=legacy_commonjs,target=js`);
       expect(lines).toStrictEqual([
-        `use strict;`,
+        `"use strict";`,
         `Object.defineProperty(exports, "__esModule", { value: true });`,
         ``,
         `const { third } = require("party");`,
