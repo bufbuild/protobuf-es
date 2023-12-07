@@ -16,13 +16,13 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 import {
   literalString,
-  makeJsDoc,
   localName,
+  makeJsDoc,
 } from "@bufbuild/protoplugin/ecmascript";
 import { MethodKind } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
@@ -39,19 +39,16 @@ function generateTs(schema: Schema) {
       Message,
       JsonValue
     } = schema.runtime;
-    // Convert the Message ImportSymbol to a type-only ImportSymbol
-    const MessageAsType = Message.toTypeOnly();
     for (const service of file.services) {
-      const localServiceName = localName(service);
       f.print(makeJsDoc(service));
-      f.print("export class ", localServiceName, "Client {");
+      f.print(f.exportDecl("class", localName(service) + "Client"), " {");
       f.print("    private baseUrl: string = '';");
       f.print();
       f.print("    constructor(url: string) {");
       f.print("        this.baseUrl = url;");
       f.print("    }");
       f.print();
-      f.print("    async request<T extends ", MessageAsType, "<T>>(");
+      f.print("    async request<T extends ", Message.toTypeOnly(), "<T>>(");
       f.print("        service: string,");
       f.print("        method: string,");
       f.print("        contentType: string,");

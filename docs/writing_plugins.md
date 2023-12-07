@@ -97,7 +97,12 @@ In most cases, implementing the `generateTs` function only and letting the plugi
 As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will use its own TypeScript compiler to generate these files for you.  This process uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions.  However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.  
 
 ```ts
-transpile(fileInfo: FileInfo[], transpileJs: boolean, transpileDts: boolean): FileInfo[]
+transpile(
+  fileInfo: FileInfo[], 
+  transpileJs: boolean, 
+  transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
+): FileInfo[]
 ```
 
 The function will be invoked with an array of `FileInfo` objects representing the TypeScript file content
@@ -247,13 +252,13 @@ function generateTs(schema: Schema) {
 
 ### Importing
 
-Generating import statements is accomplished via a combination of the `print` function and another function on the generated file object:  `import`.  The approach varies depending on the type of import you would like to generate.  
+Generating import statements is accomplished via a combination of the methods `import` and `print` on the generated file 
+object. 
 
 #### Importing from an NPM package
 
-To generate an import statement from an NPM package dependency, you first invoke the `import` function, passing the name of the import and the package in which it is located.
-
-For example, to import the `useEffect` hook from React:
+To import from an NPM package, you first invoke the `import` function, passing the name of the symbol to import, and the 
+package in which it is located. For example, to import the `useEffect` hook from React:
 
 ```ts
 const useEffect = f.import("useEffect", "react");
@@ -273,7 +278,7 @@ When the `ImportSymbol` is printed (and only when it is printed), an import stat
 
 #### Importing from `protoc-gen-es` generated code 
 
-Imports in this way work similarly.  Again, the `print` statement will automatically generate the import statement for you when invoked.
+To import a message or enumeration from `protoc-gen-es` generated code, you can simply pass the descriptor to `import()`:
 
 ```ts
 declare var someMessageDescriptor: DescMessage;
@@ -322,48 +327,44 @@ Note that some of the `ImportSymbol` types in the schema runtime (such as `JsonV
 
 The natural instinct would be to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but this is not the recommended approach.  Using `f.import()` has many advantages such as:
 
-- **Conditional imports**
-   - Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
+- **Conditional imports**: Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
    
-- **Preventing name collisions**
-    - For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
+- **Preventing name collisions**: For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
 
-- **Extensibility of import generation**
-    - Abstracting the generation of imports allows the library to potentially offer other import styles in the future without affecting current users.
+- **Import styles**: If the plugin option `js_import_style=legacy_commonjs` is set, code is automatically generated
+  with `require()` calls instead of `import` statements.
   
 
 ### Exporting
 
-Working with exports is accomplished via the `export` function on the generated file object.  Let's walk through an example:
+To export a declaration from your code, use `exportDecl`:
 
-Suppose you generate a validation function for every message.  If you have a nested message, such as:
-
-```proto
-message Bar {
-   Foo foo = 1;
-}
+```typescript
+const name = "foo";
+f.exportDecl("const", name);
 ```
 
-You may want to import and use the validation function generated for message `Foo` when generating the code for message `Bar`.  To generate the validation function, you would use `export` as follows:
+This method takes two arguments:
+1. The declaration, for example `const`, `enum`, `abstract class`, or anything 
+   you might need.
+2. The name of the declaration, which is also used for the export.
 
-```ts
-const fn = f.export("validateFoo");
-f.print("function ", fn, "() {");
-f.print("   return true;");
-f.print("}");
+The return value of the method can be passed to `print`: 
+
+```typescript
+const name = "foo";
+f.print(f.exportDecl("const", name), " = 123;");
 ```
 
-Note that `export` returns an `ImportSymbol` that can then be used by another dependency.  The trick is to store this `ImportSymbol` and use it when you generate the validation function for `Bar`.  Storing the symbol is as simple as putting it in a global map:
+The example above will generate the following code:
 
-```ts
-const exportMap = new Map<DescMessage, ImportSymbol>()
+```typescript
+export const foo = 123;
 ```
 
-That way, when you need to use it for `Bar`, you can simply access the map:
+If the plugin option `js_import_style=legacy_commonjs` is set, the example will
+automatically generate the correct export for CommonJS.
 
-```ts
-const fooValidationFn = exportMap.get(bar);  // bar is of type DescMessage
-```
 
 ### Parsing plugin options
 
