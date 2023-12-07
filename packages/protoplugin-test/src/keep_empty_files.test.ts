@@ -49,8 +49,8 @@ describe("keep_empty_files", () => {
             f.exportDecl("foo", "bar");
           },
         );
-          expect(lines).toBeUndefined();
-          expect(fileCount).toBe(0);
+        expect(lines).toBeUndefined();
+        expect(fileCount).toBe(0);
       },
     );
     test.each(["js", "ts", "dts"])(
