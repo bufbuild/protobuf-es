@@ -74,12 +74,12 @@ export interface Schema {
 
 interface SchemaController extends Schema {
   getFileInfo: () => FileInfo[];
-  prepareGenerate(jsImportStyle: "module" | "legacy_commonjs"): void;
+  prepareGenerate(target: Target): void;
 }
 
 export function createSchema(
   request: CodeGeneratorRequest,
-  parameter: Omit<ParsedParameter, "jsImportStyle">,
+  parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
 ): SchemaController {
@@ -95,7 +95,7 @@ export function createSchema(
     );
     return createImportSymbol(name, from);
   };
-  let jsImportStyle: "module" | "legacy_commonjs" | undefined;
+  let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
   return {
     targets: parameter.targets,
@@ -104,7 +104,7 @@ export function createSchema(
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
-      if (jsImportStyle === undefined) {
+      if (target === undefined) {
         throw new Error(
           "prepareGenerate() must be called before generateFile()",
         );
@@ -112,7 +112,7 @@ export function createSchema(
       const genFile = createGeneratedFile(
         name,
         deriveImportPath(name),
-        jsImportStyle,
+        target === "js" ? parameter.jsImportStyle : "module", // ts and dts always use import/export, only js may use commonjs
         (importPath: string) =>
           rewriteImportPath(
             importPath,
@@ -136,8 +136,8 @@ export function createSchema(
         .map((f) => f.getFileInfo())
         .filter((fi) => parameter.keepEmptyFiles || fi.content.length > 0);
     },
-    prepareGenerate(newJsImportStyle) {
-      jsImportStyle = newJsImportStyle;
+    prepareGenerate(newTarget) {
+      target = newTarget;
     },
   };
 }

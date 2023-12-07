@@ -124,7 +124,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         (targetJs && !init.generateJs) ||
         (targetDts && !init.generateDts)
       ) {
-        schema.prepareGenerate("module");
+        schema.prepareGenerate("ts");
         init.generateTs(schema, "ts");
 
         // Save off the generated TypeScript files so that we can pass these
@@ -142,7 +142,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetJs) {
         if (init.generateJs) {
-          schema.prepareGenerate(parameter.jsImportStyle);
+          schema.prepareGenerate("js");
           init.generateJs(schema, "js");
         } else {
           transpileJs = true;
@@ -151,7 +151,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetDts) {
         if (init.generateDts) {
-          schema.prepareGenerate("module");
+          schema.prepareGenerate("dts");
           init.generateDts(schema, "dts");
         } else {
           transpileDts = true;

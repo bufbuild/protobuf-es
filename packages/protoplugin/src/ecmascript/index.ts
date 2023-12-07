@@ -19,7 +19,7 @@ import {
   DescFile,
 } from "@bufbuild/protobuf";
 import { Printable } from "./generated-file.js";
-import { createJsDocBlock as createJsDocBlockV2 } from "./jsdoc.js";
+import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
 import { literalString as literalStringInternal } from "./gencommon.js";
 
 export { reifyWkt } from "./reify-wkt.js";
@@ -58,12 +58,12 @@ export function makeJsDoc(
   desc: Exclude<AnyDesc, DescFile | DescExtension>,
   indentation = "",
 ): Printable {
-  return createJsDocBlockV2(desc, indentation).toString();
+  return createJsDocBlockInternal(desc, indentation).toString();
 }
 
 /**
  * @deprecated Please use GeneratedFile.jsDoc() instead
  */
 export function createJsDocBlock(text: string, indentation = ""): Printable {
-  return createJsDocBlockV2(text, indentation).toString();
+  return createJsDocBlockInternal(text, indentation).toString();
 }
