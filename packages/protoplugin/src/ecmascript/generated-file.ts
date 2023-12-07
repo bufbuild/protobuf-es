@@ -232,6 +232,9 @@ function elToContent(
   rewriteImportPath: RewriteImportPathFn,
   legacyCommonJs: boolean,
 ): string {
+  if (el.length == 0) {
+    return "";
+  }
   const c: string[] = [];
   if (legacyCommonJs) {
     c.push(`"use strict";\n`);
