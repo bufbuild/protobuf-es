@@ -19,13 +19,7 @@ import type {
   DescMessage,
   DescriptorSet,
 } from "@bufbuild/protobuf";
-import {
-  CodeGeneratorResponse,
-  CodeGeneratorResponse_Feature,
-  codegenInfo,
-  createDescriptorSet,
-  protoInt64,
-} from "@bufbuild/protobuf";
+import { codegenInfo, createDescriptorSet } from "@bufbuild/protobuf";
 import type {
   FileInfo,
   GeneratedFile,
@@ -146,20 +140,6 @@ export function createSchema(
       jsImportStyle = newJsImportStyle;
     },
   };
-}
-
-export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
-  return new CodeGeneratorResponse({
-    supportedFeatures: protoInt64.parse(
-      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL,
-    ),
-    file: files.map((f) => {
-      if (f.preamble !== undefined) {
-        f.content = f.preamble + "\n" + f.content;
-      }
-      return f;
-    }),
-  });
 }
 
 function findFilesToGenerate(
