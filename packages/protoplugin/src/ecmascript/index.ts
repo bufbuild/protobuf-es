@@ -12,7 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo } from "@bufbuild/protobuf";
+import {
+  AnyDesc,
+  codegenInfo,
+  DescExtension,
+  DescFile,
+} from "@bufbuild/protobuf";
+import { Printable } from "./generated-file.js";
+import { createJsDocBlock as createJsDocBlockV2 } from "./jsdoc.js";
 import { literalString as literalStringInternal } from "./gencommon.js";
 
 export { reifyWkt } from "./reify-wkt.js";
@@ -25,11 +32,9 @@ export type { ImportSymbol } from "./import-symbol.js";
 export const { localName } = codegenInfo;
 
 export {
-  createJsDocBlock,
   getFieldExplicitDefaultValue,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-  makeJsDoc,
 } from "./gencommon.js";
 
 export {
@@ -43,4 +48,21 @@ export {
  */
 export function literalString(value: string): string {
   return literalStringInternal(value);
+}
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function makeJsDoc(
+  desc: Exclude<AnyDesc, DescFile | DescExtension>,
+  indentation = "",
+): Printable {
+  return createJsDocBlockV2(desc, indentation).toString();
+}
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function createJsDocBlock(text: string, indentation = ""): Printable {
+  return createJsDocBlockV2(text, indentation).toString();
 }

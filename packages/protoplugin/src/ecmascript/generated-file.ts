@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescFile, DescMessage } from "@bufbuild/protobuf";
+import type {
+  AnyDesc,
+  DescEnum,
+  DescExtension,
+  DescFile,
+  DescMessage,
+} from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { literalString, makeFilePreamble } from "./gencommon.js";
@@ -20,6 +26,8 @@ import type { RuntimeImports } from "./runtime-imports.js";
 import { makeImportPathRelative } from "./import-path.js";
 import type { ExportDeclaration } from "./export-declaration.js";
 import { createExportDeclaration } from "./export-declaration.js";
+import type { JSDocBlock } from "./jsdoc.js";
+import { createJsDocBlock } from "./jsdoc.js";
 
 /**
  * All types that can be passed to GeneratedFile.print()
@@ -32,6 +40,7 @@ export type Printable =
   | Uint8Array
   | ImportSymbol
   | ExportDeclaration
+  | JSDocBlock
   | DescMessage
   | DescEnum
   | Printable[];
@@ -91,6 +100,22 @@ export interface GeneratedFile {
    * Create a string literal.
    */
   string(string: string): Printable;
+
+  /**
+   * Create a JSDoc comment block with the given text. Line breaks and white-space
+   * stay intact.
+   */
+  jsDoc(text: string, indentation?: string): JSDocBlock;
+
+  /**
+   * Create a JSDoc comment block for the given message, enumeration, or other
+   * descriptor. The comment block will contain the original comments from the
+   * protobuf source, and annotations such as `@generated from message MyMessage`.
+   */
+  jsDoc(
+    desc: Exclude<AnyDesc, DescFile | DescExtension>,
+    indentation?: string,
+  ): JSDocBlock;
 
   /**
    * Create a printable export statement. For example:
@@ -205,6 +230,9 @@ export function createGeneratedFile(
     },
     string(string) {
       return literalString(string);
+    },
+    jsDoc(textOrDesc, indentation) {
+      return createJsDocBlock(textOrDesc, indentation);
     },
     import(typeOrName: DescMessage | DescEnum | string, from?: string) {
       if (typeof typeOrName == "string") {
@@ -345,6 +373,9 @@ function printableToEl(
           switch (p.kind) {
             case "es_symbol":
               el.push(p);
+              break;
+            case "es_jsdoc":
+              el.push(p.toString());
               break;
             case "es_export_decl":
               el.push({
