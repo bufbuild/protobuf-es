@@ -234,7 +234,7 @@ function elToContent(
 ): string {
   const c: string[] = [];
   if (legacyCommonJs) {
-    c.push(`use strict;\n`);
+    c.push(`"use strict";\n`);
     c.push(`Object.defineProperty(exports, "__esModule", { value: true });\n`);
     c.push(`\n`);
   }
