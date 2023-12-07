@@ -252,13 +252,13 @@ function generateTs(schema: Schema) {
 
 ### Importing
 
-Generating import statements is accomplished via a combination of the `print` function and another function on the generated file object:  `import`.  The approach varies depending on the type of import you would like to generate.  
+Generating import statements is accomplished via a combination of the methods `import` and `print` on the generated file 
+object. 
 
 #### Importing from an NPM package
 
-To generate an import statement from an NPM package dependency, you first invoke the `import` function, passing the name of the import and the package in which it is located.
-
-For example, to import the `useEffect` hook from React:
+To import from an NPM package, you first invoke the `import` function, passing the name of the symbol to import, and the 
+package in which it is located. For example, to import the `useEffect` hook from React:
 
 ```ts
 const useEffect = f.import("useEffect", "react");
@@ -278,7 +278,7 @@ When the `ImportSymbol` is printed (and only when it is printed), an import stat
 
 #### Importing from `protoc-gen-es` generated code 
 
-Imports in this way work similarly.  Again, the `print` statement will automatically generate the import statement for you when invoked.
+To import a message or enumeration from `protoc-gen-es` generated code, you can simply pass the descriptor to `import()`:
 
 ```ts
 declare var someMessageDescriptor: DescMessage;
@@ -327,14 +327,12 @@ Note that some of the `ImportSymbol` types in the schema runtime (such as `JsonV
 
 The natural instinct would be to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but this is not the recommended approach.  Using `f.import()` has many advantages such as:
 
-- **Conditional imports**
-   - Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
+- **Conditional imports**: Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement.  Conditionally printing the import symbol will only generate the import statement when it is actually used.
    
-- **Preventing name collisions**
-    - For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
+- **Preventing name collisions**: For example if you `import { Foo } from "bar"`  and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
 
-- **Extensibility of import generation**
-    - Abstracting the generation of imports allows the library to potentially offer other import styles in the future without affecting current users.
+- **Import styles**: If the plugin option `js_import_style=legacy_commonjs` is set, code is automatically generated
+  with `require()` calls instead of `import` statements.
   
 
 ### Exporting
