@@ -337,7 +337,7 @@ The natural instinct would be to simply print your own import statements as `f.p
 
 ### Exporting
 
-To export a declaration from you code, use `exportDecl`:
+To export a declaration from your code, use `exportDecl`:
 
 ```typescript
 const name = "foo";
