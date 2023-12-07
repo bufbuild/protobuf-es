@@ -76,7 +76,7 @@ we generate `foo/bar_pb.js`.
 
 By default, we generate JavaScript _and_ TypeScript declaration files, so the generated
 code can be used in JavaScript or TypeScript projects without transpilation. If you
-prefer to generate TypeScript, use the plugin option `target=ts`.
+prefer to generate TypeScript, use the plugin option `[target=ts`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target).
 
 By default, we generate ECMAScript modules, which means we use `import` and `export` statements. 
 If you need CommonJS, set the plugin option [`js_import_style=legacy_commonjs`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style).
