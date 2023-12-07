@@ -27,7 +27,6 @@ import type {
 import {
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-  literalString,
   localName,
   makeJsDoc,
   reifyWkt,
@@ -103,7 +102,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, " = ", protoN, ";");
-  f.print('  static readonly typeName = ', literalString(message.typeName), ';');
+  f.print('  static readonly typeName = ', f.string(message.typeName), ';');
   f.print("  static readonly fields: ", FieldList, " = ", protoN, ".util.newFieldList(() => [");
   for (const field of message.fields) {
     generateFieldInfo(schema, f, field);

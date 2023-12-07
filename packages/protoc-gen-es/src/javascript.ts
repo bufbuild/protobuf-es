@@ -27,7 +27,6 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import {
   getFieldExplicitDefaultValue,
-  literalString,
   localName,
   makeJsDoc,
   reifyWkt,
@@ -57,12 +56,12 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   f.print(`  [`)
   if (enumeration.sharedPrefix === undefined) {
     for (const value of enumeration.values) {
-      f.print("    {no: ", value.number, ", name: ", literalString(value.name), "},")
+      f.print("    {no: ", value.number, ", name: ", f.string(value.name), "},")
     }
   } else {
     for (const value of enumeration.values) {
       const localName = value.name.substring(enumeration.sharedPrefix.length);
-      f.print("    {no: ", value.number, ", name: ", literalString(value.name), ", localName: ", literalString(localName), "},")
+      f.print("    {no: ", value.number, ", name: ", f.string(value.name), ", localName: ", f.string(localName), "},")
     }
   }
   f.print(`  ],`)
@@ -75,7 +74,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   const protoN = getNonEditionRuntime(schema, message.file);
   f.print(makeJsDoc(message));
   f.print(f.exportDecl("const", message), " = ", protoN, ".makeMessageType(")
-  f.print(`  `, literalString(message.typeName), `,`)
+  f.print(`  `, f.string(message.typeName), `,`)
   if (message.fields.length == 0) {
     f.print("  [],")
   } else {
@@ -90,7 +89,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
       .makeMessageType(message.typeName, []).name;
   if (needsLocalName) {
     // local name is not inferrable from the type name, we need to provide it
-    f.print(`  {localName: `, literalString(localName(message)), `},`)
+    f.print(`  {localName: `, f.string(localName(message)), `},`)
   }
   f.print(");")
   f.print()

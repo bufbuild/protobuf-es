@@ -25,7 +25,6 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import {
   getFieldTyping,
-  literalString,
   localName,
   makeJsDoc,
   reifyWkt,
@@ -90,7 +89,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, ";");
-  f.print('  static readonly typeName = ', literalString(message.typeName), ';');
+  f.print('  static readonly typeName = ', f.string(message.typeName), ';');
   f.print("  static readonly fields: ", FieldList, ";");
   // In case we start supporting options, we have to surface them here
   //f.print("  static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
