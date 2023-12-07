@@ -28,6 +28,7 @@ export type { Schema } from "./schema.js";
 export type { RuntimeImports } from "./runtime-imports.js";
 export type { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
 export type { ImportSymbol } from "./import-symbol.js";
+export { createImportSymbol } from "./import-symbol.js";
 
 export const { localName } = codegenInfo;
 

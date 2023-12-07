@@ -92,7 +92,7 @@ export interface GeneratedFile {
   print(fragments: TemplateStringsArray, ...printables: Printable[]): void;
 
   /**
-   * Reserves an identifier in this file.
+   * @deprecated Please use createImportSymbol() from @bufbuild/protoplugin/ecmascript instead
    */
   export(name: string): ImportSymbol;
 
