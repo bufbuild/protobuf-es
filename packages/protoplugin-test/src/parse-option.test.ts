@@ -17,7 +17,7 @@ import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import type { Plugin } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
-describe("custom plugin options", () => {
+describe("parse custom plugin option", () => {
   let foo: number | undefined;
   let bar = false;
   let baz: string[] = [];
