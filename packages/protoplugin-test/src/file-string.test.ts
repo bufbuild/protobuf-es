@@ -13,68 +13,51 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("file string", () => {
-  test("surrounds string in quotes", () => {
-    const lines = testGenerate((f) => {
+  test("surrounds string in quotes", async () => {
+    const lines = await testGenerate((f) => {
       f.print("const s = ", f.string("abc"), ";");
     });
     expect(lines).toStrictEqual([`const s = "abc";`]);
   });
 
-  test("surrounds string in quotes", () => {
-    const lines = testGenerate((f) => {
+  test("surrounds string in quotes", async () => {
+    const lines = await testGenerate((f) => {
       f.print(f.string("abc"));
     });
     expect(lines).toStrictEqual([`"abc"`]);
   });
 
-  test("escapes quote", () => {
-    const lines = testGenerate((f) => {
+  test("escapes quote", async () => {
+    const lines = await testGenerate((f) => {
       f.print(f.string(`ab"c`));
     });
     expect(lines).toStrictEqual([`"ab\\"c"`]);
   });
 
-  test("escapes backslash", () => {
-    const lines = testGenerate((f) => {
+  test("escapes backslash", async () => {
+    const lines = await testGenerate((f) => {
       f.print(f.string("ab\\c"));
     });
     expect(lines).toStrictEqual([`"ab\\\\c"`]);
   });
 
-  test("escapes line breaks", () => {
-    const lines = testGenerate((f) => {
+  test("escapes line breaks", async () => {
+    const lines = await testGenerate((f) => {
       f.print(f.string("ab\r\nc"));
     });
     expect(lines).toStrictEqual([`"ab\\r\\nc"`]);
   });
 
-  function testGenerate(gen: (f: GeneratedFile) => void) {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
-      generateTs: generateAny,
-      generateJs: generateAny,
-      generateDts: generateAny,
+  async function testGenerate(gen: (f: GeneratedFile) => void) {
+    return await createTestPluginAndRun({
+      proto: `syntax="proto3";`,
+      generateAny: gen,
+      parameter: "target=ts",
+      returnLinesOfFirstFile: true,
     });
-
-    function generateAny(schema: Schema) {
-      gen(schema.generateFile("test.ts"));
-    }
-
-    const req = new CodeGeneratorRequest({
-      parameter: "target=js",
-    });
-    const res = plugin.run(req);
-    expect(res.file.length).toBeGreaterThanOrEqual(1);
-    let content = res.file[0]?.content ?? "";
-    if (content.endsWith("\n")) {
-      content = content.slice(0, -1); // trim final newline so we don't return an extra line
-    }
-    return content.split("\n");
   }
 });
