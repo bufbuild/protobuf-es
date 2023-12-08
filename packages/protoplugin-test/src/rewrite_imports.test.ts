@@ -15,7 +15,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { assert, getDescriptorSet } from "./helpers";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 
 /**
@@ -83,8 +82,6 @@ describe("rewrite_imports", function () {
   test("should rewrite npm import to other package", () => {
     const lines = generate(
       (f) => {
-        const exampleDesc = getDescriptorSet().messages.get("example.Person");
-        assert(exampleDesc);
         const Foo = f.import("Foo", "@scope/pkg");
         f.print`${Foo}`;
       },

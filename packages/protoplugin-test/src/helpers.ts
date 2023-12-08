@@ -30,21 +30,6 @@ export function assert(condition: unknown, msg?: string): asserts condition {
 }
 
 /**
- * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
- */
-export function getCodeGeneratorRequest(
-  parameter = "",
-  fileToGenerate: string[],
-) {
-  const fds = getFileDescriptorSet();
-  return new CodeGeneratorRequest({
-    parameter,
-    fileToGenerate, // tells the plugin which files from the set to generate
-    protoFile: fds.file,
-  });
-}
-
-/**
  * Returns a DescriptorSet from a pre-built Buf image
  */
 export function getDescriptorSet() {
