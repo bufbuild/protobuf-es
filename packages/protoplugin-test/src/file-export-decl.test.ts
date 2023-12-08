@@ -13,11 +13,9 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { UpstreamProtobuf } from "upstream-protobuf";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("file exportDecl", () => {
   test("works as documented", async () => {
@@ -57,47 +55,19 @@ describe("file exportDecl", () => {
       descEnum: DescEnum,
     ) => void,
   ) {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
-      generateTs: generateAny,
-      generateJs: generateAny,
-      generateDts: generateAny,
-    });
-
-    function generateAny(schema: Schema) {
-      gen(
-        schema.generateFile("test.ts"),
-        schema.files[0].messages[0],
-        schema.files[0].enums[0],
-      );
-    }
-
-    const upstream = new UpstreamProtobuf();
-    const protoFiles = {
-      "x.proto": `
+    return await createTestPluginAndRun({
+      proto: `
       syntax="proto3";
       message SomeMessage {}
       enum SomeEnum {
         SOME_ENUM_UNRECOGNIZED = 0;
         SOME_ENUM_A = 1;
-      }
-      `,
-    };
-    const req = CodeGeneratorRequest.fromBinary(
-      await upstream.createCodeGeneratorRequest(protoFiles, {
-        parameter: "target=ts",
-      }),
-    );
-    expect(req.protoFile.length).toBe(1);
-    expect(req.protoFile[0]?.messageType.length).toBe(1);
-    expect(req.protoFile[0]?.enumType.length).toBe(1);
-    const res = plugin.run(req);
-    expect(res.file.length).toBeGreaterThanOrEqual(1);
-    let content = res.file[0]?.content ?? "";
-    if (content.endsWith("\n")) {
-      content = content.slice(0, -1); // trim final newline so we don't return an extra line
-    }
-    return content.split("\n");
+      }`,
+      parameter: "target=ts",
+      generateAny(f, schema) {
+        gen(f, schema.files[0].messages[0], schema.files[0].enums[0]);
+      },
+      returnLinesOfFirstFile: true,
+    });
   }
 });
