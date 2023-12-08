@@ -14,8 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { Schema } from "@bufbuild/protoplugin";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { assert, getDescriptorSet } from "./helpers";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 

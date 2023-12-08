@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("file preamble", () => {

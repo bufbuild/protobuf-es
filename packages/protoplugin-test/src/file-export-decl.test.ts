@@ -16,9 +16,8 @@ import { describe, expect, test } from "@jest/globals";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
 
 describe("file exportDecl", () => {
   test("works as documented", async () => {

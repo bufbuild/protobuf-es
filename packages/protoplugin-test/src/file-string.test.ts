@@ -14,9 +14,8 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
 
 describe("file string", () => {
   test("surrounds string in quotes", () => {
