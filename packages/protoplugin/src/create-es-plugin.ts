@@ -12,11 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createSchema, Schema, toResponse } from "./ecmascript/schema.js";
+import { createSchema, Schema } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";
 import { parseParameter } from "./ecmascript/parameter.js";
+import {
+  CodeGeneratorResponse,
+  CodeGeneratorResponse_Feature,
+  protoInt64,
+} from "@bufbuild/protobuf";
 
 interface PluginInit {
   /**
@@ -119,7 +124,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         (targetJs && !init.generateJs) ||
         (targetDts && !init.generateDts)
       ) {
-        schema.prepareGenerate("module");
+        schema.prepareGenerate("ts");
         init.generateTs(schema, "ts");
 
         // Save off the generated TypeScript files so that we can pass these
@@ -137,7 +142,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetJs) {
         if (init.generateJs) {
-          schema.prepareGenerate(parameter.jsImportStyle);
+          schema.prepareGenerate("js");
           init.generateJs(schema, "js");
         } else {
           transpileJs = true;
@@ -146,7 +151,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
 
       if (targetDts) {
         if (init.generateDts) {
-          schema.prepareGenerate("module");
+          schema.prepareGenerate("dts");
           init.generateDts(schema, "dts");
         } else {
           transpileDts = true;
@@ -183,4 +188,18 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       return toResponse(files);
     },
   };
+}
+
+function toResponse(files: FileInfo[]): CodeGeneratorResponse {
+  return new CodeGeneratorResponse({
+    supportedFeatures: protoInt64.parse(
+      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL,
+    ),
+    file: files.map((f) => {
+      if (f.preamble !== undefined) {
+        f.content = f.preamble + "\n" + f.content;
+      }
+      return f;
+    }),
+  });
 }

@@ -12,23 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo } from "@bufbuild/protobuf";
+import {
+  AnyDesc,
+  codegenInfo,
+  DescExtension,
+  DescFile,
+} from "@bufbuild/protobuf";
+import { Printable } from "./generated-file.js";
+import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
+import { literalString as literalStringInternal } from "./gencommon.js";
+
 export { reifyWkt } from "./reify-wkt.js";
 export type { Target } from "./target.js";
 export type { Schema } from "./schema.js";
 export type { RuntimeImports } from "./runtime-imports.js";
 export type { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
 export type { ImportSymbol } from "./import-symbol.js";
+export { createImportSymbol } from "./import-symbol.js";
 
 export const { localName } = codegenInfo;
 
 export {
-  createJsDocBlock,
   getFieldExplicitDefaultValue,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-  makeJsDoc,
-  literalString,
 } from "./gencommon.js";
 
 export {
@@ -36,3 +43,27 @@ export {
   findCustomMessageOption,
   findCustomEnumOption,
 } from "./custom-options.js";
+
+/**
+ * @deprecated Please use GeneratedFile.string() instead
+ */
+export function literalString(value: string): string {
+  return literalStringInternal(value);
+}
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function makeJsDoc(
+  desc: Exclude<AnyDesc, DescFile | DescExtension>,
+  indentation = "",
+): Printable {
+  return createJsDocBlockInternal(desc, indentation).toString();
+}
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function createJsDocBlock(text: string, indentation = ""): Printable {
+  return createJsDocBlockInternal(text, indentation).toString();
+}

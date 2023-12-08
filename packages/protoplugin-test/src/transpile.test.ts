@@ -41,8 +41,11 @@ function transpile(
     if (!file) {
       throw new Error(`did not find file ${filename}`);
     }
-    const content = file.content ?? "";
-    return content.trim().split("\n");
+    let content = file.content ?? "";
+    if (content.endsWith("\n")) {
+      content = content.slice(0, -1); // trim final newline so we don't return an extra line
+    }
+    return content.split("\n");
   };
 }
 

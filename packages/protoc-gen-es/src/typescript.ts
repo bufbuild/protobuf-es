@@ -27,9 +27,7 @@ import type {
 import {
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-  literalString,
   localName,
-  makeJsDoc,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo } from "./javascript.js";
@@ -52,13 +50,13 @@ export function generateTs(schema: Schema) {
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   const protoN = getNonEditionRuntime(schema, enumeration.file);
-  f.print(makeJsDoc(enumeration));
+  f.print(f.jsDoc(enumeration));
   f.print(f.exportDecl("enum", enumeration), " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
     }
-    f.print(makeJsDoc(value, "  "));
+    f.print(f.jsDoc(value, "  "));
     f.print("  ", localName(value), " = ", value.number, ",");
   }
   f.print("}");
@@ -83,7 +81,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     JsonReadOptions,
     JsonValue
   } = schema.runtime;
-  f.print(makeJsDoc(message));
+  f.print(f.jsDoc(message));
   f.print(f.exportDecl("class", message), " extends ", Message, "<", message, "> {");
   for (const member of message.members) {
     switch (member.kind) {
@@ -103,7 +101,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, " = ", protoN, ";");
-  f.print('  static readonly typeName = ', literalString(message.typeName), ';');
+  f.print('  static readonly typeName = ', f.string(message.typeName), ';');
   f.print("  static readonly fields: ", FieldList, " = ", protoN, ".util.newFieldList(() => [");
   for (const field of message.fields) {
     generateFieldInfo(schema, f, field);
@@ -141,13 +139,13 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 
 // prettier-ignore
 function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
-  f.print(makeJsDoc(oneof, "  "));
+  f.print(f.jsDoc(oneof, "  "));
   f.print("  ", localName(oneof), ": {");
   for (const field of oneof.fields) {
     if (oneof.fields.indexOf(field) > 0) {
       f.print(`  } | {`);
     }
-    f.print(makeJsDoc(field, "    "));
+    f.print(f.jsDoc(field, "    "));
     const { typing } = getFieldTyping(field, f);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
@@ -156,7 +154,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 }
 
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
-  f.print(makeJsDoc(field, "  "));
+  f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
   e.push("  ", localName(field));
   const { defaultValue, typingInferrable } =
