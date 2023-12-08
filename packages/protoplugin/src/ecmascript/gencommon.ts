@@ -15,14 +15,8 @@
 import type { DescComments } from "@bufbuild/protobuf";
 import {
   codegenInfo,
-  DescEnum,
-  DescEnumValue,
   DescField,
   DescFile,
-  DescMessage,
-  DescMethod,
-  DescOneof,
-  DescService,
   Edition,
   LongType,
   ScalarType,
@@ -93,90 +87,6 @@ export function makeFilePreamble(
   builder.push("\n");
   writeLeadingComments(file.getPackageComments());
   return trimSuffix(builder.join(""), "\n");
-}
-
-export function createJsDocBlock(text: string, indentation = ""): Printable {
-  if (text.trim().length == 0) {
-    return [];
-  }
-  let lines = text.split("\n");
-  if (lines.length === 0) {
-    return [];
-  }
-  lines = lines.map((l) => l.split("*/").join("*\\/"));
-  lines = lines.map((l) => (l.length > 0 ? " " + l : l));
-  // prettier-ignore
-  return [
-      `${indentation}/**\n`,
-    ...lines.map((l) => `${indentation} *${l}\n`),
-      `${indentation} */`
-  ];
-}
-
-export function makeJsDoc(
-  desc:
-    | DescEnum
-    | DescEnumValue
-    | DescMessage
-    | DescOneof
-    | DescField
-    | DescService
-    | DescMethod,
-  indentation = "",
-): Printable {
-  const comments = desc.getComments();
-  let text = "";
-  if (comments.leading !== undefined) {
-    text += comments.leading;
-    if (text.endsWith("\n")) {
-      text = text.substring(0, text.length - 1);
-    }
-  }
-  if (comments.trailing !== undefined) {
-    if (text.length > 0) {
-      text += "\n\n";
-    }
-    text += comments.trailing;
-    if (text.endsWith("\n")) {
-      text = text.substring(0, text.length - 1);
-    }
-  }
-  if (text.length > 0) {
-    text += "\n\n";
-  }
-  text = text
-    .split("\n")
-    .map((line) => (line.startsWith(" ") ? line.substring(1) : line))
-    .join("\n");
-
-  switch (desc.kind) {
-    case "enum_value":
-      text += `@generated from enum value: ${desc.declarationString()};`;
-      break;
-    case "field":
-      text += `@generated from field: ${desc.declarationString()};`;
-      break;
-    default:
-      text += `@generated from ${desc.toString()}`;
-      break;
-  }
-  let deprecated = desc.deprecated;
-  switch (desc.kind) {
-    case "enum":
-    case "message":
-    case "service":
-      deprecated = deprecated || (desc.file.proto.options?.deprecated ?? false);
-      break;
-    default:
-      break;
-  }
-  if (deprecated) {
-    text += "\n@deprecated";
-  }
-  if (text.length > 0) {
-    return createJsDocBlock(text, indentation);
-  }
-  return [];
 }
 
 /**

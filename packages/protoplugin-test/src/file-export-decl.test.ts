@@ -95,7 +95,10 @@ describe("file exportDecl", () => {
     expect(req.protoFile[0]?.enumType.length).toBe(1);
     const res = plugin.run(req);
     expect(res.file.length).toBeGreaterThanOrEqual(1);
-    const content = res.file[0]?.content ?? "";
-    return content.trim().split("\n");
+    let content = res.file[0]?.content ?? "";
+    if (content.endsWith("\n")) {
+      content = content.slice(0, -1); // trim final newline so we don't return an extra line
+    }
+    return content.split("\n");
   }
 });

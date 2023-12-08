@@ -113,9 +113,17 @@ describe("keep_empty_files", () => {
     );
     expect(req.fileToGenerate.length).toBe(1);
     const res = plugin.run(req);
+    let lines: string[] | undefined;
+    if (res.file.length > 0) {
+      let content = res.file[0]?.content ?? "";
+      if (content.endsWith("\n")) {
+        content = content.slice(0, -1); // trim final newline so we don't return an extra line
+      }
+      lines = content.split("\n");
+    }
     return {
       fileCount: res.file.length,
-      lines: res.file[0]?.content?.trim().split("\n"),
+      lines,
     };
   }
 });
