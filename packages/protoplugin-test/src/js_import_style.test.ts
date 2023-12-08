@@ -13,9 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("js_import_style", () => {
   const linesEsm = [
@@ -27,28 +26,38 @@ describe("js_import_style", () => {
     `hand();`,
   ];
   describe("unset", () => {
-    test.each(["js", "ts", "dts"])("uses module with target %p", (target) => {
-      const lines = testGenerate(`target=${target}`);
-      expect(lines).toStrictEqual(linesEsm);
-    });
+    test.each(["js", "ts", "dts"])(
+      "uses module with target %p",
+      async (target) => {
+        const lines = await testGenerate(`target=${target}`);
+        expect(lines).toStrictEqual(linesEsm);
+      },
+    );
   });
 
   describe("module", () => {
-    test.each(["js", "ts", "dts"])("uses module with target %p", (target) => {
-      const lines = testGenerate(`js_import_style=module,target=${target}`);
-      expect(lines).toStrictEqual(linesEsm);
-    });
+    test.each(["js", "ts", "dts"])(
+      "uses module with target %p",
+      async (target) => {
+        const lines = await testGenerate(
+          `js_import_style=module,target=${target}`,
+        );
+        expect(lines).toStrictEqual(linesEsm);
+      },
+    );
   });
 
   describe("legacy_commonjs", () => {
-    test.each(["ts", "dts"])("uses CommonJs with target %p", (target) => {
-      const lines = testGenerate(
+    test.each(["ts", "dts"])("uses CommonJs with target %p", async (target) => {
+      const lines = await testGenerate(
         `js_import_style=legacy_commonjs,target=${target}`,
       );
       expect(lines).toStrictEqual(linesEsm);
     });
-    test(`uses CommonJs with target "js"`, () => {
-      const lines = testGenerate(`js_import_style=legacy_commonjs,target=js`);
+    test(`uses CommonJs with target "js"`, async () => {
+      const lines = await testGenerate(
+        `js_import_style=legacy_commonjs,target=js`,
+      );
       expect(lines).toStrictEqual([
         `"use strict";`,
         `Object.defineProperty(exports, "__esModule", { value: true });`,
@@ -63,8 +72,8 @@ describe("js_import_style", () => {
         `exports.MyClass = MyClass;`,
       ]);
     });
-    test(`uses CommonJs with built-in transpile`, () => {
-      const lines = testGenerate(
+    test("uses CommonJs with built-in transpile", async () => {
+      const lines = await testGenerate(
         `js_import_style=legacy_commonjs,target=js`,
         true,
       );
@@ -83,20 +92,10 @@ describe("js_import_style", () => {
     });
   });
 
-  function testGenerate(
+  async function testGenerate(
     parameter: string,
     useBuiltInTranspileFromTsToJs = false,
   ) {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
-      generateTs: generateImportAndExportExamples,
-      generateJs: useBuiltInTranspileFromTsToJs
-        ? undefined
-        : generateImportAndExportExamples,
-      generateDts: generateImportAndExportExamples,
-    });
-
     function generateImportAndExportExamples(
       schema: Schema,
       target: "js" | "ts" | "dts",
@@ -114,15 +113,16 @@ describe("js_import_style", () => {
       }
       f.print("hand();");
     }
-    const req = new CodeGeneratorRequest({
+
+    return await createTestPluginAndRun({
       parameter,
+      proto: `syntax="proto3";`,
+      generateTs: generateImportAndExportExamples,
+      generateJs: useBuiltInTranspileFromTsToJs
+        ? undefined
+        : generateImportAndExportExamples,
+      generateDts: generateImportAndExportExamples,
+      returnLinesOfFirstFile: true,
     });
-    const res = plugin.run(req);
-    expect(res.file.length).toBeGreaterThanOrEqual(1);
-    let content = res.file[0]?.content ?? "";
-    if (content.endsWith("\n")) {
-      content = content.slice(0, -1); // trim final newline so we don't return an extra line
-    }
-    return content.split("\n");
   }
 });
