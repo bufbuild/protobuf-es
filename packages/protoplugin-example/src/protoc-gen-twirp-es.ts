@@ -17,11 +17,7 @@
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-import {
-  literalString,
-  localName,
-  makeJsDoc,
-} from "@bufbuild/protoplugin/ecmascript";
+import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { MethodKind } from "@bufbuild/protobuf";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
@@ -40,7 +36,7 @@ function generateTs(schema: Schema) {
       JsonValue
     } = schema.runtime;
     for (const service of file.services) {
-      f.print(makeJsDoc(service));
+      f.print(f.jsDoc(service));
       f.print(f.exportDecl("class", localName(service) + "Client"), " {");
       f.print("    private baseUrl: string = '';");
       f.print();
@@ -75,11 +71,11 @@ function generateTs(schema: Schema) {
       for (const method of service.methods) {
         if (method.methodKind === MethodKind.Unary) {
             f.print();
-            f.print(makeJsDoc(method, "    "));
+            f.print(f.jsDoc(method, "    "));
             f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
             f.print("        const promise = this.request(");
-            f.print("            ", literalString(service.typeName), ",");
-            f.print("            ", literalString(method.name), ",");
+            f.print("            ", f.string(service.typeName), ",");
+            f.print("            ", f.string(method.name), ",");
             f.print('            "application/json",');
             f.print("            request");
             f.print("        );");
