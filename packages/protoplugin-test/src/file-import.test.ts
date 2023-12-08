@@ -13,90 +13,76 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { UpstreamProtobuf } from "upstream-protobuf";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("file import", () => {
   test("should create import symbol for package", async function () {
-    await testGenerate(`syntax="proto3";`, (f) => {
-      const imp = f.import("Foo", "@scope/pkg");
-      expect(imp.name).toBe("Foo");
-      expect(imp.from).toBe("@scope/pkg");
-      expect(imp.typeOnly).toBe(false);
+    await createTestPluginAndRun({
+      proto: `syntax="proto3";`,
+      parameter: "target=ts",
+      generateAny(f) {
+        const imp = f.import("Foo", "@scope/pkg");
+        expect(imp.name).toBe("Foo");
+        expect(imp.from).toBe("@scope/pkg");
+        expect(imp.typeOnly).toBe(false);
+      },
     });
   });
   test("should create import symbol for relative import", async function () {
-    await testGenerate(`syntax="proto3";`, (f) => {
-      const imp = f.import("Foo", "./foo_zz.js");
-      expect(imp.name).toBe("Foo");
-      expect(imp.from).toBe("./foo_zz.js");
-      expect(imp.typeOnly).toBe(false);
+    await createTestPluginAndRun({
+      proto: `syntax="proto3";`,
+      parameter: "target=ts",
+      generateAny(f) {
+        const imp = f.import("Foo", "./foo_zz.js");
+        expect(imp.name).toBe("Foo");
+        expect(imp.from).toBe("./foo_zz.js");
+        expect(imp.typeOnly).toBe(false);
+      },
     });
   });
   test("should create import symbol for https import", async function () {
-    await testGenerate(`syntax="proto3";`, (f) => {
-      const imp = f.import("Foo", "https://example.com/foo.js");
-      expect(imp.name).toBe("Foo");
-      expect(imp.from).toBe("https://example.com/foo.js");
-      expect(imp.typeOnly).toBe(false);
+    await createTestPluginAndRun({
+      proto: `syntax="proto3";`,
+      parameter: "target=ts",
+      generateAny(f) {
+        const imp = f.import("Foo", "https://example.com/foo.js");
+        expect(imp.name).toBe("Foo");
+        expect(imp.from).toBe("https://example.com/foo.js");
+        expect(imp.typeOnly).toBe(false);
+      },
     });
   });
   test("should create import symbol for enum descriptor", async function () {
-    await testGenerate(
-      `syntax="proto3";
+    await createTestPluginAndRun({
+      proto: `
+      syntax="proto3";
       enum Foo {
         FOO_UNSPECIFIED = 0;
         FOO_BAR = 1;
       }
       `,
-      (f, schema) => {
+      parameter: "target=ts",
+      generateAny(f, schema) {
         const imp = f.import(schema.files[0].enums[0]);
         expect(imp.name).toBe("Foo");
         expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
-    );
+    });
   });
   test("should create import symbol for message descriptor", async function () {
-    await testGenerate(
-      `syntax="proto3";
-        message Person {}
+    await createTestPluginAndRun({
+      proto: `
+      syntax="proto3";
+      message Person {}
       `,
-      (f, schema) => {
+      parameter: "target=ts",
+      generateAny(f, schema) {
         const imp = f.import(schema.files[0].messages[0]);
         expect(imp.name).toBe("Person");
         expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
-    );
+    });
   });
-
-  async function testGenerate(
-    proto: string,
-    gen: (f: GeneratedFile, schema: Schema) => void,
-  ) {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
-      generateTs: generateAny,
-      generateJs: generateAny,
-      generateDts: generateAny,
-    });
-
-    function generateAny(schema: Schema) {
-      gen(schema.generateFile("test.ts"), schema);
-    }
-
-    const upstream = new UpstreamProtobuf();
-    const protoFiles = {
-      "x.proto": proto,
-    };
-    const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, {
-      parameter: "target=ts",
-    });
-    const req = CodeGeneratorRequest.fromBinary(reqBytes);
-    plugin.run(req);
-  }
 });
