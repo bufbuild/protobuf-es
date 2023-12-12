@@ -74,8 +74,9 @@ $(GEN)/protobuf-test: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es $(shell 
 
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
 	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
-	@npm run -w packages/protoplugin-test buf:build
 	@npm run -w packages/protoplugin-test generate
+	@mkdir -p $(@D)
+	@touch $(@)
 
 $(GEN)/protobuf-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es
 	npm run -w packages/protobuf-conformance generate

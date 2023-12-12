@@ -12,48 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  CodeGeneratorRequest,
-  CodeGeneratorResponse,
-  createDescriptorSet,
-  FileDescriptorSet,
-} from "@bufbuild/protobuf";
-import { readFileSync } from "fs";
-import type { Plugin } from "@bufbuild/protoplugin";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type {
-  GeneratedFile,
-  Schema,
-  Target,
-} from "@bufbuild/protoplugin/ecmascript";
-import { UpstreamProtobuf } from "upstream-protobuf";
-import { expect } from "@jest/globals";
-
-/**
- * Assert that condition is truthy or throw error (with message)
- */
-export function assert(condition: unknown, msg?: string): asserts condition {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
-  if (!condition) {
-    throw new Error(msg);
-  }
-}
-
-/**
- * Returns a DescriptorSet from a pre-built Buf image
- */
-export function getDescriptorSet() {
-  const fds = getFileDescriptorSet();
-  return createDescriptorSet(fds.file);
-}
-
-/**
- * Returns a FileDescriptorSet from a pre-built Buf image
- */
-function getFileDescriptorSet() {
-  const fdsBytes = readFileSync("./descriptorset.bin");
-  return FileDescriptorSet.fromBinary(fdsBytes);
-}
+import {CodeGeneratorRequest, CodeGeneratorResponse,} from "@bufbuild/protobuf";
+import type {Plugin} from "@bufbuild/protoplugin";
+import {createEcmaScriptPlugin} from "@bufbuild/protoplugin";
+import type {GeneratedFile, Schema, Target,} from "@bufbuild/protoplugin/ecmascript";
+import {UpstreamProtobuf} from "upstream-protobuf";
+import {expect} from "@jest/globals";
 
 const upstream = new UpstreamProtobuf();
 
