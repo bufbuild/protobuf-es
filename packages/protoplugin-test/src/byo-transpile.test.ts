@@ -13,30 +13,30 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { FileInfo } from "@bufbuild/protoplugin/ecmascript";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("bring your own transpile", () => {
-  test("does not transpile target=ts", () => {
-    const lines = testGenerate("target=ts");
+  test("does not transpile target=ts", async () => {
+    const lines = await testGenerate("target=ts");
     expect(lines).toStrictEqual(["fake typescript source"]);
   });
 
-  test("transpiles to target js", () => {
-    const lines = testGenerate("target=js");
+  test("transpiles to target js", async () => {
+    const lines = await testGenerate("target=js");
     expect(lines).toStrictEqual(["fake transpiled to js"]);
   });
 
-  test("transpiles to target dts", () => {
-    const lines = testGenerate("target=dts");
+  test("transpiles to target dts", async () => {
+    const lines = await testGenerate("target=dts");
     expect(lines).toStrictEqual(["fake transpiled to dts"]);
   });
 
-  function testGenerate(parameter: string): string[] {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
+  async function testGenerate(parameter: string) {
+    return await createTestPluginAndRun({
+      returnLinesOfFirstFile: true,
+      proto: `syntax="proto3";`,
+      parameter,
       generateTs: (schema) => {
         const f = schema.generateFile("test.ts");
         f.print("fake typescript source");
@@ -84,15 +84,5 @@ describe("bring your own transpile", () => {
         return out;
       },
     });
-    const req = new CodeGeneratorRequest({
-      parameter,
-    });
-    const res = plugin.run(req);
-    expect(res.file.length).toBeGreaterThanOrEqual(1);
-    let content = res.file[0]?.content ?? "";
-    if (content.endsWith("\n")) {
-      content = content.slice(0, -1); // trim final newline so we don't return an extra line
-    }
-    return content.split("\n");
   }
 });

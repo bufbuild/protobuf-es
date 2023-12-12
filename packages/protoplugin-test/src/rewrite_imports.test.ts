@@ -13,53 +13,18 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { Schema } from "@bufbuild/protoplugin";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
-import { assert, getDescriptorSet } from "./helpers";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-
-/**
- * Generates a single file using the plugin framework and the given print function,
- * passing the given options to the plugin.
- * Uses descriptorset.bin for the code generator request.
- * The returned string array represents the generated file content created using printFn.
- */
-function generate(
-  printFn: (f: GeneratedFile, schema: Schema) => void,
-  options: string[],
-): string[] {
-  const req = new CodeGeneratorRequest({
-    parameter: `target=ts,${options.join(",")}`,
-  });
-  const plugin = createEcmaScriptPlugin({
-    name: "test-plugin",
-    version: "v99.0.0",
-    generateTs: (schema: Schema) => {
-      const f = schema.generateFile("test.ts");
-      printFn(f, schema);
-    },
-  });
-  const res = plugin.run(req);
-  if (res.file.length !== 1) {
-    throw new Error(`no file generated`);
-  }
-  let content = res.file[0]?.content ?? "";
-  if (content.endsWith("\n")) {
-    content = content.slice(0, -1); // trim final newline so we don't return an extra line
-  }
-  return content.split("\n");
-}
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import { createTestPluginAndRun } from "./helpers";
 
 describe("rewrite_imports", function () {
-  test("example works as documented", () => {
-    const lines = generate(
+  test("example works as documented", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=./foo/**/*_pb.js:@scope/pkg",
       (f) => {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
         const Baz = f.import("Baz", "./foo/bar/baz_pb.js");
         f.print`console.log(${Bar}, ${Baz});`;
       },
-      ["rewrite_imports=./foo/**/*_pb.js:@scope/pkg"],
     );
     expect(lines).toStrictEqual([
       'import { Bar } from "@scope/pkg/foo/bar_pb.js";',
@@ -68,12 +33,12 @@ describe("rewrite_imports", function () {
       "console.log(Bar, Baz);",
     ]);
   });
-  test("should rewrite runtime import to other package", () => {
-    const lines = generate(
+  test("should rewrite runtime import to other package", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@bufbuild/protobuf:@scope/pkg",
       (f, schema) => {
         f.print`${schema.runtime.ScalarType}.INT32`;
       },
-      ["rewrite_imports=@bufbuild/protobuf:@scope/pkg"],
     );
     expect(lines).toStrictEqual([
       'import { ScalarType } from "@scope/pkg";',
@@ -81,15 +46,13 @@ describe("rewrite_imports", function () {
       "ScalarType.INT32",
     ]);
   });
-  test("should rewrite npm import to other package", () => {
-    const lines = generate(
+  test("should rewrite npm import to other package", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@scope/pkg:@other-scope/other-pkg",
       (f) => {
-        const exampleDesc = getDescriptorSet().messages.get("example.Person");
-        assert(exampleDesc);
         const Foo = f.import("Foo", "@scope/pkg");
         f.print`${Foo}`;
       },
-      ["rewrite_imports=@scope/pkg:@other-scope/other-pkg"],
     );
     expect(lines).toStrictEqual([
       'import { Foo } from "@other-scope/other-pkg";',
@@ -97,4 +60,16 @@ describe("rewrite_imports", function () {
       "Foo",
     ]);
   });
+
+  async function testGenerate(
+    parameter: string,
+    gen: (f: GeneratedFile, schema: Schema) => void,
+  ) {
+    return await createTestPluginAndRun({
+      parameter,
+      proto: `syntax="proto3";`,
+      generateAny: gen,
+      returnLinesOfFirstFile: true,
+    });
+  }
 });
