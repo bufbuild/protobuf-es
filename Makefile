@@ -38,7 +38,7 @@ $(BUILD)/protoplugin: $(BUILD)/protobuf node_modules tsconfig.base.json packages
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
+$(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(GEN)/protoplugin-test $(BUILD)/upstream-protobuf node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
 	npm run -w packages/protoplugin-test clean
 	npm run -w packages/protoplugin-test build
 	@mkdir -p $(@D)
