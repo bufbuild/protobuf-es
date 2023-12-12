@@ -19,7 +19,11 @@ import type {
   DescMessage,
   DescriptorSet,
 } from "@bufbuild/protobuf";
-import { codegenInfo, createDescriptorSet } from "@bufbuild/protobuf";
+import {
+  codegenInfo,
+  createDescriptorSet,
+  FeatureSetDefaults,
+} from "@bufbuild/protobuf";
 import type {
   FileInfo,
   GeneratedFile,
@@ -82,8 +86,12 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
+  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
-  const descriptorSet = createDescriptorSet(request.protoFile);
+  const descriptorSet = createDescriptorSet(request.protoFile, {
+    featureSetDefaults,
+  });
+  descriptorSet.files.map((f) => f.getFeatures()); // check that all files use supported editions
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {

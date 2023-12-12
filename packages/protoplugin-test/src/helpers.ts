@@ -15,6 +15,7 @@
 import {
   CodeGeneratorRequest,
   CodeGeneratorResponse,
+  FeatureSetDefaults,
 } from "@bufbuild/protobuf";
 import type { Plugin } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
@@ -28,6 +29,19 @@ import { expect } from "@jest/globals";
 
 const upstream = new UpstreamProtobuf();
 
+export async function getFeatureSetDefaults(
+  minimumEdition: string,
+  maximumEdition: string,
+  filesOrContent?: string | Record<string, string>,
+) {
+  const bytes = await upstream.getFeatureSetDefaults(
+    minimumEdition,
+    maximumEdition,
+    filesOrContent,
+  );
+  return FeatureSetDefaults.fromBinary(bytes);
+}
+
 type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
 
 // prettier-ignore
@@ -38,10 +52,13 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
   &
     {
       proto: string | Record<string, string>;
+      filesToGenerate?: string[];
       parameter?: string;
       name?: PluginInit["name"];
       version?: PluginInit["version"];
       parseOption?: PluginInit["parseOption"];
+      supportsEditions?: PluginInit["supportsEditions"];
+      featureSetDefaults?: PluginInit["featureSetDefaults"];
     }
   &
     (
@@ -66,9 +83,7 @@ export async function createTestPluginAndRun(
 ) {
   const protoFiles =
     typeof opt.proto == "string" ? { "x.proto": opt.proto } : opt.proto;
-  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, {
-    parameter: opt.parameter,
-  });
+  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, opt);
   const req = CodeGeneratorRequest.fromBinary(reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {

@@ -101,7 +101,7 @@ interface CreateDescriptorSetOptions {
    *
    * To create a DescriptorSet that provides your language-specific features,
    * you have to provide a google.protobuf.FeatureSetDefaults message in this
-   * option.
+   * option. It can also specify the minimum and maximum supported edition.
    *
    * The defaults can be generated with `protoc` - see the flag
    * `--experimental_edition_defaults_out`.

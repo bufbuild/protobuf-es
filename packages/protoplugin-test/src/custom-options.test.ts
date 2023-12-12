@@ -22,8 +22,8 @@ import type { DescFile } from "@bufbuild/protobuf";
 import { createDescriptorSet, ScalarType } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { readFileSync } from "node:fs";
-import { OptionEnum } from "./gen/proto/option-enum_pb.js";
-import { OptionMessage } from "./gen/proto/option-message_pb.js";
+import { OptionEnum } from "./gen/option-enum_pb";
+import { OptionMessage } from "./gen/option-message_pb";
 
 describe("custom options", () => {
   describe("findCustomScalarOption on file descriptor", () => {

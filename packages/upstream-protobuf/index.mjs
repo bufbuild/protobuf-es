@@ -101,9 +101,7 @@ export class UpstreamProtobuf {
     if (typeof temp !== "string") {
       const thisFilePath = new URL(import.meta.url).pathname;
       const thisFileContent = readFileSync(new URL(import.meta.url).pathname);
-      const hashObj = createHash("sha256");
-      hashObj.update(thisFileContent);
-      const digest = hashObj.digest("hex");
+      const digest = createHash("sha256").update(thisFileContent).digest("hex");
       temp = joinPath(thisFilePath, "..", ".tmp", this.#version + "-" + digest);
     }
     this.#temp = temp;
@@ -213,21 +211,30 @@ export class UpstreamProtobuf {
   /**
    * @param {string} [minimumEdition]
    * @param {string} [maximumEdition]
+   * @param {string} [maximumEdition]
+   * @param {Record<string, string>|string} [filesOrFileContent]
    * @return Promise<Buffer>
    */
-  async getFeatureSetDefaults(minimumEdition, maximumEdition) {
-    const binPath = this.#getTempPath(
-      "feature-set-defaults",
-      `min-${minimumEdition ?? "default"}-max-${
-        maximumEdition ?? "default"
-      }.bin`,
-    );
-    if (!existsSync(binPath)) {
-      const protocPath = await this.getProtocPath();
+  async getFeatureSetDefaults(
+    minimumEdition,
+    maximumEdition,
+    filesOrFileContent,
+  ) {
+    const protocPath = await this.getProtocPath();
+    const tempDir = mkdtempSync(joinPath(this.#temp, "feature-set-defaults-"));
+    const files =
+      typeof filesOrFileContent == "string"
+        ? { "input.proto": filesOrFileContent }
+        : filesOrFileContent === undefined
+          ? {}
+          : filesOrFileContent;
+    try {
+      writeTree(Object.entries(files), tempDir);
       const args = [
         "--experimental_edition_defaults_out",
-        binPath,
+        "defaults.bin",
         "google/protobuf/descriptor.proto",
+        ...Object.keys(files),
       ];
       if (minimumEdition !== undefined) {
         args.push("--experimental_edition_defaults_minimum", minimumEdition);
@@ -237,10 +244,12 @@ export class UpstreamProtobuf {
       }
       execFileSync(protocPath, args, {
         shell: false,
-        stdio: "ignore",
+        cwd: tempDir,
       });
+      return readFileSync(joinPath(tempDir, "defaults.bin"));
+    } finally {
+      rmSync(tempDir, { recursive: true });
     }
-    return readFileSync(binPath);
   }
 
   /**
