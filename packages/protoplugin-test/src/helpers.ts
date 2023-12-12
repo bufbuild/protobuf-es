@@ -12,12 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {CodeGeneratorRequest, CodeGeneratorResponse,} from "@bufbuild/protobuf";
-import type {Plugin} from "@bufbuild/protoplugin";
-import {createEcmaScriptPlugin} from "@bufbuild/protoplugin";
-import type {GeneratedFile, Schema, Target,} from "@bufbuild/protoplugin/ecmascript";
-import {UpstreamProtobuf} from "upstream-protobuf";
-import {expect} from "@jest/globals";
+import {
+  CodeGeneratorRequest,
+  CodeGeneratorResponse,
+} from "@bufbuild/protobuf";
+import type { Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type {
+  GeneratedFile,
+  Schema,
+  Target,
+} from "@bufbuild/protoplugin/ecmascript";
+import { UpstreamProtobuf } from "upstream-protobuf";
+import { expect } from "@jest/globals";
 
 const upstream = new UpstreamProtobuf();
 
