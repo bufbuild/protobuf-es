@@ -15,9 +15,8 @@
 import { describe, expect, test } from "@jest/globals";
 import type { DescFile } from "@bufbuild/protobuf";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
 import { UpstreamProtobuf } from "upstream-protobuf";
 
 describe("keep_empty_files", () => {

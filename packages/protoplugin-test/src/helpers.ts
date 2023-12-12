@@ -13,49 +13,99 @@
 // limitations under the License.
 
 import {
-  createDescriptorSet,
-  FileDescriptorSet,
   CodeGeneratorRequest,
+  CodeGeneratorResponse,
 } from "@bufbuild/protobuf";
-import { readFileSync } from "fs";
+import type { Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type {
+  GeneratedFile,
+  Schema,
+  Target,
+} from "@bufbuild/protoplugin/ecmascript";
+import { UpstreamProtobuf } from "upstream-protobuf";
+import { expect } from "@jest/globals";
 
-/**
- * Assert that condition is truthy or throw error (with message)
- */
-export function assert(condition: unknown, msg?: string): asserts condition {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
-  if (!condition) {
-    throw new Error(msg);
+const upstream = new UpstreamProtobuf();
+
+type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
+
+// prettier-ignore
+type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | undefined> =
+  {
+    returnLinesOfFirstFile?: ReturnLinesOfFirstFile;
   }
-}
+  &
+    {
+      proto: string | Record<string, string>;
+      parameter?: string;
+      name?: PluginInit["name"];
+      version?: PluginInit["version"];
+      parseOption?: PluginInit["parseOption"];
+    }
+  &
+    (
+      {
+        generateTs: PluginInit["generateTs"];
+        generateJs?: PluginInit["generateJs"];
+        generateDts?: PluginInit["generateDts"];
+        transpile?: PluginInit["transpile"];
+      }
+    |
+      { generateAny: (f: GeneratedFile, schema: Schema, target: Target) => void; }
+    );
 
-/**
- * Returns a constructed CodeGeneratorRequest using a pre-built Buf image for testing
- */
-export function getCodeGeneratorRequest(
-  parameter = "",
-  fileToGenerate: string[],
+export async function createTestPluginAndRun(
+  opt: CreateTestPluginAndRunOptions<false | undefined>,
+): Promise<CodeGeneratorResponse>;
+export async function createTestPluginAndRun(
+  opt: CreateTestPluginAndRunOptions<true>,
+): Promise<string[]>;
+export async function createTestPluginAndRun(
+  opt: CreateTestPluginAndRunOptions<boolean | undefined>,
 ) {
-  const fds = getFileDescriptorSet();
-  return new CodeGeneratorRequest({
-    parameter,
-    fileToGenerate, // tells the plugin which files from the set to generate
-    protoFile: fds.file,
+  const protoFiles =
+    typeof opt.proto == "string" ? { "x.proto": opt.proto } : opt.proto;
+  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, {
+    parameter: opt.parameter,
   });
-}
-
-/**
- * Returns a DescriptorSet from a pre-built Buf image
- */
-export function getDescriptorSet() {
-  const fds = getFileDescriptorSet();
-  return createDescriptorSet(fds.file);
-}
-
-/**
- * Returns a FileDescriptorSet from a pre-built Buf image
- */
-function getFileDescriptorSet() {
-  const fdsBytes = readFileSync("./descriptorset.bin");
-  return FileDescriptorSet.fromBinary(fdsBytes);
+  const req = CodeGeneratorRequest.fromBinary(reqBytes);
+  let plugin: Plugin;
+  const defaultPluginInit = {
+    name: "test",
+    version: "v1",
+  };
+  if ("generateAny" in opt) {
+    plugin = createEcmaScriptPlugin({
+      ...defaultPluginInit,
+      ...opt,
+      generateTs: (schema: Schema, target: "ts") => {
+        const f = schema.generateFile("test.ts");
+        opt.generateAny(f, schema, target);
+      },
+      generateJs: (schema: Schema, target: "js") => {
+        const f = schema.generateFile("test.js");
+        opt.generateAny(f, schema, target);
+      },
+      generateDts: (schema: Schema, target: "dts") => {
+        const f = schema.generateFile("test.d.ts");
+        opt.generateAny(f, schema, target);
+      },
+    });
+  } else {
+    plugin = createEcmaScriptPlugin({
+      ...defaultPluginInit,
+      ...opt,
+    });
+  }
+  const res = plugin.run(req);
+  if (opt.returnLinesOfFirstFile === true) {
+    expect(res.file.length).toBeGreaterThanOrEqual(1);
+    let content = res.file[0]?.content ?? "";
+    if (content.endsWith("\n")) {
+      content = content.slice(0, -1); // trim final newline so we don't return an extra line
+    }
+    return content.split("\n");
+  }
+  return res;
 }

@@ -13,11 +13,11 @@
 // limitations under the License.
 
 syntax = "proto3";
-package example;
 
-import "proto/person.proto";
+package test;
 
-// Our address book file is just one of these.
-message AddressBook {
-  repeated Person people = 1;
+// Used in custom-options.test.ts
+enum OptionEnum {
+  OPTION_ENUM_UNSPECIFIED = 0;
+  OPTION_ENUM_A = 1;
 }

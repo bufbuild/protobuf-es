@@ -5,7 +5,6 @@
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "buf:build": "buf build -o descriptorset.bin",
     "generate": "buf generate",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
