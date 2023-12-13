@@ -325,7 +325,8 @@ describe("DescriptorSet", () => {
         expect(tf.intFileFeature).toBe(8);
       }
     });
-    // test helper to read a message field extension to google.protobuf.FeatureSet
+    // test helper to read the extension to google.protobuf.FeatureSet defined
+    // in google/protobuf/unittest_features.proto
     function getTestFeatures(
       features: FeatureSet,
     ): TestFeatures & Required<TestFeatures> {
