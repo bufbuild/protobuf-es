@@ -76,9 +76,6 @@ export function createDescriptorSet(
     services: new Map<string, DescService>(),
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
-    resolveFeatures: createFeatureResolver(
-      options?.featureSetDefaults ?? featureSetDefaults,
-    ),
   };
   const fileDescriptors =
     input instanceof FileDescriptorSet
@@ -86,7 +83,20 @@ export function createDescriptorSet(
       : input instanceof Uint8Array
         ? FileDescriptorSet.fromBinary(input).file
         : input;
-  const files = fileDescriptors.map((proto) => newFile(proto, cart));
+  const resolverByEdition = new Map<Edition, FeatureResolverFn>();
+  const files = fileDescriptors.map((proto) => {
+    const edition =
+      proto.edition ?? parseFileSyntax(proto.syntax, proto.edition).edition;
+    let resolveFeatures = resolverByEdition.get(edition);
+    if (resolveFeatures === undefined) {
+      resolveFeatures = createFeatureResolver(
+        options?.featureSetDefaults ?? featureSetDefaults,
+        edition,
+      );
+      resolverByEdition.set(edition, resolveFeatures);
+    }
+    return newFile(proto, cart, resolveFeatures);
+  });
   return { files, ...cart };
 }
 
@@ -101,7 +111,7 @@ interface CreateDescriptorSetOptions {
    *
    * To create a DescriptorSet that provides your language-specific features,
    * you have to provide a google.protobuf.FeatureSetDefaults message in this
-   * option.
+   * option. It can also specify the minimum and maximum supported edition.
    *
    * The defaults can be generated with `protoc` - see the flag
    * `--experimental_edition_defaults_out`.
@@ -119,13 +129,16 @@ interface Cart {
   services: Map<string, DescService>;
   extensions: Map<string, DescExtension>;
   mapEntries: Map<string, DescMessage>;
-  resolveFeatures: FeatureResolverFn;
 }
 
 /**
  * Create a descriptor for a file.
  */
-function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
+function newFile(
+  proto: FileDescriptorProto,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): DescFile {
   assert(proto.name, `invalid FileDescriptorProto: missing name`);
   const file: DescFile = {
     kind: "file",
@@ -152,26 +165,26 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
       ]);
     },
     getFeatures() {
-      return cart.resolveFeatures(this.edition, this.proto.options?.features);
+      return resolveFeatures(proto.options?.features);
     },
   };
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, undefined, cart);
+    addEnum(enumProto, file, undefined, cart, resolveFeatures);
   }
   for (const messageProto of proto.messageType) {
-    addMessage(messageProto, file, undefined, cart);
+    addMessage(messageProto, file, undefined, cart, resolveFeatures);
   }
   for (const serviceProto of proto.service) {
-    addService(serviceProto, file, cart);
+    addService(serviceProto, file, cart, resolveFeatures);
   }
-  addExtensions(file, cart);
+  addExtensions(file, cart, resolveFeatures);
   for (const mapEntry of cart.mapEntries.values()) {
-    addFields(mapEntry, cart);
+    addFields(mapEntry, cart, resolveFeatures);
   }
   for (const message of file.messages) {
-    addFields(message, cart);
-    addExtensions(message, cart);
+    addFields(message, cart, resolveFeatures);
+    addExtensions(message, cart, resolveFeatures);
   }
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
   return file;
@@ -182,23 +195,27 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
  * and to our cart.
  * Recurses into nested types.
  */
-function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
+function addExtensions(
+  desc: DescFile | DescMessage,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): void {
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc, undefined, cart);
+        const ext = newExtension(proto, desc, undefined, cart, resolveFeatures);
         desc.extensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
       }
       break;
     case "message":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc.file, desc, cart);
+        const ext = newExtension(proto, desc.file, desc, cart, resolveFeatures);
         desc.nestedExtensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
       }
       for (const message of desc.nestedMessages) {
-        addExtensions(message, cart);
+        addExtensions(message, cart, resolveFeatures);
       }
       break;
   }
@@ -208,14 +225,25 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
  * Create descriptors for fields and oneof groups, and add them to the message.
  * Recurses into nested types.
  */
-function addFields(message: DescMessage, cart: Cart): void {
+function addFields(
+  message: DescMessage,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message, cart),
+    newOneof(proto, message, resolveFeatures),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
     const oneof = findOneof(proto, allOneofs);
-    const field = newField(proto, message.file, message, oneof, cart);
+    const field = newField(
+      proto,
+      message.file,
+      message,
+      oneof,
+      cart,
+      resolveFeatures,
+    );
     message.fields.push(field);
     if (oneof === undefined) {
       message.members.push(field);
@@ -231,7 +259,7 @@ function addFields(message: DescMessage, cart: Cart): void {
     message.oneofs.push(oneof);
   }
   for (const child of message.nestedMessages) {
-    addFields(child, cart);
+    addFields(child, cart, resolveFeatures);
   }
 }
 
@@ -244,6 +272,7 @@ function addEnum(
   file: DescFile,
   parent: DescMessage | undefined,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid EnumDescriptorProto: missing name`);
   const desc: DescEnum = {
@@ -276,12 +305,9 @@ function addEnum(
       return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      const parentFeatures =
-        this.parent?.getFeatures() ?? this.file.getFeatures();
-      return cart.resolveFeatures(
-        this.file.edition,
-        parentFeatures,
-        this.proto.options?.features,
+      return resolveFeatures(
+        parent?.getFeatures() ?? file.getFeatures(),
+        proto.options?.features,
       );
     },
   };
@@ -318,11 +344,7 @@ function addEnum(
         return findComments(file.proto.sourceCodeInfo, path);
       },
       getFeatures() {
-        return cart.resolveFeatures(
-          this.parent.file.edition,
-          this.parent.getFeatures(),
-          this.proto.options?.features,
-        );
+        return resolveFeatures(desc.getFeatures(), proto.options?.features);
       },
     });
   });
@@ -338,6 +360,7 @@ function addMessage(
   file: DescFile,
   parent: DescMessage | undefined,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid DescriptorProto: missing name`);
   const desc: DescMessage = {
@@ -371,12 +394,9 @@ function addMessage(
       return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      const parentFeatures =
-        this.parent?.getFeatures() ?? this.file.getFeatures();
-      return cart.resolveFeatures(
-        this.file.edition,
-        parentFeatures,
-        this.proto.options?.features,
+      return resolveFeatures(
+        parent?.getFeatures() ?? file.getFeatures(),
+        proto.options?.features,
       );
     },
   };
@@ -387,10 +407,10 @@ function addMessage(
     cart.messages.set(desc.typeName, desc);
   }
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, desc, cart);
+    addEnum(enumProto, file, desc, cart, resolveFeatures);
   }
   for (const messageProto of proto.nestedType) {
-    addMessage(messageProto, file, desc, cart);
+    addMessage(messageProto, file, desc, cart, resolveFeatures);
   }
 }
 
@@ -402,6 +422,7 @@ function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid ServiceDescriptorProto: missing name`);
   const desc: DescService = {
@@ -423,17 +444,13 @@ function addService(
       return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      return cart.resolveFeatures(
-        this.file.edition,
-        this.file.getFeatures(),
-        this.proto.options?.features,
-      );
+      return resolveFeatures(file.getFeatures(), proto.options?.features);
     },
   };
   file.services.push(desc);
   cart.services.set(desc.typeName, desc);
   for (const methodProto of proto.method) {
-    desc.methods.push(newMethod(methodProto, desc, cart));
+    desc.methods.push(newMethod(methodProto, desc, cart, resolveFeatures));
   }
 }
 
@@ -444,6 +461,7 @@ function newMethod(
   proto: MethodDescriptorProto,
   parent: DescService,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescMethod {
   assert(proto.name, `invalid MethodDescriptorProto: missing name`);
   assert(proto.inputType, `invalid MethodDescriptorProto: missing input_type`);
@@ -507,11 +525,7 @@ function newMethod(
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      return cart.resolveFeatures(
-        this.parent.file.edition,
-        this.parent.getFeatures(),
-        this.proto.options?.features,
-      );
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
   };
 }
@@ -522,7 +536,7 @@ function newMethod(
 function newOneof(
   proto: OneofDescriptorProto,
   parent: DescMessage,
-  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescOneof {
   assert(proto.name, `invalid OneofDescriptorProto: missing name`);
   return {
@@ -544,11 +558,7 @@ function newOneof(
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      return cart.resolveFeatures(
-        this.parent.file.edition,
-        this.parent.getFeatures(),
-        this.proto.options?.features,
-      );
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
   };
 }
@@ -562,6 +572,7 @@ function newField(
   parent: DescMessage,
   oneof: DescOneof | undefined,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescField {
   assert(proto.name, `invalid FieldDescriptorProto: missing name`);
   assert(proto.number, `invalid FieldDescriptorProto: missing number`);
@@ -574,8 +585,8 @@ function newField(
     parent,
     oneof,
     optional: isOptionalField(proto, file.syntax),
-    packedByDefault: isPackedFieldByDefault(file, proto, cart.resolveFeatures),
-    packed: isPackedField(file, parent, proto, cart.resolveFeatures),
+    packedByDefault: isPackedFieldByDefault(proto, resolveFeatures),
+    packed: isPackedField(file, parent, proto, resolveFeatures),
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
@@ -598,11 +609,7 @@ function newField(
       return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      return cart.resolveFeatures(
-        file.edition,
-        this.parent.getFeatures(),
-        this.proto.options?.features,
-      );
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
   };
   const repeated = proto.label === FieldDescriptorProto_Label.REPEATED;
@@ -683,6 +690,7 @@ function newExtension(
   file: DescFile,
   parent: DescMessage | undefined,
   cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescExtension {
   assert(proto.extendee, `invalid FieldDescriptorProto: missing extendee`);
   const field = newField(
@@ -691,6 +699,7 @@ function newExtension(
     null as unknown as DescMessage, // to safe us many lines of duplicated code, we trick the type system
     undefined,
     cart,
+    resolveFeatures,
   );
   const extendee = cart.messages.get(trimLeadingDot(proto.extendee));
   assert(
@@ -723,10 +732,9 @@ function newExtension(
       return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
-      return cart.resolveFeatures(
-        this.file.edition,
-        (this.parent ?? this.file).getFeatures(),
-        this.proto.options?.features,
+      return resolveFeatures(
+        (parent ?? file).getFeatures(),
+        proto.options?.features,
       );
     },
   };
@@ -957,11 +965,10 @@ function isOptionalField(
  * specifies as a default. In edition 2023, fields are packed by default.
  */
 function isPackedFieldByDefault(
-  file: DescFile,
   proto: FieldDescriptorProto,
   resolveFeatures: FeatureResolverFn,
 ) {
-  const { repeatedFieldEncoding } = resolveFeatures(file.edition);
+  const { repeatedFieldEncoding } = resolveFeatures();
   if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
     return false;
   }
@@ -1008,7 +1015,6 @@ function isPackedField(
           return proto.options?.packed ?? true;
         default: {
           const { repeatedFieldEncoding } = resolveFeatures(
-            file.edition,
             parent?.getFeatures() ?? file.getFeatures(),
             proto.options?.features,
           );
