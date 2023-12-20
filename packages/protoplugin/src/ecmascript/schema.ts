@@ -19,7 +19,11 @@ import type {
   DescMessage,
   DescriptorSet,
 } from "@bufbuild/protobuf";
-import { codegenInfo, createDescriptorSet } from "@bufbuild/protobuf";
+import {
+  codegenInfo,
+  createDescriptorSet,
+  FeatureSetDefaults,
+} from "@bufbuild/protobuf";
 import type {
   FileInfo,
   GeneratedFile,
@@ -35,6 +39,7 @@ import {
   rewriteImportPath,
 } from "./import-path.js";
 import { ParsedParameter } from "./parameter";
+import { makeFilePreamble } from "./gencommon";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -82,8 +87,11 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
+  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
-  const descriptorSet = createDescriptorSet(request.protoFile);
+  const descriptorSet = createDescriptorSet(request.protoFile, {
+    featureSetDefaults,
+  });
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
   const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
@@ -95,6 +103,14 @@ export function createSchema(
     );
     return createImportSymbol(name, from);
   };
+  const createPreamble = (descFile: DescFile) =>
+    makeFilePreamble(
+      descFile,
+      pluginName,
+      pluginVersion,
+      parameter.sanitizedParameter,
+      parameter.tsNocheck,
+    );
   let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
   return {
@@ -121,12 +137,7 @@ export function createSchema(
           ),
         createTypeImport,
         runtime,
-        {
-          pluginName,
-          pluginVersion,
-          pluginParameter: parameter.sanitizedParameter,
-          tsNocheck: parameter.tsNocheck,
-        },
+        createPreamble,
       );
       generatedFiles.push(genFile);
       return genFile;
