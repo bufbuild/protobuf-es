@@ -12,19 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { beforeAll, describe, expect, test } from "@jest/globals";
 import { readFileSync } from "fs";
 import type { AnyDesc } from "@bufbuild/protobuf";
 import {
+  BinaryReader,
   createDescriptorSet,
   Edition,
   FeatureSet,
   FeatureSet_EnumType,
+  FeatureSet_FieldPresence,
   FeatureSet_JsonFormat,
   FeatureSet_MessageEncoding,
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_Utf8Validation,
-  FeatureSet_FieldPresence,
+  FeatureSetDefaults,
+  FileDescriptorSet,
   proto3,
   ScalarType,
 } from "@bufbuild/protobuf";
@@ -37,7 +40,10 @@ import {
   TestAllExtensions,
   TestNestedExtension,
 } from "./gen/ts/google/protobuf/unittest_pb.js";
+import { TestFeatures } from "./gen/ts/google/protobuf/unittest_features_pb.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
+import { join } from "node:path";
+import assert from "node:assert";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 
@@ -208,6 +214,133 @@ describe("DescriptorSet", () => {
         messages.get("MessageJsonAllow.MessageJsonLegacy.MessageJsonLegacy"),
       );
     });
+  });
+  describe("with own feature-set defaults", () => {
+    test.each([`syntax="proto3"`, `syntax="proto2"`, `edition="2023"`])(
+      "parses %s without error",
+      async (syntax) => {
+        const upstream = new UpstreamProtobuf();
+        const fsdBin = await upstream.getFeatureSetDefaults("PROTO2", "2023");
+        const fsd = FeatureSetDefaults.fromBinary(fsdBin);
+        const fdsBin = await new UpstreamProtobuf().compileToDescriptorSet(
+          syntax + ";",
+        );
+        const set = createDescriptorSet(fdsBin, {
+          featureSetDefaults: fsd,
+        });
+        expect(set.files.length).toBe(1);
+        expect(set.files[0].getFeatures()).toBeDefined();
+      },
+    );
+    test("raises error when parsing unsupported edition from the past", async () => {
+      const upstream = new UpstreamProtobuf();
+      const featureSetDefaults = FeatureSetDefaults.fromBinary(
+        await upstream.getFeatureSetDefaults("PROTO3", "2023"),
+      );
+      const fileDescriptorSet =
+        await new UpstreamProtobuf().compileToDescriptorSet(`syntax="proto2";`);
+      expect(() =>
+        createDescriptorSet(fileDescriptorSet, {
+          featureSetDefaults,
+        }),
+      ).toThrow(
+        /^Edition EDITION_PROTO2 is earlier than the minimum supported edition EDITION_PROTO3$/,
+      );
+    });
+    test("raises error when parsing unsupported edition from the future", async () => {
+      const upstream = new UpstreamProtobuf();
+      const featureSetDefaults = FeatureSetDefaults.fromBinary(
+        await upstream.getFeatureSetDefaults("PROTO2", "2023"),
+      );
+      const fileDescriptorSet = FileDescriptorSet.fromBinary(
+        await new UpstreamProtobuf().compileToDescriptorSet(`edition="2023";`),
+      );
+      fileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
+      expect(() =>
+        createDescriptorSet(fileDescriptorSet, {
+          featureSetDefaults,
+        }),
+      ).toThrow(
+        /^Edition EDITION_99999_TEST_ONLY is later than the maximum supported edition EDITION_2023$/,
+      );
+    });
+  });
+  describe("edition custom features", () => {
+    const upstream = new UpstreamProtobuf();
+    let testProto: Record<"google/protobuf/unittest_features.proto", string>;
+    let featureSetDefaults: FeatureSetDefaults;
+    beforeAll(async () => {
+      const { dir } = await upstream.getTestProtoInclude();
+      const content = readFileSync(
+        join(dir, "google/protobuf/unittest_features.proto"),
+        "utf-8",
+      );
+      testProto = {
+        "google/protobuf/unittest_features.proto": content,
+      };
+      const bin = await upstream.getFeatureSetDefaults(
+        "PROTO2",
+        "2023",
+        testProto,
+      );
+      featureSetDefaults = FeatureSetDefaults.fromBinary(bin);
+    });
+    test("default values can be read from unknown fields of getFeatures()", async () => {
+      const bin = await upstream.compileToDescriptorSet(
+        {
+          ...testProto,
+          "input.proto": `
+            edition = "2023";
+            package protobuf_unittest;
+            `,
+        },
+        { includeImports: true },
+      );
+      const set = createDescriptorSet(bin, { featureSetDefaults });
+      const file = set.files.find((f) => f.name === "input");
+      expect(file).toBeDefined();
+      if (file !== undefined) {
+        const tf = getTestFeatures(file.getFeatures());
+        expect(tf.intFileFeature).toBe(1);
+      }
+    });
+    test("overrides can be read from unknown fields of getFeatures()", async () => {
+      const bin = await upstream.compileToDescriptorSet(
+        {
+          ...testProto,
+          "input.proto": `
+            edition = "2023";
+            package protobuf_unittest;
+            import "google/protobuf/unittest_features.proto";
+            option features.(pb.test).int_file_feature = 8;
+            `,
+        },
+        { includeImports: true },
+      );
+      const set = createDescriptorSet(bin, { featureSetDefaults });
+      const file = set.files.find((f) => f.name === "input");
+      expect(file).toBeDefined();
+      if (file !== undefined) {
+        const tf = getTestFeatures(file.getFeatures());
+        expect(tf.intFileFeature).toBe(8);
+      }
+    });
+    // test helper to read the extension to google.protobuf.FeatureSet defined
+    // in google/protobuf/unittest_features.proto
+    function getTestFeatures(
+      features: FeatureSet,
+    ): TestFeatures & Required<TestFeatures> {
+      const uf = TestFeatures.runtime.bin
+        .listUnknownFields(features)
+        .filter((f) => f.no === 9999);
+      assert(uf.length >= 0);
+      const tf = new TestFeatures();
+      for (const { data } of uf) {
+        const bytes = new BinaryReader(data).bytes();
+        tf.fromBinary(bytes, { readUnknownFields: false });
+      }
+      return tf as TestFeatures & Required<TestFeatures>;
+    }
   });
   describe("repeated field packing", () => {
     test("proto2 is unpacked by default", async () => {
