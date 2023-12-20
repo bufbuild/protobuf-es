@@ -20,6 +20,7 @@ export declare class UpstreamProtobuf {
   getFeatureSetDefaults(
     minimumEdition?: string,
     maximumEdition?: string,
+    filesOrContent?: string | Record<string, string>,
   ): Promise<Uint8Array>;
 
   compileToDescriptorSet(
@@ -39,6 +40,11 @@ export declare class UpstreamProtobuf {
     files: Record<string, string>,
     opt?: CreateCodeGeneratorRequestOptions,
   ): Promise<Uint8Array>;
+
+  getTestProtoInclude(): Promise<{
+    dir: string;
+    files: string[];
+  }>;
 }
 
 interface CreateCodeGeneratorRequestOptions {
