@@ -21,7 +21,7 @@ import type {
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
-import { literalString, makeFilePreamble } from "./gencommon.js";
+import { literalString } from "./gencommon.js";
 import type { RuntimeImports } from "./runtime-imports.js";
 import { makeImportPathRelative } from "./import-path.js";
 import type { ExportDeclaration } from "./export-declaration.js";
@@ -167,8 +167,8 @@ export interface GeneratedFileController extends GeneratedFile {
 }
 
 type CreateTypeImportFn = (desc: DescMessage | DescEnum) => ImportSymbol;
-
 type RewriteImportPathFn = (path: string) => string;
+type CreatePreambleFn = (descFile: DescFile) => string;
 
 export function createGeneratedFile(
   name: string,
@@ -177,24 +177,13 @@ export function createGeneratedFile(
   rewriteImportPath: RewriteImportPathFn,
   createTypeImport: CreateTypeImportFn,
   runtimeImports: RuntimeImports,
-  preambleSettings: {
-    pluginName: string;
-    pluginVersion: string;
-    pluginParameter: string;
-    tsNocheck: boolean;
-  },
+  createPreamble: CreatePreambleFn,
 ): GeneratedFileController {
   let preamble: string | undefined;
   const el: El[] = [];
   return {
     preamble(file) {
-      preamble = makeFilePreamble(
-        file,
-        preambleSettings.pluginName,
-        preambleSettings.pluginVersion,
-        preambleSettings.pluginParameter,
-        preambleSettings.tsNocheck,
-      );
+      preamble = createPreamble(file);
     },
     print(
       printableOrFragments?: Printable | TemplateStringsArray,
