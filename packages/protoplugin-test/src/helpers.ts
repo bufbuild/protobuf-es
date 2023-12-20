@@ -38,10 +38,13 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
   &
     {
       proto: string | Record<string, string>;
+      filesToGenerate?: string[];
       parameter?: string;
       name?: PluginInit["name"];
       version?: PluginInit["version"];
       parseOption?: PluginInit["parseOption"];
+      supportsEditions?: PluginInit["supportsEditions"];
+      featureSetDefaults?: PluginInit["featureSetDefaults"];
     }
   &
     (
@@ -66,9 +69,7 @@ export async function createTestPluginAndRun(
 ) {
   const protoFiles =
     typeof opt.proto == "string" ? { "x.proto": opt.proto } : opt.proto;
-  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, {
-    parameter: opt.parameter,
-  });
+  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, opt);
   const req = CodeGeneratorRequest.fromBinary(reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {
