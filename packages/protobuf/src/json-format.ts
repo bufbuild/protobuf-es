@@ -16,7 +16,10 @@ import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
 import type { ScalarType } from "./field.js";
 import { LongType } from "./field.js";
-import type { IMessageTypeRegistry } from "./type-registry.js";
+import type {
+  IExtensionRegistry,
+  IMessageTypeRegistry,
+} from "./type-registry.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -90,10 +93,10 @@ export interface JsonReadOptions {
   ignoreUnknownFields: boolean;
 
   /**
-   * This option is required to read `google.protobuf.Any`
+   * This option is required to read `google.protobuf.Any` and extensions
    * from JSON format.
    */
-  typeRegistry?: IMessageTypeRegistry;
+  typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>;
 }
 
 /**
@@ -125,10 +128,10 @@ export interface JsonWriteOptions {
   useProtoFieldName: boolean;
 
   /**
-   * This option is required to write `google.protobuf.Any`
+   * This option is required to write `google.protobuf.Any` and extensions
    * to JSON format.
    */
-  typeRegistry?: IMessageTypeRegistry;
+  typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>;
 }
 
 /**

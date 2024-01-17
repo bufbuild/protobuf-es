@@ -21,6 +21,7 @@ import { LongType } from "./field.js";
 import type { EnumType, EnumValueInfo } from "./enum.js";
 import type {
   IEnumTypeRegistry,
+  IExtensionRegistry,
   IMessageTypeRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
@@ -53,8 +54,14 @@ import {
   FieldDescriptorProto_Type,
   FileDescriptorSet,
 } from "./google/protobuf/descriptor_pb.js";
-import type { DescField, DescriptorSet } from "./descriptor-set.js";
+import type {
+  DescExtension,
+  DescField,
+  DescriptorSet,
+} from "./descriptor-set.js";
 import { createDescriptorSet } from "./create-descriptor-set.js";
+import type { Extension } from "./extension.js";
+import type { ExtensionFieldSource } from "./private/extensions.js";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [
@@ -95,13 +102,18 @@ const wkEnums = [getEnumType(NullValue)];
 export function createRegistryFromDescriptors(
   input: DescriptorSet | FileDescriptorSet | Uint8Array,
   replaceWkt = true,
-): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
+): IMessageTypeRegistry &
+  IEnumTypeRegistry &
+  IExtensionRegistry &
+  IServiceTypeRegistry {
   const set: DescriptorSet =
     input instanceof Uint8Array || input instanceof FileDescriptorSet
       ? createDescriptorSet(input)
       : input;
   const enums: Record<string, EnumType | undefined> = {};
   const messages: Record<string, MessageType | undefined> = {};
+  const extensions: Record<string, Extension | undefined> = {};
+  const extensionsByExtendee = new Map<string, Map<number, DescExtension>>();
   const services: Record<string, ServiceType | undefined> = {};
   if (replaceWkt) {
     for (const mt of wkMessages) {
@@ -208,12 +220,64 @@ export function createRegistryFromDescriptors(
         methods,
       });
     },
+
+    /**
+     * May raise an error on invalid descriptors.
+     */
+    findExtensionFor(typeName: string, no: number): Extension | undefined {
+      if (!set.messages.has(typeName)) {
+        return undefined;
+      }
+      let extensionsByNo = extensionsByExtendee.get(typeName);
+      if (!extensionsByNo) {
+        // maintain a lookup for extension desc by number
+        extensionsByNo = new Map<number, DescExtension>();
+        extensionsByExtendee.set(typeName, extensionsByNo);
+        for (const desc of set.extensions.values()) {
+          if (desc.extendee.typeName == typeName) {
+            extensionsByNo.set(desc.number, desc);
+          }
+        }
+      }
+      const desc = extensionsByExtendee.get(typeName)?.get(no);
+      return desc ? this.findExtension(desc.typeName) : undefined;
+    },
+
+    /**
+     * May raise an error on invalid descriptors.
+     */
+    findExtension(typeName: string): Extension | undefined {
+      const existing = extensions[typeName];
+      if (existing) {
+        return existing;
+      }
+      const desc = set.extensions.get(typeName);
+      if (!desc) {
+        return undefined;
+      }
+      const extendee = this.findMessage(desc.extendee.typeName);
+      assert(
+        extendee,
+        `message "${desc.extendee.typeName}" for ${desc.toString()} not found`,
+      );
+      const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
+      const ext = runtime.makeExtension(
+        typeName,
+        extendee,
+        makeFieldInfo(desc, this) as ExtensionFieldSource,
+      );
+      extensions[typeName] = ext;
+      return ext;
+    },
   };
 }
 
 interface Resolver extends IMessageTypeRegistry, IEnumTypeRegistry {}
 
-function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
+function makeFieldInfo(
+  desc: DescField | DescExtension,
+  resolver: Resolver,
+): PartialFieldInfo {
   switch (desc.fieldKind) {
     case "map":
       return makeMapFieldInfo(desc, resolver);
@@ -233,7 +297,7 @@ function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
 }
 
 function makeMapFieldInfo(
-  field: DescField & { fieldKind: "map" },
+  field: (DescField | DescExtension) & { fieldKind: "map" },
   resolver: Resolver,
 ): PartialFieldInfo {
   const base = {
@@ -285,7 +349,7 @@ function makeMapFieldInfo(
 }
 
 function makeScalarFieldInfo(
-  field: DescField & { fieldKind: "scalar" },
+  field: (DescField | DescExtension) & { fieldKind: "scalar" },
 ): PartialFieldInfo {
   // We are creating _partial_ field info here, so we omit long type bigint,
   // which is the default.
@@ -326,7 +390,7 @@ function makeScalarFieldInfo(
 }
 
 function makeMessageFieldInfo(
-  field: DescField & { fieldKind: "message" },
+  field: (DescField | DescExtension) & { fieldKind: "message" },
   resolver: Resolver,
 ): PartialFieldInfo {
   const messageType = resolver.findMessage(field.message.typeName);
@@ -366,7 +430,7 @@ function makeMessageFieldInfo(
 }
 
 function makeEnumFieldInfo(
-  field: DescField & { fieldKind: "enum" },
+  field: (DescField | DescExtension) & { fieldKind: "enum" },
   resolver: Resolver,
 ): PartialFieldInfo {
   const enumType = resolver.findEnum(field.enum.typeName);

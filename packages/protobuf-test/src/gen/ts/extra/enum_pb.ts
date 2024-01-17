@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { EnumOptions, EnumValueOptions, Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.AnnotatedEnum
@@ -165,4 +165,22 @@ proto3.util.setEnumType(EnumMessage_NestedEnum, "spec.EnumMessage.NestedEnum", [
   { no: 0, name: "NESTED_ZERO" },
   { no: 1, name: "NESTED_ONE" },
 ]);
+
+/**
+ * @generated from extension: bool enum_opt_bool = 2001;
+ */
+export const enum_opt_bool = proto3.makeExtension<EnumOptions, boolean>(
+  "spec.enum_opt_bool", 
+  EnumOptions, 
+  { no: 2001, kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+);
+
+/**
+ * @generated from extension: bool enum_value_opt_bool = 3001;
+ */
+export const enum_value_opt_bool = proto3.makeExtension<EnumValueOptions, boolean>(
+  "spec.enum_value_opt_bool", 
+  EnumValueOptions, 
+  { no: 3001, kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+);
 

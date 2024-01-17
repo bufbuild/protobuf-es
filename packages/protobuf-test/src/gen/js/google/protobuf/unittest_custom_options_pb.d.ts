@@ -25,8 +25,8 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import type { Any, BinaryReadOptions, FieldList, FileOptions, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type { Any, BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { EnumOptions, EnumValueOptions, FieldOptions, FileOptions, Message, MessageOptions, MethodOptions, OneofOptions, proto2, ServiceOptions } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.MethodOpt1
@@ -441,6 +441,11 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
+ */
+export declare const ComplexOptionType2_ComplexOptionType4_complex_opt4: Extension<MessageOptions, ComplexOptionType2_ComplexOptionType4>;
+
+/**
  * @generated from message protobuf_unittest.ComplexOptionType3
  */
 export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
@@ -582,6 +587,11 @@ export declare class AggregateMessageSetElement extends Message<AggregateMessage
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.AggregateMessageSetElement message_set_extension = 15447542;
+ */
+export declare const AggregateMessageSetElement_message_set_extension: Extension<AggregateMessageSet, AggregateMessageSetElement>;
+
+/**
  * A helper type used to test aggregate option parsing
  *
  * @generated from message protobuf_unittest.Aggregate
@@ -639,6 +649,11 @@ export declare class Aggregate extends Message<Aggregate> {
 
   static equals(a: Aggregate | PlainMessage<Aggregate> | undefined, b: Aggregate | PlainMessage<Aggregate> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate nested = 15476903;
+ */
+export declare const Aggregate_nested: Extension<FileOptions, Aggregate>;
 
 /**
  * @generated from message protobuf_unittest.AggregateMessage
@@ -718,6 +733,11 @@ export declare class NestedOptionType_NestedMessage extends Message<NestedOption
 
   static equals(a: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined, b: NestedOptionType_NestedMessage | PlainMessage<NestedOptionType_NestedMessage> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional int32 nested_extension = 7912573;
+ */
+export declare const NestedOptionType_nested_extension: Extension<FileOptions, number>;
 
 /**
  * Custom message option that has a required enum field.
@@ -817,4 +837,217 @@ export declare class TestMessageWithRequiredEnumOption extends Message<TestMessa
 
   static equals(a: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined, b: TestMessageWithRequiredEnumOption | PlainMessage<TestMessageWithRequiredEnumOption> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional uint64 file_opt1 = 7736974;
+ */
+export declare const file_opt1: Extension<FileOptions, bigint>;
+
+/**
+ * @generated from extension: optional int32 message_opt1 = 7739036;
+ */
+export declare const message_opt1: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional fixed64 field_opt1 = 7740936;
+ */
+export declare const field_opt1: Extension<FieldOptions, bigint>;
+
+/**
+ * This is useful for testing that we correctly register default values for
+ * extension options.
+ *
+ * @generated from extension: optional int32 field_opt2 = 7753913 [default = 42];
+ */
+export declare const field_opt2: Extension<FieldOptions, number>;
+
+/**
+ * @generated from extension: optional int32 oneof_opt1 = 7740111;
+ */
+export declare const oneof_opt1: Extension<OneofOptions, number>;
+
+/**
+ * @generated from extension: optional sfixed32 enum_opt1 = 7753576;
+ */
+export declare const enum_opt1: Extension<EnumOptions, number>;
+
+/**
+ * @generated from extension: optional int32 enum_value_opt1 = 1560678;
+ */
+export declare const enum_value_opt1: Extension<EnumValueOptions, number>;
+
+/**
+ * @generated from extension: optional sint64 service_opt1 = 7887650;
+ */
+export declare const service_opt1: Extension<ServiceOptions, bigint>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.MethodOpt1 method_opt1 = 7890860;
+ */
+export declare const method_opt1: Extension<MethodOptions, MethodOpt1>;
+
+/**
+ * @generated from extension: optional bool bool_opt = 7706090;
+ */
+export declare const bool_opt: Extension<MessageOptions, boolean>;
+
+/**
+ * @generated from extension: optional int32 int32_opt = 7705709;
+ */
+export declare const int32_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional int64 int64_opt = 7705542;
+ */
+export declare const int64_opt: Extension<MessageOptions, bigint>;
+
+/**
+ * @generated from extension: optional uint32 uint32_opt = 7704880;
+ */
+export declare const uint32_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional uint64 uint64_opt = 7702367;
+ */
+export declare const uint64_opt: Extension<MessageOptions, bigint>;
+
+/**
+ * @generated from extension: optional sint32 sint32_opt = 7701568;
+ */
+export declare const sint32_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional sint64 sint64_opt = 7700863;
+ */
+export declare const sint64_opt: Extension<MessageOptions, bigint>;
+
+/**
+ * @generated from extension: optional fixed32 fixed32_opt = 7700307;
+ */
+export declare const fixed32_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional fixed64 fixed64_opt = 7700194;
+ */
+export declare const fixed64_opt: Extension<MessageOptions, bigint>;
+
+/**
+ * @generated from extension: optional sfixed32 sfixed32_opt = 7698645;
+ */
+export declare const sfixed32_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional sfixed64 sfixed64_opt = 7685475;
+ */
+export declare const sfixed64_opt: Extension<MessageOptions, bigint>;
+
+/**
+ * @generated from extension: optional float float_opt = 7675390;
+ */
+export declare const float_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional double double_opt = 7673293;
+ */
+export declare const double_opt: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional string string_opt = 7673285;
+ */
+export declare const string_opt: Extension<MessageOptions, string>;
+
+/**
+ * @generated from extension: optional bytes bytes_opt = 7673238;
+ */
+export declare const bytes_opt: Extension<MessageOptions, Uint8Array>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.DummyMessageContainingEnum.TestEnumType enum_opt = 7673233;
+ */
+export declare const enum_opt: Extension<MessageOptions, DummyMessageContainingEnum_TestEnumType>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.DummyMessageInvalidAsOptionType message_type_opt = 7665967;
+ */
+export declare const message_type_opt: Extension<MessageOptions, DummyMessageInvalidAsOptionType>;
+
+/**
+ * @generated from extension: optional int32 mooo = 7663707;
+ */
+export declare const mooo: Extension<ComplexOptionType1, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType3 corge = 7663442;
+ */
+export declare const corge: Extension<ComplexOptionType1, ComplexOptionType3>;
+
+/**
+ * @generated from extension: optional int32 grault = 7650927;
+ */
+export declare const grault: Extension<ComplexOptionType2, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType1 garply = 7649992;
+ */
+export declare const garply: Extension<ComplexOptionType2, ComplexOptionType1>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType1 complex_opt1 = 7646756;
+ */
+export declare const complex_opt1: Extension<MessageOptions, ComplexOptionType1>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType2 complex_opt2 = 7636949;
+ */
+export declare const complex_opt2: Extension<MessageOptions, ComplexOptionType2>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOptionType3 complex_opt3 = 7636463;
+ */
+export declare const complex_opt3: Extension<MessageOptions, ComplexOptionType3>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ComplexOpt6 complexopt6 = 7595468;
+ */
+export declare const complexopt6: Extension<MessageOptions, ComplexOpt6>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate fileopt = 15478479;
+ */
+export declare const fileopt: Extension<FileOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate msgopt = 15480088;
+ */
+export declare const msgopt: Extension<MessageOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate fieldopt = 15481374;
+ */
+export declare const fieldopt: Extension<FieldOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate enumopt = 15483218;
+ */
+export declare const enumopt: Extension<EnumOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate enumvalopt = 15486921;
+ */
+export declare const enumvalopt: Extension<EnumValueOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate serviceopt = 15497145;
+ */
+export declare const serviceopt: Extension<ServiceOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.Aggregate methodopt = 15512713;
+ */
+export declare const methodopt: Extension<MethodOptions, Aggregate>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OldOptionType required_enum_opt = 106161807;
+ */
+export declare const required_enum_opt: Extension<MessageOptions, OldOptionType>;
 

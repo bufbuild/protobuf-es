@@ -23,6 +23,9 @@ import type { EnumObject } from "./enum.js";
 import { getEnumType, makeEnum, makeEnumType } from "./enum.js";
 import type { Util } from "./util.js";
 import { makeMessageType } from "./message-type.js";
+import type { Extension } from "../extension.js";
+import type { ExtensionFieldSource } from "./extensions.js";
+import { makeExtension } from "./extensions.js";
 
 /**
  * A facade that provides serialization and other internal functionality.
@@ -84,6 +87,15 @@ export interface ProtoRuntime {
    * enum, or an enum constructed with makeEnum(), it raises an error.
    */
   getEnumType(enumObject: EnumObject): EnumType;
+
+  /**
+   * Create an extension at runtime, without generating code.
+   */
+  makeExtension<E extends Message<E> = AnyMessage, V = unknown>(
+    typeName: string,
+    extendee: MessageType<E>,
+    field: ExtensionFieldSource,
+  ): Extension<E, V>;
 }
 
 export function makeProtoRuntime(
@@ -110,5 +122,8 @@ export function makeProtoRuntime(
     makeEnum,
     makeEnumType,
     getEnumType,
+    makeExtension(typeName, extendee, field) {
+      return makeExtension(this, typeName, extendee, field);
+    },
   };
 }

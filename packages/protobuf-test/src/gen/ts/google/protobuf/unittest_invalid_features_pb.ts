@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -55,4 +55,13 @@ export class TestInvalidFeatures extends Message<TestInvalidFeatures> {
     return proto2.util.equals(TestInvalidFeatures, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
+ */
+export const test_invalid = proto2.makeExtension<FeatureSet, TestInvalidFeatures>(
+  "pb.test_invalid", 
+  FeatureSet, 
+  () => ({ no: 9996, kind: "message", T: TestInvalidFeatures, opt: true }),
+);
 

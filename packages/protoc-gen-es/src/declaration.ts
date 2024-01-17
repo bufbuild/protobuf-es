@@ -18,6 +18,7 @@ import type {
   DescMessage,
   DescOneof,
 } from "@bufbuild/protobuf";
+import { DescExtension } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
@@ -40,7 +41,10 @@ export function generateDts(schema: Schema) {
     for (const message of file.messages) {
       generateMessage(schema, f, message);
     }
-    // We do not generate anything for services, and we do not support extensions at this time
+    for (const extension of file.extensions) {
+      generateExtension(schema, f, extension);
+    }
+    // We do not generate anything for services
   }
 }
 
@@ -109,7 +113,9 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   for (const nestedMessage of message.nestedMessages) {
     generateMessage(schema, f, nestedMessage);
   }
-  // We do not support extensions at this time
+  for (const nestedExtension of message.nestedExtensions) {
+    generateExtension(schema, f, nestedExtension);
+  }
 }
 
 // prettier-ignore
@@ -140,6 +146,18 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   }
   e.push(";");
   f.print(e);
+}
+
+// prettier-ignore
+function generateExtension(
+  schema: Schema,
+  f: GeneratedFile,
+  ext: DescExtension,
+) {
+  const { typing } = getFieldTyping(ext, f);
+  f.print(f.jsDoc(ext));
+  f.print(f.exportDecl("declare const", ext), ": ", schema.runtime.Extension, "<", ext.extendee, ", ", typing, ">;");
+  f.print();
 }
 
 // prettier-ignore

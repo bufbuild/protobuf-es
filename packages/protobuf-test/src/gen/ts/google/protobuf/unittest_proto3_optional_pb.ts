@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, MessageOptions, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -371,4 +371,22 @@ export class Proto3OptionalExtensions extends Message<Proto3OptionalExtensions> 
     return proto3.util.equals(Proto3OptionalExtensions, a, b);
   }
 }
+
+/**
+ * @generated from extension: int32 ext_no_optional = 355886728;
+ */
+export const Proto3OptionalExtensions_ext_no_optional = proto3.makeExtension<MessageOptions, number>(
+  "protobuf_unittest.Proto3OptionalExtensions.ext_no_optional", 
+  MessageOptions, 
+  { no: 355886728, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+);
+
+/**
+ * @generated from extension: optional int32 ext_with_optional = 355886729;
+ */
+export const Proto3OptionalExtensions_ext_with_optional = proto3.makeExtension<MessageOptions, number>(
+  "protobuf_unittest.Proto3OptionalExtensions.ext_with_optional", 
+  MessageOptions, 
+  { no: 355886729, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
 

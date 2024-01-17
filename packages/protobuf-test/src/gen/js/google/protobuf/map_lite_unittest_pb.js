@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import { proto2 } from "@bufbuild/protobuf";
-import { ForeignMessageLite, TestAllTypesLite } from "./unittest_lite_pb.js";
+import { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite
@@ -163,6 +163,15 @@ export const TestRequiredLite = proto2.makeMessageType(
     { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
+);
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
+ */
+export const TestRequiredLite_single = proto2.makeExtension(
+  "protobuf_unittest.TestRequiredLite.single", 
+  TestAllExtensionsLite, 
+  () => ({ no: 1000, kind: "message", T: TestRequiredLite, opt: true }),
 );
 
 /**

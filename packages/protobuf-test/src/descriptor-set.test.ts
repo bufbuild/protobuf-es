@@ -16,7 +16,6 @@ import { beforeAll, describe, expect, test } from "@jest/globals";
 import { readFileSync } from "fs";
 import type { AnyDesc } from "@bufbuild/protobuf";
 import {
-  BinaryReader,
   createDescriptorSet,
   Edition,
   FeatureSet,
@@ -28,6 +27,7 @@ import {
   FeatureSet_Utf8Validation,
   FeatureSetDefaults,
   FileDescriptorSet,
+  getExtension,
   proto3,
   ScalarType,
 } from "@bufbuild/protobuf";
@@ -40,10 +40,12 @@ import {
   TestAllExtensions,
   TestNestedExtension,
 } from "./gen/ts/google/protobuf/unittest_pb.js";
-import { TestFeatures } from "./gen/ts/google/protobuf/unittest_features_pb.js";
+import {
+  test as test_ext,
+  TestFeatures,
+} from "./gen/ts/google/protobuf/unittest_features_pb.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join } from "node:path";
-import assert from "node:assert";
 
 const fdsBytes = readFileSync("./descriptorset.bin");
 
@@ -169,6 +171,7 @@ describe("DescriptorSet", () => {
           }
         }`);
       const { messages, enums } = createDescriptorSet(bin);
+
       function expectJsonFormat(
         jsonFormat: FeatureSet_JsonFormat,
         desc: AnyDesc | undefined,
@@ -188,6 +191,7 @@ describe("DescriptorSet", () => {
           }
         }
       }
+
       expectJsonFormat(FeatureSet_JsonFormat.ALLOW, enums.get("EnumJsonAllow"));
       expectJsonFormat(
         FeatureSet_JsonFormat.ALLOW,
@@ -300,7 +304,7 @@ describe("DescriptorSet", () => {
       const file = set.files.find((f) => f.name === "input");
       expect(file).toBeDefined();
       if (file !== undefined) {
-        const tf = getTestFeatures(file.getFeatures());
+        const tf = getTestFeatures(file);
         expect(tf.intFileFeature).toBe(1);
       }
     });
@@ -321,25 +325,16 @@ describe("DescriptorSet", () => {
       const file = set.files.find((f) => f.name === "input");
       expect(file).toBeDefined();
       if (file !== undefined) {
-        const tf = getTestFeatures(file.getFeatures());
+        const tf = getTestFeatures(file);
         expect(tf.intFileFeature).toBe(8);
       }
     });
-    // test helper to read the extension to google.protobuf.FeatureSet defined
-    // in google/protobuf/unittest_features.proto
+
     function getTestFeatures(
-      features: FeatureSet,
+      desc: AnyDesc,
     ): TestFeatures & Required<TestFeatures> {
-      const uf = TestFeatures.runtime.bin
-        .listUnknownFields(features)
-        .filter((f) => f.no === 9999);
-      assert(uf.length >= 0);
-      const tf = new TestFeatures();
-      for (const { data } of uf) {
-        const bytes = new BinaryReader(data).bytes();
-        tf.fromBinary(bytes, { readUnknownFields: false });
-      }
-      return tf as TestFeatures & Required<TestFeatures>;
+      return getExtension(desc.getFeatures(), test_ext) as TestFeatures &
+        Required<TestFeatures>;
     }
   });
   describe("repeated field packing", () => {

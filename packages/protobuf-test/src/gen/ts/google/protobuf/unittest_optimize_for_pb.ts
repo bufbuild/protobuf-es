@@ -89,6 +89,24 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
 }
 
 /**
+ * @generated from extension: optional int32 test_extension = 1234;
+ */
+export const TestOptimizedForSize_test_extension = proto2.makeExtension<TestOptimizedForSize, number>(
+  "protobuf_unittest.TestOptimizedForSize.test_extension", 
+  TestOptimizedForSize, 
+  { no: 1234, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequiredOptimizedForSize test_extension2 = 1235;
+ */
+export const TestOptimizedForSize_test_extension2 = proto2.makeExtension<TestOptimizedForSize, TestRequiredOptimizedForSize>(
+  "protobuf_unittest.TestOptimizedForSize.test_extension2", 
+  TestOptimizedForSize, 
+  () => ({ no: 1235, kind: "message", T: TestRequiredOptimizedForSize, opt: true }),
+);
+
+/**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
 export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedForSize> {

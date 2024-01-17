@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { AnyDesc, DescExtension, DescFile } from "@bufbuild/protobuf";
+import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
 
 export type JSDocBlock = {
   readonly kind: "es_jsdoc";
@@ -22,7 +22,7 @@ export type JSDocBlock = {
 };
 
 export function createJsDocBlock(
-  textOrDesc: string | Exclude<AnyDesc, DescFile | DescExtension>,
+  textOrDesc: string | Exclude<AnyDesc, DescFile>,
   indentation?: string,
 ): JSDocBlock {
   const text =
@@ -49,7 +49,7 @@ export function createJsDocBlock(
   };
 }
 
-function createTextForDesc(desc: Exclude<AnyDesc, DescFile | DescExtension>) {
+function createTextForDesc(desc: Exclude<AnyDesc, DescFile>) {
   const comments = desc.getComments();
   let text = "";
   if (comments.leading !== undefined) {
@@ -80,6 +80,9 @@ function createTextForDesc(desc: Exclude<AnyDesc, DescFile | DescExtension>) {
       break;
     case "field":
       text += `@generated from field: ${desc.declarationString()};`;
+      break;
+    case "extension":
+      text += `@generated from extension: ${desc.declarationString()};`;
       break;
     default:
       text += `@generated from ${desc.toString()}`;
