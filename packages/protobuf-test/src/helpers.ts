@@ -23,8 +23,6 @@ import type {
 import { createRegistryFromDescriptors } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
-export function describeExt() {}
-
 /**
  * Runs a describe.each() with three test cases:
  * 1. the TS generated MessageType
