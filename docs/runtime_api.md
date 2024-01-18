@@ -94,18 +94,7 @@ const obj = {
 const user = new User(obj);
 ```
 
-Otherwise, use the `as` keyword:
-
-```typescript
-const obj = {
-  firstName: "Homer",
-  active: true,
-  manager: {
-    lastName: "Burns",
-  },
-} as PartialMessage<User>;
-
-const user = new User(obj);
+If you are not using TypeScript 4.9 yet, use `as const` instead of `satisfies PartialMessage<User>`.
 ```
 
 ### Default field values
