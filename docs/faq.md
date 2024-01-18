@@ -54,7 +54,7 @@ enum Species {
 const hamster: Species = 3;
 ```
 
-As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/bufbuild/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
+As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/connectrpc/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
 ### Why aren't `enum` values generated in PascalCase?
 
