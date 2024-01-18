@@ -280,6 +280,7 @@ function makeFieldInfo(
 ): PartialFieldInfo {
   switch (desc.fieldKind) {
     case "map":
+      assert(desc.kind == "field"); // maps are not allowed for extensions
       return makeMapFieldInfo(desc, resolver);
     case "message":
       return makeMessageFieldInfo(desc, resolver);
@@ -297,7 +298,7 @@ function makeFieldInfo(
 }
 
 function makeMapFieldInfo(
-  field: (DescField | DescExtension) & { fieldKind: "map" },
+  field: DescField & { fieldKind: "map" },
   resolver: Resolver,
 ): PartialFieldInfo {
   const base = {
