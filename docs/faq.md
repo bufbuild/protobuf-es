@@ -117,7 +117,7 @@ Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/
 
 ### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
 
-There are few reasons why it is impractical to generate interfaces for the JSON
+There are a few reasons why it is impractical to generate interfaces for the JSON
 representation in any meaningful way.  They are as follows:
 
 * Protobuf supports a much more robust range of types than JSON.
@@ -144,14 +144,14 @@ representation in any meaningful way.  They are as follows:
   with other language implementations, Protobuf-ES has to support all variants of the input,
   which include:
 
-- If a value is missing or null, it should be interpreted as that field type's
-  default value.
-- Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
-  if present, the `json_name` field option.
-- Enums can be given as integers or by their enum value name.
-- All numeric types can be provided as a string or number.
-- Doubles can also be given in exponent notation or be one of the special strings
-  of `NaN`, `Infinity` or `-Infinity`.
+  - If a value is missing or null, it should be interpreted as that field type's
+    default value.
+  - Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
+    if present, the `json_name` field option.
+  - Enums can be given as integers or by their enum value name.
+  - All numeric types can be provided as a string or number.
+  - Doubles can also be given in exponent notation or be one of the special strings
+    of `NaN`, `Infinity` or `-Infinity`.
 
 Taking the above into account, it becomes evident that it is not
 feasible to generate code for the JSON structure. The Protobuf-ES type `JsonValue`
