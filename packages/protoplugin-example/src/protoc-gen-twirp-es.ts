@@ -16,9 +16,9 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
-import { MethodKind } from "@bufbuild/protobuf";
+import { localName, type Schema } from "@bufbuild/protoplugin/ecmascript";
+import { getExtension, hasExtension, MethodKind } from "@bufbuild/protobuf";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
@@ -38,11 +38,22 @@ function generateTs(schema: Schema) {
     for (const service of file.services) {
       f.print(f.jsDoc(service));
       f.print(f.exportDecl("class", localName(service) + "Client"), " {");
-      f.print("    private baseUrl: string = '';");
       f.print();
-      f.print("    constructor(url: string) {");
-      f.print("        this.baseUrl = url;");
-      f.print("    }");
+
+      // To support the custom option we defined in customoptions/default_host.proto,
+      // we need to generate code for this proto file first. This will generate the
+      // file customoptions/default_host_pb.ts, which contains the generated extension
+      // `default_host`.
+      // Then we use the functions hasExtension() and getExtension() to see whether
+      // the option is set, and set the value as the default for the constructor argument.
+      if (service.proto.options && hasExtension(service.proto.options, default_host)) {
+        const defaultHost = getExtension(service.proto.options, default_host);
+        f.print("    constructor(private readonly baseUrl = ", f.string(defaultHost), ") {");
+        f.print("    }");
+      } else {
+        f.print("    constructor(private readonly baseUrl: string) {");
+        f.print("    }");
+      }
       f.print();
       f.print("    async request<T extends ", Message.toTypeOnly(), "<T>>(");
       f.print("        service: string,");
@@ -70,19 +81,19 @@ function generateTs(schema: Schema) {
       f.print("    }");
       for (const method of service.methods) {
         if (method.methodKind === MethodKind.Unary) {
-            f.print();
-            f.print(f.jsDoc(method, "    "));
-            f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
-            f.print("        const promise = this.request(");
-            f.print("            ", f.string(service.typeName), ",");
-            f.print("            ", f.string(method.name), ",");
-            f.print('            "application/json",');
-            f.print("            request");
-            f.print("        );");
-            f.print("        return promise.then(async (data) =>");
-            f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
-            f.print("        );");
-            f.print("    }");
+          f.print();
+          f.print(f.jsDoc(method, "    "));
+          f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
+          f.print("        const promise = this.request(");
+          f.print("            ", f.string(service.typeName), ",");
+          f.print("            ", f.string(method.name), ",");
+          f.print('            "application/json",');
+          f.print("            request");
+          f.print("        );");
+          f.print("        return promise.then(async (data) =>");
+          f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
+          f.print("        );");
+          f.print("    }");
         }
       }
       f.print("}");

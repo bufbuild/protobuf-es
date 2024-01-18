@@ -17,7 +17,7 @@ import { createDescriptorSet, getExtension } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { readFileSync } from "node:fs";
 import assert from "node:assert";
-import { uint32_option } from "./gen/file-option_pb";
+import { uint32_option } from "./gen/file-option_pb.js";
 
 describe("custom options", () => {
   test("can be read via extension", async () => {
