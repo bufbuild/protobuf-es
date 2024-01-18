@@ -30,6 +30,9 @@ import type { Extension } from "./extension.js";
  * (for example `0` for numeric types, `[]` for repeated extension fields, and
  * an empty message instance for message fields).
  *
+ * Extensions are stored as unknown fields on a message. To mutate an extension
+ * value, make sure to store the new value with setExtension() after mutating.
+ *
  * If the extension does not extend the given message, an error is raised.
  */
 export function getExtension<E extends Message<E>, V>(
