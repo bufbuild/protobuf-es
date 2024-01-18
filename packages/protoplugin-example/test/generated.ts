@@ -14,8 +14,8 @@
 
 import * as assert from "node:assert/strict";
 import { describe, it, mock } from "node:test";
-import { ElizaServiceClient } from "../src/gen/connectrpc/eliza/v1/eliza_twirp.js";
-import { SayRequest } from "../src/gen/connectrpc/eliza/v1/eliza_pb.js";
+import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
+import { SayRequest } from "../src/gen/connectrpc/eliza_pb";
 
 describe("custom plugin", async () => {
   it("should generate client class", () => {

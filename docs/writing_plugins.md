@@ -21,10 +21,7 @@ Code generator plugins can be created using the npm packages [@bufbuild/protoplu
      - [Why use `f.import()`?](#why-use-fimport)
   - [Exporting](#exporting)
   - [Parsing plugin options](#parsing-plugin-options)
-  - [Reading custom options](#reading-custom-options)
-     - [Scalar options](#scalar-options) 
-     - [Message options](#message-options) 
-     - [Enum options](#enum-options) 
+  - [Using custom Protobuf options](#using-custom-protobuf-options)
 - [Testing](#testing)
 - [Examples](#examples)
 
@@ -376,163 +373,81 @@ parseOption(key: string, value: string | undefined): void;
 
 This function will be invoked by the framework, passing in any key/value pairs that it does not recognize from its pre-defined list.
 
-### Reading custom options
+### Using custom Protobuf options
 
-Protobuf-ES does not yet provide support for extensions, neither in general as pertaining to proto2 nor with custom options in proto3.  However, in the interim, there are convenience functions for retrieving any custom options specified in your .proto files.  These are provided as a temporary utility until full extension support is implemented.  There are three functions depending on the structure of the custom option desired (scalar, message, or enum):
+Your plugin can support custom Protobuf options to modify the code it generates. 
 
-#### Scalar Options
+As an example, let's use a custom service option to provide a default host. 
+Here is how this option would be used:
 
-Custom options of a scalar type (`boolean`, `string`, `int32`, etc.) can be retrieved via the `findCustomScalarOption` function.  It returns a type corresponding to the given `scalarType` parameter.  For example, if `ScalarType.STRING` is passed, the return type will be a `string`.  If the option is not found, it returns `undefined`.
+```protobuf
+syntax = "proto3";
+import "customoptions/default_host.proto";
+package connectrpc.eliza.v1;
+
+service MyService {
+
+  // Set the default host for this service with our custom option.
+  option (customoptions.default_host) = "https://demo.connectrpc.com/";
+
+  // ...
+}
+```
+
+Custom options are extensions to one of the options messages defined in 
+`google/protobuf/descriptor.proto`. Here is how we can define the option we are 
+using above:
+
+```protobuf
+// customoptions/default_host.proto
+syntax = "proto3";
+import "google/protobuf/descriptor.proto";
+package customoptions;
+
+extend google.protobuf.ServiceOptions {
+  // We extend the ServiceOptions message, so that other proto files can import
+  // this file, and set the option on a service declaration.
+  optional string default_host = 1001;
+}
+```
+
+You can learn more about custom options in the [language guide](https://protobuf.dev/programming-guides/proto3/#customoptions).
+
+First, we need to generate code for our custom option. This will generate a file
+`customoptions/default_host_pb.ts` with a new export - our extension:
 
 ```ts
-function findCustomScalarOption<T extends ScalarType>(
-  desc: AnyDesc,
-  extensionNumber: number,
-  scalarType: T
-): ScalarValue<T> | undefined;
+import { ServiceOptions, Extension } from "@bufbuild/protobuf";
+
+export const default_host: Extension<ServiceOptions, string> = ...
 ```
 
-`AnyDesc` represents any of the `DescXXX` objects such as `DescFile`, `DescEnum`, `DescMessage`, etc.  The `extensionNumber` parameter represents the extension number of the custom options field definition.
-
-The `scalarType` parameter is the type of the custom option you are searching for.  `ScalarType` is an enum that represents all possible scalar types in the Protobuf grammar
-
-For example, given the following:
-
-```proto
-extend google.protobuf.MessageOptions {
-  optional int32 foo_message_option = 50001;
-}
-extend google.protobuf.FieldOptions {
-  optional string foo_field_option = 50002;
-}
-
-message FooMessage {
-  option (foo_message_option) = 1234;
-
-  int32 foo = 1 [(foo_field_option) = "test"];
-}
-```
-
-The values of these options can be retrieved as follows:
+Now we can utilize this extension to read custom options in our plugin:
 
 ```ts
-const msgVal = findCustomScalarOption(descMessage, 50001, ScalarType.INT32);  // 1234
+import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import { ServiceOptions, ServiceDesc, hasExtension, getExtension } from "@bufbuild/protobuf";
+import { default_host } from "./customoptions/default_host_pb.js";
 
-const fieldVal = findCustomScalarOption(descField, 50002, ScalarType.STRING);  // "test"
-```
-
-#### Message Options
-
-Custom options of a more complex message type can be retrieved via the `findCustomMessageOption` function.  It returns a concrete type with fields populated corresponding to the values set in the proto file.
-
-```ts
-export function findCustomMessageOption<T extends Message<T>>(
-  desc: AnyDesc,
-  extensionNumber: number,
-  msgType: MessageType<T>
-): T | undefined {
-```
-
-The `msgType` parameter represents the type of the message you are searching for.  
-
-For example, given the following proto files:
-
-```proto
-// custom_options.proto
-
-extend google.protobuf.MethodOptions {
-  optional ServiceOptions service_method_option = 50007;
-}
-
-message ServiceOptions {
-  int32 foo = 1;
-  string bar = 2;
-  oneof qux {
-    string quux = 3;
-  }
-  repeated string many = 4;
-  map<string, string> mapping = 5;
+function generateService(desc: ServiceDesc, f: GeneratedFile) {
+    // The protobuf message google.protobuf.ServiceOptions contains our custom
+    // option. 
+    const serviceOptions: ServiceOptions | undefined = service.proto.options;
+    
+    // Let's see if our option was set:
+    if (serviceOptions && hasExtension(serviceOption, default_host)) {
+      const value = getExtension(serviceOption, default_host); // "https://demo.connectrpc.com/"
+      // Our option was set, we can use it here.
+    }
 }
 ```
 
-```proto
-// service.proto
+Custom options can be set on any Protobuf element. They can be simple singular 
+string fields as the one above, but also repeated fields, message fields, etc.
 
-import "custom_options.proto";
+Take a look at our [plugin example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example)
+to see the custom option above in action, and run the code yourself.
 
-service FooService {
-  rpc Get(GetRequest) returns (GetResponse) {
-    option (service_method_option) = { 
-        foo: 567, 
-        bar: "Some string", 
-        quux: "Oneof string",
-        many: ["a", "b", "c"],
-        mapping: [{key: "testKey", value: "testVal"}]
-    };
-  }
-}
-```
-
-You can retrieve the options using a generated type by first generating the file which defines the custom option type.  Then, import and pass this type to the `findCustomMessageOption` function.
-
-```ts
-import { ServiceOptions } from "./gen/proto/custom_options_pb.js";
-
-const option = findCustomMessageOption(method, 50007, ServiceOptions)
-
-console.log(option);
-/*
- * {
- *     foo: 567, 
- *     bar: "Some string", 
- *     quux: "Oneof string",
- *     many: ["a", "b", "c"],
- *     mapping: [{key: "testKey", value: "testVal"}]
- * }
- */
- ```
-
-Note that `repeated` and `map` values are only supported within a custom message option.  They are not supported as option types independently.  If you have need to use a custom option that is `repeated` or is of type `map`, it is recommended to use a message option as a wrapper.
-
-
-#### Enum Options
-
-Custom options of an enum type can be retrieved via the `findCustomEnumOption` function.  It returns a `number` corresponding to the `enum` value set in the option.
-
-```ts
-export function findCustomEnumOption(
-  desc: AnyDesc,
-  extensionNumber: number
-): number | undefined {
-```
-
-The returned number can then be coerced into the concrete `enum` type.  The `enum` type just needs to be generated ahead of time much like the example in `findCustomMessageOption`.
-
-For example, given the following:
-
-```proto
-extend google.protobuf.MessageOptions {
-  optional FooEnum foo_enum_option = 50001;
-}
-
-enum FooEnum {
-  UNDEFINED = 0;
-  ACTIVE = 1;
-  INACTIVE = 2;
-}
-
-message FooMessage {
-  option (foo_enum_option) = ACTIVE;
-
-  string name = 1;
-}
-```
-
-The value of this option can be retrieved as follows:
-
-```ts
-const enumVal: FooEnum | undefined = findCustomEnumOption(descMessage, 50001);  // FooEnum.ACTIVE
-```
 
 ## Testing
 

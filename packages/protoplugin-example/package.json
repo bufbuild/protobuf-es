@@ -6,8 +6,7 @@
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
     "test": "tsx --test test/*.ts",
-    "pregenerate": "rm -rf src/gen",
-    "generate": "buf generate buf.build/connectrpc/eliza"
+    "generate": "buf generate proto"
   },
   "license": "Apache-2.0",
   "dependencies": {
