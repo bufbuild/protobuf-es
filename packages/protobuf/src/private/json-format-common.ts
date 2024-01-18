@@ -99,7 +99,7 @@ export function makeJsonFormatCommon(
       }
       message = message ?? new type();
       const oneofSeen = new Map<OneofInfo, string>();
-      const findExtension = options.typeRegistry?.findExtension;
+      const registry = options.typeRegistry;
       for (const [jsonKey, jsonValue] of Object.entries(json)) {
         const field = type.fields.findJsonName(jsonKey);
         if (field) {
@@ -120,11 +120,13 @@ export function makeJsonFormatCommon(
         } else {
           let found = false;
           if (
-            findExtension &&
+            registry?.findExtension &&
             jsonKey.startsWith("[") &&
             jsonKey.endsWith("]")
           ) {
-            const ext = findExtension(jsonKey.substring(1, jsonKey.length - 1));
+            const ext = registry.findExtension(
+              jsonKey.substring(1, jsonKey.length - 1),
+            );
             if (ext && ext.extendee.typeName == type.typeName) {
               found = true;
               const [container, get] = createExtensionContainer(ext);
@@ -179,10 +181,10 @@ export function makeJsonFormatCommon(
               jsonValue;
           }
         }
-        const findExtensionFor = options.typeRegistry?.findExtensionFor;
-        if (findExtensionFor !== undefined) {
+        const registry = options.typeRegistry;
+        if (registry?.findExtensionFor) {
           for (const uf of type.runtime.bin.listUnknownFields(message)) {
-            const ext = findExtensionFor(type.typeName, uf.no);
+            const ext = registry.findExtensionFor(type.typeName, uf.no);
             if (ext && hasExtension(message, ext)) {
               // We pass on the options as BinaryReadOptions, so that users can bring their own
               // binary reader factory if necessary.

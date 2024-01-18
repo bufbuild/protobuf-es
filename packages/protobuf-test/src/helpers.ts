@@ -71,12 +71,26 @@ export function testMT<T extends Message<T>>(
   });
 }
 
-const dr = createRegistryFromDescriptors(readFileSync("./descriptorset.bin"));
+let testFileDescriptorSetBytes: Uint8Array | undefined;
+
+export function getTestFileDescriptorSetBytes(): Uint8Array {
+  if (!testFileDescriptorSetBytes) {
+    testFileDescriptorSetBytes = readFileSync("./descriptorset.bin");
+  }
+  return testFileDescriptorSetBytes;
+}
+
+let testRegistry: ReturnType<typeof createRegistryFromDescriptors> | undefined;
 
 function makeMessageTypeDynamic<T extends Message<T>>(
   type: MessageType<T>,
 ): MessageType<T> {
-  const dyn = dr.findMessage(type.typeName);
+  if (!testRegistry) {
+    testRegistry = createRegistryFromDescriptors(
+      getTestFileDescriptorSetBytes(),
+    );
+  }
+  const dyn = testRegistry.findMessage(type.typeName);
   if (!dyn) {
     throw new Error();
   }

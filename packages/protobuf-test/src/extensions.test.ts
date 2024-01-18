@@ -18,6 +18,7 @@ import {
   BinaryWriter,
   clearExtension,
   createRegistry,
+  createRegistryFromDescriptors,
   FileDescriptorProto,
   getExtension,
   hasExtension,
@@ -61,6 +62,7 @@ import {
   wrapper_ext,
 } from "./gen/ts/extra/extensions-proto2_pb.js";
 import { User } from "./gen/ts/extra/example_pb.js";
+import { getTestFileDescriptorSetBytes } from "./helpers.js";
 
 const goldenValues: ReadonlyMap<Extension<Proto2Extendee>, unknown> = new Map<
   Extension<Proto2Extendee>,
@@ -817,7 +819,7 @@ describe("extensions with JSON", () => {
     });
   });
 
-  const typeRegistry = createRegistry(
+  const registryFromGeneratedCode = createRegistry(
     uint32_ext,
     uint32_ext_with_default,
     string_ext,
@@ -894,36 +896,50 @@ describe("extensions with JSON", () => {
     "[proto2ext.Proto2ExtContainer.uint32_ext]": 0,
     "[proto2ext.Proto2ExtContainer.Child.uint32_ext]": 0,
   };
-  for (const [ext, val] of Array.from(goldenValues.entries())) {
-    it(`should parse ${ext.typeName} as expected`, () => {
-      const msg = Proto2Extendee.fromJson(goldenJson, { typeRegistry });
-      expect(hasExtension(msg, ext)).toBeTruthy();
-      expect(getExtension(msg, ext)).toStrictEqual(val);
-    });
-  }
-  for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
-    it(`should parse zero ${ext.typeName} as expected`, () => {
-      const msg = Proto2Extendee.fromJson(goldenJsonZero, { typeRegistry });
-      if (ext.field.repeated) {
-        expect(hasExtension(msg, ext)).toBeFalsy();
-      } else {
-        expect(hasExtension(msg, ext)).toBeTruthy();
-      }
-      expect(getExtension(msg, ext)).toStrictEqual(val);
-    });
-  }
-  it("should serialize as expected", () => {
-    const msg = new Proto2Extendee();
+
+  describe.each([
+    {
+      typeRegistry: createRegistryFromDescriptors(
+        getTestFileDescriptorSetBytes(),
+      ),
+      name: "with a registry from descriptors",
+    },
+    {
+      typeRegistry: registryFromGeneratedCode,
+      reg: "with a registry from generated code",
+    },
+  ])("$name", ({ typeRegistry }) => {
     for (const [ext, val] of Array.from(goldenValues.entries())) {
-      setExtension(msg, ext, val);
+      it(`should parse ${ext.typeName} as expected`, () => {
+        const msg = Proto2Extendee.fromJson(goldenJson, { typeRegistry });
+        expect(hasExtension(msg, ext)).toBeTruthy();
+        expect(getExtension(msg, ext)).toStrictEqual(val);
+      });
     }
-    expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJson);
-  });
-  it("should serialize zero values as expected", () => {
-    const msg = new Proto2Extendee();
     for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
-      setExtension(msg, ext, val);
+      it(`should parse zero ${ext.typeName} as expected`, () => {
+        const msg = Proto2Extendee.fromJson(goldenJsonZero, { typeRegistry });
+        if (ext.field.repeated) {
+          expect(hasExtension(msg, ext)).toBeFalsy();
+        } else {
+          expect(hasExtension(msg, ext)).toBeTruthy();
+        }
+        expect(getExtension(msg, ext)).toStrictEqual(val);
+      });
     }
-    expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJsonZero);
+    it("should serialize as expected", () => {
+      const msg = new Proto2Extendee();
+      for (const [ext, val] of Array.from(goldenValues.entries())) {
+        setExtension(msg, ext, val);
+      }
+      expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJson);
+    });
+    it("should serialize zero values as expected", () => {
+      const msg = new Proto2Extendee();
+      for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
+        setExtension(msg, ext, val);
+      }
+      expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJsonZero);
+    });
   });
 });

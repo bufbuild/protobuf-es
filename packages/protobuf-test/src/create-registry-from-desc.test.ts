@@ -13,7 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { readFileSync } from "fs";
+import type {
+  IExtensionRegistry,
+  IMessageTypeRegistry,
+} from "@bufbuild/protobuf";
 import {
   createDescriptorSet,
   createRegistry,
@@ -21,10 +24,6 @@ import {
   FileDescriptorSet,
   MethodKind,
   proto3,
-} from "@bufbuild/protobuf";
-import type {
-  IExtensionRegistry,
-  IMessageTypeRegistry,
 } from "@bufbuild/protobuf";
 import {
   TestAllTypes,
@@ -34,6 +33,7 @@ import {
   assertEnumTypeEquals,
   assertExtensionEquals,
   assertMessageTypeEquals,
+  getTestFileDescriptorSetBytes,
 } from "./helpers.js";
 import {
   ExampleRequest,
@@ -43,10 +43,7 @@ import {
   Proto2Extendee,
   string_ext,
   uint32_ext,
-} from "./gen/ts/extra/extensions-proto2_pb";
-
-const fdsBytes = readFileSync("./descriptorset.bin");
-const fds = FileDescriptorSet.fromBinary(fdsBytes);
+} from "./gen/ts/extra/extensions-proto2_pb.js";
 
 describe("createRegistryFromDescriptors()", () => {
   test("finds nothing if empty", () => {
@@ -58,14 +55,16 @@ describe("createRegistryFromDescriptors()", () => {
     expect(dr.findExtensionFor("foo.Bar", 123)).toBeUndefined();
   });
   test("from google.protobuf.FileDescriptorSet", () => {
-    const dr = createRegistryFromDescriptors(fds);
+    const dr = createRegistryFromDescriptors(
+      FileDescriptorSet.fromBinary(getTestFileDescriptorSetBytes()),
+    );
     expectMessageTypes(dr);
     expectEnumTypes(dr);
     expectServiceTypes(dr);
     expectExtensions(dr);
   });
   test("from serialized google.protobuf.FileDescriptorSet", () => {
-    const dr = createRegistryFromDescriptors(fdsBytes);
+    const dr = createRegistryFromDescriptors(getTestFileDescriptorSetBytes());
     expectMessageTypes(dr);
     expectEnumTypes(dr);
     expectServiceTypes(dr);
