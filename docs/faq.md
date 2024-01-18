@@ -120,14 +120,14 @@ Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/
 There are a few reasons why it is impractical to generate interfaces for the JSON
 representation in any meaningful way.  They are as follows:
 
-* Protobuf supports a much more robust range of types than JSON.
+* **Protobuf supports a much more robust range of types than JSON.**
 
   A good example for this is a Protobuf `bytes` field. The best representation in
   TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
   proto3 JSON, a `bytes` field is serialized by base64 encoding the data, which
   means it becomes a JSON string.
 
-* There is no single JSON representation for a Protobuf message.
+* **There is no single JSON representation for a Protobuf message.**
 
   Implementations are allowed to provide serialization options that can modify
   the shape of the JSON output, such as:
@@ -138,7 +138,7 @@ representation in any meaningful way.  They are as follows:
     the `json_name` field option.
   - Use an enum's numeric value instead of the enum name.
 
-* JSON parsing must be lax to support all variants of the input.
+* **JSON parsing must be lax to support all variants of the input.**
 
   To properly support proto3 JSON and make sure it interoperates correctly
   with other language implementations, Protobuf-ES has to support all variants of the input,
