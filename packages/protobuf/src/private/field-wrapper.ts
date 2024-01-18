@@ -14,7 +14,7 @@
 
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import type { DescField } from "../descriptor-set.js";
+import type { DescExtension, DescField } from "../descriptor-set.js";
 import { ScalarType } from "../field.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- unknown fields are represented with any */
@@ -51,7 +51,7 @@ export function wrapField<T extends Message<T>>(
  * the primitive type it wraps.
  */
 export function getUnwrappedFieldType(
-  field: DescField,
+  field: DescField | DescExtension,
 ): ScalarType | undefined {
   if (field.fieldKind !== "message") {
     return undefined;

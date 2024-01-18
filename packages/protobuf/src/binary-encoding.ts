@@ -607,8 +607,7 @@ export class BinaryReader implements IBinaryReader {
         this.pos += len;
         break;
       case WireType.StartGroup:
-        // From descriptor.proto: Group type is deprecated, not supported in proto3.
-        // But we must still be able to parse and treat as unknown.
+        // TODO check for matching field numbers in StartGroup / EndGroup tags
         let t: WireType;
         while ((t = this.tag()[1]) !== WireType.EndGroup) {
           this.skip(t);

@@ -16,9 +16,10 @@
 // @generated from file google/protobuf/map_lite_unittest.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 import type { ForeignMessageLite, TestAllTypesLite } from "./unittest_lite_pb.js";
+import { TestAllExtensionsLite } from "./unittest_lite_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite
@@ -439,6 +440,11 @@ export declare class TestRequiredLite extends Message<TestRequiredLite> {
 
   static equals(a: TestRequiredLite | PlainMessage<TestRequiredLite> | undefined, b: TestRequiredLite | PlainMessage<TestRequiredLite> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
+ */
+export declare const TestRequiredLite_single: Extension<TestAllExtensionsLite, TestRequiredLite>;
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageArenaLite

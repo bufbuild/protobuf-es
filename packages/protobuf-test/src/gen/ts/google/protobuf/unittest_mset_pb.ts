@@ -212,6 +212,15 @@ export class TestMessageSetExtension1 extends Message<TestMessageSetExtension1> 
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension1 message_set_extension = 1545008;
+ */
+export const TestMessageSetExtension1_message_set_extension = proto2.makeExtension<TestMessageSet, TestMessageSetExtension1>(
+  "protobuf_unittest.TestMessageSetExtension1.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 1545008, kind: "message", T: TestMessageSetExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
 export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> {
@@ -247,6 +256,15 @@ export class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> 
     return proto2.util.equals(TestMessageSetExtension2, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension2 message_set_extension = 1547769;
+ */
+export const TestMessageSetExtension2_message_set_extension = proto2.makeExtension<TestMessageSet, TestMessageSetExtension2>(
+  "protobuf_unittest.TestMessageSetExtension2.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 1547769, kind: "message", T: TestMessageSetExtension2, opt: true }),
+);
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension3
@@ -290,6 +308,15 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
     return proto2.util.equals(TestMessageSetExtension3, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
+ */
+export const TestMessageSetExtension3_message_set_extension = proto2.makeExtension<TestMessageSet, TestMessageSetExtension3>(
+  "protobuf_unittest.TestMessageSetExtension3.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 195273129, kind: "message", T: TestMessageSetExtension3, opt: true }),
+);
 
 /**
  * MessageSet wire format is equivalent to this.

@@ -73,6 +73,15 @@ export const TestMessageSetExtension1 = proto2.makeMessageType(
 );
 
 /**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension1 message_set_extension = 1545008;
+ */
+export const TestMessageSetExtension1_message_set_extension = proto2.makeExtension(
+  "protobuf_unittest.TestMessageSetExtension1.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 1545008, kind: "message", T: TestMessageSetExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
 export const TestMessageSetExtension2 = proto2.makeMessageType(
@@ -80,6 +89,15 @@ export const TestMessageSetExtension2 = proto2.makeMessageType(
   () => [
     { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
+);
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension2 message_set_extension = 1547769;
+ */
+export const TestMessageSetExtension2_message_set_extension = proto2.makeExtension(
+  "protobuf_unittest.TestMessageSetExtension2.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 1547769, kind: "message", T: TestMessageSetExtension2, opt: true }),
 );
 
 /**
@@ -91,6 +109,15 @@ export const TestMessageSetExtension3 = proto2.makeMessageType(
     { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
     { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
+);
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
+ */
+export const TestMessageSetExtension3_message_set_extension = proto2.makeExtension(
+  "protobuf_unittest.TestMessageSetExtension3.message_set_extension", 
+  TestMessageSet, 
+  () => ({ no: 195273129, kind: "message", T: TestMessageSetExtension3, opt: true }),
 );
 
 /**

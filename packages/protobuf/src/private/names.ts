@@ -15,6 +15,7 @@
 import type {
   DescEnum,
   DescEnumValue,
+  DescExtension,
   DescField,
   DescMessage,
   DescService,
@@ -34,6 +35,7 @@ export function localName(
     | DescEnum
     | DescEnumValue
     | DescMessage
+    | DescExtension
     | DescOneof
     | DescField
     | DescService
@@ -46,7 +48,8 @@ export function localName(
       return localOneofName(desc.name);
     case "enum":
     case "message":
-    case "service": {
+    case "service":
+    case "extension": {
       const pkg = desc.file.proto.package;
       const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");

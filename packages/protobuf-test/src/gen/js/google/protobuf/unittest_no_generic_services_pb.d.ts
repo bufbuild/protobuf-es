@@ -18,7 +18,7 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
@@ -54,4 +54,9 @@ export declare class TestMessage extends Message<TestMessage> {
 
   static equals(a: TestMessage | PlainMessage<TestMessage> | undefined, b: TestMessage | PlainMessage<TestMessage> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional int32 test_extension = 1000;
+ */
+export declare const test_extension: Extension<TestMessage, number>;
 

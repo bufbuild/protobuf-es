@@ -18,7 +18,7 @@
 // @generated from file google/protobuf/test_messages_proto2.proto (package protobuf_test_messages.proto2, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
@@ -895,6 +895,11 @@ export declare class TestAllTypesProto2_MessageSetCorrectExtension1 extends Mess
 }
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export declare const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extension: Extension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension1>;
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
 export declare class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<TestAllTypesProto2_MessageSetCorrectExtension2> {
@@ -917,6 +922,11 @@ export declare class TestAllTypesProto2_MessageSetCorrectExtension2 extends Mess
 
   static equals(a: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined, b: TestAllTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllTypesProto2_MessageSetCorrectExtension2> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export declare const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extension: Extension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
@@ -1482,6 +1492,11 @@ export declare class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 exte
 }
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_extension: Extension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
  */
 export declare class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Message<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> {
@@ -1504,4 +1519,14 @@ export declare class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 exte
 
   static equals(a: TestAllRequiredTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> | undefined, b: TestAllRequiredTypesProto2_MessageSetCorrectExtension2 | PlainMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_extension: Extension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
+
+/**
+ * @generated from extension: optional int32 extension_int32 = 120;
+ */
+export declare const extension_int32: Extension<TestAllTypesProto2, number>;
 

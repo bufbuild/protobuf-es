@@ -1106,6 +1106,15 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
 }
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extension = proto2.makeExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension1>(
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension", 
+  TestAllTypesProto2_MessageSetCorrect, 
+  () => ({ no: 1547769, kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
 export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<TestAllTypesProto2_MessageSetCorrectExtension2> {
@@ -1141,6 +1150,15 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
     return proto2.util.equals(TestAllTypesProto2_MessageSetCorrectExtension2, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extension = proto2.makeExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension2>(
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension", 
+  TestAllTypesProto2_MessageSetCorrect, 
+  () => ({ no: 4135312, kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension2, opt: true }),
+);
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
@@ -1919,6 +1937,15 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
 }
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_extension = proto2.makeExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension1>(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension", 
+  TestAllRequiredTypesProto2_MessageSetCorrect, 
+  () => ({ no: 1547769, kind: "message", T: TestAllRequiredTypesProto2_MessageSetCorrectExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
  */
 export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Message<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> {
@@ -1954,4 +1981,22 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
     return proto2.util.equals(TestAllRequiredTypesProto2_MessageSetCorrectExtension2, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_extension = proto2.makeExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension2>(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension", 
+  TestAllRequiredTypesProto2_MessageSetCorrect, 
+  () => ({ no: 4135312, kind: "message", T: TestAllRequiredTypesProto2_MessageSetCorrectExtension2, opt: true }),
+);
+
+/**
+ * @generated from extension: optional int32 extension_int32 = 120;
+ */
+export const extension_int32 = proto2.makeExtension<TestAllTypesProto2, number>(
+  "protobuf_test_messages.proto2.extension_int32", 
+  TestAllTypesProto2, 
+  { no: 120, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
 

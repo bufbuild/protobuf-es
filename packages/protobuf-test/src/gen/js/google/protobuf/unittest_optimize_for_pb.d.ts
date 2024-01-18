@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 import type { ForeignMessage } from "./unittest_pb.js";
 
@@ -71,6 +71,16 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
 
   static equals(a: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined, b: TestOptimizedForSize | PlainMessage<TestOptimizedForSize> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional int32 test_extension = 1234;
+ */
+export declare const TestOptimizedForSize_test_extension: Extension<TestOptimizedForSize, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequiredOptimizedForSize test_extension2 = 1235;
+ */
+export declare const TestOptimizedForSize_test_extension2: Extension<TestOptimizedForSize, TestRequiredOptimizedForSize>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize

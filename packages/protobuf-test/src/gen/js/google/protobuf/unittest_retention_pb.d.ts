@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_retention.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, Message, MessageOptions, MethodOptions, OneofOptions, proto2, ServiceOptions } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.TopLevelEnum
@@ -147,4 +147,79 @@ export declare class TopLevelMessage_NestedMessage extends Message<TopLevelMessa
 
   static equals(a: TopLevelMessage_NestedMessage | PlainMessage<TopLevelMessage_NestedMessage> | undefined, b: TopLevelMessage_NestedMessage | PlainMessage<TopLevelMessage_NestedMessage> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional string s = 2;
+ */
+export declare const TopLevelMessage_s: Extension<Extendee, string>;
+
+/**
+ * @generated from extension: optional int32 plain_option = 505092806;
+ */
+export declare const plain_option: Extension<FileOptions, number>;
+
+/**
+ * @generated from extension: optional int32 runtime_retention_option = 505039132;
+ */
+export declare const runtime_retention_option: Extension<FileOptions, number>;
+
+/**
+ * @generated from extension: optional int32 source_retention_option = 504878676;
+ */
+export declare const source_retention_option: Extension<FileOptions, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage file_option = 504871168;
+ */
+export declare const file_option: Extension<FileOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.OptionsMessage repeated_options = 504823570;
+ */
+export declare const repeated_options: Extension<FileOptions, OptionsMessage[]>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage extension_range_option = 504822148;
+ */
+export declare const extension_range_option: Extension<ExtensionRangeOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage message_option = 504820819;
+ */
+export declare const message_option: Extension<MessageOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage field_option = 504589219;
+ */
+export declare const field_option: Extension<FieldOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage oneof_option = 504479153;
+ */
+export declare const oneof_option: Extension<OneofOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage enum_option = 504451567;
+ */
+export declare const enum_option: Extension<EnumOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage enum_entry_option = 504450522;
+ */
+export declare const enum_entry_option: Extension<EnumValueOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage service_option = 504387709;
+ */
+export declare const service_option: Extension<ServiceOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionsMessage method_option = 504349420;
+ */
+export declare const method_option: Extension<MethodOptions, OptionsMessage>;
+
+/**
+ * @generated from extension: optional int32 i = 1;
+ */
+export declare const i: Extension<Extendee, number>;
 

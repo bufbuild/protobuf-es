@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestMessage
@@ -56,6 +56,16 @@ export declare class TestMessage_Nested extends Message<TestMessage_Nested> {
 
   static equals(a: TestMessage_Nested | PlainMessage<TestMessage_Nested> | undefined, b: TestMessage_Nested | PlainMessage<TestMessage_Nested> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_nested = 9997;
+ */
+export declare const TestMessage_Nested_test_nested: Extension<FeatureSet, TestFeatures>;
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_message = 9998;
+ */
+export declare const TestMessage_test_message: Extension<FeatureSet, TestFeatures>;
 
 /**
  * @generated from message pb.TestFeatures
@@ -229,4 +239,9 @@ export declare class TestFeatures_MessageFeature extends Message<TestFeatures_Me
 
   static equals(a: TestFeatures_MessageFeature | PlainMessage<TestFeatures_MessageFeature> | undefined, b: TestFeatures_MessageFeature | PlainMessage<TestFeatures_MessageFeature> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional pb.TestFeatures test = 9999;
+ */
+export declare const test: Extension<FeatureSet, TestFeatures>;
 
