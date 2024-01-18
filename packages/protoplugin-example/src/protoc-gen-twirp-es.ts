@@ -16,8 +16,7 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
-import type {GeneratedFile, Schema} from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+import { localName, type Schema } from "@bufbuild/protoplugin/ecmascript";
 import { getExtension, hasExtension, MethodKind } from "@bufbuild/protobuf";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
 
@@ -30,7 +29,7 @@ const protocGenTwirpEs = createEcmaScriptPlugin({
 // prettier-ignore
 function generateTs(schema: Schema) {
   for (const file of schema.files) {
-    const f: GeneratedFile = schema.generateFile(file.name + "_twirp.ts");
+    const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
     const {
       Message,
