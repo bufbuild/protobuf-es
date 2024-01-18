@@ -90,6 +90,64 @@ export declare class Proto2ExtMessage extends Message<Proto2ExtMessage> {
 }
 
 /**
+ * @generated from message proto2ext.GroupExt
+ */
+export declare class GroupExt extends Message<GroupExt> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+
+  constructor(data?: PartialMessage<GroupExt>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2ext.GroupExt";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GroupExt;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GroupExt;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GroupExt;
+
+  static equals(a: GroupExt | PlainMessage<GroupExt> | undefined, b: GroupExt | PlainMessage<GroupExt> | undefined): boolean;
+}
+
+/**
+ * @generated from message proto2ext.RepeatedGroupExt
+ */
+export declare class RepeatedGroupExt extends Message<RepeatedGroupExt> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+
+  constructor(data?: PartialMessage<RepeatedGroupExt>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "proto2ext.RepeatedGroupExt";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedGroupExt;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RepeatedGroupExt;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroupExt;
+
+  static equals(a: RepeatedGroupExt | PlainMessage<RepeatedGroupExt> | undefined, b: RepeatedGroupExt | PlainMessage<RepeatedGroupExt> | undefined): boolean;
+}
+
+/**
  * A container for nested extensions
  *
  * @generated from message proto2ext.Proto2ExtContainer
@@ -230,4 +288,14 @@ export declare const unpacked_uint32_ext: Extension<Proto2Extendee, number[]>;
  * @generated from extension: optional google.protobuf.UInt32Value wrapper_ext = 8001;
  */
 export declare const wrapper_ext: Extension<Proto2Extendee, number>;
+
+/**
+ * @generated from extension: optional proto2ext.GroupExt groupext = 8100;
+ */
+export declare const groupext: Extension<Proto2Extendee, GroupExt>;
+
+/**
+ * @generated from extension: repeated proto2ext.RepeatedGroupExt repeatedgroupext = 8101;
+ */
+export declare const repeatedgroupext: Extension<Proto2Extendee, RepeatedGroupExt[]>;
 

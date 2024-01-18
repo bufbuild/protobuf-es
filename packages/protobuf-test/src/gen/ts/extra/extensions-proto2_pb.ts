@@ -121,6 +121,92 @@ export class Proto2ExtMessage extends Message<Proto2ExtMessage> {
 }
 
 /**
+ * @generated from message proto2ext.GroupExt
+ */
+export class GroupExt extends Message<GroupExt> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+
+  constructor(data?: PartialMessage<GroupExt>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "proto2ext.GroupExt";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GroupExt {
+    return new GroupExt().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GroupExt {
+    return new GroupExt().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GroupExt {
+    return new GroupExt().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GroupExt | PlainMessage<GroupExt> | undefined, b: GroupExt | PlainMessage<GroupExt> | undefined): boolean {
+    return proto2.util.equals(GroupExt, a, b);
+  }
+}
+
+/**
+ * @generated from message proto2ext.RepeatedGroupExt
+ */
+export class RepeatedGroupExt extends Message<RepeatedGroupExt> {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+
+  constructor(data?: PartialMessage<RepeatedGroupExt>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "proto2ext.RepeatedGroupExt";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RepeatedGroupExt {
+    return new RepeatedGroupExt().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RepeatedGroupExt {
+    return new RepeatedGroupExt().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RepeatedGroupExt {
+    return new RepeatedGroupExt().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RepeatedGroupExt | PlainMessage<RepeatedGroupExt> | undefined, b: RepeatedGroupExt | PlainMessage<RepeatedGroupExt> | undefined): boolean {
+    return proto2.util.equals(RepeatedGroupExt, a, b);
+  }
+}
+
+/**
  * A container for nested extensions
  *
  * @generated from message proto2ext.Proto2ExtContainer
@@ -364,5 +450,23 @@ export const wrapper_ext = proto2.makeExtension<Proto2Extendee, number>(
   "proto2ext.wrapper_ext", 
   Proto2Extendee, 
   () => ({ no: 8001, kind: "message", T: UInt32Value, opt: true }),
+);
+
+/**
+ * @generated from extension: optional proto2ext.GroupExt groupext = 8100;
+ */
+export const groupext = proto2.makeExtension<Proto2Extendee, GroupExt>(
+  "proto2ext.groupext", 
+  Proto2Extendee, 
+  () => ({ no: 8100, kind: "message", T: GroupExt, delimited: true, opt: true }),
+);
+
+/**
+ * @generated from extension: repeated proto2ext.RepeatedGroupExt repeatedgroupext = 8101;
+ */
+export const repeatedgroupext = proto2.makeExtension<Proto2Extendee, RepeatedGroupExt[]>(
+  "proto2ext.repeatedgroupext", 
+  Proto2Extendee, 
+  () => ({ no: 8101, kind: "message", T: RepeatedGroupExt, delimited: true, repeated: true }),
 );
 

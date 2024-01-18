@@ -57,6 +57,28 @@ export const Proto2ExtMessage = proto2.makeMessageType(
 );
 
 /**
+ * @generated from message proto2ext.GroupExt
+ */
+export const GroupExt = proto2.makeMessageType(
+  "proto2ext.GroupExt",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message proto2ext.RepeatedGroupExt
+ */
+export const RepeatedGroupExt = proto2.makeMessageType(
+  "proto2ext.RepeatedGroupExt",
+  () => [
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
  * A container for nested extensions
  *
  * @generated from message proto2ext.Proto2ExtContainer
@@ -255,5 +277,23 @@ export const wrapper_ext = proto2.makeExtension(
   "proto2ext.wrapper_ext", 
   Proto2Extendee, 
   () => ({ no: 8001, kind: "message", T: UInt32Value, opt: true }),
+);
+
+/**
+ * @generated from extension: optional proto2ext.GroupExt groupext = 8100;
+ */
+export const groupext = proto2.makeExtension(
+  "proto2ext.groupext", 
+  Proto2Extendee, 
+  () => ({ no: 8100, kind: "message", T: GroupExt, delimited: true, opt: true }),
+);
+
+/**
+ * @generated from extension: repeated proto2ext.RepeatedGroupExt repeatedgroupext = 8101;
+ */
+export const repeatedgroupext = proto2.makeExtension(
+  "proto2ext.repeatedgroupext", 
+  Proto2Extendee, 
+  () => ({ no: 8101, kind: "message", T: RepeatedGroupExt, delimited: true, repeated: true }),
 );
 

@@ -64,6 +64,15 @@ extend Proto2Extendee {
   repeated uint32 unpacked_uint32_ext = 7004; // unpacked by default in proto2
 
   optional google.protobuf.UInt32Value wrapper_ext = 8001;
+
+  optional group GroupExt = 8100 {
+    optional int32 a = 1;
+    optional int32 b = 2;
+  }
+  repeated group RepeatedGroupExt = 8101 {
+    optional int32 a = 1;
+    optional int32 b = 2;
+  }
 }
 
 // A container for nested extensions

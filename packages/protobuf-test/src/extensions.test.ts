@@ -36,6 +36,8 @@ import {
   bytes_ext_with_default,
   enum_ext,
   enum_ext_with_default,
+  GroupExt,
+  groupext,
   message_ext,
   message_ext_proto3,
   packed_uint32_ext,
@@ -47,6 +49,8 @@ import {
   repeated_enum_ext,
   repeated_message_ext,
   repeated_string_ext,
+  RepeatedGroupExt,
+  repeatedgroupext,
   string_ext,
   string_ext_with_default,
   uint32_ext,
@@ -80,6 +84,11 @@ const goldenValues: ReadonlyMap<Extension<Proto2Extendee>, unknown> = new Map<
   [packed_uint32_ext, [1, 2, 3]],
   [unpacked_uint32_ext, [4, 5, 6]],
   [wrapper_ext, 123],
+  [groupext, new GroupExt({ a: 123 })],
+  [
+    repeatedgroupext,
+    [new RepeatedGroupExt({ a: 123 }), new RepeatedGroupExt({ a: 456 })],
+  ],
   [Proto2ExtContainer_uint32_ext, 1234],
   [Proto2ExtContainer_Child_uint32_ext, 12345],
 ]);
@@ -105,6 +114,8 @@ const goldenValuesZero: ReadonlyMap<
   [packed_uint32_ext, []],
   [unpacked_uint32_ext, []],
   [wrapper_ext, 0],
+  [groupext, new GroupExt()],
+  [repeatedgroupext, []],
   [Proto2ExtContainer_uint32_ext, 0],
   [Proto2ExtContainer_Child_uint32_ext, 0],
 ]);
@@ -484,6 +495,117 @@ describe("getExtension()", () => {
       expect(getExtension(msg, repeated_message_ext)).toStrictEqual([]);
     });
   });
+  describe("for group", () => {
+    function addUnknownGroupField(
+      message: Proto2Extendee,
+      fieldNo: number,
+      value: Message,
+    ) {
+      message
+        .getType()
+        .runtime.bin.onUnknownField(
+          message,
+          fieldNo,
+          WireType.StartGroup,
+          value
+            .getType()
+            .runtime.bin.makeWriteOptions()
+            .writerFactory()
+            .raw(value.toBinary())
+            .tag(fieldNo, WireType.EndGroup)
+            .finish(),
+        );
+    }
+
+    it("should return value parsed from unknown fields", () => {
+      const msg = new Proto2Extendee();
+      addUnknownGroupField(
+        msg,
+        groupext.field.no,
+        new GroupExt({
+          a: 123,
+        }),
+      );
+      const value = getExtension(msg, groupext);
+      expect(value).toBeInstanceOf(GroupExt);
+      expect(value.a).toBe(123);
+    });
+    it("should return merged value parsed from multiple unknown fields", () => {
+      const msg = new Proto2Extendee();
+      addUnknownGroupField(
+        msg,
+        groupext.field.no,
+        new GroupExt({
+          a: 123,
+        }),
+      );
+      addUnknownGroupField(
+        msg,
+        groupext.field.no,
+        new GroupExt({
+          b: 456,
+        }),
+      );
+      const value = getExtension(msg, groupext);
+      expect(value).toBeInstanceOf(GroupExt);
+      expect(value.a).toBe(123);
+      expect(value.b).toBe(456);
+    });
+    it("should return empty group if unset", () => {
+      const msg = new Proto2Extendee();
+      const value = getExtension(msg, groupext);
+      expect(value).toBeInstanceOf(GroupExt);
+      expect(new GroupExt().equals(value)).toBeTruthy();
+    });
+  });
+  describe("for repeated group", () => {
+    function addUnknownGroupField(
+      message: Proto2Extendee,
+      fieldNo: number,
+      value: Message,
+    ) {
+      message
+        .getType()
+        .runtime.bin.onUnknownField(
+          message,
+          fieldNo,
+          WireType.StartGroup,
+          value
+            .getType()
+            .runtime.bin.makeWriteOptions()
+            .writerFactory()
+            .raw(value.toBinary())
+            .tag(fieldNo, WireType.EndGroup)
+            .finish(),
+        );
+    }
+
+    it("should parse from unknown fields", () => {
+      const msg = new Proto2Extendee();
+      addUnknownGroupField(
+        msg,
+        repeatedgroupext.field.no,
+        new RepeatedGroupExt({
+          a: 123,
+        }),
+      );
+      addUnknownGroupField(
+        msg,
+        repeatedgroupext.field.no,
+        new RepeatedGroupExt({
+          a: 456,
+        }),
+      );
+      const arr = getExtension(msg, repeatedgroupext);
+      expect(arr.length).toBe(2);
+      expect(arr[0].a).toBe(123);
+      expect(arr[1].a).toBe(456);
+    });
+    it("should return zero value if unset", () => {
+      const msg = new Proto2Extendee();
+      expect(getExtension(msg, repeatedgroupext)).toStrictEqual([]);
+    });
+  });
 });
 
 describe("hasExtension()", () => {
@@ -696,6 +818,8 @@ describe("extensions with JSON", () => {
     packed_uint32_ext,
     unpacked_uint32_ext,
     wrapper_ext,
+    groupext,
+    repeatedgroupext,
     Proto2ExtContainer_uint32_ext,
     Proto2ExtContainer_Child_uint32_ext,
   );
@@ -729,6 +853,8 @@ describe("extensions with JSON", () => {
     "[proto2ext.repeated_string_ext]": ["a", "b", "c"],
     "[proto2ext.unpacked_uint32_ext]": [4, 5, 6],
     "[proto2ext.wrapper_ext]": 123,
+    "[proto2ext.groupext]": { a: 123 },
+    "[proto2ext.repeatedgroupext]": [{ a: 123 }, { a: 456 }],
     "[proto2ext.Proto2ExtContainer.uint32_ext]": 1234,
     "[proto2ext.Proto2ExtContainer.Child.uint32_ext]": 12345,
   };
@@ -746,6 +872,7 @@ describe("extensions with JSON", () => {
     "[proto2ext.message_ext]": {},
     "[proto2ext.message_ext_proto3]": {},
     "[proto2ext.wrapper_ext]": 0,
+    "[proto2ext.groupext]": {},
     "[proto2ext.Proto2ExtContainer.uint32_ext]": 0,
     "[proto2ext.Proto2ExtContainer.Child.uint32_ext]": 0,
   };
