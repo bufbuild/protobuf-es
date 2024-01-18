@@ -64,63 +64,70 @@ import {
 import { User } from "./gen/ts/extra/example_pb.js";
 import { getTestFileDescriptorSetBytes } from "./helpers.js";
 
-const goldenValues: ReadonlyMap<Extension<Proto2Extendee>, unknown> = new Map<
-  Extension<Proto2Extendee>,
-  unknown
->([
-  [uint32_ext, 123],
-  [uint32_ext_with_default, 456],
-  [string_ext, "abc"],
-  [string_ext_with_default, "def"],
-  [uint64_ext, protoInt64.parse(777)],
-  [uint64_ext_js_string, "888"],
-  [bytes_ext, new Uint8Array([0xde, 0xad, 0xbe, 0xef])],
-  [bytes_ext_with_default, new Uint8Array([0xef, 0xbe, 0xad, 0xde])],
-  [enum_ext, Proto2ExtEnum.NO],
-  [enum_ext_with_default, Proto2ExtEnum.NO],
-  [message_ext, new Proto2ExtMessage({ stringField: "abc" })],
-  [message_ext_proto3, new User({ firstName: "John" })],
-  [repeated_message_ext, [new Proto2ExtMessage({ stringField: "abc" })]],
-  [repeated_enum_ext, [Proto2ExtEnum.YES, Proto2ExtEnum.NO]],
-  [repeated_string_ext, ["a", "b", "c"]],
-  [packed_uint32_ext, [1, 2, 3]],
-  [unpacked_uint32_ext, [4, 5, 6]],
-  [wrapper_ext, 123],
-  [groupext, new GroupExt({ a: 123 })],
-  [
-    repeatedgroupext,
-    [new RepeatedGroupExt({ a: 123 }), new RepeatedGroupExt({ a: 456 })],
-  ],
-  [Proto2ExtContainer_uint32_ext, 1234],
-  [Proto2ExtContainer_Child_uint32_ext, 12345],
-]);
-const goldenValuesZero: ReadonlyMap<
-  Extension<Proto2Extendee>,
-  unknown
-> = new Map<Extension<Proto2Extendee>, unknown>([
-  [uint32_ext, 0],
-  [uint32_ext_with_default, 0],
-  [string_ext, ""],
-  [string_ext_with_default, ""],
-  [uint64_ext, protoInt64.parse(0)],
-  [uint64_ext_js_string, "0"],
-  [bytes_ext, new Uint8Array([])],
-  [bytes_ext_with_default, new Uint8Array([])],
-  [enum_ext, Proto2ExtEnum.YES],
-  [enum_ext_with_default, Proto2ExtEnum.YES],
-  [message_ext, new Proto2ExtMessage()],
-  [message_ext_proto3, new User()],
-  [repeated_message_ext, []],
-  [repeated_enum_ext, []],
-  [repeated_string_ext, []],
-  [packed_uint32_ext, []],
-  [unpacked_uint32_ext, []],
-  [wrapper_ext, 0],
-  [groupext, new GroupExt()],
-  [repeatedgroupext, []],
-  [Proto2ExtContainer_uint32_ext, 0],
-  [Proto2ExtContainer_Child_uint32_ext, 0],
-]);
+// test cases for extensions
+type extensionWithValueCollection = ReadonlyArray<{
+  ext: Extension;
+  val: unknown;
+}>;
+
+const goldenValues: extensionWithValueCollection = [
+  { ext: uint32_ext, val: 123 },
+  { ext: uint32_ext_with_default, val: 456 },
+  { ext: string_ext, val: "abc" },
+  { ext: string_ext_with_default, val: "def" },
+  { ext: uint64_ext, val: protoInt64.parse(777) },
+  { ext: uint64_ext_js_string, val: "888" },
+  { ext: bytes_ext, val: new Uint8Array([0xde, 0xad, 0xbe, 0xef]) },
+  {
+    ext: bytes_ext_with_default,
+    val: new Uint8Array([0xef, 0xbe, 0xad, 0xde]),
+  },
+  { ext: enum_ext, val: Proto2ExtEnum.NO },
+  { ext: enum_ext_with_default, val: Proto2ExtEnum.NO },
+  { ext: message_ext, val: new Proto2ExtMessage({ stringField: "abc" }) },
+  { ext: message_ext_proto3, val: new User({ firstName: "John" }) },
+  {
+    ext: repeated_message_ext,
+    val: [new Proto2ExtMessage({ stringField: "abc" })],
+  },
+  { ext: repeated_enum_ext, val: [Proto2ExtEnum.YES, Proto2ExtEnum.NO] },
+  { ext: repeated_string_ext, val: ["a", "b", "c"] },
+  { ext: packed_uint32_ext, val: [1, 2, 3] },
+  { ext: unpacked_uint32_ext, val: [4, 5, 6] },
+  { ext: wrapper_ext, val: 123 },
+  { ext: groupext, val: new GroupExt({ a: 123 }) },
+  {
+    ext: repeatedgroupext,
+    val: [new RepeatedGroupExt({ a: 123 }), new RepeatedGroupExt({ a: 456 })],
+  },
+  { ext: Proto2ExtContainer_uint32_ext, val: 1234 },
+  { ext: Proto2ExtContainer_Child_uint32_ext, val: 12345 },
+];
+
+const goldenValuesZero: extensionWithValueCollection = [
+  { ext: uint32_ext, val: 0 },
+  { ext: uint32_ext_with_default, val: 0 },
+  { ext: string_ext, val: "" },
+  { ext: string_ext_with_default, val: "" },
+  { ext: uint64_ext, val: protoInt64.parse(0) },
+  { ext: uint64_ext_js_string, val: "0" },
+  { ext: bytes_ext, val: new Uint8Array([]) },
+  { ext: bytes_ext_with_default, val: new Uint8Array([]) },
+  { ext: enum_ext, val: Proto2ExtEnum.YES },
+  { ext: enum_ext_with_default, val: Proto2ExtEnum.YES },
+  { ext: message_ext, val: new Proto2ExtMessage() },
+  { ext: message_ext_proto3, val: new User() },
+  { ext: repeated_message_ext, val: [] },
+  { ext: repeated_enum_ext, val: [] },
+  { ext: repeated_string_ext, val: [] },
+  { ext: packed_uint32_ext, val: [] },
+  { ext: unpacked_uint32_ext, val: [] },
+  { ext: wrapper_ext, val: 0 },
+  { ext: groupext, val: new GroupExt() },
+  { ext: repeatedgroupext, val: [] },
+  { ext: Proto2ExtContainer_uint32_ext, val: 0 },
+  { ext: Proto2ExtContainer_Child_uint32_ext, val: 0 },
+];
 
 describe("proto2.makeExtension()", () => {
   it("should derive names from typeName", () => {
@@ -701,17 +708,19 @@ describe("setExtension()", () => {
       /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
     );
   });
-  for (const [ext, val] of Array.from(goldenValues.entries())) {
-    it(`should set ${ext.typeName} as expected`, () => {
+  it.each(goldenValues)(
+    "should set $ext.typeName as expected",
+    ({ ext, val }) => {
       const msg = new Proto2Extendee();
       expect(hasExtension(msg, ext)).toBeFalsy();
       setExtension(msg, ext, val);
       expect(hasExtension(msg, ext)).toBeTruthy();
       expect(getExtension(msg, ext)).toStrictEqual(val);
-    });
-  }
-  for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
-    it(`should set zero ${ext.typeName} as expected`, () => {
+    },
+  );
+  it.each(goldenValuesZero)(
+    "should set zero $ext.typeName as expected",
+    ({ ext, val }) => {
       const msg = new Proto2Extendee();
       expect(hasExtension(msg, ext)).toBeFalsy();
       setExtension(msg, ext, val);
@@ -721,8 +730,8 @@ describe("setExtension()", () => {
         expect(hasExtension(msg, ext)).toBeTruthy();
       }
       expect(getExtension(msg, ext)).toStrictEqual(val);
-    });
-  }
+    },
+  );
   describe("setting repeated extension twice", () => {
     it("should not merge", () => {
       const msg = new Proto2Extendee();
@@ -819,30 +828,6 @@ describe("extensions with JSON", () => {
     });
   });
 
-  const registryFromGeneratedCode = createRegistry(
-    uint32_ext,
-    uint32_ext_with_default,
-    string_ext,
-    string_ext_with_default,
-    uint64_ext,
-    uint64_ext_js_string,
-    bytes_ext,
-    bytes_ext_with_default,
-    enum_ext,
-    enum_ext_with_default,
-    message_ext,
-    message_ext_proto3,
-    repeated_message_ext,
-    repeated_enum_ext,
-    repeated_string_ext,
-    packed_uint32_ext,
-    unpacked_uint32_ext,
-    wrapper_ext,
-    groupext,
-    repeatedgroupext,
-    Proto2ExtContainer_uint32_ext,
-    Proto2ExtContainer_Child_uint32_ext,
-  );
   const goldenJson = {
     "[proto2ext.uint32_ext]": 123,
     "[proto2ext.uint32_ext_with_default]": 456,
@@ -905,19 +890,21 @@ describe("extensions with JSON", () => {
       name: "with a registry from descriptors",
     },
     {
-      typeRegistry: registryFromGeneratedCode,
+      typeRegistry: createRegistry(...goldenValues.map(({ ext }) => ext)),
       reg: "with a registry from generated code",
     },
   ])("$name", ({ typeRegistry }) => {
-    for (const [ext, val] of Array.from(goldenValues.entries())) {
-      it(`should parse ${ext.typeName} as expected`, () => {
+    it.each(goldenValues)(
+      "should parse $ext.typeName as expected",
+      ({ ext, val }) => {
         const msg = Proto2Extendee.fromJson(goldenJson, { typeRegistry });
         expect(hasExtension(msg, ext)).toBeTruthy();
         expect(getExtension(msg, ext)).toStrictEqual(val);
-      });
-    }
-    for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
-      it(`should parse zero ${ext.typeName} as expected`, () => {
+      },
+    );
+    it.each(goldenValuesZero)(
+      "should parse zero $ext.typeName as expected",
+      ({ ext, val }) => {
         const msg = Proto2Extendee.fromJson(goldenJsonZero, { typeRegistry });
         if (ext.field.repeated) {
           expect(hasExtension(msg, ext)).toBeFalsy();
@@ -925,18 +912,18 @@ describe("extensions with JSON", () => {
           expect(hasExtension(msg, ext)).toBeTruthy();
         }
         expect(getExtension(msg, ext)).toStrictEqual(val);
-      });
-    }
+      },
+    );
     it("should serialize as expected", () => {
       const msg = new Proto2Extendee();
-      for (const [ext, val] of Array.from(goldenValues.entries())) {
+      for (const { ext, val } of goldenValues) {
         setExtension(msg, ext, val);
       }
       expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJson);
     });
     it("should serialize zero values as expected", () => {
       const msg = new Proto2Extendee();
-      for (const [ext, val] of Array.from(goldenValuesZero.entries())) {
+      for (const { ext, val } of goldenValuesZero) {
         setExtension(msg, ext, val);
       }
       expect(msg.toJson({ typeRegistry })).toStrictEqual(goldenJsonZero);
