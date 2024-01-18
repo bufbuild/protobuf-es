@@ -22,6 +22,8 @@ import {
 } from "@bufbuild/protobuf";
 
 /**
+ * @deprecated Please use extensions instead.
+ *
  * Returns the value of a custom option with a scalar type.
  *
  * If no option is found, returns undefined.
@@ -73,6 +75,8 @@ export function findCustomScalarOption<T extends ScalarType>(
 }
 
 /**
+ * @deprecated Please use extensions instead.
+ *
  * Returns the value of a custom message option for the given descriptor and
  * extension number.
  * The msgType param is then used to deserialize the message for returning to
@@ -102,6 +106,8 @@ export function findCustomMessageOption<T extends Message<T>>(
 }
 
 /**
+ * @deprecated Please use extensions instead.
+ *
  * Returns the value of a custom enum option for the given descriptor and
  * extension number.
  *
@@ -116,6 +122,8 @@ export function findCustomEnumOption(
 
 // prettier-ignore
 /**
+ * @deprecated Please use extensions instead.
+ *
  * ScalarValue is a conditional type that pairs a ScalarType value with its concrete type.
  */
 type ScalarValue<T> = T extends ScalarType.STRING
