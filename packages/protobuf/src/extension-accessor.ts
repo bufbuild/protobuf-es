@@ -29,15 +29,16 @@ import type { Extension } from "./extension.js";
  * default value (if one was specified in the protobuf source), or the zero value
  * (for example `0` for numeric types, `[]` for repeated extension fields, and
  * an empty message instance for message fields).
+ *
+ * If the extension does not extend the given message, an error is raised.
  */
 export function getExtension<E extends Message<E>, V>(
   message: E,
   extension: Extension<E, V>,
   options?: Partial<BinaryReadOptions>,
 ): V {
+  assertExtendee(extension, message);
   const opt = extension.runtime.bin.makeReadOptions(options);
-  assert(!extension.field.oneof); // oneof is not allowed for extensions
-  assert(extension.field.kind != "map"); // maps are not allowed for extensions
   const ufs = filterUnknownFields(
     message.getType().runtime.bin.listUnknownFields(message),
     extension.field,
@@ -58,6 +59,8 @@ export function getExtension<E extends Message<E>, V>(
 /**
  * Set an extension value on a message. If the message already has a value for
  * this extension, the value is replaced.
+ *
+ * If the extension does not extend the given message, an error is raised.
  */
 export function setExtension<E extends Message<E>, V>(
   message: E,
@@ -65,6 +68,7 @@ export function setExtension<E extends Message<E>, V>(
   value: V,
   options?: Partial<BinaryReadOptions & BinaryWriteOptions>,
 ): void {
+  assertExtendee(extension, message);
   const readOpt = extension.runtime.bin.makeReadOptions(options);
   const writeOpt = extension.runtime.bin.makeWriteOptions(options);
   if (hasExtension(message, extension)) {
@@ -91,11 +95,14 @@ export function setExtension<E extends Message<E>, V>(
 
 /**
  * Remove an extension value from a message.
+ *
+ * If the extension does not extend the given message, an error is raised.
  */
 export function clearExtension<E extends Message<E>, V>(
   message: E,
   extension: Extension<E, V>,
 ): void {
+  assertExtendee(extension, message);
   if (hasExtension(message, extension)) {
     const bin = message.getType().runtime.bin;
     const ufs = bin
@@ -121,5 +128,12 @@ export function hasExtension<E extends Message<E>, V>(
     !!messageType.runtime.bin
       .listUnknownFields(message)
       .find((uf) => uf.no == extension.field.no)
+  );
+}
+
+function assertExtendee(extension: Extension, message: Message) {
+  assert(
+    extension.extendee.typeName == message.getType().typeName,
+    `extension ${extension.typeName} can only be applied to message ${extension.extendee.typeName}`,
   );
 }

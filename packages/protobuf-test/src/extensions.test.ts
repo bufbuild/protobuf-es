@@ -172,6 +172,12 @@ describe("proto2.makeExtension()", () => {
 });
 
 describe("getExtension()", () => {
+  it("should throw error if extendee does not match", () => {
+    const msg = new User();
+    expect(() => getExtension(msg as Proto2Extendee, uint32_ext)).toThrow(
+      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+    );
+  });
   describe("for scalar", () => {
     it("should parse from unknown fields", () => {
       const msg = new Proto2Extendee();
@@ -678,9 +684,21 @@ describe("clearExtension()", () => {
     clearExtension(msg, uint32_ext);
     expect(listUnknownFieldNumbers(msg)).toStrictEqual([500, 1500]);
   });
+  it("should throw error if extendee does not match", () => {
+    const msg = new User();
+    expect(() => clearExtension(msg as Proto2Extendee, uint32_ext)).toThrow(
+      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+    );
+  });
 });
 
 describe("setExtension()", () => {
+  it("should throw error if extendee does not match", () => {
+    const msg = new User();
+    expect(() => setExtension(msg as Proto2Extendee, uint32_ext, 123)).toThrow(
+      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+    );
+  });
   for (const [ext, val] of Array.from(goldenValues.entries())) {
     it(`should set ${ext.typeName} as expected`, () => {
       const msg = new Proto2Extendee();
