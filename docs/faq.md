@@ -143,7 +143,6 @@ representation in any meaningful way.  They are as follows:
   To properly support proto3 JSON and make sure it interoperates correctly
   with other language implementations, Protobuf-ES has to support all variants of the input,
   which include:
-
   - If a value is missing or null, it should be interpreted as that field type's
     default value.
   - Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
