@@ -54,7 +54,7 @@ enum Species {
 const hamster: Species = 3;
 ```
 
-As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/connectrpc/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
+As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/bufbuild/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
 ### Why aren't `enum` values generated in PascalCase?
 
@@ -114,6 +114,48 @@ In the above code, `plainFoo` will be a type with only its fields and `oneOf` gr
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
 
 Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
+
+### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
+
+There are few reasons why it is impractical to generate interfaces for the JSON
+representation in any meaningful way.  They are as follows:
+
+* Protobuf supports a much more robust range of types than JSON.
+
+  A good example for this is a Protobuf `bytes` field. The best representation in
+  TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
+  proto3 JSON, a `bytes` field is serialized by base64 encoding the data, which
+  means it becomes a JSON string.
+
+* There is no single JSON representation for a Protobuf message.
+
+  Implementations are allowed to provide serialization options that can modify
+  the shape of the JSON output, such as:
+  - Output fields with their default values rather than omit them.
+  - Ignore unknown fields rather than reject them.
+  - Use the proto field name as the JSON name instead of converting to lowerCamelCase.
+    Also, important to note that the expected lowerCamelCase name can be modified with
+    the `json_name` field option.
+  - Use an enum's numeric value instead of the enum name.
+
+* JSON parsing must be lax to support all variants of the input.
+
+  To properly support proto3 JSON and make sure it interoperates correctly
+  with other language implementations, Protobuf-ES has to support all variants of the input,
+  which include:
+
+- If a value is missing or null, it should be interpreted as that field type's
+  default value.
+- Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
+  if present, the `json_name` field option.
+- Enums can be given as integers or by their enum value name.
+- All numeric types can be provided as a string or number.
+- Doubles can also be given in exponent notation or be one of the special strings
+  of `NaN`, `Infinity` or `-Infinity`.
+
+Taking the above into account, it becomes evident that it is not
+feasible to generate code for the JSON structure. The Protobuf-ES type `JsonValue`
+is the best we can do to represent a generic type for these structures.
 
 ### How does this compare to protoc's JavaScript generator?
 

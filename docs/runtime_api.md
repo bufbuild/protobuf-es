@@ -57,10 +57,12 @@ const user = new User();
 ```
 
 
-For convenience, constructors accept an initializer object:
+For convenience, constructors accept an initializer object. All fields in the 
+initializer object are optional, and if not provided, the default value for the 
+field is used.
 
 ```typescript
-new User({
+const user = new User({
   firstName: "Homer",
   active: true,
   manager: {  // you can simply pass an initializer object for this message field
@@ -69,8 +71,42 @@ new User({
 });
 ```
 
-Note that all fields in the initializer object are optional, and if not
-provided, the default value for the field is used.
+The initializer object accepted by all message constructors is of type 
+[`PartialMessage<T>`](src-partial-message) where `T` is your message type. So 
+in the above example, the initializer object is of type `PartialMessage<User>`. 
+`PartialMessage` is similar to the TypeScript built-in type `Partial`, but works 
+recursively. For more details, see the below section on [Advanced TypeScript types](#advanced-typescript-types).
+
+If you need to define the initializer object independent of the constructor,
+then be sure to use a type assertion, otherwise you may see unexpected compile
+errors with `oneof` fields. In TypeScript 4.9 and above, it is recommended to 
+use `satisfies`.
+
+```typescript
+const obj = {
+  firstName: "Homer",
+  active: true,
+  manager: {  
+    lastName: "Burns",
+  },
+} satisfies PartialMessage<User>;
+
+const user = new User(obj);
+```
+
+Otherwise, use the `as` keyword:
+
+```typescript
+const obj = {
+  firstName: "Homer",
+  active: true,
+  manager: {  
+    lastName: "Burns",
+  },
+} as PartialMessage<User>;
+
+const user = new User(obj);
+```
 
 ### Default field values
 
@@ -385,11 +421,6 @@ their names. Use  [`proto3.getEnumType()`][src-proto3-getEnumType] to retrieve t
 EnumType for a given enum.
 
 Similar to messages, enums can also be created at run time, via [`proto3.makeEnum()`][src-proto3-makeEnum].
-
-Note that in Protobuf-ES, all enums are ["open"][protobuf-dev-enum], meaning that old 
-generated code can contain a value in an enum field that was added in a new version of 
-the schema. With TypeScript v5 and later, enums are closed in the type system. With 
-earlier versions of TypeScript, they are open.
 
 
 ## Well-known types
@@ -749,10 +780,6 @@ technique.
 
 ### PartialMessage
 
-The object initializers accepted by message constructors are defined by the type 
-[`PartialMessage<T>`][src-partial-message]. It is similar to the TypeScript built-in type 
-`Partial`, but works recursively. 
-
 This type is well suited in case you know the type of a message, but want to allow 
 an instance to be given in the most flexible way. If you want to offer an API that lets 
 users provide message data, consider accepting `PartialMessage<T>`, so that users can 
@@ -835,4 +862,3 @@ Note that any message is assignable to `AnyMessage`.
 [src-plain-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
 [src-any-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
 [pkg-protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
-[protobuf-dev-enum]: https://protobuf.dev/programming-guides/enum/
