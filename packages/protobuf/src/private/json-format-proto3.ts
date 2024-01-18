@@ -27,6 +27,7 @@ import type { Message } from "../message.js";
 /* eslint-disable no-case-declarations, @typescript-eslint/restrict-plus-operands,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument */
 
 export function makeJsonFormatProto3(): JsonFormat {
+  // TODO field presence: merge this function with proto2
   return makeJsonFormatCommon((writeEnum, writeScalar) => {
     return function writeField(
       field: FieldInfo,
@@ -91,7 +92,7 @@ export function makeJsonFormatProto3(): JsonFormat {
             break;
           case "message":
             for (let i = 0; i < value.length; i++) {
-              jsonArr.push(wrapField(field.T, value[i]).toJson(options));
+              jsonArr.push(value[i].toJson(options));
             }
             break;
         }
@@ -99,6 +100,9 @@ export function makeJsonFormatProto3(): JsonFormat {
           ? jsonArr
           : undefined;
       } else {
+        if (value === undefined) {
+          return undefined;
+        }
         switch (field.kind) {
           case "scalar":
             return writeScalar(
@@ -114,9 +118,7 @@ export function makeJsonFormatProto3(): JsonFormat {
               options.enumAsInteger,
             );
           case "message":
-            return value !== undefined
-              ? wrapField(field.T, value).toJson(options)
-              : undefined;
+            return wrapField(field.T, value).toJson(options);
         }
       }
     };

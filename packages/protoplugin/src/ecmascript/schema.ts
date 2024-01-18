@@ -15,6 +15,7 @@
 import type {
   CodeGeneratorRequest,
   DescEnum,
+  DescExtension,
   DescFile,
   DescMessage,
   DescriptorSet,
@@ -94,7 +95,9 @@ export function createSchema(
   });
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
-  const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
+  const createTypeImport = (
+    desc: DescMessage | DescEnum | DescExtension,
+  ): ImportSymbol => {
     const name = codegenInfo.localName(desc);
     const from = makeImportPath(
       desc.file,

@@ -15,6 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import type {
   EnumType,
+  Extension,
   FieldInfo,
   Message,
   MessageType,
@@ -70,16 +71,37 @@ export function testMT<T extends Message<T>>(
   });
 }
 
-const dr = createRegistryFromDescriptors(readFileSync("./descriptorset.bin"));
+let testFileDescriptorSetBytes: Uint8Array | undefined;
 
-export function makeMessageTypeDynamic<T extends Message<T>>(
+export function getTestFileDescriptorSetBytes(): Uint8Array {
+  if (!testFileDescriptorSetBytes) {
+    testFileDescriptorSetBytes = readFileSync("./descriptorset.bin");
+  }
+  return testFileDescriptorSetBytes;
+}
+
+let testRegistry: ReturnType<typeof createRegistryFromDescriptors> | undefined;
+
+function makeMessageTypeDynamic<T extends Message<T>>(
   type: MessageType<T>,
 ): MessageType<T> {
-  const dyn = dr.findMessage(type.typeName);
+  if (!testRegistry) {
+    testRegistry = createRegistryFromDescriptors(
+      getTestFileDescriptorSetBytes(),
+    );
+  }
+  const dyn = testRegistry.findMessage(type.typeName);
   if (!dyn) {
     throw new Error();
   }
   return dyn as MessageType<T>;
+}
+
+export function assertExtensionEquals(a: Extension, b: Extension): void {
+  expect(a.typeName).toBe(b.typeName);
+  expect(a.runtime).toBe(b.runtime);
+  assertMessageTypeEquals(a.extendee, b.extendee);
+  assertFieldInfoEquals(a.field, b.field);
 }
 
 export function assertMessageTypeEquals(a: MessageType, b: MessageType): void {

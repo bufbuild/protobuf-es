@@ -16,7 +16,7 @@
 // @generated from file extra/enum.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { EnumOptions, EnumValueOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.AnnotatedEnum
@@ -86,5 +86,23 @@ export const EnumMessage_NestedEnum = proto3.makeEnum(
     {no: 0, name: "NESTED_ZERO"},
     {no: 1, name: "NESTED_ONE"},
   ],
+);
+
+/**
+ * @generated from extension: bool enum_opt_bool = 2001;
+ */
+export const enum_opt_bool = proto3.makeExtension(
+  "spec.enum_opt_bool", 
+  EnumOptions, 
+  { no: 2001, kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+);
+
+/**
+ * @generated from extension: bool enum_value_opt_bool = 3001;
+ */
+export const enum_value_opt_bool = proto3.makeExtension(
+  "spec.enum_value_opt_bool", 
+  EnumValueOptions, 
+  { no: 3001, kind: "scalar", T: 8 /* ScalarType.BOOL */ },
 );
 

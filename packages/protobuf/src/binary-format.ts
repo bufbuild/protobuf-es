@@ -18,6 +18,7 @@ import type {
   IBinaryWriter,
   WireType,
 } from "./binary-encoding.js";
+import type { FieldInfo } from "./field.js";
 
 /**
  * BinaryFormat is the contract for serializing messages to and from binary
@@ -60,10 +61,37 @@ export interface BinaryFormat {
   ): void;
 
   /**
+   * Parse a field from binary data, and store it in the given target.
+   *
+   * The target must be an initialized message object, with oneof groups,
+   * repeated fields and maps already present.
+   */
+  readField(
+    target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+    reader: IBinaryReader,
+    field: FieldInfo,
+    wireType: WireType,
+    options: BinaryReadOptions,
+  ): void;
+
+  /**
    * Serialize a message to binary data.
    */
   writeMessage(
     message: Message,
+    writer: IBinaryWriter,
+    options: BinaryWriteOptions,
+  ): void;
+
+  /**
+   * Serialize a field value to binary data.
+   *
+   * The value must be an array for repeated fields, a record object for map
+   * fields. Only selected oneof fields should be passed to this method.
+   */
+  writeField(
+    field: FieldInfo,
+    value: any, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
     writer: IBinaryWriter,
     options: BinaryWriteOptions,
   ): void;

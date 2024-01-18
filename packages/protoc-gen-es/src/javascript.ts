@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
+import type {
+  DescEnum,
+  DescExtension,
+  DescField,
+  DescMessage,
+} from "@bufbuild/protobuf";
 import {
   FieldDescriptorProto_Type,
   LongType,
@@ -42,7 +47,10 @@ export function generateJs(schema: Schema) {
     for (const message of file.messages) {
       generateMessage(schema, f, message);
     }
-    // We do not generate anything for services, and we do not support extensions at this time
+    for (const extension of file.extensions) {
+      generateExtension(schema, f, extension);
+    }
+    // We do not generate anything for services
   }
 }
 
@@ -100,22 +108,32 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   for (const nestedMessage of message.nestedMessages) {
     generateMessage(schema, f, nestedMessage);
   }
-  // We do not support extensions at this time
+  for (const nestedExtension of message.nestedExtensions) {
+    generateExtension(schema, f, nestedExtension);
+  }
 }
 
 // prettier-ignore
-export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
-  const protoN = getNonEditionRuntime(schema, field.parent.file);
+export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField | DescExtension) {
+  f.print("    ", getFieldInfoLiteral(schema, field), ",");
+}
+
+// prettier-ignore
+export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExtension): Printable {
+  const protoN = getNonEditionRuntime(schema, field.kind == "extension" ? field.file : field.parent.file);
   const e: Printable = [];
-  e.push("    { no: ", field.number, `, name: "`, field.name, `", `);
-  if (field.jsonName !== undefined) {
-    e.push(`jsonName: "`, field.jsonName, `", `);
+  e.push("{ no: ", field.number, `, `);
+  if (field.kind == "field") {
+    e.push(`name: "`, field.name, `", `);
+    if (field.jsonName !== undefined) {
+      e.push(`jsonName: "`, field.jsonName, `", `);
+    }
   }
   switch (field.fieldKind) {
     case "scalar":
       e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
       if (field.longType != LongType.BIGINT) {
-          e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
+        e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
       }
       break;
     case "map":
@@ -162,8 +180,28 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   if (typeof lastE == "string" && lastE.endsWith(", ")) {
     e[e.length - 1] = lastE.substring(0, lastE.length - 2);
   }
-  e.push(" },");
-  f.print(...e);
+  e.push(" }");
+  return e;
+}
+
+// prettier-ignore
+function generateExtension(
+  schema: Schema,
+  f: GeneratedFile,
+  ext: DescExtension,
+) {
+  const protoN = getNonEditionRuntime(schema, ext.file);
+  f.print(f.jsDoc(ext));
+  f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension(");
+  f.print("  ", f.string(ext.typeName), ", ");
+  f.print("  ", ext.extendee, ", ");
+  if (ext.fieldKind == "scalar") {
+    f.print("  ", getFieldInfoLiteral(schema, ext), ",");
+  } else {
+    f.print("  () => (", getFieldInfoLiteral(schema, ext), "),");
+  }
+  f.print(");");
+  f.print();
 }
 
 // prettier-ignore

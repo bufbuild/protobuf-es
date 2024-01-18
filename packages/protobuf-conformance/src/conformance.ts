@@ -20,7 +20,10 @@ import {
   WireFormat,
 } from "./gen/conformance/conformance_pb.js";
 import { TestAllTypesProto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
-import { TestAllTypesProto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
+import {
+  extension_int32,
+  TestAllTypesProto2,
+} from "./gen/google/protobuf/test_messages_proto2_pb.js";
 import type { MessageType } from "@bufbuild/protobuf";
 import {
   Any,
@@ -45,6 +48,7 @@ const registry = createRegistry(
   TestAllTypesProto3,
   TestAllTypesProto2,
   Any,
+  extension_int32,
 );
 
 void main();

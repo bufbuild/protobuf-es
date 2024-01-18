@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_proto3_optional.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, MessageOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -278,4 +278,14 @@ export declare class Proto3OptionalExtensions extends Message<Proto3OptionalExte
 
   static equals(a: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined, b: Proto3OptionalExtensions | PlainMessage<Proto3OptionalExtensions> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: int32 ext_no_optional = 355886728;
+ */
+export declare const Proto3OptionalExtensions_ext_no_optional: Extension<MessageOptions, number>;
+
+/**
+ * @generated from extension: optional int32 ext_with_optional = 355886729;
+ */
+export declare const Proto3OptionalExtensions_ext_with_optional: Extension<MessageOptions, number>;
 

@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -42,4 +42,9 @@ export declare class TestInvalidFeatures extends Message<TestInvalidFeatures> {
 
   static equals(a: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined, b: TestInvalidFeatures | PlainMessage<TestInvalidFeatures> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
+ */
+export declare const test_invalid: Extension<FeatureSet, TestInvalidFeatures>;
 

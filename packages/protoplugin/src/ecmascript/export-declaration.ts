@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { DescEnum, DescMessage } from "@bufbuild/protobuf";
+import { DescEnum, DescExtension, DescMessage } from "@bufbuild/protobuf";
 
 export type ExportDeclaration = {
   readonly kind: "es_export_decl";
   declaration: string;
-  name: string | DescMessage | DescEnum;
+  name: string | DescMessage | DescEnum | DescExtension;
 };
 
 export function createExportDeclaration(

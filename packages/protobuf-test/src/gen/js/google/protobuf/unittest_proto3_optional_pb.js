@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_proto3_optional.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { MessageOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -101,5 +101,23 @@ export const TestProto3OptionalMessage_NestedMessage = proto3.makeMessageType(
 export const Proto3OptionalExtensions = proto3.makeMessageType(
   "protobuf_unittest.Proto3OptionalExtensions",
   [],
+);
+
+/**
+ * @generated from extension: int32 ext_no_optional = 355886728;
+ */
+export const Proto3OptionalExtensions_ext_no_optional = proto3.makeExtension(
+  "protobuf_unittest.Proto3OptionalExtensions.ext_no_optional", 
+  MessageOptions, 
+  { no: 355886728, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+);
+
+/**
+ * @generated from extension: optional int32 ext_with_optional = 355886729;
+ */
+export const Proto3OptionalExtensions_ext_with_optional = proto3.makeExtension(
+  "protobuf_unittest.Proto3OptionalExtensions.ext_with_optional", 
+  MessageOptions, 
+  { no: 355886729, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
 );
 

@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import { proto2 } from "@bufbuild/protobuf";
+import { FeatureSet, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -26,5 +26,14 @@ export const TestInvalidFeatures = proto2.makeMessageType(
   () => [
     { no: 1, name: "repeated_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
   ],
+);
+
+/**
+ * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
+ */
+export const test_invalid = proto2.makeExtension(
+  "pb.test_invalid", 
+  FeatureSet, 
+  () => ({ no: 9996, kind: "message", T: TestInvalidFeatures, opt: true }),
 );
 

@@ -16,6 +16,7 @@ import type { AnyMessage, Message } from "../message.js";
 import type { BinaryFormat, BinaryWriteOptions } from "../binary-format.js";
 import type { IBinaryWriter } from "../binary-encoding.js";
 import { ScalarType } from "../field.js";
+import type { FieldInfo } from "../field.js";
 import {
   makeBinaryFormatCommon,
   writeMapEntry,
@@ -29,6 +30,7 @@ import {
 export function makeBinaryFormatProto3(): BinaryFormat {
   return {
     ...makeBinaryFormatCommon(),
+    writeField,
     writeMessage(
       message: Message,
       writer: IBinaryWriter,
@@ -36,10 +38,8 @@ export function makeBinaryFormatProto3(): BinaryFormat {
     ): IBinaryWriter {
       const type = message.getType();
       for (const field of type.fields.byNumber()) {
-        let value, // this will be our field value, whether it is member of a oneof or regular field
-          repeated = field.repeated,
+        let value,
           localName = field.localName;
-
         if (field.oneof) {
           const oneof = (message as AnyMessage)[field.oneof.localName];
           if (oneof.case !== localName) {
@@ -49,46 +49,7 @@ export function makeBinaryFormatProto3(): BinaryFormat {
         } else {
           value = (message as AnyMessage)[localName];
         }
-
-        switch (field.kind) {
-          case "scalar":
-          case "enum":
-            let scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
-            if (repeated) {
-              if (field.packed) {
-                writePacked(writer, scalarType, field.no, value);
-              } else {
-                for (const item of value) {
-                  writeScalar(writer, scalarType, field.no, item, true);
-                }
-              }
-            } else {
-              if (value !== undefined) {
-                writeScalar(
-                  writer,
-                  scalarType,
-                  field.no,
-                  value,
-                  !!field.oneof || field.opt,
-                );
-              }
-            }
-            break;
-          case "message":
-            if (repeated) {
-              for (const item of value) {
-                writeMessageField(writer, options, field, item);
-              }
-            } else {
-              writeMessageField(writer, options, field, value);
-            }
-            break;
-          case "map":
-            for (const [key, val] of Object.entries(value)) {
-              writeMapEntry(writer, options, field, key, val);
-            }
-            break;
-        }
+        writeField(field, value, writer, options);
       }
       if (options.writeUnknownFields) {
         this.writeUnknownFields(message, writer);
@@ -96,4 +57,51 @@ export function makeBinaryFormatProto3(): BinaryFormat {
       return writer;
     },
   };
+}
+
+// TODO field presence: merge this function with proto2
+function writeField(
+  field: FieldInfo,
+  value: any, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  writer: IBinaryWriter,
+  options: BinaryWriteOptions,
+) {
+  const repeated = field.repeated;
+  switch (field.kind) {
+    case "scalar":
+    case "enum":
+      let scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
+      if (repeated) {
+        if (field.packed) {
+          writePacked(writer, scalarType, field.no, value);
+        } else {
+          for (const item of value) {
+            writeScalar(writer, scalarType, field.no, item, true);
+          }
+        }
+      } else if (value !== undefined) {
+        writeScalar(
+          writer,
+          scalarType,
+          field.no,
+          value,
+          !!field.oneof || field.opt,
+        );
+      }
+      break;
+    case "message":
+      if (repeated) {
+        for (const item of value) {
+          writeMessageField(writer, options, field, item);
+        }
+      } else if (value !== undefined) {
+        writeMessageField(writer, options, field, value);
+      }
+      break;
+    case "map":
+      for (const [key, val] of Object.entries(value)) {
+        writeMapEntry(writer, options, field, key, val);
+      }
+      break;
+  }
 }

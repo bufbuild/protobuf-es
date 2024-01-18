@@ -24,6 +24,7 @@ export interface RuntimeImports {
   PlainMessage: ImportSymbol;
   FieldList: ImportSymbol;
   MessageType: ImportSymbol;
+  Extension: ImportSymbol;
   BinaryReadOptions: ImportSymbol;
   BinaryWriteOptions: ImportSymbol;
   JsonReadOptions: ImportSymbol;
@@ -49,6 +50,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     PlainMessage:          infoToSymbol("PlainMessage",         bootstrapWkt),
     FieldList:             infoToSymbol("FieldList",            bootstrapWkt),
     MessageType:           infoToSymbol("MessageType",          bootstrapWkt),
+    Extension:             infoToSymbol("Extension",            bootstrapWkt),
     BinaryReadOptions:     infoToSymbol("BinaryReadOptions",    bootstrapWkt),
     BinaryWriteOptions:    infoToSymbol("BinaryWriteOptions",   bootstrapWkt),
     JsonReadOptions:       infoToSymbol("JsonReadOptions",      bootstrapWkt),

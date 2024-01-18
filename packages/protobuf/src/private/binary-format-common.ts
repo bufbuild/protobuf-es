@@ -54,7 +54,10 @@ function makeWriteOptions(
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
 
-export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
+export function makeBinaryFormatCommon(): Omit<
+  BinaryFormat,
+  "writeMessage" | "writeField"
+> {
   return {
     makeReadOptions,
     makeWriteOptions,
@@ -113,80 +116,7 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
           }
           continue;
         }
-        let target = message as any,
-          repeated = field.repeated,
-          localName = field.localName;
-        if (field.oneof) {
-          target = target[field.oneof.localName];
-          if (target.case != localName) {
-            delete target.value;
-          }
-          target.case = localName;
-          localName = "value";
-        }
-        switch (field.kind) {
-          case "scalar":
-          case "enum":
-            const scalarType =
-              field.kind == "enum" ? ScalarType.INT32 : field.T;
-            let read = readScalar;
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
-            if (field.kind == "scalar" && field.L > 0) {
-              read = readScalarLTString;
-            }
-            if (repeated) {
-              let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
-              if (
-                wireType == WireType.LengthDelimited &&
-                scalarType != ScalarType.STRING &&
-                scalarType != ScalarType.BYTES
-              ) {
-                let e = reader.uint32() + reader.pos;
-                while (reader.pos < e) {
-                  arr.push(read(reader, scalarType));
-                }
-              } else {
-                arr.push(read(reader, scalarType));
-              }
-            } else {
-              target[localName] = read(reader, scalarType);
-            }
-            break;
-          case "message":
-            const messageType = field.T;
-            if (repeated) {
-              // safe to assume presence of array, oneof cannot contain repeated values
-              (target[localName] as any[]).push(
-                readMessageField(reader, new messageType(), options, field),
-              );
-            } else {
-              if (target[localName] instanceof Message) {
-                readMessageField(reader, target[localName], options, field);
-              } else {
-                target[localName] = readMessageField(
-                  reader,
-                  new messageType(),
-                  options,
-                  field,
-                );
-                if (
-                  messageType.fieldWrapper &&
-                  !field.oneof &&
-                  !field.repeated
-                ) {
-                  target[localName] = messageType.fieldWrapper.unwrapField(
-                    target[localName],
-                  );
-                }
-              }
-            }
-            break;
-          case "map":
-            let [mapKey, mapVal] = readMapEntry(field, reader, options);
-            // safe to assume presence of map object, oneof cannot contain repeated values
-            target[localName][mapKey] = mapVal;
-            break;
-        }
+        readField(message, reader, field, wireType, options);
       }
       if (
         delimitedMessageEncoding && // eslint-disable-line @typescript-eslint/strict-boolean-expressions
@@ -195,7 +125,84 @@ export function makeBinaryFormatCommon(): Omit<BinaryFormat, "writeMessage"> {
         throw new Error(`invalid end group tag`);
       }
     },
+    readField,
   };
+}
+
+function readField(
+  target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  reader: IBinaryReader,
+  field: FieldInfo,
+  wireType: WireType,
+  options: BinaryReadOptions,
+): void {
+  let { repeated, localName } = field;
+  if (field.oneof) {
+    target = target[field.oneof.localName];
+    if (target.case != localName) {
+      delete target.value;
+    }
+    target.case = localName;
+    localName = "value";
+  }
+  switch (field.kind) {
+    case "scalar":
+    case "enum":
+      const scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
+      let read = readScalar;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
+      if (field.kind == "scalar" && field.L > 0) {
+        read = readScalarLTString;
+      }
+      if (repeated) {
+        let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
+        const isPacked =
+          wireType == WireType.LengthDelimited &&
+          scalarType != ScalarType.STRING &&
+          scalarType != ScalarType.BYTES;
+        if (isPacked) {
+          let e = reader.uint32() + reader.pos;
+          while (reader.pos < e) {
+            arr.push(read(reader, scalarType));
+          }
+        } else {
+          arr.push(read(reader, scalarType));
+        }
+      } else {
+        target[localName] = read(reader, scalarType);
+      }
+      break;
+    case "message":
+      const messageType = field.T;
+      if (repeated) {
+        // safe to assume presence of array, oneof cannot contain repeated values
+        (target[localName] as any[]).push(
+          readMessageField(reader, new messageType(), options, field),
+        );
+      } else {
+        if (target[localName] instanceof Message) {
+          readMessageField(reader, target[localName], options, field);
+        } else {
+          target[localName] = readMessageField(
+            reader,
+            new messageType(),
+            options,
+            field,
+          );
+          if (messageType.fieldWrapper && !field.oneof && !field.repeated) {
+            target[localName] = messageType.fieldWrapper.unwrapField(
+              target[localName],
+            );
+          }
+        }
+      }
+      break;
+    case "map":
+      let [mapKey, mapVal] = readMapEntry(field, reader, options);
+      // safe to assume presence of map object, oneof cannot contain repeated values
+      target[localName][mapKey] = mapVal;
+      break;
+  }
 }
 
 // Read a message, avoiding MessageType.fromBinary() to re-use the
@@ -276,7 +283,7 @@ function readMapEntry(
 
 // Read a scalar value, but return 64 bit integral types (int64, uint64,
 // sint64, fixed64, sfixed64) as string instead of bigint.
-export function readScalarLTString(reader: IBinaryReader, type: ScalarType) {
+function readScalarLTString(reader: IBinaryReader, type: ScalarType) {
   const v = readScalar(reader, type);
   return typeof v == "bigint" ? v.toString() : v;
 }
@@ -364,25 +371,24 @@ export function writeMapEntry(
   writer.join();
 }
 
+// Value must not be undefined
 export function writeMessageField(
   writer: IBinaryWriter,
   options: BinaryWriteOptions,
   field: FieldInfo & { kind: "message" },
   value: any,
 ): void {
-  if (value !== undefined) {
-    const message = wrapField(field.T, value);
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (field?.delimited)
-      writer
-        .tag(field.no, WireType.StartGroup)
-        .raw(message.toBinary(options))
-        .tag(field.no, WireType.EndGroup);
-    else
-      writer
-        .tag(field.no, WireType.LengthDelimited)
-        .bytes(message.toBinary(options));
-  }
+  const message = wrapField(field.T, value);
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  if (field?.delimited)
+    writer
+      .tag(field.no, WireType.StartGroup)
+      .raw(message.toBinary(options))
+      .tag(field.no, WireType.EndGroup);
+  else
+    writer
+      .tag(field.no, WireType.LengthDelimited)
+      .bytes(message.toBinary(options));
 }
 
 export function writeScalar(

@@ -244,6 +244,15 @@ export const TestAllTypesProto2_MessageSetCorrectExtension1 = proto2.makeMessage
 );
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extension = proto2.makeExtension(
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.message_set_extension", 
+  TestAllTypesProto2_MessageSetCorrect, 
+  () => ({ no: 1547769, kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
  */
 export const TestAllTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessageType(
@@ -252,6 +261,15 @@ export const TestAllTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessage
     { no: 9, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
   {localName: "TestAllTypesProto2_MessageSetCorrectExtension2"},
+);
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extension = proto2.makeExtension(
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.message_set_extension", 
+  TestAllTypesProto2_MessageSetCorrect, 
+  () => ({ no: 4135312, kind: "message", T: TestAllTypesProto2_MessageSetCorrectExtension2, opt: true }),
 );
 
 /**
@@ -450,6 +468,15 @@ export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1 = proto2.mak
 );
 
 /**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_extension = proto2.makeExtension(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.message_set_extension", 
+  TestAllRequiredTypesProto2_MessageSetCorrect, 
+  () => ({ no: 1547769, kind: "message", T: TestAllRequiredTypesProto2_MessageSetCorrectExtension1, opt: true }),
+);
+
+/**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
  */
 export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = proto2.makeMessageType(
@@ -458,5 +485,23 @@ export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = proto2.mak
     { no: 9, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ],
   {localName: "TestAllRequiredTypesProto2_MessageSetCorrectExtension2"},
+);
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
+ */
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_extension = proto2.makeExtension(
+  "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.message_set_extension", 
+  TestAllRequiredTypesProto2_MessageSetCorrect, 
+  () => ({ no: 4135312, kind: "message", T: TestAllRequiredTypesProto2_MessageSetCorrectExtension2, opt: true }),
+);
+
+/**
+ * @generated from extension: optional int32 extension_int32 = 120;
+ */
+export const extension_int32 = proto2.makeExtension(
+  "protobuf_test_messages.proto2.extension_int32", 
+  TestAllTypesProto2, 
+  { no: 120, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
 );
 
