@@ -110,17 +110,17 @@ export function createRegistryFromDescriptors(
     input instanceof Uint8Array || input instanceof FileDescriptorSet
       ? createDescriptorSet(input)
       : input;
-  const enums: Record<string, EnumType | undefined> = {};
-  const messages: Record<string, MessageType | undefined> = {};
-  const extensions: Record<string, Extension | undefined> = {};
+  const enums = new Map<string, EnumType>();
+  const messages = new Map<string, MessageType>();
+  const extensions = new Map<string, Extension>();
   const extensionsByExtendee = new Map<string, Map<number, DescExtension>>();
   const services: Record<string, ServiceType | undefined> = {};
   if (replaceWkt) {
     for (const mt of wkMessages) {
-      messages[mt.typeName] = mt;
+      messages.set(mt.typeName, mt);
     }
     for (const et of wkEnums) {
-      enums[et.typeName] = et;
+      enums.set(et.typeName, et);
     }
   }
   return {
@@ -128,7 +128,7 @@ export function createRegistryFromDescriptors(
      * May raise an error on invalid descriptors.
      */
     findEnum(typeName: string): EnumType | undefined {
-      const existing = enums[typeName];
+      const existing = enums.get(typeName);
       if (existing) {
         return existing;
       }
@@ -148,7 +148,7 @@ export function createRegistryFromDescriptors(
         ),
         {},
       );
-      enums[typeName] = type;
+      enums.set(typeName, type);
       return type;
     },
 
@@ -156,7 +156,7 @@ export function createRegistryFromDescriptors(
      * May raise an error on invalid descriptors.
      */
     findMessage(typeName: string): MessageType | undefined {
-      const existing = messages[typeName];
+      const existing = messages.get(typeName);
       if (existing) {
         return existing;
       }
@@ -169,7 +169,7 @@ export function createRegistryFromDescriptors(
       const type = runtime.makeMessageType(typeName, () => fields, {
         localName: localName(desc),
       });
-      messages[typeName] = type;
+      messages.set(typeName, type);
       for (const field of desc.fields) {
         const fieldInfo = makeFieldInfo(field, this);
         fields.push(fieldInfo);
@@ -247,7 +247,7 @@ export function createRegistryFromDescriptors(
      * May raise an error on invalid descriptors.
      */
     findExtension(typeName: string): Extension | undefined {
-      const existing = extensions[typeName];
+      const existing = extensions.get(typeName);
       if (existing) {
         return existing;
       }
@@ -266,7 +266,7 @@ export function createRegistryFromDescriptors(
         extendee,
         makeFieldInfo(desc, this) as ExtensionFieldSource,
       );
-      extensions[typeName] = ext;
+      extensions.set(typeName, ext);
       return ext;
     },
   };
