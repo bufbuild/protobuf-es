@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestMessage
@@ -80,6 +80,24 @@ export class TestMessage_Nested extends Message<TestMessage_Nested> {
     return proto2.util.equals(TestMessage_Nested, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_nested = 9997;
+ */
+export const TestMessage_Nested_test_nested = proto2.makeExtension<FeatureSet, TestFeatures>(
+  "pb.TestMessage.Nested.test_nested", 
+  FeatureSet, 
+  () => ({ no: 9997, kind: "message", T: TestFeatures, opt: true }),
+);
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_message = 9998;
+ */
+export const TestMessage_test_message = proto2.makeExtension<FeatureSet, TestFeatures>(
+  "pb.TestMessage.test_message", 
+  FeatureSet, 
+  () => ({ no: 9998, kind: "message", T: TestFeatures, opt: true }),
+);
 
 /**
  * @generated from message pb.TestFeatures
@@ -306,4 +324,13 @@ export class TestFeatures_MessageFeature extends Message<TestFeatures_MessageFea
     return proto2.util.equals(TestFeatures_MessageFeature, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional pb.TestFeatures test = 9999;
+ */
+export const test = proto2.makeExtension<FeatureSet, TestFeatures>(
+  "pb.test", 
+  FeatureSet, 
+  () => ({ no: 9999, kind: "message", T: TestFeatures, opt: true }),
+);
 

@@ -18,7 +18,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
-import { ForeignMessageLite, TestAllTypesLite } from "./unittest_lite_pb.js";
+import { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite
@@ -586,6 +586,15 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
     return proto2.util.equals(TestRequiredLite, a, b);
   }
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
+ */
+export const TestRequiredLite_single = proto2.makeExtension<TestAllExtensionsLite, TestRequiredLite>(
+  "protobuf_unittest.TestRequiredLite.single", 
+  TestAllExtensionsLite, 
+  () => ({ no: 1000, kind: "message", T: TestRequiredLite, opt: true }),
+);
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageArenaLite

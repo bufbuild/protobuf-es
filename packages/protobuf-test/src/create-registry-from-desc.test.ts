@@ -13,23 +13,37 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { readFileSync } from "fs";
+import type {
+  IExtensionRegistry,
+  IMessageTypeRegistry,
+} from "@bufbuild/protobuf";
 import {
   createDescriptorSet,
   createRegistry,
   createRegistryFromDescriptors,
   FileDescriptorSet,
   MethodKind,
+  proto3,
 } from "@bufbuild/protobuf";
-import { TestAllTypes } from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
-import { assertMessageTypeEquals } from "./helpers.js";
+import {
+  TestAllTypes,
+  TestAllTypes_NestedEnum,
+} from "./gen/ts/google/protobuf/unittest_proto3_pb.js";
+import {
+  assertEnumTypeEquals,
+  assertExtensionEquals,
+  assertMessageTypeEquals,
+  getTestFileDescriptorSetBytes,
+} from "./helpers.js";
 import {
   ExampleRequest,
   ExampleResponse,
 } from "./gen/ts/extra/service-example_pb.js";
-
-const fdsBytes = readFileSync("./descriptorset.bin");
-const fds = FileDescriptorSet.fromBinary(fdsBytes);
+import {
+  Proto2Extendee,
+  string_ext,
+  uint32_ext,
+} from "./gen/ts/extra/extensions-proto2_pb.js";
 
 describe("createRegistryFromDescriptors()", () => {
   test("finds nothing if empty", () => {
@@ -37,26 +51,61 @@ describe("createRegistryFromDescriptors()", () => {
     expect(dr.findMessage("foo.Foo")).toBeUndefined();
     expect(dr.findEnum("foo.Foo")).toBeUndefined();
     expect(dr.findService("foo.Foo")).toBeUndefined();
+    expect(dr.findExtension("foo.bar_ext")).toBeUndefined();
+    expect(dr.findExtensionFor("foo.Bar", 123)).toBeUndefined();
   });
   test("from google.protobuf.FileDescriptorSet", () => {
-    const dr = createRegistryFromDescriptors(fds);
-    assertExpectedRegistry(dr);
+    const dr = createRegistryFromDescriptors(
+      FileDescriptorSet.fromBinary(getTestFileDescriptorSetBytes()),
+    );
+    expectMessageTypes(dr);
+    expectEnumTypes(dr);
+    expectServiceTypes(dr);
+    expectExtensions(dr);
   });
   test("from serialized google.protobuf.FileDescriptorSet", () => {
-    const dr = createRegistryFromDescriptors(fdsBytes);
-    assertExpectedRegistry(dr);
+    const dr = createRegistryFromDescriptors(getTestFileDescriptorSetBytes());
+    expectMessageTypes(dr);
+    expectEnumTypes(dr);
+    expectServiceTypes(dr);
+    expectExtensions(dr);
   });
 });
 
-function assertExpectedRegistry(
-  registry: ReturnType<typeof createRegistry>,
-): void {
-  expect(registry.findEnum("foo.Foo")).toBeUndefined();
+function expectExtensions(registry: IExtensionRegistry) {
+  const extByExtendee = registry.findExtensionFor(
+    Proto2Extendee.typeName,
+    uint32_ext.field.no,
+  );
+  expect(extByExtendee).toBeDefined();
+  if (extByExtendee) {
+    assertExtensionEquals(extByExtendee, uint32_ext);
+  }
+  const extByName = registry.findExtension(string_ext.typeName);
+  expect(extByName).toBeDefined();
+  if (extByName) {
+    assertExtensionEquals(extByName, string_ext);
+  }
+}
+
+function expectMessageTypes(registry: IMessageTypeRegistry) {
   const mt = registry.findMessage(TestAllTypes.typeName);
   expect(mt).toBeDefined();
   if (mt) {
     assertMessageTypeEquals(mt, TestAllTypes);
   }
+}
+
+function expectEnumTypes(registry: ReturnType<typeof createRegistry>) {
+  const { typeName } = proto3.getEnumType(TestAllTypes_NestedEnum);
+  const enumType = registry.findEnum(typeName);
+  expect(enumType).toBeDefined();
+  if (enumType) {
+    assertEnumTypeEquals(enumType, proto3.getEnumType(TestAllTypes_NestedEnum));
+  }
+}
+
+function expectServiceTypes(registry: ReturnType<typeof createRegistry>) {
   const st = registry.findService("spec.ExampleService");
   expect(st).toBeDefined();
   expect(Object.keys(st?.methods ?? {})).toStrictEqual([

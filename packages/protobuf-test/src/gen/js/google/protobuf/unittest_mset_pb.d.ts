@@ -23,9 +23,9 @@
 // @generated from file google/protobuf/unittest_mset.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
-import type { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
+import { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetContainer
@@ -154,6 +154,11 @@ export declare class TestMessageSetExtension1 extends Message<TestMessageSetExte
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension1 message_set_extension = 1545008;
+ */
+export declare const TestMessageSetExtension1_message_set_extension: Extension<TestMessageSet, TestMessageSetExtension1>;
+
+/**
  * @generated from message protobuf_unittest.TestMessageSetExtension2
  */
 export declare class TestMessageSetExtension2 extends Message<TestMessageSetExtension2> {
@@ -176,6 +181,11 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
 
   static equals(a: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined, b: TestMessageSetExtension2 | PlainMessage<TestMessageSetExtension2> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension2 message_set_extension = 1547769;
+ */
+export declare const TestMessageSetExtension2_message_set_extension: Extension<TestMessageSet, TestMessageSetExtension2>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension3
@@ -205,6 +215,11 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
 
   static equals(a: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined, b: TestMessageSetExtension3 | PlainMessage<TestMessageSetExtension3> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
+ */
+export declare const TestMessageSetExtension3_message_set_extension: Extension<TestMessageSet, TestMessageSetExtension3>;
 
 /**
  * MessageSet wire format is equivalent to this.

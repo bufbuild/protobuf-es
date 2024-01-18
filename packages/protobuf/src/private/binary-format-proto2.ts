@@ -30,6 +30,7 @@ import {
 export function makeBinaryFormatProto2(): BinaryFormat {
   return {
     ...makeBinaryFormatCommon(),
+    writeField,
     writeMessage(
       message: Message,
       writer: IBinaryWriter,
@@ -37,70 +38,26 @@ export function makeBinaryFormatProto2(): BinaryFormat {
     ): IBinaryWriter {
       const type = message.getType();
       let field: FieldInfo | undefined;
-      try {
-        for (field of type.fields.byNumber()) {
-          let value, // this will be our field value, whether it is member of a oneof or not
-            repeated = field.repeated,
-            localName = field.localName;
-          if (field.oneof) {
-            const oneof = (message as AnyMessage)[field.oneof.localName];
-            if (oneof.case !== localName) {
-              continue; // field is not selected, skip
-            }
-            value = oneof.value;
-          } else {
-            value = (message as AnyMessage)[localName];
-            // In contrast to proto3, we raise an error if a non-optional (proto2 required)
-            // field is missing a value.
-            if (value === undefined && !field.oneof && !field.opt) {
-              throw new Error(
-                `cannot encode field ${type.typeName}.${field.name} to binary: required field not set`,
-              );
-            }
+      for (field of type.fields.byNumber()) {
+        let value,
+          localName = field.localName;
+        if (field.oneof) {
+          const oneof = (message as AnyMessage)[field.oneof.localName];
+          if (oneof.case !== localName) {
+            continue; // field is not selected, skip
           }
-          switch (field.kind) {
-            case "scalar":
-            case "enum":
-              let scalarType =
-                field.kind == "enum" ? ScalarType.INT32 : field.T;
-              if (repeated) {
-                if (field.packed) {
-                  writePacked(writer, scalarType, field.no, value);
-                } else {
-                  for (const item of value) {
-                    writeScalar(writer, scalarType, field.no, item, true);
-                  }
-                }
-              } else {
-                if (value !== undefined) {
-                  // In contrast to proto3, we do not skip intrinsic default values.
-                  // Explicit default values are not special cased either.
-                  writeScalar(writer, scalarType, field.no, value, true);
-                }
-              }
-              break;
-            case "message":
-              if (repeated) {
-                for (const item of value) {
-                  writeMessageField(writer, options, field, item);
-                }
-              } else {
-                writeMessageField(writer, options, field, value);
-              }
-              break;
-            case "map":
-              for (const [key, val] of Object.entries(value)) {
-                writeMapEntry(writer, options, field, key, val);
-              }
-              break;
+          value = oneof.value;
+        } else {
+          value = (message as AnyMessage)[localName];
+          // In contrast to proto3, we raise an error if a non-optional (proto2 required)
+          // field is missing a value.
+          if (value === undefined && !field.oneof && !field.opt) {
+            throw new Error(
+              `cannot encode field ${type.typeName}.${field?.name} to binary: required field not set`,
+            );
           }
         }
-      } catch (e) {
-        let m = field
-          ? `cannot encode field ${type.typeName}.${field?.name} to binary`
-          : `cannot encode message ${type.typeName} to binary`;
-        let r = e instanceof Error ? e.message : String(e);
-        throw new Error(m + (r.length > 0 ? `: ${r}` : ""));
+        writeField(field, value, writer, options);
       }
       if (options.writeUnknownFields) {
         this.writeUnknownFields(message, writer);
@@ -108,4 +65,47 @@ export function makeBinaryFormatProto2(): BinaryFormat {
       return writer;
     },
   };
+}
+
+// TODO field presence: merge this function with proto3
+function writeField(
+  field: FieldInfo,
+  value: any, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  writer: IBinaryWriter,
+  options: BinaryWriteOptions,
+) {
+  const repeated = field.repeated;
+  switch (field.kind) {
+    case "scalar":
+    case "enum":
+      let scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
+      if (repeated) {
+        if (field.packed) {
+          writePacked(writer, scalarType, field.no, value);
+        } else {
+          for (const item of value) {
+            writeScalar(writer, scalarType, field.no, item, true);
+          }
+        }
+      } else if (value !== undefined) {
+        // In contrast to proto3, we do not skip intrinsic default values.
+        // Explicit default values are not special cased either.
+        writeScalar(writer, scalarType, field.no, value, true);
+      }
+      break;
+    case "message":
+      if (repeated) {
+        for (const item of value) {
+          writeMessageField(writer, options, field, item);
+        }
+      } else if (value !== undefined) {
+        writeMessageField(writer, options, field, value);
+      }
+      break;
+    case "map":
+      for (const [key, val] of Object.entries(value)) {
+        writeMapEntry(writer, options, field, key, val);
+      }
+      break;
+  }
 }

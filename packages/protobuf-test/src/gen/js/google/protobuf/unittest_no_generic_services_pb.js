@@ -40,3 +40,12 @@ export const TestMessage = proto2.makeMessageType(
   ],
 );
 
+/**
+ * @generated from extension: optional int32 test_extension = 1000;
+ */
+export const test_extension = proto2.makeExtension(
+  "protobuf_unittest.no_generic_services_test.test_extension", 
+  TestMessage, 
+  { no: 1000, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
+

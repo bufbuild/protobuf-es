@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import { proto2 } from "@bufbuild/protobuf";
+import { FeatureSet, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestMessage
@@ -33,6 +33,24 @@ export const TestMessage_Nested = proto2.makeMessageType(
   "pb.TestMessage.Nested",
   [],
   {localName: "TestMessage_Nested"},
+);
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_nested = 9997;
+ */
+export const TestMessage_Nested_test_nested = proto2.makeExtension(
+  "pb.TestMessage.Nested.test_nested", 
+  FeatureSet, 
+  () => ({ no: 9997, kind: "message", T: TestFeatures, opt: true }),
+);
+
+/**
+ * @generated from extension: optional pb.TestFeatures test_message = 9998;
+ */
+export const TestMessage_test_message = proto2.makeExtension(
+  "pb.TestMessage.test_message", 
+  FeatureSet, 
+  () => ({ no: 9998, kind: "message", T: TestFeatures, opt: true }),
 );
 
 /**
@@ -87,5 +105,14 @@ export const TestFeatures_MessageFeature = proto2.makeMessageType(
     { no: 4, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ],
   {localName: "TestFeatures_MessageFeature"},
+);
+
+/**
+ * @generated from extension: optional pb.TestFeatures test = 9999;
+ */
+export const test = proto2.makeExtension(
+  "pb.test", 
+  FeatureSet, 
+  () => ({ no: 9999, kind: "message", T: TestFeatures, opt: true }),
 );
 

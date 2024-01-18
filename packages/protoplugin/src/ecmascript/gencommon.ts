@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescComments } from "@bufbuild/protobuf";
+import type { DescComments, DescExtension } from "@bufbuild/protobuf";
 import {
   codegenInfo,
   DescField,
@@ -94,7 +94,7 @@ export function makeFilePreamble(
  * and whether the property should be optional.
  */
 export function getFieldTyping(
-  field: DescField,
+  field: DescField | DescExtension,
   file: GeneratedFile,
 ): { typing: Printable; optional: boolean } {
   const typing: Printable = [];
@@ -201,7 +201,7 @@ export function literalString(value: string): string {
 }
 
 export function getFieldExplicitDefaultValue(
-  field: DescField,
+  field: DescField | DescExtension,
   protoInt64Symbol: ImportSymbol,
 ): Printable | undefined {
   switch (field.fieldKind) {

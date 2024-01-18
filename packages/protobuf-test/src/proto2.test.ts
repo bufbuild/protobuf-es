@@ -106,7 +106,7 @@ describeMT<TS.Proto2RequiredMessage>(
           stringField: "",
         }).toBinary(),
       ).toThrow(
-        `cannot encode field ${messageType.typeName}.enum_field to binary: required field not set`,
+        /^cannot encode field spec.Proto2RequiredMessage.enum_field to binary: required field not set$/,
       );
     });
   },

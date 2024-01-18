@@ -1,0 +1,88 @@
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+package proto2ext;
+
+import "extra/example.proto";
+import "google/protobuf/wrappers.proto";
+
+// The message we're going to extend
+message Proto2Extendee {
+  optional int32 own_field = 1;
+  extensions 1000 to 9999;
+}
+
+// An enumeration used in extensions
+enum Proto2ExtEnum {
+  PROTO2_EXT_ENUM_YES = 1;
+  PROTO2_EXT_ENUM_NO = 2;
+}
+
+// A message used in extensions
+message Proto2ExtMessage {
+  optional string string_field = 1;
+}
+
+// Testing all kinds of extensions.
+// Required fields, maps, oneof are not allowed in extensions.
+extend Proto2Extendee {
+
+  optional uint32 uint32_ext = 1001;
+  optional uint32 uint32_ext_with_default = 1002 [default = 999];
+
+  optional string string_ext = 2001;
+  optional string string_ext_with_default = 2002 [default = "hello \" */ "];
+
+  optional uint64 uint64_ext = 3001;
+  optional uint64 uint64_ext_js_string = 3002 [jstype = JS_STRING];
+
+  optional bytes bytes_ext = 4001;
+  optional bytes bytes_ext_with_default = 4002 [default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
+
+  optional Proto2ExtEnum enum_ext = 5001;
+  optional Proto2ExtEnum enum_ext_with_default = 5002 [default = PROTO2_EXT_ENUM_NO];
+
+  optional Proto2ExtMessage message_ext = 6001;
+  optional docs.User message_ext_proto3 = 6002;
+
+  repeated Proto2ExtMessage repeated_message_ext = 7001;
+  repeated Proto2ExtEnum repeated_enum_ext = 7005;
+  repeated string repeated_string_ext = 7002;
+  repeated uint32 packed_uint32_ext = 7003 [packed = true];
+  repeated uint32 unpacked_uint32_ext = 7004; // unpacked by default in proto2
+
+  optional google.protobuf.UInt32Value wrapper_ext = 8001;
+
+  optional group GroupExt = 8100 {
+    optional int32 a = 1;
+    optional int32 b = 2;
+  }
+  repeated group RepeatedGroupExt = 8101 {
+    optional int32 a = 1;
+    optional int32 b = 2;
+  }
+}
+
+// A container for nested extensions
+message Proto2ExtContainer {
+  extend Proto2Extendee {
+    optional uint32 uint32_ext = 9001;
+  }
+  message Child {
+    extend Proto2Extendee {
+      optional uint32 uint32_ext = 9010;
+    }
+  }
+}

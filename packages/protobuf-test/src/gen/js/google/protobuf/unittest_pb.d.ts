@@ -28,7 +28,7 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 import type { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
 import type { PublicImportMessage } from "./unittest_import_public_pb.js";
@@ -1464,6 +1464,16 @@ export declare class TestMixedFieldsAndExtensions extends Message<TestMixedField
 }
 
 /**
+ * @generated from extension: optional int32 c = 2;
+ */
+export declare const TestMixedFieldsAndExtensions_c: Extension<TestMixedFieldsAndExtensions, number>;
+
+/**
+ * @generated from extension: repeated fixed32 d = 4;
+ */
+export declare const TestMixedFieldsAndExtensions_d: Extension<TestMixedFieldsAndExtensions, number[]>;
+
+/**
  * @generated from message protobuf_unittest.TestGroup
  */
 export declare class TestGroup extends Message<TestGroup> {
@@ -1584,6 +1594,32 @@ export declare class TestNestedExtension_OptionalGroup_extension extends Message
 
   static equals(a: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined, b: TestNestedExtension_OptionalGroup_extension | PlainMessage<TestNestedExtension_OptionalGroup_extension> | undefined): boolean;
 }
+
+/**
+ * Check for bug where string extensions declared in tested scope did not
+ * compile.
+ *
+ * @generated from extension: optional string test = 1002 [default = "test"];
+ */
+export declare const TestNestedExtension_test: Extension<TestAllExtensions, string>;
+
+/**
+ * Used to test if generated extension name is correct when there are
+ * underscores.
+ *
+ * @generated from extension: optional string nested_string_extension = 1003;
+ */
+export declare const TestNestedExtension_nested_string_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestNestedExtension.OptionalGroup_extension optionalgroup_extension = 16;
+ */
+export declare const TestNestedExtension_optionalgroup_extension: Extension<TestGroupExtension, TestNestedExtension_OptionalGroup_extension>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ForeignEnum optional_foreign_enum_extension = 22;
+ */
+export declare const TestNestedExtension_optional_foreign_enum_extension: Extension<TestGroupExtension, ForeignEnum>;
 
 /**
  * @generated from message protobuf_unittest.TestChildExtension
@@ -2213,6 +2249,16 @@ export declare class TestRequired extends Message<TestRequired> {
 
   static equals(a: TestRequired | PlainMessage<TestRequired> | undefined, b: TestRequired | PlainMessage<TestRequired> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestRequired single = 1000;
+ */
+export declare const TestRequired_single: Extension<TestAllExtensions, TestRequired>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.TestRequired multi = 1001;
+ */
+export declare const TestRequired_multi: Extension<TestAllExtensions, TestRequired[]>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
@@ -3241,6 +3287,11 @@ export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderi
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.TestExtensionOrderings1 test_ext_orderings1 = 13;
+ */
+export declare const TestExtensionOrderings1_test_ext_orderings1: Extension<TestFieldOrderings, TestExtensionOrderings1>;
+
+/**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
  */
 export declare class TestExtensionOrderings2 extends Message<TestExtensionOrderings2> {
@@ -3287,6 +3338,16 @@ export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Mes
 
   static equals(a: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined, b: TestExtensionOrderings2_TestExtensionOrderings3 | PlainMessage<TestExtensionOrderings2_TestExtensionOrderings3> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3 test_ext_orderings3 = 14;
+ */
+export declare const TestExtensionOrderings2_TestExtensionOrderings3_test_ext_orderings3: Extension<TestFieldOrderings, TestExtensionOrderings2_TestExtensionOrderings3>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestExtensionOrderings2 test_ext_orderings2 = 12;
+ */
+export declare const TestExtensionOrderings2_test_ext_orderings2: Extension<TestFieldOrderings, TestExtensionOrderings2>;
 
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
@@ -4962,6 +5023,16 @@ export declare class TestParsingMerge_RepeatedGroup extends Message<TestParsingM
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes optional_ext = 1000;
+ */
+export declare const TestParsingMerge_optional_ext: Extension<TestParsingMerge, TestAllTypes>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.TestAllTypes repeated_ext = 1001;
+ */
+export declare const TestParsingMerge_repeated_ext: Extension<TestParsingMerge, TestAllTypes[]>;
+
+/**
  * Test that the correct exception is thrown by parseFrom in a corner case
  * involving merging, extensions, and required fields.
  *
@@ -5587,6 +5658,31 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
 
   static equals(a: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined, b: TestExtensionRangeSerialize | PlainMessage<TestExtensionRangeSerialize> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional int32 bar_one = 2;
+ */
+export declare const TestExtensionRangeSerialize_bar_one: Extension<TestExtensionRangeSerialize, number>;
+
+/**
+ * @generated from extension: optional int32 bar_two = 4;
+ */
+export declare const TestExtensionRangeSerialize_bar_two: Extension<TestExtensionRangeSerialize, number>;
+
+/**
+ * @generated from extension: optional int32 bar_three = 10;
+ */
+export declare const TestExtensionRangeSerialize_bar_three: Extension<TestExtensionRangeSerialize, number>;
+
+/**
+ * @generated from extension: optional int32 bar_four = 15;
+ */
+export declare const TestExtensionRangeSerialize_bar_four: Extension<TestExtensionRangeSerialize, number>;
+
+/**
+ * @generated from extension: optional int32 bar_five = 19;
+ */
+export declare const TestExtensionRangeSerialize_bar_five: Extension<TestExtensionRangeSerialize, number>;
 
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32Simple
@@ -6676,6 +6772,21 @@ export declare enum EnumParseTester_Arbitrary {
 }
 
 /**
+ * @generated from extension: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_ext = 2000000;
+ */
+export declare const EnumParseTester_optional_arbitrary_ext: Extension<EnumParseTester, EnumParseTester_Arbitrary>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_ext = 2000001;
+ */
+export declare const EnumParseTester_repeated_arbitrary_ext: Extension<EnumParseTester, EnumParseTester_Arbitrary[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_ext = 2000002 [packed = true];
+ */
+export declare const EnumParseTester_packed_arbitrary_ext: Extension<EnumParseTester, EnumParseTester_Arbitrary[]>;
+
+/**
  * This message contains different kind of bool fields to exercise the different
  * parsers in table-drived.
  *
@@ -6750,6 +6861,21 @@ export declare class BoolParseTester extends Message<BoolParseTester> {
 }
 
 /**
+ * @generated from extension: optional bool optional_bool_ext = 2000000;
+ */
+export declare const BoolParseTester_optional_bool_ext: Extension<BoolParseTester, boolean>;
+
+/**
+ * @generated from extension: repeated bool repeated_bool_ext = 2000001;
+ */
+export declare const BoolParseTester_repeated_bool_ext: Extension<BoolParseTester, boolean[]>;
+
+/**
+ * @generated from extension: repeated bool packed_bool_ext = 2000002 [packed = true];
+ */
+export declare const BoolParseTester_packed_bool_ext: Extension<BoolParseTester, boolean[]>;
+
+/**
  * @generated from message protobuf_unittest.Int32ParseTester
  */
 export declare class Int32ParseTester extends Message<Int32ParseTester> {
@@ -6821,6 +6947,21 @@ export declare class Int32ParseTester extends Message<Int32ParseTester> {
 }
 
 /**
+ * @generated from extension: optional int32 optional_int32_ext = 2000000;
+ */
+export declare const Int32ParseTester_optional_int32_ext: Extension<Int32ParseTester, number>;
+
+/**
+ * @generated from extension: repeated int32 repeated_int32_ext = 2000001;
+ */
+export declare const Int32ParseTester_repeated_int32_ext: Extension<Int32ParseTester, number[]>;
+
+/**
+ * @generated from extension: repeated int32 packed_int32_ext = 2000002 [packed = true];
+ */
+export declare const Int32ParseTester_packed_int32_ext: Extension<Int32ParseTester, number[]>;
+
+/**
  * @generated from message protobuf_unittest.Int64ParseTester
  */
 export declare class Int64ParseTester extends Message<Int64ParseTester> {
@@ -6890,6 +7031,21 @@ export declare class Int64ParseTester extends Message<Int64ParseTester> {
 
   static equals(a: Int64ParseTester | PlainMessage<Int64ParseTester> | undefined, b: Int64ParseTester | PlainMessage<Int64ParseTester> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional int64 optional_int64_ext = 2000000;
+ */
+export declare const Int64ParseTester_optional_int64_ext: Extension<Int64ParseTester, bigint>;
+
+/**
+ * @generated from extension: repeated int64 repeated_int64_ext = 2000001;
+ */
+export declare const Int64ParseTester_repeated_int64_ext: Extension<Int64ParseTester, bigint[]>;
+
+/**
+ * @generated from extension: repeated int64 packed_int64_ext = 2000002 [packed = true];
+ */
+export declare const Int64ParseTester_packed_int64_ext: Extension<Int64ParseTester, bigint[]>;
 
 /**
  * @generated from message protobuf_unittest.InlinedStringIdxRegressionProto
@@ -6987,6 +7143,16 @@ export declare class StringParseTester extends Message<StringParseTester> {
 
   static equals(a: StringParseTester | PlainMessage<StringParseTester> | undefined, b: StringParseTester | PlainMessage<StringParseTester> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: optional string optional_string_ext = 2000000;
+ */
+export declare const StringParseTester_optional_string_ext: Extension<StringParseTester, string>;
+
+/**
+ * @generated from extension: repeated string repeated_string_ext = 2000001;
+ */
+export declare const StringParseTester_repeated_string_ext: Extension<StringParseTester, string[]>;
 
 /**
  * @generated from message protobuf_unittest.BadFieldNames
@@ -7647,4 +7813,566 @@ export declare class TestMessageWithManyRepeatedPtrFields extends Message<TestMe
 
   static equals(a: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined, b: TestMessageWithManyRepeatedPtrFields | PlainMessage<TestMessageWithManyRepeatedPtrFields> | undefined): boolean;
 }
+
+/**
+ * Singular
+ *
+ * @generated from extension: optional int32 optional_int32_extension = 1;
+ */
+export declare const optional_int32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional int64 optional_int64_extension = 2;
+ */
+export declare const optional_int64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional uint32 optional_uint32_extension = 3;
+ */
+export declare const optional_uint32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional uint64 optional_uint64_extension = 4;
+ */
+export declare const optional_uint64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional sint32 optional_sint32_extension = 5;
+ */
+export declare const optional_sint32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional sint64 optional_sint64_extension = 6;
+ */
+export declare const optional_sint64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional fixed32 optional_fixed32_extension = 7;
+ */
+export declare const optional_fixed32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional fixed64 optional_fixed64_extension = 8;
+ */
+export declare const optional_fixed64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional sfixed32 optional_sfixed32_extension = 9;
+ */
+export declare const optional_sfixed32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional sfixed64 optional_sfixed64_extension = 10;
+ */
+export declare const optional_sfixed64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional float optional_float_extension = 11;
+ */
+export declare const optional_float_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional double optional_double_extension = 12;
+ */
+export declare const optional_double_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional bool optional_bool_extension = 13;
+ */
+export declare const optional_bool_extension: Extension<TestAllExtensions, boolean>;
+
+/**
+ * @generated from extension: optional string optional_string_extension = 14;
+ */
+export declare const optional_string_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * @generated from extension: optional bytes optional_bytes_extension = 15;
+ */
+export declare const optional_bytes_extension: Extension<TestAllExtensions, Uint8Array>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.OptionalGroup_extension optionalgroup_extension = 16;
+ */
+export declare const optionalgroup_extension: Extension<TestAllExtensions, OptionalGroup_extension>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedMessage optional_nested_message_extension = 18;
+ */
+export declare const optional_nested_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ForeignMessage optional_foreign_message_extension = 19;
+ */
+export declare const optional_foreign_message_extension: Extension<TestAllExtensions, ForeignMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest_import.ImportMessage optional_import_message_extension = 20;
+ */
+export declare const optional_import_message_extension: Extension<TestAllExtensions, ImportMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedEnum optional_nested_enum_extension = 21;
+ */
+export declare const optional_nested_enum_extension: Extension<TestAllExtensions, TestAllTypes_NestedEnum>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ForeignEnum optional_foreign_enum_extension = 22;
+ */
+export declare const optional_foreign_enum_extension: Extension<TestAllExtensions, ForeignEnum>;
+
+/**
+ * @generated from extension: optional protobuf_unittest_import.ImportEnum optional_import_enum_extension = 23;
+ */
+export declare const optional_import_enum_extension: Extension<TestAllExtensions, ImportEnum>;
+
+/**
+ * @generated from extension: optional string optional_string_piece_extension = 24;
+ */
+export declare const optional_string_piece_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * TODO: ctype=CORD is not supported for extension. Add
+ * ctype=CORD option back after it is supported.
+ *
+ * @generated from extension: optional string optional_cord_extension = 25;
+ */
+export declare const optional_cord_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * @generated from extension: optional protobuf_unittest_import.PublicImportMessage optional_public_import_message_extension = 26;
+ */
+export declare const optional_public_import_message_extension: Extension<TestAllExtensions, PublicImportMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedMessage optional_lazy_message_extension = 27;
+ */
+export declare const optional_lazy_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message_extension = 28;
+ */
+export declare const optional_unverified_lazy_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage>;
+
+/**
+ * Repeated
+ *
+ * @generated from extension: repeated int32 repeated_int32_extension = 31;
+ */
+export declare const repeated_int32_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated int64 repeated_int64_extension = 32;
+ */
+export declare const repeated_int64_extension: Extension<TestAllExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated uint32 repeated_uint32_extension = 33;
+ */
+export declare const repeated_uint32_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated uint64 repeated_uint64_extension = 34;
+ */
+export declare const repeated_uint64_extension: Extension<TestAllExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sint32 repeated_sint32_extension = 35;
+ */
+export declare const repeated_sint32_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sint64 repeated_sint64_extension = 36;
+ */
+export declare const repeated_sint64_extension: Extension<TestAllExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated fixed32 repeated_fixed32_extension = 37;
+ */
+export declare const repeated_fixed32_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated fixed64 repeated_fixed64_extension = 38;
+ */
+export declare const repeated_fixed64_extension: Extension<TestAllExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sfixed32 repeated_sfixed32_extension = 39;
+ */
+export declare const repeated_sfixed32_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sfixed64 repeated_sfixed64_extension = 40;
+ */
+export declare const repeated_sfixed64_extension: Extension<TestAllExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated float repeated_float_extension = 41;
+ */
+export declare const repeated_float_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated double repeated_double_extension = 42;
+ */
+export declare const repeated_double_extension: Extension<TestAllExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated bool repeated_bool_extension = 43;
+ */
+export declare const repeated_bool_extension: Extension<TestAllExtensions, boolean[]>;
+
+/**
+ * @generated from extension: repeated string repeated_string_extension = 44;
+ */
+export declare const repeated_string_extension: Extension<TestAllExtensions, string[]>;
+
+/**
+ * @generated from extension: repeated bytes repeated_bytes_extension = 45;
+ */
+export declare const repeated_bytes_extension: Extension<TestAllExtensions, Uint8Array[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.RepeatedGroup_extension repeatedgroup_extension = 46;
+ */
+export declare const repeatedgroup_extension: Extension<TestAllExtensions, RepeatedGroup_extension[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.TestAllTypes.NestedMessage repeated_nested_message_extension = 48;
+ */
+export declare const repeated_nested_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.ForeignMessage repeated_foreign_message_extension = 49;
+ */
+export declare const repeated_foreign_message_extension: Extension<TestAllExtensions, ForeignMessage[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest_import.ImportMessage repeated_import_message_extension = 50;
+ */
+export declare const repeated_import_message_extension: Extension<TestAllExtensions, ImportMessage[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.TestAllTypes.NestedEnum repeated_nested_enum_extension = 51;
+ */
+export declare const repeated_nested_enum_extension: Extension<TestAllExtensions, TestAllTypes_NestedEnum[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.ForeignEnum repeated_foreign_enum_extension = 52;
+ */
+export declare const repeated_foreign_enum_extension: Extension<TestAllExtensions, ForeignEnum[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest_import.ImportEnum repeated_import_enum_extension = 53;
+ */
+export declare const repeated_import_enum_extension: Extension<TestAllExtensions, ImportEnum[]>;
+
+/**
+ * @generated from extension: repeated string repeated_string_piece_extension = 54;
+ */
+export declare const repeated_string_piece_extension: Extension<TestAllExtensions, string[]>;
+
+/**
+ * TODO: ctype=CORD is not supported for extension. Add
+ * ctype=CORD option back after it is supported.
+ *
+ * @generated from extension: repeated string repeated_cord_extension = 55;
+ */
+export declare const repeated_cord_extension: Extension<TestAllExtensions, string[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.TestAllTypes.NestedMessage repeated_lazy_message_extension = 57;
+ */
+export declare const repeated_lazy_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage[]>;
+
+/**
+ * Singular with defaults
+ *
+ * @generated from extension: optional int32 default_int32_extension = 61 [default = 41];
+ */
+export declare const default_int32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional int64 default_int64_extension = 62 [default = 42];
+ */
+export declare const default_int64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional uint32 default_uint32_extension = 63 [default = 43];
+ */
+export declare const default_uint32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional uint64 default_uint64_extension = 64 [default = 44];
+ */
+export declare const default_uint64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional sint32 default_sint32_extension = 65 [default = -45];
+ */
+export declare const default_sint32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional sint64 default_sint64_extension = 66 [default = 46];
+ */
+export declare const default_sint64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional fixed32 default_fixed32_extension = 67 [default = 47];
+ */
+export declare const default_fixed32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional fixed64 default_fixed64_extension = 68 [default = 48];
+ */
+export declare const default_fixed64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional sfixed32 default_sfixed32_extension = 69 [default = 49];
+ */
+export declare const default_sfixed32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional sfixed64 default_sfixed64_extension = 70 [default = -50];
+ */
+export declare const default_sfixed64_extension: Extension<TestAllExtensions, bigint>;
+
+/**
+ * @generated from extension: optional float default_float_extension = 71 [default = 51.5];
+ */
+export declare const default_float_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional double default_double_extension = 72 [default = 52000];
+ */
+export declare const default_double_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional bool default_bool_extension = 73 [default = true];
+ */
+export declare const default_bool_extension: Extension<TestAllExtensions, boolean>;
+
+/**
+ * @generated from extension: optional string default_string_extension = 74 [default = "hello"];
+ */
+export declare const default_string_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * @generated from extension: optional bytes default_bytes_extension = 75 [default = "world"];
+ */
+export declare const default_bytes_extension: Extension<TestAllExtensions, Uint8Array>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedEnum default_nested_enum_extension = 81 [default = BAR];
+ */
+export declare const default_nested_enum_extension: Extension<TestAllExtensions, TestAllTypes_NestedEnum>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.ForeignEnum default_foreign_enum_extension = 82 [default = FOREIGN_BAR];
+ */
+export declare const default_foreign_enum_extension: Extension<TestAllExtensions, ForeignEnum>;
+
+/**
+ * @generated from extension: optional protobuf_unittest_import.ImportEnum default_import_enum_extension = 83 [default = IMPORT_BAR];
+ */
+export declare const default_import_enum_extension: Extension<TestAllExtensions, ImportEnum>;
+
+/**
+ * @generated from extension: optional string default_string_piece_extension = 84 [default = "abc"];
+ */
+export declare const default_string_piece_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * TODO: ctype=CORD is not supported for extension. Add
+ * ctype=CORD option back after it is supported.
+ *
+ * @generated from extension: optional string default_cord_extension = 85 [default = "123"];
+ */
+export declare const default_cord_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * For oneof test
+ *
+ * @generated from extension: optional uint32 oneof_uint32_extension = 111;
+ */
+export declare const oneof_uint32_extension: Extension<TestAllExtensions, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes.NestedMessage oneof_nested_message_extension = 112;
+ */
+export declare const oneof_nested_message_extension: Extension<TestAllExtensions, TestAllTypes_NestedMessage>;
+
+/**
+ * @generated from extension: optional string oneof_string_extension = 113;
+ */
+export declare const oneof_string_extension: Extension<TestAllExtensions, string>;
+
+/**
+ * @generated from extension: optional bytes oneof_bytes_extension = 114;
+ */
+export declare const oneof_bytes_extension: Extension<TestAllExtensions, Uint8Array>;
+
+/**
+ * @generated from extension: optional string my_extension_string = 50;
+ */
+export declare const my_extension_string: Extension<TestFieldOrderings, string>;
+
+/**
+ * @generated from extension: optional int32 my_extension_int = 5;
+ */
+export declare const my_extension_int: Extension<TestFieldOrderings, number>;
+
+/**
+ * @generated from extension: repeated int32 packed_int32_extension = 90 [packed = true];
+ */
+export declare const packed_int32_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated int64 packed_int64_extension = 91 [packed = true];
+ */
+export declare const packed_int64_extension: Extension<TestPackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated uint32 packed_uint32_extension = 92 [packed = true];
+ */
+export declare const packed_uint32_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated uint64 packed_uint64_extension = 93 [packed = true];
+ */
+export declare const packed_uint64_extension: Extension<TestPackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sint32 packed_sint32_extension = 94 [packed = true];
+ */
+export declare const packed_sint32_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sint64 packed_sint64_extension = 95 [packed = true];
+ */
+export declare const packed_sint64_extension: Extension<TestPackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated fixed32 packed_fixed32_extension = 96 [packed = true];
+ */
+export declare const packed_fixed32_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated fixed64 packed_fixed64_extension = 97 [packed = true];
+ */
+export declare const packed_fixed64_extension: Extension<TestPackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sfixed32 packed_sfixed32_extension = 98 [packed = true];
+ */
+export declare const packed_sfixed32_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sfixed64 packed_sfixed64_extension = 99 [packed = true];
+ */
+export declare const packed_sfixed64_extension: Extension<TestPackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated float packed_float_extension = 100 [packed = true];
+ */
+export declare const packed_float_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated double packed_double_extension = 101 [packed = true];
+ */
+export declare const packed_double_extension: Extension<TestPackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated bool packed_bool_extension = 102 [packed = true];
+ */
+export declare const packed_bool_extension: Extension<TestPackedExtensions, boolean[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.ForeignEnum packed_enum_extension = 103 [packed = true];
+ */
+export declare const packed_enum_extension: Extension<TestPackedExtensions, ForeignEnum[]>;
+
+/**
+ * @generated from extension: repeated int32 unpacked_int32_extension = 90 [packed = false];
+ */
+export declare const unpacked_int32_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated int64 unpacked_int64_extension = 91 [packed = false];
+ */
+export declare const unpacked_int64_extension: Extension<TestUnpackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated uint32 unpacked_uint32_extension = 92 [packed = false];
+ */
+export declare const unpacked_uint32_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated uint64 unpacked_uint64_extension = 93 [packed = false];
+ */
+export declare const unpacked_uint64_extension: Extension<TestUnpackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sint32 unpacked_sint32_extension = 94 [packed = false];
+ */
+export declare const unpacked_sint32_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sint64 unpacked_sint64_extension = 95 [packed = false];
+ */
+export declare const unpacked_sint64_extension: Extension<TestUnpackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated fixed32 unpacked_fixed32_extension = 96 [packed = false];
+ */
+export declare const unpacked_fixed32_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated fixed64 unpacked_fixed64_extension = 97 [packed = false];
+ */
+export declare const unpacked_fixed64_extension: Extension<TestUnpackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated sfixed32 unpacked_sfixed32_extension = 98 [packed = false];
+ */
+export declare const unpacked_sfixed32_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated sfixed64 unpacked_sfixed64_extension = 99 [packed = false];
+ */
+export declare const unpacked_sfixed64_extension: Extension<TestUnpackedExtensions, bigint[]>;
+
+/**
+ * @generated from extension: repeated float unpacked_float_extension = 100 [packed = false];
+ */
+export declare const unpacked_float_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated double unpacked_double_extension = 101 [packed = false];
+ */
+export declare const unpacked_double_extension: Extension<TestUnpackedExtensions, number[]>;
+
+/**
+ * @generated from extension: repeated bool unpacked_bool_extension = 102 [packed = false];
+ */
+export declare const unpacked_bool_extension: Extension<TestUnpackedExtensions, boolean[]>;
+
+/**
+ * @generated from extension: repeated protobuf_unittest.ForeignEnum unpacked_enum_extension = 103 [packed = false];
+ */
+export declare const unpacked_enum_extension: Extension<TestUnpackedExtensions, ForeignEnum[]>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestAllTypes test_all_types = 536860000;
+ */
+export declare const test_all_types: Extension<TestHugeFieldNumbers, TestAllTypes>;
+
+/**
+ * @generated from extension: optional int32 test_extension_inside_table_extension = 5;
+ */
+export declare const test_extension_inside_table_extension: Extension<TestExtensionInsideTable, number>;
+
+/**
+ * @generated from extension: optional protobuf_unittest.TestNestedGroupExtensionInnerExtension inner = 3;
+ */
+export declare const inner: Extension<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, TestNestedGroupExtensionInnerExtension>;
 

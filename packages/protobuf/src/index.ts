@@ -29,6 +29,13 @@ export { ScalarType, LongType } from "./field.js";
 
 export type { MessageType } from "./message-type.js";
 export type { EnumType, EnumValueInfo } from "./enum.js";
+export type { Extension } from "./extension.js";
+export {
+  getExtension,
+  setExtension,
+  hasExtension,
+  clearExtension,
+} from "./extension-accessor.js";
 export type {
   ServiceType,
   MethodInfo,
@@ -71,7 +78,10 @@ export type {
   DescComments,
 } from "./descriptor-set.js";
 export { createDescriptorSet } from "./create-descriptor-set.js";
-export type { IMessageTypeRegistry } from "./type-registry.js";
+export type {
+  IMessageTypeRegistry,
+  IExtensionRegistry,
+} from "./type-registry.js";
 export { createRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
 export { toPlainMessage } from "./to-plain-message.js";

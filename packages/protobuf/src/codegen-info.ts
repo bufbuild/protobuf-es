@@ -24,6 +24,7 @@ import type {
   DescEnum,
   DescEnumValue,
   DescField,
+  DescExtension,
   DescMessage,
   DescMethod,
   DescOneof,
@@ -41,13 +42,16 @@ interface CodegenInfo {
       | DescEnum
       | DescEnumValue
       | DescMessage
+      | DescExtension
       | DescOneof
       | DescField
       | DescService
       | DescMethod,
   ) => string;
   readonly symbols: Record<RuntimeSymbolName, RuntimeSymbolInfo>;
-  readonly getUnwrappedFieldType: (field: DescField) => ScalarType | undefined;
+  readonly getUnwrappedFieldType: (
+    field: DescField | DescExtension,
+  ) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
   readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
   /**
@@ -66,6 +70,7 @@ type RuntimeSymbolName =
   | "PlainMessage"
   | "FieldList"
   | "MessageType"
+  | "Extension"
   | "BinaryReadOptions"
   | "BinaryWriteOptions"
   | "JsonReadOptions"
@@ -105,6 +110,7 @@ export const codegenInfo: CodegenInfo = {
     PlainMessage:         {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
     FieldList:            {typeOnly: true,  privateImportPath: "./field-list.js",    publicImportPath: packageName},
     MessageType:          {typeOnly: true,  privateImportPath: "./message-type.js",  publicImportPath: packageName},
+    Extension:            {typeOnly: true,  privateImportPath: "./extension.js",     publicImportPath: packageName},
     BinaryReadOptions:    {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
     BinaryWriteOptions:   {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
     JsonReadOptions:      {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
