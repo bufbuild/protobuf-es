@@ -12,7 +12,7 @@ Some additional features that set it apart from the others:
 - Generation of idiomatic JavaScript and TypeScript code.
 - Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-bench)
 - Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
-- Implementation of all proto2 features, except for extensions and the text format.
+- Implementation of all proto2 features, except for the text format.
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 - Compatibility is covered by the protocol buffers [conformance tests](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance).
 - Descriptor and reflection support
