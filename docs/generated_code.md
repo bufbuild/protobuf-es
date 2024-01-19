@@ -362,7 +362,7 @@ message MessageWithGroup {
 For this group field, we generate the following property:
 
 ```ts
-  mygroup?: MessageWithGroup_MyGroup;
+mygroup?: MessageWithGroup_MyGroup;
 ```
 
 We also generate the message class `MessageWithGroup_MyGroup`.
