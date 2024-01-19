@@ -484,7 +484,7 @@ setExtension(user, hobbies, h);
 ### Extensions and JSON
 
 If you parse or serialize a message to binary, extensions are automatically 
-included, since they are stored as unknown fields. If your parse or serialize
+included, since they are stored as unknown fields. If you parse or serialize
 a message to JSON, you have to provide a registry with the extensions you want 
 to include, similar to the well-known type [Any](#any):
 
@@ -600,8 +600,9 @@ any.unpack(typeRegistry); // Message of type User
 
 let ts = new Timestamp();
 any.unpackTo(ts); // false, you provided an instance of the wrong type
-
 ```
+
+To serialize 
 
 
 ### Struct
