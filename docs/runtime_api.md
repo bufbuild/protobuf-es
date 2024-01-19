@@ -15,7 +15,10 @@ provided by the library.
   - [Serializing messages](#serializing-messages)
     - [Binary](#binary)  
     - [JSON](#json)  
-- [Using enumerations](#using-enumerations)
+- [Enumerations](#enumerations)
+- [Extensions](#extensions)
+  - [Extensions and JSON](#extensions-and-json)
+  - [Extensions and custom options](#extensions-and-custom-options)
 - [Well-known types](#well-known-types)
 - [Message types](#message-types)
 - [64-bit-integral-types](#64-bit-integral-types)
@@ -250,7 +253,9 @@ User.typeName; // docs.User
 ## Serializing messages
 
 All messages provide methods for serializing and parsing data between the 
-binary and JSON formats. 
+binary and JSON formats. Conformance is ensured by the [conformance test suite](../packages/protobuf-conformance). 
+Protobuf-ES does not implement the text format.
+
 
 ### Binary
 
@@ -278,7 +283,7 @@ customize the serialization behavior. Supported options are:
 - `writeUnknownFields?: boolean`<br/>
    By default, unknown fields are included in the serialized output. This option
    allows for overriding that behavior.
-   For more details see https://protobuf.dev/programming-guides/proto3/#unknowns.
+   For more details see the [proto3 language guide](https://protobuf.dev/programming-guides/proto3/#unknowns).
 - `writerFactory?: () => IBinaryWriter`<br/>
   A function for specifying a custom implementation to encode binary data.
 
@@ -290,7 +295,7 @@ customize the serialization behavior. Supported options are:
 - `readUnknownFields?: boolean`<br/>
    By default, unknown fields are retained during parsing and included in the 
    serialized output. This option allows for overriding this behavior.
-   For more details see https://protobuf.dev/programming-guides/proto3/#unknowns.
+   For more details see the [proto3 language guide](https://protobuf.dev/programming-guides/proto3/#unknowns).
 - `readerFactory?: (bytes: Uint8Array) => IBinaryReader`<br/>
   A function for specifying a custom implementation to decode binary data.
 
@@ -318,8 +323,7 @@ customize the serialization behavior. Supported options are:
    Field names are converted to lowerCamelCase by default in JSON output. This 
    allows for overriding this behavior to use the proto field name instead.
 - `typeRegistry?: IMessageTypeRegistry`<br/>
-   A type registry to use when parsing. This is required to write 
-   `google.protobuf.Any` to JSON format.
+   A type registry to convert extensions and [google.protobuf.Any](#any) to JSON.  
 
 Note that the result of `toJson` will be a [JSON value][src-json-value] – a 
 primitive JavaScript object that can be converted to a JSON string with the 
@@ -358,12 +362,11 @@ The `fromJson` method also accepts an options object for customizing the
 parsing behavior:
 
 - `ignoreUnknownFields?: boolean`<br/>
-   By default, unknown fields are rejected.u
+   By default, unknown fields are rejected.
    This option overrides this behavior and ignores unknown fields in parsing, as 
    well as unrecognized enum string representations.
 - `typeRegistry?: IMessageTypeRegistry`<br/>
-   A type registry to use when parsing. This is required to read 
-   `google.protobuf.Any` from JSON format.
+   A type registry to parse extensions and [google.protobuf.Any](#any) from JSON.  
 
 Note that `fromJson` expects a [JSON value][src-json-value] – a primitive 
 JavaScript object - as its argument. For convenience, we also provide a function 
@@ -384,10 +387,8 @@ to changes. For example, you can rename a field, and still parse binary data ser
 with the previous version. In general, the binary format is also more performant than
 JSON.
 
-Conformance with the binary and JSON formats is ensured by the
-[conformance tests](../packages/protobuf-conformance). Protobuf-ES does not implement the text format.
 
-## Using enumerations
+## Enumerations
 
 For enumerations, we lean on TypeScript enums. A quick refresher about them:
 
@@ -414,6 +415,106 @@ Note that in Protobuf-ES, all enums are ["open"][protobuf-dev-enum], meaning tha
 generated code can contain a value in an enum field that was added in a new version of 
 the schema. With TypeScript v5 and later, enums are closed in the type system. With 
 earlier versions of TypeScript, they are open.
+
+
+## Extensions
+
+Extensions can be set on a message using the `setExtension` function. Provided
+we have the following message and extension:
+
+```protobuf
+syntax = "proto2";
+
+message User {
+  extensions 100 to 200;
+}
+
+extend User {
+  optional uint32 age = 100;
+}
+```
+
+You can set the extension field `age` like this:
+
+```ts
+import { setExtension } from "@bufbuild/protobuf";
+import { User, age } from "./example_pb.js";
+
+const user = new User();
+setExtension(user, age, 77);
+```
+
+If the message already has a value for the `age` extension, the value is replaced.
+You can remove an extension from a message with the function `clearExtension`.
+To retrieve an extension value, use `getExtension`. To check whether an extension
+is set, use `hasExtension`.
+
+```ts
+import { setExtension, getExtension, hasExtension, clearExtension } from "@bufbuild/protobuf";
+
+setExtension(user, age, 77);
+hasExtension(user, age); // true
+getExtension(user, age); // 77
+clearExtension(user, age);
+hasExtension(user, age); // false
+```
+
+Note that `getExtension` never returns `undefined`. If the extension is not set,
+`hasExtension` returns `false`, but `getExtension` returns the default value,
+for example `0` for numeric types, `[]` for repeated fields, and an empty message
+instance for message fields.
+
+Extensions are stored as unknown fields (see [Protobuf language guide](https://protobuf.dev/programming-guides/proto3/#unknowns)) 
+on a message . If you retrieve an extension value, it is deserialized from the 
+binary unknown field data. To mutate a value, make sure to store the new value 
+with `setExtension` after mutating. For example, let's say we have the extension 
+field `repeated string hobbies = 101`, and want to add values:
+
+```ts
+import { setExtension, getExtension, hasExtension, clearExtension } from "@bufbuild/protobuf";
+import { hobbies } from "./example_pb.js";
+
+const h = getExtension(user, hobbies);
+h.push("Baking");
+h.push("Pottery");
+
+setExtension(user, hobbies, h);
+```
+
+### Extensions and JSON
+
+If you parse or serialize a message to binary, extensions are automatically 
+included, since they are stored as unknown fields. If you parse or serialize
+a message to JSON, you have to provide a registry with the extensions you want 
+to include, similar to the well-known type [Any](#any):
+
+```ts
+import { createRegistry } from "@bufbuild/protobuf";
+import { age, hobbies } from "./example_pb.js";
+
+const typeRegistry = createRegistry(age, hobbies);
+
+user.toJsonString({ typeRegistry }); // {"[age]":77,"[hobbies]":["Baking","Pottery"]}
+```
+
+### Extensions and custom options
+
+Extension are commonly used for custom options, which allow to annotate elements 
+in a Protobuf file with arbitrary information. 
+
+Custom options are extensions to the `google.protobuf.*Options` messages defined 
+in [google/protobuf/descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+When a Protobuf compiler parses a file, it converts all elements into descriptors, 
+and sets custom option values on the option message field of the corresponding 
+descriptor.
+
+When a plugin is invoked to generate code, it receives the parsed descriptors, 
+and the plugin can read the custom option value using the extension. To see how
+this works in practice, take a look at the example in our [guide for writing plugins](./writing_plugins.md#using-custom-protobuf-options).
+
+At this point in time, it is not possible to retrieve custom options from 
+generated code, since Protobuf-ES does not embed the full descriptors in the 
+generated code.
 
 
 ## Well-known types
@@ -499,7 +600,22 @@ any.unpack(typeRegistry); // Message of type User
 
 let ts = new Timestamp();
 any.unpackTo(ts); // false, you provided an instance of the wrong type
+```
 
+`Any` stores the message as binary data. To parse or serialize `Any` to JSON, 
+you need to provide a registry, similar to [extensions](#extensions-and-json).
+
+```ts
+import { Any, createRegistry, Timestamp } from "@bufbuild/protobuf";
+
+// Pack a Timestamp message in an Any:
+const timestamp = Timestamp.now();
+const any = Any.pack(timestamp);
+
+// Create a registry so that the Timestamp type can be looked up and converted
+// to JSON during serialization:
+const typeRegistry = createRegistry(Timestamp);
+any.toJsonString({ typeRegistry });
 ```
 
 
@@ -707,7 +823,8 @@ const registry = createRegistry(
 );
 ```
 
-In addition, you can also create a registry without any generated code.  As you may know, a `.proto` file can also be represented by a [FileDescriptor](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+In addition, you can also create a registry without any generated code.  As you may know, a `.proto` file can also be 
+represented by the well-known type `google.protobuf.FileDescriptor` defined in [google/protobuf/descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
 Protobuf compilers such as [`buf`](https://github.com/bufbuild/buf) or `protoc` actually compile
 `.proto` files to a set of descriptors, and code generator plugins receive them when code is generated.
 
@@ -717,7 +834,7 @@ buf generate --output image.bin
 ```
 
 Using [`createRegistryFromDescriptors()`][src-create-registry-from-desc], you
-can create types at run time from a set of descriptors created by a protocol buffers
+can create types at runtime from a set of descriptors created by a Protobuf
 compiler:
 
 ```typescript
@@ -729,19 +846,26 @@ const User = registry.findMessage("doc.User");
 
 ### Descriptor Interfaces
 
-**Protobuf-ES** uses its own interfaces that mostly correspond to the FileDescriptor objects representing the various elements of Protobuf grammar (messages, enums, services, methods, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+**Protobuf-ES** uses its own interfaces that mostly correspond to the `google.protobuf.*Descriptor` 
+messages representing the various elements of the Protobuf language (messages, 
+enums, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. 
+`DescMessage`, `DescEnum`, etc.
 
-The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf 
+file. This object then contains all the nested `Desc` types corresponding to the 
+above. For example:
 
 ```
--- DescFile
-   |--- DescEnum
-   |--- DescMessage
-      |--- DescField
-      |--- DescOneof
-   |--- DescService
-      |--- DescMethod
+── DescFile
+   ├── DescEnum
+   ├── DescMessage
+   │   ├── DescField
+   │   └── DescOneof
+   ├── DescExtension
+   └── DescService
+       └── DescMethod
 ```
+
 
 ### Iterating over message fields
 
