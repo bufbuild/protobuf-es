@@ -846,11 +846,14 @@ const User = registry.findMessage("doc.User");
 
 ### Descriptor Interfaces
 
-**Protobuf-ES** uses its own interfaces that mostly correspond to the `google.protobuf.*Descriptor` messages representing 
-the various elements of the Protobuf language (messages, enums, services, methods, etc.). Each of the framework interfaces 
-is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+**Protobuf-ES** uses its own interfaces that mostly correspond to the `google.protobuf.*Descriptor` 
+messages representing the various elements of the Protobuf language (messages, 
+enums, etc.). Each of the framework interfaces is prefixed with `Desc`, i.e. 
+`DescMessage`, `DescEnum`, etc.
 
-The hierarchy starts with `DescFile`, which represents the contents of a Protobuf file.  This object then contains all the nested `Desc` types corresponding to the above.  For example:
+The hierarchy starts with `DescFile`, which represents the contents of a Protobuf 
+file. This object then contains all the nested `Desc` types corresponding to the 
+above. For example:
 
 ```
 ── DescFile
