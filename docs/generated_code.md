@@ -323,7 +323,21 @@ enum Foo {
 
 ### Extensions
 
-We do not support extensions (a proto2 feature) at this time.
+An extension is a field defined outside of its container message. For example:
+
+```
+extend Example {
+  optional string extra_string = 1001;
+}
+```
+
+For this extension, we generate:
+
+```ts
+const extra_string: Extension<Example, string>;
+```
+
+See the [runtime API documentation](./runtime_api.md#extensions) for details on how to access extension values.
 
 
 ### Nested types
@@ -344,6 +358,28 @@ two classes `Example` and `Example_Message`, as well as the enum `Example_Enum`.
 ### Services
 
 `protoc-gen-es` does not generate any code for service declarations.
+
+
+### Groups
+
+Groups are a deprecated feature in proto2 that allows to declare a field and a 
+message at the same time:
+
+```protobuf
+message MessageWithGroup {
+  optional group MyGroup = 1 {
+    optional int32 int32_field = 1;
+  }
+}
+```
+
+For this group field, we generate the following property:
+
+```ts
+  mygroup?: MessageWithGroup_MyGroup;
+```
+
+We also generate the message class `MessageWithGroup_MyGroup`.
 
 
 ### Comments

@@ -35,21 +35,21 @@ to Protobuf-ES.
 
 | Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
 |------------------------|-------------|---------------------|-------------|
-| Initializers           | ✅          | ❌                    | ✅         |
-| Plain properties       | ✅          | ❌                    | ✅         |
-| `instanceof`           | ✅          | ✅                  | ️️❌          |
-| JSON format            | ✅          | ❌                    | ✅          |
-| Binary format          | ✅          | ✅                  | ✅          |
-| TypeScript             | ✅          | ️❌                   | ✅          |
-| Standard module system | ✅          | ❌                    | ✅          |
-| Tree shaking           | ✅          | ️❌                   | ✅          |
-| Reflection             | ✅          | ❌                    | ✅          |
-| Dynamic messages       | ✅          | ️❌                   | ✅          |
-| Wrappers unboxing      | ✅          | ❌                    | ❌            |
-| Comments               | ✅          | ❌                    | ✅          |
-| Deprecation            | ✅          | ❌                    | ✅          |
-| proto2 syntax          | ✅          | ✅                  | ❌            |
-| proto2 extensions      | ️❌            | ✅                  | ❌            |
+| Initializers           | ✅           | ❌                   | ✅           |
+| Plain properties       | ✅           | ❌                   | ✅           |
+| `instanceof`           | ✅           | ✅                   | ❌           |
+| JSON format            | ✅           | ❌                   | ✅           |
+| Binary format          | ✅           | ✅                   | ✅           |
+| TypeScript             | ✅           | ❌                   | ✅           |
+| Standard module system | ✅           | ❌                   | ✅           |
+| Tree shaking           | ✅           | ❌                   | ✅           |
+| Reflection             | ✅           | ❌                   | ✅           |
+| Dynamic messages       | ✅           | ❌                   | ✅           |
+| Wrappers unboxing      | ✅           | ❌                   | ❌           |
+| Comments               | ✅           | ❌                   | ✅           |
+| Deprecation            | ✅           | ❌                   | ✅           |
+| proto2 syntax          | ✅           | ✅                   | ❌           |
+| proto2 extensions      | ✅           | ✅                   | ❌           |
 
 
 # From protobuf-javascript
