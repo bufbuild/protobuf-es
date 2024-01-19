@@ -602,7 +602,21 @@ let ts = new Timestamp();
 any.unpackTo(ts); // false, you provided an instance of the wrong type
 ```
 
-To serialize 
+`Any` stores the message as binary data. To parse or serialize `Any` to JSON, 
+you need to provide a registry, similar to [extensions](#extensions-and-json).
+
+```ts
+import { Any, createRegistry, Timestamp } from "@bufbuild/protobuf";
+
+// Pack a Timestamp message in an Any:
+const timestamp = Timestamp.now();
+const any = Any.pack(timestamp);
+
+// Create a registry so that the Timestamp type can be looked up and converted
+// to JSON during serialization:
+const typeRegistry = createRegistry(Timestamp);
+any.toJsonString({ typeRegistry });
+```
 
 
 ### Struct
