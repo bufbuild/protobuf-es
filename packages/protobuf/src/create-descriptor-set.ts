@@ -95,7 +95,7 @@ export function createDescriptorSet(
       );
       resolverByEdition.set(edition, resolveFeatures);
     }
-    return newFile(proto, cart, resolveFeatures);
+    return newFile(proto, cart, resolveFeatures, Boolean(options?.keepEnumPrefix));
   });
   return { files, ...cart };
 }
@@ -117,6 +117,7 @@ interface CreateDescriptorSetOptions {
    * `--experimental_edition_defaults_out`.
    */
   featureSetDefaults?: FeatureSetDefaults;
+  keepEnumPrefix?: boolean;
 }
 
 /**
@@ -138,6 +139,7 @@ function newFile(
   proto: FileDescriptorProto,
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
+  keepEnumPrefix: boolean,
 ): DescFile {
   assert(proto.name, `invalid FileDescriptorProto: missing name`);
   const file: DescFile = {
@@ -170,10 +172,10 @@ function newFile(
   };
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, undefined, cart, resolveFeatures);
+    addEnum(enumProto, file, undefined, cart, resolveFeatures, keepEnumPrefix);
   }
   for (const messageProto of proto.messageType) {
-    addMessage(messageProto, file, undefined, cart, resolveFeatures);
+    addMessage(messageProto, file, undefined, cart, resolveFeatures, keepEnumPrefix);
   }
   for (const serviceProto of proto.service) {
     addService(serviceProto, file, cart, resolveFeatures);
@@ -273,6 +275,7 @@ function addEnum(
   parent: DescMessage | undefined,
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
+  keepEnumPrefix: boolean,
 ): void {
   assert(proto.name, `invalid EnumDescriptorProto: missing name`);
   const desc: DescEnum = {
@@ -284,7 +287,7 @@ function addEnum(
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     values: [],
-    sharedPrefix: findEnumSharedPrefix(
+    sharedPrefix: typeof keepEnumPrefix == "boolean" && keepEnumPrefix ? undefined : findEnumSharedPrefix(
       proto.name,
       proto.value.map((v) => v.name ?? ""),
     ),
@@ -361,6 +364,7 @@ function addMessage(
   parent: DescMessage | undefined,
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
+  keepEnumPrefix: boolean,
 ): void {
   assert(proto.name, `invalid DescriptorProto: missing name`);
   const desc: DescMessage = {
@@ -407,10 +411,10 @@ function addMessage(
     cart.messages.set(desc.typeName, desc);
   }
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, desc, cart, resolveFeatures);
+    addEnum(enumProto, file, desc, cart, resolveFeatures, keepEnumPrefix);
   }
   for (const messageProto of proto.nestedType) {
-    addMessage(messageProto, file, desc, cart, resolveFeatures);
+    addMessage(messageProto, file, desc, cart, resolveFeatures, keepEnumPrefix);
   }
 }
 

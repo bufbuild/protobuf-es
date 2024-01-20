@@ -127,3 +127,12 @@ omit empty files from the plugin output. This option disables pruning of
 empty files, to allow for smooth interoperation with Bazel and similar
 tooling that requires all output files to be declared ahead of time.
 Unless you use Bazel, it is very unlikely that you need this option.
+
+### `keep_enum_prefix=true`
+
+By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
+set it `false` to remove the enum prefix from the generated enum values.
+
+- `keep_enum_prefix=false` to remove enum prefix. For example, strip out `MY_ENUM_` form `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}` to ``enum MyEnum{A=0; B=1;}``
+- `keep_enum_prefix=true` to keep enum prefix. For example, keep `MY_ENUM_` form `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}` to ``enum MyEnum{MY_ENUM_A=0; MY_ENUM_B=1;}``

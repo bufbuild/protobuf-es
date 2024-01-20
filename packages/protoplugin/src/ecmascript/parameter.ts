@@ -25,6 +25,7 @@ export interface ParsedParameter {
   importExtension: string;
   jsImportStyle: "module" | "legacy_commonjs";
   sanitizedParameter: string;
+  keepEnumPrefix: boolean;
 }
 
 export function parseParameter(
@@ -39,6 +40,8 @@ export function parseParameter(
   let importExtension = ".js";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
   const rawParameters: string[] = [];
+  let keepEnumPrefix = false;
+
   for (const { key, value, raw } of splitParameter(parameter)) {
     // Whether this key/value plugin parameter pair should be
     // printed to the generated file preamble
@@ -108,6 +111,10 @@ export function parseParameter(
         importExtension = value === "none" ? "" : value;
         break;
       }
+      case "keep_enum_prefix": {
+        keepEnumPrefix = value === "true" ? true : false;
+        break;
+      }
       case "js_import_style":
         switch (value) {
           case "module":
@@ -157,6 +164,7 @@ export function parseParameter(
     targets,
     tsNocheck,
     bootstrapWkt,
+    keepEnumPrefix,
     rewriteImports,
     importExtension,
     jsImportStyle,

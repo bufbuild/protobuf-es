@@ -92,6 +92,7 @@ export function createSchema(
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile, {
     featureSetDefaults,
+    keepEnumPrefix: parameter.keepEnumPrefix,
   });
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
