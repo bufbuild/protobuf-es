@@ -109,6 +109,7 @@ export class Message<T extends Message<T> = AnyMessage> {
       bin = type.runtime.bin,
       opt = bin.makeWriteOptions(options),
       writer = opt.writerFactory();
+    writer.fork();
     bin.writeMessage(this, writer, opt);
     return writer.finish();
   }

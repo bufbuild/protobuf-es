@@ -87,6 +87,7 @@ export function setExtension<E extends Message<E>, V>(
     }
   }
   const writer = writeOpt.writerFactory();
+  writer.fork();
   extension.runtime.bin.writeField(extension.field, value, writer, writeOpt);
   const reader = readOpt.readerFactory(writer.finish());
   while (reader.pos < reader.len) {

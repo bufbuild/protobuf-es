@@ -172,7 +172,7 @@ export interface IBinaryReader {
 
 export interface IBinaryWriter {
   /**
-   * Return all bytes written and reset this writer.
+   * Return all bytes written and return to the previous state.
    */
   finish(): Uint8Array;
 
@@ -314,6 +314,8 @@ export class BinaryWriter implements IBinaryWriter {
     this.textEncoder = textEncoder ?? new TextEncoder();
     this.chunks = [];
     this.buf = [];
+
+    this.fork();
   }
 
   /**
@@ -329,15 +331,28 @@ export class BinaryWriter implements IBinaryWriter {
       bytes.set(this.chunks[i], offset);
       offset += this.chunks[i].length;
     }
-    this.chunks = [];
+
+    this.restore();
+
     return bytes;
+  }
+
+  /*
+   * Restore the previous stack entry.
+   */
+  restore(): IBinaryWriter {
+    let prev = this.stack.pop();
+    if (!prev) throw new Error("invalid state, fork stack empty");
+    this.chunks = prev.chunks;
+    this.buf = prev.buf;
+    return this;
   }
 
   /**
    * Start a new fork for length-delimited data like a message
    * or a packed repeated field.
    *
-   * Must be joined later with `join()`.
+   * Must be joined later with `join()` or flushed with `finish()`.
    */
   fork(): IBinaryWriter {
     this.stack.push({ chunks: this.chunks, buf: this.buf });
@@ -353,13 +368,6 @@ export class BinaryWriter implements IBinaryWriter {
   join(): IBinaryWriter {
     // get chunk of fork
     let chunk = this.finish();
-
-    // restore previous state
-    let prev = this.stack.pop();
-    if (!prev) throw new Error("invalid state, fork stack empty");
-    this.chunks = prev.chunks;
-    this.buf = prev.buf;
-
     // write length of chunk as varint
     this.uint32(chunk.byteLength);
     return this.raw(chunk);

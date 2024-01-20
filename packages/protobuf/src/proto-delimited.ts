@@ -34,7 +34,7 @@ export const protoDelimited = {
    */
   enc(message: Message, options?: BinaryWriteOptions): Uint8Array {
     const opt = makeBinaryFormatCommon().makeWriteOptions(options);
-    return opt.writerFactory().bytes(message.toBinary(opt)).finish();
+    return opt.writerFactory().fork().bytes(message.toBinary(opt)).finish();
   },
 
   /**

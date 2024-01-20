@@ -14,9 +14,11 @@
 
 import { expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
+import { BinaryWriter } from "@bufbuild/protobuf";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import { describeMT } from "./helpers.js";
+import assert from "node:assert";
 
 describeMT(
   { ts: TS_MessageFieldMessage, js: JS_MessageFieldMessage },
@@ -100,6 +102,34 @@ describeMT(
         msg.toJsonString({
           emitDefaultValues: true,
         }),
+      );
+    });
+    test("example binary encodes and decodes using same writer instance", () => {
+      const msg = new messageType(exampleFields);
+      const writer = new BinaryWriter();
+
+      let runs = 10;
+      let enc;
+      while (runs > 0) {
+        enc = msg.toBinary({
+          writerFactory: () => writer,
+        });
+        runs--;
+      }
+      assert(enc !== undefined);
+
+      const got = messageType.fromBinary(enc);
+      expect(got.messageField?.name).toStrictEqual(
+        exampleFields.messageField.name,
+      );
+      expect(got.repeatedMessageField.length).toStrictEqual(
+        exampleFields.repeatedMessageField.length,
+      );
+      expect(got.repeatedMessageField[0].name).toStrictEqual(
+        exampleFields.repeatedMessageField[0].name,
+      );
+      expect(got.repeatedMessageField[1].name).toStrictEqual(
+        exampleFields.repeatedMessageField[1].name,
       );
     });
   },
