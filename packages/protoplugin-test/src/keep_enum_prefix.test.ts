@@ -19,7 +19,7 @@ import { localName, type GeneratedFile, type Schema } from "@bufbuild/protoplugi
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
 
-describe("keep_empty_files", () => {
+describe("keep_enum_prefix", () => {
   test.each(["js", "ts", "dts"])(
     "strip out prefix enum %p",
     async (target) => {
