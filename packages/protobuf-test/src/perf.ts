@@ -31,7 +31,7 @@ import {
 
 run("Parsing binary", [
   function () {
-    const data = readFileSync("./descriptorset.bin");
+    const data = readFileSync("./descriptorset.binpb");
     return {
       name: `large google.protobuf.FileDescriptorSet (${data.byteLength} bytes)`,
       fn: () => {
