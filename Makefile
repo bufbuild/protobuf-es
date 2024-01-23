@@ -73,7 +73,7 @@ $(GEN)/protobuf-test: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es $(shell 
 	@touch $(@)
 
 $(GEN)/protoplugin-test: $(BUILD)/protoc-gen-es $(shell find packages/protoplugin-test/proto -name '*.proto')
-	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.bin
+	@rm -rf packages/protoplugin-test/src/gen/* packages/protoplugin-test/descriptorset.binpb
 	@npm run -w packages/protoplugin-test generate
 	@mkdir -p $(@D)
 	@touch $(@)

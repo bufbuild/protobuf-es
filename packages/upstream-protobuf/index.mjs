@@ -140,7 +140,7 @@ export class UpstreamProtobuf {
         : filesOrFileContent;
     try {
       writeTree(Object.entries(files), tempDir);
-      const outPath = joinPath(tempDir, "desc.bin");
+      const outPath = joinPath(tempDir, "desc.binpb");
       const args = [
         "--experimental_editions",
         "--descriptor_set_out",
@@ -201,7 +201,7 @@ export class UpstreamProtobuf {
         shell: false,
         cwd: tempDir,
       });
-      const outPath = joinPath(tempDir, "dumpcodegenreq.bin");
+      const outPath = joinPath(tempDir, "dumpcodegenreq.binpb");
       return readFileSync(outPath);
     } finally {
       rmSync(tempDir, { recursive: true });
@@ -232,7 +232,7 @@ export class UpstreamProtobuf {
       writeTree(Object.entries(files), tempDir);
       const args = [
         "--experimental_edition_defaults_out",
-        "defaults.bin",
+        "defaults.binpb",
         "google/protobuf/descriptor.proto",
         ...Object.keys(files),
       ];
@@ -246,7 +246,7 @@ export class UpstreamProtobuf {
         shell: false,
         cwd: tempDir,
       });
-      return readFileSync(joinPath(tempDir, "defaults.bin"));
+      return readFileSync(joinPath(tempDir, "defaults.binpb"));
     } finally {
       rmSync(tempDir, { recursive: true });
     }

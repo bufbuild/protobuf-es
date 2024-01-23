@@ -75,7 +75,7 @@ let testFileDescriptorSetBytes: Uint8Array | undefined;
 
 export function getTestFileDescriptorSetBytes(): Uint8Array {
   if (!testFileDescriptorSetBytes) {
-    testFileDescriptorSetBytes = readFileSync("./descriptorset.bin");
+    testFileDescriptorSetBytes = readFileSync("./descriptorset.binpb");
   }
   return testFileDescriptorSetBytes;
 }

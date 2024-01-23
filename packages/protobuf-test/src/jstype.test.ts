@@ -163,7 +163,7 @@ describe("jstype=JS_STRING", () => {
 
 describe("createDescriptorSet with jstype", () => {
   const reg = createRegistryFromDescriptors(
-    readFileSync("./descriptorset.bin"),
+    readFileSync("./descriptorset.binpb"),
   );
   testAllFieldsLongType("spec.JSTypeOmittedMessage", LongType.BIGINT);
   testAllFieldsLongType("spec.JSTypeStringMessage", LongType.STRING);
@@ -188,7 +188,7 @@ describe("createDescriptorSet with jstype", () => {
 
 describe("createRegistryFromDescriptors with jstype", () => {
   const descriptorSet = createDescriptorSet(
-    readFileSync("./descriptorset.bin"),
+    readFileSync("./descriptorset.binpb"),
   );
   testAllFieldsLongType("spec.JSTypeOmittedMessage", LongType.BIGINT);
   testAllFieldsLongType("spec.JSTypeStringMessage", LongType.STRING);

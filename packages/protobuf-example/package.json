@@ -4,8 +4,8 @@
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
-    "add-person": "tsx src/add-person.ts addressbook.bin",
-    "list-people": "tsx src/list-people.ts addressbook.bin",
+    "add-person": "tsx src/add-person.ts addressbook.binpb",
+    "list-people": "tsx src/list-people.ts addressbook.binpb",
     "pregenerate": "rm -rf src/gen",
     "generate": "buf generate"
   },
