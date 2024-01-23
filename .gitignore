@@ -1,7 +1,7 @@
 node_modules
 /packages/*/dist
 /packages/typescript-compat/*/dist
-/packages/protobuf-test/descriptorset.bin
-/packages/protoplugin-test/descriptorset.bin
+/packages/protobuf-test/descriptorset.binpb
+/packages/protoplugin-test/descriptorset.binpb
 /.tmp
 /packages/*/.tmp

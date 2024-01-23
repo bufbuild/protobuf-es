@@ -47,7 +47,7 @@ import {
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join } from "node:path";
 
-const fdsBytes = readFileSync("./descriptorset.bin");
+const fdsBytes = readFileSync("./descriptorset.binpb");
 
 describe("DescriptorSet", () => {
   const set = createDescriptorSet(fdsBytes);

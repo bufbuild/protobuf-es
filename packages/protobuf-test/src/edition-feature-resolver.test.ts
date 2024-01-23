@@ -526,7 +526,7 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
 }
 
 describe("FeatureResolver", function () {
-  const set = createDescriptorSet(readFileSync("./descriptorset.bin"));
+  const set = createDescriptorSet(readFileSync("./descriptorset.binpb"));
   const descFeatureSet = set.messages.get(FeatureSet.typeName);
   assert(descFeatureSet !== undefined);
 
