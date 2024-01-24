@@ -2,7 +2,7 @@ Protobuf-ES: Runtime API
 ========================
 
 The runtime library for the generated code is provided by the npm package 
-[@bufbuild/protobuf][pkg-protobuf]. This is a detailed overview of the features 
+[@bufbuild/protobuf]. This is a detailed overview of the features 
 provided by the library.
 
 - [Message class](#message-class)
@@ -39,7 +39,7 @@ provided by the library.
 
 ## Message class
 
-All generated messages extends the base class [Message][src-message].
+All generated messages extends the base class [`Message`][src-Message].
 It provides a few helpful methods to compare, clone, and serialize, and a convenient constructor. 
 All message classes also come with some static properties with metadata, and static convenience methods.
 
@@ -83,7 +83,7 @@ const user = new User({
 ```
 
 The initializer object accepted by all message constructors is of type 
-[`PartialMessage<T>`](src-partial-message) where `T` is your message type. So 
+[`PartialMessage<T>`](src-PartialMessage) where `T` is your message type. So 
 in the above example, the initializer object is of type `PartialMessage<User>`. 
 `PartialMessage` is similar to the TypeScript built-in type `Partial`, but works 
 recursively. For more details, see the below section on [Advanced TypeScript types](#advanced-typescript-types).
@@ -289,7 +289,7 @@ const json: JsonValue = user.toJson();
 User.fromJson(json);
 ```
 
-[JsonValue][src-json-value] is a type that accurately represents any possible 
+[`JsonValue`][src-JsonValue] is a type that accurately represents any possible 
 value in JSON. It can safely be serialized to a `string` with `JSON.stringify`.
 For convenience, we also provide methods that include the stringify step:
 
@@ -443,7 +443,7 @@ generated code.
 ## Well-known types
 
 Protocol buffers have a small standard library of well-known types. 
-[@bufbuild/protobuf][pkg-protobuf] provides all of them as pre-compiled exports.
+[@bufbuild/protobuf] provides all of them as pre-compiled exports.
 
 <details><summary>Expand the list of Well-known types</summary>
 
@@ -481,7 +481,7 @@ Protocol buffers have a small standard library of well-known types.
 | [`Value`](../packages/protobuf/src/google/protobuf/struct_pb.ts)                 | message | [google/protobuf/struct.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto)                 |
 
 Note that this list does not include [google/protobuf/descriptors.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptors.proto), 
-but [@bufbuild/protobuf][pkg-protobuf] exports all types defined in this file
+but [@bufbuild/protobuf] exports all types defined in this file
 as well.
 
 </details>
@@ -624,7 +624,7 @@ representation that is suitable to display in a GUI, as a map key, or for simila
 purposes.
 
 In case you simply want to set a field value, for example from an HTML form input,
-use the provided conversion utility [`protoInt64`][src-proto-int64]:
+use the provided conversion utility [`protoInt64`][src-protoInt64]:
 
 ```typescript
 import { protoInt64 } from "@bufbuild/protobuf";
@@ -656,7 +656,7 @@ to the file `set.binpb`.
 
 The message `google.protobuf.FileDescriptorSet` is defined in [google/protobuf/descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto),
 along with other messages and ancillary types describing every element of Protobuf
-source. Protobuf-ES provides all descriptor messages as exports from [@bufbuild/protobuf][pkg-protobuf], 
+source. Protobuf-ES provides all descriptor messages as exports from [@bufbuild/protobuf], 
 along with all other [well-known types](#well-known-types). 
 
 For a simple example, the following script will read and parse the file created
@@ -679,9 +679,9 @@ You can find a deeper dive into the model in [Buf's reference about descriptors]
 
 Similar to several other Protobuf implementations, Protobuf-ES provides wrapper 
 types for the Protobuf descriptor messages that avoid many of their quirks:
-The function [`createDescriptorSet`][src-create-descriptorset] from [@bufbuild/protobuf][pkg-protobuf] 
+The function [`createDescriptorSet`][src-createDescriptorSet] from [@bufbuild/protobuf] 
 takes a `google.protobuf.FileDescriptorSet` as an input, and returns a 
-[`DescriptorSet`][src-descriptorset] object. This object contains an array 
+[`DescriptorSet`][src-DescriptorSet] object. This object contains an array 
 of all files, and map collections for all top-level types in a convenient 
 wrapped form.
 
@@ -699,7 +699,7 @@ counterparts:
 | `ServiceDescriptorProto`            | `DescService`                       |
 | `MethodDescriptorProto`             | `DescMethod`                        |
 
-If you write a Protobuf plugin with our framework [@bufbuild/protoplugin][pkg-protoplugin], 
+If you write a Protobuf plugin with our framework [@bufbuild/protoplugin], 
 you'll see that it provides the wrapped types for the schema to generate. You can 
 find concrete examples in our guide for [writing plugins](./writing_plugins.md).
 
@@ -744,7 +744,7 @@ code for examples how to include them.
 
 We gave an overview over the [message class](#message-class) earlier. Besides the
 attributes listed there, message classes actually come with a few more static 
-properties. The static shape of the generated class is a [`MessageType`][src-message-type],
+properties. The static shape of the generated class is a [`MessageType`][src-MessageType],
 a representation of the _type_ of a message.
 
 Such a type can actually be created at run time. We can take a peek at the [generated
@@ -794,11 +794,11 @@ quite a bit of code size.
 ### Enum types
 
 Similar to messages, enumerations also include Protobuf metadata. Since TypeScript
-enumerations cannot be extended with methods, [EnumType][src-enum-type] is stored
+enumerations cannot be extended with methods, [`EnumType`][src-EnumType] is stored
 as a symbol property on the enum object. It can be retrieved with the utility
 `proto3.getEnumType()`.
 
-[EnumType][src-enum-type] provides the fully qualified name in Protobuf, and
+[`EnumType`][src-EnumType] provides the fully qualified name in Protobuf, and
 methods to find values by name or integer value.
 
 Here is an example program that prints metadata for a generated enumeration:
@@ -842,7 +842,7 @@ const registry = createRegistry(
 
 const messageType = registry.findMessage("foo.MessageA");
 if (messageType) {
-   const instance = new messageType();
+  const instance = new messageType();
 }
 ```
 
@@ -854,9 +854,9 @@ registry is necessary to look up types by name. You can provide a registry in th
 
 ### Dynamic messages
 
-Protobuf-ES can create a registry from generated code with [createRegistry][src-create-registry], 
+Protobuf-ES can create a registry from generated code with [`createRegistry`][src-createRegistry], 
 but it can also create a registry from [descriptors](#descriptors) with the 
-function [`createRegistryFromDescriptors`][src-create-registry-from-desc].
+function [`createRegistryFromDescriptors`][src-createRegistryFromDescriptors].
 
 When a message, enumeration, or extension is retrieved from this registry, the 
 type is created dynamically at runtime. The dynamic types are functionally 
@@ -1032,11 +1032,11 @@ for await (const user of protoDelimited.decStream(User, readStream)) {
 ### Binary encoding
 
 At a low level, the Protobuf binary serialization is implemented with the classes 
-[BinaryReader][src-binaryreader] and [BinaryWriter][src-binarywriter]. They 
-implement the primitives of the [encoding](https://protobuf.dev/programming-guides/encoding/).
+[`BinaryReader`][src-BinaryReader] and [`BinaryWriter`][src-BinaryWriter]. They 
+implement the primitives of the [Protobuf binary encoding][protobuf-dev-encoding].
 
 Both classes are part of the public API and can be used on their own. The 
-following example uses [BinaryWriter][src-binarywriter] to serialize valid data 
+following example uses [`BinaryWriter`][src-BinaryWriter] to serialize valid data 
 for our example message:
 
 ```ts
@@ -1070,7 +1070,7 @@ your need to bring your own UTF-8 encoder. To do so, you can use the
 Unfortunately, there is no convenient standard API for base64 encoding in 
 ECMAScript, but it can be very useful when transmitting binary data. 
 
-The export [`protoBase64`][src-protobase64] provides methods to encode and 
+The export [`protoBase64`][src-protoBase64] provides methods to encode and 
 decode base64:
 
 ```typescript
@@ -1120,7 +1120,7 @@ sendUser(new User());
 
 ### PlainMessage
 
-[`PlainMessage<T>`][src-plain-message] represents _just_ the fields of a message, without 
+[`PlainMessage<T>`][src-PlainMessage] represents _just_ the fields of a message, without 
 their methods. 
 
 In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
@@ -1146,7 +1146,7 @@ Note that any `T` (assuming `T` extends `Message`) is assignable to a variable o
 
 ### AnyMessage
 
-If you want to handle messages of unknown type, the type [`AnyMessage`][src-any-message] 
+If you want to handle messages of unknown type, the type [`AnyMessage`][src-AnyMessage] 
 provides a convenient index signature to access fields:
 
 ```typescript
@@ -1157,23 +1157,25 @@ user["firstName"];
 Note that any message is assignable to `AnyMessage`.
 
 
-[src-proto-int64]: https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65
-[src-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L40
-[src-message-type]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message-type.ts#L27
-[src-enum-type]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/enum.ts#L18
-[src-json-value]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/json-format.ts#L139-L154
+[src-protoInt64]: https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65
+[src-Message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L40
+[src-MessageType]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message-type.ts#L27
+[src-EnumType]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/enum.ts#L18
+[src-JsonValue]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/json-format.ts#L139-L154
 [src-proto3-getEnumType]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/private/proto-runtime.ts#L81-L86
 [src-proto3-makeEnum]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/private/proto-runtime.ts#L58
-[src-binaryreader]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L547
-[src-binarywriter]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L283
-[src-protobase64]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/proto-base64.ts#L30
-[src-descriptorset]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/descriptor-set.ts#L42
-[src-create-descriptorset]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/create-descriptor-set.ts#L69
-[src-create-registry]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
-[src-create-registry-from-desc]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
-[src-partial-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L143
-[src-plain-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
-[src-any-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
-[pkg-protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
+[src-BinaryReader]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L547
+[src-BinaryWriter]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L283
+[src-protoBase64]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/proto-base64.ts#L30
+[src-DescriptorSet]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/descriptor-set.ts#L42
+[src-createDescriptorSet]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/create-descriptor-set.ts#L69
+[src-createRegistry]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
+[src-createRegistryFromDescriptors]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
+[src-PartialMessage]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L143
+[src-PlainMessage]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
+[src-AnyMessage]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
+[@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
+[@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
 [pkg-protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
 [protobuf-dev-enum]: https://protobuf.dev/programming-guides/enum/
+[protobuf-dev-encoding]: https://protobuf.dev/programming-guides/encoding/
