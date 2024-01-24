@@ -295,7 +295,7 @@ For convenience, we also provide methods that include the stringify step:
 
 ```typescript
 // Same as JSON.stringify(user.toJson());
-const json: string = user.toJsonJson();
+const json: string = user.toJsonString();
 
 // Same as User.fromJson(JSON.parse(json));
 User.fromJsonString(json);
