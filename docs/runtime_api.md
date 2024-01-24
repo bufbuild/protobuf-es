@@ -736,9 +736,8 @@ walkFields(user);
 // field projects: {"SPP":"Springfield Power Plant"}
 ```
 
-Note that the example does not handle [`oneof` groups](#accessing-oneof-groups). 
-For a practical example that covers all cases, you can take a look at the source
-of [`toPlainMessage`][src-toPlainMessage].
+For a more practical example that covers all cases, you can take a look at the 
+source of [`toPlainMessage`][src-toPlainMessage].
 
 
 ### Message types
