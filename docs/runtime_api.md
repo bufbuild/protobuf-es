@@ -994,7 +994,8 @@ is compatible with the counterparts in [C++](https://github.com/protocolbuffers/
 [Java](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-),
 [Go](https://github.com/golang/protobuf/issues/1382), and others.
 
-You create such a message with `protoDelimited.enc`:
+The export [`protoDelimited`][src-protoDelimited] provides a method to serialize
+such a size-delimited message: 
 
 ```typescript
 import { protoDelimited } from "@bufbuild/protobuf";
@@ -1003,9 +1004,9 @@ const bytes = protoDelimited.enc(new User({ firstName: "John" }));
 const user = protoDelimited.dec(User, bytes);
 ```
 
-With `protoDelimited.decStream`, you can parse messages from a stream. The
-method expects an `AsyncIterable<Uint8Array>` as a stream input, so it works
-with Node.js streams out of the box, and can be easily adapted to other
+To parse size-delimited messages from a stream, the export provides the method 
+`decStream`. The method expects an `AsyncIterable<Uint8Array>` as a stream input, 
+so it works with Node.js streams out of the box, and can be easily adapted to other
 stream APIs:
 
 ```typescript
@@ -1167,6 +1168,7 @@ Note that any message is assignable to `AnyMessage`.
 [src-BinaryReader]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L547
 [src-BinaryWriter]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/binary-encoding.ts#L283
 [src-protoBase64]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/proto-base64.ts#L30
+[src-protoDelimited]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/proto-delimited.ts#L31
 [src-DescriptorSet]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/descriptor-set.ts#L42
 [src-createDescriptorSet]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/create-descriptor-set.ts#L69
 [src-createRegistry]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/create-registry-from-desc.ts#L81
