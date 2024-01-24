@@ -1090,9 +1090,9 @@ const base64: string = protoBase64.enc(bytes)
 
 This type is well suited in case you know the type of a message, but want to allow 
 an instance to be given in the most flexible way. If you want to offer an API that lets 
-users provide message data, consider accepting `PartialMessage<T>`, so that users can 
-simply give an object literal with only the non-default values they want. Note that any
-`T` is assignable to `PartialMessage<T>`.
+users provide message data, consider accepting [`PartialMessage<T>`][src-PartialMessage], 
+so that users can simply give an object literal with only the non-default values 
+they want. Note that any `T` is assignable to [`PartialMessage<T>`][src-PartialMessage].
 
 For example, let's say you have a protobuf `message User`, and you want to provide a 
 function to your users that processes this message:
