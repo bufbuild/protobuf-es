@@ -1124,7 +1124,7 @@ sendUser(new User());
 [`PlainMessage<T>`][src-PlainMessage] represents _just_ the fields of a message, without 
 their methods. 
 
-In contrast to `PartialMessage`, `PlainMessage` requires all properties to be
+In contrast to `PartialMessage`, [`PlainMessage`][src-PlainMessage] requires all properties to be
 provided. For example:
 
 ```typescript
@@ -1138,11 +1138,12 @@ let plain: PlainMessage<User> = {
 };
 ```
 
-As such, `PlainMessage<T>` can be a great fit to use throughout your business logic,
-if that business logic is never concerned with serialization, and does not need 
-`instanceof`.
+As such, [`PlainMessage<T>`][src-PlainMessage] can be a great fit to use 
+throughout your business logic, if that business logic is never concerned with 
+serialization, and does not need `instanceof`.
 
-Note that any `T` (assuming `T` extends `Message`) is assignable to a variable of type `PlainMessage<T>`.
+Note that any `T` (assuming `T` extends `Message`) is assignable to a variable 
+of type [`PlainMessage<T>`][src-PlainMessage].
 
 
 ### AnyMessage
