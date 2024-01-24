@@ -736,13 +736,13 @@ walkFields(user);
 // field projects: {"SPP":"Springfield Power Plant"}
 ```
 
-Note that the example does not handle `oneof` groups. Please consult the source 
-code for examples how to include them.
+Note that the example does not handle [`oneof` groups](#accessing-oneof-groups). 
+Please consult the source code for examples how to include them.
 
 
 ### Message types
 
-We gave an overview over the [message class](#message-class) earlier. Besides the
+We gave an overview of the [message class](#message-class) earlier. Besides the
 attributes listed there, message classes actually come with a few more static 
 properties. The static shape of the generated class is a [`MessageType`][src-MessageType],
 a representation of the _type_ of a message.
