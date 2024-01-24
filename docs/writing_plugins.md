@@ -142,9 +142,13 @@ function generateTs(schema: Schema) {
 
 ### Walking through the schema
 
-The `Schema` object contains the hierarchy of the grammar contained within a Protobuf file.  The plugin framework uses its own interfaces that mostly correspond to the `DescriptorProto` objects representing the various elements of Protobuf (messages, enums, services, methods, etc.).  Each of the framework interfaces is prefixed with `Desc`, i.e. `DescMessage`, `DescEnum`, `DescService`, `DescMethod`.
+The `Schema` object contains the hierarchy of the grammar contained within a
+Protobuf file. Every element is represented by a "descriptor", similar to nodes 
+in an abstract syntax tree. To learn more about descriptors, see the 
+[runtime API documentation](./runtime_api.md#descriptors).
 
-The hierarchy starts with `DescFile`, which contains all the nested `Desc` types necessary to begin generating code.  For example:
+The hierarchy starts with `DescFile`, which contains all the nested `Desc` types 
+necessary to begin generating code.  For example:
 
 ```ts
 for (const file of schema.files) {
@@ -414,7 +418,7 @@ extend google.protobuf.ServiceOptions {
 You can learn more about custom options in the [language guide](https://protobuf.dev/programming-guides/proto3/#customoptions).
 
 First, we need to generate code for our custom option. This will generate a file
-`customoptions/default_host_pb.ts` with a new export - our extension:
+`customoptions/default_host_pb.ts` with a new export - our [extension](./runtime_api.md#extensions):
 
 ```ts
 import { ServiceOptions, Extension } from "@bufbuild/protobuf";
