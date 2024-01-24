@@ -39,7 +39,7 @@ provided by the library.
 
 ## Message class
 
-All generated messages extends the base class [`Message`][src-Message].
+All generated messages extend the base class [`Message`][src-Message].
 It provides a few helpful methods to compare, clone, and serialize, and a convenient constructor. 
 All message classes also come with some static properties with metadata, and static convenience methods.
 
