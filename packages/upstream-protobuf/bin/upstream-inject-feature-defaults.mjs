@@ -18,6 +18,7 @@ import { argv, exit, stdout, stderr } from "node:process";
 import { parseArgs } from "node:util";
 import { readFileSync, writeFileSync } from "node:fs";
 import { UpstreamProtobuf } from "../index.mjs";
+import { FeatureSetDefaults, protoBase64 } from "@bufbuild/protobuf";
 
 void main(argv.slice(2));
 
@@ -41,14 +42,18 @@ async function main(args) {
   const upstream = new UpstreamProtobuf();
   const defaults = await upstream.getFeatureSetDefaults(min, max);
   stdout.write(
-    `Injecting google.protobuf.FeatureSetDefaults into ${positionals.length} files...\n`,
+    `Injecting google.protobuf.FeatureSetDefaults into ${positionals.length} files...\n`
   );
   for (const path of positionals) {
     const content = readFileSync(path, "utf-8");
-    const r = inject(content, ` "${defaults.toString("base64url")}" `);
+    const base64String = defaults.toString("base64url");
+    const buffer = protoBase64.decode(base64String);
+    const featureSetDefaults = FeatureSetDefaults.fromBinary(buffer);
+    const jsonString = featureSetDefaults.toJsonString();
+    const r = inject(content, ` "${jsonString}" `);
     if (!r.ok) {
       stderr.write(`Error injecting into ${path}: ${r.message}\n`, () =>
-        exit(1),
+        exit(1)
       );
       return;
     }
@@ -99,6 +104,6 @@ function inject(content, contentToInject) {
 function exitUsage() {
   stderr.write(
     `USAGE: upstream-inject-feature-defaults [--min <mininum supported edition>] [--max <maximum supported edition>] <file-to-inject-into>\n`,
-    () => exit(1),
+    () => exit(1)
   );
 }

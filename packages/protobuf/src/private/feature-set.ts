@@ -17,15 +17,12 @@ import {
   FeatureSet,
   FeatureSetDefaults,
 } from "../google/protobuf/descriptor_pb.js";
-import { protoBase64 } from "../proto-base64.js";
 
 /**
  * Static edition feature defaults supported by @bufbuild/protobuf.
  */
-export const featureSetDefaults = FeatureSetDefaults.fromBinary(
-  protoBase64.dec(
-    /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
-  ),
+export const featureSetDefaults = FeatureSetDefaults.fromJsonString(
+  /*upstream-inject-feature-defaults-end*/ "" /*upstream-inject-feature-defaults-start*/
 );
 
 /**

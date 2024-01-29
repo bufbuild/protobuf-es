@@ -20,6 +20,7 @@
     }
   },
   "dependencies": {
+    "@bufbuild/protobuf": "*",
     "fflate": "^0.8.1",
     "micromatch": "^4.0.5"
   }
