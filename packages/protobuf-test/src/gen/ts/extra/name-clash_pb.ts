@@ -18,6 +18,48 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage as PartialMessage$1, PlainMessage as PlainMessage$1 } from "@bufbuild/protobuf";
 import { Message as Message$1, proto3 } from "@bufbuild/protobuf";
+import { User as User$1 } from "./example_pb.js";
+
+/**
+ * This message class will clash with the imported message class
+ *
+ * @generated from message spec.User
+ */
+export class User extends Message$1<User> {
+  /**
+   * Reference the import with the same name to trigger a clash
+   *
+   * @generated from field: docs.User u = 1;
+   */
+  u?: User$1;
+
+  constructor(data?: PartialMessage$1<User>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.User";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "u", kind: "message", T: User$1 },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {
+    return new User().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): User {
+    return new User().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: User | PlainMessage$1<User> | undefined, b: User | PlainMessage$1<User> | undefined): boolean {
+    return proto3.util.equals(User, a, b);
+  }
+}
 
 /**
  * @generated from message spec.ReservedPropertyNames

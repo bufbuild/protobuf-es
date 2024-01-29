@@ -17,6 +17,19 @@
 /* eslint-disable */
 
 import { proto3 } from "@bufbuild/protobuf";
+import { User } from "./example_pb.js";
+
+/**
+ * This message class will clash with the imported message class
+ *
+ * @generated from message spec.User
+ */
+export const User = proto3.makeMessageType(
+  "spec.User",
+  () => [
+    { no: 1, name: "u", kind: "message", T: User },
+  ],
+);
 
 /**
  * @generated from message spec.ReservedPropertyNames
