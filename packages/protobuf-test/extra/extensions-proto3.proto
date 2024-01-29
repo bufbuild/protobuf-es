@@ -16,8 +16,6 @@ syntax = "proto3";
 package proto3ext;
 
 import "google/protobuf/descriptor.proto";
-import "extra/example.proto";
-import "google/protobuf/wrappers.proto";
 
 // In proto3, we can only extend options.
 extend google.protobuf.FileOptions {
