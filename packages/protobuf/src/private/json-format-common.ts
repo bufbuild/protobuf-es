@@ -75,6 +75,7 @@ type JsonFormatWriteFieldFn = (
 ) => JsonValue | undefined;
 
 export function makeJsonFormatCommon(
+  nullAsZeroValue: boolean,
   makeWriteField: (
     writeEnumFn: typeof writeEnum,
     writeScalarFn: typeof writeScalar,
@@ -116,7 +117,7 @@ export function makeJsonFormatCommon(
             }
             oneofSeen.set(field.oneof, jsonKey);
           }
-          readField(message, jsonValue, field, options, type);
+          readField(message, jsonValue, field, options, type, nullAsZeroValue);
         } else {
           let found = false;
           if (
@@ -130,7 +131,7 @@ export function makeJsonFormatCommon(
             if (ext && ext.extendee.typeName == type.typeName) {
               found = true;
               const [container, get] = createExtensionContainer(ext);
-              readField(container, jsonValue, ext.field, options, ext);
+              readField(container, jsonValue, ext.field, options, ext, true);
               // We pass on the options as BinaryReadOptions/BinaryWriteOptions,
               // so that users can bring their own binary reader and writer factories
               // if necessary.
@@ -209,7 +210,8 @@ export function makeJsonFormatCommon(
       }
       return json;
     },
-    readScalar,
+    readScalar: (type, json, longType) =>
+      readScalar(type, json, longType, nullAsZeroValue), // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
     writeScalar,
     debug: debugJsonValue,
   };
@@ -231,12 +233,16 @@ function debugJsonValue(json: unknown): string {
 
 // Read a JSON value for a field.
 // The "type" argument is only used to provide context in errors.
+// The argument "nullAsZeroValue" applies to singular fields (not repeated, map,
+// or oneof). If the argument is `true`, JSON null is parsed as the fields
+// zero-value. If the argument is false, JSON null sets the field to `undefined`.
 function readField(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   jsonValue: JsonValue,
   field: FieldInfo,
   options: JsonReadOptions,
   type: MessageType | Extension,
+  nullAsZeroValue: boolean,
 ) {
   let localName = field.localName;
   if (field.oneof) {
@@ -274,12 +280,12 @@ function readField(
           val = field.T.fromJson(jsonItem, options);
           break;
         case "enum":
-          val = readEnum(field.T, jsonItem, options.ignoreUnknownFields);
+          val = readEnum(field.T, jsonItem, options.ignoreUnknownFields, true);
           if (val === undefined) continue;
           break;
         case "scalar":
           try {
-            val = readScalar(field.T, jsonItem, field.L);
+            val = readScalar(field.T, jsonItem, field.L, true);
           } catch (e) {
             let m = `cannot decode field ${type.typeName}.${
               field.name
@@ -317,12 +323,17 @@ function readField(
           val = field.V.T.fromJson(jsonMapValue, options);
           break;
         case "enum":
-          val = readEnum(field.V.T, jsonMapValue, options.ignoreUnknownFields);
+          val = readEnum(
+            field.V.T,
+            jsonMapValue,
+            options.ignoreUnknownFields,
+            true,
+          );
           if (val === undefined) continue;
           break;
         case "scalar":
           try {
-            val = readScalar(field.V.T, jsonMapValue, LongType.BIGINT);
+            val = readScalar(field.V.T, jsonMapValue, LongType.BIGINT, true);
           } catch (e) {
             let m = `cannot decode map value for field ${type.typeName}.${
               field.name
@@ -346,6 +357,7 @@ function readField(
                   : jsonMapKey
               : jsonMapKey,
             LongType.BIGINT,
+            true,
           ).toString()
         ] = val;
       } catch (e) {
@@ -389,6 +401,7 @@ function readField(
           field.T,
           jsonValue,
           options.ignoreUnknownFields,
+          nullAsZeroValue,
         );
         if (enumValue !== undefined) {
           target[localName] = enumValue;
@@ -396,7 +409,12 @@ function readField(
         break;
       case "scalar":
         try {
-          target[localName] = readScalar(field.T, jsonValue, field.L);
+          target[localName] = readScalar(
+            field.T,
+            jsonValue,
+            field.L,
+            nullAsZeroValue,
+          );
         } catch (e) {
           let m = `cannot decode field ${type.typeName}.${
             field.name
@@ -413,10 +431,14 @@ function readField(
 
 // May throw an error. If the error message is non-blank, it should be shown.
 // It is up to the caller to provide context.
+// If the argument "nullAsZeroValue" is `true`, this function returns the zero-value
+// for JSON null. If the argument is `false`, this function returns `undefined`
+// for JSON null.
 function readScalar(
   type: ScalarType,
   json: JsonValue,
-  longType: LongType,
+  longType: LongType | undefined,
+  nullAsZeroValue: boolean,
 ): any {
   // every valid case in the switch below returns, and every fall
   // through is regarded as a failure.
@@ -425,7 +447,7 @@ function readScalar(
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      if (json === null) return 0.0; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? 0.0 : undefined;
       if (json === "NaN") return Number.NaN;
       if (json === "Infinity") return Number.POSITIVE_INFINITY;
       if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
@@ -458,7 +480,7 @@ function readScalar(
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
     case ScalarType.UINT32:
-      if (json === null) return 0; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? 0 : undefined;
       let int32: number | undefined;
       if (typeof json == "number") int32 = json;
       else if (typeof json == "string" && json.length > 0) {
@@ -473,14 +495,14 @@ function readScalar(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      if (json === null) return protoInt64.zero; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? protoInt64.zero : undefined;
       if (typeof json != "number" && typeof json != "string") break;
       const long = protoInt64.parse(json);
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       return longType ? long.toString() : long;
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
-      if (json === null) return protoInt64.zero; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? protoInt64.zero : undefined;
       if (typeof json != "number" && typeof json != "string") break;
       const uLong = protoInt64.uParse(json);
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -488,13 +510,13 @@ function readScalar(
 
     // bool:
     case ScalarType.BOOL:
-      if (json === null) return false; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? false : undefined;
       if (typeof json !== "boolean") break;
       return json;
 
     // string:
     case ScalarType.STRING:
-      if (json === null) return ""; // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? "" : undefined;
       if (typeof json !== "string") {
         break;
       }
@@ -510,22 +532,27 @@ function readScalar(
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      if (json === null || json === "") return new Uint8Array(0); // TODO field presence: this should reset the field with explicit presence
+      if (json === null) return nullAsZeroValue ? new Uint8Array(0) : undefined;
+      if (json === "") return new Uint8Array(0);
       if (typeof json !== "string") break;
       return protoBase64.dec(json);
   }
   throw new Error();
 }
 
+// If the argument "nullAsZeroValue" is `true`, this function returns the first
+// enum value for JSON null. If the argument is `false`, this function returns
+// `undefined`.
 function readEnum(
   type: EnumType,
   json: JsonValue,
   ignoreUnknownFields: boolean,
+  nullAsZeroValue: boolean,
 ): number | undefined {
   if (json === null) {
-    // proto3 requires 0 to be default value for all enums
-    // TODO field presence: this should reset the field with explicit presence
-    return 0;
+    // proto3 requires 0 to be default value for all enums (which is required to be the first value).
+    // proto2 uses the first value (at least with protoc-gen-go).
+    return nullAsZeroValue ? type.values[0].no : undefined;
   }
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (typeof json) {
@@ -550,13 +577,13 @@ function readEnum(
 function writeEnum(
   type: EnumType,
   value: number | undefined,
-  emitIntrinsicDefault: boolean,
+  emitZeroValue: boolean,
   enumAsInteger: boolean,
 ): JsonValue | undefined {
   if (value === undefined) {
     return value;
   }
-  if (value === 0 && !emitIntrinsicDefault) {
+  if (!emitZeroValue && type.values[0].no === value) {
     // proto3 requires 0 to be default value for all enums
     return undefined;
   }
@@ -573,7 +600,7 @@ function writeEnum(
 function writeScalar(
   type: ScalarType,
   value: any,
-  emitIntrinsicDefault: boolean,
+  emitZeroValue: boolean,
 ): JsonValue | undefined {
   if (value === undefined) {
     return undefined;
@@ -586,7 +613,7 @@ function writeScalar(
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
       assert(typeof value == "number");
-      return value != 0 || emitIntrinsicDefault ? value : undefined;
+      return value != 0 || emitZeroValue ? value : undefined;
 
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
@@ -597,17 +624,17 @@ function writeScalar(
       if (Number.isNaN(value)) return "NaN";
       if (value === Number.POSITIVE_INFINITY) return "Infinity";
       if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
-      return value !== 0 || emitIntrinsicDefault ? value : undefined;
+      return value !== 0 || emitZeroValue ? value : undefined;
 
     // string:
     case ScalarType.STRING:
       assert(typeof value == "string");
-      return value.length > 0 || emitIntrinsicDefault ? value : undefined;
+      return value.length > 0 || emitZeroValue ? value : undefined;
 
     // bool:
     case ScalarType.BOOL:
       assert(typeof value == "boolean");
-      return value || emitIntrinsicDefault ? value : undefined;
+      return value || emitZeroValue ? value : undefined;
 
     // JSON value will be a decimal string. Either numbers or strings are accepted.
     case ScalarType.UINT64:
@@ -623,15 +650,13 @@ function writeScalar(
       // We use implicit conversion with `value != 0` to catch both 0n and "0"
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      return emitIntrinsicDefault || value != 0
-        ? value.toString(10)
-        : undefined;
+      return emitZeroValue || value != 0 ? value.toString(10) : undefined;
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
       assert(value instanceof Uint8Array);
-      return emitIntrinsicDefault || value.byteLength > 0
+      return emitZeroValue || value.byteLength > 0
         ? protoBase64.enc(value)
         : undefined;
   }
