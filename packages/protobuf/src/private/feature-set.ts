@@ -26,7 +26,7 @@ import type {
 /**
  * Return the edition feature defaults supported by @bufbuild/protobuf.
  */
-export function getFeatureSetDefaults(
+function getFeatureSetDefaults(
   options?: Partial<BinaryReadOptions>,
 ): FeatureSetDefaults {
   return FeatureSetDefaults.fromBinary(
