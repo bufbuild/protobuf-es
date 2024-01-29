@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import { proto3 } from "@bufbuild/protobuf";
-import { User } from "./example_pb.js";
+import { User as User$1 } from "./example_pb.js";
 
 /**
  * This message class will clash with the imported message class
@@ -27,7 +27,7 @@ import { User } from "./example_pb.js";
 export const User = proto3.makeMessageType(
   "spec.User",
   () => [
-    { no: 1, name: "u", kind: "message", T: User },
+    { no: 1, name: "u", kind: "message", T: User$1 },
   ],
 );
 
