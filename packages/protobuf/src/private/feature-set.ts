@@ -18,15 +18,24 @@ import {
   FeatureSetDefaults,
 } from "../google/protobuf/descriptor_pb.js";
 import { protoBase64 } from "../proto-base64.js";
+import type {
+  BinaryReadOptions,
+  BinaryWriteOptions,
+} from "../binary-format.js";
 
 /**
- * Static edition feature defaults supported by @bufbuild/protobuf.
+ * Return the edition feature defaults supported by @bufbuild/protobuf.
  */
-export const featureSetDefaults = FeatureSetDefaults.fromBinary(
-  protoBase64.dec(
-    /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
-  ),
-);
+function getFeatureSetDefaults(
+  options?: Partial<BinaryReadOptions>,
+): FeatureSetDefaults {
+  return FeatureSetDefaults.fromBinary(
+    protoBase64.dec(
+      /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
+    ),
+    options,
+  );
+}
 
 /**
  * A merged google.protobuf.FeaturesSet, with all fields guaranteed to be set.
@@ -46,18 +55,22 @@ export type FeatureResolverFn = (
 ) => MergedFeatureSet;
 
 /**
- * Create an edition feature resolver with the given feature set defaults.
+ * Create an edition feature resolver with the given feature set defaults, or
+ * the feature set defaults supported by @bufbuild/protobuf.
  */
 export function createFeatureResolver(
-  compiledFeatureSetDefaults: FeatureSetDefaults,
   edition: Edition,
+  compiledFeatureSetDefaults?: FeatureSetDefaults,
+  serializationOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>,
 ): FeatureResolverFn {
-  const min = compiledFeatureSetDefaults.minimumEdition;
-  const max = compiledFeatureSetDefaults.maximumEdition;
+  const fds =
+    compiledFeatureSetDefaults ?? getFeatureSetDefaults(serializationOptions);
+  const min = fds.minimumEdition;
+  const max = fds.maximumEdition;
   if (
     min === undefined ||
     max === undefined ||
-    compiledFeatureSetDefaults.defaults.some((d) => d.edition === undefined)
+    fds.defaults.some((d) => d.edition === undefined)
   ) {
     throw new Error("Invalid FeatureSetDefaults");
   }
@@ -72,7 +85,7 @@ export function createFeatureResolver(
     );
   }
   let highestMatch: { e: Edition; f: FeatureSet } | undefined = undefined;
-  for (const c of compiledFeatureSetDefaults.defaults) {
+  for (const c of fds.defaults) {
     const e = c.edition ?? 0;
     if (e > edition) {
       continue;
@@ -88,12 +101,12 @@ export function createFeatureResolver(
   if (highestMatch === undefined) {
     throw new Error(`No valid default found for edition ${Edition[edition]}`);
   }
-  const defaultsBin = highestMatch.f.toBinary();
+  const featureSetBin = highestMatch.f.toBinary(serializationOptions);
   return (...rest): MergedFeatureSet => {
-    const f = FeatureSet.fromBinary(defaultsBin);
+    const f = FeatureSet.fromBinary(featureSetBin, serializationOptions);
     for (const c of rest) {
       if (c !== undefined) {
-        f.fromBinary(c.toBinary());
+        f.fromBinary(c.toBinary(serializationOptions), serializationOptions);
       }
     }
     if (!validateMergedFeatures(f)) {
