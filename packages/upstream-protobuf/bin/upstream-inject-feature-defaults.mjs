@@ -47,10 +47,10 @@ async function main(args) {
   for (const path of positionals) {
     const content = readFileSync(path, "utf-8");
     const base64String = defaults.toString("base64url");
-    const buffer = protoBase64.decode(base64String);
+    const buffer = protoBase64.dec(base64String);
     const featureSetDefaults = FeatureSetDefaults.fromBinary(buffer);
     const jsonString = featureSetDefaults.toJsonString();
-    const r = inject(content, ` "${jsonString}" `);
+    const r = inject(content, ` '${jsonString}' `);
     if (!r.ok) {
       stderr.write(`Error injecting into ${path}: ${r.message}\n`, () =>
         exit(1)
