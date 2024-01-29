@@ -553,7 +553,7 @@ function literalBigint(value: bigint, runtimeImports: RuntimeImports): El[] {
   }
   return [
     runtimeImports.protoInt64,
-    ".parse(",
+    value > 0 ? ".uParse(" : ".parse(",
     literalString(value.toString()),
     ")",
   ];
