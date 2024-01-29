@@ -13,22 +13,31 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
+import { protoInt64 } from "@bufbuild/protobuf";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("file print", () => {
   test("should print bigint literals", async () => {
     const lines = await testGenerate((f) => {
-      f.print(BigInt(123));
-      f.print(456n);
+      f.print(0n);
+      f.print(-9223372036854775808n); // min signed
+      f.print(18446744073709551615n); // max unsigned
     });
     expect(lines).toStrictEqual([
-      'import { protoInt64 } from "@bufbuild/protobuf";',
-      "",
-      `protoInt64.parse("123")`,
-      `protoInt64.parse("456")`,
+      `import { protoInt64 } from "@bufbuild/protobuf";`,
+      ``,
+      `protoInt64.zero`,
+      `protoInt64.parse("-9223372036854775808")`,
+      `protoInt64.uParse("18446744073709551615")`,
     ]);
+    expect(
+      protoInt64.parse("-9223372036854775808") === -9223372036854775808n,
+    ).toBeTruthy();
+    expect(
+      protoInt64.uParse("18446744073709551615") === 18446744073709551615n,
+    ).toBeTruthy();
   });
 
   test("should print number literals", async () => {
