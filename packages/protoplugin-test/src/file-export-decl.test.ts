@@ -48,6 +48,19 @@ describe("file exportDecl", () => {
     expect(lines).toStrictEqual(["export const SomeEnum = 123;"]);
   });
 
+  test("forces import with same name to be aliased", async () => {
+    const lines = await testGenerate((f) => {
+      f.print(f.import("Foo", "pkg"));
+      f.print(f.exportDecl("const", "Foo"), " = 123;");
+    });
+    expect(lines).toStrictEqual([
+      `import { Foo as Foo$1 } from "pkg";`,
+      ``,
+      `Foo$1`,
+      `export const Foo = 123;`,
+    ]);
+  });
+
   async function testGenerate(
     gen: (
       f: GeneratedFile,
