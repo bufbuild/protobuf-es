@@ -22,7 +22,7 @@ import {
  * Static edition feature defaults supported by @bufbuild/protobuf.
  */
 export const featureSetDefaults = FeatureSetDefaults.fromJsonString(
-  /*upstream-inject-feature-defaults-start*/ '{"defaults":[{"edition":"EDITION_PROTO2","features":{"fieldPresence":"EXPLICIT","enumType":"CLOSED","repeatedFieldEncoding":"EXPANDED","utf8Validation":"NONE","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"LEGACY_BEST_EFFORT"}},{"edition":"EDITION_PROTO3","features":{"fieldPresence":"IMPLICIT","enumType":"OPEN","repeatedFieldEncoding":"PACKED","utf8Validation":"VERIFY","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"ALLOW"}},{"edition":"EDITION_2023","features":{"fieldPresence":"EXPLICIT","enumType":"OPEN","repeatedFieldEncoding":"PACKED","utf8Validation":"VERIFY","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"ALLOW"}}],"minimumEdition":"EDITION_PROTO2","maximumEdition":"EDITION_2023"}' /*upstream-inject-feature-defaults-end*/
+  /*upstream-inject-feature-defaults-start*/ '{"defaults":[{"edition":"EDITION_PROTO2","features":{"fieldPresence":"EXPLICIT","enumType":"CLOSED","repeatedFieldEncoding":"EXPANDED","utf8Validation":"NONE","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"LEGACY_BEST_EFFORT"}},{"edition":"EDITION_PROTO3","features":{"fieldPresence":"IMPLICIT","enumType":"OPEN","repeatedFieldEncoding":"PACKED","utf8Validation":"VERIFY","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"ALLOW"}},{"edition":"EDITION_2023","features":{"fieldPresence":"EXPLICIT","enumType":"OPEN","repeatedFieldEncoding":"PACKED","utf8Validation":"VERIFY","messageEncoding":"LENGTH_PREFIXED","jsonFormat":"ALLOW"}}],"minimumEdition":"EDITION_PROTO2","maximumEdition":"EDITION_2023"}' /*upstream-inject-feature-defaults-end*/,
 );
 
 /**
@@ -39,7 +39,7 @@ export type MergedFeatureSet = FeatureSet & Required<FeatureSet>;
  */
 export type FeatureResolverFn = (
   a?: FeatureSet,
-  b?: FeatureSet
+  b?: FeatureSet,
 ) => MergedFeatureSet;
 
 /**
@@ -47,7 +47,7 @@ export type FeatureResolverFn = (
  */
 export function createFeatureResolver(
   compiledFeatureSetDefaults: FeatureSetDefaults,
-  edition: Edition
+  edition: Edition,
 ): FeatureResolverFn {
   const min = compiledFeatureSetDefaults.minimumEdition;
   const max = compiledFeatureSetDefaults.maximumEdition;
@@ -60,12 +60,12 @@ export function createFeatureResolver(
   }
   if (edition < min) {
     throw new Error(
-      `Edition ${Edition[edition]} is earlier than the minimum supported edition ${Edition[min]}`
+      `Edition ${Edition[edition]} is earlier than the minimum supported edition ${Edition[min]}`,
     );
   }
   if (max < edition) {
     throw new Error(
-      `Edition ${Edition[edition]} is later than the maximum supported edition ${Edition[max]}`
+      `Edition ${Edition[edition]} is later than the maximum supported edition ${Edition[max]}`,
     );
   }
   let highestMatch: { e: Edition; f: FeatureSet } | undefined = undefined;
@@ -118,7 +118,7 @@ export function createFeatureResolver(
 // As a sanity check, we validate that all fields known to our version of
 // FeatureSet are set.
 function validateMergedFeatures(
-  featureSet: FeatureSet
+  featureSet: FeatureSet,
 ): featureSet is MergedFeatureSet {
   for (const fi of FeatureSet.fields.list()) {
     const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
