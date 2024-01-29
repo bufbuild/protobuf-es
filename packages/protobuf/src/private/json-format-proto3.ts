@@ -27,8 +27,8 @@ import type { Message } from "../message.js";
 /* eslint-disable no-case-declarations, @typescript-eslint/restrict-plus-operands,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument */
 
 export function makeJsonFormatProto3(): JsonFormat {
-  // TODO field presence: merge this function with proto2
-  return makeJsonFormatCommon((writeEnum, writeScalar) => {
+  // TODO field presence: merge this function with proto2. the reading side already switches behavior on the nullAsZeroValue argument.
+  return makeJsonFormatCommon(true, (writeEnum, writeScalar) => {
     return function writeField(
       field: FieldInfo,
       value: any,
