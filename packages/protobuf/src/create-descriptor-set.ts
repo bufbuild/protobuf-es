@@ -52,11 +52,9 @@ import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
 } from "./private/text-format.js";
+import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { FeatureResolverFn } from "./private/feature-set.js";
-import {
-  createFeatureResolver,
-  featureSetDefaults,
-} from "./private/feature-set.js";
+import { createFeatureResolver } from "./private/feature-set.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -90,8 +88,9 @@ export function createDescriptorSet(
     let resolveFeatures = resolverByEdition.get(edition);
     if (resolveFeatures === undefined) {
       resolveFeatures = createFeatureResolver(
-        options?.featureSetDefaults ?? featureSetDefaults,
         edition,
+        options?.featureSetDefaults,
+        options?.serializationOptions,
       );
       resolverByEdition.set(edition, resolveFeatures);
     }
@@ -117,6 +116,12 @@ interface CreateDescriptorSetOptions {
    * `--experimental_edition_defaults_out`.
    */
   featureSetDefaults?: FeatureSetDefaults;
+
+  /**
+   * Internally, data is serialized when features are resolved. The
+   * serialization options given here will be used for feature resolution.
+   */
+  serializationOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
 /**
