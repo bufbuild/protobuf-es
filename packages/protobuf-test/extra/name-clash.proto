@@ -15,6 +15,13 @@
 syntax = "proto3";
 package spec;
 
+import "extra/example.proto";
+
+// This message class will clash with the imported message class
+message User {
+  docs.User u = 1; // Reference the import with the same name to trigger a clash
+}
+
 message ReservedPropertyNames {
     message BuiltIn {
         string constructor = 2; // built-in constructor()

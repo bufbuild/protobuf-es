@@ -431,18 +431,25 @@ function processImports(
 
   // Walk through all symbols used and populate the collections above.
   for (const s of el) {
-    if (typeof s != "object" || s.kind !== "es_symbol") {
+    if (typeof s != "object") {
       continue;
     }
-    symbolToIdentifier.set(s.id, s.name);
-    if (!s.typeOnly) {
-      // a symbol is only type-imported as long as all uses are type-only
-      symbolToIsValue.set(s.id, true);
-    }
-    if (s.from === importerPath) {
-      identifiersTaken.add(s.name);
-    } else {
-      foreignSymbols.push(s);
+    switch (s.kind) {
+      case "es_symbol":
+        symbolToIdentifier.set(s.id, s.name);
+        if (!s.typeOnly) {
+          // a symbol is only type-imported as long as all uses are type-only
+          symbolToIsValue.set(s.id, true);
+        }
+        if (s.from === importerPath) {
+          identifiersTaken.add(s.name);
+        } else {
+          foreignSymbols.push(s);
+        }
+        break;
+      case "es_export_stmt":
+        identifiersTaken.add(s.name);
+        break;
     }
   }
 
