@@ -20,6 +20,7 @@ import {
   filterUnknownFields,
 } from "./private/extensions.js";
 import type { Extension } from "./extension.js";
+import type { FieldInfo } from "./field.js";
 
 /**
  * Retrieve an extension value from a message.
@@ -87,7 +88,13 @@ export function setExtension<E extends Message<E>, V>(
     }
   }
   const writer = writeOpt.writerFactory();
-  extension.runtime.bin.writeField(extension.field, value, writer, writeOpt);
+  let f: FieldInfo = extension.field;
+  // Implicit presence does not apply to extensions, see https://github.com/protocolbuffers/protobuf/issues/8234
+  // We patch the field info to use explicit presence:
+  if (!f.opt && !f.repeated && (f.kind == "enum" || f.kind == "scalar")) {
+    f = { ...extension.field, opt: true } as FieldInfo;
+  }
+  extension.runtime.bin.writeField(f, value, writer, writeOpt);
   const reader = readOpt.readerFactory(writer.finish());
   while (reader.pos < reader.len) {
     const [no, wireType] = reader.tag();
