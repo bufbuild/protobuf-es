@@ -875,7 +875,7 @@ export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
    * @generated from field: required int32 deprecated_field2 = 2 [deprecated = true];
    * @deprecated
    */
-  deprecatedField2: number;
+  deprecatedField2?: number;
 
   /**
    * @generated from field: optional string deprecated_field3 = 3 [deprecated = true];
@@ -1187,7 +1187,7 @@ export declare class V1MessageLite extends Message<V1MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField: number;
+  intField?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V1EnumLite enum_field = 2 [default = V1_FIRST];
@@ -1216,7 +1216,7 @@ export declare class V2MessageLite extends Message<V2MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField: number;
+  intField?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V2EnumLite enum_field = 2 [default = V2_FIRST];

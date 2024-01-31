@@ -182,17 +182,17 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
   /**
    * @generated from field: required string string_field = 1;
    */
-  stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2;
    */
-  bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 3;
    */
-  enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 4;
@@ -221,17 +221,17 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
   /**
    * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
    */
-  stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
    */
-  enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 4;
