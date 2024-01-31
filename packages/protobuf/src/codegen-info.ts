@@ -29,7 +29,7 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
-} from "./descriptor-set";
+} from "./descriptor-set.js";
 import { LongType, ScalarType } from "./field.js";
 
 interface CodegenInfo {
