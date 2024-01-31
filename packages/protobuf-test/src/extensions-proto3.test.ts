@@ -55,10 +55,11 @@ describe("setExtension() proto3", () => {
       expect(hasExtension(msg, ext)).toBeTruthy();
       expect(getExtension(msg, ext)).toStrictEqual(123);
     });
-    it("should not set zero value", () => {
+    it("should set zero value, even without optional keyword", () => {
+      // Implicit presence does not apply to extensions, see https://github.com/protocolbuffers/protobuf/issues/8234
       const msg = new FileOptions();
       setExtension(msg, ext, 0);
-      expect(hasExtension(msg, ext)).toBeFalsy();
+      expect(hasExtension(msg, ext)).toBeTruthy();
       expect(getExtension(msg, ext)).toStrictEqual(0);
     });
   });
