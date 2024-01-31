@@ -749,7 +749,7 @@ export declare class OldOptionType extends Message<OldOptionType> {
   /**
    * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
    */
-  value: OldOptionType_TestEnum;
+  value?: OldOptionType_TestEnum;
 
   constructor(data?: PartialMessage<OldOptionType>);
 
@@ -785,7 +785,7 @@ export declare class NewOptionType extends Message<NewOptionType> {
   /**
    * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
    */
-  value: NewOptionType_TestEnum;
+  value?: NewOptionType_TestEnum;
 
   constructor(data?: PartialMessage<NewOptionType>);
 

@@ -1816,7 +1816,7 @@ export declare class TestRequiredEnum extends Message<TestRequiredEnum> {
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum = 1;
    */
-  requiredEnum: ForeignEnum;
+  requiredEnum?: ForeignEnum;
 
   /**
    * A dummy optional field.
@@ -1849,7 +1849,7 @@ export declare class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMa
   /**
    * @generated from field: required protobuf_unittest.TestRequiredEnumNoMask.NestedEnum required_enum = 1;
    */
-  requiredEnum: TestRequiredEnumNoMask_NestedEnum;
+  requiredEnum?: TestRequiredEnumNoMask_NestedEnum;
 
   /**
    * A dummy optional field.
@@ -1910,7 +1910,7 @@ export declare class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti
    *
    * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_4 = 4;
    */
-  requiredEnum4: TestRequiredEnumMulti_NestedEnum;
+  requiredEnum4?: TestRequiredEnumMulti_NestedEnum;
 
   /**
    * @generated from field: optional int32 a_3 = 3;
@@ -1920,12 +1920,12 @@ export declare class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti
   /**
    * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
    */
-  requiredEnum2: TestRequiredEnumMulti_NestedEnum;
+  requiredEnum2?: TestRequiredEnumMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
    */
-  requiredEnum1: ForeignEnum;
+  requiredEnum1?: ForeignEnum;
 
   constructor(data?: PartialMessage<TestRequiredEnumMulti>);
 
@@ -1978,22 +1978,22 @@ export declare class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskM
    *
    * @generated from field: required fixed32 required_fixed32_80 = 80;
    */
-  requiredFixed3280: number;
+  requiredFixed3280?: number;
 
   /**
    * @generated from field: required fixed32 required_fixed32_70 = 70;
    */
-  requiredFixed3270: number;
+  requiredFixed3270?: number;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_64 = 64;
    */
-  requiredEnum64: TestRequiredNoMaskMulti_NestedEnum;
+  requiredEnum64?: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_4 = 4;
    */
-  requiredEnum4: TestRequiredNoMaskMulti_NestedEnum;
+  requiredEnum4?: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: optional int32 a_3 = 3;
@@ -2003,12 +2003,12 @@ export declare class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskM
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
    */
-  requiredEnum2: TestRequiredNoMaskMulti_NestedEnum;
+  requiredEnum2?: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
    */
-  requiredEnum1: ForeignEnum;
+  requiredEnum1?: ForeignEnum;
 
   constructor(data?: PartialMessage<TestRequiredNoMaskMulti>);
 
@@ -2063,7 +2063,7 @@ export declare class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 a = 1;
    */
-  a: number;
+  a?: number;
 
   /**
    * @generated from field: optional int32 dummy2 = 2;
@@ -2073,7 +2073,7 @@ export declare class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 b = 3;
    */
-  b: number;
+  b?: number;
 
   /**
    * Pad the field count to 32 so that we can test that IsInitialized()
@@ -2226,7 +2226,7 @@ export declare class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 c = 33;
    */
-  c: number;
+  c?: number;
 
   /**
    * Add an optional child message to make this non-trivial for go/pdlazy.
@@ -2810,7 +2810,7 @@ export declare class TestIsInitialized_SubMessage_SubGroup extends Message<TestI
   /**
    * @generated from field: required int32 i = 2;
    */
-  i: number;
+  i?: number;
 
   constructor(data?: PartialMessage<TestIsInitialized_SubMessage_SubGroup>);
 
@@ -4383,7 +4383,7 @@ export declare class TestRequiredOneof_NestedMessage extends Message<TestRequire
   /**
    * @generated from field: required double required_double = 1;
    */
-  requiredDouble: number;
+  requiredDouble?: number;
 
   constructor(data?: PartialMessage<TestRequiredOneof_NestedMessage>);
 
