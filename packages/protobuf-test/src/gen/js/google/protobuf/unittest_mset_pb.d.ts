@@ -199,7 +199,7 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
   /**
    * @generated from field: required int32 required_int = 36;
    */
-  requiredInt: number;
+  requiredInt?: number;
 
   constructor(data?: PartialMessage<TestMessageSetExtension3>);
 
@@ -254,12 +254,12 @@ export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   /**
    * @generated from field: required int32 type_id = 2;
    */
-  typeId: number;
+  typeId?: number;
 
   /**
    * @generated from field: required bytes message = 3;
    */
-  message: Uint8Array;
+  message?: Uint8Array;
 
   constructor(data?: PartialMessage<RawMessageSet_Item>);
 

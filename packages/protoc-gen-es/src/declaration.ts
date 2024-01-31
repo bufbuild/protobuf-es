@@ -26,6 +26,7 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import {
   getFieldTyping,
+  getFieldIntrinsicDefaultValue,
   localName,
   reifyWkt,
 } from "@bufbuild/protoplugin/ecmascript";
@@ -138,8 +139,9 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
   e.push("  ", localName(field));
+  const { defaultValue } = getFieldIntrinsicDefaultValue(field);
   const { typing, optional } = getFieldTyping(field, f);
-  if (optional) {
+  if (optional || defaultValue === undefined) {
     e.push("?: ", typing);
   } else {
     e.push(": ", typing);
