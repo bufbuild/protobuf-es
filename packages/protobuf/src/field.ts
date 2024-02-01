@@ -33,6 +33,7 @@ import type { MessageType } from "./message-type.js";
  * - "localName": The name of the field as used in generated code.
  * - "jsonName": The name for JSON serialization / deserialization.
  * - "opt": Whether the field is optional.
+ * - "req": Whether the field is required (a legacy proto2 feature).
  * - "repeated": Whether the field is repeated.
  * - "packed": Whether the repeated field is packed.
  *
@@ -73,6 +74,7 @@ export interface OneofInfo {
   readonly repeated: false;
   readonly packed: false;
   readonly opt: false;
+  readonly req: false;
   readonly default: undefined;
   readonly delimited?: undefined;
   readonly fields: readonly FieldInfo[];
@@ -161,6 +163,11 @@ interface fiScalar extends fiShared {
   readonly opt: boolean;
 
   /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
+
+  /**
    * Only proto2: An explicit default value.
    */
   readonly default: number | boolean | string | bigint | Uint8Array | undefined;
@@ -191,6 +198,11 @@ interface fiMessage extends fiShared {
    * Is this repeated field packed? Never true for messages.
    */
   readonly packed: false;
+
+  /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
 
   /**
    * An explicit default value (only proto2). Never set for messages.
@@ -230,6 +242,11 @@ interface fiEnum extends fiShared {
    * Is the field optional?
    */
   readonly opt: boolean;
+
+  /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
 
   /**
    * Only proto2: An explicit default value.
@@ -293,18 +310,18 @@ interface fiMap extends fiShared {
 }
 
 // prettier-ignore
-type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt"> & (
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly oneof: undefined; }
-  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: OneofInfo; });
+type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req"> & (
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req?: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly req?: false; readonly oneof: undefined; }
+  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly req?: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req?: false; readonly oneof: OneofInfo; });
 
 // prettier-ignore
-type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default" | "L" | "delimited"> & (
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
-  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; L?: LongType; delimited?: boolean; });
+type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req" | "default" | "L" | "delimited"> & (
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly req?: boolean; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly req?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly req?: boolean; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly req?: false; readonly oneof: string; default?: T["default"]; L?: LongType; delimited?: boolean; });
 
 /**
  * Scalar value types. This is a subset of field types declared by protobuf
