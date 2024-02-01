@@ -51,11 +51,12 @@ describe("proto3 field info packed", () => {
   );
 });
 
-describe("proto3 field info optional", () => {
+describe("proto3 field info optional / required", () => {
   describeMT(
     { ts: TS.Proto3OptionalMessage, js: JS.Proto3OptionalMessage },
     (messageType) => {
       test.each(messageType.fields.byNumber())("$name is optional", (field) => {
+        expect(field.req).toBe(false);
         expect(field.opt).toBe(true);
       });
     },
@@ -64,7 +65,8 @@ describe("proto3 field info optional", () => {
     { ts: TS.Proto3UnlabelledMessage, js: JS.Proto3UnlabelledMessage },
     (messageType) => {
       test.each(messageType.fields.byNumber())("$name is optional", (field) => {
-        expect(field.opt).toBeFalsy();
+        expect(field.req).toBe(false);
+        expect(field.opt).toBe(false);
       });
     },
   );

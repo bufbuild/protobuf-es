@@ -112,7 +112,8 @@ describeMT(
         expect(field.delimited).toBe(false);
         expect(field.oneof).toBeUndefined();
         expect(field.default).toBeUndefined();
-        expect(field.opt).toBeFalsy();
+        expect(field.opt).toBe(false);
+        expect(field.req).toBe(false);
         expect(field.kind).toBe("message");
       });
       test("message_field", () => {

@@ -36,7 +36,8 @@ function verify<T extends Message>(m: T): boolean {
   return m
     .getType()
     .fields.list()
-    .every((f) => f.opt || (m as AnyMessage)[f.localName] !== undefined);
+    .filter((f) => f.req)
+    .every((f) => (m as AnyMessage)[f.localName] !== undefined);
 }
 
 describe("setDefaults", () => {
@@ -124,6 +125,60 @@ describe("proto3 field info optional", () => {
     { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
     (messageType) => {
       test.each(messageType.fields.byNumber())("$name is optional", (field) => {
+        expect(field.opt).toBe(true);
+      });
+    },
+  );
+});
+
+describe("proto2 field info packed", () => {
+  describeMT(
+    { ts: TS.Proto2PackedMessage, js: JS.Proto2PackedMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is packed", (field) => {
+        expect(field.packed).toBe(true);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+  describeMT(
+    { ts: TS.Proto2UnpackedMessage, js: JS.Proto2UnpackedMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
+        expect(field.packed).toBe(false);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+  describeMT(
+    {
+      ts: TS.Proto2UnspecifiedPackedMessage,
+      js: JS.Proto2UnspecifiedPackedMessage,
+    },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
+        expect(field.packed).toBe(false);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+});
+
+describe("proto3 field info optional / required", () => {
+  describeMT(
+    { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is required", (field) => {
+        expect(field.req).toBe(true);
+        expect(field.opt).toBe(false);
+      });
+    },
+  );
+  describeMT(
+    { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is optional", (field) => {
+        expect(field.req).toBe(false);
         expect(field.opt).toBe(true);
       });
     },

@@ -130,10 +130,11 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
       expect(typeof field.jsonName).toBe("string");
       expect(field.repeated).toBe(false);
       expect(field.packed).toBe(false);
-      expect(field.delimited).toBeFalsy();
+      expect(field.delimited).toBe(false);
       expect(field.oneof).toBeUndefined();
       expect(field.default).toBeUndefined();
-      expect(field.opt).toBeFalsy();
+      expect(field.opt).toBe(false);
+      expect(field.req).toBe(false);
       expect(field.kind).toBe("map");
       if (field.kind == "map") {
         expect(typeof field.K).toBe("number");

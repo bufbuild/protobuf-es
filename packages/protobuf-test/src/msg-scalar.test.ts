@@ -126,11 +126,12 @@ describeMT(
         expect(typeof field.localName).toBe("string");
         expect(typeof field.jsonName).toBe("string");
         expect(field.repeated).toBe(false);
-        expect(field.delimited).toBeFalsy();
+        expect(field.delimited).toBe(false);
         expect(typeof field.packed).toBe("boolean");
         expect(field.oneof).toBeUndefined();
         expect(field.default).toBeUndefined();
-        expect(field.opt).toBeFalsy();
+        expect(field.opt).toBe(false);
+        expect(field.req).toBe(false);
         expect(field.kind).toBe("scalar");
         if (field.kind == "scalar") {
           expect(typeof field.T).toBe("number");
@@ -254,6 +255,28 @@ describeMT(
         expect(field.oneof).toBeUndefined();
         expect(field.default).toBeUndefined();
         expect(field.opt).toBeFalsy();
+        expect(field.kind).toBe("scalar");
+        if (field.kind == "scalar") {
+          expect(typeof field.T).toBe("number");
+          expect(typeof field.L).toBe("number");
+          expect(field.packed).toBe(
+            field.T !== ScalarType.STRING && field.T !== ScalarType.BYTES,
+          );
+        }
+      });
+    });
+    describe("field info", () => {
+      test.each(messageType.fields.byNumber())("$name", (field) => {
+        expect(typeof field.no).toBe("number");
+        expect(typeof field.name).toBe("string");
+        expect(typeof field.localName).toBe("string");
+        expect(typeof field.jsonName).toBe("string");
+        expect(field.repeated).toBe(true);
+        expect(field.delimited).toBe(false);
+        expect(field.oneof).toBeUndefined();
+        expect(field.default).toBeUndefined();
+        expect(field.opt).toBe(false);
+        expect(field.req).toBe(false);
         expect(field.kind).toBe("scalar");
         if (field.kind == "scalar") {
           expect(typeof field.T).toBe("number");

@@ -86,9 +86,10 @@ describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
       expect(typeof field.jsonName).toBe("string");
       expect(field.repeated).toBe(false);
       expect(typeof field.packed).toBe("boolean");
-      expect(field.delimited).toBeFalsy();
+      expect(field.delimited).toBe(false);
       expect(field.default).toBeUndefined();
-      expect(field.opt).toBeFalsy();
+      expect(field.opt).toBe(false);
+      expect(field.req).toBe(false);
     });
     test.each(["value", "error", "bytes"])("oneof scalar %s", (fieldName) => {
       const f = messageType.fields.findJsonName(fieldName);
