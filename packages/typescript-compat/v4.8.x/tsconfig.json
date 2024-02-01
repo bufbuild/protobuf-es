@@ -14,6 +14,6 @@
     // Certain errors are only triggered by actually emitting declaration files,
     // see https://github.com/bufbuild/protobuf-es/pull/398
     "declaration": true,
-    "declarationMap": true
-  }
+    "declarationMap": true,
+  },
 }

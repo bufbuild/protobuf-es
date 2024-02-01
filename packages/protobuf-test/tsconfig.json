@@ -3,6 +3,6 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     // we require this setting for the npm package "long"
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+  },
 }
