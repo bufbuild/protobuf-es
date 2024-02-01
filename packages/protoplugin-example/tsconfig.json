@@ -7,6 +7,6 @@
     "resolveJsonModule": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true
-  }
+    "verbatimModuleSyntax": true,
+  },
 }

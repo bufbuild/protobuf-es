@@ -3,6 +3,6 @@
   "compilerOptions": {
     "target": "es2016",
     "strict": true,
-    "moduleResolution": "Node"
-  }
+    "moduleResolution": "Node",
+  },
 }
