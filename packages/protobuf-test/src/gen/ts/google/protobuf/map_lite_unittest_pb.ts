@@ -565,9 +565,9 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 3, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredLite {

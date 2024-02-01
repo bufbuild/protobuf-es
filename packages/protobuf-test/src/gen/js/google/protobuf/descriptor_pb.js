@@ -601,8 +601,8 @@ export const UninterpretedOption = proto2.makeMessageType(
 export const UninterpretedOption_NamePart = proto2.makeMessageType(
   "google.protobuf.UninterpretedOption.NamePart",
   () => [
-    { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "is_extension", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 2, name: "is_extension", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true },
   ],
   {localName: "UninterpretedOption_NamePart"},
 );

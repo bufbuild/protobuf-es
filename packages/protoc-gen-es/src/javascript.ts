@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
+import {
   DescEnum,
   DescExtension,
   DescField,
   DescMessage,
+  FieldDescriptorProto_Label,
 } from "@bufbuild/protobuf";
 import {
   FieldDescriptorProto_Type,
@@ -168,6 +169,8 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
   }
   if (field.optional) {
     e.push(`opt: true, `);
+  } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
+    e.push(`req: true, `);
   }
   const defaultValue = getFieldExplicitDefaultValue(field, schema.runtime.protoInt64);
   if (defaultValue !== undefined) {
