@@ -16,15 +16,12 @@ import { makeProtoRuntime } from "./private/proto-runtime.js";
 import { makeBinaryFormatProto3 } from "./private/binary-format-proto3.js";
 import { makeJsonFormatProto3 } from "./private/json-format-proto3.js";
 import { makeUtilCommon } from "./private/util-common.js";
-import { InternalFieldList } from "./private/field-list.js";
 import type { FieldListSource } from "./private/field-list.js";
+import { InternalFieldList } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
 import { scalarDefaultValue } from "./private/scalars.js";
-import { LongType, ScalarType } from "./field.js";
-import type { FieldInfo } from "./field.js";
-import { InternalOneofInfo } from "./private/field.js";
-import { localFieldName, fieldJsonName } from "./private/names.js";
+import { normalizeFieldInfos } from "./private/field-normalize.js";
 
 /**
  * Provides functionality for messages defined with the proto3 syntax.
@@ -36,7 +33,9 @@ export const proto3 = makeProtoRuntime(
   {
     ...makeUtilCommon(),
     newFieldList(fields: FieldListSource): FieldList {
-      return new InternalFieldList(fields, normalizeFieldInfosProto3);
+      return new InternalFieldList(fields, (source) =>
+        normalizeFieldInfos(source, true),
+      );
     },
     initFields(target: Message): void {
       for (const member of target.getType().fields.byMember()) {
@@ -70,50 +69,3 @@ export const proto3 = makeProtoRuntime(
     },
   },
 );
-
-/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument */
-
-function normalizeFieldInfosProto3(fieldInfos: FieldListSource): FieldInfo[] {
-  const r: FieldInfo[] = [];
-  let o: InternalOneofInfo | undefined;
-  for (const field of typeof fieldInfos == "function"
-    ? fieldInfos()
-    : fieldInfos) {
-    const f = field as any;
-    f.localName = localFieldName(field.name, field.oneof !== undefined);
-    f.jsonName = field.jsonName ?? fieldJsonName(field.name);
-    f.repeated = field.repeated ?? false;
-    if (field.kind == "scalar") {
-      f.L = field.L ?? LongType.BIGINT;
-    }
-    // We do not surface options at this time
-    // f.options = field.options ?? emptyReadonlyObject;
-    if (field.oneof !== undefined) {
-      const ooname =
-        typeof field.oneof == "string" ? field.oneof : field.oneof.name;
-      if (!o || o.name != ooname) {
-        o = new InternalOneofInfo(ooname);
-      }
-      f.oneof = o;
-      o.addField(f);
-    }
-    // proto3 specific:
-    if (field.kind == "message") {
-      f.delimited = false;
-    }
-    // From the proto3 language guide:
-    // > In proto3, repeated fields of scalar numeric types are packed by default.
-    // This information is incomplete - according to the conformance tests, BOOL
-    // and ENUM are packed by default as well. This means only STRING and BYTES
-    // are not packed by default, which makes sense because they are length-delimited.
-    f.packed =
-      field.packed ??
-      (field.kind == "enum" ||
-        (field.kind == "scalar" &&
-          field.T != ScalarType.BYTES &&
-          field.T != ScalarType.STRING));
-
-    r.push(f);
-  }
-  return r;
-}
