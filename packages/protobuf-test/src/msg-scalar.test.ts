@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { expect, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import {
   RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as TS_ScalarValuesMessage,
@@ -22,8 +22,8 @@ import {
   ScalarValuesMessage as JS_ScalarValuesMessage,
 } from "./gen/js/extra/msg-scalar_pb.js";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
+import { protoInt64, ScalarType } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
-import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT(
   { ts: TS_ScalarValuesMessage, js: JS_ScalarValuesMessage },
@@ -117,6 +117,25 @@ describeMT(
       expect(got).toStrictEqual({
         ...defaultFields,
         bytesField: new Uint8Array(bytes),
+      });
+    });
+    describe("field info", () => {
+      test.each(messageType.fields.byNumber())("$name", (field) => {
+        expect(typeof field.no).toBe("number");
+        expect(typeof field.name).toBe("string");
+        expect(typeof field.localName).toBe("string");
+        expect(typeof field.jsonName).toBe("string");
+        expect(field.repeated).toBe(false);
+        expect(field.delimited).toBeFalsy();
+        expect(typeof field.packed).toBe("boolean");
+        expect(field.oneof).toBeUndefined();
+        expect(field.default).toBeUndefined();
+        expect(field.opt).toBeFalsy();
+        expect(field.kind).toBe("scalar");
+        if (field.kind == "scalar") {
+          expect(typeof field.T).toBe("number");
+          expect(typeof field.L).toBe("number");
+        }
       });
     });
   },
@@ -222,6 +241,27 @@ describeMT(
       expect(got).toStrictEqual({
         ...defaultFields,
         bytesField: [new Uint8Array(bytes)],
+      });
+    });
+    describe("field info", () => {
+      test.each(messageType.fields.byNumber())("$name", (field) => {
+        expect(typeof field.no).toBe("number");
+        expect(typeof field.name).toBe("string");
+        expect(typeof field.localName).toBe("string");
+        expect(typeof field.jsonName).toBe("string");
+        expect(field.repeated).toBe(true);
+        expect(field.delimited).toBeFalsy();
+        expect(field.oneof).toBeUndefined();
+        expect(field.default).toBeUndefined();
+        expect(field.opt).toBeFalsy();
+        expect(field.kind).toBe("scalar");
+        if (field.kind == "scalar") {
+          expect(typeof field.T).toBe("number");
+          expect(typeof field.L).toBe("number");
+          expect(field.packed).toBe(
+            field.T !== ScalarType.STRING && field.T !== ScalarType.BYTES,
+          );
+        }
       });
     });
   },

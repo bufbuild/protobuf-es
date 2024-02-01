@@ -78,6 +78,58 @@ describe("verify", () => {
   );
 });
 
+describe("proto2 field info packed", () => {
+  describeMT(
+    { ts: TS.Proto2PackedMessage, js: JS.Proto2PackedMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is packed", (field) => {
+        expect(field.packed).toBe(true);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+  describeMT(
+    { ts: TS.Proto2UnpackedMessage, js: JS.Proto2UnpackedMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
+        expect(field.packed).toBe(false);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+  describeMT(
+    {
+      ts: TS.Proto2UnspecifiedPackedMessage,
+      js: JS.Proto2UnspecifiedPackedMessage,
+    },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
+        expect(field.packed).toBe(false);
+        expect(field.repeated).toBe(true);
+      });
+    },
+  );
+});
+
+describe("proto3 field info optional", () => {
+  describeMT(
+    { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is required", (field) => {
+        expect(field.opt).toBeFalsy();
+      });
+    },
+  );
+  describeMT(
+    { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())("$name is optional", (field) => {
+        expect(field.opt).toBe(true);
+      });
+    },
+  );
+});
+
 describeMT<TS.Proto2RequiredMessage>(
   { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
   (messageType) => {
