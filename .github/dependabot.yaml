@@ -24,7 +24,6 @@ updates:
       test:
         patterns:
           - "jest"
-          - "@arethetypeswrong/*"
           - "benchmark"
           - "@types/benchmark"
           - "long"
@@ -33,9 +32,11 @@ updates:
           - "google-protobuf"
           - "brotli"
           - "esbuild"
-      eslint:
+      lint-and-format:
         patterns:
           - "@typescript-eslint/*"
           - "eslint-*"
           - "eslint"
-
+          - "prettier"
+          - "@bufbuild/license-header"
+          - "@arethetypeswrong/*"
