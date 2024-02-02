@@ -311,10 +311,10 @@ interface fiMap extends fiShared {
 
 // prettier-ignore
 type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req"> & (
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req?: boolean; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly req?: false; readonly oneof: undefined; }
-  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly req?: boolean; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req?: false; readonly oneof: OneofInfo; });
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly req: false; readonly oneof: undefined; }
+  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly req: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req: false; readonly oneof: OneofInfo; });
 
 // prettier-ignore
 type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req" | "default" | "L" | "delimited"> & (
