@@ -107,7 +107,7 @@ export const TestMessageSetExtension3 = proto2.makeMessageType(
   "protobuf_unittest.TestMessageSetExtension3",
   () => [
     { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
-    { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ],
 );
 
@@ -138,8 +138,8 @@ export const RawMessageSet = proto2.makeMessageType(
 export const RawMessageSet_Item = proto2.makeMessageType(
   "protobuf_unittest.RawMessageSet.Item",
   () => [
-    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true },
   ],
   {localName: "RawMessageSet_Item"},
 );

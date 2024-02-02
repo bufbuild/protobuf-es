@@ -1680,45 +1680,45 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "required_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "required_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "required_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "required_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */ },
-    { no: 6, name: "required_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */ },
-    { no: 7, name: "required_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
-    { no: 8, name: "required_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
-    { no: 9, name: "required_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */ },
-    { no: 10, name: "required_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */ },
-    { no: 11, name: "required_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
-    { no: 12, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 13, name: "required_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 14, name: "required_string", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 15, name: "required_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 18, name: "required_nested_message", kind: "message", T: TestAllRequiredTypesProto2_NestedMessage },
-    { no: 19, name: "required_foreign_message", kind: "message", T: ForeignMessageProto2 },
-    { no: 21, name: "required_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllRequiredTypesProto2_NestedEnum) },
-    { no: 22, name: "required_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumProto2) },
-    { no: 24, name: "required_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 25, name: "required_cord", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 27, name: "recursive_message", kind: "message", T: TestAllRequiredTypesProto2 },
+    { no: 1, name: "required_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 2, name: "required_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true },
+    { no: 3, name: "required_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, req: true },
+    { no: 4, name: "required_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, req: true },
+    { no: 5, name: "required_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, req: true },
+    { no: 6, name: "required_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, req: true },
+    { no: 7, name: "required_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
+    { no: 8, name: "required_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, req: true },
+    { no: 9, name: "required_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, req: true },
+    { no: 10, name: "required_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, req: true },
+    { no: 11, name: "required_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true },
+    { no: 12, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, req: true },
+    { no: 13, name: "required_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true },
+    { no: 14, name: "required_string", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 15, name: "required_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true },
+    { no: 18, name: "required_nested_message", kind: "message", T: TestAllRequiredTypesProto2_NestedMessage, req: true },
+    { no: 19, name: "required_foreign_message", kind: "message", T: ForeignMessageProto2, req: true },
+    { no: 21, name: "required_nested_enum", kind: "enum", T: proto2.getEnumType(TestAllRequiredTypesProto2_NestedEnum), req: true },
+    { no: 22, name: "required_foreign_enum", kind: "enum", T: proto2.getEnumType(ForeignEnumProto2), req: true },
+    { no: 24, name: "required_string_piece", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 25, name: "required_cord", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 27, name: "recursive_message", kind: "message", T: TestAllRequiredTypesProto2, req: true },
     { no: 28, name: "optional_recursive_message", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
-    { no: 201, name: "data", kind: "message", T: TestAllRequiredTypesProto2_Data, delimited: true },
-    { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, default: -123456789 },
-    { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, default: protoInt64.parse("-9123456789123456789") },
-    { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, default: 2123456789 },
-    { no: 244, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, default: protoInt64.uParse("10123456789123456789") },
-    { no: 245, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, default: -123456789 },
-    { no: 246, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, default: protoInt64.parse("-9123456789123456789") },
-    { no: 247, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, default: 2123456789 },
-    { no: 248, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, default: protoInt64.uParse("10123456789123456789") },
-    { no: 249, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, default: -123456789 },
-    { no: 250, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, default: protoInt64.parse("-9123456789123456789") },
-    { no: 251, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, default: 9000000000 },
-    { no: 252, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, default: 7e+22 },
-    { no: 253, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, default: true },
-    { no: 254, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, default: "Rosebud" },
-    { no: 255, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, default: new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]) },
+    { no: 201, name: "data", kind: "message", T: TestAllRequiredTypesProto2_Data, delimited: true, req: true },
+    { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: -123456789 },
+    { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true, default: protoInt64.parse("-9123456789123456789") },
+    { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, req: true, default: 2123456789 },
+    { no: 244, name: "default_uint64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, req: true, default: protoInt64.uParse("10123456789123456789") },
+    { no: 245, name: "default_sint32", kind: "scalar", T: 17 /* ScalarType.SINT32 */, req: true, default: -123456789 },
+    { no: 246, name: "default_sint64", kind: "scalar", T: 18 /* ScalarType.SINT64 */, req: true, default: protoInt64.parse("-9123456789123456789") },
+    { no: 247, name: "default_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true, default: 2123456789 },
+    { no: 248, name: "default_fixed64", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, req: true, default: protoInt64.uParse("10123456789123456789") },
+    { no: 249, name: "default_sfixed32", kind: "scalar", T: 15 /* ScalarType.SFIXED32 */, req: true, default: -123456789 },
+    { no: 250, name: "default_sfixed64", kind: "scalar", T: 16 /* ScalarType.SFIXED64 */, req: true, default: protoInt64.parse("-9123456789123456789") },
+    { no: 251, name: "default_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true, default: 9000000000 },
+    { no: 252, name: "default_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, req: true, default: 7e+22 },
+    { no: 253, name: "default_bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true, default: true },
+    { no: 254, name: "default_string", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "Rosebud" },
+    { no: 255, name: "default_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2 {
@@ -1799,8 +1799,8 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "corecursive", kind: "message", T: TestAllRequiredTypesProto2 },
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 2, name: "corecursive", kind: "message", T: TestAllRequiredTypesProto2, req: true },
     { no: 3, name: "optional_corecursive", kind: "message", T: TestAllRequiredTypesProto2, opt: true },
   ]);
 
@@ -1845,8 +1845,8 @@ export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredType
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 202, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 203, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2_Data {
@@ -1916,7 +1916,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 25, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2_MessageSetCorrectExtension1 {
@@ -1962,7 +1962,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 9, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 9, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllRequiredTypesProto2_MessageSetCorrectExtension2 {

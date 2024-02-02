@@ -23,6 +23,7 @@ export class InternalOneofInfo implements OneofInfo {
   readonly repeated = false;
   readonly packed = false;
   readonly opt = false;
+  readonly req = false;
   readonly default = undefined;
   readonly fields: FieldInfo[] = [];
   private _lookup?: { [localName: string]: FieldInfo | undefined };

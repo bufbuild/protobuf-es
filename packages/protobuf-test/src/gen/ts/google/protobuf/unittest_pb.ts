@@ -2401,7 +2401,7 @@ export class TestRequiredEnum extends Message<TestRequiredEnum> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredEnum";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
     { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
@@ -2448,7 +2448,7 @@ export class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMask> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredEnumNoMask";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum) },
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum), req: true },
     { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ]);
 
@@ -2538,10 +2538,10 @@ export class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredEnumMulti";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum), req: true },
     { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
-    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum), req: true },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredEnumMulti {
@@ -2644,13 +2644,13 @@ export class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredNoMaskMulti";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
-    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
-    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
-    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
+    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
+    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
     { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
-    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredNoMaskMulti {
@@ -2895,9 +2895,9 @@ export class TestRequired extends Message<TestRequired> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequired";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "dummy2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 4, name: "dummy4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 5, name: "dummy5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 6, name: "dummy6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2927,7 +2927,7 @@ export class TestRequired extends Message<TestRequired> {
     { no: 30, name: "dummy30", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 34, name: "optional_foreign", kind: "message", T: ForeignMessage, opt: true },
   ]);
 
@@ -3052,7 +3052,7 @@ export class TestRequiredMessage extends Message<TestRequiredMessage> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
     { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
-    { no: 3, name: "required_message", kind: "message", T: TestRequired },
+    { no: 3, name: "required_message", kind: "message", T: TestRequired, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredMessage {
@@ -3786,7 +3786,7 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestIsInitialized.SubMessage.SubGroup";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestIsInitialized_SubMessage_SubGroup {
@@ -5969,7 +5969,7 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredOneof.NestedMessage";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredOneof_NestedMessage {
@@ -6596,7 +6596,7 @@ export class TestParsingMerge extends Message<TestParsingMerge> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMerge";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes },
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes, req: true },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
     { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, delimited: true, opt: true },

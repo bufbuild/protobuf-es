@@ -1123,7 +1123,7 @@ export class OldOptionType extends Message<OldOptionType> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.OldOptionType";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum) },
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum), req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OldOptionType {
@@ -1176,7 +1176,7 @@ export class NewOptionType extends Message<NewOptionType> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.NewOptionType";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum) },
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum), req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NewOptionType {

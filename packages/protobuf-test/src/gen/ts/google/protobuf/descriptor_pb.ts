@@ -2597,8 +2597,8 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "google.protobuf.UninterpretedOption.NamePart";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "is_extension", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 2, name: "is_extension", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UninterpretedOption_NamePart {

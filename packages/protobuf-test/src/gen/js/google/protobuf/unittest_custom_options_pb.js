@@ -376,7 +376,7 @@ export const NestedOptionType_nested_extension = proto2.makeExtension(
 export const OldOptionType = proto2.makeMessageType(
   "protobuf_unittest.OldOptionType",
   () => [
-    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum) },
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(OldOptionType_TestEnum), req: true },
   ],
 );
 
@@ -398,7 +398,7 @@ export const OldOptionType_TestEnum = proto2.makeEnum(
 export const NewOptionType = proto2.makeMessageType(
   "protobuf_unittest.NewOptionType",
   () => [
-    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum) },
+    { no: 1, name: "value", kind: "enum", T: proto2.getEnumType(NewOptionType_TestEnum), req: true },
   ],
 );
 

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { expect, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
@@ -101,6 +101,37 @@ describeMT(
           emitDefaultValues: true,
         }),
       );
+    });
+    describe("field info", () => {
+      test.each(messageType.fields.byNumber())("$name", (field) => {
+        expect(typeof field.no).toBe("number");
+        expect(typeof field.name).toBe("string");
+        expect(typeof field.localName).toBe("string");
+        expect(typeof field.jsonName).toBe("string");
+        expect(field.packed).toBe(false);
+        expect(field.delimited).toBe(false);
+        expect(field.oneof).toBeUndefined();
+        expect(field.default).toBeUndefined();
+        expect(field.opt).toBe(false);
+        expect(field.req).toBe(false);
+        expect(field.kind).toBe("message");
+      });
+      test("message_field", () => {
+        const f = messageType.fields.find(1);
+        expect(f?.kind).toBe("message");
+        expect(f?.repeated).toBe(false);
+        if (f?.kind == "message") {
+          expect(f.T.typeName).toBe("spec.MessageFieldMessage.TestMessage");
+        }
+      });
+      test("repeated_message_field", () => {
+        const f = messageType.fields.find(2);
+        expect(f?.repeated).toBe(true);
+        expect(f?.kind).toBe("message");
+        if (f?.kind == "message") {
+          expect(f.T.typeName).toBe("spec.MessageFieldMessage.TestMessage");
+        }
+      });
     });
   },
 );

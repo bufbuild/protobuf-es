@@ -1169,7 +1169,7 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
   static readonly typeName = "protobuf_unittest.TestDeprecatedLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "deprecated_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 3, name: "deprecated_field3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 4, name: "deprecated_field4", kind: "message", T: TestDeprecatedLite, opt: true },
   ]);
@@ -1230,7 +1230,7 @@ export class TestParsingMergeLite extends Message<TestParsingMergeLite> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestParsingMergeLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite },
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite, req: true },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypesLite, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, delimited: true, opt: true },
@@ -1622,7 +1622,7 @@ export class V1MessageLite extends Message<V1MessageLite> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.V1MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V1EnumLite), opt: true, default: V1EnumLite.V1_FIRST },
   ]);
 
@@ -1665,7 +1665,7 @@ export class V2MessageLite extends Message<V2MessageLite> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.V2MessageLite";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V2EnumLite), opt: true, default: V2EnumLite.V2_FIRST },
   ]);
 

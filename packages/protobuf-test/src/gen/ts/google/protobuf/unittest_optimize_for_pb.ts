@@ -123,7 +123,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.TestRequiredOptimizedForSize";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestRequiredOptimizedForSize {

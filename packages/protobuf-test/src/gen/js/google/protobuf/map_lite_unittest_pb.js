@@ -159,9 +159,9 @@ export const TestMessageMapLite = proto2.makeMessageType(
 export const TestRequiredLite = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredLite",
   () => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 2, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 3, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ],
 );
 

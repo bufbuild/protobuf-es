@@ -301,7 +301,7 @@ export const TestDeprecatedLite = proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedLite",
   () => [
     { no: 1, name: "deprecated_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "deprecated_field2", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 3, name: "deprecated_field3", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 4, name: "deprecated_field4", kind: "message", T: TestDeprecatedLite, opt: true },
   ],
@@ -315,7 +315,7 @@ export const TestDeprecatedLite = proto2.makeMessageType(
 export const TestParsingMergeLite = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMergeLite",
   () => [
-    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite },
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypesLite, req: true },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypesLite, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypesLite, repeated: true },
     { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMergeLite_OptionalGroup, delimited: true, opt: true },
@@ -442,7 +442,7 @@ export const TestEmptyMessageWithExtensionsLite = proto2.makeMessageType(
 export const V1MessageLite = proto2.makeMessageType(
   "protobuf_unittest.V1MessageLite",
   () => [
-    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V1EnumLite), opt: true, default: V1EnumLite.V1_FIRST },
   ],
 );
@@ -453,7 +453,7 @@ export const V1MessageLite = proto2.makeMessageType(
 export const V2MessageLite = proto2.makeMessageType(
   "protobuf_unittest.V2MessageLite",
   () => [
-    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "enum_field", kind: "enum", T: proto2.getEnumType(V2EnumLite), opt: true, default: V2EnumLite.V2_FIRST },
   ],
 );
