@@ -62,7 +62,7 @@ export const TestOptimizedForSize_test_extension2 = proto2.makeExtension(
 export const TestRequiredOptimizedForSize = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOptimizedForSize",
   () => [
-    { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ],
 );
 

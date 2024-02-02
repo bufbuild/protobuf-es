@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { expect, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
@@ -120,6 +120,27 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
       strBytesField: {
         a: new Uint8Array(bytes),
       },
+    });
+  });
+  describe("field info", () => {
+    test.each(messageType.fields.byNumber())("$name", (field) => {
+      expect(typeof field.no).toBe("number");
+      expect(typeof field.name).toBe("string");
+      expect(typeof field.localName).toBe("string");
+      expect(typeof field.jsonName).toBe("string");
+      expect(field.repeated).toBe(false);
+      expect(field.packed).toBe(false);
+      expect(field.delimited).toBe(false);
+      expect(field.oneof).toBeUndefined();
+      expect(field.default).toBeUndefined();
+      expect(field.opt).toBe(false);
+      expect(field.req).toBe(false);
+      expect(field.kind).toBe("map");
+      if (field.kind == "map") {
+        expect(typeof field.K).toBe("number");
+        expect(Object.keys(field.V).sort()).toStrictEqual(["T", "kind"]);
+        expect(typeof field.V.kind).toBe("string");
+      }
     });
   });
 });

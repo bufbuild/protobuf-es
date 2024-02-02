@@ -630,7 +630,7 @@ export const TestNestedChildExtensionData = proto2.makeMessageType(
 export const TestRequiredEnum = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnum",
   () => [
-    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
     { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
@@ -643,7 +643,7 @@ export const TestRequiredEnum = proto2.makeMessageType(
 export const TestRequiredEnumNoMask = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnumNoMask",
   () => [
-    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum) },
+    { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum), req: true },
     { no: 2, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
   ],
 );
@@ -667,10 +667,10 @@ export const TestRequiredEnumNoMask_NestedEnum = proto2.makeEnum(
 export const TestRequiredEnumMulti = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnumMulti",
   () => [
-    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum), req: true },
     { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum) },
-    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum), req: true },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
   ],
 );
 
@@ -693,13 +693,13 @@ export const TestRequiredEnumMulti_NestedEnum = proto2.makeEnum(
 export const TestRequiredNoMaskMulti = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredNoMaskMulti",
   () => [
-    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
-    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */ },
-    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
-    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
+    { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
+    { no: 70, name: "required_fixed32_70", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
+    { no: 64, name: "required_enum_64", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
+    { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
     { no: 3, name: "a_3", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum) },
-    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum) },
+    { no: 2, name: "required_enum_2", kind: "enum", T: proto2.getEnumType(TestRequiredNoMaskMulti_NestedEnum), req: true },
+    { no: 1, name: "required_enum_1", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
   ],
 );
 
@@ -728,9 +728,9 @@ export const TestRequiredNoMaskMulti_NestedEnum = proto2.makeEnum(
 export const TestRequired = proto2.makeMessageType(
   "protobuf_unittest.TestRequired",
   () => [
-    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 2, name: "dummy2", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "b", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 4, name: "dummy4", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 5, name: "dummy5", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 6, name: "dummy6", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -760,7 +760,7 @@ export const TestRequired = proto2.makeMessageType(
     { no: 30, name: "dummy30", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 31, name: "dummy31", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 32, name: "dummy32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 33, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
     { no: 34, name: "optional_foreign", kind: "message", T: ForeignMessage, opt: true },
   ],
 );
@@ -804,7 +804,7 @@ export const TestRequiredMessage = proto2.makeMessageType(
   () => [
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
     { no: 2, name: "repeated_message", kind: "message", T: TestRequired, repeated: true },
-    { no: 3, name: "required_message", kind: "message", T: TestRequired },
+    { no: 3, name: "required_message", kind: "message", T: TestRequired, req: true },
   ],
 );
 
@@ -1007,7 +1007,7 @@ export const TestIsInitialized_SubMessage = proto2.makeMessageType(
 export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized.SubMessage.SubGroup",
   () => [
-    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ],
   {localName: "TestIsInitialized_SubMessage_SubGroup"},
 );
@@ -1561,7 +1561,7 @@ export const TestRequiredOneof = proto2.makeMessageType(
 export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOneof.NestedMessage",
   () => [
-    { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
+    { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, req: true },
   ],
   {localName: "TestRequiredOneof_NestedMessage"},
 );
@@ -1711,7 +1711,7 @@ export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
 export const TestParsingMerge = proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge",
   () => [
-    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes },
+    { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes, req: true },
     { no: 2, name: "optional_all_types", kind: "message", T: TestAllTypes, opt: true },
     { no: 3, name: "repeated_all_types", kind: "message", T: TestAllTypes, repeated: true },
     { no: 10, name: "optionalgroup", kind: "message", T: TestParsingMerge_OptionalGroup, delimited: true, opt: true },

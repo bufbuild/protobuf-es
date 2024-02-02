@@ -289,7 +289,7 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
   static readonly typeName = "protobuf_unittest.TestMessageSetExtension3";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 35, name: "msg", kind: "message", T: NestedTestInt, opt: true },
-    { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 36, name: "required_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMessageSetExtension3 {
@@ -379,8 +379,8 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "protobuf_unittest.RawMessageSet.Item";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "type_id", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 3, name: "message", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RawMessageSet_Item {
