@@ -19,14 +19,16 @@ import type {
   BinaryReadOptions,
   BinaryWriteOptions,
 } from "../binary-format.js";
-import { Message } from "../message.js";
+import { type AnyMessage, Message } from "../message.js";
 import type { FieldInfo } from "../field.js";
 import { LongType, ScalarType } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
 import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
+import type { ScalarValue } from "./scalars.js";
 import { assert } from "./assert.js";
+import { isFieldSet } from "./reflect.js";
 
-/* eslint-disable @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-condition, no-case-declarations, prefer-const */
+/* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return */
 
 const unknownFieldsSymbol = Symbol("@bufbuild/protobuf/unknown-fields");
 
@@ -54,10 +56,7 @@ function makeWriteOptions(
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
 
-export function makeBinaryFormatCommon(): Omit<
-  BinaryFormat,
-  "writeMessage" | "writeField"
-> {
+export function makeBinaryFormat(): BinaryFormat {
   return {
     makeReadOptions,
     makeWriteOptions,
@@ -126,6 +125,37 @@ export function makeBinaryFormatCommon(): Omit<
       }
     },
     readField,
+    writeMessage(message, writer, options) {
+      const type = message.getType();
+      for (const field of type.fields.byNumber()) {
+        if (!isFieldSet(field, message)) {
+          if (field.req) {
+            throw new Error(
+              `cannot encode field ${type.typeName}.${field.name} to binary: required field not set`,
+            );
+          }
+          continue;
+        }
+        const value = field.oneof
+          ? (message as AnyMessage)[field.oneof.localName].value
+          : (message as AnyMessage)[field.localName];
+        writeField(field, value, writer, options);
+      }
+      if (options.writeUnknownFields) {
+        this.writeUnknownFields(message, writer);
+      }
+      return writer;
+    },
+    writeField(field, value, writer, options) {
+      // The behavior of our internal function has changed, it does no longer
+      // accept `undefined` values for singular scalar and map.
+      // For backwards-compatibility, we support the old form that is part of
+      // the public API through the interface BinaryFormat.
+      if (value === undefined) {
+        return undefined;
+      }
+      writeField(field, value, writer, options);
+    },
   };
 }
 
@@ -155,7 +185,7 @@ function readField(
         read = readScalarLTString;
       }
       if (repeated) {
-        let arr = target[localName] as any[]; // safe to assume presence of array, oneof cannot contain repeated values
+        let arr = target[localName] as unknown[]; // safe to assume presence of array, oneof cannot contain repeated values
         const isPacked =
           wireType == WireType.LengthDelimited &&
           scalarType != ScalarType.STRING &&
@@ -176,7 +206,7 @@ function readField(
       const messageType = field.T;
       if (repeated) {
         // safe to assume presence of array, oneof cannot contain repeated values
-        (target[localName] as any[]).push(
+        (target[localName] as unknown[]).push(
           readMessageField(reader, new messageType(), options, field),
         );
       } else {
@@ -218,7 +248,7 @@ function readMessageField<T extends Message>(
   format.readMessage(
     message,
     reader,
-    delimited ? field?.no : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
+    delimited ? field.no : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
     options,
     delimited,
   );
@@ -230,12 +260,12 @@ function readMapEntry(
   field: FieldInfo & { kind: "map" },
   reader: IBinaryReader,
   options: BinaryReadOptions,
-): [string | number, any] {
+): [string | number, ScalarValue | Message] {
   const length = reader.uint32(),
     end = reader.pos + length;
-  let key: any, val: any;
+  let key: ScalarValue | undefined, val: ScalarValue | Message | undefined;
   while (reader.pos < end) {
-    let [fieldNo] = reader.tag();
+    const [fieldNo] = reader.tag();
     switch (fieldNo) {
       case 1:
         key = readScalar(reader, field.K);
@@ -256,11 +286,7 @@ function readMapEntry(
     }
   }
   if (key === undefined) {
-    let keyRaw = scalarDefaultValue(field.K, LongType.BIGINT);
-    key =
-      field.K == ScalarType.BOOL
-        ? keyRaw.toString()
-        : (keyRaw as string | number);
+    key = scalarDefaultValue(field.K, LongType.BIGINT) as ScalarValue;
   }
   if (typeof key != "string" && typeof key != "number") {
     key = key.toString();
@@ -268,10 +294,10 @@ function readMapEntry(
   if (val === undefined) {
     switch (field.V.kind) {
       case "scalar":
-        val = scalarDefaultValue(field.V.T, LongType.BIGINT);
+        val = scalarDefaultValue(field.V.T, LongType.BIGINT) as ScalarValue;
         break;
       case "enum":
-        val = 0;
+        val = field.V.T.values[0].no;
         break;
       case "message":
         val = new field.V.T();
@@ -283,13 +309,16 @@ function readMapEntry(
 
 // Read a scalar value, but return 64 bit integral types (int64, uint64,
 // sint64, fixed64, sfixed64) as string instead of bigint.
-function readScalarLTString(reader: IBinaryReader, type: ScalarType) {
+function readScalarLTString(
+  reader: IBinaryReader,
+  type: ScalarType,
+): Exclude<ScalarValue, bigint> {
   const v = readScalar(reader, type);
   return typeof v == "bigint" ? v.toString() : v;
 }
 
 // Does not use scalarTypeInfo() for better performance.
-function readScalar(reader: IBinaryReader, type: ScalarType): any {
+function readScalar(reader: IBinaryReader, type: ScalarType): ScalarValue {
   switch (type) {
     case ScalarType.STRING:
       return reader.string();
@@ -324,11 +353,55 @@ function readScalar(reader: IBinaryReader, type: ScalarType): any {
   }
 }
 
+function writeField(
+  field: FieldInfo,
+  value: unknown,
+  writer: IBinaryWriter,
+  options: BinaryWriteOptions,
+) {
+  assert(value !== undefined);
+  const repeated = field.repeated;
+  switch (field.kind) {
+    case "scalar":
+    case "enum":
+      let scalarType = field.kind == "enum" ? ScalarType.INT32 : field.T;
+      if (repeated) {
+        assert(Array.isArray(value));
+        if (field.packed) {
+          writePacked(writer, scalarType, field.no, value);
+        } else {
+          for (const item of value) {
+            writeScalar(writer, scalarType, field.no, item);
+          }
+        }
+      } else {
+        writeScalar(writer, scalarType, field.no, value);
+      }
+      break;
+    case "message":
+      if (repeated) {
+        assert(Array.isArray(value));
+        for (const item of value) {
+          writeMessageField(writer, options, field, item);
+        }
+      } else {
+        writeMessageField(writer, options, field, value);
+      }
+      break;
+    case "map":
+      assert(typeof value == "object" && value != null);
+      for (const [key, val] of Object.entries(value)) {
+        writeMapEntry(writer, options, field, key, val);
+      }
+      break;
+  }
+}
+
 export function writeMapEntry(
   writer: IBinaryWriter,
   options: BinaryWriteOptions,
   field: FieldInfo & { kind: "map" },
-  key: any,
+  key: string,
   value: any,
 ): void {
   writer.tag(field.no, WireType.LengthDelimited);
@@ -336,7 +409,7 @@ export function writeMapEntry(
 
   // javascript only allows number or string for object properties
   // we convert from our representation to the protobuf type
-  let keyValue = key;
+  let keyValue: ScalarValue = key;
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- we deliberately handle just the special cases for map keys
   switch (field.K) {
     case ScalarType.INT32:
@@ -353,17 +426,18 @@ export function writeMapEntry(
   }
 
   // write key, expecting key field number = 1
-  writeScalar(writer, field.K, 1, keyValue, true);
+  writeScalar(writer, field.K, 1, keyValue);
 
   // write value, expecting value field number = 2
   switch (field.V.kind) {
     case "scalar":
-      writeScalar(writer, field.V.T, 2, value, true);
+      writeScalar(writer, field.V.T, 2, value);
       break;
     case "enum":
-      writeScalar(writer, ScalarType.INT32, 2, value, true);
+      writeScalar(writer, ScalarType.INT32, 2, value);
       break;
     case "message":
+      assert(value !== undefined);
       writer.tag(2, WireType.LengthDelimited).bytes(value.toBinary(options));
       break;
   }
@@ -372,7 +446,7 @@ export function writeMapEntry(
 }
 
 // Value must not be undefined
-export function writeMessageField(
+function writeMessageField(
   writer: IBinaryWriter,
   options: BinaryWriteOptions,
   field: FieldInfo & { kind: "message" },
@@ -380,7 +454,7 @@ export function writeMessageField(
 ): void {
   const message = wrapField(field.T, value);
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  if (field?.delimited)
+  if (field.delimited)
     writer
       .tag(field.no, WireType.StartGroup)
       .raw(message.toBinary(options))
@@ -391,24 +465,22 @@ export function writeMessageField(
       .bytes(message.toBinary(options));
 }
 
-export function writeScalar(
+function writeScalar(
   writer: IBinaryWriter,
   type: ScalarType,
   fieldNo: number,
-  value: any,
-  emitIntrinsicDefault: boolean,
+  value: unknown,
 ): void {
-  let [wireType, method, isIntrinsicDefault] = scalarTypeInfo(type, value);
-  if (!isIntrinsicDefault || emitIntrinsicDefault) {
-    (writer.tag(fieldNo, wireType)[method] as any)(value);
-  }
+  assert(value !== undefined);
+  let [wireType, method] = scalarTypeInfo(type, value);
+  (writer.tag(fieldNo, wireType)[method] as any)(value);
 }
 
-export function writePacked(
+function writePacked(
   writer: IBinaryWriter,
   type: ScalarType,
   fieldNo: number,
-  value: any[],
+  value: unknown[],
 ): void {
   if (!value.length) {
     return;

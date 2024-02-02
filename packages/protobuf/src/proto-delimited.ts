@@ -15,7 +15,6 @@
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
-import { makeBinaryFormatCommon } from "./private/binary-format-common.js";
 import { BinaryReader } from "./binary-encoding.js";
 
 /**
@@ -33,7 +32,7 @@ export const protoDelimited = {
    * Serialize a message, prefixing it with its size.
    */
   enc(message: Message, options?: BinaryWriteOptions): Uint8Array {
-    const opt = makeBinaryFormatCommon().makeWriteOptions(options);
+    const opt = message.getType().runtime.bin.makeWriteOptions(options);
     return opt.writerFactory().bytes(message.toBinary(opt)).finish();
   },
 
@@ -45,7 +44,7 @@ export const protoDelimited = {
     bytes: Uint8Array,
     options?: BinaryReadOptions,
   ): T {
-    const opt = makeBinaryFormatCommon().makeReadOptions(options);
+    const opt = type.runtime.bin.makeReadOptions(options);
     return type.fromBinary(opt.readerFactory(bytes).bytes(), opt);
   },
 

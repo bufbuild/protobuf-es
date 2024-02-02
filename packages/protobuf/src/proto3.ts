@@ -13,8 +13,6 @@
 // limitations under the License.
 
 import { makeProtoRuntime } from "./private/proto-runtime.js";
-import { makeBinaryFormatProto3 } from "./private/binary-format-proto3.js";
-import { makeJsonFormatProto3 } from "./private/json-format-proto3.js";
 import { makeUtilCommon } from "./private/util-common.js";
 import type { FieldListSource } from "./private/field-list.js";
 import { InternalFieldList } from "./private/field-list.js";
@@ -22,14 +20,16 @@ import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
 import { scalarDefaultValue } from "./private/scalars.js";
 import { normalizeFieldInfos } from "./private/field-normalize.js";
+import { makeBinaryFormat } from "./private/binary-format.js";
+import { makeJsonFormat } from "./private/json-format.js";
 
 /**
  * Provides functionality for messages defined with the proto3 syntax.
  */
 export const proto3 = makeProtoRuntime(
   "proto3",
-  makeJsonFormatProto3(),
-  makeBinaryFormatProto3(),
+  makeJsonFormat(),
+  makeBinaryFormat(),
   {
     ...makeUtilCommon(),
     newFieldList(fields: FieldListSource): FieldList {
@@ -37,6 +37,7 @@ export const proto3 = makeProtoRuntime(
         normalizeFieldInfos(source, true),
       );
     },
+    // TODO merge with proto2 and initExtensionField
     initFields(target: Message): void {
       for (const member of target.getType().fields.byMember()) {
         if (member.opt) {
