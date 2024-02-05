@@ -30,7 +30,7 @@ export const proto3 = makeProtoRuntime(
       normalizeFieldInfos(source, true),
     );
   },
-  // TODO merge with proto2 and initExtensionField
+  // TODO merge with proto2 and initExtensionField, also see initPartial, equals, clone
   (target: Message): void => {
     for (const member of target.getType().fields.byMember()) {
       if (member.opt) {

@@ -38,6 +38,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           t = target as AnyMessage,
           s = source as PartialMessage<AnyMessage>;
         if (s[localName] === undefined) {
+          // TODO if source is a Message instance, we should use isFieldSet() here to support future field presence
           continue;
         }
         switch (member.kind) {
@@ -105,7 +106,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               t[localName] = (s[localName] as any[]).map((val) =>
                 val instanceof mt ? val : new mt(val),
               );
-            } else if (s[localName] !== undefined) {
+            } else {
               const val = s[localName];
               if (mt.fieldWrapper) {
                 if (
@@ -124,6 +125,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
       }
     },
+    // TODO use isFieldSet() here to support future field presence
     equals<T extends Message<T>>(
       type: MessageType<T>,
       a: T | PlainMessage<T> | undefined | null,
@@ -202,6 +204,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
       });
     },
+    // TODO use isFieldSet() here to support future field presence
     clone<T extends Message<T>>(message: T): T {
       const type = message.getType(),
         target = new type(),
