@@ -26,6 +26,9 @@ import { makeMessageType } from "./message-type.js";
 import type { Extension } from "../extension.js";
 import type { ExtensionFieldSource } from "./extensions.js";
 import { makeExtension } from "./extensions.js";
+import { makeJsonFormat } from "./json-format.js";
+import { makeBinaryFormat } from "./binary-format.js";
+import { makeUtilCommon } from "./util-common.js";
 
 /**
  * A facade that provides serialization and other internal functionality.
@@ -100,15 +103,18 @@ export interface ProtoRuntime {
 
 export function makeProtoRuntime(
   syntax: string,
-  json: JsonFormat,
-  bin: BinaryFormat,
-  util: Util,
+  newFieldList: Util["newFieldList"],
+  initFields: Util["initFields"],
 ): ProtoRuntime {
   return {
     syntax,
-    json,
-    bin,
-    util,
+    json: makeJsonFormat(),
+    bin: makeBinaryFormat(),
+    util: {
+      ...makeUtilCommon(),
+      newFieldList,
+      initFields,
+    },
     makeMessageType(
       typeName: string,
       fields: FieldListSource,
