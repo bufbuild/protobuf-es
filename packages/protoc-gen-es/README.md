@@ -134,8 +134,6 @@ By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-e
 generate an annotation at the top of each file: `// @ts-nocheck`.
 
 We generate the annotation to support a wide of compiler configurations and
-future changes to the language. There can be situation where the annotation
-shadows an underlying problem, for example an unresolvable import.
-
-To remove the annotation and to enable type checks, set the plugin option 
-`ts_nocheck=false`.
+future changes to the language. But there can be situation where the annotation
+shadows an underlying problem, for example an unresolvable import. To remove 
+the annotation and to enable type checks, set the plugin option `ts_nocheck=false`.
