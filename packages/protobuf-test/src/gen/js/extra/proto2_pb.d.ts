@@ -151,12 +151,32 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: optional spec.Proto2Enum enum_field = 3;
+   * @generated from field: optional int32 int32_field = 3;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: optional int64 int64_field = 4;
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: optional float float_field = 5;
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: optional bool bool_field = 6;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto2Enum enum_field = 7;
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: optional spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -190,12 +210,32 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: required spec.Proto2Enum enum_field = 3;
+   * @generated from field: required int32 int32_field = 3;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: required int64 int64_field = 4;
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: required float float_field = 5;
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: required bool bool_field = 6;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 7;
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: required spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -229,12 +269,32 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
+   * @generated from field: required int32 int32_field = 3 [default = 128];
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: required int64 int64_field = 4 [default = -256];
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: required float float_field = 5 [default = -512.13];
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: required bool bool_field = 6 [default = true];
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: required spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -273,9 +333,9 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
   int32Field?: number;
 
   /**
-   * @generated from field: optional int64 int46_field = 4 [default = -256];
+   * @generated from field: optional int64 int64_field = 4 [default = -256];
    */
-  int46Field?: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional float float_field = 5 [default = -512.13];

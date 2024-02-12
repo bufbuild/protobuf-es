@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("file jsDoc", () => {
   test("creates JSDoc comment block", async () => {

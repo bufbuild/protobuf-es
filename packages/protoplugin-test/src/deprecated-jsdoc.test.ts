@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { createJsDocBlock, makeJsDoc } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("deprecated makeJsDoc() and createJsDocBlock()", () => {
   test("creates JSDoc comment block", async () => {

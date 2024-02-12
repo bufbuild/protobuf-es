@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("file import", () => {
   test("should create import symbol for package", async function () {

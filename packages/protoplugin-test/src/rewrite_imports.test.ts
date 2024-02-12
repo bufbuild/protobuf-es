@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("rewrite_imports", function () {
   test("example works as documented", async () => {

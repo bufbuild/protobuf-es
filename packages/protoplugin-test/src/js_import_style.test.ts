@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("js_import_style", () => {
   const linesEsm = [

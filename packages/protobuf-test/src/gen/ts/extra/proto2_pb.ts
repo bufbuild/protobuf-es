@@ -201,12 +201,32 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: optional spec.Proto2Enum enum_field = 3;
+   * @generated from field: optional int32 int32_field = 3;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: optional int64 int64_field = 4;
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: optional float float_field = 5;
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: optional bool bool_field = 6;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto2Enum enum_field = 7;
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: optional spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -220,8 +240,12 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 3, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), opt: true },
-    { no: 4, name: "message_field", kind: "message", T: Proto2ChildMessage, opt: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), opt: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto2ChildMessage, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2OptionalMessage {
@@ -256,12 +280,32 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: required spec.Proto2Enum enum_field = 3;
+   * @generated from field: required int32 int32_field = 3;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: required int64 int64_field = 4;
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: required float float_field = 5;
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: required bool bool_field = 6;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 7;
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: required spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -275,8 +319,12 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true },
-    { no: 3, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true },
-    { no: 4, name: "message_field", kind: "message", T: Proto2ChildMessage, req: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto2ChildMessage, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredMessage {
@@ -311,12 +359,32 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: required spec.Proto2Enum enum_field = 3 [default = PROTO2_ENUM_YES];
+   * @generated from field: required int32 int32_field = 3 [default = 128];
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: required int64 int64_field = 4 [default = -256];
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: required float float_field = 5 [default = -512.13];
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: required bool bool_field = 6 [default = true];
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
   enumField?: Proto2Enum;
 
   /**
-   * @generated from field: required spec.Proto2ChildMessage message_field = 4;
+   * @generated from field: required spec.Proto2ChildMessage message_field = 8;
    */
   messageField?: Proto2ChildMessage;
 
@@ -330,8 +398,12 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
-    { no: 3, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
-    { no: 4, name: "message_field", kind: "message", T: Proto2ChildMessage, req: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: 128 },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true, default: protoInt64.parse("-256") },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true, default: -512.13 },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true, default: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
+    { no: 8, name: "message_field", kind: "message", T: Proto2ChildMessage, req: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RequiredDefaultsMessage {
@@ -371,9 +443,9 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
   int32Field?: number;
 
   /**
-   * @generated from field: optional int64 int46_field = 4 [default = -256];
+   * @generated from field: optional int64 int64_field = 4 [default = -256];
    */
-  int46Field?: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional float float_field = 5 [default = -512.13];
@@ -406,7 +478,7 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello \" */ " },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
     { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: 128 },
-    { no: 4, name: "int46_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-256") },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-256") },
     { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -512.13 },
     { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
     { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), opt: true, default: Proto2Enum.YES },
