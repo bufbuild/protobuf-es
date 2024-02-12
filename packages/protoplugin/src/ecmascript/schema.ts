@@ -40,7 +40,7 @@ import {
   rewriteImportPath,
 } from "./import-path.js";
 import { ParsedParameter } from "./parameter.js";
-import { makeFilePreamble } from "./gencommon.js";
+import { makeFilePreamble } from "./file-preamble.js";
 
 /**
  * Schema describes the files and types that the plugin is requested to

@@ -25,14 +25,10 @@ import type {
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import {
-  getFieldIntrinsicDefaultValue,
-  getFieldTyping,
-  localName,
-  reifyWkt,
-} from "@bufbuild/protoplugin/ecmascript";
+import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
 import { getNonEditionRuntime } from "./editions.js";
+import { getFieldTypeInfo, getFieldZeroValueExpression } from "./util.js";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
@@ -152,29 +148,35 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTyping(field, f);
+    const { typing } = getFieldTypeInfo(field, f);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
   f.print(`  } | { case: undefined; value?: undefined } = { case: undefined };`);
 }
 
+// prettier-ignore
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
-  e.push("  ", localName(field));
-  const { defaultValue, typingInferrable } =
-    getFieldIntrinsicDefaultValue(field);
-  const { typing, optional } = getFieldTyping(field, f);
-  if (optional || defaultValue === undefined) {
-    e.push("?: ", typing);
-  } else if (!typingInferrable) {
-    e.push(": ", typing);
+  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field, f);
+  if (optional) {
+    e.push("  ", localName(field), "?: ", typing, ";");
+  } else {
+    if (typingInferrableFromZeroValue) {
+      e.push("  ", localName(field));
+    } else {
+      e.push("  ", localName(field), ": ", typing);
+    }
+    const zeroValue = getFieldZeroValueExpression(field, {
+      enumAs: "enum_value_ref",
+      protoInt64Symbol: schema.runtime.protoInt64,
+    });
+    if (zeroValue !== undefined) {
+      e.push(" = ", zeroValue);
+    }
+    e.push(";");
   }
-  if (defaultValue !== undefined) {
-    e.push(" = ", defaultValue);
-  }
-  e.push(";");
   f.print(e);
 }
 
@@ -185,7 +187,7 @@ function generateExtension(
   ext: DescExtension,
 ) {
   const protoN = getNonEditionRuntime(schema, ext.file);
-  const { typing } = getFieldTyping(ext, f);
+  const { typing } = getFieldTypeInfo(ext, f);
   f.print(f.jsDoc(ext));
   f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension<", ext.extendee, ", ", typing, ">(");
   f.print("  ", f.string(ext.typeName), ", ");
@@ -652,7 +654,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTyping(ref.value, f);
+      const {typing} = getFieldTypeInfo(ref.value, f);
       f.print("  static readonly fieldWrapper = {")
       f.print("    wrapField(value: ", typing, "): ", message, " {")
       f.print("      return new ", message, "({value});")
