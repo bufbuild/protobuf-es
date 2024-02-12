@@ -14,9 +14,9 @@
 
 import type { FieldListSource } from "./field-list.js";
 import type { FieldInfo } from "../field.js";
-import { LongType, ScalarType } from "../field.js";
 import { InternalOneofInfo } from "./field.js";
 import { fieldJsonName, localFieldName } from "./names.js";
+import { LongType, ScalarType } from "../scalar.js";
 
 /**
  * Convert a collection of field info to an array of normalized FieldInfo.

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { FieldInfo } from "../field.js";
-import { isScalarZeroValue, scalarDefaultValue } from "./scalars.js";
+import { isScalarZeroValue, scalarZeroValue } from "./scalars.js";
 
 /**
  * Returns true if the field is set.
@@ -70,9 +70,8 @@ export function clearField(
         target[localName] = implicitPresence ? field.T.values[0].no : undefined;
         break;
       case "scalar":
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         target[localName] = implicitPresence
-          ? scalarDefaultValue(field.T, field.L)
+          ? scalarZeroValue(field.T, field.L)
           : undefined;
         break;
       case "message":

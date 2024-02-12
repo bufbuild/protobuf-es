@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { LongType, ScalarType } from "../field.js";
-import type { IBinaryWriter } from "../binary-encoding.js";
-import { WireType } from "../binary-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
+import { LongType, ScalarType } from "../scalar.js";
+import type { ScalarValue } from "../scalar.js";
 
 /**
  * Returns true if both scalar values are equal.
@@ -60,57 +59,34 @@ export function scalarEquals(
   return false;
 }
 
-// prettier-ignore
 /**
- * ScalarValue maps from a scalar field type to a TypeScript value type.
+ * Returns the zero value for the given scalar type.
  */
-export type ScalarValue<T = ScalarType> =
-    T extends ScalarType.STRING ? string
-  : T extends ScalarType.INT32 ? number
-  : T extends ScalarType.UINT32 ? number
-  : T extends ScalarType.UINT32 ? number
-  : T extends ScalarType.SINT32 ? number
-  : T extends ScalarType.FIXED32 ? number
-  : T extends ScalarType.SFIXED32 ? number
-  : T extends ScalarType.FLOAT ? number
-  : T extends ScalarType.DOUBLE ? number
-  : T extends ScalarType.INT64 ? bigint | string
-  : T extends ScalarType.SINT64 ? bigint | string
-  : T extends ScalarType.SFIXED64 ? bigint | string
-  : T extends ScalarType.UINT64 ? bigint | string
-  : T extends ScalarType.FIXED64 ? bigint | string
-  : T extends ScalarType.BOOL ? boolean
-  : T extends ScalarType.BYTES ? Uint8Array
-  : never;
-
-/**
- * Returns the default value for the given scalar type, following
- * proto3 semantics.
- */
-// TODO rename to createScalarZeroValue and return ScalarValue
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
+export function scalarZeroValue<T extends ScalarType, L extends LongType>(
+  type: T,
+  longType: L,
+): ScalarValue<T, L> {
   switch (type) {
     case ScalarType.BOOL:
-      return false;
+      return false as ScalarValue<T>;
     case ScalarType.UINT64:
     case ScalarType.FIXED64:
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
-      return longType == 0 ? protoInt64.zero : "0";
+      return (longType == 0 ? protoInt64.zero : "0") as ScalarValue<T, L>;
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      return 0.0;
+      return 0.0 as ScalarValue<T>;
     case ScalarType.BYTES:
-      return new Uint8Array(0);
+      return new Uint8Array(0) as ScalarValue<T>;
     case ScalarType.STRING:
-      return "";
+      return "" as ScalarValue<T>;
     default:
       // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
       // We do not use individual cases to save a few bytes code size.
-      return 0;
+      return 0 as ScalarValue<T>;
   }
 }
 
@@ -121,7 +97,7 @@ export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
  * In proto3, zero-values are not written to the wire, unless the field is
  * optional or repeated.
  */
-export function isScalarZeroValue(type: ScalarType, value: unknown) {
+export function isScalarZeroValue(type: ScalarType, value: unknown): boolean {
   switch (type) {
     case ScalarType.BOOL:
       return value === false;
@@ -132,52 +108,4 @@ export function isScalarZeroValue(type: ScalarType, value: unknown) {
     default:
       return value == 0; // Loose comparison matches 0n, 0 and "0"
   }
-}
-
-/**
- * Get information for writing a scalar value.
- *
- * Returns tuple:
- * [0]: appropriate WireType
- * [1]: name of the appropriate method of IBinaryWriter
- * [2]: whether the given value is a default value for proto3 semantics
- *
- * If argument `value` is omitted, [2] is always false.
- */
-// TODO replace call-sites writeScalar() and writePacked(), then remove
-export function scalarTypeInfo(
-  type: ScalarType,
-  value?: unknown,
-): [
-  WireType,
-  Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
-  boolean,
-] {
-  let wireType = WireType.Varint;
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- INT32, UINT32, SINT32 are covered by the defaults
-  switch (type) {
-    case ScalarType.BYTES:
-    case ScalarType.STRING:
-      wireType = WireType.LengthDelimited;
-      break;
-    case ScalarType.DOUBLE:
-    case ScalarType.FIXED64:
-    case ScalarType.SFIXED64:
-      wireType = WireType.Bit64;
-      break;
-    case ScalarType.FIXED32:
-    case ScalarType.SFIXED32:
-    case ScalarType.FLOAT:
-      wireType = WireType.Bit32;
-      break;
-  }
-  const method = ScalarType[type].toLowerCase() as Exclude<
-    keyof IBinaryWriter,
-    "tag" | "raw" | "fork" | "join" | "finish"
-  >;
-  return [
-    wireType,
-    method,
-    value === undefined || isScalarZeroValue(type, value),
-  ];
 }

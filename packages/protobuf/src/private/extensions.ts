@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { scalarDefaultValue } from "./scalars.js";
+import { scalarZeroValue } from "./scalars.js";
 import type { Extension } from "../extension.js";
 import type { AnyMessage, Message } from "../message.js";
 import type { FieldInfo, OneofInfo, PartialFieldInfo } from "../field.js";
@@ -88,7 +88,7 @@ function initExtensionField(ext: Extension): unknown {
     case "enum":
       return field.T.values[0].no;
     case "scalar":
-      return scalarDefaultValue(field.T, field.L);
+      return scalarZeroValue(field.T, field.L);
     case "message":
       // eslint-disable-next-line no-case-declarations
       const T = field.T,

@@ -21,12 +21,12 @@ import type {
 } from "../binary-format.js";
 import { type AnyMessage, Message } from "../message.js";
 import type { FieldInfo } from "../field.js";
-import { LongType, ScalarType } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
-import { scalarDefaultValue, scalarTypeInfo } from "./scalars.js";
-import type { ScalarValue } from "./scalars.js";
+import { scalarZeroValue } from "./scalars.js";
 import { assert } from "./assert.js";
 import { isFieldSet } from "./reflect.js";
+import type { ScalarValue } from "../scalar.js";
+import { LongType, ScalarType } from "../scalar.js";
 
 /* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return */
 
@@ -286,7 +286,7 @@ function readMapEntry(
     }
   }
   if (key === undefined) {
-    key = scalarDefaultValue(field.K, LongType.BIGINT) as ScalarValue;
+    key = scalarZeroValue(field.K, LongType.BIGINT);
   }
   if (typeof key != "string" && typeof key != "number") {
     key = key.toString();
@@ -294,7 +294,7 @@ function readMapEntry(
   if (val === undefined) {
     switch (field.V.kind) {
       case "scalar":
-        val = scalarDefaultValue(field.V.T, LongType.BIGINT) as ScalarValue;
+        val = scalarZeroValue(field.V.T, LongType.BIGINT);
         break;
       case "enum":
         val = field.V.T.values[0].no;
@@ -472,7 +472,7 @@ function writeScalar(
   value: unknown,
 ): void {
   assert(value !== undefined);
-  let [wireType, method] = scalarTypeInfo(type, value);
+  let [wireType, method] = scalarTypeInfo(type);
   (writer.tag(fieldNo, wireType)[method] as any)(value);
 }
 
@@ -491,4 +491,46 @@ function writePacked(
     (writer[method] as any)(value[i]);
   }
   writer.join();
+}
+
+/**
+ * Get information for writing a scalar value.
+ *
+ * Returns tuple:
+ * [0]: appropriate WireType
+ * [1]: name of the appropriate method of IBinaryWriter
+ * [2]: whether the given value is a default value for proto3 semantics
+ *
+ * If argument `value` is omitted, [2] is always false.
+ */
+// TODO replace call-sites writeScalar() and writePacked(), then remove
+function scalarTypeInfo(
+  type: ScalarType,
+): [
+  WireType,
+  Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
+] {
+  let wireType = WireType.Varint;
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- INT32, UINT32, SINT32 are covered by the defaults
+  switch (type) {
+    case ScalarType.BYTES:
+    case ScalarType.STRING:
+      wireType = WireType.LengthDelimited;
+      break;
+    case ScalarType.DOUBLE:
+    case ScalarType.FIXED64:
+    case ScalarType.SFIXED64:
+      wireType = WireType.Bit64;
+      break;
+    case ScalarType.FIXED32:
+    case ScalarType.SFIXED32:
+    case ScalarType.FLOAT:
+      wireType = WireType.Bit32;
+      break;
+  }
+  const method = ScalarType[type].toLowerCase() as Exclude<
+    keyof IBinaryWriter,
+    "tag" | "raw" | "fork" | "join" | "finish"
+  >;
+  return [wireType, method];
 }

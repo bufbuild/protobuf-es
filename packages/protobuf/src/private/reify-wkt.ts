@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
-import { ScalarType } from "../field.js";
+import { ScalarType } from "../scalar.js";
 
 type DescWkt =
   | {

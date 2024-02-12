@@ -25,7 +25,8 @@ export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
 
 export type { FieldInfo } from "./field.js";
 export type { FieldList } from "./field-list.js";
-export { ScalarType, LongType } from "./field.js";
+export { LongType, ScalarType } from "./scalar.js";
+export type { ScalarValue } from "./scalar.js";
 
 export type { MessageType } from "./message-type.js";
 export type { EnumType, EnumValueInfo } from "./enum.js";
