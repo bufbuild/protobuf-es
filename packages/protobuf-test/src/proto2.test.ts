@@ -108,7 +108,7 @@ describe("proto2 required fields", () => {
             "raises error with unset field $name",
             (field) => {
               const invalidMsg = validMsg.clone() as AnyMessage;
-              invalidMsg[field.localName] = undefined;
+              delete invalidMsg[field.localName];
               expect(() => invalidMsg.toJson()).toThrow(
                 `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
               );
@@ -124,7 +124,7 @@ describe("proto2 required fields", () => {
             "raises error with unset field $name",
             (field) => {
               const invalidMsg = validMsg.clone() as AnyMessage;
-              invalidMsg[field.localName] = undefined;
+              delete invalidMsg[field.localName];
               expect(() => invalidMsg.toBinary()).toThrow(
                 `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
               );
@@ -181,8 +181,7 @@ describe("proto2 required fields", () => {
             test.each(messageType.fields.byNumber())(
               "raises error with unset field $name",
               (field) => {
-                const invalidMsg = validMsg.clone();
-                // @ts-expect-error TS2790
+                const invalidMsg = validMsg.clone() as AnyMessage;
                 delete invalidMsg[field.localName];
                 expect(() => invalidMsg.toJson()).toThrow(
                   `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
@@ -198,8 +197,7 @@ describe("proto2 required fields", () => {
             test.each(messageType.fields.byNumber())(
               "raises error with unset field $name",
               (field) => {
-                const invalidMsg = validMsg.clone();
-                // @ts-expect-error TS2790
+                const invalidMsg = validMsg.clone() as AnyMessage;
                 delete invalidMsg[field.localName];
                 expect(() => invalidMsg.toBinary()).toThrow(
                   `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
