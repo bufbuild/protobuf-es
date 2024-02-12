@@ -22,7 +22,7 @@ import type {
 import { type AnyMessage, Message } from "../message.js";
 import type { FieldInfo } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
-import { isScalarZeroValue, scalarZeroValue } from "./scalars.js";
+import { scalarZeroValue } from "./scalars.js";
 import { assert } from "./assert.js";
 import { isFieldSet } from "./reflect.js";
 import type { ScalarValue } from "../scalar.js";
@@ -472,7 +472,7 @@ function writeScalar(
   value: unknown,
 ): void {
   assert(value !== undefined);
-  let [wireType, method] = scalarTypeInfo(type, value);
+  let [wireType, method] = scalarTypeInfo(type);
   (writer.tag(fieldNo, wireType)[method] as any)(value);
 }
 
@@ -506,11 +506,9 @@ function writePacked(
 // TODO replace call-sites writeScalar() and writePacked(), then remove
 function scalarTypeInfo(
   type: ScalarType,
-  value?: unknown,
 ): [
   WireType,
   Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
-  boolean,
 ] {
   let wireType = WireType.Varint;
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- INT32, UINT32, SINT32 are covered by the defaults
@@ -534,9 +532,5 @@ function scalarTypeInfo(
     keyof IBinaryWriter,
     "tag" | "raw" | "fork" | "join" | "finish"
   >;
-  return [
-    wireType,
-    method,
-    value === undefined || isScalarZeroValue(type, value),
-  ];
+  return [wireType, method];
 }
