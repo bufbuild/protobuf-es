@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { FileInfo } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("bring your own transpile", () => {
   test("does not transpile target=ts", async () => {

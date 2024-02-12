@@ -14,7 +14,7 @@
 
 import { beforeEach, describe, expect, jest, test } from "@jest/globals";
 import type { FileInfo, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 import type { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { CodeGeneratorResponse } from "@bufbuild/protobuf";
 

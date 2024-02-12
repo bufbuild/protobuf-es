@@ -15,8 +15,8 @@
 import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto2_pb.js";
 import * as JS from "./gen/js/extra/proto2_pb.js";
-import { describeMT, testMT } from "./helpers.js";
-import type { AnyMessage, Message } from "@bufbuild/protobuf";
+import { describeMT } from "./helpers.js";
+import type { AnyMessage } from "@bufbuild/protobuf";
 import {
   BinaryReader,
   BinaryWriter,
@@ -24,210 +24,349 @@ import {
   WireType,
 } from "@bufbuild/protobuf";
 
-function setDefaults(m: AnyMessage): void {
-  for (const f of m.getType().fields.list()) {
-    if (f.kind == "scalar" || f.kind == "enum") {
-      m[f.localName] = f.default;
-    }
+function objectHasOwn(
+  obj: object,
+  property: string | number | symbol,
+): boolean {
+  if ("hasOwn" in Object) {
+    // ES2022
+    return (Object as unknown as { hasOwn: typeof objectHasOwn }).hasOwn(
+      obj,
+      property,
+    );
   }
+  return Object.prototype.hasOwnProperty.call(obj, property);
 }
 
-function verify<T extends Message>(m: T): boolean {
-  return m
-    .getType()
-    .fields.list()
-    .filter((f) => f.req)
-    .every((f) => (m as AnyMessage)[f.localName] !== undefined);
-}
-
-describe("setDefaults", () => {
-  testMT<TS.Proto2DefaultsMessage>(
-    { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
-    (messageType) => {
-      const msg = new messageType();
-      setDefaults(msg);
-      expect(msg.stringField).toBe('hello " */ ');
-      expect(msg.bytesField).toStrictEqual(
-        new Uint8Array([
-          0x00, 0x78, 0x5c, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
-          0x08, 0x0c, 0x0a, 0x0d, 0x09, 0x0b,
-        ]),
-      );
-      expect(msg.int32Field).toBe(128);
-      expect(msg.int46Field).toBe(protoInt64.parse("-256"));
-      expect(msg.floatField).toBe(-512.13);
-      expect(msg.enumField).toBe(TS.Proto2Enum.YES);
-      expect(msg.messageField).toBe(undefined);
-    },
-  );
-});
-
-describe("verify", () => {
-  testMT<TS.Proto2RequiredDefaultsMessage>(
-    {
-      ts: TS.Proto2RequiredDefaultsMessage,
-      js: JS.Proto2RequiredDefaultsMessage,
-    },
-    (messageType) => {
-      const msg = new messageType({
-        messageField: {},
-      });
-      expect(verify(msg)).toBe(false);
-      setDefaults(msg);
-      expect(verify(msg)).toBe(true);
-    },
-  );
-});
-
-describe("proto2 field info packed", () => {
-  describeMT(
-    { ts: TS.Proto2PackedMessage, js: JS.Proto2PackedMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is packed", (field) => {
-        expect(field.packed).toBe(true);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
-  describeMT(
-    { ts: TS.Proto2UnpackedMessage, js: JS.Proto2UnpackedMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
-        expect(field.packed).toBe(false);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
-  describeMT(
-    {
-      ts: TS.Proto2UnspecifiedPackedMessage,
-      js: JS.Proto2UnspecifiedPackedMessage,
-    },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
-        expect(field.packed).toBe(false);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
-});
-
-describe("proto3 field info optional", () => {
+describe("proto2 required fields", () => {
   describeMT(
     { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
     (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is required", (field) => {
-        expect(field.opt).toBeFalsy();
+      describe("initially", () => {
+        test("has expected properties", () => {
+          const msg = new messageType();
+          expect(msg.stringField).toBeUndefined();
+          expect(msg.bytesField).toBeUndefined();
+          expect(msg.int32Field).toBeUndefined();
+          expect(msg.int64Field).toBeUndefined();
+          expect(msg.floatField).toBeUndefined();
+          expect(msg.boolField).toBeUndefined();
+          expect(msg.enumField).toBeUndefined();
+          expect(msg.messageField).toBeUndefined();
+        });
+        test.each(messageType.fields.byNumber())(
+          "field $name is not an own property",
+          (field) => {
+            const msg = new messageType();
+            expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+          },
+        );
+      });
+      describe("parse", () => {
+        describe("fromJson", () => {
+          test("does not raise error with unset field", () => {
+            const msg = messageType.fromJson({
+              stringField: "",
+            });
+            expect(msg.enumField).toBeUndefined();
+            expect(objectHasOwn(msg, "enumField")).toBeFalsy();
+            expect(msg.stringField).toBeDefined();
+            expect(objectHasOwn(msg, "stringField")).toBeTruthy();
+          });
+        });
+        describe("fromBinary", () => {
+          test("does not raise error with unset field", () => {
+            const bytes = new BinaryWriter()
+              .tag(1, WireType.LengthDelimited)
+              .string("")
+              .finish();
+            const msg = messageType.fromBinary(bytes);
+            expect(msg.enumField).toBeUndefined();
+            expect(objectHasOwn(msg, "enumField")).toBeFalsy();
+            expect(msg.stringField).toBeDefined();
+            expect(objectHasOwn(msg, "stringField")).toBeTruthy();
+          });
+        });
+      });
+      describe("serialize", () => {
+        const validMsg = new messageType({
+          stringField: "",
+          bytesField: new Uint8Array(0),
+          int32Field: 0,
+          int64Field: protoInt64.zero,
+          floatField: 0,
+          boolField: false,
+          enumField: TS.Proto2Enum.YES,
+          messageField: {},
+        });
+        describe("toJson", () => {
+          test("does not raise error with set fields", () => {
+            const json = validMsg.toJson();
+            expect(json).toBeDefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "raises error with unset field $name",
+            (field) => {
+              const invalidMsg = validMsg.clone() as AnyMessage;
+              delete invalidMsg[field.localName];
+              expect(() => invalidMsg.toJson()).toThrow(
+                `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
+              );
+            },
+          );
+        });
+        describe("toBinary", () => {
+          test("does not raise error with set fields", () => {
+            const json = validMsg.toBinary();
+            expect(json).toBeDefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "raises error with unset field $name",
+            (field) => {
+              const invalidMsg = validMsg.clone() as AnyMessage;
+              delete invalidMsg[field.localName];
+              expect(() => invalidMsg.toBinary()).toThrow(
+                `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
+              );
+            },
+          );
+        });
       });
     },
   );
+
+  describe("with default values", () => {
+    describeMT(
+      {
+        ts: TS.Proto2RequiredDefaultsMessage,
+        js: JS.Proto2RequiredDefaultsMessage,
+      },
+      (messageType) => {
+        describe("initially", () => {
+          test("has expected properties", () => {
+            const msg = new messageType();
+            expect(msg.stringField).toBeUndefined();
+            expect(msg.bytesField).toBeUndefined();
+            expect(msg.int32Field).toBeUndefined();
+            expect(msg.int64Field).toBeUndefined();
+            expect(msg.floatField).toBeUndefined();
+            expect(msg.boolField).toBeUndefined();
+            expect(msg.enumField).toBeUndefined();
+            expect(msg.messageField).toBeUndefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "field $name is not an own property",
+            (field) => {
+              const msg = new messageType();
+              expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+            },
+          );
+        });
+        describe("serialize", () => {
+          const validMsg = new messageType({
+            stringField: "",
+            bytesField: new Uint8Array(0),
+            int32Field: 0,
+            int64Field: protoInt64.zero,
+            floatField: 0,
+            boolField: false,
+            enumField: TS.Proto2Enum.YES,
+            messageField: {},
+          });
+          describe("toJson", () => {
+            test("does not raise error with set fields", () => {
+              const json = validMsg.toJson();
+              expect(json).toBeDefined();
+            });
+            test.each(messageType.fields.byNumber())(
+              "raises error with unset field $name",
+              (field) => {
+                const invalidMsg = validMsg.clone() as AnyMessage;
+                delete invalidMsg[field.localName];
+                expect(() => invalidMsg.toJson()).toThrow(
+                  `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
+                );
+              },
+            );
+          });
+          describe("toBinary", () => {
+            test("does not raise error with set fields", () => {
+              const json = validMsg.toBinary();
+              expect(json).toBeDefined();
+            });
+            test.each(messageType.fields.byNumber())(
+              "raises error with unset field $name",
+              (field) => {
+                const invalidMsg = validMsg.clone() as AnyMessage;
+                delete invalidMsg[field.localName];
+                expect(() => invalidMsg.toBinary()).toThrow(
+                  `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
+                );
+              },
+            );
+          });
+        });
+      },
+    );
+  });
+});
+
+describe("proto2 optional fields", () => {
   describeMT(
     { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
     (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is optional", (field) => {
-        expect(field.opt).toBe(true);
+      describe("initially", () => {
+        test("has expected properties", () => {
+          const msg = new messageType();
+          expect(msg.stringField).toBeUndefined();
+          expect(msg.bytesField).toBeUndefined();
+          expect(msg.int32Field).toBeUndefined();
+          expect(msg.int64Field).toBeUndefined();
+          expect(msg.floatField).toBeUndefined();
+          expect(msg.boolField).toBeUndefined();
+          expect(msg.enumField).toBeUndefined();
+          expect(msg.messageField).toBeUndefined();
+        });
+        test.each(messageType.fields.byNumber())(
+          "field $name is not an own property",
+          (field) => {
+            const msg = new messageType();
+            expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+          },
+        );
       });
     },
   );
+
+  describe("with default values", () => {
+    describeMT(
+      { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
+      (messageType) => {
+        describe("initially", () => {
+          test("has expected properties", () => {
+            const msg = new messageType();
+            expect(msg.stringField).toBeUndefined();
+            expect(msg.bytesField).toBeUndefined();
+            expect(msg.int32Field).toBeUndefined();
+            expect(msg.int64Field).toBeUndefined();
+            expect(msg.floatField).toBeUndefined();
+            expect(msg.boolField).toBeUndefined();
+            expect(msg.enumField).toBeUndefined();
+            expect(msg.messageField).toBeUndefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "field $name is not an own property",
+            (field) => {
+              const msg = new messageType();
+              expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+            },
+          );
+        });
+      },
+    );
+  });
 });
 
-describe("proto2 field info packed", () => {
-  describeMT(
-    { ts: TS.Proto2PackedMessage, js: JS.Proto2PackedMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is packed", (field) => {
-        expect(field.packed).toBe(true);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
-  describeMT(
-    { ts: TS.Proto2UnpackedMessage, js: JS.Proto2UnpackedMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
-        expect(field.packed).toBe(false);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
-  describeMT(
-    {
-      ts: TS.Proto2UnspecifiedPackedMessage,
-      js: JS.Proto2UnspecifiedPackedMessage,
-    },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is unpacked", (field) => {
-        expect(field.packed).toBe(false);
-        expect(field.repeated).toBe(true);
-      });
-    },
-  );
+describe("proto2 field info", () => {
+  describe("packed", () => {
+    describeMT(
+      { ts: TS.Proto2PackedMessage, js: JS.Proto2PackedMessage },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())("$name is packed", (field) => {
+          expect(field.packed).toBe(true);
+          expect(field.repeated).toBe(true);
+        });
+      },
+    );
+    describeMT(
+      { ts: TS.Proto2UnpackedMessage, js: JS.Proto2UnpackedMessage },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())(
+          "$name is unpacked",
+          (field) => {
+            expect(field.packed).toBe(false);
+            expect(field.repeated).toBe(true);
+          },
+        );
+      },
+    );
+    describeMT(
+      {
+        ts: TS.Proto2UnspecifiedPackedMessage,
+        js: JS.Proto2UnspecifiedPackedMessage,
+      },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())(
+          "$name is unpacked",
+          (field) => {
+            expect(field.packed).toBe(false);
+            expect(field.repeated).toBe(true);
+          },
+        );
+      },
+    );
+  });
+
+  describe("default", () => {
+    describeMT(
+      { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
+      (messageType) => {
+        test("", () => {
+          expect(messageType.fields.findJsonName("stringField")?.default).toBe(
+            `hello " */ `,
+          );
+          expect(
+            messageType.fields.findJsonName("bytesField")?.default,
+          ).toStrictEqual(
+            new Uint8Array([
+              0x00, 0x78, 0x5c, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41,
+              0x08, 0x0c, 0x0a, 0x0d, 0x09, 0x0b,
+            ]),
+          );
+          expect(messageType.fields.findJsonName("int32Field")?.default).toBe(
+            128,
+          );
+          expect(messageType.fields.findJsonName("int64Field")?.default).toBe(
+            protoInt64.parse("-256"),
+          );
+          expect(messageType.fields.findJsonName("floatField")?.default).toBe(
+            -512.13,
+          );
+          expect(messageType.fields.findJsonName("enumField")?.default).toBe(
+            TS.Proto2Enum.YES,
+          );
+        });
+      },
+    );
+  });
+
+  describe("optional / required", () => {
+    describeMT(
+      { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())(
+          "$name is required",
+          (field) => {
+            expect(field.req).toBe(true);
+            expect(field.opt).toBe(false);
+          },
+        );
+      },
+    );
+    describeMT(
+      { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())(
+          "$name is optional",
+          (field) => {
+            expect(field.req).toBe(false);
+            expect(field.opt).toBe(true);
+          },
+        );
+      },
+    );
+  });
 });
-
-describe("proto3 field info optional / required", () => {
-  describeMT(
-    { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is required", (field) => {
-        expect(field.req).toBe(true);
-        expect(field.opt).toBe(false);
-      });
-    },
-  );
-  describeMT(
-    { ts: TS.Proto2OptionalMessage, js: JS.Proto2OptionalMessage },
-    (messageType) => {
-      test.each(messageType.fields.byNumber())("$name is optional", (field) => {
-        expect(field.req).toBe(false);
-        expect(field.opt).toBe(true);
-      });
-    },
-  );
-});
-
-describeMT<TS.Proto2RequiredMessage>(
-  { ts: TS.Proto2RequiredMessage, js: JS.Proto2RequiredMessage },
-  (messageType) => {
-    test("has expected defaults", () => {
-      const got = { ...new messageType() };
-      expect(got).toStrictEqual({});
-    });
-    test("encode to JSON errors on missing required field", () => {
-      expect(() =>
-        new messageType({
-          // enumField: Proto2Enum.PROTO2_ENUM_YES,
-          messageField: {},
-          bytesField: new Uint8Array(0),
-          stringField: "",
-        }).toJson(),
-      ).toThrow(
-        `cannot encode field ${messageType.typeName}.enum_field to JSON: required field not set`,
-      );
-    });
-    test("encode to binary errors on missing required field", () => {
-      expect(() =>
-        new messageType({
-          // enumField: Proto2Enum.PROTO2_ENUM_YES,
-          messageField: {},
-          bytesField: new Uint8Array(0),
-          stringField: "",
-        }).toBinary(),
-      ).toThrow(
-        /^cannot encode field spec.Proto2RequiredMessage.enum_field to binary: required field not set$/,
-      );
-    });
-  },
-);
-
-describeMT(
-  { ts: TS.Proto2DefaultsMessage, js: JS.Proto2DefaultsMessage },
-  (messageType) => {
-    test("has no default values", () => {
-      const got = { ...new messageType() };
-      expect(got).toStrictEqual({});
-    });
-  },
-);
 
 describe("proto2 group", () => {
   const fieldNumbers = {

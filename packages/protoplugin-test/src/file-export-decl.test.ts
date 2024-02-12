@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("file exportDecl", () => {
   test("works as documented", async () => {
