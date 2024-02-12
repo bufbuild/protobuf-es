@@ -12,22 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
+import {
   AnyDesc,
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
+  LongType,
+  protoInt64,
+  ScalarType,
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
-import { literalString } from "./legacy-gencommon.js";
 import type { RuntimeImports } from "./runtime-imports.js";
 import { makeImportPathRelative } from "./import-path.js";
-import type { ExportDeclaration } from "./export-declaration.js";
-import { createExportDeclaration } from "./export-declaration.js";
 import type { JSDocBlock } from "./jsdoc.js";
 import { createJsDocBlock } from "./jsdoc.js";
+import {
+  createExportDeclaration,
+  ExportDeclaration,
+  LiteralProtoInt64,
+  LiteralString,
+  RefDescEnum,
+  RefDescMessage,
+} from "./opaque-printables";
 
 /**
  * All types that can be passed to GeneratedFile.print()
@@ -41,6 +49,10 @@ export type Printable =
   | ImportSymbol
   | ExportDeclaration
   | JSDocBlock
+  | LiteralString
+  | LiteralProtoInt64
+  | RefDescMessage
+  | RefDescEnum
   | DescMessage
   | DescEnum
   | DescExtension
@@ -218,7 +230,8 @@ export function createGeneratedFile(
       return createExportDeclaration(declaration, name);
     },
     string(string) {
-      return literalString(string);
+      // We do not use LiteralString, which was added later, to maintain backwards compatibility
+      return escapeString(string);
     },
     jsDoc(textOrDesc, indentation) {
       return createJsDocBlock(textOrDesc, indentation);
@@ -279,16 +292,16 @@ function elToContent(
           alias == undefined ? name : `${name}: ${alias}`,
         );
         const what = `{ ${p.join(", ")} }`;
-        c.push(`const ${what} = require(${literalString(from)});\n`);
+        c.push(`const ${what} = require(${escapeString(from)});\n`);
       } else {
         const p = names.map(({ name, alias }) =>
           alias == undefined ? name : `${name} as ${alias}`,
         );
         const what = `{ ${p.join(", ")} }`;
         if (typeOnly) {
-          c.push(`import type ${what} from ${literalString(from)};\n`);
+          c.push(`import type ${what} from ${escapeString(from)};\n`);
         } else {
-          c.push(`import ${what} from ${literalString(from)};\n`);
+          c.push(`import ${what} from ${escapeString(from)};\n`);
         }
       }
     },
@@ -349,17 +362,17 @@ function printableToEl(
           el.push(p);
           break;
         case "number":
-          el.push(...literalNumber(p, runtimeImports));
+          elNumber(el, p, runtimeImports);
           break;
         case "boolean":
           el.push(p.toString());
           break;
         case "bigint":
-          el.push(...literalBigint(p, runtimeImports));
+          elBigint(el, p, runtimeImports);
           break;
         case "object":
           if (p instanceof Uint8Array) {
-            el.push(literalUint8Array(p));
+            elUint8Array(el, p);
             break;
           }
           switch (p.kind) {
@@ -368,6 +381,12 @@ function printableToEl(
               break;
             case "es_jsdoc":
               el.push(p.toString());
+              break;
+            case "es_string":
+              el.push(escapeString(p.value));
+              break;
+            case "es_proto_int64":
+              elProtoInt64(el, p, runtimeImports);
               break;
             case "es_export_decl":
               el.push({
@@ -378,6 +397,14 @@ function printableToEl(
                     ? p.name
                     : createTypeImport(p.name).name,
               });
+              break;
+            case "es_ref_message":
+            case "es_ref_enum":
+              el.push(
+                p.typeOnly
+                  ? createTypeImport(p.type).toTypeOnly()
+                  : createTypeImport(p.type),
+              );
               break;
             case "message":
             case "extension":
@@ -537,42 +564,99 @@ function processImports(
   return symbolToIdentifier;
 }
 
-function literalNumber(
+function elBigint(
+  el: El[],
+  value: bigint,
+  runtimeImports: RuntimeImports,
+): void {
+  if (value == protoInt64.zero) {
+    // Loose comparison will match between 0n and 0.
+    el.push(runtimeImports.protoInt64, ".zero");
+  } else {
+    el.push(
+      runtimeImports.protoInt64,
+      value > 0 ? ".uParse(" : ".parse(",
+      escapeString(value.toString()),
+      ")",
+    );
+  }
+}
+
+function elNumber(
+  el: El[],
   value: number,
   runtimeImports: RuntimeImports,
-): El[] | string {
+): void {
   if (Number.isNaN(value)) {
-    return [runtimeImports.protoDouble, ".NaN"];
+    el.push(runtimeImports.protoDouble, ".NaN");
+  } else if (value === Number.POSITIVE_INFINITY) {
+    el.push(runtimeImports.protoDouble, ".POSITIVE_INFINITY");
+  } else if (value === Number.NEGATIVE_INFINITY) {
+    el.push(runtimeImports.protoDouble, ".NEGATIVE_INFINITY");
+  } else {
+    el.push(value.toString(10));
   }
-  if (value === Number.POSITIVE_INFINITY) {
-    return [runtimeImports.protoDouble, ".POSITIVE_INFINITY"];
-  }
-  if (value === Number.NEGATIVE_INFINITY) {
-    return [runtimeImports.protoDouble, ".NEGATIVE_INFINITY"];
-  }
-  return value.toString(10);
 }
 
-function literalBigint(value: bigint, runtimeImports: RuntimeImports): El[] {
-  // Loose comparison will match between 0n and 0.
-  if (value == (0 as unknown as bigint)) {
-    return [runtimeImports.protoInt64, ".zero"];
-  }
-  return [
-    runtimeImports.protoInt64,
-    value > 0 ? ".uParse(" : ".parse(",
-    literalString(value.toString()),
-    ")",
-  ];
-}
-
-function literalUint8Array(value: Uint8Array): string {
+function elUint8Array(el: El[], value: Uint8Array): void {
   if (value.length === 0) {
-    return "new Uint8Array(0)";
+    el.push("new Uint8Array(0)");
+    return;
   }
+  el.push("new Uint8Array([");
   const strings: string[] = [];
   for (const n of value) {
     strings.push("0x" + n.toString(16).toUpperCase().padStart(2, "0"));
   }
-  return `new Uint8Array([${strings.join(", ")}])`;
+  el.push(strings.join(", "));
+  el.push("])");
+}
+
+function elProtoInt64(
+  el: El[],
+  literal: LiteralProtoInt64,
+  runtimeImports: RuntimeImports,
+): void {
+  switch (literal.longType) {
+    case LongType.STRING:
+      el.push(escapeString(literal.value.toString()));
+      break;
+    case LongType.BIGINT:
+      if (literal.value == protoInt64.zero) {
+        // Loose comparison will match between 0n and 0.
+        el.push(runtimeImports.protoInt64, ".zero");
+        break;
+      }
+      switch (literal.type) {
+        case ScalarType.UINT64:
+        case ScalarType.FIXED64:
+          el.push(runtimeImports.protoInt64);
+          el.push(".uParse(");
+          el.push(escapeString(literal.value.toString()));
+          el.push(")");
+          break;
+        default:
+          el.push(runtimeImports.protoInt64);
+          el.push(".parse(");
+          el.push(escapeString(literal.value.toString()));
+          el.push(")");
+          break;
+      }
+  }
+}
+
+function escapeString(value: string): string {
+  return (
+    '"' +
+    value
+      .split("\\")
+      .join("\\\\")
+      .split('"')
+      .join('\\"')
+      .split("\r")
+      .join("\\r")
+      .split("\n")
+      .join("\\n") +
+    '"'
+  );
 }

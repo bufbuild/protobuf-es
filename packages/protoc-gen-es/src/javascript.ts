@@ -169,10 +169,7 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
   } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
     e.push(`req: true, `);
   }
-  const defaultValue = getFieldDefaultValueExpression(field, {
-    enumAs: "enum_value_ref",
-    protoInt64Symbol: schema.runtime.protoInt64,
-  });
+  const defaultValue = getFieldDefaultValueExpression(field);
   if (defaultValue !== undefined) {
     e.push(`default: `, defaultValue, `, `);
   }

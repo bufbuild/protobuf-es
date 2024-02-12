@@ -124,7 +124,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field, f);
+    const { typing } = getFieldTypeInfo(field);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -135,7 +135,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     f.print(f.jsDoc(field, "  "));
     const e: Printable = [];
-    const { typing, optional } = getFieldTypeInfo(field, f);
+    const { typing, optional } = getFieldTypeInfo(field);
     if (!optional) {
         e.push("  ", localName(field), ": ", typing, ";");
     } else {
@@ -150,7 +150,7 @@ function generateExtension(
   f: GeneratedFile,
   ext: DescExtension,
 ) {
-  const { typing } = getFieldTypeInfo(ext, f);
+  const { typing } = getFieldTypeInfo(ext);
   f.print(f.jsDoc(ext));
   f.print(f.exportDecl("declare const", ext), ": ", schema.runtime.Extension, "<", ext.extendee, ", ", typing, ">;");
   f.print();
@@ -230,7 +230,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value, f);
+      const {typing} = getFieldTypeInfo(ref.value);
       f.print("  static readonly fieldWrapper: {")
       f.print("    wrapField(value: ", typing, "): ", message, ",")
       f.print("    unwrapField(value: ", message, "): ", typing, ",")
