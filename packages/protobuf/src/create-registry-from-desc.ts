@@ -17,7 +17,7 @@ import type { MessageType } from "./message-type.js";
 import { proto3 } from "./proto3.js";
 import { proto2 } from "./proto2.js";
 import type { FieldInfo } from "./field.js";
-import { ScalarType } from "./field.js";
+import { ScalarType } from "./scalar.js";
 import type { EnumType, EnumValueInfo } from "./enum.js";
 import type {
   IEnumTypeRegistry,

@@ -18,7 +18,7 @@ import {
   safeObjectProperty,
 } from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
-import { scalarDefaultValue } from "./private/scalars.js";
+import { scalarZeroValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";
 import type {
   DescEnum,
@@ -30,7 +30,8 @@ import type {
   DescOneof,
   DescService,
 } from "./descriptor-set.js";
-import { LongType, ScalarType } from "./field.js";
+import type { ScalarValue } from "./scalar.js";
+import { LongType, ScalarType } from "./scalar.js";
 
 interface CodegenInfo {
   /**
@@ -53,7 +54,14 @@ interface CodegenInfo {
     field: DescField | DescExtension,
   ) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
+  /**
+   * @deprecated please use scalarZeroValue instead
+   */
   readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  readonly scalarZeroValue: <T extends ScalarType, L extends LongType>(
+    type: T,
+    longType: L,
+  ) => ScalarValue<T, L>;
   /**
    * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
    */
@@ -98,7 +106,8 @@ export const codegenInfo: CodegenInfo = {
   localName,
   reifyWkt,
   getUnwrappedFieldType,
-  scalarDefaultValue,
+  scalarDefaultValue: scalarZeroValue,
+  scalarZeroValue,
   safeIdentifier,
   safeObjectProperty,
   // prettier-ignore
@@ -119,8 +128,8 @@ export const codegenInfo: CodegenInfo = {
     JsonObject:           {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
     protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
     protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
-    ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
-    LongType:             {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
+    ScalarType:           {typeOnly: false, privateImportPath: "./scalar.js",        publicImportPath: packageName},
+    LongType:             {typeOnly: false, privateImportPath: "./scalar.js",        publicImportPath: packageName},
     MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},

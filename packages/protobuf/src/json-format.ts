@@ -14,8 +14,7 @@
 
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
-import type { ScalarType } from "./field.js";
-import { LongType } from "./field.js";
+import type { ScalarType, LongType } from "./scalar.js";
 import type {
   IExtensionRegistry,
   IMessageTypeRegistry,

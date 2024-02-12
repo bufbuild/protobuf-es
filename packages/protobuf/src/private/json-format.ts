@@ -24,7 +24,6 @@ import type { AnyMessage } from "../message.js";
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { FieldInfo, OneofInfo } from "../field.js";
-import { LongType, ScalarType } from "../field.js";
 import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { protoBase64 } from "../proto-base64.js";
@@ -42,8 +41,10 @@ import type {
 } from "../binary-format.js";
 import { clearField, isFieldSet } from "./reflect.js";
 import { wrapField } from "./field-wrapper.js";
-import type { ScalarValue } from "./scalars.js";
-import { scalarDefaultValue, isScalarZeroValue } from "./scalars.js";
+import { scalarZeroValue } from "./scalars.js";
+import { isScalarZeroValue } from "./scalars.js";
+import type { ScalarValue } from "../scalar.js";
+import { LongType, ScalarType } from "../scalar.js";
 
 /* eslint-disable no-case-declarations,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */
 
@@ -475,7 +476,7 @@ function readScalar(
 ): ScalarValue | typeof tokenNull {
   if (json === null) {
     if (nullAsZeroValue) {
-      return scalarDefaultValue(type, longType) as ScalarValue;
+      return scalarZeroValue(type, longType);
     }
     return tokenNull;
   }

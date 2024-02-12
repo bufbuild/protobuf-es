@@ -17,7 +17,7 @@ import type { FieldListSource } from "./private/field-list.js";
 import { InternalFieldList } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
-import { scalarDefaultValue } from "./private/scalars.js";
+import { scalarZeroValue } from "./private/scalars.js";
 import { normalizeFieldInfos } from "./private/field-normalize.js";
 
 /**
@@ -53,7 +53,7 @@ export const proto3 = makeProtoRuntime(
           t[name] = {};
           break;
         case "scalar":
-          t[name] = scalarDefaultValue(member.T, member.L); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+          t[name] = scalarZeroValue(member.T, member.L);
           break;
         case "message":
           // message fields are always optional in proto3

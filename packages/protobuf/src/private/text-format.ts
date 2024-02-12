@@ -14,8 +14,8 @@
 
 import type { DescEnum } from "../descriptor-set.js";
 import { assert } from "./assert.js";
-import { ScalarType } from "../field.js";
 import { protoInt64 } from "../proto-int64.js";
+import { ScalarType } from "../scalar.js";
 
 export function parseTextFormatEnumValue(
   descEnum: DescEnum,
