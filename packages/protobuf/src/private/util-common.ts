@@ -16,9 +16,9 @@ import { setEnumType } from "./enum.js";
 import { Message } from "../message.js";
 import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { ScalarType } from "../field.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
+import { ScalarType } from "../scalar.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 

@@ -45,7 +45,6 @@ import type {
   DescriptorSet,
   DescService,
 } from "./descriptor-set.js";
-import { LongType, ScalarType } from "./field.js";
 import { MethodIdempotency, MethodKind } from "./service-type.js";
 import { fieldJsonName, findEnumSharedPrefix } from "./private/names.js";
 import {
@@ -55,6 +54,7 @@ import {
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { FeatureResolverFn } from "./private/feature-set.js";
 import { createFeatureResolver } from "./private/feature-set.js";
+import { LongType, ScalarType } from "./scalar.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of

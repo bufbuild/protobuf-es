@@ -15,7 +15,7 @@
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { DescExtension, DescField } from "../descriptor-set.js";
-import { ScalarType } from "../field.js";
+import { ScalarType } from "../scalar.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- unknown fields are represented with any */
 

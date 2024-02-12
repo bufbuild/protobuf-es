@@ -23,7 +23,7 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
-import type { LongType, ScalarType } from "./field.js";
+import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
 import type { MergedFeatureSet } from "./private/feature-set.js";
 

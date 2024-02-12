@@ -24,7 +24,7 @@ import {
 import type { GeneratedFile, Printable } from "./generated-file.js";
 import type { ImportSymbol } from "./import-symbol.js";
 
-const { localName, getUnwrappedFieldType, scalarDefaultValue } = codegenInfo;
+const { localName, getUnwrappedFieldType, scalarZeroValue } = codegenInfo;
 
 export function makeFilePreamble(
   file: DescFile,
@@ -298,8 +298,7 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
           if (field.scalar === ScalarType.STRING) {
             defaultValue = literalString("");
           } else {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-            defaultValue = scalarDefaultValue(field.scalar, field.longType);
+            defaultValue = scalarZeroValue(field.scalar, field.longType);
             if (typeof defaultValue === "string") {
               defaultValue = literalString(defaultValue);
             }
