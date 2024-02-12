@@ -31,12 +31,9 @@ import type {
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import {
-  getFieldExplicitDefaultValue,
-  localName,
-  reifyWkt,
-} from "@bufbuild/protoplugin/ecmascript";
+import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
+import { getFieldDefaultValueExpression } from "./util.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
@@ -172,7 +169,10 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
   } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
     e.push(`req: true, `);
   }
-  const defaultValue = getFieldExplicitDefaultValue(field, schema.runtime.protoInt64);
+  const defaultValue = getFieldDefaultValueExpression(field, {
+    enumAs: "enum_value_ref",
+    protoInt64Symbol: schema.runtime.protoInt64,
+  });
   if (defaultValue !== undefined) {
     e.push(`default: `, defaultValue, `, `);
   }

@@ -21,7 +21,7 @@ import type {
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
-import { literalString } from "./gencommon.js";
+import { literalString } from "./legacy-gencommon.js";
 import type { RuntimeImports } from "./runtime-imports.js";
 import { makeImportPathRelative } from "./import-path.js";
 import type { ExportDeclaration } from "./export-declaration.js";
