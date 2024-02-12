@@ -20,7 +20,7 @@ import {
 } from "@bufbuild/protobuf";
 import { Printable } from "./generated-file.js";
 import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
-import { literalString as literalStringInternal } from "./gencommon.js";
+import { literalString as literalStringInternal } from "./legacy-gencommon.js";
 
 export { reifyWkt } from "./reify-wkt.js";
 export type { Target } from "./target.js";
@@ -36,7 +36,7 @@ export {
   getFieldExplicitDefaultValue,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-} from "./gencommon.js";
+} from "./legacy-gencommon.js";
 
 export {
   findCustomScalarOption,
