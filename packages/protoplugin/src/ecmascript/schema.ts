@@ -39,8 +39,8 @@ import {
   makeImportPath,
   rewriteImportPath,
 } from "./import-path.js";
-import { ParsedParameter } from "./parameter";
-import { makeFilePreamble } from "./gencommon";
+import { ParsedParameter } from "./parameter.js";
+import { makeFilePreamble } from "./gencommon.js";
 
 /**
  * Schema describes the files and types that the plugin is requested to
