@@ -40,8 +40,12 @@ import type {
   BinaryReadOptions,
   BinaryWriteOptions,
 } from "../binary-format.js";
+import { clearField, isFieldSet } from "./reflect.js";
+import { wrapField } from "./field-wrapper.js";
+import type { ScalarValue } from "./scalars.js";
+import { scalarDefaultValue, isScalarZeroValue } from "./scalars.js";
 
-/* eslint-disable no-case-declarations, @typescript-eslint/restrict-plus-operands,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-argument */
+/* eslint-disable no-case-declarations,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */
 
 // Default options for parsing JSON.
 const jsonReadDefaults: Readonly<JsonReadOptions> = {
@@ -68,20 +72,10 @@ function makeWriteOptions(
   return options ? { ...jsonWriteDefaults, ...options } : jsonWriteDefaults;
 }
 
-type JsonFormatWriteFieldFn = (
-  field: FieldInfo,
-  value: any,
-  options: JsonWriteOptions,
-) => JsonValue | undefined;
+const tokenNull = Symbol();
+const tokenIgnoredUnknownEnum = Symbol();
 
-export function makeJsonFormatCommon(
-  nullAsZeroValue: boolean,
-  makeWriteField: (
-    writeEnumFn: typeof writeEnum,
-    writeScalarFn: typeof writeScalar,
-  ) => JsonFormatWriteFieldFn,
-): JsonFormat {
-  const writeField = makeWriteField(writeEnum, writeScalar);
+export function makeJsonFormat(): JsonFormat {
   return {
     makeReadOptions,
     makeWriteOptions,
@@ -117,7 +111,13 @@ export function makeJsonFormatCommon(
             }
             oneofSeen.set(field.oneof, jsonKey);
           }
-          readField(message, jsonValue, field, options, type, nullAsZeroValue);
+          readField(
+            message as Record<string, unknown>,
+            jsonValue,
+            field,
+            options,
+            type,
+          );
         } else {
           let found = false;
           if (
@@ -131,7 +131,7 @@ export function makeJsonFormatCommon(
             if (ext && ext.extendee.typeName == type.typeName) {
               found = true;
               const [container, get] = createExtensionContainer(ext);
-              readField(container, jsonValue, ext.field, options, ext, true);
+              readField(container, jsonValue, ext.field, options, ext);
               // We pass on the options as BinaryReadOptions/BinaryWriteOptions,
               // so that users can bring their own binary reader and writer factories
               // if necessary.
@@ -157,26 +157,23 @@ export function makeJsonFormatCommon(
       const json: JsonObject = {};
       let field: FieldInfo | undefined;
       try {
-        for (const member of type.fields.byMember()) {
-          let jsonValue: JsonValue | undefined;
-          if (member.kind == "oneof") {
-            const oneof = (message as AnyMessage)[member.localName];
-            if (oneof.value === undefined) {
+        for (field of type.fields.byNumber()) {
+          if (!isFieldSet(field, message)) {
+            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+            if (field.req) {
+              throw `required field not set`;
+            }
+            if (!options.emitDefaultValues) {
               continue;
             }
-            field = member.findField(oneof.case);
-            if (!field) {
-              throw "oneof case not found: " + oneof.case;
+            if (!canEmitFieldDefaultValue(field)) {
+              continue;
             }
-            jsonValue = writeField(field, oneof.value, options);
-          } else {
-            field = member;
-            jsonValue = writeField(
-              field,
-              (message as AnyMessage)[field.localName],
-              options,
-            );
           }
+          const value = field.oneof
+            ? (message as AnyMessage)[field.oneof.localName].value
+            : (message as AnyMessage)[field.localName];
+          const jsonValue = writeField(field, value, options);
           if (jsonValue !== undefined) {
             json[options.useProtoFieldName ? field.name : field.jsonName] =
               jsonValue;
@@ -210,9 +207,24 @@ export function makeJsonFormatCommon(
       }
       return json;
     },
-    readScalar: (type, json, longType) =>
-      readScalar(type, json, longType, nullAsZeroValue), // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
-    writeScalar,
+    readScalar(type, json, longType) {
+      // The signature of our internal function has changed. For backwards-
+      // compatibility, we support the old form that is part of the public API
+      // through the interface JsonFormat.
+      return readScalar(type, json, longType ?? LongType.BIGINT, true);
+    },
+    writeScalar(type, value, emitDefaultValues) {
+      // The signature of our internal function has changed. For backwards-
+      // compatibility, we support the old form that is part of the public API
+      // through the interface JsonFormat.
+      if (value === undefined) {
+        return undefined;
+      }
+      if (emitDefaultValues || isScalarZeroValue(type, value)) {
+        return writeScalar(type, value);
+      }
+      return undefined;
+    },
     debug: debugJsonValue,
   };
 }
@@ -232,34 +244,23 @@ function debugJsonValue(json: unknown): string {
 }
 
 // Read a JSON value for a field.
-// The "type" argument is only used to provide context in errors.
-// The argument "nullAsZeroValue" applies to singular fields (not repeated, map,
-// or oneof). If the argument is `true`, JSON null is parsed as the fields
-// zero-value. If the argument is false, JSON null sets the field to `undefined`.
+// The "parentType" argument is only used to provide context in errors.
 function readField(
-  target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  target: Record<string, unknown>,
   jsonValue: JsonValue,
   field: FieldInfo,
   options: JsonReadOptions,
-  type: MessageType | Extension,
-  nullAsZeroValue: boolean,
+  parentType: MessageType | Extension,
 ) {
   let localName = field.localName;
-  if (field.oneof) {
-    if (jsonValue === null && field.kind == "scalar") {
-      // see conformance test Required.Proto3.JsonInput.OneofFieldNull{First,Second}
-      return;
-    }
-    target = target[field.oneof.localName] = { case: localName };
-    localName = "value";
-  }
   if (field.repeated) {
+    assert(field.kind != "map");
     if (jsonValue === null) {
       return;
     }
     if (!Array.isArray(jsonValue)) {
       throw new Error(
-        `cannot decode field ${type.typeName}.${
+        `cannot decode field ${parentType.typeName}.${
           field.name
         } from JSON: ${debugJsonValue(jsonValue)}`,
       );
@@ -268,26 +269,31 @@ function readField(
     for (const jsonItem of jsonValue) {
       if (jsonItem === null) {
         throw new Error(
-          `cannot decode field ${type.typeName}.${
+          `cannot decode field ${parentType.typeName}.${
             field.name
           } from JSON: ${debugJsonValue(jsonItem)}`,
         );
       }
-      let val;
-      // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- "map" is invalid for repeated fields
       switch (field.kind) {
         case "message":
-          val = field.T.fromJson(jsonItem, options);
+          targetArray.push(field.T.fromJson(jsonItem, options));
           break;
         case "enum":
-          val = readEnum(field.T, jsonItem, options.ignoreUnknownFields, true);
-          if (val === undefined) continue;
+          const enumValue = readEnum(
+            field.T,
+            jsonItem,
+            options.ignoreUnknownFields,
+            true,
+          );
+          if (enumValue !== tokenIgnoredUnknownEnum) {
+            targetArray.push(enumValue);
+          }
           break;
         case "scalar":
           try {
-            val = readScalar(field.T, jsonItem, field.L, true);
+            targetArray.push(readScalar(field.T, jsonItem, field.L, true));
           } catch (e) {
-            let m = `cannot decode field ${type.typeName}.${
+            let m = `cannot decode field ${parentType.typeName}.${
               field.name
             } from JSON: ${debugJsonValue(jsonItem)}`;
             if (e instanceof Error && e.message.length > 0) {
@@ -297,7 +303,6 @@ function readField(
           }
           break;
       }
-      targetArray.push(val);
     }
   } else if (field.kind == "map") {
     if (jsonValue === null) {
@@ -305,37 +310,55 @@ function readField(
     }
     if (typeof jsonValue != "object" || Array.isArray(jsonValue)) {
       throw new Error(
-        `cannot decode field ${type.typeName}.${
+        `cannot decode field ${parentType.typeName}.${
           field.name
         } from JSON: ${debugJsonValue(jsonValue)}`,
       );
     }
-    const targetMap = target[localName] as { [k: string]: unknown };
+    const targetMap = target[localName] as Record<string, unknown>;
     for (const [jsonMapKey, jsonMapValue] of Object.entries(jsonValue)) {
       if (jsonMapValue === null) {
         throw new Error(
-          `cannot decode field ${type.typeName}.${field.name} from JSON: map value null`,
+          `cannot decode field ${parentType.typeName}.${field.name} from JSON: map value null`,
         );
       }
-      let val;
+      let key: string;
+      try {
+        key = readMapKey(field.K, jsonMapKey);
+      } catch (e) {
+        let m = `cannot decode map key for field ${parentType.typeName}.${
+          field.name
+        } from JSON: ${debugJsonValue(jsonValue)}`;
+        if (e instanceof Error && e.message.length > 0) {
+          m += `: ${e.message}`;
+        }
+        throw new Error(m);
+      }
       switch (field.V.kind) {
         case "message":
-          val = field.V.T.fromJson(jsonMapValue, options);
+          targetMap[key] = field.V.T.fromJson(jsonMapValue, options);
           break;
         case "enum":
-          val = readEnum(
+          const enumValue = readEnum(
             field.V.T,
             jsonMapValue,
             options.ignoreUnknownFields,
             true,
           );
-          if (val === undefined) continue;
+          if (enumValue !== tokenIgnoredUnknownEnum) {
+            targetMap[key] = enumValue;
+          }
           break;
         case "scalar":
           try {
-            val = readScalar(field.V.T, jsonMapValue, LongType.BIGINT, true);
+            targetMap[key] = readScalar(
+              field.V.T,
+              jsonMapValue,
+              LongType.BIGINT,
+              true,
+            );
           } catch (e) {
-            let m = `cannot decode map value for field ${type.typeName}.${
+            let m = `cannot decode map value for field ${parentType.typeName}.${
               field.name
             } from JSON: ${debugJsonValue(jsonValue)}`;
             if (e instanceof Error && e.message.length > 0) {
@@ -345,32 +368,12 @@ function readField(
           }
           break;
       }
-      try {
-        targetMap[
-          readScalar(
-            field.K,
-            field.K == ScalarType.BOOL
-              ? jsonMapKey == "true"
-                ? true
-                : jsonMapKey == "false"
-                  ? false
-                  : jsonMapKey
-              : jsonMapKey,
-            LongType.BIGINT,
-            true,
-          ).toString()
-        ] = val;
-      } catch (e) {
-        let m = `cannot decode map key for field ${type.typeName}.${
-          field.name
-        } from JSON: ${debugJsonValue(jsonValue)}`;
-        if (e instanceof Error && e.message.length > 0) {
-          m += `: ${e.message}`;
-        }
-        throw new Error(m);
-      }
     }
   } else {
+    if (field.oneof) {
+      target = target[field.oneof.localName] = { case: localName };
+      localName = "value";
+    }
     switch (field.kind) {
       case "message":
         const messageType = field.T;
@@ -378,21 +381,19 @@ function readField(
           jsonValue === null &&
           messageType.typeName != "google.protobuf.Value"
         ) {
-          if (field.oneof) {
-            throw new Error(
-              `cannot decode field ${type.typeName}.${field.name} from JSON: null is invalid for oneof field`,
-            );
-          }
           return;
         }
-        if (target[localName] instanceof Message) {
-          target[localName].fromJson(jsonValue, options);
+        let currentValue = target[localName] as Message | undefined;
+        if (currentValue instanceof Message) {
+          currentValue.fromJson(jsonValue, options);
         } else {
-          target[localName] = messageType.fromJson(jsonValue, options);
+          target[localName] = currentValue = messageType.fromJson(
+            jsonValue,
+            options,
+          );
           if (messageType.fieldWrapper && !field.oneof) {
-            target[localName] = messageType.fieldWrapper.unwrapField(
-              target[localName],
-            );
+            target[localName] =
+              messageType.fieldWrapper.unwrapField(currentValue);
           }
         }
         break;
@@ -401,22 +402,32 @@ function readField(
           field.T,
           jsonValue,
           options.ignoreUnknownFields,
-          nullAsZeroValue,
+          false,
         );
-        if (enumValue !== undefined) {
-          target[localName] = enumValue;
+        switch (enumValue) {
+          case tokenNull:
+            clearField(field, target);
+            break;
+          case tokenIgnoredUnknownEnum:
+            break;
+          default:
+            target[localName] = enumValue;
+            break;
         }
         break;
       case "scalar":
         try {
-          target[localName] = readScalar(
-            field.T,
-            jsonValue,
-            field.L,
-            nullAsZeroValue,
-          );
+          const scalarValue = readScalar(field.T, jsonValue, field.L, false);
+          switch (scalarValue) {
+            case tokenNull:
+              clearField(field, target);
+              break;
+            default:
+              target[localName] = scalarValue;
+              break;
+          }
         } catch (e) {
-          let m = `cannot decode field ${type.typeName}.${
+          let m = `cannot decode field ${parentType.typeName}.${
             field.name
           } from JSON: ${debugJsonValue(jsonValue)}`;
           if (e instanceof Error && e.message.length > 0) {
@@ -429,17 +440,45 @@ function readField(
   }
 }
 
-// May throw an error. If the error message is non-blank, it should be shown.
-// It is up to the caller to provide context.
-// If the argument "nullAsZeroValue" is `true`, this function returns the zero-value
-// for JSON null. If the argument is `false`, this function returns `undefined`
-// for JSON null.
+function readMapKey(type: ScalarType, json: JsonValue) {
+  if (type === ScalarType.BOOL) {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+    switch (json) {
+      case "true":
+        json = true;
+        break;
+      case "false":
+        json = false;
+        break;
+    }
+  }
+  return readScalar(type, json, LongType.BIGINT, true).toString();
+}
+
 function readScalar(
   type: ScalarType,
   json: JsonValue,
-  longType: LongType | undefined,
+  longType: LongType,
+  nullAsZeroValue: true,
+): ScalarValue;
+function readScalar(
+  type: ScalarType,
+  json: JsonValue,
+  longType: LongType,
+  nullAsZeroValue: false,
+): ScalarValue | typeof tokenNull;
+function readScalar(
+  type: ScalarType,
+  json: JsonValue,
+  longType: LongType,
   nullAsZeroValue: boolean,
-): any {
+): ScalarValue | typeof tokenNull {
+  if (json === null) {
+    if (nullAsZeroValue) {
+      return scalarDefaultValue(type, longType) as ScalarValue;
+    }
+    return tokenNull;
+  }
   // every valid case in the switch below returns, and every fall
   // through is regarded as a failure.
   switch (type) {
@@ -447,7 +486,6 @@ function readScalar(
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      if (json === null) return nullAsZeroValue ? 0.0 : undefined;
       if (json === "NaN") return Number.NaN;
       if (json === "Infinity") return Number.POSITIVE_INFINITY;
       if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
@@ -480,7 +518,6 @@ function readScalar(
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
     case ScalarType.UINT32:
-      if (json === null) return nullAsZeroValue ? 0 : undefined;
       let int32: number | undefined;
       if (typeof json == "number") int32 = json;
       else if (typeof json == "string" && json.length > 0) {
@@ -495,14 +532,12 @@ function readScalar(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      if (json === null) return nullAsZeroValue ? protoInt64.zero : undefined;
       if (typeof json != "number" && typeof json != "string") break;
       const long = protoInt64.parse(json);
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       return longType ? long.toString() : long;
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
-      if (json === null) return nullAsZeroValue ? protoInt64.zero : undefined;
       if (typeof json != "number" && typeof json != "string") break;
       const uLong = protoInt64.uParse(json);
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
@@ -510,13 +545,11 @@ function readScalar(
 
     // bool:
     case ScalarType.BOOL:
-      if (json === null) return nullAsZeroValue ? false : undefined;
       if (typeof json !== "boolean") break;
       return json;
 
     // string:
     case ScalarType.STRING:
-      if (json === null) return nullAsZeroValue ? "" : undefined;
       if (typeof json !== "string") {
         break;
       }
@@ -532,7 +565,6 @@ function readScalar(
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      if (json === null) return nullAsZeroValue ? new Uint8Array(0) : undefined;
       if (json === "") return new Uint8Array(0);
       if (typeof json !== "string") break;
       return protoBase64.dec(json);
@@ -540,19 +572,29 @@ function readScalar(
   throw new Error();
 }
 
-// If the argument "nullAsZeroValue" is `true`, this function returns the first
-// enum value for JSON null. If the argument is `false`, this function returns
-// `undefined`.
+function readEnum(
+  type: EnumType,
+  json: JsonValue,
+  ignoreUnknownFields: boolean,
+  nullAsZeroValue: false,
+): number | typeof tokenIgnoredUnknownEnum | typeof tokenNull;
+function readEnum(
+  type: EnumType,
+  json: JsonValue,
+  ignoreUnknownFields: boolean,
+  nullAsZeroValue: true,
+): number | typeof tokenIgnoredUnknownEnum;
 function readEnum(
   type: EnumType,
   json: JsonValue,
   ignoreUnknownFields: boolean,
   nullAsZeroValue: boolean,
-): number | undefined {
+): number | typeof tokenNull | typeof tokenIgnoredUnknownEnum {
   if (json === null) {
-    // proto3 requires 0 to be default value for all enums (which is required to be the first value).
-    // proto2 uses the first value (at least with protoc-gen-go).
-    return nullAsZeroValue ? type.values[0].no : undefined;
+    if (type.typeName == "google.protobuf.NullValue") {
+      return 0; // google.protobuf.NullValue.NULL_VALUE = 0
+    }
+    return nullAsZeroValue ? type.values[0].no : tokenNull;
   }
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (typeof json) {
@@ -563,9 +605,11 @@ function readEnum(
       break;
     case "string":
       const value = type.findName(json);
-      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-      if (value || ignoreUnknownFields) {
-        return value?.no;
+      if (value !== undefined) {
+        return value.no;
+      }
+      if (ignoreUnknownFields) {
+        return tokenIgnoredUnknownEnum;
       }
       break;
   }
@@ -574,24 +618,114 @@ function readEnum(
   );
 }
 
+// Decide whether an unset field should be emitted with JSON write option `emitDefaultValues`
+function canEmitFieldDefaultValue(field: FieldInfo) {
+  if (field.repeated || field.kind == "map") {
+    // maps are {}, repeated fields are []
+    return true;
+  }
+  if (field.oneof) {
+    // oneof fields are never emitted
+    return false;
+  }
+  if (field.kind == "message") {
+    // singular message field are allowed to emit JSON null, but we do not
+    return false;
+  }
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  if (field.opt || field.req) {
+    // the field uses explicit presence, so we cannot emit a zero value
+    return false;
+  }
+  return true;
+}
+
+function writeField(
+  field: FieldInfo,
+  value: unknown,
+  options: JsonWriteOptions,
+): JsonValue | undefined {
+  if (field.kind == "map") {
+    assert(typeof value == "object" && value != null);
+    const jsonObj: JsonObject = {};
+    const entries = Object.entries(value);
+    switch (field.V.kind) {
+      case "scalar":
+        for (const [entryKey, entryValue] of entries) {
+          jsonObj[entryKey.toString()] = writeScalar(field.V.T, entryValue); // JSON standard allows only (double quoted) string as property key
+        }
+        break;
+      case "message":
+        for (const [entryKey, entryValue] of entries) {
+          // JSON standard allows only (double quoted) string as property key
+          jsonObj[entryKey.toString()] = (entryValue as Message).toJson(
+            options,
+          );
+        }
+        break;
+      case "enum":
+        const enumType = field.V.T;
+        for (const [entryKey, entryValue] of entries) {
+          // JSON standard allows only (double quoted) string as property key
+          jsonObj[entryKey.toString()] = writeEnum(
+            enumType,
+            entryValue,
+            options.enumAsInteger,
+          );
+        }
+        break;
+    }
+    return options.emitDefaultValues || entries.length > 0
+      ? jsonObj
+      : undefined;
+  }
+  if (field.repeated) {
+    assert(Array.isArray(value));
+    const jsonArr: JsonValue[] = [];
+    switch (field.kind) {
+      case "scalar":
+        for (let i = 0; i < value.length; i++) {
+          jsonArr.push(writeScalar(field.T, value[i]) as JsonValue);
+        }
+        break;
+      case "enum":
+        for (let i = 0; i < value.length; i++) {
+          jsonArr.push(
+            writeEnum(field.T, value[i], options.enumAsInteger) as JsonValue,
+          );
+        }
+        break;
+      case "message":
+        for (let i = 0; i < value.length; i++) {
+          jsonArr.push(value[i].toJson(options));
+        }
+        break;
+    }
+    return options.emitDefaultValues || jsonArr.length > 0
+      ? jsonArr
+      : undefined;
+  }
+  switch (field.kind) {
+    case "scalar":
+      return writeScalar(field.T, value);
+    case "enum":
+      return writeEnum(field.T, value, options.enumAsInteger);
+    case "message":
+      return wrapField(field.T, value).toJson(options);
+  }
+}
+
 function writeEnum(
   type: EnumType,
-  value: number | undefined,
-  emitZeroValue: boolean,
+  value: unknown,
   enumAsInteger: boolean,
-): JsonValue | undefined {
-  if (value === undefined) {
-    return value;
-  }
-  if (!emitZeroValue && type.values[0].no === value) {
-    // proto3 requires 0 to be default value for all enums
-    return undefined;
+): string | number | null {
+  assert(typeof value == "number");
+  if (type.typeName == "google.protobuf.NullValue") {
+    return null;
   }
   if (enumAsInteger) {
     return value;
-  }
-  if (type.typeName == "google.protobuf.NullValue") {
-    return null;
   }
   const val = type.findNumber(value);
   return val?.name ?? value; // if we don't know the enum value, just return the number
@@ -599,12 +733,8 @@ function writeEnum(
 
 function writeScalar(
   type: ScalarType,
-  value: any,
-  emitZeroValue: boolean,
-): JsonValue | undefined {
-  if (value === undefined) {
-    return undefined;
-  }
+  value: unknown,
+): string | number | boolean {
   switch (type) {
     // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
     case ScalarType.INT32:
@@ -613,7 +743,7 @@ function writeScalar(
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
       assert(typeof value == "number");
-      return value != 0 || emitZeroValue ? value : undefined;
+      return value;
 
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
@@ -624,17 +754,17 @@ function writeScalar(
       if (Number.isNaN(value)) return "NaN";
       if (value === Number.POSITIVE_INFINITY) return "Infinity";
       if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
-      return value !== 0 || emitZeroValue ? value : undefined;
+      return value;
 
     // string:
     case ScalarType.STRING:
       assert(typeof value == "string");
-      return value.length > 0 || emitZeroValue ? value : undefined;
+      return value;
 
     // bool:
     case ScalarType.BOOL:
       assert(typeof value == "boolean");
-      return value || emitZeroValue ? value : undefined;
+      return value;
 
     // JSON value will be a decimal string. Either numbers or strings are accepted.
     case ScalarType.UINT64:
@@ -647,17 +777,12 @@ function writeScalar(
           typeof value == "string" ||
           typeof value == "number",
       );
-      // We use implicit conversion with `value != 0` to catch both 0n and "0"
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      return emitZeroValue || value != 0 ? value.toString(10) : undefined;
+      return value.toString();
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
       assert(value instanceof Uint8Array);
-      return emitZeroValue || value.byteLength > 0
-        ? protoBase64.enc(value)
-        : undefined;
+      return protoBase64.enc(value);
   }
 }

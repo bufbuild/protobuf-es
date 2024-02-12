@@ -17,8 +17,6 @@ import type { IBinaryWriter } from "../binary-encoding.js";
 import { WireType } from "../binary-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 /**
  * Returns true if both scalar values are equal.
  */
@@ -62,10 +60,35 @@ export function scalarEquals(
   return false;
 }
 
+// prettier-ignore
+/**
+ * ScalarValue maps from a scalar field type to a TypeScript value type.
+ */
+export type ScalarValue<T = ScalarType> =
+    T extends ScalarType.STRING ? string
+  : T extends ScalarType.INT32 ? number
+  : T extends ScalarType.UINT32 ? number
+  : T extends ScalarType.UINT32 ? number
+  : T extends ScalarType.SINT32 ? number
+  : T extends ScalarType.FIXED32 ? number
+  : T extends ScalarType.SFIXED32 ? number
+  : T extends ScalarType.FLOAT ? number
+  : T extends ScalarType.DOUBLE ? number
+  : T extends ScalarType.INT64 ? bigint | string
+  : T extends ScalarType.SINT64 ? bigint | string
+  : T extends ScalarType.SFIXED64 ? bigint | string
+  : T extends ScalarType.UINT64 ? bigint | string
+  : T extends ScalarType.FIXED64 ? bigint | string
+  : T extends ScalarType.BOOL ? boolean
+  : T extends ScalarType.BYTES ? Uint8Array
+  : never;
+
 /**
  * Returns the default value for the given scalar type, following
  * proto3 semantics.
  */
+// TODO rename to createScalarZeroValue and return ScalarValue
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
   switch (type) {
     case ScalarType.BOOL:
@@ -92,6 +115,26 @@ export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
 }
 
 /**
+ * Returns true for a zero-value. For example, an integer has the zero-value `0`,
+ * a boolean is `false`, a string is `""`, and bytes is an empty Uint8Array.
+ *
+ * In proto3, zero-values are not written to the wire, unless the field is
+ * optional or repeated.
+ */
+export function isScalarZeroValue(type: ScalarType, value: unknown) {
+  switch (type) {
+    case ScalarType.BOOL:
+      return value === false;
+    case ScalarType.STRING:
+      return value === "";
+    case ScalarType.BYTES:
+      return value instanceof Uint8Array && !value.byteLength;
+    default:
+      return value == 0; // Loose comparison matches 0n, 0 and "0"
+  }
+}
+
+/**
  * Get information for writing a scalar value.
  *
  * Returns tuple:
@@ -101,63 +144,40 @@ export function scalarDefaultValue(type: ScalarType, longType: LongType): any {
  *
  * If argument `value` is omitted, [2] is always false.
  */
+// TODO replace call-sites writeScalar() and writePacked(), then remove
 export function scalarTypeInfo(
   type: ScalarType,
-  value?: any,
+  value?: unknown,
 ): [
   WireType,
   Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
   boolean,
 ] {
-  const isUndefined = value === undefined;
   let wireType = WireType.Varint;
-  let isIntrinsicDefault = value === 0;
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- INT32, UINT32, SINT32 are covered by the defaults
   switch (type) {
+    case ScalarType.BYTES:
     case ScalarType.STRING:
-      isIntrinsicDefault = isUndefined || !(value as string).length;
       wireType = WireType.LengthDelimited;
-      break;
-    case ScalarType.BOOL:
-      isIntrinsicDefault = value === false;
       break;
     case ScalarType.DOUBLE:
-      wireType = WireType.Bit64;
-      break;
-    case ScalarType.FLOAT:
-      wireType = WireType.Bit32;
-      break;
-    case ScalarType.INT64:
-      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
-      break;
-    case ScalarType.UINT64:
-      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
-      break;
     case ScalarType.FIXED64:
-      isIntrinsicDefault = isUndefined || value == 0; // Loose comparison matches 0n, 0 and "0"
+    case ScalarType.SFIXED64:
       wireType = WireType.Bit64;
-      break;
-    case ScalarType.BYTES:
-      isIntrinsicDefault = isUndefined || !(value as Uint8Array).byteLength;
-      wireType = WireType.LengthDelimited;
       break;
     case ScalarType.FIXED32:
-      wireType = WireType.Bit32;
-      break;
     case ScalarType.SFIXED32:
+    case ScalarType.FLOAT:
       wireType = WireType.Bit32;
-      break;
-    case ScalarType.SFIXED64:
-      isIntrinsicDefault = isUndefined || value == 0;
-      wireType = WireType.Bit64;
-      break;
-    case ScalarType.SINT64:
-      isIntrinsicDefault = isUndefined || value == 0;
       break;
   }
   const method = ScalarType[type].toLowerCase() as Exclude<
     keyof IBinaryWriter,
     "tag" | "raw" | "fork" | "join" | "finish"
   >;
-  return [wireType, method, isUndefined || isIntrinsicDefault];
+  return [
+    wireType,
+    method,
+    value === undefined || isScalarZeroValue(type, value),
+  ];
 }

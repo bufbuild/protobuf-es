@@ -13,13 +13,10 @@
 // limitations under the License.
 
 import { makeProtoRuntime } from "./private/proto-runtime.js";
-import { makeBinaryFormatProto2 } from "./private/binary-format-proto2.js";
-import { makeUtilCommon } from "./private/util-common.js";
 import type { FieldListSource } from "./private/field-list.js";
 import { InternalFieldList } from "./private/field-list.js";
 import type { FieldList } from "./field-list.js";
 import type { AnyMessage, Message } from "./message.js";
-import { makeJsonFormatProto2 } from "./private/json-format-proto2.js";
 import { normalizeFieldInfos } from "./private/field-normalize.js";
 
 /**
@@ -27,42 +24,38 @@ import { normalizeFieldInfos } from "./private/field-normalize.js";
  */
 export const proto2 = makeProtoRuntime(
   "proto2",
-  makeJsonFormatProto2(),
-  makeBinaryFormatProto2(),
-  {
-    ...makeUtilCommon(),
-    newFieldList(fields: FieldListSource): FieldList {
-      return new InternalFieldList(fields, (source) =>
-        normalizeFieldInfos(source, false),
-      );
-    },
-    initFields(target: Message): void {
-      for (const member of target.getType().fields.byMember()) {
-        const name = member.localName,
-          t = target as AnyMessage;
-        if (member.repeated) {
-          t[name] = [];
-          continue;
-        }
-        switch (member.kind) {
-          case "oneof":
-            t[name] = { case: undefined };
-            break;
-          case "map":
-            t[name] = {};
-            break;
-          case "scalar":
-          case "enum":
-          case "message":
-            // In contrast to proto3, enum and scalar fields have no intrinsic default value,
-            // only an optional explicit default value.
-            // Unlike proto3 intrinsic default values, proto2 explicit default values are not
-            // set on construction, because they are not omitted on the wire. If we did set
-            // default values on construction, a deserialize-serialize round-trip would add
-            // fields to a message.
-            break;
-        }
+  (fields: FieldListSource): FieldList => {
+    return new InternalFieldList(fields, (source) =>
+      normalizeFieldInfos(source, false),
+    );
+  },
+  // TODO merge with proto3 and initExtensionField, also see initPartial, equals, clone
+  (target: Message): void => {
+    for (const member of target.getType().fields.byMember()) {
+      const name = member.localName,
+        t = target as AnyMessage;
+      if (member.repeated) {
+        t[name] = [];
+        continue;
       }
-    },
+      switch (member.kind) {
+        case "oneof":
+          t[name] = { case: undefined };
+          break;
+        case "map":
+          t[name] = {};
+          break;
+        case "scalar":
+        case "enum":
+        case "message":
+          // In contrast to proto3, enum and scalar fields have no intrinsic default value,
+          // only an optional explicit default value.
+          // Unlike proto3 intrinsic default values, proto2 explicit default values are not
+          // set on construction, because they are not omitted on the wire. If we did set
+          // default values on construction, a deserialize-serialize round-trip would add
+          // fields to a message.
+          break;
+      }
+    }
   },
 );
