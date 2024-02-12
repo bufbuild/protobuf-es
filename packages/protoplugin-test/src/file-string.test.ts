@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("file string", () => {
   test("surrounds string in quotes", async () => {
