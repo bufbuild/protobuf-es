@@ -24,6 +24,9 @@ import type { ImportSymbol } from "./import-symbol.js";
 
 const { localName, getUnwrappedFieldType, scalarZeroValue } = codegenInfo;
 
+/**
+ * @deprecated Please use GeneratedFile.string() instead
+ */
 export function literalString(value: string): string {
   return (
     '"' +

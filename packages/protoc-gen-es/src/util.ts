@@ -14,26 +14,18 @@
 
 import {
   codegenInfo,
-  DescEnum,
   DescEnumValue,
   DescExtension,
   DescField,
-  DescMessage,
   FieldDescriptorProto_Label,
   LongType,
-  protoInt64,
   ScalarType,
+  ScalarValue,
 } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
-import { literalString, localName } from "@bufbuild/protoplugin/ecmascript";
-import type { ImportSymbol } from "@bufbuild/protoplugin/src/ecmascript";
+import { localName } from "@bufbuild/protoplugin/ecmascript";
 
-export function getFieldTypeInfo(
-  field: DescField | DescExtension,
-  opt: {
-    import: (desc: DescEnum | DescMessage) => ImportSymbol;
-  },
-): {
+export function getFieldTypeInfo(field: DescField | DescExtension): {
   typing: Printable;
   optional: boolean;
   typingInferrableFromZeroValue: boolean;
@@ -54,14 +46,22 @@ export function getFieldTypeInfo(
       if (baseType !== undefined) {
         typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
       } else {
-        typing.push(opt.import(field.message).toTypeOnly());
+        typing.push({
+          kind: "es_ref_message",
+          type: field.message,
+          typeOnly: true,
+        });
       }
       optional = true;
       typingInferrableFromZeroValue = true;
       break;
     }
     case "enum":
-      typing.push(opt.import(field.enum).toTypeOnly());
+      typing.push({
+        kind: "es_ref_enum",
+        type: field.enum,
+        typeOnly: true,
+      });
       optional =
         field.optional ||
         field.proto.label === FieldDescriptorProto_Label.REQUIRED;
@@ -81,7 +81,7 @@ export function getFieldTypeInfo(
           keyType = "string";
           break;
       }
-      let valueType;
+      let valueType: Printable;
       switch (field.mapValue.kind) {
         case "scalar":
           valueType = scalarTypeScriptType(
@@ -90,10 +90,18 @@ export function getFieldTypeInfo(
           );
           break;
         case "message":
-          valueType = opt.import(field.mapValue.message).toTypeOnly();
+          valueType = {
+            kind: "es_ref_message",
+            type: field.mapValue.message,
+            typeOnly: true,
+          };
           break;
         case "enum":
-          valueType = opt.import(field.mapValue.enum).toTypeOnly();
+          valueType = {
+            kind: "es_ref_enum",
+            type: field.mapValue.enum,
+            typeOnly: true,
+          };
           break;
       }
       typing.push("{ [key: ", keyType, "]: ", valueType, " }");
@@ -110,25 +118,16 @@ export function getFieldTypeInfo(
   return { typing, optional, typingInferrableFromZeroValue };
 }
 
-type GetFieldExpressionOptions =
-  | {
-      enumAs: "enum_value_ref" | "enum_value_integer";
-      importEnum?: (desc: DescEnum) => ImportSymbol;
-      protoInt64Symbol: ImportSymbol;
-    }
-  | {
-      enumAs: "enum_value_integer_as_ref";
-      importEnum: (desc: DescEnum) => ImportSymbol;
-      protoInt64Symbol: ImportSymbol;
-    };
-
 /**
  * Return a printable expression for the default value of a field.
  * Only applicable for singular scalar and enum fields.
  */
 export function getFieldDefaultValueExpression(
   field: DescField | DescExtension,
-  opt: GetFieldExpressionOptions,
+  enumAs:
+    | "enum_value_as_is"
+    | "enum_value_as_integer"
+    | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
   if (field.repeated) {
     return undefined;
@@ -150,10 +149,10 @@ export function getFieldDefaultValueExpression(
           `invalid enum default value: ${String(defaultValue)} for ${enumValue}`,
         );
       }
-      return literalEnumValue(enumValue, opt);
+      return literalEnumValue(enumValue, enumAs);
     }
     case "scalar":
-      return literalScalarValue(defaultValue, field, opt.protoInt64Symbol);
+      return literalScalarValue(defaultValue, field);
   }
 }
 
@@ -169,7 +168,10 @@ export function getFieldDefaultValueExpression(
  */
 export function getFieldZeroValueExpression(
   field: DescField | DescExtension,
-  opt: GetFieldExpressionOptions,
+  enumAs:
+    | "enum_value_as_is"
+    | "enum_value_as_integer"
+    | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
   if (field.repeated) {
     return "[]";
@@ -186,22 +188,21 @@ export function getFieldZeroValueExpression(
         throw new Error("invalid enum: missing at least one value");
       }
       const zeroValue = field.enum.values[0];
-      return literalEnumValue(zeroValue, opt);
+      return literalEnumValue(zeroValue, enumAs);
     }
     case "scalar": {
-      const defaultValue = codegenInfo.scalarDefaultValue(
+      const defaultValue = codegenInfo.scalarZeroValue(
         field.scalar,
         field.longType,
-      ) as string | boolean | number | bigint | Uint8Array;
-      return literalScalarValue(defaultValue, field, opt.protoInt64Symbol);
+      );
+      return literalScalarValue(defaultValue, field);
     }
   }
 }
 
 function literalScalarValue(
-  value: string | number | bigint | boolean | Uint8Array,
+  value: ScalarValue,
   field: (DescField | DescExtension) & { fieldKind: "scalar" },
-  protoInt64Symbol: ImportSymbol,
 ): Printable {
   switch (field.scalar) {
     case ScalarType.DOUBLE:
@@ -230,7 +231,7 @@ function literalScalarValue(
           `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
-      return literalString(value);
+      return { kind: "es_string", value };
     case ScalarType.BYTES:
       if (!(value instanceof Uint8Array)) {
         throw new Error(
@@ -243,36 +244,35 @@ function literalScalarValue(
     case ScalarType.SFIXED64:
     case ScalarType.UINT64:
     case ScalarType.FIXED64:
-      switch (typeof value) {
-        case "bigint":
-          if (value == protoInt64.zero) {
-            return [protoInt64Symbol, ".zero"];
-          }
-          switch (field.scalar) {
-            case ScalarType.UINT64:
-            case ScalarType.FIXED64:
-              return [protoInt64Symbol, `.uParse("${value.toString()}")`];
-            default:
-              return [protoInt64Symbol, `.parse("${value.toString()}")`];
-          }
-        case "string":
-          return literalString(value);
-        default:
-          throw new Error(
-            `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-          );
+      if (typeof value != "bigint" && typeof value != "string") {
+        throw new Error(
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
+        );
       }
+      return {
+        kind: "es_proto_int64",
+        type: field.scalar,
+        longType: field.longType,
+        value,
+      };
   }
 }
 
 function literalEnumValue(
   value: DescEnumValue,
-  opt: GetFieldExpressionOptions,
+  enumAs:
+    | "enum_value_as_is"
+    | "enum_value_as_integer"
+    | "enum_value_as_cast_integer",
 ): Printable {
-  switch (opt.enumAs) {
-    case "enum_value_ref":
-      return [value.parent, ".", localName(value)];
-    case "enum_value_integer":
+  switch (enumAs) {
+    case "enum_value_as_is":
+      return [
+        { kind: "es_ref_enum", type: value.parent, typeOnly: false },
+        ".",
+        localName(value),
+      ];
+    case "enum_value_as_integer":
       return [
         value.number,
         " /* ",
@@ -281,11 +281,11 @@ function literalEnumValue(
         value.name,
         " */",
       ];
-    case "enum_value_integer_as_ref":
+    case "enum_value_as_cast_integer":
       return [
         value.number,
         " as ",
-        opt.importEnum(value.parent).toTypeOnly(),
+        { kind: "es_ref_enum", type: value.parent, typeOnly: true },
         ".",
         localName(value),
       ];

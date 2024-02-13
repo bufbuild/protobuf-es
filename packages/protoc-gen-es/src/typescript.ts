@@ -148,7 +148,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field, f);
+    const { typing } = getFieldTypeInfo(field);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -159,7 +159,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
-  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field, f);
+  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field);
   if (optional) {
     e.push("  ", localName(field), "?: ", typing, ";");
   } else {
@@ -168,10 +168,7 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     } else {
       e.push("  ", localName(field), ": ", typing);
     }
-    const zeroValue = getFieldZeroValueExpression(field, {
-      enumAs: "enum_value_ref",
-      protoInt64Symbol: schema.runtime.protoInt64,
-    });
+    const zeroValue = getFieldZeroValueExpression(field);
     if (zeroValue !== undefined) {
       e.push(" = ", zeroValue);
     }
@@ -187,7 +184,7 @@ function generateExtension(
   ext: DescExtension,
 ) {
   const protoN = getNonEditionRuntime(schema, ext.file);
-  const { typing } = getFieldTypeInfo(ext, f);
+  const { typing } = getFieldTypeInfo(ext);
   f.print(f.jsDoc(ext));
   f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension<", ext.extendee, ", ", typing, ">(");
   f.print("  ", f.string(ext.typeName), ", ");
@@ -654,7 +651,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value, f);
+      const {typing} = getFieldTypeInfo(ref.value);
       f.print("  static readonly fieldWrapper = {")
       f.print("    wrapField(value: ", typing, "): ", message, " {")
       f.print("      return new ", message, "({value});")
