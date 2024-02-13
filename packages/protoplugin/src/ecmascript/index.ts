@@ -20,7 +20,6 @@ import {
 } from "@bufbuild/protobuf";
 import { Printable } from "./generated-file.js";
 import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
-import { literalString as literalStringInternal } from "./legacy-gencommon.js";
 
 export { reifyWkt } from "./reify-wkt.js";
 export type { Target } from "./target.js";
@@ -36,20 +35,14 @@ export {
   getFieldExplicitDefaultValue,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
+  literalString,
 } from "./legacy-gencommon.js";
 
 export {
   findCustomScalarOption,
   findCustomMessageOption,
   findCustomEnumOption,
-} from "./custom-options.js";
-
-/**
- * @deprecated Please use GeneratedFile.string() instead
- */
-export function literalString(value: string): string {
-  return literalStringInternal(value);
-}
+} from "./legacy-custom-options.js";
 
 /**
  * @deprecated Please use GeneratedFile.jsDoc() instead
