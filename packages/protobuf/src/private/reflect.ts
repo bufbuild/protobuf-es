@@ -80,3 +80,17 @@ export function clearField(
     }
   }
 }
+
+/**
+ * Tells whether a field uses the prototype chain for field presence.
+ * Behavior must match with the counterpart in @bufbuild/protoc-gen-es.
+ */
+export function fieldUsesPrototype(field: FieldInfo): boolean {
+  if (field.repeated || field.oneof) {
+    return false;
+  }
+  if (field.kind != "scalar" && field.kind != "enum") {
+    return false;
+  }
+  return field.req;
+}

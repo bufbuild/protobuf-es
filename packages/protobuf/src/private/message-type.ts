@@ -19,6 +19,8 @@ import type { JsonReadOptions, JsonValue } from "../json-format.js";
 import type { MessageType } from "../message-type.js";
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { ProtoRuntime } from "./proto-runtime.js";
+import { fieldUsesPrototype } from "./reflect.js";
+import { scalarZeroValue } from "./scalars.js";
 
 /**
  * Create a new message type using the given runtime.
@@ -42,8 +44,13 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
 ): MessageType<T> {
   const localName =
     opt?.localName ?? typeName.substring(typeName.lastIndexOf(".") + 1);
+  let prototypeFieldsAdded = false;
   const type = {
     [localName]: function (this: T, data?: PartialMessage<T>) {
+      if (!prototypeFieldsAdded) {
+        addPrototypeFields(type);
+        prototypeFieldsAdded = true;
+      }
       runtime.util.initFields(this);
       runtime.util.initPartial(data, this);
     },
@@ -70,4 +77,22 @@ export function makeMessageType<T extends Message<T> = AnyMessage>(
     },
   });
   return type;
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+function addPrototypeFields(ctor: MessageType) {
+  for (const field of ctor.fields.list()) {
+    if (!fieldUsesPrototype(field)) {
+      continue;
+    }
+    let value: unknown = field.default;
+    if (value === undefined) {
+      if (field.kind == "scalar") {
+        value = scalarZeroValue(field.T, field.L);
+      } else if (field.kind == "enum") {
+        value = field.T.values[0].no;
+      }
+    }
+    (ctor.prototype as Record<string, unknown>)[field.localName] = value;
+  }
 }
