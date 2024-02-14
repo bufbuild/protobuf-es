@@ -134,8 +134,8 @@ foo = "";
 bar?: string;
 ```
 
-Note that all scalar fields have an intrinsic default value in proto3 syntax, unless they are marked
-as `optional`. Protobuf types map to ECMAScript types as follows:
+Note that all scalar fields have a zero-value in proto3 syntax, unless they are 
+marked as `optional`. Protobuf types map to ECMAScript types as follows:
 
 | protobuf type | ECMAScript type | default value        |
 |---------------|-----------------|----------------------|
