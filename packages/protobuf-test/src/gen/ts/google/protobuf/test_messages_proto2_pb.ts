@@ -1478,77 +1478,77 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
    *
    * @generated from field: required int32 required_int32 = 1;
    */
-  requiredInt32?: number;
+  declare requiredInt32: number;
 
   /**
    * @generated from field: required int64 required_int64 = 2;
    */
-  requiredInt64?: bigint;
+  declare requiredInt64: bigint;
 
   /**
    * @generated from field: required uint32 required_uint32 = 3;
    */
-  requiredUint32?: number;
+  declare requiredUint32: number;
 
   /**
    * @generated from field: required uint64 required_uint64 = 4;
    */
-  requiredUint64?: bigint;
+  declare requiredUint64: bigint;
 
   /**
    * @generated from field: required sint32 required_sint32 = 5;
    */
-  requiredSint32?: number;
+  declare requiredSint32: number;
 
   /**
    * @generated from field: required sint64 required_sint64 = 6;
    */
-  requiredSint64?: bigint;
+  declare requiredSint64: bigint;
 
   /**
    * @generated from field: required fixed32 required_fixed32 = 7;
    */
-  requiredFixed32?: number;
+  declare requiredFixed32: number;
 
   /**
    * @generated from field: required fixed64 required_fixed64 = 8;
    */
-  requiredFixed64?: bigint;
+  declare requiredFixed64: bigint;
 
   /**
    * @generated from field: required sfixed32 required_sfixed32 = 9;
    */
-  requiredSfixed32?: number;
+  declare requiredSfixed32: number;
 
   /**
    * @generated from field: required sfixed64 required_sfixed64 = 10;
    */
-  requiredSfixed64?: bigint;
+  declare requiredSfixed64: bigint;
 
   /**
    * @generated from field: required float required_float = 11;
    */
-  requiredFloat?: number;
+  declare requiredFloat: number;
 
   /**
    * @generated from field: required double required_double = 12;
    */
-  requiredDouble?: number;
+  declare requiredDouble: number;
 
   /**
    * @generated from field: required bool required_bool = 13;
    */
-  requiredBool?: boolean;
+  declare requiredBool: boolean;
 
   /**
    * @generated from field: required string required_string = 14;
    */
-  requiredString?: string;
+  declare requiredString: string;
 
   /**
    * @generated from field: required bytes required_bytes = 15;
    */
-  requiredBytes?: Uint8Array;
+  declare requiredBytes: Uint8Array;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage required_nested_message = 18;
@@ -1563,22 +1563,22 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum required_nested_enum = 21;
    */
-  requiredNestedEnum?: TestAllRequiredTypesProto2_NestedEnum;
+  declare requiredNestedEnum: TestAllRequiredTypesProto2_NestedEnum;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.ForeignEnumProto2 required_foreign_enum = 22;
    */
-  requiredForeignEnum?: ForeignEnumProto2;
+  declare requiredForeignEnum: ForeignEnumProto2;
 
   /**
    * @generated from field: required string required_string_piece = 24;
    */
-  requiredStringPiece?: string;
+  declare requiredStringPiece: string;
 
   /**
    * @generated from field: required string required_cord = 25;
    */
-  requiredCord?: string;
+  declare requiredCord: string;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 recursive_message = 27;
@@ -1600,77 +1600,77 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
    *
    * @generated from field: required int32 default_int32 = 241 [default = -123456789];
    */
-  defaultInt32?: number;
+  declare defaultInt32: number;
 
   /**
    * @generated from field: required int64 default_int64 = 242 [default = -9123456789123456789];
    */
-  defaultInt64?: bigint;
+  declare defaultInt64: bigint;
 
   /**
    * @generated from field: required uint32 default_uint32 = 243 [default = 2123456789];
    */
-  defaultUint32?: number;
+  declare defaultUint32: number;
 
   /**
    * @generated from field: required uint64 default_uint64 = 244 [default = 10123456789123456789];
    */
-  defaultUint64?: bigint;
+  declare defaultUint64: bigint;
 
   /**
    * @generated from field: required sint32 default_sint32 = 245 [default = -123456789];
    */
-  defaultSint32?: number;
+  declare defaultSint32: number;
 
   /**
    * @generated from field: required sint64 default_sint64 = 246 [default = -9123456789123456789];
    */
-  defaultSint64?: bigint;
+  declare defaultSint64: bigint;
 
   /**
    * @generated from field: required fixed32 default_fixed32 = 247 [default = 2123456789];
    */
-  defaultFixed32?: number;
+  declare defaultFixed32: number;
 
   /**
    * @generated from field: required fixed64 default_fixed64 = 248 [default = 10123456789123456789];
    */
-  defaultFixed64?: bigint;
+  declare defaultFixed64: bigint;
 
   /**
    * @generated from field: required sfixed32 default_sfixed32 = 249 [default = -123456789];
    */
-  defaultSfixed32?: number;
+  declare defaultSfixed32: number;
 
   /**
    * @generated from field: required sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
    */
-  defaultSfixed64?: bigint;
+  declare defaultSfixed64: bigint;
 
   /**
    * @generated from field: required float default_float = 251 [default = 9e+09];
    */
-  defaultFloat?: number;
+  declare defaultFloat: number;
 
   /**
    * @generated from field: required double default_double = 252 [default = 7e+22];
    */
-  defaultDouble?: number;
+  declare defaultDouble: number;
 
   /**
    * @generated from field: required bool default_bool = 253 [default = true];
    */
-  defaultBool?: boolean;
+  declare defaultBool: boolean;
 
   /**
    * @generated from field: required string default_string = 254 [default = "Rosebud"];
    */
-  defaultString?: string;
+  declare defaultString: string;
 
   /**
    * @generated from field: required bytes default_bytes = 255 [default = "joshua"];
    */
-  defaultBytes?: Uint8Array;
+  declare defaultBytes: Uint8Array;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2>) {
     super();
@@ -1738,6 +1738,41 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
   }
 }
 
+TestAllRequiredTypesProto2.prototype.requiredInt32 = 0;
+TestAllRequiredTypesProto2.prototype.requiredInt64 = protoInt64.zero;
+TestAllRequiredTypesProto2.prototype.requiredUint32 = 0;
+TestAllRequiredTypesProto2.prototype.requiredUint64 = protoInt64.zero;
+TestAllRequiredTypesProto2.prototype.requiredSint32 = 0;
+TestAllRequiredTypesProto2.prototype.requiredSint64 = protoInt64.zero;
+TestAllRequiredTypesProto2.prototype.requiredFixed32 = 0;
+TestAllRequiredTypesProto2.prototype.requiredFixed64 = protoInt64.zero;
+TestAllRequiredTypesProto2.prototype.requiredSfixed32 = 0;
+TestAllRequiredTypesProto2.prototype.requiredSfixed64 = protoInt64.zero;
+TestAllRequiredTypesProto2.prototype.requiredFloat = 0;
+TestAllRequiredTypesProto2.prototype.requiredDouble = 0;
+TestAllRequiredTypesProto2.prototype.requiredBool = false;
+TestAllRequiredTypesProto2.prototype.requiredString = "";
+TestAllRequiredTypesProto2.prototype.requiredBytes = new Uint8Array(0);
+TestAllRequiredTypesProto2.prototype.requiredNestedEnum = 0 as TestAllRequiredTypesProto2_NestedEnum.FOO;
+TestAllRequiredTypesProto2.prototype.requiredForeignEnum = 0 as ForeignEnumProto2.FOREIGN_FOO;
+TestAllRequiredTypesProto2.prototype.requiredStringPiece = "";
+TestAllRequiredTypesProto2.prototype.requiredCord = "";
+TestAllRequiredTypesProto2.prototype.defaultInt32 = -123456789;
+TestAllRequiredTypesProto2.prototype.defaultInt64 = protoInt64.parse("-9123456789123456789");
+TestAllRequiredTypesProto2.prototype.defaultUint32 = 2123456789;
+TestAllRequiredTypesProto2.prototype.defaultUint64 = protoInt64.uParse("10123456789123456789");
+TestAllRequiredTypesProto2.prototype.defaultSint32 = -123456789;
+TestAllRequiredTypesProto2.prototype.defaultSint64 = protoInt64.parse("-9123456789123456789");
+TestAllRequiredTypesProto2.prototype.defaultFixed32 = 2123456789;
+TestAllRequiredTypesProto2.prototype.defaultFixed64 = protoInt64.uParse("10123456789123456789");
+TestAllRequiredTypesProto2.prototype.defaultSfixed32 = -123456789;
+TestAllRequiredTypesProto2.prototype.defaultSfixed64 = protoInt64.parse("-9123456789123456789");
+TestAllRequiredTypesProto2.prototype.defaultFloat = 9000000000;
+TestAllRequiredTypesProto2.prototype.defaultDouble = 7e+22;
+TestAllRequiredTypesProto2.prototype.defaultBool = true;
+TestAllRequiredTypesProto2.prototype.defaultString = "Rosebud";
+TestAllRequiredTypesProto2.prototype.defaultBytes = new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]);
+
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum
  */
@@ -1779,7 +1814,7 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
   /**
    * @generated from field: required int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 corecursive = 2;
@@ -1821,6 +1856,8 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
   }
 }
 
+TestAllRequiredTypesProto2_NestedMessage.prototype.a = 0;
+
 /**
  * groups
  *
@@ -1830,12 +1867,12 @@ export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredType
   /**
    * @generated from field: required int32 group_int32 = 202;
    */
-  groupInt32?: number;
+  declare groupInt32: number;
 
   /**
    * @generated from field: required uint32 group_uint32 = 203;
    */
-  groupUint32?: number;
+  declare groupUint32: number;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_Data>) {
     super();
@@ -1865,6 +1902,9 @@ export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredType
     return proto2.util.equals(TestAllRequiredTypesProto2_Data, a, b);
   }
 }
+
+TestAllRequiredTypesProto2_Data.prototype.groupInt32 = 0;
+TestAllRequiredTypesProto2_Data.prototype.groupUint32 = 0;
 
 /**
  * message_set test case.
@@ -1906,7 +1946,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
   /**
    * @generated from field: required string str = 25;
    */
-  str?: string;
+  declare str: string;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1>) {
     super();
@@ -1936,6 +1976,8 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
   }
 }
 
+TestAllRequiredTypesProto2_MessageSetCorrectExtension1.prototype.str = "";
+
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
  */
@@ -1952,7 +1994,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
   /**
    * @generated from field: required int32 i = 9;
    */
-  i?: number;
+  declare i: number;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2>) {
     super();
@@ -1981,6 +2023,8 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
     return proto2.util.equals(TestAllRequiredTypesProto2_MessageSetCorrectExtension2, a, b);
   }
 }
+
+TestAllRequiredTypesProto2_MessageSetCorrectExtension2.prototype.i = 0;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;

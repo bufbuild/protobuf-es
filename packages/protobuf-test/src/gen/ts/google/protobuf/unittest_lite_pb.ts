@@ -1146,7 +1146,7 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
    * @generated from field: required int32 deprecated_field2 = 2 [deprecated = true];
    * @deprecated
    */
-  deprecatedField2?: number;
+  declare deprecatedField2: number;
 
   /**
    * @generated from field: optional string deprecated_field3 = 3 [deprecated = true];
@@ -1190,6 +1190,8 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
     return proto2.util.equals(TestDeprecatedLite, a, b);
   }
 }
+
+TestDeprecatedLite.prototype.deprecatedField2 = 0;
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -1607,7 +1609,7 @@ export class V1MessageLite extends Message<V1MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField?: number;
+  declare intField: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V1EnumLite enum_field = 2 [default = V1_FIRST];
@@ -1643,6 +1645,8 @@ export class V1MessageLite extends Message<V1MessageLite> {
   }
 }
 
+V1MessageLite.prototype.intField = 0;
+
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -1650,7 +1654,7 @@ export class V2MessageLite extends Message<V2MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField?: number;
+  declare intField: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V2EnumLite enum_field = 2 [default = V2_FIRST];
@@ -1685,6 +1689,8 @@ export class V2MessageLite extends Message<V2MessageLite> {
     return proto2.util.equals(V2MessageLite, a, b);
   }
 }
+
+V2MessageLite.prototype.intField = 0;
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite

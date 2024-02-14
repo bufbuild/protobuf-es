@@ -202,37 +202,37 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
   /**
    * @generated from field: required string string_field = 1;
    */
-  stringField?: string;
+  stringField: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2;
    */
-  bytesField?: Uint8Array;
+  bytesField: Uint8Array;
 
   /**
    * @generated from field: required int32 int32_field = 3;
    */
-  int32Field?: number;
+  int32Field: number;
 
   /**
    * @generated from field: required int64 int64_field = 4;
    */
-  int64Field?: bigint;
+  int64Field: bigint;
 
   /**
    * @generated from field: required float float_field = 5;
    */
-  floatField?: number;
+  floatField: number;
 
   /**
    * @generated from field: required bool bool_field = 6;
    */
-  boolField?: boolean;
+  boolField: boolean;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 7;
    */
-  enumField?: Proto2Enum;
+  enumField: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 8;
@@ -261,37 +261,37 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
   /**
    * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
    */
-  stringField?: string;
+  stringField: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  bytesField?: Uint8Array;
+  bytesField: Uint8Array;
 
   /**
    * @generated from field: required int32 int32_field = 3 [default = 128];
    */
-  int32Field?: number;
+  int32Field: number;
 
   /**
    * @generated from field: required int64 int64_field = 4 [default = -256];
    */
-  int64Field?: bigint;
+  int64Field: bigint;
 
   /**
    * @generated from field: required float float_field = 5 [default = -512.13];
    */
-  floatField?: number;
+  floatField: number;
 
   /**
    * @generated from field: required bool bool_field = 6 [default = true];
    */
-  boolField?: boolean;
+  boolField: boolean;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
-  enumField?: Proto2Enum;
+  enumField: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 8;

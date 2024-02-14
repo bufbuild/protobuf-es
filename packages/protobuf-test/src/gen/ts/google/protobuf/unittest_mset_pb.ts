@@ -278,7 +278,7 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
   /**
    * @generated from field: required int32 required_int = 36;
    */
-  requiredInt?: number;
+  declare requiredInt: number;
 
   constructor(data?: PartialMessage<TestMessageSetExtension3>) {
     super();
@@ -308,6 +308,8 @@ export class TestMessageSetExtension3 extends Message<TestMessageSetExtension3> 
     return proto2.util.equals(TestMessageSetExtension3, a, b);
   }
 }
+
+TestMessageSetExtension3.prototype.requiredInt = 0;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
@@ -364,12 +366,12 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   /**
    * @generated from field: required int32 type_id = 2;
    */
-  typeId?: number;
+  declare typeId: number;
 
   /**
    * @generated from field: required bytes message = 3;
    */
-  message?: Uint8Array;
+  declare message: Uint8Array;
 
   constructor(data?: PartialMessage<RawMessageSet_Item>) {
     super();
@@ -399,4 +401,7 @@ export class RawMessageSet_Item extends Message<RawMessageSet_Item> {
     return proto2.util.equals(RawMessageSet_Item, a, b);
   }
 }
+
+RawMessageSet_Item.prototype.typeId = 0;
+RawMessageSet_Item.prototype.message = new Uint8Array(0);
 

@@ -2582,12 +2582,12 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
   /**
    * @generated from field: required string name_part = 1;
    */
-  namePart?: string;
+  declare namePart: string;
 
   /**
    * @generated from field: required bool is_extension = 2;
    */
-  isExtension?: boolean;
+  declare isExtension: boolean;
 
   constructor(data?: PartialMessage<UninterpretedOption_NamePart>) {
     super();
@@ -2617,6 +2617,9 @@ export class UninterpretedOption_NamePart extends Message<UninterpretedOption_Na
     return proto2.util.equals(UninterpretedOption_NamePart, a, b);
   }
 }
+
+UninterpretedOption_NamePart.prototype.namePart = "";
+UninterpretedOption_NamePart.prototype.isExtension = false;
 
 /**
  * TODO Enums in C++ gencode (and potentially other languages) are

@@ -2068,12 +2068,12 @@ export declare class UninterpretedOption_NamePart extends Message<UninterpretedO
   /**
    * @generated from field: required string name_part = 1;
    */
-  namePart?: string;
+  namePart: string;
 
   /**
    * @generated from field: required bool is_extension = 2;
    */
-  isExtension?: boolean;
+  isExtension: boolean;
 
   constructor(data?: PartialMessage<UninterpretedOption_NamePart>);
 

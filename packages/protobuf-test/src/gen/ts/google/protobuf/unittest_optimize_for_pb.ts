@@ -113,7 +113,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   /**
    * @generated from field: required int32 x = 1;
    */
-  x?: number;
+  declare x: number;
 
   constructor(data?: PartialMessage<TestRequiredOptimizedForSize>) {
     super();
@@ -142,6 +142,8 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
     return proto2.util.equals(TestRequiredOptimizedForSize, a, b);
   }
 }
+
+TestRequiredOptimizedForSize.prototype.x = 0;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize

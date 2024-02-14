@@ -545,17 +545,17 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
   /**
    * @generated from field: required int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   /**
    * @generated from field: required int32 b = 2;
    */
-  b?: number;
+  declare b: number;
 
   /**
    * @generated from field: required int32 c = 3;
    */
-  c?: number;
+  declare c: number;
 
   constructor(data?: PartialMessage<TestRequiredLite>) {
     super();
@@ -586,6 +586,10 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
     return proto2.util.equals(TestRequiredLite, a, b);
   }
 }
+
+TestRequiredLite.prototype.a = 0;
+TestRequiredLite.prototype.b = 0;
+TestRequiredLite.prototype.c = 0;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;

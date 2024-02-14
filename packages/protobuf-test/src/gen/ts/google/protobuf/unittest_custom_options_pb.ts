@@ -1113,7 +1113,7 @@ export class OldOptionType extends Message<OldOptionType> {
   /**
    * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
    */
-  value?: OldOptionType_TestEnum;
+  declare value: OldOptionType_TestEnum;
 
   constructor(data?: PartialMessage<OldOptionType>) {
     super();
@@ -1143,6 +1143,8 @@ export class OldOptionType extends Message<OldOptionType> {
   }
 }
 
+OldOptionType.prototype.value = 0 as OldOptionType_TestEnum.OLD_VALUE;
+
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
  */
@@ -1166,7 +1168,7 @@ export class NewOptionType extends Message<NewOptionType> {
   /**
    * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
    */
-  value?: NewOptionType_TestEnum;
+  declare value: NewOptionType_TestEnum;
 
   constructor(data?: PartialMessage<NewOptionType>) {
     super();
@@ -1195,6 +1197,8 @@ export class NewOptionType extends Message<NewOptionType> {
     return proto2.util.equals(NewOptionType, a, b);
   }
 }
+
+NewOptionType.prototype.value = 0 as NewOptionType_TestEnum.OLD_VALUE;
 
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum

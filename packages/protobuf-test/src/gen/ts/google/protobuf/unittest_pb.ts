@@ -2384,7 +2384,7 @@ export class TestRequiredEnum extends Message<TestRequiredEnum> {
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum = 1;
    */
-  requiredEnum?: ForeignEnum;
+  declare requiredEnum: ForeignEnum;
 
   /**
    * A dummy optional field.
@@ -2422,6 +2422,8 @@ export class TestRequiredEnum extends Message<TestRequiredEnum> {
   }
 }
 
+TestRequiredEnum.prototype.requiredEnum = 4 as ForeignEnum.FOREIGN_FOO;
+
 /**
  * TestRequiredEnum + using enum values that won't fit to 64 bitmask.
  *
@@ -2431,7 +2433,7 @@ export class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMask> {
   /**
    * @generated from field: required protobuf_unittest.TestRequiredEnumNoMask.NestedEnum required_enum = 1;
    */
-  requiredEnum?: TestRequiredEnumNoMask_NestedEnum;
+  declare requiredEnum: TestRequiredEnumNoMask_NestedEnum;
 
   /**
    * A dummy optional field.
@@ -2468,6 +2470,8 @@ export class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMask> {
     return proto2.util.equals(TestRequiredEnumNoMask, a, b);
   }
 }
+
+TestRequiredEnumNoMask.prototype.requiredEnum = 0 as TestRequiredEnumNoMask_NestedEnum.UNSPECIFIED;
 
 /**
  * @generated from enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum
@@ -2513,7 +2517,7 @@ export class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
    *
    * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_4 = 4;
    */
-  requiredEnum4?: TestRequiredEnumMulti_NestedEnum;
+  declare requiredEnum4: TestRequiredEnumMulti_NestedEnum;
 
   /**
    * @generated from field: optional int32 a_3 = 3;
@@ -2523,12 +2527,12 @@ export class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
   /**
    * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
    */
-  requiredEnum2?: TestRequiredEnumMulti_NestedEnum;
+  declare requiredEnum2: TestRequiredEnumMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
    */
-  requiredEnum1?: ForeignEnum;
+  declare requiredEnum1: ForeignEnum;
 
   constructor(data?: PartialMessage<TestRequiredEnumMulti>) {
     super();
@@ -2560,6 +2564,10 @@ export class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti> {
     return proto2.util.equals(TestRequiredEnumMulti, a, b);
   }
 }
+
+TestRequiredEnumMulti.prototype.requiredEnum4 = 0 as TestRequiredEnumMulti_NestedEnum.UNSPECIFIED;
+TestRequiredEnumMulti.prototype.requiredEnum2 = 0 as TestRequiredEnumMulti_NestedEnum.UNSPECIFIED;
+TestRequiredEnumMulti.prototype.requiredEnum1 = 4 as ForeignEnum.FOREIGN_FOO;
 
 /**
  * @generated from enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum
@@ -2604,22 +2612,22 @@ export class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
    *
    * @generated from field: required fixed32 required_fixed32_80 = 80;
    */
-  requiredFixed3280?: number;
+  declare requiredFixed3280: number;
 
   /**
    * @generated from field: required fixed32 required_fixed32_70 = 70;
    */
-  requiredFixed3270?: number;
+  declare requiredFixed3270: number;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_64 = 64;
    */
-  requiredEnum64?: TestRequiredNoMaskMulti_NestedEnum;
+  declare requiredEnum64: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_4 = 4;
    */
-  requiredEnum4?: TestRequiredNoMaskMulti_NestedEnum;
+  declare requiredEnum4: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: optional int32 a_3 = 3;
@@ -2629,12 +2637,12 @@ export class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
    */
-  requiredEnum2?: TestRequiredNoMaskMulti_NestedEnum;
+  declare requiredEnum2: TestRequiredNoMaskMulti_NestedEnum;
 
   /**
    * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
    */
-  requiredEnum1?: ForeignEnum;
+  declare requiredEnum1: ForeignEnum;
 
   constructor(data?: PartialMessage<TestRequiredNoMaskMulti>) {
     super();
@@ -2669,6 +2677,13 @@ export class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskMulti> {
     return proto2.util.equals(TestRequiredNoMaskMulti, a, b);
   }
 }
+
+TestRequiredNoMaskMulti.prototype.requiredFixed3280 = 0;
+TestRequiredNoMaskMulti.prototype.requiredFixed3270 = 0;
+TestRequiredNoMaskMulti.prototype.requiredEnum64 = 0 as TestRequiredNoMaskMulti_NestedEnum.UNSPECIFIED;
+TestRequiredNoMaskMulti.prototype.requiredEnum4 = 0 as TestRequiredNoMaskMulti_NestedEnum.UNSPECIFIED;
+TestRequiredNoMaskMulti.prototype.requiredEnum2 = 0 as TestRequiredNoMaskMulti_NestedEnum.UNSPECIFIED;
+TestRequiredNoMaskMulti.prototype.requiredEnum1 = 4 as ForeignEnum.FOREIGN_FOO;
 
 /**
  * @generated from enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum
@@ -2715,7 +2730,7 @@ export class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   /**
    * @generated from field: optional int32 dummy2 = 2;
@@ -2725,7 +2740,7 @@ export class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 b = 3;
    */
-  b?: number;
+  declare b: number;
 
   /**
    * Pad the field count to 32 so that we can test that IsInitialized()
@@ -2878,7 +2893,7 @@ export class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: required int32 c = 33;
    */
-  c?: number;
+  declare c: number;
 
   /**
    * Add an optional child message to make this non-trivial for go/pdlazy.
@@ -2947,6 +2962,10 @@ export class TestRequired extends Message<TestRequired> {
     return proto2.util.equals(TestRequired, a, b);
   }
 }
+
+TestRequired.prototype.a = 0;
+TestRequired.prototype.b = 0;
+TestRequired.prototype.c = 0;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequired single = 1000;
@@ -3776,7 +3795,7 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
   /**
    * @generated from field: required int32 i = 2;
    */
-  i?: number;
+  declare i: number;
 
   constructor(data?: PartialMessage<TestIsInitialized_SubMessage_SubGroup>) {
     super();
@@ -3805,6 +3824,8 @@ export class TestIsInitialized_SubMessage_SubGroup extends Message<TestIsInitial
     return proto2.util.equals(TestIsInitialized_SubMessage_SubGroup, a, b);
   }
 }
+
+TestIsInitialized_SubMessage_SubGroup.prototype.i = 0;
 
 /**
  * Test that groups have disjoint field numbers from their siblings and
@@ -5959,7 +5980,7 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
   /**
    * @generated from field: required double required_double = 1;
    */
-  requiredDouble?: number;
+  declare requiredDouble: number;
 
   constructor(data?: PartialMessage<TestRequiredOneof_NestedMessage>) {
     super();
@@ -5988,6 +6009,8 @@ export class TestRequiredOneof_NestedMessage extends Message<TestRequiredOneof_N
     return proto2.util.equals(TestRequiredOneof_NestedMessage, a, b);
   }
 }
+
+TestRequiredOneof_NestedMessage.prototype.requiredDouble = 0;
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypes

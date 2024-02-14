@@ -89,7 +89,7 @@ export declare class TestRequiredOptimizedForSize extends Message<TestRequiredOp
   /**
    * @generated from field: required int32 x = 1;
    */
-  x?: number;
+  x: number;
 
   constructor(data?: PartialMessage<TestRequiredOptimizedForSize>);
 
