@@ -34,7 +34,10 @@ export function isFieldSet(
     case "scalar":
       if (field.opt || field.req) {
         // explicit presence
-        return target[localName] !== undefined;
+        return (
+          Object.prototype.hasOwnProperty.call(target, localName) &&
+          target[localName] !== undefined
+        );
       }
       // implicit presence
       if (field.kind == "enum") {
