@@ -16,6 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto2_pb.js";
 import * as JS from "./gen/js/extra/proto2_pb.js";
 import { describeMT } from "./helpers.js";
+import { toPlainMessage } from "@bufbuild/protobuf";
 import type { AnyMessage } from "@bufbuild/protobuf";
 import {
   BinaryReader,
@@ -62,6 +63,42 @@ describe("proto2 required fields", () => {
             expect(objectHasOwn(msg, field.localName)).toBeFalsy();
           },
         );
+      });
+      describe("as plain object", () => {
+        describe("toPlainMessage", () => {
+          test("retains initial field values", () => {
+            const plain = toPlainMessage(new messageType());
+            expect(plain.stringField).toBe("");
+            expect(plain.bytesField).toBeInstanceOf(Uint8Array);
+            expect(plain.bytesField.length).toBe(0);
+            expect(plain.int32Field).toBe(0);
+            expect(plain.int64Field).toBe(protoInt64.zero);
+            expect(plain.floatField).toBe(0);
+            expect(plain.boolField).toBe(false);
+            expect(plain.enumField).toBe(1);
+            expect(plain.messageField).toBeUndefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "field $name is an own property",
+            (field) => {
+              const msg = new messageType();
+              expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+            },
+          );
+        });
+        describe("object spread", () => {
+          test.each(messageType.fields.byNumber())(
+            "elides prototype property $name",
+            (field) => {
+              const spread = { ...new messageType() };
+              expect(spread[field.localName as keyof typeof spread]).toBe(
+                undefined,
+              );
+              expect(objectHasOwn(spread, field.localName)).toBe(false);
+              expect(field.localName in spread).toBe(false);
+            },
+          );
+        });
       });
       describe("parse", () => {
         describe("fromJson", () => {
