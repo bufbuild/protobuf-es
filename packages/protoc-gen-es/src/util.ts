@@ -12,18 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  codegenInfo,
-  DescEnumValue,
+import type {
   DescExtension,
   DescField,
-  FieldDescriptorProto_Label,
-  LongType,
-  ScalarType,
+  DescEnumValue,
   ScalarValue,
+} from "@bufbuild/protobuf";
+import {
+  codegenInfo,
+  FieldDescriptorProto_Label,
+  ScalarType,
+  LongType,
 } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
+
+/**
+ * Tells whether a field uses the prototype chain for field presence.
+ * Behavior must match with the counterpart in @bufbuild/protobuf.
+ */
+export function fieldUsesPrototype(field: DescField): field is DescField & {
+  fieldKind: "scalar" | "enum";
+  oneof: undefined;
+  repeated: false;
+} {
+  if (field.repeated || field.oneof) {
+    return false;
+  }
+  if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
+    return false;
+  }
+  return field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+}
 
 export function getFieldTypeInfo(field: DescField | DescExtension): {
   typing: Printable;
@@ -36,9 +56,7 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
   switch (field.fieldKind) {
     case "scalar":
       typing.push(scalarTypeScriptType(field.scalar, field.longType));
-      optional =
-        field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+      optional = field.optional;
       typingInferrableFromZeroValue = true;
       break;
     case "message": {
@@ -62,9 +80,7 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
         type: field.enum,
         typeOnly: true,
       });
-      optional =
-        field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+      optional = field.optional;
       typingInferrableFromZeroValue = true;
       break;
     case "map": {
