@@ -55,14 +55,31 @@ export const Proto3UnpackedMessage = proto3.makeMessageType(
 );
 
 /**
+ * @generated from message spec.Proto3UnspecifiedPackedMessage
+ */
+export const Proto3UnspecifiedPackedMessage = proto3.makeMessageType(
+  "spec.Proto3UnspecifiedPackedMessage",
+  () => [
+    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 2, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+  ],
+);
+
+/**
  * @generated from message spec.Proto3UnlabelledMessage
  */
 export const Proto3UnlabelledMessage = proto3.makeMessageType(
   "spec.Proto3UnlabelledMessage",
   () => [
-    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
-    { no: 2, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
-    { no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage },
   ],
 );
 
@@ -74,8 +91,12 @@ export const Proto3OptionalMessage = proto3.makeMessageType(
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 3, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
-    { no: 4, name: "message_field", kind: "message", T: Proto3OptionalMessage, opt: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage, opt: true },
   ],
 );
 
