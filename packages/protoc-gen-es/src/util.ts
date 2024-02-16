@@ -18,12 +18,7 @@ import type {
   DescEnumValue,
   ScalarValue,
 } from "@bufbuild/protobuf";
-import {
-  codegenInfo,
-  FieldDescriptorProto_Label,
-  ScalarType,
-  LongType,
-} from "@bufbuild/protobuf";
+import { codegenInfo, Edition, ScalarType, LongType } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
 
@@ -36,13 +31,17 @@ export function fieldUsesPrototype(field: DescField): field is DescField & {
   oneof: undefined;
   repeated: false;
 } {
+  if (field.parent.file.edition != Edition.EDITION_PROTO2) {
+    return false;
+  }
   if (field.repeated || field.oneof) {
     return false;
   }
   if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
     return false;
   }
-  return field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+  // proto2 singular scalar and enum fields use an initial value on the prototype chain
+  return true;
 }
 
 export function getFieldTypeInfo(field: DescField | DescExtension): {
