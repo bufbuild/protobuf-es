@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect } from "@jest/globals";
+import { describe, test, expect } from "@jest/globals";
+import { describeMT, testMT } from "./helpers.js";
+import { BoolValue, isFieldSet, protoInt64 } from "@bufbuild/protobuf";
+import { Proto2Enum } from "./gen/ts/extra/proto2_pb.js";
+import { Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import {
@@ -25,8 +29,12 @@ import {
 } from "./gen/js/extra/msg-scalar_pb.js";
 import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
-import { testMT } from "./helpers.js";
-import { BoolValue, protoInt64 } from "@bufbuild/protobuf";
+import { Proto2OptionalMessage as TS_Proto2OptionalMessage } from "./gen/ts/extra/proto2_pb.js";
+import { Proto2OptionalMessage as JS_Proto2OptionalMessage } from "./gen/js/extra/proto2_pb.js";
+import { Proto3UnlabelledMessage as TS_Proto3UnlabelledMessage } from "./gen/ts/extra/proto3_pb.js";
+import { Proto3UnlabelledMessage as JS_Proto3UnlabelledMessage } from "./gen/js/extra/proto3_pb.js";
+import { Proto3OptionalMessage as TS_Proto3OptionalMessage } from "./gen/ts/extra/proto3_pb.js";
+import { Proto3OptionalMessage as JS_Proto3OptionalMessage } from "./gen/js/extra/proto3_pb.js";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
@@ -146,4 +154,103 @@ describe("clone", function () {
     a.doubleValueField = 0.1;
     expect(b.doubleValueField).not.toBe(a.doubleValueField);
   });
+
+  describe("field presence", () => {
+    describeMT(
+      { ts: TS_Proto2OptionalMessage, js: JS_Proto2OptionalMessage },
+      (messageType) => {
+        test.each(messageType.fields.byNumber())(
+          "cloning set field $name retains presence",
+          (field) => {
+            const msg = new messageType({
+              stringField: "",
+              bytesField: new Uint8Array(),
+              int32Field: 0,
+              int64Field: protoInt64.zero,
+              floatField: 0,
+              boolField: false,
+              enumField: Proto2Enum.YES,
+              messageField: {},
+            });
+            expect(isFieldSet(msg, field)).toBe(true);
+            const clone = msg.clone();
+            expect(isFieldSet(clone, field)).toBe(true);
+          },
+        );
+        test.each(messageType.fields.byNumber())(
+          "cloning unset field $name retains presence",
+          (field) => {
+            const msg = new messageType();
+            expect(isFieldSet(msg, field)).toBe(false);
+            const clone = msg.clone();
+            expect(isFieldSet(clone, field)).toBe(false);
+          },
+        );
+      },
+    );
+  });
+  describeMT(
+    { ts: TS_Proto3OptionalMessage, js: JS_Proto3OptionalMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())(
+        "cloning set field $name retains presence",
+        (field) => {
+          const msg = new messageType({
+            stringField: "test",
+            bytesField: new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+            int32Field: 1236,
+            int64Field: protoInt64.parse("123456"),
+            floatField: 3.13,
+            boolField: true,
+            enumField: Proto3Enum.YES,
+            messageField: {},
+          });
+          expect(isFieldSet(msg, field)).toBe(true);
+          const clone = msg.clone();
+          expect(isFieldSet(clone, field)).toBe(true);
+        },
+      );
+      test.each(messageType.fields.byNumber())(
+        "cloning unset field $name retains presence",
+        (field) => {
+          const msg = new messageType();
+          expect(isFieldSet(msg, field)).toBe(false);
+          const clone = msg.clone();
+          expect(isFieldSet(clone, field)).toBe(false);
+        },
+      );
+    },
+  );
+  describeMT(
+    { ts: TS_Proto3UnlabelledMessage, js: JS_Proto3UnlabelledMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())(
+        "cloning set field $name retains presence",
+        (field) => {
+          const msg = new messageType({
+            stringField: "test",
+            bytesField: new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+            int32Field: 1236,
+            int64Field: protoInt64.parse("123456"),
+            floatField: 3.13,
+            boolField: true,
+            enumField: Proto3Enum.YES,
+            messageField: {},
+          });
+          expect(isFieldSet(msg, field)).toBe(true);
+          const clone = msg.clone();
+          expect(isFieldSet(clone, field)).toBe(true);
+        },
+      );
+      test.each(messageType.fields.byNumber())(
+        "cloning unset field $name retains presence",
+        (field) => {
+          const msg = new messageType();
+          expect(isFieldSet(msg, field)).toBe(false);
+          const clone = msg.clone();
+          expect(isFieldSet(clone, field)).toBe(false);
+        },
+      );
+    },
+  );
 });
