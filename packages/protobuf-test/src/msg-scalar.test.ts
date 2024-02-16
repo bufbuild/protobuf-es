@@ -13,23 +13,18 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import {
-  RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
-  ScalarValuesMessage as TS_ScalarValuesMessage,
-} from "./gen/ts/extra/msg-scalar_pb.js";
-import {
-  RepeatedScalarValuesMessage as JS_RepeatedScalarValuesMessage,
-  ScalarValuesMessage as JS_ScalarValuesMessage,
-} from "./gen/js/extra/msg-scalar_pb.js";
+import * as TS from "./gen/ts/extra/msg-scalar_pb.js";
+import * as JS from "./gen/js/extra/msg-scalar_pb.js";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
+import { clearField, isFieldSet } from "@bufbuild/protobuf";
 import { protoInt64, ScalarType } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 
 describeMT(
-  { ts: TS_ScalarValuesMessage, js: JS_ScalarValuesMessage },
+  { ts: TS.ScalarValuesMessage, js: JS.ScalarValuesMessage },
   (messageType) => {
     const defaultFields: PlainMessage<
-      TS_ScalarValuesMessage | JS_ScalarValuesMessage
+      TS.ScalarValuesMessage | JS.ScalarValuesMessage
     > = {
       doubleField: 0,
       floatField: 0,
@@ -49,7 +44,7 @@ describeMT(
     };
     const defaultJson: JsonValue = {};
     const exampleFields: PlainMessage<
-      TS_ScalarValuesMessage | JS_ScalarValuesMessage
+      TS.ScalarValuesMessage | JS.ScalarValuesMessage
     > = {
       doubleField: 0.75,
       floatField: -0.75,
@@ -143,10 +138,10 @@ describeMT(
 );
 
 describeMT(
-  { ts: TS_RepeatedScalarValuesMessage, js: JS_RepeatedScalarValuesMessage },
+  { ts: TS.RepeatedScalarValuesMessage, js: JS.RepeatedScalarValuesMessage },
   (messageType) => {
     const defaultFields: PlainMessage<
-      TS_RepeatedScalarValuesMessage | JS_RepeatedScalarValuesMessage
+      TS.RepeatedScalarValuesMessage | JS.RepeatedScalarValuesMessage
     > = {
       doubleField: [],
       floatField: [],
@@ -166,7 +161,7 @@ describeMT(
     };
     const defaultJson: JsonValue = {};
     const exampleFields: PlainMessage<
-      TS_RepeatedScalarValuesMessage | JS_RepeatedScalarValuesMessage
+      TS.RepeatedScalarValuesMessage | JS.RepeatedScalarValuesMessage
     > = {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
@@ -242,6 +237,31 @@ describeMT(
       expect(got).toStrictEqual({
         ...defaultFields,
         bytesField: [new Uint8Array(bytes)],
+      });
+    });
+    describe("isFieldSet()", () => {
+      // singular fields are covered in proto3.test.ts
+      test("returns false for repeated field", () => {
+        const msg = new messageType({
+          doubleField: [],
+        });
+        expect(isFieldSet(msg, "doubleField")).toBe(false);
+      });
+      test("returns true for non-empty repeated field", () => {
+        const msg = new messageType({
+          doubleField: [3.14],
+        });
+        expect(isFieldSet(msg, "doubleField")).toBe(true);
+      });
+    });
+    describe("clearField()", () => {
+      // singular fields are covered in proto3.test.ts
+      test("clears repeated field", () => {
+        const msg = new messageType({
+          doubleField: [3.14],
+        });
+        clearField(msg, "doubleField");
+        expect(msg.doubleField.length).toBe(0);
       });
     });
     describe("field info", () => {
