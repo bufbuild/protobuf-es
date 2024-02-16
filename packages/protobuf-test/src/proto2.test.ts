@@ -129,9 +129,7 @@ describe("proto2 required fields", () => {
             "field $name is an own property",
             (field) => {
               const msg = new messageType();
-              expect(
-                Object.prototype.hasOwnProperty.call(msg, field.localName),
-              ).toBeFalsy();
+              expect(isFieldSet(msg, field)).toBeFalsy();
             },
           );
         });
@@ -143,9 +141,6 @@ describe("proto2 required fields", () => {
               expect(spread[field.localName as keyof typeof spread]).toBe(
                 undefined,
               );
-              expect(
-                Object.prototype.hasOwnProperty.call(spread, field.localName),
-              ).toBeFalsy();
               expect(field.localName in spread).toBe(false);
             },
           );
