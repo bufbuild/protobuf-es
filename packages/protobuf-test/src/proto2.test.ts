@@ -311,13 +311,14 @@ describe("proto2 optional fields", () => {
       describe("initially", () => {
         test("has expected properties", () => {
           const msg = new messageType();
-          expect(msg.stringField).toBeUndefined();
-          expect(msg.bytesField).toBeUndefined();
-          expect(msg.int32Field).toBeUndefined();
-          expect(msg.int64Field).toBeUndefined();
-          expect(msg.floatField).toBeUndefined();
-          expect(msg.boolField).toBeUndefined();
-          expect(msg.enumField).toBeUndefined();
+          expect(msg.stringField).toBe("");
+          expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+          expect(msg.bytesField.length).toBe(0);
+          expect(msg.int32Field).toBe(0);
+          expect(msg.int64Field).toBe(protoInt64.zero);
+          expect(msg.floatField).toBe(0);
+          expect(msg.boolField).toBe(false);
+          expect(msg.enumField).toBe(1);
           expect(msg.messageField).toBeUndefined();
         });
         test.each(messageType.fields.byNumber())(
@@ -397,13 +398,14 @@ describe("proto2 optional fields", () => {
         describe("initially", () => {
           test("has expected properties", () => {
             const msg = new messageType();
-            expect(msg.stringField).toBeUndefined();
-            expect(msg.bytesField).toBeUndefined();
-            expect(msg.int32Field).toBeUndefined();
-            expect(msg.int64Field).toBeUndefined();
-            expect(msg.floatField).toBeUndefined();
-            expect(msg.boolField).toBeUndefined();
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.stringField).toBe('hello " */ ');
+            expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+            expect(msg.bytesField.length).toBe(17);
+            expect(msg.int32Field).toBe(128);
+            expect(msg.int64Field).toBe(protoInt64.parse(-256));
+            expect(msg.floatField).toBe(-512.13);
+            expect(msg.boolField).toBe(true);
+            expect(msg.enumField).toBe(TS.Proto2Enum.YES);
             expect(msg.messageField).toBeUndefined();
           });
           test.each(messageType.fields.byNumber())(
