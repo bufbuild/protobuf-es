@@ -666,77 +666,77 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  optionalInt32?: number;
+  optionalInt32: number;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  optionalInt64?: bigint;
+  optionalInt64: bigint;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  optionalUint32?: number;
+  optionalUint32: number;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  optionalUint64?: bigint;
+  optionalUint64: bigint;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  optionalSint32?: number;
+  optionalSint32: number;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  optionalSint64?: bigint;
+  optionalSint64: bigint;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  optionalFixed32?: number;
+  optionalFixed32: number;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  optionalFixed64?: bigint;
+  optionalFixed64: bigint;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  optionalSfixed32?: number;
+  optionalSfixed32: number;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  optionalSfixed64?: bigint;
+  optionalSfixed64: bigint;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  optionalFloat?: number;
+  optionalFloat: number;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  optionalDouble?: number;
+  optionalDouble: number;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  optionalBool?: boolean;
+  optionalBool: boolean;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  optionalString?: string;
+  optionalString: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.OptionalGroup optionalgroup = 16;
@@ -761,27 +761,27 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
    */
-  optionalNestedEnum?: TestAllTypes_NestedEnum;
+  optionalNestedEnum: TestAllTypes_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum optional_foreign_enum = 22;
    */
-  optionalForeignEnum?: ForeignEnum;
+  optionalForeignEnum: ForeignEnum;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnum optional_import_enum = 23;
    */
-  optionalImportEnum?: ImportEnum;
+  optionalImportEnum: ImportEnum;
 
   /**
    * @generated from field: optional string optional_string_piece = 24;
    */
-  optionalStringPiece?: string;
+  optionalStringPiece: string;
 
   /**
    * @generated from field: optional string optional_cord = 25;
    */
-  optionalCord?: string;
+  optionalCord: string;
 
   /**
    * Defined in unittest_import_public.proto
@@ -932,102 +932,102 @@ export declare class TestAllTypes extends Message<TestAllTypes> {
    *
    * @generated from field: optional int32 default_int32 = 61 [default = 41];
    */
-  defaultInt32?: number;
+  defaultInt32: number;
 
   /**
    * @generated from field: optional int64 default_int64 = 62 [default = 42];
    */
-  defaultInt64?: bigint;
+  defaultInt64: bigint;
 
   /**
    * @generated from field: optional uint32 default_uint32 = 63 [default = 43];
    */
-  defaultUint32?: number;
+  defaultUint32: number;
 
   /**
    * @generated from field: optional uint64 default_uint64 = 64 [default = 44];
    */
-  defaultUint64?: bigint;
+  defaultUint64: bigint;
 
   /**
    * @generated from field: optional sint32 default_sint32 = 65 [default = -45];
    */
-  defaultSint32?: number;
+  defaultSint32: number;
 
   /**
    * @generated from field: optional sint64 default_sint64 = 66 [default = 46];
    */
-  defaultSint64?: bigint;
+  defaultSint64: bigint;
 
   /**
    * @generated from field: optional fixed32 default_fixed32 = 67 [default = 47];
    */
-  defaultFixed32?: number;
+  defaultFixed32: number;
 
   /**
    * @generated from field: optional fixed64 default_fixed64 = 68 [default = 48];
    */
-  defaultFixed64?: bigint;
+  defaultFixed64: bigint;
 
   /**
    * @generated from field: optional sfixed32 default_sfixed32 = 69 [default = 49];
    */
-  defaultSfixed32?: number;
+  defaultSfixed32: number;
 
   /**
    * @generated from field: optional sfixed64 default_sfixed64 = 70 [default = -50];
    */
-  defaultSfixed64?: bigint;
+  defaultSfixed64: bigint;
 
   /**
    * @generated from field: optional float default_float = 71 [default = 51.5];
    */
-  defaultFloat?: number;
+  defaultFloat: number;
 
   /**
    * @generated from field: optional double default_double = 72 [default = 52000];
    */
-  defaultDouble?: number;
+  defaultDouble: number;
 
   /**
    * @generated from field: optional bool default_bool = 73 [default = true];
    */
-  defaultBool?: boolean;
+  defaultBool: boolean;
 
   /**
    * @generated from field: optional string default_string = 74 [default = "hello"];
    */
-  defaultString?: string;
+  defaultString: string;
 
   /**
    * @generated from field: optional bytes default_bytes = 75 [default = "world"];
    */
-  defaultBytes?: Uint8Array;
+  defaultBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes.NestedEnum default_nested_enum = 81 [default = BAR];
    */
-  defaultNestedEnum?: TestAllTypes_NestedEnum;
+  defaultNestedEnum: TestAllTypes_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum default_foreign_enum = 82 [default = FOREIGN_BAR];
    */
-  defaultForeignEnum?: ForeignEnum;
+  defaultForeignEnum: ForeignEnum;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnum default_import_enum = 83 [default = IMPORT_BAR];
    */
-  defaultImportEnum?: ImportEnum;
+  defaultImportEnum: ImportEnum;
 
   /**
    * @generated from field: optional string default_string_piece = 84 [default = "abc"];
    */
-  defaultStringPiece?: string;
+  defaultStringPiece: string;
 
   /**
    * @generated from field: optional string default_cord = 85 [default = "123"];
    */
-  defaultCord?: string;
+  defaultCord: string;
 
   /**
    * For oneof test
@@ -1131,7 +1131,7 @@ export declare class TestAllTypes_NestedMessage extends Message<TestAllTypes_Nes
    *
    * @generated from field: optional int32 bb = 1;
    */
-  bb?: number;
+  bb: number;
 
   constructor(data?: PartialMessage<TestAllTypes_NestedMessage>);
 
@@ -1155,7 +1155,7 @@ export declare class TestAllTypes_OptionalGroup extends Message<TestAllTypes_Opt
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestAllTypes_OptionalGroup>);
 
@@ -1179,7 +1179,7 @@ export declare class TestAllTypes_RepeatedGroup extends Message<TestAllTypes_Rep
   /**
    * @generated from field: optional int32 a = 47;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestAllTypes_RepeatedGroup>);
 
@@ -1250,7 +1250,7 @@ export declare class TestDeprecatedFields extends Message<TestDeprecatedFields> 
    * @generated from field: optional int32 deprecated_int32 = 1 [deprecated = true];
    * @deprecated
    */
-  deprecatedInt32?: number;
+  deprecatedInt32: number;
 
   /**
    * @generated from field: repeated string deprecated_repeated_string = 4 [deprecated = true];
@@ -1326,12 +1326,12 @@ export declare class ForeignMessage extends Message<ForeignMessage> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c?: number;
+  c: number;
 
   /**
    * @generated from field: optional int32 d = 2;
    */
-  d?: number;
+  d: number;
 
   constructor(data?: PartialMessage<ForeignMessage>);
 
@@ -1393,7 +1393,7 @@ export declare class OptionalGroup_extension extends Message<OptionalGroup_exten
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<OptionalGroup_extension>);
 
@@ -1417,7 +1417,7 @@ export declare class RepeatedGroup_extension extends Message<RepeatedGroup_exten
   /**
    * @generated from field: optional int32 a = 47;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<RepeatedGroup_extension>);
 
@@ -1441,7 +1441,7 @@ export declare class TestMixedFieldsAndExtensions extends Message<TestMixedField
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: repeated fixed32 b = 3;
@@ -1485,7 +1485,7 @@ export declare class TestGroup extends Message<TestGroup> {
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum optional_foreign_enum = 22;
    */
-  optionalForeignEnum?: ForeignEnum;
+  optionalForeignEnum: ForeignEnum;
 
   constructor(data?: PartialMessage<TestGroup>);
 
@@ -1509,14 +1509,14 @@ export declare class TestGroup_OptionalGroup extends Message<TestGroup_OptionalG
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   /**
    * fast table size must be at least 16, for this
    *
    * @generated from field: optional int32 zz = 89;
    */
-  zz?: number;
+  zz: number;
 
   constructor(data?: PartialMessage<TestGroup_OptionalGroup>);
 
@@ -1578,7 +1578,7 @@ export declare class TestNestedExtension_OptionalGroup_extension extends Message
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestNestedExtension_OptionalGroup_extension>);
 
@@ -1628,12 +1628,12 @@ export declare class TestChildExtension extends Message<TestChildExtension> {
   /**
    * @generated from field: optional string a = 1;
    */
-  a?: string;
+  a: string;
 
   /**
    * @generated from field: optional string b = 2;
    */
-  b?: string;
+  b: string;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllExtensions optional_extension = 3;
@@ -1665,12 +1665,12 @@ export declare class TestChildExtensionData extends Message<TestChildExtensionDa
   /**
    * @generated from field: optional string a = 1;
    */
-  a?: string;
+  a: string;
 
   /**
    * @generated from field: optional string b = 2;
    */
-  b?: string;
+  b: string;
 
   /**
    * @generated from field: optional protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData optional_extension = 3;
@@ -1723,12 +1723,12 @@ export declare class TestChildExtensionData_NestedTestAllExtensionsData_NestedDy
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional int32 b = 2;
    */
-  b?: number;
+  b: number;
 
   constructor(data?: PartialMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions>);
 
@@ -1752,7 +1752,7 @@ export declare class TestNestedChildExtension extends Message<TestNestedChildExt
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestChildExtension child = 2;
@@ -1784,7 +1784,7 @@ export declare class TestNestedChildExtensionData extends Message<TestNestedChil
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestChildExtensionData child = 2;
@@ -1823,7 +1823,7 @@ export declare class TestRequiredEnum extends Message<TestRequiredEnum> {
    *
    * @generated from field: optional int32 a = 2;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestRequiredEnum>);
 
@@ -1856,7 +1856,7 @@ export declare class TestRequiredEnumNoMask extends Message<TestRequiredEnumNoMa
    *
    * @generated from field: optional int32 a = 2;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestRequiredEnumNoMask>);
 
@@ -1915,7 +1915,7 @@ export declare class TestRequiredEnumMulti extends Message<TestRequiredEnumMulti
   /**
    * @generated from field: optional int32 a_3 = 3;
    */
-  a3?: number;
+  a3: number;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
@@ -1998,7 +1998,7 @@ export declare class TestRequiredNoMaskMulti extends Message<TestRequiredNoMaskM
   /**
    * @generated from field: optional int32 a_3 = 3;
    */
-  a3?: number;
+  a3: number;
 
   /**
    * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
@@ -2068,7 +2068,7 @@ export declare class TestRequired extends Message<TestRequired> {
   /**
    * @generated from field: optional int32 dummy2 = 2;
    */
-  dummy2?: number;
+  dummy2: number;
 
   /**
    * @generated from field: required int32 b = 3;
@@ -2081,147 +2081,147 @@ export declare class TestRequired extends Message<TestRequired> {
    *
    * @generated from field: optional int32 dummy4 = 4;
    */
-  dummy4?: number;
+  dummy4: number;
 
   /**
    * @generated from field: optional int32 dummy5 = 5;
    */
-  dummy5?: number;
+  dummy5: number;
 
   /**
    * @generated from field: optional int32 dummy6 = 6;
    */
-  dummy6?: number;
+  dummy6: number;
 
   /**
    * @generated from field: optional int32 dummy7 = 7;
    */
-  dummy7?: number;
+  dummy7: number;
 
   /**
    * @generated from field: optional int32 dummy8 = 8;
    */
-  dummy8?: number;
+  dummy8: number;
 
   /**
    * @generated from field: optional int32 dummy9 = 9;
    */
-  dummy9?: number;
+  dummy9: number;
 
   /**
    * @generated from field: optional int32 dummy10 = 10;
    */
-  dummy10?: number;
+  dummy10: number;
 
   /**
    * @generated from field: optional int32 dummy11 = 11;
    */
-  dummy11?: number;
+  dummy11: number;
 
   /**
    * @generated from field: optional int32 dummy12 = 12;
    */
-  dummy12?: number;
+  dummy12: number;
 
   /**
    * @generated from field: optional int32 dummy13 = 13;
    */
-  dummy13?: number;
+  dummy13: number;
 
   /**
    * @generated from field: optional int32 dummy14 = 14;
    */
-  dummy14?: number;
+  dummy14: number;
 
   /**
    * @generated from field: optional int32 dummy15 = 15;
    */
-  dummy15?: number;
+  dummy15: number;
 
   /**
    * @generated from field: optional int32 dummy16 = 16;
    */
-  dummy16?: number;
+  dummy16: number;
 
   /**
    * @generated from field: optional int32 dummy17 = 17;
    */
-  dummy17?: number;
+  dummy17: number;
 
   /**
    * @generated from field: optional int32 dummy18 = 18;
    */
-  dummy18?: number;
+  dummy18: number;
 
   /**
    * @generated from field: optional int32 dummy19 = 19;
    */
-  dummy19?: number;
+  dummy19: number;
 
   /**
    * @generated from field: optional int32 dummy20 = 20;
    */
-  dummy20?: number;
+  dummy20: number;
 
   /**
    * @generated from field: optional int32 dummy21 = 21;
    */
-  dummy21?: number;
+  dummy21: number;
 
   /**
    * @generated from field: optional int32 dummy22 = 22;
    */
-  dummy22?: number;
+  dummy22: number;
 
   /**
    * @generated from field: optional int32 dummy23 = 23;
    */
-  dummy23?: number;
+  dummy23: number;
 
   /**
    * @generated from field: optional int32 dummy24 = 24;
    */
-  dummy24?: number;
+  dummy24: number;
 
   /**
    * @generated from field: optional int32 dummy25 = 25;
    */
-  dummy25?: number;
+  dummy25: number;
 
   /**
    * @generated from field: optional int32 dummy26 = 26;
    */
-  dummy26?: number;
+  dummy26: number;
 
   /**
    * @generated from field: optional int32 dummy27 = 27;
    */
-  dummy27?: number;
+  dummy27: number;
 
   /**
    * @generated from field: optional int32 dummy28 = 28;
    */
-  dummy28?: number;
+  dummy28: number;
 
   /**
    * @generated from field: optional int32 dummy29 = 29;
    */
-  dummy29?: number;
+  dummy29: number;
 
   /**
    * @generated from field: optional int32 dummy30 = 30;
    */
-  dummy30?: number;
+  dummy30: number;
 
   /**
    * @generated from field: optional int32 dummy31 = 31;
    */
-  dummy31?: number;
+  dummy31: number;
 
   /**
    * @generated from field: optional int32 dummy32 = 32;
    */
-  dummy32?: number;
+  dummy32: number;
 
   /**
    * @generated from field: required int32 c = 33;
@@ -2277,7 +2277,7 @@ export declare class TestRequiredForeign extends Message<TestRequiredForeign> {
   /**
    * @generated from field: optional int32 dummy = 3;
    */
-  dummy?: number;
+  dummy: number;
 
   /**
    * Missing required fields must not affect verification of child messages.
@@ -2352,7 +2352,7 @@ export declare class TestNestedRequiredForeign extends Message<TestNestedRequire
   /**
    * @generated from field: optional int32 dummy = 3;
    */
-  dummy?: number;
+  dummy: number;
 
   /**
    * optional message to test required closed enum.
@@ -2488,7 +2488,7 @@ export declare class TestPickleNestedMessage_NestedMessage extends Message<TestP
   /**
    * @generated from field: optional int32 bb = 1;
    */
-  bb?: number;
+  bb: number;
 
   constructor(data?: PartialMessage<TestPickleNestedMessage_NestedMessage>);
 
@@ -2512,7 +2512,7 @@ export declare class TestPickleNestedMessage_NestedMessage_NestedNestedMessage e
   /**
    * @generated from field: optional int32 cc = 1;
    */
-  cc?: number;
+  cc: number;
 
   constructor(data?: PartialMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage>);
 
@@ -2560,12 +2560,12 @@ export declare class TestReallyLargeTagNumber extends Message<TestReallyLargeTag
    *
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional int32 bb = 268435455;
    */
-  bb?: number;
+  bb: number;
 
   constructor(data?: PartialMessage<TestReallyLargeTagNumber>);
 
@@ -2594,7 +2594,7 @@ export declare class TestRecursiveMessage extends Message<TestRecursiveMessage> 
   /**
    * @generated from field: optional int32 i = 2;
    */
-  i?: number;
+  i: number;
 
   constructor(data?: PartialMessage<TestRecursiveMessage>);
 
@@ -2738,7 +2738,7 @@ export declare class TestMutualRecursionB extends Message<TestMutualRecursionB> 
   /**
    * @generated from field: optional int32 optional_int32 = 2;
    */
-  optionalInt32?: number;
+  optionalInt32: number;
 
   constructor(data?: PartialMessage<TestMutualRecursionB>);
 
@@ -2843,7 +2843,7 @@ export declare class TestDupFieldNumber extends Message<TestDupFieldNumber> {
    *
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestDupFieldNumber.Foo foo = 2;
@@ -2877,7 +2877,7 @@ export declare class TestDupFieldNumber_Foo extends Message<TestDupFieldNumber_F
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestDupFieldNumber_Foo>);
 
@@ -2901,7 +2901,7 @@ export declare class TestDupFieldNumber_Bar extends Message<TestDupFieldNumber_B
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestDupFieldNumber_Bar>);
 
@@ -3115,17 +3115,17 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
   /**
    * @generated from field: optional int32 PrimitiveField = 1;
    */
-  PrimitiveField?: number;
+  PrimitiveField: number;
 
   /**
    * @generated from field: optional string StringField = 2;
    */
-  StringField?: string;
+  StringField: string;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum EnumField = 3;
    */
-  EnumField?: ForeignEnum;
+  EnumField: ForeignEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage MessageField = 4;
@@ -3135,12 +3135,12 @@ export declare class TestCamelCaseFieldNames extends Message<TestCamelCaseFieldN
   /**
    * @generated from field: optional string StringPieceField = 5;
    */
-  StringPieceField?: string;
+  StringPieceField: string;
 
   /**
    * @generated from field: optional string CordField = 6;
    */
-  CordField?: string;
+  CordField: string;
 
   /**
    * @generated from field: repeated int32 RepeatedPrimitiveField = 7;
@@ -3197,17 +3197,17 @@ export declare class TestFieldOrderings extends Message<TestFieldOrderings> {
   /**
    * @generated from field: optional string my_string = 11;
    */
-  myString?: string;
+  myString: string;
 
   /**
    * @generated from field: optional int64 my_int = 1;
    */
-  myInt?: bigint;
+  myInt: bigint;
 
   /**
    * @generated from field: optional float my_float = 101;
    */
-  myFloat?: number;
+  myFloat: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestFieldOrderings.NestedMessage optional_nested_message = 200;
@@ -3236,7 +3236,7 @@ export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldO
   /**
    * @generated from field: optional int64 oo = 2;
    */
-  oo?: bigint;
+  oo: bigint;
 
   /**
    * The field name "b" fails to compile in proto1 because it conflicts with
@@ -3245,7 +3245,7 @@ export declare class TestFieldOrderings_NestedMessage extends Message<TestFieldO
    *
    * @generated from field: optional int32 bb = 1;
    */
-  bb?: number;
+  bb: number;
 
   constructor(data?: PartialMessage<TestFieldOrderings_NestedMessage>);
 
@@ -3269,7 +3269,7 @@ export declare class TestExtensionOrderings1 extends Message<TestExtensionOrderi
   /**
    * @generated from field: optional string my_string = 1;
    */
-  myString?: string;
+  myString: string;
 
   constructor(data?: PartialMessage<TestExtensionOrderings1>);
 
@@ -3298,7 +3298,7 @@ export declare class TestExtensionOrderings2 extends Message<TestExtensionOrderi
   /**
    * @generated from field: optional string my_string = 1;
    */
-  myString?: string;
+  myString: string;
 
   constructor(data?: PartialMessage<TestExtensionOrderings2>);
 
@@ -3322,7 +3322,7 @@ export declare class TestExtensionOrderings2_TestExtensionOrderings3 extends Mes
   /**
    * @generated from field: optional string my_string = 1;
    */
-  myString?: string;
+  myString: string;
 
   constructor(data?: PartialMessage<TestExtensionOrderings2_TestExtensionOrderings3>);
 
@@ -3356,37 +3356,37 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
   /**
    * @generated from field: optional bytes escaped_bytes = 1 [default = "\000\001\007\010\014\n\r\t\013\\\'\\"\376"];
    */
-  escapedBytes?: Uint8Array;
+  escapedBytes: Uint8Array;
 
   /**
    * @generated from field: optional uint32 large_uint32 = 2 [default = 4294967295];
    */
-  largeUint32?: number;
+  largeUint32: number;
 
   /**
    * @generated from field: optional uint64 large_uint64 = 3 [default = 18446744073709551615];
    */
-  largeUint64?: bigint;
+  largeUint64: bigint;
 
   /**
    * @generated from field: optional int32 small_int32 = 4 [default = -2147483647];
    */
-  smallInt32?: number;
+  smallInt32: number;
 
   /**
    * @generated from field: optional int64 small_int64 = 5 [default = -9223372036854775807];
    */
-  smallInt64?: bigint;
+  smallInt64: bigint;
 
   /**
    * @generated from field: optional int32 really_small_int32 = 21 [default = -2147483648];
    */
-  reallySmallInt32?: number;
+  reallySmallInt32: number;
 
   /**
    * @generated from field: optional int64 really_small_int64 = 22 [default = -9223372036854775808];
    */
-  reallySmallInt64?: bigint;
+  reallySmallInt64: bigint;
 
   /**
    * The default value here is UTF-8 for "\u1234".  (We could also just type
@@ -3395,78 +3395,78 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
    *
    * @generated from field: optional string utf8_string = 6 [default = "ሴ"];
    */
-  utf8String?: string;
+  utf8String: string;
 
   /**
    * Tests for single-precision floating-point values.
    *
    * @generated from field: optional float zero_float = 7 [default = 0];
    */
-  zeroFloat?: number;
+  zeroFloat: number;
 
   /**
    * @generated from field: optional float one_float = 8 [default = 1];
    */
-  oneFloat?: number;
+  oneFloat: number;
 
   /**
    * @generated from field: optional float small_float = 9 [default = 1.5];
    */
-  smallFloat?: number;
+  smallFloat: number;
 
   /**
    * @generated from field: optional float negative_one_float = 10 [default = -1];
    */
-  negativeOneFloat?: number;
+  negativeOneFloat: number;
 
   /**
    * @generated from field: optional float negative_float = 11 [default = -1.5];
    */
-  negativeFloat?: number;
+  negativeFloat: number;
 
   /**
    * Using exponents
    *
    * @generated from field: optional float large_float = 12 [default = 2e+08];
    */
-  largeFloat?: number;
+  largeFloat: number;
 
   /**
    * @generated from field: optional float small_negative_float = 13 [default = -8e-28];
    */
-  smallNegativeFloat?: number;
+  smallNegativeFloat: number;
 
   /**
    * Text for nonfinite floating-point values.
    *
    * @generated from field: optional double inf_double = 14 [default = inf];
    */
-  infDouble?: number;
+  infDouble: number;
 
   /**
    * @generated from field: optional double neg_inf_double = 15 [default = -inf];
    */
-  negInfDouble?: number;
+  negInfDouble: number;
 
   /**
    * @generated from field: optional double nan_double = 16 [default = nan];
    */
-  nanDouble?: number;
+  nanDouble: number;
 
   /**
    * @generated from field: optional float inf_float = 17 [default = inf];
    */
-  infFloat?: number;
+  infFloat: number;
 
   /**
    * @generated from field: optional float neg_inf_float = 18 [default = -inf];
    */
-  negInfFloat?: number;
+  negInfFloat: number;
 
   /**
    * @generated from field: optional float nan_float = 19 [default = nan];
    */
-  nanFloat?: number;
+  nanFloat: number;
 
   /**
    * Tests for C++ trigraphs.
@@ -3477,34 +3477,34 @@ export declare class TestExtremeDefaultValues extends Message<TestExtremeDefault
    *
    * @generated from field: optional string cpp_trigraph = 20 [default = "? ? ?? ?? ??? ??/ ??-"];
    */
-  cppTrigraph?: string;
+  cppTrigraph: string;
 
   /**
    * String defaults containing the character '\000'
    *
    * @generated from field: optional string string_with_zero = 23 [default = "hel lo"];
    */
-  stringWithZero?: string;
+  stringWithZero: string;
 
   /**
    * @generated from field: optional bytes bytes_with_zero = 24 [default = "wor\000ld"];
    */
-  bytesWithZero?: Uint8Array;
+  bytesWithZero: Uint8Array;
 
   /**
    * @generated from field: optional string string_piece_with_zero = 25 [default = "ab c"];
    */
-  stringPieceWithZero?: string;
+  stringPieceWithZero: string;
 
   /**
    * @generated from field: optional string cord_with_zero = 26 [default = "12 3"];
    */
-  cordWithZero?: string;
+  cordWithZero: string;
 
   /**
    * @generated from field: optional string replacement_string = 27 [default = "${unknown}"];
    */
-  replacementString?: string;
+  replacementString: string;
 
   constructor(data?: PartialMessage<TestExtremeDefaultValues>);
 
@@ -3528,7 +3528,7 @@ export declare class SparseEnumMessage extends Message<SparseEnumMessage> {
   /**
    * @generated from field: optional protobuf_unittest.TestSparseEnum sparse_enum = 1;
    */
-  sparseEnum?: TestSparseEnum;
+  sparseEnum: TestSparseEnum;
 
   constructor(data?: PartialMessage<SparseEnumMessage>);
 
@@ -3554,7 +3554,7 @@ export declare class OneString extends Message<OneString> {
   /**
    * @generated from field: optional string data = 1;
    */
-  data?: string;
+  data: string;
 
   constructor(data?: PartialMessage<OneString>);
 
@@ -3602,7 +3602,7 @@ export declare class OneBytes extends Message<OneBytes> {
   /**
    * @generated from field: optional bytes data = 1;
    */
-  data?: Uint8Array;
+  data: Uint8Array;
 
   constructor(data?: PartialMessage<OneBytes>);
 
@@ -3650,162 +3650,162 @@ export declare class ManyOptionalString extends Message<ManyOptionalString> {
   /**
    * @generated from field: optional string str1 = 1;
    */
-  str1?: string;
+  str1: string;
 
   /**
    * @generated from field: optional string str2 = 2;
    */
-  str2?: string;
+  str2: string;
 
   /**
    * @generated from field: optional string str3 = 3;
    */
-  str3?: string;
+  str3: string;
 
   /**
    * @generated from field: optional string str4 = 4;
    */
-  str4?: string;
+  str4: string;
 
   /**
    * @generated from field: optional string str5 = 5;
    */
-  str5?: string;
+  str5: string;
 
   /**
    * @generated from field: optional string str6 = 6;
    */
-  str6?: string;
+  str6: string;
 
   /**
    * @generated from field: optional string str7 = 7;
    */
-  str7?: string;
+  str7: string;
 
   /**
    * @generated from field: optional string str8 = 8;
    */
-  str8?: string;
+  str8: string;
 
   /**
    * @generated from field: optional string str9 = 9;
    */
-  str9?: string;
+  str9: string;
 
   /**
    * @generated from field: optional string str10 = 10;
    */
-  str10?: string;
+  str10: string;
 
   /**
    * @generated from field: optional string str11 = 11;
    */
-  str11?: string;
+  str11: string;
 
   /**
    * @generated from field: optional string str12 = 12;
    */
-  str12?: string;
+  str12: string;
 
   /**
    * @generated from field: optional string str13 = 13;
    */
-  str13?: string;
+  str13: string;
 
   /**
    * @generated from field: optional string str14 = 14;
    */
-  str14?: string;
+  str14: string;
 
   /**
    * @generated from field: optional string str15 = 15;
    */
-  str15?: string;
+  str15: string;
 
   /**
    * @generated from field: optional string str16 = 16;
    */
-  str16?: string;
+  str16: string;
 
   /**
    * @generated from field: optional string str17 = 17;
    */
-  str17?: string;
+  str17: string;
 
   /**
    * @generated from field: optional string str18 = 18;
    */
-  str18?: string;
+  str18: string;
 
   /**
    * @generated from field: optional string str19 = 19;
    */
-  str19?: string;
+  str19: string;
 
   /**
    * @generated from field: optional string str20 = 20;
    */
-  str20?: string;
+  str20: string;
 
   /**
    * @generated from field: optional string str21 = 21;
    */
-  str21?: string;
+  str21: string;
 
   /**
    * @generated from field: optional string str22 = 22;
    */
-  str22?: string;
+  str22: string;
 
   /**
    * @generated from field: optional string str23 = 23;
    */
-  str23?: string;
+  str23: string;
 
   /**
    * @generated from field: optional string str24 = 24;
    */
-  str24?: string;
+  str24: string;
 
   /**
    * @generated from field: optional string str25 = 25;
    */
-  str25?: string;
+  str25: string;
 
   /**
    * @generated from field: optional string str26 = 26;
    */
-  str26?: string;
+  str26: string;
 
   /**
    * @generated from field: optional string str27 = 27;
    */
-  str27?: string;
+  str27: string;
 
   /**
    * @generated from field: optional string str28 = 28;
    */
-  str28?: string;
+  str28: string;
 
   /**
    * @generated from field: optional string str29 = 29;
    */
-  str29?: string;
+  str29: string;
 
   /**
    * @generated from field: optional string str30 = 30;
    */
-  str30?: string;
+  str30: string;
 
   /**
    * @generated from field: optional string str31 = 31;
    */
-  str31?: string;
+  str31: string;
 
   /**
    * @generated from field: optional string str32 = 32;
    */
-  str32?: string;
+  str32: string;
 
   constructor(data?: PartialMessage<ManyOptionalString>);
 
@@ -3831,7 +3831,7 @@ export declare class Int32Message extends Message<Int32Message> {
   /**
    * @generated from field: optional int32 data = 1;
    */
-  data?: number;
+  data: number;
 
   constructor(data?: PartialMessage<Int32Message>);
 
@@ -3855,7 +3855,7 @@ export declare class Uint32Message extends Message<Uint32Message> {
   /**
    * @generated from field: optional uint32 data = 1;
    */
-  data?: number;
+  data: number;
 
   constructor(data?: PartialMessage<Uint32Message>);
 
@@ -3879,7 +3879,7 @@ export declare class Int64Message extends Message<Int64Message> {
   /**
    * @generated from field: optional int64 data = 1;
    */
-  data?: bigint;
+  data: bigint;
 
   constructor(data?: PartialMessage<Int64Message>);
 
@@ -3903,7 +3903,7 @@ export declare class Uint64Message extends Message<Uint64Message> {
   /**
    * @generated from field: optional uint64 data = 1;
    */
-  data?: bigint;
+  data: bigint;
 
   constructor(data?: PartialMessage<Uint64Message>);
 
@@ -3927,7 +3927,7 @@ export declare class BoolMessage extends Message<BoolMessage> {
   /**
    * @generated from field: optional bool data = 1;
    */
-  data?: boolean;
+  data: boolean;
 
   constructor(data?: PartialMessage<BoolMessage>);
 
@@ -4001,12 +4001,12 @@ export declare class TestOneof_FooGroup extends Message<TestOneof_FooGroup> {
   /**
    * @generated from field: optional int32 a = 5;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional string b = 6;
    */
-  b?: string;
+  b: string;
 
   constructor(data?: PartialMessage<TestOneof_FooGroup>);
 
@@ -4030,12 +4030,12 @@ export declare class TestOneofBackwardsCompatible extends Message<TestOneofBackw
   /**
    * @generated from field: optional int32 foo_int = 1;
    */
-  fooInt?: number;
+  fooInt: number;
 
   /**
    * @generated from field: optional string foo_string = 2;
    */
-  fooString?: string;
+  fooString: string;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes foo_message = 3;
@@ -4069,12 +4069,12 @@ export declare class TestOneofBackwardsCompatible_FooGroup extends Message<TestO
   /**
    * @generated from field: optional int32 a = 5;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional string b = 6;
    */
-  b?: string;
+  b: string;
 
   constructor(data?: PartialMessage<TestOneofBackwardsCompatible_FooGroup>);
 
@@ -4228,12 +4228,12 @@ export declare class TestOneof2 extends Message<TestOneof2> {
   /**
    * @generated from field: optional int32 baz_int = 18;
    */
-  bazInt?: number;
+  bazInt: number;
 
   /**
    * @generated from field: optional string baz_string = 19 [default = "BAZ"];
    */
-  bazString?: string;
+  bazString: string;
 
   constructor(data?: PartialMessage<TestOneof2>);
 
@@ -4277,12 +4277,12 @@ export declare class TestOneof2_FooGroup extends Message<TestOneof2_FooGroup> {
   /**
    * @generated from field: optional int32 a = 9;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional string b = 10;
    */
-  b?: string;
+  b: string;
 
   constructor(data?: PartialMessage<TestOneof2_FooGroup>);
 
@@ -4306,7 +4306,7 @@ export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedM
   /**
    * @generated from field: optional int64 moo_int = 1;
    */
-  mooInt?: bigint;
+  mooInt: bigint;
 
   /**
    * @generated from field: repeated int32 corge_int = 2;
@@ -4630,17 +4630,17 @@ export declare class TestDynamicExtensions extends Message<TestDynamicExtensions
   /**
    * @generated from field: optional fixed32 scalar_extension = 2000;
    */
-  scalarExtension?: number;
+  scalarExtension: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum enum_extension = 2001;
    */
-  enumExtension?: ForeignEnum;
+  enumExtension: ForeignEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.TestDynamicExtensions.DynamicEnumType dynamic_enum_extension = 2002;
    */
-  dynamicEnumExtension?: TestDynamicExtensions_DynamicEnumType;
+  dynamicEnumExtension: TestDynamicExtensions_DynamicEnumType;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage message_extension = 2003;
@@ -4704,7 +4704,7 @@ export declare class TestDynamicExtensions_DynamicMessageType extends Message<Te
   /**
    * @generated from field: optional int32 dynamic_field = 2100;
    */
-  dynamicField?: number;
+  dynamicField: number;
 
   constructor(data?: PartialMessage<TestDynamicExtensions_DynamicMessageType>);
 
@@ -5068,7 +5068,7 @@ export declare class TestCommentInjectionMessage extends Message<TestCommentInje
    *
    * @generated from field: optional string a = 1 [default = "*\/ <- Neither should this."];
    */
-  a?: string;
+  a: string;
 
   constructor(data?: PartialMessage<TestCommentInjectionMessage>);
 
@@ -5095,32 +5095,32 @@ export declare class TestMessageSize extends Message<TestMessageSize> {
   /**
    * @generated from field: optional bool m1 = 1;
    */
-  m1?: boolean;
+  m1: boolean;
 
   /**
    * @generated from field: optional int64 m2 = 2;
    */
-  m2?: bigint;
+  m2: bigint;
 
   /**
    * @generated from field: optional bool m3 = 3;
    */
-  m3?: boolean;
+  m3: boolean;
 
   /**
    * @generated from field: optional string m4 = 4;
    */
-  m4?: string;
+  m4: string;
 
   /**
    * @generated from field: optional int32 m5 = 5;
    */
-  m5?: number;
+  m5: number;
 
   /**
    * @generated from field: optional int64 m6 = 6;
    */
-  m6?: bigint;
+  m6: bigint;
 
   constructor(data?: PartialMessage<TestMessageSize>);
 
@@ -5260,37 +5260,37 @@ export declare class TestJsonName extends Message<TestJsonName> {
   /**
    * @generated from field: optional int32 field_name1 = 1;
    */
-  fieldName1?: number;
+  fieldName1: number;
 
   /**
    * @generated from field: optional int32 fieldName2 = 2;
    */
-  fieldName2?: number;
+  fieldName2: number;
 
   /**
    * @generated from field: optional int32 FieldName3 = 3;
    */
-  FieldName3?: number;
+  FieldName3: number;
 
   /**
    * @generated from field: optional int32 _field_name4 = 4;
    */
-  FieldName4?: number;
+  FieldName4: number;
 
   /**
    * @generated from field: optional int32 FIELD_NAME5 = 5;
    */
-  FIELDNAME5?: number;
+  FIELDNAME5: number;
 
   /**
    * @generated from field: optional int32 field_name6 = 6 [json_name = "@type"];
    */
-  fieldName6?: number;
+  fieldName6: number;
 
   /**
    * @generated from field: optional int32 fieldname7 = 7;
    */
-  fieldname7?: number;
+  fieldname7: number;
 
   constructor(data?: PartialMessage<TestJsonName>);
 
@@ -5314,12 +5314,12 @@ export declare class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> 
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
-  optionalInt32?: number;
+  optionalInt32: number;
 
   /**
    * @generated from field: optional int32 fixed_32 = 536870001;
    */
-  fixed32?: number;
+  fixed32: number;
 
   /**
    * @generated from field: repeated int32 repeated_int32 = 536870002 [packed = false];
@@ -5334,17 +5334,17 @@ export declare class TestHugeFieldNumbers extends Message<TestHugeFieldNumbers> 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnum optional_enum = 536870004;
    */
-  optionalEnum?: ForeignEnum;
+  optionalEnum: ForeignEnum;
 
   /**
    * @generated from field: optional string optional_string = 536870005;
    */
-  optionalString?: string;
+  optionalString: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 536870006;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage optional_message = 536870007;
@@ -5412,7 +5412,7 @@ export declare class TestHugeFieldNumbers_OptionalGroup extends Message<TestHuge
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
-  groupA?: number;
+  groupA: number;
 
   constructor(data?: PartialMessage<TestHugeFieldNumbers_OptionalGroup>);
 
@@ -5436,47 +5436,47 @@ export declare class TestExtensionInsideTable extends Message<TestExtensionInsid
   /**
    * @generated from field: optional int32 field1 = 1;
    */
-  field1?: number;
+  field1: number;
 
   /**
    * @generated from field: optional int32 field2 = 2;
    */
-  field2?: number;
+  field2: number;
 
   /**
    * @generated from field: optional int32 field3 = 3;
    */
-  field3?: number;
+  field3: number;
 
   /**
    * @generated from field: optional int32 field4 = 4;
    */
-  field4?: number;
+  field4: number;
 
   /**
    * @generated from field: optional int32 field6 = 6;
    */
-  field6?: number;
+  field6: number;
 
   /**
    * @generated from field: optional int32 field7 = 7;
    */
-  field7?: number;
+  field7: number;
 
   /**
    * @generated from field: optional int32 field8 = 8;
    */
-  field8?: number;
+  field8: number;
 
   /**
    * @generated from field: optional int32 field9 = 9;
    */
-  field9?: number;
+  field9: number;
 
   /**
    * @generated from field: optional int32 field10 = 10;
    */
-  field10?: number;
+  field10: number;
 
   constructor(data?: PartialMessage<TestExtensionInsideTable>);
 
@@ -5555,7 +5555,7 @@ export declare class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Rep
   /**
    * @generated from field: optional string another_field = 6;
    */
-  anotherField?: string;
+  anotherField: string;
 
   constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup>);
 
@@ -5579,7 +5579,7 @@ export declare class TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Ano
   /**
    * @generated from field: optional string but_why_tho = 5;
    */
-  butWhyTho?: string;
+  butWhyTho: string;
 
   constructor(data?: PartialMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup>);
 
@@ -5603,7 +5603,7 @@ export declare class TestNestedGroupExtensionInnerExtension extends Message<Test
   /**
    * @generated from field: optional string inner_name = 1;
    */
-  innerName?: string;
+  innerName: string;
 
   constructor(data?: PartialMessage<TestNestedGroupExtensionInnerExtension>);
 
@@ -5627,22 +5627,22 @@ export declare class TestExtensionRangeSerialize extends Message<TestExtensionRa
   /**
    * @generated from field: optional int32 foo_one = 1;
    */
-  fooOne?: number;
+  fooOne: number;
 
   /**
    * @generated from field: optional int32 foo_two = 6;
    */
-  fooTwo?: number;
+  fooTwo: number;
 
   /**
    * @generated from field: optional int32 foo_three = 7;
    */
-  fooThree?: number;
+  fooThree: number;
 
   /**
    * @generated from field: optional int32 foo_four = 13;
    */
-  fooFour?: number;
+  fooFour: number;
 
   constructor(data?: PartialMessage<TestExtensionRangeSerialize>);
 
@@ -5691,22 +5691,22 @@ export declare class TestVerifyInt32Simple extends Message<TestVerifyInt32Simple
   /**
    * @generated from field: optional int32 optional_int32_1 = 1;
    */
-  optionalInt321?: number;
+  optionalInt321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   constructor(data?: PartialMessage<TestVerifyInt32Simple>);
 
@@ -5730,22 +5730,22 @@ export declare class TestVerifyInt32 extends Message<TestVerifyInt32> {
   /**
    * @generated from field: optional int32 optional_int32_1 = 1;
    */
-  optionalInt321?: number;
+  optionalInt321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -5779,37 +5779,37 @@ export declare class TestVerifyMostlyInt32 extends Message<TestVerifyMostlyInt32
   /**
    * @generated from field: optional int64 optional_int64_30 = 30;
    */
-  optionalInt6430?: bigint;
+  optionalInt6430: bigint;
 
   /**
    * @generated from field: optional int32 optional_int32_1 = 1;
    */
-  optionalInt321?: number;
+  optionalInt321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_3 = 3;
    */
-  optionalInt323?: number;
+  optionalInt323: number;
 
   /**
    * @generated from field: optional int32 optional_int32_4 = 4;
    */
-  optionalInt324?: number;
+  optionalInt324: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -5843,42 +5843,42 @@ export declare class TestVerifyMostlyInt32BigFieldNumber extends Message<TestVer
   /**
    * @generated from field: optional int64 optional_int64_30 = 30;
    */
-  optionalInt6430?: bigint;
+  optionalInt6430: bigint;
 
   /**
    * @generated from field: optional int32 optional_int32_300 = 300;
    */
-  optionalInt32300?: number;
+  optionalInt32300: number;
 
   /**
    * @generated from field: optional int32 optional_int32_1 = 1;
    */
-  optionalInt321?: number;
+  optionalInt321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_3 = 3;
    */
-  optionalInt323?: number;
+  optionalInt323: number;
 
   /**
    * @generated from field: optional int32 optional_int32_4 = 4;
    */
-  optionalInt324?: number;
+  optionalInt324: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -5912,22 +5912,22 @@ export declare class TestVerifyUint32Simple extends Message<TestVerifyUint32Simp
   /**
    * @generated from field: optional uint32 optional_uint32_1 = 1;
    */
-  optionalUint321?: number;
+  optionalUint321: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_2 = 2;
    */
-  optionalUint322?: number;
+  optionalUint322: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_63 = 63;
    */
-  optionalUint3263?: number;
+  optionalUint3263: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_64 = 64;
    */
-  optionalUint3264?: number;
+  optionalUint3264: number;
 
   constructor(data?: PartialMessage<TestVerifyUint32Simple>);
 
@@ -5951,22 +5951,22 @@ export declare class TestVerifyUint32 extends Message<TestVerifyUint32> {
   /**
    * @generated from field: optional uint32 optional_uint32_1 = 1;
    */
-  optionalUint321?: number;
+  optionalUint321: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_2 = 2;
    */
-  optionalUint322?: number;
+  optionalUint322: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_63 = 63;
    */
-  optionalUint3263?: number;
+  optionalUint3263: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_64 = 64;
    */
-  optionalUint3264?: number;
+  optionalUint3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -6000,22 +6000,22 @@ export declare class TestVerifyOneUint32 extends Message<TestVerifyOneUint32> {
   /**
    * @generated from field: optional uint32 optional_uint32_1 = 1;
    */
-  optionalUint321?: number;
+  optionalUint321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -6049,27 +6049,27 @@ export declare class TestVerifyOneInt32BigFieldNumber extends Message<TestVerify
   /**
    * @generated from field: optional int32 optional_int32_65 = 65;
    */
-  optionalInt3265?: number;
+  optionalInt3265: number;
 
   /**
    * @generated from field: optional int64 optional_int64_1 = 1;
    */
-  optionalInt641?: bigint;
+  optionalInt641: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_2 = 2;
    */
-  optionalInt642?: bigint;
+  optionalInt642: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_63 = 63;
    */
-  optionalInt6463?: bigint;
+  optionalInt6463: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_64 = 64;
    */
-  optionalInt6464?: bigint;
+  optionalInt6464: bigint;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -6103,32 +6103,32 @@ export declare class TestVerifyInt32BigFieldNumber extends Message<TestVerifyInt
   /**
    * @generated from field: optional int32 optional_int32_1000 = 1000;
    */
-  optionalInt321000?: number;
+  optionalInt321000: number;
 
   /**
    * @generated from field: optional int32 optional_int32_65 = 65;
    */
-  optionalInt3265?: number;
+  optionalInt3265: number;
 
   /**
    * @generated from field: optional int32 optional_int32_1 = 1;
    */
-  optionalInt321?: number;
+  optionalInt321: number;
 
   /**
    * @generated from field: optional int32 optional_int32_2 = 2;
    */
-  optionalInt322?: number;
+  optionalInt322: number;
 
   /**
    * @generated from field: optional int32 optional_int32_63 = 63;
    */
-  optionalInt3263?: number;
+  optionalInt3263: number;
 
   /**
    * @generated from field: optional int32 optional_int32_64 = 64;
    */
-  optionalInt3264?: number;
+  optionalInt3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -6162,32 +6162,32 @@ export declare class TestVerifyUint32BigFieldNumber extends Message<TestVerifyUi
   /**
    * @generated from field: optional uint32 optional_uint32_1000 = 1000;
    */
-  optionalUint321000?: number;
+  optionalUint321000: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_65 = 65;
    */
-  optionalUint3265?: number;
+  optionalUint3265: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_1 = 1;
    */
-  optionalUint321?: number;
+  optionalUint321: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_2 = 2;
    */
-  optionalUint322?: number;
+  optionalUint322: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_63 = 63;
    */
-  optionalUint3263?: number;
+  optionalUint3263: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_64 = 64;
    */
-  optionalUint3264?: number;
+  optionalUint3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
@@ -6245,42 +6245,42 @@ export declare class TestVerifyBigFieldNumberUint32_Nested extends Message<TestV
   /**
    * @generated from field: optional uint32 optional_uint32_5000 = 5000;
    */
-  optionalUint325000?: number;
+  optionalUint325000: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_1000 = 1000;
    */
-  optionalUint321000?: number;
+  optionalUint321000: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_66 = 66;
    */
-  optionalUint3266?: number;
+  optionalUint3266: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_65 = 65;
    */
-  optionalUint3265?: number;
+  optionalUint3265: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_1 = 1;
    */
-  optionalUint321?: number;
+  optionalUint321: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_2 = 2;
    */
-  optionalUint322?: number;
+  optionalUint322: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_63 = 63;
    */
-  optionalUint3263?: number;
+  optionalUint3263: number;
 
   /**
    * @generated from field: optional uint32 optional_uint32_64 = 64;
    */
-  optionalUint3264?: number;
+  optionalUint3264: number;
 
   /**
    * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
@@ -6317,17 +6317,17 @@ export declare class EnumParseTester extends Message<EnumParseTester> {
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_lowfield = 1;
    */
-  optionalSeqSmall0Lowfield?: EnumParseTester_SeqSmall0;
+  optionalSeqSmall0Lowfield: EnumParseTester_SeqSmall0;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_midfield = 1001;
    */
-  optionalSeqSmall0Midfield?: EnumParseTester_SeqSmall0;
+  optionalSeqSmall0Midfield: EnumParseTester_SeqSmall0;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_hifield = 1000001;
    */
-  optionalSeqSmall0Hifield?: EnumParseTester_SeqSmall0;
+  optionalSeqSmall0Hifield: EnumParseTester_SeqSmall0;
 
   /**
    * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_lowfield = 2;
@@ -6362,17 +6362,17 @@ export declare class EnumParseTester extends Message<EnumParseTester> {
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_lowfield = 4;
    */
-  optionalSeqSmall1Lowfield?: EnumParseTester_SeqSmall1;
+  optionalSeqSmall1Lowfield: EnumParseTester_SeqSmall1;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_midfield = 1004;
    */
-  optionalSeqSmall1Midfield?: EnumParseTester_SeqSmall1;
+  optionalSeqSmall1Midfield: EnumParseTester_SeqSmall1;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_hifield = 1000004;
    */
-  optionalSeqSmall1Hifield?: EnumParseTester_SeqSmall1;
+  optionalSeqSmall1Hifield: EnumParseTester_SeqSmall1;
 
   /**
    * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_lowfield = 5;
@@ -6407,17 +6407,17 @@ export declare class EnumParseTester extends Message<EnumParseTester> {
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_lowfield = 7;
    */
-  optionalSeqLargeLowfield?: EnumParseTester_SeqLarge;
+  optionalSeqLargeLowfield: EnumParseTester_SeqLarge;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_midfield = 1007;
    */
-  optionalSeqLargeMidfield?: EnumParseTester_SeqLarge;
+  optionalSeqLargeMidfield: EnumParseTester_SeqLarge;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_hifield = 1000007;
    */
-  optionalSeqLargeHifield?: EnumParseTester_SeqLarge;
+  optionalSeqLargeHifield: EnumParseTester_SeqLarge;
 
   /**
    * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_lowfield = 8;
@@ -6452,17 +6452,17 @@ export declare class EnumParseTester extends Message<EnumParseTester> {
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_lowfield = 10;
    */
-  optionalArbitraryLowfield?: EnumParseTester_Arbitrary;
+  optionalArbitraryLowfield: EnumParseTester_Arbitrary;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_midfield = 1010;
    */
-  optionalArbitraryMidfield?: EnumParseTester_Arbitrary;
+  optionalArbitraryMidfield: EnumParseTester_Arbitrary;
 
   /**
    * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_hifield = 1000010;
    */
-  optionalArbitraryHifield?: EnumParseTester_Arbitrary;
+  optionalArbitraryHifield: EnumParseTester_Arbitrary;
 
   /**
    * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_lowfield = 11;
@@ -6499,7 +6499,7 @@ export declare class EnumParseTester extends Message<EnumParseTester> {
    *
    * @generated from field: optional int32 other_field = 99;
    */
-  otherField?: number;
+  otherField: number;
 
   constructor(data?: PartialMessage<EnumParseTester>);
 
@@ -6796,17 +6796,17 @@ export declare class BoolParseTester extends Message<BoolParseTester> {
   /**
    * @generated from field: optional bool optional_bool_lowfield = 1;
    */
-  optionalBoolLowfield?: boolean;
+  optionalBoolLowfield: boolean;
 
   /**
    * @generated from field: optional bool optional_bool_midfield = 1001;
    */
-  optionalBoolMidfield?: boolean;
+  optionalBoolMidfield: boolean;
 
   /**
    * @generated from field: optional bool optional_bool_hifield = 1000001;
    */
-  optionalBoolHifield?: boolean;
+  optionalBoolHifield: boolean;
 
   /**
    * @generated from field: repeated bool repeated_bool_lowfield = 2;
@@ -6843,7 +6843,7 @@ export declare class BoolParseTester extends Message<BoolParseTester> {
    *
    * @generated from field: optional int32 other_field = 99;
    */
-  otherField?: number;
+  otherField: number;
 
   constructor(data?: PartialMessage<BoolParseTester>);
 
@@ -6882,17 +6882,17 @@ export declare class Int32ParseTester extends Message<Int32ParseTester> {
   /**
    * @generated from field: optional int32 optional_int32_lowfield = 1;
    */
-  optionalInt32Lowfield?: number;
+  optionalInt32Lowfield: number;
 
   /**
    * @generated from field: optional int32 optional_int32_midfield = 1001;
    */
-  optionalInt32Midfield?: number;
+  optionalInt32Midfield: number;
 
   /**
    * @generated from field: optional int32 optional_int32_hifield = 1000001;
    */
-  optionalInt32Hifield?: number;
+  optionalInt32Hifield: number;
 
   /**
    * @generated from field: repeated int32 repeated_int32_lowfield = 2;
@@ -6929,7 +6929,7 @@ export declare class Int32ParseTester extends Message<Int32ParseTester> {
    *
    * @generated from field: optional int32 other_field = 99;
    */
-  otherField?: number;
+  otherField: number;
 
   constructor(data?: PartialMessage<Int32ParseTester>);
 
@@ -6968,17 +6968,17 @@ export declare class Int64ParseTester extends Message<Int64ParseTester> {
   /**
    * @generated from field: optional int64 optional_int64_lowfield = 1;
    */
-  optionalInt64Lowfield?: bigint;
+  optionalInt64Lowfield: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_midfield = 1001;
    */
-  optionalInt64Midfield?: bigint;
+  optionalInt64Midfield: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_hifield = 1000001;
    */
-  optionalInt64Hifield?: bigint;
+  optionalInt64Hifield: bigint;
 
   /**
    * @generated from field: repeated int64 repeated_int64_lowfield = 2;
@@ -7015,7 +7015,7 @@ export declare class Int64ParseTester extends Message<Int64ParseTester> {
    *
    * @generated from field: optional int32 other_field = 99;
    */
-  otherField?: number;
+  otherField: number;
 
   constructor(data?: PartialMessage<Int64ParseTester>);
 
@@ -7057,7 +7057,7 @@ export declare class InlinedStringIdxRegressionProto extends Message<InlinedStri
    *
    * @generated from field: optional string str1 = 1;
    */
-  str1?: string;
+  str1: string;
 
   /**
    * aux_idx == 2
@@ -7071,14 +7071,14 @@ export declare class InlinedStringIdxRegressionProto extends Message<InlinedStri
    *
    * @generated from field: optional string str2 = 3;
    */
-  str2?: string;
+  str2: string;
 
   /**
    * aux_idx == 4, inlined_string_idx == 3
    *
    * @generated from field: optional bytes str3 = 4;
    */
-  str3?: Uint8Array;
+  str3: Uint8Array;
 
   constructor(data?: PartialMessage<InlinedStringIdxRegressionProto>);
 
@@ -7102,17 +7102,17 @@ export declare class StringParseTester extends Message<StringParseTester> {
   /**
    * @generated from field: optional string optional_string_lowfield = 1;
    */
-  optionalStringLowfield?: string;
+  optionalStringLowfield: string;
 
   /**
    * @generated from field: optional string optional_string_midfield = 1001;
    */
-  optionalStringMidfield?: string;
+  optionalStringMidfield: string;
 
   /**
    * @generated from field: optional string optional_string_hifield = 1000001;
    */
-  optionalStringHifield?: string;
+  optionalStringHifield: string;
 
   /**
    * @generated from field: repeated string repeated_string_lowfield = 2;
@@ -7161,12 +7161,12 @@ export declare class BadFieldNames extends Message<BadFieldNames> {
   /**
    * @generated from field: optional int32 OptionalInt32 = 1;
    */
-  OptionalInt32?: number;
+  OptionalInt32: number;
 
   /**
    * @generated from field: optional int32 for = 2;
    */
-  for?: number;
+  for: number;
 
   constructor(data?: PartialMessage<BadFieldNames>);
 
@@ -7190,12 +7190,12 @@ export declare class TestNestedMessageRedaction extends Message<TestNestedMessag
   /**
    * @generated from field: optional string optional_unredacted_nested_string = 1;
    */
-  optionalUnredactedNestedString?: string;
+  optionalUnredactedNestedString: string;
 
   /**
    * @generated from field: optional string optional_redacted_nested_string = 2;
    */
-  optionalRedactedNestedString?: string;
+  optionalRedactedNestedString: string;
 
   constructor(data?: PartialMessage<TestNestedMessageRedaction>);
 
@@ -7219,12 +7219,12 @@ export declare class RedactedFields extends Message<RedactedFields> {
   /**
    * @generated from field: optional string optional_redacted_string = 1;
    */
-  optionalRedactedString?: string;
+  optionalRedactedString: string;
 
   /**
    * @generated from field: optional string optional_unredacted_string = 2;
    */
-  optionalUnredactedString?: string;
+  optionalUnredactedString: string;
 
   /**
    * @generated from field: repeated string repeated_redacted_string = 3;
@@ -7288,12 +7288,12 @@ export declare class TestCord extends Message<TestCord> {
   /**
    * @generated from field: optional bytes optional_bytes_cord = 1;
    */
-  optionalBytesCord?: Uint8Array;
+  optionalBytesCord: Uint8Array;
 
   /**
    * @generated from field: optional bytes optional_bytes_cord_default = 2 [default = "hello"];
    */
-  optionalBytesCordDefault?: Uint8Array;
+  optionalBytesCordDefault: Uint8Array;
 
   constructor(data?: PartialMessage<TestCord>);
 

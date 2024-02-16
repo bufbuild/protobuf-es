@@ -25,7 +25,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * The full set of known editions.
@@ -156,14 +156,14 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * e.g. "foo", "foo.bar", etc.
    *
    * @generated from field: optional string package = 2;
    */
-  package?: string;
+  declare package: string;
 
   /**
    * Names of files imported by this file.
@@ -232,14 +232,14 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
    *
    * @generated from field: optional string syntax = 12;
    */
-  syntax?: string;
+  declare syntax: string;
 
   /**
    * The edition of the proto file.
    *
    * @generated from field: optional google.protobuf.Edition edition = 14;
    */
-  edition?: Edition;
+  declare edition: Edition;
 
   constructor(data?: PartialMessage<FileDescriptorProto>) {
     super();
@@ -281,6 +281,11 @@ export class FileDescriptorProto extends Message<FileDescriptorProto> {
   }
 }
 
+FileDescriptorProto.prototype.name = "";
+FileDescriptorProto.prototype.package = "";
+FileDescriptorProto.prototype.syntax = "";
+FileDescriptorProto.prototype.edition = 0 as Edition.EDITION_UNKNOWN;
+
 /**
  * Describes a message type.
  *
@@ -290,7 +295,7 @@ export class DescriptorProto extends Message<DescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: repeated google.protobuf.FieldDescriptorProto field = 2;
@@ -377,6 +382,8 @@ export class DescriptorProto extends Message<DescriptorProto> {
   }
 }
 
+DescriptorProto.prototype.name = "";
+
 /**
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
  */
@@ -386,14 +393,14 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  declare start: number;
 
   /**
    * Exclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  declare end: number;
 
   /**
    * @generated from field: optional google.protobuf.ExtensionRangeOptions options = 3;
@@ -430,6 +437,9 @@ export class DescriptorProto_ExtensionRange extends Message<DescriptorProto_Exte
   }
 }
 
+DescriptorProto_ExtensionRange.prototype.start = 0;
+DescriptorProto_ExtensionRange.prototype.end = 0;
+
 /**
  * Range of reserved tag numbers. Reserved tag numbers may not be used by
  * fields or extension ranges in the same message. Reserved ranges may
@@ -443,14 +453,14 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  declare start: number;
 
   /**
    * Exclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  declare end: number;
 
   constructor(data?: PartialMessage<DescriptorProto_ReservedRange>) {
     super();
@@ -480,6 +490,9 @@ export class DescriptorProto_ReservedRange extends Message<DescriptorProto_Reser
     return proto2.util.equals(DescriptorProto_ReservedRange, a, b);
   }
 }
+
+DescriptorProto_ReservedRange.prototype.start = 0;
+DescriptorProto_ReservedRange.prototype.end = 0;
 
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
@@ -515,7 +528,7 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
    *
    * @generated from field: optional google.protobuf.ExtensionRangeOptions.VerificationState verification = 3 [default = UNVERIFIED];
    */
-  verification?: ExtensionRangeOptions_VerificationState;
+  declare verification: ExtensionRangeOptions_VerificationState;
 
   constructor(data?: PartialMessage<ExtensionRangeOptions>) {
     super();
@@ -547,6 +560,8 @@ export class ExtensionRangeOptions extends Message<ExtensionRangeOptions> {
     return proto2.util.equals(ExtensionRangeOptions, a, b);
   }
 }
+
+ExtensionRangeOptions.prototype.verification = 1 as ExtensionRangeOptions_VerificationState.UNVERIFIED;
 
 /**
  * The verification state of the extension range.
@@ -581,7 +596,7 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
    *
    * @generated from field: optional int32 number = 1;
    */
-  number?: number;
+  declare number: number;
 
   /**
    * The fully-qualified name of the extension field. There must be a leading
@@ -589,7 +604,7 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
    *
    * @generated from field: optional string full_name = 2;
    */
-  fullName?: string;
+  declare fullName: string;
 
   /**
    * The fully-qualified type name of the extension field. Unlike
@@ -598,7 +613,7 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
    *
    * @generated from field: optional string type = 3;
    */
-  type?: string;
+  declare type: string;
 
   /**
    * If true, indicates that the number is reserved in the extension range,
@@ -607,7 +622,7 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
    *
    * @generated from field: optional bool reserved = 5;
    */
-  reserved?: boolean;
+  declare reserved: boolean;
 
   /**
    * If true, indicates that the extension must be defined as repeated.
@@ -615,7 +630,7 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
    *
    * @generated from field: optional bool repeated = 6;
    */
-  repeated?: boolean;
+  declare repeated: boolean;
 
   constructor(data?: PartialMessage<ExtensionRangeOptions_Declaration>) {
     super();
@@ -649,6 +664,12 @@ export class ExtensionRangeOptions_Declaration extends Message<ExtensionRangeOpt
   }
 }
 
+ExtensionRangeOptions_Declaration.prototype.number = 0;
+ExtensionRangeOptions_Declaration.prototype.fullName = "";
+ExtensionRangeOptions_Declaration.prototype.type = "";
+ExtensionRangeOptions_Declaration.prototype.reserved = false;
+ExtensionRangeOptions_Declaration.prototype.repeated = false;
+
 /**
  * Describes a field within a message.
  *
@@ -658,17 +679,17 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: optional int32 number = 3;
    */
-  number?: number;
+  declare number: number;
 
   /**
    * @generated from field: optional google.protobuf.FieldDescriptorProto.Label label = 4;
    */
-  label?: FieldDescriptorProto_Label;
+  declare label: FieldDescriptorProto_Label;
 
   /**
    * If type_name is set, this need not be set.  If both this and type_name
@@ -676,7 +697,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional google.protobuf.FieldDescriptorProto.Type type = 5;
    */
-  type?: FieldDescriptorProto_Type;
+  declare type: FieldDescriptorProto_Type;
 
   /**
    * For message and enum types, this is the name of the type.  If the name
@@ -687,7 +708,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional string type_name = 6;
    */
-  typeName?: string;
+  declare typeName: string;
 
   /**
    * For extensions, this is the name of the type being extended.  It is
@@ -695,7 +716,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional string extendee = 2;
    */
-  extendee?: string;
+  declare extendee: string;
 
   /**
    * For numeric types, contains the original text representation of the value.
@@ -705,7 +726,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional string default_value = 7;
    */
-  defaultValue?: string;
+  declare defaultValue: string;
 
   /**
    * If set, gives the index of a oneof in the containing type's oneof_decl
@@ -713,7 +734,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional int32 oneof_index = 9;
    */
-  oneofIndex?: number;
+  declare oneofIndex: number;
 
   /**
    * JSON name of this field. The value is set by protocol compiler. If the
@@ -723,7 +744,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional string json_name = 10;
    */
-  jsonName?: string;
+  declare jsonName: string;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions options = 8;
@@ -755,7 +776,7 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    *
    * @generated from field: optional bool proto3_optional = 17;
    */
-  proto3Optional?: boolean;
+  declare proto3Optional: boolean;
 
   constructor(data?: PartialMessage<FieldDescriptorProto>) {
     super();
@@ -794,6 +815,17 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
     return proto2.util.equals(FieldDescriptorProto, a, b);
   }
 }
+
+FieldDescriptorProto.prototype.name = "";
+FieldDescriptorProto.prototype.number = 0;
+FieldDescriptorProto.prototype.label = 1 as FieldDescriptorProto_Label.OPTIONAL;
+FieldDescriptorProto.prototype.type = 1 as FieldDescriptorProto_Type.DOUBLE;
+FieldDescriptorProto.prototype.typeName = "";
+FieldDescriptorProto.prototype.extendee = "";
+FieldDescriptorProto.prototype.defaultValue = "";
+FieldDescriptorProto.prototype.oneofIndex = 0;
+FieldDescriptorProto.prototype.jsonName = "";
+FieldDescriptorProto.prototype.proto3Optional = false;
 
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Type
@@ -975,7 +1007,7 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: optional google.protobuf.OneofOptions options = 2;
@@ -1011,6 +1043,8 @@ export class OneofDescriptorProto extends Message<OneofDescriptorProto> {
   }
 }
 
+OneofDescriptorProto.prototype.name = "";
+
 /**
  * Describes an enum type.
  *
@@ -1020,7 +1054,7 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: repeated google.protobuf.EnumValueDescriptorProto value = 2;
@@ -1081,6 +1115,8 @@ export class EnumDescriptorProto extends Message<EnumDescriptorProto> {
   }
 }
 
+EnumDescriptorProto.prototype.name = "";
+
 /**
  * Range of reserved numeric values. Reserved values may not be used by
  * entries in the same enum. Reserved ranges may not overlap.
@@ -1097,14 +1133,14 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  declare start: number;
 
   /**
    * Inclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  declare end: number;
 
   constructor(data?: PartialMessage<EnumDescriptorProto_EnumReservedRange>) {
     super();
@@ -1135,6 +1171,9 @@ export class EnumDescriptorProto_EnumReservedRange extends Message<EnumDescripto
   }
 }
 
+EnumDescriptorProto_EnumReservedRange.prototype.start = 0;
+EnumDescriptorProto_EnumReservedRange.prototype.end = 0;
+
 /**
  * Describes a value within an enum.
  *
@@ -1144,12 +1183,12 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: optional int32 number = 2;
    */
-  number?: number;
+  declare number: number;
 
   /**
    * @generated from field: optional google.protobuf.EnumValueOptions options = 3;
@@ -1186,6 +1225,9 @@ export class EnumValueDescriptorProto extends Message<EnumValueDescriptorProto> 
   }
 }
 
+EnumValueDescriptorProto.prototype.name = "";
+EnumValueDescriptorProto.prototype.number = 0;
+
 /**
  * Describes a service.
  *
@@ -1195,7 +1237,7 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: repeated google.protobuf.MethodDescriptorProto method = 2;
@@ -1237,6 +1279,8 @@ export class ServiceDescriptorProto extends Message<ServiceDescriptorProto> {
   }
 }
 
+ServiceDescriptorProto.prototype.name = "";
+
 /**
  * Describes a method of a service.
  *
@@ -1246,7 +1290,7 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * Input and output type names.  These are resolved in the same way as
@@ -1254,12 +1298,12 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
    *
    * @generated from field: optional string input_type = 2;
    */
-  inputType?: string;
+  declare inputType: string;
 
   /**
    * @generated from field: optional string output_type = 3;
    */
-  outputType?: string;
+  declare outputType: string;
 
   /**
    * @generated from field: optional google.protobuf.MethodOptions options = 4;
@@ -1271,14 +1315,14 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
    *
    * @generated from field: optional bool client_streaming = 5 [default = false];
    */
-  clientStreaming?: boolean;
+  declare clientStreaming: boolean;
 
   /**
    * Identifies if server streams multiple server messages
    *
    * @generated from field: optional bool server_streaming = 6 [default = false];
    */
-  serverStreaming?: boolean;
+  declare serverStreaming: boolean;
 
   constructor(data?: PartialMessage<MethodDescriptorProto>) {
     super();
@@ -1313,6 +1357,12 @@ export class MethodDescriptorProto extends Message<MethodDescriptorProto> {
   }
 }
 
+MethodDescriptorProto.prototype.name = "";
+MethodDescriptorProto.prototype.inputType = "";
+MethodDescriptorProto.prototype.outputType = "";
+MethodDescriptorProto.prototype.clientStreaming = false;
+MethodDescriptorProto.prototype.serverStreaming = false;
+
 /**
  * @generated from message google.protobuf.FileOptions
  */
@@ -1325,7 +1375,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string java_package = 1;
    */
-  javaPackage?: string;
+  declare javaPackage: string;
 
   /**
    * Controls the name of the wrapper Java class generated for the .proto file.
@@ -1336,7 +1386,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string java_outer_classname = 8;
    */
-  javaOuterClassname?: string;
+  declare javaOuterClassname: string;
 
   /**
    * If enabled, then the Java code generator will generate a separate .java
@@ -1348,7 +1398,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional bool java_multiple_files = 10 [default = false];
    */
-  javaMultipleFiles?: boolean;
+  declare javaMultipleFiles: boolean;
 
   /**
    * This option does nothing.
@@ -1356,7 +1406,7 @@ export class FileOptions extends Message<FileOptions> {
    * @generated from field: optional bool java_generate_equals_and_hash = 20 [deprecated = true];
    * @deprecated
    */
-  javaGenerateEqualsAndHash?: boolean;
+  declare javaGenerateEqualsAndHash: boolean;
 
   /**
    * If set true, then the Java2 code generator will generate code that
@@ -1368,12 +1418,12 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional bool java_string_check_utf8 = 27 [default = false];
    */
-  javaStringCheckUtf8?: boolean;
+  declare javaStringCheckUtf8: boolean;
 
   /**
    * @generated from field: optional google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = SPEED];
    */
-  optimizeFor?: FileOptions_OptimizeMode;
+  declare optimizeFor: FileOptions_OptimizeMode;
 
   /**
    * Sets the Go package where structs generated from this .proto will be
@@ -1384,7 +1434,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string go_package = 11;
    */
-  goPackage?: string;
+  declare goPackage: string;
 
   /**
    * Should generic services be generated in each language?  "Generic" services
@@ -1400,22 +1450,22 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional bool cc_generic_services = 16 [default = false];
    */
-  ccGenericServices?: boolean;
+  declare ccGenericServices: boolean;
 
   /**
    * @generated from field: optional bool java_generic_services = 17 [default = false];
    */
-  javaGenericServices?: boolean;
+  declare javaGenericServices: boolean;
 
   /**
    * @generated from field: optional bool py_generic_services = 18 [default = false];
    */
-  pyGenericServices?: boolean;
+  declare pyGenericServices: boolean;
 
   /**
    * @generated from field: optional bool php_generic_services = 42 [default = false];
    */
-  phpGenericServices?: boolean;
+  declare phpGenericServices: boolean;
 
   /**
    * Is this file deprecated?
@@ -1425,7 +1475,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional bool deprecated = 23 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * Enables the use of arenas for the proto messages in this file. This applies
@@ -1433,7 +1483,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional bool cc_enable_arenas = 31 [default = true];
    */
-  ccEnableArenas?: boolean;
+  declare ccEnableArenas: boolean;
 
   /**
    * Sets the objective c class prefix which is prepended to all objective c
@@ -1441,14 +1491,14 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string objc_class_prefix = 36;
    */
-  objcClassPrefix?: string;
+  declare objcClassPrefix: string;
 
   /**
    * Namespace for generated classes; defaults to the package.
    *
    * @generated from field: optional string csharp_namespace = 37;
    */
-  csharpNamespace?: string;
+  declare csharpNamespace: string;
 
   /**
    * By default Swift generators will take the proto package and CamelCase it
@@ -1458,7 +1508,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string swift_prefix = 39;
    */
-  swiftPrefix?: string;
+  declare swiftPrefix: string;
 
   /**
    * Sets the php class prefix which is prepended to all php generated classes
@@ -1466,7 +1516,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string php_class_prefix = 40;
    */
-  phpClassPrefix?: string;
+  declare phpClassPrefix: string;
 
   /**
    * Use this option to change the namespace of php generated classes. Default
@@ -1475,7 +1525,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string php_namespace = 41;
    */
-  phpNamespace?: string;
+  declare phpNamespace: string;
 
   /**
    * Use this option to change the namespace of php generated metadata classes.
@@ -1484,7 +1534,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string php_metadata_namespace = 44;
    */
-  phpMetadataNamespace?: string;
+  declare phpMetadataNamespace: string;
 
   /**
    * Use this option to change the package of ruby generated classes. Default
@@ -1493,7 +1543,7 @@ export class FileOptions extends Message<FileOptions> {
    *
    * @generated from field: optional string ruby_package = 45;
    */
-  rubyPackage?: string;
+  declare rubyPackage: string;
 
   /**
    * Any features defined in the specific edition.
@@ -1559,6 +1609,27 @@ export class FileOptions extends Message<FileOptions> {
   }
 }
 
+FileOptions.prototype.javaPackage = "";
+FileOptions.prototype.javaOuterClassname = "";
+FileOptions.prototype.javaMultipleFiles = false;
+FileOptions.prototype.javaGenerateEqualsAndHash = false;
+FileOptions.prototype.javaStringCheckUtf8 = false;
+FileOptions.prototype.optimizeFor = 1 as FileOptions_OptimizeMode.SPEED;
+FileOptions.prototype.goPackage = "";
+FileOptions.prototype.ccGenericServices = false;
+FileOptions.prototype.javaGenericServices = false;
+FileOptions.prototype.pyGenericServices = false;
+FileOptions.prototype.phpGenericServices = false;
+FileOptions.prototype.deprecated = false;
+FileOptions.prototype.ccEnableArenas = true;
+FileOptions.prototype.objcClassPrefix = "";
+FileOptions.prototype.csharpNamespace = "";
+FileOptions.prototype.swiftPrefix = "";
+FileOptions.prototype.phpClassPrefix = "";
+FileOptions.prototype.phpNamespace = "";
+FileOptions.prototype.phpMetadataNamespace = "";
+FileOptions.prototype.rubyPackage = "";
+
 /**
  * Generated classes can be optimized for speed or code size.
  *
@@ -1621,7 +1692,7 @@ export class MessageOptions extends Message<MessageOptions> {
    *
    * @generated from field: optional bool message_set_wire_format = 1 [default = false];
    */
-  messageSetWireFormat?: boolean;
+  declare messageSetWireFormat: boolean;
 
   /**
    * Disables the generation of the standard "descriptor()" accessor, which can
@@ -1630,7 +1701,7 @@ export class MessageOptions extends Message<MessageOptions> {
    *
    * @generated from field: optional bool no_standard_descriptor_accessor = 2 [default = false];
    */
-  noStandardDescriptorAccessor?: boolean;
+  declare noStandardDescriptorAccessor: boolean;
 
   /**
    * Is this message deprecated?
@@ -1640,7 +1711,7 @@ export class MessageOptions extends Message<MessageOptions> {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * NOTE: Do not set the option in .proto files. Always use the maps syntax
@@ -1667,7 +1738,7 @@ export class MessageOptions extends Message<MessageOptions> {
    *
    * @generated from field: optional bool map_entry = 7;
    */
-  mapEntry?: boolean;
+  declare mapEntry: boolean;
 
   /**
    * Enable the legacy handling of JSON field name conflicts.  This lowercases
@@ -1684,7 +1755,7 @@ export class MessageOptions extends Message<MessageOptions> {
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 11 [deprecated = true];
    * @deprecated
    */
-  deprecatedLegacyJsonFieldConflicts?: boolean;
+  declare deprecatedLegacyJsonFieldConflicts: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -1734,6 +1805,12 @@ export class MessageOptions extends Message<MessageOptions> {
   }
 }
 
+MessageOptions.prototype.messageSetWireFormat = false;
+MessageOptions.prototype.noStandardDescriptorAccessor = false;
+MessageOptions.prototype.deprecated = false;
+MessageOptions.prototype.mapEntry = false;
+MessageOptions.prototype.deprecatedLegacyJsonFieldConflicts = false;
+
 /**
  * @generated from message google.protobuf.FieldOptions
  */
@@ -1748,7 +1825,7 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional google.protobuf.FieldOptions.CType ctype = 1 [default = STRING];
    */
-  ctype?: FieldOptions_CType;
+  declare ctype: FieldOptions_CType;
 
   /**
    * The packed option can be enabled for repeated primitive fields to enable
@@ -1761,7 +1838,7 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional bool packed = 2;
    */
-  packed?: boolean;
+  declare packed: boolean;
 
   /**
    * The jstype option determines the JavaScript type used for values of the
@@ -1778,7 +1855,7 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional google.protobuf.FieldOptions.JSType jstype = 6 [default = JS_NORMAL];
    */
-  jstype?: FieldOptions_JSType;
+  declare jstype: FieldOptions_JSType;
 
   /**
    * Should this field be parsed lazily?  Lazy applies only to message-type
@@ -1814,7 +1891,7 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional bool lazy = 5 [default = false];
    */
-  lazy?: boolean;
+  declare lazy: boolean;
 
   /**
    * unverified_lazy does no correctness checks on the byte stream. This should
@@ -1823,7 +1900,7 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional bool unverified_lazy = 15 [default = false];
    */
-  unverifiedLazy?: boolean;
+  declare unverifiedLazy: boolean;
 
   /**
    * Is this field deprecated?
@@ -1833,14 +1910,14 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * For Google-internal migration only. Do not use.
    *
    * @generated from field: optional bool weak = 10 [default = false];
    */
-  weak?: boolean;
+  declare weak: boolean;
 
   /**
    * Indicate that the field value should not be printed out when using debug
@@ -1848,12 +1925,12 @@ export class FieldOptions extends Message<FieldOptions> {
    *
    * @generated from field: optional bool debug_redact = 16 [default = false];
    */
-  debugRedact?: boolean;
+  declare debugRedact: boolean;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions.OptionRetention retention = 17;
    */
-  retention?: FieldOptions_OptionRetention;
+  declare retention: FieldOptions_OptionRetention;
 
   /**
    * @generated from field: repeated google.protobuf.FieldOptions.OptionTargetType targets = 19;
@@ -1918,6 +1995,16 @@ export class FieldOptions extends Message<FieldOptions> {
     return proto2.util.equals(FieldOptions, a, b);
   }
 }
+
+FieldOptions.prototype.ctype = 0 as FieldOptions_CType.STRING;
+FieldOptions.prototype.packed = false;
+FieldOptions.prototype.jstype = 0 as FieldOptions_JSType.JS_NORMAL;
+FieldOptions.prototype.lazy = false;
+FieldOptions.prototype.unverifiedLazy = false;
+FieldOptions.prototype.deprecated = false;
+FieldOptions.prototype.weak = false;
+FieldOptions.prototype.debugRedact = false;
+FieldOptions.prototype.retention = 0 as FieldOptions_OptionRetention.RETENTION_UNKNOWN;
 
 /**
  * @generated from enum google.protobuf.FieldOptions.CType
@@ -2096,14 +2183,14 @@ export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDef
   /**
    * @generated from field: optional google.protobuf.Edition edition = 3;
    */
-  edition?: Edition;
+  declare edition: Edition;
 
   /**
    * Textproto value.
    *
    * @generated from field: optional string value = 2;
    */
-  value?: string;
+  declare value: string;
 
   constructor(data?: PartialMessage<FieldOptions_EditionDefault>) {
     super();
@@ -2133,6 +2220,9 @@ export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDef
     return proto2.util.equals(FieldOptions_EditionDefault, a, b);
   }
 }
+
+FieldOptions_EditionDefault.prototype.edition = 0 as Edition.EDITION_UNKNOWN;
+FieldOptions_EditionDefault.prototype.value = "";
 
 /**
  * @generated from message google.protobuf.OneofOptions
@@ -2191,7 +2281,7 @@ export class EnumOptions extends Message<EnumOptions> {
    *
    * @generated from field: optional bool allow_alias = 2;
    */
-  allowAlias?: boolean;
+  declare allowAlias: boolean;
 
   /**
    * Is this enum deprecated?
@@ -2201,7 +2291,7 @@ export class EnumOptions extends Message<EnumOptions> {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * Enable the legacy handling of JSON field name conflicts.  This lowercases
@@ -2214,7 +2304,7 @@ export class EnumOptions extends Message<EnumOptions> {
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 6 [deprecated = true];
    * @deprecated
    */
-  deprecatedLegacyJsonFieldConflicts?: boolean;
+  declare deprecatedLegacyJsonFieldConflicts: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -2262,6 +2352,10 @@ export class EnumOptions extends Message<EnumOptions> {
   }
 }
 
+EnumOptions.prototype.allowAlias = false;
+EnumOptions.prototype.deprecated = false;
+EnumOptions.prototype.deprecatedLegacyJsonFieldConflicts = false;
+
 /**
  * @generated from message google.protobuf.EnumValueOptions
  */
@@ -2274,7 +2368,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
    *
    * @generated from field: optional bool deprecated = 1 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -2290,7 +2384,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
    *
    * @generated from field: optional bool debug_redact = 3 [default = false];
    */
-  debugRedact?: boolean;
+  declare debugRedact: boolean;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2330,6 +2424,9 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
   }
 }
 
+EnumValueOptions.prototype.deprecated = false;
+EnumValueOptions.prototype.debugRedact = false;
+
 /**
  * @generated from message google.protobuf.ServiceOptions
  */
@@ -2349,7 +2446,7 @@ export class ServiceOptions extends Message<ServiceOptions> {
    *
    * @generated from field: optional bool deprecated = 33 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2388,6 +2485,8 @@ export class ServiceOptions extends Message<ServiceOptions> {
   }
 }
 
+ServiceOptions.prototype.deprecated = false;
+
 /**
  * @generated from message google.protobuf.MethodOptions
  */
@@ -2400,12 +2499,12 @@ export class MethodOptions extends Message<MethodOptions> {
    *
    * @generated from field: optional bool deprecated = 33 [default = false];
    */
-  deprecated?: boolean;
+  declare deprecated: boolean;
 
   /**
    * @generated from field: optional google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];
    */
-  idempotencyLevel?: MethodOptions_IdempotencyLevel;
+  declare idempotencyLevel: MethodOptions_IdempotencyLevel;
 
   /**
    * Any features defined in the specific edition.
@@ -2451,6 +2550,9 @@ export class MethodOptions extends Message<MethodOptions> {
     return proto2.util.equals(MethodOptions, a, b);
   }
 }
+
+MethodOptions.prototype.deprecated = false;
+MethodOptions.prototype.idempotencyLevel = 0 as MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN;
 
 /**
  * Is this method side-effect-free (or safe in HTTP parlance), or idempotent,
@@ -2508,32 +2610,32 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
    *
    * @generated from field: optional string identifier_value = 3;
    */
-  identifierValue?: string;
+  declare identifierValue: string;
 
   /**
    * @generated from field: optional uint64 positive_int_value = 4;
    */
-  positiveIntValue?: bigint;
+  declare positiveIntValue: bigint;
 
   /**
    * @generated from field: optional int64 negative_int_value = 5;
    */
-  negativeIntValue?: bigint;
+  declare negativeIntValue: bigint;
 
   /**
    * @generated from field: optional double double_value = 6;
    */
-  doubleValue?: number;
+  declare doubleValue: number;
 
   /**
    * @generated from field: optional bytes string_value = 7;
    */
-  stringValue?: Uint8Array;
+  declare stringValue: Uint8Array;
 
   /**
    * @generated from field: optional string aggregate_value = 8;
    */
-  aggregateValue?: string;
+  declare aggregateValue: string;
 
   constructor(data?: PartialMessage<UninterpretedOption>) {
     super();
@@ -2568,6 +2670,13 @@ export class UninterpretedOption extends Message<UninterpretedOption> {
     return proto2.util.equals(UninterpretedOption, a, b);
   }
 }
+
+UninterpretedOption.prototype.identifierValue = "";
+UninterpretedOption.prototype.positiveIntValue = protoInt64.zero;
+UninterpretedOption.prototype.negativeIntValue = protoInt64.zero;
+UninterpretedOption.prototype.doubleValue = 0;
+UninterpretedOption.prototype.stringValue = new Uint8Array(0);
+UninterpretedOption.prototype.aggregateValue = "";
 
 /**
  * The name of the uninterpreted option.  Each string represents a segment in
@@ -2635,32 +2744,32 @@ export class FeatureSet extends Message<FeatureSet> {
   /**
    * @generated from field: optional google.protobuf.FeatureSet.FieldPresence field_presence = 1;
    */
-  fieldPresence?: FeatureSet_FieldPresence;
+  declare fieldPresence: FeatureSet_FieldPresence;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.EnumType enum_type = 2;
    */
-  enumType?: FeatureSet_EnumType;
+  declare enumType: FeatureSet_EnumType;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.RepeatedFieldEncoding repeated_field_encoding = 3;
    */
-  repeatedFieldEncoding?: FeatureSet_RepeatedFieldEncoding;
+  declare repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.Utf8Validation utf8_validation = 4;
    */
-  utf8Validation?: FeatureSet_Utf8Validation;
+  declare utf8Validation: FeatureSet_Utf8Validation;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.MessageEncoding message_encoding = 5;
    */
-  messageEncoding?: FeatureSet_MessageEncoding;
+  declare messageEncoding: FeatureSet_MessageEncoding;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.JsonFormat json_format = 6;
    */
-  jsonFormat?: FeatureSet_JsonFormat;
+  declare jsonFormat: FeatureSet_JsonFormat;
 
   constructor(data?: PartialMessage<FeatureSet>) {
     super();
@@ -2694,6 +2803,13 @@ export class FeatureSet extends Message<FeatureSet> {
     return proto2.util.equals(FeatureSet, a, b);
   }
 }
+
+FeatureSet.prototype.fieldPresence = 0 as FeatureSet_FieldPresence.FIELD_PRESENCE_UNKNOWN;
+FeatureSet.prototype.enumType = 0 as FeatureSet_EnumType.ENUM_TYPE_UNKNOWN;
+FeatureSet.prototype.repeatedFieldEncoding = 0 as FeatureSet_RepeatedFieldEncoding.REPEATED_FIELD_ENCODING_UNKNOWN;
+FeatureSet.prototype.utf8Validation = 0 as FeatureSet_Utf8Validation.UTF8_VALIDATION_UNKNOWN;
+FeatureSet.prototype.messageEncoding = 0 as FeatureSet_MessageEncoding.MESSAGE_ENCODING_UNKNOWN;
+FeatureSet.prototype.jsonFormat = 0 as FeatureSet_JsonFormat.JSON_FORMAT_UNKNOWN;
 
 /**
  * @generated from enum google.protobuf.FeatureSet.FieldPresence
@@ -2877,7 +2993,7 @@ export class FeatureSetDefaults extends Message<FeatureSetDefaults> {
    *
    * @generated from field: optional google.protobuf.Edition minimum_edition = 4;
    */
-  minimumEdition?: Edition;
+  declare minimumEdition: Edition;
 
   /**
    * The maximum known edition (inclusive) when this was constructed. Editions
@@ -2885,7 +3001,7 @@ export class FeatureSetDefaults extends Message<FeatureSetDefaults> {
    *
    * @generated from field: optional google.protobuf.Edition maximum_edition = 5;
    */
-  maximumEdition?: Edition;
+  declare maximumEdition: Edition;
 
   constructor(data?: PartialMessage<FeatureSetDefaults>) {
     super();
@@ -2917,6 +3033,9 @@ export class FeatureSetDefaults extends Message<FeatureSetDefaults> {
   }
 }
 
+FeatureSetDefaults.prototype.minimumEdition = 0 as Edition.EDITION_UNKNOWN;
+FeatureSetDefaults.prototype.maximumEdition = 0 as Edition.EDITION_UNKNOWN;
+
 /**
  * A map from every known edition with a unique set of defaults to its
  * defaults. Not all editions may be contained here.  For a given edition,
@@ -2929,7 +3048,7 @@ export class FeatureSetDefaults_FeatureSetEditionDefault extends Message<Feature
   /**
    * @generated from field: optional google.protobuf.Edition edition = 3;
    */
-  edition?: Edition;
+  declare edition: Edition;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet features = 2;
@@ -2964,6 +3083,8 @@ export class FeatureSetDefaults_FeatureSetEditionDefault extends Message<Feature
     return proto2.util.equals(FeatureSetDefaults_FeatureSetEditionDefault, a, b);
   }
 }
+
+FeatureSetDefaults_FeatureSetEditionDefault.prototype.edition = 0 as Edition.EDITION_UNKNOWN;
 
 /**
  * Encapsulates information about the original source file from which a
@@ -3144,12 +3265,12 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
    *
    * @generated from field: optional string leading_comments = 3;
    */
-  leadingComments?: string;
+  declare leadingComments: string;
 
   /**
    * @generated from field: optional string trailing_comments = 4;
    */
-  trailingComments?: string;
+  declare trailingComments: string;
 
   /**
    * @generated from field: repeated string leading_detached_comments = 6;
@@ -3187,6 +3308,9 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
     return proto2.util.equals(SourceCodeInfo_Location, a, b);
   }
 }
+
+SourceCodeInfo_Location.prototype.leadingComments = "";
+SourceCodeInfo_Location.prototype.trailingComments = "";
 
 /**
  * Describes the relationship between generated code and its original source
@@ -3249,7 +3373,7 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
    *
    * @generated from field: optional string source_file = 2;
    */
-  sourceFile?: string;
+  declare sourceFile: string;
 
   /**
    * Identifies the starting offset in bytes in the generated code
@@ -3257,7 +3381,7 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
    *
    * @generated from field: optional int32 begin = 3;
    */
-  begin?: number;
+  declare begin: number;
 
   /**
    * Identifies the ending offset in bytes in the generated code that
@@ -3266,12 +3390,12 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
    *
    * @generated from field: optional int32 end = 4;
    */
-  end?: number;
+  declare end: number;
 
   /**
    * @generated from field: optional google.protobuf.GeneratedCodeInfo.Annotation.Semantic semantic = 5;
    */
-  semantic?: GeneratedCodeInfo_Annotation_Semantic;
+  declare semantic: GeneratedCodeInfo_Annotation_Semantic;
 
   constructor(data?: PartialMessage<GeneratedCodeInfo_Annotation>) {
     super();
@@ -3304,6 +3428,11 @@ export class GeneratedCodeInfo_Annotation extends Message<GeneratedCodeInfo_Anno
     return proto2.util.equals(GeneratedCodeInfo_Annotation, a, b);
   }
 }
+
+GeneratedCodeInfo_Annotation.prototype.sourceFile = "";
+GeneratedCodeInfo_Annotation.prototype.begin = 0;
+GeneratedCodeInfo_Annotation.prototype.end = 0;
+GeneratedCodeInfo_Annotation.prototype.semantic = 0 as GeneratedCodeInfo_Annotation_Semantic.NONE;
 
 /**
  * Represents the identified object's effect on the element in the original

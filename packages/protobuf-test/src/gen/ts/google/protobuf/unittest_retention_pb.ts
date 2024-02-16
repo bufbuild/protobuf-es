@@ -42,17 +42,17 @@ export class OptionsMessage extends Message<OptionsMessage> {
   /**
    * @generated from field: optional int32 plain_field = 1;
    */
-  plainField?: number;
+  declare plainField: number;
 
   /**
    * @generated from field: optional int32 runtime_retention_field = 2;
    */
-  runtimeRetentionField?: number;
+  declare runtimeRetentionField: number;
 
   /**
    * @generated from field: optional int32 source_retention_field = 3;
    */
-  sourceRetentionField?: number;
+  declare sourceRetentionField: number;
 
   constructor(data?: PartialMessage<OptionsMessage>) {
     super();
@@ -83,6 +83,10 @@ export class OptionsMessage extends Message<OptionsMessage> {
     return proto2.util.equals(OptionsMessage, a, b);
   }
 }
+
+OptionsMessage.prototype.plainField = 0;
+OptionsMessage.prototype.runtimeRetentionField = 0;
+OptionsMessage.prototype.sourceRetentionField = 0;
 
 /**
  * @generated from message protobuf_unittest.Extendee
@@ -122,7 +126,7 @@ export class TopLevelMessage extends Message<TopLevelMessage> {
   /**
    * @generated from field: optional float f = 1;
    */
-  f?: number;
+  declare f: number;
 
   /**
    * @generated from oneof protobuf_unittest.TopLevelMessage.o
@@ -163,6 +167,8 @@ export class TopLevelMessage extends Message<TopLevelMessage> {
     return proto2.util.equals(TopLevelMessage, a, b);
   }
 }
+
+TopLevelMessage.prototype.f = 0;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum

@@ -453,7 +453,7 @@ export declare class ForeignMessageArenaLite extends Message<ForeignMessageArena
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c?: number;
+  c: number;
 
   constructor(data?: PartialMessage<ForeignMessageArenaLite>);
 
