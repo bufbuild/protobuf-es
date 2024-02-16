@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
+import { describeMT, testMT } from "./helpers.js";
+import type { AnyMessage } from "@bufbuild/protobuf";
+import { isFieldSet } from "@bufbuild/protobuf";
 import {
   TestAllTypesProto3 as TS_TestAllTypesProto3,
   TestAllTypesProto3_NestedMessage as TS_TestAllTypesProto3_NestedMessage,
@@ -20,7 +23,8 @@ import {
 import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/jstype_pb.js";
 import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
-import { testMT } from "./helpers.js";
+import { Proto2OptionalMessage as TS_Proto2OptionalMessage } from "./gen/ts/extra/proto2_pb.js";
+import { Proto2OptionalMessage as JS_Proto2OptionalMessage } from "./gen/js/extra/proto2_pb.js";
 
 describe("constructor initializes jstype=JS_STRING with string", function () {
   testMT(
@@ -176,6 +180,29 @@ describe("constructor takes partial message for map value", function () {
         t.repeatedNestedMessage[0]?.corecursive?.repeatedNestedMessage[0]
           ?.corecursive?.repeatedNestedMessage[0]?.a,
       ).toBe(0);
+    },
+  );
+});
+
+describe("constructor field presence", () => {
+  describeMT(
+    { ts: TS_Proto2OptionalMessage, js: JS_Proto2OptionalMessage },
+    (messageType) => {
+      test.each(messageType.fields.byNumber())(
+        "unset input field $name stays unset",
+        (field) => {
+          const msg = new messageType(new messageType());
+          expect(isFieldSet(msg as AnyMessage, field)).toBe(false);
+        },
+      );
+      test("set field carries over", () => {
+        const msg = new messageType(
+          new messageType({
+            stringField: "",
+          }),
+        );
+        expect(isFieldSet(msg, "stringField")).toBe(true);
+      });
     },
   );
 });
