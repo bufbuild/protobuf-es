@@ -76,12 +76,12 @@ export class ImageFile extends Message<ImageFile> {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * @generated from field: optional string package = 2;
    */
-  package?: string;
+  declare package: string;
 
   /**
    * @generated from field: repeated string dependency = 3;
@@ -131,7 +131,7 @@ export class ImageFile extends Message<ImageFile> {
   /**
    * @generated from field: optional string syntax = 12;
    */
-  syntax?: string;
+  declare syntax: string;
 
   /**
    * buf_extension contains buf-specific extensions to FileDescriptorProtos.
@@ -185,6 +185,10 @@ export class ImageFile extends Message<ImageFile> {
   }
 }
 
+ImageFile.prototype.name = "";
+ImageFile.prototype.package = "";
+ImageFile.prototype.syntax = "";
+
 /**
  * ImageFileExtension contains extensions to ImageFiles.
  *
@@ -212,7 +216,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
    *
    * @generated from field: optional bool is_import = 1;
    */
-  isImport?: boolean;
+  declare isImport: boolean;
 
   /**
    * ModuleInfo contains information about the Buf module this file belongs to.
@@ -239,7 +243,7 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
    *
    * @generated from field: optional bool is_syntax_unspecified = 3;
    */
-  isSyntaxUnspecified?: boolean;
+  declare isSyntaxUnspecified: boolean;
 
   /**
    * unused_dependency are the indexes within the dependency field on
@@ -283,6 +287,9 @@ export class ImageFileExtension extends Message<ImageFileExtension> {
   }
 }
 
+ImageFileExtension.prototype.isImport = false;
+ImageFileExtension.prototype.isSyntaxUnspecified = false;
+
 /**
  * ModuleInfo contains information about a Buf module that an ImageFile
  * belongs to.
@@ -306,7 +313,7 @@ export class ModuleInfo extends Message<ModuleInfo> {
    *
    * @generated from field: optional string commit = 2;
    */
-  commit?: string;
+  declare commit: string;
 
   constructor(data?: PartialMessage<ModuleInfo>) {
     super();
@@ -337,6 +344,8 @@ export class ModuleInfo extends Message<ModuleInfo> {
   }
 }
 
+ModuleInfo.prototype.commit = "";
+
 /**
  * ModuleName is a module name.
  *
@@ -348,17 +357,17 @@ export class ModuleName extends Message<ModuleName> {
   /**
    * @generated from field: optional string remote = 1;
    */
-  remote?: string;
+  declare remote: string;
 
   /**
    * @generated from field: optional string owner = 2;
    */
-  owner?: string;
+  declare owner: string;
 
   /**
    * @generated from field: optional string repository = 3;
    */
-  repository?: string;
+  declare repository: string;
 
   constructor(data?: PartialMessage<ModuleName>) {
     super();
@@ -389,4 +398,8 @@ export class ModuleName extends Message<ModuleName> {
     return proto2.util.equals(ModuleName, a, b);
   }
 }
+
+ModuleName.prototype.remote = "";
+ModuleName.prototype.owner = "";
+ModuleName.prototype.repository = "";
 

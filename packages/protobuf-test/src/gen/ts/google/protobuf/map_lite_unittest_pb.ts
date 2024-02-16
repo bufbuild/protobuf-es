@@ -607,7 +607,7 @@ export class ForeignMessageArenaLite extends Message<ForeignMessageArenaLite> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c?: number;
+  declare c: number;
 
   constructor(data?: PartialMessage<ForeignMessageArenaLite>) {
     super();
@@ -636,4 +636,6 @@ export class ForeignMessageArenaLite extends Message<ForeignMessageArenaLite> {
     return proto2.util.equals(ForeignMessageArenaLite, a, b);
   }
 }
+
+ForeignMessageArenaLite.prototype.c = 0;
 

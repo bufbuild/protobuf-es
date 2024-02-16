@@ -68,9 +68,9 @@ export function createFeatureResolver(
   const min = fds.minimumEdition;
   const max = fds.maximumEdition;
   if (
-    min === undefined ||
-    max === undefined ||
-    fds.defaults.some((d) => d.edition === undefined)
+    min == Edition.EDITION_UNKNOWN ||
+    max == Edition.EDITION_UNKNOWN ||
+    fds.defaults.some((d) => d.edition == Edition.EDITION_UNKNOWN)
   ) {
     throw new Error("Invalid FeatureSetDefaults");
   }
@@ -86,7 +86,7 @@ export function createFeatureResolver(
   }
   let highestMatch: { e: Edition; f: FeatureSet } | undefined = undefined;
   for (const c of fds.defaults) {
-    const e = c.edition ?? 0;
+    const e = c.edition;
     if (e > edition) {
       continue;
     }
@@ -138,9 +138,6 @@ function validateMergedFeatures(
 ): featureSet is MergedFeatureSet {
   for (const fi of FeatureSet.fields.list()) {
     const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
-    if (v === undefined) {
-      return false;
-    }
     if (fi.kind == "enum" && v === 0) {
       return false;
     }

@@ -78,11 +78,7 @@ export function clearField(
         if (implicitPresence) {
           target[localName] = field.T.values[0].no;
         } else {
-          if (fieldUsesPrototype(field)) {
-            delete target[localName];
-          } else {
-            target[localName] = undefined;
-          }
+          delete target[localName];
         }
         break;
       case "scalar":
@@ -90,11 +86,7 @@ export function clearField(
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           target[localName] = scalarZeroValue(field.T, field.L);
         } else {
-          if (fieldUsesPrototype(field)) {
-            delete target[localName];
-          } else {
-            target[localName] = undefined;
-          }
+          delete target[localName];
         }
         break;
       case "message":
@@ -102,18 +94,4 @@ export function clearField(
         break;
     }
   }
-}
-
-/**
- * Tells whether a field uses the prototype chain for field presence.
- * Behavior must match with the counterpart in @bufbuild/protoc-gen-es.
- */
-export function fieldUsesPrototype(field: FieldInfo): boolean {
-  if (field.repeated || field.oneof) {
-    return false;
-  }
-  if (field.kind != "scalar" && field.kind != "enum") {
-    return false;
-  }
-  return field.req;
 }

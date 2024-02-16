@@ -33,7 +33,7 @@ export declare class TestOptimizedForSize extends Message<TestOptimizedForSize> 
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i?: number;
+  i: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;

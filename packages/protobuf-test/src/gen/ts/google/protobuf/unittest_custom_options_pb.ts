@@ -72,7 +72,7 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
   /**
    * @generated from field: optional string field1 = 1;
    */
-  field1?: string;
+  declare field1: string;
 
   /**
    * @generated from oneof protobuf_unittest.TestMessageWithCustomOptions.AnOneof
@@ -119,6 +119,8 @@ export class TestMessageWithCustomOptions extends Message<TestMessageWithCustomO
     return proto2.util.equals(TestMessageWithCustomOptions, a, b);
   }
 }
+
+TestMessageWithCustomOptions.prototype.field1 = "";
 
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
@@ -511,17 +513,17 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   /**
    * @generated from field: optional int32 foo = 1;
    */
-  foo?: number;
+  declare foo: number;
 
   /**
    * @generated from field: optional int32 foo2 = 2;
    */
-  foo2?: number;
+  declare foo2: number;
 
   /**
    * @generated from field: optional int32 foo3 = 3;
    */
-  foo3?: number;
+  declare foo3: number;
 
   /**
    * @generated from field: repeated int32 foo4 = 4;
@@ -559,6 +561,10 @@ export class ComplexOptionType1 extends Message<ComplexOptionType1> {
   }
 }
 
+ComplexOptionType1.prototype.foo = 0;
+ComplexOptionType1.prototype.foo2 = 0;
+ComplexOptionType1.prototype.foo3 = 0;
+
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
  */
@@ -571,7 +577,7 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
   /**
    * @generated from field: optional int32 baz = 2;
    */
-  baz?: number;
+  declare baz: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
@@ -614,6 +620,8 @@ export class ComplexOptionType2 extends Message<ComplexOptionType2> {
   }
 }
 
+ComplexOptionType2.prototype.baz = 0;
+
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2.ComplexOptionType4
  */
@@ -621,7 +629,7 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
   /**
    * @generated from field: optional int32 waldo = 1;
    */
-  waldo?: number;
+  declare waldo: number;
 
   constructor(data?: PartialMessage<ComplexOptionType2_ComplexOptionType4>) {
     super();
@@ -651,6 +659,8 @@ export class ComplexOptionType2_ComplexOptionType4 extends Message<ComplexOption
   }
 }
 
+ComplexOptionType2_ComplexOptionType4.prototype.waldo = 0;
+
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
  */
@@ -667,7 +677,7 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   /**
    * @generated from field: optional int32 moo = 1;
    */
-  moo?: number;
+  declare moo: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
@@ -703,6 +713,8 @@ export class ComplexOptionType3 extends Message<ComplexOptionType3> {
   }
 }
 
+ComplexOptionType3.prototype.moo = 0;
+
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
  */
@@ -710,7 +722,7 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
   /**
    * @generated from field: optional int32 plugh = 3;
    */
-  plugh?: number;
+  declare plugh: number;
 
   constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>) {
     super();
@@ -740,6 +752,8 @@ export class ComplexOptionType3_ComplexOptionType5 extends Message<ComplexOption
   }
 }
 
+ComplexOptionType3_ComplexOptionType5.prototype.plugh = 0;
+
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
  */
@@ -747,7 +761,7 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
   /**
    * @generated from field: optional int32 xyzzy = 7593951;
    */
-  xyzzy?: number;
+  declare xyzzy: number;
 
   constructor(data?: PartialMessage<ComplexOpt6>) {
     super();
@@ -776,6 +790,8 @@ export class ComplexOpt6 extends Message<ComplexOpt6> {
     return proto2.util.equals(ComplexOpt6, a, b);
   }
 }
+
+ComplexOpt6.prototype.xyzzy = 0;
 
 /**
  * Note that we try various different ways of naming the same extension.
@@ -848,7 +864,7 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   /**
    * @generated from field: optional string s = 1;
    */
-  s?: string;
+  declare s: string;
 
   constructor(data?: PartialMessage<AggregateMessageSetElement>) {
     super();
@@ -878,6 +894,8 @@ export class AggregateMessageSetElement extends Message<AggregateMessageSetEleme
   }
 }
 
+AggregateMessageSetElement.prototype.s = "";
+
 /**
  * @generated from extension: optional protobuf_unittest.AggregateMessageSetElement message_set_extension = 15447542;
  */
@@ -896,12 +914,12 @@ export class Aggregate extends Message<Aggregate> {
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i?: number;
+  declare i: number;
 
   /**
    * @generated from field: optional string s = 2;
    */
-  s?: string;
+  declare s: string;
 
   /**
    * A nested object
@@ -964,6 +982,9 @@ export class Aggregate extends Message<Aggregate> {
   }
 }
 
+Aggregate.prototype.i = 0;
+Aggregate.prototype.s = "";
+
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate nested = 15476903;
  */
@@ -980,7 +1001,7 @@ export class AggregateMessage extends Message<AggregateMessage> {
   /**
    * @generated from field: optional int32 fieldname = 1;
    */
-  fieldname?: number;
+  declare fieldname: number;
 
   constructor(data?: PartialMessage<AggregateMessage>) {
     super();
@@ -1009,6 +1030,8 @@ export class AggregateMessage extends Message<AggregateMessage> {
     return proto2.util.equals(AggregateMessage, a, b);
   }
 }
+
+AggregateMessage.prototype.fieldname = 0;
 
 /**
  * Test custom options for nested type.
@@ -1064,7 +1087,7 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
   /**
    * @generated from field: optional int32 nested_field = 1;
    */
-  nestedField?: number;
+  declare nestedField: number;
 
   constructor(data?: PartialMessage<NestedOptionType_NestedMessage>) {
     super();
@@ -1093,6 +1116,8 @@ export class NestedOptionType_NestedMessage extends Message<NestedOptionType_Nes
     return proto2.util.equals(NestedOptionType_NestedMessage, a, b);
   }
 }
+
+NestedOptionType_NestedMessage.prototype.nestedField = 0;
 
 /**
  * @generated from extension: optional int32 nested_extension = 7912573;
