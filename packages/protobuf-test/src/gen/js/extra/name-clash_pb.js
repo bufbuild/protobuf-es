@@ -203,6 +203,40 @@ export const return$ = proto3.makeMessageType(
 );
 
 /**
+ * reserved object property
+ *
+ * @generated from message spec.constructor
+ */
+export const constructor = proto3.makeMessageType(
+  "spec.constructor",
+  [],
+);
+
+/**
+ * @generated from message spec.toString
+ */
+export const toString = proto3.makeMessageType(
+  "spec.toString",
+  [],
+);
+
+/**
+ * @generated from message spec.toJSON
+ */
+export const toJSON = proto3.makeMessageType(
+  "spec.toJSON",
+  [],
+);
+
+/**
+ * @generated from message spec.valueOf
+ */
+export const valueOf = proto3.makeMessageType(
+  "spec.valueOf",
+  [],
+);
+
+/**
  * used by runtime
  *
  * @generated from message spec.Message
