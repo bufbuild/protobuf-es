@@ -107,6 +107,16 @@ message case {
 message return {
 }
 
+// reserved object property
+message constructor {
+}
+message toString {
+}
+message toJSON {
+}
+message valueOf {
+}
+
 // used by runtime
 message Message {
 }
