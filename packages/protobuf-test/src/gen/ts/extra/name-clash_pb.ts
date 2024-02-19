@@ -714,6 +714,132 @@ export class return$ extends Message$1<return$> {
 }
 
 /**
+ * reserved object property
+ *
+ * @generated from message spec.constructor
+ */
+export class constructor$ extends Message$1<constructor$> {
+  constructor(data?: PartialMessage$1<constructor$>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.constructor";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): constructor$ {
+    return new constructor$().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): constructor$ {
+    return new constructor$().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): constructor$ {
+    return new constructor$().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: constructor$ | PlainMessage$1<constructor$> | undefined, b: constructor$ | PlainMessage$1<constructor$> | undefined): boolean {
+    return proto3.util.equals(constructor$, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.toString
+ */
+export class toString$ extends Message$1<toString$> {
+  constructor(data?: PartialMessage$1<toString$>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.toString";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toString$ {
+    return new toString$().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toString$ {
+    return new toString$().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toString$ {
+    return new toString$().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: toString$ | PlainMessage$1<toString$> | undefined, b: toString$ | PlainMessage$1<toString$> | undefined): boolean {
+    return proto3.util.equals(toString$, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.toJSON
+ */
+export class toJSON$ extends Message$1<toJSON$> {
+  constructor(data?: PartialMessage$1<toJSON$>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.toJSON";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toJSON$ {
+    return new toJSON$().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toJSON$ {
+    return new toJSON$().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toJSON$ {
+    return new toJSON$().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: toJSON$ | PlainMessage$1<toJSON$> | undefined, b: toJSON$ | PlainMessage$1<toJSON$> | undefined): boolean {
+    return proto3.util.equals(toJSON$, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.valueOf
+ */
+export class valueOf$ extends Message$1<valueOf$> {
+  constructor(data?: PartialMessage$1<valueOf$>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.valueOf";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): valueOf$ {
+    return new valueOf$().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): valueOf$ {
+    return new valueOf$().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): valueOf$ {
+    return new valueOf$().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: valueOf$ | PlainMessage$1<valueOf$> | undefined, b: valueOf$ | PlainMessage$1<valueOf$> | undefined): boolean {
+    return proto3.util.equals(valueOf$, a, b);
+  }
+}
+
+/**
  * used by runtime
  *
  * @generated from message spec.Message
