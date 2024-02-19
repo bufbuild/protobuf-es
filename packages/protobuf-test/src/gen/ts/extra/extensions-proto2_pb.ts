@@ -51,7 +51,7 @@ export class Proto2Extendee extends Message<Proto2Extendee> {
   /**
    * @generated from field: optional int32 own_field = 1;
    */
-  ownField?: number;
+  declare ownField: number;
 
   constructor(data?: PartialMessage<Proto2Extendee>) {
     super();
@@ -81,6 +81,8 @@ export class Proto2Extendee extends Message<Proto2Extendee> {
   }
 }
 
+Proto2Extendee.prototype.ownField = 0;
+
 /**
  * A message used in extensions
  *
@@ -90,7 +92,7 @@ export class Proto2ExtMessage extends Message<Proto2ExtMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  stringField?: string;
+  declare stringField: string;
 
   constructor(data?: PartialMessage<Proto2ExtMessage>) {
     super();
@@ -120,6 +122,8 @@ export class Proto2ExtMessage extends Message<Proto2ExtMessage> {
   }
 }
 
+Proto2ExtMessage.prototype.stringField = "";
+
 /**
  * @generated from message proto2ext.GroupExt
  */
@@ -127,12 +131,12 @@ export class GroupExt extends Message<GroupExt> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   /**
    * @generated from field: optional int32 b = 2;
    */
-  b?: number;
+  declare b: number;
 
   constructor(data?: PartialMessage<GroupExt>) {
     super();
@@ -163,6 +167,9 @@ export class GroupExt extends Message<GroupExt> {
   }
 }
 
+GroupExt.prototype.a = 0;
+GroupExt.prototype.b = 0;
+
 /**
  * @generated from message proto2ext.RepeatedGroupExt
  */
@@ -170,12 +177,12 @@ export class RepeatedGroupExt extends Message<RepeatedGroupExt> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   /**
    * @generated from field: optional int32 b = 2;
    */
-  b?: number;
+  declare b: number;
 
   constructor(data?: PartialMessage<RepeatedGroupExt>) {
     super();
@@ -205,6 +212,9 @@ export class RepeatedGroupExt extends Message<RepeatedGroupExt> {
     return proto2.util.equals(RepeatedGroupExt, a, b);
   }
 }
+
+RepeatedGroupExt.prototype.a = 0;
+RepeatedGroupExt.prototype.b = 0;
 
 /**
  * A container for nested extensions

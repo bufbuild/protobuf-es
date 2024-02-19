@@ -28,7 +28,7 @@ export interface ParsedParameter {
 }
 
 export function parseParameter(
-  parameter: string | undefined,
+  parameter: string,
   parseExtraOption: ((key: string, value: string) => void) | undefined,
 ): ParsedParameter {
   let targets: Target[] = ["js", "dts"];
@@ -166,9 +166,9 @@ export function parseParameter(
 }
 
 function splitParameter(
-  parameter: string | undefined,
+  parameter: string,
 ): { key: string; value: string; raw: string }[] {
-  if (parameter == undefined) {
+  if (parameter.length == 0) {
     return [];
   }
   return parameter.split(",").map((raw) => {

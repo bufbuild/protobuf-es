@@ -91,7 +91,7 @@ export class ImportMessage extends Message<ImportMessage> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  d?: number;
+  declare d: number;
 
   constructor(data?: PartialMessage<ImportMessage>) {
     super();
@@ -120,4 +120,6 @@ export class ImportMessage extends Message<ImportMessage> {
     return proto2.util.equals(ImportMessage, a, b);
   }
 }
+
+ImportMessage.prototype.d = 0;
 

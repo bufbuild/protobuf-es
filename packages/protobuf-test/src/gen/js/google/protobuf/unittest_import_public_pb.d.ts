@@ -28,7 +28,7 @@ export declare class PublicImportMessage extends Message<PublicImportMessage> {
   /**
    * @generated from field: optional int32 e = 1;
    */
-  e?: number;
+  e: number;
 
   constructor(data?: PartialMessage<PublicImportMessage>);
 

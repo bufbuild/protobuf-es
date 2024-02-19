@@ -31,7 +31,7 @@ export function getNonEditionRuntime(
   if (file.syntax === "editions") {
     // TODO support editions
     throw new Error(
-      `${file.proto.name ?? ""}: syntax "editions" is not supported yet`,
+      `${file.proto.name}: syntax "editions" is not supported yet`,
     );
   }
   return schema.runtime[file.syntax];

@@ -46,7 +46,7 @@ export declare class Proto2Extendee extends Message<Proto2Extendee> {
   /**
    * @generated from field: optional int32 own_field = 1;
    */
-  ownField?: number;
+  ownField: number;
 
   constructor(data?: PartialMessage<Proto2Extendee>);
 
@@ -72,7 +72,7 @@ export declare class Proto2ExtMessage extends Message<Proto2ExtMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  stringField?: string;
+  stringField: string;
 
   constructor(data?: PartialMessage<Proto2ExtMessage>);
 
@@ -96,12 +96,12 @@ export declare class GroupExt extends Message<GroupExt> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional int32 b = 2;
    */
-  b?: number;
+  b: number;
 
   constructor(data?: PartialMessage<GroupExt>);
 
@@ -125,12 +125,12 @@ export declare class RepeatedGroupExt extends Message<RepeatedGroupExt> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  a: number;
 
   /**
    * @generated from field: optional int32 b = 2;
    */
-  b?: number;
+  b: number;
 
   constructor(data?: PartialMessage<RepeatedGroupExt>);
 
