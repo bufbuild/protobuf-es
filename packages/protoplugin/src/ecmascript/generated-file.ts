@@ -29,7 +29,6 @@ import { makeImportPathRelative } from "./import-path.js";
 import type { JSDocBlock } from "./jsdoc.js";
 import { createJsDocBlock } from "./jsdoc.js";
 import {
-  createExportDeclaration,
   ExportDeclaration,
   LiteralProtoInt64,
   LiteralString,
@@ -227,7 +226,11 @@ export function createGeneratedFile(
       return createImportSymbol(name, importPath);
     },
     exportDecl(declaration, name) {
-      return createExportDeclaration(declaration, name);
+      return {
+        kind: "es_export_decl",
+        declaration,
+        name,
+      };
     },
     string(string) {
       // We do not use LiteralString, which was added later, to maintain backwards compatibility
