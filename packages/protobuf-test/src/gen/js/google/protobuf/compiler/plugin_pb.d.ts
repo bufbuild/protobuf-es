@@ -42,17 +42,17 @@ export declare class Version extends Message<Version> {
   /**
    * @generated from field: optional int32 major = 1;
    */
-  major?: number;
+  major: number;
 
   /**
    * @generated from field: optional int32 minor = 2;
    */
-  minor?: number;
+  minor: number;
 
   /**
    * @generated from field: optional int32 patch = 3;
    */
-  patch?: number;
+  patch: number;
 
   /**
    * A suffix for alpha, beta or rc release, e.g., "alpha-1", "rc2". It should
@@ -60,7 +60,7 @@ export declare class Version extends Message<Version> {
    *
    * @generated from field: optional string suffix = 4;
    */
-  suffix?: string;
+  suffix: string;
 
   constructor(data?: PartialMessage<Version>);
 
@@ -97,7 +97,7 @@ export declare class CodeGeneratorRequest extends Message<CodeGeneratorRequest> 
    *
    * @generated from field: optional string parameter = 2;
    */
-  parameter?: string;
+  parameter: string;
 
   /**
    * FileDescriptorProtos for all files in files_to_generate and everything
@@ -173,7 +173,7 @@ export declare class CodeGeneratorResponse extends Message<CodeGeneratorResponse
    *
    * @generated from field: optional string error = 1;
    */
-  error?: string;
+  error: string;
 
   /**
    * A bitmask of supported features that the code generator supports.
@@ -181,7 +181,7 @@ export declare class CodeGeneratorResponse extends Message<CodeGeneratorResponse
    *
    * @generated from field: optional uint64 supported_features = 2;
    */
-  supportedFeatures?: bigint;
+  supportedFeatures: bigint;
 
   /**
    * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
@@ -246,7 +246,7 @@ export declare class CodeGeneratorResponse_File extends Message<CodeGeneratorRes
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * If non-empty, indicates that the named file should already exist, and the
@@ -289,14 +289,14 @@ export declare class CodeGeneratorResponse_File extends Message<CodeGeneratorRes
    *
    * @generated from field: optional string insertion_point = 2;
    */
-  insertionPoint?: string;
+  insertionPoint: string;
 
   /**
    * The file contents.
    *
    * @generated from field: optional string content = 15;
    */
-  content?: string;
+  content: string;
 
   /**
    * Information describing the file content being inserted. If an insertion

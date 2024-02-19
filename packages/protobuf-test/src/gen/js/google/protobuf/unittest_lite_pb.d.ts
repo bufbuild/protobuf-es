@@ -81,77 +81,77 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  optionalInt32?: number;
+  optionalInt32: number;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  optionalInt64?: bigint;
+  optionalInt64: bigint;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  optionalUint32?: number;
+  optionalUint32: number;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  optionalUint64?: bigint;
+  optionalUint64: bigint;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  optionalSint32?: number;
+  optionalSint32: number;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  optionalSint64?: bigint;
+  optionalSint64: bigint;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  optionalFixed32?: number;
+  optionalFixed32: number;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  optionalFixed64?: bigint;
+  optionalFixed64: bigint;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  optionalSfixed32?: number;
+  optionalSfixed32: number;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  optionalSfixed64?: bigint;
+  optionalSfixed64: bigint;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  optionalFloat?: number;
+  optionalFloat: number;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  optionalDouble?: number;
+  optionalDouble: number;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  optionalBool?: boolean;
+  optionalBool: boolean;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  optionalString?: string;
+  optionalString: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.OptionalGroup optionalgroup = 16;
@@ -176,27 +176,27 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedEnum optional_nested_enum = 21;
    */
-  optionalNestedEnum?: TestAllTypesLite_NestedEnum;
+  optionalNestedEnum: TestAllTypesLite_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite optional_foreign_enum = 22;
    */
-  optionalForeignEnum?: ForeignEnumLite;
+  optionalForeignEnum: ForeignEnumLite;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnumLite optional_import_enum = 23;
    */
-  optionalImportEnum?: ImportEnumLite;
+  optionalImportEnum: ImportEnumLite;
 
   /**
    * @generated from field: optional string optional_string_piece = 24;
    */
-  optionalStringPiece?: string;
+  optionalStringPiece: string;
 
   /**
    * @generated from field: optional string optional_cord = 25;
    */
-  optionalCord?: string;
+  optionalCord: string;
 
   /**
    * Defined in unittest_import_public.proto
@@ -347,102 +347,102 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 default_int32 = 61 [default = 41];
    */
-  defaultInt32?: number;
+  defaultInt32: number;
 
   /**
    * @generated from field: optional int64 default_int64 = 62 [default = 42];
    */
-  defaultInt64?: bigint;
+  defaultInt64: bigint;
 
   /**
    * @generated from field: optional uint32 default_uint32 = 63 [default = 43];
    */
-  defaultUint32?: number;
+  defaultUint32: number;
 
   /**
    * @generated from field: optional uint64 default_uint64 = 64 [default = 44];
    */
-  defaultUint64?: bigint;
+  defaultUint64: bigint;
 
   /**
    * @generated from field: optional sint32 default_sint32 = 65 [default = -45];
    */
-  defaultSint32?: number;
+  defaultSint32: number;
 
   /**
    * @generated from field: optional sint64 default_sint64 = 66 [default = 46];
    */
-  defaultSint64?: bigint;
+  defaultSint64: bigint;
 
   /**
    * @generated from field: optional fixed32 default_fixed32 = 67 [default = 47];
    */
-  defaultFixed32?: number;
+  defaultFixed32: number;
 
   /**
    * @generated from field: optional fixed64 default_fixed64 = 68 [default = 48];
    */
-  defaultFixed64?: bigint;
+  defaultFixed64: bigint;
 
   /**
    * @generated from field: optional sfixed32 default_sfixed32 = 69 [default = 49];
    */
-  defaultSfixed32?: number;
+  defaultSfixed32: number;
 
   /**
    * @generated from field: optional sfixed64 default_sfixed64 = 70 [default = -50];
    */
-  defaultSfixed64?: bigint;
+  defaultSfixed64: bigint;
 
   /**
    * @generated from field: optional float default_float = 71 [default = 51.5];
    */
-  defaultFloat?: number;
+  defaultFloat: number;
 
   /**
    * @generated from field: optional double default_double = 72 [default = 52000];
    */
-  defaultDouble?: number;
+  defaultDouble: number;
 
   /**
    * @generated from field: optional bool default_bool = 73 [default = true];
    */
-  defaultBool?: boolean;
+  defaultBool: boolean;
 
   /**
    * @generated from field: optional string default_string = 74 [default = "hello"];
    */
-  defaultString?: string;
+  defaultString: string;
 
   /**
    * @generated from field: optional bytes default_bytes = 75 [default = "world"];
    */
-  defaultBytes?: Uint8Array;
+  defaultBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedEnum default_nested_enum = 81 [default = BAR];
    */
-  defaultNestedEnum?: TestAllTypesLite_NestedEnum;
+  defaultNestedEnum: TestAllTypesLite_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite default_foreign_enum = 82 [default = FOREIGN_LITE_BAR];
    */
-  defaultForeignEnum?: ForeignEnumLite;
+  defaultForeignEnum: ForeignEnumLite;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnumLite default_import_enum = 83 [default = IMPORT_LITE_BAR];
    */
-  defaultImportEnum?: ImportEnumLite;
+  defaultImportEnum: ImportEnumLite;
 
   /**
    * @generated from field: optional string default_string_piece = 84 [default = "abc"];
    */
-  defaultStringPiece?: string;
+  defaultStringPiece: string;
 
   /**
    * @generated from field: optional string default_cord = 85 [default = "123"];
    */
-  defaultCord?: string;
+  defaultCord: string;
 
   /**
    * For oneof test
@@ -492,7 +492,7 @@ export declare class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 deceptively_named_list = 116;
    */
-  deceptivelyNamedList?: number;
+  deceptivelyNamedList: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite>);
 
@@ -536,12 +536,12 @@ export declare class TestAllTypesLite_NestedMessage extends Message<TestAllTypes
   /**
    * @generated from field: optional int32 bb = 1;
    */
-  bb?: number;
+  bb: number;
 
   /**
    * @generated from field: optional int64 cc = 2;
    */
-  cc?: bigint;
+  cc: bigint;
 
   /**
    * @generated from field: repeated int32 dd = 3 [packed = true];
@@ -570,7 +570,7 @@ export declare class TestAllTypesLite_NestedMessage2 extends Message<TestAllType
   /**
    * @generated from field: optional int32 dd = 1;
    */
-  dd?: number;
+  dd: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_NestedMessage2>);
 
@@ -594,7 +594,7 @@ export declare class TestAllTypesLite_OptionalGroup extends Message<TestAllTypes
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_OptionalGroup>);
 
@@ -618,7 +618,7 @@ export declare class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypes
   /**
    * @generated from field: optional int32 a = 47;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_RepeatedGroup>);
 
@@ -642,7 +642,7 @@ export declare class ForeignMessageLite extends Message<ForeignMessageLite> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c?: number;
+  c: number;
 
   constructor(data?: PartialMessage<ForeignMessageLite>);
 
@@ -774,7 +774,7 @@ export declare class OptionalGroup_extension_lite extends Message<OptionalGroup_
   /**
    * @generated from field: optional int32 a = 17;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<OptionalGroup_extension_lite>);
 
@@ -798,7 +798,7 @@ export declare class RepeatedGroup_extension_lite extends Message<RepeatedGroup_
   /**
    * @generated from field: optional int32 a = 47;
    */
-  a?: number;
+  a: number;
 
   constructor(data?: PartialMessage<RepeatedGroup_extension_lite>);
 
@@ -869,19 +869,19 @@ export declare class TestDeprecatedLite extends Message<TestDeprecatedLite> {
    * @generated from field: optional int32 deprecated_field = 1 [deprecated = true];
    * @deprecated
    */
-  deprecatedField?: number;
+  deprecatedField: number;
 
   /**
    * @generated from field: required int32 deprecated_field2 = 2 [deprecated = true];
    * @deprecated
    */
-  deprecatedField2?: number;
+  deprecatedField2: number;
 
   /**
    * @generated from field: optional string deprecated_field3 = 3 [deprecated = true];
    * @deprecated
    */
-  deprecatedField3?: string;
+  deprecatedField3: string;
 
   /**
    * @generated from field: optional protobuf_unittest.TestDeprecatedLite deprecated_field4 = 4 [deprecated = true];
@@ -1187,12 +1187,12 @@ export declare class V1MessageLite extends Message<V1MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField?: number;
+  intField: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V1EnumLite enum_field = 2 [default = V1_FIRST];
    */
-  enumField?: V1EnumLite;
+  enumField: V1EnumLite;
 
   constructor(data?: PartialMessage<V1MessageLite>);
 
@@ -1216,12 +1216,12 @@ export declare class V2MessageLite extends Message<V2MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  intField?: number;
+  intField: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V2EnumLite enum_field = 2 [default = V2_FIRST];
    */
-  enumField?: V2EnumLite;
+  enumField: V2EnumLite;
 
   constructor(data?: PartialMessage<V2MessageLite>);
 
@@ -1245,12 +1245,12 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
-  optionalInt32?: number;
+  optionalInt32: number;
 
   /**
    * @generated from field: optional int32 fixed_32 = 536870001;
    */
-  fixed32?: number;
+  fixed32: number;
 
   /**
    * @generated from field: repeated int32 repeated_int32 = 536870002 [packed = false];
@@ -1265,17 +1265,17 @@ export declare class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbe
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite optional_enum = 536870004;
    */
-  optionalEnum?: ForeignEnumLite;
+  optionalEnum: ForeignEnumLite;
 
   /**
    * @generated from field: optional string optional_string = 536870005;
    */
-  optionalString?: string;
+  optionalString: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 536870006;
    */
-  optionalBytes?: Uint8Array;
+  optionalBytes: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessageLite optional_message = 536870007;
@@ -1343,7 +1343,7 @@ export declare class TestHugeFieldNumbersLite_OptionalGroup extends Message<Test
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
-  groupA?: number;
+  groupA: number;
 
   constructor(data?: PartialMessage<TestHugeFieldNumbersLite_OptionalGroup>);
 
@@ -1620,7 +1620,7 @@ export declare class RecursiveMessage extends Message<RecursiveMessage> {
   /**
    * @generated from field: optional bytes payload = 2;
    */
-  payload?: Uint8Array;
+  payload: Uint8Array;
 
   constructor(data?: PartialMessage<RecursiveMessage>);
 

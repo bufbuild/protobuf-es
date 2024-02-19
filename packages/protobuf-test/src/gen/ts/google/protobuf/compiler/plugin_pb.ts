@@ -30,7 +30,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2 } from "@bufbuild/protobuf";
+import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
 import { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
 
 /**
@@ -42,17 +42,17 @@ export class Version extends Message<Version> {
   /**
    * @generated from field: optional int32 major = 1;
    */
-  major?: number;
+  declare major: number;
 
   /**
    * @generated from field: optional int32 minor = 2;
    */
-  minor?: number;
+  declare minor: number;
 
   /**
    * @generated from field: optional int32 patch = 3;
    */
-  patch?: number;
+  declare patch: number;
 
   /**
    * A suffix for alpha, beta or rc release, e.g., "alpha-1", "rc2". It should
@@ -60,7 +60,7 @@ export class Version extends Message<Version> {
    *
    * @generated from field: optional string suffix = 4;
    */
-  suffix?: string;
+  declare suffix: string;
 
   constructor(data?: PartialMessage<Version>) {
     super();
@@ -93,6 +93,11 @@ export class Version extends Message<Version> {
   }
 }
 
+Version.prototype.major = 0;
+Version.prototype.minor = 0;
+Version.prototype.patch = 0;
+Version.prototype.suffix = "";
+
 /**
  * An encoded CodeGeneratorRequest is written to the plugin's stdin.
  *
@@ -113,7 +118,7 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
    *
    * @generated from field: optional string parameter = 2;
    */
-  parameter?: string;
+  declare parameter: string;
 
   /**
    * FileDescriptorProtos for all files in files_to_generate and everything
@@ -188,6 +193,8 @@ export class CodeGeneratorRequest extends Message<CodeGeneratorRequest> {
   }
 }
 
+CodeGeneratorRequest.prototype.parameter = "";
+
 /**
  * The plugin writes an encoded CodeGeneratorResponse to stdout.
  *
@@ -206,7 +213,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
    *
    * @generated from field: optional string error = 1;
    */
-  error?: string;
+  declare error: string;
 
   /**
    * A bitmask of supported features that the code generator supports.
@@ -214,7 +221,7 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
    *
    * @generated from field: optional uint64 supported_features = 2;
    */
-  supportedFeatures?: bigint;
+  declare supportedFeatures: bigint;
 
   /**
    * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
@@ -250,6 +257,9 @@ export class CodeGeneratorResponse extends Message<CodeGeneratorResponse> {
     return proto2.util.equals(CodeGeneratorResponse, a, b);
   }
 }
+
+CodeGeneratorResponse.prototype.error = "";
+CodeGeneratorResponse.prototype.supportedFeatures = protoInt64.zero;
 
 /**
  * Sync with code_generator.h.
@@ -300,7 +310,7 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  declare name: string;
 
   /**
    * If non-empty, indicates that the named file should already exist, and the
@@ -343,14 +353,14 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
    *
    * @generated from field: optional string insertion_point = 2;
    */
-  insertionPoint?: string;
+  declare insertionPoint: string;
 
   /**
    * The file contents.
    *
    * @generated from field: optional string content = 15;
    */
-  content?: string;
+  declare content: string;
 
   /**
    * Information describing the file content being inserted. If an insertion
@@ -391,4 +401,8 @@ export class CodeGeneratorResponse_File extends Message<CodeGeneratorResponse_Fi
     return proto2.util.equals(CodeGeneratorResponse_File, a, b);
   }
 }
+
+CodeGeneratorResponse_File.prototype.name = "";
+CodeGeneratorResponse_File.prototype.insertionPoint = "";
+CodeGeneratorResponse_File.prototype.content = "";
 

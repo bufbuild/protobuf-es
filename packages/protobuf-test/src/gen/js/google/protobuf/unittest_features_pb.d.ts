@@ -74,62 +74,62 @@ export declare class TestFeatures extends Message<TestFeatures> {
   /**
    * @generated from field: optional int32 int_file_feature = 1;
    */
-  intFileFeature?: number;
+  intFileFeature: number;
 
   /**
    * @generated from field: optional int32 int_extension_range_feature = 2;
    */
-  intExtensionRangeFeature?: number;
+  intExtensionRangeFeature: number;
 
   /**
    * @generated from field: optional int32 int_message_feature = 3;
    */
-  intMessageFeature?: number;
+  intMessageFeature: number;
 
   /**
    * @generated from field: optional int32 int_field_feature = 4;
    */
-  intFieldFeature?: number;
+  intFieldFeature: number;
 
   /**
    * @generated from field: optional int32 int_oneof_feature = 5;
    */
-  intOneofFeature?: number;
+  intOneofFeature: number;
 
   /**
    * @generated from field: optional int32 int_enum_feature = 6;
    */
-  intEnumFeature?: number;
+  intEnumFeature: number;
 
   /**
    * @generated from field: optional int32 int_enum_entry_feature = 7;
    */
-  intEnumEntryFeature?: number;
+  intEnumEntryFeature: number;
 
   /**
    * @generated from field: optional int32 int_service_feature = 8;
    */
-  intServiceFeature?: number;
+  intServiceFeature: number;
 
   /**
    * @generated from field: optional int32 int_method_feature = 9;
    */
-  intMethodFeature?: number;
+  intMethodFeature: number;
 
   /**
    * @generated from field: optional int32 int_multiple_feature = 10;
    */
-  intMultipleFeature?: number;
+  intMultipleFeature: number;
 
   /**
    * @generated from field: optional bool bool_field_feature = 11;
    */
-  boolFieldFeature?: boolean;
+  boolFieldFeature: boolean;
 
   /**
    * @generated from field: optional float float_field_feature = 12;
    */
-  floatFieldFeature?: number;
+  floatFieldFeature: number;
 
   /**
    * @generated from field: optional pb.TestFeatures.MessageFeature message_field_feature = 13;
@@ -139,17 +139,17 @@ export declare class TestFeatures extends Message<TestFeatures> {
   /**
    * @generated from field: optional pb.TestFeatures.EnumFeature enum_field_feature = 14;
    */
-  enumFieldFeature?: TestFeatures_EnumFeature;
+  enumFieldFeature: TestFeatures_EnumFeature;
 
   /**
    * @generated from field: optional int32 int_source_feature = 15;
    */
-  intSourceFeature?: number;
+  intSourceFeature: number;
 
   /**
    * @generated from field: optional string string_source_feature = 16;
    */
-  stringSourceFeature?: string;
+  stringSourceFeature: string;
 
   constructor(data?: PartialMessage<TestFeatures>);
 
@@ -208,22 +208,22 @@ export declare class TestFeatures_MessageFeature extends Message<TestFeatures_Me
   /**
    * @generated from field: optional bool bool_field = 1;
    */
-  boolField?: boolean;
+  boolField: boolean;
 
   /**
    * @generated from field: optional int32 int_field = 2;
    */
-  intField?: number;
+  intField: number;
 
   /**
    * @generated from field: optional float float_field = 3;
    */
-  floatField?: number;
+  floatField: number;
 
   /**
    * @generated from field: optional string string_field = 4;
    */
-  stringField?: string;
+  stringField: string;
 
   constructor(data?: PartialMessage<TestFeatures_MessageFeature>);
 

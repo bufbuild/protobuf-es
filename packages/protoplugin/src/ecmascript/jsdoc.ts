@@ -93,7 +93,7 @@ function createTextForDesc(desc: Exclude<AnyDesc, DescFile>) {
     case "enum":
     case "message":
     case "service":
-      deprecated = deprecated || (desc.file.proto.options?.deprecated ?? false);
+      deprecated = deprecated || desc.file.deprecated;
       break;
     default:
       break;
