@@ -33,7 +33,7 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i?: number;
+  declare i: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;
@@ -88,6 +88,8 @@ export class TestOptimizedForSize extends Message<TestOptimizedForSize> {
   }
 }
 
+TestOptimizedForSize.prototype.i = 0;
+
 /**
  * @generated from extension: optional int32 test_extension = 1234;
  */
@@ -113,7 +115,7 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
   /**
    * @generated from field: required int32 x = 1;
    */
-  x?: number;
+  declare x: number;
 
   constructor(data?: PartialMessage<TestRequiredOptimizedForSize>) {
     super();
@@ -142,6 +144,8 @@ export class TestRequiredOptimizedForSize extends Message<TestRequiredOptimizedF
     return proto2.util.equals(TestRequiredOptimizedForSize, a, b);
   }
 }
+
+TestRequiredOptimizedForSize.prototype.x = 0;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize

@@ -16,6 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto2_pb.js";
 import * as JS from "./gen/js/extra/proto2_pb.js";
 import { describeMT } from "./helpers.js";
+import { toPlainMessage } from "@bufbuild/protobuf";
 import {
   BinaryReader,
   BinaryWriter,
@@ -33,13 +34,14 @@ describe("proto2 required fields", () => {
       describe("initially", () => {
         test("has expected properties", () => {
           const msg = new messageType();
-          expect(msg.stringField).toBeUndefined();
-          expect(msg.bytesField).toBeUndefined();
-          expect(msg.int32Field).toBeUndefined();
-          expect(msg.int64Field).toBeUndefined();
-          expect(msg.floatField).toBeUndefined();
-          expect(msg.boolField).toBeUndefined();
-          expect(msg.enumField).toBeUndefined();
+          expect(msg.stringField).toBe("");
+          expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+          expect(msg.bytesField.length).toBe(0);
+          expect(msg.int32Field).toBe(0);
+          expect(msg.int64Field).toBe(protoInt64.zero);
+          expect(msg.floatField).toBe(0);
+          expect(msg.boolField).toBe(false);
+          expect(msg.enumField).toBe(1);
           expect(msg.messageField).toBeUndefined();
         });
         test.each(messageType.fields.byNumber())(
@@ -109,13 +111,48 @@ describe("proto2 required fields", () => {
           },
         );
       });
+      describe("as plain object", () => {
+        describe("toPlainMessage", () => {
+          test("retains initial field values", () => {
+            const plain = toPlainMessage(new messageType());
+            expect(plain.stringField).toBe("");
+            expect(plain.bytesField).toBeInstanceOf(Uint8Array);
+            expect(plain.bytesField.length).toBe(0);
+            expect(plain.int32Field).toBe(0);
+            expect(plain.int64Field).toBe(protoInt64.zero);
+            expect(plain.floatField).toBe(0);
+            expect(plain.boolField).toBe(false);
+            expect(plain.enumField).toBe(1);
+            expect(plain.messageField).toBeUndefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "field $name is an own property",
+            (field) => {
+              const msg = new messageType();
+              expect(isFieldSet(msg, field)).toBeFalsy();
+            },
+          );
+        });
+        describe("object spread", () => {
+          test.each(messageType.fields.byNumber())(
+            "elides prototype property $name",
+            (field) => {
+              const spread = { ...new messageType() };
+              expect(spread[field.localName as keyof typeof spread]).toBe(
+                undefined,
+              );
+              expect(field.localName in spread).toBe(false);
+            },
+          );
+        });
+      });
       describe("parse", () => {
         describe("fromJson", () => {
           test("does not raise error with unset field", () => {
             const msg = messageType.fromJson({
               stringField: "",
             });
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.enumField).toBeDefined();
             expect(isFieldSet(msg, "enumField")).toBeFalsy();
             expect(msg.stringField).toBeDefined();
             expect(isFieldSet(msg, "stringField")).toBeTruthy();
@@ -128,7 +165,7 @@ describe("proto2 required fields", () => {
               .string("")
               .finish();
             const msg = messageType.fromBinary(bytes);
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.enumField).toBeDefined();
             expect(isFieldSet(msg, "enumField")).toBeFalsy();
             expect(msg.stringField).toBeDefined();
             expect(isFieldSet(msg, "stringField")).toBeTruthy();
@@ -192,13 +229,14 @@ describe("proto2 required fields", () => {
         describe("initially", () => {
           test("has expected properties", () => {
             const msg = new messageType();
-            expect(msg.stringField).toBeUndefined();
-            expect(msg.bytesField).toBeUndefined();
-            expect(msg.int32Field).toBeUndefined();
-            expect(msg.int64Field).toBeUndefined();
-            expect(msg.floatField).toBeUndefined();
-            expect(msg.boolField).toBeUndefined();
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.stringField).toBe('hello " */ ');
+            expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+            expect(msg.bytesField.length).toBe(17);
+            expect(msg.int32Field).toBe(128);
+            expect(msg.int64Field).toBe(protoInt64.parse(-256));
+            expect(msg.floatField).toBe(-512.13);
+            expect(msg.boolField).toBe(true);
+            expect(msg.enumField).toBe(TS.Proto2Enum.YES);
             expect(msg.messageField).toBeUndefined();
           });
           test.each(messageType.fields.byNumber())(
@@ -268,13 +306,14 @@ describe("proto2 optional fields", () => {
       describe("initially", () => {
         test("has expected properties", () => {
           const msg = new messageType();
-          expect(msg.stringField).toBeUndefined();
-          expect(msg.bytesField).toBeUndefined();
-          expect(msg.int32Field).toBeUndefined();
-          expect(msg.int64Field).toBeUndefined();
-          expect(msg.floatField).toBeUndefined();
-          expect(msg.boolField).toBeUndefined();
-          expect(msg.enumField).toBeUndefined();
+          expect(msg.stringField).toBe("");
+          expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+          expect(msg.bytesField.length).toBe(0);
+          expect(msg.int32Field).toBe(0);
+          expect(msg.int64Field).toBe(protoInt64.zero);
+          expect(msg.floatField).toBe(0);
+          expect(msg.boolField).toBe(false);
+          expect(msg.enumField).toBe(1);
           expect(msg.messageField).toBeUndefined();
         });
         test.each(messageType.fields.byNumber())(
@@ -354,13 +393,14 @@ describe("proto2 optional fields", () => {
         describe("initially", () => {
           test("has expected properties", () => {
             const msg = new messageType();
-            expect(msg.stringField).toBeUndefined();
-            expect(msg.bytesField).toBeUndefined();
-            expect(msg.int32Field).toBeUndefined();
-            expect(msg.int64Field).toBeUndefined();
-            expect(msg.floatField).toBeUndefined();
-            expect(msg.boolField).toBeUndefined();
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.stringField).toBe('hello " */ ');
+            expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+            expect(msg.bytesField.length).toBe(17);
+            expect(msg.int32Field).toBe(128);
+            expect(msg.int64Field).toBe(protoInt64.parse(-256));
+            expect(msg.floatField).toBe(-512.13);
+            expect(msg.boolField).toBe(true);
+            expect(msg.enumField).toBe(TS.Proto2Enum.YES);
             expect(msg.messageField).toBeUndefined();
           });
           test.each(messageType.fields.byNumber())(

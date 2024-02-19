@@ -76,7 +76,7 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      const gotFiles = res.file.map((f) => f.name ?? "").sort();
+      const gotFiles = res.file.map((f) => f.name).sort();
       expect(gotFiles).toStrictEqual(["test.js", "test.d.ts"].sort());
     });
     test("should call generateJs and generateDts", async () => {
@@ -115,7 +115,7 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      const gotFiles = res.file.map((f) => f.name ?? "").sort();
+      const gotFiles = res.file.map((f) => f.name).sort();
       const wantFiles = targets
         .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
         .sort();
@@ -226,7 +226,7 @@ describe("target", () => {
       });
 
       test("should generate expected files", () => {
-        const gotFiles = res.file.map((f) => f.name ?? "").sort();
+        const gotFiles = res.file.map((f) => f.name).sort();
         expect(gotFiles).toStrictEqual(expectedFiles);
       });
     },

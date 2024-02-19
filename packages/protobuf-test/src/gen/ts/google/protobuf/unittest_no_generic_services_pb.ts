@@ -42,7 +42,7 @@ export class TestMessage extends Message<TestMessage> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a?: number;
+  declare a: number;
 
   constructor(data?: PartialMessage<TestMessage>) {
     super();
@@ -71,6 +71,8 @@ export class TestMessage extends Message<TestMessage> {
     return proto2.util.equals(TestMessage, a, b);
   }
 }
+
+TestMessage.prototype.a = 0;
 
 /**
  * @generated from extension: optional int32 test_extension = 1000;

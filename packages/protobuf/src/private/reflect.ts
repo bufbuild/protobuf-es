@@ -34,7 +34,10 @@ export function isFieldSet(
     case "scalar":
       if (field.opt || field.req) {
         // explicit presence
-        return target[localName] !== undefined;
+        return (
+          Object.prototype.hasOwnProperty.call(target, localName) &&
+          target[localName] !== undefined
+        );
       }
       // implicit presence
       if (field.kind == "enum") {
@@ -72,12 +75,19 @@ export function clearField(
         target[localName] = {};
         break;
       case "enum":
-        target[localName] = implicitPresence ? field.T.values[0].no : undefined;
+        if (implicitPresence) {
+          target[localName] = field.T.values[0].no;
+        } else {
+          delete target[localName];
+        }
         break;
       case "scalar":
-        target[localName] = implicitPresence
-          ? scalarZeroValue(field.T, field.L)
-          : undefined;
+        if (implicitPresence) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          target[localName] = scalarZeroValue(field.T, field.L);
+        } else {
+          delete target[localName];
+        }
         break;
       case "message":
         target[localName] = undefined;
