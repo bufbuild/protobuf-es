@@ -54,14 +54,3 @@ export type ExportDeclaration = {
   declaration: string;
   name: string | DescMessage | DescEnum | DescExtension;
 };
-
-export function createExportDeclaration(
-  declaration: string,
-  name: ExportDeclaration["name"],
-): ExportDeclaration {
-  return {
-    kind: "es_export_decl",
-    declaration,
-    name,
-  };
-}

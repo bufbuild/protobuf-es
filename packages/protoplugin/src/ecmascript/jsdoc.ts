@@ -16,11 +16,18 @@ import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
 
 export type JSDocBlock = {
   readonly kind: "es_jsdoc";
+  /**
+   * @deprecated In a future release, we will make this property optional.
+   */
   text: string;
   indentation?: string;
+  /**
+   * @deprecated In a future release, we will remove this method.
+   */
   toString(): string;
 };
 
+// TODO simplify type JSDocBlock to bring it in line with others in opaque-printables.ts
 export function createJsDocBlock(
   textOrDesc: string | Exclude<AnyDesc, DescFile>,
   indentation?: string,
