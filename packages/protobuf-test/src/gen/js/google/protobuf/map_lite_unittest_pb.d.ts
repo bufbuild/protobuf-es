@@ -414,17 +414,17 @@ export declare class TestRequiredLite extends Message<TestRequiredLite> {
   /**
    * @generated from field: required int32 a = 1;
    */
-  a: number;
+  a?: number;
 
   /**
    * @generated from field: required int32 b = 2;
    */
-  b: number;
+  b?: number;
 
   /**
    * @generated from field: required int32 c = 3;
    */
-  c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<TestRequiredLite>);
 
@@ -453,7 +453,7 @@ export declare class ForeignMessageArenaLite extends Message<ForeignMessageArena
   /**
    * @generated from field: optional int32 c = 1;
    */
-  c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<ForeignMessageArenaLite>);
 

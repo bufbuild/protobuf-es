@@ -51,7 +51,7 @@ export function localName(
     case "service":
     case "extension": {
       const pkg = desc.file.proto.package;
-      const offset = pkg.length > 0 ? pkg.length + 1 : 0;
+      const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
       // For services, we only care about safe identifiers, not safe object properties,
       // but we have shipped v1 with a bug that respected object properties, and we

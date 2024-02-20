@@ -12,37 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
+import {
+  codegenInfo,
+  DescEnumValue,
   DescExtension,
   DescField,
-  DescEnumValue,
+  FieldDescriptorProto_Label,
+  LongType,
+  ScalarType,
   ScalarValue,
 } from "@bufbuild/protobuf";
-import { codegenInfo, Edition, ScalarType, LongType } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
-
-/**
- * Tells whether a field uses the prototype chain for field presence.
- * Behavior must match with the counterpart in @bufbuild/protobuf.
- */
-export function fieldUsesPrototype(field: DescField): field is DescField & {
-  fieldKind: "scalar" | "enum";
-  oneof: undefined;
-  repeated: false;
-} {
-  if (field.parent.file.edition != Edition.EDITION_PROTO2) {
-    return false;
-  }
-  if (field.repeated || field.oneof) {
-    return false;
-  }
-  if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
-    return false;
-  }
-  // proto2 singular scalar and enum fields use an initial value on the prototype chain
-  return true;
-}
 
 export function getFieldTypeInfo(field: DescField | DescExtension): {
   typing: Printable;
@@ -55,7 +36,9 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
   switch (field.fieldKind) {
     case "scalar":
       typing.push(scalarTypeScriptType(field.scalar, field.longType));
-      optional = field.optional;
+      optional =
+        field.optional ||
+        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
       typingInferrableFromZeroValue = true;
       break;
     case "message": {
@@ -79,7 +62,9 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
         type: field.enum,
         typeOnly: true,
       });
-      optional = field.optional;
+      optional =
+        field.optional ||
+        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
       typingInferrableFromZeroValue = true;
       break;
     case "map": {

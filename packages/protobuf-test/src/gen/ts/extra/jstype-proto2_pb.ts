@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.JSTypeProto2OmittedMessage
@@ -26,27 +26,27 @@ export class JSTypeProto2OmittedMessage extends Message<JSTypeProto2OmittedMessa
   /**
    * @generated from field: optional fixed64 fixed64_field = 1;
    */
-  declare fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3;
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4;
    */
-  declare sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5;
    */
-  declare sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6;
    */
-  declare uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11;
@@ -110,12 +110,6 @@ export class JSTypeProto2OmittedMessage extends Message<JSTypeProto2OmittedMessa
   }
 }
 
-JSTypeProto2OmittedMessage.prototype.fixed64Field = protoInt64.zero;
-JSTypeProto2OmittedMessage.prototype.int64Field = protoInt64.zero;
-JSTypeProto2OmittedMessage.prototype.sfixed64Field = protoInt64.zero;
-JSTypeProto2OmittedMessage.prototype.sint64Field = protoInt64.zero;
-JSTypeProto2OmittedMessage.prototype.uint64Field = protoInt64.zero;
-
 /**
  * @generated from message spec.JSTypeProto2NormalMessage
  */
@@ -123,27 +117,27 @@ export class JSTypeProto2NormalMessage extends Message<JSTypeProto2NormalMessage
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_NORMAL];
    */
-  declare fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_NORMAL];
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_NORMAL];
    */
-  declare sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_NORMAL];
    */
-  declare sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_NORMAL];
    */
-  declare uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NORMAL];
@@ -207,12 +201,6 @@ export class JSTypeProto2NormalMessage extends Message<JSTypeProto2NormalMessage
   }
 }
 
-JSTypeProto2NormalMessage.prototype.fixed64Field = protoInt64.zero;
-JSTypeProto2NormalMessage.prototype.int64Field = protoInt64.zero;
-JSTypeProto2NormalMessage.prototype.sfixed64Field = protoInt64.zero;
-JSTypeProto2NormalMessage.prototype.sint64Field = protoInt64.zero;
-JSTypeProto2NormalMessage.prototype.uint64Field = protoInt64.zero;
-
 /**
  * @generated from message spec.JSTypeProto2StringMessage
  */
@@ -220,27 +208,27 @@ export class JSTypeProto2StringMessage extends Message<JSTypeProto2StringMessage
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_STRING];
    */
-  declare fixed64Field: string;
+  fixed64Field?: string;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_STRING];
    */
-  declare int64Field: string;
+  int64Field?: string;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_STRING];
    */
-  declare sfixed64Field: string;
+  sfixed64Field?: string;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_STRING];
    */
-  declare sint64Field: string;
+  sint64Field?: string;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_STRING];
    */
-  declare uint64Field: string;
+  uint64Field?: string;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_STRING];
@@ -304,12 +292,6 @@ export class JSTypeProto2StringMessage extends Message<JSTypeProto2StringMessage
   }
 }
 
-JSTypeProto2StringMessage.prototype.fixed64Field = "0";
-JSTypeProto2StringMessage.prototype.int64Field = "0";
-JSTypeProto2StringMessage.prototype.sfixed64Field = "0";
-JSTypeProto2StringMessage.prototype.sint64Field = "0";
-JSTypeProto2StringMessage.prototype.uint64Field = "0";
-
 /**
  * @generated from message spec.JSTypeProto2NumberMessage
  */
@@ -317,27 +299,27 @@ export class JSTypeProto2NumberMessage extends Message<JSTypeProto2NumberMessage
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_NUMBER];
    */
-  declare fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_NUMBER];
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_NUMBER];
    */
-  declare sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_NUMBER];
    */
-  declare sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_NUMBER];
    */
-  declare uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NUMBER];
@@ -400,10 +382,4 @@ export class JSTypeProto2NumberMessage extends Message<JSTypeProto2NumberMessage
     return proto2.util.equals(JSTypeProto2NumberMessage, a, b);
   }
 }
-
-JSTypeProto2NumberMessage.prototype.fixed64Field = protoInt64.zero;
-JSTypeProto2NumberMessage.prototype.int64Field = protoInt64.zero;
-JSTypeProto2NumberMessage.prototype.sfixed64Field = protoInt64.zero;
-JSTypeProto2NumberMessage.prototype.sint64Field = protoInt64.zero;
-JSTypeProto2NumberMessage.prototype.uint64Field = protoInt64.zero;
 

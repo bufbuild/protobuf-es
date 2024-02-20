@@ -193,37 +193,37 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  declare stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: optional bytes bytes_field = 2;
    */
-  declare bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: optional int32 int32_field = 3;
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   /**
    * @generated from field: optional int64 int64_field = 4;
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional float float_field = 5;
    */
-  declare floatField: number;
+  floatField?: number;
 
   /**
    * @generated from field: optional bool bool_field = 6;
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   /**
    * @generated from field: optional spec.Proto2Enum enum_field = 7;
    */
-  declare enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
@@ -265,14 +265,6 @@ export class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   }
 }
 
-Proto2OptionalMessage.prototype.stringField = "";
-Proto2OptionalMessage.prototype.bytesField = new Uint8Array(0);
-Proto2OptionalMessage.prototype.int32Field = 0;
-Proto2OptionalMessage.prototype.int64Field = protoInt64.zero;
-Proto2OptionalMessage.prototype.floatField = 0;
-Proto2OptionalMessage.prototype.boolField = false;
-Proto2OptionalMessage.prototype.enumField = 1 as Proto2Enum.YES;
-
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
@@ -280,37 +272,37 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   /**
    * @generated from field: required string string_field = 1;
    */
-  declare stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2;
    */
-  declare bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: required int32 int32_field = 3;
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   /**
    * @generated from field: required int64 int64_field = 4;
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: required float float_field = 5;
    */
-  declare floatField: number;
+  floatField?: number;
 
   /**
    * @generated from field: required bool bool_field = 6;
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 7;
    */
-  declare enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 8;
@@ -352,14 +344,6 @@ export class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   }
 }
 
-Proto2RequiredMessage.prototype.stringField = "";
-Proto2RequiredMessage.prototype.bytesField = new Uint8Array(0);
-Proto2RequiredMessage.prototype.int32Field = 0;
-Proto2RequiredMessage.prototype.int64Field = protoInt64.zero;
-Proto2RequiredMessage.prototype.floatField = 0;
-Proto2RequiredMessage.prototype.boolField = false;
-Proto2RequiredMessage.prototype.enumField = 1 as Proto2Enum.YES;
-
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
@@ -367,37 +351,37 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   /**
    * @generated from field: required string string_field = 1 [default = "hello \" *\/ "];
    */
-  declare stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: required bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  declare bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: required int32 int32_field = 3 [default = 128];
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   /**
    * @generated from field: required int64 int64_field = 4 [default = -256];
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: required float float_field = 5 [default = -512.13];
    */
-  declare floatField: number;
+  floatField?: number;
 
   /**
    * @generated from field: required bool bool_field = 6 [default = true];
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   /**
    * @generated from field: required spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
-  declare enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: required spec.Proto2ChildMessage message_field = 8;
@@ -439,14 +423,6 @@ export class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefault
   }
 }
 
-Proto2RequiredDefaultsMessage.prototype.stringField = "hello \" */ ";
-Proto2RequiredDefaultsMessage.prototype.bytesField = new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]);
-Proto2RequiredDefaultsMessage.prototype.int32Field = 128;
-Proto2RequiredDefaultsMessage.prototype.int64Field = protoInt64.parse("-256");
-Proto2RequiredDefaultsMessage.prototype.floatField = -512.13;
-Proto2RequiredDefaultsMessage.prototype.boolField = true;
-Proto2RequiredDefaultsMessage.prototype.enumField = 1 as Proto2Enum.YES;
-
 /**
  * @generated from message spec.Proto2DefaultsMessage
  */
@@ -454,37 +430,37 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
   /**
    * @generated from field: optional string string_field = 1 [default = "hello \" *\/ "];
    */
-  declare stringField: string;
+  stringField?: string;
 
   /**
    * @generated from field: optional bytes bytes_field = 2 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
-  declare bytesField: Uint8Array;
+  bytesField?: Uint8Array;
 
   /**
    * @generated from field: optional int32 int32_field = 3 [default = 128];
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   /**
    * @generated from field: optional int64 int64_field = 4 [default = -256];
    */
-  declare int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional float float_field = 5 [default = -512.13];
    */
-  declare floatField: number;
+  floatField?: number;
 
   /**
    * @generated from field: optional bool bool_field = 6 [default = true];
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   /**
    * @generated from field: optional spec.Proto2Enum enum_field = 7 [default = PROTO2_ENUM_YES];
    */
-  declare enumField: Proto2Enum;
+  enumField?: Proto2Enum;
 
   /**
    * @generated from field: optional spec.Proto2ChildMessage message_field = 8;
@@ -526,14 +502,6 @@ export class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
   }
 }
 
-Proto2DefaultsMessage.prototype.stringField = "hello \" */ ";
-Proto2DefaultsMessage.prototype.bytesField = new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]);
-Proto2DefaultsMessage.prototype.int32Field = 128;
-Proto2DefaultsMessage.prototype.int64Field = protoInt64.parse("-256");
-Proto2DefaultsMessage.prototype.floatField = -512.13;
-Proto2DefaultsMessage.prototype.boolField = true;
-Proto2DefaultsMessage.prototype.enumField = 1 as Proto2Enum.YES;
-
 /**
  * @generated from message spec.Proto2ChildMessage
  */
@@ -541,7 +509,7 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   /**
    * @generated from field: optional string string_field = 1;
    */
-  declare stringField: string;
+  stringField?: string;
 
   constructor(data?: PartialMessage<Proto2ChildMessage>) {
     super();
@@ -570,8 +538,6 @@ export class Proto2ChildMessage extends Message<Proto2ChildMessage> {
     return proto2.util.equals(Proto2ChildMessage, a, b);
   }
 }
-
-Proto2ChildMessage.prototype.stringField = "";
 
 /**
  * @generated from message spec.Proto2GroupsMessage
@@ -647,7 +613,7 @@ export class Proto2GroupsMessage_Group extends Message<Proto2GroupsMessage_Group
   /**
    * @generated from field: optional int32 int32_field = 1;
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   /**
    * @generated from field: optional spec.Proto2GroupsMessage.Group.NestedGroup nestedgroup = 2;
@@ -683,8 +649,6 @@ export class Proto2GroupsMessage_Group extends Message<Proto2GroupsMessage_Group
   }
 }
 
-Proto2GroupsMessage_Group.prototype.int32Field = 0;
-
 /**
  * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
  */
@@ -692,7 +656,7 @@ export class Proto2GroupsMessage_Group_NestedGroup extends Message<Proto2GroupsM
   /**
    * @generated from field: optional string string_field = 1;
    */
-  declare stringField: string;
+  stringField?: string;
 
   constructor(data?: PartialMessage<Proto2GroupsMessage_Group_NestedGroup>) {
     super();
@@ -722,8 +686,6 @@ export class Proto2GroupsMessage_Group_NestedGroup extends Message<Proto2GroupsM
   }
 }
 
-Proto2GroupsMessage_Group_NestedGroup.prototype.stringField = "";
-
 /**
  * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
  */
@@ -731,7 +693,7 @@ export class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2GroupsMessa
   /**
    * @generated from field: optional int32 int32_field = 1;
    */
-  declare int32Field: number;
+  int32Field?: number;
 
   constructor(data?: PartialMessage<Proto2GroupsMessage_RepeatedGroup>) {
     super();
@@ -761,8 +723,6 @@ export class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2GroupsMessa
   }
 }
 
-Proto2GroupsMessage_RepeatedGroup.prototype.int32Field = 0;
-
 /**
  * @generated from message spec.Proto2GroupsMessage.OneofGroup
  */
@@ -770,7 +730,7 @@ export class Proto2GroupsMessage_OneofGroup extends Message<Proto2GroupsMessage_
   /**
    * @generated from field: optional bool bool_field = 1;
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   constructor(data?: PartialMessage<Proto2GroupsMessage_OneofGroup>) {
     super();
@@ -799,6 +759,4 @@ export class Proto2GroupsMessage_OneofGroup extends Message<Proto2GroupsMessage_
     return proto2.util.equals(Proto2GroupsMessage_OneofGroup, a, b);
   }
 }
-
-Proto2GroupsMessage_OneofGroup.prototype.boolField = false;
 

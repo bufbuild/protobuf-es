@@ -56,7 +56,7 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  declare d: number;
+  d?: number;
 
   constructor(data?: PartialMessage<ImportMessageLite>) {
     super();
@@ -85,6 +85,4 @@ export class ImportMessageLite extends Message<ImportMessageLite> {
     return proto2.util.equals(ImportMessageLite, a, b);
   }
 }
-
-ImportMessageLite.prototype.d = 0;
 

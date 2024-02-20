@@ -68,9 +68,10 @@ You can create an instance with the `new` keyword:
 const user = new User();
 ```
 
+
 For convenience, constructors accept an initializer object. All fields in the 
-initializer object are optional, and if not provided, the field keeps its 
-default value.
+initializer object are optional, and if not provided, the default value for the 
+field is used.
 
 ```typescript
 const user = new User({
@@ -1162,7 +1163,12 @@ let plain: PlainMessage<User> = {
 };
 ```
 
-You can convert any message to a plain message with the function [`toPlainMessage`][src-toPlainMessage].
+As such, [`PlainMessage<T>`][src-PlainMessage] can be a great fit to use 
+throughout your business logic, if that business logic is never concerned with 
+serialization, and does not need `instanceof`.
+
+Note that any `T` (assuming `T` extends `Message`) is assignable to a variable 
+of type [`PlainMessage<T>`][src-PlainMessage].
 
 
 ### AnyMessage

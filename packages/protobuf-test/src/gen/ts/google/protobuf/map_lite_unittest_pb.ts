@@ -545,17 +545,17 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
   /**
    * @generated from field: required int32 a = 1;
    */
-  declare a: number;
+  a?: number;
 
   /**
    * @generated from field: required int32 b = 2;
    */
-  declare b: number;
+  b?: number;
 
   /**
    * @generated from field: required int32 c = 3;
    */
-  declare c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<TestRequiredLite>) {
     super();
@@ -587,10 +587,6 @@ export class TestRequiredLite extends Message<TestRequiredLite> {
   }
 }
 
-TestRequiredLite.prototype.a = 0;
-TestRequiredLite.prototype.b = 0;
-TestRequiredLite.prototype.c = 0;
-
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
  */
@@ -607,7 +603,7 @@ export class ForeignMessageArenaLite extends Message<ForeignMessageArenaLite> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  declare c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<ForeignMessageArenaLite>) {
     super();
@@ -636,6 +632,4 @@ export class ForeignMessageArenaLite extends Message<ForeignMessageArenaLite> {
     return proto2.util.equals(ForeignMessageArenaLite, a, b);
   }
 }
-
-ForeignMessageArenaLite.prototype.c = 0;
 

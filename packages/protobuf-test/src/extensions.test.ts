@@ -66,7 +66,7 @@ import { getTestFileDescriptorSetBytes } from "./helpers.js";
 
 // test cases for extensions
 type extensionWithValueCollection = ReadonlyArray<{
-  ext: Extension<Proto2Extendee>;
+  ext: Extension;
   val: unknown;
 }>;
 
@@ -183,9 +183,7 @@ describe("proto2.makeExtension()", () => {
 describe("getExtension()", () => {
   it("should throw error if extendee does not match", () => {
     const msg = new User();
-    expect(() =>
-      getExtension(msg as unknown as Proto2Extendee, uint32_ext),
-    ).toThrow(
+    expect(() => getExtension(msg as Proto2Extendee, uint32_ext)).toThrow(
       /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
     );
   });
@@ -697,9 +695,7 @@ describe("clearExtension()", () => {
   });
   it("should throw error if extendee does not match", () => {
     const msg = new User();
-    expect(() =>
-      clearExtension(msg as unknown as Proto2Extendee, uint32_ext),
-    ).toThrow(
+    expect(() => clearExtension(msg as Proto2Extendee, uint32_ext)).toThrow(
       /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
     );
   });
@@ -708,9 +704,7 @@ describe("clearExtension()", () => {
 describe("setExtension()", () => {
   it("should throw error if extendee does not match", () => {
     const msg = new User();
-    expect(() =>
-      setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123),
-    ).toThrow(
+    expect(() => setExtension(msg as Proto2Extendee, uint32_ext, 123)).toThrow(
       /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
     );
   });
