@@ -108,9 +108,9 @@ export declare class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage
 }
 
 /**
- * @generated from message spec.Proto3UnspecifiedPackedMessage
+ * @generated from message spec.Proto3UnlabelledMessage
  */
-export declare class Proto3UnspecifiedPackedMessage extends Message<Proto3UnspecifiedPackedMessage> {
+export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -125,65 +125,6 @@ export declare class Proto3UnspecifiedPackedMessage extends Message<Proto3Unspec
    * @generated from field: repeated uint64 uint64_field = 3;
    */
   uint64Field: bigint[];
-
-  constructor(data?: PartialMessage<Proto3UnspecifiedPackedMessage>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.Proto3UnspecifiedPackedMessage";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnspecifiedPackedMessage;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnspecifiedPackedMessage;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnspecifiedPackedMessage;
-
-  static equals(a: Proto3UnspecifiedPackedMessage | PlainMessage<Proto3UnspecifiedPackedMessage> | undefined, b: Proto3UnspecifiedPackedMessage | PlainMessage<Proto3UnspecifiedPackedMessage> | undefined): boolean;
-}
-
-/**
- * @generated from message spec.Proto3UnlabelledMessage
- */
-export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
-  /**
-   * @generated from field: string string_field = 1;
-   */
-  stringField: string;
-
-  /**
-   * @generated from field: bytes bytes_field = 2;
-   */
-  bytesField: Uint8Array;
-
-  /**
-   * @generated from field: int32 int32_field = 3;
-   */
-  int32Field: number;
-
-  /**
-   * @generated from field: int64 int64_field = 4;
-   */
-  int64Field: bigint;
-
-  /**
-   * @generated from field: float float_field = 5;
-   */
-  floatField: number;
-
-  /**
-   * @generated from field: bool bool_field = 6;
-   */
-  boolField: boolean;
-
-  /**
-   * @generated from field: spec.Proto3Enum enum_field = 7;
-   */
-  enumField: Proto3Enum;
-
-  /**
-   * @generated from field: spec.Proto3OptionalMessage message_field = 8;
-   */
-  messageField?: Proto3OptionalMessage;
 
   constructor(data?: PartialMessage<Proto3UnlabelledMessage>);
 
@@ -215,32 +156,12 @@ export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: optional int32 int32_field = 3;
-   */
-  int32Field?: number;
-
-  /**
-   * @generated from field: optional int64 int64_field = 4;
-   */
-  int64Field?: bigint;
-
-  /**
-   * @generated from field: optional float float_field = 5;
-   */
-  floatField?: number;
-
-  /**
-   * @generated from field: optional bool bool_field = 6;
-   */
-  boolField?: boolean;
-
-  /**
-   * @generated from field: optional spec.Proto3Enum enum_field = 7;
+   * @generated from field: optional spec.Proto3Enum enum_field = 3;
    */
   enumField?: Proto3Enum;
 
   /**
-   * @generated from field: optional spec.Proto3OptionalMessage message_field = 8;
+   * @generated from field: optional spec.Proto3OptionalMessage message_field = 4;
    */
   messageField?: Proto3OptionalMessage;
 

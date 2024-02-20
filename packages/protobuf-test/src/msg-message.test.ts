@@ -14,7 +14,6 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
-import { clearField, isFieldSet } from "@bufbuild/protobuf";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
 import { describeMT } from "./helpers.js";
@@ -53,46 +52,6 @@ describeMT(
       expect(got.repeatedMessageField.length).toStrictEqual(
         defaultFields.repeatedMessageField.length,
       );
-    });
-    describe("isFieldSet()", () => {
-      test("returns false for empty repeated field", () => {
-        const msg = new messageType({
-          repeatedMessageField: [],
-        });
-        expect(isFieldSet(msg, "repeatedMessageField")).toBe(false);
-      });
-      test("returns false for empty singular field", () => {
-        const msg = new messageType();
-        expect(isFieldSet(msg, "messageField")).toBe(false);
-      });
-      test("returns true for non-empty repeated field", () => {
-        const msg = new messageType({
-          repeatedMessageField: [{}],
-        });
-        expect(isFieldSet(msg, "repeatedMessageField")).toBe(true);
-      });
-      test("returns true for non-empty singular field", () => {
-        const msg = new messageType({
-          messageField: { name: "test" },
-        });
-        expect(isFieldSet(msg, "messageField")).toBe(true);
-      });
-    });
-    describe("clearField()", () => {
-      test("clears repeated field", () => {
-        const msg = new messageType({
-          repeatedMessageField: [{}],
-        });
-        clearField(msg, "repeatedMessageField");
-        expect(msg.repeatedMessageField.length).toBe(0);
-      });
-      test("clears singular field", () => {
-        const msg = new messageType({
-          messageField: { name: "test" },
-        });
-        clearField(msg, "messageField");
-        expect(msg.messageField).toBeUndefined();
-      });
     });
     test("example encodes to JSON", () => {
       /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access */

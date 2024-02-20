@@ -60,12 +60,7 @@ export function clearField(
   if (field.repeated) {
     target[localName] = [];
   } else if (field.oneof) {
-    if (
-      (target[field.oneof.localName] as { case: string }).case ===
-      field.localName
-    ) {
-      target[field.oneof.localName] = { case: undefined };
-    }
+    target[field.oneof.localName] = { case: undefined };
   } else {
     switch (field.kind) {
       case "map":
