@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createTestPluginAndRun } from "./helpers.js";
+import { createTestPluginAndRun } from "./helpers";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { LongType, ScalarType } from "@bufbuild/protobuf";
 
