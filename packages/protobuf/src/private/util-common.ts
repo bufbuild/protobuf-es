@@ -19,6 +19,7 @@ import type { MessageType } from "../message-type.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
 import { ScalarType } from "../scalar.js";
+import { isFieldSet } from "./reflect.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 
@@ -32,13 +33,20 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
       if (source === undefined) {
         return;
       }
-      const type = target.getType();
-      for (const member of type.fields.byMember()) {
+      const sourceIsMessage =
+        source instanceof Message && source.getType() === target.getType();
+      for (const member of target.getType().fields.byMember()) {
         const localName = member.localName,
           t = target as AnyMessage,
           s = source as PartialMessage<AnyMessage>;
         if (s[localName] === undefined) {
-          // TODO if source is a Message instance, we should use isFieldSet() here to support future field presence
+          continue;
+        }
+        if (
+          sourceIsMessage &&
+          member.kind != "oneof" &&
+          !isFieldSet(member, source)
+        ) {
           continue;
         }
         switch (member.kind) {
@@ -125,7 +133,6 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
       }
     },
-    // TODO use isFieldSet() here to support future field presence
     equals<T extends Message<T>>(
       type: MessageType<T>,
       a: T | PlainMessage<T> | undefined | null,
@@ -138,6 +145,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         return false;
       }
       return type.fields.byMember().every((m) => {
+        if (m.kind != "oneof" && isFieldSet(m, a) !== isFieldSet(m, b)) {
+          return false;
+        }
         const va = (a as any)[m.localName];
         const vb = (b as any)[m.localName];
         if (m.repeated) {
@@ -200,34 +210,43 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                   scalarEquals(scalarType, va[k], vb[k]),
                 );
             }
-            break;
         }
       });
     },
-    // TODO use isFieldSet() here to support future field presence
     clone<T extends Message<T>>(message: T): T {
-      const type = message.getType(),
-        target = new type(),
-        any = target as AnyMessage;
-      for (const member of type.fields.byMember()) {
-        const source = (message as AnyMessage)[member.localName];
-        let copy: any;
-        if (member.repeated) {
-          copy = (source as any[]).map(cloneSingularField);
-        } else if (member.kind == "map") {
-          copy = any[member.localName];
-          for (const [key, v] of Object.entries(source)) {
-            copy[key] = cloneSingularField(v);
+      const target = new (message.getType())();
+      for (const member of message.getType().fields.byMember()) {
+        const sourceProperty = (message as AnyMessage)[member.localName];
+        if (member.kind == "oneof") {
+          if (sourceProperty.case === undefined) {
+            continue;
           }
-        } else if (member.kind == "oneof") {
-          const f = member.findField(source.case);
-          copy = f
-            ? { case: source.case, value: cloneSingularField(source.value) }
-            : { case: undefined };
-        } else {
-          copy = cloneSingularField(source);
+          (target as AnyMessage)[member.localName] = {
+            case: sourceProperty.case,
+            value: cloneSingularField(sourceProperty.value),
+          };
+          continue;
         }
-        any[member.localName] = copy;
+        if (!isFieldSet(member, message)) {
+          continue;
+        }
+        if (member.repeated) {
+          (target as AnyMessage)[member.localName] = (
+            sourceProperty as unknown[]
+          ).map(cloneSingularField);
+        } else if (member.kind == "map") {
+          for (const [key, v] of Object.entries(sourceProperty)) {
+            (
+              (target as AnyMessage)[member.localName] as Record<
+                string,
+                unknown
+              >
+            )[key] = cloneSingularField(v);
+          }
+        } else {
+          (target as AnyMessage)[member.localName] =
+            cloneSingularField(sourceProperty);
+        }
       }
       return target;
     },

@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -144,9 +144,9 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
 }
 
 /**
- * @generated from message spec.Proto3UnlabelledMessage
+ * @generated from message spec.Proto3UnspecifiedPackedMessage
  */
-export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
+export class Proto3UnspecifiedPackedMessage extends Message<Proto3UnspecifiedPackedMessage> {
   /**
    * @generated from field: repeated double double_field = 1;
    */
@@ -162,6 +162,80 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
    */
   uint64Field: bigint[] = [];
 
+  constructor(data?: PartialMessage<Proto3UnspecifiedPackedMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.Proto3UnspecifiedPackedMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 2, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnspecifiedPackedMessage {
+    return new Proto3UnspecifiedPackedMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3UnspecifiedPackedMessage {
+    return new Proto3UnspecifiedPackedMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3UnspecifiedPackedMessage {
+    return new Proto3UnspecifiedPackedMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto3UnspecifiedPackedMessage | PlainMessage<Proto3UnspecifiedPackedMessage> | undefined, b: Proto3UnspecifiedPackedMessage | PlainMessage<Proto3UnspecifiedPackedMessage> | undefined): boolean {
+    return proto3.util.equals(Proto3UnspecifiedPackedMessage, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto3UnlabelledMessage
+ */
+export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField = "";
+
+  /**
+   * @generated from field: bytes bytes_field = 2;
+   */
+  bytesField = new Uint8Array(0);
+
+  /**
+   * @generated from field: int32 int32_field = 3;
+   */
+  int32Field = 0;
+
+  /**
+   * @generated from field: int64 int64_field = 4;
+   */
+  int64Field = protoInt64.zero;
+
+  /**
+   * @generated from field: float float_field = 5;
+   */
+  floatField = 0;
+
+  /**
+   * @generated from field: bool bool_field = 6;
+   */
+  boolField = false;
+
+  /**
+   * @generated from field: spec.Proto3Enum enum_field = 7;
+   */
+  enumField = Proto3Enum.UNSPECIFIED;
+
+  /**
+   * @generated from field: spec.Proto3OptionalMessage message_field = 8;
+   */
+  messageField?: Proto3OptionalMessage;
+
   constructor(data?: PartialMessage<Proto3UnlabelledMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -170,9 +244,14 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.Proto3UnlabelledMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
-    { no: 2, name: "uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
-    { no: 3, name: "uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3UnlabelledMessage {
@@ -207,12 +286,32 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   bytesField?: Uint8Array;
 
   /**
-   * @generated from field: optional spec.Proto3Enum enum_field = 3;
+   * @generated from field: optional int32 int32_field = 3;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: optional int64 int64_field = 4;
+   */
+  int64Field?: bigint;
+
+  /**
+   * @generated from field: optional float float_field = 5;
+   */
+  floatField?: number;
+
+  /**
+   * @generated from field: optional bool bool_field = 6;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto3Enum enum_field = 7;
    */
   enumField?: Proto3Enum;
 
   /**
-   * @generated from field: optional spec.Proto3OptionalMessage message_field = 4;
+   * @generated from field: optional spec.Proto3OptionalMessage message_field = 8;
    */
   messageField?: Proto3OptionalMessage;
 
@@ -226,8 +325,12 @@ export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
-    { no: 3, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
-    { no: 4, name: "message_field", kind: "message", T: Proto3OptionalMessage, opt: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3OptionalMessage {

@@ -19,7 +19,6 @@ import {
 } from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
 import { scalarZeroValue } from "./private/scalars.js";
-import { reifyWkt } from "./private/reify-wkt.js";
 import type {
   DescEnum,
   DescEnumValue,
@@ -62,10 +61,6 @@ interface CodegenInfo {
     type: T,
     longType: L,
   ) => ScalarValue<T, L>;
-  /**
-   * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
-   */
-  readonly reifyWkt: typeof reifyWkt;
   readonly safeIdentifier: (name: string) => string;
   readonly safeObjectProperty: (name: string) => string;
 }
@@ -104,7 +99,6 @@ const packageName = "@bufbuild/protobuf";
 export const codegenInfo: CodegenInfo = {
   packageName: "@bufbuild/protobuf",
   localName,
-  reifyWkt,
   getUnwrappedFieldType,
   scalarDefaultValue: scalarZeroValue,
   scalarZeroValue,

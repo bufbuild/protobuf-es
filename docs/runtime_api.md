@@ -10,6 +10,7 @@ provided by the library.
   - [Default field values](#default-field-values)
   - [Accessing fields](#accessing-fields)
   - [Accessing oneof groups](#accessing-oneof-groups)
+  - [Field presence](#field-presence)
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
@@ -67,10 +68,9 @@ You can create an instance with the `new` keyword:
 const user = new User();
 ```
 
-
 For convenience, constructors accept an initializer object. All fields in the 
-initializer object are optional, and if not provided, the default value for the 
-field is used.
+initializer object are optional, and if not provided, the field keeps its 
+default value.
 
 ```typescript
 const user = new User({
@@ -231,6 +231,27 @@ narrows down the type. That means the if blocks and switch statements above tell
 the compiler the type of the `value` property. Note that type narrowing requires
 the TypeScript compiler option [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks).
 This option is automatically enabled with the option `strict`, which is recommended.
+
+
+### Field presence
+
+As we explained above, fields have [default values](#default-field-values). To 
+determine whether a field has an actual value, you can use the function `isFieldSet`.
+To reset a field to its initial value, use the function `clearField`.
+
+```typescript
+import { isFieldSet, clearField } from "@bufbuild/protobuf";
+
+const user = new User({
+  active: true,
+});
+
+isFieldSet(user, "active"); // true
+isFieldSet(user, "firstName"); // false
+
+clearField(user, "active");
+isFieldSet(user, "active"); // false
+```
 
 
 ### Cloning messages
@@ -739,6 +760,9 @@ walkFields(user);
 For a more practical example that covers all cases, you can take a look at the 
 source of [`toPlainMessage`][src-toPlainMessage].
 
+Not that the functions `isFieldSet` and `clearField` (see [Field presence](#field-presence)) 
+optionally accept a field info object instead of a field name.
+
 
 ### Message types
 
@@ -1138,12 +1162,7 @@ let plain: PlainMessage<User> = {
 };
 ```
 
-As such, [`PlainMessage<T>`][src-PlainMessage] can be a great fit to use 
-throughout your business logic, if that business logic is never concerned with 
-serialization, and does not need `instanceof`.
-
-Note that any `T` (assuming `T` extends `Message`) is assignable to a variable 
-of type [`PlainMessage<T>`][src-PlainMessage].
+You can convert any message to a plain message with the function [`toPlainMessage`][src-toPlainMessage].
 
 
 ### AnyMessage

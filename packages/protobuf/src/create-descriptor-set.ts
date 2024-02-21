@@ -55,6 +55,8 @@ import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { FeatureResolverFn } from "./private/feature-set.js";
 import { createFeatureResolver } from "./private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
+import { isFieldSet } from "./field-accessor.js";
+import type { Message } from "./message.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -84,8 +86,9 @@ export function createDescriptorSet(
         : input;
   const resolverByEdition = new Map<Edition, FeatureResolverFn>();
   for (const proto of fileDescriptors) {
-    const edition =
-      proto.edition ?? parseFileSyntax(proto.syntax, proto.edition).edition;
+    const edition = isFieldSet(proto, "edition")
+      ? proto.edition
+      : parseFileSyntax(proto.syntax, proto.edition).edition;
     let resolveFeatures = resolverByEdition.get(edition);
     if (resolveFeatures === undefined) {
       resolveFeatures = createFeatureResolver(
@@ -146,7 +149,7 @@ function addFile(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): void {
-  assert(proto.name, `invalid FileDescriptorProto: missing name`);
+  assertFieldSet(proto, "name");
   const file: DescFile = {
     kind: "file",
     proto,
@@ -282,7 +285,7 @@ function addEnum(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): void {
-  assert(proto.name, `invalid EnumDescriptorProto: missing name`);
+  assertFieldSet(proto, "name");
   const desc: DescEnum = {
     kind: "enum",
     proto,
@@ -294,7 +297,7 @@ function addEnum(
     values: [],
     sharedPrefix: findEnumSharedPrefix(
       proto.name,
-      proto.value.map((v) => v.name ?? ""),
+      proto.value.map((v) => v.name),
     ),
     toString(): string {
       return `enum ${this.typeName}`;
@@ -321,11 +324,8 @@ function addEnum(
   };
   cart.enums.set(desc.typeName, desc);
   proto.value.forEach((proto) => {
-    assert(proto.name, `invalid EnumValueDescriptorProto: missing name`);
-    assert(
-      proto.number !== undefined,
-      `invalid EnumValueDescriptorProto: missing number`,
-    );
+    assertFieldSet(proto, "name");
+    assertFieldSet(proto, "number");
     desc.values.push({
       kind: "enum_value",
       proto,
@@ -370,7 +370,6 @@ function addMessage(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): void {
-  assert(proto.name, `invalid DescriptorProto: missing name`);
   const desc: DescMessage = {
     kind: "message",
     proto,
@@ -432,7 +431,7 @@ function addService(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): void {
-  assert(proto.name, `invalid ServiceDescriptorProto: missing name`);
+  assertFieldSet(proto, "name");
   const desc: DescService = {
     kind: "service",
     proto,
@@ -471,18 +470,15 @@ function newMethod(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): DescMethod {
-  assert(proto.name, `invalid MethodDescriptorProto: missing name`);
-  assert(proto.inputType, `invalid MethodDescriptorProto: missing input_type`);
-  assert(
-    proto.outputType,
-    `invalid MethodDescriptorProto: missing output_type`,
-  );
+  assertFieldSet(proto, "name");
+  assertFieldSet(proto, "inputType");
+  assertFieldSet(proto, "outputType");
   let methodKind: MethodKind;
-  if (proto.clientStreaming === true && proto.serverStreaming === true) {
+  if (proto.clientStreaming && proto.serverStreaming) {
     methodKind = MethodKind.BiDiStreaming;
-  } else if (proto.clientStreaming === true) {
+  } else if (proto.clientStreaming) {
     methodKind = MethodKind.ClientStreaming;
-  } else if (proto.serverStreaming === true) {
+  } else if (proto.serverStreaming) {
     methodKind = MethodKind.ServerStreaming;
   } else {
     methodKind = MethodKind.Unary;
@@ -546,7 +542,7 @@ function newOneof(
   parent: DescMessage,
   resolveFeatures: FeatureResolverFn,
 ): DescOneof {
-  assert(proto.name, `invalid OneofDescriptorProto: missing name`);
+  assertFieldSet(proto, "name");
   return {
     kind: "oneof",
     proto,
@@ -582,9 +578,9 @@ function newField(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): DescField {
-  assert(proto.name, `invalid FieldDescriptorProto: missing name`);
-  assert(proto.number, `invalid FieldDescriptorProto: missing number`);
-  assert(proto.type, `invalid FieldDescriptorProto: missing type`);
+  assertFieldSet(proto, "name");
+  assertFieldSet(proto, "number");
+  assertFieldSet(proto, "type");
   const common = {
     proto,
     deprecated: proto.options?.deprecated ?? false,
@@ -624,7 +620,7 @@ function newField(
   switch (proto.type) {
     case FieldDescriptorProto_Type.MESSAGE:
     case FieldDescriptorProto_Type.GROUP: {
-      assert(proto.typeName, `invalid FieldDescriptorProto: missing type_name`);
+      assertFieldSet(proto, "typeName");
       const mapEntry = cart.mapEntries.get(trimLeadingDot(proto.typeName));
       if (mapEntry !== undefined) {
         assert(
@@ -653,7 +649,7 @@ function newField(
       };
     }
     case FieldDescriptorProto_Type.ENUM: {
-      assert(proto.typeName, `invalid FieldDescriptorProto: missing type_name`);
+      assertFieldSet(proto, "typeName");
       const e = cart.enums.get(trimLeadingDot(proto.typeName));
       assert(
         e !== undefined,
@@ -700,7 +696,7 @@ function newExtension(
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
 ): DescExtension {
-  assert(proto.extendee, `invalid FieldDescriptorProto: missing extendee`);
+  assertFieldSet(proto, "extendee");
   const field = newField(
     proto,
     file,
@@ -751,10 +747,7 @@ function newExtension(
 /**
  * Parse the "syntax" and "edition" fields, stripping test editions.
  */
-function parseFileSyntax(
-  syntax: string | undefined,
-  edition: Edition | undefined,
-) {
+function parseFileSyntax(syntax: string, edition: Edition) {
   let e: Exclude<
     Edition,
     | Edition.EDITION_1_TEST_ONLY
@@ -765,7 +758,7 @@ function parseFileSyntax(
   >;
   let s: "proto2" | "proto3" | "editions";
   switch (syntax) {
-    case undefined:
+    case "":
     case "proto2":
       s = "proto2";
       e = Edition.EDITION_PROTO2;
@@ -777,7 +770,6 @@ function parseFileSyntax(
     case "editions":
       s = "editions";
       switch (edition) {
-        case undefined:
         case Edition.EDITION_1_TEST_ONLY:
         case Edition.EDITION_2_TEST_ONLY:
         case Edition.EDITION_99997_TEST_ONLY:
@@ -852,7 +844,7 @@ function makeTypeName(
   let typeName: string;
   if (parent) {
     typeName = `${parent.typeName}.${proto.name}`;
-  } else if (file.proto.package !== undefined) {
+  } else if (file.proto.package.length > 0) {
     typeName = `${file.proto.package}.${proto.name}`;
   } else {
     typeName = `${proto.name}`;
@@ -892,7 +884,7 @@ function getMapFieldTypes(
       mapKey !== ScalarType.FLOAT &&
       mapKey !== ScalarType.DOUBLE,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} has unexpected key type ${
-      keyField.proto.type ?? -1
+      keyField.proto.type
     }`,
   );
   const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
@@ -940,20 +932,17 @@ function findOneof(
   proto: FieldDescriptorProto,
   allOneofs: DescOneof[],
 ): DescOneof | undefined {
-  const oneofIndex = proto.oneofIndex;
-  if (oneofIndex === undefined) {
+  if (!isFieldSet(proto, "oneofIndex")) {
     return undefined;
   }
-  let oneof: DescOneof | undefined;
-  if (proto.proto3Optional !== true) {
-    oneof = allOneofs[oneofIndex];
-    assert(
-      oneof,
-      `invalid FieldDescriptorProto: oneof #${oneofIndex} for field #${
-        proto.number ?? -1
-      } not found`,
-    );
+  if (proto.proto3Optional) {
+    return undefined;
   }
+  const oneof = allOneofs[proto.oneofIndex];
+  assert(
+    oneof,
+    `invalid FieldDescriptorProto: oneof #${proto.oneofIndex} for field #${proto.number} not found`,
+  );
   return oneof;
 }
 
@@ -968,11 +957,11 @@ function isOptionalField(
   switch (syntax) {
     case "proto2":
       return (
-        proto.oneofIndex === undefined &&
+        !isFieldSet(proto, "oneofIndex") &&
         proto.label === FieldDescriptorProto_Label.OPTIONAL
       );
     case "proto3":
-      return proto.proto3Optional === true;
+      return proto.proto3Optional;
     case "editions":
       return false;
   }
@@ -1030,15 +1019,22 @@ function isPackedField(
       // length-delimited types cannot be packed
       return false;
     default:
+      const protoOptions = proto.options; // eslint-disable-line no-case-declarations
       switch (file.edition) {
         case Edition.EDITION_PROTO2:
-          return proto.options?.packed ?? false;
+          return protoOptions !== undefined &&
+            isFieldSet(protoOptions, "packed")
+            ? protoOptions.packed
+            : false;
         case Edition.EDITION_PROTO3:
-          return proto.options?.packed ?? true;
+          return protoOptions !== undefined &&
+            isFieldSet(protoOptions, "packed")
+            ? protoOptions.packed
+            : true;
         default: {
           const { repeatedFieldEncoding } = resolveFeatures(
             parent?.getFeatures() ?? file.getFeatures(),
-            proto.options?.features,
+            protoOptions?.features,
           );
           return (
             repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
@@ -1098,8 +1094,12 @@ function findComments(
     }
     return {
       leadingDetached: location.leadingDetachedComments,
-      leading: location.leadingComments,
-      trailing: location.trailingComments,
+      leading: isFieldSet(location, "leadingComments")
+        ? location.leadingComments
+        : undefined,
+      trailing: isFieldSet(location, "trailingComments")
+        ? location.trailingComments
+        : undefined,
       sourcePath,
     };
   }
@@ -1179,11 +1179,12 @@ function declarationString(this: DescField | DescExtension): string {
   }
   parts.push(`${type} ${this.name} = ${this.number}`);
   const options: string[] = [];
-  if (this.proto.options?.packed !== undefined) {
-    options.push(`packed = ${this.proto.options.packed.toString()}`);
+  const protoOptions = this.proto.options;
+  if (protoOptions !== undefined && isFieldSet(protoOptions, "packed")) {
+    options.push(`packed = ${protoOptions.packed.toString()}`);
   }
-  let defaultValue = this.proto.defaultValue;
-  if (defaultValue !== undefined) {
+  if (isFieldSet(this.proto, "defaultValue")) {
+    let defaultValue = this.proto.defaultValue;
     if (
       this.proto.type == FieldDescriptorProto_Type.BYTES ||
       this.proto.type == FieldDescriptorProto_Type.STRING
@@ -1195,10 +1196,10 @@ function declarationString(this: DescField | DescExtension): string {
   if (this.jsonName !== undefined) {
     options.push(`json_name = "${this.jsonName}"`);
   }
-  if (this.proto.options?.jstype !== undefined) {
-    options.push(`jstype = ${FieldOptions_JSType[this.proto.options.jstype]}`);
+  if (protoOptions !== undefined && isFieldSet(protoOptions, "jstype")) {
+    options.push(`jstype = ${FieldOptions_JSType[protoOptions.jstype]}`);
   }
-  if (this.proto.options?.deprecated === true) {
+  if (protoOptions !== undefined && isFieldSet(protoOptions, "deprecated")) {
     options.push(`deprecated = true`);
   }
   if (options.length > 0) {
@@ -1213,10 +1214,10 @@ function declarationString(this: DescField | DescExtension): string {
 function getDefaultValue(
   this: DescField | DescExtension,
 ): number | boolean | string | bigint | Uint8Array | undefined {
-  const d = this.proto.defaultValue;
-  if (d === undefined) {
+  if (!isFieldSet(this.proto, "defaultValue")) {
     return undefined;
   }
+  const d = this.proto.defaultValue;
   switch (this.fieldKind) {
     case "enum":
       return parseTextFormatEnumValue(this.enum, d);
@@ -1224,5 +1225,20 @@ function getDefaultValue(
       return parseTextFormatScalarValue(this.scalar, d);
     default:
       return undefined;
+  }
+}
+
+// TODO consider to remove to save bundle size.
+// Before proto2 fields were switched to use the prototype chain, we used
+// assertions to narrow down optional types. This function is used to make the
+// same assertions, but they are no longer necessary for the type system, and
+// the value they provide is questionable.
+function assertFieldSet<T extends Message<T>>(
+  target: T,
+  field: Parameters<typeof isFieldSet<T>>[1],
+) {
+  if (!isFieldSet(target, field)) {
+    const type = target.getType().typeName.split(".").pop();
+    throw new Error(`invalid ${type}: missing ${field}`);
   }
 }

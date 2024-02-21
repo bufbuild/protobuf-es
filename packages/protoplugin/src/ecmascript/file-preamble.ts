@@ -48,7 +48,7 @@ export function makeFilePreamble(
   }
   builder.push("\n");
   builder.push(`// @generated from file ${file.name}.proto (`);
-  if (file.proto.package !== undefined) {
+  if (file.proto.package.length > 0) {
     builder.push(`package ${file.proto.package}, `);
   }
   switch (file.edition) {

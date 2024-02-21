@@ -16,27 +16,16 @@ import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto2_pb.js";
 import * as JS from "./gen/js/extra/proto2_pb.js";
 import { describeMT } from "./helpers.js";
-import type { AnyMessage } from "@bufbuild/protobuf";
+import { toPlainMessage } from "@bufbuild/protobuf";
 import {
   BinaryReader,
   BinaryWriter,
   protoInt64,
   WireType,
+  isFieldSet,
+  clearField,
 } from "@bufbuild/protobuf";
-
-function objectHasOwn(
-  obj: object,
-  property: string | number | symbol,
-): boolean {
-  if ("hasOwn" in Object) {
-    // ES2022
-    return (Object as unknown as { hasOwn: typeof objectHasOwn }).hasOwn(
-      obj,
-      property,
-    );
-  }
-  return Object.prototype.hasOwnProperty.call(obj, property);
-}
+import { Proto2Enum } from "./gen/ts/extra/proto2_pb.js";
 
 describe("proto2 required fields", () => {
   describeMT(
@@ -45,22 +34,117 @@ describe("proto2 required fields", () => {
       describe("initially", () => {
         test("has expected properties", () => {
           const msg = new messageType();
-          expect(msg.stringField).toBeUndefined();
-          expect(msg.bytesField).toBeUndefined();
-          expect(msg.int32Field).toBeUndefined();
-          expect(msg.int64Field).toBeUndefined();
-          expect(msg.floatField).toBeUndefined();
-          expect(msg.boolField).toBeUndefined();
-          expect(msg.enumField).toBeUndefined();
+          expect(msg.stringField).toBe("");
+          expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+          expect(msg.bytesField.length).toBe(0);
+          expect(msg.int32Field).toBe(0);
+          expect(msg.int64Field).toBe(protoInt64.zero);
+          expect(msg.floatField).toBe(0);
+          expect(msg.boolField).toBe(false);
+          expect(msg.enumField).toBe(1);
           expect(msg.messageField).toBeUndefined();
         });
         test.each(messageType.fields.byNumber())(
-          "field $name is not an own property",
+          "field $name is not set",
           (field) => {
             const msg = new messageType();
-            expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+            expect(isFieldSet(msg, field)).toBeFalsy();
+            expect(
+              Object.prototype.hasOwnProperty.call(msg, field.localName),
+            ).toBe(false);
           },
         );
+      });
+      describe("isFieldSet()", () => {
+        test.each(messageType.fields.byNumber())(
+          "returns true for field $name set to zero value",
+          (field) => {
+            if (field.kind == "message") {
+              // message fields do not have zero values
+              return;
+            }
+            const msg = new messageType({
+              stringField: "",
+              bytesField: new Uint8Array(),
+              int32Field: 0,
+              int64Field: protoInt64.zero,
+              floatField: 0,
+              boolField: false,
+              enumField: Proto2Enum.YES,
+            });
+            expect(isFieldSet(msg, field)).toBe(true);
+          },
+        );
+        test.each(messageType.fields.byNumber())(
+          "returns true for field $name set to non-zero value",
+          (field) => {
+            const msg = new messageType({
+              stringField: "abc",
+              bytesField: new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+              int32Field: 1,
+              int64Field: protoInt64.parse("123456"),
+              floatField: 3.14,
+              boolField: true,
+              enumField: Proto2Enum.YES,
+              messageField: new messageType(),
+            });
+            expect(isFieldSet(msg, field)).toBe(true);
+          },
+        );
+      });
+      describe("clearField()", () => {
+        test.each(messageType.fields.byNumber())(
+          "clears field $name",
+          (field) => {
+            const msg = new messageType({
+              stringField: "",
+              bytesField: new Uint8Array(),
+              int32Field: 0,
+              int64Field: protoInt64.zero,
+              floatField: 0,
+              boolField: false,
+              enumField: Proto2Enum.YES,
+              messageField: new messageType(),
+            });
+            clearField(msg, field);
+            expect(isFieldSet(msg, field)).toBe(false);
+          },
+        );
+      });
+      describe("as plain object", () => {
+        describe("toPlainMessage", () => {
+          test("retains initial field values", () => {
+            const plain = toPlainMessage(new messageType());
+            expect(plain.stringField).toBe("");
+            expect(plain.bytesField).toBeInstanceOf(Uint8Array);
+            expect(plain.bytesField.length).toBe(0);
+            expect(plain.int32Field).toBe(0);
+            expect(plain.int64Field).toBe(protoInt64.zero);
+            expect(plain.floatField).toBe(0);
+            expect(plain.boolField).toBe(false);
+            expect(plain.enumField).toBe(1);
+            expect(plain.messageField).toBeUndefined();
+          });
+          test.each(messageType.fields.byNumber())(
+            "field $name is an own property",
+            (field) => {
+              const msg = new messageType();
+              expect(isFieldSet(msg, field)).toBeFalsy();
+            },
+          );
+        });
+        describe("object spread", () => {
+          test.each(messageType.fields.byNumber())(
+            "elides prototype property $name",
+            (field) => {
+              const spread = { ...new messageType() };
+              expect(spread[field.localName as keyof typeof spread]).toBe(
+                undefined,
+              );
+              expect(field.localName in spread).toBe(false);
+            },
+          );
+        });
       });
       describe("parse", () => {
         describe("fromJson", () => {
@@ -68,10 +152,10 @@ describe("proto2 required fields", () => {
             const msg = messageType.fromJson({
               stringField: "",
             });
-            expect(msg.enumField).toBeUndefined();
-            expect(objectHasOwn(msg, "enumField")).toBeFalsy();
+            expect(msg.enumField).toBeDefined();
+            expect(isFieldSet(msg, "enumField")).toBeFalsy();
             expect(msg.stringField).toBeDefined();
-            expect(objectHasOwn(msg, "stringField")).toBeTruthy();
+            expect(isFieldSet(msg, "stringField")).toBeTruthy();
           });
         });
         describe("fromBinary", () => {
@@ -81,10 +165,10 @@ describe("proto2 required fields", () => {
               .string("")
               .finish();
             const msg = messageType.fromBinary(bytes);
-            expect(msg.enumField).toBeUndefined();
-            expect(objectHasOwn(msg, "enumField")).toBeFalsy();
+            expect(msg.enumField).toBeDefined();
+            expect(isFieldSet(msg, "enumField")).toBeFalsy();
             expect(msg.stringField).toBeDefined();
-            expect(objectHasOwn(msg, "stringField")).toBeTruthy();
+            expect(isFieldSet(msg, "stringField")).toBeTruthy();
           });
         });
       });
@@ -107,8 +191,8 @@ describe("proto2 required fields", () => {
           test.each(messageType.fields.byNumber())(
             "raises error with unset field $name",
             (field) => {
-              const invalidMsg = validMsg.clone() as AnyMessage;
-              delete invalidMsg[field.localName];
+              const invalidMsg = validMsg.clone();
+              clearField(invalidMsg, field);
               expect(() => invalidMsg.toJson()).toThrow(
                 `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
               );
@@ -123,8 +207,8 @@ describe("proto2 required fields", () => {
           test.each(messageType.fields.byNumber())(
             "raises error with unset field $name",
             (field) => {
-              const invalidMsg = validMsg.clone() as AnyMessage;
-              delete invalidMsg[field.localName];
+              const invalidMsg = validMsg.clone();
+              clearField(invalidMsg, field);
               expect(() => invalidMsg.toBinary()).toThrow(
                 `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
               );
@@ -145,20 +229,24 @@ describe("proto2 required fields", () => {
         describe("initially", () => {
           test("has expected properties", () => {
             const msg = new messageType();
-            expect(msg.stringField).toBeUndefined();
-            expect(msg.bytesField).toBeUndefined();
-            expect(msg.int32Field).toBeUndefined();
-            expect(msg.int64Field).toBeUndefined();
-            expect(msg.floatField).toBeUndefined();
-            expect(msg.boolField).toBeUndefined();
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.stringField).toBe('hello " */ ');
+            expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+            expect(msg.bytesField.length).toBe(17);
+            expect(msg.int32Field).toBe(128);
+            expect(msg.int64Field).toBe(protoInt64.parse(-256));
+            expect(msg.floatField).toBe(-512.13);
+            expect(msg.boolField).toBe(true);
+            expect(msg.enumField).toBe(TS.Proto2Enum.YES);
             expect(msg.messageField).toBeUndefined();
           });
           test.each(messageType.fields.byNumber())(
-            "field $name is not an own property",
+            "field $name is not set",
             (field) => {
               const msg = new messageType();
-              expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+              expect(isFieldSet(msg, field)).toBeFalsy();
+              expect(
+                Object.prototype.hasOwnProperty.call(msg, field.localName),
+              ).toBe(false);
             },
           );
         });
@@ -181,8 +269,8 @@ describe("proto2 required fields", () => {
             test.each(messageType.fields.byNumber())(
               "raises error with unset field $name",
               (field) => {
-                const invalidMsg = validMsg.clone() as AnyMessage;
-                delete invalidMsg[field.localName];
+                const invalidMsg = validMsg.clone();
+                clearField(invalidMsg, field);
                 expect(() => invalidMsg.toJson()).toThrow(
                   `cannot encode field ${messageType.typeName}.${field.name} to JSON: required field not set`,
                 );
@@ -197,8 +285,8 @@ describe("proto2 required fields", () => {
             test.each(messageType.fields.byNumber())(
               "raises error with unset field $name",
               (field) => {
-                const invalidMsg = validMsg.clone() as AnyMessage;
-                delete invalidMsg[field.localName];
+                const invalidMsg = validMsg.clone();
+                clearField(invalidMsg, field);
                 expect(() => invalidMsg.toBinary()).toThrow(
                   `cannot encode field ${messageType.typeName}.${field.name} to binary: required field not set`,
                 );
@@ -218,20 +306,80 @@ describe("proto2 optional fields", () => {
       describe("initially", () => {
         test("has expected properties", () => {
           const msg = new messageType();
-          expect(msg.stringField).toBeUndefined();
-          expect(msg.bytesField).toBeUndefined();
-          expect(msg.int32Field).toBeUndefined();
-          expect(msg.int64Field).toBeUndefined();
-          expect(msg.floatField).toBeUndefined();
-          expect(msg.boolField).toBeUndefined();
-          expect(msg.enumField).toBeUndefined();
+          expect(msg.stringField).toBe("");
+          expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+          expect(msg.bytesField.length).toBe(0);
+          expect(msg.int32Field).toBe(0);
+          expect(msg.int64Field).toBe(protoInt64.zero);
+          expect(msg.floatField).toBe(0);
+          expect(msg.boolField).toBe(false);
+          expect(msg.enumField).toBe(1);
           expect(msg.messageField).toBeUndefined();
         });
         test.each(messageType.fields.byNumber())(
-          "field $name is not an own property",
+          "field $name is not set",
           (field) => {
             const msg = new messageType();
-            expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+            expect(isFieldSet(msg, field)).toBeFalsy();
+            expect(
+              Object.prototype.hasOwnProperty.call(msg, field.localName),
+            ).toBe(false);
+          },
+        );
+      });
+      describe("isFieldSet()", () => {
+        test.each(messageType.fields.byNumber())(
+          "returns true for field $name set to zero value",
+          (field) => {
+            if (field.kind == "message") {
+              // message fields do not have zero values
+              return;
+            }
+            const msg = new messageType({
+              stringField: "",
+              bytesField: new Uint8Array(),
+              int32Field: 0,
+              int64Field: protoInt64.zero,
+              floatField: 0,
+              boolField: false,
+              enumField: Proto2Enum.YES,
+            });
+            expect(isFieldSet(msg, field)).toBe(true);
+          },
+        );
+        test.each(messageType.fields.byNumber())(
+          "returns true for field $name set to non-zero value",
+          (field) => {
+            const msg = new messageType({
+              stringField: "abc",
+              bytesField: new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+              int32Field: 1,
+              int64Field: protoInt64.parse("123456"),
+              floatField: 3.14,
+              boolField: true,
+              enumField: Proto2Enum.YES,
+              messageField: new messageType(),
+            });
+            expect(isFieldSet(msg, field)).toBe(true);
+          },
+        );
+      });
+      describe("clearField()", () => {
+        test.each(messageType.fields.byNumber())(
+          "clears field $name",
+          (field) => {
+            const msg = new messageType({
+              stringField: "",
+              bytesField: new Uint8Array(),
+              int32Field: 0,
+              int64Field: protoInt64.zero,
+              floatField: 0,
+              boolField: false,
+              enumField: Proto2Enum.YES,
+              messageField: new messageType(),
+            });
+            clearField(msg, field);
+            expect(isFieldSet(msg, field)).toBe(false);
           },
         );
       });
@@ -245,20 +393,24 @@ describe("proto2 optional fields", () => {
         describe("initially", () => {
           test("has expected properties", () => {
             const msg = new messageType();
-            expect(msg.stringField).toBeUndefined();
-            expect(msg.bytesField).toBeUndefined();
-            expect(msg.int32Field).toBeUndefined();
-            expect(msg.int64Field).toBeUndefined();
-            expect(msg.floatField).toBeUndefined();
-            expect(msg.boolField).toBeUndefined();
-            expect(msg.enumField).toBeUndefined();
+            expect(msg.stringField).toBe('hello " */ ');
+            expect(msg.bytesField).toBeInstanceOf(Uint8Array);
+            expect(msg.bytesField.length).toBe(17);
+            expect(msg.int32Field).toBe(128);
+            expect(msg.int64Field).toBe(protoInt64.parse(-256));
+            expect(msg.floatField).toBe(-512.13);
+            expect(msg.boolField).toBe(true);
+            expect(msg.enumField).toBe(TS.Proto2Enum.YES);
             expect(msg.messageField).toBeUndefined();
           });
           test.each(messageType.fields.byNumber())(
-            "field $name is not an own property",
+            "field $name is not set",
             (field) => {
               const msg = new messageType();
-              expect(objectHasOwn(msg, field.localName)).toBeFalsy();
+              expect(isFieldSet(msg, field)).toBe(false);
+              expect(
+                Object.prototype.hasOwnProperty.call(msg, field.localName),
+              ).toBe(false);
             },
           );
         });
