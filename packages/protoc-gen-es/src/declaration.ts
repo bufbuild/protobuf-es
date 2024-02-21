@@ -26,7 +26,7 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
-import { fieldUsesPrototype, getFieldTypeInfo } from "./util.js";
+import { getFieldTypeInfo } from "./util.js";
 
 export function generateDts(schema: Schema) {
   for (const file of schema.files) {
@@ -136,10 +136,10 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     f.print(f.jsDoc(field, "  "));
     const e: Printable = [];
     const { typing, optional } = getFieldTypeInfo(field);
-    if (fieldUsesPrototype(field) || !optional) {
-      e.push("  ", localName(field), ": ", typing, ";");
+    if (!optional) {
+        e.push("  ", localName(field), ": ", typing, ";");
     } else {
-      e.push("  ", localName(field), "?: ", typing, ";");
+        e.push("  ", localName(field), "?: ", typing, ";");
     }
     f.print(e);
 }

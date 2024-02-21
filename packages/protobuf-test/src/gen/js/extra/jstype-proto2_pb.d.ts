@@ -26,27 +26,27 @@ export declare class JSTypeProto2OmittedMessage extends Message<JSTypeProto2Omit
   /**
    * @generated from field: optional fixed64 fixed64_field = 1;
    */
-  fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3;
    */
-  int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4;
    */
-  sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5;
    */
-  sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6;
    */
-  uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11;
@@ -95,27 +95,27 @@ export declare class JSTypeProto2NormalMessage extends Message<JSTypeProto2Norma
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_NORMAL];
    */
-  fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_NORMAL];
    */
-  int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_NORMAL];
    */
-  sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_NORMAL];
    */
-  sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_NORMAL];
    */
-  uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NORMAL];
@@ -164,27 +164,27 @@ export declare class JSTypeProto2StringMessage extends Message<JSTypeProto2Strin
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_STRING];
    */
-  fixed64Field: string;
+  fixed64Field?: string;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_STRING];
    */
-  int64Field: string;
+  int64Field?: string;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_STRING];
    */
-  sfixed64Field: string;
+  sfixed64Field?: string;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_STRING];
    */
-  sint64Field: string;
+  sint64Field?: string;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_STRING];
    */
-  uint64Field: string;
+  uint64Field?: string;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_STRING];
@@ -233,27 +233,27 @@ export declare class JSTypeProto2NumberMessage extends Message<JSTypeProto2Numbe
   /**
    * @generated from field: optional fixed64 fixed64_field = 1 [jstype = JS_NUMBER];
    */
-  fixed64Field: bigint;
+  fixed64Field?: bigint;
 
   /**
    * @generated from field: optional int64 int64_field = 3 [jstype = JS_NUMBER];
    */
-  int64Field: bigint;
+  int64Field?: bigint;
 
   /**
    * @generated from field: optional sfixed64 sfixed64_field = 4 [jstype = JS_NUMBER];
    */
-  sfixed64Field: bigint;
+  sfixed64Field?: bigint;
 
   /**
    * @generated from field: optional sint64 sint64_field = 5 [jstype = JS_NUMBER];
    */
-  sint64Field: bigint;
+  sint64Field?: bigint;
 
   /**
    * @generated from field: optional uint64 uint64_field = 6 [jstype = JS_NUMBER];
    */
-  uint64Field: bigint;
+  uint64Field?: bigint;
 
   /**
    * @generated from field: repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NUMBER];

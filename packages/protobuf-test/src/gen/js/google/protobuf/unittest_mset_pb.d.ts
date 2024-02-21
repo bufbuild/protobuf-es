@@ -92,12 +92,12 @@ export declare class NestedTestInt extends Message<NestedTestInt> {
   /**
    * @generated from field: optional fixed32 a = 1;
    */
-  a: number;
+  a?: number;
 
   /**
    * @generated from field: optional int32 b = 3;
    */
-  b: number;
+  b?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
@@ -126,7 +126,7 @@ export declare class TestMessageSetExtension1 extends Message<TestMessageSetExte
   /**
    * @generated from field: optional int32 i = 15;
    */
-  i: number;
+  i?: number;
 
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
@@ -136,7 +136,7 @@ export declare class TestMessageSetExtension1 extends Message<TestMessageSetExte
   /**
    * @generated from field: optional string test_aliasing = 17;
    */
-  testAliasing: string;
+  testAliasing?: string;
 
   constructor(data?: PartialMessage<TestMessageSetExtension1>);
 
@@ -165,7 +165,7 @@ export declare class TestMessageSetExtension2 extends Message<TestMessageSetExte
   /**
    * @generated from field: optional string str = 25;
    */
-  str: string;
+  str?: string;
 
   constructor(data?: PartialMessage<TestMessageSetExtension2>);
 
@@ -199,7 +199,7 @@ export declare class TestMessageSetExtension3 extends Message<TestMessageSetExte
   /**
    * @generated from field: required int32 required_int = 36;
    */
-  requiredInt: number;
+  requiredInt?: number;
 
   constructor(data?: PartialMessage<TestMessageSetExtension3>);
 
@@ -254,12 +254,12 @@ export declare class RawMessageSet_Item extends Message<RawMessageSet_Item> {
   /**
    * @generated from field: required int32 type_id = 2;
    */
-  typeId: number;
+  typeId?: number;
 
   /**
    * @generated from field: required bytes message = 3;
    */
-  message: Uint8Array;
+  message?: Uint8Array;
 
   constructor(data?: PartialMessage<RawMessageSet_Item>);
 

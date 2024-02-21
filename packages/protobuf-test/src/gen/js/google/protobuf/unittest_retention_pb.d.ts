@@ -38,17 +38,17 @@ export declare class OptionsMessage extends Message<OptionsMessage> {
   /**
    * @generated from field: optional int32 plain_field = 1;
    */
-  plainField: number;
+  plainField?: number;
 
   /**
    * @generated from field: optional int32 runtime_retention_field = 2;
    */
-  runtimeRetentionField: number;
+  runtimeRetentionField?: number;
 
   /**
    * @generated from field: optional int32 source_retention_field = 3;
    */
-  sourceRetentionField: number;
+  sourceRetentionField?: number;
 
   constructor(data?: PartialMessage<OptionsMessage>);
 
@@ -91,7 +91,7 @@ export declare class TopLevelMessage extends Message<TopLevelMessage> {
   /**
    * @generated from field: optional float f = 1;
    */
-  f: number;
+  f?: number;
 
   /**
    * @generated from oneof protobuf_unittest.TopLevelMessage.o

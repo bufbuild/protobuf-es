@@ -50,7 +50,7 @@ export declare class ImportMessageLite extends Message<ImportMessageLite> {
   /**
    * @generated from field: optional int32 d = 1;
    */
-  d: number;
+  d?: number;
 
   constructor(data?: PartialMessage<ImportMessageLite>);
 

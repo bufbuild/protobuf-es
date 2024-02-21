@@ -64,77 +64,77 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  declare optionalInt32: number;
+  optionalInt32?: number;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  declare optionalInt64: bigint;
+  optionalInt64?: bigint;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  declare optionalUint32: number;
+  optionalUint32?: number;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  declare optionalUint64: bigint;
+  optionalUint64?: bigint;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  declare optionalSint32: number;
+  optionalSint32?: number;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  declare optionalSint64: bigint;
+  optionalSint64?: bigint;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  declare optionalFixed32: number;
+  optionalFixed32?: number;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  declare optionalFixed64: bigint;
+  optionalFixed64?: bigint;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  declare optionalSfixed32: number;
+  optionalSfixed32?: number;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  declare optionalSfixed64: bigint;
+  optionalSfixed64?: bigint;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  declare optionalFloat: number;
+  optionalFloat?: number;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  declare optionalDouble: number;
+  optionalDouble?: number;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  declare optionalBool: boolean;
+  optionalBool?: boolean;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  declare optionalString: string;
+  optionalString?: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  declare optionalBytes: Uint8Array;
+  optionalBytes?: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage optional_nested_message = 18;
@@ -149,22 +149,22 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum optional_nested_enum = 21;
    */
-  declare optionalNestedEnum: TestAllTypesProto2_NestedEnum;
+  optionalNestedEnum?: TestAllTypesProto2_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignEnumProto2 optional_foreign_enum = 22;
    */
-  declare optionalForeignEnum: ForeignEnumProto2;
+  optionalForeignEnum?: ForeignEnumProto2;
 
   /**
    * @generated from field: optional string optional_string_piece = 24;
    */
-  declare optionalStringPiece: string;
+  optionalStringPiece?: string;
 
   /**
    * @generated from field: optional string optional_cord = 25;
    */
-  declare optionalCord: string;
+  optionalCord?: string;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 recursive_message = 27;
@@ -588,77 +588,77 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    *
    * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
    */
-  declare defaultInt32: number;
+  defaultInt32?: number;
 
   /**
    * @generated from field: optional int64 default_int64 = 242 [default = -9123456789123456789];
    */
-  declare defaultInt64: bigint;
+  defaultInt64?: bigint;
 
   /**
    * @generated from field: optional uint32 default_uint32 = 243 [default = 2123456789];
    */
-  declare defaultUint32: number;
+  defaultUint32?: number;
 
   /**
    * @generated from field: optional uint64 default_uint64 = 244 [default = 10123456789123456789];
    */
-  declare defaultUint64: bigint;
+  defaultUint64?: bigint;
 
   /**
    * @generated from field: optional sint32 default_sint32 = 245 [default = -123456789];
    */
-  declare defaultSint32: number;
+  defaultSint32?: number;
 
   /**
    * @generated from field: optional sint64 default_sint64 = 246 [default = -9123456789123456789];
    */
-  declare defaultSint64: bigint;
+  defaultSint64?: bigint;
 
   /**
    * @generated from field: optional fixed32 default_fixed32 = 247 [default = 2123456789];
    */
-  declare defaultFixed32: number;
+  defaultFixed32?: number;
 
   /**
    * @generated from field: optional fixed64 default_fixed64 = 248 [default = 10123456789123456789];
    */
-  declare defaultFixed64: bigint;
+  defaultFixed64?: bigint;
 
   /**
    * @generated from field: optional sfixed32 default_sfixed32 = 249 [default = -123456789];
    */
-  declare defaultSfixed32: number;
+  defaultSfixed32?: number;
 
   /**
    * @generated from field: optional sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
    */
-  declare defaultSfixed64: bigint;
+  defaultSfixed64?: bigint;
 
   /**
    * @generated from field: optional float default_float = 251 [default = 9e+09];
    */
-  declare defaultFloat: number;
+  defaultFloat?: number;
 
   /**
    * @generated from field: optional double default_double = 252 [default = 7e+22];
    */
-  declare defaultDouble: number;
+  defaultDouble?: number;
 
   /**
    * @generated from field: optional bool default_bool = 253 [default = true];
    */
-  declare defaultBool: boolean;
+  defaultBool?: boolean;
 
   /**
    * @generated from field: optional string default_string = 254 [default = "Rosebud"];
    */
-  declare defaultString: string;
+  defaultString?: string;
 
   /**
    * @generated from field: optional bytes default_bytes = 255 [default = "joshua"];
    */
-  declare defaultBytes: Uint8Array;
+  defaultBytes?: Uint8Array;
 
   /**
    * Test field-name-to-JSON-name convention.
@@ -666,92 +666,92 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
    *
    * @generated from field: optional int32 fieldname1 = 401;
    */
-  declare fieldname1: number;
+  fieldname1?: number;
 
   /**
    * @generated from field: optional int32 field_name2 = 402;
    */
-  declare fieldName2: number;
+  fieldName2?: number;
 
   /**
    * @generated from field: optional int32 _field_name3 = 403;
    */
-  declare FieldName3: number;
+  FieldName3?: number;
 
   /**
    * @generated from field: optional int32 field__name4_ = 404;
    */
-  declare fieldName4: number;
+  fieldName4?: number;
 
   /**
    * @generated from field: optional int32 field0name5 = 405;
    */
-  declare field0name5: number;
+  field0name5?: number;
 
   /**
    * @generated from field: optional int32 field_0_name6 = 406;
    */
-  declare field0Name6: number;
+  field0Name6?: number;
 
   /**
    * @generated from field: optional int32 fieldName7 = 407;
    */
-  declare fieldName7: number;
+  fieldName7?: number;
 
   /**
    * @generated from field: optional int32 FieldName8 = 408;
    */
-  declare FieldName8: number;
+  FieldName8?: number;
 
   /**
    * @generated from field: optional int32 field_Name9 = 409;
    */
-  declare fieldName9: number;
+  fieldName9?: number;
 
   /**
    * @generated from field: optional int32 Field_Name10 = 410;
    */
-  declare FieldName10: number;
+  FieldName10?: number;
 
   /**
    * @generated from field: optional int32 FIELD_NAME11 = 411;
    */
-  declare FIELDNAME11: number;
+  FIELDNAME11?: number;
 
   /**
    * @generated from field: optional int32 FIELD_name12 = 412;
    */
-  declare FIELDName12: number;
+  FIELDName12?: number;
 
   /**
    * @generated from field: optional int32 __field_name13 = 413;
    */
-  declare FieldName13: number;
+  FieldName13?: number;
 
   /**
    * @generated from field: optional int32 __Field_name14 = 414;
    */
-  declare FieldName14: number;
+  FieldName14?: number;
 
   /**
    * @generated from field: optional int32 field__name15 = 415;
    */
-  declare fieldName15: number;
+  fieldName15?: number;
 
   /**
    * @generated from field: optional int32 field__Name16 = 416;
    */
-  declare fieldName16: number;
+  fieldName16?: number;
 
   /**
    * @generated from field: optional int32 field_name17__ = 417;
    */
-  declare fieldName17: number;
+  fieldName17?: number;
 
   /**
    * @generated from field: optional int32 Field_name18__ = 418;
    */
-  declare FieldName18: number;
+  FieldName18?: number;
 
   constructor(data?: PartialMessage<TestAllTypesProto2>) {
     super();
@@ -913,59 +913,6 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   }
 }
 
-TestAllTypesProto2.prototype.optionalInt32 = 0;
-TestAllTypesProto2.prototype.optionalInt64 = protoInt64.zero;
-TestAllTypesProto2.prototype.optionalUint32 = 0;
-TestAllTypesProto2.prototype.optionalUint64 = protoInt64.zero;
-TestAllTypesProto2.prototype.optionalSint32 = 0;
-TestAllTypesProto2.prototype.optionalSint64 = protoInt64.zero;
-TestAllTypesProto2.prototype.optionalFixed32 = 0;
-TestAllTypesProto2.prototype.optionalFixed64 = protoInt64.zero;
-TestAllTypesProto2.prototype.optionalSfixed32 = 0;
-TestAllTypesProto2.prototype.optionalSfixed64 = protoInt64.zero;
-TestAllTypesProto2.prototype.optionalFloat = 0;
-TestAllTypesProto2.prototype.optionalDouble = 0;
-TestAllTypesProto2.prototype.optionalBool = false;
-TestAllTypesProto2.prototype.optionalString = "";
-TestAllTypesProto2.prototype.optionalBytes = new Uint8Array(0);
-TestAllTypesProto2.prototype.optionalNestedEnum = 0 as TestAllTypesProto2_NestedEnum.FOO;
-TestAllTypesProto2.prototype.optionalForeignEnum = 0 as ForeignEnumProto2.FOREIGN_FOO;
-TestAllTypesProto2.prototype.optionalStringPiece = "";
-TestAllTypesProto2.prototype.optionalCord = "";
-TestAllTypesProto2.prototype.defaultInt32 = -123456789;
-TestAllTypesProto2.prototype.defaultInt64 = protoInt64.parse("-9123456789123456789");
-TestAllTypesProto2.prototype.defaultUint32 = 2123456789;
-TestAllTypesProto2.prototype.defaultUint64 = protoInt64.uParse("10123456789123456789");
-TestAllTypesProto2.prototype.defaultSint32 = -123456789;
-TestAllTypesProto2.prototype.defaultSint64 = protoInt64.parse("-9123456789123456789");
-TestAllTypesProto2.prototype.defaultFixed32 = 2123456789;
-TestAllTypesProto2.prototype.defaultFixed64 = protoInt64.uParse("10123456789123456789");
-TestAllTypesProto2.prototype.defaultSfixed32 = -123456789;
-TestAllTypesProto2.prototype.defaultSfixed64 = protoInt64.parse("-9123456789123456789");
-TestAllTypesProto2.prototype.defaultFloat = 9000000000;
-TestAllTypesProto2.prototype.defaultDouble = 7e+22;
-TestAllTypesProto2.prototype.defaultBool = true;
-TestAllTypesProto2.prototype.defaultString = "Rosebud";
-TestAllTypesProto2.prototype.defaultBytes = new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]);
-TestAllTypesProto2.prototype.fieldname1 = 0;
-TestAllTypesProto2.prototype.fieldName2 = 0;
-TestAllTypesProto2.prototype.FieldName3 = 0;
-TestAllTypesProto2.prototype.fieldName4 = 0;
-TestAllTypesProto2.prototype.field0name5 = 0;
-TestAllTypesProto2.prototype.field0Name6 = 0;
-TestAllTypesProto2.prototype.fieldName7 = 0;
-TestAllTypesProto2.prototype.FieldName8 = 0;
-TestAllTypesProto2.prototype.fieldName9 = 0;
-TestAllTypesProto2.prototype.FieldName10 = 0;
-TestAllTypesProto2.prototype.FIELDNAME11 = 0;
-TestAllTypesProto2.prototype.FIELDName12 = 0;
-TestAllTypesProto2.prototype.FieldName13 = 0;
-TestAllTypesProto2.prototype.FieldName14 = 0;
-TestAllTypesProto2.prototype.fieldName15 = 0;
-TestAllTypesProto2.prototype.fieldName16 = 0;
-TestAllTypesProto2.prototype.fieldName17 = 0;
-TestAllTypesProto2.prototype.FieldName18 = 0;
-
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
  */
@@ -1007,7 +954,7 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
   /**
    * @generated from field: optional int32 a = 1;
    */
-  declare a: number;
+  a?: number;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 corecursive = 2;
@@ -1043,8 +990,6 @@ export class TestAllTypesProto2_NestedMessage extends Message<TestAllTypesProto2
   }
 }
 
-TestAllTypesProto2_NestedMessage.prototype.a = 0;
-
 /**
  * groups
  *
@@ -1054,12 +999,12 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
   /**
    * @generated from field: optional int32 group_int32 = 202;
    */
-  declare groupInt32: number;
+  groupInt32?: number;
 
   /**
    * @generated from field: optional uint32 group_uint32 = 203;
    */
-  declare groupUint32: number;
+  groupUint32?: number;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_Data>) {
     super();
@@ -1089,9 +1034,6 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
     return proto2.util.equals(TestAllTypesProto2_Data, a, b);
   }
 }
-
-TestAllTypesProto2_Data.prototype.groupInt32 = 0;
-TestAllTypesProto2_Data.prototype.groupUint32 = 0;
 
 /**
  * message_set test case.
@@ -1133,7 +1075,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
   /**
    * @generated from field: optional string str = 25;
    */
-  declare str: string;
+  str?: string;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrectExtension1>) {
     super();
@@ -1163,8 +1105,6 @@ export class TestAllTypesProto2_MessageSetCorrectExtension1 extends Message<Test
   }
 }
 
-TestAllTypesProto2_MessageSetCorrectExtension1.prototype.str = "";
-
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
  */
@@ -1181,7 +1121,7 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
   /**
    * @generated from field: optional int32 i = 9;
    */
-  declare i: number;
+  i?: number;
 
   constructor(data?: PartialMessage<TestAllTypesProto2_MessageSetCorrectExtension2>) {
     super();
@@ -1211,8 +1151,6 @@ export class TestAllTypesProto2_MessageSetCorrectExtension2 extends Message<Test
   }
 }
 
-TestAllTypesProto2_MessageSetCorrectExtension2.prototype.i = 0;
-
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
  */
@@ -1229,7 +1167,7 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  declare c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<ForeignMessageProto2>) {
     super();
@@ -1259,8 +1197,6 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
   }
 }
 
-ForeignMessageProto2.prototype.c = 0;
-
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
  */
@@ -1268,12 +1204,12 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
   /**
    * @generated from field: optional int32 optional_int32 = 1001;
    */
-  declare optionalInt32: number;
+  optionalInt32?: number;
 
   /**
    * @generated from field: optional string optional_string = 1002;
    */
-  declare optionalString: string;
+  optionalString?: string;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 nested_message = 1003;
@@ -1288,7 +1224,7 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
   /**
    * @generated from field: optional bool optional_bool = 1006;
    */
-  declare optionalBool: boolean;
+  optionalBool?: boolean;
 
   /**
    * @generated from field: repeated int32 repeated_int32 = 1011;
@@ -1328,10 +1264,6 @@ export class UnknownToTestAllTypes extends Message<UnknownToTestAllTypes> {
   }
 }
 
-UnknownToTestAllTypes.prototype.optionalInt32 = 0;
-UnknownToTestAllTypes.prototype.optionalString = "";
-UnknownToTestAllTypes.prototype.optionalBool = false;
-
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
  */
@@ -1339,7 +1271,7 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
   /**
    * @generated from field: optional int32 a = 1;
    */
-  declare a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<UnknownToTestAllTypes_OptionalGroup>) {
     super();
@@ -1368,8 +1300,6 @@ export class UnknownToTestAllTypes_OptionalGroup extends Message<UnknownToTestAl
     return proto2.util.equals(UnknownToTestAllTypes_OptionalGroup, a, b);
   }
 }
-
-UnknownToTestAllTypes_OptionalGroup.prototype.a = 0;
 
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
@@ -1460,7 +1390,7 @@ export class OneStringProto2 extends Message<OneStringProto2> {
   /**
    * @generated from field: optional string data = 1;
    */
-  declare data: string;
+  data?: string;
 
   constructor(data?: PartialMessage<OneStringProto2>) {
     super();
@@ -1490,8 +1420,6 @@ export class OneStringProto2 extends Message<OneStringProto2> {
   }
 }
 
-OneStringProto2.prototype.data = "";
-
 /**
  * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
  */
@@ -1499,12 +1427,12 @@ export class ProtoWithKeywords extends Message<ProtoWithKeywords> {
   /**
    * @generated from field: optional int32 inline = 1;
    */
-  declare inline: number;
+  inline?: number;
 
   /**
    * @generated from field: optional string concept = 2;
    */
-  declare concept: string;
+  concept?: string;
 
   /**
    * @generated from field: repeated string requires = 3;
@@ -1541,9 +1469,6 @@ export class ProtoWithKeywords extends Message<ProtoWithKeywords> {
   }
 }
 
-ProtoWithKeywords.prototype.inline = 0;
-ProtoWithKeywords.prototype.concept = "";
-
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2
  */
@@ -1553,77 +1478,77 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
    *
    * @generated from field: required int32 required_int32 = 1;
    */
-  declare requiredInt32: number;
+  requiredInt32?: number;
 
   /**
    * @generated from field: required int64 required_int64 = 2;
    */
-  declare requiredInt64: bigint;
+  requiredInt64?: bigint;
 
   /**
    * @generated from field: required uint32 required_uint32 = 3;
    */
-  declare requiredUint32: number;
+  requiredUint32?: number;
 
   /**
    * @generated from field: required uint64 required_uint64 = 4;
    */
-  declare requiredUint64: bigint;
+  requiredUint64?: bigint;
 
   /**
    * @generated from field: required sint32 required_sint32 = 5;
    */
-  declare requiredSint32: number;
+  requiredSint32?: number;
 
   /**
    * @generated from field: required sint64 required_sint64 = 6;
    */
-  declare requiredSint64: bigint;
+  requiredSint64?: bigint;
 
   /**
    * @generated from field: required fixed32 required_fixed32 = 7;
    */
-  declare requiredFixed32: number;
+  requiredFixed32?: number;
 
   /**
    * @generated from field: required fixed64 required_fixed64 = 8;
    */
-  declare requiredFixed64: bigint;
+  requiredFixed64?: bigint;
 
   /**
    * @generated from field: required sfixed32 required_sfixed32 = 9;
    */
-  declare requiredSfixed32: number;
+  requiredSfixed32?: number;
 
   /**
    * @generated from field: required sfixed64 required_sfixed64 = 10;
    */
-  declare requiredSfixed64: bigint;
+  requiredSfixed64?: bigint;
 
   /**
    * @generated from field: required float required_float = 11;
    */
-  declare requiredFloat: number;
+  requiredFloat?: number;
 
   /**
    * @generated from field: required double required_double = 12;
    */
-  declare requiredDouble: number;
+  requiredDouble?: number;
 
   /**
    * @generated from field: required bool required_bool = 13;
    */
-  declare requiredBool: boolean;
+  requiredBool?: boolean;
 
   /**
    * @generated from field: required string required_string = 14;
    */
-  declare requiredString: string;
+  requiredString?: string;
 
   /**
    * @generated from field: required bytes required_bytes = 15;
    */
-  declare requiredBytes: Uint8Array;
+  requiredBytes?: Uint8Array;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage required_nested_message = 18;
@@ -1638,22 +1563,22 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum required_nested_enum = 21;
    */
-  declare requiredNestedEnum: TestAllRequiredTypesProto2_NestedEnum;
+  requiredNestedEnum?: TestAllRequiredTypesProto2_NestedEnum;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.ForeignEnumProto2 required_foreign_enum = 22;
    */
-  declare requiredForeignEnum: ForeignEnumProto2;
+  requiredForeignEnum?: ForeignEnumProto2;
 
   /**
    * @generated from field: required string required_string_piece = 24;
    */
-  declare requiredStringPiece: string;
+  requiredStringPiece?: string;
 
   /**
    * @generated from field: required string required_cord = 25;
    */
-  declare requiredCord: string;
+  requiredCord?: string;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 recursive_message = 27;
@@ -1675,77 +1600,77 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
    *
    * @generated from field: required int32 default_int32 = 241 [default = -123456789];
    */
-  declare defaultInt32: number;
+  defaultInt32?: number;
 
   /**
    * @generated from field: required int64 default_int64 = 242 [default = -9123456789123456789];
    */
-  declare defaultInt64: bigint;
+  defaultInt64?: bigint;
 
   /**
    * @generated from field: required uint32 default_uint32 = 243 [default = 2123456789];
    */
-  declare defaultUint32: number;
+  defaultUint32?: number;
 
   /**
    * @generated from field: required uint64 default_uint64 = 244 [default = 10123456789123456789];
    */
-  declare defaultUint64: bigint;
+  defaultUint64?: bigint;
 
   /**
    * @generated from field: required sint32 default_sint32 = 245 [default = -123456789];
    */
-  declare defaultSint32: number;
+  defaultSint32?: number;
 
   /**
    * @generated from field: required sint64 default_sint64 = 246 [default = -9123456789123456789];
    */
-  declare defaultSint64: bigint;
+  defaultSint64?: bigint;
 
   /**
    * @generated from field: required fixed32 default_fixed32 = 247 [default = 2123456789];
    */
-  declare defaultFixed32: number;
+  defaultFixed32?: number;
 
   /**
    * @generated from field: required fixed64 default_fixed64 = 248 [default = 10123456789123456789];
    */
-  declare defaultFixed64: bigint;
+  defaultFixed64?: bigint;
 
   /**
    * @generated from field: required sfixed32 default_sfixed32 = 249 [default = -123456789];
    */
-  declare defaultSfixed32: number;
+  defaultSfixed32?: number;
 
   /**
    * @generated from field: required sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
    */
-  declare defaultSfixed64: bigint;
+  defaultSfixed64?: bigint;
 
   /**
    * @generated from field: required float default_float = 251 [default = 9e+09];
    */
-  declare defaultFloat: number;
+  defaultFloat?: number;
 
   /**
    * @generated from field: required double default_double = 252 [default = 7e+22];
    */
-  declare defaultDouble: number;
+  defaultDouble?: number;
 
   /**
    * @generated from field: required bool default_bool = 253 [default = true];
    */
-  declare defaultBool: boolean;
+  defaultBool?: boolean;
 
   /**
    * @generated from field: required string default_string = 254 [default = "Rosebud"];
    */
-  declare defaultString: string;
+  defaultString?: string;
 
   /**
    * @generated from field: required bytes default_bytes = 255 [default = "joshua"];
    */
-  declare defaultBytes: Uint8Array;
+  defaultBytes?: Uint8Array;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2>) {
     super();
@@ -1813,41 +1738,6 @@ export class TestAllRequiredTypesProto2 extends Message<TestAllRequiredTypesProt
   }
 }
 
-TestAllRequiredTypesProto2.prototype.requiredInt32 = 0;
-TestAllRequiredTypesProto2.prototype.requiredInt64 = protoInt64.zero;
-TestAllRequiredTypesProto2.prototype.requiredUint32 = 0;
-TestAllRequiredTypesProto2.prototype.requiredUint64 = protoInt64.zero;
-TestAllRequiredTypesProto2.prototype.requiredSint32 = 0;
-TestAllRequiredTypesProto2.prototype.requiredSint64 = protoInt64.zero;
-TestAllRequiredTypesProto2.prototype.requiredFixed32 = 0;
-TestAllRequiredTypesProto2.prototype.requiredFixed64 = protoInt64.zero;
-TestAllRequiredTypesProto2.prototype.requiredSfixed32 = 0;
-TestAllRequiredTypesProto2.prototype.requiredSfixed64 = protoInt64.zero;
-TestAllRequiredTypesProto2.prototype.requiredFloat = 0;
-TestAllRequiredTypesProto2.prototype.requiredDouble = 0;
-TestAllRequiredTypesProto2.prototype.requiredBool = false;
-TestAllRequiredTypesProto2.prototype.requiredString = "";
-TestAllRequiredTypesProto2.prototype.requiredBytes = new Uint8Array(0);
-TestAllRequiredTypesProto2.prototype.requiredNestedEnum = 0 as TestAllRequiredTypesProto2_NestedEnum.FOO;
-TestAllRequiredTypesProto2.prototype.requiredForeignEnum = 0 as ForeignEnumProto2.FOREIGN_FOO;
-TestAllRequiredTypesProto2.prototype.requiredStringPiece = "";
-TestAllRequiredTypesProto2.prototype.requiredCord = "";
-TestAllRequiredTypesProto2.prototype.defaultInt32 = -123456789;
-TestAllRequiredTypesProto2.prototype.defaultInt64 = protoInt64.parse("-9123456789123456789");
-TestAllRequiredTypesProto2.prototype.defaultUint32 = 2123456789;
-TestAllRequiredTypesProto2.prototype.defaultUint64 = protoInt64.uParse("10123456789123456789");
-TestAllRequiredTypesProto2.prototype.defaultSint32 = -123456789;
-TestAllRequiredTypesProto2.prototype.defaultSint64 = protoInt64.parse("-9123456789123456789");
-TestAllRequiredTypesProto2.prototype.defaultFixed32 = 2123456789;
-TestAllRequiredTypesProto2.prototype.defaultFixed64 = protoInt64.uParse("10123456789123456789");
-TestAllRequiredTypesProto2.prototype.defaultSfixed32 = -123456789;
-TestAllRequiredTypesProto2.prototype.defaultSfixed64 = protoInt64.parse("-9123456789123456789");
-TestAllRequiredTypesProto2.prototype.defaultFloat = 9000000000;
-TestAllRequiredTypesProto2.prototype.defaultDouble = 7e+22;
-TestAllRequiredTypesProto2.prototype.defaultBool = true;
-TestAllRequiredTypesProto2.prototype.defaultString = "Rosebud";
-TestAllRequiredTypesProto2.prototype.defaultBytes = new Uint8Array([0x6A, 0x6F, 0x73, 0x68, 0x75, 0x61]);
-
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum
  */
@@ -1889,7 +1779,7 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
   /**
    * @generated from field: required int32 a = 1;
    */
-  declare a: number;
+  a?: number;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 corecursive = 2;
@@ -1931,8 +1821,6 @@ export class TestAllRequiredTypesProto2_NestedMessage extends Message<TestAllReq
   }
 }
 
-TestAllRequiredTypesProto2_NestedMessage.prototype.a = 0;
-
 /**
  * groups
  *
@@ -1942,12 +1830,12 @@ export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredType
   /**
    * @generated from field: required int32 group_int32 = 202;
    */
-  declare groupInt32: number;
+  groupInt32?: number;
 
   /**
    * @generated from field: required uint32 group_uint32 = 203;
    */
-  declare groupUint32: number;
+  groupUint32?: number;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_Data>) {
     super();
@@ -1977,9 +1865,6 @@ export class TestAllRequiredTypesProto2_Data extends Message<TestAllRequiredType
     return proto2.util.equals(TestAllRequiredTypesProto2_Data, a, b);
   }
 }
-
-TestAllRequiredTypesProto2_Data.prototype.groupInt32 = 0;
-TestAllRequiredTypesProto2_Data.prototype.groupUint32 = 0;
 
 /**
  * message_set test case.
@@ -2021,7 +1906,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
   /**
    * @generated from field: required string str = 25;
    */
-  declare str: string;
+  str?: string;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1>) {
     super();
@@ -2051,8 +1936,6 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 extends Mess
   }
 }
 
-TestAllRequiredTypesProto2_MessageSetCorrectExtension1.prototype.str = "";
-
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
  */
@@ -2069,7 +1952,7 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
   /**
    * @generated from field: required int32 i = 9;
    */
-  declare i: number;
+  i?: number;
 
   constructor(data?: PartialMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2>) {
     super();
@@ -2098,8 +1981,6 @@ export class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 extends Mess
     return proto2.util.equals(TestAllRequiredTypesProto2_MessageSetCorrectExtension2, a, b);
   }
 }
-
-TestAllRequiredTypesProto2_MessageSetCorrectExtension2.prototype.i = 0;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;

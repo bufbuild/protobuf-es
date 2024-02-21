@@ -51,9 +51,14 @@ export function localName(
     case "service":
     case "extension": {
       const pkg = desc.file.proto.package;
-      const offset = pkg.length > 0 ? pkg.length + 1 : 0;
+      const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
-      return safeIdentifier(name);
+      // For services, we only care about safe identifiers, not safe object properties,
+      // but we have shipped v1 with a bug that respected object properties, and we
+      // do not want to introduce a breaking change, so we continue to escape for
+      // safe object properties.
+      // See https://github.com/bufbuild/protobuf-es/pull/391
+      return safeObjectProperty(safeIdentifier(name));
     }
     case "enum_value": {
       const sharedPrefix = desc.parent.sharedPrefix;

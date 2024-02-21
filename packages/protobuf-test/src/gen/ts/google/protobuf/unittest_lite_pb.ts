@@ -96,77 +96,77 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 optional_int32 = 1;
    */
-  declare optionalInt32: number;
+  optionalInt32?: number;
 
   /**
    * @generated from field: optional int64 optional_int64 = 2;
    */
-  declare optionalInt64: bigint;
+  optionalInt64?: bigint;
 
   /**
    * @generated from field: optional uint32 optional_uint32 = 3;
    */
-  declare optionalUint32: number;
+  optionalUint32?: number;
 
   /**
    * @generated from field: optional uint64 optional_uint64 = 4;
    */
-  declare optionalUint64: bigint;
+  optionalUint64?: bigint;
 
   /**
    * @generated from field: optional sint32 optional_sint32 = 5;
    */
-  declare optionalSint32: number;
+  optionalSint32?: number;
 
   /**
    * @generated from field: optional sint64 optional_sint64 = 6;
    */
-  declare optionalSint64: bigint;
+  optionalSint64?: bigint;
 
   /**
    * @generated from field: optional fixed32 optional_fixed32 = 7;
    */
-  declare optionalFixed32: number;
+  optionalFixed32?: number;
 
   /**
    * @generated from field: optional fixed64 optional_fixed64 = 8;
    */
-  declare optionalFixed64: bigint;
+  optionalFixed64?: bigint;
 
   /**
    * @generated from field: optional sfixed32 optional_sfixed32 = 9;
    */
-  declare optionalSfixed32: number;
+  optionalSfixed32?: number;
 
   /**
    * @generated from field: optional sfixed64 optional_sfixed64 = 10;
    */
-  declare optionalSfixed64: bigint;
+  optionalSfixed64?: bigint;
 
   /**
    * @generated from field: optional float optional_float = 11;
    */
-  declare optionalFloat: number;
+  optionalFloat?: number;
 
   /**
    * @generated from field: optional double optional_double = 12;
    */
-  declare optionalDouble: number;
+  optionalDouble?: number;
 
   /**
    * @generated from field: optional bool optional_bool = 13;
    */
-  declare optionalBool: boolean;
+  optionalBool?: boolean;
 
   /**
    * @generated from field: optional string optional_string = 14;
    */
-  declare optionalString: string;
+  optionalString?: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 15;
    */
-  declare optionalBytes: Uint8Array;
+  optionalBytes?: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.OptionalGroup optionalgroup = 16;
@@ -191,27 +191,27 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedEnum optional_nested_enum = 21;
    */
-  declare optionalNestedEnum: TestAllTypesLite_NestedEnum;
+  optionalNestedEnum?: TestAllTypesLite_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite optional_foreign_enum = 22;
    */
-  declare optionalForeignEnum: ForeignEnumLite;
+  optionalForeignEnum?: ForeignEnumLite;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnumLite optional_import_enum = 23;
    */
-  declare optionalImportEnum: ImportEnumLite;
+  optionalImportEnum?: ImportEnumLite;
 
   /**
    * @generated from field: optional string optional_string_piece = 24;
    */
-  declare optionalStringPiece: string;
+  optionalStringPiece?: string;
 
   /**
    * @generated from field: optional string optional_cord = 25;
    */
-  declare optionalCord: string;
+  optionalCord?: string;
 
   /**
    * Defined in unittest_import_public.proto
@@ -362,102 +362,102 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 default_int32 = 61 [default = 41];
    */
-  declare defaultInt32: number;
+  defaultInt32?: number;
 
   /**
    * @generated from field: optional int64 default_int64 = 62 [default = 42];
    */
-  declare defaultInt64: bigint;
+  defaultInt64?: bigint;
 
   /**
    * @generated from field: optional uint32 default_uint32 = 63 [default = 43];
    */
-  declare defaultUint32: number;
+  defaultUint32?: number;
 
   /**
    * @generated from field: optional uint64 default_uint64 = 64 [default = 44];
    */
-  declare defaultUint64: bigint;
+  defaultUint64?: bigint;
 
   /**
    * @generated from field: optional sint32 default_sint32 = 65 [default = -45];
    */
-  declare defaultSint32: number;
+  defaultSint32?: number;
 
   /**
    * @generated from field: optional sint64 default_sint64 = 66 [default = 46];
    */
-  declare defaultSint64: bigint;
+  defaultSint64?: bigint;
 
   /**
    * @generated from field: optional fixed32 default_fixed32 = 67 [default = 47];
    */
-  declare defaultFixed32: number;
+  defaultFixed32?: number;
 
   /**
    * @generated from field: optional fixed64 default_fixed64 = 68 [default = 48];
    */
-  declare defaultFixed64: bigint;
+  defaultFixed64?: bigint;
 
   /**
    * @generated from field: optional sfixed32 default_sfixed32 = 69 [default = 49];
    */
-  declare defaultSfixed32: number;
+  defaultSfixed32?: number;
 
   /**
    * @generated from field: optional sfixed64 default_sfixed64 = 70 [default = -50];
    */
-  declare defaultSfixed64: bigint;
+  defaultSfixed64?: bigint;
 
   /**
    * @generated from field: optional float default_float = 71 [default = 51.5];
    */
-  declare defaultFloat: number;
+  defaultFloat?: number;
 
   /**
    * @generated from field: optional double default_double = 72 [default = 52000];
    */
-  declare defaultDouble: number;
+  defaultDouble?: number;
 
   /**
    * @generated from field: optional bool default_bool = 73 [default = true];
    */
-  declare defaultBool: boolean;
+  defaultBool?: boolean;
 
   /**
    * @generated from field: optional string default_string = 74 [default = "hello"];
    */
-  declare defaultString: string;
+  defaultString?: string;
 
   /**
    * @generated from field: optional bytes default_bytes = 75 [default = "world"];
    */
-  declare defaultBytes: Uint8Array;
+  defaultBytes?: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.TestAllTypesLite.NestedEnum default_nested_enum = 81 [default = BAR];
    */
-  declare defaultNestedEnum: TestAllTypesLite_NestedEnum;
+  defaultNestedEnum?: TestAllTypesLite_NestedEnum;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite default_foreign_enum = 82 [default = FOREIGN_LITE_BAR];
    */
-  declare defaultForeignEnum: ForeignEnumLite;
+  defaultForeignEnum?: ForeignEnumLite;
 
   /**
    * @generated from field: optional protobuf_unittest_import.ImportEnumLite default_import_enum = 83 [default = IMPORT_LITE_BAR];
    */
-  declare defaultImportEnum: ImportEnumLite;
+  defaultImportEnum?: ImportEnumLite;
 
   /**
    * @generated from field: optional string default_string_piece = 84 [default = "abc"];
    */
-  declare defaultStringPiece: string;
+  defaultStringPiece?: string;
 
   /**
    * @generated from field: optional string default_cord = 85 [default = "123"];
    */
-  declare defaultCord: string;
+  defaultCord?: string;
 
   /**
    * For oneof test
@@ -507,7 +507,7 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
    *
    * @generated from field: optional int32 deceptively_named_list = 116;
    */
-  declare deceptivelyNamedList: number;
+  deceptivelyNamedList?: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite>) {
     super();
@@ -615,48 +615,6 @@ export class TestAllTypesLite extends Message<TestAllTypesLite> {
   }
 }
 
-TestAllTypesLite.prototype.optionalInt32 = 0;
-TestAllTypesLite.prototype.optionalInt64 = protoInt64.zero;
-TestAllTypesLite.prototype.optionalUint32 = 0;
-TestAllTypesLite.prototype.optionalUint64 = protoInt64.zero;
-TestAllTypesLite.prototype.optionalSint32 = 0;
-TestAllTypesLite.prototype.optionalSint64 = protoInt64.zero;
-TestAllTypesLite.prototype.optionalFixed32 = 0;
-TestAllTypesLite.prototype.optionalFixed64 = protoInt64.zero;
-TestAllTypesLite.prototype.optionalSfixed32 = 0;
-TestAllTypesLite.prototype.optionalSfixed64 = protoInt64.zero;
-TestAllTypesLite.prototype.optionalFloat = 0;
-TestAllTypesLite.prototype.optionalDouble = 0;
-TestAllTypesLite.prototype.optionalBool = false;
-TestAllTypesLite.prototype.optionalString = "";
-TestAllTypesLite.prototype.optionalBytes = new Uint8Array(0);
-TestAllTypesLite.prototype.optionalNestedEnum = 1 as TestAllTypesLite_NestedEnum.FOO;
-TestAllTypesLite.prototype.optionalForeignEnum = 4 as ForeignEnumLite.FOREIGN_LITE_FOO;
-TestAllTypesLite.prototype.optionalImportEnum = 7 as ImportEnumLite.IMPORT_LITE_FOO;
-TestAllTypesLite.prototype.optionalStringPiece = "";
-TestAllTypesLite.prototype.optionalCord = "";
-TestAllTypesLite.prototype.defaultInt32 = 41;
-TestAllTypesLite.prototype.defaultInt64 = protoInt64.parse("42");
-TestAllTypesLite.prototype.defaultUint32 = 43;
-TestAllTypesLite.prototype.defaultUint64 = protoInt64.uParse("44");
-TestAllTypesLite.prototype.defaultSint32 = -45;
-TestAllTypesLite.prototype.defaultSint64 = protoInt64.parse("46");
-TestAllTypesLite.prototype.defaultFixed32 = 47;
-TestAllTypesLite.prototype.defaultFixed64 = protoInt64.uParse("48");
-TestAllTypesLite.prototype.defaultSfixed32 = 49;
-TestAllTypesLite.prototype.defaultSfixed64 = protoInt64.parse("-50");
-TestAllTypesLite.prototype.defaultFloat = 51.5;
-TestAllTypesLite.prototype.defaultDouble = 52000;
-TestAllTypesLite.prototype.defaultBool = true;
-TestAllTypesLite.prototype.defaultString = "hello";
-TestAllTypesLite.prototype.defaultBytes = new Uint8Array([0x77, 0x6F, 0x72, 0x6C, 0x64]);
-TestAllTypesLite.prototype.defaultNestedEnum = 2 as TestAllTypesLite_NestedEnum.BAR;
-TestAllTypesLite.prototype.defaultForeignEnum = 5 as ForeignEnumLite.FOREIGN_LITE_BAR;
-TestAllTypesLite.prototype.defaultImportEnum = 8 as ImportEnumLite.IMPORT_LITE_BAR;
-TestAllTypesLite.prototype.defaultStringPiece = "abc";
-TestAllTypesLite.prototype.defaultCord = "123";
-TestAllTypesLite.prototype.deceptivelyNamedList = 0;
-
 /**
  * @generated from enum protobuf_unittest.TestAllTypesLite.NestedEnum
  */
@@ -690,12 +648,12 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
   /**
    * @generated from field: optional int32 bb = 1;
    */
-  declare bb: number;
+  bb?: number;
 
   /**
    * @generated from field: optional int64 cc = 2;
    */
-  declare cc: bigint;
+  cc?: bigint;
 
   /**
    * @generated from field: repeated int32 dd = 3 [packed = true];
@@ -732,9 +690,6 @@ export class TestAllTypesLite_NestedMessage extends Message<TestAllTypesLite_Nes
   }
 }
 
-TestAllTypesLite_NestedMessage.prototype.bb = 0;
-TestAllTypesLite_NestedMessage.prototype.cc = protoInt64.zero;
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage2
  */
@@ -742,7 +697,7 @@ export class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_Ne
   /**
    * @generated from field: optional int32 dd = 1;
    */
-  declare dd: number;
+  dd?: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_NestedMessage2>) {
     super();
@@ -772,8 +727,6 @@ export class TestAllTypesLite_NestedMessage2 extends Message<TestAllTypesLite_Ne
   }
 }
 
-TestAllTypesLite_NestedMessage2.prototype.dd = 0;
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
  */
@@ -781,7 +734,7 @@ export class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_Opt
   /**
    * @generated from field: optional int32 a = 17;
    */
-  declare a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_OptionalGroup>) {
     super();
@@ -811,8 +764,6 @@ export class TestAllTypesLite_OptionalGroup extends Message<TestAllTypesLite_Opt
   }
 }
 
-TestAllTypesLite_OptionalGroup.prototype.a = 0;
-
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
  */
@@ -820,7 +771,7 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
   /**
    * @generated from field: optional int32 a = 47;
    */
-  declare a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<TestAllTypesLite_RepeatedGroup>) {
     super();
@@ -850,8 +801,6 @@ export class TestAllTypesLite_RepeatedGroup extends Message<TestAllTypesLite_Rep
   }
 }
 
-TestAllTypesLite_RepeatedGroup.prototype.a = 0;
-
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
  */
@@ -859,7 +808,7 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
   /**
    * @generated from field: optional int32 c = 1;
    */
-  declare c: number;
+  c?: number;
 
   constructor(data?: PartialMessage<ForeignMessageLite>) {
     super();
@@ -888,8 +837,6 @@ export class ForeignMessageLite extends Message<ForeignMessageLite> {
     return proto2.util.equals(ForeignMessageLite, a, b);
   }
 }
-
-ForeignMessageLite.prototype.c = 0;
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
@@ -1044,7 +991,7 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
   /**
    * @generated from field: optional int32 a = 17;
    */
-  declare a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<OptionalGroup_extension_lite>) {
     super();
@@ -1074,8 +1021,6 @@ export class OptionalGroup_extension_lite extends Message<OptionalGroup_extensio
   }
 }
 
-OptionalGroup_extension_lite.prototype.a = 0;
-
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
  */
@@ -1083,7 +1028,7 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
   /**
    * @generated from field: optional int32 a = 47;
    */
-  declare a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<RepeatedGroup_extension_lite>) {
     super();
@@ -1112,8 +1057,6 @@ export class RepeatedGroup_extension_lite extends Message<RepeatedGroup_extensio
     return proto2.util.equals(RepeatedGroup_extension_lite, a, b);
   }
 }
-
-RepeatedGroup_extension_lite.prototype.a = 0;
 
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
@@ -1197,19 +1140,19 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
    * @generated from field: optional int32 deprecated_field = 1 [deprecated = true];
    * @deprecated
    */
-  declare deprecatedField: number;
+  deprecatedField?: number;
 
   /**
    * @generated from field: required int32 deprecated_field2 = 2 [deprecated = true];
    * @deprecated
    */
-  declare deprecatedField2: number;
+  deprecatedField2?: number;
 
   /**
    * @generated from field: optional string deprecated_field3 = 3 [deprecated = true];
    * @deprecated
    */
-  declare deprecatedField3: string;
+  deprecatedField3?: string;
 
   /**
    * @generated from field: optional protobuf_unittest.TestDeprecatedLite deprecated_field4 = 4 [deprecated = true];
@@ -1247,10 +1190,6 @@ export class TestDeprecatedLite extends Message<TestDeprecatedLite> {
     return proto2.util.equals(TestDeprecatedLite, a, b);
   }
 }
-
-TestDeprecatedLite.prototype.deprecatedField = 0;
-TestDeprecatedLite.prototype.deprecatedField2 = 0;
-TestDeprecatedLite.prototype.deprecatedField3 = "";
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -1668,12 +1607,12 @@ export class V1MessageLite extends Message<V1MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  declare intField: number;
+  intField?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V1EnumLite enum_field = 2 [default = V1_FIRST];
    */
-  declare enumField: V1EnumLite;
+  enumField?: V1EnumLite;
 
   constructor(data?: PartialMessage<V1MessageLite>) {
     super();
@@ -1704,9 +1643,6 @@ export class V1MessageLite extends Message<V1MessageLite> {
   }
 }
 
-V1MessageLite.prototype.intField = 0;
-V1MessageLite.prototype.enumField = 1 as V1EnumLite.V1_FIRST;
-
 /**
  * @generated from message protobuf_unittest.V2MessageLite
  */
@@ -1714,12 +1650,12 @@ export class V2MessageLite extends Message<V2MessageLite> {
   /**
    * @generated from field: required int32 int_field = 1;
    */
-  declare intField: number;
+  intField?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.V2EnumLite enum_field = 2 [default = V2_FIRST];
    */
-  declare enumField: V2EnumLite;
+  enumField?: V2EnumLite;
 
   constructor(data?: PartialMessage<V2MessageLite>) {
     super();
@@ -1750,9 +1686,6 @@ export class V2MessageLite extends Message<V2MessageLite> {
   }
 }
 
-V2MessageLite.prototype.intField = 0;
-V2MessageLite.prototype.enumField = 1 as V2EnumLite.V2_FIRST;
-
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
  */
@@ -1760,12 +1693,12 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
   /**
    * @generated from field: optional int32 optional_int32 = 536870000;
    */
-  declare optionalInt32: number;
+  optionalInt32?: number;
 
   /**
    * @generated from field: optional int32 fixed_32 = 536870001;
    */
-  declare fixed32: number;
+  fixed32?: number;
 
   /**
    * @generated from field: repeated int32 repeated_int32 = 536870002 [packed = false];
@@ -1780,17 +1713,17 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
   /**
    * @generated from field: optional protobuf_unittest.ForeignEnumLite optional_enum = 536870004;
    */
-  declare optionalEnum: ForeignEnumLite;
+  optionalEnum?: ForeignEnumLite;
 
   /**
    * @generated from field: optional string optional_string = 536870005;
    */
-  declare optionalString: string;
+  optionalString?: string;
 
   /**
    * @generated from field: optional bytes optional_bytes = 536870006;
    */
-  declare optionalBytes: Uint8Array;
+  optionalBytes?: Uint8Array;
 
   /**
    * @generated from field: optional protobuf_unittest.ForeignMessageLite optional_message = 536870007;
@@ -1877,12 +1810,6 @@ export class TestHugeFieldNumbersLite extends Message<TestHugeFieldNumbersLite> 
   }
 }
 
-TestHugeFieldNumbersLite.prototype.optionalInt32 = 0;
-TestHugeFieldNumbersLite.prototype.fixed32 = 0;
-TestHugeFieldNumbersLite.prototype.optionalEnum = 4 as ForeignEnumLite.FOREIGN_LITE_FOO;
-TestHugeFieldNumbersLite.prototype.optionalString = "";
-TestHugeFieldNumbersLite.prototype.optionalBytes = new Uint8Array(0);
-
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
  */
@@ -1890,7 +1817,7 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
   /**
    * @generated from field: optional int32 group_a = 536870009;
    */
-  declare groupA: number;
+  groupA?: number;
 
   constructor(data?: PartialMessage<TestHugeFieldNumbersLite_OptionalGroup>) {
     super();
@@ -1919,8 +1846,6 @@ export class TestHugeFieldNumbersLite_OptionalGroup extends Message<TestHugeFiel
     return proto2.util.equals(TestHugeFieldNumbersLite_OptionalGroup, a, b);
   }
 }
-
-TestHugeFieldNumbersLite_OptionalGroup.prototype.groupA = 0;
 
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
@@ -2287,7 +2212,7 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
   /**
    * @generated from field: optional bytes payload = 2;
    */
-  declare payload: Uint8Array;
+  payload?: Uint8Array;
 
   constructor(data?: PartialMessage<RecursiveMessage>) {
     super();
@@ -2317,8 +2242,6 @@ export class RecursiveMessage extends Message<RecursiveMessage> {
     return proto2.util.equals(RecursiveMessage, a, b);
   }
 }
-
-RecursiveMessage.prototype.payload = new Uint8Array(0);
 
 /**
  * Singular

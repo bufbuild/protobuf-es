@@ -13,8 +13,6 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { describeMT } from "./helpers.js";
-import { clearField, isFieldSet } from "@bufbuild/protobuf";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
 import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
@@ -27,16 +25,7 @@ import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/js
 import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
 import { JSTypeProto2StringMessage as TS_JSTypeProto2StringMessage } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { JSTypeProto2StringMessage as JS_JSTypeProto2StringMessage } from "./gen/js/extra/jstype-proto2_pb.js";
-import { Proto2OptionalMessage as TS_Proto2OptionalMessage } from "./gen/ts/extra/proto2_pb.js";
-import { Proto2OptionalMessage as JS_Proto2OptionalMessage } from "./gen/js/extra/proto2_pb.js";
-import {
-  Proto3OptionalMessage as TS_Proto3OptionalMessage,
-  Proto3UnlabelledMessage as TS_Proto3UnlabelledMessage,
-} from "./gen/ts/extra/proto3_pb";
-import {
-  Proto3OptionalMessage as JS_Proto3OptionalMessage,
-  Proto3UnlabelledMessage as JS_Proto3UnlabelledMessage,
-} from "./gen/js/extra/proto3_pb";
+import { describeMT } from "./helpers.js";
 
 describe("equals", function () {
   describeMT(
@@ -75,7 +64,7 @@ describe("equals", function () {
         expect(a.equals(b)).toBeTruthy();
       });
       test("changed are not equal", () => {
-        clearField(a, "int64Field");
+        a.int64Field = undefined;
         expect(a).not.toStrictEqual(b);
         expect(a.equals(b)).toBeFalsy();
       });
@@ -327,50 +316,5 @@ describe("equals", function () {
         ),
       ).toBeFalsy();
     });
-  });
-
-  describe("field presence", () => {
-    describeMT(
-      { ts: TS_Proto2OptionalMessage, js: JS_Proto2OptionalMessage },
-      (messageType) => {
-        test("set field is not equal unset field", () => {
-          const a = new messageType({
-            stringField: "",
-          });
-          const b = new messageType();
-          expect(isFieldSet(a, "stringField")).toBe(true);
-          expect(isFieldSet(b, "stringField")).toBe(false);
-          expect(a.equals(b)).toBe(false);
-        });
-      },
-    );
-    describeMT(
-      { ts: TS_Proto3OptionalMessage, js: JS_Proto3OptionalMessage },
-      (messageType) => {
-        test("set field is not equal unset field", () => {
-          const a = new messageType({
-            stringField: "",
-          });
-          const b = new messageType();
-          expect(isFieldSet(a, "stringField")).toBe(true);
-          expect(isFieldSet(b, "stringField")).toBe(false);
-          expect(a.equals(b)).toBe(false);
-        });
-      },
-    );
-    describeMT(
-      { ts: TS_Proto3UnlabelledMessage, js: JS_Proto3UnlabelledMessage },
-      (messageType) => {
-        test("set field is not equal unset field", () => {
-          const a = new messageType({
-            stringField: "test",
-          });
-          const b = new messageType();
-          expect(isFieldSet(a, "stringField")).toBe(true);
-          expect(isFieldSet(b, "stringField")).toBe(false);
-          expect(a.equals(b)).toBe(false);
-        });
-      },
-    );
   });
 });

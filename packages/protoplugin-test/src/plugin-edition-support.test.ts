@@ -117,9 +117,9 @@ describe("editions support in plugins", () => {
   });
 
   function supportsEditions(res: CodeGeneratorResponse): boolean {
+    const f = res.supportedFeatures ?? 0n;
     return (
-      (res.supportedFeatures &
-        BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS)) ===
+      (f & BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS)) ===
       BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS)
     );
   }

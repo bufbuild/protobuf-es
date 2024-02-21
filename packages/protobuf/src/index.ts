@@ -37,7 +37,6 @@ export {
   hasExtension,
   clearExtension,
 } from "./extension-accessor.js";
-export { isFieldSet, clearField } from "./field-accessor.js";
 export type {
   ServiceType,
   MethodInfo,

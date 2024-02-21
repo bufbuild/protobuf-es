@@ -14,7 +14,6 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
-import { clearField, isFieldSet } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";
 import { OneofMessage as JS_OneofMessage } from "./gen/js/extra/msg-oneof_pb.js";
@@ -77,42 +76,6 @@ describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
     expect(got).toStrictEqual({
       ...defaultFields,
       scalar: { case: "bytes", value: new Uint8Array(bytes) },
-    });
-  });
-  describe("isFieldSet()", () => {
-    test("returns false for unselected oneof", () => {
-      const msg = new messageType({
-        scalar: { case: undefined },
-      });
-      expect(isFieldSet(msg, "value")).toBe(false);
-      expect(isFieldSet(msg, "error")).toBe(false);
-      expect(isFieldSet(msg, "bytes")).toBe(false);
-    });
-    test("returns true for selected oneof", () => {
-      const msg = new messageType({
-        scalar: { case: "value", value: 123 },
-      });
-      expect(isFieldSet(msg, "value")).toBe(true);
-      expect(isFieldSet(msg, "error")).toBe(false);
-      expect(isFieldSet(msg, "bytes")).toBe(false);
-    });
-  });
-  describe("clearField()", () => {
-    test("deselects selected oneof", () => {
-      const msg = new messageType({
-        scalar: { case: "value", value: 123 },
-      });
-      clearField(msg, "value");
-      expect(msg.scalar.case).toBeUndefined();
-      expect(msg.scalar.value).toBeUndefined();
-    });
-    test("skips if field is not selected", () => {
-      const msg = new messageType({
-        scalar: { case: "error", value: "test" },
-      });
-      clearField(msg, "value");
-      expect(msg.scalar.case).toBe("error");
-      expect(msg.scalar.value).toBe("test");
     });
   });
   describe("field info", () => {
