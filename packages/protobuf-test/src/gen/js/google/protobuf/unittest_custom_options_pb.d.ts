@@ -63,7 +63,7 @@ export declare class TestMessageWithCustomOptions extends Message<TestMessageWit
   /**
    * @generated from field: optional string field1 = 1;
    */
-  field1: string;
+  field1?: string;
 
   /**
    * @generated from oneof protobuf_unittest.TestMessageWithCustomOptions.AnOneof
@@ -345,17 +345,17 @@ export declare class ComplexOptionType1 extends Message<ComplexOptionType1> {
   /**
    * @generated from field: optional int32 foo = 1;
    */
-  foo: number;
+  foo?: number;
 
   /**
    * @generated from field: optional int32 foo2 = 2;
    */
-  foo2: number;
+  foo2?: number;
 
   /**
    * @generated from field: optional int32 foo3 = 3;
    */
-  foo3: number;
+  foo3?: number;
 
   /**
    * @generated from field: repeated int32 foo4 = 4;
@@ -389,7 +389,7 @@ export declare class ComplexOptionType2 extends Message<ComplexOptionType2> {
   /**
    * @generated from field: optional int32 baz = 2;
    */
-  baz: number;
+  baz?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
@@ -423,7 +423,7 @@ export declare class ComplexOptionType2_ComplexOptionType4 extends Message<Compl
   /**
    * @generated from field: optional int32 waldo = 1;
    */
-  waldo: number;
+  waldo?: number;
 
   constructor(data?: PartialMessage<ComplexOptionType2_ComplexOptionType4>);
 
@@ -452,7 +452,7 @@ export declare class ComplexOptionType3 extends Message<ComplexOptionType3> {
   /**
    * @generated from field: optional int32 moo = 1;
    */
-  moo: number;
+  moo?: number;
 
   /**
    * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
@@ -481,7 +481,7 @@ export declare class ComplexOptionType3_ComplexOptionType5 extends Message<Compl
   /**
    * @generated from field: optional int32 plugh = 3;
    */
-  plugh: number;
+  plugh?: number;
 
   constructor(data?: PartialMessage<ComplexOptionType3_ComplexOptionType5>);
 
@@ -505,7 +505,7 @@ export declare class ComplexOpt6 extends Message<ComplexOpt6> {
   /**
    * @generated from field: optional int32 xyzzy = 7593951;
    */
-  xyzzy: number;
+  xyzzy?: number;
 
   constructor(data?: PartialMessage<ComplexOpt6>);
 
@@ -569,7 +569,7 @@ export declare class AggregateMessageSetElement extends Message<AggregateMessage
   /**
    * @generated from field: optional string s = 1;
    */
-  s: string;
+  s?: string;
 
   constructor(data?: PartialMessage<AggregateMessageSetElement>);
 
@@ -600,12 +600,12 @@ export declare class Aggregate extends Message<Aggregate> {
   /**
    * @generated from field: optional int32 i = 1;
    */
-  i: number;
+  i?: number;
 
   /**
    * @generated from field: optional string s = 2;
    */
-  s: string;
+  s?: string;
 
   /**
    * A nested object
@@ -662,7 +662,7 @@ export declare class AggregateMessage extends Message<AggregateMessage> {
   /**
    * @generated from field: optional int32 fieldname = 1;
    */
-  fieldname: number;
+  fieldname?: number;
 
   constructor(data?: PartialMessage<AggregateMessage>);
 
@@ -717,7 +717,7 @@ export declare class NestedOptionType_NestedMessage extends Message<NestedOption
   /**
    * @generated from field: optional int32 nested_field = 1;
    */
-  nestedField: number;
+  nestedField?: number;
 
   constructor(data?: PartialMessage<NestedOptionType_NestedMessage>);
 
@@ -749,7 +749,7 @@ export declare class OldOptionType extends Message<OldOptionType> {
   /**
    * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
    */
-  value: OldOptionType_TestEnum;
+  value?: OldOptionType_TestEnum;
 
   constructor(data?: PartialMessage<OldOptionType>);
 
@@ -785,7 +785,7 @@ export declare class NewOptionType extends Message<NewOptionType> {
   /**
    * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
    */
-  value: NewOptionType_TestEnum;
+  value?: NewOptionType_TestEnum;
 
   constructor(data?: PartialMessage<NewOptionType>);
 

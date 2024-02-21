@@ -17,7 +17,7 @@ import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
 import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
-import { protoInt64, isFieldSet, clearField } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf";
 
 describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
   const defaultFields: PlainMessage<TS_MapsMessage | JS_MapsMessage> = {
@@ -120,33 +120,6 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
       strBytesField: {
         a: new Uint8Array(bytes),
       },
-    });
-  });
-  describe("isFieldSet()", () => {
-    test("returns false for empty map", () => {
-      const msg = new messageType({
-        strStrField: {},
-      });
-      expect(isFieldSet(msg, "strStrField")).toBe(false);
-    });
-    test("returns true for non-empty map", () => {
-      const msg = new messageType({
-        strStrField: {
-          foo: "bar",
-        },
-      });
-      expect(isFieldSet(msg, "strStrField")).toBe(true);
-    });
-  });
-  describe("clearField()", () => {
-    test("clears map", () => {
-      const msg = new messageType({
-        strStrField: {
-          foo: "bar",
-        },
-      });
-      clearField(msg, "strStrField");
-      expect(Object.keys(msg.strStrField).length).toBe(0);
     });
   });
   describe("field info", () => {

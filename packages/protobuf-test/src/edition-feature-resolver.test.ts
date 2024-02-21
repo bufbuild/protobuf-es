@@ -21,7 +21,6 @@ import type {
   DescMessage,
   DescEnum,
 } from "@bufbuild/protobuf";
-import { isFieldSet, clearField } from "@bufbuild/protobuf";
 import {
   createDescriptorSet,
   Edition,
@@ -90,8 +89,8 @@ export class FeatureResolver {
     edition: Edition,
     compiledFeatureSetDefaults: FeatureSetDefaults,
   ): FeatureResolver {
-    const minimumEdition = compiledFeatureSetDefaults.minimumEdition;
-    const maximumEdition = compiledFeatureSetDefaults.maximumEdition;
+    const minimumEdition = compiledFeatureSetDefaults.minimumEdition ?? 0;
+    const maximumEdition = compiledFeatureSetDefaults.maximumEdition ?? 0;
     if (edition < minimumEdition) {
       throw new Error(
         `Edition ${Edition[edition]} is earlier than the minimum supported edition ${Edition[minimumEdition]}`,
@@ -104,7 +103,7 @@ export class FeatureResolver {
     }
     let prevEdition = Edition.EDITION_UNKNOWN;
     for (const editionDefault of compiledFeatureSetDefaults.defaults) {
-      const editionDefaultEdition = editionDefault.edition;
+      const editionDefaultEdition = editionDefault.edition ?? 0;
       if (editionDefaultEdition === Edition.EDITION_UNKNOWN) {
         throw new Error(
           `Invalid edition ${Edition[editionDefaultEdition]} specified.`,
@@ -116,7 +115,7 @@ export class FeatureResolver {
             `Feature set defaults are not strictly increasing. Edition ${
               Edition[prevEdition]
             } is greater than or equal to edition ${
-              Edition[editionDefault.edition]
+              Edition[editionDefault.edition ?? 0]
             }.`,
           );
         }
@@ -159,18 +158,18 @@ class EditionCollector {
 
   add(descMessage: DescMessage) {
     for (const field of descMessage.fields) {
-      const defs = field.proto.options?.editionDefaults;
-      if (defs === undefined) {
+      const def = field.proto.options?.editionDefaults;
+      if (def === undefined) {
         continue;
       }
-      for (const def of defs) {
-        if (!isFieldSet(def, "edition")) {
+      for (const { edition } of def) {
+        if (edition === undefined) {
           continue;
         }
-        if (this.maximumEdition < def.edition) {
+        if (this.maximumEdition < edition) {
           continue;
         }
-        this.set.add(def.edition);
+        this.set.add(edition);
       }
     }
   }
@@ -215,10 +214,13 @@ function fillDefaults(
           `Cannot parse default value for edition ${Edition[edition]} in feature field ${field.parent.typeName}.${field.name}. Text format for messages is not implemented.`,
         );
       case "scalar":
-        value = parseTextFormatScalarValue(field.scalar, highestMatch.value);
+        value = parseTextFormatScalarValue(
+          field.scalar,
+          highestMatch.value ?? "",
+        );
         break;
       case "enum":
-        value = parseTextFormatEnumValue(field.enum, highestMatch.value);
+        value = parseTextFormatEnumValue(field.enum, highestMatch.value ?? "");
         break;
       case "map":
         throw new Error(
@@ -293,8 +295,8 @@ function validateMergedFeatures(featureSet: FeatureSet) {
       | "messageEncoding"
       | "jsonFormat",
   ) {
-    const value = featureSet[fieldLocalName];
-    if ((value as number) === 0) {
+    const value = featureSet[fieldLocalName] ?? 0;
+    if (value === 0) {
       const field = featureSet
         .getType()
         .fields.list()
@@ -735,7 +737,7 @@ describe("FeatureResolver", function () {
           continue;
         }
         // Clear the feature, which should be invalid
-        clearField(features as AnyMessage, fieldLocalName);
+        (features as AnyMessage)[fieldLocalName] = undefined;
         expect(() =>
           FeatureResolver.create(Edition.EDITION_2023, defaults),
         ).toThrow(

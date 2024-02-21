@@ -28,12 +28,7 @@ import type {
 import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
 import { getNonEditionRuntime } from "./editions.js";
-import {
-  fieldUsesPrototype,
-  getFieldDefaultValueExpression,
-  getFieldTypeInfo,
-  getFieldZeroValueExpression,
-} from "./util.js";
+import { getFieldTypeInfo, getFieldZeroValueExpression } from "./util.js";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
@@ -132,7 +127,6 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print("    return ", protoN, ".util.equals(", message, ", a, b);")
   f.print("  }")
   f.print("}")
-  generatePrototypeFields(schema, f, message);
   f.print()
   for (const nestedEnum of message.nestedEnums) {
     generateEnum(schema, f, nestedEnum);
@@ -166,23 +160,19 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
   const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field);
-  if (fieldUsesPrototype(field)) {
-    e.push("  declare ", localName(field), ": ", typing, ";");
+  if (optional) {
+    e.push("  ", localName(field), "?: ", typing, ";");
   } else {
-    if (optional) {
-      e.push("  ", localName(field), "?: ", typing, ";");
+    if (typingInferrableFromZeroValue) {
+      e.push("  ", localName(field));
     } else {
-      if (typingInferrableFromZeroValue) {
-        e.push("  ", localName(field));
-      } else {
-        e.push("  ", localName(field), ": ", typing);
-      }
-      const zeroValue = getFieldZeroValueExpression(field);
-      if (zeroValue !== undefined) {
-        e.push(" = ", zeroValue);
-      }
-      e.push(";");
+      e.push("  ", localName(field), ": ", typing);
     }
+    const zeroValue = getFieldZeroValueExpression(field);
+    if (zeroValue !== undefined) {
+      e.push(" = ", zeroValue);
+    }
+    e.push(";");
   }
   f.print(e);
 }
@@ -206,28 +196,6 @@ function generateExtension(
   }
   f.print(");");
   f.print();
-}
-
-// prettier-ignore
-function generatePrototypeFields(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const fieldToDefaultValue = new Map<DescField, Printable>();
-  for (const field of message.fields) {
-    if (!fieldUsesPrototype(field)) {
-        continue;
-    }
-    const defaultValue = getFieldDefaultValueExpression(field, "enum_value_as_cast_integer")
-        ?? getFieldZeroValueExpression(field, "enum_value_as_cast_integer");
-    if (defaultValue === undefined) {
-      continue;
-    }
-    fieldToDefaultValue.set(field, defaultValue);
-  }
-  if (fieldToDefaultValue.size > 0) {
-    f.print();
-  }
-  for (const [field, defaultValue] of fieldToDefaultValue.entries()) {
-    f.print(message, ".prototype.", localName(field), " = ", defaultValue, ";");
-  }
 }
 
 // prettier-ignore

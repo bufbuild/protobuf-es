@@ -38,7 +38,7 @@ export declare class TestMessage extends Message<TestMessage> {
   /**
    * @generated from field: optional int32 a = 1;
    */
-  a: number;
+  a?: number;
 
   constructor(data?: PartialMessage<TestMessage>);
 

@@ -34,7 +34,7 @@ import {
   LiteralString,
   RefDescEnum,
   RefDescMessage,
-} from "./opaque-printables.js";
+} from "./opaque-printables";
 
 /**
  * All types that can be passed to GeneratedFile.print()

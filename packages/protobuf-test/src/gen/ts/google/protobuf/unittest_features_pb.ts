@@ -106,62 +106,62 @@ export class TestFeatures extends Message<TestFeatures> {
   /**
    * @generated from field: optional int32 int_file_feature = 1;
    */
-  declare intFileFeature: number;
+  intFileFeature?: number;
 
   /**
    * @generated from field: optional int32 int_extension_range_feature = 2;
    */
-  declare intExtensionRangeFeature: number;
+  intExtensionRangeFeature?: number;
 
   /**
    * @generated from field: optional int32 int_message_feature = 3;
    */
-  declare intMessageFeature: number;
+  intMessageFeature?: number;
 
   /**
    * @generated from field: optional int32 int_field_feature = 4;
    */
-  declare intFieldFeature: number;
+  intFieldFeature?: number;
 
   /**
    * @generated from field: optional int32 int_oneof_feature = 5;
    */
-  declare intOneofFeature: number;
+  intOneofFeature?: number;
 
   /**
    * @generated from field: optional int32 int_enum_feature = 6;
    */
-  declare intEnumFeature: number;
+  intEnumFeature?: number;
 
   /**
    * @generated from field: optional int32 int_enum_entry_feature = 7;
    */
-  declare intEnumEntryFeature: number;
+  intEnumEntryFeature?: number;
 
   /**
    * @generated from field: optional int32 int_service_feature = 8;
    */
-  declare intServiceFeature: number;
+  intServiceFeature?: number;
 
   /**
    * @generated from field: optional int32 int_method_feature = 9;
    */
-  declare intMethodFeature: number;
+  intMethodFeature?: number;
 
   /**
    * @generated from field: optional int32 int_multiple_feature = 10;
    */
-  declare intMultipleFeature: number;
+  intMultipleFeature?: number;
 
   /**
    * @generated from field: optional bool bool_field_feature = 11;
    */
-  declare boolFieldFeature: boolean;
+  boolFieldFeature?: boolean;
 
   /**
    * @generated from field: optional float float_field_feature = 12;
    */
-  declare floatFieldFeature: number;
+  floatFieldFeature?: number;
 
   /**
    * @generated from field: optional pb.TestFeatures.MessageFeature message_field_feature = 13;
@@ -171,17 +171,17 @@ export class TestFeatures extends Message<TestFeatures> {
   /**
    * @generated from field: optional pb.TestFeatures.EnumFeature enum_field_feature = 14;
    */
-  declare enumFieldFeature: TestFeatures_EnumFeature;
+  enumFieldFeature?: TestFeatures_EnumFeature;
 
   /**
    * @generated from field: optional int32 int_source_feature = 15;
    */
-  declare intSourceFeature: number;
+  intSourceFeature?: number;
 
   /**
    * @generated from field: optional string string_source_feature = 16;
    */
-  declare stringSourceFeature: string;
+  stringSourceFeature?: string;
 
   constructor(data?: PartialMessage<TestFeatures>) {
     super();
@@ -225,22 +225,6 @@ export class TestFeatures extends Message<TestFeatures> {
     return proto2.util.equals(TestFeatures, a, b);
   }
 }
-
-TestFeatures.prototype.intFileFeature = 0;
-TestFeatures.prototype.intExtensionRangeFeature = 0;
-TestFeatures.prototype.intMessageFeature = 0;
-TestFeatures.prototype.intFieldFeature = 0;
-TestFeatures.prototype.intOneofFeature = 0;
-TestFeatures.prototype.intEnumFeature = 0;
-TestFeatures.prototype.intEnumEntryFeature = 0;
-TestFeatures.prototype.intServiceFeature = 0;
-TestFeatures.prototype.intMethodFeature = 0;
-TestFeatures.prototype.intMultipleFeature = 0;
-TestFeatures.prototype.boolFieldFeature = false;
-TestFeatures.prototype.floatFieldFeature = 0;
-TestFeatures.prototype.enumFieldFeature = 0 as TestFeatures_EnumFeature.TEST_ENUM_FEATURE_UNKNOWN;
-TestFeatures.prototype.intSourceFeature = 0;
-TestFeatures.prototype.stringSourceFeature = "";
 
 /**
  * @generated from enum pb.TestFeatures.EnumFeature
@@ -293,22 +277,22 @@ export class TestFeatures_MessageFeature extends Message<TestFeatures_MessageFea
   /**
    * @generated from field: optional bool bool_field = 1;
    */
-  declare boolField: boolean;
+  boolField?: boolean;
 
   /**
    * @generated from field: optional int32 int_field = 2;
    */
-  declare intField: number;
+  intField?: number;
 
   /**
    * @generated from field: optional float float_field = 3;
    */
-  declare floatField: number;
+  floatField?: number;
 
   /**
    * @generated from field: optional string string_field = 4;
    */
-  declare stringField: string;
+  stringField?: string;
 
   constructor(data?: PartialMessage<TestFeatures_MessageFeature>) {
     super();
@@ -340,11 +324,6 @@ export class TestFeatures_MessageFeature extends Message<TestFeatures_MessageFea
     return proto2.util.equals(TestFeatures_MessageFeature, a, b);
   }
 }
-
-TestFeatures_MessageFeature.prototype.boolField = false;
-TestFeatures_MessageFeature.prototype.intField = 0;
-TestFeatures_MessageFeature.prototype.floatField = 0;
-TestFeatures_MessageFeature.prototype.stringField = "";
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;
