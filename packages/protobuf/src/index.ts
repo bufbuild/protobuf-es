@@ -22,6 +22,7 @@ export { codegenInfo } from "./codegen-info.js";
 
 export { Message } from "./message.js";
 export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
+export { isMessage } from "./is-message.js";
 
 export type { FieldInfo } from "./field.js";
 export type { FieldList } from "./field-list.js";
