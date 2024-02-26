@@ -68,7 +68,8 @@ export function createDescriptorSet(
   input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
   options?: CreateDescriptorSetOptions,
 ): DescriptorSet {
-  const cart = {
+  const cart: Cart = {
+    files: [],
     enums: new Map<string, DescEnum>(),
     messages: new Map<string, DescMessage>(),
     services: new Map<string, DescService>(),
@@ -82,7 +83,7 @@ export function createDescriptorSet(
         ? FileDescriptorSet.fromBinary(input).file
         : input;
   const resolverByEdition = new Map<Edition, FeatureResolverFn>();
-  const files = fileDescriptors.map((proto) => {
+  for (const proto of fileDescriptors) {
     const edition =
       proto.edition ?? parseFileSyntax(proto.syntax, proto.edition).edition;
     let resolveFeatures = resolverByEdition.get(edition);
@@ -94,9 +95,9 @@ export function createDescriptorSet(
       );
       resolverByEdition.set(edition, resolveFeatures);
     }
-    return newFile(proto, cart, resolveFeatures);
-  });
-  return { files, ...cart };
+    addFile(proto, cart, resolveFeatures);
+  }
+  return cart;
 }
 
 /**
@@ -129,6 +130,7 @@ interface CreateDescriptorSetOptions {
  * use to resolve reference when creating descriptors.
  */
 interface Cart {
+  files: DescFile[];
   enums: Map<string, DescEnum>;
   messages: Map<string, DescMessage>;
   services: Map<string, DescService>;
@@ -139,11 +141,11 @@ interface Cart {
 /**
  * Create a descriptor for a file.
  */
-function newFile(
+function addFile(
   proto: FileDescriptorProto,
   cart: Cart,
   resolveFeatures: FeatureResolverFn,
-): DescFile {
+): void {
   assert(proto.name, `invalid FileDescriptorProto: missing name`);
   const file: DescFile = {
     kind: "file",
@@ -151,6 +153,7 @@ function newFile(
     deprecated: proto.options?.deprecated ?? false,
     ...parseFileSyntax(proto.syntax, proto.edition),
     name: proto.name.replace(/\.proto/, ""),
+    dependencies: findFileDependencies(proto, cart),
     enums: [],
     messages: [],
     extensions: [],
@@ -192,7 +195,7 @@ function newFile(
     addExtensions(message, cart, resolveFeatures);
   }
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
-  return file;
+  cart.files.push(file);
 }
 
 /**
@@ -804,6 +807,20 @@ function parseFileSyntax(
     syntax: s,
     edition: e,
   };
+}
+
+/**
+ * Resolve dependencies of FileDescriptorProto to DescFile.
+ */
+function findFileDependencies(
+  proto: FileDescriptorProto,
+  cart: Cart,
+): DescFile[] {
+  return proto.dependency.map((wantName) => {
+    const dep = cart.files.find((f) => f.proto.name === wantName);
+    assert(dep);
+    return dep;
+  });
 }
 
 /**

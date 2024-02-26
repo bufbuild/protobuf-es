@@ -50,56 +50,74 @@ import { join } from "node:path";
 const fdsBytes = readFileSync("./descriptorset.binpb");
 
 describe("DescriptorSet", () => {
-  const set = createDescriptorSet(fdsBytes);
-  test("proto2 syntax", () => {
-    const descFile = set.files.find((f) => f.name == "extra/proto2");
-    expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("proto2");
-    expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-        enumType: FeatureSet_EnumType.CLOSED,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
-        utf8Validation: FeatureSet_Utf8Validation.NONE,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-      }),
-    );
-  });
-  test("proto3 syntax", () => {
-    const descFile = set.files.find((f) => f.name == "extra/proto3");
-    expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("proto3");
-    expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
-        enumType: FeatureSet_EnumType.OPEN,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-        utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.ALLOW,
-      }),
-    );
-  });
-  test("edition 2023", () => {
-    const descFile = set.files.find(
-      (f) => f.name == "editions/edition2023-default-features",
-    );
-    expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("editions");
-    expect(descFile?.edition).toBe(Edition.EDITION_2023);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-        enumType: FeatureSet_EnumType.OPEN,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-        utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.ALLOW,
-      }),
-    );
+  describe("file", () => {
+    test("proto2 syntax", () => {
+      const set = createDescriptorSet(fdsBytes);
+      const descFile = set.files.find((f) => f.name == "extra/proto2");
+      expect(descFile).toBeDefined();
+      expect(descFile?.syntax).toBe("proto2");
+      expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
+      expect(descFile?.getFeatures()).toStrictEqual(
+        new FeatureSet({
+          fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
+          enumType: FeatureSet_EnumType.CLOSED,
+          repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
+          utf8Validation: FeatureSet_Utf8Validation.NONE,
+          messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+          jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
+        }),
+      );
+    });
+    test("proto3 syntax", () => {
+      const set = createDescriptorSet(fdsBytes);
+      const descFile = set.files.find((f) => f.name == "extra/proto3");
+      expect(descFile).toBeDefined();
+      expect(descFile?.syntax).toBe("proto3");
+      expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
+      expect(descFile?.getFeatures()).toStrictEqual(
+        new FeatureSet({
+          fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
+          enumType: FeatureSet_EnumType.OPEN,
+          repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
+          utf8Validation: FeatureSet_Utf8Validation.VERIFY,
+          messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+          jsonFormat: FeatureSet_JsonFormat.ALLOW,
+        }),
+      );
+    });
+    test("edition 2023", () => {
+      const set = createDescriptorSet(fdsBytes);
+      const descFile = set.files.find(
+        (f) => f.name == "editions/edition2023-default-features",
+      );
+      expect(descFile).toBeDefined();
+      expect(descFile?.syntax).toBe("editions");
+      expect(descFile?.edition).toBe(Edition.EDITION_2023);
+      expect(descFile?.getFeatures()).toStrictEqual(
+        new FeatureSet({
+          fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
+          enumType: FeatureSet_EnumType.OPEN,
+          repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
+          utf8Validation: FeatureSet_Utf8Validation.VERIFY,
+          messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+          jsonFormat: FeatureSet_JsonFormat.ALLOW,
+        }),
+      );
+    });
+    test("dependencies", async () => {
+      const fdsBin = await new UpstreamProtobuf().compileToDescriptorSet({
+        "a.proto": `syntax="proto3";
+          import "b.proto";
+          import "c.proto";`,
+        "b.proto": `syntax="proto3";`,
+        "c.proto": `syntax="proto3";`,
+      });
+      const set = createDescriptorSet(fdsBin);
+      const a = set.files[2];
+      expect(a.name).toBe("a");
+      expect(a.dependencies.length).toBe(2);
+      expect(a.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
+    });
   });
   describe("edition feature options", () => {
     test("file options should apply to all elements", async () => {
@@ -423,6 +441,7 @@ describe("DescriptorSet", () => {
     });
   });
   test("knows extension", () => {
+    const set = createDescriptorSet(fdsBytes);
     const ext = set.extensions.get(
       "protobuf_unittest.optional_int32_extension",
     );
@@ -442,6 +461,7 @@ describe("DescriptorSet", () => {
     );
   });
   test("knows nested extension", () => {
+    const set = createDescriptorSet(fdsBytes);
     const ext = set.extensions.get(
       "protobuf_unittest.TestNestedExtension.nested_string_extension",
     );
@@ -465,6 +485,7 @@ describe("DescriptorSet", () => {
   });
   describe("declarationString()", () => {
     test("for field with options", () => {
+      const set = createDescriptorSet(fdsBytes);
       const message = set.messages.get(JsonNamesMessage.typeName);
       expect(message).toBeDefined();
       if (message !== undefined) {
@@ -475,6 +496,7 @@ describe("DescriptorSet", () => {
       }
     });
     test("for field with labels", () => {
+      const set = createDescriptorSet(fdsBytes);
       const message = set.messages.get(RepeatedScalarValuesMessage.typeName);
       expect(message).toBeDefined();
       if (message !== undefined) {
@@ -485,6 +507,7 @@ describe("DescriptorSet", () => {
       }
     });
     test("for map field", () => {
+      const set = createDescriptorSet(fdsBytes);
       const message = set.messages.get(MapsMessage.typeName);
       const got = message?.fields
         .find((f) => f.name === "int32_msg_field")
@@ -492,6 +515,7 @@ describe("DescriptorSet", () => {
       expect(got).toBe("map<int32, spec.MapsMessage> int32_msg_field = 10");
     });
     test("for enum value", () => {
+      const set = createDescriptorSet(fdsBytes);
       const e = set.enums.get(proto3.getEnumType(SimpleEnum).typeName);
       const got = e?.values
         .find((v) => v.name === "SIMPLE_ZERO")
@@ -501,6 +525,7 @@ describe("DescriptorSet", () => {
   });
   describe("getComments()", () => {
     describe("for file", () => {
+      const set = createDescriptorSet(fdsBytes);
       const file = set.files.find((file) =>
         file.messages.some(
           (message) => message.typeName === MessageWithComments.typeName,
@@ -528,6 +553,7 @@ describe("DescriptorSet", () => {
       });
     });
     test("for message", () => {
+      const set = createDescriptorSet(fdsBytes);
       const message = set.messages.get(MessageWithComments.typeName);
       const comments = message?.getComments();
       expect(comments).toBeDefined();
@@ -541,6 +567,7 @@ describe("DescriptorSet", () => {
       }
     });
     test("for field", () => {
+      const set = createDescriptorSet(fdsBytes);
       const field = set.messages
         .get(MessageWithComments.typeName)
         ?.fields.find((field) => field.name === "foo");
