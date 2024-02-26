@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { MessageType } from "./message-type.js";
+import type { MessageType } from "./message-type.js";
 import type { AnyMessage } from "./message.js";
 import { Message } from "./message.js";
 
