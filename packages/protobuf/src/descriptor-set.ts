@@ -83,7 +83,7 @@ export type AnyDesc =
  * Describes a protobuf source file.
  */
 export interface DescFile {
-  kind: "file";
+  readonly kind: "file";
   /**
    * The syntax specified in the protobuf source.
    */
@@ -105,6 +105,10 @@ export interface DescFile {
    * For a protobuf file `foo/bar.proto`, this is `foo/bar`.
    */
   readonly name: string;
+  /**
+   * Files imported by this file.
+   */
+  readonly dependencies: DescFile[];
   /**
    * Top-level enumerations declared in this file.
    * Note that more enumerations might be declared within message declarations.
@@ -155,7 +159,7 @@ export interface DescFile {
  * Describes an enumeration in a protobuf source file.
  */
 export interface DescEnum {
-  kind: "enum";
+  readonly kind: "enum";
   /**
    * The fully qualified name of the enumeration. (We omit the leading dot.)
    */
@@ -252,7 +256,7 @@ export interface DescEnumValue {
  * Describes a message declaration in a protobuf source file.
  */
 export interface DescMessage {
-  kind: "message";
+  readonly kind: "message";
   /**
    * The fully qualified name of the message. (We omit the leading dot.)
    */
@@ -324,7 +328,7 @@ export interface DescMessage {
  */
 export type DescField = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    kind: "field";
+    readonly kind: "field";
 
     /**
      * The message this field is declared on.
@@ -337,7 +341,7 @@ export type DescField = DescFieldCommon &
  */
 export type DescExtension = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    kind: "extension";
+    readonly kind: "extension";
 
     /**
      * The fully qualified name of the extension.
@@ -637,7 +641,7 @@ interface DescFieldMapValueScalar {
  * Describes a oneof group in a protobuf source file.
  */
 export interface DescOneof {
-  kind: "oneof";
+  readonly kind: "oneof";
   /**
    * The name of the oneof group, as specified in the protobuf source.
    */
@@ -678,7 +682,7 @@ export interface DescOneof {
  * Describes a service declaration in a protobuf source file.
  */
 export interface DescService {
-  kind: "service";
+  readonly kind: "service";
   /**
    * The fully qualified name of the service. (We omit the leading dot.)
    */
@@ -721,7 +725,7 @@ export interface DescService {
  * Describes an RPC declaration in a protobuf source file.
  */
 export interface DescMethod {
-  kind: "rpc";
+  readonly kind: "rpc";
   /**
    * The name of the RPC, as specified in the protobuf source.
    */
