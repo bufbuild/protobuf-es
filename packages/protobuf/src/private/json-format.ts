@@ -45,6 +45,7 @@ import { scalarZeroValue } from "./scalars.js";
 import { isScalarZeroValue } from "./scalars.js";
 import type { ScalarValue } from "../scalar.js";
 import { LongType, ScalarType } from "../scalar.js";
+import { isMessage } from "../is-message.js";
 
 /* eslint-disable no-case-declarations,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */
 
@@ -385,7 +386,7 @@ function readField(
           return;
         }
         let currentValue = target[localName] as Message | undefined;
-        if (currentValue instanceof Message) {
+        if (isMessage(currentValue)) {
           currentValue.fromJson(jsonValue, options);
         } else {
           target[localName] = currentValue = messageType.fromJson(
