@@ -53,7 +53,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (
               sourceField &&
               sourceField.kind == "message" &&
-              !(val instanceof sourceField.T)
+              !isMessage(val, sourceField.T)
             ) {
               val = new sourceField.T(val);
             } else if (
@@ -105,7 +105,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             const mt = member.T;
             if (member.repeated) {
               t[localName] = (s[localName] as any[]).map((val) =>
-                val instanceof mt ? val : new mt(val),
+                isMessage(val, mt) ? val : new mt(val),
               );
             } else {
               const val = s[localName];
@@ -119,7 +119,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                   t[localName] = val;
                 }
               } else {
-                t[localName] = val instanceof mt ? val : new mt(val);
+                t[localName] = isMessage(val, mt) ? val : new mt(val);
               }
             }
             break;

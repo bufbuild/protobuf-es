@@ -32,7 +32,6 @@ export function isMessage<T extends Message<T> = AnyMessage>(
   arg: unknown,
   type?: MessageType<T>,
 ): arg is T {
-  console.log("Type of arg " + typeof arg);
   if (arg === null || typeof arg != "object") {
     return false;
   }
@@ -45,36 +44,12 @@ export function isMessage<T extends Message<T> = AnyMessage>(
     return false;
   }
   const actualType = (arg as { getType(): unknown }).getType();
-<<<<<<< Updated upstream
-  if (actualType === null || typeof actualType != "function") {
-    return false;
-  }
-
-  console.log(actualType.constructor);
-  console.log(Message);
-
-  const blah = Object.getPrototypeOf(actualType);
-  console.log(Message.prototype);
-  console.log(Object.getOwnPropertyNames(Message.prototype));
-  console.log(Object.getOwnPropertyNames(blah));
-
-  console.log(Object.getPrototypeOf(actualType) === Message.prototype);
-
-  if (actualType.constructor === Message) {
-    console.log("its a message!");
-    return true;
-  }
-
-  if (!("typeName" in actualType) || typeof actualType.typeName != "string") {
-    console.log("failed the last IF");
-=======
   if (
     actualType === null ||
     typeof actualType != "function" ||
     !("typeName" in actualType) ||
     typeof actualType.typeName != "string"
   ) {
->>>>>>> Stashed changes
     return false;
   }
   return type === undefined ? true : actualType.typeName == type.typeName;

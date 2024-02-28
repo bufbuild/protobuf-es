@@ -13,17 +13,49 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { User } from "./gen/ts/extra/example_pb.js";
-import { isMessage } from "@bufbuild/protobuf";
+import { User as TS_User } from "./gen/ts/extra/example_pb.js";
+import { User as JS_User } from "./gen/js/extra/example_pb.js";
+import { isMessage, Message } from "@bufbuild/protobuf";
 
 describe("isMessage", () => {
   test("subclass of Message", () => {
-    const user = new User({
+    const user = new TS_User({
       firstName: "Homer",
       lastName: "Simpson",
     });
 
     expect(isMessage(user)).toBeTruthy();
-    expect(isMessage(user, User)).toBeTruthy();
+    expect(isMessage(user, TS_User)).toBeTruthy();
   });
+  test("returns false if expected Message property is not a function", () => {
+    const user = new TS_User({
+      firstName: "Homer",
+      lastName: "Simpson",
+    });
+    // @ts-ignore - Setting to a boolean to force a failure
+    user.toJson = false;
+
+    expect(isMessage(user, TS_User)).toBeFalsy();
+  });
+  test("null returns false", () => {
+    expect(isMessage(null)).toBeFalsy();
+    expect(isMessage(null, TS_User)).toBeFalsy();
+  });
+  test("non-object returns false", () => {
+    expect(isMessage("test")).toBeFalsy();
+    expect(isMessage("test", TS_User)).toBeFalsy();
+  });
+  test("mixed instances", () => {
+    const user = new TS_User({
+      firstName: "Homer",
+      lastName: "Simpson",
+    });
+
+    expect(isMessage(user, JS_User)).toBeTruthy();
+  });
+  // test("Message is a message", () => {
+  //   const msg = new Message();
+  //   expect(isMessage(msg)).toBeFalsy();
+  //   expect(isMessage(msg)).toBeFalsy();
+  // });
 });
