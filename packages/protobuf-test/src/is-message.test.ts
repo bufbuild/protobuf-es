@@ -14,28 +14,16 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { User } from "./gen/ts/extra/example_pb.js";
-import { isMessage, Message } from "@bufbuild/protobuf";
+import { isMessage } from "@bufbuild/protobuf";
 
 describe("isMessage", () => {
-  test("Message", () => {
-    const msg = new Message();
-
+  test("subclass of Message", () => {
     const user = new User({
       firstName: "Homer",
       lastName: "Simpson",
     });
-    console.log(user.getType());
 
-    console.log(msg.getType().typeName);
-
-    expect(isMessage(msg)).toBeTruthy();
+    expect(isMessage(user)).toBeTruthy();
+    expect(isMessage(user, User)).toBeTruthy();
   });
-  // test("subclass of Message", () => {
-  //   const user = new User({
-  //     firstName: "Homer",
-  //     lastName: "Simpson",
-  //   });
-
-  //   expect(isMessage(user, User)).toBeTruthy();
-  // });
 });

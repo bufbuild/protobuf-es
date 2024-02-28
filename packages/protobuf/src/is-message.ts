@@ -45,6 +45,7 @@ export function isMessage<T extends Message<T> = AnyMessage>(
     return false;
   }
   const actualType = (arg as { getType(): unknown }).getType();
+<<<<<<< Updated upstream
   if (actualType === null || typeof actualType != "function") {
     return false;
   }
@@ -66,6 +67,14 @@ export function isMessage<T extends Message<T> = AnyMessage>(
 
   if (!("typeName" in actualType) || typeof actualType.typeName != "string") {
     console.log("failed the last IF");
+=======
+  if (
+    actualType === null ||
+    typeof actualType != "function" ||
+    !("typeName" in actualType) ||
+    typeof actualType.typeName != "string"
+  ) {
+>>>>>>> Stashed changes
     return false;
   }
   return type === undefined ? true : actualType.typeName == type.typeName;
