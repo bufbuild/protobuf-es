@@ -55,9 +55,11 @@ describe("createRegistryFromDescriptors()", () => {
     expect(dr.findExtensionFor("foo.Bar", 123)).toBeUndefined();
   });
   test("from google.protobuf.FileDescriptorSet", () => {
+    console.log("START===================================");
     const dr = createRegistryFromDescriptors(
       FileDescriptorSet.fromBinary(getTestFileDescriptorSetBytes()),
     );
+    console.log("END===================================");
     expectMessageTypes(dr);
     expectEnumTypes(dr);
     expectServiceTypes(dr);

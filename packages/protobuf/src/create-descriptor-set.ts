@@ -55,7 +55,6 @@ import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { FeatureResolverFn } from "./private/feature-set.js";
 import { createFeatureResolver } from "./private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
-import { isMessage } from "./is-message.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -77,11 +76,12 @@ export function createDescriptorSet(
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
   };
-  const fileDescriptors = isMessage(input, FileDescriptorSet)
-    ? input.file
-    : input instanceof Uint8Array
-      ? FileDescriptorSet.fromBinary(input).file
-      : input;
+  const fileDescriptors =
+    input instanceof FileDescriptorSet
+      ? input.file
+      : input instanceof Uint8Array
+        ? FileDescriptorSet.fromBinary(input).file
+        : input;
   const resolverByEdition = new Map<Edition, FeatureResolverFn>();
   for (const proto of fileDescriptors) {
     const edition =

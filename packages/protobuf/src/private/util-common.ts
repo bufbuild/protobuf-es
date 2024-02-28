@@ -19,7 +19,6 @@ import type { MessageType } from "../message-type.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
 import { ScalarType } from "../scalar.js";
-import { isMessage } from "../is-message.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 
@@ -53,7 +52,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (
               sourceField &&
               sourceField.kind == "message" &&
-              !isMessage(val, sourceField.T)
+              !(val instanceof sourceField.T)
             ) {
               val = new sourceField.T(val);
             } else if (
@@ -105,7 +104,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             const mt = member.T;
             if (member.repeated) {
               t[localName] = (s[localName] as any[]).map((val) =>
-                isMessage(val, mt) ? val : new mt(val),
+                val instanceof mt ? val : new mt(val),
               );
             } else {
               const val = s[localName];
@@ -119,7 +118,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                   t[localName] = val;
                 }
               } else {
-                t[localName] = isMessage(val, mt) ? val : new mt(val);
+                t[localName] = val instanceof mt ? val : new mt(val);
               }
             }
             break;
@@ -240,7 +239,7 @@ function cloneSingularField(value: any): any {
   if (value === undefined) {
     return value;
   }
-  if (isMessage(value)) {
+  if (value instanceof Message) {
     return value.clone();
   }
   if (value instanceof Uint8Array) {

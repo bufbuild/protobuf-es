@@ -66,7 +66,6 @@ import type {
 import { createDescriptorSet } from "./create-descriptor-set.js";
 import type { Extension } from "./extension.js";
 import type { ExtensionFieldSource } from "./private/extensions.js";
-import { isMessage } from "./is-message.js";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [
@@ -112,7 +111,7 @@ export function createRegistryFromDescriptors(
   IExtensionRegistry &
   IServiceTypeRegistry {
   const set: DescriptorSet =
-    input instanceof Uint8Array || isMessage(input, FileDescriptorSet)
+    input instanceof Uint8Array || input instanceof FileDescriptorSet
       ? createDescriptorSet(input)
       : input;
   const enums = new Map<string, EnumType>();

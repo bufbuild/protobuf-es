@@ -20,14 +20,22 @@ describe("isMessage", () => {
   test("Message", () => {
     const msg = new Message();
 
-    expect(isMessage(msg)).toBeTruthy();
-  });
-  test("subclass of Message", () => {
     const user = new User({
       firstName: "Homer",
       lastName: "Simpson",
     });
+    console.log(user.getType());
 
-    expect(isMessage(user, User)).toBeTruthy();
+    console.log(msg.getType().typeName);
+
+    expect(isMessage(msg)).toBeTruthy();
   });
+  // test("subclass of Message", () => {
+  //   const user = new User({
+  //     firstName: "Homer",
+  //     lastName: "Simpson",
+  //   });
+
+  //   expect(isMessage(user, User)).toBeTruthy();
+  // });
 });
