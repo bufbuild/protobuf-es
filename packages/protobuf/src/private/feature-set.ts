@@ -38,21 +38,13 @@ function getFeatureSetDefaults(
 }
 
 /**
- * A merged google.protobuf.FeaturesSet, with all fields guaranteed to be set.
- */
-export type MergedFeatureSet = FeatureSet & Required<FeatureSet>;
-
-/**
  * A function that resolves features.
  *
  * If no feature set is provided, the default feature set for the edition is
  * returned. If features are provided, they are merged into the edition default
  * features.
  */
-export type FeatureResolverFn = (
-  a?: FeatureSet,
-  b?: FeatureSet,
-) => MergedFeatureSet;
+export type FeatureResolverFn = (a?: FeatureSet, b?: FeatureSet) => FeatureSet;
 
 /**
  * Create an edition feature resolver with the given feature set defaults, or
@@ -102,7 +94,7 @@ export function createFeatureResolver(
     throw new Error(`No valid default found for edition ${Edition[edition]}`);
   }
   const featureSetBin = highestMatch.f.toBinary(serializationOptions);
-  return (...rest): MergedFeatureSet => {
+  return (...rest): FeatureSet => {
     const f = FeatureSet.fromBinary(featureSetBin, serializationOptions);
     for (const c of rest) {
       if (c !== undefined) {
@@ -135,7 +127,7 @@ export function createFeatureResolver(
 // FeatureSet are set.
 function validateMergedFeatures(
   featureSet: FeatureSet,
-): featureSet is MergedFeatureSet {
+): featureSet is FeatureSet {
   for (const fi of FeatureSet.fields.list()) {
     const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
     if (fi.kind == "enum" && v === 0) {
