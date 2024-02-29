@@ -32,7 +32,7 @@ describe("isMessage", () => {
       firstName: "Homer",
       lastName: "Simpson",
     });
-    // @ts-ignore - Setting to a boolean to force a failure
+    // @ts-expect-error: Setting to a boolean to force a failure
     user.toJson = false;
 
     expect(isMessage(user, TS_User)).toBeFalsy();
