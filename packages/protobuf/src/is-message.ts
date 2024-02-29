@@ -25,11 +25,14 @@ import { Message } from "./message.js";
  * class identity. This makes it robust against the dual package hazard and
  * similar situations, where the same message is duplicated.
  *
- * In most cases, `isMessage` should be preferred over `instanceof`. However, due
- * to the fact that `isMessage` does not use class identity, there are subtle
- * differences between this function and `instanceof`.
- * Notably, calling `isMessage` on an explicit type of Message will return
- * false.
+ * This function is _mostly_ equivalent to the `instanceof` operator. For
+ * example, `isMessage(foo, MyMessage)` is the same as `foo instanceof MyMessage`,
+ * and `isMessage(foo)` is the same as `foo instanceof Message`. In most cases,
+ * `isMessage` should be preferred over `instanceof`.
+ *
+ * However, due to the fact that `isMessage` does not use class identity, there
+ * are subtle differences between this function and `instanceof`. Notably,
+ * calling `isMessage` on an explicit type of Message will return false.
  */
 export function isMessage<T extends Message<T> = AnyMessage>(
   arg: unknown,
