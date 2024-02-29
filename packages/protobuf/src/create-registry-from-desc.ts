@@ -264,55 +264,75 @@ function makeFieldInfo(
   registry: IMessageTypeRegistry & IEnumTypeRegistry,
 ): FieldInfo {
   const f = {
-    kind: desc.fieldKind,
+    kind: desc.fieldKind == "list" ? desc.listKind : desc.fieldKind,
     no: desc.number,
     name: desc.name,
     jsonName: desc.jsonName,
     delimited: desc.proto.type == FieldDescriptorProto_Type.GROUP,
-    repeated: desc.repeated,
-    packed: desc.packed,
-    oneof: desc.oneof?.name,
-    opt: desc.optional,
+    repeated: desc.fieldKind == "list",
     req: desc.proto.label === FieldDescriptorProto_Label.REQUIRED,
-  } as Record<string, unknown>;
-
+  } as Record<keyof FieldInfo | "T" | "L" | "K" | "V", unknown>;
   switch (desc.fieldKind) {
-    case "map": {
-      assert(desc.kind == "field"); // maps are not allowed for extensions
-      let T: EnumType | MessageType | ScalarType | undefined;
-      switch (desc.mapValue.kind) {
-        case "scalar":
-          T = desc.mapValue.scalar;
-          break;
-        case "enum": {
-          T = resolve(desc.mapValue.enum, registry, desc);
-          break;
-        }
-        case "message": {
-          T = resolve(desc.mapValue.message, registry, desc);
-          break;
-        }
-      }
-      f.K = desc.mapKey;
-      f.V = {
-        kind: desc.mapValue.kind,
-        T,
-      };
-      break;
-    }
     case "message": {
       f.T = resolve(desc.message, registry, desc);
+      f.oneof = desc.oneof?.name;
+      f.opt = desc.optional;
       break;
     }
     case "enum": {
       f.T = resolve(desc.enum, registry, desc);
       f.default = desc.getDefaultValue();
+      f.oneof = desc.oneof?.name;
+      f.opt = desc.optional;
       break;
     }
     case "scalar": {
       f.L = desc.longType;
       f.T = desc.scalar;
       f.default = desc.getDefaultValue();
+      f.oneof = desc.oneof?.name;
+      f.opt = desc.optional;
+      break;
+    }
+    case "list": {
+      switch (desc.listKind) {
+        case "scalar":
+          f.T = desc.scalar;
+          f.L = desc.longType;
+          f.packed = desc.packed;
+          break;
+        case "enum": {
+          f.T = resolve(desc.enum, registry, desc);
+          f.packed = desc.packed;
+          break;
+        }
+        case "message": {
+          f.T = resolve(desc.message, registry, desc);
+          break;
+        }
+      }
+      break;
+    }
+    case "map": {
+      let T: EnumType | MessageType | ScalarType | undefined;
+      switch (desc.mapKind) {
+        case "scalar":
+          T = desc.scalar;
+          break;
+        case "enum": {
+          T = resolve(desc.enum, registry, desc);
+          break;
+        }
+        case "message": {
+          T = resolve(desc.message, registry, desc);
+          break;
+        }
+      }
+      f.K = desc.mapKey;
+      f.V = {
+        kind: desc.mapKind,
+        T,
+      };
       break;
     }
   }

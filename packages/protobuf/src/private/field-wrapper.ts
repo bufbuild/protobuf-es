@@ -56,9 +56,6 @@ export function getUnwrappedFieldType(
   if (field.fieldKind !== "message") {
     return undefined;
   }
-  if (field.repeated) {
-    return undefined;
-  }
   if (field.oneof != undefined) {
     return undefined;
   }

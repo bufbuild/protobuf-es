@@ -12,16 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  DescriptorProto,
-  EnumDescriptorProto,
-  FieldDescriptorProto,
-  OneofDescriptorProto,
-} from "./google/protobuf/descriptor_pb.js";
 import {
+  DescriptorProto,
   Edition,
+  EnumDescriptorProto,
   FeatureSet_RepeatedFieldEncoding,
   FeatureSetDefaults,
+  FieldDescriptorProto,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
   FieldOptions_JSType,
@@ -29,6 +26,7 @@ import {
   FileDescriptorSet,
   MethodDescriptorProto,
   MethodOptions_IdempotencyLevel,
+  OneofDescriptorProto,
   ServiceDescriptorProto,
   SourceCodeInfo,
 } from "./google/protobuf/descriptor_pb.js";
@@ -581,34 +579,42 @@ function newField(
   assertFieldSet(proto, "name");
   assertFieldSet(proto, "number");
   assertFieldSet(proto, "type");
-  const common = {
+  type fieldFragment<
+    FieldKind extends "scalar" | "enum" | "message" | "list" | "map" =
+      | "scalar"
+      | "enum"
+      | "message"
+      | "list"
+      | "map",
+    ExtraProperties extends string = "",
+  > = {
+    -readonly [P in
+      | keyof (DescField & { fieldKind: FieldKind })
+      | ExtraProperties]?: unknown;
+  };
+  const common: fieldFragment = {
+    kind: "field",
     proto,
     deprecated: proto.options?.deprecated ?? false,
     name: proto.name,
     number: proto.number,
     parent,
     oneof,
-    optional: isOptionalField(proto, file.syntax),
-    packedByDefault: isPackedFieldByDefault(proto, resolveFeatures),
-    packed: isPackedField(file, parent, proto, resolveFeatures),
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
-    longType: undefined,
     message: undefined,
     enum: undefined,
-    mapKey: undefined,
-    mapValue: undefined,
     declarationString,
-    // toString, getComments, getFeatures are overridden in newExtension
+    // kind, toString, getComments, getFeatures are overridden in newExtension
     toString(): string {
-      return `field ${this.parent.typeName}.${this.name}`;
+      return `field ${parent.typeName}.${this.name as string}`;
     },
     getComments() {
       const path = [
-        ...this.parent.getComments().sourcePath,
+        ...parent.getComments().sourcePath,
         FieldNumber.DescriptorProto_Field,
-        this.parent.proto.field.indexOf(this.proto),
+        parent.proto.field.indexOf(proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
@@ -616,53 +622,104 @@ function newField(
       return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
   };
-  const repeated = proto.label === FieldDescriptorProto_Label.REPEATED;
+  if (proto.label === FieldDescriptorProto_Label.REPEATED) {
+    const mapEntry =
+      proto.type == FieldDescriptorProto_Type.MESSAGE
+        ? cart.mapEntries.get(trimLeadingDot(proto.typeName))
+        : undefined;
+    if (mapEntry) {
+      assert(!oneof);
+      const keyField = mapEntry.fields.find((f) => f.proto.number === 1);
+      assert(keyField);
+      assert(keyField.fieldKind == "scalar");
+      assert(
+        keyField.scalar != ScalarType.BYTES &&
+          keyField.scalar != ScalarType.FLOAT &&
+          keyField.scalar != ScalarType.DOUBLE,
+      );
+      const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
+      assert(valueField);
+      assert(valueField.fieldKind != "list" && valueField.fieldKind != "map");
+      return {
+        ...common,
+        fieldKind: "map",
+        mapKey: keyField.scalar,
+        mapKind: valueField.fieldKind,
+        message: valueField.message,
+        enum: valueField.enum,
+        scalar: valueField.scalar,
+      } as DescField;
+    }
+    const list: fieldFragment<"list", "longType"> = {
+      ...common,
+      fieldKind: "list",
+      packed: isPackedField(file, parent, proto, resolveFeatures),
+      packedByDefault: isPackedFieldByDefault(
+        file.edition,
+        proto,
+        resolveFeatures,
+      ),
+    };
+    assert(!oneof);
+    switch (proto.type) {
+      case FieldDescriptorProto_Type.MESSAGE:
+      case FieldDescriptorProto_Type.GROUP:
+        list.listKind = "message";
+        assertFieldSet(proto, "typeName");
+        list.message = cart.messages.get(trimLeadingDot(proto.typeName));
+        assert(list.message);
+        break;
+      case FieldDescriptorProto_Type.ENUM:
+        list.listKind = "enum";
+        assertFieldSet(proto, "typeName");
+        list.enum = cart.enums.get(trimLeadingDot(proto.typeName));
+        assert(list.enum);
+        break;
+      default:
+        list.listKind = "scalar";
+        list.scalar = fieldTypeToScalarType[proto.type];
+        assert(list.scalar);
+        list.longType =
+          proto.options?.jstype == FieldOptions_JSType.JS_STRING
+            ? LongType.STRING
+            : LongType.BIGINT;
+        break;
+    }
+    return list as DescField;
+  }
+  const singular: fieldFragment<"scalar" | "enum" | "message", "longType"> = {
+    ...common,
+    optional: isOptionalField(proto, file.syntax),
+    getDefaultValue() {
+      return undefined;
+    },
+  };
   switch (proto.type) {
     case FieldDescriptorProto_Type.MESSAGE:
-    case FieldDescriptorProto_Type.GROUP: {
+    case FieldDescriptorProto_Type.GROUP:
       assertFieldSet(proto, "typeName");
-      const mapEntry = cart.mapEntries.get(trimLeadingDot(proto.typeName));
-      if (mapEntry !== undefined) {
-        assert(
-          repeated,
-          `invalid FieldDescriptorProto: expected map entry to be repeated`,
-        );
-        return {
-          ...common,
-          kind: "field",
-          fieldKind: "map",
-          repeated: false,
-          ...getMapFieldTypes(mapEntry),
-        };
-      }
-      const message = cart.messages.get(trimLeadingDot(proto.typeName));
+      singular.fieldKind = "message";
+      singular.message = cart.messages.get(trimLeadingDot(proto.typeName));
       assert(
-        message !== undefined,
+        singular.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
-      return {
-        ...common,
-        kind: "field",
-        fieldKind: "message",
-        repeated,
-        message,
-      };
-    }
+      break;
     case FieldDescriptorProto_Type.ENUM: {
       assertFieldSet(proto, "typeName");
-      const e = cart.enums.get(trimLeadingDot(proto.typeName));
+      const enumeration = cart.enums.get(trimLeadingDot(proto.typeName));
       assert(
-        e !== undefined,
+        enumeration !== undefined,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
-      return {
-        ...common,
-        kind: "field",
-        fieldKind: "enum",
-        getDefaultValue,
-        repeated,
-        enum: e,
+      singular.fieldKind = "enum";
+      singular.enum = cart.enums.get(trimLeadingDot(proto.typeName));
+      singular.getDefaultValue = () => {
+        return isFieldSet(proto, "defaultValue")
+          ? parseTextFormatEnumValue(enumeration, proto.defaultValue)
+          : undefined;
       };
+      break;
     }
     default: {
       const scalar = fieldTypeToScalarType[proto.type];
@@ -670,20 +727,21 @@ function newField(
         scalar,
         `invalid FieldDescriptorProto: unknown type ${proto.type}`,
       );
-      return {
-        ...common,
-        kind: "field",
-        fieldKind: "scalar",
-        getDefaultValue,
-        repeated,
-        scalar,
-        longType:
-          proto.options?.jstype == FieldOptions_JSType.JS_STRING
-            ? LongType.STRING
-            : LongType.BIGINT,
+      singular.fieldKind = "scalar";
+      singular.scalar = scalar;
+      singular.longType =
+        proto.options?.jstype == FieldOptions_JSType.JS_STRING
+          ? LongType.STRING
+          : LongType.BIGINT;
+      singular.getDefaultValue = () => {
+        return isFieldSet(proto, "defaultValue")
+          ? parseTextFormatScalarValue(scalar, proto.defaultValue)
+          : undefined;
       };
+      break;
     }
   }
+  return singular as DescField;
 }
 
 /**
@@ -710,6 +768,8 @@ function newExtension(
     extendee,
     `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
   );
+  assert(field.fieldKind != "map");
+  assert(!field.oneof);
   return {
     ...field,
     kind: "extension",
@@ -719,6 +779,7 @@ function newExtension(
     extendee,
     // Must override toString, getComments, getFeatures from newField, because we
     // call newField with parent undefined.
+    oneof: undefined,
     toString(): string {
       return `extension ${this.typeName}`;
     },
@@ -859,71 +920,6 @@ function trimLeadingDot(typeName: string): string {
   return typeName.startsWith(".") ? typeName.substring(1) : typeName;
 }
 
-function getMapFieldTypes(
-  mapEntry: DescMessage,
-): Pick<DescField & { fieldKind: "map" }, "mapKey" | "mapValue"> {
-  assert(
-    mapEntry.proto.options?.mapEntry,
-    `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`,
-  );
-  assert(
-    mapEntry.fields.length === 2,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} has ${
-      mapEntry.fields.length
-    } fields`,
-  );
-  const keyField = mapEntry.fields.find((f) => f.proto.number === 1);
-  assert(
-    keyField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing key field`,
-  );
-  const mapKey = keyField.scalar;
-  assert(
-    mapKey !== undefined &&
-      mapKey !== ScalarType.BYTES &&
-      mapKey !== ScalarType.FLOAT &&
-      mapKey !== ScalarType.DOUBLE,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} has unexpected key type ${
-      keyField.proto.type
-    }`,
-  );
-  const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
-  assert(
-    valueField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`,
-  );
-  switch (valueField.fieldKind) {
-    case "scalar":
-      return {
-        mapKey,
-        mapValue: {
-          ...valueField,
-          kind: "scalar",
-        },
-      };
-    case "message":
-      return {
-        mapKey,
-        mapValue: {
-          ...valueField,
-          kind: "message",
-        },
-      };
-    case "enum":
-      return {
-        mapKey,
-        mapValue: {
-          ...valueField,
-          kind: "enum",
-        },
-      };
-    default:
-      throw new Error(
-        "invalid DescriptorProto: unsupported map entry value field",
-      );
-  }
-}
-
 /**
  * Did the user put the field in a oneof group?
  * This handles proto3 optionals.
@@ -976,26 +972,30 @@ function isOptionalField(
  * specifies as a default. In edition 2023, fields are packed by default.
  */
 function isPackedFieldByDefault(
+  edition: Edition,
   proto: FieldDescriptorProto,
   resolveFeatures: FeatureResolverFn,
 ) {
-  const { repeatedFieldEncoding } = resolveFeatures();
-  if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
-    return false;
-  }
-  // From the proto3 language guide:
-  // > In proto3, repeated fields of scalar numeric types are packed by default.
-  // This information is incomplete - according to the conformance tests, BOOL
-  // and ENUM are packed by default as well. This means only STRING and BYTES
-  // are not packed by default, which makes sense because they are length-delimited.
   switch (proto.type) {
     case FieldDescriptorProto_Type.STRING:
     case FieldDescriptorProto_Type.BYTES:
     case FieldDescriptorProto_Type.GROUP:
     case FieldDescriptorProto_Type.MESSAGE:
+      // length-delimited types cannot be packed
       return false;
     default:
-      return true;
+      switch (edition) {
+        case Edition.EDITION_PROTO2:
+          return false;
+        case Edition.EDITION_PROTO3:
+          return true;
+        default: {
+          const { repeatedFieldEncoding } = resolveFeatures();
+          return (
+            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
+          );
+        }
+      }
   }
 }
 
@@ -1134,50 +1134,44 @@ enum FieldNumber {
  * source. Does not take custom options into account.
  */
 function declarationString(this: DescField | DescExtension): string {
-  const parts: string[] = [];
-  if (this.repeated) {
-    parts.push("repeated");
-  }
-  if (this.optional) {
-    parts.push("optional");
-  }
   const file = this.kind === "extension" ? this.file : this.parent.file;
-  if (
-    file.syntax == "proto2" &&
-    this.proto.label === FieldDescriptorProto_Label.REQUIRED
-  ) {
-    parts.push("required");
+  const parts: string[] = [];
+  function typeName(f: DescField | DescExtension) {
+    if (f.message) {
+      return f.message.typeName;
+    }
+    if (f.enum) {
+      return f.enum.typeName;
+    }
+    return ScalarType[f.scalar].toLowerCase();
   }
-  let type: string;
   switch (this.fieldKind) {
     case "scalar":
-      type = ScalarType[this.scalar].toLowerCase();
-      break;
     case "enum":
-      type = this.enum.typeName;
-      break;
     case "message":
-      type = this.message.typeName;
+      if (
+        file.edition === Edition.EDITION_PROTO2 &&
+        isFieldSet(this.proto, "label") &&
+        this.proto.label == FieldDescriptorProto_Label.REQUIRED
+      ) {
+        parts.push("required");
+      }
+      if (this.optional) {
+        parts.push("optional");
+      }
+      parts.push(typeName(this));
+      break;
+    case "list":
+      parts.push("repeated", typeName(this));
       break;
     case "map": {
       const k = ScalarType[this.mapKey].toLowerCase();
-      let v: string;
-      switch (this.mapValue.kind) {
-        case "scalar":
-          v = ScalarType[this.mapValue.scalar].toLowerCase();
-          break;
-        case "enum":
-          v = this.mapValue.enum.typeName;
-          break;
-        case "message":
-          v = this.mapValue.message.typeName;
-          break;
-      }
-      type = `map<${k}, ${v}>`;
+      const v = typeName(this);
+      parts.push(`map<${k}, ${v}>`);
       break;
     }
   }
-  parts.push(`${type} ${this.name} = ${this.number}`);
+  parts.push(this.name, "=", this.number.toString());
   const options: string[] = [];
   const protoOptions = this.proto.options;
   if (protoOptions !== undefined && isFieldSet(protoOptions, "packed")) {
@@ -1206,26 +1200,6 @@ function declarationString(this: DescField | DescExtension): string {
     parts.push("[" + options.join(", ") + "]");
   }
   return parts.join(" ");
-}
-
-/**
- * Parses a text-encoded default value (proto2) of a scalar or enum field.
- */
-function getDefaultValue(
-  this: DescField | DescExtension,
-): number | boolean | string | bigint | Uint8Array | undefined {
-  if (!isFieldSet(this.proto, "defaultValue")) {
-    return undefined;
-  }
-  const d = this.proto.defaultValue;
-  switch (this.fieldKind) {
-    case "enum":
-      return parseTextFormatEnumValue(this.enum, d);
-    case "scalar":
-      return parseTextFormatScalarValue(this.scalar, d);
-    default:
-      return undefined;
-  }
 }
 
 // TODO consider to remove to save bundle size.

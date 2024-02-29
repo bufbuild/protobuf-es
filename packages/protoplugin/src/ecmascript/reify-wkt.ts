@@ -23,13 +23,13 @@ type DescWkt =
     }
   | {
       typeName: "google.protobuf.Timestamp";
-      seconds: DescField;
-      nanos: DescField;
+      seconds: DescField & { fieldKind: "scalar" };
+      nanos: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.Duration";
-      seconds: DescField;
-      nanos: DescField;
+      seconds: DescField & { fieldKind: "scalar" };
+      nanos: DescField & { fieldKind: "scalar" };
     }
   | {
       typeName: "google.protobuf.Struct";
@@ -47,7 +47,7 @@ type DescWkt =
     }
   | {
       typeName: "google.protobuf.ListValue";
-      values: DescField & { fieldKind: "message" };
+      values: DescField & { fieldKind: "list"; listKind: "message" };
     }
   | {
       typeName: "google.protobuf.FieldMask";
@@ -126,55 +126,41 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
       break;
     }
     case "google.protobuf.Timestamp": {
-      const seconds = message.fields.find(
-        (f) =>
-          f.number == 1 &&
-          f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT64,
-      );
-      const nanos = message.fields.find(
-        (f) =>
-          f.number == 2 &&
-          f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT32,
-      );
-      if (seconds && nanos) {
-        return {
-          typeName: message.typeName,
-          seconds,
-          nanos,
-        };
+      const seconds = message.fields.find((f) => f.number == 1);
+      if (seconds?.fieldKind !== "scalar") {
+        break;
       }
-      break;
+      const nanos = message.fields.find((f) => f.number == 2);
+      if (nanos?.fieldKind !== "scalar") {
+        break;
+      }
+      return {
+        typeName: message.typeName,
+        seconds,
+        nanos,
+      };
     }
     case "google.protobuf.Duration": {
-      const seconds = message.fields.find(
-        (f) =>
-          f.number == 1 &&
-          f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT64,
-      );
-      const nanos = message.fields.find(
-        (f) =>
-          f.number == 2 &&
-          f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT32,
-      );
-      if (seconds && nanos) {
-        return {
-          typeName: message.typeName,
-          seconds,
-          nanos,
-        };
+      const seconds = message.fields.find((f) => f.number == 1);
+      if (seconds?.fieldKind !== "scalar") {
+        break;
       }
-      break;
+      const nanos = message.fields.find((f) => f.number == 2);
+      if (nanos?.fieldKind !== "scalar") {
+        break;
+      }
+      return {
+        typeName: message.typeName,
+        seconds,
+        nanos,
+      };
     }
     case "google.protobuf.Struct": {
-      const fields = message.fields.find((f) => f.number == 1 && !f.repeated);
+      const fields = message.fields.find((f) => f.number == 1);
       if (
         fields?.fieldKind !== "map" ||
-        fields.mapValue.kind !== "message" ||
-        fields.mapValue.message.typeName !== "google.protobuf.Value"
+        fields.mapKind !== "message" ||
+        fields.message.typeName !== "google.protobuf.Value"
       ) {
         break;
       }
@@ -245,9 +231,10 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
       break;
     }
     case "google.protobuf.ListValue": {
-      const values = message.fields.find((f) => f.number == 1 && f.repeated);
+      const values = message.fields.find((f) => f.number == 1);
       if (
-        values?.fieldKind != "message" ||
+        values?.fieldKind != "list" ||
+        values.listKind != "message" ||
         values.message.typeName !== "google.protobuf.Value"
       ) {
         break;
@@ -258,9 +245,9 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
       const paths = message.fields.find(
         (f) =>
           f.number == 1 &&
-          f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.STRING &&
-          f.repeated,
+          f.fieldKind == "list" &&
+          f.listKind == "scalar" &&
+          f.scalar === ScalarType.STRING,
       );
       if (paths) {
         return { typeName: message.typeName, paths };

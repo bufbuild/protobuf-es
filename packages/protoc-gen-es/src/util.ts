@@ -12,13 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
+import {
+  codegenInfo,
+  DescEnumValue,
   DescExtension,
   DescField,
-  DescEnumValue,
+  Edition,
+  LongType,
+  ScalarType,
   ScalarValue,
 } from "@bufbuild/protobuf";
-import { codegenInfo, Edition, ScalarType, LongType } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
 
@@ -34,10 +37,10 @@ export function fieldUsesPrototype(field: DescField): field is DescField & {
   if (field.parent.file.edition != Edition.EDITION_PROTO2) {
     return false;
   }
-  if (field.repeated || field.oneof) {
+  if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
     return false;
   }
-  if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
+  if (field.oneof) {
     return false;
   }
   // proto2 singular scalar and enum fields use an initial value on the prototype chain
@@ -82,6 +85,30 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       optional = field.optional;
       typingInferrableFromZeroValue = true;
       break;
+    case "list": {
+      switch (field.listKind) {
+        case "scalar":
+          typing.push(scalarTypeScriptType(field.scalar, field.longType));
+          break;
+        case "enum":
+          typing.push({
+            kind: "es_ref_enum",
+            type: field.enum,
+            typeOnly: true,
+          });
+          break;
+        case "message":
+          typing.push({
+            kind: "es_ref_message",
+            type: field.message,
+            typeOnly: true,
+          });
+          break;
+      }
+      typing.push("[]");
+      typingInferrableFromZeroValue = false;
+      break;
+    }
     case "map": {
       let keyType: string;
       switch (field.mapKey) {
@@ -97,24 +124,21 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           break;
       }
       let valueType: Printable;
-      switch (field.mapValue.kind) {
+      switch (field.mapKind) {
         case "scalar":
-          valueType = scalarTypeScriptType(
-            field.mapValue.scalar,
-            LongType.BIGINT,
-          );
+          valueType = scalarTypeScriptType(field.scalar, LongType.BIGINT);
           break;
         case "message":
           valueType = {
             kind: "es_ref_message",
-            type: field.mapValue.message,
+            type: field.message,
             typeOnly: true,
           };
           break;
         case "enum":
           valueType = {
             kind: "es_ref_enum",
-            type: field.mapValue.enum,
+            type: field.enum,
             typeOnly: true,
           };
           break;
@@ -124,11 +148,6 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       optional = false;
       break;
     }
-  }
-  if (field.repeated) {
-    typing.push("[]");
-    optional = false;
-    typingInferrableFromZeroValue = false;
   }
   return { typing, optional, typingInferrableFromZeroValue };
 }
@@ -144,9 +163,6 @@ export function getFieldDefaultValueExpression(
     | "enum_value_as_integer"
     | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
-  if (field.repeated) {
-    return undefined;
-  }
   if (field.fieldKind !== "enum" && field.fieldKind !== "scalar") {
     return undefined;
   }
@@ -188,10 +204,9 @@ export function getFieldZeroValueExpression(
     | "enum_value_as_integer"
     | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
-  if (field.repeated) {
-    return "[]";
-  }
   switch (field.fieldKind) {
+    case "list":
+      return "[]";
     case "message":
       return undefined;
     case "map":

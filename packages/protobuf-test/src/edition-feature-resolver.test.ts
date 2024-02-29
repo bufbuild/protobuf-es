@@ -14,15 +14,16 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { readFileSync } from "fs";
-
+import assert from "node:assert";
+import { UpstreamProtobuf } from "upstream-protobuf";
 import type {
   AnyMessage,
+  DescEnum,
   DescExtension,
   DescMessage,
-  DescEnum,
 } from "@bufbuild/protobuf";
-import { isFieldSet, clearField } from "@bufbuild/protobuf";
 import {
+  clearField,
   createDescriptorSet,
   Edition,
   FeatureSet,
@@ -34,11 +35,11 @@ import {
   FeatureSet_Utf8Validation,
   FeatureSetDefaults,
   FeatureSetDefaults_FeatureSetEditionDefault,
+  FieldDescriptorProto_Label,
+  isFieldSet,
   protoInt64,
   ScalarType,
 } from "@bufbuild/protobuf";
-import assert from "node:assert";
-import { UpstreamProtobuf } from "upstream-protobuf";
 
 /**
  * A rough implementation of the edition feature resolution. Does not support
@@ -210,16 +211,20 @@ function fillDefaults(
     }
     let value: unknown;
     switch (field.fieldKind) {
-      case "message":
-        throw new Error(
-          `Cannot parse default value for edition ${Edition[edition]} in feature field ${field.parent.typeName}.${field.name}. Text format for messages is not implemented.`,
-        );
       case "scalar":
         value = parseTextFormatScalarValue(field.scalar, highestMatch.value);
         break;
       case "enum":
         value = parseTextFormatEnumValue(field.enum, highestMatch.value);
         break;
+      case "message":
+        throw new Error(
+          `Cannot parse default value for edition ${Edition[edition]} in feature field ${field.parent.typeName}.${field.name}. Text format for messages is not implemented.`,
+        );
+      case "list":
+        throw new Error(
+          `Cannot parse default value for edition ${Edition[edition]} in feature field ${field.parent.typeName}.${field.name}. Repeated field is unexpected.`,
+        );
       case "map":
         throw new Error(
           `Cannot parse default value for edition ${Edition[edition]} in feature field ${field.parent.typeName}.${field.name}. Map field is unexpected.`,
@@ -237,14 +242,19 @@ function validateFeatureSetDescriptor(descFeatureSet: DescMessage) {
     );
   }
   for (const field of descFeatureSet.fields) {
-    if (!field.optional) {
+    if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
       throw new Error(
         `Feature field ${field.parent.typeName}.${field.name} is an unsupported required field.`,
       );
     }
-    if (field.repeated) {
+    if (field.fieldKind == "list") {
       throw new Error(
         `Feature field ${field.parent.typeName}.${field.name} is an unsupported repeated field.`,
+      );
+    }
+    if (field.fieldKind == "map") {
+      throw new Error(
+        `Feature field ${field.parent.typeName}.${field.name} is an unsupported map field.`,
       );
     }
     if ((field.proto.options?.targets.length ?? 0) === 0) {
@@ -258,6 +268,11 @@ function validateFeatureSetDescriptor(descFeatureSet: DescMessage) {
 function validateExtension(
   descExtension: DescExtension,
 ): asserts descExtension is DescExtension & { fieldKind: "message" } {
+  if (descExtension.fieldKind == "list") {
+    throw new Error(
+      `Only singular features extensions are supported. Found repeated extension ${descExtension.typeName}.`,
+    );
+  }
   if (descExtension.fieldKind !== "message") {
     throw new Error(
       `Extension ${descExtension.typeName} is not of message type. Feature extensions should always use messages to allow for evolution.`,
@@ -266,11 +281,6 @@ function validateExtension(
   if (descExtension.message.typeName !== FeatureSet.typeName) {
     throw new Error(
       `Extension ${descExtension.typeName} is not an extension of ${FeatureSet.typeName}.`,
-    );
-  }
-  if (descExtension.repeated) {
-    throw new Error(
-      `Only singular features extensions are supported. Found repeated extension ${descExtension.typeName}.`,
     );
   }
   if (
