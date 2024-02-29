@@ -53,9 +53,4 @@ describe("isMessage", () => {
 
     expect(isMessage(user, JS_User)).toBeTruthy();
   });
-  // test("Message is a message", () => {
-  //   const msg = new Message();
-  //   expect(isMessage(msg)).toBeFalsy();
-  //   expect(isMessage(msg)).toBeFalsy();
-  // });
 });

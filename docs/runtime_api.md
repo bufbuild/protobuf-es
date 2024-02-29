@@ -1100,7 +1100,7 @@ function to your users that processes this message:
 ```ts
 export function sendUser(user: PartialMessage<User>) {
   // convert partial messages into their full representation if necessary
-  const u = user instanceof User ? user : new User(user);
+  const u = isMessage(user, User) ? user : new User(user);
   // process further...
   const bytes = u.toBinary();
 }
