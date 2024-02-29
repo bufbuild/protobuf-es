@@ -17,7 +17,7 @@ import type { AnyMessage } from "./message.js";
 import { Message } from "./message.js";
 
 /**
- * Check whether the given object is an instance of the given message type.
+ * Checks whether the given object is an instance of the given message type.
  *
  * This function is equivalent to the `instanceof` operator. For example,
  * `isMessage(foo, MyMessage)` is the same as `foo instanceof MyMessage`, and
