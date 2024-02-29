@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { User as TS_User } from "./gen/ts/extra/example_pb.js";
 import { User as JS_User } from "./gen/js/extra/example_pb.js";
-import { isMessage, Message } from "@bufbuild/protobuf";
+import { isMessage } from "@bufbuild/protobuf";
 
 describe("isMessage", () => {
   test("subclass of Message", () => {
