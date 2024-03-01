@@ -41,6 +41,6 @@ describe("mixing message instances in the constructor", () => {
       messageField: test,
     });
     expect(message.messageField?.name).toBe("foo");
-    expect(isMessage(message.messageField, JS_MessageFieldMessage_TestMessage));
+    expect(message.messageField).toBe(test);
   });
 });
