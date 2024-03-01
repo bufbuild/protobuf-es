@@ -56,9 +56,11 @@ describe("isMessage", () => {
   test("type guard works as expected", () => {
     const user: unknown = new TS_User();
     if (isMessage(user)) {
+      // @ts-ignore
       expect(user.toJsonString).toBeDefined();
     }
     if (isMessage(user, TS_User)) {
+      // @ts-ignore
       expect(user.firstName).toBeDefined();
     }
   });

@@ -15,7 +15,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage_TestMessage as JS_MessageFieldMessage_TestMessage } from "./gen/js/extra/msg-message_pb.js";
-import { isMessage } from "@bufbuild/protobuf";
 
 describe("mixing message instances", () => {
   const message = new TS_MessageFieldMessage();
