@@ -317,8 +317,7 @@ see the section about [advanced serialization](#advanced-serialization).
 
 ### Identifying messages
 
-To check whether a given object is any subtype of `Message` or is a specific
-type of `Message`, we recommend using the exported function `isMessage`.
+To check whether a given object is a message, use the function `isMessage`.
 
 `isMessage` is _mostly_ equivalent to the `instanceof` operator. For
 example, `isMessage(foo, MyMessage)` is the same as `foo instanceof MyMessage`,
