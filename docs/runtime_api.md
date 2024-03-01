@@ -13,6 +13,7 @@ provided by the library.
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
+  - [Identifying messages](#identifying-messages)
 - [Enumerations](#enumerations)
 - [Extensions](#extensions)
   - [Extensions and JSON](#extensions-and-json)
@@ -314,6 +315,34 @@ JSON.
 To learn about serialization options and other details related to serialization, 
 see the section about [advanced serialization](#advanced-serialization).
 
+### Identifying messages
+
+To check whether a given object is any subtype of `Message` or is a specific
+type of `Message`, we recommend using the exported function `isMessage`.
+
+`isMessage` is _mostly_ equivalent to the `instanceof` operator. For
+example, `isMessage(foo, MyMessage)` is the same as `foo instanceof MyMessage`,
+and `isMessage(foo)` is the same as `foo instanceof Message`. 
+
+The advantage of `isMessage` is that it compares identity by the message type 
+name, not by class identity. This makes it robust against the dual package 
+hazard and similar situations, where the same message is duplicated.
+
+To determine if an object is any subtype of `Message`, pass that object to the
+function. To determine if an object is a specific type of `Message`, pass the 
+object as well as the type.
+
+```typescript
+import { isMessage } from "@bufbuild/protobuf";
+
+const user = new User({
+    firstName: "Homer",
+});
+
+isMessage(user);                    // true
+isMessage(user, User);              // true
+isMessage(user, OtherMessageType);  // false
+```
 
 ## Enumerations
 
