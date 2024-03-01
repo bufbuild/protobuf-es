@@ -204,7 +204,14 @@ describe("createRegistryFromDescriptors with jstype", () => {
     assert(mt);
     for (const field of mt.fields) {
       test(`${messageTypeName} field #${field.number}`, () => {
-        expect(field.longType).toBe(longType);
+        if (
+          field.fieldKind == "scalar" ||
+          (field.fieldKind == "list" && field.listKind == "scalar")
+        ) {
+          expect(field.longType).toBe(longType);
+        } else {
+          expect(false).toBe(true);
+        }
       });
     }
   }

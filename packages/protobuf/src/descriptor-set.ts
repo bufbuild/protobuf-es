@@ -24,6 +24,7 @@ import {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
+import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
 
@@ -211,7 +212,7 @@ export interface DescEnum {
  * Describes an individual value of an enumeration in a protobuf source file.
  */
 export interface DescEnumValue {
-  kind: "enum_value";
+  readonly kind: "enum_value";
   /**
    * The name of the enumeration value, as specified in the protobuf source.
    */
@@ -326,42 +327,55 @@ export interface DescMessage {
 /**
  * Describes a field declaration in a protobuf source file.
  */
-export type DescField = DescFieldCommon &
-  (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    readonly kind: "field";
+export type DescField =
+  | (descFieldScalar & descFieldCommon)
+  | (descFieldList & descFieldCommon)
+  | (descFieldMessage & descFieldCommon)
+  | (descFieldEnum & descFieldCommon)
+  | (descFieldMap & descFieldCommon);
 
-    /**
-     * The message this field is declared on.
-     */
-    readonly parent: DescMessage;
-  };
+type descFieldCommon = descFieldAndExtensionShared & {
+  readonly kind: "field";
+  /**
+   * The message this field is declared on.
+   */
+  readonly parent: DescMessage;
+};
 
 /**
  * Describes an extension in a protobuf source file.
  */
-export type DescExtension = DescFieldCommon &
-  (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    readonly kind: "extension";
+export type DescExtension =
+  | (Omit<descFieldScalar, "oneof"> & descExtensionCommon)
+  | (Omit<descFieldEnum, "oneof"> & descExtensionCommon)
+  | (Omit<descFieldMessage, "oneof"> & descExtensionCommon)
+  | (descFieldList & descExtensionCommon);
 
-    /**
-     * The fully qualified name of the extension.
-     */
-    readonly typeName: string;
-    /**
-     * The file this extension was declared in.
-     */
-    readonly file: DescFile;
-    /**
-     * The parent message, if this extension was declared inside a message declaration.
-     */
-    readonly parent: DescMessage | undefined;
-    /**
-     * The message that this extension extends.
-     */
-    readonly extendee: DescMessage;
-  };
+type descExtensionCommon = descFieldAndExtensionShared & {
+  readonly kind: "extension";
+  /**
+   * The fully qualified name of the extension.
+   */
+  readonly typeName: string;
+  /**
+   * The file this extension was declared in.
+   */
+  readonly file: DescFile;
+  /**
+   * The parent message, if this extension was declared inside a message declaration.
+   */
+  readonly parent: DescMessage | undefined;
+  /**
+   * The message that this extension extends.
+   */
+  readonly extendee: DescMessage;
+  /**
+   * The `oneof` group this field belongs to, if any.
+   */
+  readonly oneof: undefined;
+};
 
-interface DescFieldCommon {
+interface descFieldAndExtensionShared {
   /**
    * The field name, as specified in the protobuf source
    */
@@ -371,6 +385,36 @@ interface DescFieldCommon {
    */
   readonly number: number;
   /**
+   * A user-defined name for the JSON format, set with the field option
+   * [json_name="foo"].
+   */
+  readonly jsonName: string | undefined;
+  /**
+   * Marked as deprecated in the protobuf source.
+   */
+  readonly deprecated: boolean;
+  /**
+   * The compiler-generated descriptor.
+   */
+  readonly proto: FieldDescriptorProto;
+  /**
+   * Get comments on the element in the protobuf source.
+   */
+  getComments(): DescComments;
+  /**
+   * Return a string that (closely) matches the definition of the field in the
+   * protobuf source.
+   */
+  declarationString(): string;
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): FeatureSet;
+  toString(): string;
+}
+
+type descFieldSingularCommon = {
+  /**
    * The `oneof` group this field belongs to, if any.
    */
   readonly oneof: DescOneof | undefined;
@@ -378,6 +422,83 @@ interface DescFieldCommon {
    * Whether this field was declared with `optional` in the protobuf source.
    */
   readonly optional: boolean;
+};
+
+type descFieldScalar<T extends ScalarType = ScalarType> = T extends T
+  ? {
+      readonly fieldKind: "scalar";
+      /**
+       * Scalar type, if it is a scalar field.
+       */
+      readonly scalar: T;
+      /**
+       * JavaScript type for 64 bit integral types (int64, uint64,
+       * sint64, fixed64, sfixed64).
+       */
+      readonly longType: LongType;
+      /**
+       * The message type, if it is a message field.
+       */
+      readonly message: undefined;
+      /**
+       * The enum type, if it is an enum field.
+       */
+      readonly enum: undefined;
+      /**
+       * Return the default value specified in the protobuf source.
+       */
+      getDefaultValue(): ScalarValue<T> | undefined;
+    } & descFieldSingularCommon
+  : never;
+
+type descFieldMessage = {
+  readonly fieldKind: "message";
+  /**
+   * Scalar type, if it is a scalar field.
+   */
+  readonly scalar: undefined;
+  /**
+   * The message type, if it is a message field.
+   */
+  readonly message: DescMessage;
+  /**
+   * The enum type, if it is an enum field.
+   */
+  readonly enum: undefined;
+
+  /**
+   * Return the default value specified in the protobuf source.
+   */
+  getDefaultValue(): undefined;
+} & descFieldSingularCommon;
+
+type descFieldEnum = {
+  readonly fieldKind: "enum";
+  /**
+   * Scalar type, if it is a scalar field.
+   */
+  readonly scalar: undefined;
+  /**
+   * The message type, if it is a message field.
+   */
+  readonly message: undefined;
+  /**
+   * The enum type, if it is an enum field.
+   */
+  readonly enum: DescEnum;
+  /**
+   * Return the default value specified in the protobuf source.
+   */
+  getDefaultValue(): number | undefined;
+} & descFieldSingularCommon;
+
+type descFieldList =
+  | (descFieldListScalar & descFieldListCommon)
+  | (descFieldListEnum & descFieldListCommon)
+  | (descFieldListMessage & descFieldListCommon);
+
+type descFieldListCommon = {
+  readonly fieldKind: "list";
   /**
    * Pack this repeated field?
    */
@@ -394,248 +515,132 @@ interface DescFieldCommon {
    */
   readonly packedByDefault: boolean;
   /**
-   * A user-defined name for the JSON format, set with the field option
-   * [json_name="foo"].
+   * The `oneof` group this field belongs to, if any.
    */
-  readonly jsonName: string | undefined;
-  /**
-   * Marked as deprecated in the protobuf source.
-   */
-  readonly deprecated: boolean;
-  /**
-   * The compiler-generated descriptor.
-   */
-  readonly proto: FieldDescriptorProto;
+  readonly oneof: undefined;
+};
 
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
+type descFieldListScalar<T extends ScalarType = ScalarType> = T extends T
+  ? {
+      readonly listKind: "scalar";
+      /**
+       * The enum list element type.
+       */
+      readonly enum: undefined;
+      /**
+       * The message list element type.
+       */
+      readonly message: undefined;
+      /**
+       * Scalar list element type.
+       */
+      readonly scalar: T;
 
-  /**
-   * Return a string that (closely) matches the definition of the field in the
-   * protobuf source.
-   */
-  declarationString(): string;
+      /**
+       * JavaScript type for 64 bit integral types (int64, uint64,
+       * sint64, fixed64, sfixed64).
+       */
+      readonly longType: LongType;
+    }
+  : never;
 
+type descFieldListEnum = {
+  readonly listKind: "enum";
   /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): FeatureSet;
-
-  toString(): string;
-}
-
-interface DescFieldScalar {
-  readonly fieldKind: "scalar";
-  /**
-   * Is the field repeated?
-   */
-  readonly repeated: boolean;
-  /**
-   * Scalar type, if it is a scalar field.
-   */
-  readonly scalar: ScalarType;
-  /**
-   * JavaScript type for 64 bit integral types (int64, uint64,
-   * sint64, fixed64, sfixed64).
-   */
-  readonly longType: LongType;
-  /**
-   * The message type, if it is a message field.
-   */
-  readonly message: undefined;
-  /**
-   * The enum type, if it is an enum field.
-   */
-  readonly enum: undefined;
-  /**
-   * The map key type, if this is a map field.
-   */
-  readonly mapKey: undefined;
-  /**
-   * The map value type, if this is a map field.
-   */
-  readonly mapValue: undefined;
-
-  /**
-   * Return the default value specified in the protobuf source.
-   * Only valid for proto2 syntax.
-   */
-  getDefaultValue():
-    | number
-    | boolean
-    | string
-    | bigint
-    | Uint8Array
-    | undefined;
-}
-
-interface DescFieldMessage {
-  readonly fieldKind: "message";
-  /**
-   * Is the field repeated?
-   */
-  readonly repeated: boolean;
-  /**
-   * Scalar type, if it is a scalar field.
-   */
-  readonly scalar: undefined;
-  /**
-   * JavaScript type for 64 bit integral types (int64, uint64,
-   * sint64, fixed64, sfixed64).
-   */
-  readonly longType: undefined;
-  /**
-   * The message type, if it is a message field.
-   */
-  readonly message: DescMessage;
-  /**
-   * The enum type, if it is an enum field.
-   */
-  readonly enum: undefined;
-  /**
-   * The map key type, if this is a map field.
-   */
-  readonly mapKey: undefined;
-  /**
-   * The map value type, if this is a map field.
-   */
-  readonly mapValue: undefined;
-}
-
-interface DescFieldEnum {
-  readonly fieldKind: "enum";
-  /**
-   * Is the field repeated?
-   */
-  readonly repeated: boolean;
-  /**
-   * Scalar type, if it is a scalar field.
-   */
-  readonly scalar: undefined;
-  /**
-   * JavaScript type for 64 bit integral types (int64, uint64,
-   * sint64, fixed64, sfixed64).
-   */
-  readonly longType: undefined;
-
-  /**
-   * The message type, if it is a message field.
-   */
-  readonly message: undefined;
-  /**
-   * The enum type, if it is an enum field.
+   * The enum list element type.
    */
   readonly enum: DescEnum;
   /**
-   * The map key type, if this is a map field.
+   * The message list element type.
    */
-  readonly mapKey: undefined;
+  readonly message: undefined;
   /**
-   * The map value type, if this is a map field.
+   * Scalar list element type.
    */
-  readonly mapValue: undefined;
+  readonly scalar: undefined;
+};
 
+type descFieldListMessage = {
+  readonly listKind: "message";
   /**
-   * Return the default value specified in the protobuf source.
-   * Only valid for proto2 syntax.
+   * The enum list element type.
    */
-  getDefaultValue():
-    | number
-    | boolean
-    | string
-    | bigint
-    | Uint8Array
-    | undefined;
-}
+  readonly enum: undefined;
+  /**
+   * The message list element type.
+   */
+  readonly message: DescMessage;
+  /**
+   * Scalar list element type.
+   */
+  readonly scalar: undefined;
+};
 
-interface DescFieldMap {
+type descFieldMap =
+  | (descFieldMapScalar & descFieldMapCommon)
+  | (descFieldMapEnum & descFieldMapCommon)
+  | (descFieldMapMessage & descFieldMapCommon);
+
+// prettier-ignore
+type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<ScalarType, ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES> ? {
   readonly fieldKind: "map";
   /**
-   * Is the field repeated?
+   * The scalar map key type.
    */
-  readonly repeated: false;
+  readonly mapKey: T;
   /**
-   * Scalar type, if it is a scalar field.
+   * The `oneof` group this field belongs to, if any.
    */
-  readonly scalar: undefined;
-  /**
-   * JavaScript type for 64 bit integral types (int64, uint64,
-   * sint64, fixed64, sfixed64).
-   */
-  readonly longType: undefined;
-  /**
-   * The message type, if it is a message field.
-   */
-  readonly message: undefined;
-  /**
-   * The enum type, if it is an enum field.
-   */
-  readonly enum: undefined;
-  /**
-   * The map key type, if this is a map field.
-   */
-  readonly mapKey: Exclude<
-    ScalarType,
-    ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES
-  >;
-  /**
-   * The map value type, if this is a map field.
-   */
-  readonly mapValue:
-    | DescFieldMapValueEnum
-    | DescFieldMapValueMessage
-    | DescFieldMapValueScalar;
-}
+  readonly oneof: undefined;
+} : never;
 
-interface DescFieldMapValueEnum {
-  readonly kind: "enum";
+type descFieldMapScalar<T extends ScalarType = ScalarType> = T extends T
+  ? {
+      readonly mapKind: "scalar";
+      /**
+       * The enum map value type.
+       */
+      readonly enum: undefined;
+      /**
+       * The message map value type.
+       */
+      readonly message: undefined;
+      /**
+       * Scalar map value type.
+       */
+      readonly scalar: T;
+    }
+  : never;
+type descFieldMapEnum = {
+  readonly mapKind: "enum";
   /**
-   * The enum type, if this is a map field with enum values.
+   * The enum map value type.
    */
   readonly enum: DescEnum;
   /**
-   * The message this message field uses.
+   * The message map value type.
    */
   readonly message: undefined;
   /**
-   * Scalar type, if this is a map field with scalar values.
+   * Scalar map value type.
    */
   readonly scalar: undefined;
-}
-
-interface DescFieldMapValueMessage {
-  readonly kind: "message";
+};
+type descFieldMapMessage = {
+  readonly mapKind: "message";
   /**
-   * The enum type, if this is a map field with enum values.
+   * The enum map value type.
    */
   readonly enum: undefined;
   /**
-   * The message type, if this is a map field with message values.
+   * The message map value type.
    */
   readonly message: DescMessage;
   /**
-   * Scalar type, if this is a map field with scalar values.
+   * Scalar map value type.
    */
   readonly scalar: undefined;
-}
-
-interface DescFieldMapValueScalar {
-  readonly kind: "scalar";
-  /**
-   * The enum type, if this is a map field with enum values.
-   */
-  readonly enum: undefined;
-  /**
-   * The message type, if this is a map field with message values.
-   */
-  readonly message: undefined;
-  /**
-   * Scalar type, if this is a map field with scalar values.
-   */
-  readonly scalar: ScalarType;
-}
+};
 
 /**
  * Describes a oneof group in a protobuf source file.

@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescExtension } from "@bufbuild/protobuf";
 import {
   codegenInfo,
+  DescExtension,
   DescField,
   LongType,
   ScalarType,
@@ -54,24 +54,43 @@ export function getFieldTyping(
   let optional = false;
   switch (field.fieldKind) {
     case "scalar":
-      typing.push(scalarTypeScriptType(field.scalar, field.longType));
       optional = field.optional;
+      typing.push(scalarTypeScriptType(field.scalar, field.longType));
       break;
     case "message": {
+      optional = true;
       const baseType = getUnwrappedFieldType(field);
       if (baseType !== undefined) {
         typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
       } else {
         typing.push(file.import(field.message).toTypeOnly());
       }
-      optional = true;
       break;
     }
     case "enum":
-      typing.push(file.import(field.enum).toTypeOnly());
       optional = field.optional;
+      typing.push(file.import(field.enum).toTypeOnly());
       break;
+    case "list": {
+      optional = false;
+      switch (field.listKind) {
+        case "scalar":
+          typing.push(
+            scalarTypeScriptType(field.scalar, LongType.BIGINT),
+            "[]",
+          );
+          break;
+        case "enum":
+          typing.push(file.import(field.enum).toTypeOnly(), "[]");
+          break;
+        case "message":
+          typing.push(file.import(field.message).toTypeOnly(), "[]");
+          break;
+      }
+      break;
+    }
     case "map": {
+      optional = false;
       let keyType: string;
       switch (field.mapKey) {
         case ScalarType.INT32:
@@ -86,28 +105,20 @@ export function getFieldTyping(
           break;
       }
       let valueType;
-      switch (field.mapValue.kind) {
+      switch (field.mapKind) {
         case "scalar":
-          valueType = scalarTypeScriptType(
-            field.mapValue.scalar,
-            LongType.BIGINT,
-          );
+          valueType = scalarTypeScriptType(field.scalar, LongType.BIGINT);
           break;
         case "message":
-          valueType = file.import(field.mapValue.message).toTypeOnly();
+          valueType = file.import(field.message).toTypeOnly();
           break;
         case "enum":
-          valueType = file.import(field.mapValue.enum).toTypeOnly();
+          valueType = file.import(field.enum).toTypeOnly();
           break;
       }
       typing.push("{ [key: ", keyType, "]: ", valueType, " }");
-      optional = false;
       break;
     }
-  }
-  if (field.repeated) {
-    typing.push("[]");
-    optional = false;
   }
   return { typing, optional };
 }
@@ -183,7 +194,7 @@ export function getFieldIntrinsicDefaultValue(field: DescField): {
   defaultValue: Printable | undefined;
   typingInferrable: boolean;
 } {
-  if (field.repeated) {
+  if (field.fieldKind == "list") {
     return {
       defaultValue: "[]",
       typingInferrable: false,

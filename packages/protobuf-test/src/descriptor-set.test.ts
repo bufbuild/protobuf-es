@@ -14,7 +14,12 @@
 
 import { beforeAll, describe, expect, test } from "@jest/globals";
 import { readFileSync } from "fs";
-import type { AnyDesc } from "@bufbuild/protobuf";
+import type {
+  AnyDesc,
+  DescEnum,
+  DescMessage,
+  DescOneof,
+} from "@bufbuild/protobuf";
 import {
   createDescriptorSet,
   Edition,
@@ -46,6 +51,7 @@ import {
 } from "./gen/ts/google/protobuf/unittest_features_pb.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join } from "node:path";
+import assert from "node:assert";
 
 const fdsBytes = readFileSync("./descriptorset.binpb");
 
@@ -355,89 +361,409 @@ describe("DescriptorSet", () => {
         Required<TestFeatures>;
     }
   });
-  describe("repeated field packing", () => {
-    test("proto2 is unpacked by default", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+  describe("field", () => {
+    describe("repeated field packing", () => {
+      test("proto2 is unpacked by default", async () => {
+        const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
         syntax="proto2";
         message M {
-          optional int32 not_packable = 1;
-          repeated bytes also_not_packable = 2;
           repeated int32 default = 3;
           repeated int32 explicitly_packed = 4 [packed = true];
           repeated int32 explicitly_expanded = 5 [packed = false];
         }
       `);
-      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
-      expect(fields?.[0].packedByDefault).toBe(false);
-      expect(fields?.[1].packedByDefault).toBe(false);
-      expect(fields?.[2].packedByDefault).toBe(false);
-      expect(fields?.[0].packed).toBe(false);
-      expect(fields?.[1].packed).toBe(false);
-      expect(fields?.[2].packed).toBe(false);
-      expect(fields?.[3].packed).toBe(true);
-      expect(fields?.[4].packed).toBe(false);
-    });
-    test("proto3 is packed by default", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        assert(fields);
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(false);
+          expect(f.packed).toBe(false);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(false);
+          expect(f.packed).toBe(true);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(false);
+          expect(f.packed).toBe(false);
+        }
+      });
+      test("proto3 is packed by default", async () => {
+        const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
         syntax="proto3";
         message M {
-          int32 not_packable = 1;
-          repeated bytes also_not_packable = 2;
           repeated int32 default = 3;
           repeated int32 explicitly_packed = 4 [packed = true];
           repeated int32 explicitly_expanded = 5 [packed = false];
         }
       `);
-      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
-      expect(fields?.[0].packedByDefault).toBe(true);
-      expect(fields?.[1].packedByDefault).toBe(false);
-      expect(fields?.[2].packedByDefault).toBe(true);
-      expect(fields?.[0].packed).toBe(true);
-      expect(fields?.[1].packed).toBe(false);
-      expect(fields?.[2].packed).toBe(true);
-      expect(fields?.[3].packed).toBe(true);
-      expect(fields?.[4].packed).toBe(false);
-    });
-    test("edition2023 is packed by default", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        assert(fields);
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(true);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(true);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(false);
+        }
+      });
+      test("edition2023 is packed by default", async () => {
+        const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
         edition="2023";
         message M {
-          int32 not_packable = 1;
-          repeated bytes also_not_packable = 2;
           repeated int32 default = 3;
           repeated int32 explicitly_packed = 4 [features.repeated_field_encoding = PACKED];
           repeated int32 explicitly_expanded = 5 [features.repeated_field_encoding = EXPANDED];
         }
       `);
-      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
-      expect(fields?.[0].packedByDefault).toBe(true);
-      expect(fields?.[1].packedByDefault).toBe(false);
-      expect(fields?.[2].packedByDefault).toBe(true);
-      expect(fields?.[0].packed).toBe(true);
-      expect(fields?.[1].packed).toBe(false);
-      expect(fields?.[2].packed).toBe(true);
-      expect(fields?.[3].packed).toBe(true);
-      expect(fields?.[4].packed).toBe(false);
-    });
-    test("edition2023 with repeated_field_encoding file option", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        assert(fields);
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(true);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(true);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(false);
+        }
+      });
+      test("edition2023 with repeated_field_encoding file option", async () => {
+        const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
         edition="2023";
         option features.repeated_field_encoding = EXPANDED;
         message M {
-          int32 not_packable = 1;
-          repeated bytes also_not_packable = 2;
           repeated int32 default = 3;
           repeated int32 explicitly_packed = 4 [features.repeated_field_encoding = PACKED];
         }
       `);
-      const fields = createDescriptorSet(bin).messages.get("M")?.fields;
-      expect(fields?.[0].packedByDefault).toBe(true);
-      expect(fields?.[1].packedByDefault).toBe(false);
-      expect(fields?.[2].packedByDefault).toBe(true);
-      expect(fields?.[0].packed).toBe(false);
-      expect(fields?.[1].packed).toBe(false);
-      expect(fields?.[2].packed).toBe(false);
-      expect(fields?.[3].packed).toBe(true);
+        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        assert(fields);
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(false);
+        }
+        {
+          const f = fields.shift();
+          assert(
+            f?.fieldKind == "list" &&
+              (f.listKind == "scalar" || f.listKind == "enum"),
+          );
+          expect(f.packedByDefault).toBe(true);
+          expect(f.packed).toBe(true);
+        }
+      });
+    });
+    test("property visibility", async () => {
+      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+          syntax="proto2";
+          message M {
+            optional int32 f = 1;
+          }
+        `);
+      const field = createDescriptorSet(bin).messages.get("M")?.fields[0];
+      assert(field);
+
+      // always available
+      field.kind;
+      field.fieldKind;
+      field.name;
+      field.number;
+      field.jsonName;
+      field.deprecated;
+      field.scalar;
+      field.enum;
+      field.message;
+      field.oneof; // only applicable to singular fields, but kept here for symmetry with DescMessage.oneofs
+
+      // exclusive to scalar (list and singular)
+      // @ts-expect-error TS2339
+      field.longType;
+
+      // exclusive to list
+      // @ts-expect-error TS2339
+      field.packed;
+      // @ts-expect-error TS2339
+      field.packedByDefault;
+
+      // exclusive to singular
+      // @ts-expect-error TS2339
+      field.optional;
+      // @ts-expect-error TS2339
+      field.getDefaultValue;
+
+      // exclusive to map
+      // @ts-expect-error TS2339
+      field.mapKey;
+      // @ts-expect-error TS2339
+      field.mapKind;
+
+      switch (field.fieldKind) {
+        case "message": {
+          // exclusive to scalar (list and singular)
+          // @ts-expect-error TS2339
+          field.longType;
+
+          // exclusive to list
+          // @ts-expect-error TS2339
+          field.packed;
+          // @ts-expect-error TS2339
+          field.packedByDefault;
+
+          // exclusive to singular
+          field.optional;
+          const def: undefined = field.getDefaultValue();
+
+          // exclusive to map
+          // @ts-expect-error TS2339
+          field.mapKey;
+          // @ts-expect-error TS2339
+          field.mapKind;
+
+          const oneof: DescOneof | undefined = field.oneof;
+
+          assert([def, oneof].length > 0);
+          break;
+        }
+        case "scalar": {
+          // exclusive to scalar (list and singular)
+          field.longType;
+
+          // exclusive to list
+          // @ts-expect-error TS2339
+          field.packed;
+          // @ts-expect-error TS2339
+          field.packedByDefault;
+
+          // exclusive to singular
+          field.optional;
+          const def:
+            | string
+            | number
+            | bigint
+            | boolean
+            | Uint8Array
+            | undefined = field.getDefaultValue();
+
+          switch (field.scalar) {
+            case ScalarType.BOOL: {
+              const defBool: boolean | undefined = field.getDefaultValue();
+              assert([defBool].length > 0);
+              break;
+            }
+            default:
+              break;
+          }
+
+          // exclusive to map
+          // @ts-expect-error TS2339
+          field.mapKey;
+          // @ts-expect-error TS2339
+          field.mapKind;
+
+          const oneof: DescOneof | undefined = field.oneof;
+
+          assert([def, oneof].length > 0);
+          break;
+        }
+        case "enum": {
+          // exclusive to scalar (list and singular)
+          // @ts-expect-error TS2339
+          field.longType;
+
+          // exclusive to list
+          // @ts-expect-error TS2339
+          field.packed;
+          // @ts-expect-error TS2339
+          field.packedByDefault;
+
+          // exclusive to singular
+          field.optional;
+          const def: number | undefined = field.getDefaultValue();
+
+          // exclusive to map
+          // @ts-expect-error TS2339
+          field.mapKey;
+          // @ts-expect-error TS2339
+          field.mapKind;
+
+          const oneof: DescOneof | undefined = field.oneof;
+
+          assert([def, oneof].length > 0);
+          break;
+        }
+        case "list": {
+          /// exclusive to scalar (list and singular)
+          // @ts-expect-error TS2339
+          field.longType;
+
+          // exclusive to list
+          field.packed;
+          field.packedByDefault;
+
+          switch (field.listKind) {
+            case "scalar": {
+              field.longType;
+              const scalar: ScalarType = field.scalar;
+              const message: undefined = field.message;
+              const enumeration: undefined = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+            case "enum": {
+              // @ts-expect-error TS2339
+              field.longType;
+              const scalar: undefined = field.scalar;
+              const message: undefined = field.message;
+              const enumeration: DescEnum = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+            case "message": {
+              // @ts-expect-error TS2339
+              field.longType;
+              const scalar: undefined = field.scalar;
+              const message: DescMessage = field.message;
+              const enumeration: undefined = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+          }
+
+          // exclusive to singular
+          // @ts-expect-error TS2339
+          field.optional;
+          // @ts-expect-error TS2339
+          field.getDefaultValue;
+
+          // exclusive to map
+          // @ts-expect-error TS2339
+          field.mapKey;
+          // @ts-expect-error TS2339
+          field.mapKind;
+
+          const oneof: undefined = field.oneof;
+
+          assert([oneof].length > 0);
+          break;
+        }
+        case "map": {
+          // exclusive to scalar (list and singular)
+          // @ts-expect-error TS2339
+          field.longType;
+
+          // exclusive to list
+          // @ts-expect-error TS2339
+          field.packed;
+          // @ts-expect-error TS2339
+          field.packedByDefault;
+
+          // exclusive to singular
+          // @ts-expect-error TS2339
+          field.optional;
+          // @ts-expect-error TS2339
+          field.getDefaultValue;
+
+          // exclusive to map
+          // @ts-expect-error TS2339
+          const mapKeyFloat: ScalarType.FLOAT = field.mapKey;
+          // @ts-expect-error TS2339
+          const mapKeyDouble: ScalarType.DOUBLE = field.mapKey;
+          // @ts-expect-error TS2339
+          const mapKeyBytes: ScalarType.BYTES = field.mapKey;
+
+          const mapKeyOk: ScalarType = field.mapKey;
+
+          switch (field.mapKind) {
+            case "scalar": {
+              const scalar: ScalarType = field.scalar;
+              const message: undefined = field.message;
+              const enumeration: undefined = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+            case "enum": {
+              const scalar: undefined = field.scalar;
+              const message: undefined = field.message;
+              const enumeration: DescEnum = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+            case "message": {
+              const scalar: undefined = field.scalar;
+              const message: DescMessage = field.message;
+              const enumeration: undefined = field.enum;
+              assert([scalar, message, enumeration].length > 0);
+              break;
+            }
+          }
+
+          const oneof: undefined = field.oneof;
+
+          assert(
+            [mapKeyFloat, mapKeyDouble, mapKeyBytes, mapKeyOk, oneof].length >
+              0,
+          );
+          break;
+        }
+      }
     });
   });
   test("knows extension", () => {
@@ -449,7 +775,10 @@ describe("DescriptorSet", () => {
     expect(ext?.name).toBe("optional_int32_extension");
     expect(ext?.typeName).toBe("protobuf_unittest.optional_int32_extension");
     expect(ext?.extendee.typeName).toBe(TestAllExtensions.typeName);
-    expect(ext?.optional).toBe(true);
+    expect(ext?.fieldKind).toBe("scalar");
+    if (ext?.fieldKind == "scalar") {
+      expect(ext.optional).toBe(true);
+    }
     expect(ext?.kind).toBe("extension");
     expect(ext?.fieldKind).toBe("scalar");
     expect(ext?.scalar).toBe(ScalarType.INT32);

@@ -133,19 +133,10 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
       if (field.longType != LongType.BIGINT) {
         e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
       }
-      break;
-    case "map":
-      e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);
-      switch (field.mapValue.kind) {
-        case "scalar":
-          e.push(`V: {kind: "scalar", T: `, field.mapValue.scalar, ` /* ScalarType.`, ScalarType[field.mapValue.scalar], ` */}, `);
-          break;
-        case "message":
-          e.push(`V: {kind: "message", T: `, field.mapValue.message, `}, `);
-          break;
-        case "enum":
-          e.push(`V: {kind: "enum", T: `, protoN, `.getEnumType(`, field.mapValue.enum, `)}, `);
-          break;
+      if (field.optional) {
+        e.push(`opt: true, `);
+      } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
+        e.push(`req: true, `);
       }
       break;
     case "message":
@@ -153,21 +144,62 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
       if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
         e.push(`delimited: true, `);
       }
+      if (field.optional) {
+        e.push(`opt: true, `);
+      } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
+        e.push(`req: true, `);
+      }
       break;
     case "enum":
       e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
+      if (field.optional) {
+        e.push(`opt: true, `);
+      } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
+        e.push(`req: true, `);
+      }
       break;
-  }
-  if (field.repeated) {
-    e.push(`repeated: true, `);
-    if (field.packed !== field.packedByDefault) {
-      e.push(`packed: `, field.packed, `, `);
-    }
-  }
-  if (field.optional) {
-    e.push(`opt: true, `);
-  } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
-    e.push(`req: true, `);
+    case "list":
+      switch (field.listKind) {
+        case "scalar":
+          e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
+          if (field.longType != LongType.BIGINT) {
+            e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
+          }
+          e.push(`repeated: true, `);
+          if (field.packed !== field.packedByDefault) {
+            e.push(`packed: `, field.packed, `, `);
+          }
+          break;
+        case "enum":
+          e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
+          e.push(`repeated: true, `);
+          if (field.packed !== field.packedByDefault) {
+            e.push(`packed: `, field.packed, `, `);
+          }
+          break;
+        case "message":
+          e.push(`kind: "message", T: `, field.message, `, `);
+          if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
+            e.push(`delimited: true, `);
+          }
+          e.push(`repeated: true, `);
+          break;
+      }
+      break;
+    case "map":
+      e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);
+      switch (field.mapKind) {
+        case "scalar":
+          e.push(`V: {kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */}, `);
+          break;
+        case "message":
+          e.push(`V: {kind: "message", T: `, field.message, `}, `);
+          break;
+        case "enum":
+          e.push(`V: {kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `)}, `);
+          break;
+      }
+      break;
   }
   const defaultValue = getFieldDefaultValueExpression(field);
   if (defaultValue !== undefined) {
@@ -195,7 +227,7 @@ function generateExtension(
   f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension(");
   f.print("  ", f.string(ext.typeName), ", ");
   f.print("  ", ext.extendee, ", ");
-  if (ext.fieldKind == "scalar") {
+  if (ext.fieldKind == "scalar" || (ext.fieldKind == "list" && ext.listKind == "scalar")) {
     f.print("  ", getFieldInfoLiteral(schema, ext), ",");
   } else {
     f.print("  () => (", getFieldInfoLiteral(schema, ext), "),");
@@ -428,7 +460,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`    throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print("  }")
       f.print("  for (const [k, v] of Object.entries(json)) {")
-      f.print("    this.", localName(ref.fields), "[k] = ", ref.fields.mapValue.message ?? "", ".fromJson(v);")
+      f.print("    this.", localName(ref.fields), "[k] = ", ref.fields.message ?? "", ".fromJson(v);")
       f.print("  }")
       f.print("  return this;")
       f.print("};");
