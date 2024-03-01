@@ -56,9 +56,11 @@ describe("isMessage", () => {
   test("type guard works as expected", () => {
     const user: unknown = new TS_User();
     if (isMessage(user)) {
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(user.toJsonString).toBeDefined();
     }
     if (isMessage(user, TS_User)) {
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       expect(user.firstName).toBeDefined();
     }
   });
