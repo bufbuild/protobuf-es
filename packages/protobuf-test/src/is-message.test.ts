@@ -53,4 +53,13 @@ describe("isMessage", () => {
 
     expect(isMessage(user, JS_User)).toBeTruthy();
   });
+  test("type guard works as expected", () => {
+    const user: unknown = new TS_User();
+    if (isMessage(user)) {
+      expect(user.toJsonString).toBeDefined();
+    }
+    if (isMessage(user, TS_User)) {
+      expect(user.firstName).toBeDefined();
+    }
+  });
 });
