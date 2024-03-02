@@ -33,6 +33,7 @@ import {
   FeatureSet_Utf8Validation,
   FeatureSetDefaults,
   FeatureSetDefaults_FeatureSetEditionDefault,
+  isMessage,
   protoInt64,
   ScalarType,
 } from "@bufbuild/protobuf";
@@ -633,7 +634,7 @@ describe("FeatureResolver", function () {
       ...descExtensions: DescExtension[]
     ): FeatureSet;
     function getDefaults(edition: Edition, ...rest: unknown[]) {
-      if (rest[0] instanceof FeatureSetDefaults) {
+      if (isMessage(rest[0], FeatureSetDefaults)) {
         const compiledFeatureSetDefaults = rest[0];
         const resolver = FeatureResolver.create(
           edition,

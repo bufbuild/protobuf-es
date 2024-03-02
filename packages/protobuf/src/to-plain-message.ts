@@ -16,6 +16,7 @@
 
 import { Message } from "./message.js";
 import type { AnyMessage, PlainMessage } from "./message.js";
+import { isMessage } from "./is-message";
 
 /**
  * toPlainMessage returns a new object by stripping
@@ -29,8 +30,8 @@ import type { AnyMessage, PlainMessage } from "./message.js";
 export function toPlainMessage<T extends Message<T>>(
   message: T | PlainMessage<T>,
 ): PlainMessage<T> {
-  if (!(message instanceof Message)) {
-    return message;
+  if (!isMessage(message)) {
+    return message as PlainMessage<T>;
   }
 
   const type = message.getType();
@@ -62,7 +63,7 @@ function toPlainValue(value: any) {
   if (value === undefined) {
     return value;
   }
-  if (value instanceof Message) {
+  if (isMessage(value)) {
     return toPlainMessage(value);
   }
   if (value instanceof Uint8Array) {

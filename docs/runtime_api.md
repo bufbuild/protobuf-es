@@ -13,6 +13,7 @@ provided by the library.
   - [Cloning messages](#cloning-messages)
   - [Comparing messages](#comparing-messages)
   - [Serializing messages](#serializing-messages)
+  - [Identifying messages](#identifying-messages)
 - [Enumerations](#enumerations)
 - [Extensions](#extensions)
   - [Extensions and JSON](#extensions-and-json)
@@ -314,6 +315,33 @@ JSON.
 To learn about serialization options and other details related to serialization, 
 see the section about [advanced serialization](#advanced-serialization).
 
+### Identifying messages
+
+To check whether a given object is a message, use the function [`isMessage`][src-isMessage].
+
+`isMessage` is _mostly_ equivalent to the `instanceof` operator. For
+example, `isMessage(foo, MyMessage)` is the same as `foo instanceof MyMessage`,
+and `isMessage(foo)` is the same as `foo instanceof Message`. 
+
+The advantage of `isMessage` is that it compares identity by the message type 
+name, not by class identity. This makes it robust against the dual package 
+hazard and similar situations, where the same message is duplicated.
+
+To determine if an object is any subtype of `Message`, pass that object to the
+function. To determine if an object is a specific type of `Message`, pass the 
+object as well as the type.
+
+```typescript
+import { isMessage } from "@bufbuild/protobuf";
+
+const user = new User({
+    firstName: "Homer",
+});
+
+isMessage(user);                    // true
+isMessage(user, User);              // true
+isMessage(user, OtherMessageType);  // false
+```
 
 ## Enumerations
 
@@ -1100,7 +1128,7 @@ function to your users that processes this message:
 ```ts
 export function sendUser(user: PartialMessage<User>) {
   // convert partial messages into their full representation if necessary
-  const u = user instanceof User ? user : new User(user);
+  const u = isMessage(user, User) ? user : new User(user);
   // process further...
   const bytes = u.toBinary();
 }
@@ -1178,6 +1206,7 @@ Note that any message is assignable to `AnyMessage`.
 [src-PlainMessage]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L137
 [src-AnyMessage]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L25
 [src-toPlainMessage]: https://github.com/bufbuild/protobuf-es/blob/51573c39ff38a9b43b6f7c22ba6b5ba40fa3ec3a/packages/protobuf/src/to-plain-message.ts#L29
+[src-isMessage]: https://github.com/bufbuild/protobuf-es/blob/3864c00709c444d5cf2cef694345b9beea7b3ed9/packages/protobuf/src/is-message.ts#L31
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
 [pkg-protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
