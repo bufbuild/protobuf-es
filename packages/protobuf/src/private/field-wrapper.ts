@@ -16,6 +16,7 @@ import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { DescExtension, DescField } from "../descriptor-set.js";
 import { ScalarType } from "../scalar.js";
+import { isMessage } from "../is-message";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- unknown fields are represented with any */
 
@@ -40,7 +41,7 @@ export function wrapField<T extends Message<T>>(
   type: MessageType<T>,
   value: any,
 ): T {
-  if (value instanceof Message || !type.fieldWrapper) {
+  if (isMessage(value) || !type.fieldWrapper) {
     return value as T;
   }
   return type.fieldWrapper.wrapField(value);
