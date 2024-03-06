@@ -949,7 +949,7 @@ Options for `Message.fromBinary`:
 
 ### JSON serialization options
 
-Options for `Message.fromJson` and `Message.fromJsonString`:
+Options for `Message.toJson` and `Message.toJsonString`:
 
 - `emitDefaultValues?: boolean`<br/>
   Fields with default values are omitted by default in JSON output.
@@ -969,7 +969,7 @@ Options for `Message.fromJson` and `Message.fromJsonString`:
   option to `JSON.stringify`, which controls indentation for prettier output.
   See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
 
-Options for `Message.toJson` and `Message.toJsonString`:
+Options for `Message.fromJson` and `Message.fromJsonString`:
 
 - `ignoreUnknownFields?: boolean`<br/>
   By default, unknown properties are rejected.
