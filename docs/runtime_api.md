@@ -951,6 +951,16 @@ Options for `Message.fromBinary`:
 
 Options for `Message.fromJson` and `Message.fromJsonString`:
 
+- `ignoreUnknownFields?: boolean`<br/>
+  By default, unknown properties are rejected.
+  This option overrides this behavior and ignores properties, as
+  well as unrecognized enum string representations.
+- `typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>`<br/>
+  A registry to parse [extensions](#extensions-and-json) and 
+  [google.protobuf.Any](#any) from JSON.
+
+Options for `Message.toJson` and `Message.toJsonString`:
+
 - `emitDefaultValues?: boolean`<br/>
   Fields with default values are omitted by default in JSON output.
   This option overrides this behavior and outputs fields with
@@ -968,16 +978,6 @@ Options for `Message.fromJson` and `Message.fromJsonString`:
   Only available with `toJsonString`. A convenience property for the `space` 
   option to `JSON.stringify`, which controls indentation for prettier output.
   See the [`JSON.stringify` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters).
-
-Options for `Message.toJson` and `Message.toJsonString`:
-
-- `ignoreUnknownFields?: boolean`<br/>
-  By default, unknown properties are rejected.
-  This option overrides this behavior and ignores properties, as
-  well as unrecognized enum string representations.
-- `typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>`<br/>
-  A registry to parse [extensions](#extensions-and-json) and 
-  [google.protobuf.Any](#any) from JSON.
 
 
 ### JSON.stringify
