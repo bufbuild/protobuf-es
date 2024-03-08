@@ -39,8 +39,5 @@ export function isPluginOptionError(arg: unknown): arg is PluginOptionError {
   if (!(arg instanceof Error)) {
     return false;
   }
-  if (Object.getPrototypeOf(arg) === PluginOptionError.prototype) {
-    return true;
-  }
   return arg.name === "PluginOptionError";
 }
