@@ -13,6 +13,8 @@
 // limitations under the License.
 
 export class PluginOptionError extends Error {
+  override name = "PluginOptionError";
+
   constructor(option: string, reason?: unknown) {
     const detail = reason !== undefined ? reasonToString(reason) : "";
     super(
@@ -31,4 +33,14 @@ export function reasonToString(reason: unknown): string {
     return reason;
   }
   return String(reason);
+}
+
+export function isPluginOptionError(arg: unknown): arg is PluginOptionError {
+  if (!(arg instanceof Error)) {
+    return false;
+  }
+  if (Object.getPrototypeOf(arg) === PluginOptionError.prototype) {
+    return true;
+  }
+  return arg.name === "PluginOptionError";
 }
