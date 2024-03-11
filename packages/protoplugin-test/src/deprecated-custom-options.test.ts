@@ -19,11 +19,13 @@ import {
   findCustomScalarOption,
 } from "@bufbuild/protoplugin/ecmascript";
 import type { DescFile } from "@bufbuild/protobuf";
-import { createDescriptorSet, ScalarType } from "@bufbuild/protobuf";
+import { FileDescriptorSet } from "@bufbuild/protobuf";
+import { ScalarType } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { readFileSync } from "node:fs";
 import { OptionEnum } from "./gen/option-enum_pb.js";
 import { OptionMessage } from "./gen/option-message_pb.js";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 describe("deprecated custom options functions", () => {
   describe("findCustomScalarOption on file descriptor", () => {
@@ -152,8 +154,8 @@ describe("deprecated custom options functions", () => {
         retainOptions: true,
       },
     );
-    const set = createDescriptorSet(setBin);
-    const file = set.files.find((f) => f.proto.name === "input.proto");
+    const set = createDescFileSet(FileDescriptorSet.fromBinary(setBin));
+    const file = set.getFile("input.proto");
     if (file === undefined) {
       throw new Error("missing file descriptor");
     }
