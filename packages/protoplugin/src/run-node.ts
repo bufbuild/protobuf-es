@@ -15,7 +15,7 @@
 import type { Plugin } from "./plugin.js";
 import type { ReadStream, WriteStream } from "tty";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import { PluginOptionError, reasonToString } from "./error.js";
+import { isPluginOptionError, reasonToString } from "./error.js";
 
 /**
  * Run a plugin with Node.js.
@@ -49,10 +49,9 @@ export function runNodeJs(plugin: Plugin): void {
     })
     .then(() => process.exit(0))
     .catch((reason) => {
-      const message =
-        reason instanceof PluginOptionError
-          ? reason.message
-          : reasonToString(reason);
+      const message = isPluginOptionError(reason)
+        ? reason.message
+        : reasonToString(reason);
       process.stderr.write(`${plugin.name}: ${message}\n`);
       process.exit(1);
       return;
