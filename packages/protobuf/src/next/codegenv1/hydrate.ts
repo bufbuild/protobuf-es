@@ -15,8 +15,7 @@
 import { protoBase64 } from "../../proto-base64";
 import type { Message } from "../types";
 import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb";
-import { createDescriptorSet } from "../../create-descriptor-set";
-import type { DescFile, DescMessage } from "../../descriptor-set";
+import type { DescFile, DescMessage } from "../../descriptor-set.js";
 import { protoCamelCase } from "../reflect/names.js";
 import type {
   ServiceInfo,
@@ -25,6 +24,8 @@ import type {
   TypedDescMessage,
   TypedDescService,
 } from "./typed-desc";
+import { createDescFileSet } from "../reflect/desc-set.js";
+import { assert } from "../../private/assert.js";
 
 export function messageDesc<Shape extends Message>(
   file: DescFile,
@@ -80,21 +81,14 @@ export function serviceDesc<T extends ServiceInfo>(
 
 export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const root = FileDescriptorProto.fromBinary(protoBase64.dec(b64));
-  const directDeps = imports ?? [];
-  root.dependency = directDeps.map((f) => f.proto.name);
-  // TODO it's very wasteful to create Desc's for deps - only to throw them away
-  const deps = Array.from(new Set(findDeps(directDeps))).map((f) => f.proto);
-  const set = createDescriptorSet([...deps, root]);
-  const file = set.files[set.files.length - 1];
+  root.dependency = imports?.map((f) => f.proto.name) ?? [];
+  const set = createDescFileSet(root, (protoFileName) =>
+    imports?.find((f) => f.proto.name === protoFileName),
+  );
+  const file = set.getFile(root.name);
+  assert(file);
   file.messages.forEach(restoreRedundantJsonNames);
   return file;
-}
-
-function* findDeps(deps: DescFile[]): Iterable<DescFile> {
-  for (const d of deps) {
-    yield* findDeps(d.dependencies);
-    yield d;
-  }
 }
 
 function restoreRedundantJsonNames(message: DescMessage) {
@@ -103,6 +97,5 @@ function restoreRedundantJsonNames(message: DescMessage) {
       f.proto.jsonName = protoCamelCase(f.proto.name);
     }
   }
-  // TODO avoid recursion
   message.nestedMessages.forEach(restoreRedundantJsonNames);
 }
