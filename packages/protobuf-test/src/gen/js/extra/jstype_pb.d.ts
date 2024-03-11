@@ -21,6 +21,7 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.JSTypeOmittedMessage
+ * @deprecated
  */
 export declare class JSTypeOmittedMessage extends Message<JSTypeOmittedMessage> {
   /**
@@ -90,6 +91,7 @@ export declare class JSTypeOmittedMessage extends Message<JSTypeOmittedMessage> 
 
 /**
  * @generated from message spec.JSTypeNormalMessage
+ * @deprecated
  */
 export declare class JSTypeNormalMessage extends Message<JSTypeNormalMessage> {
   /**
@@ -159,6 +161,7 @@ export declare class JSTypeNormalMessage extends Message<JSTypeNormalMessage> {
 
 /**
  * @generated from message spec.JSTypeStringMessage
+ * @deprecated
  */
 export declare class JSTypeStringMessage extends Message<JSTypeStringMessage> {
   /**
@@ -228,6 +231,7 @@ export declare class JSTypeStringMessage extends Message<JSTypeStringMessage> {
 
 /**
  * @generated from message spec.JSTypeNumberMessage
+ * @deprecated
  */
 export declare class JSTypeNumberMessage extends Message<JSTypeNumberMessage> {
   /**

@@ -21,6 +21,7 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.WrappersMessage
+ * @deprecated
  */
 export declare class WrappersMessage extends Message<WrappersMessage> {
   /**

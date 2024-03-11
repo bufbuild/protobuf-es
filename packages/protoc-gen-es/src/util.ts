@@ -24,6 +24,7 @@ import {
 } from "@bufbuild/protobuf";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
+import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 
 /**
  * Tells whether a field uses the prototype chain for field presence.
@@ -319,27 +320,5 @@ function literalEnumValue(
         ".",
         localName(value),
       ];
-  }
-}
-
-function scalarTypeScriptType(type: ScalarType, longType: LongType): Printable {
-  switch (type) {
-    case ScalarType.STRING:
-      return "string";
-    case ScalarType.BOOL:
-      return "boolean";
-    case ScalarType.UINT64:
-    case ScalarType.SFIXED64:
-    case ScalarType.FIXED64:
-    case ScalarType.SINT64:
-    case ScalarType.INT64:
-      if (longType === LongType.STRING) {
-        return "string";
-      }
-      return "bigint";
-    case ScalarType.BYTES:
-      return "Uint8Array";
-    default:
-      return "number";
   }
 }

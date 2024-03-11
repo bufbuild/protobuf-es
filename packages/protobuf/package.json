@@ -13,11 +13,14 @@
     "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
-    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs .",
+    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . next next/codegenv1 next/reflect",
     "bootstrap:featureset-defaults": "upstream-inject-feature-defaults src/private/feature-set.ts",
-    "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp/google/protobuf && cp -rp src/google/protobuf/* .tmp/google/protobuf",
+    "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp/v2/google/protobuf && cp -rp src/google/protobuf/* .tmp/v2/google/protobuf",
     "bootstrap:wkt": "protoc --es_out=src --es_opt=bootstrap_wkt=true,ts_nocheck=false,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/google/protobuf",
-    "postbootstrap:wkt": "diff >/dev/null -r .tmp/google/protobuf src/google/protobuf && cp -rp .tmp/google/protobuf/* src/google/protobuf || true",
+    "postbootstrap:wkt": "diff >/dev/null -r .tmp/v2/google/protobuf src/google/protobuf && cp -rp .tmp/v2/google/protobuf/* src/google/protobuf || true",
+    "prebootstrap:wktv2": "rm -rf .tmp && mkdir -p .tmp/v2/google/protobuf && cp -rp src/next/google/protobuf/* .tmp/v2/google/protobuf",
+    "bootstrap:wktv2": "protoc --es-next_out=src/next --es-next_opt=bootstrap_wkt=true,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/next/google/protobuf",
+    "postbootstrap:wktv2": "diff >/dev/null -r .tmp/v2/google/protobuf src/next/google/protobuf && cp -rp .tmp/v2/google/protobuf/* src/next/google/protobuf || true",
     "attw": "attw --pack"
   },
   "type": "module",
@@ -32,6 +35,46 @@
       "module": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./next": {
+      "node": {
+        "import": "./dist/proxy/next/index.js",
+        "require": "./dist/cjs/next/index.js"
+      },
+      "module": "./dist/esm/index.js",
+      "import": "./dist/esm/next/index.js",
+      "require": "./dist/cjs/next/index.js"
+    },
+    "./next/codegenv1": {
+      "node": {
+        "import": "./dist/proxy/next/codegenv1/index.js",
+        "require": "./dist/cjs/next/codegenv1/index.js"
+      },
+      "module": "./dist/esm/next/codegenv1/index.js",
+      "import": "./dist/esm/next/codegenv1/index.js",
+      "require": "./dist/cjs/next/codegenv1/index.js"
+    },
+    "./next/reflect": {
+      "node": {
+        "import": "./dist/proxy/next/reflect/index.js",
+        "require": "./dist/cjs/next/reflect/index.js"
+      },
+      "module": "./dist/esm/next/reflect/index.js",
+      "import": "./dist/esm/next/reflect/index.js",
+      "require": "./dist/cjs/next/reflect/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "next": [
+        "./dist/cjs/next/index.d.ts"
+      ],
+      "next/codegenv1": [
+        "./dist/cjs/next/codegenv1/index.d.ts"
+      ],
+      "next/reflect": [
+        "./dist/cjs/next/reflect/index.d.ts"
+      ]
     }
   },
   "devDependencies": {

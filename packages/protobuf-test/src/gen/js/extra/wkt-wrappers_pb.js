@@ -20,6 +20,7 @@ import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value,
 
 /**
  * @generated from message spec.WrappersMessage
+ * @deprecated
  */
 export const WrappersMessage = proto3.makeMessageType(
   "spec.WrappersMessage",

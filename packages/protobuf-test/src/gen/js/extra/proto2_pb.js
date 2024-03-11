@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import { proto2, protoInt64 } from "@bufbuild/protobuf";
+import { DoubleValue, proto2, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto2Enum
@@ -30,7 +30,241 @@ export const Proto2Enum = proto2.makeEnum(
 );
 
 /**
+ * First enum value must be 0 when used as map value type
+ *
+ * @generated from enum spec.Proto2EnumWithZero
+ */
+export const Proto2EnumWithZero = proto2.makeEnum(
+  "spec.Proto2EnumWithZero",
+  [
+    {no: 0, name: "PROTO2_ENUM_WITH_ZERO_ZERO", localName: "ZERO"},
+    {no: 1, name: "PROTO2_ENUM_WITH_ZERO_ONE", localName: "ONE"},
+  ],
+);
+
+/**
+ * @generated from message spec.Proto2Message
+ */
+export const Proto2Message = proto2.makeMessageType(
+  "spec.Proto2Message",
+  () => [
+    { no: 1, name: "required_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
+    { no: 2, name: "required_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true },
+    { no: 3, name: "required_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
+    { no: 4, name: "required_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true },
+    { no: 103, name: "required_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true },
+    { no: 102, name: "required_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, req: true },
+    { no: 5, name: "required_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true },
+    { no: 6, name: "required_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true },
+    { no: 7, name: "required_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true },
+    { no: 8, name: "required_message_field", kind: "message", T: Proto2Message, req: true },
+    { no: 9, name: "requiredgroup", kind: "message", T: Proto2Message_RequiredGroup, delimited: true, req: true },
+    { no: 201, name: "required_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 10, name: "required_default_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
+    { no: 11, name: "required_default_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
+    { no: 12, name: "required_default_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: 128 },
+    { no: 13, name: "required_default_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true, default: protoInt64.parse("-256") },
+    { no: 110, name: "required_default_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true, default: protoInt64.parse("-256") },
+    { no: 113, name: "required_default_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, req: true, default: "-256" },
+    { no: 14, name: "required_default_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true, default: -512.13 },
+    { no: 15, name: "required_default_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true, default: true },
+    { no: 16, name: "required_default_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
+    { no: 17, name: "required_default_message_field", kind: "message", T: Proto2Message, req: true },
+    { no: 18, name: "requireddefaultgroup", kind: "message", T: Proto2Message_RequiredDefaultGroup, delimited: true, req: true },
+    { no: 202, name: "required_default_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 19, name: "optional_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 20, name: "optional_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 21, name: "optional_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 22, name: "optional_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 106, name: "optional_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 105, name: "optional_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, opt: true },
+    { no: 23, name: "optional_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 24, name: "optional_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 25, name: "optional_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), opt: true },
+    { no: 26, name: "optional_message_field", kind: "message", T: Proto2Message, opt: true },
+    { no: 27, name: "optionalgroup", kind: "message", T: Proto2Message_OptionalGroup, delimited: true, opt: true },
+    { no: 207, name: "optional_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 28, name: "optional_default_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
+    { no: 29, name: "optional_default_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
+    { no: 30, name: "optional_default_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: 128 },
+    { no: 31, name: "optional_default_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, req: true, default: protoInt64.parse("-256") },
+    { no: 120, name: "optional_default_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-256") },
+    { no: 121, name: "optional_default_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, opt: true, default: "-256" },
+    { no: 32, name: "optional_default_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, req: true, default: -512.13 },
+    { no: 33, name: "optional_default_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, req: true, default: true },
+    { no: 34, name: "optional_default_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
+    { no: 35, name: "optional_default_message_field", kind: "message", T: Proto2Message, opt: true },
+    { no: 36, name: "optionaldefaultgroup", kind: "message", T: Proto2Message_OptionalDefaultGroup, delimited: true, opt: true },
+    { no: 203, name: "optional_default_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 37, name: "repeated_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 38, name: "repeated_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 39, name: "repeated_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 40, name: "repeated_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 109, name: "repeated_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 108, name: "repeated_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, repeated: true },
+    { no: 41, name: "repeated_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 42, name: "repeated_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 43, name: "repeated_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), repeated: true },
+    { no: 44, name: "repeated_message_field", kind: "message", T: Proto2Message, repeated: true },
+    { no: 45, name: "repeatedgroup", kind: "message", T: Proto2Message_RepeatedGroup, delimited: true, repeated: true },
+    { no: 204, name: "repeated_wrapped_double_field", kind: "message", T: DoubleValue, repeated: true },
+    { no: 46, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true },
+    { no: 47, name: "packed_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true },
+    { no: 48, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true },
+    { no: 49, name: "unpacked_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 50, name: "unpacked_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 51, name: "unpacked_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 52, name: "oneof_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "either" },
+    { no: 53, name: "oneof_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "either" },
+    { no: 54, name: "oneof_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "either" },
+    { no: 55, name: "oneof_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 112, name: "oneof_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 111, name: "oneof_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, oneof: "either" },
+    { no: 56, name: "oneof_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "either" },
+    { no: 57, name: "oneof_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "either" },
+    { no: 58, name: "oneof_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), oneof: "either" },
+    { no: 59, name: "oneof_message_field", kind: "message", T: Proto2Message, oneof: "either" },
+    { no: 60, name: "oneofgroup", kind: "message", T: Proto2Message_OneofGroup, delimited: true, oneof: "either" },
+    { no: 205, name: "oneof_wrapped_double_field", kind: "message", T: DoubleValue, oneof: "either" },
+    { no: 70, name: "map_string_string_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 71, name: "map_int32_int32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
+    { no: 72, name: "map_bool_bool_field", kind: "map", K: 8 /* ScalarType.BOOL */, V: {kind: "scalar", T: 8 /* ScalarType.BOOL */} },
+    { no: 73, name: "map_int64_int64_field", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "scalar", T: 3 /* ScalarType.INT64 */} },
+    { no: 74, name: "map_int32_enum_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2EnumWithZero)} },
+    { no: 75, name: "map_int32_message_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Proto2Message} },
+    { no: 209, name: "map_int32_wrapped_double_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: DoubleValue} },
+  ],
+);
+
+/**
+ * @generated from message spec.Proto2Message.RequiredGroup
+ */
+export const Proto2Message_RequiredGroup = proto2.makeMessageType(
+  "spec.Proto2Message.RequiredGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_RequiredGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2Message.RequiredDefaultGroup
+ */
+export const Proto2Message_RequiredDefaultGroup = proto2.makeMessageType(
+  "spec.Proto2Message.RequiredDefaultGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_RequiredDefaultGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2Message.OptionalGroup
+ */
+export const Proto2Message_OptionalGroup = proto2.makeMessageType(
+  "spec.Proto2Message.OptionalGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_OptionalGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2Message.OptionalDefaultGroup
+ */
+export const Proto2Message_OptionalDefaultGroup = proto2.makeMessageType(
+  "spec.Proto2Message.OptionalDefaultGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_OptionalDefaultGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2Message.RepeatedGroup
+ */
+export const Proto2Message_RepeatedGroup = proto2.makeMessageType(
+  "spec.Proto2Message.RepeatedGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_RepeatedGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2Message.OneofGroup
+ */
+export const Proto2Message_OneofGroup = proto2.makeMessageType(
+  "spec.Proto2Message.OneofGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2Message_OneofGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2RepeatedMessage
+ * @deprecated
+ */
+export const Proto2RepeatedMessage = proto2.makeMessageType(
+  "spec.Proto2RepeatedMessage",
+  () => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), repeated: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto2ChildMessage, repeated: true },
+    { no: 9, name: "repeatedgroup", kind: "message", T: Proto2RepeatedMessage_RepeatedGroup, delimited: true, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message spec.Proto2RepeatedMessage.RepeatedGroup
+ */
+export const Proto2RepeatedMessage_RepeatedGroup = proto2.makeMessageType(
+  "spec.Proto2RepeatedMessage.RepeatedGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2RepeatedMessage_RepeatedGroup"},
+);
+
+/**
+ * @generated from message spec.Proto2OneofMessage
+ * @deprecated
+ */
+export const Proto2OneofMessage = proto2.makeMessageType(
+  "spec.Proto2OneofMessage",
+  () => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "some" },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "some" },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "some" },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "some" },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "some" },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "some" },
+    { no: 7, name: "enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), oneof: "some" },
+    { no: 8, name: "message_field", kind: "message", T: Proto2ChildMessage, oneof: "some" },
+    { no: 9, name: "repeatedgroup", kind: "message", T: Proto2OneofMessage_RepeatedGroup, delimited: true, oneof: "some" },
+  ],
+);
+
+/**
+ * @generated from message spec.Proto2OneofMessage.RepeatedGroup
+ */
+export const Proto2OneofMessage_RepeatedGroup = proto2.makeMessageType(
+  "spec.Proto2OneofMessage.RepeatedGroup",
+  () => [
+    { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+  {localName: "Proto2OneofMessage_RepeatedGroup"},
+);
+
+/**
  * @generated from message spec.Proto2PackedMessage
+ * @deprecated
  */
 export const Proto2PackedMessage = proto2.makeMessageType(
   "spec.Proto2PackedMessage",
@@ -43,6 +277,7 @@ export const Proto2PackedMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
+ * @deprecated
  */
 export const Proto2UnpackedMessage = proto2.makeMessageType(
   "spec.Proto2UnpackedMessage",
@@ -55,6 +290,7 @@ export const Proto2UnpackedMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
+ * @deprecated
  */
 export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
   "spec.Proto2UnspecifiedPackedMessage",
@@ -67,6 +303,7 @@ export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2OptionalMessage
+ * @deprecated
  */
 export const Proto2OptionalMessage = proto2.makeMessageType(
   "spec.Proto2OptionalMessage",
@@ -84,6 +321,7 @@ export const Proto2OptionalMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2RequiredMessage
+ * @deprecated
  */
 export const Proto2RequiredMessage = proto2.makeMessageType(
   "spec.Proto2RequiredMessage",
@@ -101,6 +339,7 @@ export const Proto2RequiredMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
+ * @deprecated
  */
 export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
   "spec.Proto2RequiredDefaultsMessage",
@@ -118,6 +357,7 @@ export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
+ * @deprecated
  */
 export const Proto2DefaultsMessage = proto2.makeMessageType(
   "spec.Proto2DefaultsMessage",
@@ -135,6 +375,7 @@ export const Proto2DefaultsMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2ChildMessage
+ * @deprecated
  */
 export const Proto2ChildMessage = proto2.makeMessageType(
   "spec.Proto2ChildMessage",
@@ -145,6 +386,7 @@ export const Proto2ChildMessage = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2GroupsMessage
+ * @deprecated
  */
 export const Proto2GroupsMessage = proto2.makeMessageType(
   "spec.Proto2GroupsMessage",
@@ -182,6 +424,7 @@ export const Proto2GroupsMessage_Group_NestedGroup = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
+ * @deprecated
  */
 export const Proto2GroupsMessage_RepeatedGroup = proto2.makeMessageType(
   "spec.Proto2GroupsMessage.RepeatedGroup",
@@ -193,6 +436,7 @@ export const Proto2GroupsMessage_RepeatedGroup = proto2.makeMessageType(
 
 /**
  * @generated from message spec.Proto2GroupsMessage.OneofGroup
+ * @deprecated
  */
 export const Proto2GroupsMessage_OneofGroup = proto2.makeMessageType(
   "spec.Proto2GroupsMessage.OneofGroup",
