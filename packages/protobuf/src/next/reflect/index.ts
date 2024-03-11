@@ -13,6 +13,7 @@
 // limitations under the License.
 
 export * from "./error.js";
+export * from "./desc-set.js";
 export * from "./names.js";
 export * from "./nested-types.js";
 export * from "./reflect.js";
