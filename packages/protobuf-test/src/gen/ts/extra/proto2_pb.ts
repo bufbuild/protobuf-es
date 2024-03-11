@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { DoubleValue, Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2, protoInt64, UInt32Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto2Enum
@@ -121,11 +121,9 @@ export class Proto2Message extends Message<Proto2Message> {
   requiredgroup?: Proto2Message_RequiredGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue required_wrapped_double_field = 201;
+   * @generated from field: required google.protobuf.UInt32Value required_wrapped_uint32_field = 201;
    */
-  requiredWrappedDoubleField?: number;
+  requiredWrappedUint32Field?: number;
 
   /**
    * @generated from field: required string required_default_string_field = 10 [default = "hello \" *\/ "];
@@ -183,11 +181,9 @@ export class Proto2Message extends Message<Proto2Message> {
   requireddefaultgroup?: Proto2Message_RequiredDefaultGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue required_default_wrapped_double_field = 202;
+   * @generated from field: required google.protobuf.UInt32Value required_default_wrapped_uint32_field = 202;
    */
-  requiredDefaultWrappedDoubleField?: number;
+  requiredDefaultWrappedUint32Field?: number;
 
   /**
    * @generated from field: optional string optional_string_field = 19;
@@ -245,11 +241,9 @@ export class Proto2Message extends Message<Proto2Message> {
   optionalgroup?: Proto2Message_OptionalGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue optional_wrapped_double_field = 207;
+   * @generated from field: required google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
    */
-  optionalWrappedDoubleField?: number;
+  optionalWrappedUint32Field?: number;
 
   /**
    * @generated from field: required string optional_default_string_field = 28 [default = "hello \" *\/ "];
@@ -307,11 +301,9 @@ export class Proto2Message extends Message<Proto2Message> {
   optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue optional_default_wrapped_double_field = 203;
+   * @generated from field: required google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
    */
-  optionalDefaultWrappedDoubleField?: number;
+  optionalDefaultWrappedUint32Field?: number;
 
   /**
    * @generated from field: repeated string repeated_string_field = 37;
@@ -369,11 +361,9 @@ export class Proto2Message extends Message<Proto2Message> {
   repeatedgroup: Proto2Message_RepeatedGroup[] = [];
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: repeated google.protobuf.DoubleValue repeated_wrapped_double_field = 204;
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 204;
    */
-  repeatedWrappedDoubleField: DoubleValue[] = [];
+  repeatedWrappedUint32Field: UInt32Value[] = [];
 
   /**
    * @generated from field: repeated double packed_double_field = 46 [packed = true];
@@ -476,12 +466,10 @@ export class Proto2Message extends Message<Proto2Message> {
     case: "oneofgroup";
   } | {
     /**
-     * TODO switch to Uint32Value
-     *
-     * @generated from field: google.protobuf.DoubleValue oneof_wrapped_double_field = 205;
+     * @generated from field: google.protobuf.UInt32Value oneof_wrapped_uint32_field = 205;
      */
-    value: DoubleValue;
-    case: "oneofWrappedDoubleField";
+    value: UInt32Value;
+    case: "oneofWrappedUint32Field";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
@@ -515,11 +503,9 @@ export class Proto2Message extends Message<Proto2Message> {
   mapInt32MessageField: { [key: number]: Proto2Message } = {};
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: map<int32, google.protobuf.DoubleValue> map_int32_wrapped_double_field = 209;
+   * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 209;
    */
-  mapInt32WrappedDoubleField: { [key: number]: DoubleValue } = {};
+  mapInt32WrappedUint32Field: { [key: number]: UInt32Value } = {};
 
   constructor(data?: PartialMessage<Proto2Message>) {
     super();
@@ -540,7 +526,7 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 7, name: "required_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true },
     { no: 8, name: "required_message_field", kind: "message", T: Proto2Message, req: true },
     { no: 9, name: "requiredgroup", kind: "message", T: Proto2Message_RequiredGroup, delimited: true, req: true },
-    { no: 201, name: "required_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 201, name: "required_wrapped_uint32_field", kind: "message", T: UInt32Value, req: true },
     { no: 10, name: "required_default_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
     { no: 11, name: "required_default_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
     { no: 12, name: "required_default_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: 128 },
@@ -552,7 +538,7 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 16, name: "required_default_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
     { no: 17, name: "required_default_message_field", kind: "message", T: Proto2Message, req: true },
     { no: 18, name: "requireddefaultgroup", kind: "message", T: Proto2Message_RequiredDefaultGroup, delimited: true, req: true },
-    { no: 202, name: "required_default_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 202, name: "required_default_wrapped_uint32_field", kind: "message", T: UInt32Value, req: true },
     { no: 19, name: "optional_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 20, name: "optional_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 21, name: "optional_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -564,7 +550,7 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 25, name: "optional_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), opt: true },
     { no: 26, name: "optional_message_field", kind: "message", T: Proto2Message, opt: true },
     { no: 27, name: "optionalgroup", kind: "message", T: Proto2Message_OptionalGroup, delimited: true, opt: true },
-    { no: 207, name: "optional_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 207, name: "optional_wrapped_uint32_field", kind: "message", T: UInt32Value, req: true },
     { no: 28, name: "optional_default_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
     { no: 29, name: "optional_default_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, req: true, default: new Uint8Array([0x00, 0x78, 0x5C, 0x78, 0x78, 0x41, 0x41, 0x41, 0x41, 0x41, 0x41, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B]) },
     { no: 30, name: "optional_default_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true, default: 128 },
@@ -576,7 +562,7 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 34, name: "optional_default_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), req: true, default: Proto2Enum.YES },
     { no: 35, name: "optional_default_message_field", kind: "message", T: Proto2Message, opt: true },
     { no: 36, name: "optionaldefaultgroup", kind: "message", T: Proto2Message_OptionalDefaultGroup, delimited: true, opt: true },
-    { no: 203, name: "optional_default_wrapped_double_field", kind: "message", T: DoubleValue, req: true },
+    { no: 203, name: "optional_default_wrapped_uint32_field", kind: "message", T: UInt32Value, req: true },
     { no: 37, name: "repeated_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 38, name: "repeated_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
     { no: 39, name: "repeated_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -588,7 +574,7 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 43, name: "repeated_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), repeated: true },
     { no: 44, name: "repeated_message_field", kind: "message", T: Proto2Message, repeated: true },
     { no: 45, name: "repeatedgroup", kind: "message", T: Proto2Message_RepeatedGroup, delimited: true, repeated: true },
-    { no: 204, name: "repeated_wrapped_double_field", kind: "message", T: DoubleValue, repeated: true },
+    { no: 204, name: "repeated_wrapped_uint32_field", kind: "message", T: UInt32Value, repeated: true },
     { no: 46, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true },
     { no: 47, name: "packed_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: true },
     { no: 48, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: true },
@@ -606,14 +592,14 @@ export class Proto2Message extends Message<Proto2Message> {
     { no: 58, name: "oneof_enum_field", kind: "enum", T: proto2.getEnumType(Proto2Enum), oneof: "either" },
     { no: 59, name: "oneof_message_field", kind: "message", T: Proto2Message, oneof: "either" },
     { no: 60, name: "oneofgroup", kind: "message", T: Proto2Message_OneofGroup, delimited: true, oneof: "either" },
-    { no: 205, name: "oneof_wrapped_double_field", kind: "message", T: DoubleValue, oneof: "either" },
+    { no: 205, name: "oneof_wrapped_uint32_field", kind: "message", T: UInt32Value, oneof: "either" },
     { no: 70, name: "map_string_string_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 71, name: "map_int32_int32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
     { no: 72, name: "map_bool_bool_field", kind: "map", K: 8 /* ScalarType.BOOL */, V: {kind: "scalar", T: 8 /* ScalarType.BOOL */} },
     { no: 73, name: "map_int64_int64_field", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "scalar", T: 3 /* ScalarType.INT64 */} },
     { no: 74, name: "map_int32_enum_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2EnumWithZero)} },
     { no: 75, name: "map_int32_message_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Proto2Message} },
-    { no: 209, name: "map_int32_wrapped_double_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: DoubleValue} },
+    { no: 209, name: "map_int32_wrapped_uint32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: UInt32Value} },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message {

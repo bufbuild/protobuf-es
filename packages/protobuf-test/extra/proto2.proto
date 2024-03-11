@@ -31,8 +31,7 @@ message Proto2Message {
   required group RequiredGroup = 9 {
     optional int32 int32_field = 1;
   }
-  // TODO switch to Uint32Value
-  required google.protobuf.DoubleValue required_wrapped_double_field = 201;
+  required google.protobuf.UInt32Value required_wrapped_uint32_field = 201;
 
   required string required_default_string_field = 10 [default = "hello \" */ "];
   required bytes required_default_bytes_field = 11 [default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
@@ -47,8 +46,7 @@ message Proto2Message {
   required group RequiredDefaultGroup = 18 {
     optional int32 int32_field = 1;
   }
-  // TODO switch to Uint32Value
-  required google.protobuf.DoubleValue required_default_wrapped_double_field = 202;
+  required google.protobuf.UInt32Value required_default_wrapped_uint32_field = 202;
 
   optional string optional_string_field = 19;
   optional bytes optional_bytes_field = 20;
@@ -63,8 +61,7 @@ message Proto2Message {
   optional group OptionalGroup = 27 {
     optional int32 int32_field = 1;
   }
-  // TODO switch to Uint32Value
-  required google.protobuf.DoubleValue optional_wrapped_double_field = 207;
+  required google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
 
   required string optional_default_string_field = 28 [default = "hello \" */ "];
   required bytes optional_default_bytes_field = 29 [default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
@@ -79,8 +76,7 @@ message Proto2Message {
   optional group OptionalDefaultGroup = 36 {
     optional int32 int32_field = 1;
   }
-  // TODO switch to Uint32Value
-  required google.protobuf.DoubleValue optional_default_wrapped_double_field = 203;
+  required google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
 
   repeated string repeated_string_field = 37;
   repeated bytes repeated_bytes_field = 38;
@@ -95,8 +91,7 @@ message Proto2Message {
   repeated group RepeatedGroup = 45 {
     optional int32 int32_field = 1;
   }
-  // TODO switch to Uint32Value
-  repeated google.protobuf.DoubleValue repeated_wrapped_double_field = 204;
+  repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 204;
 
   repeated double packed_double_field = 46 [packed = true];
   repeated uint32 packed_uint32_field = 47 [packed = true];
@@ -120,8 +115,7 @@ message Proto2Message {
     group OneofGroup = 60 {
       optional int32 int32_field = 1;
     }
-    // TODO switch to Uint32Value
-    google.protobuf.DoubleValue oneof_wrapped_double_field = 205;
+    google.protobuf.UInt32Value oneof_wrapped_uint32_field = 205;
   }
   map<string, string> map_string_string_field = 70;
   map<int32, int32> map_int32_int32_field = 71;
@@ -129,8 +123,7 @@ message Proto2Message {
   map<int64, int64> map_int64_int64_field = 73;
   map<int32, Proto2EnumWithZero> map_int32_enum_field = 74;
   map<int32, Proto2Message> map_int32_message_field = 75;
-  // TODO switch to Uint32Value
-  map<int32, google.protobuf.DoubleValue> map_int32_wrapped_double_field = 209;
+  map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 209;
 }
 
 enum Proto2Enum {

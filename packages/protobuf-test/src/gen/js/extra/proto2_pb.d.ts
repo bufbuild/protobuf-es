@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, DoubleValue, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, UInt32Value } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
@@ -111,11 +111,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   requiredgroup?: Proto2Message_RequiredGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue required_wrapped_double_field = 201;
+   * @generated from field: required google.protobuf.UInt32Value required_wrapped_uint32_field = 201;
    */
-  requiredWrappedDoubleField?: number;
+  requiredWrappedUint32Field?: number;
 
   /**
    * @generated from field: required string required_default_string_field = 10 [default = "hello \" *\/ "];
@@ -173,11 +171,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   requireddefaultgroup?: Proto2Message_RequiredDefaultGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue required_default_wrapped_double_field = 202;
+   * @generated from field: required google.protobuf.UInt32Value required_default_wrapped_uint32_field = 202;
    */
-  requiredDefaultWrappedDoubleField?: number;
+  requiredDefaultWrappedUint32Field?: number;
 
   /**
    * @generated from field: optional string optional_string_field = 19;
@@ -235,11 +231,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   optionalgroup?: Proto2Message_OptionalGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue optional_wrapped_double_field = 207;
+   * @generated from field: required google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
    */
-  optionalWrappedDoubleField?: number;
+  optionalWrappedUint32Field?: number;
 
   /**
    * @generated from field: required string optional_default_string_field = 28 [default = "hello \" *\/ "];
@@ -297,11 +291,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup;
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: required google.protobuf.DoubleValue optional_default_wrapped_double_field = 203;
+   * @generated from field: required google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
    */
-  optionalDefaultWrappedDoubleField?: number;
+  optionalDefaultWrappedUint32Field?: number;
 
   /**
    * @generated from field: repeated string repeated_string_field = 37;
@@ -359,11 +351,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   repeatedgroup: Proto2Message_RepeatedGroup[];
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: repeated google.protobuf.DoubleValue repeated_wrapped_double_field = 204;
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 204;
    */
-  repeatedWrappedDoubleField: DoubleValue[];
+  repeatedWrappedUint32Field: UInt32Value[];
 
   /**
    * @generated from field: repeated double packed_double_field = 46 [packed = true];
@@ -466,12 +456,10 @@ export declare class Proto2Message extends Message<Proto2Message> {
     case: "oneofgroup";
   } | {
     /**
-     * TODO switch to Uint32Value
-     *
-     * @generated from field: google.protobuf.DoubleValue oneof_wrapped_double_field = 205;
+     * @generated from field: google.protobuf.UInt32Value oneof_wrapped_uint32_field = 205;
      */
-    value: DoubleValue;
-    case: "oneofWrappedDoubleField";
+    value: UInt32Value;
+    case: "oneofWrappedUint32Field";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -505,11 +493,9 @@ export declare class Proto2Message extends Message<Proto2Message> {
   mapInt32MessageField: { [key: number]: Proto2Message };
 
   /**
-   * TODO switch to Uint32Value
-   *
-   * @generated from field: map<int32, google.protobuf.DoubleValue> map_int32_wrapped_double_field = 209;
+   * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 209;
    */
-  mapInt32WrappedDoubleField: { [key: number]: DoubleValue };
+  mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
 
   constructor(data?: PartialMessage<Proto2Message>);
 

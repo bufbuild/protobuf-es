@@ -178,8 +178,8 @@ describe("create()", () => {
         expect(hasOwn("requiredMessageField")).toBe(false);
         expect(msg.requireddefaultgroup).toBeUndefined();
         expect(hasOwn("requireddefaultgroup")).toBe(false);
-        expect(msg.requiredWrappedDoubleField).toBeUndefined();
-        expect(hasOwn("requiredWrappedDoubleField")).toBe(false);
+        expect(msg.requiredWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("requiredWrappedUint32Field")).toBe(false);
 
         // required with default
         expect(msg.requiredDefaultStringField).toBe('hello " */ ');
@@ -210,8 +210,8 @@ describe("create()", () => {
         expect(hasOwn("requiredDefaultMessageField")).toBe(false);
         expect(msg.requireddefaultgroup).toBeUndefined();
         expect(hasOwn("requireddefaultgroup")).toBe(false);
-        expect(msg.requiredDefaultWrappedDoubleField).toBeUndefined();
-        expect(hasOwn("requiredDefaultWrappedDoubleField")).toBe(false);
+        expect(msg.requiredDefaultWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("requiredDefaultWrappedUint32Field")).toBe(false);
 
         // repeated
         expect(msg.repeatedStringField).toStrictEqual([]);
@@ -234,8 +234,8 @@ describe("create()", () => {
         expect(hasOwn("repeatedEnumField")).toBe(true);
         expect(msg.repeatedMessageField).toStrictEqual([]);
         expect(hasOwn("repeatedMessageField")).toBe(true);
-        expect(msg.repeatedWrappedDoubleField).toStrictEqual([]);
-        expect(hasOwn("repeatedWrappedDoubleField")).toBe(true);
+        expect(msg.repeatedWrappedUint32Field).toStrictEqual([]);
+        expect(hasOwn("repeatedWrappedUint32Field")).toBe(true);
 
         // optional
         expect(msg.optionalStringField).toBe("");
@@ -262,8 +262,8 @@ describe("create()", () => {
         expect(hasOwn("optionalMessageField")).toBe(false);
         expect(msg.optionalgroup).toBeUndefined();
         expect(hasOwn("optionalgroup")).toBe(false);
-        expect(msg.optionalWrappedDoubleField).toBeUndefined();
-        expect(hasOwn("optionalWrappedDoubleField")).toBe(false);
+        expect(msg.optionalWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("optionalWrappedUint32Field")).toBe(false);
 
         // optional with default
         expect(msg.optionalDefaultStringField).toBe('hello " */ ');
@@ -292,8 +292,8 @@ describe("create()", () => {
         expect(hasOwn("optionalDefaultMessageField")).toBe(false);
         expect(msg.optionaldefaultgroup).toBeUndefined();
         expect(hasOwn("optionaldefaultgroup")).toBe(false);
-        expect(msg.optionalWrappedDoubleField).toBeUndefined();
-        expect(hasOwn("optionalWrappedDoubleField")).toBe(false);
+        expect(msg.optionalWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("optionalWrappedUint32Field")).toBe(false);
 
         // oneof
         expect(msg.either).toStrictEqual({ case: undefined });
@@ -312,8 +312,8 @@ describe("create()", () => {
         expect(hasOwn("mapInt32EnumField")).toBe(true);
         expect(msg.mapInt32MessageField).toStrictEqual({});
         expect(hasOwn("mapInt32MessageField")).toBe(true);
-        expect(msg.mapInt32WrappedDoubleField).toStrictEqual({});
-        expect(hasOwn("mapInt32WrappedDoubleField")).toBe(true);
+        expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
+        expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
       });
     });
   });

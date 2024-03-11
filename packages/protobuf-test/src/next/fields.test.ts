@@ -150,7 +150,7 @@ describe("clearField()", () => {
       msg.requiredEnumField = proto2_ts.Proto2Enum.YES;
       msg.requiredMessageField = create(desc);
       msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupDesc);
-      msg.requiredWrappedDoubleField = 3.142;
+      msg.requiredWrappedUint32Field = 66;
       // required with default
       msg.requiredDefaultStringField = "non-zero";
       msg.requiredDefaultInt64Field = protoInt64.parse(123);
@@ -161,7 +161,7 @@ describe("clearField()", () => {
       msg.requireddefaultgroup = create(
         proto2_ts.Proto2Message_RequiredDefaultGroupDesc,
       );
-      msg.requiredDefaultWrappedDoubleField = 3.142;
+      msg.requiredDefaultWrappedUint32Field = 66;
       // optional
       msg.optionalStringField = "";
       msg.optionalInt64Field = protoInt64.zero;
@@ -170,7 +170,7 @@ describe("clearField()", () => {
       msg.optionalEnumField = proto2_ts.Proto2Enum.YES;
       msg.optionalMessageField = create(desc);
       msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupDesc);
-      msg.optionalWrappedDoubleField = 0;
+      msg.optionalWrappedUint32Field = 66;
       // optional with default
       msg.optionalDefaultStringField = "";
       msg.optionalDefaultInt64Field = protoInt64.zero;
@@ -181,7 +181,7 @@ describe("clearField()", () => {
       msg.optionaldefaultgroup = create(
         proto2_ts.Proto2Message_OptionalDefaultGroupDesc,
       );
-      msg.optionalDefaultWrappedDoubleField = 0;
+      msg.optionalDefaultWrappedUint32Field = 66;
       // repeated
       msg.repeatedStringField = ["abc"];
       // map
@@ -198,7 +198,7 @@ describe("clearField()", () => {
       "requiredEnumField",
       "requiredMessageField",
       "requiredgroup",
-      "requiredWrappedDoubleField",
+      "requiredWrappedUint32Field",
       // required with default
       "requiredDefaultStringField",
       "requiredDefaultInt64Field",
@@ -207,7 +207,7 @@ describe("clearField()", () => {
       "requiredDefaultEnumField",
       "requiredDefaultMessageField",
       "requireddefaultgroup",
-      "requiredDefaultWrappedDoubleField",
+      "requiredDefaultWrappedUint32Field",
       // optional
       "optionalStringField",
       "optionalInt64Field",
@@ -216,7 +216,7 @@ describe("clearField()", () => {
       "optionalEnumField",
       "optionalMessageField",
       "optionalgroup",
-      "optionalWrappedDoubleField",
+      "optionalWrappedUint32Field",
       // optional with default
       "optionalDefaultStringField",
       "optionalDefaultInt64Field",
@@ -225,7 +225,7 @@ describe("clearField()", () => {
       "optionalDefaultEnumField",
       "optionalDefaultMessageField",
       "optionaldefaultgroup",
-      "optionalDefaultWrappedDoubleField",
+      "optionalDefaultWrappedUint32Field",
       // repeated
       "repeatedStringField",
       // map
