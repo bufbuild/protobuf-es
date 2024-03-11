@@ -66,7 +66,7 @@ import type {
 import { createDescriptorSet } from "./create-descriptor-set.js";
 import type { Extension } from "./extension.js";
 import type { ExtensionFieldSource } from "./private/extensions.js";
-import { isMessage } from "./is-message";
+import { isMessage } from "./is-message.js";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [

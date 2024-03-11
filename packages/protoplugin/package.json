@@ -21,19 +21,11 @@
   "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
-      "node": {
-        "import": "./dist/proxy/index.js",
-        "require": "./dist/cjs/index.js"
-      },
       "module": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./ecmascript": {
-      "node": {
-        "import": "./dist/proxy/ecmascript/index.js",
-        "require": "./dist/cjs/ecmascript/index.js"
-      },
       "module": "./dist/esm/ecmascript/index.js",
       "import": "./dist/esm/ecmascript/index.js",
       "require": "./dist/cjs/ecmascript/index.js"
