@@ -21,7 +21,6 @@ import type {
   DescOneof,
 } from "@bufbuild/protobuf";
 import {
-  createDescriptorSet,
   Edition,
   FeatureSet,
   FeatureSet_EnumType,
@@ -52,14 +51,17 @@ import {
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join } from "node:path";
 import assert from "node:assert";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
-const fdsBytes = readFileSync("./descriptorset.binpb");
+const fileDescriptorSet = FileDescriptorSet.fromBinary(
+  readFileSync("./descriptorset.binpb"),
+);
 
 describe("DescriptorSet", () => {
   describe("file", () => {
     test("proto2 syntax", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const descFile = set.files.find((f) => f.name == "extra/proto2");
+      const set = createDescFileSet(fileDescriptorSet);
+      const descFile = set.getFile("extra/proto2.proto");
       expect(descFile).toBeDefined();
       expect(descFile?.syntax).toBe("proto2");
       expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
@@ -75,8 +77,8 @@ describe("DescriptorSet", () => {
       );
     });
     test("proto3 syntax", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const descFile = set.files.find((f) => f.name == "extra/proto3");
+      const set = createDescFileSet(fileDescriptorSet);
+      const descFile = set.getFile("extra/proto3.proto");
       expect(descFile).toBeDefined();
       expect(descFile?.syntax).toBe("proto3");
       expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
@@ -92,9 +94,9 @@ describe("DescriptorSet", () => {
       );
     });
     test("edition 2023", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const descFile = set.files.find(
-        (f) => f.name == "editions/edition2023-default-features",
+      const set = createDescFileSet(fileDescriptorSet);
+      const descFile = set.getFile(
+        "editions/edition2023-default-features.proto",
       );
       expect(descFile).toBeDefined();
       expect(descFile?.syntax).toBe("editions");
@@ -118,11 +120,11 @@ describe("DescriptorSet", () => {
         "b.proto": `syntax="proto3";`,
         "c.proto": `syntax="proto3";`,
       });
-      const set = createDescriptorSet(fdsBin);
-      const a = set.files[2];
-      expect(a.name).toBe("a");
-      expect(a.dependencies.length).toBe(2);
-      expect(a.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
+      const set = createDescFileSet(FileDescriptorSet.fromBinary(fdsBin));
+      const a = set.getFile("a.proto");
+      expect(a?.name).toBe("a");
+      expect(a?.dependencies.length).toBe(2);
+      expect(a?.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
     });
   });
   describe("edition feature options", () => {
@@ -146,7 +148,7 @@ describe("DescriptorSet", () => {
         service S {
           rpc A(M) returns (M);
         }`);
-      const { files, messages, enums, services } = createDescriptorSet(bin);
+      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin));
       const wantFeatures = new FeatureSet({
         fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
         enumType: FeatureSet_EnumType.CLOSED,
@@ -155,23 +157,25 @@ describe("DescriptorSet", () => {
         messageEncoding: FeatureSet_MessageEncoding.DELIMITED,
         jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
       });
-      expect(files[0].getFeatures()).toStrictEqual(wantFeatures);
-      expect(messages.get("M")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(messages.get("M.NestedMessage")?.getFeatures()).toStrictEqual(
+      expect(set.getFile("input.proto")?.getFeatures()).toStrictEqual(
+        wantFeatures,
+      );
+      expect(set.getMessage("M")?.getFeatures()).toStrictEqual(wantFeatures);
+      expect(set.getMessage("M.NestedMessage")?.getFeatures()).toStrictEqual(
         wantFeatures,
       );
       expect(
-        messages.get("M.NestedMessage.DeepNestedMessage")?.getFeatures(),
+        set.getMessage("M.NestedMessage.DeepNestedMessage")?.getFeatures(),
       ).toStrictEqual(wantFeatures);
-      expect(enums.get("E")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(enums.get("M.NestedEnum")?.getFeatures()).toStrictEqual(
+      expect(set.getEnum("E")?.getFeatures()).toStrictEqual(wantFeatures);
+      expect(set.getEnum("M.NestedEnum")?.getFeatures()).toStrictEqual(
         wantFeatures,
       );
       expect(
-        enums.get("M.NestedMessage.DeepNestedEnum")?.getFeatures(),
+        set.getEnum("M.NestedMessage.DeepNestedEnum")?.getFeatures(),
       ).toStrictEqual(wantFeatures);
-      expect(services.get("S")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(services.get("S")?.methods[0].getFeatures()).toStrictEqual(
+      expect(set.getService("S")?.getFeatures()).toStrictEqual(wantFeatures);
+      expect(set.getService("S")?.methods[0].getFeatures()).toStrictEqual(
         wantFeatures,
       );
     });
@@ -194,7 +198,7 @@ describe("DescriptorSet", () => {
             }
           }
         }`);
-      const { messages, enums } = createDescriptorSet(bin);
+      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin));
 
       function expectJsonFormat(
         jsonFormat: FeatureSet_JsonFormat,
@@ -216,30 +220,33 @@ describe("DescriptorSet", () => {
         }
       }
 
-      expectJsonFormat(FeatureSet_JsonFormat.ALLOW, enums.get("EnumJsonAllow"));
       expectJsonFormat(
         FeatureSet_JsonFormat.ALLOW,
-        messages.get("MessageJsonAllow"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.ALLOW,
-        enums.get("MessageJsonAllow.EnumJsonAllow"),
+        set.getEnum("EnumJsonAllow"),
       );
       expectJsonFormat(
         FeatureSet_JsonFormat.ALLOW,
-        messages.get("MessageJsonAllow.MessageJsonAllow"),
+        set.getMessage("MessageJsonAllow"),
+      );
+      expectJsonFormat(
+        FeatureSet_JsonFormat.ALLOW,
+        set.getEnum("MessageJsonAllow.EnumJsonAllow"),
+      );
+      expectJsonFormat(
+        FeatureSet_JsonFormat.ALLOW,
+        set.getMessage("MessageJsonAllow.MessageJsonAllow"),
       );
       expectJsonFormat(
         FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        messages.get("MessageJsonAllow.MessageJsonLegacy"),
+        set.getMessage("MessageJsonAllow.MessageJsonLegacy"),
       );
       expectJsonFormat(
         FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        enums.get("MessageJsonAllow.MessageJsonLegacy.EnumJsonLegacy"),
+        set.getEnum("MessageJsonAllow.MessageJsonLegacy.EnumJsonLegacy"),
       );
       expectJsonFormat(
         FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        messages.get("MessageJsonAllow.MessageJsonLegacy.MessageJsonLegacy"),
+        set.getMessage("MessageJsonAllow.MessageJsonLegacy.MessageJsonLegacy"),
       );
     });
   });
@@ -253,11 +260,11 @@ describe("DescriptorSet", () => {
         const fdsBin = await new UpstreamProtobuf().compileToDescriptorSet(
           syntax + ";",
         );
-        const set = createDescriptorSet(fdsBin, {
+        const set = createDescFileSet(FileDescriptorSet.fromBinary(fdsBin), {
           featureSetDefaults: fsd,
         });
-        expect(set.files.length).toBe(1);
-        expect(set.files[0].getFeatures()).toBeDefined();
+        expect(Array.from(set.files).length).toBe(1);
+        expect(Array.from(set.files)[0].getFeatures()).toBeDefined();
       },
     );
     test("raises error when parsing unsupported edition from the past", async () => {
@@ -265,10 +272,11 @@ describe("DescriptorSet", () => {
       const featureSetDefaults = FeatureSetDefaults.fromBinary(
         await upstream.getFeatureSetDefaults("PROTO3", "2023"),
       );
-      const fileDescriptorSet =
-        await new UpstreamProtobuf().compileToDescriptorSet(`syntax="proto2";`);
+      const fileDescriptorSet = FileDescriptorSet.fromBinary(
+        await new UpstreamProtobuf().compileToDescriptorSet(`syntax="proto2";`),
+      );
       expect(() =>
-        createDescriptorSet(fileDescriptorSet, {
+        createDescFileSet(fileDescriptorSet, {
           featureSetDefaults,
         }),
       ).toThrow(
@@ -285,7 +293,7 @@ describe("DescriptorSet", () => {
       );
       fileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
       expect(() =>
-        createDescriptorSet(fileDescriptorSet, {
+        createDescFileSet(fileDescriptorSet, {
           featureSetDefaults,
         }),
       ).toThrow(
@@ -324,8 +332,10 @@ describe("DescriptorSet", () => {
         },
         { includeImports: true },
       );
-      const set = createDescriptorSet(bin, { featureSetDefaults });
-      const file = set.files.find((f) => f.name === "input");
+      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin), {
+        featureSetDefaults,
+      });
+      const file = set.getFile("input.proto");
       expect(file).toBeDefined();
       if (file !== undefined) {
         const tf = getTestFeatures(file);
@@ -345,8 +355,10 @@ describe("DescriptorSet", () => {
         },
         { includeImports: true },
       );
-      const set = createDescriptorSet(bin, { featureSetDefaults });
-      const file = set.files.find((f) => f.name === "input");
+      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin), {
+        featureSetDefaults,
+      });
+      const file = set.getFile("input.proto");
       expect(file).toBeDefined();
       if (file !== undefined) {
         const tf = getTestFeatures(file);
@@ -372,7 +384,9 @@ describe("DescriptorSet", () => {
           repeated int32 explicitly_expanded = 5 [packed = false];
         }
       `);
-        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        const fields = createDescFileSet(
+          FileDescriptorSet.fromBinary(bin),
+        ).getMessage("M")?.fields;
         assert(fields);
         {
           const f = fields.shift();
@@ -411,7 +425,9 @@ describe("DescriptorSet", () => {
           repeated int32 explicitly_expanded = 5 [packed = false];
         }
       `);
-        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        const fields = createDescFileSet(
+          FileDescriptorSet.fromBinary(bin),
+        ).getMessage("M")?.fields;
         assert(fields);
         {
           const f = fields.shift();
@@ -450,7 +466,9 @@ describe("DescriptorSet", () => {
           repeated int32 explicitly_expanded = 5 [features.repeated_field_encoding = EXPANDED];
         }
       `);
-        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        const fields = createDescFileSet(
+          FileDescriptorSet.fromBinary(bin),
+        ).getMessage("M")?.fields;
         assert(fields);
         {
           const f = fields.shift();
@@ -489,7 +507,9 @@ describe("DescriptorSet", () => {
           repeated int32 explicitly_packed = 4 [features.repeated_field_encoding = PACKED];
         }
       `);
-        const fields = createDescriptorSet(bin).messages.get("M")?.fields;
+        const fields = createDescFileSet(
+          FileDescriptorSet.fromBinary(bin),
+        ).getMessage("M")?.fields;
         assert(fields);
         {
           const f = fields.shift();
@@ -518,7 +538,9 @@ describe("DescriptorSet", () => {
             optional int32 f = 1;
           }
         `);
-      const field = createDescriptorSet(bin).messages.get("M")?.fields[0];
+      const field = createDescFileSet(
+        FileDescriptorSet.fromBinary(bin),
+      ).getMessage("M")?.fields[0];
       assert(field);
 
       // always available
@@ -767,10 +789,8 @@ describe("DescriptorSet", () => {
     });
   });
   test("knows extension", () => {
-    const set = createDescriptorSet(fdsBytes);
-    const ext = set.extensions.get(
-      "protobuf_unittest.optional_int32_extension",
-    );
+    const set = createDescFileSet(fileDescriptorSet);
+    const ext = set.getExtension("protobuf_unittest.optional_int32_extension");
     expect(ext).toBeDefined();
     expect(ext?.name).toBe("optional_int32_extension");
     expect(ext?.typeName).toBe("protobuf_unittest.optional_int32_extension");
@@ -790,8 +810,8 @@ describe("DescriptorSet", () => {
     );
   });
   test("knows nested extension", () => {
-    const set = createDescriptorSet(fdsBytes);
-    const ext = set.extensions.get(
+    const set = createDescFileSet(fileDescriptorSet);
+    const ext = set.getExtension(
       "protobuf_unittest.TestNestedExtension.nested_string_extension",
     );
     expect(ext).toBeDefined();
@@ -807,15 +827,15 @@ describe("DescriptorSet", () => {
     expect(ext?.declarationString()).toBe(
       "optional string nested_string_extension = 1003",
     );
-    const ext2 = set.messages
-      .get(TestNestedExtension.typeName)
+    const ext2 = set
+      .getMessage(TestNestedExtension.typeName)
       ?.nestedExtensions.find((ext) => ext.name === "nested_string_extension");
     expect(ext2).toBe(ext);
   });
   describe("declarationString()", () => {
     test("for field with options", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const message = set.messages.get(JsonNamesMessage.typeName);
+      const set = createDescFileSet(fileDescriptorSet);
+      const message = set.getMessage(JsonNamesMessage.typeName);
       expect(message).toBeDefined();
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
@@ -825,8 +845,8 @@ describe("DescriptorSet", () => {
       }
     });
     test("for field with labels", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const message = set.messages.get(RepeatedScalarValuesMessage.typeName);
+      const set = createDescFileSet(fileDescriptorSet);
+      const message = set.getMessage(RepeatedScalarValuesMessage.typeName);
       expect(message).toBeDefined();
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
@@ -836,16 +856,16 @@ describe("DescriptorSet", () => {
       }
     });
     test("for map field", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const message = set.messages.get(MapsMessage.typeName);
+      const set = createDescFileSet(fileDescriptorSet);
+      const message = set.getMessage(MapsMessage.typeName);
       const got = message?.fields
         .find((f) => f.name === "int32_msg_field")
         ?.declarationString();
       expect(got).toBe("map<int32, spec.MapsMessage> int32_msg_field = 10");
     });
     test("for enum value", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const e = set.enums.get(proto3.getEnumType(SimpleEnum).typeName);
+      const set = createDescFileSet(fileDescriptorSet);
+      const e = set.getEnum(proto3.getEnumType(SimpleEnum).typeName);
       const got = e?.values
         .find((v) => v.name === "SIMPLE_ZERO")
         ?.declarationString();
@@ -854,12 +874,8 @@ describe("DescriptorSet", () => {
   });
   describe("getComments()", () => {
     describe("for file", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const file = set.files.find((file) =>
-        file.messages.some(
-          (message) => message.typeName === MessageWithComments.typeName,
-        ),
-      );
+      const set = createDescFileSet(fileDescriptorSet);
+      const file = set.getMessage(MessageWithComments.typeName)?.file;
       test("syntax", () => {
         const comments = file?.getSyntaxComments();
         expect(comments).toBeDefined();
@@ -882,8 +898,8 @@ describe("DescriptorSet", () => {
       });
     });
     test("for message", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const message = set.messages.get(MessageWithComments.typeName);
+      const set = createDescFileSet(fileDescriptorSet);
+      const message = set.getMessage(MessageWithComments.typeName);
       const comments = message?.getComments();
       expect(comments).toBeDefined();
       if (comments) {
@@ -896,9 +912,9 @@ describe("DescriptorSet", () => {
       }
     });
     test("for field", () => {
-      const set = createDescriptorSet(fdsBytes);
-      const field = set.messages
-        .get(MessageWithComments.typeName)
+      const set = createDescFileSet(fileDescriptorSet);
+      const field = set
+        .getMessage(MessageWithComments.typeName)
         ?.fields.find((field) => field.name === "foo");
       const comments = field?.getComments();
       expect(comments).toBeDefined();

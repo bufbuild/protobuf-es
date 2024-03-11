@@ -13,11 +13,12 @@
 // limitations under the License.
 
 import {
-  createDescriptorSet,
   createRegistryFromDescriptors,
+  FileDescriptorSet,
   LongType,
   protoInt64,
 } from "@bufbuild/protobuf";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 import { readFileSync } from "fs";
 import { describe, expect, test } from "@jest/globals";
 import {
@@ -187,8 +188,8 @@ describe("createDescriptorSet with jstype", () => {
 });
 
 describe("createRegistryFromDescriptors with jstype", () => {
-  const descriptorSet = createDescriptorSet(
-    readFileSync("./descriptorset.binpb"),
+  const set = createDescFileSet(
+    FileDescriptorSet.fromBinary(readFileSync("./descriptorset.binpb")),
   );
   testAllFieldsLongType("spec.JSTypeOmittedMessage", LongType.BIGINT);
   testAllFieldsLongType("spec.JSTypeStringMessage", LongType.STRING);
@@ -200,7 +201,7 @@ describe("createRegistryFromDescriptors with jstype", () => {
   testAllFieldsLongType("spec.JSTypeProto2NumberMessage", LongType.BIGINT);
 
   function testAllFieldsLongType(messageTypeName: string, longType: LongType) {
-    const mt = descriptorSet.messages.get(messageTypeName);
+    const mt = set.getMessage(messageTypeName);
     assert(mt);
     for (const field of mt.fields) {
       test(`${messageTypeName} field #${field.number}`, () => {
