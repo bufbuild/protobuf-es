@@ -186,7 +186,7 @@ interface CreateDescFileSetOptions {
 
 /**
  * Create a set of descriptors (including file descriptors) from
- * a FileDescriptorSet.
+ * a google.protobuf.FileDescriptorSet message.
  */
 export function createDescFileSet(
   fileDescriptorSet: FileDescriptorSet,
@@ -195,8 +195,8 @@ export function createDescFileSet(
 
 /**
  * Create a set of descriptors (including file descriptors) from
- * a FileDescriptorProto. For every import, the given resolver
- * function is called.
+ * a google.protobuf.FileDescriptorProto message. For every import, the given
+ * resolver function is called.
  */
 export function createDescFileSet(
   fileDescriptorProto: FileDescriptorProto,
