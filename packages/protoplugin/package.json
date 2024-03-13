@@ -13,7 +13,7 @@
     "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
-    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . ecmascript",
+    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . ecmascript next next/ecmascript",
     "attw": "attw --pack"
   },
   "type": "module",
@@ -37,12 +37,36 @@
       "module": "./dist/esm/ecmascript/index.js",
       "import": "./dist/esm/ecmascript/index.js",
       "require": "./dist/cjs/ecmascript/index.js"
+    },
+    "./next": {
+      "node": {
+        "import": "./dist/proxy/next/index.js",
+        "require": "./dist/cjs/next/index.js"
+      },
+      "module": "./dist/esm/next/index.js",
+      "import": "./dist/esm/next/index.js",
+      "require": "./dist/cjs/next/index.js"
+    },
+    "./next/ecmascript": {
+      "node": {
+        "import": "./dist/proxy/next/ecmascript/index.js",
+        "require": "./dist/cjs/next/ecmascript/index.js"
+      },
+      "module": "./dist/esm/next/ecmascript/index.js",
+      "import": "./dist/esm/next/ecmascript/index.js",
+      "require": "./dist/cjs/next/ecmascript/index.js"
     }
   },
   "typesVersions": {
     "*": {
       "ecmascript": [
         "./dist/cjs/ecmascript/index.d.ts"
+      ],
+      "next": [
+        "./dist/cjs/next/index.d.ts"
+      ],
+      "next/ecmascript": [
+        "./dist/cjs/next/ecmascript/index.d.ts"
       ]
     }
   },

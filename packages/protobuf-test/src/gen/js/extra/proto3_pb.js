@@ -16,7 +16,7 @@
 // @generated from file extra/proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { proto3, UInt32Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -31,7 +31,92 @@ export const Proto3Enum = proto3.makeEnum(
 );
 
 /**
+ * @generated from message spec.Proto3Message
+ */
+export const Proto3Message = proto3.makeMessageType(
+  "spec.Proto3Message",
+  () => [
+    { no: 1, name: "singular_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "singular_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "singular_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "singular_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 103, name: "singular_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "singular_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */ },
+    { no: 5, name: "singular_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 6, name: "singular_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "singular_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 8, name: "singular_message_field", kind: "message", T: Proto3Message },
+    { no: 211, name: "singular_wrapped_uint32_field", kind: "message", T: UInt32Value },
+    { no: 9, name: "optional_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 10, name: "optional_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 11, name: "optional_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 12, name: "optional_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 106, name: "optional_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 105, name: "optional_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, opt: true },
+    { no: 13, name: "optional_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 14, name: "optional_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 15, name: "optional_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
+    { no: 16, name: "optional_message_field", kind: "message", T: Proto3Message, opt: true },
+    { no: 212, name: "optional_wrapped_uint32_field", kind: "message", T: UInt32Value, opt: true },
+    { no: 17, name: "repeated_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 18, name: "repeated_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 19, name: "repeated_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 20, name: "repeated_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 109, name: "repeated_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 108, name: "repeated_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, repeated: true },
+    { no: 21, name: "repeated_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 22, name: "repeated_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 23, name: "repeated_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), repeated: true },
+    { no: 24, name: "repeated_message_field", kind: "message", T: Proto3Message, repeated: true },
+    { no: 213, name: "repeated_wrapped_uint32_field", kind: "message", T: UInt32Value, repeated: true },
+    { no: 25, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 26, name: "packed_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 27, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 28, name: "unpacked_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: false },
+    { no: 29, name: "unpacked_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: false },
+    { no: 30, name: "unpacked_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: false },
+    { no: 31, name: "oneof_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "either" },
+    { no: 32, name: "oneof_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "either" },
+    { no: 33, name: "oneof_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "either" },
+    { no: 34, name: "oneof_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 112, name: "oneof_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 111, name: "oneof_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, oneof: "either" },
+    { no: 35, name: "oneof_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "either" },
+    { no: 36, name: "oneof_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "either" },
+    { no: 37, name: "oneof_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), oneof: "either" },
+    { no: 38, name: "oneof_message_field", kind: "message", T: Proto3Message, oneof: "either" },
+    { no: 204, name: "oneof_wrapped_uint32_field", kind: "message", T: UInt32Value, oneof: "either" },
+    { no: 39, name: "map_string_string_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 40, name: "map_int32_int32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
+    { no: 41, name: "map_bool_bool_field", kind: "map", K: 8 /* ScalarType.BOOL */, V: {kind: "scalar", T: 8 /* ScalarType.BOOL */} },
+    { no: 42, name: "map_int64_int64_field", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "scalar", T: 3 /* ScalarType.INT64 */} },
+    { no: 43, name: "map_int32_enum_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto3.getEnumType(Proto3Enum)} },
+    { no: 44, name: "map_int32_message_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Proto3Message} },
+    { no: 205, name: "map_int32_wrapped_uint32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: UInt32Value} },
+  ],
+);
+
+/**
+ * @generated from message spec.Proto3RepeatedMessage
+ * @deprecated
+ */
+export const Proto3RepeatedMessage = proto3.makeMessageType(
+  "spec.Proto3RepeatedMessage",
+  () => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), repeated: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage, repeated: true },
+  ],
+);
+
+/**
  * @generated from message spec.Proto3PackedMessage
+ * @deprecated
  */
 export const Proto3PackedMessage = proto3.makeMessageType(
   "spec.Proto3PackedMessage",
@@ -44,6 +129,7 @@ export const Proto3PackedMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
+ * @deprecated
  */
 export const Proto3UnpackedMessage = proto3.makeMessageType(
   "spec.Proto3UnpackedMessage",
@@ -56,6 +142,7 @@ export const Proto3UnpackedMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.Proto3UnspecifiedPackedMessage
+ * @deprecated
  */
 export const Proto3UnspecifiedPackedMessage = proto3.makeMessageType(
   "spec.Proto3UnspecifiedPackedMessage",
@@ -68,6 +155,7 @@ export const Proto3UnspecifiedPackedMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
+ * @deprecated
  */
 export const Proto3UnlabelledMessage = proto3.makeMessageType(
   "spec.Proto3UnlabelledMessage",
@@ -85,6 +173,7 @@ export const Proto3UnlabelledMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.Proto3OptionalMessage
+ * @deprecated
  */
 export const Proto3OptionalMessage = proto3.makeMessageType(
   "spec.Proto3OptionalMessage",

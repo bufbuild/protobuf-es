@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, UInt32Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -46,7 +46,477 @@ proto3.util.setEnumType(Proto3Enum, "spec.Proto3Enum", [
 ]);
 
 /**
+ * @generated from message spec.Proto3Message
+ */
+export class Proto3Message extends Message<Proto3Message> {
+  /**
+   * @generated from field: string singular_string_field = 1;
+   */
+  singularStringField = "";
+
+  /**
+   * @generated from field: bytes singular_bytes_field = 2;
+   */
+  singularBytesField = new Uint8Array(0);
+
+  /**
+   * @generated from field: int32 singular_int32_field = 3;
+   */
+  singularInt32Field = 0;
+
+  /**
+   * @generated from field: int64 singular_int64_field = 4;
+   */
+  singularInt64Field = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 singular_int64_js_number_field = 103 [jstype = JS_NUMBER];
+   */
+  singularInt64JsNumberField = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 singular_int64_js_string_field = 102 [jstype = JS_STRING];
+   */
+  singularInt64JsStringField = "0";
+
+  /**
+   * @generated from field: float singular_float_field = 5;
+   */
+  singularFloatField = 0;
+
+  /**
+   * @generated from field: bool singular_bool_field = 6;
+   */
+  singularBoolField = false;
+
+  /**
+   * @generated from field: spec.Proto3Enum singular_enum_field = 7;
+   */
+  singularEnumField = Proto3Enum.UNSPECIFIED;
+
+  /**
+   * @generated from field: spec.Proto3Message singular_message_field = 8;
+   */
+  singularMessageField?: Proto3Message;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value singular_wrapped_uint32_field = 211;
+   */
+  singularWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: optional string optional_string_field = 9;
+   */
+  optionalStringField?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes_field = 10;
+   */
+  optionalBytesField?: Uint8Array;
+
+  /**
+   * @generated from field: optional int32 optional_int32_field = 11;
+   */
+  optionalInt32Field?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_field = 12;
+   */
+  optionalInt64Field?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_number_field = 106 [jstype = JS_NUMBER];
+   */
+  optionalInt64JsNumberField?: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_string_field = 105 [jstype = JS_STRING];
+   */
+  optionalInt64JsStringField?: string;
+
+  /**
+   * @generated from field: optional float optional_float_field = 13;
+   */
+  optionalFloatField?: number;
+
+  /**
+   * @generated from field: optional bool optional_bool_field = 14;
+   */
+  optionalBoolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto3Enum optional_enum_field = 15;
+   */
+  optionalEnumField?: Proto3Enum;
+
+  /**
+   * @generated from field: optional spec.Proto3Message optional_message_field = 16;
+   */
+  optionalMessageField?: Proto3Message;
+
+  /**
+   * @generated from field: optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 212;
+   */
+  optionalWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: repeated string repeated_string_field = 17;
+   */
+  repeatedStringField: string[] = [];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes_field = 18;
+   */
+  repeatedBytesField: Uint8Array[] = [];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_field = 19;
+   */
+  repeatedInt32Field: number[] = [];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_field = 20;
+   */
+  repeatedInt64Field: bigint[] = [];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_number_field = 109 [jstype = JS_NUMBER];
+   */
+  repeatedInt64JsNumberField: bigint[] = [];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_string_field = 108 [jstype = JS_STRING];
+   */
+  repeatedInt64JsStringField: string[] = [];
+
+  /**
+   * @generated from field: repeated float repeated_float_field = 21;
+   */
+  repeatedFloatField: number[] = [];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_field = 22;
+   */
+  repeatedBoolField: boolean[] = [];
+
+  /**
+   * @generated from field: repeated spec.Proto3Enum repeated_enum_field = 23;
+   */
+  repeatedEnumField: Proto3Enum[] = [];
+
+  /**
+   * @generated from field: repeated spec.Proto3Message repeated_message_field = 24;
+   */
+  repeatedMessageField: Proto3Message[] = [];
+
+  /**
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 213;
+   */
+  repeatedWrappedUint32Field: UInt32Value[] = [];
+
+  /**
+   * @generated from field: repeated double packed_double_field = 25 [packed = true];
+   */
+  packedDoubleField: number[] = [];
+
+  /**
+   * @generated from field: repeated uint32 packed_uint32_field = 26 [packed = true];
+   */
+  packedUint32Field: number[] = [];
+
+  /**
+   * @generated from field: repeated uint64 packed_uint64_field = 27 [packed = true];
+   */
+  packedUint64Field: bigint[] = [];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 28 [packed = false];
+   */
+  unpackedDoubleField: number[] = [];
+
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32_field = 29 [packed = false];
+   */
+  unpackedUint32Field: number[] = [];
+
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64_field = 30 [packed = false];
+   */
+  unpackedUint64Field: bigint[] = [];
+
+  /**
+   * @generated from oneof spec.Proto3Message.either
+   */
+  either: {
+    /**
+     * @generated from field: string oneof_string_field = 31;
+     */
+    value: string;
+    case: "oneofStringField";
+  } | {
+    /**
+     * @generated from field: bytes oneof_bytes_field = 32;
+     */
+    value: Uint8Array;
+    case: "oneofBytesField";
+  } | {
+    /**
+     * @generated from field: int32 oneof_int32_field = 33;
+     */
+    value: number;
+    case: "oneofInt32Field";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_field = 34;
+     */
+    value: bigint;
+    case: "oneofInt64Field";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_js_number_field = 112 [jstype = JS_NUMBER];
+     */
+    value: bigint;
+    case: "oneofInt64JsNumberField";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_js_string_field = 111 [jstype = JS_STRING];
+     */
+    value: string;
+    case: "oneofInt64JsStringField";
+  } | {
+    /**
+     * @generated from field: float oneof_float_field = 35;
+     */
+    value: number;
+    case: "oneofFloatField";
+  } | {
+    /**
+     * @generated from field: bool oneof_bool_field = 36;
+     */
+    value: boolean;
+    case: "oneofBoolField";
+  } | {
+    /**
+     * @generated from field: spec.Proto3Enum oneof_enum_field = 37;
+     */
+    value: Proto3Enum;
+    case: "oneofEnumField";
+  } | {
+    /**
+     * @generated from field: spec.Proto3Message oneof_message_field = 38;
+     */
+    value: Proto3Message;
+    case: "oneofMessageField";
+  } | {
+    /**
+     * @generated from field: google.protobuf.UInt32Value oneof_wrapped_uint32_field = 204;
+     */
+    value: UInt32Value;
+    case: "oneofWrappedUint32Field";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  /**
+   * @generated from field: map<string, string> map_string_string_field = 39;
+   */
+  mapStringStringField: { [key: string]: string } = {};
+
+  /**
+   * @generated from field: map<int32, int32> map_int32_int32_field = 40;
+   */
+  mapInt32Int32Field: { [key: number]: number } = {};
+
+  /**
+   * @generated from field: map<bool, bool> map_bool_bool_field = 41;
+   */
+  mapBoolBoolField: { [key: string]: boolean } = {};
+
+  /**
+   * @generated from field: map<int64, int64> map_int64_int64_field = 42;
+   */
+  mapInt64Int64Field: { [key: string]: bigint } = {};
+
+  /**
+   * @generated from field: map<int32, spec.Proto3Enum> map_int32_enum_field = 43;
+   */
+  mapInt32EnumField: { [key: number]: Proto3Enum } = {};
+
+  /**
+   * @generated from field: map<int32, spec.Proto3Message> map_int32_message_field = 44;
+   */
+  mapInt32MessageField: { [key: number]: Proto3Message } = {};
+
+  /**
+   * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 205;
+   */
+  mapInt32WrappedUint32Field: { [key: number]: UInt32Value } = {};
+
+  constructor(data?: PartialMessage<Proto3Message>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.Proto3Message";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "singular_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "singular_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "singular_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "singular_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 103, name: "singular_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "singular_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */ },
+    { no: 5, name: "singular_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
+    { no: 6, name: "singular_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: "singular_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 8, name: "singular_message_field", kind: "message", T: Proto3Message },
+    { no: 211, name: "singular_wrapped_uint32_field", kind: "message", T: UInt32Value },
+    { no: 9, name: "optional_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 10, name: "optional_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 11, name: "optional_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 12, name: "optional_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 106, name: "optional_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 105, name: "optional_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, opt: true },
+    { no: 13, name: "optional_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
+    { no: 14, name: "optional_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
+    { no: 15, name: "optional_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), opt: true },
+    { no: 16, name: "optional_message_field", kind: "message", T: Proto3Message, opt: true },
+    { no: 212, name: "optional_wrapped_uint32_field", kind: "message", T: UInt32Value, opt: true },
+    { no: 17, name: "repeated_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 18, name: "repeated_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 19, name: "repeated_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 20, name: "repeated_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 109, name: "repeated_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 108, name: "repeated_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, repeated: true },
+    { no: 21, name: "repeated_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 22, name: "repeated_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 23, name: "repeated_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), repeated: true },
+    { no: 24, name: "repeated_message_field", kind: "message", T: Proto3Message, repeated: true },
+    { no: 213, name: "repeated_wrapped_uint32_field", kind: "message", T: UInt32Value, repeated: true },
+    { no: 25, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
+    { no: 26, name: "packed_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true },
+    { no: 27, name: "packed_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 28, name: "unpacked_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: false },
+    { no: 29, name: "unpacked_uint32_field", kind: "scalar", T: 13 /* ScalarType.UINT32 */, repeated: true, packed: false },
+    { no: 30, name: "unpacked_uint64_field", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true, packed: false },
+    { no: 31, name: "oneof_string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "either" },
+    { no: 32, name: "oneof_bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "either" },
+    { no: 33, name: "oneof_int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "either" },
+    { no: 34, name: "oneof_int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 112, name: "oneof_int64_js_number_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "either" },
+    { no: 111, name: "oneof_int64_js_string_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, L: 1 /* LongType.STRING */, oneof: "either" },
+    { no: 35, name: "oneof_float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, oneof: "either" },
+    { no: 36, name: "oneof_bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "either" },
+    { no: 37, name: "oneof_enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), oneof: "either" },
+    { no: 38, name: "oneof_message_field", kind: "message", T: Proto3Message, oneof: "either" },
+    { no: 204, name: "oneof_wrapped_uint32_field", kind: "message", T: UInt32Value, oneof: "either" },
+    { no: 39, name: "map_string_string_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 40, name: "map_int32_int32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
+    { no: 41, name: "map_bool_bool_field", kind: "map", K: 8 /* ScalarType.BOOL */, V: {kind: "scalar", T: 8 /* ScalarType.BOOL */} },
+    { no: 42, name: "map_int64_int64_field", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "scalar", T: 3 /* ScalarType.INT64 */} },
+    { no: 43, name: "map_int32_enum_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto3.getEnumType(Proto3Enum)} },
+    { no: 44, name: "map_int32_message_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Proto3Message} },
+    { no: 205, name: "map_int32_wrapped_uint32_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: UInt32Value} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3Message {
+    return new Proto3Message().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3Message {
+    return new Proto3Message().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3Message {
+    return new Proto3Message().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto3Message | PlainMessage<Proto3Message> | undefined, b: Proto3Message | PlainMessage<Proto3Message> | undefined): boolean {
+    return proto3.util.equals(Proto3Message, a, b);
+  }
+}
+
+/**
+ * @generated from message spec.Proto3RepeatedMessage
+ * @deprecated
+ */
+export class Proto3RepeatedMessage extends Message<Proto3RepeatedMessage> {
+  /**
+   * @generated from field: repeated string string_field = 1;
+   */
+  stringField: string[] = [];
+
+  /**
+   * @generated from field: repeated bytes bytes_field = 2;
+   */
+  bytesField: Uint8Array[] = [];
+
+  /**
+   * @generated from field: repeated int32 int32_field = 3;
+   */
+  int32Field: number[] = [];
+
+  /**
+   * @generated from field: repeated int64 int64_field = 4;
+   */
+  int64Field: bigint[] = [];
+
+  /**
+   * @generated from field: repeated float float_field = 5;
+   */
+  floatField: number[] = [];
+
+  /**
+   * @generated from field: repeated bool bool_field = 6;
+   */
+  boolField: boolean[] = [];
+
+  /**
+   * @generated from field: repeated spec.Proto3Enum enum_field = 7;
+   */
+  enumField: Proto3Enum[] = [];
+
+  /**
+   * @generated from field: repeated spec.Proto3OptionalMessage message_field = 8;
+   */
+  messageField: Proto3OptionalMessage[] = [];
+
+  constructor(data?: PartialMessage<Proto3RepeatedMessage>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.Proto3RepeatedMessage";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 3, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 4, name: "int64_field", kind: "scalar", T: 3 /* ScalarType.INT64 */, repeated: true },
+    { no: 5, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, repeated: true },
+    { no: 6, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, repeated: true },
+    { no: 7, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum), repeated: true },
+    { no: 8, name: "message_field", kind: "message", T: Proto3OptionalMessage, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3RepeatedMessage {
+    return new Proto3RepeatedMessage().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3RepeatedMessage {
+    return new Proto3RepeatedMessage().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3RepeatedMessage {
+    return new Proto3RepeatedMessage().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto3RepeatedMessage | PlainMessage<Proto3RepeatedMessage> | undefined, b: Proto3RepeatedMessage | PlainMessage<Proto3RepeatedMessage> | undefined): boolean {
+    return proto3.util.equals(Proto3RepeatedMessage, a, b);
+  }
+}
+
+/**
  * @generated from message spec.Proto3PackedMessage
+ * @deprecated
  */
 export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
   /**
@@ -96,6 +566,7 @@ export class Proto3PackedMessage extends Message<Proto3PackedMessage> {
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
+ * @deprecated
  */
 export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
   /**
@@ -145,6 +616,7 @@ export class Proto3UnpackedMessage extends Message<Proto3UnpackedMessage> {
 
 /**
  * @generated from message spec.Proto3UnspecifiedPackedMessage
+ * @deprecated
  */
 export class Proto3UnspecifiedPackedMessage extends Message<Proto3UnspecifiedPackedMessage> {
   /**
@@ -194,6 +666,7 @@ export class Proto3UnspecifiedPackedMessage extends Message<Proto3UnspecifiedPac
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
+ * @deprecated
  */
 export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
   /**
@@ -273,6 +746,7 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
 
 /**
  * @generated from message spec.Proto3OptionalMessage
+ * @deprecated
  */
 export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {
   /**

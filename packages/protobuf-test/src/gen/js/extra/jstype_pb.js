@@ -20,6 +20,7 @@ import { proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.JSTypeOmittedMessage
+ * @deprecated
  */
 export const JSTypeOmittedMessage = proto3.makeMessageType(
   "spec.JSTypeOmittedMessage",
@@ -39,6 +40,7 @@ export const JSTypeOmittedMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.JSTypeNormalMessage
+ * @deprecated
  */
 export const JSTypeNormalMessage = proto3.makeMessageType(
   "spec.JSTypeNormalMessage",
@@ -58,6 +60,7 @@ export const JSTypeNormalMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.JSTypeStringMessage
+ * @deprecated
  */
 export const JSTypeStringMessage = proto3.makeMessageType(
   "spec.JSTypeStringMessage",
@@ -77,6 +80,7 @@ export const JSTypeStringMessage = proto3.makeMessageType(
 
 /**
  * @generated from message spec.JSTypeNumberMessage
+ * @deprecated
  */
 export const JSTypeNumberMessage = proto3.makeMessageType(
   "spec.JSTypeNumberMessage",

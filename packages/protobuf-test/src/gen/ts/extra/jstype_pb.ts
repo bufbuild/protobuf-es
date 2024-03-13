@@ -21,6 +21,7 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message spec.JSTypeOmittedMessage
+ * @deprecated
  */
 export class JSTypeOmittedMessage extends Message<JSTypeOmittedMessage> {
   /**
@@ -112,6 +113,7 @@ export class JSTypeOmittedMessage extends Message<JSTypeOmittedMessage> {
 
 /**
  * @generated from message spec.JSTypeNormalMessage
+ * @deprecated
  */
 export class JSTypeNormalMessage extends Message<JSTypeNormalMessage> {
   /**
@@ -203,6 +205,7 @@ export class JSTypeNormalMessage extends Message<JSTypeNormalMessage> {
 
 /**
  * @generated from message spec.JSTypeStringMessage
+ * @deprecated
  */
 export class JSTypeStringMessage extends Message<JSTypeStringMessage> {
   /**
@@ -294,6 +297,7 @@ export class JSTypeStringMessage extends Message<JSTypeStringMessage> {
 
 /**
  * @generated from message spec.JSTypeNumberMessage
+ * @deprecated
  */
 export class JSTypeNumberMessage extends Message<JSTypeNumberMessage> {
   /**

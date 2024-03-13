@@ -21,6 +21,7 @@ import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value,
 
 /**
  * @generated from message spec.WrappersMessage
+ * @deprecated
  */
 export class WrappersMessage extends Message<WrappersMessage> {
   /**

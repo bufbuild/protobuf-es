@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, UInt32Value } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
@@ -35,7 +35,822 @@ export declare enum Proto2Enum {
 }
 
 /**
+ * First enum value must be 0 when used as map value type
+ *
+ * @generated from enum spec.Proto2EnumWithZero
+ */
+export declare enum Proto2EnumWithZero {
+  /**
+   * @generated from enum value: PROTO2_ENUM_WITH_ZERO_ZERO = 0;
+   */
+  ZERO = 0,
+
+  /**
+   * @generated from enum value: PROTO2_ENUM_WITH_ZERO_ONE = 1;
+   */
+  ONE = 1,
+}
+
+/**
+ * @generated from message spec.Proto2Message
+ */
+export declare class Proto2Message extends Message<Proto2Message> {
+  /**
+   * @generated from field: required string required_string_field = 1;
+   */
+  requiredStringField: string;
+
+  /**
+   * @generated from field: required bytes required_bytes_field = 2;
+   */
+  requiredBytesField: Uint8Array;
+
+  /**
+   * @generated from field: required int32 required_int32_field = 3;
+   */
+  requiredInt32Field: number;
+
+  /**
+   * @generated from field: required int64 required_int64_field = 4;
+   */
+  requiredInt64Field: bigint;
+
+  /**
+   * @generated from field: required int64 required_int64_js_number_field = 103 [jstype = JS_NUMBER];
+   */
+  requiredInt64JsNumberField: bigint;
+
+  /**
+   * @generated from field: required int64 required_int64_js_string_field = 102 [jstype = JS_STRING];
+   */
+  requiredInt64JsStringField: string;
+
+  /**
+   * @generated from field: required float required_float_field = 5;
+   */
+  requiredFloatField: number;
+
+  /**
+   * @generated from field: required bool required_bool_field = 6;
+   */
+  requiredBoolField: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum required_enum_field = 7;
+   */
+  requiredEnumField: Proto2Enum;
+
+  /**
+   * @generated from field: required spec.Proto2Message required_message_field = 8;
+   */
+  requiredMessageField?: Proto2Message;
+
+  /**
+   * @generated from field: required spec.Proto2Message.RequiredGroup requiredgroup = 9;
+   */
+  requiredgroup?: Proto2Message_RequiredGroup;
+
+  /**
+   * @generated from field: required google.protobuf.UInt32Value required_wrapped_uint32_field = 201;
+   */
+  requiredWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: required string required_default_string_field = 10 [default = "hello \" *\/ "];
+   */
+  requiredDefaultStringField: string;
+
+  /**
+   * @generated from field: required bytes required_default_bytes_field = 11 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   */
+  requiredDefaultBytesField: Uint8Array;
+
+  /**
+   * @generated from field: required int32 required_default_int32_field = 12 [default = 128];
+   */
+  requiredDefaultInt32Field: number;
+
+  /**
+   * @generated from field: required int64 required_default_int64_field = 13 [default = -256];
+   */
+  requiredDefaultInt64Field: bigint;
+
+  /**
+   * @generated from field: required int64 required_default_int64_js_number_field = 110 [default = -256, jstype = JS_NUMBER];
+   */
+  requiredDefaultInt64JsNumberField: bigint;
+
+  /**
+   * @generated from field: required int64 required_default_int64_js_string_field = 113 [default = -256, jstype = JS_STRING];
+   */
+  requiredDefaultInt64JsStringField: string;
+
+  /**
+   * @generated from field: required float required_default_float_field = 14 [default = -512.13];
+   */
+  requiredDefaultFloatField: number;
+
+  /**
+   * @generated from field: required bool required_default_bool_field = 15 [default = true];
+   */
+  requiredDefaultBoolField: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum required_default_enum_field = 16 [default = PROTO2_ENUM_YES];
+   */
+  requiredDefaultEnumField: Proto2Enum;
+
+  /**
+   * @generated from field: required spec.Proto2Message required_default_message_field = 17;
+   */
+  requiredDefaultMessageField?: Proto2Message;
+
+  /**
+   * @generated from field: required spec.Proto2Message.RequiredDefaultGroup requireddefaultgroup = 18;
+   */
+  requireddefaultgroup?: Proto2Message_RequiredDefaultGroup;
+
+  /**
+   * @generated from field: required google.protobuf.UInt32Value required_default_wrapped_uint32_field = 202;
+   */
+  requiredDefaultWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: optional string optional_string_field = 19;
+   */
+  optionalStringField: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes_field = 20;
+   */
+  optionalBytesField: Uint8Array;
+
+  /**
+   * @generated from field: optional int32 optional_int32_field = 21;
+   */
+  optionalInt32Field: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_field = 22;
+   */
+  optionalInt64Field: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_number_field = 106 [jstype = JS_NUMBER];
+   */
+  optionalInt64JsNumberField: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_string_field = 105 [jstype = JS_STRING];
+   */
+  optionalInt64JsStringField: string;
+
+  /**
+   * @generated from field: optional float optional_float_field = 23;
+   */
+  optionalFloatField: number;
+
+  /**
+   * @generated from field: optional bool optional_bool_field = 24;
+   */
+  optionalBoolField: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto2Enum optional_enum_field = 25;
+   */
+  optionalEnumField: Proto2Enum;
+
+  /**
+   * @generated from field: optional spec.Proto2Message optional_message_field = 26;
+   */
+  optionalMessageField?: Proto2Message;
+
+  /**
+   * @generated from field: optional spec.Proto2Message.OptionalGroup optionalgroup = 27;
+   */
+  optionalgroup?: Proto2Message_OptionalGroup;
+
+  /**
+   * @generated from field: required google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
+   */
+  optionalWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: required string optional_default_string_field = 28 [default = "hello \" *\/ "];
+   */
+  optionalDefaultStringField: string;
+
+  /**
+   * @generated from field: required bytes optional_default_bytes_field = 29 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   */
+  optionalDefaultBytesField: Uint8Array;
+
+  /**
+   * @generated from field: required int32 optional_default_int32_field = 30 [default = 128];
+   */
+  optionalDefaultInt32Field: number;
+
+  /**
+   * @generated from field: required int64 optional_default_int64_field = 31 [default = -256];
+   */
+  optionalDefaultInt64Field: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_default_int64_js_number_field = 120 [default = -256, jstype = JS_NUMBER];
+   */
+  optionalDefaultInt64JsNumberField: bigint;
+
+  /**
+   * @generated from field: optional int64 optional_default_int64_js_string_field = 121 [default = -256, jstype = JS_STRING];
+   */
+  optionalDefaultInt64JsStringField: string;
+
+  /**
+   * @generated from field: required float optional_default_float_field = 32 [default = -512.13];
+   */
+  optionalDefaultFloatField: number;
+
+  /**
+   * @generated from field: required bool optional_default_bool_field = 33 [default = true];
+   */
+  optionalDefaultBoolField: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2Enum optional_default_enum_field = 34 [default = PROTO2_ENUM_YES];
+   */
+  optionalDefaultEnumField: Proto2Enum;
+
+  /**
+   * @generated from field: optional spec.Proto2Message optional_default_message_field = 35;
+   */
+  optionalDefaultMessageField?: Proto2Message;
+
+  /**
+   * @generated from field: optional spec.Proto2Message.OptionalDefaultGroup optionaldefaultgroup = 36;
+   */
+  optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup;
+
+  /**
+   * @generated from field: required google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
+   */
+  optionalDefaultWrappedUint32Field?: number;
+
+  /**
+   * @generated from field: repeated string repeated_string_field = 37;
+   */
+  repeatedStringField: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes_field = 38;
+   */
+  repeatedBytesField: Uint8Array[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_field = 39;
+   */
+  repeatedInt32Field: number[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_field = 40;
+   */
+  repeatedInt64Field: bigint[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_number_field = 109 [jstype = JS_NUMBER];
+   */
+  repeatedInt64JsNumberField: bigint[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_string_field = 108 [jstype = JS_STRING];
+   */
+  repeatedInt64JsStringField: string[];
+
+  /**
+   * @generated from field: repeated float repeated_float_field = 41;
+   */
+  repeatedFloatField: number[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_field = 42;
+   */
+  repeatedBoolField: boolean[];
+
+  /**
+   * @generated from field: repeated spec.Proto2Enum repeated_enum_field = 43;
+   */
+  repeatedEnumField: Proto2Enum[];
+
+  /**
+   * @generated from field: repeated spec.Proto2Message repeated_message_field = 44;
+   */
+  repeatedMessageField: Proto2Message[];
+
+  /**
+   * @generated from field: repeated spec.Proto2Message.RepeatedGroup repeatedgroup = 45;
+   */
+  repeatedgroup: Proto2Message_RepeatedGroup[];
+
+  /**
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 204;
+   */
+  repeatedWrappedUint32Field: UInt32Value[];
+
+  /**
+   * @generated from field: repeated double packed_double_field = 46 [packed = true];
+   */
+  packedDoubleField: number[];
+
+  /**
+   * @generated from field: repeated uint32 packed_uint32_field = 47 [packed = true];
+   */
+  packedUint32Field: number[];
+
+  /**
+   * @generated from field: repeated uint64 packed_uint64_field = 48 [packed = true];
+   */
+  packedUint64Field: bigint[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 49 [packed = false];
+   */
+  unpackedDoubleField: number[];
+
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32_field = 50 [packed = false];
+   */
+  unpackedUint32Field: number[];
+
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64_field = 51 [packed = false];
+   */
+  unpackedUint64Field: bigint[];
+
+  /**
+   * @generated from oneof spec.Proto2Message.either
+   */
+  either: {
+    /**
+     * @generated from field: string oneof_string_field = 52;
+     */
+    value: string;
+    case: "oneofStringField";
+  } | {
+    /**
+     * @generated from field: bytes oneof_bytes_field = 53;
+     */
+    value: Uint8Array;
+    case: "oneofBytesField";
+  } | {
+    /**
+     * @generated from field: int32 oneof_int32_field = 54;
+     */
+    value: number;
+    case: "oneofInt32Field";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_field = 55;
+     */
+    value: bigint;
+    case: "oneofInt64Field";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_js_number_field = 112 [jstype = JS_NUMBER];
+     */
+    value: bigint;
+    case: "oneofInt64JsNumberField";
+  } | {
+    /**
+     * @generated from field: int64 oneof_int64_js_string_field = 111 [jstype = JS_STRING];
+     */
+    value: string;
+    case: "oneofInt64JsStringField";
+  } | {
+    /**
+     * @generated from field: float oneof_float_field = 56;
+     */
+    value: number;
+    case: "oneofFloatField";
+  } | {
+    /**
+     * @generated from field: bool oneof_bool_field = 57;
+     */
+    value: boolean;
+    case: "oneofBoolField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2Enum oneof_enum_field = 58;
+     */
+    value: Proto2Enum;
+    case: "oneofEnumField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2Message oneof_message_field = 59;
+     */
+    value: Proto2Message;
+    case: "oneofMessageField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2Message.OneofGroup oneofgroup = 60;
+     */
+    value: Proto2Message_OneofGroup;
+    case: "oneofgroup";
+  } | {
+    /**
+     * @generated from field: google.protobuf.UInt32Value oneof_wrapped_uint32_field = 205;
+     */
+    value: UInt32Value;
+    case: "oneofWrappedUint32Field";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: map<string, string> map_string_string_field = 70;
+   */
+  mapStringStringField: { [key: string]: string };
+
+  /**
+   * @generated from field: map<int32, int32> map_int32_int32_field = 71;
+   */
+  mapInt32Int32Field: { [key: number]: number };
+
+  /**
+   * @generated from field: map<bool, bool> map_bool_bool_field = 72;
+   */
+  mapBoolBoolField: { [key: string]: boolean };
+
+  /**
+   * @generated from field: map<int64, int64> map_int64_int64_field = 73;
+   */
+  mapInt64Int64Field: { [key: string]: bigint };
+
+  /**
+   * @generated from field: map<int32, spec.Proto2EnumWithZero> map_int32_enum_field = 74;
+   */
+  mapInt32EnumField: { [key: number]: Proto2EnumWithZero };
+
+  /**
+   * @generated from field: map<int32, spec.Proto2Message> map_int32_message_field = 75;
+   */
+  mapInt32MessageField: { [key: number]: Proto2Message };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 209;
+   */
+  mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
+
+  constructor(data?: PartialMessage<Proto2Message>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message;
+
+  static equals(a: Proto2Message | PlainMessage<Proto2Message> | undefined, b: Proto2Message | PlainMessage<Proto2Message> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.RequiredGroup
+ */
+export declare class Proto2Message_RequiredGroup extends Message<Proto2Message_RequiredGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_RequiredGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.RequiredGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_RequiredGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_RequiredGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_RequiredGroup;
+
+  static equals(a: Proto2Message_RequiredGroup | PlainMessage<Proto2Message_RequiredGroup> | undefined, b: Proto2Message_RequiredGroup | PlainMessage<Proto2Message_RequiredGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.RequiredDefaultGroup
+ */
+export declare class Proto2Message_RequiredDefaultGroup extends Message<Proto2Message_RequiredDefaultGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_RequiredDefaultGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.RequiredDefaultGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_RequiredDefaultGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_RequiredDefaultGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_RequiredDefaultGroup;
+
+  static equals(a: Proto2Message_RequiredDefaultGroup | PlainMessage<Proto2Message_RequiredDefaultGroup> | undefined, b: Proto2Message_RequiredDefaultGroup | PlainMessage<Proto2Message_RequiredDefaultGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.OptionalGroup
+ */
+export declare class Proto2Message_OptionalGroup extends Message<Proto2Message_OptionalGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_OptionalGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.OptionalGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_OptionalGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_OptionalGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_OptionalGroup;
+
+  static equals(a: Proto2Message_OptionalGroup | PlainMessage<Proto2Message_OptionalGroup> | undefined, b: Proto2Message_OptionalGroup | PlainMessage<Proto2Message_OptionalGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.OptionalDefaultGroup
+ */
+export declare class Proto2Message_OptionalDefaultGroup extends Message<Proto2Message_OptionalDefaultGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_OptionalDefaultGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.OptionalDefaultGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_OptionalDefaultGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_OptionalDefaultGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_OptionalDefaultGroup;
+
+  static equals(a: Proto2Message_OptionalDefaultGroup | PlainMessage<Proto2Message_OptionalDefaultGroup> | undefined, b: Proto2Message_OptionalDefaultGroup | PlainMessage<Proto2Message_OptionalDefaultGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.RepeatedGroup
+ */
+export declare class Proto2Message_RepeatedGroup extends Message<Proto2Message_RepeatedGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_RepeatedGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.RepeatedGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_RepeatedGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_RepeatedGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_RepeatedGroup;
+
+  static equals(a: Proto2Message_RepeatedGroup | PlainMessage<Proto2Message_RepeatedGroup> | undefined, b: Proto2Message_RepeatedGroup | PlainMessage<Proto2Message_RepeatedGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2Message.OneofGroup
+ */
+export declare class Proto2Message_OneofGroup extends Message<Proto2Message_OneofGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2Message_OneofGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2Message.OneofGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2Message_OneofGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2Message_OneofGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2Message_OneofGroup;
+
+  static equals(a: Proto2Message_OneofGroup | PlainMessage<Proto2Message_OneofGroup> | undefined, b: Proto2Message_OneofGroup | PlainMessage<Proto2Message_OneofGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2RepeatedMessage
+ * @deprecated
+ */
+export declare class Proto2RepeatedMessage extends Message<Proto2RepeatedMessage> {
+  /**
+   * @generated from field: repeated string string_field = 1;
+   */
+  stringField: string[];
+
+  /**
+   * @generated from field: repeated bytes bytes_field = 2;
+   */
+  bytesField: Uint8Array[];
+
+  /**
+   * @generated from field: repeated int32 int32_field = 3;
+   */
+  int32Field: number[];
+
+  /**
+   * @generated from field: repeated int64 int64_field = 4;
+   */
+  int64Field: bigint[];
+
+  /**
+   * @generated from field: repeated float float_field = 5;
+   */
+  floatField: number[];
+
+  /**
+   * @generated from field: repeated bool bool_field = 6;
+   */
+  boolField: boolean[];
+
+  /**
+   * @generated from field: repeated spec.Proto2Enum enum_field = 7;
+   */
+  enumField: Proto2Enum[];
+
+  /**
+   * @generated from field: repeated spec.Proto2ChildMessage message_field = 8;
+   */
+  messageField: Proto2ChildMessage[];
+
+  /**
+   * @generated from field: repeated spec.Proto2RepeatedMessage.RepeatedGroup repeatedgroup = 9;
+   */
+  repeatedgroup: Proto2RepeatedMessage_RepeatedGroup[];
+
+  constructor(data?: PartialMessage<Proto2RepeatedMessage>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2RepeatedMessage";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RepeatedMessage;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RepeatedMessage;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RepeatedMessage;
+
+  static equals(a: Proto2RepeatedMessage | PlainMessage<Proto2RepeatedMessage> | undefined, b: Proto2RepeatedMessage | PlainMessage<Proto2RepeatedMessage> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2RepeatedMessage.RepeatedGroup
+ */
+export declare class Proto2RepeatedMessage_RepeatedGroup extends Message<Proto2RepeatedMessage_RepeatedGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2RepeatedMessage_RepeatedGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2RepeatedMessage.RepeatedGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2RepeatedMessage_RepeatedGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2RepeatedMessage_RepeatedGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2RepeatedMessage_RepeatedGroup;
+
+  static equals(a: Proto2RepeatedMessage_RepeatedGroup | PlainMessage<Proto2RepeatedMessage_RepeatedGroup> | undefined, b: Proto2RepeatedMessage_RepeatedGroup | PlainMessage<Proto2RepeatedMessage_RepeatedGroup> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2OneofMessage
+ * @deprecated
+ */
+export declare class Proto2OneofMessage extends Message<Proto2OneofMessage> {
+  /**
+   * @generated from oneof spec.Proto2OneofMessage.some
+   */
+  some: {
+    /**
+     * @generated from field: string string_field = 1;
+     */
+    value: string;
+    case: "stringField";
+  } | {
+    /**
+     * @generated from field: bytes bytes_field = 2;
+     */
+    value: Uint8Array;
+    case: "bytesField";
+  } | {
+    /**
+     * @generated from field: int32 int32_field = 3;
+     */
+    value: number;
+    case: "int32Field";
+  } | {
+    /**
+     * @generated from field: int64 int64_field = 4;
+     */
+    value: bigint;
+    case: "int64Field";
+  } | {
+    /**
+     * @generated from field: float float_field = 5;
+     */
+    value: number;
+    case: "floatField";
+  } | {
+    /**
+     * @generated from field: bool bool_field = 6;
+     */
+    value: boolean;
+    case: "boolField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2Enum enum_field = 7;
+     */
+    value: Proto2Enum;
+    case: "enumField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2ChildMessage message_field = 8;
+     */
+    value: Proto2ChildMessage;
+    case: "messageField";
+  } | {
+    /**
+     * @generated from field: spec.Proto2OneofMessage.RepeatedGroup repeatedgroup = 9;
+     */
+    value: Proto2OneofMessage_RepeatedGroup;
+    case: "repeatedgroup";
+  } | { case: undefined; value?: undefined };
+
+  constructor(data?: PartialMessage<Proto2OneofMessage>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2OneofMessage";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2OneofMessage;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2OneofMessage;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OneofMessage;
+
+  static equals(a: Proto2OneofMessage | PlainMessage<Proto2OneofMessage> | undefined, b: Proto2OneofMessage | PlainMessage<Proto2OneofMessage> | undefined): boolean;
+}
+
+/**
+ * @generated from message spec.Proto2OneofMessage.RepeatedGroup
+ */
+export declare class Proto2OneofMessage_RepeatedGroup extends Message<Proto2OneofMessage_RepeatedGroup> {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field: number;
+
+  constructor(data?: PartialMessage<Proto2OneofMessage_RepeatedGroup>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "spec.Proto2OneofMessage.RepeatedGroup";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto2OneofMessage_RepeatedGroup;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto2OneofMessage_RepeatedGroup;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto2OneofMessage_RepeatedGroup;
+
+  static equals(a: Proto2OneofMessage_RepeatedGroup | PlainMessage<Proto2OneofMessage_RepeatedGroup> | undefined, b: Proto2OneofMessage_RepeatedGroup | PlainMessage<Proto2OneofMessage_RepeatedGroup> | undefined): boolean;
+}
+
+/**
  * @generated from message spec.Proto2PackedMessage
+ * @deprecated
  */
 export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
   /**
@@ -70,6 +885,7 @@ export declare class Proto2PackedMessage extends Message<Proto2PackedMessage> {
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
+ * @deprecated
  */
 export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage> {
   /**
@@ -104,6 +920,7 @@ export declare class Proto2UnpackedMessage extends Message<Proto2UnpackedMessage
 
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
+ * @deprecated
  */
 export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2UnspecifiedPackedMessage> {
   /**
@@ -138,6 +955,7 @@ export declare class Proto2UnspecifiedPackedMessage extends Message<Proto2Unspec
 
 /**
  * @generated from message spec.Proto2OptionalMessage
+ * @deprecated
  */
 export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage> {
   /**
@@ -197,6 +1015,7 @@ export declare class Proto2OptionalMessage extends Message<Proto2OptionalMessage
 
 /**
  * @generated from message spec.Proto2RequiredMessage
+ * @deprecated
  */
 export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage> {
   /**
@@ -256,6 +1075,7 @@ export declare class Proto2RequiredMessage extends Message<Proto2RequiredMessage
 
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
+ * @deprecated
  */
 export declare class Proto2RequiredDefaultsMessage extends Message<Proto2RequiredDefaultsMessage> {
   /**
@@ -315,6 +1135,7 @@ export declare class Proto2RequiredDefaultsMessage extends Message<Proto2Require
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
+ * @deprecated
  */
 export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage> {
   /**
@@ -374,6 +1195,7 @@ export declare class Proto2DefaultsMessage extends Message<Proto2DefaultsMessage
 
 /**
  * @generated from message spec.Proto2ChildMessage
+ * @deprecated
  */
 export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
   /**
@@ -398,6 +1220,7 @@ export declare class Proto2ChildMessage extends Message<Proto2ChildMessage> {
 
 /**
  * @generated from message spec.Proto2GroupsMessage
+ * @deprecated
  */
 export declare class Proto2GroupsMessage extends Message<Proto2GroupsMessage> {
   /**
@@ -501,6 +1324,7 @@ export declare class Proto2GroupsMessage_Group_NestedGroup extends Message<Proto
 
 /**
  * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
+ * @deprecated
  */
 export declare class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2GroupsMessage_RepeatedGroup> {
   /**
@@ -525,6 +1349,7 @@ export declare class Proto2GroupsMessage_RepeatedGroup extends Message<Proto2Gro
 
 /**
  * @generated from message spec.Proto2GroupsMessage.OneofGroup
+ * @deprecated
  */
 export declare class Proto2GroupsMessage_OneofGroup extends Message<Proto2GroupsMessage_OneofGroup> {
   /**
