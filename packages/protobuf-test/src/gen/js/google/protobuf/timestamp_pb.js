@@ -112,7 +112,7 @@ import { proto3, protoInt64 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.Timestamp
  */
-export const Timestamp = proto3.makeMessageType(
+export const Timestamp = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Timestamp",
   () => [
     { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },

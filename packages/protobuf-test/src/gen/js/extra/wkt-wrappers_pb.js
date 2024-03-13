@@ -21,7 +21,7 @@ import { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value,
 /**
  * @generated from message spec.WrappersMessage
  */
-export const WrappersMessage = proto3.makeMessageType(
+export const WrappersMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.WrappersMessage",
   () => [
     { no: 1, name: "double_value_field", kind: "message", T: DoubleValue },

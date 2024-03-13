@@ -23,7 +23,7 @@ import { proto2 } from "@bufbuild/protobuf";
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessage
  */
-export const PublicImportMessage = proto2.makeMessageType(
+export const PublicImportMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest_import.PublicImportMessage",
   () => [
     { no: 1, name: "e", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },

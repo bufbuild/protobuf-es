@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from enum spec.FailRequest
  */
-export const FailRequest = proto3.makeEnum(
+export const FailRequest = /*@__PURE__*/ proto3.makeEnum(
   "spec.FailRequest",
   [
     {no: 0, name: "FAIL_REQUEST_NONE"},
@@ -33,7 +33,7 @@ export const FailRequest = proto3.makeEnum(
 /**
  * @generated from message spec.ExampleRequest
  */
-export const ExampleRequest = proto3.makeMessageType(
+export const ExampleRequest = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ExampleRequest",
   () => [
     { no: 1, name: "question", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -46,7 +46,7 @@ export const ExampleRequest = proto3.makeMessageType(
 /**
  * @generated from message spec.ExampleResponse
  */
-export const ExampleResponse = proto3.makeMessageType(
+export const ExampleResponse = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ExampleResponse",
   () => [
     { no: 1, name: "answer", kind: "scalar", T: 9 /* ScalarType.STRING */ },

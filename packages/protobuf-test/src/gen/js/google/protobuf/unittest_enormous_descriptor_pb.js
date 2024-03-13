@@ -32,7 +32,7 @@ import { proto2 } from "@bufbuild/protobuf";
  *
  * @generated from message protobuf_unittest.TestEnormousDescriptor
  */
-export const TestEnormousDescriptor = proto2.makeMessageType(
+export const TestEnormousDescriptor = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEnormousDescriptor",
   () => [
     { no: 1, name: "long_field_name_is_looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong_1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "long default value is also loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong" },

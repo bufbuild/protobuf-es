@@ -21,7 +21,7 @@ import { proto2, protoInt64 } from "@bufbuild/protobuf";
 /**
  * @generated from enum spec.Proto2Enum
  */
-export const Proto2Enum = proto2.makeEnum(
+export const Proto2Enum = /*@__PURE__*/ proto2.makeEnum(
   "spec.Proto2Enum",
   [
     {no: 1, name: "PROTO2_ENUM_YES", localName: "YES"},
@@ -32,7 +32,7 @@ export const Proto2Enum = proto2.makeEnum(
 /**
  * @generated from message spec.Proto2PackedMessage
  */
-export const Proto2PackedMessage = proto2.makeMessageType(
+export const Proto2PackedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2PackedMessage",
   () => [
     { no: 101, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: true },
@@ -44,7 +44,7 @@ export const Proto2PackedMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2UnpackedMessage
  */
-export const Proto2UnpackedMessage = proto2.makeMessageType(
+export const Proto2UnpackedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2UnpackedMessage",
   () => [
     { no: 201, name: "unpacked_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
@@ -56,7 +56,7 @@ export const Proto2UnpackedMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
  */
-export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
+export const Proto2UnspecifiedPackedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2UnspecifiedPackedMessage",
   () => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
@@ -68,7 +68,7 @@ export const Proto2UnspecifiedPackedMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2OptionalMessage
  */
-export const Proto2OptionalMessage = proto2.makeMessageType(
+export const Proto2OptionalMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2OptionalMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -85,7 +85,7 @@ export const Proto2OptionalMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2RequiredMessage
  */
-export const Proto2RequiredMessage = proto2.makeMessageType(
+export const Proto2RequiredMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2RequiredMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
@@ -102,7 +102,7 @@ export const Proto2RequiredMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
  */
-export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
+export const Proto2RequiredDefaultsMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2RequiredDefaultsMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true, default: "hello \" */ " },
@@ -119,7 +119,7 @@ export const Proto2RequiredDefaultsMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2DefaultsMessage
  */
-export const Proto2DefaultsMessage = proto2.makeMessageType(
+export const Proto2DefaultsMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2DefaultsMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hello \" */ " },
@@ -136,7 +136,7 @@ export const Proto2DefaultsMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2ChildMessage
  */
-export const Proto2ChildMessage = proto2.makeMessageType(
+export const Proto2ChildMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2ChildMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -146,7 +146,7 @@ export const Proto2ChildMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2GroupsMessage
  */
-export const Proto2GroupsMessage = proto2.makeMessageType(
+export const Proto2GroupsMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2GroupsMessage",
   () => [
     { no: 1, name: "group", kind: "message", T: Proto2GroupsMessage_Group, delimited: true, opt: true },
@@ -160,7 +160,7 @@ export const Proto2GroupsMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2GroupsMessage.Group
  */
-export const Proto2GroupsMessage_Group = proto2.makeMessageType(
+export const Proto2GroupsMessage_Group = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2GroupsMessage.Group",
   () => [
     { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -172,7 +172,7 @@ export const Proto2GroupsMessage_Group = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
  */
-export const Proto2GroupsMessage_Group_NestedGroup = proto2.makeMessageType(
+export const Proto2GroupsMessage_Group_NestedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2GroupsMessage.Group.NestedGroup",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -183,7 +183,7 @@ export const Proto2GroupsMessage_Group_NestedGroup = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
  */
-export const Proto2GroupsMessage_RepeatedGroup = proto2.makeMessageType(
+export const Proto2GroupsMessage_RepeatedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2GroupsMessage.RepeatedGroup",
   () => [
     { no: 1, name: "int32_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -194,7 +194,7 @@ export const Proto2GroupsMessage_RepeatedGroup = proto2.makeMessageType(
 /**
  * @generated from message spec.Proto2GroupsMessage.OneofGroup
  */
-export const Proto2GroupsMessage_OneofGroup = proto2.makeMessageType(
+export const Proto2GroupsMessage_OneofGroup = /*@__PURE__*/ proto2.makeMessageType(
   "spec.Proto2GroupsMessage.OneofGroup",
   () => [
     { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },

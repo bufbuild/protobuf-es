@@ -81,7 +81,7 @@ import { proto3, protoInt64 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.Duration
  */
-export const Duration = proto3.makeMessageType(
+export const Duration = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Duration",
   () => [
     { no: 1, name: "seconds", kind: "scalar", T: 3 /* ScalarType.INT64 */ },

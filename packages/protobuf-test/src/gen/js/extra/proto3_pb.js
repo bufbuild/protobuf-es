@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from enum spec.Proto3Enum
  */
-export const Proto3Enum = proto3.makeEnum(
+export const Proto3Enum = /*@__PURE__*/ proto3.makeEnum(
   "spec.Proto3Enum",
   [
     {no: 0, name: "PROTO3_ENUM_UNSPECIFIED", localName: "UNSPECIFIED"},
@@ -33,7 +33,7 @@ export const Proto3Enum = proto3.makeEnum(
 /**
  * @generated from message spec.Proto3PackedMessage
  */
-export const Proto3PackedMessage = proto3.makeMessageType(
+export const Proto3PackedMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Proto3PackedMessage",
   () => [
     { no: 101, name: "packed_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
@@ -45,7 +45,7 @@ export const Proto3PackedMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.Proto3UnpackedMessage
  */
-export const Proto3UnpackedMessage = proto3.makeMessageType(
+export const Proto3UnpackedMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Proto3UnpackedMessage",
   () => [
     { no: 201, name: "unpacked_double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true, packed: false },
@@ -57,7 +57,7 @@ export const Proto3UnpackedMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.Proto3UnlabelledMessage
  */
-export const Proto3UnlabelledMessage = proto3.makeMessageType(
+export const Proto3UnlabelledMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Proto3UnlabelledMessage",
   () => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
@@ -69,7 +69,7 @@ export const Proto3UnlabelledMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.Proto3OptionalMessage
  */
-export const Proto3OptionalMessage = proto3.makeMessageType(
+export const Proto3OptionalMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Proto3OptionalMessage",
   () => [
     { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },

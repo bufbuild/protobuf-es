@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from message spec.JSTypeOmittedMessage
  */
-export const JSTypeOmittedMessage = proto3.makeMessageType(
+export const JSTypeOmittedMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.JSTypeOmittedMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
@@ -40,7 +40,7 @@ export const JSTypeOmittedMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.JSTypeNormalMessage
  */
-export const JSTypeNormalMessage = proto3.makeMessageType(
+export const JSTypeNormalMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.JSTypeNormalMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },
@@ -59,7 +59,7 @@ export const JSTypeNormalMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.JSTypeStringMessage
  */
-export const JSTypeStringMessage = proto3.makeMessageType(
+export const JSTypeStringMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.JSTypeStringMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, L: 1 /* LongType.STRING */ },
@@ -78,7 +78,7 @@ export const JSTypeStringMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.JSTypeNumberMessage
  */
-export const JSTypeNumberMessage = proto3.makeMessageType(
+export const JSTypeNumberMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.JSTypeNumberMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */ },

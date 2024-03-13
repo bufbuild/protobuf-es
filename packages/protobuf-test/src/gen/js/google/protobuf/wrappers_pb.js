@@ -25,7 +25,7 @@ import { proto3, ScalarType } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.DoubleValue
  */
-export const DoubleValue = proto3.makeMessageType(
+export const DoubleValue = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.DoubleValue",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
@@ -65,7 +65,7 @@ DoubleValue.fieldWrapper = {
  *
  * @generated from message google.protobuf.FloatValue
  */
-export const FloatValue = proto3.makeMessageType(
+export const FloatValue = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.FloatValue",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 2 /* ScalarType.FLOAT */ },
@@ -105,7 +105,7 @@ FloatValue.fieldWrapper = {
  *
  * @generated from message google.protobuf.Int64Value
  */
-export const Int64Value = proto3.makeMessageType(
+export const Int64Value = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Int64Value",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
@@ -145,7 +145,7 @@ Int64Value.fieldWrapper = {
  *
  * @generated from message google.protobuf.UInt64Value
  */
-export const UInt64Value = proto3.makeMessageType(
+export const UInt64Value = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.UInt64Value",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
@@ -185,7 +185,7 @@ UInt64Value.fieldWrapper = {
  *
  * @generated from message google.protobuf.Int32Value
  */
-export const Int32Value = proto3.makeMessageType(
+export const Int32Value = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Int32Value",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -225,7 +225,7 @@ Int32Value.fieldWrapper = {
  *
  * @generated from message google.protobuf.UInt32Value
  */
-export const UInt32Value = proto3.makeMessageType(
+export const UInt32Value = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.UInt32Value",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
@@ -265,7 +265,7 @@ UInt32Value.fieldWrapper = {
  *
  * @generated from message google.protobuf.BoolValue
  */
-export const BoolValue = proto3.makeMessageType(
+export const BoolValue = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.BoolValue",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
@@ -305,7 +305,7 @@ BoolValue.fieldWrapper = {
  *
  * @generated from message google.protobuf.StringValue
  */
-export const StringValue = proto3.makeMessageType(
+export const StringValue = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.StringValue",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -345,7 +345,7 @@ StringValue.fieldWrapper = {
  *
  * @generated from message google.protobuf.BytesValue
  */
-export const BytesValue = proto3.makeMessageType(
+export const BytesValue = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.BytesValue",
   () => [
     { no: 1, name: "value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },

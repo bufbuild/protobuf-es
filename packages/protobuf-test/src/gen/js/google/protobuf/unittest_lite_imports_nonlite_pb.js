@@ -26,7 +26,7 @@ import { TestAllTypes, TestRequired } from "./unittest_pb.js";
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
  */
-export const TestLiteImportsNonlite = proto2.makeMessageType(
+export const TestLiteImportsNonlite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestLiteImportsNonlite",
   () => [
     { no: 1, name: "message", kind: "message", T: TestAllTypes, opt: true },

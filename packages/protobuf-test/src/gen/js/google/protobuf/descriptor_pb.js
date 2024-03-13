@@ -31,7 +31,7 @@ import { proto2 } from "@bufbuild/protobuf";
  *
  * @generated from enum google.protobuf.Edition
  */
-export const Edition = proto2.makeEnum(
+export const Edition = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.Edition",
   [
     {no: 0, name: "EDITION_UNKNOWN"},
@@ -52,7 +52,7 @@ export const Edition = proto2.makeEnum(
  *
  * @generated from message google.protobuf.FileDescriptorSet
  */
-export const FileDescriptorSet = proto2.makeMessageType(
+export const FileDescriptorSet = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FileDescriptorSet",
   () => [
     { no: 1, name: "file", kind: "message", T: FileDescriptorProto, repeated: true },
@@ -64,7 +64,7 @@ export const FileDescriptorSet = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.FileDescriptorProto
  */
-export const FileDescriptorProto = proto2.makeMessageType(
+export const FileDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FileDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -88,7 +88,7 @@ export const FileDescriptorProto = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.DescriptorProto
  */
-export const DescriptorProto = proto2.makeMessageType(
+export const DescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.DescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -107,7 +107,7 @@ export const DescriptorProto = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
  */
-export const DescriptorProto_ExtensionRange = proto2.makeMessageType(
+export const DescriptorProto_ExtensionRange = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.DescriptorProto.ExtensionRange",
   () => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -124,7 +124,7 @@ export const DescriptorProto_ExtensionRange = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.DescriptorProto.ReservedRange
  */
-export const DescriptorProto_ReservedRange = proto2.makeMessageType(
+export const DescriptorProto_ReservedRange = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.DescriptorProto.ReservedRange",
   () => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -136,7 +136,7 @@ export const DescriptorProto_ReservedRange = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
  */
-export const ExtensionRangeOptions = proto2.makeMessageType(
+export const ExtensionRangeOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.ExtensionRangeOptions",
   () => [
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
@@ -151,7 +151,7 @@ export const ExtensionRangeOptions = proto2.makeMessageType(
  *
  * @generated from enum google.protobuf.ExtensionRangeOptions.VerificationState
  */
-export const ExtensionRangeOptions_VerificationState = proto2.makeEnum(
+export const ExtensionRangeOptions_VerificationState = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.ExtensionRangeOptions.VerificationState",
   [
     {no: 0, name: "DECLARATION"},
@@ -162,7 +162,7 @@ export const ExtensionRangeOptions_VerificationState = proto2.makeEnum(
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions.Declaration
  */
-export const ExtensionRangeOptions_Declaration = proto2.makeMessageType(
+export const ExtensionRangeOptions_Declaration = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.ExtensionRangeOptions.Declaration",
   () => [
     { no: 1, name: "number", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -179,7 +179,7 @@ export const ExtensionRangeOptions_Declaration = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.FieldDescriptorProto
  */
-export const FieldDescriptorProto = proto2.makeMessageType(
+export const FieldDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FieldDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -199,7 +199,7 @@ export const FieldDescriptorProto = proto2.makeMessageType(
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Type
  */
-export const FieldDescriptorProto_Type = proto2.makeEnum(
+export const FieldDescriptorProto_Type = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldDescriptorProto.Type",
   [
     {no: 1, name: "TYPE_DOUBLE", localName: "DOUBLE"},
@@ -226,7 +226,7 @@ export const FieldDescriptorProto_Type = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Label
  */
-export const FieldDescriptorProto_Label = proto2.makeEnum(
+export const FieldDescriptorProto_Label = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldDescriptorProto.Label",
   [
     {no: 1, name: "LABEL_OPTIONAL", localName: "OPTIONAL"},
@@ -240,7 +240,7 @@ export const FieldDescriptorProto_Label = proto2.makeEnum(
  *
  * @generated from message google.protobuf.OneofDescriptorProto
  */
-export const OneofDescriptorProto = proto2.makeMessageType(
+export const OneofDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.OneofDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -253,7 +253,7 @@ export const OneofDescriptorProto = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.EnumDescriptorProto
  */
-export const EnumDescriptorProto = proto2.makeMessageType(
+export const EnumDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.EnumDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -274,7 +274,7 @@ export const EnumDescriptorProto = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.EnumDescriptorProto.EnumReservedRange
  */
-export const EnumDescriptorProto_EnumReservedRange = proto2.makeMessageType(
+export const EnumDescriptorProto_EnumReservedRange = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.EnumDescriptorProto.EnumReservedRange",
   () => [
     { no: 1, name: "start", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -288,7 +288,7 @@ export const EnumDescriptorProto_EnumReservedRange = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.EnumValueDescriptorProto
  */
-export const EnumValueDescriptorProto = proto2.makeMessageType(
+export const EnumValueDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.EnumValueDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -302,7 +302,7 @@ export const EnumValueDescriptorProto = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.ServiceDescriptorProto
  */
-export const ServiceDescriptorProto = proto2.makeMessageType(
+export const ServiceDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.ServiceDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -316,7 +316,7 @@ export const ServiceDescriptorProto = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.MethodDescriptorProto
  */
-export const MethodDescriptorProto = proto2.makeMessageType(
+export const MethodDescriptorProto = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.MethodDescriptorProto",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -331,7 +331,7 @@ export const MethodDescriptorProto = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.FileOptions
  */
-export const FileOptions = proto2.makeMessageType(
+export const FileOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FileOptions",
   () => [
     { no: 1, name: "java_package", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -364,7 +364,7 @@ export const FileOptions = proto2.makeMessageType(
  *
  * @generated from enum google.protobuf.FileOptions.OptimizeMode
  */
-export const FileOptions_OptimizeMode = proto2.makeEnum(
+export const FileOptions_OptimizeMode = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FileOptions.OptimizeMode",
   [
     {no: 1, name: "SPEED"},
@@ -376,7 +376,7 @@ export const FileOptions_OptimizeMode = proto2.makeEnum(
 /**
  * @generated from message google.protobuf.MessageOptions
  */
-export const MessageOptions = proto2.makeMessageType(
+export const MessageOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.MessageOptions",
   () => [
     { no: 1, name: "message_set_wire_format", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -392,7 +392,7 @@ export const MessageOptions = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.FieldOptions
  */
-export const FieldOptions = proto2.makeMessageType(
+export const FieldOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FieldOptions",
   () => [
     { no: 1, name: "ctype", kind: "enum", T: proto2.getEnumType(FieldOptions_CType), opt: true, default: FieldOptions_CType.STRING },
@@ -414,7 +414,7 @@ export const FieldOptions = proto2.makeMessageType(
 /**
  * @generated from enum google.protobuf.FieldOptions.CType
  */
-export const FieldOptions_CType = proto2.makeEnum(
+export const FieldOptions_CType = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldOptions.CType",
   [
     {no: 0, name: "STRING"},
@@ -426,7 +426,7 @@ export const FieldOptions_CType = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FieldOptions.JSType
  */
-export const FieldOptions_JSType = proto2.makeEnum(
+export const FieldOptions_JSType = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldOptions.JSType",
   [
     {no: 0, name: "JS_NORMAL"},
@@ -442,7 +442,7 @@ export const FieldOptions_JSType = proto2.makeEnum(
  *
  * @generated from enum google.protobuf.FieldOptions.OptionRetention
  */
-export const FieldOptions_OptionRetention = proto2.makeEnum(
+export const FieldOptions_OptionRetention = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldOptions.OptionRetention",
   [
     {no: 0, name: "RETENTION_UNKNOWN"},
@@ -459,7 +459,7 @@ export const FieldOptions_OptionRetention = proto2.makeEnum(
  *
  * @generated from enum google.protobuf.FieldOptions.OptionTargetType
  */
-export const FieldOptions_OptionTargetType = proto2.makeEnum(
+export const FieldOptions_OptionTargetType = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FieldOptions.OptionTargetType",
   [
     {no: 0, name: "TARGET_TYPE_UNKNOWN"},
@@ -478,7 +478,7 @@ export const FieldOptions_OptionTargetType = proto2.makeEnum(
 /**
  * @generated from message google.protobuf.FieldOptions.EditionDefault
  */
-export const FieldOptions_EditionDefault = proto2.makeMessageType(
+export const FieldOptions_EditionDefault = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FieldOptions.EditionDefault",
   () => [
     { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
@@ -490,7 +490,7 @@ export const FieldOptions_EditionDefault = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.OneofOptions
  */
-export const OneofOptions = proto2.makeMessageType(
+export const OneofOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.OneofOptions",
   () => [
     { no: 1, name: "features", kind: "message", T: FeatureSet, opt: true },
@@ -501,7 +501,7 @@ export const OneofOptions = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.EnumOptions
  */
-export const EnumOptions = proto2.makeMessageType(
+export const EnumOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.EnumOptions",
   () => [
     { no: 2, name: "allow_alias", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -515,7 +515,7 @@ export const EnumOptions = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.EnumValueOptions
  */
-export const EnumValueOptions = proto2.makeMessageType(
+export const EnumValueOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.EnumValueOptions",
   () => [
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -528,7 +528,7 @@ export const EnumValueOptions = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.ServiceOptions
  */
-export const ServiceOptions = proto2.makeMessageType(
+export const ServiceOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.ServiceOptions",
   () => [
     { no: 34, name: "features", kind: "message", T: FeatureSet, opt: true },
@@ -540,7 +540,7 @@ export const ServiceOptions = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.MethodOptions
  */
-export const MethodOptions = proto2.makeMessageType(
+export const MethodOptions = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.MethodOptions",
   () => [
     { no: 33, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
@@ -557,7 +557,7 @@ export const MethodOptions = proto2.makeMessageType(
  *
  * @generated from enum google.protobuf.MethodOptions.IdempotencyLevel
  */
-export const MethodOptions_IdempotencyLevel = proto2.makeEnum(
+export const MethodOptions_IdempotencyLevel = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.MethodOptions.IdempotencyLevel",
   [
     {no: 0, name: "IDEMPOTENCY_UNKNOWN"},
@@ -576,7 +576,7 @@ export const MethodOptions_IdempotencyLevel = proto2.makeEnum(
  *
  * @generated from message google.protobuf.UninterpretedOption
  */
-export const UninterpretedOption = proto2.makeMessageType(
+export const UninterpretedOption = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.UninterpretedOption",
   () => [
     { no: 2, name: "name", kind: "message", T: UninterpretedOption_NamePart, repeated: true },
@@ -598,7 +598,7 @@ export const UninterpretedOption = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.UninterpretedOption.NamePart
  */
-export const UninterpretedOption_NamePart = proto2.makeMessageType(
+export const UninterpretedOption_NamePart = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.UninterpretedOption.NamePart",
   () => [
     { no: 1, name: "name_part", kind: "scalar", T: 9 /* ScalarType.STRING */, req: true },
@@ -617,7 +617,7 @@ export const UninterpretedOption_NamePart = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.FeatureSet
  */
-export const FeatureSet = proto2.makeMessageType(
+export const FeatureSet = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FeatureSet",
   () => [
     { no: 1, name: "field_presence", kind: "enum", T: proto2.getEnumType(FeatureSet_FieldPresence), opt: true },
@@ -632,7 +632,7 @@ export const FeatureSet = proto2.makeMessageType(
 /**
  * @generated from enum google.protobuf.FeatureSet.FieldPresence
  */
-export const FeatureSet_FieldPresence = proto2.makeEnum(
+export const FeatureSet_FieldPresence = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.FieldPresence",
   [
     {no: 0, name: "FIELD_PRESENCE_UNKNOWN"},
@@ -645,7 +645,7 @@ export const FeatureSet_FieldPresence = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FeatureSet.EnumType
  */
-export const FeatureSet_EnumType = proto2.makeEnum(
+export const FeatureSet_EnumType = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.EnumType",
   [
     {no: 0, name: "ENUM_TYPE_UNKNOWN"},
@@ -657,7 +657,7 @@ export const FeatureSet_EnumType = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding
  */
-export const FeatureSet_RepeatedFieldEncoding = proto2.makeEnum(
+export const FeatureSet_RepeatedFieldEncoding = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.RepeatedFieldEncoding",
   [
     {no: 0, name: "REPEATED_FIELD_ENCODING_UNKNOWN"},
@@ -669,7 +669,7 @@ export const FeatureSet_RepeatedFieldEncoding = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FeatureSet.Utf8Validation
  */
-export const FeatureSet_Utf8Validation = proto2.makeEnum(
+export const FeatureSet_Utf8Validation = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.Utf8Validation",
   [
     {no: 0, name: "UTF8_VALIDATION_UNKNOWN"},
@@ -681,7 +681,7 @@ export const FeatureSet_Utf8Validation = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FeatureSet.MessageEncoding
  */
-export const FeatureSet_MessageEncoding = proto2.makeEnum(
+export const FeatureSet_MessageEncoding = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.MessageEncoding",
   [
     {no: 0, name: "MESSAGE_ENCODING_UNKNOWN"},
@@ -693,7 +693,7 @@ export const FeatureSet_MessageEncoding = proto2.makeEnum(
 /**
  * @generated from enum google.protobuf.FeatureSet.JsonFormat
  */
-export const FeatureSet_JsonFormat = proto2.makeEnum(
+export const FeatureSet_JsonFormat = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.FeatureSet.JsonFormat",
   [
     {no: 0, name: "JSON_FORMAT_UNKNOWN"},
@@ -710,7 +710,7 @@ export const FeatureSet_JsonFormat = proto2.makeEnum(
  *
  * @generated from message google.protobuf.FeatureSetDefaults
  */
-export const FeatureSetDefaults = proto2.makeMessageType(
+export const FeatureSetDefaults = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FeatureSetDefaults",
   () => [
     { no: 1, name: "defaults", kind: "message", T: FeatureSetDefaults_FeatureSetEditionDefault, repeated: true },
@@ -727,7 +727,7 @@ export const FeatureSetDefaults = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
  */
-export const FeatureSetDefaults_FeatureSetEditionDefault = proto2.makeMessageType(
+export const FeatureSetDefaults_FeatureSetEditionDefault = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault",
   () => [
     { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
@@ -742,7 +742,7 @@ export const FeatureSetDefaults_FeatureSetEditionDefault = proto2.makeMessageTyp
  *
  * @generated from message google.protobuf.SourceCodeInfo
  */
-export const SourceCodeInfo = proto2.makeMessageType(
+export const SourceCodeInfo = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.SourceCodeInfo",
   () => [
     { no: 1, name: "location", kind: "message", T: SourceCodeInfo_Location, repeated: true },
@@ -752,7 +752,7 @@ export const SourceCodeInfo = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.SourceCodeInfo.Location
  */
-export const SourceCodeInfo_Location = proto2.makeMessageType(
+export const SourceCodeInfo_Location = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.SourceCodeInfo.Location",
   () => [
     { no: 1, name: "path", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -771,7 +771,7 @@ export const SourceCodeInfo_Location = proto2.makeMessageType(
  *
  * @generated from message google.protobuf.GeneratedCodeInfo
  */
-export const GeneratedCodeInfo = proto2.makeMessageType(
+export const GeneratedCodeInfo = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.GeneratedCodeInfo",
   () => [
     { no: 1, name: "annotation", kind: "message", T: GeneratedCodeInfo_Annotation, repeated: true },
@@ -781,7 +781,7 @@ export const GeneratedCodeInfo = proto2.makeMessageType(
 /**
  * @generated from message google.protobuf.GeneratedCodeInfo.Annotation
  */
-export const GeneratedCodeInfo_Annotation = proto2.makeMessageType(
+export const GeneratedCodeInfo_Annotation = /*@__PURE__*/ proto2.makeMessageType(
   "google.protobuf.GeneratedCodeInfo.Annotation",
   () => [
     { no: 1, name: "path", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -799,7 +799,7 @@ export const GeneratedCodeInfo_Annotation = proto2.makeMessageType(
  *
  * @generated from enum google.protobuf.GeneratedCodeInfo.Annotation.Semantic
  */
-export const GeneratedCodeInfo_Annotation_Semantic = proto2.makeEnum(
+export const GeneratedCodeInfo_Annotation_Semantic = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.GeneratedCodeInfo.Annotation.Semantic",
   [
     {no: 0, name: "NONE"},

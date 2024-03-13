@@ -221,7 +221,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.FieldMask
  */
-export const FieldMask = proto3.makeMessageType(
+export const FieldMask = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.FieldMask",
   () => [
     { no: 1, name: "paths", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },

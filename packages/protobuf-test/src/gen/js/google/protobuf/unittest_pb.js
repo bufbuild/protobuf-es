@@ -35,7 +35,7 @@ import { PublicImportMessage } from "./unittest_import_public_pb.js";
 /**
  * @generated from enum protobuf_unittest.ForeignEnum
  */
-export const ForeignEnum = proto2.makeEnum(
+export const ForeignEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.ForeignEnum",
   [
     {no: 4, name: "FOREIGN_FOO"},
@@ -48,7 +48,7 @@ export const ForeignEnum = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.TestReservedEnumFields
  */
-export const TestReservedEnumFields = proto2.makeEnum(
+export const TestReservedEnumFields = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestReservedEnumFields",
   [
     {no: 0, name: "UNKNOWN"},
@@ -60,7 +60,7 @@ export const TestReservedEnumFields = proto2.makeEnum(
  *
  * @generated from enum protobuf_unittest.TestEnumWithDupValue
  */
-export const TestEnumWithDupValue = proto2.makeEnum(
+export const TestEnumWithDupValue = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestEnumWithDupValue",
   [
     {no: 1, name: "FOO1"},
@@ -76,7 +76,7 @@ export const TestEnumWithDupValue = proto2.makeEnum(
  *
  * @generated from enum protobuf_unittest.TestSparseEnum
  */
-export const TestSparseEnum = proto2.makeEnum(
+export const TestSparseEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestSparseEnum",
   [
     {no: 123, name: "SPARSE_A"},
@@ -92,7 +92,7 @@ export const TestSparseEnum = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.VeryLargeEnum
  */
-export const VeryLargeEnum = proto2.makeEnum(
+export const VeryLargeEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.VeryLargeEnum",
   [
     {no: 0, name: "ENUM_LABEL_DEFAULT"},
@@ -205,7 +205,7 @@ export const VeryLargeEnum = proto2.makeEnum(
  *
  * @generated from message protobuf_unittest.TestAllTypes
  */
-export const TestAllTypes = proto2.makeMessageType(
+export const TestAllTypes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes",
   () => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -293,7 +293,7 @@ export const TestAllTypes = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestAllTypes.NestedEnum
  */
-export const TestAllTypes_NestedEnum = proto2.makeEnum(
+export const TestAllTypes_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestAllTypes.NestedEnum",
   [
     {no: 1, name: "FOO"},
@@ -306,7 +306,7 @@ export const TestAllTypes_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestAllTypes.NestedMessage
  */
-export const TestAllTypes_NestedMessage = proto2.makeMessageType(
+export const TestAllTypes_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.NestedMessage",
   () => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -317,7 +317,7 @@ export const TestAllTypes_NestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
  */
-export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
+export const TestAllTypes_OptionalGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.OptionalGroup",
   () => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -328,7 +328,7 @@ export const TestAllTypes_OptionalGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
  */
-export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
+export const TestAllTypes_RepeatedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestAllTypes.RepeatedGroup",
   () => [
     { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -341,7 +341,7 @@ export const TestAllTypes_RepeatedGroup = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.NestedTestAllTypes
  */
-export const NestedTestAllTypes = proto2.makeMessageType(
+export const NestedTestAllTypes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.NestedTestAllTypes",
   () => [
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes, opt: true },
@@ -355,7 +355,7 @@ export const NestedTestAllTypes = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestDeprecatedFields
  */
-export const TestDeprecatedFields = proto2.makeMessageType(
+export const TestDeprecatedFields = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedFields",
   () => [
     { no: 1, name: "deprecated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -370,7 +370,7 @@ export const TestDeprecatedFields = proto2.makeMessageType(
  * @generated from message protobuf_unittest.TestDeprecatedMessage
  * @deprecated
  */
-export const TestDeprecatedMessage = proto2.makeMessageType(
+export const TestDeprecatedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDeprecatedMessage",
   [],
 );
@@ -381,7 +381,7 @@ export const TestDeprecatedMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.ForeignMessage
  */
-export const ForeignMessage = proto2.makeMessageType(
+export const ForeignMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.ForeignMessage",
   () => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -392,7 +392,7 @@ export const ForeignMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestReservedFields
  */
-export const TestReservedFields = proto2.makeMessageType(
+export const TestReservedFields = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestReservedFields",
   [],
 );
@@ -400,7 +400,7 @@ export const TestReservedFields = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestAllExtensions
  */
-export const TestAllExtensions = proto2.makeMessageType(
+export const TestAllExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestAllExtensions",
   [],
 );
@@ -408,7 +408,7 @@ export const TestAllExtensions = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension
  */
-export const OptionalGroup_extension = proto2.makeMessageType(
+export const OptionalGroup_extension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.OptionalGroup_extension",
   () => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -418,7 +418,7 @@ export const OptionalGroup_extension = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension
  */
-export const RepeatedGroup_extension = proto2.makeMessageType(
+export const RepeatedGroup_extension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.RepeatedGroup_extension",
   () => [
     { no: 47, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -428,7 +428,7 @@ export const RepeatedGroup_extension = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMixedFieldsAndExtensions
  */
-export const TestMixedFieldsAndExtensions = proto2.makeMessageType(
+export const TestMixedFieldsAndExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMixedFieldsAndExtensions",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -457,7 +457,7 @@ export const TestMixedFieldsAndExtensions_d = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestGroup
  */
-export const TestGroup = proto2.makeMessageType(
+export const TestGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestGroup",
   () => [
     { no: 16, name: "optionalgroup", kind: "message", T: TestGroup_OptionalGroup, delimited: true, opt: true },
@@ -468,7 +468,7 @@ export const TestGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestGroup.OptionalGroup
  */
-export const TestGroup_OptionalGroup = proto2.makeMessageType(
+export const TestGroup_OptionalGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestGroup.OptionalGroup",
   () => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -480,7 +480,7 @@ export const TestGroup_OptionalGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
  */
-export const TestGroupExtension = proto2.makeMessageType(
+export const TestGroupExtension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestGroupExtension",
   [],
 );
@@ -488,7 +488,7 @@ export const TestGroupExtension = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedExtension
  */
-export const TestNestedExtension = proto2.makeMessageType(
+export const TestNestedExtension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedExtension",
   [],
 );
@@ -496,7 +496,7 @@ export const TestNestedExtension = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedExtension.OptionalGroup_extension
  */
-export const TestNestedExtension_OptionalGroup_extension = proto2.makeMessageType(
+export const TestNestedExtension_OptionalGroup_extension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedExtension.OptionalGroup_extension",
   () => [
     { no: 17, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -549,7 +549,7 @@ export const TestNestedExtension_optional_foreign_enum_extension = proto2.makeEx
 /**
  * @generated from message protobuf_unittest.TestChildExtension
  */
-export const TestChildExtension = proto2.makeMessageType(
+export const TestChildExtension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestChildExtension",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -564,7 +564,7 @@ export const TestChildExtension = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestChildExtensionData
  */
-export const TestChildExtensionData = proto2.makeMessageType(
+export const TestChildExtensionData = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestChildExtensionData",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -576,7 +576,7 @@ export const TestChildExtensionData = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData
  */
-export const TestChildExtensionData_NestedTestAllExtensionsData = proto2.makeMessageType(
+export const TestChildExtensionData_NestedTestAllExtensionsData = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData",
   () => [
     { no: 409707008, name: "dynamic", kind: "message", T: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, opt: true },
@@ -587,7 +587,7 @@ export const TestChildExtensionData_NestedTestAllExtensionsData = proto2.makeMes
 /**
  * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions
  */
-export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions = proto2.makeMessageType(
+export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -599,7 +599,7 @@ export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExt
 /**
  * @generated from message protobuf_unittest.TestNestedChildExtension
  */
-export const TestNestedChildExtension = proto2.makeMessageType(
+export const TestNestedChildExtension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedChildExtension",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -613,7 +613,7 @@ export const TestNestedChildExtension = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestNestedChildExtensionData
  */
-export const TestNestedChildExtensionData = proto2.makeMessageType(
+export const TestNestedChildExtensionData = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedChildExtensionData",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -627,7 +627,7 @@ export const TestNestedChildExtensionData = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestRequiredEnum
  */
-export const TestRequiredEnum = proto2.makeMessageType(
+export const TestRequiredEnum = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnum",
   () => [
     { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(ForeignEnum), req: true },
@@ -640,7 +640,7 @@ export const TestRequiredEnum = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestRequiredEnumNoMask
  */
-export const TestRequiredEnumNoMask = proto2.makeMessageType(
+export const TestRequiredEnumNoMask = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnumNoMask",
   () => [
     { no: 1, name: "required_enum", kind: "enum", T: proto2.getEnumType(TestRequiredEnumNoMask_NestedEnum), req: true },
@@ -651,7 +651,7 @@ export const TestRequiredEnumNoMask = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum
  */
-export const TestRequiredEnumNoMask_NestedEnum = proto2.makeEnum(
+export const TestRequiredEnumNoMask_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestRequiredEnumNoMask.NestedEnum",
   [
     {no: 0, name: "UNSPECIFIED"},
@@ -664,7 +664,7 @@ export const TestRequiredEnumNoMask_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestRequiredEnumMulti
  */
-export const TestRequiredEnumMulti = proto2.makeMessageType(
+export const TestRequiredEnumMulti = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredEnumMulti",
   () => [
     { no: 4, name: "required_enum_4", kind: "enum", T: proto2.getEnumType(TestRequiredEnumMulti_NestedEnum), req: true },
@@ -677,7 +677,7 @@ export const TestRequiredEnumMulti = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum
  */
-export const TestRequiredEnumMulti_NestedEnum = proto2.makeEnum(
+export const TestRequiredEnumMulti_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestRequiredEnumMulti.NestedEnum",
   [
     {no: 0, name: "UNSPECIFIED"},
@@ -690,7 +690,7 @@ export const TestRequiredEnumMulti_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestRequiredNoMaskMulti
  */
-export const TestRequiredNoMaskMulti = proto2.makeMessageType(
+export const TestRequiredNoMaskMulti = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredNoMaskMulti",
   () => [
     { no: 80, name: "required_fixed32_80", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, req: true },
@@ -706,7 +706,7 @@ export const TestRequiredNoMaskMulti = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum
  */
-export const TestRequiredNoMaskMulti_NestedEnum = proto2.makeEnum(
+export const TestRequiredNoMaskMulti_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum",
   [
     {no: 0, name: "UNSPECIFIED"},
@@ -725,7 +725,7 @@ export const TestRequiredNoMaskMulti_NestedEnum = proto2.makeEnum(
  *
  * @generated from message protobuf_unittest.TestRequired
  */
-export const TestRequired = proto2.makeMessageType(
+export const TestRequired = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequired",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
@@ -786,7 +786,7 @@ export const TestRequired_multi = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestRequiredForeign
  */
-export const TestRequiredForeign = proto2.makeMessageType(
+export const TestRequiredForeign = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredForeign",
   () => [
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
@@ -799,7 +799,7 @@ export const TestRequiredForeign = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRequiredMessage
  */
-export const TestRequiredMessage = proto2.makeMessageType(
+export const TestRequiredMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredMessage",
   () => [
     { no: 1, name: "optional_message", kind: "message", T: TestRequired, opt: true },
@@ -811,7 +811,7 @@ export const TestRequiredMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedRequiredForeign
  */
-export const TestNestedRequiredForeign = proto2.makeMessageType(
+export const TestNestedRequiredForeign = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedRequiredForeign",
   () => [
     { no: 1, name: "child", kind: "message", T: TestNestedRequiredForeign, opt: true },
@@ -829,7 +829,7 @@ export const TestNestedRequiredForeign = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestForeignNested
  */
-export const TestForeignNested = proto2.makeMessageType(
+export const TestForeignNested = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestForeignNested",
   () => [
     { no: 1, name: "foreign_nested", kind: "message", T: TestAllTypes_NestedMessage, opt: true },
@@ -841,7 +841,7 @@ export const TestForeignNested = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestEmptyMessage
  */
-export const TestEmptyMessage = proto2.makeMessageType(
+export const TestEmptyMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEmptyMessage",
   [],
 );
@@ -852,7 +852,7 @@ export const TestEmptyMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestEmptyMessageWithExtensions
  */
-export const TestEmptyMessageWithExtensions = proto2.makeMessageType(
+export const TestEmptyMessageWithExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEmptyMessageWithExtensions",
   [],
 );
@@ -862,7 +862,7 @@ export const TestEmptyMessageWithExtensions = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestPickleNestedMessage
  */
-export const TestPickleNestedMessage = proto2.makeMessageType(
+export const TestPickleNestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPickleNestedMessage",
   [],
 );
@@ -870,7 +870,7 @@ export const TestPickleNestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage
  */
-export const TestPickleNestedMessage_NestedMessage = proto2.makeMessageType(
+export const TestPickleNestedMessage_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPickleNestedMessage.NestedMessage",
   () => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -881,7 +881,7 @@ export const TestPickleNestedMessage_NestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
  */
-export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.makeMessageType(
+export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage",
   () => [
     { no: 1, name: "cc", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -892,7 +892,7 @@ export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage = proto2.
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
  */
-export const TestMultipleExtensionRanges = proto2.makeMessageType(
+export const TestMultipleExtensionRanges = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMultipleExtensionRanges",
   [],
 );
@@ -902,7 +902,7 @@ export const TestMultipleExtensionRanges = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestReallyLargeTagNumber
  */
-export const TestReallyLargeTagNumber = proto2.makeMessageType(
+export const TestReallyLargeTagNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestReallyLargeTagNumber",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -913,7 +913,7 @@ export const TestReallyLargeTagNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRecursiveMessage
  */
-export const TestRecursiveMessage = proto2.makeMessageType(
+export const TestRecursiveMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRecursiveMessage",
   () => [
     { no: 1, name: "a", kind: "message", T: TestRecursiveMessage, opt: true },
@@ -926,7 +926,7 @@ export const TestRecursiveMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestMutualRecursionA
  */
-export const TestMutualRecursionA = proto2.makeMessageType(
+export const TestMutualRecursionA = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA",
   () => [
     { no: 1, name: "bb", kind: "message", T: TestMutualRecursionB, opt: true },
@@ -938,7 +938,7 @@ export const TestMutualRecursionA = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubMessage
  */
-export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
+export const TestMutualRecursionA_SubMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA.SubMessage",
   () => [
     { no: 1, name: "b", kind: "message", T: TestMutualRecursionB, opt: true },
@@ -949,7 +949,7 @@ export const TestMutualRecursionA_SubMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
  */
-export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
+export const TestMutualRecursionA_SubGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA.SubGroup",
   () => [
     { no: 3, name: "sub_message", kind: "message", T: TestMutualRecursionA_SubMessage, opt: true },
@@ -961,7 +961,7 @@ export const TestMutualRecursionA_SubGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroupR
  */
-export const TestMutualRecursionA_SubGroupR = proto2.makeMessageType(
+export const TestMutualRecursionA_SubGroupR = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionA.SubGroupR",
   () => [
     { no: 6, name: "payload", kind: "message", T: TestAllTypes, opt: true },
@@ -972,7 +972,7 @@ export const TestMutualRecursionA_SubGroupR = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
  */
-export const TestMutualRecursionB = proto2.makeMessageType(
+export const TestMutualRecursionB = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMutualRecursionB",
   () => [
     { no: 1, name: "a", kind: "message", T: TestMutualRecursionA, opt: true },
@@ -983,7 +983,7 @@ export const TestMutualRecursionB = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestIsInitialized
  */
-export const TestIsInitialized = proto2.makeMessageType(
+export const TestIsInitialized = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized",
   () => [
     { no: 1, name: "sub_message", kind: "message", T: TestIsInitialized_SubMessage, opt: true },
@@ -993,7 +993,7 @@ export const TestIsInitialized = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage
  */
-export const TestIsInitialized_SubMessage = proto2.makeMessageType(
+export const TestIsInitialized_SubMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized.SubMessage",
   () => [
     { no: 1, name: "subgroup", kind: "message", T: TestIsInitialized_SubMessage_SubGroup, delimited: true, opt: true },
@@ -1004,7 +1004,7 @@ export const TestIsInitialized_SubMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
  */
-export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
+export const TestIsInitialized_SubMessage_SubGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestIsInitialized.SubMessage.SubGroup",
   () => [
     { no: 2, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
@@ -1022,7 +1022,7 @@ export const TestIsInitialized_SubMessage_SubGroup = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestDupFieldNumber
  */
-export const TestDupFieldNumber = proto2.makeMessageType(
+export const TestDupFieldNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1034,7 +1034,7 @@ export const TestDupFieldNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Foo
  */
-export const TestDupFieldNumber_Foo = proto2.makeMessageType(
+export const TestDupFieldNumber_Foo = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber.Foo",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1045,7 +1045,7 @@ export const TestDupFieldNumber_Foo = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
  */
-export const TestDupFieldNumber_Bar = proto2.makeMessageType(
+export const TestDupFieldNumber_Bar = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDupFieldNumber.Bar",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1058,7 +1058,7 @@ export const TestDupFieldNumber_Bar = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestEagerMessage
  */
-export const TestEagerMessage = proto2.makeMessageType(
+export const TestEagerMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEagerMessage",
   () => [
     { no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true },
@@ -1068,7 +1068,7 @@ export const TestEagerMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestLazyMessage
  */
-export const TestLazyMessage = proto2.makeMessageType(
+export const TestLazyMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestLazyMessage",
   () => [
     { no: 1, name: "sub_message", kind: "message", T: TestAllTypes, opt: true },
@@ -1078,7 +1078,7 @@ export const TestLazyMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestLazyMessageRepeated
  */
-export const TestLazyMessageRepeated = proto2.makeMessageType(
+export const TestLazyMessageRepeated = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestLazyMessageRepeated",
   () => [
     { no: 1, name: "repeated_message", kind: "message", T: TestLazyMessage, repeated: true },
@@ -1088,7 +1088,7 @@ export const TestLazyMessageRepeated = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy
  */
-export const TestEagerMaybeLazy = proto2.makeMessageType(
+export const TestEagerMaybeLazy = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEagerMaybeLazy",
   () => [
     { no: 1, name: "message_foo", kind: "message", T: TestAllTypes, opt: true },
@@ -1100,7 +1100,7 @@ export const TestEagerMaybeLazy = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestEagerMaybeLazy.NestedMessage
  */
-export const TestEagerMaybeLazy_NestedMessage = proto2.makeMessageType(
+export const TestEagerMaybeLazy_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEagerMaybeLazy.NestedMessage",
   () => [
     { no: 1, name: "packed", kind: "message", T: TestPackedTypes, opt: true },
@@ -1113,7 +1113,7 @@ export const TestEagerMaybeLazy_NestedMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestNestedMessageHasBits
  */
-export const TestNestedMessageHasBits = proto2.makeMessageType(
+export const TestNestedMessageHasBits = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedMessageHasBits",
   () => [
     { no: 1, name: "optional_nested_message", kind: "message", T: TestNestedMessageHasBits_NestedMessage, opt: true },
@@ -1123,7 +1123,7 @@ export const TestNestedMessageHasBits = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedMessageHasBits.NestedMessage
  */
-export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
+export const TestNestedMessageHasBits_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedMessageHasBits.NestedMessage",
   () => [
     { no: 1, name: "nestedmessage_repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -1138,7 +1138,7 @@ export const TestNestedMessageHasBits_NestedMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestCamelCaseFieldNames
  */
-export const TestCamelCaseFieldNames = proto2.makeMessageType(
+export const TestCamelCaseFieldNames = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestCamelCaseFieldNames",
   () => [
     { no: 1, name: "PrimitiveField", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1162,7 +1162,7 @@ export const TestCamelCaseFieldNames = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestFieldOrderings
  */
-export const TestFieldOrderings = proto2.makeMessageType(
+export const TestFieldOrderings = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestFieldOrderings",
   () => [
     { no: 11, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1175,7 +1175,7 @@ export const TestFieldOrderings = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestFieldOrderings.NestedMessage
  */
-export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
+export const TestFieldOrderings_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestFieldOrderings.NestedMessage",
   () => [
     { no: 2, name: "oo", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -1187,7 +1187,7 @@ export const TestFieldOrderings_NestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
  */
-export const TestExtensionOrderings1 = proto2.makeMessageType(
+export const TestExtensionOrderings1 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings1",
   () => [
     { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1206,7 +1206,7 @@ export const TestExtensionOrderings1_test_ext_orderings1 = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2
  */
-export const TestExtensionOrderings2 = proto2.makeMessageType(
+export const TestExtensionOrderings2 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings2",
   () => [
     { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1216,7 +1216,7 @@ export const TestExtensionOrderings2 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3
  */
-export const TestExtensionOrderings2_TestExtensionOrderings3 = proto2.makeMessageType(
+export const TestExtensionOrderings2_TestExtensionOrderings3 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3",
   () => [
     { no: 1, name: "my_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1245,7 +1245,7 @@ export const TestExtensionOrderings2_test_ext_orderings2 = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestExtremeDefaultValues
  */
-export const TestExtremeDefaultValues = proto2.makeMessageType(
+export const TestExtremeDefaultValues = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtremeDefaultValues",
   () => [
     { no: 1, name: "escaped_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x00, 0x01, 0x07, 0x08, 0x0C, 0x0A, 0x0D, 0x09, 0x0B, 0x5C, 0xFE]) },
@@ -1281,7 +1281,7 @@ export const TestExtremeDefaultValues = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.SparseEnumMessage
  */
-export const SparseEnumMessage = proto2.makeMessageType(
+export const SparseEnumMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.SparseEnumMessage",
   () => [
     { no: 1, name: "sparse_enum", kind: "enum", T: proto2.getEnumType(TestSparseEnum), opt: true },
@@ -1293,7 +1293,7 @@ export const SparseEnumMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.OneString
  */
-export const OneString = proto2.makeMessageType(
+export const OneString = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.OneString",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1303,7 +1303,7 @@ export const OneString = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.MoreString
  */
-export const MoreString = proto2.makeMessageType(
+export const MoreString = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.MoreString",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
@@ -1313,7 +1313,7 @@ export const MoreString = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.OneBytes
  */
-export const OneBytes = proto2.makeMessageType(
+export const OneBytes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.OneBytes",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
@@ -1323,7 +1323,7 @@ export const OneBytes = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.MoreBytes
  */
-export const MoreBytes = proto2.makeMessageType(
+export const MoreBytes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.MoreBytes",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
@@ -1333,7 +1333,7 @@ export const MoreBytes = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.ManyOptionalString
  */
-export const ManyOptionalString = proto2.makeMessageType(
+export const ManyOptionalString = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.ManyOptionalString",
   () => [
     { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1376,7 +1376,7 @@ export const ManyOptionalString = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.Int32Message
  */
-export const Int32Message = proto2.makeMessageType(
+export const Int32Message = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Int32Message",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1386,7 +1386,7 @@ export const Int32Message = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.Uint32Message
  */
-export const Uint32Message = proto2.makeMessageType(
+export const Uint32Message = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Uint32Message",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -1396,7 +1396,7 @@ export const Uint32Message = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.Int64Message
  */
-export const Int64Message = proto2.makeMessageType(
+export const Int64Message = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Int64Message",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -1406,7 +1406,7 @@ export const Int64Message = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.Uint64Message
  */
-export const Uint64Message = proto2.makeMessageType(
+export const Uint64Message = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Uint64Message",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
@@ -1416,7 +1416,7 @@ export const Uint64Message = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.BoolMessage
  */
-export const BoolMessage = proto2.makeMessageType(
+export const BoolMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.BoolMessage",
   () => [
     { no: 1, name: "data", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -1428,7 +1428,7 @@ export const BoolMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestOneof
  */
-export const TestOneof = proto2.makeMessageType(
+export const TestOneof = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneof",
   () => [
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
@@ -1441,7 +1441,7 @@ export const TestOneof = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOneof.FooGroup
  */
-export const TestOneof_FooGroup = proto2.makeMessageType(
+export const TestOneof_FooGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneof.FooGroup",
   () => [
     { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1453,7 +1453,7 @@ export const TestOneof_FooGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
  */
-export const TestOneofBackwardsCompatible = proto2.makeMessageType(
+export const TestOneofBackwardsCompatible = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneofBackwardsCompatible",
   () => [
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1466,7 +1466,7 @@ export const TestOneofBackwardsCompatible = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup
  */
-export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
+export const TestOneofBackwardsCompatible_FooGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneofBackwardsCompatible.FooGroup",
   () => [
     { no: 5, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1478,7 +1478,7 @@ export const TestOneofBackwardsCompatible_FooGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOneof2
  */
-export const TestOneof2 = proto2.makeMessageType(
+export const TestOneof2 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneof2",
   () => [
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
@@ -1509,7 +1509,7 @@ export const TestOneof2 = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestOneof2.NestedEnum
  */
-export const TestOneof2_NestedEnum = proto2.makeEnum(
+export const TestOneof2_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestOneof2.NestedEnum",
   [
     {no: 1, name: "FOO"},
@@ -1521,7 +1521,7 @@ export const TestOneof2_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestOneof2.FooGroup
  */
-export const TestOneof2_FooGroup = proto2.makeMessageType(
+export const TestOneof2_FooGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneof2.FooGroup",
   () => [
     { no: 9, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1533,7 +1533,7 @@ export const TestOneof2_FooGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
  */
-export const TestOneof2_NestedMessage = proto2.makeMessageType(
+export const TestOneof2_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOneof2.NestedMessage",
   () => [
     { no: 1, name: "moo_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -1545,7 +1545,7 @@ export const TestOneof2_NestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
  */
-export const TestRequiredOneof = proto2.makeMessageType(
+export const TestRequiredOneof = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOneof",
   () => [
     { no: 1, name: "foo_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "foo" },
@@ -1558,7 +1558,7 @@ export const TestRequiredOneof = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof.NestedMessage
  */
-export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
+export const TestRequiredOneof_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOneof.NestedMessage",
   () => [
     { no: 1, name: "required_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, req: true },
@@ -1569,7 +1569,7 @@ export const TestRequiredOneof_NestedMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
  */
-export const TestPackedTypes = proto2.makeMessageType(
+export const TestPackedTypes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPackedTypes",
   () => [
     { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: true },
@@ -1595,7 +1595,7 @@ export const TestPackedTypes = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestUnpackedTypes
  */
-export const TestUnpackedTypes = proto2.makeMessageType(
+export const TestUnpackedTypes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestUnpackedTypes",
   () => [
     { no: 90, name: "unpacked_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -1618,7 +1618,7 @@ export const TestUnpackedTypes = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestPackedExtensions
  */
-export const TestPackedExtensions = proto2.makeMessageType(
+export const TestPackedExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPackedExtensions",
   [],
 );
@@ -1626,7 +1626,7 @@ export const TestPackedExtensions = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestUnpackedExtensions
  */
-export const TestUnpackedExtensions = proto2.makeMessageType(
+export const TestUnpackedExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestUnpackedExtensions",
   [],
 );
@@ -1638,7 +1638,7 @@ export const TestUnpackedExtensions = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestDynamicExtensions
  */
-export const TestDynamicExtensions = proto2.makeMessageType(
+export const TestDynamicExtensions = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDynamicExtensions",
   () => [
     { no: 2000, name: "scalar_extension", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, opt: true },
@@ -1654,7 +1654,7 @@ export const TestDynamicExtensions = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType
  */
-export const TestDynamicExtensions_DynamicEnumType = proto2.makeEnum(
+export const TestDynamicExtensions_DynamicEnumType = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestDynamicExtensions.DynamicEnumType",
   [
     {no: 2200, name: "DYNAMIC_FOO"},
@@ -1666,7 +1666,7 @@ export const TestDynamicExtensions_DynamicEnumType = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestDynamicExtensions.DynamicMessageType
  */
-export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
+export const TestDynamicExtensions_DynamicMessageType = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestDynamicExtensions.DynamicMessageType",
   () => [
     { no: 2100, name: "dynamic_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1677,7 +1677,7 @@ export const TestDynamicExtensions_DynamicMessageType = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRepeatedString
  */
-export const TestRepeatedString = proto2.makeMessageType(
+export const TestRepeatedString = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRepeatedString",
   () => [
     { no: 1, name: "repeated_string1", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
@@ -1690,7 +1690,7 @@ export const TestRepeatedString = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRepeatedScalarDifferentTagSizes
  */
-export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
+export const TestRepeatedScalarDifferentTagSizes = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRepeatedScalarDifferentTagSizes",
   () => [
     { no: 12, name: "repeated_fixed32", kind: "scalar", T: 7 /* ScalarType.FIXED32 */, repeated: true },
@@ -1708,7 +1708,7 @@ export const TestRepeatedScalarDifferentTagSizes = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestParsingMerge
  */
-export const TestParsingMerge = proto2.makeMessageType(
+export const TestParsingMerge = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge",
   () => [
     { no: 1, name: "required_all_types", kind: "message", T: TestAllTypes, req: true },
@@ -1728,7 +1728,7 @@ export const TestParsingMerge = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator
  */
-export const TestParsingMerge_RepeatedFieldsGenerator = proto2.makeMessageType(
+export const TestParsingMerge_RepeatedFieldsGenerator = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator",
   () => [
     { no: 1, name: "field1", kind: "message", T: TestAllTypes, repeated: true },
@@ -1745,7 +1745,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessageType(
+export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1",
   () => [
     { no: 11, name: "field1", kind: "message", T: TestAllTypes, opt: true },
@@ -1756,7 +1756,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group1 = proto2.makeMessag
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessageType(
+export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2",
   () => [
     { no: 21, name: "field1", kind: "message", T: TestAllTypes, opt: true },
@@ -1767,7 +1767,7 @@ export const TestParsingMerge_RepeatedFieldsGenerator_Group2 = proto2.makeMessag
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
  */
-export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
+export const TestParsingMerge_OptionalGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.OptionalGroup",
   () => [
     { no: 11, name: "optional_group_all_types", kind: "message", T: TestAllTypes, opt: true },
@@ -1778,7 +1778,7 @@ export const TestParsingMerge_OptionalGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
  */
-export const TestParsingMerge_RepeatedGroup = proto2.makeMessageType(
+export const TestParsingMerge_RepeatedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestParsingMerge.RepeatedGroup",
   () => [
     { no: 21, name: "repeated_group_all_types", kind: "message", T: TestAllTypes, opt: true },
@@ -1810,7 +1810,7 @@ export const TestParsingMerge_repeated_ext = proto2.makeExtension(
  *
  * @generated from message protobuf_unittest.TestMergeException
  */
-export const TestMergeException = proto2.makeMessageType(
+export const TestMergeException = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMergeException",
   () => [
     { no: 1, name: "all_extensions", kind: "message", T: TestAllExtensions, opt: true },
@@ -1820,7 +1820,7 @@ export const TestMergeException = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestCommentInjectionMessage
  */
-export const TestCommentInjectionMessage = proto2.makeMessageType(
+export const TestCommentInjectionMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestCommentInjectionMessage",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "*/ <- Neither should this." },
@@ -1833,7 +1833,7 @@ export const TestCommentInjectionMessage = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestMessageSize
  */
-export const TestMessageSize = proto2.makeMessageType(
+export const TestMessageSize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMessageSize",
   () => [
     { no: 1, name: "m1", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -1850,7 +1850,7 @@ export const TestMessageSize = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.FooRequest
  */
-export const FooRequest = proto2.makeMessageType(
+export const FooRequest = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.FooRequest",
   [],
 );
@@ -1858,7 +1858,7 @@ export const FooRequest = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.FooResponse
  */
-export const FooResponse = proto2.makeMessageType(
+export const FooResponse = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.FooResponse",
   [],
 );
@@ -1866,7 +1866,7 @@ export const FooResponse = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.FooClientMessage
  */
-export const FooClientMessage = proto2.makeMessageType(
+export const FooClientMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.FooClientMessage",
   [],
 );
@@ -1874,7 +1874,7 @@ export const FooClientMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.FooServerMessage
  */
-export const FooServerMessage = proto2.makeMessageType(
+export const FooServerMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.FooServerMessage",
   [],
 );
@@ -1882,7 +1882,7 @@ export const FooServerMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.BarRequest
  */
-export const BarRequest = proto2.makeMessageType(
+export const BarRequest = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.BarRequest",
   [],
 );
@@ -1890,7 +1890,7 @@ export const BarRequest = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.BarResponse
  */
-export const BarResponse = proto2.makeMessageType(
+export const BarResponse = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.BarResponse",
   [],
 );
@@ -1898,7 +1898,7 @@ export const BarResponse = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestJsonName
  */
-export const TestJsonName = proto2.makeMessageType(
+export const TestJsonName = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestJsonName",
   () => [
     { no: 1, name: "field_name1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1914,7 +1914,7 @@ export const TestJsonName = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers
  */
-export const TestHugeFieldNumbers = proto2.makeMessageType(
+export const TestHugeFieldNumbers = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestHugeFieldNumbers",
   () => [
     { no: 536870000, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1937,7 +1937,7 @@ export const TestHugeFieldNumbers = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup
  */
-export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
+export const TestHugeFieldNumbers_OptionalGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestHugeFieldNumbers.OptionalGroup",
   () => [
     { no: 536870009, name: "group_a", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1948,7 +1948,7 @@ export const TestHugeFieldNumbers_OptionalGroup = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
  */
-export const TestExtensionInsideTable = proto2.makeMessageType(
+export const TestExtensionInsideTable = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionInsideTable",
   () => [
     { no: 1, name: "field1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -1968,7 +1968,7 @@ export const TestExtensionInsideTable = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter
  */
-export const TestNestedGroupExtensionOuter = proto2.makeMessageType(
+export const TestNestedGroupExtensionOuter = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedGroupExtensionOuter",
   () => [
     { no: 1, name: "layer1optionalgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup, delimited: true, opt: true },
@@ -1978,7 +1978,7 @@ export const TestNestedGroupExtensionOuter = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup = proto2.makeMessageType(
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup",
   () => [
     { no: 2, name: "layer2repeatedgroup", kind: "message", T: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, delimited: true, repeated: true },
@@ -1990,7 +1990,7 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup = proto2.makeMess
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup = proto2.makeMessageType(
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup",
   () => [
     { no: 6, name: "another_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2001,7 +2001,7 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGro
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup = proto2.makeMessageType(
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup",
   () => [
     { no: 5, name: "but_why_tho", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2012,7 +2012,7 @@ export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOpti
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionInnerExtension
  */
-export const TestNestedGroupExtensionInnerExtension = proto2.makeMessageType(
+export const TestNestedGroupExtensionInnerExtension = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedGroupExtensionInnerExtension",
   () => [
     { no: 1, name: "inner_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2022,7 +2022,7 @@ export const TestNestedGroupExtensionInnerExtension = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestExtensionRangeSerialize
  */
-export const TestExtensionRangeSerialize = proto2.makeMessageType(
+export const TestExtensionRangeSerialize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionRangeSerialize",
   () => [
     { no: 1, name: "foo_one", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2080,7 +2080,7 @@ export const TestExtensionRangeSerialize_bar_five = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32Simple
  */
-export const TestVerifyInt32Simple = proto2.makeMessageType(
+export const TestVerifyInt32Simple = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyInt32Simple",
   () => [
     { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2093,7 +2093,7 @@ export const TestVerifyInt32Simple = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32
  */
-export const TestVerifyInt32 = proto2.makeMessageType(
+export const TestVerifyInt32 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyInt32",
   () => [
     { no: 1, name: "optional_int32_1", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2108,7 +2108,7 @@ export const TestVerifyInt32 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyMostlyInt32
  */
-export const TestVerifyMostlyInt32 = proto2.makeMessageType(
+export const TestVerifyMostlyInt32 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyMostlyInt32",
   () => [
     { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -2126,7 +2126,7 @@ export const TestVerifyMostlyInt32 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber
  */
-export const TestVerifyMostlyInt32BigFieldNumber = proto2.makeMessageType(
+export const TestVerifyMostlyInt32BigFieldNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber",
   () => [
     { no: 30, name: "optional_int64_30", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -2145,7 +2145,7 @@ export const TestVerifyMostlyInt32BigFieldNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32Simple
  */
-export const TestVerifyUint32Simple = proto2.makeMessageType(
+export const TestVerifyUint32Simple = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyUint32Simple",
   () => [
     { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -2158,7 +2158,7 @@ export const TestVerifyUint32Simple = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32
  */
-export const TestVerifyUint32 = proto2.makeMessageType(
+export const TestVerifyUint32 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyUint32",
   () => [
     { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -2173,7 +2173,7 @@ export const TestVerifyUint32 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyOneUint32
  */
-export const TestVerifyOneUint32 = proto2.makeMessageType(
+export const TestVerifyOneUint32 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyOneUint32",
   () => [
     { no: 1, name: "optional_uint32_1", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -2188,7 +2188,7 @@ export const TestVerifyOneUint32 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyOneInt32BigFieldNumber
  */
-export const TestVerifyOneInt32BigFieldNumber = proto2.makeMessageType(
+export const TestVerifyOneInt32BigFieldNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyOneInt32BigFieldNumber",
   () => [
     { no: 65, name: "optional_int32_65", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2204,7 +2204,7 @@ export const TestVerifyOneInt32BigFieldNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyInt32BigFieldNumber
  */
-export const TestVerifyInt32BigFieldNumber = proto2.makeMessageType(
+export const TestVerifyInt32BigFieldNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyInt32BigFieldNumber",
   () => [
     { no: 1000, name: "optional_int32_1000", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2221,7 +2221,7 @@ export const TestVerifyInt32BigFieldNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyUint32BigFieldNumber
  */
-export const TestVerifyUint32BigFieldNumber = proto2.makeMessageType(
+export const TestVerifyUint32BigFieldNumber = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyUint32BigFieldNumber",
   () => [
     { no: 1000, name: "optional_uint32_1000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -2238,7 +2238,7 @@ export const TestVerifyUint32BigFieldNumber = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32
  */
-export const TestVerifyBigFieldNumberUint32 = proto2.makeMessageType(
+export const TestVerifyBigFieldNumberUint32 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyBigFieldNumberUint32",
   () => [
     { no: 1, name: "optional_nested", kind: "message", T: TestVerifyBigFieldNumberUint32_Nested, opt: true },
@@ -2248,7 +2248,7 @@ export const TestVerifyBigFieldNumberUint32 = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested
  */
-export const TestVerifyBigFieldNumberUint32_Nested = proto2.makeMessageType(
+export const TestVerifyBigFieldNumberUint32_Nested = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested",
   () => [
     { no: 5000, name: "optional_uint32_5000", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
@@ -2271,7 +2271,7 @@ export const TestVerifyBigFieldNumberUint32_Nested = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.EnumParseTester
  */
-export const EnumParseTester = proto2.makeMessageType(
+export const EnumParseTester = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.EnumParseTester",
   () => [
     { no: 1, name: "optional_seq_small_0_lowfield", kind: "enum", T: proto2.getEnumType(EnumParseTester_SeqSmall0), opt: true },
@@ -2317,7 +2317,7 @@ export const EnumParseTester = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall0
  */
-export const EnumParseTester_SeqSmall0 = proto2.makeEnum(
+export const EnumParseTester_SeqSmall0 = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumParseTester.SeqSmall0",
   [
     {no: 0, name: "SEQ_SMALL_0_DEFAULT"},
@@ -2329,7 +2329,7 @@ export const EnumParseTester_SeqSmall0 = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall1
  */
-export const EnumParseTester_SeqSmall1 = proto2.makeEnum(
+export const EnumParseTester_SeqSmall1 = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumParseTester.SeqSmall1",
   [
     {no: 1, name: "SEQ_SMALL_1_DEFAULT"},
@@ -2341,7 +2341,7 @@ export const EnumParseTester_SeqSmall1 = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.SeqLarge
  */
-export const EnumParseTester_SeqLarge = proto2.makeEnum(
+export const EnumParseTester_SeqLarge = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumParseTester.SeqLarge",
   [
     {no: -1, name: "SEQ_LARGE_DEFAULT"},
@@ -2385,7 +2385,7 @@ export const EnumParseTester_SeqLarge = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.Arbitrary
  */
-export const EnumParseTester_Arbitrary = proto2.makeEnum(
+export const EnumParseTester_Arbitrary = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumParseTester.Arbitrary",
   [
     {no: -123123, name: "ARBITRARY_DEFAULT"},
@@ -2430,7 +2430,7 @@ export const EnumParseTester_packed_arbitrary_ext = proto2.makeExtension(
  *
  * @generated from message protobuf_unittest.BoolParseTester
  */
-export const BoolParseTester = proto2.makeMessageType(
+export const BoolParseTester = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.BoolParseTester",
   () => [
     { no: 1, name: "optional_bool_lowfield", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
@@ -2476,7 +2476,7 @@ export const BoolParseTester_packed_bool_ext = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.Int32ParseTester
  */
-export const Int32ParseTester = proto2.makeMessageType(
+export const Int32ParseTester = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Int32ParseTester",
   () => [
     { no: 1, name: "optional_int32_lowfield", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2522,7 +2522,7 @@ export const Int32ParseTester_packed_int32_ext = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.Int64ParseTester
  */
-export const Int64ParseTester = proto2.makeMessageType(
+export const Int64ParseTester = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Int64ParseTester",
   () => [
     { no: 1, name: "optional_int64_lowfield", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
@@ -2568,7 +2568,7 @@ export const Int64ParseTester_packed_int64_ext = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.InlinedStringIdxRegressionProto
  */
-export const InlinedStringIdxRegressionProto = proto2.makeMessageType(
+export const InlinedStringIdxRegressionProto = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.InlinedStringIdxRegressionProto",
   () => [
     { no: 1, name: "str1", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2581,7 +2581,7 @@ export const InlinedStringIdxRegressionProto = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.StringParseTester
  */
-export const StringParseTester = proto2.makeMessageType(
+export const StringParseTester = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.StringParseTester",
   () => [
     { no: 1, name: "optional_string_lowfield", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2614,7 +2614,7 @@ export const StringParseTester_repeated_string_ext = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.BadFieldNames
  */
-export const BadFieldNames = proto2.makeMessageType(
+export const BadFieldNames = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.BadFieldNames",
   () => [
     { no: 1, name: "OptionalInt32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -2625,7 +2625,7 @@ export const BadFieldNames = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestNestedMessageRedaction
  */
-export const TestNestedMessageRedaction = proto2.makeMessageType(
+export const TestNestedMessageRedaction = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestNestedMessageRedaction",
   () => [
     { no: 1, name: "optional_unredacted_nested_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2636,7 +2636,7 @@ export const TestNestedMessageRedaction = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.RedactedFields
  */
-export const RedactedFields = proto2.makeMessageType(
+export const RedactedFields = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.RedactedFields",
   () => [
     { no: 1, name: "optional_redacted_string", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -2655,7 +2655,7 @@ export const RedactedFields = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestCord
  */
-export const TestCord = proto2.makeMessageType(
+export const TestCord = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestCord",
   () => [
     { no: 1, name: "optional_bytes_cord", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
@@ -2666,7 +2666,7 @@ export const TestCord = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestPackedEnumSmallRange
  */
-export const TestPackedEnumSmallRange = proto2.makeMessageType(
+export const TestPackedEnumSmallRange = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestPackedEnumSmallRange",
   () => [
     { no: 1, name: "vals", kind: "enum", T: proto2.getEnumType(TestPackedEnumSmallRange_NestedEnum), repeated: true, packed: true },
@@ -2676,7 +2676,7 @@ export const TestPackedEnumSmallRange = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum
  */
-export const TestPackedEnumSmallRange_NestedEnum = proto2.makeEnum(
+export const TestPackedEnumSmallRange_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TestPackedEnumSmallRange.NestedEnum",
   [
     {no: 0, name: "UNSPECIFIED"},
@@ -2689,7 +2689,7 @@ export const TestPackedEnumSmallRange_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.EnumsForBenchmark
  */
-export const EnumsForBenchmark = proto2.makeMessageType(
+export const EnumsForBenchmark = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.EnumsForBenchmark",
   [],
 );
@@ -2697,7 +2697,7 @@ export const EnumsForBenchmark = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.EnumsForBenchmark.Flat
  */
-export const EnumsForBenchmark_Flat = proto2.makeEnum(
+export const EnumsForBenchmark_Flat = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumsForBenchmark.Flat",
   [
     {no: 0, name: "A0"},
@@ -2724,7 +2724,7 @@ export const EnumsForBenchmark_Flat = proto2.makeEnum(
  *
  * @generated from enum protobuf_unittest.EnumsForBenchmark.AlmostFlat
  */
-export const EnumsForBenchmark_AlmostFlat = proto2.makeEnum(
+export const EnumsForBenchmark_AlmostFlat = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumsForBenchmark.AlmostFlat",
   [
     {no: 0, name: "B0"},
@@ -2749,7 +2749,7 @@ export const EnumsForBenchmark_AlmostFlat = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.EnumsForBenchmark.Sparse
  */
-export const EnumsForBenchmark_Sparse = proto2.makeEnum(
+export const EnumsForBenchmark_Sparse = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.EnumsForBenchmark.Sparse",
   [
     {no: 536, name: "C536"},
@@ -2774,7 +2774,7 @@ export const EnumsForBenchmark_Sparse = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestMessageWithManyRepeatedPtrFields
  */
-export const TestMessageWithManyRepeatedPtrFields = proto2.makeMessageType(
+export const TestMessageWithManyRepeatedPtrFields = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMessageWithManyRepeatedPtrFields",
   () => [
     { no: 1, name: "repeated_string_1", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },

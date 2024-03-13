@@ -33,7 +33,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from enum spec.EnumWithComments
  */
-export const EnumWithComments = proto3.makeEnum(
+export const EnumWithComments = /*@__PURE__*/ proto3.makeEnum(
   "spec.EnumWithComments",
   [
     {no: 0, name: "VALUE"},
@@ -46,7 +46,7 @@ export const EnumWithComments = proto3.makeEnum(
  * @generated from enum spec.DeprecatedEnumWithComment
  * @deprecated
  */
-export const DeprecatedEnumWithComment = proto3.makeEnum(
+export const DeprecatedEnumWithComment = /*@__PURE__*/ proto3.makeEnum(
   "spec.DeprecatedEnumWithComment",
   [
     {no: 0, name: "DEPRECATED_ENUM_WITH_COMMENT_A", localName: "A"},
@@ -58,7 +58,7 @@ export const DeprecatedEnumWithComment = proto3.makeEnum(
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
  */
-export const DeprecatedEnumNoComment = proto3.makeEnum(
+export const DeprecatedEnumNoComment = /*@__PURE__*/ proto3.makeEnum(
   "spec.DeprecatedEnumNoComment",
   [
     {no: 0, name: "DEPRECATED_ENUM_NO_COMMENT_A", localName: "A"},
@@ -71,7 +71,7 @@ export const DeprecatedEnumNoComment = proto3.makeEnum(
  *
  * @generated from message spec.MessageWithComments
  */
-export const MessageWithComments = proto3.makeMessageType(
+export const MessageWithComments = /*@__PURE__*/ proto3.makeMessageType(
   "spec.MessageWithComments",
   () => [
     { no: 1, name: "foo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -87,7 +87,7 @@ export const MessageWithComments = proto3.makeMessageType(
  *
  * @generated from message spec.EmptyMessageWithComment
  */
-export const EmptyMessageWithComment = proto3.makeMessageType(
+export const EmptyMessageWithComment = /*@__PURE__*/ proto3.makeMessageType(
   "spec.EmptyMessageWithComment",
   [],
 );
@@ -97,7 +97,7 @@ export const EmptyMessageWithComment = proto3.makeMessageType(
  *
  * @generated from message spec.GoogleCommentExample
  */
-export const GoogleCommentExample = proto3.makeMessageType(
+export const GoogleCommentExample = /*@__PURE__*/ proto3.makeMessageType(
   "spec.GoogleCommentExample",
   () => [
     { no: 1, name: "foo", kind: "scalar", T: 5 /* ScalarType.INT32 */ },

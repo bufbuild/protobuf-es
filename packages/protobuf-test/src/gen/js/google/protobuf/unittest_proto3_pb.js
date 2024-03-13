@@ -23,7 +23,7 @@ import { PublicImportMessage } from "./unittest_import_public_pb.js";
 /**
  * @generated from enum proto3_unittest.ForeignEnum
  */
-export const ForeignEnum = proto3.makeEnum(
+export const ForeignEnum = /*@__PURE__*/ proto3.makeEnum(
   "proto3_unittest.ForeignEnum",
   [
     {no: 0, name: "FOREIGN_ZERO"},
@@ -39,7 +39,7 @@ export const ForeignEnum = proto3.makeEnum(
  *
  * @generated from message proto3_unittest.TestAllTypes
  */
-export const TestAllTypes = proto3.makeMessageType(
+export const TestAllTypes = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestAllTypes",
   () => [
     { no: 1, name: "optional_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -101,7 +101,7 @@ export const TestAllTypes = proto3.makeMessageType(
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
  */
-export const TestAllTypes_NestedEnum = proto3.makeEnum(
+export const TestAllTypes_NestedEnum = /*@__PURE__*/ proto3.makeEnum(
   "proto3_unittest.TestAllTypes.NestedEnum",
   [
     {no: 0, name: "ZERO"},
@@ -115,7 +115,7 @@ export const TestAllTypes_NestedEnum = proto3.makeEnum(
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
  */
-export const TestAllTypes_NestedMessage = proto3.makeMessageType(
+export const TestAllTypes_NestedMessage = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestAllTypes.NestedMessage",
   () => [
     { no: 1, name: "bb", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -126,7 +126,7 @@ export const TestAllTypes_NestedMessage = proto3.makeMessageType(
 /**
  * @generated from message proto3_unittest.TestPackedTypes
  */
-export const TestPackedTypes = proto3.makeMessageType(
+export const TestPackedTypes = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestPackedTypes",
   () => [
     { no: 90, name: "packed_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
@@ -151,7 +151,7 @@ export const TestPackedTypes = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.TestUnpackedTypes
  */
-export const TestUnpackedTypes = proto3.makeMessageType(
+export const TestUnpackedTypes = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestUnpackedTypes",
   () => [
     { no: 1, name: "repeated_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true, packed: false },
@@ -176,7 +176,7 @@ export const TestUnpackedTypes = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.NestedTestAllTypes
  */
-export const NestedTestAllTypes = proto3.makeMessageType(
+export const NestedTestAllTypes = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.NestedTestAllTypes",
   () => [
     { no: 1, name: "child", kind: "message", T: NestedTestAllTypes },
@@ -190,7 +190,7 @@ export const NestedTestAllTypes = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.ForeignMessage
  */
-export const ForeignMessage = proto3.makeMessageType(
+export const ForeignMessage = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.ForeignMessage",
   () => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -202,7 +202,7 @@ export const ForeignMessage = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.TestEmptyMessage
  */
-export const TestEmptyMessage = proto3.makeMessageType(
+export const TestEmptyMessage = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestEmptyMessage",
   [],
 );
@@ -212,7 +212,7 @@ export const TestEmptyMessage = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.TestMessageWithDummy
  */
-export const TestMessageWithDummy = proto3.makeMessageType(
+export const TestMessageWithDummy = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestMessageWithDummy",
   () => [
     { no: 536870911, name: "dummy", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
@@ -225,7 +225,7 @@ export const TestMessageWithDummy = proto3.makeMessageType(
  *
  * @generated from message proto3_unittest.TestOneof2
  */
-export const TestOneof2 = proto3.makeMessageType(
+export const TestOneof2 = /*@__PURE__*/ proto3.makeMessageType(
   "proto3_unittest.TestOneof2",
   () => [
     { no: 6, name: "foo_enum", kind: "enum", T: proto3.getEnumType(TestOneof2_NestedEnum), oneof: "foo" },
@@ -235,7 +235,7 @@ export const TestOneof2 = proto3.makeMessageType(
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
  */
-export const TestOneof2_NestedEnum = proto3.makeEnum(
+export const TestOneof2_NestedEnum = /*@__PURE__*/ proto3.makeEnum(
   "proto3_unittest.TestOneof2.NestedEnum",
   [
     {no: 0, name: "UNKNOWN"},

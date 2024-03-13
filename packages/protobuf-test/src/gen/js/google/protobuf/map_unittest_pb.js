@@ -26,7 +26,7 @@ import { ForeignMessage, TestAllTypes, TestRequired } from "./unittest_pb.js";
 /**
  * @generated from enum protobuf_unittest.MapEnum
  */
-export const MapEnum = proto3.makeEnum(
+export const MapEnum = /*@__PURE__*/ proto3.makeEnum(
   "protobuf_unittest.MapEnum",
   [
     {no: 0, name: "MAP_ENUM_FOO", localName: "FOO"},
@@ -40,7 +40,7 @@ export const MapEnum = proto3.makeEnum(
  *
  * @generated from message protobuf_unittest.TestMap
  */
-export const TestMap = proto3.makeMessageType(
+export const TestMap = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestMap",
   () => [
     { no: 1, name: "map_int32_int32", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -68,7 +68,7 @@ export const TestMap = proto3.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMapSubmessage
  */
-export const TestMapSubmessage = proto3.makeMessageType(
+export const TestMapSubmessage = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestMapSubmessage",
   () => [
     { no: 1, name: "test_map", kind: "message", T: TestMap },
@@ -78,7 +78,7 @@ export const TestMapSubmessage = proto3.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMessageMap
  */
-export const TestMessageMap = proto3.makeMessageType(
+export const TestMessageMap = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestMessageMap",
   () => [
     { no: 1, name: "map_int32_message", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestAllTypes} },
@@ -90,7 +90,7 @@ export const TestMessageMap = proto3.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestSameTypeMap
  */
-export const TestSameTypeMap = proto3.makeMessageType(
+export const TestSameTypeMap = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestSameTypeMap",
   () => [
     { no: 1, name: "map1", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -103,7 +103,7 @@ export const TestSameTypeMap = proto3.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestRequiredMessageMap
  */
-export const TestRequiredMessageMap = proto3.makeMessageType(
+export const TestRequiredMessageMap = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestRequiredMessageMap",
   () => [
     { no: 1, name: "map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestRequired} },
@@ -113,7 +113,7 @@ export const TestRequiredMessageMap = proto3.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestArenaMap
  */
-export const TestArenaMap = proto3.makeMessageType(
+export const TestArenaMap = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestArenaMap",
   () => [
     { no: 1, name: "map_int32_int32", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -142,7 +142,7 @@ export const TestArenaMap = proto3.makeMessageType(
  *
  * @generated from message protobuf_unittest.MessageContainingEnumCalledType
  */
-export const MessageContainingEnumCalledType = proto3.makeMessageType(
+export const MessageContainingEnumCalledType = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.MessageContainingEnumCalledType",
   () => [
     { no: 1, name: "type", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: MessageContainingEnumCalledType} },
@@ -152,7 +152,7 @@ export const MessageContainingEnumCalledType = proto3.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.MessageContainingEnumCalledType.Type
  */
-export const MessageContainingEnumCalledType_Type = proto3.makeEnum(
+export const MessageContainingEnumCalledType_Type = /*@__PURE__*/ proto3.makeEnum(
   "protobuf_unittest.MessageContainingEnumCalledType.Type",
   [
     {no: 0, name: "TYPE_FOO", localName: "FOO"},
@@ -164,7 +164,7 @@ export const MessageContainingEnumCalledType_Type = proto3.makeEnum(
  *
  * @generated from message protobuf_unittest.MessageContainingMapCalledEntry
  */
-export const MessageContainingMapCalledEntry = proto3.makeMessageType(
+export const MessageContainingMapCalledEntry = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.MessageContainingMapCalledEntry",
   () => [
     { no: 1, name: "entry", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -174,7 +174,7 @@ export const MessageContainingMapCalledEntry = proto3.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRecursiveMapMessage
  */
-export const TestRecursiveMapMessage = proto3.makeMessageType(
+export const TestRecursiveMapMessage = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestRecursiveMapMessage",
   () => [
     { no: 1, name: "a", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TestRecursiveMapMessage} },

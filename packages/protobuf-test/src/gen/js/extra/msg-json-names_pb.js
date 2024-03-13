@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from message spec.JsonNamesMessage
  */
-export const JsonNamesMessage = proto3.makeMessageType(
+export const JsonNamesMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.JsonNamesMessage",
   () => [
     { no: 1, name: "scalar_field", jsonName: "scalarFieldJsonName", kind: "scalar", T: 9 /* ScalarType.STRING */ },
