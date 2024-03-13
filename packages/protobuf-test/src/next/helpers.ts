@@ -14,8 +14,9 @@
 
 import { describe, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
-import { createDescriptorSet } from "@bufbuild/protobuf";
+import { FileDescriptorSet } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 export function describeGenerated<Desc extends DescMessage>(
   ts: Desc,
@@ -45,19 +46,26 @@ export function testGenerated<Desc extends DescMessage>(
   });
 }
 
+let upstreamProtobuf: UpstreamProtobuf | undefined;
+
+export async function compileFileDescriptorSet(
+  files: Record<string, string>,
+): Promise<FileDescriptorSet> {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(files, {
+    includeImports: true,
+    retainOptions: true,
+  });
+  return FileDescriptorSet.fromBinary(bytes);
+}
+
 export async function compileMessage(proto: string): Promise<DescMessage> {
-  const upstream = new UpstreamProtobuf();
-  const setBin = await upstream.compileToDescriptorSet(
-    {
+  const set = createDescFileSet(
+    await compileFileDescriptorSet({
       "input.proto": proto,
-    },
-    {
-      includeImports: true,
-      retainOptions: true,
-    },
+    }),
   );
-  const set = createDescriptorSet(setBin);
-  const file = set.files.find((f) => f.proto.name === "input.proto");
+  const file = set.getFile("input.proto");
   if (file === undefined) {
     throw new Error("missing file descriptor for input.proto");
   }

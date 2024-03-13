@@ -12,19 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
+import {
   CodeGeneratorRequest,
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
-  DescriptorSet,
+  FileDescriptorSet,
 } from "@bufbuild/protobuf";
+import { FeatureSetDefaults, codegenInfo } from "@bufbuild/protobuf";
 import {
-  codegenInfo,
-  createDescriptorSet,
-  FeatureSetDefaults,
-} from "@bufbuild/protobuf";
+  createDescFileSet,
+  DescFileSet,
+} from "@bufbuild/protobuf/next/reflect";
 import type {
   FileInfo,
   GeneratedFile,
@@ -90,9 +90,12 @@ export function createSchema(
   pluginVersion: string,
   featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
-  const descriptorSet = createDescriptorSet(request.protoFile, {
-    featureSetDefaults,
-  });
+  const descriptorSet = createDescFileSet(
+    new FileDescriptorSet({ file: request.protoFile }),
+    {
+      featureSetDefaults,
+    },
+  );
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
   const createTypeImport = (
@@ -121,7 +124,7 @@ export function createSchema(
     runtime,
     proto: request,
     files: filesToGenerate,
-    allFiles: descriptorSet.files,
+    allFiles: Array.from(descriptorSet.files),
     generateFile(name) {
       if (target === undefined) {
         throw new Error(
@@ -157,18 +160,20 @@ export function createSchema(
 }
 
 function findFilesToGenerate(
-  descriptorSet: DescriptorSet,
+  descriptorSet: DescFileSet,
   request: CodeGeneratorRequest,
 ) {
-  const missing = request.fileToGenerate.filter((fileToGenerate) =>
-    descriptorSet.files.every(
-      (file) => fileToGenerate !== file.name + ".proto",
-    ),
+  const missing = request.fileToGenerate.filter(
+    (fileToGenerate) => descriptorSet.getFile(fileToGenerate) === undefined,
   );
   if (missing.length) {
     throw `files_to_generate missing in the request: ${missing.join(", ")}`;
   }
-  return descriptorSet.files.filter((file) =>
-    request.fileToGenerate.includes(file.name + ".proto"),
-  );
+  const filesToGenerate: DescFile[] = [];
+  for (const file of descriptorSet.files) {
+    if (request.fileToGenerate.includes(file.proto.name)) {
+      filesToGenerate.push(file);
+    }
+  }
+  return filesToGenerate;
 }

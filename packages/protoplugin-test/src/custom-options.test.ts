@@ -13,11 +13,12 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createDescriptorSet, getExtension } from "@bufbuild/protobuf";
+import { FileDescriptorSet, getExtension } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { readFileSync } from "node:fs";
 import assert from "node:assert";
 import { uint32_option } from "./gen/file-option_pb.js";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 describe("custom options", () => {
   test("can be read via extension", async () => {
@@ -29,9 +30,9 @@ describe("custom options", () => {
         retainOptions: false,
       },
     );
-    const descFile = createDescriptorSet(setBin).files.find(
-      (f) => f.proto.name === "input.proto",
-    );
+    const descFile = createDescFileSet(
+      FileDescriptorSet.fromBinary(setBin),
+    ).getFile("input.proto");
     assert(descFile?.proto.options);
     const value = getExtension(descFile.proto.options, uint32_option);
     expect(value).toBe(12345);

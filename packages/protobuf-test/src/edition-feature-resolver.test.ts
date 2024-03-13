@@ -22,9 +22,9 @@ import type {
   DescExtension,
   DescMessage,
 } from "@bufbuild/protobuf";
+import { FileDescriptorSet } from "@bufbuild/protobuf";
 import {
   clearField,
-  createDescriptorSet,
   Edition,
   FeatureSet,
   FeatureSet_EnumType,
@@ -40,6 +40,7 @@ import {
   protoInt64,
   ScalarType,
 } from "@bufbuild/protobuf";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 /**
  * A rough implementation of the edition feature resolution. Does not support
@@ -534,8 +535,10 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
 }
 
 describe("FeatureResolver", function () {
-  const set = createDescriptorSet(readFileSync("./descriptorset.binpb"));
-  const descFeatureSet = set.messages.get(FeatureSet.typeName);
+  const set = createDescFileSet(
+    FileDescriptorSet.fromBinary(readFileSync("./descriptorset.binpb")),
+  );
+  const descFeatureSet = set.getMessage(FeatureSet.typeName);
   assert(descFeatureSet !== undefined);
 
   describe("default features", () => {
