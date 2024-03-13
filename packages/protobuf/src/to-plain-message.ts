@@ -16,7 +16,7 @@
 
 import { Message } from "./message.js";
 import type { AnyMessage, PlainMessage } from "./message.js";
-import { isMessage } from "./is-message";
+import { isMessage } from "./is-message.js";
 
 /**
  * toPlainMessage returns a new object by stripping

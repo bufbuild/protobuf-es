@@ -27,7 +27,7 @@ import { assert } from "./assert.js";
 import { isFieldSet } from "./reflect.js";
 import type { ScalarValue } from "../scalar.js";
 import { LongType, ScalarType } from "../scalar.js";
-import { isMessage } from "../is-message";
+import { isMessage } from "../is-message.js";
 
 /* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-return */
 

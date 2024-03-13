@@ -19,7 +19,7 @@ import type { MessageType } from "../message-type.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
 import { ScalarType } from "../scalar.js";
-import { isMessage } from "../is-message";
+import { isMessage } from "../is-message.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 
