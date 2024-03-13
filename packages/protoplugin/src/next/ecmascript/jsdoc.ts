@@ -14,49 +14,24 @@
 
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
 
-export type JSDocBlock = {
-  readonly kind: "es_jsdoc";
-  /**
-   * @deprecated In a future release, we will make this property optional.
-   */
-  text: string;
-  indentation?: string;
-  /**
-   * @deprecated In a future release, we will remove this method.
-   */
-  toString(): string;
-};
-
-// TODO simplify type JSDocBlock to bring it in line with others in opaque-printables.ts
-export function createJsDocBlock(
-  textOrDesc: string | Exclude<AnyDesc, DescFile>,
-  indentation?: string,
-): JSDocBlock {
-  const text =
-    typeof textOrDesc == "string" ? textOrDesc : createTextForDesc(textOrDesc);
-  return {
-    kind: "es_jsdoc",
-    text,
-    indentation,
-    toString(): string {
-      if (text.trim().length == 0) {
-        return "";
-      }
-      let lines = text.split("\n");
-      if (lines.length === 0) {
-        return "";
-      }
-      lines = lines.map((l) => l.split("*/").join("*\\/"));
-      lines = lines.map((l) => (l.length > 0 ? " " + l : l));
-      const i = indentation ?? "";
-      return [`${i}/**\n`, ...lines.map((l) => `${i} *${l}\n`), `${i} */`].join(
-        "",
-      );
-    },
-  };
+export function formatJsDocBlock(
+  text: string,
+  indentation: string | undefined,
+): string {
+  if (text.trim().length == 0) {
+    return "";
+  }
+  let lines = text.split("\n");
+  if (lines.length === 0) {
+    return "";
+  }
+  lines = lines.map((l) => l.split("*/").join("*\\/"));
+  lines = lines.map((l) => (l.length > 0 ? " " + l : l));
+  const i = indentation ?? "";
+  return [`${i}/**\n`, ...lines.map((l) => `${i} *${l}\n`), `${i} */`].join("");
 }
 
-function createTextForDesc(desc: Exclude<AnyDesc, DescFile>) {
+export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
   const comments = desc.getComments();
   let text = "";
   if (comments.leading !== undefined) {

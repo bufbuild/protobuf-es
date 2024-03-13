@@ -26,8 +26,7 @@ import {
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { makeImportPathRelative } from "./import-path.js";
-import type { JSDocBlock } from "./jsdoc.js";
-import { createJsDocBlock } from "./jsdoc.js";
+import { createJsDocTextFromDesc, formatJsDocBlock } from "./jsdoc.js";
 import type { ExportStatement, Printable } from "./printable.js";
 import type { RuntimeImports } from "./runtime-imports.js";
 
@@ -86,14 +85,14 @@ export interface GeneratedFile {
    * Create a JSDoc comment block with the given text. Line breaks and white-space
    * stay intact.
    */
-  jsDoc(text: string, indentation?: string): JSDocBlock;
+  jsDoc(text: string, indentation?: string): Printable;
 
   /**
    * Create a JSDoc comment block for the given message, enumeration, or other
    * descriptor. The comment block will contain the original comments from the
    * protobuf source, and annotations such as `@generated from message MyMessage`.
    */
-  jsDoc(desc: Exclude<AnyDesc, DescFile>, indentation?: string): JSDocBlock;
+  jsDoc(desc: Exclude<AnyDesc, DescFile>, indentation?: string): Printable;
 
   // TODO rename to "export"?
   /**
@@ -227,7 +226,14 @@ export function createGeneratedFile(
       };
     },
     jsDoc(textOrDesc, indentation) {
-      return createJsDocBlock(textOrDesc, indentation);
+      return {
+        kind: "es_jsdoc",
+        text:
+          typeof textOrDesc == "string"
+            ? textOrDesc
+            : createJsDocTextFromDesc(textOrDesc),
+        indentation,
+      };
     },
     importDesc(desc, typeOnly = false) {
       return resolveDescImport(desc, typeOnly);
@@ -410,7 +416,7 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
               break;
             case "es_jsdoc":
               // TODO
-              el.push(p.toString());
+              el.push(formatJsDocBlock(p.text, p.indentation));
               break;
             case "es_string":
               el.push(escapeString(p.value));

@@ -22,7 +22,6 @@ import type {
   ScalarType,
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
-import type { JSDocBlock } from "./jsdoc.js";
 
 /**
  * All types that can be passed to GeneratedFile.print()
@@ -74,4 +73,10 @@ export type DescImport = {
 export type ShapeImport = {
   readonly kind: "es_shape_ref";
   desc: DescMessage | DescEnum;
+};
+
+export type JSDocBlock = {
+  readonly kind: "es_jsdoc";
+  text: string;
+  indentation?: string;
 };
