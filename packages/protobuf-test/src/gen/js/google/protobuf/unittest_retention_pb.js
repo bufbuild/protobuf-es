@@ -21,7 +21,7 @@ import { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, Fil
 /**
  * @generated from enum protobuf_unittest.TopLevelEnum
  */
-export const TopLevelEnum = proto2.makeEnum(
+export const TopLevelEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TopLevelEnum",
   [
     {no: 0, name: "TOP_LEVEL_UNKNOWN"},
@@ -33,7 +33,7 @@ export const TopLevelEnum = proto2.makeEnum(
  *
  * @generated from message protobuf_unittest.OptionsMessage
  */
-export const OptionsMessage = proto2.makeMessageType(
+export const OptionsMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.OptionsMessage",
   () => [
     { no: 1, name: "plain_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -45,7 +45,7 @@ export const OptionsMessage = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.Extendee
  */
-export const Extendee = proto2.makeMessageType(
+export const Extendee = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.Extendee",
   [],
 );
@@ -53,7 +53,7 @@ export const Extendee = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TopLevelMessage
  */
-export const TopLevelMessage = proto2.makeMessageType(
+export const TopLevelMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TopLevelMessage",
   () => [
     { no: 1, name: "f", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
@@ -64,7 +64,7 @@ export const TopLevelMessage = proto2.makeMessageType(
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
  */
-export const TopLevelMessage_NestedEnum = proto2.makeEnum(
+export const TopLevelMessage_NestedEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.TopLevelMessage.NestedEnum",
   [
     {no: 0, name: "NESTED_UNKNOWN"},
@@ -74,7 +74,7 @@ export const TopLevelMessage_NestedEnum = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TopLevelMessage.NestedMessage
  */
-export const TopLevelMessage_NestedMessage = proto2.makeMessageType(
+export const TopLevelMessage_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TopLevelMessage.NestedMessage",
   [],
   {localName: "TopLevelMessage_NestedMessage"},

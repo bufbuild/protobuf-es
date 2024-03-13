@@ -28,7 +28,7 @@ import { ForeignMessage } from "./unittest_pb.js";
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize
  */
-export const TestOptimizedForSize = proto2.makeMessageType(
+export const TestOptimizedForSize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOptimizedForSize",
   () => [
     { no: 1, name: "i", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -59,7 +59,7 @@ export const TestOptimizedForSize_test_extension2 = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
  */
-export const TestRequiredOptimizedForSize = proto2.makeMessageType(
+export const TestRequiredOptimizedForSize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredOptimizedForSize",
   () => [
     { no: 1, name: "x", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
@@ -69,7 +69,7 @@ export const TestRequiredOptimizedForSize = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
  */
-export const TestOptionalOptimizedForSize = proto2.makeMessageType(
+export const TestOptionalOptimizedForSize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestOptionalOptimizedForSize",
   () => [
     { no: 1, name: "o", kind: "message", T: TestRequiredOptimizedForSize, opt: true },

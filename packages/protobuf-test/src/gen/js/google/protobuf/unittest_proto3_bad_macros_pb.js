@@ -23,7 +23,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from enum protobuf_unittest.GID
  */
-export const GID = proto3.makeEnum(
+export const GID = /*@__PURE__*/ proto3.makeEnum(
   "protobuf_unittest.GID",
   [
     {no: 0, name: "GID_UNUSED"},
@@ -35,7 +35,7 @@ export const GID = proto3.makeEnum(
  *
  * @generated from enum protobuf_unittest.UID
  */
-export const UID = proto3.makeEnum(
+export const UID = /*@__PURE__*/ proto3.makeEnum(
   "protobuf_unittest.UID",
   [
     {no: 0, name: "UID_UNUSED"},
@@ -49,7 +49,7 @@ export const UID = proto3.makeEnum(
  *
  * @generated from enum protobuf_unittest.BadNames
  */
-export const BadNames = proto3.makeEnum(
+export const BadNames = /*@__PURE__*/ proto3.makeEnum(
   "protobuf_unittest.BadNames",
   [
     {no: 0, name: "PACKAGE"},

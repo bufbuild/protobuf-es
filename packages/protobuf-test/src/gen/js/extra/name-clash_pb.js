@@ -24,7 +24,7 @@ import { User as User$1 } from "./example_pb.js";
  *
  * @generated from message spec.User
  */
-export const User = proto3.makeMessageType(
+export const User = /*@__PURE__*/ proto3.makeMessageType(
   "spec.User",
   () => [
     { no: 1, name: "u", kind: "message", T: User$1 },
@@ -34,7 +34,7 @@ export const User = proto3.makeMessageType(
 /**
  * @generated from message spec.ReservedPropertyNames
  */
-export const ReservedPropertyNames = proto3.makeMessageType(
+export const ReservedPropertyNames = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ReservedPropertyNames",
   [],
 );
@@ -42,7 +42,7 @@ export const ReservedPropertyNames = proto3.makeMessageType(
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
  */
-export const ReservedPropertyNames_EnumBuiltIn = proto3.makeEnum(
+export const ReservedPropertyNames_EnumBuiltIn = /*@__PURE__*/ proto3.makeEnum(
   "spec.ReservedPropertyNames.EnumBuiltIn",
   [
     {no: 0, name: "constructor"},
@@ -55,7 +55,7 @@ export const ReservedPropertyNames_EnumBuiltIn = proto3.makeEnum(
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
  */
-export const ReservedPropertyNames_EnumRuntime = proto3.makeEnum(
+export const ReservedPropertyNames_EnumRuntime = /*@__PURE__*/ proto3.makeEnum(
   "spec.ReservedPropertyNames.EnumRuntime",
   [
     {no: 0, name: "to_json"},
@@ -73,7 +73,7 @@ export const ReservedPropertyNames_EnumRuntime = proto3.makeEnum(
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
  */
-export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
+export const ReservedPropertyNames_BuiltIn = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ReservedPropertyNames.BuiltIn",
   () => [
     { no: 2, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -87,7 +87,7 @@ export const ReservedPropertyNames_BuiltIn = proto3.makeMessageType(
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
  */
-export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
+export const ReservedPropertyNames_Runtime = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ReservedPropertyNames.Runtime",
   () => [
     { no: 4, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -106,7 +106,7 @@ export const ReservedPropertyNames_Runtime = proto3.makeMessageType(
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
  */
-export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
+export const ReservedPropertyNames_OneofBultIn = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ReservedPropertyNames.OneofBultIn",
   () => [
     { no: 1, name: "constructor", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "built_in" },
@@ -120,7 +120,7 @@ export const ReservedPropertyNames_OneofBultIn = proto3.makeMessageType(
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
  */
-export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
+export const ReservedPropertyNames_OneofRuntime = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ReservedPropertyNames.OneofRuntime",
   () => [
     { no: 5, name: "to_json", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "runtime" },
@@ -141,7 +141,7 @@ export const ReservedPropertyNames_OneofRuntime = proto3.makeMessageType(
  *
  * @generated from message spec.interface
  */
-export const interface$ = proto3.makeMessageType(
+export const interface$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.interface",
   [],
   {localName: "interface$"},
@@ -152,7 +152,7 @@ export const interface$ = proto3.makeMessageType(
  *
  * @generated from message spec.function
  */
-export const function$ = proto3.makeMessageType(
+export const function$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.function",
   [],
   {localName: "function$"},
@@ -163,7 +163,7 @@ export const function$ = proto3.makeMessageType(
  *
  * @generated from message spec.instanceof
  */
-export const instanceof$ = proto3.makeMessageType(
+export const instanceof$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.instanceof",
   [],
   {localName: "instanceof$"},
@@ -174,7 +174,7 @@ export const instanceof$ = proto3.makeMessageType(
  *
  * @generated from message spec.switch
  */
-export const switch$ = proto3.makeMessageType(
+export const switch$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.switch",
   [],
   {localName: "switch$"},
@@ -185,7 +185,7 @@ export const switch$ = proto3.makeMessageType(
  *
  * @generated from message spec.case
  */
-export const case$ = proto3.makeMessageType(
+export const case$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.case",
   [],
   {localName: "case$"},
@@ -196,7 +196,7 @@ export const case$ = proto3.makeMessageType(
  *
  * @generated from message spec.return
  */
-export const return$ = proto3.makeMessageType(
+export const return$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.return",
   [],
   {localName: "return$"},
@@ -207,7 +207,7 @@ export const return$ = proto3.makeMessageType(
  *
  * @generated from message spec.Message
  */
-export const Message = proto3.makeMessageType(
+export const Message = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Message",
   [],
 );
@@ -217,7 +217,7 @@ export const Message = proto3.makeMessageType(
  *
  * @generated from message spec.PartialMessage
  */
-export const PartialMessage = proto3.makeMessageType(
+export const PartialMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.PartialMessage",
   [],
 );
@@ -227,7 +227,7 @@ export const PartialMessage = proto3.makeMessageType(
  *
  * @generated from message spec.PlainMessage
  */
-export const PlainMessage = proto3.makeMessageType(
+export const PlainMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.PlainMessage",
   [],
 );
@@ -239,7 +239,7 @@ export const PlainMessage = proto3.makeMessageType(
  *
  * @generated from message spec.Error
  */
-export const Error = proto3.makeMessageType(
+export const Error = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Error",
   () => [
     { no: 1, name: "field_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -252,7 +252,7 @@ export const Error = proto3.makeMessageType(
  *
  * @generated from message spec.Object
  */
-export const Object$ = proto3.makeMessageType(
+export const Object$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Object",
   [],
   {localName: "Object$"},
@@ -261,7 +261,7 @@ export const Object$ = proto3.makeMessageType(
 /**
  * @generated from message spec.object
  */
-export const object$ = proto3.makeMessageType(
+export const object$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.object",
   [],
   {localName: "object$"},
@@ -272,7 +272,7 @@ export const object$ = proto3.makeMessageType(
  *
  * @generated from message spec.array
  */
-export const array = proto3.makeMessageType(
+export const array = /*@__PURE__*/ proto3.makeMessageType(
   "spec.array",
   [],
 );
@@ -282,7 +282,7 @@ export const array = proto3.makeMessageType(
  *
  * @generated from message spec.string
  */
-export const string$ = proto3.makeMessageType(
+export const string$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.string",
   [],
   {localName: "string$"},
@@ -293,7 +293,7 @@ export const string$ = proto3.makeMessageType(
  *
  * @generated from message spec.number
  */
-export const number$ = proto3.makeMessageType(
+export const number$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.number",
   [],
   {localName: "number$"},
@@ -304,7 +304,7 @@ export const number$ = proto3.makeMessageType(
  *
  * @generated from message spec.boolean
  */
-export const boolean$ = proto3.makeMessageType(
+export const boolean$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.boolean",
   [],
   {localName: "boolean$"},
@@ -315,7 +315,7 @@ export const boolean$ = proto3.makeMessageType(
  *
  * @generated from message spec.bigint
  */
-export const bigint$ = proto3.makeMessageType(
+export const bigint$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.bigint",
   [],
   {localName: "bigint$"},
@@ -326,7 +326,7 @@ export const bigint$ = proto3.makeMessageType(
  *
  * @generated from message spec.Uint8Array
  */
-export const Uint8Array$ = proto3.makeMessageType(
+export const Uint8Array$ = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Uint8Array",
   [],
   {localName: "Uint8Array$"},
@@ -337,7 +337,7 @@ export const Uint8Array$ = proto3.makeMessageType(
  *
  * @generated from message spec.Array
  */
-export const Array = proto3.makeMessageType(
+export const Array = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Array",
   [],
 );
@@ -347,7 +347,7 @@ export const Array = proto3.makeMessageType(
  *
  * @generated from message spec.String
  */
-export const String = proto3.makeMessageType(
+export const String = /*@__PURE__*/ proto3.makeMessageType(
   "spec.String",
   [],
 );
@@ -357,7 +357,7 @@ export const String = proto3.makeMessageType(
  *
  * @generated from message spec.Number
  */
-export const Number = proto3.makeMessageType(
+export const Number = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Number",
   [],
 );
@@ -367,7 +367,7 @@ export const Number = proto3.makeMessageType(
  *
  * @generated from message spec.Boolean
  */
-export const Boolean = proto3.makeMessageType(
+export const Boolean = /*@__PURE__*/ proto3.makeMessageType(
   "spec.Boolean",
   [],
 );
@@ -377,7 +377,7 @@ export const Boolean = proto3.makeMessageType(
  *
  * @generated from message spec.BigInt
  */
-export const BigInt = proto3.makeMessageType(
+export const BigInt = /*@__PURE__*/ proto3.makeMessageType(
   "spec.BigInt",
   [],
 );
@@ -385,7 +385,7 @@ export const BigInt = proto3.makeMessageType(
 /**
  * @generated from message spec.ClashParent
  */
-export const ClashParent = proto3.makeMessageType(
+export const ClashParent = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ClashParent",
   [],
 );
@@ -395,7 +395,7 @@ export const ClashParent = proto3.makeMessageType(
  *
  * @generated from message spec.ClashParent.ClashChild
  */
-export const ClashParent_ClashChild = proto3.makeMessageType(
+export const ClashParent_ClashChild = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ClashParent.ClashChild",
   [],
   {localName: "ClashParent_ClashChild"},
@@ -404,7 +404,7 @@ export const ClashParent_ClashChild = proto3.makeMessageType(
 /**
  * @generated from message spec.NoClashFields
  */
-export const NoClashFields = proto3.makeMessageType(
+export const NoClashFields = /*@__PURE__*/ proto3.makeMessageType(
   "spec.NoClashFields",
   () => [
     { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -419,7 +419,7 @@ export const NoClashFields = proto3.makeMessageType(
 /**
  * @generated from message spec.NoClashOneof
  */
-export const NoClashOneof = proto3.makeMessageType(
+export const NoClashOneof = /*@__PURE__*/ proto3.makeMessageType(
   "spec.NoClashOneof",
   () => [
     { no: 1, name: "const", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
@@ -434,7 +434,7 @@ export const NoClashOneof = proto3.makeMessageType(
 /**
  * @generated from message spec.NoClashOneofADT
  */
-export const NoClashOneofADT = proto3.makeMessageType(
+export const NoClashOneofADT = /*@__PURE__*/ proto3.makeMessageType(
   "spec.NoClashOneofADT",
   () => [
     { no: 1, name: "m", kind: "message", T: NoClashOneofADT_M },
@@ -444,7 +444,7 @@ export const NoClashOneofADT = proto3.makeMessageType(
 /**
  * @generated from message spec.NoClashOneofADT.M
  */
-export const NoClashOneofADT_M = proto3.makeMessageType(
+export const NoClashOneofADT_M = /*@__PURE__*/ proto3.makeMessageType(
   "spec.NoClashOneofADT.M",
   () => [
     { no: 1, name: "case", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -458,7 +458,7 @@ export const NoClashOneofADT_M = proto3.makeMessageType(
  *
  * @generated from message spec.NoClashEnumWrap
  */
-export const NoClashEnumWrap = proto3.makeMessageType(
+export const NoClashEnumWrap = /*@__PURE__*/ proto3.makeMessageType(
   "spec.NoClashEnumWrap",
   [],
 );
@@ -466,7 +466,7 @@ export const NoClashEnumWrap = proto3.makeMessageType(
 /**
  * @generated from enum spec.NoClashEnumWrap.X
  */
-export const NoClashEnumWrap_X = proto3.makeEnum(
+export const NoClashEnumWrap_X = /*@__PURE__*/ proto3.makeEnum(
   "spec.NoClashEnumWrap.X",
   [
     {no: 0, name: "instanceof"},

@@ -24,7 +24,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.SourceContext
  */
-export const SourceContext = proto3.makeMessageType(
+export const SourceContext = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.SourceContext",
   () => [
     { no: 1, name: "file_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },

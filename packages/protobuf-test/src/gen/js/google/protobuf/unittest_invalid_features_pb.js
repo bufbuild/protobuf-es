@@ -21,7 +21,7 @@ import { FeatureSet, proto2 } from "@bufbuild/protobuf";
 /**
  * @generated from message pb.TestInvalidFeatures
  */
-export const TestInvalidFeatures = proto2.makeMessageType(
+export const TestInvalidFeatures = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestInvalidFeatures",
   () => [
     { no: 1, name: "repeated_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },

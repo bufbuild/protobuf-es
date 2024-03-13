@@ -33,7 +33,7 @@ import { SourceContext } from "./source_context_pb.js";
  *
  * @generated from message google.protobuf.Api
  */
-export const Api = proto3.makeMessageType(
+export const Api = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Api",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -51,7 +51,7 @@ export const Api = proto3.makeMessageType(
  *
  * @generated from message google.protobuf.Method
  */
-export const Method = proto3.makeMessageType(
+export const Method = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Method",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -146,7 +146,7 @@ export const Method = proto3.makeMessageType(
  *
  * @generated from message google.protobuf.Mixin
  */
-export const Mixin = proto3.makeMessageType(
+export const Mixin = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Mixin",
   () => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },

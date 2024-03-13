@@ -21,7 +21,7 @@ import { FeatureSet, proto2 } from "@bufbuild/protobuf";
 /**
  * @generated from message pb.TestMessage
  */
-export const TestMessage = proto2.makeMessageType(
+export const TestMessage = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestMessage",
   [],
 );
@@ -29,7 +29,7 @@ export const TestMessage = proto2.makeMessageType(
 /**
  * @generated from message pb.TestMessage.Nested
  */
-export const TestMessage_Nested = proto2.makeMessageType(
+export const TestMessage_Nested = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestMessage.Nested",
   [],
   {localName: "TestMessage_Nested"},
@@ -56,7 +56,7 @@ export const TestMessage_test_message = proto2.makeExtension(
 /**
  * @generated from message pb.TestFeatures
  */
-export const TestFeatures = proto2.makeMessageType(
+export const TestFeatures = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestFeatures",
   () => [
     { no: 1, name: "int_file_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
@@ -81,7 +81,7 @@ export const TestFeatures = proto2.makeMessageType(
 /**
  * @generated from enum pb.TestFeatures.EnumFeature
  */
-export const TestFeatures_EnumFeature = proto2.makeEnum(
+export const TestFeatures_EnumFeature = /*@__PURE__*/ proto2.makeEnum(
   "pb.TestFeatures.EnumFeature",
   [
     {no: 0, name: "TEST_ENUM_FEATURE_UNKNOWN"},
@@ -96,7 +96,7 @@ export const TestFeatures_EnumFeature = proto2.makeEnum(
 /**
  * @generated from message pb.TestFeatures.MessageFeature
  */
-export const TestFeatures_MessageFeature = proto2.makeMessageType(
+export const TestFeatures_MessageFeature = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestFeatures.MessageFeature",
   () => [
     { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },

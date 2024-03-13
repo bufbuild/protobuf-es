@@ -28,7 +28,7 @@ import { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
  */
-export const TestEmbedOptimizedForSize = proto2.makeMessageType(
+export const TestEmbedOptimizedForSize = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEmbedOptimizedForSize",
   () => [
     { no: 1, name: "optional_message", kind: "message", T: TestOptimizedForSize, opt: true },

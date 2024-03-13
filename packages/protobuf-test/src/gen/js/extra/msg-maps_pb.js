@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from enum spec.MapsEnum
  */
-export const MapsEnum = proto3.makeEnum(
+export const MapsEnum = /*@__PURE__*/ proto3.makeEnum(
   "spec.MapsEnum",
   [
     {no: 0, name: "MAPS_ENUM_ANY", localName: "ANY"},
@@ -33,7 +33,7 @@ export const MapsEnum = proto3.makeEnum(
 /**
  * @generated from message spec.MapsMessage
  */
-export const MapsMessage = proto3.makeMessageType(
+export const MapsMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.MapsMessage",
   () => [
     { no: 1, name: "str_str_field", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },

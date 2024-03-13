@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from message spec.SelfReferencingMessage
  */
-export const SelfReferencingMessage = proto3.makeMessageType(
+export const SelfReferencingMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.SelfReferencingMessage",
   () => [
     { no: 1, name: "self", kind: "message", T: SelfReferencingMessage },

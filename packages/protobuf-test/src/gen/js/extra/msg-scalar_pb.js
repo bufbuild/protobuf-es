@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from message spec.ScalarValuesMessage
  */
-export const ScalarValuesMessage = proto3.makeMessageType(
+export const ScalarValuesMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ScalarValuesMessage",
   () => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
@@ -45,7 +45,7 @@ export const ScalarValuesMessage = proto3.makeMessageType(
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
  */
-export const RepeatedScalarValuesMessage = proto3.makeMessageType(
+export const RepeatedScalarValuesMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.RepeatedScalarValuesMessage",
   () => [
     { no: 1, name: "double_field", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, repeated: true },
