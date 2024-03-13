@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,14 +53,13 @@ export enum WireType {
   LengthDelimited = 2,
 
   /**
-   * Used for groups
-   * @deprecated
+   * Start of a tag-delimited aggregate, such as a proto2 group, or a message
+   * in editions with message_encoding = DELIMITED.
    */
   StartGroup = 3,
 
   /**
-   * Used for groups
-   * @deprecated
+   * End of a tag-delimited aggregate.
    */
   EndGroup = 4,
 
@@ -577,7 +576,7 @@ export class BinaryReader implements IBinaryReader {
       wireType = tag & 7;
     if (fieldNo <= 0 || wireType < 0 || wireType > 5)
       throw new Error(
-        "illegal tag: field no " + fieldNo + " wire type " + wireType
+        "illegal tag: field no " + fieldNo + " wire type " + wireType,
       );
     return [fieldNo, wireType];
   }
@@ -608,8 +607,7 @@ export class BinaryReader implements IBinaryReader {
         this.pos += len;
         break;
       case WireType.StartGroup:
-        // From descriptor.proto: Group type is deprecated, not supported in proto3.
-        // But we must still be able to parse and treat as unknown.
+        // TODO check for matching field numbers in StartGroup / EndGroup tags
         let t: WireType;
         while ((t = this.tag()[1]) !== WireType.EndGroup) {
           this.skip(t);

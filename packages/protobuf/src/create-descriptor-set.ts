@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,12 @@ import type {
   OneofDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
 import {
+  Edition,
+  FeatureSet_RepeatedFieldEncoding,
+  FeatureSetDefaults,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
+  FieldOptions_JSType,
   FileDescriptorProto,
   FileDescriptorSet,
   MethodDescriptorProto,
@@ -41,10 +45,17 @@ import type {
   DescriptorSet,
   DescService,
 } from "./descriptor-set.js";
-import { ScalarType } from "./field.js";
 import { MethodIdempotency, MethodKind } from "./service-type.js";
-import { findEnumSharedPrefix, fieldJsonName } from "./private/names.js";
-import { protoInt64 } from "./proto-int64.js";
+import { fieldJsonName, findEnumSharedPrefix } from "./private/names.js";
+import {
+  parseTextFormatEnumValue,
+  parseTextFormatScalarValue,
+} from "./private/text-format.js";
+import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
+import type { FeatureResolverFn } from "./private/feature-set.js";
+import { createFeatureResolver } from "./private/feature-set.js";
+import { LongType, ScalarType } from "./scalar.js";
+import { isMessage } from "./is-message";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -55,23 +66,63 @@ import { protoInt64 } from "./proto-int64.js";
  * files in topological order.
  */
 export function createDescriptorSet(
-  input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array
+  input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
+  options?: CreateDescriptorSetOptions,
 ): DescriptorSet {
-  const cart = {
+  const cart: Cart = {
+    files: [],
     enums: new Map<string, DescEnum>(),
     messages: new Map<string, DescMessage>(),
     services: new Map<string, DescService>(),
     extensions: new Map<string, DescExtension>(),
     mapEntries: new Map<string, DescMessage>(),
   };
-  const fileDescriptors =
-    input instanceof FileDescriptorSet
-      ? input.file
-      : input instanceof Uint8Array
+  const fileDescriptors = isMessage(input, FileDescriptorSet)
+    ? input.file
+    : input instanceof Uint8Array
       ? FileDescriptorSet.fromBinary(input).file
       : input;
-  const files = fileDescriptors.map((proto) => newFile(proto, cart));
-  return { files, ...cart };
+  const resolverByEdition = new Map<Edition, FeatureResolverFn>();
+  for (const proto of fileDescriptors) {
+    const edition =
+      proto.edition ?? parseFileSyntax(proto.syntax, proto.edition).edition;
+    let resolveFeatures = resolverByEdition.get(edition);
+    if (resolveFeatures === undefined) {
+      resolveFeatures = createFeatureResolver(
+        edition,
+        options?.featureSetDefaults,
+        options?.serializationOptions,
+      );
+      resolverByEdition.set(edition, resolveFeatures);
+    }
+    addFile(proto, cart, resolveFeatures);
+  }
+  return cart;
+}
+
+/**
+ * Options to createDescriptorSet()
+ */
+interface CreateDescriptorSetOptions {
+  /**
+   * Editions support language-specific features with extensions to
+   * google.protobuf.FeatureSet. They can define defaults, and specify on
+   * which targets the features can be set.
+   *
+   * To create a DescriptorSet that provides your language-specific features,
+   * you have to provide a google.protobuf.FeatureSetDefaults message in this
+   * option. It can also specify the minimum and maximum supported edition.
+   *
+   * The defaults can be generated with `protoc` - see the flag
+   * `--experimental_edition_defaults_out`.
+   */
+  featureSetDefaults?: FeatureSetDefaults;
+
+  /**
+   * Internally, data is serialized when features are resolved. The
+   * serialization options given here will be used for feature resolution.
+   */
+  serializationOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
 }
 
 /**
@@ -79,6 +130,7 @@ export function createDescriptorSet(
  * use to resolve reference when creating descriptors.
  */
 interface Cart {
+  files: DescFile[];
   enums: Map<string, DescEnum>;
   messages: Map<string, DescMessage>;
   services: Map<string, DescService>;
@@ -89,20 +141,19 @@ interface Cart {
 /**
  * Create a descriptor for a file.
  */
-function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
+function addFile(
+  proto: FileDescriptorProto,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): void {
   assert(proto.name, `invalid FileDescriptorProto: missing name`);
-  assert(
-    proto.syntax === undefined || proto.syntax === "proto3",
-    `invalid FileDescriptorProto: unsupported syntax: ${
-      proto.syntax ?? "undefined"
-    }`
-  );
   const file: DescFile = {
     kind: "file",
     proto,
     deprecated: proto.options?.deprecated ?? false,
-    syntax: proto.syntax === "proto3" ? "proto3" : "proto2",
+    ...parseFileSyntax(proto.syntax, proto.edition),
     name: proto.name.replace(/\.proto/, ""),
+    dependencies: findFileDependencies(proto, cart),
     enums: [],
     messages: [],
     extensions: [],
@@ -121,27 +172,30 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
         FieldNumber.FileDescriptorProto_Package,
       ]);
     },
+    getFeatures() {
+      return resolveFeatures(proto.options?.features);
+    },
   };
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, undefined, cart);
+    addEnum(enumProto, file, undefined, cart, resolveFeatures);
   }
   for (const messageProto of proto.messageType) {
-    addMessage(messageProto, file, undefined, cart);
+    addMessage(messageProto, file, undefined, cart, resolveFeatures);
   }
   for (const serviceProto of proto.service) {
-    addService(serviceProto, file, cart);
+    addService(serviceProto, file, cart, resolveFeatures);
   }
-  addExtensions(file, cart);
+  addExtensions(file, cart, resolveFeatures);
   for (const mapEntry of cart.mapEntries.values()) {
-    addFields(mapEntry, cart);
+    addFields(mapEntry, cart, resolveFeatures);
   }
   for (const message of file.messages) {
-    addFields(message, cart);
-    addExtensions(message, cart);
+    addFields(message, cart, resolveFeatures);
+    addExtensions(message, cart, resolveFeatures);
   }
   cart.mapEntries.clear(); // map entries are local to the file, we can safely discard
-  return file;
+  cart.files.push(file);
 }
 
 /**
@@ -149,23 +203,27 @@ function newFile(proto: FileDescriptorProto, cart: Cart): DescFile {
  * and to our cart.
  * Recurses into nested types.
  */
-function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
+function addExtensions(
+  desc: DescFile | DescMessage,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): void {
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc, undefined, cart);
+        const ext = newExtension(proto, desc, undefined, cart, resolveFeatures);
         desc.extensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
       }
       break;
     case "message":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc.file, desc, cart);
+        const ext = newExtension(proto, desc.file, desc, cart, resolveFeatures);
         desc.nestedExtensions.push(ext);
         cart.extensions.set(ext.typeName, ext);
       }
       for (const message of desc.nestedMessages) {
-        addExtensions(message, cart);
+        addExtensions(message, cart, resolveFeatures);
       }
       break;
   }
@@ -175,14 +233,25 @@ function addExtensions(desc: DescFile | DescMessage, cart: Cart): void {
  * Create descriptors for fields and oneof groups, and add them to the message.
  * Recurses into nested types.
  */
-function addFields(message: DescMessage, cart: Cart): void {
+function addFields(
+  message: DescMessage,
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
+): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message)
+    newOneof(proto, message, resolveFeatures),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
     const oneof = findOneof(proto, allOneofs);
-    const field = newField(proto, message.file, message, oneof, cart);
+    const field = newField(
+      proto,
+      message.file,
+      message,
+      oneof,
+      cart,
+      resolveFeatures,
+    );
     message.fields.push(field);
     if (oneof === undefined) {
       message.members.push(field);
@@ -198,7 +267,7 @@ function addFields(message: DescMessage, cart: Cart): void {
     message.oneofs.push(oneof);
   }
   for (const child of message.nestedMessages) {
-    addFields(child, cart);
+    addFields(child, cart, resolveFeatures);
   }
 }
 
@@ -210,7 +279,8 @@ function addEnum(
   proto: EnumDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid EnumDescriptorProto: missing name`);
   const desc: DescEnum = {
@@ -224,7 +294,7 @@ function addEnum(
     values: [],
     sharedPrefix: findEnumSharedPrefix(
       proto.name,
-      proto.value.map((v) => v.name ?? "")
+      proto.value.map((v) => v.name ?? ""),
     ),
     toString(): string {
       return `enum ${this.typeName}`;
@@ -242,13 +312,19 @@ function addEnum(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(
+        parent?.getFeatures() ?? file.getFeatures(),
+        proto.options?.features,
+      );
+    },
   };
   cart.enums.set(desc.typeName, desc);
   proto.value.forEach((proto) => {
     assert(proto.name, `invalid EnumValueDescriptorProto: missing name`);
     assert(
       proto.number !== undefined,
-      `invalid EnumValueDescriptorProto: missing number`
+      `invalid EnumValueDescriptorProto: missing number`,
     );
     desc.values.push({
       kind: "enum_value",
@@ -275,6 +351,9 @@ function addEnum(
         ];
         return findComments(file.proto.sourceCodeInfo, path);
       },
+      getFeatures() {
+        return resolveFeatures(desc.getFeatures(), proto.options?.features);
+      },
     });
   });
   (parent?.nestedEnums ?? file.enums).push(desc);
@@ -288,7 +367,8 @@ function addMessage(
   proto: DescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid DescriptorProto: missing name`);
   const desc: DescMessage = {
@@ -321,6 +401,12 @@ function addMessage(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(
+        parent?.getFeatures() ?? file.getFeatures(),
+        proto.options?.features,
+      );
+    },
   };
   if (proto.options?.mapEntry === true) {
     cart.mapEntries.set(desc.typeName, desc);
@@ -329,10 +415,10 @@ function addMessage(
     cart.messages.set(desc.typeName, desc);
   }
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, desc, cart);
+    addEnum(enumProto, file, desc, cart, resolveFeatures);
   }
   for (const messageProto of proto.nestedType) {
-    addMessage(messageProto, file, desc, cart);
+    addMessage(messageProto, file, desc, cart, resolveFeatures);
   }
 }
 
@@ -343,7 +429,8 @@ function addMessage(
 function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): void {
   assert(proto.name, `invalid ServiceDescriptorProto: missing name`);
   const desc: DescService = {
@@ -364,11 +451,14 @@ function addService(
       ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(file.getFeatures(), proto.options?.features);
+    },
   };
   file.services.push(desc);
   cart.services.set(desc.typeName, desc);
   for (const methodProto of proto.method) {
-    desc.methods.push(newMethod(methodProto, desc, cart));
+    desc.methods.push(newMethod(methodProto, desc, cart, resolveFeatures));
   }
 }
 
@@ -378,13 +468,14 @@ function addService(
 function newMethod(
   proto: MethodDescriptorProto,
   parent: DescService,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescMethod {
   assert(proto.name, `invalid MethodDescriptorProto: missing name`);
   assert(proto.inputType, `invalid MethodDescriptorProto: missing input_type`);
   assert(
     proto.outputType,
-    `invalid MethodDescriptorProto: missing output_type`
+    `invalid MethodDescriptorProto: missing output_type`,
   );
   let methodKind: MethodKind;
   if (proto.clientStreaming === true && proto.serverStreaming === true) {
@@ -413,11 +504,11 @@ function newMethod(
   const output = cart.messages.get(trimLeadingDot(proto.outputType));
   assert(
     input,
-    `invalid MethodDescriptorProto: input_type ${proto.inputType} not found`
+    `invalid MethodDescriptorProto: input_type ${proto.inputType} not found`,
   );
   assert(
     output,
-    `invalid MethodDescriptorProto: output_type ${proto.inputType} not found`
+    `invalid MethodDescriptorProto: output_type ${proto.inputType} not found`,
   );
   const name = proto.name;
   return {
@@ -441,13 +532,20 @@ function newMethod(
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
+    },
   };
 }
 
 /**
  * Create a descriptor for a oneof group.
  */
-function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
+function newOneof(
+  proto: OneofDescriptorProto,
+  parent: DescMessage,
+  resolveFeatures: FeatureResolverFn,
+): DescOneof {
   assert(proto.name, `invalid OneofDescriptorProto: missing name`);
   return {
     kind: "oneof",
@@ -467,6 +565,9 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
       ];
       return findComments(parent.file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
+    },
   };
 }
 
@@ -478,12 +579,12 @@ function newField(
   file: DescFile,
   parent: DescMessage,
   oneof: DescOneof | undefined,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescField {
   assert(proto.name, `invalid FieldDescriptorProto: missing name`);
   assert(proto.number, `invalid FieldDescriptorProto: missing number`);
   assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  const packedByDefault = isPackedFieldByDefault(proto, file.syntax);
   const common = {
     proto,
     deprecated: proto.options?.deprecated ?? false,
@@ -492,20 +593,21 @@ function newField(
     parent,
     oneof,
     optional: isOptionalField(proto, file.syntax),
-    packed: proto.options?.packed ?? packedByDefault,
-    packedByDefault,
+    packedByDefault: isPackedFieldByDefault(proto, resolveFeatures),
+    packed: isPackedField(file, parent, proto, resolveFeatures),
     jsonName:
       proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
     scalar: undefined,
+    longType: undefined,
     message: undefined,
     enum: undefined,
     mapKey: undefined,
     mapValue: undefined,
+    declarationString,
+    // toString, getComments, getFeatures are overridden in newExtension
     toString(): string {
-      // note that newExtension() calls us with parent = null
       return `field ${this.parent.typeName}.${this.name}`;
     },
-    declarationString,
     getComments() {
       const path = [
         ...this.parent.getComments().sourcePath,
@@ -513,6 +615,9 @@ function newField(
         this.parent.proto.field.indexOf(this.proto),
       ];
       return findComments(file.proto.sourceCodeInfo, path);
+    },
+    getFeatures() {
+      return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
   };
   const repeated = proto.label === FieldDescriptorProto_Label.REPEATED;
@@ -524,7 +629,7 @@ function newField(
       if (mapEntry !== undefined) {
         assert(
           repeated,
-          `invalid FieldDescriptorProto: expected map entry to be repeated`
+          `invalid FieldDescriptorProto: expected map entry to be repeated`,
         );
         return {
           ...common,
@@ -537,7 +642,7 @@ function newField(
       const message = cart.messages.get(trimLeadingDot(proto.typeName));
       assert(
         message !== undefined,
-        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`
+        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       return {
         ...common,
@@ -552,7 +657,7 @@ function newField(
       const e = cart.enums.get(trimLeadingDot(proto.typeName));
       assert(
         e !== undefined,
-        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`
+        `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       return {
         ...common,
@@ -567,7 +672,7 @@ function newField(
       const scalar = fieldTypeToScalarType[proto.type];
       assert(
         scalar,
-        `invalid FieldDescriptorProto: unknown type ${proto.type}`
+        `invalid FieldDescriptorProto: unknown type ${proto.type}`,
       );
       return {
         ...common,
@@ -576,6 +681,10 @@ function newField(
         getDefaultValue,
         repeated,
         scalar,
+        longType:
+          proto.options?.jstype == FieldOptions_JSType.JS_STRING
+            ? LongType.STRING
+            : LongType.BIGINT,
       };
     }
   }
@@ -588,7 +697,8 @@ function newExtension(
   proto: FieldDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  cart: Cart
+  cart: Cart,
+  resolveFeatures: FeatureResolverFn,
 ): DescExtension {
   assert(proto.extendee, `invalid FieldDescriptorProto: missing extendee`);
   const field = newField(
@@ -596,12 +706,13 @@ function newExtension(
     file,
     null as unknown as DescMessage, // to safe us many lines of duplicated code, we trick the type system
     undefined,
-    cart
+    cart,
+    resolveFeatures,
   );
   const extendee = cart.messages.get(trimLeadingDot(proto.extendee));
   assert(
     extendee,
-    `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`
+    `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
   );
   return {
     ...field,
@@ -610,6 +721,8 @@ function newExtension(
     parent,
     file,
     extendee,
+    // Must override toString, getComments, getFeatures from newField, because we
+    // call newField with parent undefined.
     toString(): string {
       return `extension ${this.typeName}`;
     },
@@ -626,7 +739,88 @@ function newExtension(
           ];
       return findComments(file.proto.sourceCodeInfo, path);
     },
+    getFeatures() {
+      return resolveFeatures(
+        (parent ?? file).getFeatures(),
+        proto.options?.features,
+      );
+    },
   };
+}
+
+/**
+ * Parse the "syntax" and "edition" fields, stripping test editions.
+ */
+function parseFileSyntax(
+  syntax: string | undefined,
+  edition: Edition | undefined,
+) {
+  let e: Exclude<
+    Edition,
+    | Edition.EDITION_1_TEST_ONLY
+    | Edition.EDITION_2_TEST_ONLY
+    | Edition.EDITION_99997_TEST_ONLY
+    | Edition.EDITION_99998_TEST_ONLY
+    | Edition.EDITION_99999_TEST_ONLY
+  >;
+  let s: "proto2" | "proto3" | "editions";
+  switch (syntax) {
+    case undefined:
+    case "proto2":
+      s = "proto2";
+      e = Edition.EDITION_PROTO2;
+      break;
+    case "proto3":
+      s = "proto3";
+      e = Edition.EDITION_PROTO3;
+      break;
+    case "editions":
+      s = "editions";
+      switch (edition) {
+        case undefined:
+        case Edition.EDITION_1_TEST_ONLY:
+        case Edition.EDITION_2_TEST_ONLY:
+        case Edition.EDITION_99997_TEST_ONLY:
+        case Edition.EDITION_99998_TEST_ONLY:
+        case Edition.EDITION_99999_TEST_ONLY:
+        case Edition.EDITION_UNKNOWN:
+          e = Edition.EDITION_UNKNOWN;
+          break;
+        default:
+          e = edition;
+          break;
+      }
+      break;
+    default:
+      throw new Error(
+        `invalid FileDescriptorProto: unsupported syntax: ${syntax}`,
+      );
+  }
+  if (syntax === "editions" && edition === Edition.EDITION_UNKNOWN) {
+    throw new Error(
+      `invalid FileDescriptorProto: syntax ${syntax} cannot have edition ${String(
+        edition,
+      )}`,
+    );
+  }
+  return {
+    syntax: s,
+    edition: e,
+  };
+}
+
+/**
+ * Resolve dependencies of FileDescriptorProto to DescFile.
+ */
+function findFileDependencies(
+  proto: FileDescriptorProto,
+  cart: Cart,
+): DescFile[] {
+  return proto.dependency.map((wantName) => {
+    const dep = cart.files.find((f) => f.proto.name === wantName);
+    assert(dep);
+    return dep;
+  });
 }
 
 /**
@@ -652,7 +846,7 @@ function makeTypeName(
     | EnumDescriptorProto
     | FieldDescriptorProto,
   parent: DescMessage | DescService | undefined,
-  file: DescFile
+  file: DescFile,
 ): string {
   assert(proto.name, `invalid ${proto.getType().typeName}: missing name`);
   let typeName: string;
@@ -674,22 +868,22 @@ function trimLeadingDot(typeName: string): string {
 }
 
 function getMapFieldTypes(
-  mapEntry: DescMessage
+  mapEntry: DescMessage,
 ): Pick<DescField & { fieldKind: "map" }, "mapKey" | "mapValue"> {
   assert(
     mapEntry.proto.options?.mapEntry,
-    `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`
+    `invalid DescriptorProto: expected ${mapEntry.toString()} to be a map entry`,
   );
   assert(
     mapEntry.fields.length === 2,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} has ${
       mapEntry.fields.length
-    } fields`
+    } fields`,
   );
   const keyField = mapEntry.fields.find((f) => f.proto.number === 1);
   assert(
     keyField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing key field`
+    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing key field`,
   );
   const mapKey = keyField.scalar;
   assert(
@@ -699,12 +893,12 @@ function getMapFieldTypes(
       mapKey !== ScalarType.DOUBLE,
     `invalid DescriptorProto: map entry ${mapEntry.toString()} has unexpected key type ${
       keyField.proto.type ?? -1
-    }`
+    }`,
   );
   const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
   assert(
     valueField,
-    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`
+    `invalid DescriptorProto: map entry ${mapEntry.toString()} is missing value field`,
   );
   switch (valueField.fieldKind) {
     case "scalar":
@@ -733,7 +927,7 @@ function getMapFieldTypes(
       };
     default:
       throw new Error(
-        "invalid DescriptorProto: unsupported map entry value field"
+        "invalid DescriptorProto: unsupported map entry value field",
       );
   }
 }
@@ -744,7 +938,7 @@ function getMapFieldTypes(
  */
 function findOneof(
   proto: FieldDescriptorProto,
-  allOneofs: DescOneof[]
+  allOneofs: DescOneof[],
 ): DescOneof | undefined {
   const oneofIndex = proto.oneofIndex;
   if (oneofIndex === undefined) {
@@ -757,7 +951,7 @@ function findOneof(
       oneof,
       `invalid FieldDescriptorProto: oneof #${oneofIndex} for field #${
         proto.number ?? -1
-      } not found`
+      } not found`,
     );
   }
   return oneof;
@@ -769,7 +963,7 @@ function findOneof(
  */
 function isOptionalField(
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3"
+  syntax: "proto2" | "proto3" | "editions",
 ): boolean {
   switch (syntax) {
     case "proto2":
@@ -779,44 +973,79 @@ function isOptionalField(
       );
     case "proto3":
       return proto.proto3Optional === true;
+    case "editions":
+      return false;
   }
 }
 
 /**
- * Get the default `packed` state of a repeated field.
+ * Is this field packed by default? Only valid for repeated enum fields, and
+ * for repeated scalar fields except BYTES and STRING.
+ *
+ * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
+ * are unpacked by default. With editions, the default is whatever the edition
+ * specifies as a default. In edition 2023, fields are packed by default.
  */
-export function isPackedFieldByDefault(
+function isPackedFieldByDefault(
   proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3"
-): boolean {
-  assert(proto.type, `invalid FieldDescriptorProto: missing type`);
-  if (syntax === "proto3") {
-    switch (proto.type) {
-      case FieldDescriptorProto_Type.DOUBLE:
-      case FieldDescriptorProto_Type.FLOAT:
-      case FieldDescriptorProto_Type.INT64:
-      case FieldDescriptorProto_Type.UINT64:
-      case FieldDescriptorProto_Type.INT32:
-      case FieldDescriptorProto_Type.FIXED64:
-      case FieldDescriptorProto_Type.FIXED32:
-      case FieldDescriptorProto_Type.UINT32:
-      case FieldDescriptorProto_Type.SFIXED32:
-      case FieldDescriptorProto_Type.SFIXED64:
-      case FieldDescriptorProto_Type.SINT32:
-      case FieldDescriptorProto_Type.SINT64:
-      case FieldDescriptorProto_Type.BOOL:
-      case FieldDescriptorProto_Type.ENUM:
-        // From the proto3 language guide:
-        // > In proto3, repeated fields of scalar numeric types are packed by default.
-        // This information is incomplete - according to the conformance tests, BOOL
-        // and ENUM are packed by default as well. This means only STRING and BYTES
-        // are not packed by default, which makes sense because they are length-delimited.
-        return true;
-      default:
-        return false;
-    }
+  resolveFeatures: FeatureResolverFn,
+) {
+  const { repeatedFieldEncoding } = resolveFeatures();
+  if (repeatedFieldEncoding != FeatureSet_RepeatedFieldEncoding.PACKED) {
+    return false;
   }
-  return false;
+  // From the proto3 language guide:
+  // > In proto3, repeated fields of scalar numeric types are packed by default.
+  // This information is incomplete - according to the conformance tests, BOOL
+  // and ENUM are packed by default as well. This means only STRING and BYTES
+  // are not packed by default, which makes sense because they are length-delimited.
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      return false;
+    default:
+      return true;
+  }
+}
+
+/**
+ * Pack this repeated field?
+ *
+ * Respects field type, proto2/proto3 defaults and the `packed` option, or
+ * edition defaults and the edition features.repeated_field_encoding options.
+ */
+function isPackedField(
+  file: DescFile,
+  parent: DescMessage | undefined,
+  proto: FieldDescriptorProto,
+  resolveFeatures: FeatureResolverFn,
+) {
+  switch (proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      // length-delimited types cannot be packed
+      return false;
+    default:
+      switch (file.edition) {
+        case Edition.EDITION_PROTO2:
+          return proto.options?.packed ?? false;
+        case Edition.EDITION_PROTO3:
+          return proto.options?.packed ?? true;
+        default: {
+          const { repeatedFieldEncoding } = resolveFeatures(
+            parent?.getFeatures() ?? file.getFeatures(),
+            proto.options?.features,
+          );
+          return (
+            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
+          );
+        }
+      }
+  }
 }
 
 /**
@@ -852,7 +1081,7 @@ const fieldTypeToScalarType: Record<
  */
 function findComments(
   sourceCodeInfo: SourceCodeInfo | undefined,
-  sourcePath: number[]
+  sourcePath: number[],
 ): DescComments {
   if (!sourceCodeInfo) {
     return {
@@ -891,13 +1120,13 @@ enum FieldNumber {
   FileDescriptorProto_Service = 6,
   FileDescriptorProto_Extension = 7,
   FileDescriptorProto_Syntax = 12,
-  DescriptorProto_Field = 2,
+  DescriptorProto_Field = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
   DescriptorProto_NestedType = 3,
-  DescriptorProto_EnumType = 4,
-  DescriptorProto_Extension = 6,
+  DescriptorProto_EnumType = 4, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
+  DescriptorProto_Extension = 6, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
   DescriptorProto_OneofDecl = 8,
-  EnumDescriptorProto_Value = 2,
-  ServiceDescriptorProto_Method = 2,
+  EnumDescriptorProto_Value = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
+  ServiceDescriptorProto_Method = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
 }
 
 /**
@@ -966,6 +1195,9 @@ function declarationString(this: DescField | DescExtension): string {
   if (this.jsonName !== undefined) {
     options.push(`json_name = "${this.jsonName}"`);
   }
+  if (this.proto.options?.jstype !== undefined) {
+    options.push(`jstype = ${FieldOptions_JSType[this.proto.options.jstype]}`);
+  }
   if (this.proto.options?.deprecated === true) {
     options.push(`deprecated = true`);
   }
@@ -979,194 +1211,18 @@ function declarationString(this: DescField | DescExtension): string {
  * Parses a text-encoded default value (proto2) of a scalar or enum field.
  */
 function getDefaultValue(
-  this: DescField | DescExtension
+  this: DescField | DescExtension,
 ): number | boolean | string | bigint | Uint8Array | undefined {
   const d = this.proto.defaultValue;
   if (d === undefined) {
     return undefined;
   }
   switch (this.fieldKind) {
-    case "enum": {
-      const enumValue = this.enum.values.find((v) => v.name === d);
-      assert(enumValue, `cannot parse ${this.toString()} default value: ${d}`);
-      return enumValue.number;
-    }
+    case "enum":
+      return parseTextFormatEnumValue(this.enum, d);
     case "scalar":
-      switch (this.scalar) {
-        case ScalarType.STRING:
-          return d;
-        case ScalarType.BYTES: {
-          const u = unescapeBytesDefaultValue(d);
-          if (u === false) {
-            throw new Error(
-              `cannot parse ${this.toString()} default value: ${d}`
-            );
-          }
-          return u;
-        }
-        case ScalarType.INT64:
-        case ScalarType.SFIXED64:
-        case ScalarType.SINT64:
-          return protoInt64.parse(d);
-        case ScalarType.UINT64:
-        case ScalarType.FIXED64:
-          return protoInt64.uParse(d);
-        case ScalarType.DOUBLE:
-        case ScalarType.FLOAT:
-          switch (d) {
-            case "inf":
-              return Number.POSITIVE_INFINITY;
-            case "-inf":
-              return Number.NEGATIVE_INFINITY;
-            case "nan":
-              return Number.NaN;
-            default:
-              return parseFloat(d);
-          }
-        case ScalarType.BOOL:
-          return d === "true";
-        case ScalarType.INT32:
-        case ScalarType.UINT32:
-        case ScalarType.SINT32:
-        case ScalarType.FIXED32:
-        case ScalarType.SFIXED32:
-          return parseInt(d, 10);
-      }
-      break;
+      return parseTextFormatScalarValue(this.scalar, d);
     default:
       return undefined;
   }
-}
-
-/**
- * Parses a text-encoded default value (proto2) of a BYTES field.
- */
-function unescapeBytesDefaultValue(str: string): Uint8Array | false {
-  const b: number[] = [];
-  const input = {
-    tail: str,
-    c: "",
-    next(): boolean {
-      if (this.tail.length == 0) {
-        return false;
-      }
-      this.c = this.tail[0];
-      this.tail = this.tail.substring(1);
-      return true;
-    },
-    take(n: number): string | false {
-      if (this.tail.length >= n) {
-        const r = this.tail.substring(0, n);
-        this.tail = this.tail.substring(n);
-        return r;
-      }
-      return false;
-    },
-  };
-  while (input.next()) {
-    switch (input.c) {
-      case "\\":
-        if (input.next()) {
-          switch (input.c as string) {
-            case "\\":
-              b.push(input.c.charCodeAt(0));
-              break;
-            case "b":
-              b.push(0x08);
-              break;
-            case "f":
-              b.push(0x0c);
-              break;
-            case "n":
-              b.push(0x0a);
-              break;
-            case "r":
-              b.push(0x0d);
-              break;
-            case "t":
-              b.push(0x09);
-              break;
-            case "v":
-              b.push(0x0b);
-              break;
-            case "0":
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7": {
-              const s = input.c;
-              const t = input.take(2);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 8);
-              if (isNaN(n)) {
-                return false;
-              }
-              b.push(n);
-              break;
-            }
-            case "x": {
-              const s = input.c;
-              const t = input.take(2);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
-                return false;
-              }
-              b.push(n);
-              break;
-            }
-            case "u": {
-              const s = input.c;
-              const t = input.take(4);
-              if (t === false) {
-                return false;
-              }
-              const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
-                return false;
-              }
-              const chunk = new Uint8Array(4);
-              const view = new DataView(chunk.buffer);
-              view.setInt32(0, n, true);
-              b.push(chunk[0], chunk[1], chunk[2], chunk[3]);
-              break;
-            }
-            case "U": {
-              const s = input.c;
-              const t = input.take(8);
-              if (t === false) {
-                return false;
-              }
-              const tc = protoInt64.uEnc(s + t);
-              const chunk = new Uint8Array(8);
-              const view = new DataView(chunk.buffer);
-              view.setInt32(0, tc.lo, true);
-              view.setInt32(4, tc.hi, true);
-              b.push(
-                chunk[0],
-                chunk[1],
-                chunk[2],
-                chunk[3],
-                chunk[4],
-                chunk[5],
-                chunk[6],
-                chunk[7]
-              );
-              break;
-            }
-          }
-        }
-        break;
-      default:
-        b.push(input.c.charCodeAt(0));
-    }
-  }
-  return new Uint8Array(b);
 }

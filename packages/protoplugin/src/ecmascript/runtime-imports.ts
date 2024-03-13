@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ export interface RuntimeImports {
   PlainMessage: ImportSymbol;
   FieldList: ImportSymbol;
   MessageType: ImportSymbol;
+  Extension: ImportSymbol;
   BinaryReadOptions: ImportSymbol;
   BinaryWriteOptions: ImportSymbol;
   JsonReadOptions: ImportSymbol;
@@ -33,6 +34,7 @@ export interface RuntimeImports {
   protoDouble: ImportSymbol;
   protoInt64: ImportSymbol;
   ScalarType: ImportSymbol;
+  LongType: ImportSymbol;
   MethodKind: ImportSymbol;
   MethodIdempotency: ImportSymbol;
   IMessageTypeRegistry: ImportSymbol;
@@ -48,6 +50,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     PlainMessage:          infoToSymbol("PlainMessage",         bootstrapWkt),
     FieldList:             infoToSymbol("FieldList",            bootstrapWkt),
     MessageType:           infoToSymbol("MessageType",          bootstrapWkt),
+    Extension:             infoToSymbol("Extension",            bootstrapWkt),
     BinaryReadOptions:     infoToSymbol("BinaryReadOptions",    bootstrapWkt),
     BinaryWriteOptions:    infoToSymbol("BinaryWriteOptions",   bootstrapWkt),
     JsonReadOptions:       infoToSymbol("JsonReadOptions",      bootstrapWkt),
@@ -57,6 +60,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     protoDouble:           infoToSymbol("protoDouble",          bootstrapWkt),
     protoInt64:            infoToSymbol("protoInt64",           bootstrapWkt),
     ScalarType:            infoToSymbol("ScalarType",           bootstrapWkt),
+    LongType:              infoToSymbol("LongType",             bootstrapWkt),
     MethodKind:            infoToSymbol("MethodKind",           bootstrapWkt),
     MethodIdempotency:     infoToSymbol("MethodIdempotency",    bootstrapWkt),
     IMessageTypeRegistry:  infoToSymbol("IMessageTypeRegistry", bootstrapWkt),
@@ -65,12 +69,12 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
 
 function infoToSymbol(
   name: keyof typeof codegenInfo.symbols,
-  bootstrapWkt: boolean
+  bootstrapWkt: boolean,
 ): ImportSymbol {
   const info = codegenInfo.symbols[name];
   const symbol = createImportSymbol(
     name,
-    bootstrapWkt ? info.privateImportPath : info.publicImportPath
+    bootstrapWkt ? info.privateImportPath : info.publicImportPath,
   );
   return info.typeOnly ? symbol.toTypeOnly() : symbol;
 }

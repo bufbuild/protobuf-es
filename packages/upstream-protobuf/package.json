@@ -1,0 +1,26 @@
+{
+  "name": "upstream-protobuf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node bin/upstream-warmup.mjs"
+  },
+  "bin": {
+    "protoc": "bin/protoc.mjs",
+    "protoc-gen-dumpcodegenreq": "bin/protoc-gen-dumpcodegenreq.mjs",
+    "conformance_test_runner": "bin/conformance_test_runner.mjs",
+    "upstream-files": "bin/upstream-files.mjs",
+    "upstream-include": "bin/upstream-include.mjs",
+    "upstream-warmup": "bin/upstream-warmup.mjs",
+    "upstream-inject-feature-defaults": "bin/upstream-inject-feature-defaults.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.mjs"
+    }
+  },
+  "dependencies": {
+    "fflate": "^0.8.1",
+    "micromatch": "^4.0.5"
+  }
+}

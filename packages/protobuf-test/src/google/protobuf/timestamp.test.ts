@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,11 +15,13 @@
 import { describe, expect, test } from "@jest/globals";
 import { Timestamp as TS_Timestamp } from "../../gen/ts/google/protobuf/timestamp_pb.js";
 import { Timestamp as JS_Timestamp } from "../../gen/js/google/protobuf/timestamp_pb.js";
+import { Timestamp as PKG_Timestamp } from "@bufbuild/protobuf";
 
 describe("google.protobuf.Timestamp", () => {
   describe.each([
     { Timestamp: TS_Timestamp, name: `(generated ts)` },
     { Timestamp: JS_Timestamp, name: `(generated js)` },
+    { Timestamp: PKG_Timestamp, name: `(from package)` },
   ])("$name", ({ Timestamp }) => {
     test("now()", () => {
       const ts = Timestamp.now();

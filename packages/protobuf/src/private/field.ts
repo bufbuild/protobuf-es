@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ export class InternalOneofInfo implements OneofInfo {
   readonly repeated = false;
   readonly packed = false;
   readonly opt = false;
+  readonly req = false;
   readonly default = undefined;
   readonly fields: FieldInfo[] = [];
   private _lookup?: { [localName: string]: FieldInfo | undefined };

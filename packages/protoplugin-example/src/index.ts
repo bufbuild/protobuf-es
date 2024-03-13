@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,62 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ElizaServiceClient } from "./gen/buf/connect/demo/eliza/v1/eliza_twirp.js";
-import { SayRequest } from "./gen/buf/connect/demo/eliza/v1/eliza_pb.js";
+import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp";
+import { SayRequest } from "./gen/connectrpc/eliza_pb";
 
-let introFinished = false;
+const client = new ElizaServiceClient();
+const input = document.querySelector("input")!;
+const conversationContainer = document.querySelector(
+  `#conversation-container`,
+)!;
 
-const client = new ElizaServiceClient("https://demo.connect.build");
-
-// Query for the common elements and cache them.
-const containerEl = document.getElementById(
-  "conversation-container"
-) as HTMLDivElement;
-const inputEl = document.getElementById("user-input") as HTMLInputElement;
-
-// Add an event listener to the input so that the user can hit enter and click the Send button
-document.getElementById("user-input")?.addEventListener("keyup", (event) => {
+document.querySelector("form")!.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (event.key === "Enter") {
-    document.getElementById("send-button")?.click();
-  }
+  void send(input.value);
+  input.value = "";
 });
 
+// Send a sentence to the Eliza service
+async function send(sentence: string) {
+  addConversationPill(sentence, "user");
+  const request = new SayRequest({ sentence });
+  const response = await client.say(request);
+  addConversationPill(response.sentence, "eliza");
+}
+
 // Adds a node to the DOM representing the conversation with Eliza
-function addNode(text: string, sender: string): void {
-  const divEl = document.createElement("div");
-  const pEl = document.createElement("p");
-
-  const respContainerEl = containerEl.appendChild(divEl);
-  respContainerEl.className = `${sender}-resp-container`;
-
-  const respTextEl = respContainerEl.appendChild(pEl);
-  respTextEl.className = "resp-text";
-  respTextEl.innerText = text;
-}
-
-async function send() {
-  const sentence = inputEl.value;
-
-  addNode(sentence, "user");
-
-  inputEl.value = "";
-
-  if (introFinished) {
-    const request = new SayRequest({
-      sentence,
-    });
-
-    const response = await client.say(request);
-
-    addNode(response.sentence, "eliza");
-  } else {
-    addNode(`Streaming is not supported but we can still chat.  OK?`, "eliza");
-
-    introFinished = true;
-  }
-}
-
-export function handleSend() {
-  void send();
+function addConversationPill(text: string, sender: string): void {
+  const div = document.createElement("div");
+  div.className = `${sender}-resp-container`;
+  const p = div.appendChild(document.createElement("p"));
+  p.className = "resp-text";
+  p.innerText = text;
+  conversationContainer.appendChild(div);
 }

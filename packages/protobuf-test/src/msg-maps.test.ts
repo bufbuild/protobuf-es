@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { expect, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import type { JsonValue, PlainMessage } from "@bufbuild/protobuf";
 import { describeMT } from "./helpers.js";
 import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
@@ -104,5 +104,43 @@ describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
   test("example decodes from JSON", () => {
     const got = { ...messageType.fromJson(exampleJson) };
     expect(got).toStrictEqual(exampleFields);
+  });
+  test("allow number[] for bytes field", () => {
+    const bytes = [0xff];
+    const got = {
+      ...new messageType({
+        ...defaultFields,
+        strBytesField: {
+          a: bytes as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+        },
+      }),
+    };
+    expect(got).toStrictEqual({
+      ...defaultFields,
+      strBytesField: {
+        a: new Uint8Array(bytes),
+      },
+    });
+  });
+  describe("field info", () => {
+    test.each(messageType.fields.byNumber())("$name", (field) => {
+      expect(typeof field.no).toBe("number");
+      expect(typeof field.name).toBe("string");
+      expect(typeof field.localName).toBe("string");
+      expect(typeof field.jsonName).toBe("string");
+      expect(field.repeated).toBe(false);
+      expect(field.packed).toBe(false);
+      expect(field.delimited).toBe(false);
+      expect(field.oneof).toBeUndefined();
+      expect(field.default).toBeUndefined();
+      expect(field.opt).toBe(false);
+      expect(field.req).toBe(false);
+      expect(field.kind).toBe("map");
+      if (field.kind == "map") {
+        expect(typeof field.K).toBe("number");
+        expect(Object.keys(field.V).sort()).toStrictEqual(["T", "kind"]);
+        expect(typeof field.V.kind).toBe("string");
+      }
+    });
   });
 });

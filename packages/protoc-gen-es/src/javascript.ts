@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,20 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "@bufbuild/protobuf";
-import { proto2, proto3, ScalarType } from "@bufbuild/protobuf";
+import {
+  DescEnum,
+  DescExtension,
+  DescField,
+  DescMessage,
+  FieldDescriptorProto_Label,
+} from "@bufbuild/protobuf";
+import {
+  FieldDescriptorProto_Type,
+  LongType,
+  proto2,
+  proto3,
+  ScalarType,
+} from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import {
-  getFieldExplicitDefaultValue,
-  literalString,
-  localName,
-  makeJsDoc,
-  reifyWkt,
-} from "@bufbuild/protoplugin/ecmascript";
+import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
+import { getNonEditionRuntime } from "./editions.js";
+import { getFieldDefaultValueExpression } from "./util.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
@@ -37,25 +45,28 @@ export function generateJs(schema: Schema) {
     for (const message of file.messages) {
       generateMessage(schema, f, message);
     }
-    // We do not generate anything for services, and we do not support extensions at this time
+    for (const extension of file.extensions) {
+      generateExtension(schema, f, extension);
+    }
+    // We do not generate anything for services
   }
 }
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  const protoN = schema.runtime[enumeration.file.syntax];
-  f.print(makeJsDoc(enumeration));
-  f.print("export const ", enumeration, " = /*@__PURE__*/ ", protoN, ".makeEnum(")
+  const protoN = getNonEditionRuntime(schema, enumeration.file);
+  f.print(f.jsDoc(enumeration));
+  f.print(f.exportDecl("const", enumeration), " = /*@__PURE__*/ ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
   if (enumeration.sharedPrefix === undefined) {
     for (const value of enumeration.values) {
-      f.print("    {no: ", value.number, ", name: ", literalString(value.name), "},")
+      f.print("    {no: ", value.number, ", name: ", f.string(value.name), "},")
     }
   } else {
     for (const value of enumeration.values) {
       const localName = value.name.substring(enumeration.sharedPrefix.length);
-      f.print("    {no: ", value.number, ", name: ", literalString(value.name), ", localName: ", literalString(localName), "},")
+      f.print("    {no: ", value.number, ", name: ", f.string(value.name), ", localName: ", f.string(localName), "},")
     }
   }
   f.print(`  ],`)
@@ -65,10 +76,10 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = schema.runtime[message.file.syntax];
-  f.print(makeJsDoc(message));
-  f.print("export const ", message, " = /*@__PURE__*/ ", protoN, ".makeMessageType(")
-  f.print(`  `, literalString(message.typeName), `,`)
+  const protoN = getNonEditionRuntime(schema, message.file);
+  f.print(f.jsDoc(message));
+  f.print(f.exportDecl("const", message), " = /*@__PURE__*/ ", protoN, ".makeMessageType(")
+  f.print(`  `, f.string(message.typeName), `,`)
   if (message.fields.length == 0) {
     f.print("  [],")
   } else {
@@ -83,7 +94,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
       .makeMessageType(message.typeName, []).name;
   if (needsLocalName) {
     // local name is not inferrable from the type name, we need to provide it
-    f.print(`  {localName: `, literalString(localName(message)), `},`)
+    f.print(`  {localName: `, f.string(localName(message)), `},`)
   }
   f.print(");")
   f.print()
@@ -95,20 +106,33 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   for (const nestedMessage of message.nestedMessages) {
     generateMessage(schema, f, nestedMessage);
   }
-  // We do not support extensions at this time
+  for (const nestedExtension of message.nestedExtensions) {
+    generateExtension(schema, f, nestedExtension);
+  }
 }
 
 // prettier-ignore
-export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField) {
-  const protoN = schema.runtime[field.parent.file.syntax];
+export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField | DescExtension) {
+  f.print("    ", getFieldInfoLiteral(schema, field), ",");
+}
+
+// prettier-ignore
+export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExtension): Printable {
+  const protoN = getNonEditionRuntime(schema, field.kind == "extension" ? field.file : field.parent.file);
   const e: Printable = [];
-  e.push("    { no: ", field.number, `, name: "`, field.name, `", `);
-  if (field.jsonName !== undefined) {
-    e.push(`jsonName: "`, field.jsonName, `", `);
+  e.push("{ no: ", field.number, `, `);
+  if (field.kind == "field") {
+    e.push(`name: "`, field.name, `", `);
+    if (field.jsonName !== undefined) {
+      e.push(`jsonName: "`, field.jsonName, `", `);
+    }
   }
   switch (field.fieldKind) {
     case "scalar":
       e.push(`kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */, `);
+      if (field.longType != LongType.BIGINT) {
+        e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
+      }
       break;
     case "map":
       e.push(`kind: "map", K: `, field.mapKey, ` /* ScalarType.`, ScalarType[field.mapKey], ` */, `);
@@ -126,6 +150,9 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
       break;
     case "message":
       e.push(`kind: "message", T: `, field.message, `, `);
+      if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
+        e.push(`delimited: true, `);
+      }
       break;
     case "enum":
       e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
@@ -139,8 +166,10 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   }
   if (field.optional) {
     e.push(`opt: true, `);
+  } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
+    e.push(`req: true, `);
   }
-  const defaultValue = getFieldExplicitDefaultValue(field, schema.runtime.protoInt64);
+  const defaultValue = getFieldDefaultValueExpression(field);
   if (defaultValue !== undefined) {
     e.push(`default: `, defaultValue, `, `);
   }
@@ -151,8 +180,28 @@ export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescF
   if (typeof lastE == "string" && lastE.endsWith(", ")) {
     e[e.length - 1] = lastE.substring(0, lastE.length - 2);
   }
-  e.push(" },");
-  f.print(...e);
+  e.push(" }");
+  return e;
+}
+
+// prettier-ignore
+function generateExtension(
+  schema: Schema,
+  f: GeneratedFile,
+  ext: DescExtension,
+) {
+  const protoN = getNonEditionRuntime(schema, ext.file);
+  f.print(f.jsDoc(ext));
+  f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension(");
+  f.print("  ", f.string(ext.typeName), ", ");
+  f.print("  ", ext.extendee, ", ");
+  if (ext.fieldKind == "scalar") {
+    f.print("  ", getFieldInfoLiteral(schema, ext), ",");
+  } else {
+    f.print("  () => (", getFieldInfoLiteral(schema, ext), "),");
+  }
+  f.print(");");
+  f.print();
 }
 
 // prettier-ignore
@@ -165,7 +214,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     ScalarType: rtScalarType,
     protoInt64,
   } = schema.runtime;
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   switch (ref.typeName) {
     case "google.protobuf.Any":
       f.print(message, ".prototype.toJson = function toJson(options) {")
@@ -260,7 +309,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    throw new Error(`invalid type url: ${url}`);");
       f.print("  }");
       f.print(`  const slash = url.lastIndexOf("/");`);
-      f.print("  const name = slash > 0 ? url.substring(slash + 1) : url;");
+      f.print("  const name = slash >= 0 ? url.substring(slash + 1) : url;");
       f.print("  if (!name.length) {");
       f.print("    throw new Error(`invalid type url: ${url}`);");
       f.print("  }");

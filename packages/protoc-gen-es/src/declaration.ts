@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,18 +18,15 @@ import type {
   DescMessage,
   DescOneof,
 } from "@bufbuild/protobuf";
+import { DescExtension } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import {
-  getFieldTyping,
-  literalString,
-  localName,
-  makeJsDoc,
-  reifyWkt,
-} from "@bufbuild/protoplugin/ecmascript";
+import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
+import { getNonEditionRuntime } from "./editions.js";
+import { getFieldTypeInfo } from "./util.js";
 
 export function generateDts(schema: Schema) {
   for (const file of schema.files) {
@@ -41,19 +38,22 @@ export function generateDts(schema: Schema) {
     for (const message of file.messages) {
       generateMessage(schema, f, message);
     }
-    // We do not generate anything for services, and we do not support extensions at this time
+    for (const extension of file.extensions) {
+      generateExtension(schema, f, extension);
+    }
+    // We do not generate anything for services
   }
 }
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  f.print(makeJsDoc(enumeration));
+  f.print(f.jsDoc(enumeration));
   f.print("export declare enum ", enumeration, " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
     }
-    f.print(makeJsDoc(value, "  "));
+    f.print(f.jsDoc(value, "  "));
     f.print("  ", localName(value), " = ", value.number, ",");
   }
   f.print("}");
@@ -62,7 +62,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = schema.runtime[message.file.syntax];
+  const protoN = getNonEditionRuntime(schema, message.file);
   const {
     PartialMessage,
     FieldList,
@@ -72,7 +72,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     JsonReadOptions,
     JsonValue
   } = schema.runtime;
-  f.print(makeJsDoc(message));
+  f.print(f.jsDoc(message));
   f.print("export declare class ", message, " extends ", Message, "<", message, "> {");
   for (const member of message.members) {
     switch (member.kind) {
@@ -89,7 +89,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, ";");
-  f.print('  static readonly typeName = ', literalString(message.typeName), ';');
+  f.print('  static readonly typeName = ', f.string(message.typeName), ';');
   f.print("  static readonly fields: ", FieldList, ";");
   // In case we start supporting options, we have to surface them here
   //f.print("  static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
@@ -110,37 +110,50 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   for (const nestedMessage of message.nestedMessages) {
     generateMessage(schema, f, nestedMessage);
   }
-  // We do not support extensions at this time
+  for (const nestedExtension of message.nestedExtensions) {
+    generateExtension(schema, f, nestedExtension);
+  }
 }
 
 // prettier-ignore
 function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
-  f.print(makeJsDoc(oneof, "  "));
+  f.print(f.jsDoc(oneof, "  "));
   f.print("  ", localName(oneof), ": {");
   for (const field of oneof.fields) {
     if (oneof.fields.indexOf(field) > 0) {
       f.print(`  } | {`);
     }
-    f.print(makeJsDoc(field, "    "));
-    const { typing } = getFieldTyping(field, f);
+    f.print(f.jsDoc(field, "    "));
+    const { typing } = getFieldTypeInfo(field);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
   f.print(`  } | { case: undefined; value?: undefined };`);
 }
 
+// prettier-ignore
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
-  f.print(makeJsDoc(field, "  "));
-  const e: Printable = [];
-  e.push("  ", localName(field));
-  const { typing, optional } = getFieldTyping(field, f);
-  if (optional) {
-    e.push("?: ", typing);
-  } else {
-    e.push(": ", typing);
-  }
-  e.push(";");
-  f.print(e);
+    f.print(f.jsDoc(field, "  "));
+    const e: Printable = [];
+    const { typing, optional } = getFieldTypeInfo(field);
+    if (!optional) {
+        e.push("  ", localName(field), ": ", typing, ";");
+    } else {
+        e.push("  ", localName(field), "?: ", typing, ";");
+    }
+    f.print(e);
+}
+
+// prettier-ignore
+function generateExtension(
+  schema: Schema,
+  f: GeneratedFile,
+  ext: DescExtension,
+) {
+  const { typing } = getFieldTypeInfo(ext);
+  f.print(f.jsDoc(ext));
+  f.print(f.exportDecl("declare const", ext), ": ", schema.runtime.Extension, "<", ext.extendee, ", ", typing, ">;");
+  f.print();
 }
 
 // prettier-ignore
@@ -217,7 +230,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTyping(ref.value, f);
+      const {typing} = getFieldTypeInfo(ref.value);
       f.print("  static readonly fieldWrapper: {")
       f.print("    wrapField(value: ", typing, "): ", message, ",")
       f.print("    unwrapField(value: ", message, "): ", typing, ",")

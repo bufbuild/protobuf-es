@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ export function setEnumType(
   opt?: {
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
-  }
+  },
 ): void {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
   (enumObject as any)[enumTypeSymbol] = makeEnumType(
@@ -58,7 +58,7 @@ export function setEnumType(
       name: v.name,
       localName: enumObject[v.no],
     })),
-    opt
+    opt,
   );
 }
 
@@ -72,7 +72,7 @@ export function makeEnumType(
   _opt?: {
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
-  }
+  },
 ): EnumType {
   const names = Object.create(null) as Record<string, EnumValueInfo>;
   const numbers = Object.create(null) as Record<number, EnumValueInfo>;
@@ -109,7 +109,7 @@ export function makeEnum(
   opt?: {
     // We do not surface options at this time
     // options?: { readonly [extensionName: string]: JsonValue };
-  }
+  },
 ): EnumObject {
   const enumObject: EnumObject = {};
   for (const value of values) {
@@ -122,7 +122,7 @@ export function makeEnum(
 }
 
 function normalizeEnumValue(
-  value: EnumValueInfo | Omit<EnumValueInfo, "localName">
+  value: EnumValueInfo | Omit<EnumValueInfo, "localName">,
 ): EnumValueInfo {
   if ("localName" in value) {
     return value;

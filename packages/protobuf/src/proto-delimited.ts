@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
-import { makeBinaryFormatCommon } from "./private/binary-format-common.js";
 import { BinaryReader } from "./binary-encoding.js";
 
 /**
@@ -33,7 +32,7 @@ export const protoDelimited = {
    * Serialize a message, prefixing it with its size.
    */
   enc(message: Message, options?: BinaryWriteOptions): Uint8Array {
-    const opt = makeBinaryFormatCommon().makeWriteOptions(options);
+    const opt = message.getType().runtime.bin.makeWriteOptions(options);
     return opt.writerFactory().bytes(message.toBinary(opt)).finish();
   },
 
@@ -43,9 +42,9 @@ export const protoDelimited = {
   dec<T extends Message<T>>(
     type: MessageType<T>,
     bytes: Uint8Array,
-    options?: BinaryReadOptions
+    options?: BinaryReadOptions,
   ): T {
-    const opt = makeBinaryFormatCommon().makeReadOptions(options);
+    const opt = type.runtime.bin.makeReadOptions(options);
     return type.fromBinary(opt.readerFactory(bytes).bytes(), opt);
   },
 
@@ -54,7 +53,7 @@ export const protoDelimited = {
    */
   async *decStream<T extends Message<T>>(
     type: MessageType<T>,
-    iterable: AsyncIterable<Uint8Array>
+    iterable: AsyncIterable<Uint8Array>,
   ) {
     // append chunk to buffer, returning updated buffer
     function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
@@ -104,7 +103,7 @@ export const protoDelimited = {
    * from a stream.
    */
   peekSize(
-    data: Uint8Array
+    data: Uint8Array,
   ):
     | { readonly eof: false; readonly size: number; readonly offset: number }
     | { readonly eof: true; readonly size: null; readonly offset: null } {

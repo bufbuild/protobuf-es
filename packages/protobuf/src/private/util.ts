@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ export interface Util {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): void;
 
   /**
@@ -53,7 +53,7 @@ export interface Util {
    */
   initPartial<T extends Message<T>>(
     source: PartialMessage<T> | undefined,
-    target: T
+    target: T,
   ): void;
 
   /**
@@ -63,7 +63,7 @@ export interface Util {
   equals<T extends Message<T>>(
     type: MessageType<T>,
     a: T | PlainMessage<T> | undefined | null,
-    b: T | PlainMessage<T> | undefined | null
+    b: T | PlainMessage<T> | undefined | null,
   ): boolean;
 
   /**

@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
 
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import type { DescField } from "../descriptor-set.js";
-import { ScalarType } from "../field.js";
+import type { DescExtension, DescField } from "../descriptor-set.js";
+import { ScalarType } from "../scalar.js";
+import { isMessage } from "../is-message";
 
 /* eslint-disable @typescript-eslint/no-explicit-any -- unknown fields are represented with any */
 
@@ -38,9 +39,9 @@ export interface FieldWrapper<T extends Message<T> = any, U = any> {
  */
 export function wrapField<T extends Message<T>>(
   type: MessageType<T>,
-  value: any
+  value: any,
 ): T {
-  if (value instanceof Message || !type.fieldWrapper) {
+  if (isMessage(value) || !type.fieldWrapper) {
     return value as T;
   }
   return type.fieldWrapper.wrapField(value);
@@ -51,7 +52,7 @@ export function wrapField<T extends Message<T>>(
  * the primitive type it wraps.
  */
 export function getUnwrappedFieldType(
-  field: DescField
+  field: DescField | DescExtension,
 ): ScalarType | undefined {
   if (field.fieldKind !== "message") {
     return undefined;

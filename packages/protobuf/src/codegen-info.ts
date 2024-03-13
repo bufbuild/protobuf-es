@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,19 +18,56 @@ import {
   safeObjectProperty,
 } from "./private/names.js";
 import { getUnwrappedFieldType } from "./private/field-wrapper.js";
-import { scalarDefaultValue } from "./private/scalars.js";
+import { scalarZeroValue } from "./private/scalars.js";
 import { reifyWkt } from "./private/reify-wkt.js";
+import type {
+  DescEnum,
+  DescEnumValue,
+  DescField,
+  DescExtension,
+  DescMessage,
+  DescMethod,
+  DescOneof,
+  DescService,
+} from "./descriptor-set.js";
+import type { ScalarValue } from "./scalar.js";
+import { LongType, ScalarType } from "./scalar.js";
 
 interface CodegenInfo {
+  /**
+   * Name of the runtime library NPM package.
+   */
   readonly packageName: string;
-  readonly localName: typeof localName;
+  readonly localName: (
+    desc:
+      | DescEnum
+      | DescEnumValue
+      | DescMessage
+      | DescExtension
+      | DescOneof
+      | DescField
+      | DescService
+      | DescMethod,
+  ) => string;
   readonly symbols: Record<RuntimeSymbolName, RuntimeSymbolInfo>;
-  readonly getUnwrappedFieldType: typeof getUnwrappedFieldType;
+  readonly getUnwrappedFieldType: (
+    field: DescField | DescExtension,
+  ) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
-  readonly scalarDefaultValue: typeof scalarDefaultValue;
+  /**
+   * @deprecated please use scalarZeroValue instead
+   */
+  readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  readonly scalarZeroValue: <T extends ScalarType, L extends LongType>(
+    type: T,
+    longType: L,
+  ) => ScalarValue<T, L>;
+  /**
+   * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
+   */
   readonly reifyWkt: typeof reifyWkt;
-  readonly safeIdentifier: typeof safeIdentifier;
-  readonly safeObjectProperty: typeof safeObjectProperty;
+  readonly safeIdentifier: (name: string) => string;
+  readonly safeObjectProperty: (name: string) => string;
 }
 
 type RuntimeSymbolName =
@@ -41,6 +78,7 @@ type RuntimeSymbolName =
   | "PlainMessage"
   | "FieldList"
   | "MessageType"
+  | "Extension"
   | "BinaryReadOptions"
   | "BinaryWriteOptions"
   | "JsonReadOptions"
@@ -50,6 +88,7 @@ type RuntimeSymbolName =
   | "protoDouble"
   | "protoInt64"
   | "ScalarType"
+  | "LongType"
   | "MethodKind"
   | "MethodIdempotency"
   | "IMessageTypeRegistry";
@@ -63,11 +102,12 @@ type RuntimeSymbolInfo = {
 const packageName = "@bufbuild/protobuf";
 
 export const codegenInfo: CodegenInfo = {
-  packageName,
+  packageName: "@bufbuild/protobuf",
   localName,
   reifyWkt,
   getUnwrappedFieldType,
-  scalarDefaultValue,
+  scalarDefaultValue: scalarZeroValue,
+  scalarZeroValue,
   safeIdentifier,
   safeObjectProperty,
   // prettier-ignore
@@ -79,6 +119,7 @@ export const codegenInfo: CodegenInfo = {
     PlainMessage:         {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
     FieldList:            {typeOnly: true,  privateImportPath: "./field-list.js",    publicImportPath: packageName},
     MessageType:          {typeOnly: true,  privateImportPath: "./message-type.js",  publicImportPath: packageName},
+    Extension:            {typeOnly: true,  privateImportPath: "./extension.js",     publicImportPath: packageName},
     BinaryReadOptions:    {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
     BinaryWriteOptions:   {typeOnly: true,  privateImportPath: "./binary-format.js", publicImportPath: packageName},
     JsonReadOptions:      {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
@@ -87,7 +128,8 @@ export const codegenInfo: CodegenInfo = {
     JsonObject:           {typeOnly: true,  privateImportPath: "./json-format.js",   publicImportPath: packageName},
     protoDouble:          {typeOnly: false, privateImportPath: "./proto-double.js",  publicImportPath: packageName},
     protoInt64:           {typeOnly: false, privateImportPath: "./proto-int64.js",   publicImportPath: packageName},
-    ScalarType:           {typeOnly: false, privateImportPath: "./field.js",         publicImportPath: packageName},
+    ScalarType:           {typeOnly: false, privateImportPath: "./scalar.js",        publicImportPath: packageName},
+    LongType:             {typeOnly: false, privateImportPath: "./scalar.js",        publicImportPath: packageName},
     MethodKind:           {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     MethodIdempotency:    {typeOnly: false, privateImportPath: "./service-type.js",  publicImportPath: packageName},
     IMessageTypeRegistry: {typeOnly: true,  privateImportPath: "./type-registry.js", publicImportPath: packageName},
@@ -106,4 +148,4 @@ export const codegenInfo: CodegenInfo = {
     "google/protobuf/type.proto",
     "google/protobuf/wrappers.proto",
   ],
-} as const;
+};

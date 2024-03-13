@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -69,6 +69,15 @@ describeMT(
         const got = w.toJsonString();
         const want = `{"boolValueField":true}`;
         expect(got).toBe(want);
+      });
+      test("allow number[] for bytes field", () => {
+        const bytes = [0xff];
+        const got = {
+          ...new messageType({
+            bytesValueField: bytes as any, //eslint-disable-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+          }),
+        };
+        expect(got.bytesValueField).toStrictEqual(new Uint8Array(bytes));
       });
     });
     describe("oneof fields", () => {
@@ -156,5 +165,5 @@ describeMT(
         expect(wJson.mapBoolValueField["bar"].value).toBe(false);
       });
     });
-  }
+  },
 );

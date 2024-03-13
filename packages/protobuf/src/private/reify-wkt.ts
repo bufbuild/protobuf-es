@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
-import { ScalarType } from "../field.js";
+import { ScalarType } from "../scalar.js";
 
 type DescWkt =
   | {
@@ -91,6 +91,8 @@ type DescWkt =
     };
 
 /**
+ * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead
+ *
  * Reifies a given DescMessage into a more concrete object representing its
  * respective well-known type.  The returned object will contain properties
  * representing the WKT's defined fields.
@@ -108,13 +110,13 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
         (f) =>
           f.number == 1 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.STRING
+          f.scalar === ScalarType.STRING,
       );
       const value = message.fields.find(
         (f) =>
           f.number == 2 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.BYTES
+          f.scalar === ScalarType.BYTES,
       );
       if (typeUrl && value) {
         return {
@@ -130,13 +132,13 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
         (f) =>
           f.number == 1 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT64
+          f.scalar === ScalarType.INT64,
       );
       const nanos = message.fields.find(
         (f) =>
           f.number == 2 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT32
+          f.scalar === ScalarType.INT32,
       );
       if (seconds && nanos) {
         return {
@@ -152,13 +154,13 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
         (f) =>
           f.number == 1 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT64
+          f.scalar === ScalarType.INT64,
       );
       const nanos = message.fields.find(
         (f) =>
           f.number == 2 &&
           f.fieldKind == "scalar" &&
-          f.scalar === ScalarType.INT32
+          f.scalar === ScalarType.INT32,
       );
       if (seconds && nanos) {
         return {
@@ -183,7 +185,7 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
     case "google.protobuf.Value": {
       const kind = message.oneofs.find((o) => o.name === "kind");
       const nullValue = message.fields.find(
-        (f) => f.number == 1 && f.oneof === kind
+        (f) => f.number == 1 && f.oneof === kind,
       );
       if (
         nullValue?.fieldKind !== "enum" ||
@@ -196,24 +198,24 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
           f.number == 2 &&
           f.fieldKind == "scalar" &&
           f.scalar === ScalarType.DOUBLE &&
-          f.oneof === kind
+          f.oneof === kind,
       );
       const stringValue = message.fields.find(
         (f) =>
           f.number == 3 &&
           f.fieldKind == "scalar" &&
           f.scalar === ScalarType.STRING &&
-          f.oneof === kind
+          f.oneof === kind,
       );
       const boolValue = message.fields.find(
         (f) =>
           f.number == 4 &&
           f.fieldKind == "scalar" &&
           f.scalar === ScalarType.BOOL &&
-          f.oneof === kind
+          f.oneof === kind,
       );
       const structValue = message.fields.find(
-        (f) => f.number == 5 && f.oneof === kind
+        (f) => f.number == 5 && f.oneof === kind,
       );
       if (
         structValue?.fieldKind !== "message" ||
@@ -222,7 +224,7 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
         return undefined;
       }
       const listValue = message.fields.find(
-        (f) => f.number == 6 && f.oneof === kind
+        (f) => f.number == 6 && f.oneof === kind,
       );
       if (
         listValue?.fieldKind !== "message" ||
@@ -260,7 +262,7 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
           f.number == 1 &&
           f.fieldKind == "scalar" &&
           f.scalar === ScalarType.STRING &&
-          f.repeated
+          f.repeated,
       );
       if (paths) {
         return { typeName: message.typeName, paths };
@@ -277,7 +279,7 @@ export function reifyWkt(message: DescMessage): DescWkt | undefined {
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
       const value = message.fields.find(
-        (f) => f.number == 1 && f.name == "value"
+        (f) => f.number == 1 && f.name == "value",
       );
       if (!value) {
         break;

@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -127,7 +127,7 @@ describe("protoBase64", function () {
       `should throw an error trying to decode %s`,
       (input) => {
         expect(() => protoBase64.dec(input)).toThrow("invalid base64 string.");
-      }
+      },
     );
   });
 

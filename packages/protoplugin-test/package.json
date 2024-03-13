@@ -5,8 +5,9 @@
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "buf:build": "buf build -o descriptorset.bin",
-    "generate": "buf generate",
+    "pregenerate": "rm -rf src/gen/*/*",
+    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=proto option-enum.proto option-message.proto file-option.proto",
+    "postgenerate": "license-header src/gen",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "type": "module",
@@ -16,7 +17,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.15.0-1",
-    "@bufbuild/protoplugin": "1.2.1"
+    "upstream-protobuf": "*",
+    "@bufbuild/protoplugin": "1.7.2"
   }
 }

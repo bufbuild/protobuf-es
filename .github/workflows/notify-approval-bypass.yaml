@@ -3,8 +3,7 @@ on:
   pull_request:
     types:
       - closed
-    branches:
-      - main
+    branches: [main, v2]
 permissions:
   pull-requests: read
 jobs:

@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -97,13 +97,18 @@ function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
 export function transpile(
   files: FileInfo[],
   transpileJs: boolean,
-  transpileDts: boolean
+  transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
 ): FileInfo[] {
   const options: ts.CompilerOptions = {
     ...defaultOptions,
     declaration: transpileDts,
     emitDeclarationOnly: transpileDts && !transpileJs,
   };
+
+  if (jsImportStyle == "legacy_commonjs") {
+    options.module = ts.ModuleKind.CommonJS;
+  }
 
   // Create the transpiler (a ts.Program object)
   const program = createTranspiler(options, files);
@@ -118,27 +123,27 @@ export function transpile(
       data: string,
       writeByteOrderMark: boolean,
       onError?: (message: string) => void,
-      sourceFiles?: readonly ts.SourceFile[]
+      sourceFiles?: readonly ts.SourceFile[],
     ) => {
       // We have to go through some hoops here because the header we add to each
       // file is not part of the AST. So we find the TypeScript file we
       // generated for each emitted file and add the header to each output ourselves.
       if (!sourceFiles) {
         err = new Error(
-          `unable to map emitted file "${fileName}" to a source file: missing source files`
+          `unable to map emitted file "${fileName}" to a source file: missing source files`,
         );
         return;
       }
       if (sourceFiles.length !== 1) {
         err = new Error(
-          `unable to map emitted file "${fileName}" to a source file: expected 1 source file, got ${sourceFiles.length}`
+          `unable to map emitted file "${fileName}" to a source file: expected 1 source file, got ${sourceFiles.length}`,
         );
         return;
       }
       const file = files.find((x) => sourceFiles[0].fileName === x.name);
       if (!file) {
         err = new Error(
-          `unable to map emitted file "${fileName}" to a source file: not found`
+          `unable to map emitted file "${fileName}" to a source file: not found`,
         );
         return;
       }
@@ -147,14 +152,14 @@ export function transpile(
         preamble: file.preamble,
         content: data,
       });
-    }
+    },
   );
   if (err) {
     throw err;
   }
   if (result.emitSkipped) {
     throw Error(
-      "An problem occurred during transpilation and files were not generated.  Contact the plugin author for support."
+      "An problem occurred during transpilation and files were not generated.  Contact the plugin author for support.",
     );
   }
   return results;

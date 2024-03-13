@@ -3,17 +3,17 @@
   "private": true,
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "scripts": {
-    "clean": "rm -rf ./dist/esm/* ./dist/types/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "add-person": "node dist/esm/add-person.js addressbook.bin",
-    "list-people": "node dist/esm/list-people.js addressbook.bin",
+    "build": "../../node_modules/typescript/bin/tsc --noEmit",
+    "add-person": "tsx src/add-person.ts addressbook.binpb",
+    "list-people": "tsx src/list-people.ts addressbook.binpb",
+    "pregenerate": "rm -rf src/gen",
     "generate": "buf generate"
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/buf": "^1.15.0-1",
-    "@bufbuild/protobuf": "1.2.1",
-    "@bufbuild/protoc-gen-es": "1.2.1",
-    "typescript": "^5.0.3"
+    "@bufbuild/buf": "^1.29.0",
+    "@bufbuild/protobuf": "1.7.2",
+    "@bufbuild/protoc-gen-es": "1.7.2",
+    "typescript": "^5.2.2"
   }
 }

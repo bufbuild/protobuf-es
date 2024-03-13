@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@ import { setEnumType } from "./enum.js";
 import { Message } from "../message.js";
 import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import { ScalarType } from "../field.js";
-import type { FieldInfo } from "../field.js";
 import type { Util } from "./util.js";
 import { scalarEquals } from "./scalars.js";
+import { ScalarType } from "../scalar.js";
+import { isMessage } from "../is-message";
 
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-argument,no-case-declarations */
 
@@ -28,7 +28,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
     setEnumType,
     initPartial<T extends Message<T>>(
       source: PartialMessage<T> | undefined,
-      target: T
+      target: T,
     ): void {
       if (source === undefined) {
         return;
@@ -39,6 +39,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           t = target as AnyMessage,
           s = source as PartialMessage<AnyMessage>;
         if (s[localName] === undefined) {
+          // TODO if source is a Message instance, we should use isFieldSet() here to support future field presence
           continue;
         }
         switch (member.kind) {
@@ -52,21 +53,39 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             if (
               sourceField &&
               sourceField.kind == "message" &&
-              !(val instanceof sourceField.T)
+              !isMessage(val, sourceField.T)
             ) {
               val = new sourceField.T(val);
+            } else if (
+              sourceField &&
+              sourceField.kind === "scalar" &&
+              sourceField.T === ScalarType.BYTES
+            ) {
+              val = toU8Arr(val);
             }
             t[localName] = { case: sk, value: val };
             break;
           case "scalar":
           case "enum":
-            t[localName] = s[localName];
+            let copy = s[localName];
+            if (member.T === ScalarType.BYTES) {
+              copy = member.repeated
+                ? (copy as ArrayLike<number>[]).map(toU8Arr)
+                : toU8Arr(copy);
+            }
+            t[localName] = copy;
             break;
           case "map":
             switch (member.V.kind) {
               case "scalar":
               case "enum":
-                Object.assign(t[localName], s[localName]);
+                if (member.V.T === ScalarType.BYTES) {
+                  for (const [k, v] of Object.entries(s[localName])) {
+                    t[localName][k] = toU8Arr(v as ArrayLike<number>);
+                  }
+                } else {
+                  Object.assign(t[localName], s[localName]);
+                }
                 break;
               case "message":
                 const messageType = member.V.T;
@@ -86,24 +105,32 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
             const mt = member.T;
             if (member.repeated) {
               t[localName] = (s[localName] as any[]).map((val) =>
-                val instanceof mt ? val : new mt(val)
+                isMessage(val, mt) ? val : new mt(val),
               );
-            } else if (s[localName] !== undefined) {
+            } else {
               const val = s[localName];
               if (mt.fieldWrapper) {
-                t[localName] = val;
+                if (
+                  // We can't use BytesValue.typeName as that will create a circular import
+                  mt.typeName === "google.protobuf.BytesValue"
+                ) {
+                  t[localName] = toU8Arr(val);
+                } else {
+                  t[localName] = val;
+                }
               } else {
-                t[localName] = val instanceof mt ? val : new mt(val);
+                t[localName] = isMessage(val, mt) ? val : new mt(val);
               }
             }
             break;
         }
       }
     },
+    // TODO use isFieldSet() here to support future field presence
     equals<T extends Message<T>>(
       type: MessageType<T>,
       a: T | PlainMessage<T> | undefined | null,
-      b: T | PlainMessage<T> | undefined | null
+      b: T | PlainMessage<T> | undefined | null,
     ): boolean {
       if (a === b) {
         return true;
@@ -124,11 +151,11 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
               return (va as any[]).every((a, i) => m.T.equals(a, vb[i]));
             case "scalar":
               return (va as any[]).every((a: any, i: number) =>
-                scalarEquals(m.T, a, vb[i])
+                scalarEquals(m.T, a, vb[i]),
               );
             case "enum":
               return (va as any[]).every((a: any, i: number) =>
-                scalarEquals(ScalarType.INT32, a, vb[i])
+                scalarEquals(ScalarType.INT32, a, vb[i]),
               );
           }
           throw new Error(`repeated cannot contain ${m.kind}`);
@@ -166,18 +193,19 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
                 return keys.every((k) => messageType.equals(va[k], vb[k]));
               case "enum":
                 return keys.every((k) =>
-                  scalarEquals(ScalarType.INT32, va[k], vb[k])
+                  scalarEquals(ScalarType.INT32, va[k], vb[k]),
                 );
               case "scalar":
                 const scalarType = m.V.T;
                 return keys.every((k) =>
-                  scalarEquals(scalarType, va[k], vb[k])
+                  scalarEquals(scalarType, va[k], vb[k]),
                 );
             }
             break;
         }
       });
     },
+    // TODO use isFieldSet() here to support future field presence
     clone<T extends Message<T>>(message: T): T {
       const type = message.getType(),
         target = new type(),
@@ -186,19 +214,19 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         const source = (message as AnyMessage)[member.localName];
         let copy: any;
         if (member.repeated) {
-          copy = (source as any[]).map((e) => cloneSingularField(member, e));
+          copy = (source as any[]).map(cloneSingularField);
         } else if (member.kind == "map") {
           copy = any[member.localName];
           for (const [key, v] of Object.entries(source)) {
-            copy[key] = cloneSingularField(member.V, v);
+            copy[key] = cloneSingularField(v);
           }
         } else if (member.kind == "oneof") {
           const f = member.findField(source.case);
           copy = f
-            ? { case: source.case, value: cloneSingularField(f, source.value) }
+            ? { case: source.case, value: cloneSingularField(source.value) }
             : { case: undefined };
         } else {
-          copy = cloneSingularField(member, source);
+          copy = cloneSingularField(source);
         }
         any[member.localName] = copy;
       }
@@ -208,14 +236,11 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
 }
 
 // clone a single field value - i.e. the element type of repeated fields, the value type of maps
-function cloneSingularField(
-  field: FieldInfo | (FieldInfo & { kind: "map" })["V"],
-  value: any
-): any {
+function cloneSingularField(value: any): any {
   if (value === undefined) {
     return value;
   }
-  if (value instanceof Message) {
+  if (isMessage(value)) {
     return value.clone();
   }
   if (value instanceof Uint8Array) {
@@ -224,4 +249,9 @@ function cloneSingularField(
     return c;
   }
   return value;
+}
+
+// converts any ArrayLike<number> to Uint8Array if necessary.
+function toU8Arr(input: ArrayLike<number>) {
+  return input instanceof Uint8Array ? input : new Uint8Array(input);
 }

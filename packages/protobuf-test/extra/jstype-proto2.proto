@@ -1,0 +1,68 @@
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+package spec;
+
+message JSTypeProto2OmittedMessage {
+  optional fixed64 fixed64_field = 1;
+  optional int64 int64_field = 3;
+  optional sfixed64 sfixed64_field = 4;
+  optional sint64 sint64_field = 5;
+  optional uint64 uint64_field = 6;
+  repeated fixed64 repeated_fixed64_field = 11;
+  repeated int64 repeated_int64_field = 12;
+  repeated sfixed64 repeated_sfixed64_field = 13;
+  repeated sint64 repeated_sint64_field = 14;
+  repeated uint64 repeated_uint64_field = 15;
+}
+
+message JSTypeProto2NormalMessage {
+  optional fixed64 fixed64_field = 1 [jstype = JS_NORMAL];
+  optional int64 int64_field = 3 [jstype = JS_NORMAL];
+  optional sfixed64 sfixed64_field = 4 [jstype = JS_NORMAL];
+  optional sint64 sint64_field = 5 [jstype = JS_NORMAL];
+  optional uint64 uint64_field = 6 [jstype = JS_NORMAL];
+  repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NORMAL];
+  repeated int64 repeated_int64_field = 12 [jstype = JS_NORMAL];
+  repeated sfixed64 repeated_sfixed64_field = 13 [jstype = JS_NORMAL];
+  repeated sint64 repeated_sint64_field = 14 [jstype = JS_NORMAL];
+  repeated uint64 repeated_uint64_field = 15 [jstype = JS_NORMAL];
+}
+
+message JSTypeProto2StringMessage {
+  optional fixed64 fixed64_field = 1 [jstype = JS_STRING];
+  optional int64 int64_field = 3 [jstype = JS_STRING];
+  optional sfixed64 sfixed64_field = 4 [jstype = JS_STRING];
+  optional sint64 sint64_field = 5 [jstype = JS_STRING];
+  optional uint64 uint64_field = 6 [jstype = JS_STRING];
+  repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_STRING];
+  repeated int64 repeated_int64_field = 12 [jstype = JS_STRING];
+  repeated sfixed64 repeated_sfixed64_field = 13 [jstype = JS_STRING];
+  repeated sint64 repeated_sint64_field = 14 [jstype = JS_STRING];
+  repeated uint64 repeated_uint64_field = 15 [jstype = JS_STRING];
+}
+
+message JSTypeProto2NumberMessage {
+  optional fixed64 fixed64_field = 1 [jstype = JS_NUMBER];
+  optional int64 int64_field = 3 [jstype = JS_NUMBER];
+  optional sfixed64 sfixed64_field = 4 [jstype = JS_NUMBER];
+  optional sint64 sint64_field = 5 [jstype = JS_NUMBER];
+  optional uint64 uint64_field = 6 [jstype = JS_NUMBER];
+  repeated fixed64 repeated_fixed64_field = 11 [jstype = JS_NUMBER];
+  repeated int64 repeated_int64_field = 12 [jstype = JS_NUMBER];
+  repeated sfixed64 repeated_sfixed64_field = 13 [jstype = JS_NUMBER];
+  repeated sint64 repeated_sint64_field = 14 [jstype = JS_NUMBER];
+  repeated uint64 repeated_uint64_field = 15 [jstype = JS_NUMBER];
+}

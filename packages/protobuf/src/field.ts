@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 import type { EnumType } from "./enum.js";
 import type { MessageType } from "./message-type.js";
+import type { LongType, ScalarType } from "./scalar.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -33,6 +34,7 @@ import type { MessageType } from "./message-type.js";
  * - "localName": The name of the field as used in generated code.
  * - "jsonName": The name for JSON serialization / deserialization.
  * - "opt": Whether the field is optional.
+ * - "req": Whether the field is required (a legacy proto2 feature).
  * - "repeated": Whether the field is repeated.
  * - "packed": Whether the repeated field is packed.
  *
@@ -40,6 +42,7 @@ import type { MessageType } from "./message-type.js";
  *
  * - "oneof": If the field is member of a oneof group.
  * - "default": Only proto2: An explicit default value.
+ * - "delimited": Only proto2: Use the tag-delimited group encoding.
  */
 export type FieldInfo =
   | fiRules<fiScalar>
@@ -72,7 +75,9 @@ export interface OneofInfo {
   readonly repeated: false;
   readonly packed: false;
   readonly opt: false;
+  readonly req: false;
   readonly default: undefined;
+  readonly delimited?: undefined;
   readonly fields: readonly FieldInfo[];
 
   /**
@@ -120,6 +125,27 @@ interface fiScalar extends fiShared {
   readonly T: ScalarType;
 
   /**
+   * JavaScript representation of 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   *
+   * By default, this is LongType.BIGINT. Generated code will use the BigInt
+   * primitive.
+   *
+   * With LongType.STRING, generated code will use the String primitive instead.
+   * This can be specified per field with the option `[jstype = JS_STRING]`:
+   *
+   * ```protobuf
+   * uint64 field_a = 1; // BigInt
+   * uint64 field_b = 2 [jstype = JS_NORMAL]; // BigInt
+   * uint64 field_b = 2 [jstype = JS_NUMBER]; // BigInt
+   * uint64 field_b = 2 [jstype = JS_STRING]; // String
+   * ```
+   *
+   * This property is ignored for other scalar types.
+   */
+  readonly L: LongType;
+
+  /**
    * Is the field repeated?
    */
   readonly repeated: boolean;
@@ -138,9 +164,22 @@ interface fiScalar extends fiShared {
   readonly opt: boolean;
 
   /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
+
+  /**
    * Only proto2: An explicit default value.
    */
   readonly default: number | boolean | string | bigint | Uint8Array | undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited?: undefined;
 }
 
 interface fiMessage extends fiShared {
@@ -162,9 +201,22 @@ interface fiMessage extends fiShared {
   readonly packed: false;
 
   /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
+
+  /**
    * An explicit default value (only proto2). Never set for messages.
    */
   readonly default: undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited?: boolean;
 }
 
 interface fiEnum extends fiShared {
@@ -193,9 +245,22 @@ interface fiEnum extends fiShared {
   readonly opt: boolean;
 
   /**
+   * Is the field required? A legacy proto2 feature.
+   */
+  readonly req: boolean;
+
+  /**
    * Only proto2: An explicit default value.
    */
   readonly default: number | undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited?: undefined;
 }
 
 interface fiMap extends fiShared {
@@ -235,56 +300,26 @@ interface fiMap extends fiShared {
    * An explicit default value (only proto2). Never set for maps.
    */
   readonly default: undefined;
+
+  /**
+   * Serialize this message with the delimited format, also known as group
+   * encoding, as opposed to the standard length prefix.
+   *
+   * Only valid for message fields.
+   */
+  readonly delimited?: undefined;
 }
 
 // prettier-ignore
-type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt"> & (
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly oneof: undefined; }
-  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly oneof: undefined; }
-  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly oneof: OneofInfo; });
+type fiRules<T> = Omit<T, "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req"> & (
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: true; readonly req: false; readonly oneof: undefined; }
+  | { readonly repeated: boolean, readonly packed: boolean, readonly opt: false; readonly req: boolean; readonly oneof: undefined; }
+  | { readonly repeated: false, readonly packed: false, readonly opt: false; readonly req: false; readonly oneof: OneofInfo; });
 
 // prettier-ignore
-type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "default"> & (
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly oneof?: undefined; default?: T["default"]; }
-  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly oneof: string; default?: T["default"]; });
-
-/**
- * Scalar value types. This is a subset of field types declared by protobuf
- * enum google.protobuf.FieldDescriptorProto.Type The types GROUP and MESSAGE
- * are omitted, but the numerical values are identical.
- */
-export enum ScalarType {
-  // 0 is reserved for errors.
-  // Order is weird for historical reasons.
-  DOUBLE = 1,
-  FLOAT = 2,
-  // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
-  // negative values are likely.
-  INT64 = 3,
-  UINT64 = 4,
-  // Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
-  // negative values are likely.
-  INT32 = 5,
-  FIXED64 = 6,
-  FIXED32 = 7,
-  BOOL = 8,
-  STRING = 9,
-  // Tag-delimited aggregate.
-  // Group type is deprecated and not supported in proto3. However, Proto3
-  // implementations should still be able to parse the group wire format and
-  // treat group fields as unknown fields.
-  // TYPE_GROUP = 10,
-  // TYPE_MESSAGE = 11,  // Length-delimited aggregate.
-
-  // New in version 2.
-  BYTES = 12,
-  UINT32 = 13,
-  // TYPE_ENUM = 14,
-  SFIXED32 = 15,
-  SFIXED64 = 16,
-  SINT32 = 17, // Uses ZigZag encoding.
-  SINT64 = 18, // Uses ZigZag encoding.
-}
+type fiPartialRules<T extends fiScalar|fiMap|fiEnum|fiMessage> = Omit<T, "jsonName" | "localName" | "oneof" | "repeat" | "repeated" | "packed" | "opt" | "req" | "default" | "L" | "delimited"> & (
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly req?: boolean; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt: true; readonly req?: false; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: boolean; readonly packed?: boolean; readonly opt?: false; readonly req?: boolean; readonly oneof?: undefined; default?: T["default"]; L?: LongType; delimited?: boolean; }
+  | { readonly jsonName?: string; readonly repeated?: false; readonly packed?: false; readonly opt?: false; readonly req?: false; readonly oneof: string; default?: T["default"]; L?: LongType; delimited?: boolean; });

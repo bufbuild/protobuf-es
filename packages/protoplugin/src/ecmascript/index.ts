@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,27 +12,51 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo } from "@bufbuild/protobuf";
+import {
+  AnyDesc,
+  codegenInfo,
+  DescExtension,
+  DescFile,
+} from "@bufbuild/protobuf";
+import { Printable } from "./generated-file.js";
+import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
 
-export { Target } from "./target.js";
-export { Schema } from "./schema.js";
-export { RuntimeImports } from "./runtime-imports.js";
-export { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
-export { ImportSymbol } from "./import-symbol.js";
+export { reifyWkt } from "./reify-wkt.js";
+export type { Target } from "./target.js";
+export type { Schema } from "./schema.js";
+export type { RuntimeImports } from "./runtime-imports.js";
+export type { GeneratedFile, FileInfo, Printable } from "./generated-file.js";
+export type { ImportSymbol } from "./import-symbol.js";
+export { createImportSymbol } from "./import-symbol.js";
 
-export const { localName, reifyWkt } = codegenInfo;
+export const { localName } = codegenInfo;
 
 export {
-  createJsDocBlock,
   getFieldExplicitDefaultValue,
   getFieldIntrinsicDefaultValue,
   getFieldTyping,
-  makeJsDoc,
   literalString,
-} from "./gencommon.js";
+} from "./legacy-gencommon.js";
 
 export {
   findCustomScalarOption,
   findCustomMessageOption,
   findCustomEnumOption,
-} from "./custom-options.js";
+} from "./legacy-custom-options.js";
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function makeJsDoc(
+  desc: Exclude<AnyDesc, DescFile | DescExtension>,
+  indentation = "",
+): Printable {
+  return createJsDocBlockInternal(desc, indentation).toString();
+}
+
+/**
+ * @deprecated Please use GeneratedFile.jsDoc() instead
+ */
+export function createJsDocBlock(text: string, indentation = ""): Printable {
+  return createJsDocBlockInternal(text, indentation).toString();
+}

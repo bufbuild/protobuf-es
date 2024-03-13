@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Schema as SchemaInternal } from "./ecmascript/schema.js";
 export { Plugin } from "./plugin.js";
-export { Schema } from "./ecmascript/schema.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
+
+/**
+ * @deprecated Please use Schema from @bufbuild/protoplugin/ecmascript instead
+ */
+export type Schema = SchemaInternal;

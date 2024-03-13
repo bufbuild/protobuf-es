@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 import type {
   DescEnum,
   DescEnumValue,
+  DescExtension,
   DescField,
   DescMessage,
   DescService,
@@ -34,10 +35,11 @@ export function localName(
     | DescEnum
     | DescEnumValue
     | DescMessage
+    | DescExtension
     | DescOneof
     | DescField
     | DescService
-    | DescMethod
+    | DescMethod,
 ): string {
   switch (desc.kind) {
     case "field":
@@ -46,7 +48,8 @@ export function localName(
       return localOneofName(desc.name);
     case "enum":
     case "message":
-    case "service": {
+    case "service":
+    case "extension": {
       const pkg = desc.file.proto.package;
       const offset = pkg === undefined ? 0 : pkg.length + 1;
       const name = desc.typeName.substring(offset).replace(/\./g, "_");
@@ -106,7 +109,7 @@ export const fieldJsonName = protoCamelCase;
  */
 export function findEnumSharedPrefix(
   enumName: string,
-  valueNames: string[]
+  valueNames: string[],
 ): string | undefined {
   const prefix = camelToSnakeCase(enumName) + "_";
   for (const name of valueNames) {

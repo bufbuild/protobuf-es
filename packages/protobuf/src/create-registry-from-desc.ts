@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,10 +16,12 @@ import { assert } from "./private/assert.js";
 import type { MessageType } from "./message-type.js";
 import { proto3 } from "./proto3.js";
 import { proto2 } from "./proto2.js";
-import type { PartialFieldInfo } from "./field.js";
+import type { FieldInfo } from "./field.js";
+import { ScalarType } from "./scalar.js";
 import type { EnumType, EnumValueInfo } from "./enum.js";
 import type {
   IEnumTypeRegistry,
+  IExtensionRegistry,
   IMessageTypeRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
@@ -48,9 +50,23 @@ import {
   UInt32Value,
   UInt64Value,
 } from "./google/protobuf/wrappers_pb.js";
-import { FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
-import type { DescField, DescriptorSet } from "./descriptor-set.js";
+import {
+  FieldDescriptorProto_Label,
+  FieldDescriptorProto_Type,
+  FileDescriptorSet,
+} from "./google/protobuf/descriptor_pb.js";
+import type {
+  AnyDesc,
+  DescEnum,
+  DescExtension,
+  DescField,
+  DescMessage,
+  DescriptorSet,
+} from "./descriptor-set.js";
 import { createDescriptorSet } from "./create-descriptor-set.js";
+import type { Extension } from "./extension.js";
+import type { ExtensionFieldSource } from "./private/extensions.js";
+import { isMessage } from "./is-message";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [
@@ -90,21 +106,26 @@ const wkEnums = [getEnumType(NullValue)];
  */
 export function createRegistryFromDescriptors(
   input: DescriptorSet | FileDescriptorSet | Uint8Array,
-  replaceWkt = true
-): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
+  replaceWkt = true,
+): IMessageTypeRegistry &
+  IEnumTypeRegistry &
+  IExtensionRegistry &
+  IServiceTypeRegistry {
   const set: DescriptorSet =
-    input instanceof Uint8Array || input instanceof FileDescriptorSet
+    input instanceof Uint8Array || isMessage(input, FileDescriptorSet)
       ? createDescriptorSet(input)
       : input;
-  const enums: Record<string, EnumType | undefined> = {};
-  const messages: Record<string, MessageType | undefined> = {};
+  const enums = new Map<string, EnumType>();
+  const messages = new Map<string, MessageType>();
+  const extensions = new Map<string, Extension>();
+  const extensionsByExtendee = new Map<string, Map<number, DescExtension>>();
   const services: Record<string, ServiceType | undefined> = {};
   if (replaceWkt) {
     for (const mt of wkMessages) {
-      messages[mt.typeName] = mt;
+      messages.set(mt.typeName, mt);
     }
     for (const et of wkEnums) {
-      enums[et.typeName] = et;
+      enums.set(et.typeName, et);
     }
   }
   return {
@@ -112,7 +133,7 @@ export function createRegistryFromDescriptors(
      * May raise an error on invalid descriptors.
      */
     findEnum(typeName: string): EnumType | undefined {
-      const existing = enums[typeName];
+      const existing = enums.get(typeName);
       if (existing) {
         return existing;
       }
@@ -128,11 +149,11 @@ export function createRegistryFromDescriptors(
             no: u.number,
             name: u.name,
             localName: localName(u),
-          })
+          }),
         ),
-        {}
+        {},
       );
-      enums[typeName] = type;
+      enums.set(typeName, type);
       return type;
     },
 
@@ -140,7 +161,7 @@ export function createRegistryFromDescriptors(
      * May raise an error on invalid descriptors.
      */
     findMessage(typeName: string): MessageType | undefined {
-      const existing = messages[typeName];
+      const existing = messages.get(typeName);
       if (existing) {
         return existing;
       }
@@ -149,14 +170,13 @@ export function createRegistryFromDescriptors(
         return undefined;
       }
       const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
-      const fields: PartialFieldInfo[] = [];
+      const fields: FieldInfo[] = [];
       const type = runtime.makeMessageType(typeName, () => fields, {
         localName: localName(desc),
       });
-      messages[typeName] = type;
+      messages.set(typeName, type);
       for (const field of desc.fields) {
-        const fieldInfo = makeFieldInfo(field, this);
-        fields.push(fieldInfo);
+        fields.push(makeFieldInfo(field, this));
       }
       return type;
     },
@@ -175,20 +195,8 @@ export function createRegistryFromDescriptors(
       }
       const methods: Record<string, MethodInfo> = {};
       for (const method of desc.methods) {
-        const I = this.findMessage(method.input.typeName);
-        const O = this.findMessage(method.output.typeName);
-        assert(
-          I,
-          `message "${
-            method.input.typeName
-          }" for ${method.toString()} not found`
-        );
-        assert(
-          O,
-          `output message "${
-            method.output.typeName
-          }" for ${method.toString()} not found`
-        );
+        const I = resolve(method.input, this, method);
+        const O = resolve(method.output, this, method);
         methods[localName(method)] = {
           name: method.name,
           I,
@@ -204,188 +212,133 @@ export function createRegistryFromDescriptors(
         methods,
       });
     },
-  };
-}
 
-interface Resolver extends IMessageTypeRegistry, IEnumTypeRegistry {}
+    /**
+     * May raise an error on invalid descriptors.
+     */
+    findExtensionFor(typeName: string, no: number): Extension | undefined {
+      if (!set.messages.has(typeName)) {
+        return undefined;
+      }
+      let extensionsByNo = extensionsByExtendee.get(typeName);
+      if (!extensionsByNo) {
+        // maintain a lookup for extension desc by number
+        extensionsByNo = new Map<number, DescExtension>();
+        extensionsByExtendee.set(typeName, extensionsByNo);
+        for (const desc of set.extensions.values()) {
+          if (desc.extendee.typeName == typeName) {
+            extensionsByNo.set(desc.number, desc);
+          }
+        }
+      }
+      const desc = extensionsByExtendee.get(typeName)?.get(no);
+      return desc ? this.findExtension(desc.typeName) : undefined;
+    },
 
-function makeFieldInfo(desc: DescField, resolver: Resolver): PartialFieldInfo {
-  switch (desc.fieldKind) {
-    case "map":
-      return makeMapFieldInfo(desc, resolver);
-    case "message":
-      return makeMessageFieldInfo(desc, resolver);
-    case "enum": {
-      const fi = makeEnumFieldInfo(desc, resolver);
-      fi.default = desc.getDefaultValue();
-      return fi;
-    }
-    case "scalar": {
-      const fi = makeScalarFieldInfo(desc);
-      fi.default = desc.getDefaultValue();
-      return fi;
-    }
-  }
-}
-
-function makeMapFieldInfo(
-  field: DescField & { fieldKind: "map" },
-  resolver: Resolver
-): PartialFieldInfo {
-  const base = {
-    kind: "map",
-    no: field.number,
-    name: field.name,
-    jsonName: field.jsonName,
-    K: field.mapKey,
-  } as const;
-  if (field.mapValue.message) {
-    const messageType = resolver.findMessage(field.mapValue.message.typeName);
-    assert(
-      messageType,
-      `message "${
-        field.mapValue.message.typeName
-      }" for ${field.toString()} not found`
-    );
-    return {
-      ...base,
-      V: {
-        kind: "message",
-        T: messageType,
-      },
-    };
-  }
-  if (field.mapValue.enum) {
-    const enumType = resolver.findEnum(field.mapValue.enum.typeName);
-    assert(
-      enumType,
-      `enum "${field.mapValue.enum.typeName}" for ${field.toString()} not found`
-    );
-    return {
-      ...base,
-      V: {
-        kind: "enum",
-        T: enumType,
-      },
-    };
-  }
-  return {
-    ...base,
-    V: {
-      kind: "scalar",
-      T: field.mapValue.scalar,
+    /**
+     * May raise an error on invalid descriptors.
+     */
+    findExtension(typeName: string): Extension | undefined {
+      const existing = extensions.get(typeName);
+      if (existing) {
+        return existing;
+      }
+      const desc = set.extensions.get(typeName);
+      if (!desc) {
+        return undefined;
+      }
+      const extendee = resolve(desc.extendee, this, desc);
+      const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
+      const ext = runtime.makeExtension(
+        typeName,
+        extendee,
+        makeFieldInfo(desc, this) as ExtensionFieldSource,
+      );
+      extensions.set(typeName, ext);
+      return ext;
     },
   };
 }
 
-function makeScalarFieldInfo(
-  field: DescField & { fieldKind: "scalar" }
-): PartialFieldInfo {
-  const base = {
-    kind: "scalar",
-    no: field.number,
-    name: field.name,
-    jsonName: field.jsonName,
-    T: field.scalar,
-  } as const;
-  if (field.repeated) {
-    return {
-      ...base,
-      repeated: true,
-      packed: field.packed,
-      oneof: undefined,
-      T: field.scalar,
-    };
+function makeFieldInfo(
+  desc: DescField | DescExtension,
+  registry: IMessageTypeRegistry & IEnumTypeRegistry,
+): FieldInfo {
+  const f = {
+    kind: desc.fieldKind,
+    no: desc.number,
+    name: desc.name,
+    jsonName: desc.jsonName,
+    delimited: desc.proto.type == FieldDescriptorProto_Type.GROUP,
+    repeated: desc.repeated,
+    packed: desc.packed,
+    oneof: desc.oneof?.name,
+    opt: desc.optional,
+    req: desc.proto.label === FieldDescriptorProto_Label.REQUIRED,
+  } as Record<string, unknown>;
+
+  switch (desc.fieldKind) {
+    case "map": {
+      assert(desc.kind == "field"); // maps are not allowed for extensions
+      let T: EnumType | MessageType | ScalarType | undefined;
+      switch (desc.mapValue.kind) {
+        case "scalar":
+          T = desc.mapValue.scalar;
+          break;
+        case "enum": {
+          T = resolve(desc.mapValue.enum, registry, desc);
+          break;
+        }
+        case "message": {
+          T = resolve(desc.mapValue.message, registry, desc);
+          break;
+        }
+      }
+      f.K = desc.mapKey;
+      f.V = {
+        kind: desc.mapValue.kind,
+        T,
+      };
+      break;
+    }
+    case "message": {
+      f.T = resolve(desc.message, registry, desc);
+      break;
+    }
+    case "enum": {
+      f.T = resolve(desc.enum, registry, desc);
+      f.default = desc.getDefaultValue();
+      break;
+    }
+    case "scalar": {
+      f.L = desc.longType;
+      f.T = desc.scalar;
+      f.default = desc.getDefaultValue();
+      break;
+    }
   }
-  if (field.oneof) {
-    return {
-      ...base,
-      oneof: field.oneof.name,
-    };
-  }
-  if (field.optional) {
-    return {
-      ...base,
-      opt: true,
-    };
-  }
-  return base;
+  return f as FieldInfo;
 }
 
-function makeMessageFieldInfo(
-  field: DescField & { fieldKind: "message" },
-  resolver: Resolver
-): PartialFieldInfo {
-  const messageType = resolver.findMessage(field.message.typeName);
-  assert(
-    messageType,
-    `message "${field.message.typeName}" for ${field.toString()} not found`
-  );
-  const base = {
-    kind: "message",
-    no: field.number,
-    name: field.name,
-    jsonName: field.jsonName,
-    T: messageType,
-  } as const;
-  if (field.repeated) {
-    return {
-      ...base,
-      repeated: true,
-      packed: field.packed,
-      oneof: undefined,
-    };
-  }
-  if (field.oneof) {
-    return {
-      ...base,
-      oneof: field.oneof.name,
-    };
-  }
-  if (field.optional) {
-    return {
-      ...base,
-      opt: true,
-    };
-  }
-  return base;
-}
-
-function makeEnumFieldInfo(
-  field: DescField & { fieldKind: "enum" },
-  resolver: Resolver
-): PartialFieldInfo {
-  const enumType = resolver.findEnum(field.enum.typeName);
-  assert(
-    enumType,
-    `enum "${field.enum.typeName}" for ${field.toString()} not found`
-  );
-  const base = {
-    kind: "enum",
-    no: field.number,
-    name: field.name,
-    jsonName: field.jsonName,
-    T: enumType,
-  } as const;
-  if (field.repeated) {
-    return {
-      ...base,
-      repeated: true,
-      packed: field.packed,
-      oneof: undefined,
-    };
-  }
-  if (field.oneof) {
-    return {
-      ...base,
-      oneof: field.oneof.name,
-    };
-  }
-  if (field.optional) {
-    return {
-      ...base,
-      opt: true,
-    };
-  }
-  return base;
+function resolve(
+  desc: DescMessage,
+  registry: IMessageTypeRegistry & IEnumTypeRegistry,
+  context: AnyDesc,
+): MessageType;
+function resolve(
+  desc: DescEnum,
+  registry: IMessageTypeRegistry & IEnumTypeRegistry,
+  context: AnyDesc,
+): EnumType;
+function resolve(
+  desc: DescMessage | DescEnum,
+  registry: IMessageTypeRegistry & IEnumTypeRegistry,
+  context: AnyDesc,
+): MessageType | EnumType {
+  const type =
+    desc.kind == "message"
+      ? registry.findMessage(desc.typeName)
+      : registry.findEnum(desc.typeName);
+  assert(type, `${desc.toString()}" for ${context.toString()} not found`);
+  return type;
 }

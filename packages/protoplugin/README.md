@@ -26,8 +26,8 @@ declaration files automatically using our internal TypeScript compiler.
 it to generate JavaScript and declaration files with your own version of 
 TypeScript and your own compiler options.
 
-With `protoplugin`, you have all the tools at your disposal to produce ECMAScript-compliant
-code.  
+With `@bufbuild/protoplugin`, you have all the tools at your disposal to produce 
+ECMAScript-compliant code.  
 
 ## Usage
 

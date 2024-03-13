@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -80,6 +80,6 @@ export interface MessageType<T extends Message<T> = AnyMessage> {
    */
   equals(
     a: T | PlainMessage<T> | undefined | null,
-    b: T | PlainMessage<T> | undefined | null
+    b: T | PlainMessage<T> | undefined | null,
   ): boolean;
 }

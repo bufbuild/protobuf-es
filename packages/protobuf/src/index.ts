@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,13 +22,22 @@ export { codegenInfo } from "./codegen-info.js";
 
 export { Message } from "./message.js";
 export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
+export { isMessage } from "./is-message.js";
 
 export type { FieldInfo } from "./field.js";
 export type { FieldList } from "./field-list.js";
-export { ScalarType } from "./field.js";
+export { LongType, ScalarType } from "./scalar.js";
+export type { ScalarValue } from "./scalar.js";
 
 export type { MessageType } from "./message-type.js";
 export type { EnumType, EnumValueInfo } from "./enum.js";
+export type { Extension } from "./extension.js";
+export {
+  getExtension,
+  setExtension,
+  hasExtension,
+  clearExtension,
+} from "./extension-accessor.js";
 export type {
   ServiceType,
   MethodInfo,
@@ -71,9 +80,13 @@ export type {
   DescComments,
 } from "./descriptor-set.js";
 export { createDescriptorSet } from "./create-descriptor-set.js";
-export type { IMessageTypeRegistry } from "./type-registry.js";
+export type {
+  IMessageTypeRegistry,
+  IExtensionRegistry,
+} from "./type-registry.js";
 export { createRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
+export { toPlainMessage } from "./to-plain-message.js";
 
 // ideally, we would export these types with sub-path exports:
 export * from "./google/protobuf/compiler/plugin_pb.js";

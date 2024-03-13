@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,6 +23,12 @@ import type { EnumObject } from "./enum.js";
 import { getEnumType, makeEnum, makeEnumType } from "./enum.js";
 import type { Util } from "./util.js";
 import { makeMessageType } from "./message-type.js";
+import type { Extension } from "../extension.js";
+import type { ExtensionFieldSource } from "./extensions.js";
+import { makeExtension } from "./extensions.js";
+import { makeJsonFormat } from "./json-format.js";
+import { makeBinaryFormat } from "./binary-format.js";
+import { makeUtilCommon } from "./util-common.js";
 
 /**
  * A facade that provides serialization and other internal functionality.
@@ -43,7 +49,7 @@ export interface ProtoRuntime {
       localName?: string;
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): MessageType<T>;
 
   /**
@@ -61,7 +67,7 @@ export interface ProtoRuntime {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): EnumObject;
 
   /**
@@ -75,7 +81,7 @@ export interface ProtoRuntime {
     opt?: {
       // We do not surface options at this time
       // options?: { readonly [extensionName: string]: JsonValue };
-    }
+    },
   ): EnumType;
 
   /**
@@ -84,31 +90,46 @@ export interface ProtoRuntime {
    * enum, or an enum constructed with makeEnum(), it raises an error.
    */
   getEnumType(enumObject: EnumObject): EnumType;
+
+  /**
+   * Create an extension at runtime, without generating code.
+   */
+  makeExtension<E extends Message<E> = AnyMessage, V = unknown>(
+    typeName: string,
+    extendee: MessageType<E>,
+    field: ExtensionFieldSource,
+  ): Extension<E, V>;
 }
 
 export function makeProtoRuntime(
   syntax: string,
-  json: JsonFormat,
-  bin: BinaryFormat,
-  util: Util
+  newFieldList: Util["newFieldList"],
+  initFields: Util["initFields"],
 ): ProtoRuntime {
   return {
     syntax,
-    json,
-    bin,
-    util,
+    json: makeJsonFormat(),
+    bin: makeBinaryFormat(),
+    util: {
+      ...makeUtilCommon(),
+      newFieldList,
+      initFields,
+    },
     makeMessageType(
       typeName: string,
       fields: FieldListSource,
       opt?: {
         localName?: string;
         options?: { readonly [extensionName: string]: JsonValue };
-      }
+      },
     ) {
       return makeMessageType(this, typeName, fields, opt);
     },
     makeEnum,
     makeEnumType,
     getEnumType,
+    makeExtension(typeName, extendee, field) {
+      return makeExtension(this, typeName, extendee, field);
+    },
   };
 }

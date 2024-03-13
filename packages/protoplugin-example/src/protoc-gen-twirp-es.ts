@@ -1,14 +1,24 @@
 #!/usr/bin/env -S npx tsx
 
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { version } from "../package.json";
-import {
-  literalString,
-  makeJsDoc,
-  localName,
-} from "@bufbuild/protoplugin/ecmascript";
-import { MethodKind } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
+import { localName, type Schema } from "@bufbuild/protoplugin/ecmascript";
+import { getExtension, hasExtension, MethodKind } from "@bufbuild/protobuf";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
@@ -25,19 +35,27 @@ function generateTs(schema: Schema) {
       Message,
       JsonValue
     } = schema.runtime;
-    // Convert the Message ImportSymbol to a type-only ImportSymbol
-    const MessageAsType = Message.toTypeOnly();
     for (const service of file.services) {
-      const localServiceName = localName(service);
-      f.print(makeJsDoc(service));
-      f.print("export class ", localServiceName, "Client {");
-      f.print("    private baseUrl: string = '';");
+      f.print(f.jsDoc(service));
+      f.print(f.exportDecl("class", localName(service) + "Client"), " {");
       f.print();
-      f.print("    constructor(url: string) {");
-      f.print("        this.baseUrl = url;");
-      f.print("    }");
+
+      // To support the custom option we defined in customoptions/default_host.proto,
+      // we need to generate code for this proto file first. This will generate the
+      // file customoptions/default_host_pb.ts, which contains the generated extension
+      // `default_host`.
+      // Then we use the functions hasExtension() and getExtension() to see whether
+      // the option is set, and set the value as the default for the constructor argument.
+      if (service.proto.options && hasExtension(service.proto.options, default_host)) {
+        const defaultHost = getExtension(service.proto.options, default_host);
+        f.print("    constructor(private readonly baseUrl = ", f.string(defaultHost), ") {");
+        f.print("    }");
+      } else {
+        f.print("    constructor(private readonly baseUrl: string) {");
+        f.print("    }");
+      }
       f.print();
-      f.print("    async request<T extends ", MessageAsType, "<T>>(");
+      f.print("    async request<T extends ", Message.toTypeOnly(), "<T>>(");
       f.print("        service: string,");
       f.print("        method: string,");
       f.print("        contentType: string,");
@@ -63,19 +81,19 @@ function generateTs(schema: Schema) {
       f.print("    }");
       for (const method of service.methods) {
         if (method.methodKind === MethodKind.Unary) {
-            f.print();
-            f.print(makeJsDoc(method, "    "));
-            f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
-            f.print("        const promise = this.request(");
-            f.print("            ", literalString(service.typeName), ",");
-            f.print("            ", literalString(method.name), ",");
-            f.print('            "application/json",');
-            f.print("            request");
-            f.print("        );");
-            f.print("        return promise.then(async (data) =>");
-            f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
-            f.print("        );");
-            f.print("    }");
+          f.print();
+          f.print(f.jsDoc(method, "    "));
+          f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
+          f.print("        const promise = this.request(");
+          f.print("            ", f.string(service.typeName), ",");
+          f.print("            ", f.string(method.name), ",");
+          f.print('            "application/json",');
+          f.print("            request");
+          f.print("        );");
+          f.print("        return promise.then(async (data) =>");
+          f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
+          f.print("        );");
+          f.print("    }");
         }
       }
       f.print("}");

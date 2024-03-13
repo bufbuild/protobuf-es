@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,11 @@
 
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
-import type { ScalarType } from "./field.js";
-import type { IMessageTypeRegistry } from "./type-registry.js";
+import type { ScalarType, LongType } from "./scalar.js";
+import type {
+  IExtensionRegistry,
+  IMessageTypeRegistry,
+} from "./type-registry.js";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -29,14 +32,14 @@ export interface JsonFormat {
    * Provide options for parsing JSON data.
    */
   makeReadOptions(
-    options?: Partial<JsonReadOptions>
+    options?: Partial<JsonReadOptions>,
   ): Readonly<JsonReadOptions>;
 
   /**
    * Provide options for serializing to JSON.
    */
   makeWriteOptions(
-    options?: Partial<JsonWriteStringOptions>
+    options?: Partial<JsonWriteStringOptions>,
   ): Readonly<JsonWriteStringOptions>;
 
   /**
@@ -46,7 +49,7 @@ export interface JsonFormat {
     type: MessageType<T>,
     jsonValue: JsonValue,
     options: JsonReadOptions,
-    message?: T
+    message?: T,
   ): T;
 
   /**
@@ -56,10 +59,11 @@ export interface JsonFormat {
 
   /**
    * Parse a single scalar value from JSON.
+   *
    * This method may throw an error, but it may have a blank error message.
    * Callers are expected to provide context.
    */
-  readScalar(type: ScalarType, json: JsonValue): any;
+  readScalar(type: ScalarType, json: JsonValue, longType?: LongType): any;
 
   /**
    * Serialize a single scalar value to JSON.
@@ -67,7 +71,7 @@ export interface JsonFormat {
   writeScalar(
     type: ScalarType,
     value: any,
-    emitDefaultValues: boolean
+    emitDefaultValues: boolean,
   ): JsonValue | undefined;
 
   /**
@@ -88,10 +92,10 @@ export interface JsonReadOptions {
   ignoreUnknownFields: boolean;
 
   /**
-   * This option is required to read `google.protobuf.Any`
+   * This option is required to read `google.protobuf.Any` and extensions
    * from JSON format.
    */
-  typeRegistry?: IMessageTypeRegistry;
+  typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>;
 }
 
 /**
@@ -123,10 +127,10 @@ export interface JsonWriteOptions {
   useProtoFieldName: boolean;
 
   /**
-   * This option is required to write `google.protobuf.Any`
+   * This option is required to write `google.protobuf.Any` and extensions
    * to JSON format.
    */
-  typeRegistry?: IMessageTypeRegistry;
+  typeRegistry?: IMessageTypeRegistry & Partial<IExtensionRegistry>;
 }
 
 /**

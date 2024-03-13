@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,9 +21,99 @@ import { ScalarValuesMessage as TS_ScalarValuesMessage } from "./gen/ts/extra/ms
 import { ScalarValuesMessage as JS_ScalarValuesMessage } from "./gen/js/extra/msg-scalar_pb.js";
 import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";
 import { OneofMessage as JS_OneofMessage } from "./gen/js/extra/msg-oneof_pb.js";
+import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/jstype_pb.js";
+import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
+import { JSTypeProto2StringMessage as TS_JSTypeProto2StringMessage } from "./gen/ts/extra/jstype-proto2_pb.js";
+import { JSTypeProto2StringMessage as JS_JSTypeProto2StringMessage } from "./gen/js/extra/jstype-proto2_pb.js";
 import { describeMT } from "./helpers.js";
 
 describe("equals", function () {
+  describeMT(
+    { ts: TS_JSTypeProto2StringMessage, js: JS_JSTypeProto2StringMessage },
+    (messageType) => {
+      let a: TS_JSTypeProto2StringMessage | JS_JSTypeProto2StringMessage,
+        b: TS_JSTypeProto2StringMessage | JS_JSTypeProto2StringMessage;
+      beforeEach(() => {
+        a = new messageType({
+          fixed64Field: "123",
+          int64Field: "123",
+          sfixed64Field: "123",
+          sint64Field: "123",
+          uint64Field: "123",
+          repeatedFixed64Field: ["123"],
+          repeatedInt64Field: ["123"],
+          repeatedSfixed64Field: ["123"],
+          repeatedSint64Field: ["123"],
+          repeatedUint64Field: ["123"],
+        });
+        b = new messageType({
+          fixed64Field: "123",
+          int64Field: "123",
+          sfixed64Field: "123",
+          sint64Field: "123",
+          uint64Field: "123",
+          repeatedFixed64Field: ["123"],
+          repeatedInt64Field: ["123"],
+          repeatedSfixed64Field: ["123"],
+          repeatedSint64Field: ["123"],
+          repeatedUint64Field: ["123"],
+        });
+      });
+      test("same are equal", () => {
+        expect(a).toStrictEqual(b);
+        expect(a.equals(b)).toBeTruthy();
+      });
+      test("changed are not equal", () => {
+        a.int64Field = undefined;
+        expect(a).not.toStrictEqual(b);
+        expect(a.equals(b)).toBeFalsy();
+      });
+    },
+  );
+
+  describeMT(
+    { ts: TS_JSTypeStringMessage, js: JS_JSTypeStringMessage },
+    (messageType) => {
+      let a: TS_JSTypeStringMessage | JS_JSTypeStringMessage,
+        b: TS_JSTypeStringMessage | JS_JSTypeStringMessage;
+      beforeEach(() => {
+        a = new messageType({
+          fixed64Field: "123",
+          int64Field: "123",
+          sfixed64Field: "123",
+          sint64Field: "123",
+          uint64Field: "123",
+          repeatedFixed64Field: ["123"],
+          repeatedInt64Field: ["123"],
+          repeatedSfixed64Field: ["123"],
+          repeatedSint64Field: ["123"],
+          repeatedUint64Field: ["123"],
+        });
+        b = new messageType({
+          fixed64Field: "123",
+          int64Field: "123",
+          sfixed64Field: "123",
+          sint64Field: "123",
+          uint64Field: "123",
+          repeatedFixed64Field: ["123"],
+          repeatedInt64Field: ["123"],
+          repeatedSfixed64Field: ["123"],
+          repeatedSint64Field: ["123"],
+          repeatedUint64Field: ["123"],
+        });
+      });
+      test("same are equal", () => {
+        expect(a).toStrictEqual(b);
+        expect(a.equals(b)).toBeTruthy();
+      });
+      test("changed are not equal", () => {
+        a.int64Field = "456";
+        expect(a).not.toStrictEqual(b);
+        expect(a.equals(b)).toBeFalsy();
+      });
+    },
+  );
+
   describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
     test("oneof scalars are equal", () => {
       const a = new messageType({ scalar: { case: "value", value: 1 } });
@@ -121,7 +211,7 @@ describe("equals", function () {
         a.repeatedMessageField[0].name = "changed";
         expect(a.equals(b)).toBeFalsy();
       });
-    }
+    },
   );
 
   describeMT(
@@ -161,7 +251,7 @@ describe("equals", function () {
         expect(a).not.toStrictEqual(b);
         expect(a.equals(b)).toBeFalsy();
       });
-    }
+    },
   );
 
   describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
@@ -176,8 +266,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { e: "f", c: "d" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeTruthy();
     });
     test("added key not equal", () => {
@@ -192,8 +282,8 @@ describe("equals", function () {
               a: {},
               b: {},
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
     test("removed key not equal", () => {
@@ -207,8 +297,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { c: "d" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
     test("changed value not equal", () => {
@@ -222,8 +312,8 @@ describe("equals", function () {
             strMsgField: {
               a: { strStrField: { c: "e" } },
             },
-          })
-        )
+          }),
+        ),
       ).toBeFalsy();
     });
   });

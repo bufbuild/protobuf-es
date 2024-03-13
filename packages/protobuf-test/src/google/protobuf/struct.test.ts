@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,13 @@ import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { JsonObject } from "@bufbuild/protobuf";
 import * as TS from "../../gen/ts/google/protobuf/struct_pb.js";
 import * as JS from "../../gen/js/google/protobuf/struct_pb.js";
+import * as PKG from "@bufbuild/protobuf";
 
 describe("google.protobuf.Struct", () => {
   describe.each([
     { Struct: TS.Struct, name: `(generated ts)` },
     { Struct: JS.Struct, name: `(generated js)` },
+    { Struct: PKG.Struct, name: `(from package)` },
   ])("$name", ({ Struct }) => {
     let json: JsonObject;
     let struct: TS.Struct;
@@ -47,7 +49,7 @@ describe("google.protobuf.Struct", () => {
     test("decodes from JSON", () => {
       const got = Struct.fromJson(json);
       expect(Object.keys(got.fields).length).toBe(
-        Object.keys(struct.fields).length
+        Object.keys(struct.fields).length,
       );
       expect(got.fields["a"].kind.case).toBe(struct.fields["a"].kind.case);
       expect(got.fields["a"].kind.value).toBe(struct.fields["a"].kind.value);
@@ -65,6 +67,7 @@ describe("google.protobuf.Value", () => {
   describe.each([
     { Value: TS.Value, name: `(generated ts)` },
     { Value: JS.Value, name: `(generated js)` },
+    { Value: PKG.Value, name: `(from package)` },
   ])("$name", ({ Value }) => {
     test("encodes to JSON", () => {
       const value = new Value({
@@ -77,7 +80,7 @@ describe("google.protobuf.Value", () => {
       // See struct.proto
       const value = new Value();
       expect(() => value.toJson()).toThrowError(
-        "google.protobuf.Value must have a value"
+        "google.protobuf.Value must have a value",
       );
     });
     test("decodes from JSON", () => {
@@ -124,6 +127,7 @@ describe("google.protobuf.Value with Struct field", () => {
   describe.each([
     { Value: TS.Value, Struct: TS.Struct, name: `(generated ts)` },
     { Value: JS.Value, Struct: JS.Struct, name: `(generated js)` },
+    { Value: PKG.Value, Struct: PKG.Struct, name: `(from package)` },
   ])("$name", ({ Value, Struct }) => {
     let json: JsonObject;
     let value: TS.Value;

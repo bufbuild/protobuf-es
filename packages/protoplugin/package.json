@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin",
-  "version": "1.2.1",
+  "version": "1.7.2",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "description": "Helps to create your own Protocol Buffers code generators.",
   "repository": {
@@ -8,34 +8,46 @@
     "url": "https://github.com/bufbuild/protobuf-es.git",
     "directory": "packages/protoplugin"
   },
-  "sideEffects": false,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
-    "build": "npm run build:cjs && npm run build:esm+types",
-    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/types"
+    "clean": "rm -rf ./dist/*",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
+    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
+    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . ecmascript",
+    "attw": "attw --pack"
   },
   "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
+      "node": {
+        "import": "./dist/proxy/index.js",
+        "require": "./dist/cjs/index.js"
+      },
+      "module": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./ecmascript": {
+      "node": {
+        "import": "./dist/proxy/ecmascript/index.js",
+        "require": "./dist/cjs/ecmascript/index.js"
+      },
+      "module": "./dist/esm/ecmascript/index.js",
       "import": "./dist/esm/ecmascript/index.js",
       "require": "./dist/cjs/ecmascript/index.js"
     }
   },
-  "types": "./dist/types/index.d.ts",
   "typesVersions": {
     "*": {
       "ecmascript": [
-        "./dist/types/ecmascript/index.d.ts"
+        "./dist/cjs/ecmascript/index.d.ts"
       ]
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.2.1",
+    "@bufbuild/protobuf": "1.7.2",
     "@typescript/vfs": "^1.4.0",
     "typescript": "4.5.2"
   },

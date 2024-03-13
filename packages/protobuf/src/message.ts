@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ export class Message<T extends Message<T> = AnyMessage> {
     return this.getType().runtime.util.equals(
       this.getType(),
       this as unknown as T,
-      other
+      other,
     );
   }
 
@@ -95,7 +95,7 @@ export class Message<T extends Message<T> = AnyMessage> {
       throw new Error(
         `cannot decode ${this.getType().typeName} from JSON: ${
           e instanceof Error ? e.message : String(e)
-        }`
+        }`,
       );
     }
     return this.fromJson(json, options);

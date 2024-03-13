@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 import type {
   DescriptorProto,
+  Edition,
   EnumDescriptorProto,
   EnumValueDescriptorProto,
   FieldDescriptorProto,
@@ -22,8 +23,9 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./google/protobuf/descriptor_pb.js";
-import type { ScalarType } from "./field.js";
+import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
+import type { MergedFeatureSet } from "./private/feature-set.js";
 
 /**
  * DescriptorSet provides a convenient interface for working with a set
@@ -81,16 +83,32 @@ export type AnyDesc =
  * Describes a protobuf source file.
  */
 export interface DescFile {
-  kind: "file";
+  readonly kind: "file";
   /**
    * The syntax specified in the protobuf source.
    */
-  readonly syntax: "proto3" | "proto2";
+  readonly syntax: "proto3" | "proto2" | "editions";
+  /**
+   * The edition of the protobuf file. Will be EDITION_PROTO2 for syntax="proto2",
+   * EDITION_PROTO3 for syntax="proto3";
+   */
+  readonly edition: Exclude<
+    Edition,
+    | Edition.EDITION_1_TEST_ONLY
+    | Edition.EDITION_2_TEST_ONLY
+    | Edition.EDITION_99997_TEST_ONLY
+    | Edition.EDITION_99998_TEST_ONLY
+    | Edition.EDITION_99999_TEST_ONLY
+  >;
   /**
    * The name of the file, excluding the .proto suffix.
    * For a protobuf file `foo/bar.proto`, this is `foo/bar`.
    */
   readonly name: string;
+  /**
+   * Files imported by this file.
+   */
+  readonly dependencies: DescFile[];
   /**
    * Top-level enumerations declared in this file.
    * Note that more enumerations might be declared within message declarations.
@@ -129,6 +147,11 @@ export interface DescFile {
    */
   getPackageComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -136,7 +159,7 @@ export interface DescFile {
  * Describes an enumeration in a protobuf source file.
  */
 export interface DescEnum {
-  kind: "enum";
+  readonly kind: "enum";
   /**
    * The fully qualified name of the enumeration. (We omit the leading dot.)
    */
@@ -175,6 +198,11 @@ export interface DescEnum {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }
@@ -216,6 +244,11 @@ export interface DescEnumValue {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -223,7 +256,7 @@ export interface DescEnumValue {
  * Describes a message declaration in a protobuf source file.
  */
 export interface DescMessage {
-  kind: "message";
+  readonly kind: "message";
   /**
    * The fully qualified name of the message. (We omit the leading dot.)
    */
@@ -282,6 +315,11 @@ export interface DescMessage {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -290,7 +328,7 @@ export interface DescMessage {
  */
 export type DescField = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    kind: "field";
+    readonly kind: "field";
 
     /**
      * The message this field is declared on.
@@ -303,7 +341,7 @@ export type DescField = DescFieldCommon &
  */
 export type DescExtension = DescFieldCommon &
   (DescFieldScalar | DescFieldMessage | DescFieldEnum | DescFieldMap) & {
-    kind: "extension";
+    readonly kind: "extension";
 
     /**
      * The fully qualified name of the extension.
@@ -345,10 +383,14 @@ interface DescFieldCommon {
    */
   readonly packed: boolean;
   /**
-   * Is this field packed by default? Only valid for enum fields, and for
-   * scalar fields except BYTES and STRING.
+   * Is this field packed by default? Only valid for repeated enum fields, and
+   * for repeated scalar fields except BYTES and STRING.
+   *
    * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
    * are unpacked by default.
+   *
+   * With editions, the default is whatever the edition specifies as a default.
+   * In edition 2023, fields are packed by default.
    */
   readonly packedByDefault: boolean;
   /**
@@ -376,6 +418,11 @@ interface DescFieldCommon {
    */
   declarationString(): string;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -389,6 +436,11 @@ interface DescFieldScalar {
    * Scalar type, if it is a scalar field.
    */
   readonly scalar: ScalarType;
+  /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: LongType;
   /**
    * The message type, if it is a message field.
    */
@@ -430,6 +482,11 @@ interface DescFieldMessage {
    */
   readonly scalar: undefined;
   /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
+  /**
    * The message type, if it is a message field.
    */
   readonly message: DescMessage;
@@ -457,6 +514,12 @@ interface DescFieldEnum {
    * Scalar type, if it is a scalar field.
    */
   readonly scalar: undefined;
+  /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
+
   /**
    * The message type, if it is a message field.
    */
@@ -497,6 +560,11 @@ interface DescFieldMap {
    * Scalar type, if it is a scalar field.
    */
   readonly scalar: undefined;
+  /**
+   * JavaScript type for 64 bit integral types (int64, uint64,
+   * sint64, fixed64, sfixed64).
+   */
+  readonly longType: undefined;
   /**
    * The message type, if it is a message field.
    */
@@ -573,7 +641,7 @@ interface DescFieldMapValueScalar {
  * Describes a oneof group in a protobuf source file.
  */
 export interface DescOneof {
-  kind: "oneof";
+  readonly kind: "oneof";
   /**
    * The name of the oneof group, as specified in the protobuf source.
    */
@@ -602,6 +670,11 @@ export interface DescOneof {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -609,7 +682,7 @@ export interface DescOneof {
  * Describes a service declaration in a protobuf source file.
  */
 export interface DescService {
-  kind: "service";
+  readonly kind: "service";
   /**
    * The fully qualified name of the service. (We omit the leading dot.)
    */
@@ -640,6 +713,11 @@ export interface DescService {
    */
   getComments(): DescComments;
 
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
+
   toString(): string;
 }
 
@@ -647,7 +725,7 @@ export interface DescService {
  * Describes an RPC declaration in a protobuf source file.
  */
 export interface DescMethod {
-  kind: "rpc";
+  readonly kind: "rpc";
   /**
    * The name of the RPC, as specified in the protobuf source.
    */
@@ -685,6 +763,11 @@ export interface DescMethod {
    * Get comments on the element in the protobuf source.
    */
   getComments(): DescComments;
+
+  /**
+   * Get the edition features for this protobuf element.
+   */
+  getFeatures(): MergedFeatureSet;
 
   toString(): string;
 }

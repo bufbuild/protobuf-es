@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,21 +15,20 @@
 import type {
   CodeGeneratorRequest,
   DescEnum,
+  DescExtension,
   DescFile,
   DescMessage,
   DescriptorSet,
 } from "@bufbuild/protobuf";
 import {
-  CodeGeneratorResponse,
-  CodeGeneratorResponse_Feature,
   codegenInfo,
   createDescriptorSet,
-  protoInt64,
+  FeatureSetDefaults,
 } from "@bufbuild/protobuf";
 import type {
   FileInfo,
   GeneratedFile,
-  GenerateFileToFileInfo,
+  GeneratedFileController,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
@@ -39,8 +38,9 @@ import {
   deriveImportPath,
   makeImportPath,
   rewriteImportPath,
-  RewriteImports,
 } from "./import-path.js";
+import { ParsedParameter } from "./parameter.js";
+import { makeFilePreamble } from "./file-preamble.js";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -78,98 +78,97 @@ export interface Schema {
   readonly proto: CodeGeneratorRequest;
 }
 
-interface SchemaController {
-  schema: Schema;
+interface SchemaController extends Schema {
   getFileInfo: () => FileInfo[];
+  prepareGenerate(target: Target): void;
 }
 
 export function createSchema(
   request: CodeGeneratorRequest,
-  targets: Target[],
-  tsNocheck: boolean,
-  bootstrapWkt: boolean,
-  rewriteImports: RewriteImports,
-  importExtension: string,
-  keepEmptyFiles: boolean,
+  parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
-  pluginParameter: string
+  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
-  const descriptorSet = createDescriptorSet(request.protoFile);
+  const descriptorSet = createDescriptorSet(request.protoFile, {
+    featureSetDefaults,
+  });
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
-  const runtime = createRuntimeImports(bootstrapWkt);
-  const createTypeImport = (desc: DescMessage | DescEnum): ImportSymbol => {
+  const runtime = createRuntimeImports(parameter.bootstrapWkt);
+  const createTypeImport = (
+    desc: DescMessage | DescEnum | DescExtension,
+  ): ImportSymbol => {
     const name = codegenInfo.localName(desc);
-    const from = makeImportPath(desc.file, bootstrapWkt, filesToGenerate);
+    const from = makeImportPath(
+      desc.file,
+      parameter.bootstrapWkt,
+      filesToGenerate,
+    );
     return createImportSymbol(name, from);
   };
-  const generatedFiles: GenerateFileToFileInfo[] = [];
-  const schema: Schema = {
-    targets,
+  const createPreamble = (descFile: DescFile) =>
+    makeFilePreamble(
+      descFile,
+      pluginName,
+      pluginVersion,
+      parameter.sanitizedParameter,
+      parameter.tsNocheck,
+    );
+  let target: Target | undefined;
+  const generatedFiles: GeneratedFileController[] = [];
+  return {
+    targets: parameter.targets,
     runtime,
     proto: request,
     files: filesToGenerate,
     allFiles: descriptorSet.files,
     generateFile(name) {
+      if (target === undefined) {
+        throw new Error(
+          "prepareGenerate() must be called before generateFile()",
+        );
+      }
       const genFile = createGeneratedFile(
         name,
         deriveImportPath(name),
+        target === "js" ? parameter.jsImportStyle : "module", // ts and dts always use import/export, only js may use commonjs
         (importPath: string) =>
-          rewriteImportPath(importPath, rewriteImports, importExtension),
+          rewriteImportPath(
+            importPath,
+            parameter.rewriteImports,
+            parameter.importExtension,
+          ),
         createTypeImport,
         runtime,
-        {
-          pluginName,
-          pluginVersion,
-          pluginParameter,
-          tsNocheck,
-        },
-        keepEmptyFiles
+        createPreamble,
       );
       generatedFiles.push(genFile);
       return genFile;
     },
-  };
-  return {
-    schema,
     getFileInfo() {
-      return generatedFiles.flatMap((file) => {
-        const fileInfo = file.getFileInfo();
-        // undefined is returned if the file has no content
-        if (!fileInfo) {
-          return [];
-        }
-        return [fileInfo];
-      });
+      return generatedFiles
+        .map((f) => f.getFileInfo())
+        .filter((fi) => parameter.keepEmptyFiles || fi.content.length > 0);
+    },
+    prepareGenerate(newTarget) {
+      target = newTarget;
     },
   };
 }
 
-export function toResponse(files: FileInfo[]): CodeGeneratorResponse {
-  return new CodeGeneratorResponse({
-    supportedFeatures: protoInt64.parse(
-      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
-    ),
-    file: files.map((f) => {
-      if (f.preamble !== undefined) {
-        f.content = f.preamble + "\n" + f.content;
-      }
-      return f;
-    }),
-  });
-}
-
 function findFilesToGenerate(
   descriptorSet: DescriptorSet,
-  request: CodeGeneratorRequest
+  request: CodeGeneratorRequest,
 ) {
   const missing = request.fileToGenerate.filter((fileToGenerate) =>
-    descriptorSet.files.every((file) => fileToGenerate !== file.name + ".proto")
+    descriptorSet.files.every(
+      (file) => fileToGenerate !== file.name + ".proto",
+    ),
   );
   if (missing.length) {
     throw `files_to_generate missing in the request: ${missing.join(", ")}`;
   }
   return descriptorSet.files.filter((file) =>
-    request.fileToGenerate.includes(file.name + ".proto")
+    request.fileToGenerate.includes(file.name + ".proto"),
   );
 }

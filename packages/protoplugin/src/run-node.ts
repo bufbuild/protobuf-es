@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import type { Plugin } from "./plugin.js";
 import type { ReadStream, WriteStream } from "tty";
 import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import { PluginOptionError, reasonToString } from "./error.js";
+import { isPluginOptionError, reasonToString } from "./error.js";
 
 /**
  * Run a plugin with Node.js.
@@ -36,7 +36,7 @@ export function runNodeJs(plugin: Plugin): void {
   }
   if (args.length !== 0) {
     process.stderr.write(
-      `${plugin.name} accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout\n`
+      `${plugin.name} accepts a google.protobuf.compiler.CodeGeneratorRequest on stdin and writes a CodeGeneratorResponse to stdout\n`,
     );
     process.exit(1);
     return;
@@ -49,10 +49,9 @@ export function runNodeJs(plugin: Plugin): void {
     })
     .then(() => process.exit(0))
     .catch((reason) => {
-      const message =
-        reason instanceof PluginOptionError
-          ? reason.message
-          : reasonToString(reason);
+      const message = isPluginOptionError(reason)
+        ? reason.message
+        : reasonToString(reason);
       process.stderr.write(`${plugin.name}: ${message}\n`);
       process.exit(1);
       return;

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Copyright 2021-2022 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { existsSync } from "node:fs";
 
 if (process.argv.length < 3) {
   process.stderr.write(
@@ -27,7 +28,7 @@ if (process.argv.length < 3) {
       "If a package depends on another package from the workspace, the",
       "dependency version is updated as well.",
       "",
-    ].join("\n")
+    ].join("\n"),
   );
   process.exit(1);
 }
@@ -89,6 +90,8 @@ function syncDeps(packages) {
           wantVersion = "~" + wantVersion;
         } else if (version.startsWith("=")) {
           wantVersion = "=" + wantVersion;
+        } else if (version === "*") {
+          wantVersion = "*";
         }
         if (wantVersion === version) {
           continue;
@@ -124,11 +127,13 @@ function readPackagesByPath(packagesDir) {
       continue;
     }
     const path = join(packagesDir, entry.name, "package.json");
-    const pkg = JSON.parse(readFileSync(path, "utf-8"));
-    if (!pkg.name) {
-      throw new Error(`${path} is missing "name"`);
+    if (existsSync(path)) {
+      const pkg = JSON.parse(readFileSync(path, "utf-8"));
+      if (!pkg.name) {
+        throw new Error(`${path} is missing "name"`);
+      }
+      packages[path] = pkg;
     }
-    packages[path] = pkg;
   }
   return packages;
 }

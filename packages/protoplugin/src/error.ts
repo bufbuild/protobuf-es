@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,11 +13,14 @@
 // limitations under the License.
 
 export class PluginOptionError extends Error {
+  override name = "PluginOptionError";
+
   constructor(option: string, reason?: unknown) {
+    const detail = reason !== undefined ? reasonToString(reason) : "";
     super(
-      reason === undefined
-        ? `invalid option "${option}`
-        : `invalid option "${option}: ${reasonToString(reason)}`
+      detail.length > 0
+        ? `invalid option "${option}": ${detail}`
+        : `invalid option "${option}"`,
     );
   }
 }
@@ -30,4 +33,11 @@ export function reasonToString(reason: unknown): string {
     return reason;
   }
   return String(reason);
+}
+
+export function isPluginOptionError(arg: unknown): arg is PluginOptionError {
+  if (!(arg instanceof Error)) {
+    return false;
+  }
+  return arg.name === "PluginOptionError";
 }

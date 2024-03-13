@@ -35,21 +35,20 @@ to Protobuf-ES.
 
 | Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
 |------------------------|-------------|---------------------|-------------|
-| Initializers           | ✅          | ❌                    | ✅         |
-| Plain properties       | ✅          | ❌                    | ✅         |
-| `instanceof`           | ✅          | ✅                  | ️️❌          |
-| JSON format            | ✅          | ❌                    | ✅          |
-| Binary format          | ✅          | ✅                  | ✅          |
-| TypeScript             | ✅          | ️❌                   | ✅          |
-| Standard module system | ✅          | ❌                    | ✅          |
-| Tree shaking           | ✅          | ️❌                   | ✅          |
-| Reflection             | ✅          | ❌                    | ✅          |
-| Dynamic messages       | ✅          | ️❌                   | ✅          |
-| Wrappers unboxing      | ✅          | ❌                    | ❌            |
-| Comments               | ✅          | ❌                    | ✅          |
-| Deprecation            | ✅          | ❌                    | ✅          |
-| proto2 syntax          | ✅          | ✅                  | ❌            |
-| proto2 extensions      | ️❌            | ✅                  | ❌            |
+| Initializers           | ✅           | ❌                   | ✅           |
+| Plain properties       | ✅           | ❌                   | ✅           |
+| JSON format            | ✅           | ❌                   | ✅           |
+| Binary format          | ✅           | ✅                   | ✅           |
+| TypeScript             | ✅           | ❌                   | ✅           |
+| Standard module system | ✅           | ❌                   | ✅           |
+| Tree shaking           | ✅           | ❌                   | ✅           |
+| Reflection             | ✅           | ❌                   | ✅           |
+| Dynamic messages       | ✅           | ❌                   | ✅           |
+| Wrappers unboxing      | ✅           | ❌                   | ❌           |
+| Comments               | ✅           | ❌                   | ✅           |
+| Deprecation            | ✅           | ❌                   | ✅           |
+| proto2 syntax          | ✅           | ✅                   | ❌           |
+| proto2 extensions      | ✅           | ✅                   | ❌           |
 
 
 # From protobuf-javascript
@@ -423,11 +422,8 @@ declare var message: Example;
 
 ```diff
 - Example.is(message);
-+ message instanceof Example;
++ isMessage(message, Example);
 ```
-
-Note that `instanceof` has much better performance characteristics than `is()`.
-For that reason, we do not provide an equivalent to `isAssignable()`.
 
 
 ### Reflection

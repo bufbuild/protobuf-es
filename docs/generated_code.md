@@ -17,8 +17,9 @@ for any given protobuf definition.
 - [Oneof groups](#oneof-groups)
 - [Enumerations](#enumerations)
 - [Extensions](#extensions)
-- [Nested types](#nested-types)
 - [Services](#services)
+- [Groups](#groups)
+- [Nested types](#nested-types)
 - [Comments](#comments)
 
 
@@ -76,19 +77,14 @@ we generate `foo/bar_pb.js`.
 
 By default, we generate JavaScript _and_ TypeScript declaration files, so the generated
 code can be used in JavaScript or TypeScript projects without transpilation. If you
-prefer to generate TypeScript, use the plugin option `target=ts`.
+prefer to generate TypeScript, use the plugin option `[target=ts`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target).
 
-Note that we generate ECMAScript modules, which means we use `import` and `export` statements.
-All import paths include a `.js` extension, so you can use the generated code in Node.js
-with `"type": "module"` in your project's `package.json` without transpilation.
-If you do require support for the legacy CommonJS format, you can generate TypeScript and
-transpile it, for example with the extremely fast [esbuild](https://github.com/evanw/esbuild)
-bundler.
+By default, we generate ECMAScript modules, which means we use `import` and `export` statements. 
+If you need CommonJS, set the plugin option [`js_import_style=legacy_commonjs`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style).
 
-It is also possible to modify the extension used in the import paths via the 
-[`import_extension`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs) plugin option.  
-This option allows you to choose which extension will used in the imports, 
-providing flexibility for different environments.
+All import paths include a `.js` extension by default. You can remove or change the
+extension via the [`import_extension`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs) 
+plugin option.  
 
 
 ### Messages
@@ -162,13 +158,20 @@ as `optional`. Protobuf types map to ECMAScript types as follows:
 
 ### 64-bit integral types
 
-We use the `bigint` primitive to represent 64-bit integral types. If bigint
-is unavailable, we fall back to a string representation, which means that
-all values typed as `bigint` will actually be strings.
+We use the `BigInt` primitive to represent 64-bit integral types. `BigInt` has 
+been available in all major runtimes since 2020.
 
-For presentation purposes, it is always safe to simply call `toString()` on
-the field value. For more detailed information, see the conversion utility
-[`protoInt64`][src-proto-int64] provided by [@bufbuild/protobuf][pkg-protobuf].
+If you prefer to avoid `BigInt` in generated code, you can set the field option
+`jstype = JS_STRING` to generate `String` instead:
+
+```protobuf
+int64 my_field = 1 [jstype = JS_STRING]; // will generate `myField: string`
+```
+
+If `BigInt` is unavailable in your environment, Protobuf-ES falls back to the
+string representation. This means all values typed as `bigint` will be a `string`
+at runtime. For detailed information on how to handle both variants, see the 
+conversion utility [`protoInt64`][src-proto-int64] provided by [@bufbuild/protobuf][pkg-protobuf].
 
 
 ### Message fields
@@ -321,27 +324,66 @@ enum Foo {
 
 ### Extensions
 
-We do not support extensions (a proto2 feature) at this time.
+An extension is a field defined outside of its container message. For example:
 
-
-### Nested types
-
-A message or enum can be declared within a message. For example:
-
-```protobuf
-message Example {
-  message Message {}
-  enum Enum {ENUM_UNSPECIFIED = 0;}
+```
+extend Example {
+  optional string extra_string = 1001;
 }
 ```
 
-Since ECMAScript doesn't have a concept of inner classes like Java or C#, we generate the
-two classes `Example` and `Example_Message`, as well as the enum `Example_Enum`.
+For this extension, we generate:
+
+```ts
+const extra_string: Extension<Example, string>;
+```
+
+See the [runtime API documentation](./runtime_api.md#extensions) for details on how to access extension values.
 
 
 ### Services
 
 `protoc-gen-es` does not generate any code for service declarations.
+
+
+### Groups
+
+Groups are a deprecated feature in proto2 that allows to declare a field and a 
+message at the same time:
+
+```protobuf
+message MessageWithGroup {
+  optional group MyGroup = 1 {
+    optional int32 int32_field = 1;
+  }
+}
+```
+
+For this group field, we generate the following property:
+
+```ts
+mygroup?: MessageWithGroup_MyGroup;
+```
+
+We also generate the message class `MessageWithGroup_MyGroup`.
+
+
+### Nested types
+
+A message, enum, or extension can be declared within a message. For example:
+
+```protobuf
+message Example {
+  message Message {}
+  enum Enum {ENUM_UNSPECIFIED = 0;}
+  extend SomeMessage { optional bool enabled = 1; }
+}
+```
+
+Since ECMAScript doesn't have a concept of inner classes like Java or C#, the
+nested types will be prefixed with the parent message name: We generate an empty
+message class `Example`, a nested message class `Example_Message`, a nested enum
+`Example_Enum`, and a nested extension `Example_enabled`.
 
 
 ### Comments

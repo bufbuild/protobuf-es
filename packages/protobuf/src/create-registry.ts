@@ -1,4 +1,4 @@
-// Copyright 2021-2023 Buf Technologies, Inc.
+// Copyright 2021-2024 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,52 +16,29 @@ import type { MessageType } from "./message-type.js";
 import type { EnumType } from "./enum.js";
 import type { ServiceType } from "./service-type.js";
 import type {
-  IMessageTypeRegistry,
   IEnumTypeRegistry,
+  IExtensionRegistry,
+  IMessageTypeRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
+import type { Extension } from "./extension.js";
+import type { FieldInfo } from "./field.js";
 
 /**
  * Create a new registry from the given types.
  */
 export function createRegistry(
-  ...types: Array<MessageType | EnumType | ServiceType>
-): IMessageTypeRegistry & IEnumTypeRegistry & IServiceTypeRegistry {
+  ...types: Array<MessageType | EnumType | ServiceType | Extension>
+): IMessageTypeRegistry &
+  IEnumTypeRegistry &
+  IExtensionRegistry &
+  IServiceTypeRegistry {
   const messages: Record<string, MessageType> = {};
   const enums: Record<string, EnumType> = {};
   const services: Record<string, ServiceType> = {};
+  const extensionsByName = new Map<string, Extension>();
+  const extensionsByExtendee = new Map<string, Map<number, Extension>>();
   const registry = {
-    /**
-     * Add a type to the registry. For messages, the types used in message
-     * fields are added recursively. For services, the message types used
-     * for requests and responses are added recursively.
-     */
-    add(type: MessageType | EnumType | ServiceType): void {
-      if ("fields" in type) {
-        if (!this.findMessage(type.typeName)) {
-          messages[type.typeName] = type;
-          for (const field of type.fields.list()) {
-            if (field.kind == "message") {
-              this.add(field.T);
-            } else if (field.kind == "map" && field.V.kind == "message") {
-              this.add(field.V.T);
-            } else if (field.kind == "enum") {
-              this.add(field.T);
-            }
-          }
-        }
-      } else if ("methods" in type) {
-        if (!this.findService(type.typeName)) {
-          services[type.typeName] = type;
-          for (const method of Object.values(type.methods)) {
-            this.add(method.I);
-            this.add(method.O);
-          }
-        }
-      } else {
-        enums[type.typeName] = type;
-      }
-    },
     findMessage(typeName: string): MessageType | undefined {
       return messages[typeName];
     },
@@ -71,9 +48,55 @@ export function createRegistry(
     findService(typeName: string): ServiceType | undefined {
       return services[typeName];
     },
+    findExtensionFor(typeName: string, no: number): Extension | undefined {
+      return extensionsByExtendee.get(typeName)?.get(no) ?? undefined;
+    },
+    findExtension(typeName: string): Extension | undefined {
+      return extensionsByName.get(typeName) ?? undefined;
+    },
   };
+
+  function addType(type: MessageType | EnumType | ServiceType | Extension) {
+    if ("fields" in type) {
+      if (!registry.findMessage(type.typeName)) {
+        messages[type.typeName] = type;
+        type.fields.list().forEach(addField);
+      }
+    } else if ("methods" in type) {
+      if (!registry.findService(type.typeName)) {
+        services[type.typeName] = type;
+        for (const method of Object.values(type.methods)) {
+          addType(method.I);
+          addType(method.O);
+        }
+      }
+    } else if ("extendee" in type) {
+      if (!extensionsByName.has(type.typeName)) {
+        extensionsByName.set(type.typeName, type);
+        const extendeeName = type.extendee.typeName;
+        if (!extensionsByExtendee.has(extendeeName)) {
+          extensionsByExtendee.set(extendeeName, new Map<number, Extension>());
+        }
+        extensionsByExtendee.get(extendeeName)?.set(type.field.no, type);
+        addType(type.extendee);
+        addField(type.field);
+      }
+    } else {
+      enums[type.typeName] = type;
+    }
+  }
+
+  function addField(field: FieldInfo) {
+    if (field.kind == "message") {
+      addType(field.T);
+    } else if (field.kind == "map" && field.V.kind == "message") {
+      addType(field.V.T);
+    } else if (field.kind == "enum") {
+      addType(field.T);
+    }
+  }
   for (const type of types) {
-    registry.add(type);
+    addType(type);
   }
   return registry;
 }
