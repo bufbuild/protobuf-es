@@ -73,6 +73,8 @@ export const CodeGeneratorResponse = /*@__PURE__*/ proto2.makeMessageType(
   () => [
     { no: 1, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "supported_features", kind: "scalar", T: 4 /* ScalarType.UINT64 */, opt: true },
+    { no: 3, name: "minimum_edition", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 4, name: "maximum_edition", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
     { no: 15, name: "file", kind: "message", T: CodeGeneratorResponse_File, repeated: true },
   ],
 );

@@ -65,6 +65,11 @@ export enum Edition {
   EDITION_2023 = 1000,
 
   /**
+   * @generated from enum value: EDITION_2024 = 1001;
+   */
+  EDITION_2024 = 1001,
+
+  /**
    * Placeholder editions for testing feature resolution.  These should not be
    * used or relyed on outside of tests.
    *
@@ -91,6 +96,15 @@ export enum Edition {
    * @generated from enum value: EDITION_99999_TEST_ONLY = 99999;
    */
   EDITION_99999_TEST_ONLY = 99999,
+
+  /**
+   * Placeholder for specifying unbounded edition support.  This should only
+   * ever be used by plugins that can expect to never require any changes to
+   * support a new edition.
+   *
+   * @generated from enum value: EDITION_MAX = 2147483647;
+   */
+  EDITION_MAX = 2147483647,
 }
 // Retrieve enum metadata with: proto2.getEnumType(Edition)
 proto2.util.setEnumType(Edition, "google.protobuf.Edition", [
@@ -98,11 +112,13 @@ proto2.util.setEnumType(Edition, "google.protobuf.Edition", [
   { no: 998, name: "EDITION_PROTO2" },
   { no: 999, name: "EDITION_PROTO3" },
   { no: 1000, name: "EDITION_2023" },
+  { no: 1001, name: "EDITION_2024" },
   { no: 1, name: "EDITION_1_TEST_ONLY" },
   { no: 2, name: "EDITION_2_TEST_ONLY" },
   { no: 99997, name: "EDITION_99997_TEST_ONLY" },
   { no: 99998, name: "EDITION_99998_TEST_ONLY" },
   { no: 99999, name: "EDITION_99999_TEST_ONLY" },
+  { no: 2147483647, name: "EDITION_MAX" },
 ]);
 
 /**
@@ -734,12 +750,12 @@ export class FieldDescriptorProto extends Message<FieldDescriptorProto> {
    * If true, this is a proto3 "optional". When a proto3 field is optional, it
    * tracks presence regardless of field type.
    *
-   * When proto3_optional is true, this field must be belong to a oneof to
-   * signal to old proto3 clients that presence is tracked for this field. This
-   * oneof is known as a "synthetic" oneof, and this field must be its sole
-   * member (each proto3 optional field gets its own synthetic oneof). Synthetic
-   * oneofs exist in the descriptor only, and do not generate any API. Synthetic
-   * oneofs must be ordered after all "real" oneofs.
+   * When proto3_optional is true, this field must belong to a oneof to signal
+   * to old proto3 clients that presence is tracked for this field. This oneof
+   * is known as a "synthetic" oneof, and this field must be its sole member
+   * (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs
+   * exist in the descriptor only, and do not generate any API. Synthetic oneofs
+   * must be ordered after all "real" oneofs.
    *
    * For message fields, proto3_optional doesn't create any semantic change,
    * since non-repeated message fields always track presence. However it still
@@ -1413,11 +1429,6 @@ export class FileOptions extends Message<FileOptions> {
   pyGenericServices?: boolean;
 
   /**
-   * @generated from field: optional bool php_generic_services = 42 [default = false];
-   */
-  phpGenericServices?: boolean;
-
-  /**
    * Is this file deprecated?
    * Depending on the target platform, this can emit Deprecated annotations
    * for everything in the file, or it will be completely ignored; in the very
@@ -1528,7 +1539,6 @@ export class FileOptions extends Message<FileOptions> {
     { no: 16, name: "cc_generic_services", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 17, name: "java_generic_services", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 18, name: "py_generic_services", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
-    { no: 42, name: "php_generic_services", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 23, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 31, name: "cc_enable_arenas", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: true },
     { no: 36, name: "objc_class_prefix", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
@@ -1643,10 +1653,6 @@ export class MessageOptions extends Message<MessageOptions> {
   deprecated?: boolean;
 
   /**
-   * NOTE: Do not set the option in .proto files. Always use the maps syntax
-   * instead. The option should only be implicitly set by the proto compiler
-   * parser.
-   *
    * Whether the message is an automatically generated map entry type for the
    * maps field.
    *
@@ -1664,6 +1670,10 @@ export class MessageOptions extends Message<MessageOptions> {
    * use a native map in the target language to hold the keys and values.
    * The reflection APIs in such implementations still need to work as
    * if the field is a repeated message field.
+   *
+   * NOTE: Do not set the option in .proto files. Always use the maps syntax
+   * instead. The option should only be implicitly set by the proto compiler
+   * parser.
    *
    * @generated from field: optional bool map_entry = 7;
    */
@@ -1798,19 +1808,11 @@ export class FieldOptions extends Message<FieldOptions> {
    * call from multiple threads concurrently, while non-const methods continue
    * to require exclusive access.
    *
-   * Note that implementations may choose not to check required fields within
-   * a lazy sub-message.  That is, calling IsInitialized() on the outer message
-   * may return true even if the inner message has missing required fields.
-   * This is necessary because otherwise the inner message would have to be
-   * parsed in order to perform the check, defeating the purpose of lazy
-   * parsing.  An implementation which chooses not to check required fields
-   * must be consistent about it.  That is, for any particular sub-message, the
-   * implementation must either *always* check its required fields, or *never*
-   * check its required fields, regardless of whether or not the message has
-   * been parsed.
-   *
-   * As of May 2022, lazy verifies the contents of the byte stream during
-   * parsing.  An invalid byte stream will cause the overall parsing to fail.
+   * Note that lazy message fields are still eagerly verified to check
+   * ill-formed wireformat or missing required fields. Calling IsInitialized()
+   * on the outer message would fail if the inner message has missing required
+   * fields. Failed verification would result in parsing failure (except when
+   * uninitialized messages are acceptable).
    *
    * @generated from field: optional bool lazy = 5 [default = false];
    */
@@ -2786,20 +2788,20 @@ export enum FeatureSet_Utf8Validation {
   UTF8_VALIDATION_UNKNOWN = 0,
 
   /**
-   * @generated from enum value: NONE = 1;
-   */
-  NONE = 1,
-
-  /**
    * @generated from enum value: VERIFY = 2;
    */
   VERIFY = 2,
+
+  /**
+   * @generated from enum value: NONE = 3;
+   */
+  NONE = 3,
 }
 // Retrieve enum metadata with: proto2.getEnumType(FeatureSet_Utf8Validation)
 proto2.util.setEnumType(FeatureSet_Utf8Validation, "google.protobuf.FeatureSet.Utf8Validation", [
   { no: 0, name: "UTF8_VALIDATION_UNKNOWN" },
-  { no: 1, name: "NONE" },
   { no: 2, name: "VERIFY" },
+  { no: 3, name: "NONE" },
 ]);
 
 /**
@@ -3055,7 +3057,7 @@ export class SourceCodeInfo_Location extends Message<SourceCodeInfo_Location> {
    * location.
    *
    * Each element is a field number or an index.  They form a path from
-   * the root FileDescriptorProto to the place where the definition occurs.
+   * the root FileDescriptorProto to the place where the definition appears.
    * For example, this path:
    *   [ 4, 3, 2, 7, 1 ]
    * refers to:
