@@ -26,7 +26,7 @@ import { ImportEnumForMap } from "./unittest_import_pb.js";
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnum
  */
-export const Proto2MapEnum = proto2.makeEnum(
+export const Proto2MapEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.Proto2MapEnum",
   [
     {no: 0, name: "PROTO2_MAP_ENUM_FOO", localName: "FOO"},
@@ -38,7 +38,7 @@ export const Proto2MapEnum = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtra
  */
-export const Proto2MapEnumPlusExtra = proto2.makeEnum(
+export const Proto2MapEnumPlusExtra = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.Proto2MapEnumPlusExtra",
   [
     {no: 0, name: "E_PROTO2_MAP_ENUM_FOO"},
@@ -51,7 +51,7 @@ export const Proto2MapEnumPlusExtra = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestEnumMap
  */
-export const TestEnumMap = proto2.makeMessageType(
+export const TestEnumMap = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEnumMap",
   () => [
     { no: 101, name: "known_map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2MapEnum)} },
@@ -74,7 +74,7 @@ export const TestEnumMap = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtra
  */
-export const TestEnumMapPlusExtra = proto2.makeMessageType(
+export const TestEnumMapPlusExtra = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEnumMapPlusExtra",
   () => [
     { no: 101, name: "known_map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2MapEnumPlusExtra)} },
@@ -97,7 +97,7 @@ export const TestEnumMapPlusExtra = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestImportEnumMap
  */
-export const TestImportEnumMap = proto2.makeMessageType(
+export const TestImportEnumMap = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestImportEnumMap",
   () => [
     { no: 1, name: "import_enum_amp", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(ImportEnumForMap)} },
@@ -107,7 +107,7 @@ export const TestImportEnumMap = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestIntIntMap
  */
-export const TestIntIntMap = proto2.makeMessageType(
+export const TestIntIntMap = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestIntIntMap",
   () => [
     { no: 1, name: "m", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -119,7 +119,7 @@ export const TestIntIntMap = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestMaps
  */
-export const TestMaps = proto2.makeMessageType(
+export const TestMaps = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMaps",
   () => [
     { no: 1, name: "m_int32", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestIntIntMap} },
@@ -142,7 +142,7 @@ export const TestMaps = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestSubmessageMaps
  */
-export const TestSubmessageMaps = proto2.makeMessageType(
+export const TestSubmessageMaps = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestSubmessageMaps",
   () => [
     { no: 1, name: "m", kind: "message", T: TestMaps, opt: true },
@@ -152,7 +152,7 @@ export const TestSubmessageMaps = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestProto2BytesMap
  */
-export const TestProto2BytesMap = proto2.makeMessageType(
+export const TestProto2BytesMap = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestProto2BytesMap",
   () => [
     { no: 1, name: "map_bytes", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 12 /* ScalarType.BYTES */} },

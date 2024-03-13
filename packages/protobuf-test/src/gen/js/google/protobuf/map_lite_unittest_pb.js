@@ -22,7 +22,7 @@ import { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./u
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite
  */
-export const Proto2MapEnumLite = proto2.makeEnum(
+export const Proto2MapEnumLite = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.Proto2MapEnumLite",
   [
     {no: 0, name: "PROTO2_MAP_ENUM_FOO_LITE"},
@@ -34,7 +34,7 @@ export const Proto2MapEnumLite = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtraLite
  */
-export const Proto2MapEnumPlusExtraLite = proto2.makeEnum(
+export const Proto2MapEnumPlusExtraLite = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.Proto2MapEnumPlusExtraLite",
   [
     {no: 0, name: "E_PROTO2_MAP_ENUM_FOO_LITE"},
@@ -47,7 +47,7 @@ export const Proto2MapEnumPlusExtraLite = proto2.makeEnum(
 /**
  * @generated from enum protobuf_unittest.MapEnumLite
  */
-export const MapEnumLite = proto2.makeEnum(
+export const MapEnumLite = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest.MapEnumLite",
   [
     {no: 0, name: "MAP_ENUM_FOO_LITE"},
@@ -59,7 +59,7 @@ export const MapEnumLite = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest.TestMapLite
  */
-export const TestMapLite = proto2.makeMessageType(
+export const TestMapLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMapLite",
   () => [
     { no: 1, name: "map_int32_int32", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -86,7 +86,7 @@ export const TestMapLite = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestArenaMapLite
  */
-export const TestArenaMapLite = proto2.makeMessageType(
+export const TestArenaMapLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestArenaMapLite",
   () => [
     { no: 1, name: "map_int32_int32", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 5 /* ScalarType.INT32 */} },
@@ -114,7 +114,7 @@ export const TestArenaMapLite = proto2.makeMessageType(
  *
  * @generated from message protobuf_unittest.TestRequiredMessageMapLite
  */
-export const TestRequiredMessageMapLite = proto2.makeMessageType(
+export const TestRequiredMessageMapLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredMessageMapLite",
   () => [
     { no: 1, name: "map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestRequiredLite} },
@@ -124,7 +124,7 @@ export const TestRequiredMessageMapLite = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestEnumMapLite
  */
-export const TestEnumMapLite = proto2.makeMessageType(
+export const TestEnumMapLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEnumMapLite",
   () => [
     { no: 101, name: "known_map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2MapEnumLite)} },
@@ -135,7 +135,7 @@ export const TestEnumMapLite = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtraLite
  */
-export const TestEnumMapPlusExtraLite = proto2.makeMessageType(
+export const TestEnumMapPlusExtraLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestEnumMapPlusExtraLite",
   () => [
     { no: 101, name: "known_map_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "enum", T: proto2.getEnumType(Proto2MapEnumPlusExtraLite)} },
@@ -146,7 +146,7 @@ export const TestEnumMapPlusExtraLite = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestMessageMapLite
  */
-export const TestMessageMapLite = proto2.makeMessageType(
+export const TestMessageMapLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestMessageMapLite",
   () => [
     { no: 1, name: "map_int32_message", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestAllTypesLite} },
@@ -156,7 +156,7 @@ export const TestMessageMapLite = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestRequiredLite
  */
-export const TestRequiredLite = proto2.makeMessageType(
+export const TestRequiredLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestRequiredLite",
   () => [
     { no: 1, name: "a", kind: "scalar", T: 5 /* ScalarType.INT32 */, req: true },
@@ -177,7 +177,7 @@ export const TestRequiredLite_single = proto2.makeExtension(
 /**
  * @generated from message protobuf_unittest.ForeignMessageArenaLite
  */
-export const ForeignMessageArenaLite = proto2.makeMessageType(
+export const ForeignMessageArenaLite = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.ForeignMessageArenaLite",
   () => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },

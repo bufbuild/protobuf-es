@@ -30,7 +30,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.Empty
  */
-export const Empty = proto3.makeMessageType(
+export const Empty = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Empty",
   [],
 );

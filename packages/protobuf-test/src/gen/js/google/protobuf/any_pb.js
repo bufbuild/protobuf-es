@@ -108,7 +108,7 @@ import { proto3 } from "@bufbuild/protobuf";
  *
  * @generated from message google.protobuf.Any
  */
-export const Any = proto3.makeMessageType(
+export const Any = /*@__PURE__*/ proto3.makeMessageType(
   "google.protobuf.Any",
   () => [
     { no: 1, name: "type_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },

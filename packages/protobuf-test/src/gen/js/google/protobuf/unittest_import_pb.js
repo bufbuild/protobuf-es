@@ -32,7 +32,7 @@ import { proto2 } from "@bufbuild/protobuf";
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
  */
-export const ImportEnum = proto2.makeEnum(
+export const ImportEnum = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest_import.ImportEnum",
   [
     {no: 7, name: "IMPORT_FOO"},
@@ -46,7 +46,7 @@ export const ImportEnum = proto2.makeEnum(
  *
  * @generated from enum protobuf_unittest_import.ImportEnumForMap
  */
-export const ImportEnumForMap = proto2.makeEnum(
+export const ImportEnumForMap = /*@__PURE__*/ proto2.makeEnum(
   "protobuf_unittest_import.ImportEnumForMap",
   [
     {no: 0, name: "UNKNOWN"},
@@ -58,7 +58,7 @@ export const ImportEnumForMap = proto2.makeEnum(
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
  */
-export const ImportMessage = proto2.makeMessageType(
+export const ImportMessage = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest_import.ImportMessage",
   () => [
     { no: 1, name: "d", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },

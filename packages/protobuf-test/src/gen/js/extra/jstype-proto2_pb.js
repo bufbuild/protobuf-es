@@ -21,7 +21,7 @@ import { proto2 } from "@bufbuild/protobuf";
 /**
  * @generated from message spec.JSTypeProto2OmittedMessage
  */
-export const JSTypeProto2OmittedMessage = proto2.makeMessageType(
+export const JSTypeProto2OmittedMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.JSTypeProto2OmittedMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true },
@@ -40,7 +40,7 @@ export const JSTypeProto2OmittedMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.JSTypeProto2NormalMessage
  */
-export const JSTypeProto2NormalMessage = proto2.makeMessageType(
+export const JSTypeProto2NormalMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.JSTypeProto2NormalMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true },
@@ -59,7 +59,7 @@ export const JSTypeProto2NormalMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.JSTypeProto2StringMessage
  */
-export const JSTypeProto2StringMessage = proto2.makeMessageType(
+export const JSTypeProto2StringMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.JSTypeProto2StringMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, L: 1 /* LongType.STRING */, opt: true },
@@ -78,7 +78,7 @@ export const JSTypeProto2StringMessage = proto2.makeMessageType(
 /**
  * @generated from message spec.JSTypeProto2NumberMessage
  */
-export const JSTypeProto2NumberMessage = proto2.makeMessageType(
+export const JSTypeProto2NumberMessage = /*@__PURE__*/ proto2.makeMessageType(
   "spec.JSTypeProto2NumberMessage",
   () => [
     { no: 1, name: "fixed64_field", kind: "scalar", T: 6 /* ScalarType.FIXED64 */, opt: true },

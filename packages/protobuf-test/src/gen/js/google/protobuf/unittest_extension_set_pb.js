@@ -29,7 +29,7 @@ import { proto2 } from "@bufbuild/protobuf";
  *
  * @generated from message protobuf_unittest.TestExtensionSet
  */
-export const TestExtensionSet = proto2.makeMessageType(
+export const TestExtensionSet = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionSet",
   [],
 );
@@ -37,7 +37,7 @@ export const TestExtensionSet = proto2.makeMessageType(
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
  */
-export const TestExtensionSetContainer = proto2.makeMessageType(
+export const TestExtensionSetContainer = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_unittest.TestExtensionSetContainer",
   () => [
     { no: 1, name: "extension", kind: "message", T: TestExtensionSet, opt: true },

@@ -26,7 +26,7 @@ import { Type } from "./type_pb.js";
  *
  * @generated from message protobuf_unittest.TestWellKnownTypes
  */
-export const TestWellKnownTypes = proto3.makeMessageType(
+export const TestWellKnownTypes = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.TestWellKnownTypes",
   () => [
     { no: 1, name: "any_field", kind: "message", T: Any },
@@ -56,7 +56,7 @@ export const TestWellKnownTypes = proto3.makeMessageType(
  *
  * @generated from message protobuf_unittest.RepeatedWellKnownTypes
  */
-export const RepeatedWellKnownTypes = proto3.makeMessageType(
+export const RepeatedWellKnownTypes = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.RepeatedWellKnownTypes",
   () => [
     { no: 1, name: "any_field", kind: "message", T: Any, repeated: true },
@@ -83,7 +83,7 @@ export const RepeatedWellKnownTypes = proto3.makeMessageType(
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
  */
-export const OneofWellKnownTypes = proto3.makeMessageType(
+export const OneofWellKnownTypes = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.OneofWellKnownTypes",
   () => [
     { no: 1, name: "any_field", kind: "message", T: Any, oneof: "oneof_field" },
@@ -114,7 +114,7 @@ export const OneofWellKnownTypes = proto3.makeMessageType(
  *
  * @generated from message protobuf_unittest.MapWellKnownTypes
  */
-export const MapWellKnownTypes = proto3.makeMessageType(
+export const MapWellKnownTypes = /*@__PURE__*/ proto3.makeMessageType(
   "protobuf_unittest.MapWellKnownTypes",
   () => [
     { no: 1, name: "any_field", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: Any} },

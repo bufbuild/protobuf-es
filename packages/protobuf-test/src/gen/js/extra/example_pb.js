@@ -21,7 +21,7 @@ import { proto3 } from "@bufbuild/protobuf";
 /**
  * @generated from message docs.User
  */
-export const User = proto3.makeMessageType(
+export const User = /*@__PURE__*/ proto3.makeMessageType(
   "docs.User",
   () => [
     { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
