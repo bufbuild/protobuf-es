@@ -184,6 +184,26 @@ export declare class CodeGeneratorResponse extends Message<CodeGeneratorResponse
   supportedFeatures?: bigint;
 
   /**
+   * The minimum edition this plugin supports.  This will be treated as an
+   * Edition enum, but we want to allow unknown values.  It should be specified
+   * according the edition enum value, *not* the edition number.  Only takes
+   * effect for plugins that have FEATURE_SUPPORTS_EDITIONS set.
+   *
+   * @generated from field: optional int32 minimum_edition = 3;
+   */
+  minimumEdition?: number;
+
+  /**
+   * The maximum edition this plugin supports.  This will be treated as an
+   * Edition enum, but we want to allow unknown values.  It should be specified
+   * according the edition enum value, *not* the edition number.  Only takes
+   * effect for plugins that have FEATURE_SUPPORTS_EDITIONS set.
+   *
+   * @generated from field: optional int32 maximum_edition = 4;
+   */
+  maximumEdition?: number;
+
+  /**
    * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
    */
   file: CodeGeneratorResponse_File[];
