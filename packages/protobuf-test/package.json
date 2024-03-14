@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "1.7.2",
+    "@bufbuild/protoplugin": "1.7.2",
     "@types/benchmark": "^2.1.5",
     "benchmark": "^2.1.4",
     "long": "~5.2.3",

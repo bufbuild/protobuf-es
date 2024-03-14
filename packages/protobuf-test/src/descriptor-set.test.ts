@@ -33,6 +33,12 @@ import {
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join } from "node:path";
 import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import {
+  getComments,
+  getDeclarationString,
+  getPackageComments,
+  getSyntaxComments,
+} from "@bufbuild/protoplugin/next";
 
 const fileDescriptorSet = FileDescriptorSet.fromBinary(
   readFileSync("./descriptorset.binpb"),
@@ -120,7 +126,7 @@ describe("DescriptorSet", () => {
       expect(message).toBeDefined();
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
-        expect(field?.declarationString()).toBe(
+        expect(field ? getDeclarationString(field) : undefined).toBe(
           'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
         );
       }
@@ -131,7 +137,7 @@ describe("DescriptorSet", () => {
       expect(message).toBeDefined();
       if (message !== undefined) {
         const field = message.fields.find((f) => f.number === 1);
-        expect(field?.declarationString()).toBe(
+        expect(field ? getDeclarationString(field) : undefined).toBe(
           "repeated double double_field = 1",
         );
       }
@@ -139,17 +145,15 @@ describe("DescriptorSet", () => {
     test("for map field", () => {
       const set = createDescFileSet(fileDescriptorSet);
       const message = set.getMessage(MapsMessage.typeName);
-      const got = message?.fields
-        .find((f) => f.name === "int32_msg_field")
-        ?.declarationString();
+      const field = message?.fields.find((f) => f.name === "int32_msg_field");
+      const got = field ? getDeclarationString(field) : undefined;
       expect(got).toBe("map<int32, spec.MapsMessage> int32_msg_field = 10");
     });
     test("for enum value", () => {
       const set = createDescFileSet(fileDescriptorSet);
       const e = set.getEnum(proto3.getEnumType(SimpleEnum).typeName);
-      const got = e?.values
-        .find((v) => v.name === "SIMPLE_ZERO")
-        ?.declarationString();
+      const v = e?.values.find((v) => v.name === "SIMPLE_ZERO");
+      const got = v ? getDeclarationString(v) : undefined;
       expect(got).toBe("SIMPLE_ZERO = 0");
     });
   });
@@ -158,7 +162,7 @@ describe("DescriptorSet", () => {
       const set = createDescFileSet(fileDescriptorSet);
       const file = set.getMessage(MessageWithComments.typeName)?.file;
       test("syntax", () => {
-        const comments = file?.getSyntaxComments();
+        const comments = file ? getSyntaxComments(file) : undefined;
         expect(comments).toBeDefined();
         if (comments) {
           expect(comments.leadingDetached[0]).toMatch(
@@ -169,7 +173,7 @@ describe("DescriptorSet", () => {
         }
       });
       test("package", () => {
-        const comments = file?.getPackageComments();
+        const comments = file ? getPackageComments(file) : undefined;
         expect(comments).toBeDefined();
         if (comments) {
           expect(comments.leadingDetached[0]).toBe(" Comment after syntax.\n");
@@ -181,7 +185,7 @@ describe("DescriptorSet", () => {
     test("for message", () => {
       const set = createDescFileSet(fileDescriptorSet);
       const message = set.getMessage(MessageWithComments.typeName);
-      const comments = message?.getComments();
+      const comments = message ? getComments(message) : undefined;
       expect(comments).toBeDefined();
       if (comments) {
         expect(comments.leadingDetached).toStrictEqual([
@@ -197,7 +201,7 @@ describe("DescriptorSet", () => {
       const field = set
         .getMessage(MessageWithComments.typeName)
         ?.fields.find((field) => field.name === "foo");
-      const comments = field?.getComments();
+      const comments = field ? getComments(field) : undefined;
       expect(comments).toBeDefined();
       if (comments) {
         expect(comments.leadingDetached).toStrictEqual([
