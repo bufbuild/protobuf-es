@@ -139,16 +139,6 @@ export interface DescFile {
   readonly proto: FileDescriptorProto;
 
   /**
-   * Get comments on the syntax element in the protobuf source.
-   */
-  getSyntaxComments(): DescComments;
-
-  /**
-   * Get comments on the package element in the protobuf source.
-   */
-  getPackageComments(): DescComments;
-
-  /**
    * Get the edition features for this protobuf element.
    */
   getFeatures(): FeatureSet;
@@ -196,11 +186,6 @@ export interface DescEnum {
   readonly proto: EnumDescriptorProto;
 
   /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
-
-  /**
    * Get the edition features for this protobuf element.
    */
   getFeatures(): FeatureSet;
@@ -233,18 +218,6 @@ export interface DescEnumValue {
    * The compiler-generated descriptor.
    */
   readonly proto: EnumValueDescriptorProto;
-
-  /**
-   * Return a string that (closely) matches the definition of the enumeration
-   * value in the protobuf source.
-   */
-  declarationString(): string;
-
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
-
   /**
    * Get the edition features for this protobuf element.
    */
@@ -310,12 +283,6 @@ export interface DescMessage {
    * The compiler-generated descriptor.
    */
   readonly proto: DescriptorProto;
-
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
-
   /**
    * Get the edition features for this protobuf element.
    */
@@ -397,15 +364,6 @@ interface descFieldAndExtensionShared {
    * The compiler-generated descriptor.
    */
   readonly proto: FieldDescriptorProto;
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
-  /**
-   * Return a string that (closely) matches the definition of the field in the
-   * protobuf source.
-   */
-  declarationString(): string;
   /**
    * Get the edition features for this protobuf element.
    */
@@ -669,12 +627,6 @@ export interface DescOneof {
    * The compiler-generated descriptor.
    */
   readonly proto: OneofDescriptorProto;
-
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
-
   /**
    * Get the edition features for this protobuf element.
    */
@@ -712,11 +664,6 @@ export interface DescService {
    * The compiler-generated descriptor.
    */
   readonly proto: ServiceDescriptorProto;
-
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
 
   /**
    * Get the edition features for this protobuf element.
@@ -763,11 +710,6 @@ export interface DescMethod {
    * The compiler-generated descriptor.
    */
   readonly proto: MethodDescriptorProto;
-
-  /**
-   * Get comments on the element in the protobuf source.
-   */
-  getComments(): DescComments;
 
   /**
    * Get the edition features for this protobuf element.

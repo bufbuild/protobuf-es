@@ -28,11 +28,9 @@ import {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-  SourceCodeInfo,
 } from "../../google/protobuf/descriptor_pb.js";
 import { assert } from "../../private/assert.js";
 import type {
-  DescComments,
   DescEnum,
   DescExtension,
   DescField,
@@ -445,16 +443,6 @@ function addFile(
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- we asserted above
       return `file ${this.proto.name}`;
     },
-    getSyntaxComments() {
-      return findComments(this.proto.sourceCodeInfo, [
-        FieldNumber.FileDescriptorProto_Syntax,
-      ]);
-    },
-    getPackageComments() {
-      return findComments(this.proto.sourceCodeInfo, [
-        FieldNumber.FileDescriptorProto_Package,
-      ]);
-    },
     getFeatures() {
       return resolveFeatures(proto.options?.features);
     },
@@ -602,19 +590,6 @@ function addEnum(
     toString(): string {
       return `enum ${this.typeName}`;
     },
-    getComments() {
-      const path = this.parent
-        ? [
-            ...this.parent.getComments().sourcePath,
-            FieldNumber.DescriptorProto_EnumType,
-            this.parent.proto.enumType.indexOf(this.proto),
-          ]
-        : [
-            FieldNumber.FileDescriptorProto_EnumType,
-            this.file.proto.enumType.indexOf(this.proto),
-          ];
-      return findComments(file.proto.sourceCodeInfo, path);
-    },
     getFeatures() {
       return resolveFeatures(
         parent?.getFeatures() ?? file.getFeatures(),
@@ -635,21 +610,6 @@ function addEnum(
       number: proto.number,
       toString() {
         return `enum value ${desc.typeName}.${this.name}`;
-      },
-      declarationString() {
-        let str = `${this.name} = ${this.number}`;
-        if (this.proto.options?.deprecated === true) {
-          str += " [deprecated = true]";
-        }
-        return str;
-      },
-      getComments() {
-        const path = [
-          ...this.parent.getComments().sourcePath,
-          FieldNumber.EnumDescriptorProto_Value,
-          this.parent.proto.value.indexOf(this.proto),
-        ];
-        return findComments(file.proto.sourceCodeInfo, path);
       },
       getFeatures() {
         return resolveFeatures(desc.getFeatures(), proto.options?.features);
@@ -687,19 +647,6 @@ function addMessage(
     nestedExtensions: [],
     toString(): string {
       return `message ${this.typeName}`;
-    },
-    getComments() {
-      const path = this.parent
-        ? [
-            ...this.parent.getComments().sourcePath,
-            FieldNumber.DescriptorProto_NestedType,
-            this.parent.proto.nestedType.indexOf(this.proto),
-          ]
-        : [
-            FieldNumber.FileDescriptorProto_MessageType,
-            this.file.proto.messageType.indexOf(this.proto),
-          ];
-      return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
       return resolveFeatures(
@@ -743,13 +690,6 @@ function addService(
     methods: [],
     toString(): string {
       return `service ${this.typeName}`;
-    },
-    getComments() {
-      const path = [
-        FieldNumber.FileDescriptorProto_Service,
-        this.file.proto.service.indexOf(this.proto),
-      ];
-      return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
       return resolveFeatures(file.getFeatures(), proto.options?.features);
@@ -821,14 +761,6 @@ function newMethod(
     toString() {
       return `rpc ${parent.typeName}.${name}`;
     },
-    getComments() {
-      const path = [
-        ...this.parent.getComments().sourcePath,
-        FieldNumber.ServiceDescriptorProto_Method,
-        this.parent.proto.method.indexOf(this.proto),
-      ];
-      return findComments(parent.file.proto.sourceCodeInfo, path);
-    },
     getFeatures() {
       return resolveFeatures(parent.getFeatures(), proto.options?.features);
     },
@@ -853,14 +785,6 @@ function newOneof(
     name: proto.name,
     toString(): string {
       return `oneof ${parent.typeName}.${this.name}`;
-    },
-    getComments() {
-      const path = [
-        ...this.parent.getComments().sourcePath,
-        FieldNumber.DescriptorProto_OneofDecl,
-        this.parent.proto.oneofDecl.indexOf(this.proto),
-      ];
-      return findComments(parent.file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
       return resolveFeatures(parent.getFeatures(), proto.options?.features);
@@ -909,18 +833,9 @@ function newField(
     scalar: undefined,
     message: undefined,
     enum: undefined,
-    declarationString,
     // kind, toString, getComments, getFeatures are overridden in newExtension
     toString(): string {
       return `field ${parent.typeName}.${this.name as string}`;
-    },
-    getComments() {
-      const path = [
-        ...parent.getComments().sourcePath,
-        FieldNumber.DescriptorProto_Field,
-        parent.proto.field.indexOf(proto),
-      ];
-      return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
       return resolveFeatures(parent.getFeatures(), proto.options?.features);
@@ -1091,19 +1006,6 @@ function newExtension(
     oneof: undefined,
     toString(): string {
       return `extension ${this.typeName}`;
-    },
-    getComments() {
-      const path = this.parent
-        ? [
-            ...this.parent.getComments().sourcePath,
-            FieldNumber.DescriptorProto_Extension,
-            this.parent.proto.extension.indexOf(proto),
-          ]
-        : [
-            FieldNumber.FileDescriptorProto_Extension,
-            this.file.proto.extension.indexOf(proto),
-          ];
-      return findComments(file.proto.sourceCodeInfo, path);
     },
     getFeatures() {
       return resolveFeatures(
@@ -1382,136 +1284,6 @@ const fieldTypeToScalarType: Record<
   [FieldDescriptorProto_Type.SINT32]: ScalarType.SINT32,
   [FieldDescriptorProto_Type.SINT64]: ScalarType.SINT64,
 };
-
-/**
- * Find comments.
- */
-function findComments(
-  sourceCodeInfo: SourceCodeInfo | undefined,
-  sourcePath: number[],
-): DescComments {
-  if (!sourceCodeInfo) {
-    return {
-      leadingDetached: [],
-      sourcePath,
-    };
-  }
-  for (const location of sourceCodeInfo.location) {
-    if (location.path.length !== sourcePath.length) {
-      continue;
-    }
-    if (location.path.some((value, index) => sourcePath[index] !== value)) {
-      continue;
-    }
-    return {
-      leadingDetached: location.leadingDetachedComments,
-      leading: isFieldSet(location, "leadingComments")
-        ? location.leadingComments
-        : undefined,
-      trailing: isFieldSet(location, "trailingComments")
-        ? location.trailingComments
-        : undefined,
-      sourcePath,
-    };
-  }
-  return {
-    leadingDetached: [],
-    sourcePath,
-  };
-}
-
-/**
- * The following field numbers are used to find comments in
- * google.protobuf.SourceCodeInfo.
- */
-enum FieldNumber {
-  FileDescriptorProto_Package = 2,
-  FileDescriptorProto_MessageType = 4,
-  FileDescriptorProto_EnumType = 5,
-  FileDescriptorProto_Service = 6,
-  FileDescriptorProto_Extension = 7,
-  FileDescriptorProto_Syntax = 12,
-  DescriptorProto_Field = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_NestedType = 3,
-  DescriptorProto_EnumType = 4, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_Extension = 6, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_OneofDecl = 8,
-  EnumDescriptorProto_Value = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  ServiceDescriptorProto_Method = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-}
-
-/**
- * Return a string that matches the definition of a field in the protobuf
- * source. Does not take custom options into account.
- */
-function declarationString(this: DescField | DescExtension): string {
-  const file = this.kind === "extension" ? this.file : this.parent.file;
-  const parts: string[] = [];
-  function typeName(f: DescField | DescExtension) {
-    if (f.message) {
-      return f.message.typeName;
-    }
-    if (f.enum) {
-      return f.enum.typeName;
-    }
-    return ScalarType[f.scalar].toLowerCase();
-  }
-  switch (this.fieldKind) {
-    case "scalar":
-    case "enum":
-    case "message":
-      if (
-        file.edition === Edition.EDITION_PROTO2 &&
-        isFieldSet(this.proto, "label") &&
-        this.proto.label == FieldDescriptorProto_Label.REQUIRED
-      ) {
-        parts.push("required");
-      }
-      if (this.optional) {
-        parts.push("optional");
-      }
-      parts.push(typeName(this));
-      break;
-    case "list":
-      parts.push("repeated", typeName(this));
-      break;
-    case "map": {
-      const k = ScalarType[this.mapKey].toLowerCase();
-      const v = typeName(this);
-      parts.push(`map<${k}, ${v}>`);
-      break;
-    }
-  }
-  parts.push(this.name, "=", this.number.toString());
-  const options: string[] = [];
-  const protoOptions = this.proto.options;
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "packed")) {
-    options.push(`packed = ${protoOptions.packed.toString()}`);
-  }
-  if (isFieldSet(this.proto, "defaultValue")) {
-    let defaultValue = this.proto.defaultValue;
-    if (
-      this.proto.type == FieldDescriptorProto_Type.BYTES ||
-      this.proto.type == FieldDescriptorProto_Type.STRING
-    ) {
-      defaultValue = '"' + defaultValue.replace('"', '\\"') + '"';
-    }
-    options.push(`default = ${defaultValue}`);
-  }
-  if (this.jsonName !== undefined) {
-    options.push(`json_name = "${this.jsonName}"`);
-  }
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "jstype")) {
-    options.push(`jstype = ${FieldOptions_JSType[protoOptions.jstype]}`);
-  }
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "deprecated")) {
-    options.push(`deprecated = true`);
-  }
-  if (options.length > 0) {
-    parts.push("[" + options.join(", ") + "]");
-  }
-  return parts.join(" ");
-}
 
 // TODO consider to remove to save bundle size.
 // Before proto2 fields were switched to use the prototype chain, we used

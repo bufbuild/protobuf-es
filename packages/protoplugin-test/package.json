@@ -6,7 +6,7 @@
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "pregenerate": "rm -rf src/gen/*/*",
-    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=proto option-enum.proto option-message.proto file-option.proto",
+    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=proto option-enum.proto option-message.proto file-option.proto source_code_info.proto",
     "postgenerate": "license-header src/gen",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },

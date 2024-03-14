@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
+import { getComments, getDeclarationString } from "../source-code-info.js";
 
 export function formatJsDocBlock(
   text: string,
@@ -32,7 +33,7 @@ export function formatJsDocBlock(
 }
 
 export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
-  const comments = desc.getComments();
+  const comments = getComments(desc);
   let text = "";
   if (comments.leading !== undefined) {
     text += comments.leading;
@@ -58,13 +59,13 @@ export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
     .join("\n");
   switch (desc.kind) {
     case "enum_value":
-      text += `@generated from enum value: ${desc.declarationString()};`;
+      text += `@generated from enum value: ${getDeclarationString(desc)};`;
       break;
     case "field":
-      text += `@generated from field: ${desc.declarationString()};`;
+      text += `@generated from field: ${getDeclarationString(desc)};`;
       break;
     case "extension":
-      text += `@generated from extension: ${desc.declarationString()};`;
+      text += `@generated from extension: ${getDeclarationString(desc)};`;
       break;
     default:
       text += `@generated from ${desc.toString()}`;

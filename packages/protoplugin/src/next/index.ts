@@ -15,3 +15,9 @@
 export { Plugin } from "./plugin.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
+export {
+  getComments,
+  getDeclarationString,
+  getPackageComments,
+  getSyntaxComments,
+} from "./source-code-info.js";
