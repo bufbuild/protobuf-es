@@ -181,3 +181,13 @@ export const TestRecursiveMapMessage = /*@__PURE__*/ proto3.makeMessageType(
   ],
 );
 
+/**
+ * @generated from message protobuf_unittest.TestI32StrMap
+ */
+export const TestI32StrMap = /*@__PURE__*/ proto3.makeMessageType(
+  "protobuf_unittest.TestI32StrMap",
+  () => [
+    { no: 1, name: "m_32_str", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ],
+);
+

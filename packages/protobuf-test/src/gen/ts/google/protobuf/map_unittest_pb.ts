@@ -618,3 +618,40 @@ export class TestRecursiveMapMessage extends Message<TestRecursiveMapMessage> {
   }
 }
 
+/**
+ * @generated from message protobuf_unittest.TestI32StrMap
+ */
+export class TestI32StrMap extends Message<TestI32StrMap> {
+  /**
+   * @generated from field: map<int32, string> m_32_str = 1;
+   */
+  m32Str: { [key: number]: string } = {};
+
+  constructor(data?: PartialMessage<TestI32StrMap>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "protobuf_unittest.TestI32StrMap";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "m_32_str", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestI32StrMap {
+    return new TestI32StrMap().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestI32StrMap {
+    return new TestI32StrMap().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestI32StrMap {
+    return new TestI32StrMap().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestI32StrMap | PlainMessage<TestI32StrMap> | undefined, b: TestI32StrMap | PlainMessage<TestI32StrMap> | undefined): boolean {
+    return proto3.util.equals(TestI32StrMap, a, b);
+  }
+}
+

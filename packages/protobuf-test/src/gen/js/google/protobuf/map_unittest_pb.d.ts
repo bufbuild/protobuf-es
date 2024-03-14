@@ -456,3 +456,27 @@ export declare class TestRecursiveMapMessage extends Message<TestRecursiveMapMes
   static equals(a: TestRecursiveMapMessage | PlainMessage<TestRecursiveMapMessage> | undefined, b: TestRecursiveMapMessage | PlainMessage<TestRecursiveMapMessage> | undefined): boolean;
 }
 
+/**
+ * @generated from message protobuf_unittest.TestI32StrMap
+ */
+export declare class TestI32StrMap extends Message<TestI32StrMap> {
+  /**
+   * @generated from field: map<int32, string> m_32_str = 1;
+   */
+  m32Str: { [key: number]: string };
+
+  constructor(data?: PartialMessage<TestI32StrMap>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "protobuf_unittest.TestI32StrMap";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestI32StrMap;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestI32StrMap;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestI32StrMap;
+
+  static equals(a: TestI32StrMap | PlainMessage<TestI32StrMap> | undefined, b: TestI32StrMap | PlainMessage<TestI32StrMap> | undefined): boolean;
+}
+
