@@ -19,7 +19,7 @@ import { describe, expect, test } from "@jest/globals";
 import * as example_ts from "../gen/ts/extra/example_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
-import * as TS from "../gen/ts/extra/proto2_pb";
+import * as TS from "../gen/ts/extra/proto2_pb.js";
 
 describe("create()", () => {
   describe("with a generated descriptor", () => {

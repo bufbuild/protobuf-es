@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Schema as SchemaInternal } from "./ecmascript/schema.js";
-export { Plugin } from "./plugin.js";
+import type { Schema as SchemaInternal } from "./ecmascript/schema.js";
+export type { Plugin } from "./plugin.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
 

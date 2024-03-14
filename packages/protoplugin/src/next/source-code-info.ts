@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import type {
+  DescField,
   DescEnumValue,
   DescExtension,
   DescComments,
@@ -21,7 +22,6 @@ import type {
   SourceCodeInfo,
 } from "@bufbuild/protobuf";
 import {
-  DescField,
   ScalarType,
   Edition,
   FieldDescriptorProto_Label,

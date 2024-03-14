@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createSchema, Schema } from "./ecmascript/schema.js";
+import { createSchema } from "./ecmascript/schema.js";
+import type { Schema } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";

@@ -12,13 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  DescEnum,
-  DescExtension,
-  DescMessage,
-  LongType,
-  ScalarType,
-} from "@bufbuild/protobuf";
+import { LongType, ScalarType } from "@bufbuild/protobuf";
+import type { DescEnum, DescExtension, DescMessage } from "@bufbuild/protobuf";
 
 export type LiteralProtoInt64 = {
   readonly kind: "es_proto_int64";

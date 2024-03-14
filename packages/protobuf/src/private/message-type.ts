@@ -20,7 +20,7 @@ import type { MessageType } from "../message-type.js";
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { ProtoRuntime } from "./proto-runtime.js";
 import { scalarZeroValue } from "./scalars.js";
-import type { FieldInfo } from "../field";
+import type { FieldInfo } from "../field.js";
 
 /**
  * Create a new message type using the given runtime.

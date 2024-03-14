@@ -17,5 +17,5 @@ export type { Schema } from "./schema.js";
 export type { GeneratedFile, FileInfo } from "./generated-file.js";
 export type { ImportSymbol } from "./import-symbol.js";
 export { createImportSymbol } from "./import-symbol.js";
-export { Printable } from "./printable.js";
+export type { Printable } from "./printable.js";
 export { safeIdentifier } from "./safe-identifier.js";

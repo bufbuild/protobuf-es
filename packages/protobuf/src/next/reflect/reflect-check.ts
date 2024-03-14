@@ -18,8 +18,8 @@ import { checkScalarValue } from "./scalar.js";
 import type { DescField, DescMessage } from "../../descriptor-set.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
-import { Edition } from "../../google/protobuf/descriptor_pb";
-import { isWktWrapperDesc } from "./wkt";
+import { Edition } from "../../google/protobuf/descriptor_pb.js";
+import { isWktWrapperDesc } from "./wkt.js";
 
 export function checkReflectValue(
   field: DescField,

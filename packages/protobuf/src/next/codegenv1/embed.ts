@@ -15,16 +15,16 @@
 import {
   DescriptorProto,
   FileDescriptorProto,
-} from "../../google/protobuf/descriptor_pb";
+} from "../../google/protobuf/descriptor_pb.js";
 import type {
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
   DescService,
-} from "../../descriptor-set";
-import { clearField, isFieldSet } from "../../field-accessor";
-import { protoBase64 } from "../../proto-base64";
+} from "../../descriptor-set.js";
+import { clearField, isFieldSet } from "../../field-accessor.js";
+import { protoBase64 } from "../../proto-base64.js";
 import { protoCamelCase } from "../reflect/names.js";
 
 interface FileDescEmbedded {

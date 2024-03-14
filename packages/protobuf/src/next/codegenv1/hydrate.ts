@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { protoBase64 } from "../../proto-base64";
-import type { Message } from "../types";
-import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb";
+import { protoBase64 } from "../../proto-base64.js";
+import type { Message } from "../types.js";
+import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb.js";
 import type { DescFile, DescMessage } from "../../descriptor-set.js";
 import { protoCamelCase } from "../reflect/names.js";
 import type {
@@ -23,7 +23,7 @@ import type {
   TypedDescExtension,
   TypedDescMessage,
   TypedDescService,
-} from "./typed-desc";
+} from "./typed-desc.js";
 import { createDescFileSet } from "../reflect/desc-set.js";
 import { assert } from "../../private/assert.js";
 

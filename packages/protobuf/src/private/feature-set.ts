@@ -31,7 +31,7 @@ function getFeatureSetDefaults(
 ): FeatureSetDefaults {
   return FeatureSetDefaults.fromBinary(
     protoBase64.dec(
-      /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiABKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
+      /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiADKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
     ),
     options,
   );

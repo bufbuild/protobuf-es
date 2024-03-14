@@ -32,11 +32,11 @@ import { Proto2OptionalMessage as JS_Proto2OptionalMessage } from "./gen/js/extr
 import {
   Proto3OptionalMessage as TS_Proto3OptionalMessage,
   Proto3UnlabelledMessage as TS_Proto3UnlabelledMessage,
-} from "./gen/ts/extra/proto3_pb";
+} from "./gen/ts/extra/proto3_pb.js";
 import {
   Proto3OptionalMessage as JS_Proto3OptionalMessage,
   Proto3UnlabelledMessage as JS_Proto3UnlabelledMessage,
-} from "./gen/js/extra/proto3_pb";
+} from "./gen/js/extra/proto3_pb.js";
 
 describe("equals", function () {
   describeMT(

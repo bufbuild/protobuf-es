@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
-import { getComments, getDeclarationString } from "../next";
+import { getComments, getDeclarationString } from "../next/source-code-info.js";
 
 export type JSDocBlock = {
   readonly kind: "es_jsdoc";

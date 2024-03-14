@@ -13,10 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import {
-  MessageFieldMessage as TS_MessageFieldMessage,
-  MessageFieldMessage_TestMessage as TS_MessageFieldMessage_TestMessage,
-} from "./gen/ts/extra/msg-message_pb.js";
+import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage_TestMessage as JS_MessageFieldMessage_TestMessage } from "./gen/js/extra/msg-message_pb.js";
 
 describe("mixing message instances", () => {
@@ -37,14 +34,12 @@ describe("mixing message instances", () => {
 });
 
 describe("mixing message instances in the constructor", () => {
-  test("normalizes by creating a new instance", () => {
+  test("matches expected message", () => {
     const test = new JS_MessageFieldMessage_TestMessage({ name: "foo" });
     const message = new TS_MessageFieldMessage({
       messageField: test,
     });
     expect(message.messageField?.name).toBe("foo");
-    expect(message.messageField).toBeInstanceOf(
-      TS_MessageFieldMessage_TestMessage,
-    );
+    expect(message.messageField).toBe(test);
   });
 });

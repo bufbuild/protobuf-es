@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protobuf",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "description": "A complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js.",
   "repository": {
@@ -10,10 +10,9 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist/*",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:proxy",
-    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
-    "build:proxy": "node ../../scripts/gen-esm-proxy.mjs . next next/codegenv1 next/reflect",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
     "bootstrap:featureset-defaults": "upstream-inject-feature-defaults src/private/feature-set.ts",
     "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp/v2/google/protobuf && cp -rp src/google/protobuf/* .tmp/v2/google/protobuf",
     "bootstrap:wkt": "protoc --es_out=src --es_opt=bootstrap_wkt=true,ts_nocheck=false,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/google/protobuf",
@@ -28,38 +27,18 @@
   "main": "./dist/cjs/index.js",
   "exports": {
     ".": {
-      "node": {
-        "import": "./dist/proxy/index.js",
-        "require": "./dist/cjs/index.js"
-      },
-      "module": "./dist/esm/index.js",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
     "./next": {
-      "node": {
-        "import": "./dist/proxy/next/index.js",
-        "require": "./dist/cjs/next/index.js"
-      },
-      "module": "./dist/esm/index.js",
       "import": "./dist/esm/next/index.js",
       "require": "./dist/cjs/next/index.js"
     },
     "./next/codegenv1": {
-      "node": {
-        "import": "./dist/proxy/next/codegenv1/index.js",
-        "require": "./dist/cjs/next/codegenv1/index.js"
-      },
-      "module": "./dist/esm/next/codegenv1/index.js",
       "import": "./dist/esm/next/codegenv1/index.js",
       "require": "./dist/cjs/next/codegenv1/index.js"
     },
     "./next/reflect": {
-      "node": {
-        "import": "./dist/proxy/next/reflect/index.js",
-        "require": "./dist/cjs/next/reflect/index.js"
-      },
-      "module": "./dist/esm/next/reflect/index.js",
       "import": "./dist/esm/next/reflect/index.js",
       "require": "./dist/cjs/next/reflect/index.js"
     }

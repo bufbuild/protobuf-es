@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { codegenInfo, DescFile } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
+import { codegenInfo } from "@bufbuild/protobuf";
 
 /**
  * A configuration for rewriting import paths, a feature mainly used for

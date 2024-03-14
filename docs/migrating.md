@@ -37,7 +37,6 @@ to Protobuf-ES.
 |------------------------|-------------|---------------------|-------------|
 | Initializers           | ✅           | ❌                   | ✅           |
 | Plain properties       | ✅           | ❌                   | ✅           |
-| `instanceof`           | ✅           | ✅                   | ❌           |
 | JSON format            | ✅           | ❌                   | ✅           |
 | Binary format          | ✅           | ✅                   | ✅           |
 | TypeScript             | ✅           | ❌                   | ✅           |
@@ -423,11 +422,8 @@ declare var message: Example;
 
 ```diff
 - Example.is(message);
-+ message instanceof Example;
++ isMessage(message, Example);
 ```
-
-Note that `instanceof` has much better performance characteristics than `is()`.
-For that reason, we do not provide an equivalent to `isAssignable()`.
 
 
 ### Reflection

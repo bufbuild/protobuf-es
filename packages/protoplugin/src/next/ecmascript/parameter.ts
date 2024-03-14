@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Target } from "./target.js";
-import { RewriteImports } from "./import-path.js";
+import type { Target } from "./target.js";
+import type { RewriteImports } from "./import-path.js";
 import { PluginOptionError } from "../error.js";
 
 export interface ParsedParameter {

@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  CodeGeneratorRequest,
+import type {
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
   DescService,
-  FileDescriptorSet,
 } from "@bufbuild/protobuf";
+import { CodeGeneratorRequest, FileDescriptorSet } from "@bufbuild/protobuf";
 import { FeatureSetDefaults } from "@bufbuild/protobuf";
+import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
 import {
   createDescFileSet,
-  DescFileSet,
   nestedTypes,
 } from "@bufbuild/protobuf/next/reflect";
 import type {
@@ -40,7 +39,7 @@ import { createGeneratedFile } from "./generated-file.js";
 import { createImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
-import { ParsedParameter } from "./parameter.js";
+import type { ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import { localDescName, localShapeName, generateFilePath } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";

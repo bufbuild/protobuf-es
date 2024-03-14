@@ -25,7 +25,7 @@ import type {
   DescService,
 } from "./descriptor-set.js";
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
-import { createDescFileSet } from "./next/reflect";
+import { createDescFileSet } from "./next/reflect/desc-set.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of

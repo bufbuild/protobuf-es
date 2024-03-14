@@ -34,7 +34,7 @@ import {
   checkNewListItem,
   checkNewMapEntry,
   checkReflectValue,
-} from "./reflect-check";
+} from "./reflect-check.js";
 import { FieldError } from "./error.js";
 import type { MapEntryKey, ReflectMap } from "./reflect-map.js";
 import { reflectMap } from "./reflect-map.js";

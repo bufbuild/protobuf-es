@@ -12,13 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  AnyDesc,
-  codegenInfo,
-  DescExtension,
-  DescFile,
-} from "@bufbuild/protobuf";
-import { Printable } from "./generated-file.js";
+import type { AnyDesc, DescExtension, DescFile } from "@bufbuild/protobuf";
+import { codegenInfo } from "@bufbuild/protobuf";
+import type { Printable } from "./generated-file.js";
 import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
 
 export { reifyWkt } from "./reify-wkt.js";

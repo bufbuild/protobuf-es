@@ -12,17 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
+import type {
   AnyDesc,
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
   DescService,
-  LongType,
-  protoInt64,
-  ScalarType,
 } from "@bufbuild/protobuf";
+import { LongType, protoInt64, ScalarType } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { makeImportPathRelative } from "./import-path.js";

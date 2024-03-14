@@ -54,7 +54,7 @@ import type { FeatureResolverFn } from "../../private/feature-set.js";
 import { createFeatureResolver } from "../../private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
 import { isFieldSet } from "../../field-accessor.js";
-import type { Message } from "../../message.js";
+import type { AnyMessage, Message } from "../../message.js";
 import { nestedTypes } from "./nested-types.js";
 
 /**
@@ -1290,12 +1290,9 @@ const fieldTypeToScalarType: Record<
 // assertions to narrow down optional types. This function is used to make the
 // same assertions, but they are no longer necessary for the type system, and
 // the value they provide is questionable.
-function assertFieldSet<T extends Message<T>>(
-  target: T,
-  field: Parameters<typeof isFieldSet<T>>[1],
-) {
-  if (!isFieldSet(target, field)) {
+function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
+  if (!isFieldSet(target as AnyMessage, field as string)) {
     const type = target.getType().typeName.split(".").pop();
-    throw new Error(`invalid ${type}: missing ${field}`);
+    throw new Error(`invalid ${type}: missing ${field as string}`);
   }
 }

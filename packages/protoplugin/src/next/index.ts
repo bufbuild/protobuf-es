@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Plugin } from "./plugin.js";
+export type { Plugin } from "./plugin.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
 export {

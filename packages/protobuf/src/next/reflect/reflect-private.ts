@@ -23,10 +23,10 @@ import {
 import type { ScalarValue } from "./scalar.js";
 import type { Message } from "../types.js";
 import { localName } from "./names.js";
-import { protoInt64 } from "../../proto-int64";
-import { isWktWrapper, isWktWrapperDesc } from "./wkt";
-import { isMessage } from "../is-message";
-import { create } from "../create";
+import { protoInt64 } from "../../proto-int64.js";
+import { isWktWrapper, isWktWrapperDesc } from "./wkt.js";
+import { isMessage } from "../is-message.js";
+import { create } from "../create.js";
 
 export function getOneofCasePrivate(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access

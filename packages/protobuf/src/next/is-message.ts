@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { MessageShape } from "./types";
+import type { MessageShape } from "./types.js";
 import type { DescMessage } from "../descriptor-set.js";
 
 /**

@@ -12,13 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  codegenInfo,
-  DescExtension,
-  DescField,
-  LongType,
-  ScalarType,
-} from "@bufbuild/protobuf";
+import type { DescExtension, DescField } from "@bufbuild/protobuf";
+import { codegenInfo, LongType, ScalarType } from "@bufbuild/protobuf";
 import type { GeneratedFile, Printable } from "./generated-file.js";
 import type { ImportSymbol } from "./import-symbol.js";
 

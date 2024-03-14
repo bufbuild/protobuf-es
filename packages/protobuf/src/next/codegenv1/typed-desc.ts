@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "../types";
+import type { Message } from "../types.js";
 import type {
   DescEnum,
   DescExtension,
   DescMessage,
   DescService,
-} from "../../descriptor-set";
-import { MethodKind } from "../../service-type";
+} from "../../descriptor-set.js";
+import { MethodKind } from "../../service-type.js";
 
 export type TypedDescMessage<RuntimeShape extends Message> = DescMessage &
   brand<RuntimeShape>;
