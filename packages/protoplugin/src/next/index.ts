@@ -20,4 +20,4 @@ export {
   getDeclarationString,
   getPackageComments,
   getSyntaxComments,
-} from "./comments.js";
+} from "./source-code-info.js";

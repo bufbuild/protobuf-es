@@ -14,7 +14,7 @@
 
 import { Edition } from "@bufbuild/protobuf";
 import type { DescFile, DescComments } from "@bufbuild/protobuf";
-import { getPackageComments, getSyntaxComments } from "../comments.js";
+import { getPackageComments, getSyntaxComments } from "../source-code-info.js";
 
 export function makeFilePreamble(
   file: DescFile,

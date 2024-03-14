@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
-import { getComments, getDeclarationString } from "../comments.js";
+import { getComments, getDeclarationString } from "../source-code-info.js";
 
 export function formatJsDocBlock(
   text: string,
