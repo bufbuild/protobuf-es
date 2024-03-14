@@ -14,12 +14,20 @@
 
 import type { DescMessage } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { create } from "@bufbuild/protobuf/next";
+import { create, isMessage } from "@bufbuild/protobuf/next";
 import { describe, expect, test } from "@jest/globals";
 import * as example_ts from "../gen/ts/extra/example_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
+import type { Proto3Message } from "../gen/ts/extra/proto3_pbv2.js";
+import { Proto3Enum, Proto3MessageDesc } from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
 import * as TS from "../gen/ts/extra/proto2_pb.js";
+import { reflect } from "@bufbuild/protobuf/next/reflect";
+import { Proto2MessageDesc } from "../gen/ts/extra/proto2_pbv2.js";
+import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
+import type { MessageInitShape } from "@bufbuild/protobuf/next";
+
+/* eslint-disable @typescript-eslint/ban-ts-comment -- to support older TS versions in the TS compat tests, we cannot use ts-expect-error */
 
 describe("create()", () => {
   describe("with a generated descriptor", () => {
@@ -324,14 +332,490 @@ describe("create()", () => {
       const user2 = create(example_ts.UserDesc, user1);
       expect(user2).toBe(user1);
     });
-    describe("foreign typed message", () => {
-      test("is a type error", () => {
-        const user = create(example_ts.UserDesc);
-        // @ts-expect-error TS2345
-        const notAUser = create(proto3_ts.Proto3UnlabelledMessageDesc, user);
-        expect(notAUser).toBeDefined();
+    test("rejects foreign typed message", () => {
+      const user = create(example_ts.UserDesc);
+      // @ts-expect-error TS2345
+      const notAUser = create(proto3_ts.Proto3MessageDesc, user);
+      expect(notAUser).toBeDefined();
+    });
+    test("rejects extra properties in the object literal as a type error", () => {
+      const msg = create(Proto3MessageDesc, {
+        // @ts-expect-error TS2353
+        extraProperty: true,
+      });
+      expect(msg).toBeDefined();
+    });
+    describe("skips proto3 zero values", () => {
+      const msg = create(Proto3MessageDesc, {
+        singularStringField: "",
+        singularBytesField: new Uint8Array(0),
+        singularInt32Field: 0,
+        singularInt64Field: protoInt64.zero,
+        singularInt64JsNumberField: protoInt64.zero,
+        singularInt64JsStringField: "0",
+        singularFloatField: 0,
+        singularBoolField: false,
+        singularEnumField: Proto3Enum.UNSPECIFIED,
+        singularMessageField: undefined,
+        singularWrappedUint32Field: undefined,
+        repeatedStringField: [],
+        repeatedEnumField: [],
+        repeatedMessageField: [],
+        // TODO support map fields
+        // mapStringStringField: {},
+      });
+      const r = reflect(msg);
+      test.each(r.fields)("$name", (f) => {
+        expect(r.isSet(f)).toBe(false);
       });
     });
-    // TODO test partial init. see constructor.test.ts for example, but use proto2.proto and proto3 messages.
+    describe("skips null value", () => {
+      const msg = create(Proto3MessageDesc, {
+        singularStringField: null,
+        singularBytesField: null,
+        singularInt32Field: null,
+        singularInt64Field: null,
+        singularInt64JsNumberField: null,
+        singularInt64JsStringField: null,
+        singularFloatField: null,
+        singularBoolField: null,
+        singularEnumField: null,
+        singularMessageField: null,
+        singularWrappedUint32Field: null,
+        repeatedStringField: null,
+        repeatedEnumField: null,
+        repeatedMessageField: null,
+        // TODO support map fields
+        // mapStringStringField: null,
+      } as unknown as MessageInitShape<typeof Proto3MessageDesc>);
+      const r = reflect(msg);
+      test.each(r.fields)("$name", (f) => {
+        expect(r.isSet(f)).toBe(false);
+      });
+    });
+    describe("skips undefined value", () => {
+      const msg = create(Proto3MessageDesc, {
+        singularStringField: undefined,
+        singularBytesField: undefined,
+        singularInt32Field: undefined,
+        singularInt64Field: undefined,
+        singularInt64JsNumberField: undefined,
+        singularInt64JsStringField: undefined,
+        singularFloatField: undefined,
+        singularBoolField: undefined,
+        singularEnumField: undefined,
+        singularMessageField: undefined,
+        singularWrappedUint32Field: undefined,
+        repeatedStringField: undefined,
+        repeatedEnumField: undefined,
+        repeatedMessageField: undefined,
+        // TODO support map fields
+        // mapStringStringField: undefined,
+      });
+      const r = reflect(msg);
+      test.each(r.fields)("$name", (f) => {
+        expect(r.isSet(f)).toBe(false);
+      });
+    });
+    describe("64-bit integer field", () => {
+      function expect64BitFields(msg: Proto3Message) {
+        expect(msg.singularInt64Field).toBe(protoInt64.parse(1));
+        expect(msg.singularInt64JsNumberField).toBe(protoInt64.parse(2));
+        expect(msg.singularInt64JsStringField).toBe("3");
+        expect(msg.repeatedInt64Field).toStrictEqual([protoInt64.parse(4)]);
+        expect(msg.repeatedInt64JsNumberField).toStrictEqual([
+          protoInt64.parse(5),
+        ]);
+        expect(msg.repeatedInt64JsStringField).toStrictEqual(["6"]);
+        expect(msg.either).toStrictEqual({
+          case: "oneofInt64Field",
+          value: protoInt64.parse(7),
+        });
+        expect(msg.singularMessageField?.either).toStrictEqual({
+          case: "oneofInt64JsNumberField",
+          value: protoInt64.parse(8),
+        });
+        expect(
+          msg.singularMessageField?.singularMessageField?.either,
+        ).toStrictEqual({ case: "oneofInt64JsStringField", value: "9" });
+        // TODO test map field
+      }
+      test("accept bigint", () => {
+        const msg = create(Proto3MessageDesc, {
+          singularInt64Field: protoInt64.parse(1),
+          singularInt64JsNumberField: protoInt64.parse(2),
+          // @ts-expect-error TS2322
+          singularInt64JsStringField: protoInt64.parse(3),
+          repeatedInt64Field: [protoInt64.parse(4)],
+          repeatedInt64JsNumberField: [protoInt64.parse(5)],
+          // @ts-expect-error TS2322
+          repeatedInt64JsStringField: [protoInt64.parse(6)],
+          either: {
+            case: "oneofInt64Field",
+            value: protoInt64.parse(7),
+          },
+          singularMessageField: {
+            either: {
+              case: "oneofInt64JsNumberField",
+              value: protoInt64.parse(8),
+            },
+            singularMessageField: {
+              either: {
+                // @ts-ignore -- required for older TS
+                case: "oneofInt64JsStringField",
+                // @ts-expect-error TS2322
+                value: protoInt64.parse(9),
+              },
+            },
+          },
+          // TODO support map fields
+        });
+        expect64BitFields(msg);
+      });
+      test("accept number", () => {
+        const msg = create(Proto3MessageDesc, {
+          // @ts-expect-error TS2322
+          singularInt64Field: 1,
+          // @ts-expect-error TS2322
+          singularInt64JsNumberField: 2,
+          // @ts-expect-error TS2322
+          singularInt64JsStringField: 3,
+          // @ts-expect-error TS2322
+          repeatedInt64Field: [4],
+          // @ts-expect-error TS2322
+          repeatedInt64JsNumberField: [5],
+          // @ts-expect-error TS2322
+          repeatedInt64JsStringField: [6],
+          either: {
+            // @ts-ignore -- required for older TS
+            case: "oneofInt64Field",
+            // @ts-expect-error TS2322
+            value: 7,
+          },
+          singularMessageField: {
+            either: {
+              // @ts-ignore -- required for older TS
+              case: "oneofInt64JsNumberField",
+              // @ts-expect-error TS2322
+              value: 8,
+            },
+            singularMessageField: {
+              either: {
+                // @ts-ignore -- required for older TS
+                case: "oneofInt64JsStringField",
+                // @ts-expect-error TS2322
+                value: 9,
+              },
+            },
+          },
+          // TODO support map fields
+        });
+        expect64BitFields(msg);
+      });
+      test("accept string", () => {
+        const msg = create(Proto3MessageDesc, {
+          // @ts-expect-error TS2322
+          singularInt64Field: "1",
+          // @ts-expect-error TS2322
+          singularInt64JsNumberField: "2",
+          singularInt64JsStringField: "3",
+          // @ts-expect-error TS2322
+          repeatedInt64Field: ["4"],
+          // @ts-expect-error TS2322
+          repeatedInt64JsNumberField: ["5"],
+          repeatedInt64JsStringField: ["6"],
+          either: {
+            // @ts-ignore -- required for older TS
+            case: "oneofInt64Field",
+            // @ts-expect-error TS2322
+            value: "7",
+          },
+          singularMessageField: {
+            either: {
+              // @ts-ignore -- required for older TS
+              case: "oneofInt64JsNumberField",
+              // @ts-expect-error TS2322
+              value: "8",
+            },
+            singularMessageField: {
+              either: {
+                case: "oneofInt64JsStringField",
+                value: "9",
+              },
+            },
+          },
+          // TODO support map fields
+        });
+        expect64BitFields(msg);
+      });
+    });
+    describe("message field", () => {
+      test("accepts partial message", () => {
+        const msg = create(Proto3MessageDesc, {
+          singularMessageField: {
+            singularStringField: "str",
+          },
+          repeatedMessageField: [
+            {
+              singularStringField: "str",
+            },
+          ],
+          either: {
+            case: "oneofMessageField",
+            value: {
+              singularStringField: "str",
+            },
+          },
+          // TODO support map fields
+          // mapInt32MessageField: {
+          //   123: {singularStringField: "str"},
+          // }
+        });
+        expect(msg.singularMessageField).toBeDefined();
+        expect(msg.singularMessageField?.singularStringField).toBe("str");
+        expect(isMessage(msg.singularMessageField, Proto3MessageDesc)).toBe(
+          true,
+        );
+
+        expect(msg.repeatedMessageField.length).toBe(1);
+        expect(msg.repeatedMessageField[0].singularStringField).toBe("str");
+        expect(isMessage(msg.repeatedMessageField[0], Proto3MessageDesc)).toBe(
+          true,
+        );
+
+        expect(msg.either.case).toBe("oneofMessageField");
+        expect(msg.either.value).toBeDefined();
+        expect(isMessage(msg.either.value, Proto3MessageDesc)).toBe(true);
+
+        // TODO test map fields
+      });
+      test("accepts full message", () => {
+        const testMessageSingular = create(Proto3MessageDesc);
+        const testMessageList = create(Proto3MessageDesc);
+        const testMessageOneof = create(Proto3MessageDesc);
+        const msg = create(Proto3MessageDesc, {
+          singularMessageField: testMessageSingular,
+          repeatedMessageField: [testMessageList],
+          either: {
+            case: "oneofMessageField",
+            value: testMessageOneof,
+          },
+          // TODO support map fields
+          // mapInt32MessageField: {
+          //   123: testMessageMap,
+          // }
+        });
+        expect(msg.singularMessageField === testMessageSingular).toBe(true);
+        expect(msg.repeatedMessageField[0] === testMessageList).toBe(true);
+        expect(msg.either.value === testMessageOneof).toBe(true);
+        // TODO test map fields
+      });
+      test("rejects wrong message type", () => {
+        function singular() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            singularMessageField: create(UserDesc),
+          });
+        }
+        expect(singular).toThrowError(
+          /^field spec.Proto3Message.singular_message_field: expected message spec.Proto3Message, got message docs.User$/,
+        );
+        function list() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedMessageField: [create(UserDesc)],
+          });
+        }
+        expect(list).toThrowError(
+          /^field spec.Proto3Message.repeated_message_field: list item #1: expected message spec.Proto3Message, got message docs.User$/,
+        );
+        function oneof() {
+          return create(Proto3MessageDesc, {
+            either: {
+              // @ts-ignore -- required for older TS
+              case: "oneofMessageField",
+              // @ts-expect-error TS2322
+              value: create(UserDesc),
+            },
+          });
+        }
+        expect(oneof).toThrowError(
+          /^field spec.Proto3Message.oneof_message_field: expected message spec.Proto3Message, got message docs.User$/,
+        );
+        // TODO test map
+      });
+      test("rejects non-object as partial message", () => {
+        function string() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedMessageField: ["abc"],
+          });
+        }
+        expect(string).toThrow(
+          /^field spec.Proto3Message.repeated_message_field: list item #1: expected message spec.Proto3Message, got "abc"$/,
+        );
+        function array() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedMessageField: [[123]],
+          });
+        }
+        expect(array).toThrow(
+          /^field spec.Proto3Message.repeated_message_field: list item #1: expected message spec.Proto3Message, got Array\(1\)$/,
+        );
+      });
+      test("rejects field error in partial message", () => {
+        function singular() {
+          return create(Proto3MessageDesc, {
+            singularMessageField: {
+              // @ts-expect-error TS2322
+              singularInt32Field: "not a number",
+            },
+          });
+        }
+        expect(singular).toThrow(
+          /^field spec.Proto3Message.singular_message_field: singular_int32_field: expected number \(int32\), got "not a number"$/,
+        );
+        function list() {
+          return create(Proto3MessageDesc, {
+            repeatedMessageField: [
+              {
+                // @ts-expect-error TS2322
+                singularInt32Field: "not a number",
+              },
+            ],
+          });
+        }
+        expect(list).toThrowError(
+          /^field spec.Proto3Message.repeated_message_field: list item #1: singular_int32_field: expected number \(int32\), got "not a number"$/,
+        );
+      });
+    });
+    describe("enum field", () => {
+      test("accepts proto3 enum value out of range", () => {
+        const msg = create(Proto3MessageDesc, {
+          // @ts-ignore -- cannot use ts-expect-error, not an error in older TS
+          singularEnumField: 99,
+        });
+        expect(msg.singularEnumField).toBe(99);
+      });
+      test("rejects proto2 enum value out of range", () => {
+        function t() {
+          return create(Proto2MessageDesc, {
+            // @ts-ignore -- cannot use ts-expect-error, not an error in older TS
+            optionalEnumField: 99,
+          });
+        }
+        expect(t).toThrow(
+          /^field spec.Proto2Message.optional_enum_field: expected enum spec.Proto2Enum, got 99$/,
+        );
+      });
+    });
+    describe("list field", () => {
+      test("rejects non-array", () => {
+        function scalar() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedStringField: {},
+          });
+        }
+        expect(scalar).toThrow(
+          /^field spec.Proto3Message.repeated_string_field: expected Array, got object$/,
+        );
+        function message() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedMessageField: {},
+          });
+        }
+        expect(message).toThrow(
+          /^field spec.Proto3Message.repeated_message_field: expected Array, got object$/,
+        );
+      });
+      test("rejects array element error", () => {
+        function nullValue() {
+          return create(Proto3MessageDesc, {
+            // @ts-expect-error TS2322
+            repeatedStringField: [null],
+          });
+        }
+        expect(nullValue).toThrow(
+          /^field spec.Proto3Message.repeated_string_field: list item #1: expected string, got null$/,
+        );
+        function outOfRange() {
+          return create(Proto3MessageDesc, {
+            repeatedInt32Field: [Number.MAX_SAFE_INTEGER],
+          });
+        }
+        expect(outOfRange).toThrow(
+          /^field spec.Proto3Message.repeated_int32_field: list item #1: expected number \(int32\): 9007199254740991 out of range/,
+        );
+      });
+    });
+    describe("oneof field", () => {
+      test("accepts selected field", () => {
+        const msg = create(Proto3MessageDesc, {
+          either: {
+            case: "oneofBoolField",
+            value: false,
+          },
+        });
+        expect(msg.either.case).toBe("oneofBoolField");
+        expect(msg.either.value).toBe(false);
+      });
+      test("rejects invalid oneof ADT", () => {
+        function a() {
+          return create(Proto3MessageDesc, {
+            either: {
+              // @ts-ignore -- required for older TS
+              case: undefined,
+              // @ts-expect-error TS2322
+              value: "abc",
+            },
+          });
+        }
+        expect(a).toThrow(
+          /^oneof spec.Proto3Message.either: invalid oneof ADT$/,
+        );
+        function b() {
+          return create(Proto3MessageDesc, {
+            either: {
+              // @ts-expect-error TS2322
+              case: "abc",
+              // @ts-ignore -- required for older TS
+              value: undefined,
+            },
+          });
+        }
+        expect(b).toThrow(
+          /^oneof spec.Proto3Message.either: invalid oneof ADT$/,
+        );
+      });
+      test("rejects invalid oneof case", () => {
+        function notAField() {
+          return create(Proto3MessageDesc, {
+            either: {
+              // @ts-expect-error TS2322
+              case: "notAField",
+              // @ts-ignore -- required for older TS
+              value: "abc",
+            },
+          });
+        }
+        expect(notAField).toThrow(
+          /^oneof spec.Proto3Message.either: invalid oneof ADT: field notAField not found$/,
+        );
+      });
+    });
+    describe("wkt wrapper field", () => {
+      test("accepts unwrapped value", () => {
+        const msg = create(Proto3MessageDesc, {
+          singularWrappedUint32Field: 123,
+        });
+        expect(msg.singularWrappedUint32Field).toBe(123);
+      });
+    });
+
+    // TODO test map
   });
 });

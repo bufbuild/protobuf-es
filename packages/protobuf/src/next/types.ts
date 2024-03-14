@@ -17,6 +17,7 @@ import type {
   TypedDescMessage,
 } from "./codegenv1/typed-desc.js";
 import type { DescEnum, DescMessage } from "../descriptor-set.js";
+import type { OneofADT } from "./reflect/guard.js";
 
 export type Message<TypeName extends string = string> = {
   readonly $desc: DescMessage;
@@ -56,7 +57,7 @@ type FieldInit<F> =
   : F extends ReadonlyArray<infer U> ? ReadonlyArray<FieldInit<U>>
   : F extends Message ? MessageInit<F>
   : F extends OneofSelectedMessage<infer C, infer V> ? {case: C; value: MessageInit<V>}
-  : F extends { case: string | undefined; value?: unknown; } ? F
+  : F extends OneofADT ? F
   : F extends MapWithMessage<infer V> ? { [key: string | number]: MessageInit<V> }
   : F ;
 

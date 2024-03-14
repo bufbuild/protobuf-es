@@ -20,19 +20,18 @@ import {
   ScalarType,
   scalarZeroValue,
 } from "./scalar.js";
-import type { ScalarValue } from "./scalar.js";
-import type { Message } from "../types.js";
 import { localName } from "./names.js";
 import { protoInt64 } from "../../proto-int64.js";
 import { isWktWrapper, isWktWrapperDesc } from "./wkt.js";
 import { isMessage } from "../is-message.js";
-import { create } from "../create.js";
+import type { OneofADT } from "./guard.js";
+import type { Message } from "../types.js";
 
 export function getOneofCasePrivate(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   oneof: DescOneof,
 ) {
-  const c = (target[localName(oneof)] as anyOneof).case;
+  const c = (target[localName(oneof)] as OneofADT).case;
   if (c === undefined) {
     return c;
   }
@@ -74,11 +73,6 @@ export function isFieldSetPrivate(
   }
 }
 
-type anyOneof = {
-  case: string | undefined;
-  value?: Message | ScalarValue;
-};
-
 export function convertToReflect(field: DescField, value: unknown): unknown {
   // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (field.fieldKind) {
@@ -91,9 +85,20 @@ export function convertToReflect(field: DescField, value: unknown): unknown {
         value !== undefined &&
         isWktWrapperDesc(field.message)
       ) {
-        const wrapper = create(field.message) as unknown as { value: unknown };
-        wrapper.value = value;
-        value = wrapper;
+        value = {
+          $typeName: field.message.typeName,
+          $desc: field.message,
+          value: convertInt64ToReflect(
+            "scalar",
+            field.message.fields[0].scalar,
+            value,
+          ),
+        } satisfies Message & { value: unknown };
+
+        // TODO dependency cycle
+        // const wrapper = create(field.message) as unknown as { value: unknown };
+        // wrapper.value = value;
+        // value = wrapper;
       }
       break;
     case "list":
@@ -232,7 +237,7 @@ export function getFieldPrivate(
 ): unknown {
   const name = localName(field);
   if (field.oneof) {
-    const oneof = target[localName(field.oneof)] as anyOneof;
+    const oneof = target[localName(field.oneof)] as OneofADT;
     if (oneof.case === name) {
       return oneof.value;
     }
@@ -270,7 +275,7 @@ export function clearFieldPrivate(
   const name = localName(field);
   if (field.oneof) {
     const oneofLocalName = localName(field.oneof);
-    if ((target[oneofLocalName] as anyOneof).case === name) {
+    if ((target[oneofLocalName] as OneofADT).case === name) {
       target[oneofLocalName] = { case: undefined };
     }
   } else {
