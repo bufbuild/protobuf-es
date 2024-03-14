@@ -65,7 +65,9 @@ function setVersion(packages, lock, newVersion) {
     }
     pkg.version = newVersion;
     if (lock) {
-      const l = Array.from(Object.values(lock.packages)).find(l => l.name === pkg.name);
+      const l = Array.from(Object.values(lock.packages)).find(
+        (l) => l.name === pkg.name,
+      );
       assert(l);
       l.version = newVersion;
     }
