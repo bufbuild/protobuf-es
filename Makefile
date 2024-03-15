@@ -163,8 +163,7 @@ bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Boo
 .PHONY: setversion
 setversion: ## Set a new version in for the project, i.e. make setversion SET_VERSION=1.2.3
 	node scripts/set-workspace-version.js $(SET_VERSION)
-	rm package-lock.json
-	npm i
+	npm ci
 	$(MAKE) all
 
 # Recommended procedure:

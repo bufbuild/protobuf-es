@@ -60,6 +60,7 @@ export class UpstreamProtobuf {
   //  - google/protobuf/unittest_arena.proto
   //  - google/protobuf/unittest_drop_unknown_fields.proto
   //  - google/protobuf/unittest_lazy_dependencies_custom_option.proto
+  //  - google/protobuf/unittest_legacy_features.proto
   /**
    * Relevant proto files for testing in upstream protobuf.
    *
@@ -79,6 +80,7 @@ export class UpstreamProtobuf {
     "!src/google/protobuf/unittest_no_field_presence.proto",
     "!src/google/protobuf/unittest_preserve_unknown_enum.proto",
     "!src/google/protobuf/unittest_preserve_unknown_enum2.proto",
+    "!src/google/protobuf/unittest_legacy_features.proto",
   ];
 
   /**
