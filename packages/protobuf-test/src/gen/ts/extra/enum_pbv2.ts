@@ -19,8 +19,9 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
-import type { EnumOptions, EnumValueOptions, Message } from "@bufbuild/protobuf/next";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next";
+import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt";
+import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
+import type { Message } from "@bufbuild/protobuf/next";
 
 export const fileDesc_extra_enum: DescFile = fileDesc("ChBleHRyYS9lbnVtLnByb3RvEgRzcGVjIm4KC0VudW1NZXNzYWdlEjAKCmVudW1fZmllbGQYASABKA4yHC5zcGVjLkVudW1NZXNzYWdlLk5lc3RlZEVudW0iLQoKTmVzdGVkRW51bRIPCgtORVNURURfWkVSTxAAEg4KCk5FU1RFRF9PTkUQASo0Cg1Bbm5vdGF0ZWRFbnVtEg8KC1VOU1BFQ0lGSUVEEAASDQoDRk9PEAEaBMi7AQEaA4h9ASotCgpTaW1wbGVFbnVtEg8KC1NJTVBMRV9aRVJPEAASDgoKU0lNUExFX09ORRABKkUKCUFsaWFzRW51bRIOCgpBTElBU19aRVJPEAASDQoJQUxJQVNfT05FEAESFQoRQUxJQVNfT05FX0FMSUFTRUQQARoCEAEqNwoKUHJlZml4RW51bRIUChBQUkVGSVhfRU5VTV9aRVJPEAASEwoPUFJFRklYX0VOVU1fT05FEAE6QQoNZW51bV9vcHRfYm9vbBIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjRDyABKAhSC2VudW1PcHRCb29sOlEKE2VudW1fdmFsdWVfb3B0X2Jvb2wSIS5nb29nbGUucHJvdG9idWYuRW51bVZhbHVlT3B0aW9ucxi5FyABKAhSEGVudW1WYWx1ZU9wdEJvb2xiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
 

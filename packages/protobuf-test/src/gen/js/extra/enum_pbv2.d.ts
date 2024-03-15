@@ -17,8 +17,9 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { EnumOptions, EnumValueOptions, Message } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
 import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_extra_enum: DescFile;
 

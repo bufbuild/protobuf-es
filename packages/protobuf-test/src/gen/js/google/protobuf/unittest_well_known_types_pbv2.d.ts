@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, Message, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
+import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import type { Type } from "./type_pbv2.js";
 import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 

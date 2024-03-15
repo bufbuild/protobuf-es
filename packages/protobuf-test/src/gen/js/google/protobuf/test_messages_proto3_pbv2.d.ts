@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, Message, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
+import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_test_messages_proto3: DescFile;

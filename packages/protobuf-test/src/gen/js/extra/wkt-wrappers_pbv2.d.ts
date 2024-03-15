@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, Message, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
+import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/next/wkt";
 import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_wkt_wrappers: DescFile;

@@ -32,20 +32,20 @@ type mapRecord<T extends Record<string, unknown>> = {
 
 function mapRecord<T extends Record<string, unknown>>(
   record: T,
-  fromPrivate: boolean,
+  bootstrapWkt: boolean,
 ): mapRecord<T> {
   const result = Object.create(null) as Record<string, unknown>;
   for (const [key, value] of Object.entries(record)) {
     if (isSymbolInfo(value)) {
       result[key] = createImportSymbol(
         key,
-        fromPrivate ? value.fromPrivate : value.fromPublic,
+        bootstrapWkt ? value.bootstrapWktFrom : value.from,
         value.typeOnly,
       );
     } else {
       result[key] = mapRecord(
         record[key] as Record<string, unknown>,
-        fromPrivate,
+        bootstrapWkt,
       );
     }
   }
@@ -54,8 +54,8 @@ function mapRecord<T extends Record<string, unknown>>(
 
 type symbolInfo = {
   readonly typeOnly: boolean;
-  readonly fromPrivate: string;
-  readonly fromPublic: string;
+  readonly from: string;
+  readonly bootstrapWktFrom: string;
 };
 
 function isSymbolInfo(arg: unknown): arg is symbolInfo {
@@ -64,8 +64,8 @@ function isSymbolInfo(arg: unknown): arg is symbolInfo {
   }
   const wantNames: (keyof symbolInfo)[] = [
     "typeOnly",
-    "fromPrivate",
-    "fromPublic",
+    "from",
+    "bootstrapWktFrom",
   ];
   const gotNames = Object.getOwnPropertyNames(arg);
   if (gotNames.length !== wantNames.length) {

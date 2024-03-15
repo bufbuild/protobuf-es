@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { TypedDescExtension } from "@bufbuild/protobuf/next/codegenv1";
-import type { FileOptions } from "@bufbuild/protobuf/next";
+import type { FileOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_extra_extensions_proto3: DescFile;
 

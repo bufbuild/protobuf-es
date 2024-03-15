@@ -17,8 +17,9 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { FeatureSet, Message } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
 import type { TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_invalid_features: DescFile;
 

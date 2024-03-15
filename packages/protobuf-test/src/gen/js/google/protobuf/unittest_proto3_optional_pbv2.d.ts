@@ -17,8 +17,9 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { Message, MessageOptions } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
 import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { MessageOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_proto3_optional: DescFile;
 

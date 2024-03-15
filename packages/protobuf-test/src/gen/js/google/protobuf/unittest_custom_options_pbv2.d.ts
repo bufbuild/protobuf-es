@@ -26,8 +26,9 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
-import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, Message, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
 import type { TypedDescEnum, TypedDescExtension, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_custom_options: DescFile;
 

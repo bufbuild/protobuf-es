@@ -17,7 +17,7 @@ import type { DescField, DescOneof } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { isMessage } from "@bufbuild/protobuf/next";
 import type { Message } from "@bufbuild/protobuf/next";
-import { DoubleValueDesc, UInt32ValueDesc } from "@bufbuild/protobuf/next";
+import { DoubleValueDesc, UInt32ValueDesc } from "@bufbuild/protobuf/next/wkt";
 import { create } from "@bufbuild/protobuf/next";
 import type { ReflectMessage } from "@bufbuild/protobuf/next/reflect";
 import { localName, reflect } from "@bufbuild/protobuf/next/reflect";

@@ -15,48 +15,48 @@
 export const packageName = "@bufbuild/protobuf/next";
 
 export const wktPublicImportPaths: Readonly<Record<string, string>> = {
-  "google/protobuf/compiler/plugin.proto": packageName,
-  "google/protobuf/any.proto": packageName,
-  "google/protobuf/api.proto": packageName,
-  "google/protobuf/descriptor.proto": packageName,
-  "google/protobuf/duration.proto": packageName,
-  "google/protobuf/empty.proto": packageName,
-  "google/protobuf/field_mask.proto": packageName,
-  "google/protobuf/source_context.proto": packageName,
-  "google/protobuf/struct.proto": packageName,
-  "google/protobuf/timestamp.proto": packageName,
-  "google/protobuf/type.proto": packageName,
-  "google/protobuf/wrappers.proto": packageName,
+  "google/protobuf/compiler/plugin.proto": packageName + "/wkt",
+  "google/protobuf/any.proto": packageName + "/wkt",
+  "google/protobuf/api.proto": packageName + "/wkt",
+  "google/protobuf/descriptor.proto": packageName + "/wkt",
+  "google/protobuf/duration.proto": packageName + "/wkt",
+  "google/protobuf/empty.proto": packageName + "/wkt",
+  "google/protobuf/field_mask.proto": packageName + "/wkt",
+  "google/protobuf/source_context.proto": packageName + "/wkt",
+  "google/protobuf/struct.proto": packageName + "/wkt",
+  "google/protobuf/timestamp.proto": packageName + "/wkt",
+  "google/protobuf/type.proto": packageName + "/wkt",
+  "google/protobuf/wrappers.proto": packageName + "/wkt",
 };
 
 // prettier-ignore
 export const symbols = {
-  create:                  {typeOnly: false, fromPrivate: "./create.js",               fromPublic: packageName },
-  isMessage:               {typeOnly: false, fromPrivate: "./is-message.js",           fromPublic: packageName },
-  Message:                 {typeOnly: true,  fromPrivate: "./types.js",                fromPublic: packageName },
-  DescFile:                {typeOnly: true,  fromPrivate: "../descriptor-set.js",      fromPublic: "@bufbuild/protobuf" },
+  create:                  {typeOnly: false, bootstrapWktFrom: "../../create.js",               from: packageName },
+  isMessage:               {typeOnly: false, bootstrapWktFrom: "../../is-message.js",           from: packageName },
+  Message:                 {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },
+  DescFile:                {typeOnly: true,  bootstrapWktFrom: "../../../descriptor-set.js",    from: "@bufbuild/protobuf" },
   legacy: {
     // TODO
-    protoInt64:            {typeOnly: false, fromPrivate: "./proto-int64.js",          fromPublic: "@bufbuild/protobuf" },
-    MethodKind:            {typeOnly: false, fromPrivate: "./service-type.js",         fromPublic: "@bufbuild/protobuf" },
+    protoInt64:            {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: "@bufbuild/protobuf" },
+    MethodKind:            {typeOnly: false, bootstrapWktFrom: "../../service-type.js",         from: "@bufbuild/protobuf" },
   },
   codegen: {
-    enumDesc:              {typeOnly: false, fromPrivate: "./codegenv1/hydrate.js",    fromPublic: packageName + "/codegenv1" },
-    extDesc:               {typeOnly: false, fromPrivate: "./codegenv1/hydrate.js",    fromPublic: packageName + "/codegenv1" },
-    fileDesc:              {typeOnly: false, fromPrivate: "./codegenv1/hydrate.js",    fromPublic: packageName + "/codegenv1" },
-    globalNumber:          {typeOnly: false, fromPrivate: "./codegenv1/globals.js",    fromPublic: packageName + "/codegenv1" },
-    messageDesc:           {typeOnly: false, fromPrivate: "./codegenv1/hydrate.js",    fromPublic: packageName + "/codegenv1" },
-    serviceDesc:           {typeOnly: false, fromPrivate: "./codegenv1/hydrate.js",    fromPublic: packageName + "/codegenv1" },
-    tsEnum:                {typeOnly: false, fromPrivate: "./codegenv1/enum.js",       fromPublic: packageName + "/codegenv1" },
-    TypedDescEnum:         {typeOnly: true,  fromPrivate: "./codegenv1/typed-desc.js", fromPublic: packageName + "/codegenv1" },
-    TypedDescExtension:    {typeOnly: true,  fromPrivate: "./codegenv1/typed-desc.js", fromPublic: packageName + "/codegenv1" },
-    TypedDescMessage:      {typeOnly: true,  fromPrivate: "./codegenv1/typed-desc.js", fromPublic: packageName + "/codegenv1" },
-    TypedDescService:      {typeOnly: true,  fromPrivate: "./codegenv1/typed-desc.js", fromPublic: packageName + "/codegenv1" },
+    enumDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
+    extDesc:               {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
+    fileDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
+    globalNumber:          {typeOnly: false, bootstrapWktFrom: "../../codegenv1/globals.js",    from: packageName + "/codegenv1" },
+    messageDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
+    serviceDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
+    tsEnum:                {typeOnly: false, bootstrapWktFrom: "../../codegenv1/enum.js",       from: packageName + "/codegenv1" },
+    TypedDescEnum:         {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
+    TypedDescExtension:    {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
+    TypedDescMessage:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
+    TypedDescService:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
   },
 } as const satisfies Record<string, symbolInfo | Record<string, symbolInfo>>;
 
 type symbolInfo = {
   readonly typeOnly: boolean;
-  readonly fromPrivate: string;
-  readonly fromPublic: string;
+  readonly from: string;
+  readonly bootstrapWktFrom: string;
 };

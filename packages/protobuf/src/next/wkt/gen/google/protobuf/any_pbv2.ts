@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "../../../descriptor-set.js";
-import { fileDesc, messageDesc } from "../../codegenv1/hydrate.js";
-import type { Message } from "../../types.js";
-import type { TypedDescMessage } from "../../codegenv1/typed-desc.js";
+import type { DescFile } from "../../../../../descriptor-set.js";
+import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
+import type { Message } from "../../../../types.js";
+import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
 
 export const fileDesc_google_protobuf_any: DescFile = fileDesc("Chlnb29nbGUvcHJvdG9idWYvYW55LnByb3RvEg9nb29nbGUucHJvdG9idWYiJgoDQW55EhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgMQnYKE2NvbS5nb29nbGUucHJvdG9idWZCCEFueVByb3RvUAFaLGdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2FueXBiogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 

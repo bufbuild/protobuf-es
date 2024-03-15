@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "../../../descriptor-set.js";
-import { fileDesc, messageDesc } from "../../codegenv1/hydrate.js";
+import type { DescFile } from "../../../../../descriptor-set.js";
+import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
 import type { SourceContext } from "./source_context_pbv2.js";
 import { fileDesc_google_protobuf_source_context } from "./source_context_pbv2.js";
 import type { Option, Syntax } from "./type_pbv2.js";
 import { fileDesc_google_protobuf_type } from "./type_pbv2.js";
-import type { Message } from "../../types.js";
-import type { TypedDescMessage } from "../../codegenv1/typed-desc.js";
+import type { Message } from "../../../../types.js";
+import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
 
 export const fileDesc_google_protobuf_api: DescFile = fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [fileDesc_google_protobuf_source_context, fileDesc_google_protobuf_type]);
 

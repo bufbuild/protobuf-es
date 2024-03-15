@@ -17,8 +17,9 @@
 /* eslint-disable */
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
-import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, Message, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next";
+import type { Message } from "@bufbuild/protobuf/next";
 import type { TypedDescEnum, TypedDescExtension, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_retention: DescFile;
 
