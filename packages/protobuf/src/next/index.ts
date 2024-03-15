@@ -16,6 +16,7 @@ export * from "./types.js";
 export * from "./is-message.js";
 export * from "./create.js";
 export * from "./clone.js";
+export * from "./equals.js";
 export * from "./fields.js";
 
 // TODO

@@ -276,6 +276,69 @@ describe("ReflectMessage", () => {
         expect(r.isSet(f)).toBe(true);
       });
     });
+    describe("singularBytesField", () => {
+      const f = getFieldByLocalName("singularBytesField");
+      test("get()", () => {
+        expect(r.get(f)).toStrictEqual(new Uint8Array(0));
+        msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
+        expect(r.get(f)).toStrictEqual(
+          new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+        );
+      });
+      test("set()", () => {
+        const err = r.set(f, new Uint8Array([0xde, 0xad, 0xbe, 0xef]));
+        expect(err).toBeUndefined();
+        expect(msg.singularBytesField).toStrictEqual(
+          new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+        );
+      });
+      test("set() unexpected number", () => {
+        const errNumber = r.set(f, 123);
+        expect(errNumber?.message).toMatch("expected Uint8Array, got 123");
+        expect(errNumber?.name).toMatch("FieldValueInvalidError");
+      });
+      test("set() unexpected null", () => {
+        const errNumber = r.set(f, null as unknown as Uint8Array);
+        expect(errNumber?.message).toMatch("expected Uint8Array, got null");
+        expect(errNumber?.name).toMatch("FieldValueInvalidError");
+      });
+      test("set() unexpected undefined", () => {
+        const errNumber = r.set(f, undefined as unknown as Uint8Array);
+        expect(errNumber?.message).toMatch(
+          "expected Uint8Array, got undefined",
+        );
+        expect(errNumber?.name).toMatch("FieldValueInvalidError");
+      });
+      test("set() unexpected bool", () => {
+        const errBool = r.set(f, true);
+        expect(errBool?.message).toMatch("expected Uint8Array, got true");
+        expect(errBool?.name).toMatch("FieldValueInvalidError");
+      });
+      test("set() unexpected object", () => {
+        const errObject = r.set(f, new Date() as unknown as Uint8Array);
+        expect(errObject?.message).toMatch("expected Uint8Array, got object");
+        expect(errObject?.name).toMatch("FieldValueInvalidError");
+      });
+      test("set() unexpected array", () => {
+        const errObject = r.set(f, [123] as unknown as Uint8Array);
+        expect(errObject?.message).toMatch("expected Uint8Array, got Array(1)");
+        expect(errObject?.name).toMatch("FieldValueInvalidError");
+      });
+      test("clear()", () => {
+        msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
+        r.clear(f);
+        expect(msg.singularBytesField.byteLength).toBe(0);
+        expect(r.isSet(f)).toBe(false);
+        expect(msg.singularBytesField).toStrictEqual(new Uint8Array(0));
+      });
+      test("isSet()", () => {
+        expect(r.isSet(f)).toBe(false);
+        msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
+        expect(msg.singularBytesField).toStrictEqual(
+          new Uint8Array([0xde, 0xad, 0xbe, 0xef]),
+        );
+      });
+    });
     describe("singularInt32Field", () => {
       const f = getFieldByLocalName("singularInt32Field");
       test("get()", () => {
