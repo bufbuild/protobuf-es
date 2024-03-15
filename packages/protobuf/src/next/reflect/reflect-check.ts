@@ -15,7 +15,7 @@
 import { ScalarType, scalarTypeDescription } from "./scalar.js";
 import type { InvalidScalarValueErr } from "./scalar.js";
 import { checkScalarValue } from "./scalar.js";
-import type { DescField, DescMessage } from "../../descriptor-set.js";
+import type { DescEnum, DescField, DescMessage } from "../../descriptor-set.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { Edition } from "../../google/protobuf/descriptor_pb.js";
@@ -102,11 +102,11 @@ export function checkNewMapEntry(
   key: unknown,
   value: unknown,
 ): FieldError | undefined {
-  const checkKey = checkScalarValue(value, field.mapKey);
+  const checkKey = checkScalarValue(key, field.mapKey);
   if (checkKey !== true) {
     return new FieldError(
       field,
-      `invalid map key: ${reasonSingular(field, value, checkKey)}`,
+      `invalid map key: ${reasonSingular({ scalar: field.mapKey }, key, checkKey)}`,
     );
   }
   const checkVal = checkSingular(field, value);
@@ -158,7 +158,10 @@ function reasonWktWrapper(
 }
 
 function reasonSingular(
-  field: DescField,
+  field:
+    | { scalar: ScalarType; message?: undefined; enum?: undefined }
+    | { scalar?: undefined; message: DescMessage; enum?: undefined }
+    | { scalar?: undefined; message?: undefined; enum: DescEnum },
   val: unknown,
   details?: string | false,
 ) {

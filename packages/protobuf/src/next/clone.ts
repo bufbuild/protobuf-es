@@ -12,68 +12,57 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { isMessage } from "./is-message.js";
 import { create } from "./create.js";
-import { isFieldSetPrivate } from "./reflect/reflect-private.js";
 import type { Message } from "./types.js";
-import { localName } from "./reflect/names.js";
-import type { ScalarValue } from "./reflect/scalar.js";
+import { reflect, ScalarType } from "./reflect/index.js";
+import { isMessage } from "./is-message.js";
+import type { DescField } from "../descriptor-set.js";
 
-// TODO migrate to use reflect
-// TODO handle recursion
-// TODO add tests
 export function clone<T extends Message>(message: T): T {
-  const target = create(message.$desc) as Record<keyof T, unknown>;
-  for (const member of message.$desc.members) {
-    const name = localName(member) as keyof T;
-    const sourceProperty = message[name] as unknown;
-    if (member.kind == "oneof") {
-      const oneof = sourceProperty as {
-        case: string | undefined;
-        value?: Message | ScalarValue;
-      };
-      if (oneof.case === undefined) {
-        continue;
-      }
-      target[name] = {
-        case: oneof.case,
-        value: cloneSingularField(oneof.value),
-      };
+  const i = reflect(message);
+  const o = reflect(create(message.$desc));
+  for (const f of i.fields) {
+    if (!i.isSet(f)) {
       continue;
     }
-    if (!isFieldSetPrivate(message, member)) {
-      continue;
-    }
-    switch (member.fieldKind) {
-      case "list":
-        target[name] = (sourceProperty as unknown[]).map(cloneSingularField);
-        break;
-      case "map":
-        for (const [key, v] of Object.entries(sourceProperty as object)) {
-          (target[name] as Record<string, unknown>)[key] =
-            cloneSingularField(v);
+    switch (f.fieldKind) {
+      default: {
+        const err = o.set(f, cloneSingular(f, i.get(f)));
+        if (err) {
+          throw err;
         }
         break;
-      default:
-        target[name] = cloneSingularField(sourceProperty);
+      }
+      case "list":
+        for (const item of i.get(f)) {
+          // TODO fix type error
+          // @ts-expect-error TODO
+          const err = o.addListItem(f, cloneSingular(f, item));
+          if (err) {
+            throw err;
+          }
+        }
+        break;
+      case "map":
+        for (const entry of i.get(f).entries()) {
+          const err = o.setMapEntry(f, entry[0], cloneSingular(f, entry[1]));
+          if (err) {
+            throw err;
+          }
+        }
         break;
     }
   }
-  return target as T;
+  return o.message as T;
 }
 
-// clone a single field value - i.e. the element type of repeated fields, the value type of maps
-function cloneSingularField(value: unknown): unknown {
-  if (value === undefined) {
-    return value;
-  }
-  if (isMessage(value)) {
+function cloneSingular<T>(field: DescField, value: T): T {
+  if (field.message !== undefined && isMessage(value)) {
     return clone(value);
   }
-  if (value instanceof Uint8Array) {
-    const c = new Uint8Array(value.byteLength);
-    c.set(value);
-    return c;
+  if (field.scalar == ScalarType.BYTES && value instanceof Uint8Array) {
+    // @ts-expect-error T cannot extend Uint8Array in practice
+    return value.slice();
   }
   return value;
 }
