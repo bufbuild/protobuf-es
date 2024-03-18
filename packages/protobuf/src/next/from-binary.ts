@@ -78,11 +78,8 @@ function readMessage<Desc extends DescMessage>(
     }
     const field = rMessage.findNumber(fieldNo);
     if (!field) {
-      const data = reader.skip(wireType);
-      if (options.readUnknownFields) {
-        //eslint-disable-next-line @typescript-eslint/no-unused-vars -- TODO: Read unknown fields.
-        const _ = data;
-      }
+      reader.skip(wireType);
+      // TODO: read unknown fields
       continue;
     }
     readField(rMessage, reader, field, wireType, options);
@@ -199,6 +196,7 @@ function readRepeatedField(
     scalarType != ScalarType.BYTES;
   if (!packed) {
     message.addListItem(field, readScalar(reader, scalarType, longType));
+    return;
   }
   const arr = [] as ScalarValue[];
   const e = reader.uint32() + reader.pos;
