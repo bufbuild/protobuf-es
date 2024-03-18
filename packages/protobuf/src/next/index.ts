@@ -18,3 +18,5 @@ export * from "./create.js";
 export * from "./clone.js";
 export * from "./equals.js";
 export * from "./fields.js";
+export * from "./to-binary.js";
+export * from "./from-binary.js";
