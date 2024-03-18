@@ -29,17 +29,24 @@ import {
 import { ScalarType, type ScalarValue } from "./reflect/scalar.js";
 import type { DescField } from "../descriptor-set.js";
 
+// Default options for serializing binary data.
+const writeDefaults: Readonly<BinaryWriteOptions> = {
+  writeUnknownFields: true,
+  writerFactory: () => new BinaryWriter(),
+};
+
+function makeWriteOptions(
+  options?: Partial<BinaryWriteOptions>,
+): Readonly<BinaryWriteOptions> {
+  return options ? { ...writeDefaults, ...options } : writeDefaults;
+}
+
 export function toBinary<T extends Message>(
   message: T,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array {
-  return reflectToBinary(reflect(message), {
-    writerFactory: options?.writerFactory ?? (() => new BinaryWriter()),
-    writeUnknownFields: options?.writeUnknownFields ?? false,
-  });
+  return reflectToBinary(reflect(message), makeWriteOptions(options));
 }
-
-
 
 function reflectToBinary(
   msg: ReflectMessage,
@@ -187,8 +194,6 @@ function writeMapEntry(
   writer.join();
 }
 
-
-
 /**
  * Get information for writing a scalar value.
  *
@@ -199,9 +204,9 @@ function writeMapEntry(
 function scalarTypeInfo(
   type: ScalarType,
 ): [
-    WireType,
-    Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
-  ] {
+  WireType,
+  Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
+] {
   let wireType: WireType;
   switch (type) {
     case ScalarType.BYTES:

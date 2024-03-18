@@ -15,60 +15,60 @@
 import { describe, expect, test } from "@jest/globals";
 import { toBinary, create } from "@bufbuild/protobuf/next";
 import {
-    ScalarValuesMessage,
-    RepeatedScalarValuesMessage,
+  ScalarValuesMessage,
+  RepeatedScalarValuesMessage,
 } from "../gen/ts/extra/msg-scalar_pb.js";
 import { MapsMessage } from "../gen/ts/extra/msg-maps_pb.js";
 import {
-    RepeatedScalarValuesMessageDesc,
-    ScalarValuesMessageDesc,
+  RepeatedScalarValuesMessageDesc,
+  ScalarValuesMessageDesc,
 } from "../gen/ts/extra/msg-scalar_pbv2.js";
 import type { Message, MessageType, PartialMessage } from "@bufbuild/protobuf";
 import { MapsMessageDesc } from "../gen/ts/extra/msg-maps_pbv2.js";
 
 describe("toBinary()", () => {
-    describe("should be identical to v1", () => {
-        test("for scalar fields", () => {
-            const init = {
-                boolField: true,
-                doubleField: 1.23,
-                int32Field: 123,
-                stringField: "foo",
-            } satisfies PartialMessage<ScalarValuesMessage>;
-            expectEq(
-                ScalarValuesMessage,
-                toBinary(create(ScalarValuesMessageDesc, init)),
-                init,
-            );
-        });
-        test("for repeated scalar fields", () => {
-            const init = {
-                boolField: [true, false],
-                stringField: ["foo", "bar"],
-                doubleField: [1.23, 23.1],
-                int32Field: [123, 321],
-            } satisfies PartialMessage<RepeatedScalarValuesMessage>;
-            expectEq(
-                RepeatedScalarValuesMessage,
-                toBinary(create(RepeatedScalarValuesMessageDesc, init)),
-                init,
-            );
-        });
-        // TODO: `create` doesn't support maps
-        test.skip("for map fields", () => {
-            const init = {
-                boolStrField: { true: "foo" },
-                int32MsgField: { 123: { strStrField: { key: "value" } } },
-            } satisfies PartialMessage<MapsMessage>;
-            expectEq(MapsMessage, toBinary(create(MapsMessageDesc, init)), init);
-        });
+  describe("should be identical to v1", () => {
+    test("for scalar fields", () => {
+      const init = {
+        boolField: true,
+        doubleField: 1.23,
+        int32Field: 123,
+        stringField: "foo",
+      } satisfies PartialMessage<ScalarValuesMessage>;
+      expectEq(
+        ScalarValuesMessage,
+        toBinary(create(ScalarValuesMessageDesc, init)),
+        init,
+      );
     });
+    test("for repeated scalar fields", () => {
+      const init = {
+        boolField: [true, false],
+        stringField: ["foo", "bar"],
+        doubleField: [1.23, 23.1],
+        int32Field: [123, 321],
+      } satisfies PartialMessage<RepeatedScalarValuesMessage>;
+      expectEq(
+        RepeatedScalarValuesMessage,
+        toBinary(create(RepeatedScalarValuesMessageDesc, init)),
+        init,
+      );
+    });
+    // TODO: `create` doesn't support maps
+    test.skip("for map fields", () => {
+      const init = {
+        boolStrField: { true: "foo" },
+        int32MsgField: { 123: { strStrField: { key: "value" } } },
+      } satisfies PartialMessage<MapsMessage>;
+      expectEq(MapsMessage, toBinary(create(MapsMessageDesc, init)), init);
+    });
+  });
 });
 
 function expectEq<T extends Message<T>>(
-    type: MessageType<T>,
-    bin: Uint8Array,
-    init: PartialMessage<T>,
+  type: MessageType<T>,
+  bin: Uint8Array,
+  init: PartialMessage<T>,
 ) {
-    expect(type.fromBinary(bin).equals(new type(init))).toEqual(true);
+  expect(type.fromBinary(bin).equals(new type(init))).toEqual(true);
 }
