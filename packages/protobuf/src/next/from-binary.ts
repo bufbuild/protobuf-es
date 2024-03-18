@@ -57,6 +57,7 @@ export function fromBinary<Desc extends DescMessage>(
   );
 }
 
+// TODO: Improve the function signature, we got most it from v1.
 function readMessage<Desc extends DescMessage>(
   desc: Desc,
   reader: IBinaryReader,
@@ -122,6 +123,8 @@ function readField(
 }
 
 // Read a map field, expecting key field = 1, value field = 2
+//
+// TODO: Support edition features
 function readMapEntry(
   field: DescField & { fieldKind: "map" },
   reader: IBinaryReader,

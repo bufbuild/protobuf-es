@@ -94,8 +94,11 @@ function writeScalar(
   fieldNo: number,
   value: unknown,
 ) {
-  const [wireType, method] = scalarTypeInfo(scalarType);
-  (writer.tag(fieldNo, wireType)[method] as (v: unknown) => void)(value);
+  writeScalarValue(
+    writer.tag(fieldNo, writeTypeOfScalar(scalarType)),
+    scalarType,
+    value as ScalarValue,
+  );
 }
 
 function writeMessageField(
@@ -112,7 +115,7 @@ function writeMessageField(
   ) {
     writer
       .tag(field.number, WireType.StartGroup)
-      .raw(rm)
+      .raw(rm) // TODO: Optimise this to not create a new writer.
       .tag(field.number, WireType.EndGroup);
   } else {
     writer.tag(field.number, WireType.LengthDelimited).bytes(rm);
@@ -131,20 +134,20 @@ function writeListField(
     }
     return;
   }
+  const scalarType = field.scalar ?? ScalarType.INT32;
   if (field.packed) {
     if (!value.length) {
       return;
     }
     writer.tag(field.number, WireType.LengthDelimited).fork();
-    const [, method] = scalarTypeInfo(field.scalar ?? ScalarType.INT32);
     for (let i = 0; i < value.length; i++) {
-      (writer[method] as (v: unknown) => void)(value[i]);
+      writeScalarValue(writer, scalarType, value[i] as ScalarValue);
     }
     writer.join();
     return;
   }
   for (const item of value) {
-    writeScalar(writer, field.scalar ?? ScalarType.INT32, field.number, item);
+    writeScalar(writer, scalarType, field.number, item);
   }
 }
 
@@ -195,42 +198,74 @@ function writeMapEntry(
   writer.join();
 }
 
-/**
- * Get information for writing a scalar value.
- *
- * Returns tuple:
- * [0]: appropriate WireType
- * [1]: name of the appropriate method of IBinaryWriter
- */
-function scalarTypeInfo(
+function writeScalarValue(
+  writer: IBinaryWriter,
   type: ScalarType,
-): [
-  WireType,
-  Exclude<keyof IBinaryWriter, "tag" | "raw" | "fork" | "join" | "finish">,
-] {
-  let wireType: WireType;
+  value: ScalarValue,
+) {
+  switch (type) {
+    case ScalarType.STRING:
+      writer.string(value as string);
+      break;
+    case ScalarType.BOOL:
+      writer.bool(value as boolean);
+      break;
+    case ScalarType.DOUBLE:
+      writer.double(value as number);
+      break;
+    case ScalarType.FLOAT:
+      writer.float(value as number);
+      break;
+    case ScalarType.INT32:
+      writer.int32(value as number);
+      break;
+    case ScalarType.INT64:
+      writer.int64(value as number);
+      break;
+    case ScalarType.UINT64:
+      writer.uint64(value as number);
+      break;
+    case ScalarType.FIXED64:
+      writer.fixed64(value as number);
+      break;
+    case ScalarType.BYTES:
+      writer.bytes(value as Uint8Array);
+      break;
+    case ScalarType.FIXED32:
+      writer.fixed32(value as number);
+      break;
+    case ScalarType.SFIXED32:
+      writer.sfixed32(value as number);
+      break;
+    case ScalarType.SFIXED64:
+      writer.sfixed64(value as number);
+      break;
+    case ScalarType.SINT64:
+      writer.sint64(value as number);
+      break;
+    case ScalarType.UINT32:
+      writer.uint32(value as number);
+      break;
+    case ScalarType.SINT32:
+      writer.sint32(value as number);
+      break;
+  }
+}
+
+function writeTypeOfScalar(type: ScalarType): WireType {
   switch (type) {
     case ScalarType.BYTES:
     case ScalarType.STRING:
-      wireType = WireType.LengthDelimited;
-      break;
+      return WireType.LengthDelimited;
     case ScalarType.DOUBLE:
     case ScalarType.FIXED64:
     case ScalarType.SFIXED64:
-      wireType = WireType.Bit64;
-      break;
+      return WireType.Bit64;
     case ScalarType.FIXED32:
     case ScalarType.SFIXED32:
     case ScalarType.FLOAT:
-      wireType = WireType.Bit32;
-      break;
+      return WireType.Bit32;
     default:
-      wireType = WireType.Varint;
-      break;
+      return WireType.Varint;
   }
-  const method = ScalarType[type].toLowerCase() as Exclude<
-    keyof IBinaryWriter,
-    "tag" | "raw" | "fork" | "join" | "finish"
-  >;
-  return [wireType, method];
 }
