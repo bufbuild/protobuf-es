@@ -24,6 +24,7 @@ import {
 import {
   FeatureSet_FieldPresence,
   FeatureSet_MessageEncoding,
+  FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
 } from "../google/protobuf/descriptor_pb.js";
 import { ScalarType, type ScalarValue } from "./reflect/scalar.js";
@@ -56,9 +57,9 @@ function reflectToBinary(
   for (const f of msg.fields) {
     if (!msg.isSet(f)) {
       if (
-        // f.proto.label === FieldDescriptorProto_Label.REQUIRED || TODO: Is this needed here?
+        f.proto.label === FieldDescriptorProto_Label.REQUIRED ||
         f.getFeatures().fieldPresence ==
-        FeatureSet_FieldPresence.LEGACY_REQUIRED
+          FeatureSet_FieldPresence.LEGACY_REQUIRED
       ) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
