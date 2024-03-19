@@ -84,7 +84,6 @@ function readMessage<Desc extends DescMessage>(
       if (options.readUnknownFields) {
         unknownFields.push({ no: fieldNo, wireType, data });
       }
-      // TODO: read unknown fields
       continue;
     }
     readField(rMessage, reader, field, wireType, options);

@@ -109,15 +109,15 @@ type ReflectValue<Field extends DescField = DescField> = (
 // prettier-ignore
 type NewListItem<Field extends DescField & { fieldKind: "list" }> = (
   Field extends { scalar: infer T } ? ScalarValue<T> :
-  Field extends { listKind: "enum" } ? enumVal :
-  Field extends { listKind: "message" } ? Message :
+  Field extends { listKind: "enum"}    ? enumVal :
+  Field extends { listKind: "message"} ? Message :
   never
 );
 
 // prettier-ignore
 type NewMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
-  Field extends { mapKind: "enum" } ? enumVal :
-  Field extends { mapKind: "message" } ? Message :
+  Field extends { mapKind: "enum"}    ? enumVal :
+  Field extends { mapKind: "message"} ? Message :
   Field extends { scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
   never
 );
