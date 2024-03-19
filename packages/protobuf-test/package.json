@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:esm+types && npm run build:copy-gen-js",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
+    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
     "pregenerate": "rm -rf src/gen/*/* descriptorset.*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:wkt:ts && npm run generate:wkt:js && npm run generate:desc",

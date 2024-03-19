@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist/cjs/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --outDir ./dist/cjs"
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs"
   },
   "preferUnplugged": true,
   "dependencies": {
