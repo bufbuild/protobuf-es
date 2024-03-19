@@ -38,6 +38,7 @@ import {
 import { FieldError } from "./error.js";
 import type { MapEntryKey, ReflectMap } from "./reflect-map.js";
 import { reflectMap } from "./reflect-map.js";
+import type { WireType } from "../../binary-encoding.js";
 
 export interface ReflectMessage {
   readonly kind: "reflect_message";
@@ -75,6 +76,14 @@ export interface ReflectMessage {
     key: MapEntryKey,
     value: NewMapEntryValue<Field>,
   ): FieldError | undefined;
+
+  getUnknown():
+    | { no: number; wireType: WireType; data: Uint8Array }[]
+    | undefined;
+
+  setUnknown(
+    value: { no: number; wireType: WireType; data: Uint8Array }[],
+  ): void;
 }
 
 // prettier-ignore
@@ -244,6 +253,14 @@ export function reflect(
       }
       setMapEntryPrivate(message, field, key, value);
       return undefined;
+    },
+
+    getUnknown() {
+      return message.$unknown;
+    },
+
+    setUnknown(value) {
+      message.$unknown = value;
     },
   };
 }

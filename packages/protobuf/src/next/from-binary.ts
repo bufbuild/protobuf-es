@@ -14,7 +14,7 @@
 
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
-import type { MessageShape } from "./types.js";
+import type { MessageShape, Message } from "./types.js";
 import type { ReflectMessage } from "./reflect/reflect.js";
 import type { IBinaryReader } from "../binary-encoding.js";
 import {
@@ -72,6 +72,7 @@ function readMessage<Desc extends DescMessage>(
     ? reader.len
     : reader.pos + lengthOrEndTagFieldNo;
   let fieldNo: number | undefined, wireType: WireType | undefined;
+  const unknownFields: Message["$unknown"] = [];
   while (reader.pos < end) {
     [fieldNo, wireType] = reader.tag();
     if (wireType == WireType.EndGroup) {
@@ -79,8 +80,10 @@ function readMessage<Desc extends DescMessage>(
     }
     const field = rMessage.findNumber(fieldNo);
     if (!field) {
-      reader.skip(wireType);
-      // TODO: read unknown fields
+      const data = reader.skip(wireType);
+      if (options.readUnknownFields) {
+        unknownFields.push({ no: fieldNo, wireType, data });
+      }
       continue;
     }
     readField(rMessage, reader, field, wireType, options);
@@ -90,6 +93,9 @@ function readMessage<Desc extends DescMessage>(
     (wireType != WireType.EndGroup || fieldNo !== lengthOrEndTagFieldNo)
   ) {
     throw new Error(`invalid end group tag`);
+  }
+  if (unknownFields.length > 0) {
+    rMessage.setUnknown(unknownFields);
   }
   return message;
 }
