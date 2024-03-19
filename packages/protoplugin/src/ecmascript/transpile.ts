@@ -159,7 +159,7 @@ export function transpile(
   }
   if (result.emitSkipped) {
     throw Error(
-      "An problem occurred during transpilation and files were not generated.  Contact the plugin author for support.",
+      "A problem occurred during transpilation and files were not generated.  Contact the plugin author for support.",
     );
   }
   return results;
