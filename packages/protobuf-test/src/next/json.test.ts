@@ -86,6 +86,5 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
   const v1Msg = new type(init);
   const v2Msg = create(desc, init);
   const v2Json = toJson(v2Msg);
-  console.log(v2Json);
   expect(type.fromJson(v2Json)).toEqual(v1Msg);
 }

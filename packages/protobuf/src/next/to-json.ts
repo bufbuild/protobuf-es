@@ -23,12 +23,12 @@ import { protoBase64 } from "../proto-base64.js";
 import { fromBinary } from "./from-binary.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
-import type { ReflectMessage } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
+import type { ReflectMessage } from "./reflect/reflect.js";
 import type { Message } from "./types.js";
-import type { Any } from "./wkt/gen/google/protobuf/any_pbv2.js";
-import type { Duration } from "./wkt/gen/google/protobuf/duration_pbv2.js";
 import type {
+  Any,
+  Duration,
   BoolValue,
   BytesValue,
   DoubleValue,
