@@ -20,3 +20,4 @@ export * from "./equals.js";
 export * from "./fields.js";
 export * from "./to-binary.js";
 export * from "./from-binary.js";
+export * from "./to-json.js";
