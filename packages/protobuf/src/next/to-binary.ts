@@ -16,18 +16,16 @@ import type { ReflectMessage } from "./reflect/reflect.js";
 import type { Message } from "./types.js";
 import type { BinaryWriteOptions } from "../binary-format.js";
 import { reflect } from "./reflect/reflect.js";
-import {
-  BinaryWriter,
-  WireType,
-  type IBinaryWriter,
-} from "../binary-encoding.js";
+import { BinaryWriter, WireType } from "../binary-encoding.js";
+import type { IBinaryWriter } from "../binary-encoding.js";
 import {
   FeatureSet_FieldPresence,
   FeatureSet_MessageEncoding,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
 } from "../google/protobuf/descriptor_pb.js";
-import { ScalarType, type ScalarValue } from "./reflect/scalar.js";
+import { ScalarType } from "./reflect/scalar.js";
+import type { ScalarValue } from "./reflect/scalar.js";
 import type { DescField } from "../descriptor-set.js";
 
 // Default options for serializing binary data.
@@ -83,6 +81,11 @@ function reflectToBinary(
           writeMapEntry(w, opts, f, key, val);
         }
         break;
+    }
+  }
+  if (opts.writeUnknownFields) {
+    for (const { no, wireType, data } of msg.getUnknown() ?? []) {
+      w.tag(no, wireType).raw(data);
     }
   }
   return w.finish();

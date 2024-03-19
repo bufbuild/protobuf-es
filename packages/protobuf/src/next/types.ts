@@ -18,13 +18,13 @@ import type {
 } from "./codegenv1/typed-desc.js";
 import type { DescEnum, DescMessage } from "../descriptor-set.js";
 import type { OneofADT } from "./reflect/guard.js";
+import type { WireType } from "../binary-encoding.js";
 
 export type Message<TypeName extends string = string> = {
   readonly $desc: DescMessage;
   readonly $typeName: TypeName;
 
-  // TODO support unknown fields
-  // $unknown?: ({no: number; wireType: WireType; data: Uint8Array; })[];
+  $unknown?: { no: number; wireType: WireType; data: Uint8Array }[];
 };
 
 // TODO docs

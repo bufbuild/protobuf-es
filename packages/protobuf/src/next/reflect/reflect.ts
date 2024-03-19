@@ -38,6 +38,7 @@ import {
 import { FieldError } from "./error.js";
 import type { MapEntryKey, ReflectMap } from "./reflect-map.js";
 import { reflectMap } from "./reflect-map.js";
+import type { WireType } from "../../binary-encoding.js";
 
 export interface ReflectMessage {
   readonly kind: "reflect_message";
@@ -75,6 +76,14 @@ export interface ReflectMessage {
     key: MapEntryKey,
     value: NewMapEntryValue<Field>,
   ): FieldError | undefined;
+
+  getUnknown():
+    | { no: number; wireType: WireType; data: Uint8Array }[]
+    | undefined;
+
+  setUnknown(
+    value: { no: number; wireType: WireType; data: Uint8Array }[],
+  ): void;
 }
 
 // prettier-ignore
@@ -100,15 +109,15 @@ type ReflectValue<Field extends DescField = DescField> = (
 // prettier-ignore
 type NewListItem<Field extends DescField & { fieldKind: "list" }> = (
   Field extends { scalar: infer T } ? ScalarValue<T> :
-  Field extends { listKind: "enum"}    ? enumVal :
-  Field extends { listKind: "message"} ? Message :
+  Field extends { listKind: "enum" } ? enumVal :
+  Field extends { listKind: "message" } ? Message :
   never
 );
 
 // prettier-ignore
 type NewMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
-  Field extends { mapKind: "enum"}    ? enumVal :
-  Field extends { mapKind: "message"} ? Message :
+  Field extends { mapKind: "enum" } ? enumVal :
+  Field extends { mapKind: "message" } ? Message :
   Field extends { scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
   never
 );
@@ -244,6 +253,14 @@ export function reflect(
       }
       setMapEntryPrivate(message, field, key, value);
       return undefined;
+    },
+
+    getUnknown() {
+      return message.$unknown;
+    },
+
+    setUnknown(value) {
+      message.$unknown = value;
     },
   };
 }
