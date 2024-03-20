@@ -14,7 +14,7 @@
 
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
-import type { MessageShape, Message } from "./types.js";
+import type { MessageShape } from "./types.js";
 import type { ReflectMessage } from "./reflect/reflect.js";
 import type { IBinaryReader } from "../binary-encoding.js";
 import {
@@ -94,7 +94,7 @@ function readMessage(
     ? reader.len
     : reader.pos + lengthOrEndTagFieldNo;
   let fieldNo: number | undefined, wireType: WireType | undefined;
-  const unknownFields: Message["$unknown"] = [];
+  const unknownFields = message.getUnknown() ?? [];
   while (reader.pos < end) {
     [fieldNo, wireType] = reader.tag();
     if (wireType == WireType.EndGroup) {
