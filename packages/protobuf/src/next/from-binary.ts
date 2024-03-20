@@ -44,6 +44,14 @@ function makeReadOptions(
 }
 
 /**
+ * Parse serialized binary data.
+ */
+export function fromBinary<Desc extends DescMessage>(
+  desc: Desc,
+  bytes: Uint8Array,
+  options?: Partial<BinaryReadOptions>,
+): MessageShape<Desc>;
+/**
  * Parse from binary data, merging fields.
  *
  * Repeated fields are appended. Map entries are added, overwriting
@@ -54,14 +62,6 @@ function makeReadOptions(
  */
 export function fromBinary<Desc extends DescMessage>(
   msg: MessageShape<Desc>,
-  bytes: Uint8Array,
-  options?: Partial<BinaryReadOptions>,
-): MessageShape<Desc>;
-/**
- * Parse serialized binary data.
- */
-export function fromBinary<Desc extends DescMessage>(
-  desc: Desc,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc>;

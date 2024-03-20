@@ -91,7 +91,6 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
   expect(equals(fromBinary(desc, v1Bytes), v2Msg)).toBe(true);
   v1Msg.fromBinary(v2Bytes);
   fromBinary(v2Msg, v1Bytes);
-  console.log(v2Msg);
   expect(type.fromBinary(toBinary(v2Msg))).toEqual(v1Msg);
   expect(equals(fromBinary(desc, v1Msg.toBinary()), v2Msg)).toBe(true);
 }
