@@ -83,7 +83,7 @@ export function fromBinary<Desc extends DescMessage>(
 
 // TODO: Improve the function signature, we got most it from v1.
 function readMessage(
-  rMessage: ReflectMessage,
+  message: ReflectMessage,
   reader: IBinaryReader,
   lengthOrEndTagFieldNo: number,
   options: BinaryReadOptions,
@@ -100,7 +100,7 @@ function readMessage(
     if (wireType == WireType.EndGroup) {
       break;
     }
-    const field = rMessage.findNumber(fieldNo);
+    const field = message.findNumber(fieldNo);
     if (!field) {
       const data = reader.skip(wireType);
       if (options.readUnknownFields) {
@@ -108,7 +108,7 @@ function readMessage(
       }
       continue;
     }
-    readField(rMessage, reader, field, wireType, options);
+    readField(message, reader, field, wireType, options);
   }
   if (
     delimitedMessageEncoding && // eslint-disable-line @typescript-eslint/strict-boolean-expressions
@@ -117,7 +117,7 @@ function readMessage(
     throw new Error(`invalid end group tag`);
   }
   if (unknownFields.length > 0) {
-    rMessage.setUnknown(unknownFields);
+    message.setUnknown(unknownFields);
   }
 }
 
@@ -136,10 +136,13 @@ function readField(
       message.set(field, readScalar(reader, ScalarType.INT32) as number);
       break;
     case "message":
-      message.set(field, readMessageField(reader, options, field));
+      message.set(
+        field,
+        readMessageField(reader, options, field, message.get(field)),
+      );
       break;
     case "list":
-      readRepeatedField(message, reader, options, field, wireType);
+      readListField(message, reader, options, field, wireType);
       break;
     case "map":
       // eslint-disable-next-line no-case-declarations
@@ -204,7 +207,7 @@ function readMapEntry(
   return [key, val];
 }
 
-function readRepeatedField(
+function readListField(
   message: ReflectMessage,
   reader: IBinaryReader,
   options: BinaryReadOptions,
@@ -228,12 +231,10 @@ function readRepeatedField(
     message.addListItem(field, readScalar(reader, scalarType, longType));
     return;
   }
-  const arr = [] as ScalarValue[];
   const e = reader.uint32() + reader.pos;
   while (reader.pos < e) {
-    arr.push(readScalar(reader, scalarType, longType));
+    message.addListItem(field, readScalar(reader, scalarType, longType));
   }
-  message.set(field, arr as number[]); // TODO: Investigate the type
 }
 
 function readMessageField<Desc extends DescMessage>(
@@ -242,12 +243,13 @@ function readMessageField<Desc extends DescMessage>(
   field: Pick<DescField, "number" | "proto" | "getFeatures"> & {
     message: Desc;
   },
+  mergeMessage?: MessageShape<Desc>,
 ): MessageShape<Desc> {
   const delimited =
     field.proto.type === FieldDescriptorProto_Type.GROUP ||
     field.getFeatures().messageEncoding ===
       FeatureSet_MessageEncoding.DELIMITED;
-  const message = create(field.message);
+  const message = mergeMessage ?? create(field.message);
   readMessage(
     reflect(message),
     reader,
