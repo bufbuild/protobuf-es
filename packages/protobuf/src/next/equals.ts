@@ -21,6 +21,7 @@ import type { DescField } from "../descriptor-set.js";
 
 /**
  * Compare two messages of the same type.
+ * Note that this function disregards extensions and unknown fields.
  */
 export function equals(a: Message, b: Message): boolean {
   if (a === b) {

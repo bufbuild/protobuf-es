@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { create, clone } from "@bufbuild/protobuf/next";
+import { clone, create } from "@bufbuild/protobuf/next";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import { Proto3MessageDesc } from "../gen/ts/extra/proto3_pbv2.js";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { protoInt64, WireType } from "@bufbuild/protobuf";
 import { reflect } from "@bufbuild/protobuf/next/reflect";
 
 describe("clone()", () => {
@@ -128,5 +128,24 @@ describe("clone()", () => {
       expect(copy.either.case).toBe(msg.either.case);
       expect(copy.either.value).not.toBe(msg.either.value);
     });
+  });
+  test("clones unknown fields", () => {
+    const msg = create(proto3_ts.Proto3MessageDesc);
+    msg.$unknown = [
+      { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
+    ];
+    const copy = clone(msg);
+    expect(copy.$unknown).toStrictEqual(msg.$unknown);
+  });
+  test("clones unknown fields in message field", () => {
+    const msg = create(proto3_ts.Proto3MessageDesc);
+    msg.singularMessageField = create(proto3_ts.Proto3MessageDesc);
+    msg.singularMessageField.$unknown = [
+      { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
+    ];
+    const copy = clone(msg);
+    expect(copy.singularMessageField?.$unknown).toStrictEqual(
+      msg.singularMessageField.$unknown,
+    );
   });
 });

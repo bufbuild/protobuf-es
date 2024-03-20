@@ -20,6 +20,7 @@ import { reflect } from "@bufbuild/protobuf/next/reflect";
 import type { Proto3Message } from "../gen/ts/extra/proto3_pbv2.js";
 import { Proto3MessageDesc, Proto3Enum } from "../gen/ts/extra/proto3_pbv2.js";
 import type { DescMessage } from "@bufbuild/protobuf";
+import { WireType } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
 
@@ -42,6 +43,14 @@ describe("equals()", () => {
   test("accepts anonymous messages", () => {
     const a: Message = create(Proto3MessageDesc as DescMessage);
     const b: Message = create(Proto3MessageDesc as DescMessage);
+    expect(equals(a, b)).toBe(true);
+  });
+  test("extensions and unknown fields are disregarded", () => {
+    const a = create(Proto3MessageDesc);
+    a.$unknown = [
+      { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
+    ];
+    const b = create(Proto3MessageDesc);
     expect(equals(a, b)).toBe(true);
   });
   describe("set field is not equal unset field", () => {

@@ -18,6 +18,9 @@ import { reflect, ScalarType } from "./reflect/index.js";
 import { isMessage } from "./is-message.js";
 import type { DescField } from "../descriptor-set.js";
 
+/**
+ * Create a deep copy of a message, including extensions and unknown fields.
+ */
 export function clone<T extends Message>(message: T): T {
   const i = reflect(message);
   const o = reflect(create(message.$desc));
@@ -52,6 +55,10 @@ export function clone<T extends Message>(message: T): T {
         }
         break;
     }
+  }
+  const unknown = i.getUnknown();
+  if (unknown && unknown.length > 0) {
+    o.setUnknown(unknown);
   }
   return o.message as T;
 }
