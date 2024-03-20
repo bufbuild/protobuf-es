@@ -43,30 +43,52 @@ function makeReadOptions(
   return options ? { ...readDefaults, ...options } : readDefaults;
 }
 
+/**
+ * Parse from binary data, merging fields.
+ *
+ * Repeated fields are appended. Map entries are added, overwriting
+ * existing keys.
+ *
+ * If a message field is already present, it will be merged with the
+ * new data.
+ */
+export function fromBinary<Desc extends DescMessage>(
+  msg: MessageShape<Desc>,
+  bytes: Uint8Array,
+  options?: Partial<BinaryReadOptions>,
+): MessageShape<Desc>;
+/**
+ * Parse serialized binary data.
+ */
 export function fromBinary<Desc extends DescMessage>(
   desc: Desc,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
+): MessageShape<Desc>;
+export function fromBinary<Desc extends DescMessage>(
+  descOrMsg: Desc | MessageShape<Desc>,
+  bytes: Uint8Array,
+  options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
   options = makeReadOptions(options);
-  return readMessage(
-    desc,
+  const message = "$desc" in descOrMsg ? descOrMsg : create(descOrMsg);
+  readMessage(
+    reflect(message),
     options.readerFactory!(bytes),
     bytes.byteLength,
     options as BinaryReadOptions,
   );
+  return message;
 }
 
 // TODO: Improve the function signature, we got most it from v1.
-function readMessage<Desc extends DescMessage>(
-  desc: Desc,
+function readMessage(
+  rMessage: ReflectMessage,
   reader: IBinaryReader,
   lengthOrEndTagFieldNo: number,
   options: BinaryReadOptions,
   delimitedMessageEncoding?: boolean,
-): MessageShape<Desc> {
-  const message = create(desc);
-  const rMessage = reflect(message);
+) {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const end = delimitedMessageEncoding
     ? reader.len
@@ -97,7 +119,6 @@ function readMessage<Desc extends DescMessage>(
   if (unknownFields.length > 0) {
     rMessage.setUnknown(unknownFields);
   }
-  return message;
 }
 
 function readField(
@@ -226,13 +247,15 @@ function readMessageField<Desc extends DescMessage>(
     field.proto.type === FieldDescriptorProto_Type.GROUP ||
     field.getFeatures().messageEncoding ===
       FeatureSet_MessageEncoding.DELIMITED;
-  return readMessage(
-    field.message,
+  const message = create(field.message);
+  readMessage(
+    reflect(message),
     reader,
     delimited ? field.number : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
     options,
     delimited,
   );
+  return message;
 }
 
 function readScalar(
