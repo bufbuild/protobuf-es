@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
     "build": "npm run build:esm+types",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module ES2015 --verbatimModuleSyntax --outDir ./dist/esm --declaration --declarationDir ./dist/types",
+    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "pregenerate": "rm -rf src/gen/*/*",
     "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=proto option-enum.proto option-message.proto file-option.proto",
     "postgenerate": "license-header src/gen",

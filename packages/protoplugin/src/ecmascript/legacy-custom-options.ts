@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { AnyDesc } from "@bufbuild/protobuf";
-import {
-  proto3,
-  BinaryReader,
-  Message,
-  MessageType,
-  ScalarType,
-} from "@bufbuild/protobuf";
+import type { AnyDesc, MessageType } from "@bufbuild/protobuf";
+import { proto3, BinaryReader, Message, ScalarType } from "@bufbuild/protobuf";
 
 /**
  * @deprecated Please use extensions instead.
