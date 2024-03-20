@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescriptorSet } from "../descriptor-set.js";
+import type { DescEnum, DescField } from "../descriptor-set.js";
 import {
   FeatureSet_FieldPresence,
   FieldDescriptorProto_Label,
@@ -29,21 +29,14 @@ import type { Message } from "./types.js";
 import type {
   Any,
   Duration,
-  BoolValue,
-  BytesValue,
-  DoubleValue,
   FieldMask,
-  FloatValue,
-  Int32Value,
-  Int64Value,
   ListValue,
-  StringValue,
   Struct,
   Timestamp,
-  UInt32Value,
-  UInt64Value,
   Value,
 } from "./wkt/index.js";
+import { isWktWrapperDesc } from "./reflect/wkt.js";
+import type { DescSet } from "./reflect/desc-set.js";
 
 /**
  * Options for serializing to JSON.
@@ -77,7 +70,7 @@ export interface JsonWriteOptions {
    * This option is required to write `google.protobuf.Any` and extensions
    * to JSON format.
    */
-  descriptorSet?: DescriptorSet;
+  descSet?: DescSet;
 }
 
 // Default options for serializing to JSON.
@@ -164,7 +157,10 @@ function mapToJson(
     case "message":
       for (const [entryKey, entryValue] of entries) {
         // JSON standard allows only (double quoted) string as property key
-        jsonObj[entryKey.toString()] = toJson(entryValue as Message, opts);
+        jsonObj[entryKey.toString()] = reflectToJson(
+          reflect(entryValue as Message),
+          opts,
+        );
       }
       break;
     case "enum":
@@ -204,7 +200,7 @@ function listToJson(
       break;
     case "message":
       for (let i = 0; i < val.length; i++) {
-        jsonArr.push(toJson(val[i] as Message, opts));
+        jsonArr.push(reflectToJson(reflect(val[i] as Message), opts));
       }
       break;
   }
@@ -327,37 +323,11 @@ function tryWktToJson(
       return valueToJson(msg.message as Value, opts);
     case "google.protobuf.ListValue":
       return listValueToJson(msg.message as ListValue, opts);
-    case "google.protobuf.DoubleValue":
-      return scalarToJson(
-        ScalarType.DOUBLE,
-        (msg.message as DoubleValue).value,
-      );
-    case "google.protobuf.FloatValue":
-      return scalarToJson(ScalarType.FLOAT, (msg.message as FloatValue).value);
-    case "google.protobuf.Int64Value":
-      return scalarToJson(ScalarType.INT64, (msg.message as Int64Value).value);
-    case "google.protobuf.UInt64Value":
-      return scalarToJson(
-        ScalarType.UINT64,
-        (msg.message as UInt64Value).value,
-      );
-    case "google.protobuf.Int32Value":
-      return scalarToJson(ScalarType.INT32, (msg.message as Int32Value).value);
-    case "google.protobuf.UInt32Value":
-      return scalarToJson(
-        ScalarType.UINT32,
-        (msg.message as UInt32Value).value,
-      );
-    case "google.protobuf.BoolValue":
-      return scalarToJson(ScalarType.BOOL, (msg.message as BoolValue).value);
-    case "google.protobuf.StringValue":
-      return scalarToJson(
-        ScalarType.STRING,
-        (msg.message as StringValue).value,
-      );
-    case "google.protobuf.BytesValue":
-      return scalarToJson(ScalarType.BYTES, (msg.message as BytesValue).value);
     default:
+      if (isWktWrapperDesc(msg.desc)) {
+        const valueField = msg.desc.fields[0];
+        return scalarToJson(valueField.scalar, msg.get(valueField));
+      }
       return undefined;
   }
 }
@@ -374,16 +344,16 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
   if (!typeName.length) {
     throw new Error(`invalid type url: ${val.typeUrl}`);
   }
-  const messageDesc = opts.descriptorSet?.messages.get(typeName);
+  const messageDesc = opts.descSet?.getMessage(typeName);
   if (!messageDesc) {
     throw new Error(
-      `cannot encode message google.protobuf.Any to JSON: "${val.typeUrl}" is not in the type registry`,
+      `cannot encode message ${val.$typeName} to JSON: "${val.typeUrl}" is not in the type registry`,
     );
   }
   // TODO: Can be optimised if we call the reflectFromBinary directly
   // and pass that to reflectToJson
   const message = fromBinary(messageDesc, val.value);
-  let json = toJson(message, opts);
+  let json = reflectToJson(reflect(message), opts);
   if (
     typeName.startsWith("google.protobuf.") ||
     json === null ||
@@ -402,7 +372,7 @@ function durationToJson(val: Duration) {
     Number(val.seconds) < -315576000000
   ) {
     throw new Error(
-      `cannot encode google.protobuf.Duration to JSON: value out of range`,
+      `cannot encode ${val.$typeName} to JSON: value out of range`,
     );
   }
   let text = val.seconds.toString();
@@ -428,7 +398,7 @@ function fieldMaskToJson(val: FieldMask) {
       // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
         throw new Error(
-          'cannot encode google.protobuf.FieldMask to JSON: lowerCamelCase of path name "' +
+          `cannot encode ${val.$typeName} to JSON: lowerCamelCase of path name "` +
             p +
             '" is irreversible',
         );
@@ -452,7 +422,7 @@ function valueToJson(val: Value, opts: JsonWriteOptions) {
       return null;
     case "numberValue":
       if (!Number.isFinite(val.kind.value)) {
-        throw new Error("google.protobuf.Value cannot be NaN or Infinity");
+        throw new Error(`${val.$typeName} cannot be NaN or Infinity`);
       }
       return val.kind.value;
     case "boolValue":
@@ -464,7 +434,7 @@ function valueToJson(val: Value, opts: JsonWriteOptions) {
     case "listValue":
       return listValueToJson(val.kind.value, opts);
     default:
-      throw new Error("google.protobuf.Value must have a value");
+      throw new Error(`${val.$typeName} must have a value`);
   }
 }
 
@@ -479,12 +449,12 @@ function timestampToJson(val: Timestamp) {
     ms > Date.parse("9999-12-31T23:59:59Z")
   ) {
     throw new Error(
-      `cannot encode google.protobuf.Timestamp to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
+      `cannot encode ${val.$typeName} to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
   }
   if (val.nanos < 0) {
     throw new Error(
-      `cannot encode google.protobuf.Timestamp to JSON: nanos must not be negative`,
+      `cannot encode ${val.$typeName} to JSON: nanos must not be negative`,
     );
   }
   let z = "Z";
