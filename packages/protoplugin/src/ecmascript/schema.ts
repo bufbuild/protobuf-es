@@ -31,15 +31,17 @@ import type {
   GeneratedFileController,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
-import { createRuntimeImports, RuntimeImports } from "./runtime-imports.js";
-import { createImportSymbol, ImportSymbol } from "./import-symbol.js";
+import type { RuntimeImports } from "./runtime-imports.js";
+import { createRuntimeImports } from "./runtime-imports.js";
+import type { ImportSymbol } from "./import-symbol.js";
+import { createImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import {
   deriveImportPath,
   makeImportPath,
   rewriteImportPath,
 } from "./import-path.js";
-import { ParsedParameter } from "./parameter.js";
+import type { ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 
 /**

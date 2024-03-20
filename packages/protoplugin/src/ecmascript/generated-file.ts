@@ -12,23 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
+import type {
   AnyDesc,
   DescEnum,
   DescExtension,
   DescFile,
   DescMessage,
-  LongType,
-  protoInt64,
-  ScalarType,
 } from "@bufbuild/protobuf";
+import { LongType, protoInt64, ScalarType } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import type { RuntimeImports } from "./runtime-imports.js";
 import { makeImportPathRelative } from "./import-path.js";
 import type { JSDocBlock } from "./jsdoc.js";
 import { createJsDocBlock } from "./jsdoc.js";
-import {
+import type {
   ExportDeclaration,
   LiteralProtoInt64,
   LiteralString,

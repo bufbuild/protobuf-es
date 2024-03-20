@@ -31,7 +31,7 @@ import {
   Proto2ExtEnum,
   Proto2ExtMessage,
   uint32_ext,
-} from "./gen/ts/extra/extensions-proto2_pb";
+} from "./gen/ts/extra/extensions-proto2_pb.js";
 import {
   TestAllTypes,
   TestAllTypes_NestedEnum,
