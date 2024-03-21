@@ -15,6 +15,8 @@
 import { describe, expect } from "@jest/globals";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
+import { Empty as TS_Empty } from "./gen/ts/google/protobuf/empty_pb.js";
+import { Empty as JS_Empty } from "./gen/js/google/protobuf/empty_pb.js";
 import {
   RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as TS_ScalarValuesMessage,
@@ -26,7 +28,7 @@ import {
 import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
 import { testMT } from "./helpers.js";
-import { BoolValue, protoInt64 } from "@bufbuild/protobuf";
+import { BoolValue, WireType, protoInt64 } from "@bufbuild/protobuf";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
@@ -145,5 +147,24 @@ describe("clone", function () {
     expect(b).toStrictEqual(a);
     a.doubleValueField = 0.1;
     expect(b.doubleValueField).not.toBe(a.doubleValueField);
+  });
+  // We are using Empty wkt to test unknown fields.
+  testMT({ ts: TS_Empty, js: JS_Empty }, (messageType) => {
+    const a = new messageType();
+    const bin = messageType.runtime.bin;
+    const unknownFields = [
+      { no: 1, wireType: WireType.Bit32, data: new Uint8Array([1, 2, 3, 4]) },
+    ];
+    for (const unknowField of unknownFields) {
+      bin.onUnknownField(
+        a,
+        unknowField.no,
+        unknowField.wireType,
+        unknowField.data,
+      );
+    }
+    const b = a.clone();
+    expect(b).toStrictEqual(a);
+    expect(bin.listUnknownFields(b)).toStrictEqual(unknownFields);
   });
 });
