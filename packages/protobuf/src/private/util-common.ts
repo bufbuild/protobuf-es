@@ -230,6 +230,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
         any[member.localName] = copy;
       }
+      for (const uf of type.runtime.bin.listUnknownFields(message)) {
+        type.runtime.bin.onUnknownField(any, uf.no, uf.wireType, uf.data);
+      }
       return target;
     },
   };
