@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import type { Message, MessageShape } from "../types.js";
-import { type Any, AnyDesc } from "./gen/google/protobuf/any_pbv2.js";
+import type { Any } from "./gen/google/protobuf/any_pbv2.js";
+import { AnyDesc } from "./gen/google/protobuf/any_pbv2.js";
 import type { DescMessage } from "../../descriptor-set.js";
 import type { DescSet } from "../reflect/index.js";
 import { create } from "../create.js";
@@ -39,7 +40,13 @@ export function anyPack(message: Message, into?: Any) {
   return ret ? into : undefined;
 }
 
-export function anyIs(any: Any, desc: DescMessage): boolean;
+/**
+ * Returns true if the Any contains the type given by messageDesc.
+ */
+export function anyIs(any: Any, messageDesc: DescMessage): boolean;
+/**
+ * Returns true if the Any contains a message with the given typeName.
+ */
 export function anyIs(any: Any, typeName: string): boolean;
 export function anyIs(any: Any, descOrTypeName: DescMessage | string): boolean {
   if (any.typeUrl === "") {
@@ -54,12 +61,18 @@ export function anyIs(any: Any, descOrTypeName: DescMessage | string): boolean {
 }
 
 /**
- * Upacks the message the Any represents.
+ * Unpacks the message the Any represents.
  *
- * To lookup the type information it either needs a DescSet
- * or the DescMessage.
+ * Returns undefined if the Any is empty, or if packed type is not included
+ * in the given set.
  */
 export function anyUnpack(any: Any, set: DescSet): Message | undefined;
+/**
+ * Unpacks the message the Any represents.
+ *
+ * Returns undefined if the Any is empty, or if it does not contain the type
+ * given by messageDesc.
+ */
 export function anyUnpack<Desc extends DescMessage>(
   any: Any,
   messageDesc: Desc,
