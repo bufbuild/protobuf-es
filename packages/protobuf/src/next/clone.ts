@@ -58,7 +58,7 @@ export function clone<T extends Message>(message: T): T {
   }
   const unknown = i.getUnknown();
   if (unknown && unknown.length > 0) {
-    o.setUnknown(unknown);
+    o.setUnknown([...unknown]);
   }
   return o.message as T;
 }
