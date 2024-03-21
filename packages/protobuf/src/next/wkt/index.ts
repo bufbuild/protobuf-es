@@ -13,6 +13,7 @@
 // limitations under the License.
 
 export * from "./timestamp.js";
+export * from "./any.js";
 export * from "./gen/google/protobuf/api_pbv2.js";
 export * from "./gen/google/protobuf/any_pbv2.js";
 export * from "./gen/google/protobuf/descriptor_pbv2.js";
