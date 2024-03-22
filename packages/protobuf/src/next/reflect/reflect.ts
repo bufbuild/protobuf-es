@@ -18,7 +18,7 @@ import type {
   DescOneof,
 } from "../../descriptor-set.js";
 import type { ScalarValue, LongType } from "./scalar.js";
-import type { Message } from "../types.js";
+import type { Message, UnknownField } from "../types.js";
 import {
   addListItemPrivate,
   clearFieldPrivate,
@@ -38,7 +38,6 @@ import {
 import { FieldError } from "./error.js";
 import type { MapEntryKey, ReflectMap } from "./reflect-map.js";
 import { reflectMap } from "./reflect-map.js";
-import type { WireType } from "../../binary-encoding.js";
 
 export interface ReflectMessage {
   readonly kind: "reflect_message";
@@ -77,13 +76,9 @@ export interface ReflectMessage {
     value: NewMapEntryValue<Field>,
   ): FieldError | undefined;
 
-  getUnknown():
-    | { no: number; wireType: WireType; data: Uint8Array }[]
-    | undefined;
+  getUnknown(): UnknownField[] | undefined;
 
-  setUnknown(
-    value: { no: number; wireType: WireType; data: Uint8Array }[],
-  ): void;
+  setUnknown(value: UnknownField[]): void;
 }
 
 // prettier-ignore

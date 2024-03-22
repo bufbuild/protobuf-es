@@ -147,5 +147,9 @@ describe("clone()", () => {
     expect(copy.singularMessageField?.$unknown).toStrictEqual(
       msg.singularMessageField.$unknown,
     );
+    // Make sure it is copy
+    expect(copy.singularMessageField?.$unknown).not.toBe(
+      msg.singularMessageField.$unknown,
+    );
   });
 });
