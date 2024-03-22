@@ -24,7 +24,7 @@ export type Message<TypeName extends string = string> = {
   readonly $desc: DescMessage;
   readonly $typeName: TypeName;
 
-  $unknown?: { no: number; wireType: WireType; data: Uint8Array }[];
+  $unknown?: UnknownField[];
 };
 
 // TODO docs
@@ -40,6 +40,12 @@ export type MessageInitShape<Desc extends DescMessage> =
 // TODO docs
 export type EnumShape<Desc extends DescEnum> =
   Desc extends TypedDescEnum<infer RuntimeShape> ? RuntimeShape : number;
+
+export type UnknownField = {
+  readonly no: number;
+  readonly wireType: WireType;
+  readonly data: Uint8Array;
+};
 
 // TODO ServiceShape
 // TODO MethodShape?
