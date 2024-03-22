@@ -20,7 +20,6 @@ import {
 import type { JsonValue, JsonObject } from "../json-format.js";
 import { assert } from "../private/assert.js";
 import { protoBase64 } from "../proto-base64.js";
-import { fromBinary } from "./from-binary.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
@@ -35,6 +34,7 @@ import type {
   Timestamp,
   Value,
 } from "./wkt/index.js";
+import { anyUnpack } from "./wkt/index.js";
 import { isWktWrapperDesc } from "./reflect/wkt.js";
 import type { DescSet } from "./reflect/desc-set.js";
 
@@ -308,6 +308,9 @@ function tryWktToJson(
   msg: ReflectMessage,
   opts: JsonWriteOptions,
 ): JsonValue | undefined {
+  if (!msg.desc.typeName.startsWith("google.protobuf.")) {
+    return undefined;
+  }
   switch (msg.desc.typeName) {
     case "google.protobuf.Any":
       return anyToJson(msg.message as Any, opts);
@@ -336,26 +339,15 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
   if (val.typeUrl === "") {
     return {};
   }
-  if (!val.typeUrl.length) {
-    throw new Error(`invalid type url: ${val.typeUrl}`);
-  }
-  const slash = val.typeUrl.lastIndexOf("/");
-  const typeName = slash >= 0 ? val.typeUrl.substring(slash + 1) : val.typeUrl;
-  if (!typeName.length) {
-    throw new Error(`invalid type url: ${val.typeUrl}`);
-  }
-  const messageDesc = opts.descSet?.getMessage(typeName);
-  if (!messageDesc) {
+  const message = opts.descSet ? anyUnpack(val, opts.descSet) : undefined;
+  if (!message) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: "${val.typeUrl}" is not in the type registry`,
     );
   }
-  // TODO: Can be optimised if we call the reflectFromBinary directly
-  // and pass that to reflectToJson
-  const message = fromBinary(messageDesc, val.value);
   let json = reflectToJson(reflect(message), opts);
   if (
-    typeName.startsWith("google.protobuf.") ||
+    message.$desc.typeName.startsWith("google.protobuf.") ||
     json === null ||
     Array.isArray(json) ||
     typeof json !== "object"
