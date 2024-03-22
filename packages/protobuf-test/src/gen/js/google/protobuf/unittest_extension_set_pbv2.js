@@ -24,11 +24,14 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_extension_set = fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
+export const fileDesc_google_protobuf_unittest_extension_set = /*@__PURE__*/
+  fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 // Describes the message protobuf_unittest.TestExtensionSet. Use `create(TestExtensionSetDesc)` to create a new TestExtensionSet.
-export const TestExtensionSetDesc = messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
+export const TestExtensionSetDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
 
 // Describes the message protobuf_unittest.TestExtensionSetContainer. Use `create(TestExtensionSetContainerDesc)` to create a new TestExtensionSetContainer.
-export const TestExtensionSetContainerDesc = messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
+export const TestExtensionSetContainerDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
 

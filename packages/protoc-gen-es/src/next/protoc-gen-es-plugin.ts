@@ -47,6 +47,12 @@ export const protocGenEs = createEcmaScriptPlugin({
   generateDts,
 });
 
+// This annotation informs bundlers that the succeeding function call is free of
+// side effects. This means the symbol can be removed from the module during
+// tree-shaking if it is unused.
+// See https://github.com/bufbuild/protobuf-es/pull/470
+const pure = "/*@__PURE__*/";
+
 // prettier-ignore
 function generateTs(schema: Schema) {
   for (const file of schema.files) {
@@ -55,7 +61,8 @@ function generateTs(schema: Schema) {
     const { DescFile } = f.runtime;
     const fileDesc = f.importDesc(file);
     // f.print("// ", file.proto.toJsonString());
-    f.print(f.exportDecl("const", fileDesc.name), ": ", DescFile, " = ", getFileDescCall(f, file), ";");
+    f.print(f.exportDecl("const", fileDesc.name), ": ", DescFile, " = ", pure);
+    f.print("  ", getFileDescCall(f, file), ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
@@ -68,7 +75,8 @@ function generateTs(schema: Schema) {
           f.print("// Describes the ", desc.toString(), ".");
           f.print("// Use `create(", name, ")` to create a new ", MessageShape.name, ".");
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), ": ", TypedDescMessage, "<", MessageShape, ">", " = ", call, ";");
+          f.print(f.exportDecl("const", name), ": ", TypedDescMessage, "<", MessageShape, ">", " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -80,7 +88,8 @@ function generateTs(schema: Schema) {
           f.print("// Describes the ", desc.toString(), ".");
           const name = f.importDesc(desc).name;
           const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), ": ", TypedDescEnum, "<", EnumShape, ">", " = ", call, ";");
+          f.print(f.exportDecl("const", name), ": ", TypedDescEnum, "<", EnumShape, ">", " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -91,7 +100,8 @@ function generateTs(schema: Schema) {
           const V = getFieldTypeInfo(desc).typing;
           const call = functionCall(extDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("const", name), ": ", TypedDescExtension, "<", E, ", ", V, ">", " = ", call, ";");
+          f.print(f.exportDecl("const", name), ": ", TypedDescExtension, "<", E, ", ", V, ">", " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -100,7 +110,8 @@ function generateTs(schema: Schema) {
           const name = f.importDesc(desc).name;
           const call = functionCall(serviceDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("const", name), ": ", TypedDescService, "<", getServiceShapeExpr(f, desc), "> = ", call, ";");
+          f.print(f.exportDecl("const", name), ": ", TypedDescService, "<", getServiceShapeExpr(f, desc), "> = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -115,7 +126,8 @@ function generateJs(schema: Schema) {
     const f = schema.generateFile(file.name + "_pbv2.js");
     f.preamble(file);
     const fileDesc = f.importDesc(file);
-    f.print(f.exportDecl("const", fileDesc.name), " = ", getFileDescCall(f, file), ";");
+    f.print(f.exportDecl("const", fileDesc.name), " = ", pure);
+    f.print("  ", getFileDescCall(f, file), ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
@@ -125,7 +137,8 @@ function generateJs(schema: Schema) {
           const name = f.importDesc(desc).name;
           f.print("// Describes the ", desc.toString(), ". Use `create(", name, ")` to create a new ", MessageShape.name, ".");
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), " = ", call, ";");
+          f.print(f.exportDecl("const", name), " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -136,7 +149,8 @@ function generateJs(schema: Schema) {
             f.print("// Describes the ", desc.toString(), ".");
             const name = f.importDesc(desc).name;
             const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
-            f.print(f.exportDecl("const", name), " = ", call, ";");
+            f.print(f.exportDecl("const", name), " = ", pure);
+            f.print("  ", call, ";");
             f.print();
           }
           // declare TypeScript enum
@@ -144,7 +158,8 @@ function generateJs(schema: Schema) {
             f.print(f.jsDoc(desc));
             const { tsEnum } = f.runtime.codegen;
             const call = functionCall(tsEnum, [f.importDesc(desc)]);
-            f.print(f.exportDecl("const", f.importShape(desc).name), " = ", call, ";");
+            f.print(f.exportDecl("const", f.importShape(desc).name), " = ", pure);
+            f.print("  ", call, ";");
             f.print();
           }
           break;
@@ -154,7 +169,8 @@ function generateJs(schema: Schema) {
           const name = f.importDesc(desc).name;
           const call = functionCall(extDesc, [f.importDesc(desc.file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("const", name), " = ", call, ";");
+          f.print(f.exportDecl("const", name), " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }
@@ -163,7 +179,8 @@ function generateJs(schema: Schema) {
           const name = f.importDesc(desc).name;
           f.print(f.jsDoc(desc));
           const call = functionCall(serviceDesc, [f.importDesc(desc.file), ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), " = ", call, ";");
+          f.print(f.exportDecl("const", name), " = ", pure);
+          f.print("  ", call, ";");
           f.print();
           break;
         }

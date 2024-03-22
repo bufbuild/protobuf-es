@@ -18,8 +18,10 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_example = fileDesc("ChNleHRyYS9leGFtcGxlLnByb3RvEgRkb2NzIsoBCgRVc2VyEhIKCmZpcnN0X25hbWUYASABKAkSEQoJbGFzdF9uYW1lGAIgASgJEg4KBmFjdGl2ZRgDIAEoCBIbCgdtYW5hZ2VyGAQgASgLMgouZG9jcy5Vc2VyEhEKCWxvY2F0aW9ucxgFIAMoCRIqCghwcm9qZWN0cxgGIAMoCzIYLmRvY3MuVXNlci5Qcm9qZWN0c0VudHJ5Gi8KDVByb2plY3RzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4AWIGcHJvdG8z");
+export const fileDesc_extra_example = /*@__PURE__*/
+  fileDesc("ChNleHRyYS9leGFtcGxlLnByb3RvEgRkb2NzIsoBCgRVc2VyEhIKCmZpcnN0X25hbWUYASABKAkSEQoJbGFzdF9uYW1lGAIgASgJEg4KBmFjdGl2ZRgDIAEoCBIbCgdtYW5hZ2VyGAQgASgLMgouZG9jcy5Vc2VyEhEKCWxvY2F0aW9ucxgFIAMoCRIqCghwcm9qZWN0cxgGIAMoCzIYLmRvY3MuVXNlci5Qcm9qZWN0c0VudHJ5Gi8KDVByb2plY3RzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4AWIGcHJvdG8z");
 
 // Describes the message docs.User. Use `create(UserDesc)` to create a new User.
-export const UserDesc = messageDesc(fileDesc_extra_example, 0);
+export const UserDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_example, 0);
 

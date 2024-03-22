@@ -26,19 +26,24 @@
 
 import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_comments = fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
+export const fileDesc_extra_comments = /*@__PURE__*/
+  fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
 
 // Describes the message spec.MessageWithComments. Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
-export const MessageWithCommentsDesc = messageDesc(fileDesc_extra_comments, 0);
+export const MessageWithCommentsDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 0);
 
 // Describes the message spec.EmptyMessageWithComment. Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
-export const EmptyMessageWithCommentDesc = messageDesc(fileDesc_extra_comments, 1);
+export const EmptyMessageWithCommentDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 1);
 
 // Describes the message spec.GoogleCommentExample. Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
-export const GoogleCommentExampleDesc = messageDesc(fileDesc_extra_comments, 2);
+export const GoogleCommentExampleDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 2);
 
 // Describes the enum spec.EnumWithComments.
-export const EnumWithCommentsDesc = enumDesc(fileDesc_extra_comments, 0);
+export const EnumWithCommentsDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 0);
 
 /**
  * Leading comment for enum.
@@ -47,10 +52,12 @@ export const EnumWithCommentsDesc = enumDesc(fileDesc_extra_comments, 0);
  *
  * @generated from enum spec.EnumWithComments
  */
-export const EnumWithComments = tsEnum(EnumWithCommentsDesc);
+export const EnumWithComments = /*@__PURE__*/
+  tsEnum(EnumWithCommentsDesc);
 
 // Describes the enum spec.DeprecatedEnumWithComment.
-export const DeprecatedEnumWithCommentDesc = enumDesc(fileDesc_extra_comments, 1);
+export const DeprecatedEnumWithCommentDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 1);
 
 /**
  * Leading comment for deprecated enum
@@ -58,14 +65,17 @@ export const DeprecatedEnumWithCommentDesc = enumDesc(fileDesc_extra_comments, 1
  * @generated from enum spec.DeprecatedEnumWithComment
  * @deprecated
  */
-export const DeprecatedEnumWithComment = tsEnum(DeprecatedEnumWithCommentDesc);
+export const DeprecatedEnumWithComment = /*@__PURE__*/
+  tsEnum(DeprecatedEnumWithCommentDesc);
 
 // Describes the enum spec.DeprecatedEnumNoComment.
-export const DeprecatedEnumNoCommentDesc = enumDesc(fileDesc_extra_comments, 2);
+export const DeprecatedEnumNoCommentDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 2);
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
  */
-export const DeprecatedEnumNoComment = tsEnum(DeprecatedEnumNoCommentDesc);
+export const DeprecatedEnumNoComment = /*@__PURE__*/
+  tsEnum(DeprecatedEnumNoCommentDesc);
 

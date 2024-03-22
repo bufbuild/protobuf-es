@@ -18,11 +18,14 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_msg_message = fileDesc("ChdleHRyYS9tc2ctbWVzc2FnZS5wcm90bxIEc3BlYyK3AQoTTWVzc2FnZUZpZWxkTWVzc2FnZRI8Cg1tZXNzYWdlX2ZpZWxkGAEgASgLMiUuc3BlYy5NZXNzYWdlRmllbGRNZXNzYWdlLlRlc3RNZXNzYWdlEkUKFnJlcGVhdGVkX21lc3NhZ2VfZmllbGQYAiADKAsyJS5zcGVjLk1lc3NhZ2VGaWVsZE1lc3NhZ2UuVGVzdE1lc3NhZ2UaGwoLVGVzdE1lc3NhZ2USDAoEbmFtZRgBIAEoCWIGcHJvdG8z");
+export const fileDesc_extra_msg_message = /*@__PURE__*/
+  fileDesc("ChdleHRyYS9tc2ctbWVzc2FnZS5wcm90bxIEc3BlYyK3AQoTTWVzc2FnZUZpZWxkTWVzc2FnZRI8Cg1tZXNzYWdlX2ZpZWxkGAEgASgLMiUuc3BlYy5NZXNzYWdlRmllbGRNZXNzYWdlLlRlc3RNZXNzYWdlEkUKFnJlcGVhdGVkX21lc3NhZ2VfZmllbGQYAiADKAsyJS5zcGVjLk1lc3NhZ2VGaWVsZE1lc3NhZ2UuVGVzdE1lc3NhZ2UaGwoLVGVzdE1lc3NhZ2USDAoEbmFtZRgBIAEoCWIGcHJvdG8z");
 
 // Describes the message spec.MessageFieldMessage. Use `create(MessageFieldMessageDesc)` to create a new MessageFieldMessage.
-export const MessageFieldMessageDesc = messageDesc(fileDesc_extra_msg_message, 0);
+export const MessageFieldMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_message, 0);
 
 // Describes the message spec.MessageFieldMessage.TestMessage. Use `create(MessageFieldMessage_TestMessageDesc)` to create a new MessageFieldMessage_TestMessage.
-export const MessageFieldMessage_TestMessageDesc = messageDesc(fileDesc_extra_msg_message, 0, 0);
+export const MessageFieldMessage_TestMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_message, 0, 0);
 

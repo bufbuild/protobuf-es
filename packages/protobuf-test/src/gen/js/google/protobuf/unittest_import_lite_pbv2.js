@@ -23,16 +23,20 @@
 import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_unittest_import_public_lite } from "./unittest_import_public_lite_pbv2.js";
 
-export const fileDesc_google_protobuf_unittest_import_lite = fileDesc("Cipnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X2xpdGUucHJvdG8SGHByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydCIeChFJbXBvcnRNZXNzYWdlTGl0ZRIJCgFkGAEgASgFKk8KDkltcG9ydEVudW1MaXRlEhMKD0lNUE9SVF9MSVRFX0ZPTxAHEhMKD0lNUE9SVF9MSVRFX0JBUhAIEhMKD0lNUE9SVF9MSVRFX0JBWhAJQhcKE2NvbS5nb29nbGUucHJvdG9idWZIA1AA", [fileDesc_google_protobuf_unittest_import_public_lite]);
+export const fileDesc_google_protobuf_unittest_import_lite = /*@__PURE__*/
+  fileDesc("Cipnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X2xpdGUucHJvdG8SGHByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydCIeChFJbXBvcnRNZXNzYWdlTGl0ZRIJCgFkGAEgASgFKk8KDkltcG9ydEVudW1MaXRlEhMKD0lNUE9SVF9MSVRFX0ZPTxAHEhMKD0lNUE9SVF9MSVRFX0JBUhAIEhMKD0lNUE9SVF9MSVRFX0JBWhAJQhcKE2NvbS5nb29nbGUucHJvdG9idWZIA1AA", [fileDesc_google_protobuf_unittest_import_public_lite]);
 
 // Describes the message protobuf_unittest_import.ImportMessageLite. Use `create(ImportMessageLiteDesc)` to create a new ImportMessageLite.
-export const ImportMessageLiteDesc = messageDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
+export const ImportMessageLiteDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
 
 // Describes the enum protobuf_unittest_import.ImportEnumLite.
-export const ImportEnumLiteDesc = enumDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
+export const ImportEnumLiteDesc = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnumLite
  */
-export const ImportEnumLite = tsEnum(ImportEnumLiteDesc);
+export const ImportEnumLite = /*@__PURE__*/
+  tsEnum(ImportEnumLiteDesc);
 

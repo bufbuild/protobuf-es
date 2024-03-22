@@ -22,7 +22,8 @@ import { fileDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
 
-export const fileDesc_extra_service_all: DescFile = fileDesc("ChdleHRyYS9zZXJ2aWNlLWFsbC5wcm90bxIEc3BlYzLAAgoKU2VydmljZUFsbBJHCgVVbmFyeRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOQAgISUAoMU2VydmVyU3RyZWFtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUiA5ACATABEksKDENsaWVudFN0cmVhbRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlKAESSgoEQmlkaRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOIAgEoATABYgZwcm90bzM", [fileDesc_google_protobuf_wrappers]);
+export const fileDesc_extra_service_all: DescFile = /*@__PURE__*/
+  fileDesc("ChdleHRyYS9zZXJ2aWNlLWFsbC5wcm90bxIEc3BlYzLAAgoKU2VydmljZUFsbBJHCgVVbmFyeRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOQAgISUAoMU2VydmVyU3RyZWFtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUiA5ACATABEksKDENsaWVudFN0cmVhbRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlKAESSgoEQmlkaRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOIAgEoATABYgZwcm90bzM", [fileDesc_google_protobuf_wrappers]);
 
 /**
  * @generated from service spec.ServiceAll
@@ -62,5 +63,6 @@ export const ServiceAll: TypedDescService<{
     O: Int32Value;
   },
 }
-> = serviceDesc(fileDesc_extra_service_all, 0);
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_service_all, 0);
 

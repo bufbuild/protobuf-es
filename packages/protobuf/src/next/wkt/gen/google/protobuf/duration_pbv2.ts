@@ -21,7 +21,8 @@ import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
 import type { Message } from "../../../../types.js";
 import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
 
-export const fileDesc_google_protobuf_duration: DescFile = fileDesc("Ch5nb29nbGUvcHJvdG9idWYvZHVyYXRpb24ucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIqCghEdXJhdGlvbhIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgFQoMBChNjb20uZ29vZ2xlLnByb3RvYnVmQg1EdXJhdGlvblByb3RvUAFaMWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2R1cmF0aW9ucGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
+export const fileDesc_google_protobuf_duration: DescFile = /*@__PURE__*/
+  fileDesc("Ch5nb29nbGUvcHJvdG9idWYvZHVyYXRpb24ucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIqCghEdXJhdGlvbhIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgFQoMBChNjb20uZ29vZ2xlLnByb3RvYnVmQg1EdXJhdGlvblByb3RvUAFaMWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2R1cmF0aW9ucGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**
  * A Duration represents a signed, fixed-length span of time represented
@@ -111,5 +112,6 @@ export type Duration = Message<"google.protobuf.Duration"> & {
 
 // Describes the message google.protobuf.Duration.
 // Use `create(DurationDesc)` to create a new Duration.
-export const DurationDesc: TypedDescMessage<Duration> = messageDesc(fileDesc_google_protobuf_duration, 0);
+export const DurationDesc: TypedDescMessage<Duration> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_duration, 0);
 

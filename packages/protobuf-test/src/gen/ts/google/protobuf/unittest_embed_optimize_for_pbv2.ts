@@ -29,7 +29,8 @@ import type { TestOptimizedForSize } from "./unittest_optimize_for_pbv2.js";
 import { fileDesc_google_protobuf_unittest_optimize_for } from "./unittest_optimize_for_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_embed_optimize_for: DescFile = fileDesc("CjFnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1iZWRfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCKhAQoZVGVzdEVtYmVkT3B0aW1pemVkRm9yU2l6ZRJBChBvcHRpb25hbF9tZXNzYWdlGAEgASgLMicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUSQQoQcmVwZWF0ZWRfbWVzc2FnZRgCIAMoCzInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplQgJIAQ", [fileDesc_google_protobuf_unittest_optimize_for]);
+export const fileDesc_google_protobuf_unittest_embed_optimize_for: DescFile = /*@__PURE__*/
+  fileDesc("CjFnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1iZWRfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCKhAQoZVGVzdEVtYmVkT3B0aW1pemVkRm9yU2l6ZRJBChBvcHRpb25hbF9tZXNzYWdlGAEgASgLMicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUSQQoQcmVwZWF0ZWRfbWVzc2FnZRgCIAMoCzInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplQgJIAQ", [fileDesc_google_protobuf_unittest_optimize_for]);
 
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
@@ -51,5 +52,6 @@ export type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestEmbedOpti
 
 // Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
 // Use `create(TestEmbedOptimizedForSizeDesc)` to create a new TestEmbedOptimizedForSize.
-export const TestEmbedOptimizedForSizeDesc: TypedDescMessage<TestEmbedOptimizedForSize> = messageDesc(fileDesc_google_protobuf_unittest_embed_optimize_for, 0);
+export const TestEmbedOptimizedForSizeDesc: TypedDescMessage<TestEmbedOptimizedForSize> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_embed_optimize_for, 0);
 

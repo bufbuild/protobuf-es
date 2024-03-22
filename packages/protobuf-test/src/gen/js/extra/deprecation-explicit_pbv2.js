@@ -18,16 +18,20 @@
 
 import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_deprecation_explicit = fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIAWIGcHJvdG8z");
+export const fileDesc_extra_deprecation_explicit = /*@__PURE__*/
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIAWIGcHJvdG8z");
 
 // Describes the message spec.DeprecatedMessage. Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
-export const DeprecatedMessageDesc = messageDesc(fileDesc_extra_deprecation_explicit, 0);
+export const DeprecatedMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_deprecation_explicit, 0);
 
 // Describes the message spec.DeprecatedFieldMessage. Use `create(DeprecatedFieldMessageDesc)` to create a new DeprecatedFieldMessage.
-export const DeprecatedFieldMessageDesc = messageDesc(fileDesc_extra_deprecation_explicit, 1);
+export const DeprecatedFieldMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_deprecation_explicit, 1);
 
 // Describes the enum spec.DeprecatedEnum.
-export const DeprecatedEnumDesc = enumDesc(fileDesc_extra_deprecation_explicit, 0);
+export const DeprecatedEnumDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_deprecation_explicit, 0);
 
 /**
  * The entire enum is deprecated
@@ -35,15 +39,18 @@ export const DeprecatedEnumDesc = enumDesc(fileDesc_extra_deprecation_explicit, 
  * @generated from enum spec.DeprecatedEnum
  * @deprecated
  */
-export const DeprecatedEnum = tsEnum(DeprecatedEnumDesc);
+export const DeprecatedEnum = /*@__PURE__*/
+  tsEnum(DeprecatedEnumDesc);
 
 // Describes the enum spec.DeprecatedValueEnum.
-export const DeprecatedValueEnumDesc = enumDesc(fileDesc_extra_deprecation_explicit, 1);
+export const DeprecatedValueEnumDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_deprecation_explicit, 1);
 
 /**
  * Only a single enum value is deprecated
  *
  * @generated from enum spec.DeprecatedValueEnum
  */
-export const DeprecatedValueEnum = tsEnum(DeprecatedValueEnumDesc);
+export const DeprecatedValueEnum = /*@__PURE__*/
+  tsEnum(DeprecatedValueEnumDesc);
 

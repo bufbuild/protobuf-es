@@ -27,7 +27,8 @@ import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_extension_set: DescFile = fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
+export const fileDesc_google_protobuf_unittest_extension_set: DescFile = /*@__PURE__*/
+  fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 /**
  * A message with message_set_wire_format.
@@ -39,7 +40,8 @@ export type TestExtensionSet = Message<"protobuf_unittest.TestExtensionSet"> & {
 
 // Describes the message protobuf_unittest.TestExtensionSet.
 // Use `create(TestExtensionSetDesc)` to create a new TestExtensionSet.
-export const TestExtensionSetDesc: TypedDescMessage<TestExtensionSet> = messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
+export const TestExtensionSetDesc: TypedDescMessage<TestExtensionSet> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
 
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
@@ -53,5 +55,6 @@ export type TestExtensionSetContainer = Message<"protobuf_unittest.TestExtension
 
 // Describes the message protobuf_unittest.TestExtensionSetContainer.
 // Use `create(TestExtensionSetContainerDesc)` to create a new TestExtensionSetContainer.
-export const TestExtensionSetContainerDesc: TypedDescMessage<TestExtensionSetContainer> = messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
+export const TestExtensionSetContainerDesc: TypedDescMessage<TestExtensionSetContainer> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
 

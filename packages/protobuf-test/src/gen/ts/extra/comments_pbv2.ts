@@ -29,7 +29,8 @@ import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/co
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_comments: DescFile = fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
+export const fileDesc_extra_comments: DescFile = /*@__PURE__*/
+  fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
 
 /**
  * Comment before message.
@@ -89,7 +90,8 @@ export type MessageWithComments = Message<"spec.MessageWithComments"> & {
 
 // Describes the message spec.MessageWithComments.
 // Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
-export const MessageWithCommentsDesc: TypedDescMessage<MessageWithComments> = messageDesc(fileDesc_extra_comments, 0);
+export const MessageWithCommentsDesc: TypedDescMessage<MessageWithComments> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 0);
 
 /**
  * Comment within empty message.
@@ -101,7 +103,8 @@ export type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComment"> & 
 
 // Describes the message spec.EmptyMessageWithComment.
 // Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
-export const EmptyMessageWithCommentDesc: TypedDescMessage<EmptyMessageWithComment> = messageDesc(fileDesc_extra_comments, 1);
+export const EmptyMessageWithCommentDesc: TypedDescMessage<EmptyMessageWithComment> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 1);
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -160,7 +163,8 @@ export type GoogleCommentExample = Message<"spec.GoogleCommentExample"> & {
 
 // Describes the message spec.GoogleCommentExample.
 // Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
-export const GoogleCommentExampleDesc: TypedDescMessage<GoogleCommentExample> = messageDesc(fileDesc_extra_comments, 2);
+export const GoogleCommentExampleDesc: TypedDescMessage<GoogleCommentExample> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_comments, 2);
 
 /**
  * Leading comment for enum.
@@ -181,7 +185,8 @@ export enum EnumWithComments {
 }
 
 // Describes the enum spec.EnumWithComments.
-export const EnumWithCommentsDesc: TypedDescEnum<EnumWithComments> = enumDesc(fileDesc_extra_comments, 0);
+export const EnumWithCommentsDesc: TypedDescEnum<EnumWithComments> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 0);
 
 /**
  * Leading comment for deprecated enum
@@ -202,7 +207,8 @@ export enum DeprecatedEnumWithComment {
 }
 
 // Describes the enum spec.DeprecatedEnumWithComment.
-export const DeprecatedEnumWithCommentDesc: TypedDescEnum<DeprecatedEnumWithComment> = enumDesc(fileDesc_extra_comments, 1);
+export const DeprecatedEnumWithCommentDesc: TypedDescEnum<DeprecatedEnumWithComment> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 1);
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
@@ -221,5 +227,6 @@ export enum DeprecatedEnumNoComment {
 }
 
 // Describes the enum spec.DeprecatedEnumNoComment.
-export const DeprecatedEnumNoCommentDesc: TypedDescEnum<DeprecatedEnumNoComment> = enumDesc(fileDesc_extra_comments, 2);
+export const DeprecatedEnumNoCommentDesc: TypedDescEnum<DeprecatedEnumNoComment> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_comments, 2);
 

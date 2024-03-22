@@ -21,7 +21,8 @@ import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_deprecation_implicit: DescFile = fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
+export const fileDesc_extra_deprecation_implicit: DescFile = /*@__PURE__*/
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage
@@ -32,5 +33,6 @@ export type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMess
 
 // Describes the message spec.ImplicitlyDeprecatedMessage.
 // Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
-export const ImplicitlyDeprecatedMessageDesc: TypedDescMessage<ImplicitlyDeprecatedMessage> = messageDesc(fileDesc_extra_deprecation_implicit, 0);
+export const ImplicitlyDeprecatedMessageDesc: TypedDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_deprecation_implicit, 0);
 

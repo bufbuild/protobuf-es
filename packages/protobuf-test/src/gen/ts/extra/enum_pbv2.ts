@@ -23,7 +23,8 @@ import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt"
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_enum: DescFile = fileDesc("ChBleHRyYS9lbnVtLnByb3RvEgRzcGVjIm4KC0VudW1NZXNzYWdlEjAKCmVudW1fZmllbGQYASABKA4yHC5zcGVjLkVudW1NZXNzYWdlLk5lc3RlZEVudW0iLQoKTmVzdGVkRW51bRIPCgtORVNURURfWkVSTxAAEg4KCk5FU1RFRF9PTkUQASo0Cg1Bbm5vdGF0ZWRFbnVtEg8KC1VOU1BFQ0lGSUVEEAASDQoDRk9PEAEaBMi7AQEaA4h9ASotCgpTaW1wbGVFbnVtEg8KC1NJTVBMRV9aRVJPEAASDgoKU0lNUExFX09ORRABKkUKCUFsaWFzRW51bRIOCgpBTElBU19aRVJPEAASDQoJQUxJQVNfT05FEAESFQoRQUxJQVNfT05FX0FMSUFTRUQQARoCEAEqNwoKUHJlZml4RW51bRIUChBQUkVGSVhfRU5VTV9aRVJPEAASEwoPUFJFRklYX0VOVU1fT05FEAE6QQoNZW51bV9vcHRfYm9vbBIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjRDyABKAhSC2VudW1PcHRCb29sOlEKE2VudW1fdmFsdWVfb3B0X2Jvb2wSIS5nb29nbGUucHJvdG9idWYuRW51bVZhbHVlT3B0aW9ucxi5FyABKAhSEGVudW1WYWx1ZU9wdEJvb2xiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
+export const fileDesc_extra_enum: DescFile = /*@__PURE__*/
+  fileDesc("ChBleHRyYS9lbnVtLnByb3RvEgRzcGVjIm4KC0VudW1NZXNzYWdlEjAKCmVudW1fZmllbGQYASABKA4yHC5zcGVjLkVudW1NZXNzYWdlLk5lc3RlZEVudW0iLQoKTmVzdGVkRW51bRIPCgtORVNURURfWkVSTxAAEg4KCk5FU1RFRF9PTkUQASo0Cg1Bbm5vdGF0ZWRFbnVtEg8KC1VOU1BFQ0lGSUVEEAASDQoDRk9PEAEaBMi7AQEaA4h9ASotCgpTaW1wbGVFbnVtEg8KC1NJTVBMRV9aRVJPEAASDgoKU0lNUExFX09ORRABKkUKCUFsaWFzRW51bRIOCgpBTElBU19aRVJPEAASDQoJQUxJQVNfT05FEAESFQoRQUxJQVNfT05FX0FMSUFTRUQQARoCEAEqNwoKUHJlZml4RW51bRIUChBQUkVGSVhfRU5VTV9aRVJPEAASEwoPUFJFRklYX0VOVU1fT05FEAE6QQoNZW51bV9vcHRfYm9vbBIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjRDyABKAhSC2VudW1PcHRCb29sOlEKE2VudW1fdmFsdWVfb3B0X2Jvb2wSIS5nb29nbGUucHJvdG9idWYuRW51bVZhbHVlT3B0aW9ucxi5FyABKAhSEGVudW1WYWx1ZU9wdEJvb2xiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
 
 /**
  * @generated from message spec.EnumMessage
@@ -37,7 +38,8 @@ export type EnumMessage = Message<"spec.EnumMessage"> & {
 
 // Describes the message spec.EnumMessage.
 // Use `create(EnumMessageDesc)` to create a new EnumMessage.
-export const EnumMessageDesc: TypedDescMessage<EnumMessage> = messageDesc(fileDesc_extra_enum, 0);
+export const EnumMessageDesc: TypedDescMessage<EnumMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_enum, 0);
 
 /**
  * @generated from enum spec.EnumMessage.NestedEnum
@@ -55,7 +57,8 @@ export enum EnumMessage_NestedEnum {
 }
 
 // Describes the enum spec.EnumMessage.NestedEnum.
-export const EnumMessage_NestedEnumDesc: TypedDescEnum<EnumMessage_NestedEnum> = enumDesc(fileDesc_extra_enum, 0, 0);
+export const EnumMessage_NestedEnumDesc: TypedDescEnum<EnumMessage_NestedEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_enum, 0, 0);
 
 /**
  * @generated from enum spec.AnnotatedEnum
@@ -73,7 +76,8 @@ export enum AnnotatedEnum {
 }
 
 // Describes the enum spec.AnnotatedEnum.
-export const AnnotatedEnumDesc: TypedDescEnum<AnnotatedEnum> = enumDesc(fileDesc_extra_enum, 0);
+export const AnnotatedEnumDesc: TypedDescEnum<AnnotatedEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_enum, 0);
 
 /**
  * @generated from enum spec.SimpleEnum
@@ -91,7 +95,8 @@ export enum SimpleEnum {
 }
 
 // Describes the enum spec.SimpleEnum.
-export const SimpleEnumDesc: TypedDescEnum<SimpleEnum> = enumDesc(fileDesc_extra_enum, 1);
+export const SimpleEnumDesc: TypedDescEnum<SimpleEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_enum, 1);
 
 /**
  * @generated from enum spec.AliasEnum
@@ -114,7 +119,8 @@ export enum AliasEnum {
 }
 
 // Describes the enum spec.AliasEnum.
-export const AliasEnumDesc: TypedDescEnum<AliasEnum> = enumDesc(fileDesc_extra_enum, 2);
+export const AliasEnumDesc: TypedDescEnum<AliasEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_enum, 2);
 
 /**
  * The generated enum values should drop the "PREFIX_"
@@ -136,15 +142,18 @@ export enum PrefixEnum {
 }
 
 // Describes the enum spec.PrefixEnum.
-export const PrefixEnumDesc: TypedDescEnum<PrefixEnum> = enumDesc(fileDesc_extra_enum, 3);
+export const PrefixEnumDesc: TypedDescEnum<PrefixEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_enum, 3);
 
 /**
  * @generated from extension: bool enum_opt_bool = 2001;
  */
-export const enum_opt_bool: TypedDescExtension<EnumOptions, boolean> = extDesc(fileDesc_extra_enum, 0);
+export const enum_opt_bool: TypedDescExtension<EnumOptions, boolean> = /*@__PURE__*/
+  extDesc(fileDesc_extra_enum, 0);
 
 /**
  * @generated from extension: bool enum_value_opt_bool = 3001;
  */
-export const enum_value_opt_bool: TypedDescExtension<EnumValueOptions, boolean> = extDesc(fileDesc_extra_enum, 1);
+export const enum_value_opt_bool: TypedDescExtension<EnumValueOptions, boolean> = /*@__PURE__*/
+  extDesc(fileDesc_extra_enum, 1);
 

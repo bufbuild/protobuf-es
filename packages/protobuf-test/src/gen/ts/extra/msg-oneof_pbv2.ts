@@ -21,7 +21,8 @@ import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/co
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_oneof: DescFile = fileDesc("ChVleHRyYS9tc2ctb25lb2YucHJvdG8SBHNwZWMi7gEKDE9uZW9mTWVzc2FnZRIPCgV2YWx1ZRgBIAEoBUgAEg8KBWVycm9yGAIgASgJSAASDwoFYnl0ZXMYAyABKAxIABIkCgNmb28YCyABKAsyFS5zcGVjLk9uZW9mTWVzc2FnZUZvb0gBEiQKA2JhchgMIAEoCzIVLnNwZWMuT25lb2ZNZXNzYWdlQmFySAESJAoDYmF6GA0gASgLMhUuc3BlYy5PbmVvZk1lc3NhZ2VCYXJIARIcCgFlGBUgASgOMg8uc3BlYy5PbmVvZkVudW1IAkIICgZzY2FsYXJCCQoHbWVzc2FnZUIGCgRlbnVtIi8KD09uZW9mTWVzc2FnZUZvbxIMCgRuYW1lGAEgASgJEg4KBnRvZ2dsZRgCIAEoCCInCg9PbmVvZk1lc3NhZ2VCYXISCQoBYRgBIAEoBRIJCgFiGAIgASgFKksKCU9uZW9mRW51bRIaChZPTkVPRl9FTlVNX1VOU1BFQ0lGSUVEEAASEAoMT05FT0ZfRU5VTV9BEAESEAoMT05FT0ZfRU5VTV9CEAJiBnByb3RvMw");
+export const fileDesc_extra_msg_oneof: DescFile = /*@__PURE__*/
+  fileDesc("ChVleHRyYS9tc2ctb25lb2YucHJvdG8SBHNwZWMi7gEKDE9uZW9mTWVzc2FnZRIPCgV2YWx1ZRgBIAEoBUgAEg8KBWVycm9yGAIgASgJSAASDwoFYnl0ZXMYAyABKAxIABIkCgNmb28YCyABKAsyFS5zcGVjLk9uZW9mTWVzc2FnZUZvb0gBEiQKA2JhchgMIAEoCzIVLnNwZWMuT25lb2ZNZXNzYWdlQmFySAESJAoDYmF6GA0gASgLMhUuc3BlYy5PbmVvZk1lc3NhZ2VCYXJIARIcCgFlGBUgASgOMg8uc3BlYy5PbmVvZkVudW1IAkIICgZzY2FsYXJCCQoHbWVzc2FnZUIGCgRlbnVtIi8KD09uZW9mTWVzc2FnZUZvbxIMCgRuYW1lGAEgASgJEg4KBnRvZ2dsZRgCIAEoCCInCg9PbmVvZk1lc3NhZ2VCYXISCQoBYRgBIAEoBRIJCgFiGAIgASgFKksKCU9uZW9mRW51bRIaChZPTkVPRl9FTlVNX1VOU1BFQ0lGSUVEEAASEAoMT05FT0ZfRU5VTV9BEAESEAoMT05FT0ZfRU5VTV9CEAJiBnByb3RvMw");
 
 /**
  * @generated from message spec.OneofMessage
@@ -87,7 +88,8 @@ export type OneofMessage = Message<"spec.OneofMessage"> & {
 
 // Describes the message spec.OneofMessage.
 // Use `create(OneofMessageDesc)` to create a new OneofMessage.
-export const OneofMessageDesc: TypedDescMessage<OneofMessage> = messageDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofMessageDesc: TypedDescMessage<OneofMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_oneof, 0);
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -106,7 +108,8 @@ export type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 
 // Describes the message spec.OneofMessageFoo.
 // Use `create(OneofMessageFooDesc)` to create a new OneofMessageFoo.
-export const OneofMessageFooDesc: TypedDescMessage<OneofMessageFoo> = messageDesc(fileDesc_extra_msg_oneof, 1);
+export const OneofMessageFooDesc: TypedDescMessage<OneofMessageFoo> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_oneof, 1);
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -125,7 +128,8 @@ export type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 
 // Describes the message spec.OneofMessageBar.
 // Use `create(OneofMessageBarDesc)` to create a new OneofMessageBar.
-export const OneofMessageBarDesc: TypedDescMessage<OneofMessageBar> = messageDesc(fileDesc_extra_msg_oneof, 2);
+export const OneofMessageBarDesc: TypedDescMessage<OneofMessageBar> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_oneof, 2);
 
 /**
  * @generated from enum spec.OneofEnum
@@ -148,5 +152,6 @@ export enum OneofEnum {
 }
 
 // Describes the enum spec.OneofEnum.
-export const OneofEnumDesc: TypedDescEnum<OneofEnum> = enumDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofEnumDesc: TypedDescEnum<OneofEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_msg_oneof, 0);
 

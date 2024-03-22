@@ -24,11 +24,14 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_mset_wire_format = fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbXNldF93aXJlX2Zvcm1hdC5wcm90bxIacHJvdG8yX3dpcmVmb3JtYXRfdW5pdHRlc3QiLAoOVGVzdE1lc3NhZ2VTZXQqCAgEEIDR3PwBKgwIgNHc/AEQ/////wc6AggBImQKIVRlc3RNZXNzYWdlU2V0V2lyZUZvcm1hdENvbnRhaW5lchI/CgttZXNzYWdlX3NldBgBIAEoCzIqLnByb3RvMl93aXJlZm9ybWF0X3VuaXR0ZXN0LlRlc3RNZXNzYWdlU2V0QilIAfgBAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
+export const fileDesc_google_protobuf_unittest_mset_wire_format = /*@__PURE__*/
+  fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbXNldF93aXJlX2Zvcm1hdC5wcm90bxIacHJvdG8yX3dpcmVmb3JtYXRfdW5pdHRlc3QiLAoOVGVzdE1lc3NhZ2VTZXQqCAgEEIDR3PwBKgwIgNHc/AEQ/////wc6AggBImQKIVRlc3RNZXNzYWdlU2V0V2lyZUZvcm1hdENvbnRhaW5lchI/CgttZXNzYWdlX3NldBgBIAEoCzIqLnByb3RvMl93aXJlZm9ybWF0X3VuaXR0ZXN0LlRlc3RNZXNzYWdlU2V0QilIAfgBAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 // Describes the message proto2_wireformat_unittest.TestMessageSet. Use `create(TestMessageSetDesc)` to create a new TestMessageSet.
-export const TestMessageSetDesc = messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 0);
+export const TestMessageSetDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 0);
 
 // Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer. Use `create(TestMessageSetWireFormatContainerDesc)` to create a new TestMessageSetWireFormatContainer.
-export const TestMessageSetWireFormatContainerDesc = messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 1);
+export const TestMessageSetWireFormatContainerDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 1);
 

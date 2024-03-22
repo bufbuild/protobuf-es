@@ -18,5 +18,6 @@
 
 import { fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_empty_file = fileDesc("ChZleHRyYS9lbXB0eS1maWxlLnByb3RvEgRzcGVjYgZwcm90bzM");
+export const fileDesc_extra_empty_file = /*@__PURE__*/
+  fileDesc("ChZleHRyYS9lbXB0eS1maWxlLnByb3RvEgRzcGVjYgZwcm90bzM");
 

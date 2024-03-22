@@ -33,7 +33,8 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegen
 import { fileDesc_google_protobuf_unittest_import_public } from "./unittest_import_public_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_import: DescFile = fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0LnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiGgoNSW1wb3J0TWVzc2FnZRIJCgFkGAEgASgFKjwKCkltcG9ydEVudW0SDgoKSU1QT1JUX0ZPTxAHEg4KCklNUE9SVF9CQVIQCBIOCgpJTVBPUlRfQkFaEAkqMQoQSW1wb3J0RW51bUZvck1hcBILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAJCHwoYY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0SAH4AQFQAA", [fileDesc_google_protobuf_unittest_import_public]);
+export const fileDesc_google_protobuf_unittest_import: DescFile = /*@__PURE__*/
+  fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0LnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiGgoNSW1wb3J0TWVzc2FnZRIJCgFkGAEgASgFKjwKCkltcG9ydEVudW0SDgoKSU1QT1JUX0ZPTxAHEg4KCklNUE9SVF9CQVIQCBIOCgpJTVBPUlRfQkFaEAkqMQoQSW1wb3J0RW51bUZvck1hcBILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAJCHwoYY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0SAH4AQFQAA", [fileDesc_google_protobuf_unittest_import_public]);
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
@@ -47,7 +48,8 @@ export type ImportMessage = Message<"protobuf_unittest_import.ImportMessage"> & 
 
 // Describes the message protobuf_unittest_import.ImportMessage.
 // Use `create(ImportMessageDesc)` to create a new ImportMessage.
-export const ImportMessageDesc: TypedDescMessage<ImportMessage> = messageDesc(fileDesc_google_protobuf_unittest_import, 0);
+export const ImportMessageDesc: TypedDescMessage<ImportMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
@@ -70,7 +72,8 @@ export enum ImportEnum {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnum.
-export const ImportEnumDesc: TypedDescEnum<ImportEnum> = enumDesc(fileDesc_google_protobuf_unittest_import, 0);
+export const ImportEnumDesc: TypedDescEnum<ImportEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
  * To use an enum in a map, it must has the first value as 0.
@@ -95,5 +98,6 @@ export enum ImportEnumForMap {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnumForMap.
-export const ImportEnumForMapDesc: TypedDescEnum<ImportEnumForMap> = enumDesc(fileDesc_google_protobuf_unittest_import, 1);
+export const ImportEnumForMapDesc: TypedDescEnum<ImportEnumForMap> = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_import, 1);
 

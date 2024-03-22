@@ -21,7 +21,8 @@ import type { TypedDescEnum, TypedDescMessage, TypedDescService } from "@bufbuil
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_service_example: DescFile = fileDesc("ChtleHRyYS9zZXJ2aWNlLWV4YW1wbGUucHJvdG8SBHNwZWMingEKDkV4YW1wbGVSZXF1ZXN0EhAKCHF1ZXN0aW9uGAEgASgJEiYKC3BsZWFzZV9mYWlsGAIgASgOMhEuc3BlYy5GYWlsUmVxdWVzdBIgChhwbGVhc2VfZGVsYXlfcmVzcG9uc2VfbXMYAyABKAUSMAooZGlzYWJsZV9zZW5kaW5nX2V4YW1wbGVfcmVzcG9uc2VfaGVhZGVycxgEIAEoCCLuAQoPRXhhbXBsZVJlc3BvbnNlEg4KBmFuc3dlchgBIAEoCRJLChR5b3VyX3JlcXVlc3RfaGVhZGVycxgCIAMoCzItLnNwZWMuRXhhbXBsZVJlc3BvbnNlLllvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EhUKDXlvdXJfZGVhZGxpbmUYAyABKAkSLAoReW91cl9mYWlsX3JlcXVlc3QYBCABKA4yES5zcGVjLkZhaWxSZXF1ZXN0GjkKF1lvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEqWgoLRmFpbFJlcXVlc3QSFQoRRkFJTF9SRVFVRVNUX05PTkUQABIdChlNRVNTQUdFX1RIRU5fRVJST1JfU1RBVFVTEAESFQoRRVJST1JfU1RBVFVTX09OTFkQAjL9AQoORXhhbXBsZVNlcnZpY2USNAoFVW5hcnkSFC5zcGVjLkV4YW1wbGVSZXF1ZXN0GhUuc3BlYy5FeGFtcGxlUmVzcG9uc2USPQoMU2VydmVyU3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlMAESPQoMQ2xpZW50U3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlKAESNwoEQmlkaRIULnNwZWMuRXhhbXBsZVJlcXVlc3QaFS5zcGVjLkV4YW1wbGVSZXNwb25zZSgBMAFiBnByb3RvMw");
+export const fileDesc_extra_service_example: DescFile = /*@__PURE__*/
+  fileDesc("ChtleHRyYS9zZXJ2aWNlLWV4YW1wbGUucHJvdG8SBHNwZWMingEKDkV4YW1wbGVSZXF1ZXN0EhAKCHF1ZXN0aW9uGAEgASgJEiYKC3BsZWFzZV9mYWlsGAIgASgOMhEuc3BlYy5GYWlsUmVxdWVzdBIgChhwbGVhc2VfZGVsYXlfcmVzcG9uc2VfbXMYAyABKAUSMAooZGlzYWJsZV9zZW5kaW5nX2V4YW1wbGVfcmVzcG9uc2VfaGVhZGVycxgEIAEoCCLuAQoPRXhhbXBsZVJlc3BvbnNlEg4KBmFuc3dlchgBIAEoCRJLChR5b3VyX3JlcXVlc3RfaGVhZGVycxgCIAMoCzItLnNwZWMuRXhhbXBsZVJlc3BvbnNlLllvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EhUKDXlvdXJfZGVhZGxpbmUYAyABKAkSLAoReW91cl9mYWlsX3JlcXVlc3QYBCABKA4yES5zcGVjLkZhaWxSZXF1ZXN0GjkKF1lvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEqWgoLRmFpbFJlcXVlc3QSFQoRRkFJTF9SRVFVRVNUX05PTkUQABIdChlNRVNTQUdFX1RIRU5fRVJST1JfU1RBVFVTEAESFQoRRVJST1JfU1RBVFVTX09OTFkQAjL9AQoORXhhbXBsZVNlcnZpY2USNAoFVW5hcnkSFC5zcGVjLkV4YW1wbGVSZXF1ZXN0GhUuc3BlYy5FeGFtcGxlUmVzcG9uc2USPQoMU2VydmVyU3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlMAESPQoMQ2xpZW50U3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlKAESNwoEQmlkaRIULnNwZWMuRXhhbXBsZVJlcXVlc3QaFS5zcGVjLkV4YW1wbGVSZXNwb25zZSgBMAFiBnByb3RvMw");
 
 /**
  * @generated from message spec.ExampleRequest
@@ -58,7 +59,8 @@ export type ExampleRequest = Message<"spec.ExampleRequest"> & {
 
 // Describes the message spec.ExampleRequest.
 // Use `create(ExampleRequestDesc)` to create a new ExampleRequest.
-export const ExampleRequestDesc: TypedDescMessage<ExampleRequest> = messageDesc(fileDesc_extra_service_example, 0);
+export const ExampleRequestDesc: TypedDescMessage<ExampleRequest> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_service_example, 0);
 
 /**
  * @generated from message spec.ExampleResponse
@@ -95,7 +97,8 @@ export type ExampleResponse = Message<"spec.ExampleResponse"> & {
 
 // Describes the message spec.ExampleResponse.
 // Use `create(ExampleResponseDesc)` to create a new ExampleResponse.
-export const ExampleResponseDesc: TypedDescMessage<ExampleResponse> = messageDesc(fileDesc_extra_service_example, 1);
+export const ExampleResponseDesc: TypedDescMessage<ExampleResponse> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_service_example, 1);
 
 /**
  * @generated from enum spec.FailRequest
@@ -124,7 +127,8 @@ export enum FailRequest {
 }
 
 // Describes the enum spec.FailRequest.
-export const FailRequestDesc: TypedDescEnum<FailRequest> = enumDesc(fileDesc_extra_service_example, 0);
+export const FailRequestDesc: TypedDescEnum<FailRequest> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_service_example, 0);
 
 /**
  * @generated from service spec.ExampleService
@@ -163,5 +167,6 @@ export const ExampleService: TypedDescService<{
     O: ExampleResponse;
   },
 }
-> = serviceDesc(fileDesc_extra_service_example, 0);
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_service_example, 0);
 

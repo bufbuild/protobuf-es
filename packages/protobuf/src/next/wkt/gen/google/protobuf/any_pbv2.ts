@@ -21,7 +21,8 @@ import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
 import type { Message } from "../../../../types.js";
 import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
 
-export const fileDesc_google_protobuf_any: DescFile = fileDesc("Chlnb29nbGUvcHJvdG9idWYvYW55LnByb3RvEg9nb29nbGUucHJvdG9idWYiJgoDQW55EhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgMQnYKE2NvbS5nb29nbGUucHJvdG9idWZCCEFueVByb3RvUAFaLGdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2FueXBiogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
+export const fileDesc_google_protobuf_any: DescFile = /*@__PURE__*/
+  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYW55LnByb3RvEg9nb29nbGUucHJvdG9idWYiJgoDQW55EhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgMQnYKE2NvbS5nb29nbGUucHJvdG9idWZCCEFueVByb3RvUAFaLGdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2FueXBiogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
  * `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -159,5 +160,6 @@ export type Any = Message<"google.protobuf.Any"> & {
 
 // Describes the message google.protobuf.Any.
 // Use `create(AnyDesc)` to create a new Any.
-export const AnyDesc: TypedDescMessage<Any> = messageDesc(fileDesc_google_protobuf_any, 0);
+export const AnyDesc: TypedDescMessage<Any> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_any, 0);
 

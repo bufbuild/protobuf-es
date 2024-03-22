@@ -19,13 +19,16 @@
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
 
-export const fileDesc_google_protobuf_unittest_invalid_features = fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW52YWxpZF9mZWF0dXJlcy5wcm90bxICcGIiQAoTVGVzdEludmFsaWRGZWF0dXJlcxIpChByZXBlYXRlZF9mZWF0dXJlGAEgAygFQg+IAQGYAQSiAQYSATMY6Ac6WAoMdGVzdF9pbnZhbGlkEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjE4gASgLMhcucGIuVGVzdEludmFsaWRGZWF0dXJlc1ILdGVzdEludmFsaWQ", [fileDesc_google_protobuf_descriptor]);
+export const fileDesc_google_protobuf_unittest_invalid_features = /*@__PURE__*/
+  fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW52YWxpZF9mZWF0dXJlcy5wcm90bxICcGIiQAoTVGVzdEludmFsaWRGZWF0dXJlcxIpChByZXBlYXRlZF9mZWF0dXJlGAEgAygFQg+IAQGYAQSiAQYSATMY6Ac6WAoMdGVzdF9pbnZhbGlkEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjE4gASgLMhcucGIuVGVzdEludmFsaWRGZWF0dXJlc1ILdGVzdEludmFsaWQ", [fileDesc_google_protobuf_descriptor]);
 
 // Describes the message pb.TestInvalidFeatures. Use `create(TestInvalidFeaturesDesc)` to create a new TestInvalidFeatures.
-export const TestInvalidFeaturesDesc = messageDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
+export const TestInvalidFeaturesDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
  */
-export const test_invalid = extDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
+export const test_invalid = /*@__PURE__*/
+  extDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
 

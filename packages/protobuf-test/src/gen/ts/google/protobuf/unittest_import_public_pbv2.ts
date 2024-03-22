@@ -23,7 +23,8 @@ import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_import_public: DescFile = fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpYy5wcm90bxIYcHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0IiAKE1B1YmxpY0ltcG9ydE1lc3NhZ2USCQoBZRgBIAEoBUIaChhjb20uZ29vZ2xlLnByb3RvYnVmLnRlc3Q");
+export const fileDesc_google_protobuf_unittest_import_public: DescFile = /*@__PURE__*/
+  fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpYy5wcm90bxIYcHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0IiAKE1B1YmxpY0ltcG9ydE1lc3NhZ2USCQoBZRgBIAEoBUIaChhjb20uZ29vZ2xlLnByb3RvYnVmLnRlc3Q");
 
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessage
@@ -37,5 +38,6 @@ export type PublicImportMessage = Message<"protobuf_unittest_import.PublicImport
 
 // Describes the message protobuf_unittest_import.PublicImportMessage.
 // Use `create(PublicImportMessageDesc)` to create a new PublicImportMessage.
-export const PublicImportMessageDesc: TypedDescMessage<PublicImportMessage> = messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
+export const PublicImportMessageDesc: TypedDescMessage<PublicImportMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
 

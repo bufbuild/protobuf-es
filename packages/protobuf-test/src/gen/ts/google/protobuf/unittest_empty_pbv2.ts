@@ -35,5 +35,6 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import { fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_empty: DescFile = fileDesc("CiRnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1wdHkucHJvdG8");
+export const fileDesc_google_protobuf_unittest_empty: DescFile = /*@__PURE__*/
+  fileDesc("CiRnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1wdHkucHJvdG8");
 

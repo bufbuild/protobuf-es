@@ -21,7 +21,8 @@ import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_json_names: DescFile = fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKjAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGViBnByb3RvMw");
+export const fileDesc_extra_msg_json_names: DescFile = /*@__PURE__*/
+  fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKjAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGViBnByb3RvMw");
 
 /**
  * @generated from message spec.JsonNamesMessage
@@ -55,5 +56,6 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
 
 // Describes the message spec.JsonNamesMessage.
 // Use `create(JsonNamesMessageDesc)` to create a new JsonNamesMessage.
-export const JsonNamesMessageDesc: TypedDescMessage<JsonNamesMessage> = messageDesc(fileDesc_extra_msg_json_names, 0);
+export const JsonNamesMessageDesc: TypedDescMessage<JsonNamesMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_msg_json_names, 0);
 

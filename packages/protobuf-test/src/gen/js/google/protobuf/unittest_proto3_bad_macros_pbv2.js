@@ -18,30 +18,36 @@
 
 import { enumDesc, fileDesc, tsEnum } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_proto3_bad_macros = fileDesc("CjBnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zX2JhZF9tYWNyb3MucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0KhUKA0dJRBIOCgpHSURfVU5VU0VEEAAqFQoDVUlEEg4KClVJRF9VTlVTRUQQACroAwoIQmFkTmFtZXMSCwoHUEFDS0FHRRAAEgoKBlBBQ0tFRBABEgkKBWxpbnV4EAISCgoGRE9NQUlOEAMSCAoEVFJVRRAEEgkKBUZBTFNFEAUSDgoKQ1JFQVRFX05FVxAGEgoKBkRFTEVURRAHEhAKDERPVUJMRV9DTElDSxAIEgkKBUVSUk9SEAkSDgoKRVJST1JfQlVTWRAKEhgKFEVSUk9SX0lOU1RBTExfRkFJTEVEEAsSEwoPRVJST1JfTk9UX0ZPVU5EEAwSEAoMR2V0Q2xhc3NOYW1lEA0SEgoOR2V0Q3VycmVudFRpbWUQDhIOCgpHZXRNZXNzYWdlEA8SDQoJR2V0T2JqZWN0EBASCgoGSUdOT1JFEBESBgoCSU4QEhISCg5JTlBVVF9LRVlCT0FSRBATEgwKCE5PX0VSUk9SEBQSBwoDT1VUEBUSDAoIT1BUSU9OQUwQFhIICgRORUFSEBcSCwoHTk9fREFUQRAYEhIKDlJFQVNPTl9VTktOT1dOEBkSFAoQU0VSVklDRV9ESVNBQkxFRBAaEhIKDlNFVkVSSVRZX0VSUk9SEBsSEgoOU1RBVFVTX1BFTkRJTkcQHBIKCgZTVFJJQ1QQHRINCglUWVBFX0JPT0wQHhIJCgVERUJVRxAfQjgKIWNvbS5nb29nbGUucHJvdG9idWYudGVzdGluZy5wcm90b1ABqgIQUHJvdG9idWZVbml0dGVzdGIGcHJvdG8z");
+export const fileDesc_google_protobuf_unittest_proto3_bad_macros = /*@__PURE__*/
+  fileDesc("CjBnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zX2JhZF9tYWNyb3MucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0KhUKA0dJRBIOCgpHSURfVU5VU0VEEAAqFQoDVUlEEg4KClVJRF9VTlVTRUQQACroAwoIQmFkTmFtZXMSCwoHUEFDS0FHRRAAEgoKBlBBQ0tFRBABEgkKBWxpbnV4EAISCgoGRE9NQUlOEAMSCAoEVFJVRRAEEgkKBUZBTFNFEAUSDgoKQ1JFQVRFX05FVxAGEgoKBkRFTEVURRAHEhAKDERPVUJMRV9DTElDSxAIEgkKBUVSUk9SEAkSDgoKRVJST1JfQlVTWRAKEhgKFEVSUk9SX0lOU1RBTExfRkFJTEVEEAsSEwoPRVJST1JfTk9UX0ZPVU5EEAwSEAoMR2V0Q2xhc3NOYW1lEA0SEgoOR2V0Q3VycmVudFRpbWUQDhIOCgpHZXRNZXNzYWdlEA8SDQoJR2V0T2JqZWN0EBASCgoGSUdOT1JFEBESBgoCSU4QEhISCg5JTlBVVF9LRVlCT0FSRBATEgwKCE5PX0VSUk9SEBQSBwoDT1VUEBUSDAoIT1BUSU9OQUwQFhIICgRORUFSEBcSCwoHTk9fREFUQRAYEhIKDlJFQVNPTl9VTktOT1dOEBkSFAoQU0VSVklDRV9ESVNBQkxFRBAaEhIKDlNFVkVSSVRZX0VSUk9SEBsSEgoOU1RBVFVTX1BFTkRJTkcQHBIKCgZTVFJJQ1QQHRINCglUWVBFX0JPT0wQHhIJCgVERUJVRxAfQjgKIWNvbS5nb29nbGUucHJvdG9idWYudGVzdGluZy5wcm90b1ABqgIQUHJvdG9idWZVbml0dGVzdGIGcHJvdG8z");
 
 // Describes the enum protobuf_unittest.GID.
-export const GIDDesc = enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 0);
+export const GIDDesc = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 0);
 
 /**
  * This generates `GID_MAX`, which is a macro in some circumstances.
  *
  * @generated from enum protobuf_unittest.GID
  */
-export const GID = tsEnum(GIDDesc);
+export const GID = /*@__PURE__*/
+  tsEnum(GIDDesc);
 
 // Describes the enum protobuf_unittest.UID.
-export const UIDDesc = enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 1);
+export const UIDDesc = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 1);
 
 /**
  * This generates `UID_MAX`, which is a mcro in some circumstances.
  *
  * @generated from enum protobuf_unittest.UID
  */
-export const UID = tsEnum(UIDDesc);
+export const UID = /*@__PURE__*/
+  tsEnum(UIDDesc);
 
 // Describes the enum protobuf_unittest.BadNames.
-export const BadNamesDesc = enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 2);
+export const BadNamesDesc = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 2);
 
 /**
  * Just a container for bad macro names. Some of these do not follow the normal
@@ -50,5 +56,6 @@ export const BadNamesDesc = enumDesc(fileDesc_google_protobuf_unittest_proto3_ba
  *
  * @generated from enum protobuf_unittest.BadNames
  */
-export const BadNames = tsEnum(BadNamesDesc);
+export const BadNames = /*@__PURE__*/
+  tsEnum(BadNamesDesc);
 

@@ -25,7 +25,8 @@ import type { Option, Syntax } from "./type_pbv2.js";
 import { fileDesc_google_protobuf_type } from "./type_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_api: DescFile = fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [fileDesc_google_protobuf_source_context, fileDesc_google_protobuf_type]);
+export const fileDesc_google_protobuf_api: DescFile = /*@__PURE__*/
+  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [fileDesc_google_protobuf_source_context, fileDesc_google_protobuf_type]);
 
 /**
  * Api is a light-weight descriptor for an API Interface.
@@ -114,7 +115,8 @@ export type Api = Message<"google.protobuf.Api"> & {
 
 // Describes the message google.protobuf.Api.
 // Use `create(ApiDesc)` to create a new Api.
-export const ApiDesc: TypedDescMessage<Api> = messageDesc(fileDesc_google_protobuf_api, 0);
+export const ApiDesc: TypedDescMessage<Api> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_api, 0);
 
 /**
  * Method represents a method of an API interface.
@@ -174,7 +176,8 @@ export type Method = Message<"google.protobuf.Method"> & {
 
 // Describes the message google.protobuf.Method.
 // Use `create(MethodDesc)` to create a new Method.
-export const MethodDesc: TypedDescMessage<Method> = messageDesc(fileDesc_google_protobuf_api, 1);
+export const MethodDesc: TypedDescMessage<Method> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_api, 1);
 
 /**
  * Declares an API Interface to be included in this interface. The including
@@ -277,5 +280,6 @@ export type Mixin = Message<"google.protobuf.Mixin"> & {
 
 // Describes the message google.protobuf.Mixin.
 // Use `create(MixinDesc)` to create a new Mixin.
-export const MixinDesc: TypedDescMessage<Mixin> = messageDesc(fileDesc_google_protobuf_api, 2);
+export const MixinDesc: TypedDescMessage<Mixin> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_api, 2);
 

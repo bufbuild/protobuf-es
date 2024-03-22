@@ -20,8 +20,10 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_import_public = fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpYy5wcm90bxIYcHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0IiAKE1B1YmxpY0ltcG9ydE1lc3NhZ2USCQoBZRgBIAEoBUIaChhjb20uZ29vZ2xlLnByb3RvYnVmLnRlc3Q");
+export const fileDesc_google_protobuf_unittest_import_public = /*@__PURE__*/
+  fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpYy5wcm90bxIYcHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0IiAKE1B1YmxpY0ltcG9ydE1lc3NhZ2USCQoBZRgBIAEoBUIaChhjb20uZ29vZ2xlLnByb3RvYnVmLnRlc3Q");
 
 // Describes the message protobuf_unittest_import.PublicImportMessage. Use `create(PublicImportMessageDesc)` to create a new PublicImportMessage.
-export const PublicImportMessageDesc = messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
+export const PublicImportMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
 

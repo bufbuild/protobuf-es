@@ -23,7 +23,8 @@ import type { User as User$1 } from "./example_pbv2.js";
 import { fileDesc_extra_example } from "./example_pbv2.js";
 import type { Message as Message$1 } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_name_clash: DescFile = fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLLBgoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRwoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgsKB3RvX0pTT04QAhIMCgh2YWx1ZV9vZhADIpQBCgtFbnVtUnVudGltZRILCgd0b19qc29uEAASCAoEdHlwZRAGEgkKBWNsb25lEAcSCgoGZXF1YWxzEAgSDwoLZnJvbV9iaW5hcnkQCRINCglmcm9tX2pzb24QChIUChBmcm9tX2pzb25fc3RyaW5nEAsSDQoJdG9fYmluYXJ5EAwSEgoOdG9fanNvbl9zdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iDQoLY29uc3RydWN0b3IiCgoIdG9TdHJpbmciCAoGdG9KU09OIgkKB3ZhbHVlT2YiCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYyuAEKHFJlc2VydmVkUHJvcGVydHlOYW1lc1NlcnZpY2USJwoLY29uc3RydWN0b3ISCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh0b1N0cmluZxILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yEiMKB3RvX0pTT04SCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh2YWx1ZV9vZhILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yYgZwcm90bzM", [fileDesc_extra_example]);
+export const fileDesc_extra_name_clash: DescFile = /*@__PURE__*/
+  fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLLBgoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRwoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgsKB3RvX0pTT04QAhIMCgh2YWx1ZV9vZhADIpQBCgtFbnVtUnVudGltZRILCgd0b19qc29uEAASCAoEdHlwZRAGEgkKBWNsb25lEAcSCgoGZXF1YWxzEAgSDwoLZnJvbV9iaW5hcnkQCRINCglmcm9tX2pzb24QChIUChBmcm9tX2pzb25fc3RyaW5nEAsSDQoJdG9fYmluYXJ5EAwSEgoOdG9fanNvbl9zdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iDQoLY29uc3RydWN0b3IiCgoIdG9TdHJpbmciCAoGdG9KU09OIgkKB3ZhbHVlT2YiCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYyuAEKHFJlc2VydmVkUHJvcGVydHlOYW1lc1NlcnZpY2USJwoLY29uc3RydWN0b3ISCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh0b1N0cmluZxILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yEiMKB3RvX0pTT04SCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh2YWx1ZV9vZhILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yYgZwcm90bzM", [fileDesc_extra_example]);
 
 /**
  * This message class will clash with the imported message class
@@ -41,7 +42,8 @@ export type User = Message$1<"spec.User"> & {
 
 // Describes the message spec.User.
 // Use `create(UserDesc)` to create a new User.
-export const UserDesc: TypedDescMessage<User> = messageDesc(fileDesc_extra_name_clash, 0);
+export const UserDesc: TypedDescMessage<User> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 0);
 
 /**
  * @generated from message spec.ReservedPropertyNames
@@ -51,7 +53,8 @@ export type ReservedPropertyNames = Message$1<"spec.ReservedPropertyNames"> & {
 
 // Describes the message spec.ReservedPropertyNames.
 // Use `create(ReservedPropertyNamesDesc)` to create a new ReservedPropertyNames.
-export const ReservedPropertyNamesDesc: TypedDescMessage<ReservedPropertyNames> = messageDesc(fileDesc_extra_name_clash, 1);
+export const ReservedPropertyNamesDesc: TypedDescMessage<ReservedPropertyNames> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 1);
 
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
@@ -88,7 +91,8 @@ export type ReservedPropertyNames_BuiltIn = Message$1<"spec.ReservedPropertyName
 
 // Describes the message spec.ReservedPropertyNames.BuiltIn.
 // Use `create(ReservedPropertyNames_BuiltInDesc)` to create a new ReservedPropertyNames_BuiltIn.
-export const ReservedPropertyNames_BuiltInDesc: TypedDescMessage<ReservedPropertyNames_BuiltIn> = messageDesc(fileDesc_extra_name_clash, 1, 0);
+export const ReservedPropertyNames_BuiltInDesc: TypedDescMessage<ReservedPropertyNames_BuiltIn> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 1, 0);
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
@@ -160,7 +164,8 @@ export type ReservedPropertyNames_Runtime = Message$1<"spec.ReservedPropertyName
 
 // Describes the message spec.ReservedPropertyNames.Runtime.
 // Use `create(ReservedPropertyNames_RuntimeDesc)` to create a new ReservedPropertyNames_Runtime.
-export const ReservedPropertyNames_RuntimeDesc: TypedDescMessage<ReservedPropertyNames_Runtime> = messageDesc(fileDesc_extra_name_clash, 1, 1);
+export const ReservedPropertyNames_RuntimeDesc: TypedDescMessage<ReservedPropertyNames_Runtime> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 1, 1);
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
@@ -198,7 +203,8 @@ export type ReservedPropertyNames_OneofBultIn = Message$1<"spec.ReservedProperty
 
 // Describes the message spec.ReservedPropertyNames.OneofBultIn.
 // Use `create(ReservedPropertyNames_OneofBultInDesc)` to create a new ReservedPropertyNames_OneofBultIn.
-export const ReservedPropertyNames_OneofBultInDesc: TypedDescMessage<ReservedPropertyNames_OneofBultIn> = messageDesc(fileDesc_extra_name_clash, 1, 2);
+export const ReservedPropertyNames_OneofBultInDesc: TypedDescMessage<ReservedPropertyNames_OneofBultIn> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 1, 2);
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
@@ -266,7 +272,8 @@ export type ReservedPropertyNames_OneofRuntime = Message$1<"spec.ReservedPropert
 
 // Describes the message spec.ReservedPropertyNames.OneofRuntime.
 // Use `create(ReservedPropertyNames_OneofRuntimeDesc)` to create a new ReservedPropertyNames_OneofRuntime.
-export const ReservedPropertyNames_OneofRuntimeDesc: TypedDescMessage<ReservedPropertyNames_OneofRuntime> = messageDesc(fileDesc_extra_name_clash, 1, 3);
+export const ReservedPropertyNames_OneofRuntimeDesc: TypedDescMessage<ReservedPropertyNames_OneofRuntime> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 1, 3);
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
@@ -294,7 +301,8 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
-export const ReservedPropertyNames_EnumBuiltInDesc: TypedDescEnum<ReservedPropertyNames_EnumBuiltIn> = enumDesc(fileDesc_extra_name_clash, 1, 0);
+export const ReservedPropertyNames_EnumBuiltInDesc: TypedDescEnum<ReservedPropertyNames_EnumBuiltIn> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 1, 0);
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
@@ -347,7 +355,8 @@ export enum ReservedPropertyNames_EnumRuntime {
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumRuntime.
-export const ReservedPropertyNames_EnumRuntimeDesc: TypedDescEnum<ReservedPropertyNames_EnumRuntime> = enumDesc(fileDesc_extra_name_clash, 1, 1);
+export const ReservedPropertyNames_EnumRuntimeDesc: TypedDescEnum<ReservedPropertyNames_EnumRuntime> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 1, 1);
 
 /**
  * reserved identifier
@@ -359,7 +368,8 @@ export type interface$ = Message$1<"spec.interface"> & {
 
 // Describes the message spec.interface.
 // Use `create(interface$Desc)` to create a new interface$.
-export const interface$Desc: TypedDescMessage<interface$> = messageDesc(fileDesc_extra_name_clash, 2);
+export const interface$Desc: TypedDescMessage<interface$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 2);
 
 /**
  * reserved identifier
@@ -371,7 +381,8 @@ export type function$ = Message$1<"spec.function"> & {
 
 // Describes the message spec.function.
 // Use `create(function$Desc)` to create a new function$.
-export const function$Desc: TypedDescMessage<function$> = messageDesc(fileDesc_extra_name_clash, 3);
+export const function$Desc: TypedDescMessage<function$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 3);
 
 /**
  * reserved identifier
@@ -383,7 +394,8 @@ export type instanceof$ = Message$1<"spec.instanceof"> & {
 
 // Describes the message spec.instanceof.
 // Use `create(instanceof$Desc)` to create a new instanceof$.
-export const instanceof$Desc: TypedDescMessage<instanceof$> = messageDesc(fileDesc_extra_name_clash, 4);
+export const instanceof$Desc: TypedDescMessage<instanceof$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 4);
 
 /**
  * reserved identifier
@@ -395,7 +407,8 @@ export type switch$ = Message$1<"spec.switch"> & {
 
 // Describes the message spec.switch.
 // Use `create(switch$Desc)` to create a new switch$.
-export const switch$Desc: TypedDescMessage<switch$> = messageDesc(fileDesc_extra_name_clash, 5);
+export const switch$Desc: TypedDescMessage<switch$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 5);
 
 /**
  * reserved identifier
@@ -407,7 +420,8 @@ export type case$ = Message$1<"spec.case"> & {
 
 // Describes the message spec.case.
 // Use `create(case$Desc)` to create a new case$.
-export const case$Desc: TypedDescMessage<case$> = messageDesc(fileDesc_extra_name_clash, 6);
+export const case$Desc: TypedDescMessage<case$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 6);
 
 /**
  * reserved identifier
@@ -419,7 +433,8 @@ export type return$ = Message$1<"spec.return"> & {
 
 // Describes the message spec.return.
 // Use `create(return$Desc)` to create a new return$.
-export const return$Desc: TypedDescMessage<return$> = messageDesc(fileDesc_extra_name_clash, 7);
+export const return$Desc: TypedDescMessage<return$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 7);
 
 /**
  * reserved object property
@@ -431,7 +446,8 @@ export type constructor = Message$1<"spec.constructor"> & {
 
 // Describes the message spec.constructor.
 // Use `create(constructorDesc)` to create a new constructor.
-export const constructorDesc: TypedDescMessage<constructor> = messageDesc(fileDesc_extra_name_clash, 8);
+export const constructorDesc: TypedDescMessage<constructor> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 8);
 
 /**
  * @generated from message spec.toString
@@ -441,7 +457,8 @@ export type toString = Message$1<"spec.toString"> & {
 
 // Describes the message spec.toString.
 // Use `create(toStringDesc)` to create a new toString.
-export const toStringDesc: TypedDescMessage<toString> = messageDesc(fileDesc_extra_name_clash, 9);
+export const toStringDesc: TypedDescMessage<toString> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 9);
 
 /**
  * @generated from message spec.toJSON
@@ -451,7 +468,8 @@ export type toJSON = Message$1<"spec.toJSON"> & {
 
 // Describes the message spec.toJSON.
 // Use `create(toJSONDesc)` to create a new toJSON.
-export const toJSONDesc: TypedDescMessage<toJSON> = messageDesc(fileDesc_extra_name_clash, 10);
+export const toJSONDesc: TypedDescMessage<toJSON> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 10);
 
 /**
  * @generated from message spec.valueOf
@@ -461,7 +479,8 @@ export type valueOf = Message$1<"spec.valueOf"> & {
 
 // Describes the message spec.valueOf.
 // Use `create(valueOfDesc)` to create a new valueOf.
-export const valueOfDesc: TypedDescMessage<valueOf> = messageDesc(fileDesc_extra_name_clash, 11);
+export const valueOfDesc: TypedDescMessage<valueOf> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 11);
 
 /**
  * used by runtime
@@ -473,7 +492,8 @@ export type Message = Message$1<"spec.Message"> & {
 
 // Describes the message spec.Message.
 // Use `create(MessageDesc)` to create a new Message.
-export const MessageDesc: TypedDescMessage<Message> = messageDesc(fileDesc_extra_name_clash, 12);
+export const MessageDesc: TypedDescMessage<Message> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 12);
 
 /**
  * used by runtime
@@ -485,7 +505,8 @@ export type PartialMessage = Message$1<"spec.PartialMessage"> & {
 
 // Describes the message spec.PartialMessage.
 // Use `create(PartialMessageDesc)` to create a new PartialMessage.
-export const PartialMessageDesc: TypedDescMessage<PartialMessage> = messageDesc(fileDesc_extra_name_clash, 13);
+export const PartialMessageDesc: TypedDescMessage<PartialMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 13);
 
 /**
  * used by runtime
@@ -497,7 +518,8 @@ export type PlainMessage = Message$1<"spec.PlainMessage"> & {
 
 // Describes the message spec.PlainMessage.
 // Use `create(PlainMessageDesc)` to create a new PlainMessage.
-export const PlainMessageDesc: TypedDescMessage<PlainMessage> = messageDesc(fileDesc_extra_name_clash, 14);
+export const PlainMessageDesc: TypedDescMessage<PlainMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 14);
 
 /**
  * clash with global type "Error"
@@ -520,7 +542,8 @@ export type Error = Message$1<"spec.Error"> & {
 
 // Describes the message spec.Error.
 // Use `create(ErrorDesc)` to create a new Error.
-export const ErrorDesc: TypedDescMessage<Error> = messageDesc(fileDesc_extra_name_clash, 15);
+export const ErrorDesc: TypedDescMessage<Error> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 15);
 
 /**
  * clash with global type
@@ -532,7 +555,8 @@ export type Object$ = Message$1<"spec.Object"> & {
 
 // Describes the message spec.Object.
 // Use `create(Object$Desc)` to create a new Object$.
-export const Object$Desc: TypedDescMessage<Object$> = messageDesc(fileDesc_extra_name_clash, 16);
+export const Object$Desc: TypedDescMessage<Object$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 16);
 
 /**
  * @generated from message spec.object
@@ -542,7 +566,8 @@ export type object$ = Message$1<"spec.object"> & {
 
 // Describes the message spec.object.
 // Use `create(object$Desc)` to create a new object$.
-export const object$Desc: TypedDescMessage<object$> = messageDesc(fileDesc_extra_name_clash, 17);
+export const object$Desc: TypedDescMessage<object$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 17);
 
 /**
  * clash with global type
@@ -554,7 +579,8 @@ export type array = Message$1<"spec.array"> & {
 
 // Describes the message spec.array.
 // Use `create(arrayDesc)` to create a new array.
-export const arrayDesc: TypedDescMessage<array> = messageDesc(fileDesc_extra_name_clash, 18);
+export const arrayDesc: TypedDescMessage<array> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 18);
 
 /**
  * clash with global type
@@ -566,7 +592,8 @@ export type string$ = Message$1<"spec.string"> & {
 
 // Describes the message spec.string.
 // Use `create(string$Desc)` to create a new string$.
-export const string$Desc: TypedDescMessage<string$> = messageDesc(fileDesc_extra_name_clash, 19);
+export const string$Desc: TypedDescMessage<string$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 19);
 
 /**
  * clash with global type
@@ -578,7 +605,8 @@ export type number$ = Message$1<"spec.number"> & {
 
 // Describes the message spec.number.
 // Use `create(number$Desc)` to create a new number$.
-export const number$Desc: TypedDescMessage<number$> = messageDesc(fileDesc_extra_name_clash, 20);
+export const number$Desc: TypedDescMessage<number$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 20);
 
 /**
  * clash with global type
@@ -590,7 +618,8 @@ export type boolean$ = Message$1<"spec.boolean"> & {
 
 // Describes the message spec.boolean.
 // Use `create(boolean$Desc)` to create a new boolean$.
-export const boolean$Desc: TypedDescMessage<boolean$> = messageDesc(fileDesc_extra_name_clash, 21);
+export const boolean$Desc: TypedDescMessage<boolean$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 21);
 
 /**
  * clash with global type
@@ -602,7 +631,8 @@ export type bigint$ = Message$1<"spec.bigint"> & {
 
 // Describes the message spec.bigint.
 // Use `create(bigint$Desc)` to create a new bigint$.
-export const bigint$Desc: TypedDescMessage<bigint$> = messageDesc(fileDesc_extra_name_clash, 22);
+export const bigint$Desc: TypedDescMessage<bigint$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 22);
 
 /**
  * clash with global type
@@ -614,7 +644,8 @@ export type Uint8Array$ = Message$1<"spec.Uint8Array"> & {
 
 // Describes the message spec.Uint8Array.
 // Use `create(Uint8Array$Desc)` to create a new Uint8Array$.
-export const Uint8Array$Desc: TypedDescMessage<Uint8Array$> = messageDesc(fileDesc_extra_name_clash, 23);
+export const Uint8Array$Desc: TypedDescMessage<Uint8Array$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 23);
 
 /**
  * clash with global type
@@ -626,7 +657,8 @@ export type Array = Message$1<"spec.Array"> & {
 
 // Describes the message spec.Array.
 // Use `create(ArrayDesc)` to create a new Array.
-export const ArrayDesc: TypedDescMessage<Array> = messageDesc(fileDesc_extra_name_clash, 24);
+export const ArrayDesc: TypedDescMessage<Array> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 24);
 
 /**
  * clash with global type
@@ -638,7 +670,8 @@ export type String = Message$1<"spec.String"> & {
 
 // Describes the message spec.String.
 // Use `create(StringDesc)` to create a new String.
-export const StringDesc: TypedDescMessage<String> = messageDesc(fileDesc_extra_name_clash, 25);
+export const StringDesc: TypedDescMessage<String> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 25);
 
 /**
  * clash with global type
@@ -650,7 +683,8 @@ export type Number = Message$1<"spec.Number"> & {
 
 // Describes the message spec.Number.
 // Use `create(NumberDesc)` to create a new Number.
-export const NumberDesc: TypedDescMessage<Number> = messageDesc(fileDesc_extra_name_clash, 26);
+export const NumberDesc: TypedDescMessage<Number> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 26);
 
 /**
  * clash with global type
@@ -662,7 +696,8 @@ export type Boolean = Message$1<"spec.Boolean"> & {
 
 // Describes the message spec.Boolean.
 // Use `create(BooleanDesc)` to create a new Boolean.
-export const BooleanDesc: TypedDescMessage<Boolean> = messageDesc(fileDesc_extra_name_clash, 27);
+export const BooleanDesc: TypedDescMessage<Boolean> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 27);
 
 /**
  * clash with global type
@@ -674,7 +709,8 @@ export type BigInt = Message$1<"spec.BigInt"> & {
 
 // Describes the message spec.BigInt.
 // Use `create(BigIntDesc)` to create a new BigInt.
-export const BigIntDesc: TypedDescMessage<BigInt> = messageDesc(fileDesc_extra_name_clash, 28);
+export const BigIntDesc: TypedDescMessage<BigInt> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 28);
 
 /**
  * @generated from message spec.ClashParent
@@ -684,7 +720,8 @@ export type ClashParent = Message$1<"spec.ClashParent"> & {
 
 // Describes the message spec.ClashParent.
 // Use `create(ClashParentDesc)` to create a new ClashParent.
-export const ClashParentDesc: TypedDescMessage<ClashParent> = messageDesc(fileDesc_extra_name_clash, 29);
+export const ClashParentDesc: TypedDescMessage<ClashParent> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 29);
 
 /**
  * should clash with message ClashParent_ClashChild
@@ -696,7 +733,8 @@ export type ClashParent_ClashChild = Message$1<"spec.ClashParent.ClashChild"> & 
 
 // Describes the message spec.ClashParent.ClashChild.
 // Use `create(ClashParent_ClashChildDesc)` to create a new ClashParent_ClashChild.
-export const ClashParent_ClashChildDesc: TypedDescMessage<ClashParent_ClashChild> = messageDesc(fileDesc_extra_name_clash, 29, 0);
+export const ClashParent_ClashChildDesc: TypedDescMessage<ClashParent_ClashChild> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 29, 0);
 
 /**
  * @generated from message spec.NoClashFields
@@ -747,7 +785,8 @@ export type NoClashFields = Message$1<"spec.NoClashFields"> & {
 
 // Describes the message spec.NoClashFields.
 // Use `create(NoClashFieldsDesc)` to create a new NoClashFields.
-export const NoClashFieldsDesc: TypedDescMessage<NoClashFields> = messageDesc(fileDesc_extra_name_clash, 30);
+export const NoClashFieldsDesc: TypedDescMessage<NoClashFields> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 30);
 
 /**
  * @generated from message spec.NoClashOneof
@@ -809,7 +848,8 @@ export type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
 
 // Describes the message spec.NoClashOneof.
 // Use `create(NoClashOneofDesc)` to create a new NoClashOneof.
-export const NoClashOneofDesc: TypedDescMessage<NoClashOneof> = messageDesc(fileDesc_extra_name_clash, 31);
+export const NoClashOneofDesc: TypedDescMessage<NoClashOneof> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 31);
 
 /**
  * @generated from message spec.NoClashOneofADT
@@ -823,7 +863,8 @@ export type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
 
 // Describes the message spec.NoClashOneofADT.
 // Use `create(NoClashOneofADTDesc)` to create a new NoClashOneofADT.
-export const NoClashOneofADTDesc: TypedDescMessage<NoClashOneofADT> = messageDesc(fileDesc_extra_name_clash, 32);
+export const NoClashOneofADTDesc: TypedDescMessage<NoClashOneofADT> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 32);
 
 /**
  * @generated from message spec.NoClashOneofADT.M
@@ -842,7 +883,8 @@ export type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
 
 // Describes the message spec.NoClashOneofADT.M.
 // Use `create(NoClashOneofADT_MDesc)` to create a new NoClashOneofADT_M.
-export const NoClashOneofADT_MDesc: TypedDescMessage<NoClashOneofADT_M> = messageDesc(fileDesc_extra_name_clash, 32, 0);
+export const NoClashOneofADT_MDesc: TypedDescMessage<NoClashOneofADT_M> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 32, 0);
 
 /**
  * just here as a "namespace" for the enum
@@ -854,7 +896,8 @@ export type NoClashEnumWrap = Message$1<"spec.NoClashEnumWrap"> & {
 
 // Describes the message spec.NoClashEnumWrap.
 // Use `create(NoClashEnumWrapDesc)` to create a new NoClashEnumWrap.
-export const NoClashEnumWrapDesc: TypedDescMessage<NoClashEnumWrap> = messageDesc(fileDesc_extra_name_clash, 33);
+export const NoClashEnumWrapDesc: TypedDescMessage<NoClashEnumWrap> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 33);
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X
@@ -904,7 +947,8 @@ export enum NoClashEnumWrap_X {
 }
 
 // Describes the enum spec.NoClashEnumWrap.X.
-export const NoClashEnumWrap_XDesc: TypedDescEnum<NoClashEnumWrap_X> = enumDesc(fileDesc_extra_name_clash, 33, 0);
+export const NoClashEnumWrap_XDesc: TypedDescEnum<NoClashEnumWrap_X> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 33, 0);
 
 /**
  * @generated from service spec.ReservedPropertyNamesService
@@ -943,5 +987,6 @@ export const ReservedPropertyNamesService: TypedDescService<{
     O: Error;
   },
 }
-> = serviceDesc(fileDesc_extra_name_clash, 0);
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_name_clash, 0);
 

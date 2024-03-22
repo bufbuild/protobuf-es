@@ -18,8 +18,10 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_extra_deprecation_implicit = fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
+export const fileDesc_extra_deprecation_implicit = /*@__PURE__*/
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
 
 // Describes the message spec.ImplicitlyDeprecatedMessage. Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
-export const ImplicitlyDeprecatedMessageDesc = messageDesc(fileDesc_extra_deprecation_implicit, 0);
+export const ImplicitlyDeprecatedMessageDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_deprecation_implicit, 0);
 

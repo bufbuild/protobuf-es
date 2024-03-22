@@ -21,7 +21,8 @@ import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
 import type { Message } from "../../../../types.js";
 import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
 
-export const fileDesc_google_protobuf_field_mask: DescFile = fileDesc("CiBnb29nbGUvcHJvdG9idWYvZmllbGRfbWFzay5wcm90bxIPZ29vZ2xlLnByb3RvYnVmIhoKCUZpZWxkTWFzaxINCgVwYXRocxgBIAMoCUKFAQoTY29tLmdvb2dsZS5wcm90b2J1ZkIORmllbGRNYXNrUHJvdG9QAVoyZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vZmllbGRtYXNrcGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
+export const fileDesc_google_protobuf_field_mask: DescFile = /*@__PURE__*/
+  fileDesc("CiBnb29nbGUvcHJvdG9idWYvZmllbGRfbWFzay5wcm90bxIPZ29vZ2xlLnByb3RvYnVmIhoKCUZpZWxkTWFzaxINCgVwYXRocxgBIAMoCUKFAQoTY29tLmdvb2dsZS5wcm90b2J1ZkIORmllbGRNYXNrUHJvdG9QAVoyZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vZmllbGRtYXNrcGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**
  * `FieldMask` represents a set of symbolic field paths, for example:
@@ -237,5 +238,6 @@ export type FieldMask = Message<"google.protobuf.FieldMask"> & {
 
 // Describes the message google.protobuf.FieldMask.
 // Use `create(FieldMaskDesc)` to create a new FieldMask.
-export const FieldMaskDesc: TypedDescMessage<FieldMask> = messageDesc(fileDesc_google_protobuf_field_mask, 0);
+export const FieldMaskDesc: TypedDescMessage<FieldMask> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_field_mask, 0);
 

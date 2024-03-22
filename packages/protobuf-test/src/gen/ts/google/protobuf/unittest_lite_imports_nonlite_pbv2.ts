@@ -27,7 +27,8 @@ import type { TestAllTypes, TestRequired } from "./unittest_pbv2.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: DescFile = fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [fileDesc_google_protobuf_unittest]);
+export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: DescFile = /*@__PURE__*/
+  fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [fileDesc_google_protobuf_unittest]);
 
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
@@ -48,5 +49,6 @@ export type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLiteImportsN
 
 // Describes the message protobuf_unittest.TestLiteImportsNonlite.
 // Use `create(TestLiteImportsNonliteDesc)` to create a new TestLiteImportsNonlite.
-export const TestLiteImportsNonliteDesc: TypedDescMessage<TestLiteImportsNonlite> = messageDesc(fileDesc_google_protobuf_unittest_lite_imports_nonlite, 0);
+export const TestLiteImportsNonliteDesc: TypedDescMessage<TestLiteImportsNonlite> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_lite_imports_nonlite, 0);
 

@@ -27,7 +27,8 @@ import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_mset_wire_format: DescFile = fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbXNldF93aXJlX2Zvcm1hdC5wcm90bxIacHJvdG8yX3dpcmVmb3JtYXRfdW5pdHRlc3QiLAoOVGVzdE1lc3NhZ2VTZXQqCAgEEIDR3PwBKgwIgNHc/AEQ/////wc6AggBImQKIVRlc3RNZXNzYWdlU2V0V2lyZUZvcm1hdENvbnRhaW5lchI/CgttZXNzYWdlX3NldBgBIAEoCzIqLnByb3RvMl93aXJlZm9ybWF0X3VuaXR0ZXN0LlRlc3RNZXNzYWdlU2V0QilIAfgBAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
+export const fileDesc_google_protobuf_unittest_mset_wire_format: DescFile = /*@__PURE__*/
+  fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbXNldF93aXJlX2Zvcm1hdC5wcm90bxIacHJvdG8yX3dpcmVmb3JtYXRfdW5pdHRlc3QiLAoOVGVzdE1lc3NhZ2VTZXQqCAgEEIDR3PwBKgwIgNHc/AEQ/////wc6AggBImQKIVRlc3RNZXNzYWdlU2V0V2lyZUZvcm1hdENvbnRhaW5lchI/CgttZXNzYWdlX3NldBgBIAEoCzIqLnByb3RvMl93aXJlZm9ybWF0X3VuaXR0ZXN0LlRlc3RNZXNzYWdlU2V0QilIAfgBAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 /**
  * A message with message_set_wire_format.
@@ -39,7 +40,8 @@ export type TestMessageSet = Message<"proto2_wireformat_unittest.TestMessageSet"
 
 // Describes the message proto2_wireformat_unittest.TestMessageSet.
 // Use `create(TestMessageSetDesc)` to create a new TestMessageSet.
-export const TestMessageSetDesc: TypedDescMessage<TestMessageSet> = messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 0);
+export const TestMessageSetDesc: TypedDescMessage<TestMessageSet> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 0);
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
@@ -53,5 +55,6 @@ export type TestMessageSetWireFormatContainer = Message<"proto2_wireformat_unitt
 
 // Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
 // Use `create(TestMessageSetWireFormatContainerDesc)` to create a new TestMessageSetWireFormatContainer.
-export const TestMessageSetWireFormatContainerDesc: TypedDescMessage<TestMessageSetWireFormatContainer> = messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 1);
+export const TestMessageSetWireFormatContainerDesc: TypedDescMessage<TestMessageSetWireFormatContainer> = /*@__PURE__*/
+  messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 1);
 
