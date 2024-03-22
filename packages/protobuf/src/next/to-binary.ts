@@ -82,23 +82,7 @@ function reflectToBinary(
       }
       continue;
     }
-    switch (f.fieldKind) {
-      case "scalar":
-      case "enum":
-        writeScalar(w, f.scalar ?? ScalarType.INT32, f.number, msg.get(f));
-        break;
-      case "list":
-        writeListField(w, opts, f, msg.get(f));
-        break;
-      case "message":
-        writeMessageField(w, opts, f, msg.get(f));
-        break;
-      case "map":
-        for (const [key, val] of msg.get(f)) {
-          writeMapEntry(w, opts, f, key, val);
-        }
-        break;
-    }
+    writeField(w, opts, msg, f);
   }
   if (opts.writeUnknownFields) {
     for (const { no, wireType, data } of msg.getUnknown() ?? []) {
@@ -106,6 +90,39 @@ function reflectToBinary(
     }
   }
   return w.finish();
+}
+
+/**
+ * @private
+ */
+export function writeField(
+  writer: BinaryWriter,
+  opts: BinaryWriteOptions,
+  msg: ReflectMessage,
+  field: DescField,
+) {
+  switch (field.fieldKind) {
+    case "scalar":
+    case "enum":
+      writeScalar(
+        writer,
+        field.scalar ?? ScalarType.INT32,
+        field.number,
+        msg.get(field),
+      );
+      break;
+    case "list":
+      writeListField(writer, opts, field, msg.get(field));
+      break;
+    case "message":
+      writeMessageField(writer, opts, field, msg.get(field));
+      break;
+    case "map":
+      for (const [key, val] of msg.get(field)) {
+        writeMapEntry(writer, opts, field, key, val);
+      }
+      break;
+  }
 }
 
 function writeScalar(

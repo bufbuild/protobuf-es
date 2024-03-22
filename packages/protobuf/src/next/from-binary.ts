@@ -138,7 +138,10 @@ function readMessage(
   }
 }
 
-function readField(
+/**
+ * @private
+ */
+export function readField(
   message: ReflectMessage,
   reader: BinaryReader,
   field: DescField,
