@@ -73,6 +73,13 @@ export interface JsonWriteOptions {
   descSet?: DescSet;
 }
 
+/**
+ * Options for serializing to JSON.
+ */
+export interface JsonWriteStringOptions extends JsonWriteOptions {
+  prettySpaces: number;
+}
+
 // Default options for serializing to JSON.
 const jsonWriteDefaults: Readonly<JsonWriteOptions> = {
   emitDefaultValues: false,
@@ -86,11 +93,26 @@ function makeWriteOptions(
   return options ? { ...jsonWriteDefaults, ...options } : jsonWriteDefaults;
 }
 
+/**
+ * Serialize the message to a JSON value, a JavaScript value that can be
+ * passed to JSON.stringify().
+ */
 export function toJson<T extends Message>(
   message: T,
   options?: Partial<JsonWriteOptions>,
 ): JsonValue {
   return reflectToJson(reflect(message), makeWriteOptions(options));
+}
+
+/**
+ * Serialize the message to a JSON string.
+ */
+export function toJsonString<T extends Message>(
+  message: T,
+  options?: Partial<JsonWriteStringOptions>,
+): string {
+  const jsonValue = toJson(message, options);
+  return JSON.stringify(jsonValue, null, options?.prettySpaces ?? 0);
 }
 
 function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
