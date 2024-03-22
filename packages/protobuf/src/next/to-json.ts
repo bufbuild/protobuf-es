@@ -343,11 +343,11 @@ function tryWktToJson(
     case "google.protobuf.FieldMask":
       return fieldMaskToJson(msg.message as FieldMask);
     case "google.protobuf.Struct":
-      return structToJson(msg.message as Struct, opts);
+      return structToJson(msg.message as Struct);
     case "google.protobuf.Value":
-      return valueToJson(msg.message as Value, opts);
+      return valueToJson(msg.message as Value);
     case "google.protobuf.ListValue":
-      return listValueToJson(msg.message as ListValue, opts);
+      return listValueToJson(msg.message as ListValue);
     default:
       if (isWktWrapperDesc(msg.desc)) {
         const valueField = msg.desc.fields[0];
@@ -422,15 +422,15 @@ function fieldMaskToJson(val: FieldMask) {
     .join(",");
 }
 
-function structToJson(val: Struct, opts: JsonWriteOptions) {
+function structToJson(val: Struct) {
   const json: JsonObject = {};
   for (const [k, v] of Object.entries(val.fields)) {
-    json[k] = valueToJson(v, opts);
+    json[k] = valueToJson(v);
   }
   return json;
 }
 
-function valueToJson(val: Value, opts: JsonWriteOptions) {
+function valueToJson(val: Value) {
   switch (val.kind.case) {
     case "nullValue":
       return null;
@@ -444,16 +444,16 @@ function valueToJson(val: Value, opts: JsonWriteOptions) {
     case "stringValue":
       return val.kind.value;
     case "structValue":
-      return structToJson(val.kind.value, opts);
+      return structToJson(val.kind.value);
     case "listValue":
-      return listValueToJson(val.kind.value, opts);
+      return listValueToJson(val.kind.value);
     default:
       throw new Error(`${val.$typeName} must have a value`);
   }
 }
 
-function listValueToJson(val: ListValue, opts: JsonWriteOptions): JsonValue[] {
-  return val.values.map((v) => valueToJson(v, opts));
+function listValueToJson(val: ListValue): JsonValue[] {
+  return val.values.map(valueToJson);
 }
 
 function timestampToJson(val: Timestamp) {
