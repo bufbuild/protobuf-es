@@ -19,8 +19,8 @@ import {
   anyPack,
   anyUnpack,
   ValueDesc,
-  type Value,
 } from "@bufbuild/protobuf/next/wkt";
+import type { Value } from "@bufbuild/protobuf/next/wkt";
 import { create } from "@bufbuild/protobuf/next";
 import { createDescSet } from "@bufbuild/protobuf/next/reflect";
 
