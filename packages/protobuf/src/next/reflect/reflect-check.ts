@@ -19,70 +19,37 @@ import type { DescEnum, DescField, DescMessage } from "../../descriptor-set.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { Edition } from "../../google/protobuf/descriptor_pb.js";
-import { isWktWrapperDesc } from "./wkt.js";
+import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 
-export function checkReflectValue(
+export function checkField(
   field: DescField,
   value: unknown,
 ): FieldError | undefined {
+  const check =
+    field.fieldKind == "list"
+      ? isReflectList(value, field)
+      : field.fieldKind == "map"
+        ? isReflectMap(value, field)
+        : checkSingular(field, value);
+  if (check === true) {
+    return undefined;
+  }
+  let reason: string;
   switch (field.fieldKind) {
     case "list":
-      if (!Array.isArray(value)) {
-        return new FieldError(field, `expected Array, got ${formatVal(value)}`);
-      }
-      for (let i = 0; i < value.length; i++) {
-        const err = checkNewListItem(field, i, value[i]);
-        if (err) {
-          return err;
-        }
-      }
+      reason = `expected ${formatReflectList(field)}, got ${formatVal(value)}`;
       break;
     case "map":
-      if (!(value instanceof Map)) {
-        return new FieldError(field, `expected Map, got ${formatVal(value)}`);
-      }
-      for (const [key, val] of (value as Map<unknown, unknown>).entries()) {
-        const err = checkNewMapEntry(field, key, val);
-        if (err) {
-          return err;
-        }
-      }
+      reason = `expected ${formatReflectMap(field)}, got ${formatVal(value)}`;
       break;
-    // @ts-expect-error TS7029
-    case "message":
-      if (isWktWrapperDesc(field.message)) {
-        const valueType = field.message.fields[0].scalar;
-        if (isMessage(value)) {
-          if (!isMessage(value, field.message)) {
-            return new FieldError(
-              field,
-              reasonWktWrapper(field.message, valueType, value),
-            );
-          }
-          return undefined;
-        } else {
-          const check = checkScalarValue(value, valueType);
-          if (check !== true) {
-            return new FieldError(
-              field,
-              reasonWktWrapper(field.message, valueType, value, check),
-            );
-          }
-          return undefined;
-        }
-      }
-    // eslint-disable-next-line no-fallthrough
     default: {
-      const check = checkSingular(field, value);
-      if (check !== true) {
-        return new FieldError(field, reasonSingular(field, value, check));
-      }
+      reason = reasonSingular(field, value, check);
     }
   }
-  return undefined;
+  return new FieldError(field, reason);
 }
 
-export function checkNewListItem(
+export function checkListItem(
   field: DescField & { fieldKind: "list" },
   index: number,
   value: unknown,
@@ -97,7 +64,7 @@ export function checkNewListItem(
   return undefined;
 }
 
-export function checkNewMapEntry(
+export function checkMapEntry(
   field: DescField & { fieldKind: "map" },
   key: unknown,
   value: unknown,
@@ -119,12 +86,10 @@ export function checkNewMapEntry(
   return undefined;
 }
 
-type InvalidSingularErr = false | InvalidScalarValueErr;
-
 function checkSingular(
   field: DescField,
   value: unknown,
-): true | InvalidSingularErr {
+): true | false | InvalidScalarValueErr {
   if (field.scalar !== undefined) {
     return checkScalarValue(value, field.scalar);
   }
@@ -141,20 +106,7 @@ function checkSingular(
         throw new Error(`unsupported edition`);
     }
   }
-  return isMessage(value, field.message);
-}
-
-function reasonWktWrapper(
-  wrapper: DescMessage,
-  valueType: ScalarType,
-  val: unknown,
-  details?: string | false,
-) {
-  const reason = `expected ${wrapper.toString()} or ${scalarTypeDescription(valueType)}`;
-  return (
-    reason +
-    (typeof details == "string" ? `: ${details}` : `, got ${formatVal(val)}`)
-  );
+  return isReflectMessage(value, field.message);
 }
 
 function reasonSingular(
@@ -165,18 +117,14 @@ function reasonSingular(
   val: unknown,
   details?: string | false,
 ) {
-  let reason: string;
+  details =
+    typeof details == "string" ? `: ${details}` : `, got ${formatVal(val)}`;
   if (field.scalar !== undefined) {
-    reason = `expected ${scalarTypeDescription(field.scalar)}`;
+    return `expected ${scalarTypeDescription(field.scalar)}` + details;
   } else if (field.enum !== undefined) {
-    reason = `expected ${field.enum.toString()}`;
-  } else {
-    reason = `expected ${field.message.toString()}`;
+    return `expected ${field.enum.toString()}` + details;
   }
-  return (
-    reason +
-    (typeof details == "string" ? `: ${details}` : `, got ${formatVal(val)}`)
-  );
+  return `expected ${formatReflectMessage(field.message)}` + details;
 }
 
 function formatVal(val: unknown): string {
@@ -190,6 +138,15 @@ function formatVal(val: unknown): string {
       }
       if (Array.isArray(val)) {
         return `Array(${val.length})`;
+      }
+      if (isReflectList(val)) {
+        return formatReflectList(val.field());
+      }
+      if (isReflectMap(val)) {
+        return formatReflectMap(val.field());
+      }
+      if (isReflectMessage(val)) {
+        return formatReflectMessage(val.desc);
       }
       if (isMessage(val)) {
         return `message ${val.$typeName}`;
@@ -206,5 +163,31 @@ function formatVal(val: unknown): string {
     default:
       // "symbol" | "undefined" | "object" | "function"
       return typeof val;
+  }
+}
+
+function formatReflectMessage(desc: DescMessage) {
+  return `ReflectMessage (${desc.typeName})`;
+}
+
+function formatReflectList(field: DescField & { fieldKind: "list" }) {
+  switch (field.listKind) {
+    case "message":
+      return `ReflectList (${field.message.toString()})`;
+    case "enum":
+      return `ReflectList (${field.enum.toString()})`;
+    case "scalar":
+      return `ReflectList (${ScalarType[field.scalar]})`;
+  }
+}
+
+function formatReflectMap(field: DescField & { fieldKind: "map" }) {
+  switch (field.mapKind) {
+    case "message":
+      return `ReflectMap (${ScalarType[field.mapKey]}, ${field.message.toString()})`;
+    case "enum":
+      return `ReflectMap (${ScalarType[field.mapKey]}, ${field.enum.toString()})`;
+    case "scalar":
+      return `ReflectMap (${ScalarType[field.mapKey]}, ${ScalarType[field.scalar]})`;
   }
 }

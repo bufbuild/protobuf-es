@@ -14,10 +14,7 @@
 
 import type { Message } from "./types.js";
 import { localName } from "./reflect/names.js";
-import {
-  clearFieldPrivate,
-  isFieldSetPrivate,
-} from "./reflect/reflect-private.js";
+import { unsafeClear, unsafeIsSet } from "./reflect/unsafe.js";
 
 /**
  * Returns true if the field is set.
@@ -28,7 +25,7 @@ export function isFieldSet<T extends Message>(
 ): boolean {
   const field = message.$desc.fields.find((f) => localName(f) === fieldName);
   if (field) {
-    return isFieldSetPrivate(message, field);
+    return unsafeIsSet(message, field);
   }
   return false;
 }
@@ -42,7 +39,7 @@ export function clearField<T extends Message>(
 ): void {
   const field = message.$desc.fields.find((f) => localName(f) === fieldName);
   if (field) {
-    clearFieldPrivate(message, field);
+    unsafeClear(message, field);
   }
 }
 

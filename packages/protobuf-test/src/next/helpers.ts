@@ -16,7 +16,9 @@ import { describe, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
 import { FileDescriptorSet } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { createDescFileSet, localName } from "@bufbuild/protobuf/next/reflect";
+import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
+import type { DescField } from "@bufbuild/protobuf";
 
 export function describeGenerated<Desc extends DescMessage>(
   ts: Desc,
@@ -73,4 +75,41 @@ export async function compileMessage(proto: string): Promise<DescMessage> {
     throw new Error("missing message in input.proto");
   }
   return file.messages[0];
+}
+
+export function getFieldByLocalName(desc: DescMessage, name: string): DescField;
+export function getFieldByLocalName(
+  desc: DescMessage,
+  name: string,
+  fieldKind: "message",
+): DescField & { fieldKind: "message" };
+export function getFieldByLocalName(
+  desc: DescMessage,
+  name: string,
+  fieldKind: "list",
+): DescField & { fieldKind: "list" };
+export function getFieldByLocalName(
+  desc: DescMessage,
+  name: string,
+  fieldKind: "map",
+): DescField & { fieldKind: "map" };
+export function getFieldByLocalName(
+  desc: DescMessage,
+  name: string,
+  fieldKind?: string,
+): DescField {
+  const field = proto3_ts.Proto3MessageDesc.fields.find(
+    (f) => localName(f) === name,
+  );
+  if (!field) {
+    throw new Error(`getFieldByLocalName: ${name} not found`);
+  }
+  if (fieldKind !== undefined) {
+    if (field.fieldKind != fieldKind) {
+      throw new Error(
+        `getFieldByLocalName: ${name} is not a ${fieldKind} field`,
+      );
+    }
+  }
+  return field;
 }

@@ -15,9 +15,8 @@
 import type { Message } from "./types.js";
 import { scalarEquals } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import type { ReflectMessage } from "./reflect/reflect.js";
-import type { MapEntryKey } from "./reflect/reflect-map.js";
 import type { DescField } from "../descriptor-set.js";
+import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 
 /**
  * Compare two messages of the same type.
@@ -30,13 +29,12 @@ export function equals(a: Message, b: Message): boolean {
   if (a.$typeName != b.$typeName) {
     return false;
   }
-  const ra = reflect(a);
-  const rb = reflect(b);
-  for (const f of ra.fields) {
-    if (ra.isSet(f) !== rb.isSet(f)) {
-      return false;
-    }
-    if (!fieldEquals(f, ra, rb)) {
+  return reflectEquals(reflect(a), reflect(b));
+}
+
+function reflectEquals(a: ReflectMessage, b: ReflectMessage): boolean {
+  for (const f of a.fields) {
+    if (!fieldEquals(f, a, b)) {
       return false;
     }
   }
@@ -48,15 +46,19 @@ function fieldEquals(
   a: ReflectMessage,
   b: ReflectMessage,
 ): boolean {
+  if (!a.isSet(f) && !b.isSet(f)) {
+    return true;
+  }
+  if (!a.isSet(f) || !b.isSet(f)) {
+    return false;
+  }
   switch (f.fieldKind) {
     case "scalar":
       return scalarEquals(f.scalar, a.get(f), b.get(f));
     case "enum":
       return a.get(f) === b.get(f);
     case "message":
-      // TODO fix type error
-      // @ts-expect-error TODO
-      return equals(a.get(f), b.get(f));
+      return reflectEquals(a.get(f), b.get(f));
     case "map": {
       const ma = a.get(f);
       const mb = b.get(f);
@@ -84,7 +86,7 @@ function fieldEquals(
           case "message":
             // TODO fix type error
             // @ts-expect-error TODO
-            if (!equals(va, vb)) {
+            if (!reflectEquals(va, vb)) {
               return false;
             }
             break;
@@ -102,11 +104,11 @@ function fieldEquals(
     case "list": {
       const la = a.get(f);
       const lb = b.get(f);
-      if (la.length != lb.length) {
+      if (la.size != lb.size) {
         return false;
       }
-      for (let i = 0; i < la.length; i++) {
-        if (la[i] === lb[i]) {
+      for (let i = 0; i < la.size; i++) {
+        if (la.get(i) === lb.get(i)) {
           continue;
         }
         switch (f.listKind) {
@@ -115,14 +117,14 @@ function fieldEquals(
           case "message":
             // TODO fix type error
             // @ts-expect-error TODO
-            if (!equals(la[i], lb[i])) {
+            if (!reflectEquals(la.get(i), lb.get(i))) {
               return false;
             }
             break;
           case "scalar":
             // TODO fix type error
             // @ts-expect-error TODO
-            if (!scalarEquals(f.scalar, la[i], lb[i])) {
+            if (!scalarEquals(f.scalar, la.get(i), lb.get(i))) {
               return false;
             }
             break;

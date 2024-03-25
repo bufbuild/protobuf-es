@@ -17,39 +17,38 @@ import type { DescField, DescMessage } from "../descriptor-set.js";
 import { Edition } from "../google/protobuf/descriptor_pb.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { localName } from "./reflect/names.js";
-import { LongType, scalarZeroValue } from "./reflect/scalar.js";
-import { reflect } from "./reflect/reflect.js";
-import { FieldError, isFieldError } from "./reflect/error.js";
-import { isObject, isOneofADT } from "./reflect/guard.js";
+import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
+import { FieldError } from "./reflect/error.js";
+import { isObject } from "./reflect/guard.js";
+
+import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
 
 /**
  * Create a new message instance.
+ *
+ * The second argument is an optional initializer object, where all fields are
+ * optional.
  */
 export function create<Desc extends DescMessage>(
   desc: Desc,
   init?: MessageInitShape<Desc>,
 ): MessageShape<Desc> {
-  if (init === undefined) {
-    return createZeroMessage(desc) as MessageShape<Desc>;
-  }
-  const msgOrErr = tryCreate(desc, init);
-  if (msgOrErr instanceof Error) {
-    throw new Error(`${String(msgOrErr.field())}: ${msgOrErr.message}`);
-  }
-  return msgOrErr as MessageShape<Desc>;
-}
-
-function tryCreate<Desc extends DescMessage>(
-  desc: Desc,
-  init: MessageInitShape<Desc>,
-): MessageShape<Desc> | FieldError {
   if (isMessage(init, desc)) {
-    // TODO consider returning a clone instead
     return init;
   }
-  const msg = createZeroMessage(desc);
-  const r = reflect(msg);
-  for (const member of r.members) {
+  const message = createZeroMessage(desc) as MessageShape<Desc>;
+  if (init !== undefined) {
+    initMessage(desc, message, init);
+  }
+  return message;
+}
+
+function initMessage<Desc extends DescMessage>(
+  desc: Desc,
+  message: MessageShape<Desc>,
+  init: MessageInitShape<Desc>,
+): MessageShape<Desc> | FieldError {
+  for (const member of desc.members) {
     let value = (init as Record<string, unknown>)[localName(member)];
     if (value == null) {
       // intentionally ignore undefined and null
@@ -57,70 +56,97 @@ function tryCreate<Desc extends DescMessage>(
     }
     let field: DescField;
     if (member.kind == "oneof") {
-      if (!isOneofADT(value)) {
-        return new FieldError(member, "invalid oneof ADT");
-      }
-      const oneofCase = value.case;
-      if (oneofCase == undefined) {
+      const oneofField = unsafeOneofCase(init, member);
+      if (!oneofField) {
         continue;
       }
-      const oneofField = member.fields.find((f) => localName(f) == oneofCase);
-      if (!oneofField) {
-        return new FieldError(
-          member,
-          `invalid oneof ADT: field ${oneofCase} not found`,
-        );
-      }
       field = oneofField;
-      value = value.value;
+      value = unsafeGet(init, oneofField);
     } else {
       field = member;
     }
-    let err: FieldError | undefined;
-    if (field.fieldKind == "map") {
-      // TODO implement
-      throw new Error("TODO");
-    } else if (field.fieldKind == "message") {
-      if (!isMessage(value) && isObject(value)) {
-        value = tryCreate(field.message, value);
-        if (isFieldError(value)) {
-          return new FieldError(
-            field,
-            `${value.field().name}: ${value.message}`,
-          );
-        }
-      }
-      err = r.set(field, value as Message);
-    } else if (
-      field.fieldKind == "list" &&
-      field.listKind == "message" &&
-      Array.isArray(value)
-    ) {
-      for (let i = 0; i < value.length; i++) {
-        let item = value[i] as unknown;
-        if (!isMessage(item) && isObject(item)) {
-          item = tryCreate(field.message, item);
-          if (isFieldError(item)) {
-            return new FieldError(
-              field,
-              `list item #${i + 1}: ${item.field().name}: ${item.message}`,
-            );
-          }
-        }
-        // TODO fix type errors
-        // @ts-expect-error TODO
-        err = r.addListItem(field, item);
-      }
-    } else {
-      // TODO fix type errors
-      // @ts-expect-error TODO
-      err = r.set(field, value);
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+    switch (field.fieldKind) {
+      case "message":
+        value = toMessage(value, field.message);
+        // value = initMessage(field, value);
+        break;
+      case "scalar":
+        value = initScalar(field, value);
+        break;
+      case "list":
+        value = initList(field, value);
+        break;
+      case "map":
+        value = initMap(field, value);
+        break;
     }
-    if (err) {
-      return err;
+    unsafeSet(message, field, value);
+  }
+  return message;
+}
+
+function initScalar(
+  field: DescField & { fieldKind: "scalar" },
+  value: unknown,
+): unknown {
+  if (field.scalar == ScalarType.BYTES) {
+    return toU8Arr(value);
+  }
+  return value;
+}
+
+function initMap(
+  field: DescField & { fieldKind: "map" },
+  value: unknown,
+): unknown {
+  if (isObject(value)) {
+    if (field.scalar == ScalarType.BYTES) {
+      return convertObjectValues(value, toU8Arr);
+    }
+    if (field.mapKind == "message") {
+      return convertObjectValues(value, (val) => toMessage(val, field.message));
     }
   }
-  return msg as MessageShape<Desc>;
+  return value;
+}
+
+function initList(
+  field: DescField & { fieldKind: "list" },
+  value: unknown,
+): unknown {
+  if (Array.isArray(value)) {
+    if (field.scalar == ScalarType.BYTES) {
+      return value.map(toU8Arr);
+    }
+    if (field.listKind == "message") {
+      return value.map((item: unknown) => toMessage(item, field.message));
+    }
+  }
+  return value;
+}
+
+function toMessage(value: unknown, message: DescMessage): unknown {
+  if (!isMessage(value, message) && isObject(value)) {
+    return create(message, value);
+  }
+  return value;
+}
+
+// converts any ArrayLike<number> to Uint8Array if necessary.
+function toU8Arr(value: unknown) {
+  return Array.isArray(value) ? new Uint8Array(value) : value;
+}
+
+function convertObjectValues(
+  obj: Record<string, unknown>,
+  fn: (val: unknown) => unknown,
+): Record<string, unknown> {
+  const ret: Record<string, unknown> = {};
+  for (const entry of Object.entries(obj)) {
+    ret[entry[0]] = fn(entry[1]);
+  }
+  return ret;
 }
 
 const messagePrototypes = new WeakMap<DescMessage, object>();

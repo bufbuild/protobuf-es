@@ -15,14 +15,14 @@
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { MessageShape } from "./types.js";
-import type { ReflectMessage } from "./reflect/reflect.js";
+import type { ReflectMessage } from "./reflect/index.js";
 import type { IBinaryReader } from "../binary-encoding.js";
 import {
   LongType,
   scalarZeroValue,
   type ScalarValue,
 } from "./reflect/scalar.js";
-import { reflect } from "./reflect/reflect.js";
+import { reflect, reflectMessage } from "./reflect/reflect.js";
 import { create } from "./create.js";
 import { BinaryReader, WireType } from "../binary-encoding.js";
 import { ScalarType } from "./reflect/scalar.js";
@@ -88,7 +88,7 @@ function readMessage(
   lengthOrEndTagFieldNo: number,
   options: BinaryReadOptions,
   delimitedMessageEncoding?: boolean,
-) {
+): void {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   const end = delimitedMessageEncoding
     ? reader.len
@@ -159,11 +159,11 @@ function readMapEntry(
   field: DescField & { fieldKind: "map" },
   reader: IBinaryReader,
   options: BinaryReadOptions,
-): [string | number, ScalarValue | MessageShape<DescMessage>] {
+): [string | number, ScalarValue | ReflectMessage] {
   const length = reader.uint32(),
     end = reader.pos + length;
   let key: ScalarValue | undefined,
-    val: ScalarValue | MessageShape<DescMessage> | undefined;
+    val: ScalarValue | ReflectMessage | undefined;
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();
     switch (fieldNo) {
@@ -200,7 +200,7 @@ function readMapEntry(
         val = field.enum.values[0].number;
         break;
       case "message":
-        val = create(field.message);
+        val = reflectMessage(field.message);
         break;
     }
   }
@@ -243,15 +243,15 @@ function readMessageField<Desc extends DescMessage>(
   field: Pick<DescField, "number" | "proto" | "getFeatures"> & {
     message: Desc;
   },
-  mergeMessage?: MessageShape<Desc>,
-): MessageShape<Desc> {
+  mergeMessage?: ReflectMessage,
+): ReflectMessage {
   const delimited =
     field.proto.type === FieldDescriptorProto_Type.GROUP ||
     field.getFeatures().messageEncoding ===
       FeatureSet_MessageEncoding.DELIMITED;
-  const message = mergeMessage ?? create(field.message);
+  const message = mergeMessage ?? reflectMessage(field.message);
   readMessage(
-    reflect(message),
+    message,
     reader,
     delimited ? field.number : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
     options,

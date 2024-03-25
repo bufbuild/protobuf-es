@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { ReflectMessage } from "./reflect/reflect.js";
 import type { Message } from "./types.js";
 import type { BinaryWriteOptions } from "../binary-format.js";
 import { reflect } from "./reflect/reflect.js";
@@ -27,6 +26,7 @@ import {
 import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import type { DescField } from "../descriptor-set.js";
+import type { ReflectList, ReflectMessage } from "./reflect/index.js";
 
 // Default options for serializing binary data.
 const writeDefaults: Readonly<BinaryWriteOptions> = {
@@ -74,10 +74,10 @@ function reflectToBinary(
         writeListField(w, opts, f, msg.get(f));
         break;
       case "message":
-        writeMessageField(w, opts, f, msg.get(f) as Message);
+        writeMessageField(w, opts, f, msg.get(f));
         break;
       case "map":
-        for (const [key, val] of Object.entries(msg.get(f))) {
+        for (const [key, val] of msg.get(f)) {
           writeMapEntry(w, opts, f, key, val);
         }
         break;
@@ -109,9 +109,9 @@ function writeMessageField(
   opts: BinaryWriteOptions,
   field: DescField &
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
-  message: Message,
+  message: ReflectMessage,
 ) {
-  const rm = reflectToBinary(reflect(message), opts);
+  const rm = reflectToBinary(message, opts);
   if (
     field.proto.type === FieldDescriptorProto_Type.GROUP ||
     field.getFeatures().messageEncoding === FeatureSet_MessageEncoding.DELIMITED
@@ -129,27 +129,27 @@ function writeListField(
   writer: IBinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "list" },
-  value: readonly unknown[],
+  list: ReflectList,
 ) {
   if (field.listKind == "message") {
-    for (const item of value) {
-      writeMessageField(writer, opts, field, item as Message);
+    for (const item of list) {
+      writeMessageField(writer, opts, field, item as ReflectMessage);
     }
     return;
   }
   const scalarType = field.scalar ?? ScalarType.INT32;
   if (field.packed) {
-    if (!value.length) {
+    if (!list.size) {
       return;
     }
     writer.tag(field.number, WireType.LengthDelimited).fork();
-    for (let i = 0; i < value.length; i++) {
-      writeScalarValue(writer, scalarType, value[i] as ScalarValue);
+    for (const item of list) {
+      writeScalarValue(writer, scalarType, item as ScalarValue);
     }
     writer.join();
     return;
   }
-  for (const item of value) {
+  for (const item of list) {
     writeScalar(writer, scalarType, field.number, item);
   }
 }
@@ -158,32 +158,13 @@ function writeMapEntry(
   writer: IBinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "map" },
-  key: string,
+  key: unknown,
   value: unknown,
 ) {
   writer.tag(field.number, WireType.LengthDelimited);
   writer.fork();
-  // javascript only allows number or string for object properties
-  // we convert from our representation to the protobuf type
-  let keyValue: ScalarValue;
-  switch (field.mapKey) {
-    case ScalarType.INT32:
-    case ScalarType.FIXED32:
-    case ScalarType.UINT32:
-    case ScalarType.SFIXED32:
-    case ScalarType.SINT32:
-      keyValue = Number.parseInt(key);
-      break;
-    case ScalarType.BOOL:
-      keyValue = key == "true";
-      break;
-    default:
-      keyValue = key;
-      break;
-  }
-
   // write key, expecting key field number = 1
-  writeScalar(writer, field.mapKey, 1, keyValue);
+  writeScalar(writer, field.mapKey, 1, key);
 
   // write value, expecting value field number = 2
   switch (field.mapKind) {

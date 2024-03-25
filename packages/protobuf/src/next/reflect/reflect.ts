@@ -17,110 +17,41 @@ import type {
   DescMessage,
   DescOneof,
 } from "../../descriptor-set.js";
-import type { ScalarValue, LongType } from "./scalar.js";
-import type { Message, UnknownField } from "../types.js";
-import {
-  addListItemPrivate,
-  clearFieldPrivate,
-  convertToLocal,
-  convertToReflect,
-  getFieldPrivate,
-  getOneofCasePrivate,
-  isFieldSetPrivate,
-  setFieldPrivate,
-  setMapEntryPrivate,
-} from "./reflect-private.js";
-import {
-  checkNewListItem,
-  checkNewMapEntry,
-  checkReflectValue,
-} from "./reflect-check.js";
+import type { Message } from "../types.js";
+import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
-import type { MapEntryKey, ReflectMap } from "./reflect-map.js";
-import { reflectMap } from "./reflect-map.js";
+import type {
+  MapEntryKey,
+  ReflectList,
+  ReflectMap,
+  ReflectMessage,
+} from "./reflect-types.js";
+import {
+  unsafeAddListItem,
+  unsafeClear,
+  unsafeGet,
+  unsafeIsSet,
+  unsafeLocal,
+  unsafeOneofCase,
+  unsafeSet,
+  unsafeSetMapEntry,
+} from "./unsafe.js";
+import { create } from "../create.js";
+import { isWktWrapper, isWktWrapperDesc } from "./wkt.js";
+import { LongType, ScalarType } from "../../scalar.js";
+import { protoInt64 } from "../../proto-int64.js";
+import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 
-export interface ReflectMessage {
-  readonly kind: "reflect_message";
-  readonly message: Message;
-  readonly desc: DescMessage;
-  readonly fields: readonly DescField[];
-  readonly sortedFields: readonly DescField[];
-  readonly oneofs: readonly DescOneof[];
-  readonly members: readonly (DescField | DescOneof)[];
-
-  // TODO findJsonName() is only needed for parsing JSON. We might want to move it to the JSON parser.
-  findJsonName(jsonName: string): DescField | undefined;
-  findNumber(number: number): DescField | undefined;
-
-  isSet(field: DescField): boolean;
-
-  clear(field: DescField): void;
-
-  oneofCase(oneof: DescOneof): DescField | undefined;
-
-  get<Field extends DescField>(field: Field): ReflectValue<Field>;
-
-  set<Field extends DescField>(
-    field: Field,
-    value: ReflectValue<Field>,
-  ): FieldError | undefined;
-
-  addListItem<Field extends DescField & { fieldKind: "list" }>(
-    field: Field,
-    value: NewListItem<Field>,
-  ): FieldError | undefined;
-
-  setMapEntry<Field extends DescField & { fieldKind: "map" }>(
-    field: Field,
-    key: MapEntryKey,
-    value: NewMapEntryValue<Field>,
-  ): FieldError | undefined;
-
-  getUnknown(): UnknownField[] | undefined;
-
-  setUnknown(value: UnknownField[]): void;
+export function reflectMessage(
+  desc: DescMessage,
+  unsafeInput?: Message,
+): ReflectMessage {
+  return reflect(unsafeInput ?? create(desc));
 }
-
-// prettier-ignore
-type ReflectValue<Field extends DescField = DescField> = (
-  Field extends { fieldKind: "map"}      ? (
-    Field extends { mapKind: "message" } ? ReflectMap<MapEntryKey, Message> :
-    Field extends { mapKind: "enum"}     ? ReflectMap<MapEntryKey, enumVal> :
-    Field extends { mapKind: "scalar"; scalar: infer T } ? ReflectMap<MapEntryKey, ScalarValue<T, LongType.BIGINT>> :
-    never
-  ) :
-  Field extends { fieldKind: "list" } ? (
-    Field extends { listKind: "message"; } ? ReadonlyArray<Message> :
-    Field extends { listKind: "enum"; }    ? ReadonlyArray<number> :
-    Field extends { listKind: "scalar"; scalar: infer T } ? ReadonlyArray<ScalarValue<T>> :
-    never
-  ) :
-  Field extends { fieldKind: "enum"}    ? number | undefined :
-  Field extends { fieldKind: "message"} ? Message | undefined :
-  Field extends { fieldKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
-  never
-);
-
-// prettier-ignore
-type NewListItem<Field extends DescField & { fieldKind: "list" }> = (
-  Field extends { scalar: infer T } ? ScalarValue<T> :
-  Field extends { listKind: "enum"}    ? enumVal :
-  Field extends { listKind: "message"} ? Message :
-  never
-);
-
-// prettier-ignore
-type NewMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
-  Field extends { mapKind: "enum"}    ? enumVal :
-  Field extends { mapKind: "message"} ? Message :
-  Field extends { scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
-  never
-);
-
-type enumVal = number;
 
 export function reflect(
   message: Message,
+  // TODO either remove this option, or support it in reflect-list and reflect-map as well
   opt?: {
     /**
      * By default, field values are validated when setting them. For example,
@@ -142,8 +73,8 @@ export function reflect(
   let fieldsByNumber: Map<number, DescField> | undefined;
   let sortedFields: DescField[] | undefined;
   return {
-    kind: "reflect_message",
     message,
+    [unsafeLocal]: message,
     desc: desc,
     fields: desc.fields,
     oneofs: desc.oneofs,
@@ -179,74 +110,98 @@ export function reflect(
 
     oneofCase(oneof) {
       assertOwn(message, oneof);
-      return getOneofCasePrivate(message, oneof);
+      return unsafeOneofCase(message, oneof);
     },
 
     isSet(field) {
       assertOwn(message, field);
-      return isFieldSetPrivate(message, field);
+      return unsafeIsSet(message, field);
     },
 
     clear(field: DescField) {
       assertOwn(message, field);
-      clearFieldPrivate(message, field);
+      unsafeClear(message, field);
     },
 
     get(field) {
       assertOwn(message, field);
+      let value = unsafeGet(message, field);
       switch (field.fieldKind) {
+        case "list":
+          return reflectList(field, value as unknown[]);
         case "map":
-          // TODO map fields
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
-          return reflectMap(message, field) as any;
-        default:
+          // TODO fix types
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-          return convertToReflect(
-            field,
-            getFieldPrivate(message, field),
-          ) as any; // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
+          return reflectMap(field, value as Record<string, unknown>) as any; // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
+        case "message":
+          if (
+            value !== undefined &&
+            !field.oneof &&
+            isWktWrapperDesc(field.message)
+          ) {
+            value = {
+              $typeName: field.message.typeName,
+              $desc: field.message,
+              value: longToReflect(field.message.fields[0], value),
+            } satisfies Message & { value: unknown };
+          }
+          return reflectMessage(field.message, value as Message);
+        case "scalar":
+          return longToReflect(field, value);
+        case "enum":
+          return value;
       }
     },
 
     set(field, value) {
-      // TODO map fields
       assertOwn(message, field);
       if (check) {
-        const err = checkReflectValue(field, value);
+        const err = checkField(field, value);
         if (err) {
           return err;
         }
       }
-      setFieldPrivate(message, field, convertToLocal(field, value));
+      let local: unknown = value;
+      if (isReflectMap(value) || isReflectList(value)) {
+        local = value[unsafeLocal];
+      } else if (isReflectMessage(value)) {
+        const msg = value.message;
+        local = !field.oneof && isWktWrapper(msg) ? msg.value : msg;
+      } else {
+        local = longToLocal(field, value);
+      }
+      unsafeSet(message, field, local);
       return undefined;
     },
 
     addListItem(field, value) {
       assertOwn(message, field);
-      // TODO assert that field is fieldKind: "list"
-      // TODO convert 64-bit integers
+      assertKind(field, "list");
       if (check) {
-        const list = getFieldPrivate(message, field) as unknown[];
-        const err = checkNewListItem(field, list.length, value);
-        if (err) {
-          return err;
+        if (checkListItem(field, 0, value)) {
+          const arr = unsafeGet(message, field) as unknown[];
+          return checkListItem(field, arr.length, value);
         }
       }
-      addListItemPrivate(message, field, value);
+      unsafeAddListItem(message, field, listItemToLocal(field, value));
       return undefined;
     },
 
     setMapEntry(field, key, value) {
       assertOwn(message, field);
-      // TODO assert that field is fieldKind: "map"
-      // TODO convert map key
+      assertKind(field, "map");
       if (check) {
-        const err = checkNewMapEntry(field, key, value);
+        const err = checkMapEntry(field, key, value);
         if (err) {
           return err;
         }
       }
-      setMapEntryPrivate(message, field, key, value);
+      unsafeSetMapEntry(
+        message,
+        field,
+        mapKeyToLocal(key),
+        mapValueToLocal(field, value),
+      );
       return undefined;
     },
 
@@ -260,6 +215,16 @@ export function reflect(
   };
 }
 
+function assertKind(field: DescField, kind: DescField["fieldKind"]) {
+  if (field.fieldKind != kind) {
+    throw new FieldError(
+      field,
+      `${field.toString()} is ${field.fieldKind}`,
+      "ForeignFieldError",
+    );
+  }
+}
+
 function assertOwn(owner: Message, member: DescField | DescOneof) {
   if (member.parent.typeName !== owner.$typeName) {
     throw new FieldError(
@@ -268,4 +233,293 @@ function assertOwn(owner: Message, member: DescField | DescOneof) {
       "ForeignFieldError",
     );
   }
+}
+
+export function reflectList<V>(
+  field: DescField & { fieldKind: "list" },
+  unsafeInput?: unknown[],
+): ReflectList<V> {
+  const arr = unsafeInput ?? [];
+  return {
+    [unsafeLocal]: arr,
+    field() {
+      return field;
+    },
+    get size() {
+      return arr.length;
+    },
+    get(index) {
+      const item = arr[index];
+      return item === undefined
+        ? undefined
+        : (listItemToReflect(field, item) as V);
+    },
+    set(index, item) {
+      if (index < 0 || index >= arr.length) {
+        return new FieldError(field, `list item #${index + 1}: out of range`);
+      }
+      const err = checkListItem(field, index, item);
+      if (!err) {
+        arr[index] = listItemToLocal(field, item);
+      }
+      return err;
+    },
+    add(...items) {
+      let err: FieldError | undefined;
+      for (let i = 0; i < items.length && !err; i++) {
+        err = checkListItem(field, arr.length + i, items[i]);
+      }
+      if (!err) {
+        for (const item of items) {
+          arr.push(listItemToLocal(field, item));
+        }
+      }
+      return err;
+    },
+    clear() {
+      arr.splice(0, arr.length);
+    },
+    [Symbol.iterator]() {
+      return this.values();
+    },
+    keys() {
+      return arr.keys();
+    },
+    *values() {
+      for (const item of arr) {
+        yield listItemToReflect(field, item) as V;
+      }
+    },
+    *entries() {
+      for (let i = 0; i < arr.length; i++) {
+        yield [i, listItemToReflect(field, arr[i]) as V];
+      }
+    },
+  };
+}
+
+export function reflectMap<K extends MapEntryKey, V>(
+  field: DescField & { fieldKind: "map" },
+  unsafeInput?: Record<string, unknown>,
+): ReflectMap<K, V> {
+  const obj = unsafeInput ?? {};
+  return {
+    [unsafeLocal]: obj,
+    field() {
+      return field;
+    },
+    set(key, value) {
+      const err = checkMapEntry(field, key, value);
+      if (!err) {
+        obj[mapKeyToLocal(key)] = mapValueToLocal(field, value);
+      }
+      return err;
+    },
+    delete(key) {
+      const k = mapKeyToLocal(key);
+      const has = Object.prototype.hasOwnProperty.call(obj, k);
+      if (has) {
+        delete obj[k];
+      }
+      return has;
+    },
+    clear() {
+      for (const key of Object.keys(obj)) {
+        delete obj[key];
+      }
+    },
+    get(key) {
+      let val = obj[mapKeyToLocal(key)];
+      if (val !== undefined) {
+        val = mapValueToReflect(field, val);
+      }
+      return val as V | undefined;
+    },
+    has(key) {
+      return Object.prototype.hasOwnProperty.call(obj, mapKeyToLocal(key));
+    },
+    *keys() {
+      for (const objKey of Object.keys(obj)) {
+        yield mapKeyToReflect(objKey, field.mapKey) as K;
+      }
+    },
+    *entries() {
+      for (const objEntry of Object.entries(obj)) {
+        yield [
+          mapKeyToReflect(objEntry[0], field.mapKey) as K,
+          mapValueToReflect(field, objEntry[1]) as V,
+        ];
+      }
+    },
+    [Symbol.iterator]() {
+      return this.entries();
+    },
+    get size() {
+      return Object.keys(obj).length;
+    },
+    *values() {
+      for (const val of Object.values(obj)) {
+        yield mapValueToReflect(field, val) as V;
+      }
+    },
+    forEach(callbackfn, thisArg) {
+      for (const mapEntry of this.entries()) {
+        callbackfn.call(thisArg, mapEntry[1], mapEntry[0], this);
+      }
+    },
+  };
+}
+
+function listItemToLocal(
+  field: DescField & { fieldKind: "list" },
+  value: unknown,
+): unknown {
+  if (isReflectMessage(value)) {
+    return value.message;
+  }
+  return longToLocal(field, value);
+}
+
+function listItemToReflect(
+  field: DescField & { fieldKind: "list" },
+  value: unknown,
+): unknown {
+  if (field.listKind == "message") {
+    return reflectMessage(field.message, value as Message);
+  }
+  return longToReflect(field, value);
+}
+
+function mapValueToLocal(
+  field: DescField & { fieldKind: "map" },
+  value: unknown,
+) {
+  if (isReflectMessage(value)) {
+    return value.message;
+  }
+  return longToLocal(field, value);
+}
+
+function mapValueToReflect(
+  field: DescField & { fieldKind: "map" },
+  value: unknown,
+): unknown {
+  if (field.mapKind == "message") {
+    return reflectMessage(field.message, value as Message);
+  }
+  return value;
+}
+
+function mapKeyToLocal(key: unknown): string | number {
+  return typeof key == "string" || typeof key == "number" ? key : String(key);
+}
+
+/**
+ * Converts a map key (any scalar value except float, double, or bytes) from its
+ * representation in a message (string or number, the only possible object key
+ * types) to the closest possible type in ECMAScript.
+ */
+function mapKeyToReflect(
+  key: string,
+  type: Exclude<
+    ScalarType,
+    ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES
+  >,
+) {
+  switch (type) {
+    case ScalarType.STRING:
+      return key;
+    case ScalarType.INT32:
+    case ScalarType.FIXED32:
+    case ScalarType.UINT32:
+    case ScalarType.SFIXED32:
+    case ScalarType.SINT32: {
+      const n = Number.parseInt(key);
+      if (Number.isFinite(n)) {
+        return n;
+      }
+      break;
+    }
+    case ScalarType.BOOL:
+      switch (key) {
+        case "true":
+          return true;
+        case "false":
+          return false;
+      }
+      break;
+    case ScalarType.UINT64:
+    case ScalarType.FIXED64:
+      try {
+        return protoInt64.uParse(key);
+      } catch {
+        //
+      }
+      break;
+    default:
+      // INT64, SFIXED64, SINT64
+      try {
+        return protoInt64.parse(key);
+      } catch {
+        //
+      }
+      break;
+  }
+  return key;
+}
+
+function longToReflect(field: DescField, value: unknown): unknown {
+  if (field.scalar !== undefined) {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+    switch (field.scalar) {
+      case ScalarType.INT64:
+      case ScalarType.SFIXED64:
+      case ScalarType.SINT64:
+        if (
+          "longType" in field &&
+          field.longType == LongType.STRING &&
+          typeof value == "string"
+        ) {
+          value = protoInt64.parse(value);
+        }
+        break;
+      case ScalarType.FIXED64:
+      case ScalarType.UINT64:
+        if (
+          "longType" in field &&
+          field.longType == LongType.STRING &&
+          typeof value == "string"
+        ) {
+          value = protoInt64.uParse(value);
+        }
+        break;
+    }
+  }
+  return value;
+}
+
+function longToLocal(field: DescField, value: unknown) {
+  if (field.scalar !== undefined) {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+    switch (field.scalar) {
+      case ScalarType.INT64:
+      case ScalarType.SFIXED64:
+      case ScalarType.SINT64:
+        if ("longType" in field && field.longType == LongType.STRING) {
+          value = String(value);
+        } else if (typeof value == "string" || typeof value == "number") {
+          value = protoInt64.parse(value);
+        }
+        break;
+      case ScalarType.FIXED64:
+      case ScalarType.UINT64:
+        if ("longType" in field && field.longType == LongType.STRING) {
+          value = String(value);
+        } else if (typeof value == "string" || typeof value == "number") {
+          value = protoInt64.uParse(value);
+        }
+        break;
+    }
+  }
+  return value;
 }

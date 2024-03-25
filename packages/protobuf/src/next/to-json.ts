@@ -23,7 +23,11 @@ import { protoBase64 } from "../proto-base64.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
-import type { ReflectMessage } from "./reflect/reflect.js";
+import type {
+  ReflectList,
+  ReflectMap,
+  ReflectMessage,
+} from "./reflect/reflect-types.js";
 import type { Message } from "./types.js";
 import type {
   Any,
@@ -151,78 +155,65 @@ function fieldToJson(f: DescField, val: unknown, opts: JsonWriteOptions) {
     case "scalar":
       return scalarToJson(f.scalar, val);
     case "message":
-      return reflectToJson(reflect(val as Message), opts);
+      return reflectToJson(val as ReflectMessage, opts);
     case "enum":
       return enumToJson(f.enum, val, opts.enumAsInteger);
     case "list":
-      assert(Array.isArray(val));
-      return listToJson(f, val, opts);
+      return listToJson(val as ReflectList, opts);
     case "map":
-      assert(typeof val == "object" && val != null);
-      return mapToJson(f, val, opts);
+      return mapToJson(val as ReflectMap, opts);
   }
 }
 
-function mapToJson(
-  f: DescField & { fieldKind: "map" },
-  val: NonNullable<object>,
-  opts: JsonWriteOptions,
-) {
+function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
+  const f = map.field();
   const jsonObj: JsonObject = {};
-  const entries = Object.entries(val);
   switch (f.mapKind) {
     case "scalar":
-      for (const [entryKey, entryValue] of entries) {
+      for (const [entryKey, entryValue] of map) {
         jsonObj[entryKey.toString()] = scalarToJson(f.scalar, entryValue); // JSON standard allows only (double quoted) string as property key
       }
       break;
     case "message":
-      for (const [entryKey, entryValue] of entries) {
+      for (const [entryKey, entryValue] of map) {
         // JSON standard allows only (double quoted) string as property key
         jsonObj[entryKey.toString()] = reflectToJson(
-          reflect(entryValue as Message),
+          entryValue as ReflectMessage,
           opts,
         );
       }
       break;
     case "enum":
-      // eslint-disable-next-line no-case-declarations
-      const enumType = f.enum;
-      for (const [entryKey, entryValue] of entries) {
+      for (const [entryKey, entryValue] of map) {
         // JSON standard allows only (double quoted) string as property key
         jsonObj[entryKey.toString()] = enumToJson(
-          enumType,
+          f.enum,
           entryValue,
           opts.enumAsInteger,
         );
       }
       break;
   }
-  return opts.emitDefaultValues || entries.length > 0 ? jsonObj : undefined;
+  return opts.emitDefaultValues || map.size > 0 ? jsonObj : undefined;
 }
 
-function listToJson(
-  f: DescField & { fieldKind: "list" },
-  val: unknown[],
-  opts: JsonWriteOptions,
-) {
+function listToJson(list: ReflectList, opts: JsonWriteOptions) {
+  const f = list.field();
   const jsonArr: JsonValue[] = [];
   switch (f.listKind) {
     case "scalar":
-      for (let i = 0; i < val.length; i++) {
-        jsonArr.push(scalarToJson(f.scalar, val[i]) as JsonValue);
+      for (const item of list) {
+        jsonArr.push(scalarToJson(f.scalar, item) as JsonValue);
       }
       break;
     case "enum":
-      for (let i = 0; i < val.length; i++) {
-        jsonArr.push(
-          enumToJson(f.enum, val[i], opts.enumAsInteger) as JsonValue,
-        );
+      for (const item of list) {
+        jsonArr.push(enumToJson(f.enum, item, opts.enumAsInteger) as JsonValue);
       }
       break;
     case "message":
-      for (let i = 0; i < val.length; i++) {
-        jsonArr.push(reflectToJson(reflect(val[i] as Message), opts));
+      for (const item of list) {
+        jsonArr.push(reflectToJson(item as ReflectMessage, opts));
       }
       break;
   }

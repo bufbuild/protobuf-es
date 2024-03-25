@@ -12,18 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { create } from "./create.js";
 import type { Message } from "./types.js";
-import { reflect, ScalarType } from "./reflect/index.js";
-import { isMessage } from "./is-message.js";
+import {
+  isReflectMessage,
+  reflect,
+  reflectMessage,
+  type ReflectMessage,
+  ScalarType,
+} from "./reflect/index.js";
 import type { DescField } from "../descriptor-set.js";
 
 /**
  * Create a deep copy of a message, including extensions and unknown fields.
  */
 export function clone<T extends Message>(message: T): T {
-  const i = reflect(message);
-  const o = reflect(create(message.$desc));
+  return cloneReflect(reflect(message)).message as T;
+}
+
+function cloneReflect(i: ReflectMessage): ReflectMessage {
+  const o = reflectMessage(i.desc);
   for (const f of i.fields) {
     if (!i.isSet(f)) {
       continue;
@@ -60,12 +67,12 @@ export function clone<T extends Message>(message: T): T {
   if (unknown && unknown.length > 0) {
     o.setUnknown([...unknown]);
   }
-  return o.message as T;
+  return o;
 }
 
 function cloneSingular<T>(field: DescField, value: T): T {
-  if (field.message !== undefined && isMessage(value)) {
-    return clone(value);
+  if (field.message !== undefined && isReflectMessage(value)) {
+    return cloneReflect(value) as T;
   }
   if (field.scalar == ScalarType.BYTES && value instanceof Uint8Array) {
     // @ts-expect-error T cannot extend Uint8Array in practice
