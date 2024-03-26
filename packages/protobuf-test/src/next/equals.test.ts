@@ -45,6 +45,13 @@ describe("equals()", () => {
     const b: Message = create(Proto3MessageDesc as DescMessage);
     expect(equals(a, b)).toBe(true);
   });
+  test("NaN does not equal NaN", () => {
+    const a = create(Proto3MessageDesc);
+    a.singularFloatField = Number.NaN;
+    const b = create(Proto3MessageDesc);
+    b.singularFloatField = Number.NaN;
+    expect(equals(a, b)).toBe(false);
+  });
   test("extensions and unknown fields are disregarded", () => {
     const a = create(Proto3MessageDesc);
     a.$unknown = [
