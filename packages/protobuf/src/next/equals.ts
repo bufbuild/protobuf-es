@@ -20,7 +20,8 @@ import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 
 /**
  * Compare two messages of the same type.
- * Note that this function disregards extensions and unknown fields.
+ * Note that this function disregards extensions and unknown fields, and that
+ * NaN is not equal NaN, following the IEEE standard.
  */
 export function equals(a: Message, b: Message): boolean {
   if (a === b) {
