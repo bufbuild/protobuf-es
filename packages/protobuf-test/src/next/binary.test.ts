@@ -68,8 +68,7 @@ describe("binary serialization", () => {
         },
       );
     });
-    // TODO: `create` doesn't support maps yet, remove after support is added.
-    test.skip("for map fields", () => {
+    test("for map fields", () => {
       testV1Compat(MapsMessage, MapsMessageDesc, {
         boolStrField: { true: "foo" },
         int32MsgField: { 123: { strStrField: { key: "value" } } },

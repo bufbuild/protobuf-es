@@ -409,152 +409,6 @@ describe("create()", () => {
       });
     });
     describe("64-bit integer field", () => {
-      function expect64BitFields(msg: proto3_ts.Proto3Message) {
-        expect(msg.singularInt64Field).toBe(protoInt64.parse(1));
-        expect(msg.singularInt64JsNumberField).toBe(protoInt64.parse(2));
-        expect(msg.singularInt64JsStringField).toBe("3");
-        expect(msg.repeatedInt64Field).toStrictEqual([protoInt64.parse(4)]);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([
-          protoInt64.parse(5),
-        ]);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual(["6"]);
-        expect(msg.either).toStrictEqual({
-          case: "oneofInt64Field",
-          value: protoInt64.parse(7),
-        });
-        expect(msg.singularMessageField?.either).toStrictEqual({
-          case: "oneofInt64JsNumberField",
-          value: protoInt64.parse(8),
-        });
-        expect(
-          msg.singularMessageField?.singularMessageField?.either,
-        ).toStrictEqual({ case: "oneofInt64JsStringField", value: "9" });
-        expect(msg.mapInt64Int64Field).toStrictEqual({
-          "1": protoInt64.parse(11),
-          "2": protoInt64.parse(22),
-        });
-      }
-      test.skip("accept bigint", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
-          singularInt64Field: protoInt64.parse(1),
-          singularInt64JsNumberField: protoInt64.parse(2),
-          // @ts-expect-error TS2322
-          singularInt64JsStringField: protoInt64.parse(3),
-          repeatedInt64Field: [protoInt64.parse(4)],
-          repeatedInt64JsNumberField: [protoInt64.parse(5)],
-          // @ts-expect-error TS2322
-          repeatedInt64JsStringField: [protoInt64.parse(6)],
-          either: {
-            case: "oneofInt64Field",
-            value: protoInt64.parse(7),
-          },
-          singularMessageField: {
-            either: {
-              case: "oneofInt64JsNumberField",
-              value: protoInt64.parse(8),
-            },
-            singularMessageField: {
-              either: {
-                // @ts-ignore -- required for older TS
-                case: "oneofInt64JsStringField",
-                // @ts-expect-error TS2322
-                value: protoInt64.parse(9),
-              },
-            },
-          },
-          mapInt64Int64Field: {
-            "1": protoInt64.parse(11),
-            "2": protoInt64.parse(22),
-          },
-        });
-        expect64BitFields(msg);
-      });
-      test.skip("accept number", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
-          // @ts-expect-error TS2322
-          singularInt64Field: 1,
-          // @ts-expect-error TS2322
-          singularInt64JsNumberField: 2,
-          // @ts-expect-error TS2322
-          singularInt64JsStringField: 3,
-          // @ts-expect-error TS2322
-          repeatedInt64Field: [4],
-          // @ts-expect-error TS2322
-          repeatedInt64JsNumberField: [5],
-          // @ts-expect-error TS2322
-          repeatedInt64JsStringField: [6],
-          either: {
-            // @ts-ignore -- required for older TS
-            case: "oneofInt64Field",
-            // @ts-expect-error TS2322
-            value: 7,
-          },
-          singularMessageField: {
-            either: {
-              // @ts-ignore -- required for older TS
-              case: "oneofInt64JsNumberField",
-              // @ts-expect-error TS2322
-              value: 8,
-            },
-            singularMessageField: {
-              either: {
-                // @ts-ignore -- required for older TS
-                case: "oneofInt64JsStringField",
-                // @ts-expect-error TS2322
-                value: 9,
-              },
-            },
-          },
-          mapInt64Int64Field: {
-            // @ts-ignore -- required for older TS
-            "1": 11,
-            // @ts-ignore -- required for older TS
-            "2": 22,
-          },
-        });
-        expect64BitFields(msg);
-      });
-      test.skip("accept string", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
-          // @ts-expect-error TS2322
-          singularInt64Field: "1",
-          // @ts-expect-error TS2322
-          singularInt64JsNumberField: "2",
-          singularInt64JsStringField: "3",
-          // @ts-expect-error TS2322
-          repeatedInt64Field: ["4"],
-          // @ts-expect-error TS2322
-          repeatedInt64JsNumberField: ["5"],
-          repeatedInt64JsStringField: ["6"],
-          either: {
-            // @ts-ignore -- required for older TS
-            case: "oneofInt64Field",
-            // @ts-expect-error TS2322
-            value: "7",
-          },
-          singularMessageField: {
-            either: {
-              // @ts-ignore -- required for older TS
-              case: "oneofInt64JsNumberField",
-              // @ts-expect-error TS2322
-              value: "8",
-            },
-            singularMessageField: {
-              either: {
-                case: "oneofInt64JsStringField",
-                value: "9",
-              },
-            },
-          },
-          mapInt64Int64Field: {
-            // @ts-ignore -- required for older TS
-            "1": "11",
-            // @ts-ignore -- required for older TS
-            "2": "22",
-          },
-        });
-        expect64BitFields(msg);
-      });
       test("accepts generated types", () => {
         const msg = create(proto3_ts.Proto3MessageDesc, {
           singularInt64Field: protoInt64.parse(1),
@@ -589,7 +443,7 @@ describe("create()", () => {
           "2": protoInt64.parse(9),
         });
       });
-      test("rejects other forms as type error", () => {
+      test("rejects other forms as type error but does not raise runtime error", () => {
         const msg = create(proto3_ts.Proto3MessageDesc, {
           // @ts-expect-error expected type error
           singularInt64Field: "1",
@@ -617,6 +471,22 @@ describe("create()", () => {
           },
         });
         expect(msg).toBeDefined();
+        expect(msg.singularInt64Field).toBe("1");
+        expect(msg.singularInt64JsNumberField).toBe("2");
+        expect(msg.singularInt64JsStringField).toBe(protoInt64.parse(3));
+        expect(msg.repeatedInt64Field).toStrictEqual([4]);
+        expect(msg.repeatedInt64JsNumberField).toStrictEqual([5]);
+        expect(msg.repeatedInt64JsStringField).toStrictEqual([
+          protoInt64.parse(6),
+        ]);
+        expect(msg.either).toStrictEqual({
+          case: "oneofInt64Field",
+          value: 7,
+        });
+        expect(msg.mapInt64Int64Field).toStrictEqual({
+          "1": 8,
+          "2": 9,
+        });
       });
     });
     describe("bytes", () => {

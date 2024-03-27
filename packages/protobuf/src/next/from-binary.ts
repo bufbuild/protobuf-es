@@ -15,7 +15,7 @@
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { MessageShape } from "./types.js";
-import type { ReflectMessage } from "./reflect/index.js";
+import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 import type { IBinaryReader } from "../binary-encoding.js";
 import {
   LongType,
@@ -140,7 +140,7 @@ function readField(
       message.set(field, readScalar(reader, field.scalar, field.longType));
       break;
     case "enum":
-      message.set(field, readScalar(reader, ScalarType.INT32) as number);
+      message.set(field, readScalar(reader, ScalarType.INT32));
       break;
     case "message":
       message.set(
@@ -166,10 +166,10 @@ function readMapEntry(
   field: DescField & { fieldKind: "map" },
   reader: IBinaryReader,
   options: BinaryReadOptions,
-): [string | number, ScalarValue | ReflectMessage] {
+): [MapEntryKey, ScalarValue | ReflectMessage] {
   const length = reader.uint32(),
     end = reader.pos + length;
-  let key: ScalarValue | undefined,
+  let key: MapEntryKey | undefined,
     val: ScalarValue | ReflectMessage | undefined;
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();
@@ -194,9 +194,6 @@ function readMapEntry(
   }
   if (key === undefined) {
     key = scalarZeroValue(field.mapKey, LongType.BIGINT);
-  }
-  if (typeof key != "string" && typeof key != "number") {
-    key = key.toString();
   }
   if (val === undefined) {
     switch (field.mapKind) {
@@ -267,16 +264,16 @@ function readMessageField<Desc extends DescMessage>(
   return message;
 }
 
-function readScalar(
+function readScalar<Scalar extends ScalarType, L extends LongType>(
   reader: IBinaryReader,
-  type: ScalarType,
-  longType?: LongType,
-): ScalarValue {
+  type: Scalar,
+  longType?: L,
+): ScalarValue<Scalar, L> {
   let v = readScalarValue(reader, type);
   if (longType === LongType.STRING) {
     v = typeof v == "bigint" ? v.toString() : v;
   }
-  return v;
+  return v as ScalarValue<Scalar, L>;
 }
 
 function readScalarValue(reader: IBinaryReader, type: ScalarType): ScalarValue {

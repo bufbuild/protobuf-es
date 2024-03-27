@@ -82,8 +82,7 @@ describe("json serialization", () => {
         },
       );
     });
-    // TODO: `create` doesn't support maps yet, remove skip after support is added.
-    test.skip("for map fields", () => {
+    test("for map fields", () => {
       testV1Compat(MapsMessage, MapsMessageDesc, {
         boolStrField: { true: "foo" },
         int32MsgField: { 123: { strStrField: { key: "value" } } },
@@ -102,8 +101,7 @@ describe("json serialization", () => {
         const any = create(AnyDesc);
         expect(toJson(AnyDesc, any)).toStrictEqual({});
       });
-      // TODO: `create` doesn't support maps yet, remove skip after support is added.
-      test.skip(`encodes ${ValueDesc.typeName} with ${StructDesc.typeName} to JSON`, () => {
+      test(`encodes ${ValueDesc.typeName} with ${StructDesc.typeName} to JSON`, () => {
         const any = anyPack(
           ValueDesc,
           create(ValueDesc, {
