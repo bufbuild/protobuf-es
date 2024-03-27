@@ -24,6 +24,10 @@ const config = {
   // The root directory that Jest should scan for tests and modules within
   rootDir: "dist/esm",
 
+  // Enable worker threads for assertion failures involving BigInt
+  // See https://github.com/jestjs/jest/issues/11617#issuecomment-1458155552
+  workerThreads: true,
+
   transform: {},
 };
 
