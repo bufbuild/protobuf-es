@@ -26,7 +26,6 @@ describe("isMessage", () => {
       expect(isMessage(unknown)).toBe(true);
       if (isMessage(unknown)) {
         expect(unknown.$typeName).toBe("docs.User");
-        expect(unknown.$desc).toBeDefined();
       }
     });
     test("narrows down to specific message", () => {
@@ -34,7 +33,6 @@ describe("isMessage", () => {
       expect(isMessage(unknown, desc)).toBe(true);
       if (isMessage(unknown, desc)) {
         expect(unknown.$typeName).toBe("docs.User");
-        expect(unknown.$desc).toBeDefined();
         unknown.firstName = "Homer"; // proves that the type is known
       }
       expect(isMessage(unknown, TS_UserDesc)).toBe(true);
@@ -55,14 +53,12 @@ describe("isMessage", () => {
   test("falsely returns true if the argument is close enough to a Message", () => {
     expect(
       isMessage({
-        $desc: {},
         $typeName: "",
       }),
     ).toBe(true);
     expect(
       isMessage(
         {
-          $desc: {},
           $typeName: "docs.User",
         },
         TS_UserDesc,

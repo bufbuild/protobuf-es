@@ -97,13 +97,13 @@ export function isReflectMap(
 
 export function isReflectMessage(
   arg: unknown,
-  descMessage?: DescMessage,
+  messageDesc?: DescMessage,
 ): arg is ReflectMessage {
   return (
     isObject(arg) &&
     unsafeLocal in arg &&
     "message" in arg &&
     isMessage(arg.message) &&
-    (descMessage === undefined || arg.message.$typeName == descMessage.typeName)
+    (messageDesc === undefined || arg.message.$typeName == messageDesc.typeName)
   );
 }

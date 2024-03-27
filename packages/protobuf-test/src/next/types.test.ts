@@ -47,27 +47,6 @@ describe("type Message", () => {
           throw new Error();
       }
     });
-    test("cannot type switch on Message.$desc", () => {
-      switch (msg.$desc) {
-        case UserDesc:
-          // @ts-expect-error TS2339
-          expect(msg.firstName).toBeDefined();
-          break;
-        default:
-          throw new Error();
-      }
-    });
-    test("cannot switch on Message.$desc.typeName", () => {
-      switch (msg.$desc.typeName) {
-        case "spec.UserDesc":
-        case UserDesc.typeName:
-          // @ts-expect-error TS2339
-          expect(msg.firstName).toBeDefined();
-          break;
-        default:
-          throw new Error();
-      }
-    });
     test("cannot switch on Message.$typeName against embedded desc's typeName", () => {
       switch (msg.$typeName) {
         case UserDesc.typeName:

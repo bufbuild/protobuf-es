@@ -21,7 +21,6 @@ import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "../binary-encoding.js";
 
 export type Message<TypeName extends string = string> = {
-  readonly $desc: DescMessage;
   readonly $typeName: TypeName;
 
   $unknown?: UnknownField[];

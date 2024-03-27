@@ -38,7 +38,7 @@ export function isWktWrapper(
   | BoolValue
   | StringValue
   | BytesValue {
-  return isWktWrapperDesc(arg.$desc);
+  return isWrapperTypeName(arg.$typeName);
 }
 
 export type WktWrapperDesc = DescMessage & {
@@ -52,13 +52,23 @@ export type WktWrapperDesc = DescMessage & {
   ];
 };
 
-export function isWktWrapperDesc(desc: DescMessage): desc is WktWrapperDesc {
-  const { typeName } = desc;
-  if (!typeName.startsWith("google.protobuf.")) {
-    return false;
-  }
-  if (
-    ![
+export function isWktWrapperDesc(
+  messageDesc: DescMessage,
+): messageDesc is WktWrapperDesc {
+  const f = messageDesc.fields[0] as DescField | undefined;
+  return (
+    isWrapperTypeName(messageDesc.typeName) &&
+    f !== undefined &&
+    f.fieldKind == "scalar" &&
+    f.name == "value" &&
+    f.number == 1
+  );
+}
+
+function isWrapperTypeName(name: string): boolean {
+  return (
+    name.startsWith("google.protobuf.") &&
+    [
       "DoubleValue",
       "FloatValue",
       "Int64Value",
@@ -68,15 +78,6 @@ export function isWktWrapperDesc(desc: DescMessage): desc is WktWrapperDesc {
       "BoolValue",
       "StringValue",
       "BytesValue",
-    ].includes(typeName.substring(16))
-  ) {
-    return false;
-  }
-  const f = desc.fields[0] as DescField | undefined;
-  return (
-    f !== undefined &&
-    f.fieldKind == "scalar" &&
-    f.name == "value" &&
-    f.number == 1
+    ].includes(name.substring(16))
   );
 }

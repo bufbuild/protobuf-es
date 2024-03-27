@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import {
   isReflectList,
   reflectList,
-  reflectMessage,
+  reflect,
 } from "@bufbuild/protobuf/next/reflect";
 import { getFieldByLocalName } from "../helpers.js";
 import * as proto3_ts from "../../gen/ts/extra/proto3_pbv2.js";
@@ -137,7 +137,7 @@ describe("ReflectList", () => {
     });
     test("returns error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);
-      const err = list.add(reflectMessage(UserDesc));
+      const err = list.add(reflect(UserDesc));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
@@ -183,7 +183,7 @@ describe("ReflectList", () => {
     });
     test("returns error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, [null]);
-      const err = list.set(0, reflectMessage(UserDesc));
+      const err = list.set(0, reflect(UserDesc));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );

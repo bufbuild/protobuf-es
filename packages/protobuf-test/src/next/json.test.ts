@@ -100,11 +100,12 @@ describe("json serialization", () => {
     describe("for Any", () => {
       test("without value encodes to JSON {}", () => {
         const any = create(AnyDesc);
-        expect(toJson(any)).toStrictEqual({});
+        expect(toJson(AnyDesc, any)).toStrictEqual({});
       });
       // TODO: `create` doesn't support maps yet, remove skip after support is added.
       test.skip(`encodes ${ValueDesc.typeName} with ${StructDesc.typeName} to JSON`, () => {
         const any = anyPack(
+          ValueDesc,
           create(ValueDesc, {
             kind: {
               case: "structValue",
@@ -133,6 +134,6 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
 ) {
   const v1Msg = new type(init);
   const v2Msg = create(desc, init);
-  const v2Json = toJson(v2Msg, options);
+  const v2Json = toJson(desc, v2Msg, options);
   expect(type.fromJson(v2Json, options).equals(v1Msg)).toBe(true);
 }

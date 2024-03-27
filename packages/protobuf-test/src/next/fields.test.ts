@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
+import type { DescMessage } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { clearField, create, isFieldSet } from "@bufbuild/protobuf/next";
-import type { Message } from "@bufbuild/protobuf/next";
 import { localName } from "@bufbuild/protobuf/next/reflect";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
@@ -23,40 +23,41 @@ import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
 describe("isFieldSet()", () => {
   test("accepts field names", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
-    isFieldSet(msg, "singularStringField");
-    isFieldSet(msg, "optionalStringField");
-    isFieldSet(msg, "repeatedStringField");
-    isFieldSet(msg, "mapStringStringField");
-    isFieldSet(msg, "oneofBoolField");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "singularStringField");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "optionalStringField");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "repeatedStringField");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "mapStringStringField");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "oneofBoolField");
   });
   test("rejects unknown field names", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
     // @ts-expect-error TS2345
-    isFieldSet(msg, "not a field name");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "not a field name");
   });
   test("rejects oneof names", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
     // @ts-expect-error TS2345
-    isFieldSet(msg, "either");
+    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "either");
   });
   test("accepts string for anonymous message", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
-    const set = isFieldSet(msg as Message, "not a field name");
+    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
+    const msg = create(desc);
+    const set = isFieldSet(desc, msg, "not a field name");
     expect(set).toBe(false);
   });
   describe("with proto3", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(msg as Message, localName(field));
+      const set = isFieldSet(desc, msg, localName(field));
       expect(set).toBe(false);
     });
   });
   describe("with proto2", () => {
-    const desc = proto2_ts.Proto2MessageDesc;
+    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(msg as Message, localName(field));
+      const set = isFieldSet(desc, msg, localName(field));
       expect(set).toBe(false);
     });
   });
@@ -118,9 +119,9 @@ describe("clearField()", () => {
       "oneofBoolField",
     ] as const;
     test.each(names)("%s", (name) => {
-      expect(isFieldSet(msg, name)).toBe(true);
-      clearField(msg, name);
-      expect(isFieldSet(msg, name)).toBe(false);
+      expect(isFieldSet(desc, msg, name)).toBe(true);
+      clearField(desc, msg, name);
+      expect(isFieldSet(desc, msg, name)).toBe(false);
       switch (name) {
         case "oneofBoolField":
           expect(msg.either).toStrictEqual(zero.either);
@@ -234,9 +235,9 @@ describe("clearField()", () => {
       "oneofBoolField",
     ] as const;
     test.each(names)("%s", (name) => {
-      expect(isFieldSet(msg, name)).toBe(true);
-      clearField(msg, name);
-      expect(isFieldSet(msg, name)).toBe(false);
+      expect(isFieldSet(desc, msg, name)).toBe(true);
+      clearField(desc, msg, name);
+      expect(isFieldSet(desc, msg, name)).toBe(false);
       switch (name) {
         case "oneofBoolField":
           expect(msg.either).toStrictEqual(zero.either);

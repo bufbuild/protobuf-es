@@ -12,25 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "./types.js";
-import {
-  isReflectMessage,
-  reflect,
-  reflectMessage,
-  type ReflectMessage,
-  ScalarType,
-} from "./reflect/index.js";
-import type { DescField } from "../descriptor-set.js";
+import type { MessageShape } from "./types.js";
+import type { DescField, DescMessage } from "../descriptor-set.js";
+import type { ReflectMessage } from "./reflect/reflect-types.js";
+import { reflect } from "./reflect/reflect.js";
+import { isReflectMessage } from "./reflect/guard.js";
+import { ScalarType } from "./reflect/scalar.js";
 
 /**
  * Create a deep copy of a message, including extensions and unknown fields.
  */
-export function clone<T extends Message>(message: T): T {
-  return cloneReflect(reflect(message)).message as T;
+export function clone<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+): MessageShape<Desc> {
+  return cloneReflect(reflect(messageDesc, message))
+    .message as MessageShape<Desc>;
 }
 
 function cloneReflect(i: ReflectMessage): ReflectMessage {
-  const o = reflectMessage(i.desc);
+  const o = reflect(i.desc);
   for (const f of i.fields) {
     if (!i.isSet(f)) {
       continue;

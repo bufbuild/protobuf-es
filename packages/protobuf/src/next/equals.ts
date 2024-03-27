@@ -12,25 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "./types.js";
+import type { MessageShape } from "./types.js";
 import { scalarEquals } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import type { DescField } from "../descriptor-set.js";
+import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 
 /**
  * Compare two messages of the same type.
+ *
  * Note that this function disregards extensions and unknown fields, and that
  * NaN is not equal NaN, following the IEEE standard.
  */
-export function equals(a: Message, b: Message): boolean {
+export function equals<Desc extends DescMessage>(
+  messageDesc: Desc,
+  a: MessageShape<Desc>,
+  b: MessageShape<Desc>,
+): boolean {
+  if (
+    a.$typeName != messageDesc.typeName ||
+    b.$typeName != messageDesc.typeName
+  ) {
+    return false;
+  }
   if (a === b) {
     return true;
   }
-  if (a.$typeName != b.$typeName) {
-    return false;
-  }
-  return reflectEquals(reflect(a), reflect(b));
+  return reflectEquals(reflect(messageDesc, a), reflect(messageDesc, b));
 }
 
 function reflectEquals(a: ReflectMessage, b: ReflectMessage): boolean {

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "./types.js";
+import type { MessageShape } from "./types.js";
 import type { BinaryWriteOptions } from "../binary-format.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "../binary-encoding.js";
@@ -25,7 +25,7 @@ import {
 } from "../google/protobuf/descriptor_pb.js";
 import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
-import type { DescField } from "../descriptor-set.js";
+import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
 
 // Default options for serializing binary data.
@@ -40,11 +40,15 @@ function makeWriteOptions(
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
 
-export function toBinary<T extends Message>(
-  message: T,
+export function toBinary<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array {
-  return reflectToBinary(reflect(message), makeWriteOptions(options));
+  return reflectToBinary(
+    reflect(messageDesc, message),
+    makeWriteOptions(options),
+  );
 }
 
 function reflectToBinary(
@@ -175,7 +179,7 @@ function writeMapEntry(
     case "message":
       writer
         .tag(2, WireType.LengthDelimited)
-        .bytes(reflectToBinary(reflect(value as Message), opts));
+        .bytes(reflectToBinary(value as ReflectMessage, opts));
       break;
   }
 

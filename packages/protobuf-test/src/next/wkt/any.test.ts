@@ -29,7 +29,7 @@ describe("google.protobuf.Any", () => {
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
-    const any = anyPack(val);
+    const any = anyPack(ValueDesc, val);
 
     expect(anyIs(any, ValueDesc)).toBe(true);
     expect(anyIs(any, ValueDesc.typeName)).toBe(true);
@@ -56,7 +56,7 @@ describe("google.protobuf.Any", () => {
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
-    const any = anyPack(val);
+    const any = anyPack(ValueDesc, val);
 
     const unpacked = anyUnpack(any, typeRegistry) as Value;
 
@@ -70,7 +70,7 @@ describe("google.protobuf.Any", () => {
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
-    const { value } = anyPack(val);
+    const { value } = anyPack(ValueDesc, val);
     const any = create(AnyDesc, { typeUrl: "/google.protobuf.Value", value });
 
     const unpacked = anyUnpack(any, typeRegistry) as Value;
@@ -85,7 +85,7 @@ describe("google.protobuf.Any", () => {
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
-    const any = anyPack(val);
+    const any = anyPack(ValueDesc, val);
     const unpacked = anyUnpack(any, typeRegistry);
     expect(unpacked).toBeUndefined();
   });

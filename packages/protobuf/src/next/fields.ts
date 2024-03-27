@@ -12,18 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message } from "./types.js";
+import type { Message, MessageShape } from "./types.js";
 import { localName } from "./reflect/names.js";
 import { unsafeClear, unsafeIsSet } from "./reflect/unsafe.js";
+import type { DescMessage } from "../descriptor-set.js";
 
 /**
  * Returns true if the field is set.
  */
-export function isFieldSet<T extends Message>(
-  message: T,
-  fieldName: MessageFieldNames<T>,
+export function isFieldSet<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+  fieldName: MessageFieldNames<MessageShape<Desc>>,
 ): boolean {
-  const field = message.$desc.fields.find((f) => localName(f) === fieldName);
+  const field = messageDesc.fields.find((f) => localName(f) === fieldName);
   if (field) {
     return unsafeIsSet(message, field);
   }
@@ -33,11 +35,12 @@ export function isFieldSet<T extends Message>(
 /**
  * Resets the field, so that isFieldSet() will return false.
  */
-export function clearField<T extends Message>(
-  message: T,
-  fieldName: MessageFieldNames<T>,
+export function clearField<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+  fieldName: MessageFieldNames<MessageShape<Desc>>,
 ): void {
-  const field = message.$desc.fields.find((f) => localName(f) === fieldName);
+  const field = messageDesc.fields.find((f) => localName(f) === fieldName);
   if (field) {
     unsafeClear(message, field);
   }

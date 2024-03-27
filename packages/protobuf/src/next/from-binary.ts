@@ -22,8 +22,7 @@ import {
   scalarZeroValue,
   type ScalarValue,
 } from "./reflect/scalar.js";
-import { reflect, reflectMessage } from "./reflect/reflect.js";
-import { create } from "./create.js";
+import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "../binary-encoding.js";
 import { ScalarType } from "./reflect/scalar.js";
 import {
@@ -47,10 +46,11 @@ function makeReadOptions(
  * Parse serialized binary data.
  */
 export function fromBinary<Desc extends DescMessage>(
-  desc: Desc,
+  messageDesc: Desc,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc>;
+
 /**
  * Parse from binary data, merging fields.
  *
@@ -61,24 +61,31 @@ export function fromBinary<Desc extends DescMessage>(
  * new data.
  */
 export function fromBinary<Desc extends DescMessage>(
-  msg: MessageShape<Desc>,
+  messageDesc: Desc,
+  target: MessageShape<Desc>,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc>;
+
 export function fromBinary<Desc extends DescMessage>(
-  descOrMsg: Desc | MessageShape<Desc>,
-  bytes: Uint8Array,
+  desc: Desc,
+  targetOrBytes: MessageShape<Desc> | Uint8Array,
+  bytesOrOptions?: Uint8Array | Partial<BinaryReadOptions>,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  options = makeReadOptions(options);
-  const message = "$desc" in descOrMsg ? descOrMsg : create(descOrMsg);
-  readMessage(
-    reflect(message),
-    options.readerFactory!(bytes),
-    bytes.byteLength,
-    options as BinaryReadOptions,
-  );
-  return message;
+  let msg: ReflectMessage;
+  let bytes: Uint8Array;
+  if (targetOrBytes instanceof Uint8Array) {
+    bytes = targetOrBytes;
+    msg = reflect(desc);
+    options = bytesOrOptions as Partial<BinaryReadOptions> | undefined;
+  } else {
+    msg = reflect(desc, targetOrBytes);
+    bytes = bytesOrOptions as Uint8Array;
+  }
+  const opt = makeReadOptions(options);
+  readMessage(msg, opt.readerFactory(bytes), bytes.byteLength, opt);
+  return msg.message as MessageShape<Desc>;
 }
 
 // TODO: Improve the function signature, we got most it from v1.
@@ -200,7 +207,7 @@ function readMapEntry(
         val = field.enum.values[0].number;
         break;
       case "message":
-        val = reflectMessage(field.message);
+        val = reflect(field.message);
         break;
     }
   }
@@ -249,7 +256,7 @@ function readMessageField<Desc extends DescMessage>(
     field.proto.type === FieldDescriptorProto_Type.GROUP ||
     field.getFeatures().messageEncoding ===
       FeatureSet_MessageEncoding.DELIMITED;
-  const message = mergeMessage ?? reflectMessage(field.message);
+  const message = mergeMessage ?? reflect(field.message);
   readMessage(
     message,
     reader,

@@ -22,75 +22,6 @@ import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
 import type { LongType, ScalarValue } from "../../scalar.js";
 
-export interface ReflectList<V = unknown> extends Iterable<V> {
-  field(): DescField & { fieldKind: "list" };
-
-  /**
-   * The size of the list.
-   */
-  readonly size: number;
-
-  /**
-   * Retrieves the item at the specified index, or undefined if the index
-   * is out of range.
-   */
-  get(index: number): V | undefined;
-
-  /**
-   * Adds an item - or several items - at the end of the list.
-   * Returns an error if an item is invalid for this list.
-   */
-  add(...item: V[]): FieldError | undefined;
-
-  /**
-   * Replaces the item at the specified index with the specified item.
-   * Returns an error if the index is out of range (index < 0 || index >= size).
-   * Returns an error if the item is invalid for this list.
-   */
-  set(index: number, item: V): FieldError | undefined;
-
-  /**
-   * Removes all items from the list.
-   */
-  clear(): void;
-
-  [Symbol.iterator](): IterableIterator<V>;
-
-  entries(): IterableIterator<[number, V]>;
-
-  keys(): IterableIterator<number>;
-
-  values(): IterableIterator<V>;
-
-  [unsafeLocal]: unknown[];
-}
-
-export type MapEntryKey = string | number | bigint | boolean;
-
-export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
-  extends ReadonlyMap<K, V> {
-  field(): DescField & { fieldKind: "map" };
-
-  /**
-   * Removes the entry for the specified key.
-   * Returns false if the key is unknown.
-   */
-  delete(key: K): boolean;
-
-  /**
-   * Sets or replaces the item at the specified key with the specified value.
-   * Returns an error if the key or value is invalid for this map.
-   */
-  set(key: K, value: V): FieldError | undefined;
-
-  /**
-   * Removes all entries from the map.
-   */
-  clear(): void;
-
-  [unsafeLocal]: Record<string, unknown>;
-}
-
 export interface ReflectMessage {
   readonly message: Message;
   readonly desc: DescMessage;
@@ -135,6 +66,77 @@ export interface ReflectMessage {
   [unsafeLocal]: Message;
 }
 
+export interface ReflectList<V = unknown> extends Iterable<V> {
+  field(): DescField & { fieldKind: "list" };
+
+  /**
+   * The size of the list.
+   */
+  readonly size: number;
+
+  /**
+   * Retrieves the item at the specified index, or undefined if the index
+   * is out of range.
+   */
+  get(index: number): V | undefined;
+
+  /**
+   * Adds an item - or several items - at the end of the list.
+   * Returns an error if an item is invalid for this list.
+   */
+  add(...item: V[]): FieldError | undefined;
+
+  /**
+   * Replaces the item at the specified index with the specified item.
+   * Returns an error if the index is out of range (index < 0 || index >= size).
+   * Returns an error if the item is invalid for this list.
+   */
+  set(index: number, item: V): FieldError | undefined;
+
+  /**
+   * Removes all items from the list.
+   */
+  clear(): void;
+
+  [Symbol.iterator](): IterableIterator<V>;
+
+  entries(): IterableIterator<[number, V]>;
+
+  keys(): IterableIterator<number>;
+
+  values(): IterableIterator<V>;
+
+  [unsafeLocal]: unknown[];
+}
+
+export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
+  extends ReadonlyMap<K, V> {
+  field(): DescField & { fieldKind: "map" };
+
+  /**
+   * Removes the entry for the specified key.
+   * Returns false if the key is unknown.
+   */
+  delete(key: K): boolean;
+
+  /**
+   * Sets or replaces the item at the specified key with the specified value.
+   * Returns an error if the key or value is invalid for this map.
+   */
+  set(key: K, value: V): FieldError | undefined;
+
+  /**
+   * Removes all entries from the map.
+   */
+  clear(): void;
+
+  [unsafeLocal]: Record<string, unknown>;
+}
+
+export type MapEntryKey = string | number | bigint | boolean;
+
+type enumVal = number;
+
 // prettier-ignore
 type ReflectGetValue<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? (
@@ -175,5 +177,3 @@ type NewMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
   Field extends { mapKind: "scalar"; scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
   never
 );
-
-type enumVal = number;

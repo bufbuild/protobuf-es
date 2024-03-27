@@ -24,18 +24,31 @@ import { fromBinary } from "../from-binary.js";
 /**
  * Creates a `google.protobuf.Any` from a message.
  */
-export function anyPack(message: Message): Any;
+export function anyPack<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+): Any;
+
 /**
  * Packs the message into the given any.
  */
-export function anyPack(message: Message, into: Any): void;
-export function anyPack(message: Message, into?: Any) {
+export function anyPack<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+  into: Any,
+): void;
+
+export function anyPack<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+  into?: Any,
+) {
   let ret = false;
   if (!into) {
     into = create(AnyDesc);
     ret = true;
   }
-  into.value = toBinary(message);
+  into.value = toBinary(messageDesc, message);
   into.typeUrl = typeNameToUrl(message.$typeName);
   return ret ? into : undefined;
 }
@@ -44,10 +57,12 @@ export function anyPack(message: Message, into?: Any) {
  * Returns true if the Any contains the type given by messageDesc.
  */
 export function anyIs(any: Any, messageDesc: DescMessage): boolean;
+
 /**
  * Returns true if the Any contains a message with the given typeName.
  */
 export function anyIs(any: Any, typeName: string): boolean;
+
 export function anyIs(any: Any, descOrTypeName: DescMessage | string): boolean {
   if (any.typeUrl === "") {
     return false;
@@ -67,6 +82,7 @@ export function anyIs(any: Any, descOrTypeName: DescMessage | string): boolean {
  * in the given set.
  */
 export function anyUnpack(any: Any, set: DescSet): Message | undefined;
+
 /**
  * Unpacks the message the Any represents.
  *
@@ -77,6 +93,7 @@ export function anyUnpack<Desc extends DescMessage>(
   any: Any,
   messageDesc: Desc,
 ): MessageShape<Desc> | undefined;
+
 export function anyUnpack(
   any: Any,
   descSetOrMessage: DescSet | DescMessage,
@@ -97,11 +114,15 @@ export function anyUnpack(
 /**
  * Same as anyUnpack but unpacks into the target message.
  */
-export function anyUnpackTo(any: Any, target: Message) {
+export function anyUnpackTo<Desc extends DescMessage>(
+  any: Any,
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
+) {
   if (any.typeUrl === "") {
     return undefined;
   }
-  return fromBinary(target, any.value);
+  return fromBinary(messageDesc, message, any.value);
 }
 
 function typeNameToUrl(name: string): string {

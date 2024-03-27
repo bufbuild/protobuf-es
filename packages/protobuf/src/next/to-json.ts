@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField } from "../descriptor-set.js";
+import type { DescEnum, DescField, DescMessage } from "../descriptor-set.js";
 import {
   FeatureSet_FieldPresence,
   FieldDescriptorProto_Label,
@@ -28,7 +28,7 @@ import type {
   ReflectMap,
   ReflectMessage,
 } from "./reflect/reflect-types.js";
-import type { Message } from "./types.js";
+import type { Message, MessageShape } from "./types.js";
 import type {
   Any,
   Duration,
@@ -101,21 +101,26 @@ function makeWriteOptions(
  * Serialize the message to a JSON value, a JavaScript value that can be
  * passed to JSON.stringify().
  */
-export function toJson<T extends Message>(
-  message: T,
+export function toJson<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
   options?: Partial<JsonWriteOptions>,
 ): JsonValue {
-  return reflectToJson(reflect(message), makeWriteOptions(options));
+  return reflectToJson(
+    reflect(messageDesc, message),
+    makeWriteOptions(options),
+  );
 }
 
 /**
  * Serialize the message to a JSON string.
  */
-export function toJsonString<T extends Message>(
-  message: T,
+export function toJsonString<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message: MessageShape<Desc>,
   options?: Partial<JsonWriteStringOptions>,
 ): string {
-  const jsonValue = toJson(message, options);
+  const jsonValue = toJson(messageDesc, message, options);
   return JSON.stringify(jsonValue, null, options?.prettySpaces ?? 0);
 }
 
@@ -352,15 +357,23 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
   if (val.typeUrl === "") {
     return {};
   }
-  const message = opts.descSet ? anyUnpack(val, opts.descSet) : undefined;
-  if (!message) {
+  const { descSet } = opts;
+  let message: Message | undefined;
+  let desc: DescMessage | undefined;
+  if (descSet) {
+    message = anyUnpack(val, descSet);
+    if (message) {
+      desc = descSet.getMessage(message.$typeName);
+    }
+  }
+  if (!desc || !message) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: "${val.typeUrl}" is not in the type registry`,
     );
   }
-  let json = reflectToJson(reflect(message), opts);
+  let json = reflectToJson(reflect(desc, message), opts);
   if (
-    message.$desc.typeName.startsWith("google.protobuf.") ||
+    desc.typeName.startsWith("google.protobuf.") ||
     json === null ||
     Array.isArray(json) ||
     typeof json !== "object"

@@ -17,7 +17,7 @@ import type {
   DescMessage,
   DescOneof,
 } from "../../descriptor-set.js";
-import type { Message } from "../types.js";
+import type { Message, MessageShape } from "../types.js";
 import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
 import type {
@@ -42,15 +42,9 @@ import { LongType, ScalarType } from "../../scalar.js";
 import { protoInt64 } from "../../proto-int64.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 
-export function reflectMessage(
-  desc: DescMessage,
-  unsafeInput?: Message,
-): ReflectMessage {
-  return reflect(unsafeInput ?? create(desc));
-}
-
-export function reflect(
-  message: Message,
+export function reflect<Desc extends DescMessage>(
+  messageDesc: Desc,
+  message?: MessageShape<Desc>,
   // TODO either remove this option, or support it in reflect-list and reflect-map as well
   opt?: {
     /**
@@ -67,7 +61,7 @@ export function reflect(
     disableFieldValueCheck?: boolean;
   },
 ): ReflectMessage {
-  const desc = message.$desc;
+  message ??= create(messageDesc);
   const check = opt?.disableFieldValueCheck !== true;
   let jsonNames: Map<string, DescField> | undefined;
   let fieldsByNumber: Map<number, DescField> | undefined;
@@ -75,15 +69,15 @@ export function reflect(
   return {
     message,
     [unsafeLocal]: message,
-    desc: desc,
-    fields: desc.fields,
-    oneofs: desc.oneofs,
-    members: desc.members,
+    desc: messageDesc,
+    fields: messageDesc.fields,
+    oneofs: messageDesc.oneofs,
+    members: messageDesc.members,
 
     get sortedFields() {
       return (
         sortedFields ??
-        (sortedFields = desc.fields
+        (sortedFields = messageDesc.fields
           .concat()
           .sort((a, b) => a.number - b.number))
       );
@@ -92,7 +86,7 @@ export function reflect(
     findJsonName(jsonName) {
       if (!jsonNames) {
         jsonNames = new Map<string, DescField>();
-        for (const f of desc.fields) {
+        for (const f of messageDesc.fields) {
           jsonNames.set(f.jsonName ?? f.proto.jsonName, f).set(f.name, f);
         }
       }
@@ -102,7 +96,7 @@ export function reflect(
     findNumber(number) {
       if (!fieldsByNumber) {
         fieldsByNumber = new Map<number, DescField>(
-          desc.fields.map((f) => [f.number, f]),
+          messageDesc.fields.map((f) => [f.number, f]),
         );
       }
       return fieldsByNumber.get(number);
@@ -141,11 +135,10 @@ export function reflect(
           ) {
             value = {
               $typeName: field.message.typeName,
-              $desc: field.message,
               value: longToReflect(field.message.fields[0], value),
             } satisfies Message & { value: unknown };
           }
-          return reflectMessage(field.message, value as Message);
+          return reflect(field.message, value as Message);
         case "scalar":
           return longToReflect(field, value);
         case "enum":
@@ -385,7 +378,7 @@ function listItemToReflect(
   value: unknown,
 ): unknown {
   if (field.listKind == "message") {
-    return reflectMessage(field.message, value as Message);
+    return reflect(field.message, value as Message);
   }
   return longToReflect(field, value);
 }
@@ -405,7 +398,7 @@ function mapValueToReflect(
   value: unknown,
 ): unknown {
   if (field.mapKind == "message") {
-    return reflectMessage(field.message, value as Message);
+    return reflect(field.message, value as Message);
   }
   return value;
 }

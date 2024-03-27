@@ -27,10 +27,7 @@ export function isMessage<Desc extends DescMessage>(
     arg !== null &&
     typeof arg == "object" &&
     "$typeName" in arg &&
-    typeof arg.$typeName == "string" &&
-    "$desc" in arg &&
-    arg.$desc !== null &&
-    typeof arg.$desc == "object";
+    typeof arg.$typeName == "string";
   if (!isMessage) {
     return false;
   }

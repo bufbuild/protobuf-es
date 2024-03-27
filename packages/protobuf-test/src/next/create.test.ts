@@ -30,7 +30,6 @@ describe("create()", () => {
     test("creates a typed message", () => {
       const user: example_ts.User = create(example_ts.UserDesc);
       expect(user).toBeDefined();
-      expect(user.$desc).toBe(example_ts.UserDesc);
       expect(user.$typeName).toBe("docs.User");
       expect(user.firstName).toBeDefined();
     });
@@ -40,7 +39,6 @@ describe("create()", () => {
     test("creates an anonymous message", () => {
       const user = create(example_ts.UserDesc as DescMessage);
       expect(user).toBeDefined();
-      expect(user.$desc).toBe(example_ts.UserDesc);
       expect(user.$typeName).toBe("docs.User");
       // @ts-expect-error property is unknown to the type system, but still there
       expect(user.firstName).toBeDefined();
@@ -359,7 +357,7 @@ describe("create()", () => {
         repeatedMessageField: [],
         mapStringStringField: {},
       });
-      const r = reflect(msg);
+      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
       test.each(r.fields)("$name", (f) => {
         expect(r.isSet(f)).toBe(false);
       });
@@ -382,7 +380,7 @@ describe("create()", () => {
         repeatedMessageField: null,
         mapStringStringField: null,
       } as unknown as MessageInitShape<typeof proto3_ts.Proto3MessageDesc>);
-      const r = reflect(msg);
+      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
       test.each(r.fields)("$name", (f) => {
         expect(r.isSet(f)).toBe(false);
       });
@@ -405,7 +403,7 @@ describe("create()", () => {
         repeatedMessageField: undefined,
         mapStringStringField: undefined,
       });
-      const r = reflect(msg);
+      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
       test.each(r.fields)("$name", (f) => {
         expect(r.isSet(f)).toBe(false);
       });

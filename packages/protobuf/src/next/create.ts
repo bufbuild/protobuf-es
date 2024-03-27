@@ -30,25 +30,25 @@ import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
  * optional.
  */
 export function create<Desc extends DescMessage>(
-  desc: Desc,
+  messageDesc: Desc,
   init?: MessageInitShape<Desc>,
 ): MessageShape<Desc> {
-  if (isMessage(init, desc)) {
+  if (isMessage(init, messageDesc)) {
     return init;
   }
-  const message = createZeroMessage(desc) as MessageShape<Desc>;
+  const message = createZeroMessage(messageDesc) as MessageShape<Desc>;
   if (init !== undefined) {
-    initMessage(desc, message, init);
+    initMessage(messageDesc, message, init);
   }
   return message;
 }
 
 function initMessage<Desc extends DescMessage>(
-  desc: Desc,
+  messageDesc: Desc,
   message: MessageShape<Desc>,
   init: MessageInitShape<Desc>,
 ): MessageShape<Desc> | FieldError {
-  for (const member of desc.members) {
+  for (const member of messageDesc.members) {
     let value = (init as Record<string, unknown>)[localName(member)];
     if (value == null) {
       // intentionally ignore undefined and null
@@ -225,7 +225,6 @@ function createZeroMessage(desc: DescMessage): Message {
     default:
       throw new Error();
   }
-  t.$desc = desc;
   t.$typeName = desc.typeName;
   return t as Message;
 }

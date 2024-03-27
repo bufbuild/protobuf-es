@@ -18,7 +18,7 @@ import * as proto3_ts from "../../gen/ts/extra/proto3_pbv2.js";
 import {
   isReflectMap,
   reflectMap,
-  reflectMessage,
+  reflect,
 } from "@bufbuild/protobuf/next/reflect";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../../gen/ts/extra/example_pbv2.js";
@@ -216,7 +216,7 @@ describe("ReflectMap", () => {
     });
     test("returns error for wrong message type", () => {
       const map = reflectMap(mapInt32MessageField, {});
-      const err = map.set(1, reflectMessage(UserDesc));
+      const err = map.set(1, reflect(UserDesc));
       expect(err?.message).toMatch(
         /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
