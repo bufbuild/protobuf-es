@@ -37,7 +37,7 @@ import {
   unsafeSetMapEntry,
 } from "./unsafe.js";
 import { create } from "../create.js";
-import { isWktWrapper, isWktWrapperDesc } from "./wkt.js";
+import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
 import { LongType, ScalarType } from "../../scalar.js";
 import { protoInt64 } from "../../proto-int64.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
@@ -131,7 +131,7 @@ export function reflect<Desc extends DescMessage>(
           if (
             value !== undefined &&
             !field.oneof &&
-            isWktWrapperDesc(field.message)
+            isWrapperDesc(field.message)
           ) {
             value = {
               $typeName: field.message.typeName,
@@ -159,7 +159,7 @@ export function reflect<Desc extends DescMessage>(
         local = value[unsafeLocal];
       } else if (isReflectMessage(value)) {
         const msg = value.message;
-        local = !field.oneof && isWktWrapper(msg) ? msg.value : msg;
+        local = !field.oneof && isWrapper(msg) ? msg.value : msg;
       } else {
         local = longToLocal(field, value);
       }

@@ -38,7 +38,7 @@ import type {
   Value,
 } from "./wkt/index.js";
 import { anyUnpack } from "./wkt/index.js";
-import { isWktWrapperDesc } from "./reflect/wkt.js";
+import { isWrapperDesc } from "./wkt/wrappers.js";
 import type { DescSet } from "./reflect/desc-set.js";
 import { base64Encode } from "./wire/index.js";
 
@@ -345,7 +345,7 @@ function tryWktToJson(
     case "google.protobuf.ListValue":
       return listValueToJson(msg.message as ListValue);
     default:
-      if (isWktWrapperDesc(msg.desc)) {
+      if (isWrapperDesc(msg.desc)) {
         const valueField = msg.desc.fields[0];
         return scalarToJson(valueField.scalar, msg.get(valueField));
       }

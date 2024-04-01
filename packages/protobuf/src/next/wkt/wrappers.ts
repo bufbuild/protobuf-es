@@ -23,10 +23,10 @@ import type {
   StringValue,
   UInt32Value,
   UInt64Value,
-} from "../wkt/gen/google/protobuf/wrappers_pbv2.js";
+} from "./gen/google/protobuf/wrappers_pbv2.js";
 import type { DescField, DescMessage } from "../../descriptor-set.js";
 
-export function isWktWrapper(
+export function isWrapper(
   arg: Message,
 ): arg is
   | DoubleValue
@@ -52,7 +52,7 @@ export type WktWrapperDesc = DescMessage & {
   ];
 };
 
-export function isWktWrapperDesc(
+export function isWrapperDesc(
   messageDesc: DescMessage,
 ): messageDesc is WktWrapperDesc {
   const f = messageDesc.fields[0] as DescField | undefined;
