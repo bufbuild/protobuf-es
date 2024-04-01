@@ -12,28 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { BinaryReadOptions } from "../binary-format.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { MessageShape } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
-import type { IBinaryReader } from "../binary-encoding.js";
 import {
   LongType,
   scalarZeroValue,
   type ScalarValue,
 } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import { BinaryReader, WireType } from "../binary-encoding.js";
+import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 import { ScalarType } from "./reflect/scalar.js";
 import {
   FeatureSet_MessageEncoding,
   FieldDescriptorProto_Type,
 } from "../google/protobuf/descriptor_pb.js";
 
+/**
+ * Options for parsing binary data.
+ */
+export interface BinaryReadOptions {
+  /**
+   * Retain unknown fields during parsing? The default behavior is to retain
+   * unknown fields and include them in the serialized output.
+   *
+   * For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   */
+  readUnknownFields: boolean;
+}
+
 // Default options for parsing binary data.
 const readDefaults: Readonly<BinaryReadOptions> = {
   readUnknownFields: true,
-  readerFactory: (bytes) => new BinaryReader(bytes),
 };
 
 function makeReadOptions(
@@ -84,14 +94,14 @@ export function fromBinary<Desc extends DescMessage>(
     bytes = bytesOrOptions as Uint8Array;
   }
   const opt = makeReadOptions(options);
-  readMessage(msg, opt.readerFactory(bytes), bytes.byteLength, opt);
+  readMessage(msg, new BinaryReader(bytes), bytes.byteLength, opt);
   return msg.message as MessageShape<Desc>;
 }
 
 // TODO: Improve the function signature, we got most it from v1.
 function readMessage(
   message: ReflectMessage,
-  reader: IBinaryReader,
+  reader: BinaryReader,
   lengthOrEndTagFieldNo: number,
   options: BinaryReadOptions,
   delimitedMessageEncoding?: boolean,
@@ -130,7 +140,7 @@ function readMessage(
 
 function readField(
   message: ReflectMessage,
-  reader: IBinaryReader,
+  reader: BinaryReader,
   field: DescField,
   wireType: WireType,
   options: BinaryReadOptions,
@@ -164,7 +174,7 @@ function readField(
 // TODO: Support edition features
 function readMapEntry(
   field: DescField & { fieldKind: "map" },
-  reader: IBinaryReader,
+  reader: BinaryReader,
   options: BinaryReadOptions,
 ): [MapEntryKey, ScalarValue | ReflectMessage] {
   const length = reader.uint32(),
@@ -213,7 +223,7 @@ function readMapEntry(
 
 function readListField(
   message: ReflectMessage,
-  reader: IBinaryReader,
+  reader: BinaryReader,
   options: BinaryReadOptions,
   field: DescField & { fieldKind: "list" },
   wireType: WireType,
@@ -242,7 +252,7 @@ function readListField(
 }
 
 function readMessageField<Desc extends DescMessage>(
-  reader: IBinaryReader,
+  reader: BinaryReader,
   options: BinaryReadOptions,
   field: Pick<DescField, "number" | "proto" | "getFeatures"> & {
     message: Desc;
@@ -265,7 +275,7 @@ function readMessageField<Desc extends DescMessage>(
 }
 
 function readScalar<Scalar extends ScalarType, L extends LongType>(
-  reader: IBinaryReader,
+  reader: BinaryReader,
   type: Scalar,
   longType?: L,
 ): ScalarValue<Scalar, L> {
@@ -276,7 +286,7 @@ function readScalar<Scalar extends ScalarType, L extends LongType>(
   return v as ScalarValue<Scalar, L>;
 }
 
-function readScalarValue(reader: IBinaryReader, type: ScalarType): ScalarValue {
+function readScalarValue(reader: BinaryReader, type: ScalarType): ScalarValue {
   switch (type) {
     case ScalarType.STRING:
       return reader.string();

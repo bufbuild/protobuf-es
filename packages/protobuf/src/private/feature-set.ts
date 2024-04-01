@@ -17,7 +17,7 @@ import {
   FeatureSet,
   FeatureSetDefaults,
 } from "../google/protobuf/descriptor_pb.js";
-import { protoBase64 } from "../proto-base64.js";
+import { base64Decode } from "../next/wire/index.js";
 import type {
   BinaryReadOptions,
   BinaryWriteOptions,
@@ -30,7 +30,7 @@ function getFeatureSetDefaults(
   options?: Partial<BinaryReadOptions>,
 ): FeatureSetDefaults {
   return FeatureSetDefaults.fromBinary(
-    protoBase64.dec(
+    base64Decode(
       /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiADKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
     ),
     options,

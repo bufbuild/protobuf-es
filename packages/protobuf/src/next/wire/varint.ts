@@ -44,7 +44,7 @@
  *
  * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L175
  */
-export function varint64read(this: ReaderLike): [number, number] {
+export function varint64read<T extends ReaderLike>(this: T): [number, number] {
   let lowBits = 0;
   let highBits = 0;
 
@@ -176,7 +176,7 @@ export function int64ToString(lo: number, hi: number): string {
   let bits = newBits(lo, hi);
   // If we're treating the input as a signed value and the high bit is set, do
   // a manual two's complement conversion before the decimal conversion.
-  const negative = (bits.hi & 0x80000000);
+  const negative = bits.hi & 0x80000000;
   if (negative) {
     bits = negate(bits.lo, bits.hi);
   }
@@ -200,7 +200,7 @@ export function uInt64ToString(lo: number, hi: number): string {
   // highBits <= 0x1FFFFF can be safely expressed with a double and retain
   // integer precision.
   // Proven by: Number.isSafeInteger(0x1FFFFF * 2**32 + 0xFFFFFFFF) == true.
-  if (hi <= 0x1FFFFF) {
+  if (hi <= 0x1fffff) {
     return String(TWO_PWR_32_DBL * hi + lo);
   }
 
@@ -215,16 +215,16 @@ export function uInt64ToString(lo: number, hi: number): string {
 
   // Split 32:32 representation into 16:24:24 representation so our
   // intermediate digits don't overflow.
-  const low = lo & 0xFFFFFF;
-  const mid = ((lo >>> 24) | (hi << 8)) & 0xFFFFFF;
-  const high = (hi >> 16) & 0xFFFF;
+  const low = lo & 0xffffff;
+  const mid = ((lo >>> 24) | (hi << 8)) & 0xffffff;
+  const high = (hi >> 16) & 0xffff;
 
   // Assemble our three base-1e7 digits, ignoring carries. The maximum
   // value in a digit at this step is representable as a 48-bit integer, which
   // can be stored in a 64-bit floating point number.
-  let digitA = low + (mid * 6777216) + (high * 6710656);
-  let digitB = mid + (high * 8147497);
-  let digitC = (high * 2);
+  let digitA = low + mid * 6777216 + high * 6710656;
+  let digitB = mid + high * 8147497;
+  let digitC = high * 2;
 
   // Apply carries from A to B and from B to C.
   const base = 10000000;
@@ -241,8 +241,11 @@ export function uInt64ToString(lo: number, hi: number): string {
   // If digitC is 0, then we should have returned in the trivial code path
   // at the top for non-safe integers. Given this, we can assume both digitB
   // and digitA need leading zeros.
-  return digitC.toString() + decimalFrom1e7WithLeadingZeros(digitB) +
-    decimalFrom1e7WithLeadingZeros(digitA);
+  return (
+    digitC.toString() +
+    decimalFrom1e7WithLeadingZeros(digitB) +
+    decimalFrom1e7WithLeadingZeros(digitA)
+  );
 }
 
 function toUnsigned(lo: number, hi: number): { lo: number; hi: number } {
@@ -307,7 +310,7 @@ export function varint32write(value: number, bytes: number[]): void {
  *
  * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L220
  */
-export function varint32read(this: ReaderLike): number {
+export function varint32read<T extends ReaderLike>(this: T): number {
   let b = this.buf[this.pos++];
   let result = b & 0x7f;
   if ((b & 0x80) == 0) {

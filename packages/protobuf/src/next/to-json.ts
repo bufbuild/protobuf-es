@@ -19,7 +19,6 @@ import {
 } from "../google/protobuf/descriptor_pb.js";
 import type { JsonValue, JsonObject } from "../json-format.js";
 import { assert } from "../private/assert.js";
-import { protoBase64 } from "../proto-base64.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
@@ -41,6 +40,7 @@ import type {
 import { anyUnpack } from "./wkt/index.js";
 import { isWktWrapperDesc } from "./reflect/wkt.js";
 import type { DescSet } from "./reflect/desc-set.js";
+import { base64Encode } from "./wire/index.js";
 
 /**
  * Options for serializing to JSON.
@@ -293,7 +293,7 @@ function scalarToJson(
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
       assert(value instanceof Uint8Array);
-      return protoBase64.enc(value);
+      return base64Encode(value);
   }
 }
 

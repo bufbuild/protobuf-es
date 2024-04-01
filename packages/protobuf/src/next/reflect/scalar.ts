@@ -14,6 +14,7 @@
 
 import { protoInt64 } from "../../proto-int64.js";
 import { LongType, ScalarType } from "../../scalar.js";
+import { getTextEncoding } from "../wire/index.js";
 
 export { ScalarType, LongType } from "../../scalar.js";
 export type { ScalarValue } from "../../scalar.js";
@@ -75,12 +76,7 @@ export function checkScalarValue(
       if (typeof value != "string") {
         return false;
       }
-      try {
-        encodeURIComponent(value);
-        return true;
-      } catch (e) {
-        return "invalid UTF8";
-      }
+      return getTextEncoding().checkUtf8(value) || "invalid UTF8";
     case ScalarType.BYTES:
       return value instanceof Uint8Array;
 

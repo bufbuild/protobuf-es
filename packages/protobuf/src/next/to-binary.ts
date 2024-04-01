@@ -13,10 +13,8 @@
 // limitations under the License.
 
 import type { MessageShape } from "./types.js";
-import type { BinaryWriteOptions } from "../binary-format.js";
 import { reflect } from "./reflect/reflect.js";
-import { BinaryWriter, WireType } from "../binary-encoding.js";
-import type { IBinaryWriter } from "../binary-encoding.js";
+import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import {
   FeatureSet_FieldPresence,
   FeatureSet_MessageEncoding,
@@ -28,10 +26,25 @@ import type { ScalarValue } from "./reflect/scalar.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
 
+/**
+ * Options for serializing to binary data.
+ *
+ * V1 also had the option `readerFactory` for using a custom implementation to
+ * encode to binary.
+ */
+export interface BinaryWriteOptions {
+  /**
+   * Include unknown fields in the serialized output? The default behavior
+   * is to retain unknown fields and include them in the serialized output.
+   *
+   * For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
+   */
+  writeUnknownFields: boolean;
+}
+
 // Default options for serializing binary data.
 const writeDefaults: Readonly<BinaryWriteOptions> = {
   writeUnknownFields: true,
-  writerFactory: () => new BinaryWriter(),
 };
 
 function makeWriteOptions(
@@ -55,7 +68,7 @@ function reflectToBinary(
   msg: ReflectMessage,
   opts: BinaryWriteOptions,
 ): Uint8Array {
-  const w = opts.writerFactory();
+  const w = new BinaryWriter();
   for (const f of msg.fields) {
     if (!msg.isSet(f)) {
       if (
@@ -96,7 +109,7 @@ function reflectToBinary(
 }
 
 function writeScalar(
-  writer: IBinaryWriter,
+  writer: BinaryWriter,
   scalarType: ScalarType,
   fieldNo: number,
   value: unknown,
@@ -109,7 +122,7 @@ function writeScalar(
 }
 
 function writeMessageField(
-  writer: IBinaryWriter,
+  writer: BinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField &
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
@@ -130,7 +143,7 @@ function writeMessageField(
 }
 
 function writeListField(
-  writer: IBinaryWriter,
+  writer: BinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "list" },
   list: ReflectList,
@@ -159,7 +172,7 @@ function writeListField(
 }
 
 function writeMapEntry(
-  writer: IBinaryWriter,
+  writer: BinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "map" },
   key: unknown,
@@ -187,7 +200,7 @@ function writeMapEntry(
 }
 
 function writeScalarValue(
-  writer: IBinaryWriter,
+  writer: BinaryWriter,
   type: ScalarType,
   value: ScalarValue,
 ) {

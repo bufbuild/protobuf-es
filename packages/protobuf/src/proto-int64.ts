@@ -17,7 +17,7 @@ import {
   int64FromString,
   int64ToString,
   uInt64ToString,
-} from "./google/varint.js";
+} from "./next/wire/varint.js";
 
 /**
  * We use the `bigint` primitive to represent 64-bit integral types. If bigint

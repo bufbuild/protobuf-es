@@ -45,6 +45,10 @@
     "./next/wkt": {
       "import": "./dist/esm/next/wkt/index.js",
       "require": "./dist/cjs/next/wkt/index.js"
+    },
+    "./next/wire": {
+      "import": "./dist/esm/next/wire/index.js",
+      "require": "./dist/cjs/next/wire/index.js"
     }
   },
   "typesVersions": {
@@ -60,6 +64,9 @@
       ],
       "next/wkt": [
         "./dist/cjs/next/wkt/index.d.ts"
+      ],
+      "next/wire": [
+        "./dist/cjs/next/wire/index.d.ts"
       ]
     }
   },

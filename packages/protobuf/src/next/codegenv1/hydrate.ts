@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { protoBase64 } from "../../proto-base64.js";
+import { base64Decode } from "../wire/index.js";
 import type { Message } from "../types.js";
 import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb.js";
 import type { DescFile, DescMessage } from "../../descriptor-set.js";
@@ -80,7 +80,7 @@ export function serviceDesc<T extends ServiceInfo>(
 }
 
 export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
-  const root = FileDescriptorProto.fromBinary(protoBase64.dec(b64));
+  const root = FileDescriptorProto.fromBinary(base64Decode(b64));
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
   const set = createDescFileSet(root, (protoFileName) =>
     imports?.find((f) => f.proto.name === protoFileName),

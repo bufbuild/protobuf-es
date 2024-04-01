@@ -145,7 +145,7 @@ lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-co
 .PHONY: format
 format: node_modules ## Format all files, adding license headers
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs,cjs}' --log-level error
-	npx license-header --ignore packages/protobuf/src/google/varint.ts
+	npx license-header --ignore 'packages/protobuf/src/**/varint.ts'
 
 .PHONY: bench
 bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size

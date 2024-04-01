@@ -5,6 +5,7 @@
     "src/next/codegenv1/index.ts",
     "src/next/reflect/index.ts",
     "src/next/wkt/index.ts",
+    "src/next/wire/index.ts",
     "src/private/options-map.ts" // not yet exported, added here to satisfy the linter
   ],
   "extends": "../../tsconfig.base.json",

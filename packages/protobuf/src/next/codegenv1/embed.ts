@@ -24,8 +24,8 @@ import type {
   DescService,
 } from "../../descriptor-set.js";
 import { clearField, isFieldSet } from "../../field-accessor.js";
-import { protoBase64 } from "../../proto-base64.js";
 import { protoCamelCase } from "../reflect/names.js";
+import { base64Encode } from "../wire/index.js";
 
 interface FileDescEmbedded {
   proto(): FileDescriptorProto;
@@ -57,8 +57,7 @@ export function embedFileDesc(file: DescFile): FileDescEmbedded {
     },
     protoB64() {
       const bytes = this.proto().toBinary();
-      const b64 = protoBase64.enc(bytes).replace(/=+$/, "");
-      return { kind: "es_string", value: b64 };
+      return { kind: "es_string", value: base64Encode(bytes, "std_raw") };
     },
   };
 }
