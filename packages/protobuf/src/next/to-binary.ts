@@ -69,7 +69,7 @@ function reflectToBinary(
   opts: BinaryWriteOptions,
 ): Uint8Array {
   const w = new BinaryWriter();
-  for (const f of msg.fields) {
+  for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (
         f.proto.label === FieldDescriptorProto_Label.REQUIRED ||

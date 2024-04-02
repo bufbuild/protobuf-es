@@ -128,7 +128,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
   const wktJson = tryWktToJson(msg, opts);
   if (wktJson !== undefined) return wktJson;
   const json: JsonObject = {};
-  for (const f of msg.fields) {
+  for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (
         f.proto.label === FieldDescriptorProto_Label.REQUIRED ||
