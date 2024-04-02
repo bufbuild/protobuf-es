@@ -4,9 +4,9 @@
   "compilerOptions": {
     // We import the plugin's version number from package.json
     "resolveJsonModule": true,
-    // This package is only built for CJS
-    "module": "commonjs",
+    // This package is CommonJS
     "verbatimModuleSyntax": false,
-    "moduleResolution": "node10",
+    "module": "CommonJS",
+    "moduleResolution": "Node10"
   }
 }
