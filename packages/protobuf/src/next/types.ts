@@ -46,8 +46,7 @@ export type EnumShape<Desc extends DescEnum> =
   Desc extends TypedDescEnum<infer RuntimeShape> ? RuntimeShape : number;
 
 export type ExtensionValueShape<Desc extends DescExtension> =
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Desc extends TypedDescExtension<infer _, infer RuntimeShape>
+  Desc extends TypedDescExtension<Message, infer RuntimeShape>
     ? RuntimeShape
     : unknown;
 
