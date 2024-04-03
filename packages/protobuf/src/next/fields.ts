@@ -54,7 +54,7 @@ export function clearField<Desc extends DescMessage>(
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
   [P in keyof T as
-     P extends ("$desc" | "$typeName" | "$unknown") ? never
+     P extends ("$typeName" | "$unknown") ? never
     : T[P] extends Oneof<infer K> ? K
     : P
   ]-?: true;

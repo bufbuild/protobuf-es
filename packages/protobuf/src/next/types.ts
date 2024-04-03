@@ -63,7 +63,7 @@ export type UnknownField = {
 // TODO MethodShape?
 
 type MessageInit<T extends Message> = {
-  [P in keyof T as T extends "$desc" | "$typename" ? never : P]?: FieldInit<
+  [P in keyof T as P extends "$typeName" | "$unknown" ? never : P]?: FieldInit<
     T[P]
   >;
 };
