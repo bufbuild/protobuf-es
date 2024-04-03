@@ -23,4 +23,5 @@ export type { BinaryWriteOptions } from "./to-binary.js";
 export { fromBinary } from "./from-binary.js";
 export type { BinaryReadOptions } from "./from-binary.js";
 export * from "./to-json.js";
+export * from "./from-json.js";
 export * from "./extension-accessor.js";
