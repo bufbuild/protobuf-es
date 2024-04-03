@@ -14,11 +14,16 @@
 
 import type {
   TypedDescEnum,
+  TypedDescExtension,
   TypedDescMessage,
 } from "./codegenv1/typed-desc.js";
-import type { DescEnum, DescMessage } from "../descriptor-set.js";
+import type {
+  DescEnum,
+  DescExtension,
+  DescMessage,
+} from "../descriptor-set.js";
 import type { OneofADT } from "./reflect/guard.js";
-import type { WireType } from "../binary-encoding.js";
+import type { WireType } from "./wire/index.js";
 
 export type Message<TypeName extends string = string> = {
   readonly $typeName: TypeName;
@@ -39,6 +44,14 @@ export type MessageInitShape<Desc extends DescMessage> =
 // TODO docs
 export type EnumShape<Desc extends DescEnum> =
   Desc extends TypedDescEnum<infer RuntimeShape> ? RuntimeShape : number;
+
+export type ExtensionValueShape<Desc extends DescExtension> =
+  Desc extends TypedDescExtension<Message, infer RuntimeShape>
+    ? RuntimeShape
+    : unknown;
+
+export type Extendee<Desc extends DescExtension> =
+  Desc extends TypedDescExtension<infer Extendee> ? Extendee : Message;
 
 export type UnknownField = {
   readonly no: number;
