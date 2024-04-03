@@ -526,7 +526,8 @@ function readScalar(
         if (json.trim().length === json.length) int32 = Number(json);
       }
       if (int32 === undefined) break;
-      if (type == ScalarType.UINT32) assertUInt32(int32);
+      if (type == ScalarType.UINT32 || type == ScalarType.FIXED32)
+        assertUInt32(int32);
       else assertInt32(int32);
       return int32;
 
