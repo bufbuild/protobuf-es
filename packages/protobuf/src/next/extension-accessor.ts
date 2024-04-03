@@ -74,13 +74,7 @@ export function setExtension<Desc extends DescExtension>(
   const ufs = (message.$unknown ?? []).filter(
     (uf) => uf.no !== extension.number,
   );
-  // eslint-disable-next-line prefer-const
-  let [container, field] = createExtensionContainer(extension, value);
-  // Implicit presence does not apply to extensions, see https://github.com/protocolbuffers/protobuf/issues/8234
-  // We patch the desc to use explicit presence:
-  if (extension.fieldKind === "scalar" || extension.fieldKind === "enum") {
-    field = { ...field, optional: true } as DescField;
-  }
+  const [container, field] = createExtensionContainer(extension, value);
   const writer = new BinaryWriter();
   writeField(writer, { writeUnknownFields: false }, container, field);
   const reader = new BinaryReader(writer.finish());
@@ -102,9 +96,12 @@ export function clearExtension<Desc extends DescExtension>(
   extension: Desc,
 ): void {
   assertExtendee(extension, message);
-  const ufs = message.$unknown;
-  if (ufs === undefined) return;
-  message.$unknown = ufs.filter((uf) => uf.no !== extension.number);
+  if (message.$unknown === undefined) {
+    return;
+  }
+  message.$unknown = message.$unknown.filter(
+    (uf) => uf.no !== extension.number,
+  );
 }
 
 /**
