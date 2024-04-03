@@ -52,9 +52,9 @@ export function checkScalarValue(
       }
       return true;
     case ScalarType.INT32:
-    case ScalarType.FIXED32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
+      // signed
       if (typeof value !== "number" || !Number.isInteger(value)) {
         return false;
       }
@@ -62,7 +62,9 @@ export function checkScalarValue(
         return `${value.toFixed()} out of range`;
       }
       return true;
+    case ScalarType.FIXED32:
     case ScalarType.UINT32:
+      // unsigned
       if (typeof value !== "number" || !Number.isInteger(value)) {
         return false;
       }
