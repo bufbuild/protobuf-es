@@ -59,7 +59,16 @@ export function fromBinary<Desc extends DescMessage>(
   messageDesc: Desc,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
-): MessageShape<Desc>;
+): MessageShape<Desc> {
+  const msg = reflect(messageDesc);
+  readMessage(
+    msg,
+    new BinaryReader(bytes),
+    bytes.byteLength,
+    makeReadOptions(options),
+  );
+  return msg.message as MessageShape<Desc>;
+}
 
 /**
  * Parse from binary data, merging fields.
@@ -70,32 +79,19 @@ export function fromBinary<Desc extends DescMessage>(
  * If a message field is already present, it will be merged with the
  * new data.
  */
-export function fromBinary<Desc extends DescMessage>(
+export function mergeFromBinary<Desc extends DescMessage>(
   messageDesc: Desc,
   target: MessageShape<Desc>,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
-): MessageShape<Desc>;
-
-export function fromBinary<Desc extends DescMessage>(
-  desc: Desc,
-  targetOrBytes: MessageShape<Desc> | Uint8Array,
-  bytesOrOptions?: Uint8Array | Partial<BinaryReadOptions>,
-  options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  let msg: ReflectMessage;
-  let bytes: Uint8Array;
-  if (targetOrBytes instanceof Uint8Array) {
-    bytes = targetOrBytes;
-    msg = reflect(desc);
-    options = bytesOrOptions as Partial<BinaryReadOptions> | undefined;
-  } else {
-    msg = reflect(desc, targetOrBytes);
-    bytes = bytesOrOptions as Uint8Array;
-  }
-  const opt = makeReadOptions(options);
-  readMessage(msg, new BinaryReader(bytes), bytes.byteLength, opt);
-  return msg.message as MessageShape<Desc>;
+  readMessage(
+    reflect(messageDesc, target),
+    new BinaryReader(bytes),
+    bytes.byteLength,
+    makeReadOptions(options),
+  );
+  return target;
 }
 
 // TODO: Improve the function signature, we got most it from v1.

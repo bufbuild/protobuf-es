@@ -20,7 +20,7 @@ export * from "./equals.js";
 export * from "./fields.js";
 export { toBinary } from "./to-binary.js";
 export type { BinaryWriteOptions } from "./to-binary.js";
-export { fromBinary } from "./from-binary.js";
+export { fromBinary, mergeFromBinary } from "./from-binary.js";
 export type { BinaryReadOptions } from "./from-binary.js";
 export * from "./to-json.js";
 export * from "./extension-accessor.js";
