@@ -29,6 +29,7 @@ import type { DescSet } from "./reflect/desc-set.js";
 import { protoCamelCase } from "./reflect/index.js";
 import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
+import { formatVal } from "./reflect/reflect-check.js";
 import {
   scalarZeroValue,
   LongType,
@@ -37,6 +38,7 @@ import {
 } from "./reflect/scalar.js";
 import type { MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
+import { getTextEncoding } from "./wire/text-encoding.js";
 import {
   ListValueDesc,
   NullValue,
@@ -85,7 +87,7 @@ function makeReadOptions(
 }
 
 /**
- * Parse a message from a JSON value.
+ * Parse a message from a JSON string.
  */
 export function fromJsonString<Desc extends DescMessage>(
   messageDesc: Desc,
@@ -94,7 +96,7 @@ export function fromJsonString<Desc extends DescMessage>(
 ): MessageShape<Desc>;
 
 /**
- * Parse a message from a JSON value, merging fields.
+ * Parse a message from a JSON string, merging fields.
  *
  * Repeated fields are appended. Map entries are added, overwriting
  * existing keys.
@@ -128,8 +130,7 @@ export function fromJsonString<Desc extends DescMessage>(
     }
   } catch (e) {
     throw new Error(
-      `cannot decode ${desc.typeName} from JSON: ${
-        e instanceof Error ? e.message : String(e)
+      `cannot decode ${desc.typeName} from JSON: ${e instanceof Error ? e.message : String(e)
       }`,
     );
   }
@@ -191,7 +192,7 @@ function readMessage(
 ) {
   if (json == null) {
     throw new Error(
-      `cannot decode message ${msg.desc.typeName} from JSON: ${debugJsonValue(
+      `cannot decode message ${msg.desc.typeName} from JSON: ${formatVal(
         json,
       )}`,
     );
@@ -201,7 +202,7 @@ function readMessage(
   }
   if (Array.isArray(json) || typeof json != "object") {
     throw new Error(
-      `cannot decode message ${msg.desc.typeName} from JSON: ${debugJsonValue(
+      `cannot decode message ${msg.desc.typeName} from JSON: ${formatVal(
         json,
       )}`,
     );
@@ -278,7 +279,7 @@ function readMapField(
   }
   if (typeof json != "object" || Array.isArray(json)) {
     throw new Error(
-      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`,
     );
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
@@ -291,7 +292,7 @@ function readMapField(
     try {
       key = readMapKey(field.mapKey, jsonMapKey);
     } catch (e) {
-      let m = `cannot decode map key for field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(jsonMapKey)}`;
+      let m = `cannot decode map key for field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonMapKey)}`;
       if (e instanceof Error && e.message.length > 0) {
         m += `: ${e.message}`;
       }
@@ -322,7 +323,7 @@ function readMapField(
             readScalar(field.scalar, jsonMapValue, LongType.BIGINT, true),
           );
         } catch (e) {
-          let m = `cannot decode map value for field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(jsonMapValue)}`;
+          let m = `cannot decode map value for field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonMapValue)}`;
           if (e instanceof Error && e.message.length > 0) {
             m += `: ${e.message}`;
           }
@@ -344,13 +345,13 @@ function readListField(
   }
   if (!Array.isArray(json)) {
     throw new Error(
-      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`,
     );
   }
   for (const jsonItem of json) {
     if (jsonItem === null) {
       throw new Error(
-        `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(jsonItem)}`,
+        `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`,
       );
     }
     switch (field.listKind) {
@@ -377,7 +378,7 @@ function readListField(
             readScalar(field.scalar, jsonItem, field.longType, true),
           );
         } catch (e) {
-          let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(jsonItem)}`;
+          let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`;
           if (e instanceof Error && e.message.length > 0) {
             m += `: ${e.message}`;
           }
@@ -422,14 +423,14 @@ function readScalarField(
   json: JsonValue,
 ) {
   try {
-    const scalaValue = readScalar(field.scalar, json, field.longType, false);
-    if (scalaValue === tokenNull) {
+    const scalarValue = readScalar(field.scalar, json, field.longType, false);
+    if (scalarValue === tokenNull) {
       msg.clear(field);
     } else {
-      msg.set(field, scalaValue);
+      msg.set(field, scalarValue);
     }
   } catch (e) {
-    let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${debugJsonValue(json)}`;
+    let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`;
     if (e instanceof Error && e.message.length > 0) {
       m += `: ${e.message}`;
     }
@@ -498,7 +499,7 @@ function readEnum(
       break;
   }
   throw new Error(
-    `cannot decode enum ${desc.typeName} from JSON: ${debugJsonValue(json)}`,
+    `cannot decode enum ${desc.typeName} from JSON: ${formatVal(json)}`,
   );
 }
 
@@ -573,7 +574,8 @@ function readScalar(
         if (json.trim().length === json.length) int32 = Number(json);
       }
       if (int32 === undefined) break;
-      if (type == ScalarType.UINT32) assertUInt32(int32);
+      if (type == ScalarType.UINT32 || type == ScalarType.FIXED32)
+        assertUInt32(int32);
       else assertInt32(int32);
       return int32;
 
@@ -603,10 +605,7 @@ function readScalar(
         break;
       }
       // A string must always contain UTF-8 encoded or 7-bit ASCII.
-      // We validate with encodeURIComponent, which appears to be the fastest widely available option.
-      try {
-        encodeURIComponent(json);
-      } catch (e) {
+      if (!getTextEncoding().checkUtf8(json)) {
         throw new Error("invalid UTF8");
       }
       return json;
@@ -623,27 +622,11 @@ function readScalar(
 
 function findJsonName(msg: ReflectMessage, name: string) {
   for (const f of msg.fields) {
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    const jsonName = f.jsonName! || protoCamelCase(f.name);
-    if (jsonName === name) {
+    if (name == (f.jsonName ?? protoCamelCase(f.name)) || name == f.name) {
       return f;
     }
   }
   return undefined;
-}
-
-function debugJsonValue(json: unknown): string {
-  if (json === null) {
-    return "null";
-  }
-  switch (typeof json) {
-    case "object":
-      return Array.isArray(json) ? "array" : "object";
-    case "string":
-      return json.length > 100 ? "string" : `"${json.split('"').join('\\"')}"`;
-    default:
-      return String(json);
-  }
 }
 
 function tryWktFromJson(
@@ -729,7 +712,7 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
 function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${timestamp.$typeName} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode ${timestamp.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const matches = json.match(
@@ -769,19 +752,19 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
 function durationFromJson(duration: Duration, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const match = json.match(/^(-?[0-9]+)(?:\.([0-9]+))?s/);
   if (match === null) {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const longSeconds = Number(match[1]);
   if (longSeconds > 315576000000 || longSeconds < -315576000000) {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   duration.seconds = protoInt64.parse(longSeconds);
@@ -798,7 +781,7 @@ function durationFromJson(duration: Duration, json: JsonValue) {
 function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${fieldMask.$typeName} from JSON: ${debugJsonValue(json)}`,
+      `cannot decode ${fieldMask.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   if (json === "") {
@@ -819,7 +802,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
 function structFromJson(struct: Struct, json: JsonValue) {
   if (typeof json != "object" || json == null || Array.isArray(json)) {
     throw new Error(
-      `cannot decode ${struct.$typeName} from JSON ${debugJsonValue(json)}`,
+      `cannot decode ${struct.$typeName} from JSON ${formatVal(json)}`,
     );
   }
   for (const [k, v] of Object.entries(json)) {
@@ -855,7 +838,7 @@ function valueFromJson(value: Value, json: JsonValue) {
       break;
     default:
       throw new Error(
-        `cannot decode ${value.$typeName} from JSON ${debugJsonValue(json)}`,
+        `cannot decode ${value.$typeName} from JSON ${formatVal(json)}`,
       );
   }
   return value;
@@ -864,7 +847,7 @@ function valueFromJson(value: Value, json: JsonValue) {
 function listValueFromJson(listValue: ListValue, json: JsonValue) {
   if (!Array.isArray(json)) {
     throw new Error(
-      `cannot decode ${listValue.$typeName} from JSON ${debugJsonValue(json)}`,
+      `cannot decode ${listValue.$typeName} from JSON ${formatVal(json)}`,
     );
   }
   for (const e of json) {

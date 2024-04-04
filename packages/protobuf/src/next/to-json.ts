@@ -318,7 +318,7 @@ function jsonName(f: DescField, opts: JsonWriteOptions) {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   return opts.useProtoFieldName
     ? f.name
-    : f.jsonName! || protoCamelCase(f.name);
+    : f.jsonName ?? protoCamelCase(f.name);
 }
 
 // returns a json value if wkt, otherwise returns undefined.
