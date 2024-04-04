@@ -130,7 +130,8 @@ export function fromJsonString<Desc extends DescMessage>(
     }
   } catch (e) {
     throw new Error(
-      `cannot decode ${desc.typeName} from JSON: ${e instanceof Error ? e.message : String(e)
+      `cannot decode ${desc.typeName} from JSON: ${
+        e instanceof Error ? e.message : String(e)
       }`,
     );
   }
@@ -172,6 +173,7 @@ export function fromJson<Desc extends DescMessage>(
 ): MessageShape<Desc> {
   let msg: ReflectMessage;
   let json: JsonValue;
+  // TODO: Explore alternatives like using dedicated functions for merging.
   if (isMessage(targetOrJson)) {
     msg = reflect(desc, targetOrJson);
     json = jsonOrOptions as JsonValue;
@@ -208,8 +210,14 @@ function readMessage(
     );
   }
   const oneofSeen = new Map<DescOneof, string>();
+  const jsonNames = new Map<string, DescField>();
+  for (const field of msg.desc.fields) {
+    jsonNames
+      .set(field.name, field)
+      .set(field.jsonName ?? protoCamelCase(field.name), field);
+  }
   for (const [jsonKey, jsonValue] of Object.entries(json)) {
-    const field = findJsonName(msg, jsonKey);
+    const field = jsonNames.get(jsonKey);
     if (field) {
       if (field.oneof) {
         if (jsonValue === null && field.fieldKind == "scalar") {
@@ -618,15 +626,6 @@ function readScalar(
       return base64Decode(json);
   }
   throw new Error();
-}
-
-function findJsonName(msg: ReflectMessage, name: string) {
-  for (const f of msg.fields) {
-    if (name == (f.jsonName ?? protoCamelCase(f.name)) || name == f.name) {
-      return f;
-    }
-  }
-  return undefined;
 }
 
 function tryWktFromJson(
