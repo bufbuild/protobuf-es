@@ -24,7 +24,6 @@ import type { JsonValue } from "../json-format.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "../private/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { create } from "./create.js";
-import { isMessage } from "./is-message.js";
 import type { DescSet } from "./reflect/desc-set.js";
 import { protoCamelCase } from "./reflect/index.js";
 import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
@@ -93,7 +92,13 @@ export function fromJsonString<Desc extends DescMessage>(
   messageDesc: Desc,
   json: string,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc>;
+): MessageShape<Desc> {
+  return fromJson(
+    messageDesc,
+    parseJsonString(json, messageDesc.typeName),
+    options,
+  );
+}
 
 /**
  * Parse a message from a JSON string, merging fields.
@@ -104,40 +109,18 @@ export function fromJsonString<Desc extends DescMessage>(
  * If a message field is already present, it will be merged with the
  * new data.
  */
-export function fromJsonString<Desc extends DescMessage>(
+export function mergeFromJsonString<Desc extends DescMessage>(
   messageDesc: Desc,
   target: MessageShape<Desc>,
   json: string,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc>;
-
-export function fromJsonString<Desc extends DescMessage>(
-  desc: Desc,
-  targetOrJson: MessageShape<Desc> | string,
-  jsonOrOptions?: string | Partial<JsonReadOptions>,
-  options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  let msg: ReflectMessage;
-  let json: JsonValue;
-  try {
-    if (typeof targetOrJson === "string") {
-      json = JSON.parse(targetOrJson) as JsonValue;
-      msg = reflect(desc);
-      options = jsonOrOptions as Partial<JsonReadOptions> | undefined;
-    } else {
-      msg = reflect(desc, targetOrJson);
-      json = JSON.parse(jsonOrOptions as string) as JsonValue;
-    }
-  } catch (e) {
-    throw new Error(
-      `cannot decode ${desc.typeName} from JSON: ${
-        e instanceof Error ? e.message : String(e)
-      }`,
-    );
-  }
-  const opt = makeReadOptions(options);
-  readMessage(msg, json, opt);
-  return msg.message as MessageShape<Desc>;
+  return mergeFromJson(
+    messageDesc,
+    target,
+    parseJsonString(json, messageDesc.typeName),
+    options,
+  );
 }
 
 /**
@@ -147,7 +130,11 @@ export function fromJson<Desc extends DescMessage>(
   messageDesc: Desc,
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc>;
+): MessageShape<Desc> {
+  const msg = reflect(messageDesc);
+  readMessage(msg, json, makeReadOptions(options));
+  return msg.message as MessageShape<Desc>;
+}
 
 /**
  * Parse a message from a JSON value, merging fields.
@@ -158,33 +145,14 @@ export function fromJson<Desc extends DescMessage>(
  * If a message field is already present, it will be merged with the
  * new data.
  */
-export function fromJson<Desc extends DescMessage>(
+export function mergeFromJson<Desc extends DescMessage>(
   messageDesc: Desc,
   target: MessageShape<Desc>,
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc>;
-
-export function fromJson<Desc extends DescMessage>(
-  desc: Desc,
-  targetOrJson: MessageShape<Desc> | JsonValue,
-  jsonOrOptions?: JsonValue | Partial<JsonReadOptions>,
-  options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  let msg: ReflectMessage;
-  let json: JsonValue;
-  // TODO: Explore alternatives like using dedicated functions for merging.
-  if (isMessage(targetOrJson)) {
-    msg = reflect(desc, targetOrJson);
-    json = jsonOrOptions as JsonValue;
-  } else {
-    json = targetOrJson;
-    msg = reflect(desc);
-    options = jsonOrOptions as Partial<JsonReadOptions> | undefined;
-  }
-  const opt = makeReadOptions(options);
-  readMessage(msg, json, opt);
-  return msg.message as MessageShape<Desc>;
+  readMessage(reflect(messageDesc, target), json, makeReadOptions(options));
+  return target;
 }
 
 function readMessage(
@@ -626,6 +594,18 @@ function readScalar(
       return base64Decode(json);
   }
   throw new Error();
+}
+
+function parseJsonString(jsonString: string, typeName: string) {
+  try {
+    return JSON.parse(jsonString) as JsonValue;
+  } catch (e) {
+    throw new Error(
+      `cannot decode ${typeName} from JSON: ${
+        e instanceof Error ? e.message : String(e)
+      }`,
+    );
+  }
 }
 
 function tryWktFromJson(

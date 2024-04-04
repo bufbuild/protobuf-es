@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { create, toJson, fromJson } from "@bufbuild/protobuf/next";
+import {
+  create,
+  toJson,
+  fromJson,
+  mergeFromJson,
+} from "@bufbuild/protobuf/next";
 import type {
   MessageInitShape,
   JsonWriteOptions,
@@ -142,7 +147,7 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
   expect(type.fromJson(v2Json, options).equals(v1Msg)).toBe(true);
   expect(equals(desc, fromJson(desc, v1Json, options), v2Msg)).toBe(true);
   v1Msg.fromJson(v2Json, options);
-  fromJson(desc, v2Msg, v1Json, options);
+  mergeFromJson(desc, v2Msg, v1Json, options);
   expect(type.fromJson(toJson(desc, v2Msg, options), options)).toEqual(v1Msg);
   expect(
     equals(desc, fromJson(desc, v1Msg.toJson(options), options), v2Msg),
