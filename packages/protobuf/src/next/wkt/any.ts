@@ -19,7 +19,7 @@ import type { DescMessage } from "../../descriptor-set.js";
 import type { DescSet } from "../reflect/index.js";
 import { create } from "../create.js";
 import { toBinary } from "../to-binary.js";
-import { fromBinary } from "../from-binary.js";
+import { fromBinary, mergeFromBinary } from "../from-binary.js";
 
 /**
  * Creates a `google.protobuf.Any` from a message.
@@ -122,7 +122,7 @@ export function anyUnpackTo<Desc extends DescMessage>(
   if (any.typeUrl === "") {
     return undefined;
   }
-  return fromBinary(messageDesc, message, any.value);
+  return mergeFromBinary(messageDesc, message, any.value);
 }
 
 function typeNameToUrl(name: string): string {
