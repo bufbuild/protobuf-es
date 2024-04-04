@@ -13,7 +13,13 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { toBinary, create, fromBinary, equals } from "@bufbuild/protobuf/next";
+import {
+  toBinary,
+  create,
+  fromBinary,
+  mergeFromBinary,
+  equals,
+} from "@bufbuild/protobuf/next";
 import type { MessageInitShape } from "@bufbuild/protobuf/next";
 import {
   ScalarValuesMessage,
@@ -89,7 +95,7 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
   expect(type.fromBinary(v2Bytes)).toEqual(v1Msg);
   expect(equals(desc, fromBinary(desc, v1Bytes), v2Msg)).toBe(true);
   v1Msg.fromBinary(v2Bytes);
-  fromBinary(desc, v2Msg, v1Bytes);
+  mergeFromBinary(desc, v2Msg, v1Bytes);
   expect(type.fromBinary(toBinary(desc, v2Msg))).toEqual(v1Msg);
   expect(equals(desc, fromBinary(desc, v1Msg.toBinary()), v2Msg)).toBe(true);
 }
