@@ -63,7 +63,6 @@ export function reflect<Desc extends DescMessage>(
 ): ReflectMessage {
   message ??= create(messageDesc);
   const check = opt?.disableFieldValueCheck !== true;
-  let jsonNames: Map<string, DescField> | undefined;
   let fieldsByNumber: Map<number, DescField> | undefined;
   let sortedFields: DescField[] | undefined;
   return {
@@ -81,16 +80,6 @@ export function reflect<Desc extends DescMessage>(
           .concat()
           .sort((a, b) => a.number - b.number))
       );
-    },
-
-    findJsonName(jsonName) {
-      if (!jsonNames) {
-        jsonNames = new Map<string, DescField>();
-        for (const f of messageDesc.fields) {
-          jsonNames.set(f.jsonName ?? f.proto.jsonName, f).set(f.name, f);
-        }
-      }
-      return jsonNames.get(jsonName);
     },
 
     findNumber(number) {

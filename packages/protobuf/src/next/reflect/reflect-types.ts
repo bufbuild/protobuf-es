@@ -30,9 +30,6 @@ export interface ReflectMessage {
   readonly oneofs: readonly DescOneof[];
   readonly members: readonly (DescField | DescOneof)[];
 
-  // TODO findJsonName() is only needed for parsing JSON. We might want to move it to the JSON parser.
-  findJsonName(jsonName: string): DescField | undefined;
-
   findNumber(number: number): DescField | undefined;
 
   isSet(field: DescField): boolean;

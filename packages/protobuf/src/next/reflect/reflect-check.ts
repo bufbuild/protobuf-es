@@ -127,7 +127,7 @@ function reasonSingular(
   return `expected ${formatReflectMessage(field.message)}` + details;
 }
 
-function formatVal(val: unknown): string {
+export function formatVal(val: unknown): string {
   switch (typeof val) {
     case "object":
       if (val === null) {

@@ -20,7 +20,6 @@ import { UInt32ValueDesc } from "@bufbuild/protobuf/next/wkt";
 import { create } from "@bufbuild/protobuf/next";
 import type { ReflectMessage } from "@bufbuild/protobuf/next/reflect";
 import {
-  localName,
   reflect,
   reflectList,
   reflectMap,
@@ -75,57 +74,6 @@ describe("ReflectMessage", () => {
       expect(f).toBeDefined();
       expect(f?.name).toBe("f2");
       expect(f?.number).toBe(2);
-    });
-  });
-  describe("findJsonName()", () => {
-    test("finds field by proto name", async () => {
-      const desc = await compileMessage(`
-        syntax="proto3";
-        message M {
-          int32 field_one = 1;
-        }
-      `);
-      const r = reflect(desc);
-      const f = r.findJsonName("field_one");
-      expect(f).toBeDefined();
-      expect(f?.number).toBe(1);
-    });
-    test("finds field by default JSON name", async () => {
-      const desc = await compileMessage(`
-        syntax="proto3";
-        message M {
-          int32 field_one = 1;
-        }
-      `);
-      const r = reflect(desc);
-      const f = r.findJsonName("fieldOne");
-      expect(f).toBeDefined();
-      expect(f?.number).toBe(1);
-    });
-    test("finds field by custom JSON name", async () => {
-      const desc = await compileMessage(`
-        syntax="proto3";
-        message M {
-          int32 field_one = 1 [json_name = "fuzz"];
-        }
-      `);
-      const r = reflect(desc);
-      const f = r.findJsonName("fuzz");
-      expect(f).toBeDefined();
-      expect(f?.number).toBe(1);
-    });
-    test("does not find local property name", async () => {
-      const desc = await compileMessage(`
-        syntax="proto3";
-        message M {
-          int32 constructor = 1;
-        }
-      `);
-      const r = reflect(desc);
-      expect(r.findJsonName("constructor$")).toBeUndefined();
-      expect(r.fields.length).toBe(1);
-      expect(r.fields[0].name).toBe("constructor");
-      expect(localName(r.fields[0])).toBe("constructor$");
     });
   });
   describe("sortedFields", () => {

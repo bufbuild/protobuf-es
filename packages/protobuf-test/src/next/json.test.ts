@@ -13,10 +13,16 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { create, toJson } from "@bufbuild/protobuf/next";
+import {
+  create,
+  toJson,
+  fromJson,
+  mergeFromJson,
+} from "@bufbuild/protobuf/next";
 import type {
   MessageInitShape,
   JsonWriteOptions,
+  JsonReadOptions,
 } from "@bufbuild/protobuf/next";
 import {
   ScalarValuesMessage,
@@ -45,8 +51,10 @@ import type {
   Message,
   PartialMessage,
   MessageType,
+  JsonReadOptions as JsonReadOptionsV1,
 } from "@bufbuild/protobuf";
 import { createDescSet } from "@bufbuild/protobuf/next/reflect";
+import { equals } from "@bufbuild/protobuf/next";
 
 describe("json serialization", () => {
   describe("should be identical to v1", () => {
@@ -128,10 +136,20 @@ function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
   type: MessageType<T>,
   desc: Desc,
   init: PartialMessage<T> & MessageInitShape<Desc>,
-  options?: Partial<JsonWriteOptionsV1 & JsonWriteOptions>,
+  options?: Partial<
+    JsonWriteOptionsV1 & JsonWriteOptions & JsonReadOptionsV1 & JsonReadOptions
+  >,
 ) {
   const v1Msg = new type(init);
+  const v1Json = v1Msg.toJson(options);
   const v2Msg = create(desc, init);
   const v2Json = toJson(desc, v2Msg, options);
   expect(type.fromJson(v2Json, options).equals(v1Msg)).toBe(true);
+  expect(equals(desc, fromJson(desc, v1Json, options), v2Msg)).toBe(true);
+  v1Msg.fromJson(v2Json, options);
+  mergeFromJson(desc, v2Msg, v1Json, options);
+  expect(type.fromJson(toJson(desc, v2Msg, options), options)).toEqual(v1Msg);
+  expect(
+    equals(desc, fromJson(desc, v1Msg.toJson(options), options), v2Msg),
+  ).toBe(true);
 }
