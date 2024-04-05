@@ -14,7 +14,6 @@
 
 export * from "./embed.js";
 export * from "./enum.js";
-export * from "./globals.js";
 export * from "./hydrate.js";
 export * from "./symbols.js";
 export * from "./typed-desc.js";

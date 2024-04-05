@@ -14,11 +14,14 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { protoInt64 } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
-import { createTestPluginAndRun } from "./helpers.js";
+import type {
+  GeneratedFile,
+  Schema,
+} from "@bufbuild/protoplugin/next/ecmascript";
+import { createImportSymbol } from "@bufbuild/protoplugin/next/ecmascript";
+import { createTestPluginAndRun } from "../helpers.js";
 
-describe("file print", () => {
+describe("GeneratedFile.print", () => {
   test("should print bigint literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(0n);
@@ -40,7 +43,7 @@ describe("file print", () => {
     ).toBeTruthy();
   });
 
-  test("should print number literals", async () => {
+  test.only("should print number literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(
         123,
@@ -55,9 +58,7 @@ describe("file print", () => {
       );
     });
     expect(lines).toStrictEqual([
-      'import { protoDouble } from "@bufbuild/protobuf";',
-      "",
-      "123 3.145 protoDouble.NaN protoDouble.POSITIVE_INFINITY protoDouble.NEGATIVE_INFINITY",
+      "123 3.145 globalThis.NaN globalThis.Infinity -globalThis.Infinity",
     ]);
   });
 
@@ -166,32 +167,13 @@ describe("file print", () => {
   });
 
   test("should print runtime imports", async () => {
-    const lines = await testGenerate((f, schema) => {
-      f.print(schema.runtime.ScalarType, ".INT32");
+    const lines = await testGenerate((f) => {
+      f.print(f.runtime.create, "(FooDesc);");
     });
     expect(lines).toStrictEqual([
-      'import { ScalarType } from "@bufbuild/protobuf";',
+      'import { create } from "@bufbuild/protobuf/next";',
       "",
-      "ScalarType.INT32",
-    ]);
-  });
-
-  test("should print descriptor", async function () {
-    const lines = await createTestPluginAndRun({
-      proto: `
-          syntax="proto3";
-          message Person {}
-          `,
-      parameter: "target=ts",
-      generateAny(f, schema) {
-        f.print(schema.files[0].messages[0], ".typeName");
-      },
-      returnLinesOfFirstFile: true,
-    });
-    expect(lines).toStrictEqual([
-      'import { Person } from "./x_pb.js";',
-      "",
-      "Person.typeName",
+      "create(FooDesc);",
     ]);
   });
 

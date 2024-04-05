@@ -44,7 +44,6 @@ export const symbols = {
     enumDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
     extDesc:               {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
     fileDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
-    globalNumber:          {typeOnly: false, bootstrapWktFrom: "../../codegenv1/globals.js",    from: packageName + "/codegenv1" },
     messageDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
     serviceDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/hydrate.js",    from: packageName + "/codegenv1" },
     tsEnum:                {typeOnly: false, bootstrapWktFrom: "../../codegenv1/enum.js",       from: packageName + "/codegenv1" },

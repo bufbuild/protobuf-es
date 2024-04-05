@@ -359,11 +359,11 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
           break;
         case "number":
           if (Number.isNaN(p)) {
-            el.push(opt.runtime.codegen.globalNumber, ".NaN");
+            el.push("globalThis.NaN");
           } else if (p === Number.POSITIVE_INFINITY) {
-            el.push(opt.runtime.codegen.globalNumber, ".POSITIVE_INFINITY");
+            el.push("globalThis.Infinity");
           } else if (p === Number.NEGATIVE_INFINITY) {
-            el.push(opt.runtime.codegen.globalNumber, ".NEGATIVE_INFINITY");
+            el.push("-globalThis.Infinity");
           } else {
             el.push(p.toString(10));
           }
