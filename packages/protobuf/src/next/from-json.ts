@@ -56,10 +56,7 @@ import type {
   ListValue,
 } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
-import {
-  createExtensionContainer,
-  setExtension,
-} from "./extension-accessor.js";
+import { createExtensionContainer, setExtension } from "./extensions.js";
 
 /**
  * Options for parsing JSON data.

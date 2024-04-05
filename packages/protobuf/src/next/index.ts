@@ -29,4 +29,4 @@ export {
   getExtension,
   setExtension,
   clearExtension,
-} from "./extension-accessor.js";
+} from "./extensions.js";

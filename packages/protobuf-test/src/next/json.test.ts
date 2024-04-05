@@ -136,7 +136,7 @@ describe("json serialization", () => {
       });
     });
   });
-  describe.only("extensions", () => {
+  describe("extensions", () => {
     test("encode and decode an extension", () => {
       const extendee = create(Proto2ExtendeeDesc);
       setExtension(extendee, string_ext, "foo");
