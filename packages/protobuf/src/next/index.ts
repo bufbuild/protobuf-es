@@ -24,4 +24,9 @@ export { fromBinary, mergeFromBinary } from "./from-binary.js";
 export type { BinaryReadOptions } from "./from-binary.js";
 export * from "./to-json.js";
 export * from "./from-json.js";
-export * from "./extension-accessor.js";
+export {
+  hasExtension,
+  getExtension,
+  setExtension,
+  clearExtension,
+} from "./extension-accessor.js";
