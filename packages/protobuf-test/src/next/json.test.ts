@@ -18,6 +18,8 @@ import {
   toJson,
   fromJson,
   mergeFromJson,
+  setExtension,
+  getExtension,
 } from "@bufbuild/protobuf/next";
 import type {
   MessageInitShape,
@@ -55,6 +57,10 @@ import type {
 } from "@bufbuild/protobuf";
 import { createDescSet } from "@bufbuild/protobuf/next/reflect";
 import { equals } from "@bufbuild/protobuf/next";
+import {
+  Proto2ExtendeeDesc,
+  string_ext,
+} from "../gen/ts/extra/extensions-proto2_pbv2.js";
 
 describe("json serialization", () => {
   describe("should be identical to v1", () => {
@@ -128,6 +134,23 @@ describe("json serialization", () => {
           descSet: createDescSet(StructDesc, ValueDesc),
         });
       });
+    });
+  });
+  describe.only("extensions", () => {
+    test("encode and decode an extension", () => {
+      const extendee = create(Proto2ExtendeeDesc);
+      setExtension(extendee, string_ext, "foo");
+      const jsonOpts = { descSet: createDescSet(string_ext) };
+      expect(
+        getExtension(
+          fromJson(
+            Proto2ExtendeeDesc,
+            toJson(Proto2ExtendeeDesc, extendee, jsonOpts),
+            jsonOpts,
+          ),
+          string_ext,
+        ),
+      ).toEqual("foo");
     });
   });
 });
