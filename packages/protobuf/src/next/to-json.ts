@@ -41,6 +41,7 @@ import { anyUnpack } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 import type { DescSet } from "./reflect/desc-set.js";
 import { base64Encode } from "./wire/index.js";
+import { createExtensionContainer, getExtension } from "./extensions.js";
 
 /**
  * Options for serializing to JSON.
@@ -151,7 +152,26 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       json[jsonName(f, opts)] = jsonValue;
     }
   }
-  // TODO: Add support for extensions.
+  if (opts.descSet) {
+    const tagSeen = new Set<number>();
+    for (const uf of msg.getUnknown() ?? []) {
+      // Same tag can appear multiple times, so we
+      // keep track and skip identical ones.
+      if (tagSeen.has(uf.no)) {
+        continue;
+      }
+      const extension = opts.descSet.getExtensionFor(msg.desc, uf.no);
+      if (!extension) {
+        continue;
+      }
+      const value = getExtension(msg.message, extension);
+      const [, field] = createExtensionContainer(extension);
+      const jsonValue = fieldToJson(field, value, opts);
+      if (jsonValue !== undefined) {
+        json[extension.jsonName ?? `[${extension.typeName}]`] = jsonValue;
+      }
+    }
+  }
   return json;
 }
 

@@ -134,7 +134,10 @@ function filterUnknownFields(
   return unknownFields.filter((uf) => uf.no === extension.number);
 }
 
-function createExtensionContainer<Desc extends DescExtension>(
+/**
+ * @private
+ */
+export function createExtensionContainer<Desc extends DescExtension>(
   extension: Desc,
   value?: ExtensionValueShape<Desc>,
 ): [ReflectMessage, DescField, () => ExtensionValueShape<Desc>] {

@@ -16,6 +16,7 @@
 
 import type {
   DescEnum,
+  DescExtension,
   DescField,
   DescMessage,
   DescOneof,
@@ -55,6 +56,7 @@ import type {
   ListValue,
 } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
+import { createExtensionContainer, setExtension } from "./extensions.js";
 
 /**
  * Options for parsing JSON data.
@@ -202,15 +204,20 @@ function readMessage(
       }
       readField(msg, field, jsonValue, opts);
     } else {
+      let extension: DescExtension | undefined = undefined;
       if (
         jsonKey.startsWith("[") &&
         jsonKey.endsWith("]") &&
-        opts.descSet?.getExtension(jsonKey.substring(1, jsonKey.length - 1))
+        (extension = opts.descSet?.getExtension(
+          jsonKey.substring(1, jsonKey.length - 1),
+        )) &&
+        extension.extendee.typeName === msg.desc.typeName
       ) {
-        // TODO: Support Extension.
-        throw new Error("extension support not implemented");
+        const [container, field, get] = createExtensionContainer(extension);
+        readField(container, field, jsonValue, opts);
+        setExtension(msg.message, extension, get());
       }
-      if (!opts.ignoreUnknownFields) {
+      if (!extension && !opts.ignoreUnknownFields) {
         throw new Error(
           `cannot decode message ${msg.desc.typeName} from JSON: key "${jsonKey}" is unknown`,
         );
