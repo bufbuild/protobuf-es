@@ -2,16 +2,8 @@
 
 Recommended.Proto3.JsonInput.NullValueInOtherOneofNewFormat.Validator
 Recommended.Proto3.JsonInput.NullValueInOtherOneofOldFormat.Validator
-Required.Proto2.JsonInput.FloatFieldInfinity.JsonOutput
-Required.Proto2.JsonInput.FloatFieldInfinity.ProtobufOutput
-Required.Proto2.JsonInput.FloatFieldNegativeInfinity.JsonOutput
-Required.Proto2.JsonInput.FloatFieldNegativeInfinity.ProtobufOutput
 Required.Proto3.JsonInput.AnyNested.JsonOutput
 Required.Proto3.JsonInput.AnyNested.ProtobufOutput
-Required.Proto3.JsonInput.FloatFieldInfinity.JsonOutput
-Required.Proto3.JsonInput.FloatFieldInfinity.ProtobufOutput
-Required.Proto3.JsonInput.FloatFieldNegativeInfinity.JsonOutput
-Required.Proto3.JsonInput.FloatFieldNegativeInfinity.ProtobufOutput
 Required.Proto3.JsonInput.ValueAcceptNull.JsonOutput
 Required.Proto3.JsonInput.ValueAcceptNull.ProtobufOutput
 

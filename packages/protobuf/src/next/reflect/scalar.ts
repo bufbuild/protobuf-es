@@ -47,6 +47,9 @@ export function checkScalarValue(
       if (typeof value != "number") {
         return false;
       }
+      if (Number.isNaN(value) || !Number.isFinite(value)) {
+        return true;
+      }
       if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
         return `${value.toFixed()} out of range`;
       }
