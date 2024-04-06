@@ -1,8 +1,4 @@
 # TODO fix all v2 failures
 
-Recommended.Proto3.JsonInput.NullValueInOtherOneofNewFormat.Validator
-Recommended.Proto3.JsonInput.NullValueInOtherOneofOldFormat.Validator
-Required.Proto3.JsonInput.AnyNested.JsonOutput
-Required.Proto3.JsonInput.AnyNested.ProtobufOutput
 Required.Proto3.JsonInput.ValueAcceptNull.JsonOutput
 Required.Proto3.JsonInput.ValueAcceptNull.ProtobufOutput

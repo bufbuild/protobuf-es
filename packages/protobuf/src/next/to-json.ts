@@ -148,7 +148,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       }
     }
     const jsonValue = fieldToJson(f, msg.get(f), opts);
-    if (jsonValue != undefined) {
+    if (jsonValue !== undefined) {
       json[jsonName(f, opts)] = jsonValue;
     }
   }

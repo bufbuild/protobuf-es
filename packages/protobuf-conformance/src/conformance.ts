@@ -38,6 +38,7 @@ import {
 import { fileDesc_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pbv2.js";
 import { fileDesc_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pbv2.js";
 import {
+  fileDesc_google_protobuf_any,
   fileDesc_google_protobuf_duration,
   fileDesc_google_protobuf_field_mask,
   fileDesc_google_protobuf_struct,
@@ -48,6 +49,7 @@ import {
 const registry = createDescSet(
   fileDesc_google_protobuf_test_messages_proto2,
   fileDesc_google_protobuf_test_messages_proto3,
+  fileDesc_google_protobuf_any,
   fileDesc_google_protobuf_struct,
   fileDesc_google_protobuf_field_mask,
   fileDesc_google_protobuf_timestamp,
