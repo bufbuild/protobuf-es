@@ -1,4 +1,0 @@
-# TODO fix all v2 failures
-
-Required.Proto3.JsonInput.ValueAcceptNull.JsonOutput
-Required.Proto3.JsonInput.ValueAcceptNull.ProtobufOutput
