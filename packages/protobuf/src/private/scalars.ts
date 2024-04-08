@@ -74,8 +74,10 @@ export function scalarZeroValue<T extends ScalarType, L extends LongType>(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison -- acceptable since it's covered by tests
-      return (longType == 0 ? protoInt64.zero : "0") as ScalarValue<T, L>;
+      return ((longType as number) == 0 ? protoInt64.zero : "0") as ScalarValue<
+        T,
+        L
+      >;
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
       return 0.0 as ScalarValue<T>;
