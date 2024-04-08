@@ -363,7 +363,7 @@ function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
     kind: "file",
     proto,
     deprecated: proto.options?.deprecated ?? false,
-    ...parseFileSyntax(proto.syntax, proto.edition),
+    ...parseFileSyntax(proto.name, proto.syntax, proto.edition),
     name: proto.name.replace(/\.proto/, ""),
     dependencies: findFileDependencies(proto, set),
     enums: [],
@@ -920,14 +920,10 @@ function newExtension(
 /**
  * Parse the "syntax" and "edition" fields, stripping test editions.
  */
-function parseFileSyntax(syntax: string, edition: Edition) {
-  let e: Exclude<
+function parseFileSyntax(fileName: string, syntax: string, edition: Edition) {
+  let e: Extract<
     Edition,
-    | Edition.EDITION_1_TEST_ONLY
-    | Edition.EDITION_2_TEST_ONLY
-    | Edition.EDITION_99997_TEST_ONLY
-    | Edition.EDITION_99998_TEST_ONLY
-    | Edition.EDITION_99999_TEST_ONLY
+    Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
   >;
   let s: "proto2" | "proto3" | "editions";
   switch (syntax) {
@@ -948,21 +944,12 @@ function parseFileSyntax(syntax: string, edition: Edition) {
           break;
         default:
           throw new Error(
-            `Edition ${Edition[edition]} is not supported. The latest supported edition is 2023.`,
+            `unsupported edition in ${fileName}: the latest supported edition is 2023`,
           );
       }
       break;
     default:
-      throw new Error(
-        `invalid FileDescriptorProto: unsupported syntax: ${syntax}`,
-      );
-  }
-  if (syntax === "editions" && edition === Edition.EDITION_UNKNOWN) {
-    throw new Error(
-      `invalid FileDescriptorProto: syntax ${syntax} cannot have edition ${String(
-        edition,
-      )}`,
-    );
+      throw new Error(`unsupported syntax in ${fileName}: ${syntax}`);
   }
   return {
     syntax: s,

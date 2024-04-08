@@ -90,7 +90,7 @@ describe("editions support in plugins", () => {
       req.protoFile[0].edition = Edition.EDITION_99997_TEST_ONLY;
       const plugin = createTestPlugin();
       expect(() => plugin.run(req)).toThrow(
-        /^Edition EDITION_99997_TEST_ONLY is not supported. The latest supported edition is 2023.$/,
+        /^unsupported edition in test.proto: the latest supported edition is 2023$/,
       );
     });
     test("from the past", async () => {
@@ -98,7 +98,7 @@ describe("editions support in plugins", () => {
       req.protoFile[0].edition = Edition.EDITION_1_TEST_ONLY;
       const plugin = createTestPlugin();
       expect(() => plugin.run(req)).toThrow(
-        /^Edition EDITION_1_TEST_ONLY is not supported. The latest supported edition is 2023.$/,
+        /^unsupported edition in test.proto: the latest supported edition is 2023$/,
       );
     });
   });
