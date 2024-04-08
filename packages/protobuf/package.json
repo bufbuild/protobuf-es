@@ -13,7 +13,7 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
-    "bootstrap:featureset-defaults": "upstream-inject-feature-defaults src/private/feature-set.ts",
+    "bootstrap:inject": "node scripts/bootstrap-inject.mjs src/next/reflect/desc-set.ts",
     "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp/v1/google/protobuf && cp -rp src/google/protobuf/* .tmp/v1/google/protobuf",
     "bootstrap:wkt": "protoc --es_out=src --es_opt=bootstrap_wkt=true,ts_nocheck=false,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/google/protobuf",
     "postbootstrap:wkt": "diff >/dev/null -r .tmp/v1/google/protobuf src/google/protobuf && cp -rp .tmp/v1/google/protobuf/* src/google/protobuf || true",

@@ -109,6 +109,10 @@ export class UpstreamProtobuf {
     this.#temp = temp;
   }
 
+  version() {
+    return this.#version;
+  }
+
   /**
    * @return {Promise<void>}
    */

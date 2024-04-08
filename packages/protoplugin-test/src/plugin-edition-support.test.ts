@@ -59,7 +59,7 @@ describe("editions support in plugins", () => {
       const upstream = new UpstreamProtobuf();
       const reqBytes = await upstream.createCodeGeneratorRequest(
         {
-          "test.proto": ``,
+          "test.proto": `edition="2023";`,
         },
         {
           filesToGenerate: ["test.proto"],
@@ -90,7 +90,7 @@ describe("editions support in plugins", () => {
       req.protoFile[0].edition = Edition.EDITION_99997_TEST_ONLY;
       const plugin = createTestPlugin();
       expect(() => plugin.run(req)).toThrow(
-        /^Edition EDITION_99997_TEST_ONLY is later than the maximum supported edition EDITION_2023$/,
+        /^Edition EDITION_99997_TEST_ONLY is not supported. The latest supported edition is 2023.$/,
       );
     });
     test("from the past", async () => {
@@ -98,7 +98,7 @@ describe("editions support in plugins", () => {
       req.protoFile[0].edition = Edition.EDITION_1_TEST_ONLY;
       const plugin = createTestPlugin();
       expect(() => plugin.run(req)).toThrow(
-        /^Edition EDITION_1_TEST_ONLY is earlier than the minimum supported edition EDITION_PROTO2$/,
+        /^Edition EDITION_1_TEST_ONLY is not supported. The latest supported edition is 2023.$/,
       );
     });
   });

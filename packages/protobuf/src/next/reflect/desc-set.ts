@@ -30,6 +30,7 @@ import {
 } from "../../google/protobuf/descriptor_pb.js";
 import { assert } from "../../private/assert.js";
 import type {
+  AnyDesc,
   DescEnum,
   DescExtension,
   DescField,
@@ -38,6 +39,7 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
+  ResolvedFeatureSet,
 } from "../../descriptor-set.js";
 import { MethodIdempotency, MethodKind } from "../../service-type.js";
 import { fieldJsonName, findEnumSharedPrefix } from "../../private/names.js";
@@ -45,8 +47,6 @@ import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
 } from "../../private/text-format.js";
-import type { FeatureResolverFn } from "../../private/feature-set.js";
-import { createFeatureResolver } from "../../private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { AnyMessage, Message } from "../../message.js";
 import { nestedTypes } from "./nested-types.js";
@@ -191,9 +191,8 @@ export function createDescFileSet(
 ): DescFileSet {
   const set = createMutableDescFileSet();
   if (args[0] instanceof FileDescriptorSet) {
-    const getFeatureResolver = createFeatureResolverCache();
     for (const file of args[0].file) {
-      addFile(file, set, getFeatureResolver(file));
+      addFile(file, set);
     }
     return set;
   } else if (args[0] instanceof FileDescriptorProto) {
@@ -201,7 +200,6 @@ export function createDescFileSet(
     const resolve = args[1] as (
       protoFileName: string,
     ) => FileDescriptorProto | DescFile | undefined;
-    const getFeatureResolver = createFeatureResolverCache();
     const seen = new Set<string>();
     // eslint-disable-next-line no-inner-declarations
     function recurseDeps(file: FileDescriptorProto): FileDescriptorProto[] {
@@ -229,7 +227,7 @@ export function createDescFileSet(
       return [...deps, ...deps.flatMap((dep) => recurseDeps(dep))];
     }
     for (const file of [input, ...recurseDeps(input)].reverse()) {
-      addFile(file, set, getFeatureResolver(file));
+      addFile(file, set);
     }
   } else {
     for (const fileSet of args as DescFileSet[]) {
@@ -242,28 +240,6 @@ export function createDescFileSet(
     }
   }
   return set;
-}
-
-/**
- * Creates feature resolvers, but caches them.
- * @private
- */
-function createFeatureResolverCache() {
-  const resolverByEdition = new Map<Edition, FeatureResolverFn>();
-  return function (
-    fileDescriptorProto: FileDescriptorProto,
-  ): FeatureResolverFn {
-    const edition = unsafeIsSetExplicit(fileDescriptorProto, "edition")
-      ? fileDescriptorProto.edition
-      : parseFileSyntax(fileDescriptorProto.syntax, fileDescriptorProto.edition)
-          .edition;
-    let resolve = resolverByEdition.get(edition);
-    if (resolve === undefined) {
-      resolve = createFeatureResolver(edition);
-      resolverByEdition.set(edition, resolve);
-    }
-    return resolve;
-  };
 }
 
 /**
@@ -381,11 +357,7 @@ function addDescFile(file: DescFile, set: DescFileSetMutable) {
 /**
  * Create a descriptor for a file, add it to the set.
  */
-function addFile(
-  proto: FileDescriptorProto,
-  set: DescFileSetMutable,
-  resolveFeatures: FeatureResolverFn,
-): void {
+function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
   assertFieldSet(proto, "name");
   const file: DescFile = {
     kind: "file",
@@ -403,7 +375,7 @@ function addFile(
       return `file ${this.proto.name}`;
     },
     getFeatures() {
-      return resolveFeatures(proto.options?.features);
+      return resolveFeatures(file);
     },
   };
   const mapEntriesStore = new Map<string, DescMessage>();
@@ -417,22 +389,22 @@ function addFile(
     },
   };
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, undefined, set, resolveFeatures);
+    addEnum(enumProto, file, undefined, set);
   }
   for (const messageProto of proto.messageType) {
-    addMessage(messageProto, file, undefined, set, mapEntries, resolveFeatures);
+    addMessage(messageProto, file, undefined, set, mapEntries);
   }
   for (const serviceProto of proto.service) {
-    addService(serviceProto, file, set, resolveFeatures);
+    addService(serviceProto, file, set);
   }
-  addExtensions(file, set, resolveFeatures);
+  addExtensions(file, set);
   for (const mapEntry of mapEntriesStore.values()) {
     // to create a map field, we need access to the map entry's fields
-    addFields(mapEntry, set, mapEntries, resolveFeatures);
+    addFields(mapEntry, set, mapEntries);
   }
   for (const message of file.messages) {
-    addFields(message, set, mapEntries, resolveFeatures);
-    addExtensions(message, set, resolveFeatures);
+    addFields(message, set, mapEntries);
+    addExtensions(message, set);
   }
   set.add(file);
 }
@@ -454,24 +426,23 @@ interface FileMapEntries {
 function addExtensions(
   desc: DescFile | DescMessage,
   set: DescFileSetMutable,
-  resolveFeatures: FeatureResolverFn,
 ): void {
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc, undefined, set, resolveFeatures);
+        const ext = newExtension(proto, desc, undefined, set);
         desc.extensions.push(ext);
         set.add(ext);
       }
       break;
     case "message":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc.file, desc, set, resolveFeatures);
+        const ext = newExtension(proto, desc.file, desc, set);
         desc.nestedExtensions.push(ext);
         set.add(ext);
       }
       for (const message of desc.nestedMessages) {
-        addExtensions(message, set, resolveFeatures);
+        addExtensions(message, set);
       }
       break;
   }
@@ -485,10 +456,9 @@ function addFields(
   message: DescMessage,
   set: DescSet,
   mapEntries: FileMapEntries,
-  resolveFeatures: FeatureResolverFn,
 ): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
-    newOneof(proto, message, resolveFeatures),
+    newOneof(proto, message),
   );
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
@@ -500,7 +470,6 @@ function addFields(
       oneof,
       set,
       mapEntries,
-      resolveFeatures,
     );
     message.fields.push(field);
     if (oneof === undefined) {
@@ -517,7 +486,7 @@ function addFields(
     message.oneofs.push(oneof);
   }
   for (const child of message.nestedMessages) {
-    addFields(child, set, mapEntries, resolveFeatures);
+    addFields(child, set, mapEntries);
   }
 }
 
@@ -530,7 +499,6 @@ function addEnum(
   file: DescFile,
   parent: DescMessage | undefined,
   set: DescFileSetMutable,
-  resolveFeatures: FeatureResolverFn,
 ): void {
   assertFieldSet(proto, "name");
   const desc: DescEnum = {
@@ -550,10 +518,7 @@ function addEnum(
       return `enum ${this.typeName}`;
     },
     getFeatures() {
-      return resolveFeatures(
-        parent?.getFeatures() ?? file.getFeatures(),
-        proto.options?.features,
-      );
+      return resolveFeatures(desc);
     },
   };
   set.add(desc);
@@ -571,7 +536,7 @@ function addEnum(
         return `enum value ${desc.typeName}.${this.name}`;
       },
       getFeatures() {
-        return resolveFeatures(desc.getFeatures(), proto.options?.features);
+        return resolveFeatures(this);
       },
     });
   });
@@ -588,7 +553,6 @@ function addMessage(
   parent: DescMessage | undefined,
   set: DescFileSetMutable,
   mapEntries: FileMapEntries,
-  resolveFeatures: FeatureResolverFn,
 ): void {
   const desc: DescMessage = {
     kind: "message",
@@ -608,10 +572,7 @@ function addMessage(
       return `message ${this.typeName}`;
     },
     getFeatures() {
-      return resolveFeatures(
-        parent?.getFeatures() ?? file.getFeatures(),
-        proto.options?.features,
-      );
+      return resolveFeatures(this);
     },
   };
   if (proto.options?.mapEntry === true) {
@@ -621,10 +582,10 @@ function addMessage(
     set.add(desc);
   }
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, desc, set, resolveFeatures);
+    addEnum(enumProto, file, desc, set);
   }
   for (const messageProto of proto.nestedType) {
-    addMessage(messageProto, file, desc, set, mapEntries, resolveFeatures);
+    addMessage(messageProto, file, desc, set, mapEntries);
   }
 }
 
@@ -636,7 +597,6 @@ function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
   set: DescFileSetMutable,
-  resolveFeatures: FeatureResolverFn,
 ): void {
   assertFieldSet(proto, "name");
   const desc: DescService = {
@@ -651,13 +611,13 @@ function addService(
       return `service ${this.typeName}`;
     },
     getFeatures() {
-      return resolveFeatures(file.getFeatures(), proto.options?.features);
+      return resolveFeatures(this);
     },
   };
   file.services.push(desc);
   set.add(desc);
   for (const methodProto of proto.method) {
-    desc.methods.push(newMethod(methodProto, desc, set, resolveFeatures));
+    desc.methods.push(newMethod(methodProto, desc, set));
   }
 }
 
@@ -668,7 +628,6 @@ function newMethod(
   proto: MethodDescriptorProto,
   parent: DescService,
   set: DescSet,
-  resolveFeatures: FeatureResolverFn,
 ): DescMethod {
   assertFieldSet(proto, "name");
   assertFieldSet(proto, "inputType");
@@ -721,7 +680,7 @@ function newMethod(
       return `rpc ${parent.typeName}.${name}`;
     },
     getFeatures() {
-      return resolveFeatures(parent.getFeatures(), proto.options?.features);
+      return resolveFeatures(this);
     },
   };
 }
@@ -729,11 +688,7 @@ function newMethod(
 /**
  * Create a descriptor for a oneof group.
  */
-function newOneof(
-  proto: OneofDescriptorProto,
-  parent: DescMessage,
-  resolveFeatures: FeatureResolverFn,
-): DescOneof {
+function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
   assertFieldSet(proto, "name");
   return {
     kind: "oneof",
@@ -746,7 +701,7 @@ function newOneof(
       return `oneof ${parent.typeName}.${this.name}`;
     },
     getFeatures() {
-      return resolveFeatures(parent.getFeatures(), proto.options?.features);
+      return resolveFeatures(this);
     },
   };
 }
@@ -761,7 +716,6 @@ function newField(
   oneof: DescOneof | undefined,
   set: DescSet,
   mapEntries: FileMapEntries,
-  resolveFeatures: FeatureResolverFn,
 ): DescField {
   assertFieldSet(proto, "name");
   assertFieldSet(proto, "number");
@@ -797,7 +751,7 @@ function newField(
       return `field ${parent.typeName}.${this.name as string}`;
     },
     getFeatures() {
-      return resolveFeatures(parent.getFeatures(), proto.options?.features);
+      return resolveFeatures(this as DescField | DescExtension);
     },
   };
   if (proto.label === FieldDescriptorProto_Label.REPEATED) {
@@ -831,12 +785,8 @@ function newField(
     const list: fieldFragment<"list", "longType"> = {
       ...common,
       fieldKind: "list",
-      packed: isPackedField(file, parent, proto, resolveFeatures),
-      packedByDefault: isPackedFieldByDefault(
-        file.edition,
-        proto,
-        resolveFeatures,
-      ),
+      packed: isPackedField(file, common as DescField | DescExtension),
+      packedByDefault: isPackedFieldByDefault(file.edition, proto),
     };
     assert(!oneof);
     switch (proto.type) {
@@ -930,7 +880,6 @@ function newExtension(
   file: DescFile,
   parent: DescMessage | undefined,
   set: DescFileSetMutable,
-  resolveFeatures: FeatureResolverFn,
 ): DescExtension {
   assertFieldSet(proto, "extendee");
   const emptyMapEntries: FileMapEntries = {
@@ -944,7 +893,6 @@ function newExtension(
     undefined,
     set,
     emptyMapEntries, // extension fields cannot be maps
-    resolveFeatures,
   );
   const extendee = set.getMessage(trimLeadingDot(proto.extendee));
   assert(
@@ -965,12 +913,6 @@ function newExtension(
     oneof: undefined,
     toString(): string {
       return `extension ${this.typeName}`;
-    },
-    getFeatures() {
-      return resolveFeatures(
-        (parent ?? file).getFeatures(),
-        proto.options?.features,
-      );
     },
   };
 }
@@ -1001,17 +943,13 @@ function parseFileSyntax(syntax: string, edition: Edition) {
     case "editions":
       s = "editions";
       switch (edition) {
-        case Edition.EDITION_1_TEST_ONLY:
-        case Edition.EDITION_2_TEST_ONLY:
-        case Edition.EDITION_99997_TEST_ONLY:
-        case Edition.EDITION_99998_TEST_ONLY:
-        case Edition.EDITION_99999_TEST_ONLY:
-        case Edition.EDITION_UNKNOWN:
-          e = Edition.EDITION_UNKNOWN;
-          break;
-        default:
+        case Edition.EDITION_2023:
           e = edition;
           break;
+        default:
+          throw new Error(
+            `Edition ${Edition[edition]} is not supported. The latest supported edition is 2023.`,
+          );
       }
       break;
     default:
@@ -1143,11 +1081,7 @@ function isOptionalField(
  * are unpacked by default. With editions, the default is whatever the edition
  * specifies as a default. In edition 2023, fields are packed by default.
  */
-function isPackedFieldByDefault(
-  edition: Edition,
-  proto: FieldDescriptorProto,
-  resolveFeatures: FeatureResolverFn,
-) {
+function isPackedFieldByDefault(edition: Edition, proto: FieldDescriptorProto) {
   switch (proto.type) {
     case FieldDescriptorProto_Type.STRING:
     case FieldDescriptorProto_Type.BYTES:
@@ -1156,18 +1090,11 @@ function isPackedFieldByDefault(
       // length-delimited types cannot be packed
       return false;
     default:
-      switch (edition) {
-        case Edition.EDITION_PROTO2:
-          return false;
-        case Edition.EDITION_PROTO3:
-          return true;
-        default: {
-          const { repeatedFieldEncoding } = resolveFeatures();
-          return (
-            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
-          );
-        }
-      }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+      return (
+        resolveDefault(edition, "repeatedFieldEncoding") ==
+        FeatureSet_RepeatedFieldEncoding.PACKED
+      );
   }
 }
 
@@ -1177,13 +1104,8 @@ function isPackedFieldByDefault(
  * Respects field type, proto2/proto3 defaults and the `packed` option, or
  * edition defaults and the edition features.repeated_field_encoding options.
  */
-function isPackedField(
-  file: DescFile,
-  parent: DescMessage | undefined,
-  proto: FieldDescriptorProto,
-  resolveFeatures: FeatureResolverFn,
-) {
-  switch (proto.type) {
+function isPackedField(file: DescFile, field: DescField | DescExtension) {
+  switch (field.proto.type) {
     case FieldDescriptorProto_Type.STRING:
     case FieldDescriptorProto_Type.BYTES:
     case FieldDescriptorProto_Type.GROUP:
@@ -1191,7 +1113,7 @@ function isPackedField(
       // length-delimited types cannot be packed
       return false;
     default:
-      const protoOptions = proto.options; // eslint-disable-line no-case-declarations
+      const protoOptions = field.proto.options; // eslint-disable-line no-case-declarations
       switch (file.edition) {
         case Edition.EDITION_PROTO2:
           return protoOptions !== undefined &&
@@ -1204,13 +1126,8 @@ function isPackedField(
             ? protoOptions.packed
             : true;
         default: {
-          const { repeatedFieldEncoding } = resolveFeatures(
-            parent?.getFeatures() ?? file.getFeatures(),
-            protoOptions?.features,
-          );
-          return (
-            repeatedFieldEncoding == FeatureSet_RepeatedFieldEncoding.PACKED
-          );
+          const r = resolveFeature(field, "repeatedFieldEncoding");
+          return r == FeatureSet_RepeatedFieldEncoding.PACKED;
         }
       }
   }
@@ -1254,4 +1171,85 @@ function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
     const type = target.getType().typeName.split(".").pop();
     throw new Error(`invalid ${type}: missing ${field as string}`);
   }
+}
+
+/*bootstrap-inject-start*/
+// generated from protoc experimental_edition_defaults_out v26.0
+const featureDefaults = {
+  // EDITION_PROTO2
+  998: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 2, // CLOSED,
+    repeatedFieldEncoding: 2, // EXPANDED,
+    utf8Validation: 3, // NONE,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 2, // LEGACY_BEST_EFFORT,
+  },
+  // EDITION_PROTO3
+  999: {
+    fieldPresence: 2, // IMPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+  },
+  // EDITION_2023
+  1000: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+  },
+} as const;
+/*bootstrap-inject-end*/
+
+export function resolveFeatures(desc: AnyDesc): ResolvedFeatureSet {
+  return {
+    fieldPresence: resolveFeature(desc, "fieldPresence"),
+    enumType: resolveFeature(desc, "enumType"),
+    repeatedFieldEncoding: resolveFeature(desc, "repeatedFieldEncoding"),
+    utf8Validation: resolveFeature(desc, "utf8Validation"),
+    messageEncoding: resolveFeature(desc, "messageEncoding"),
+    jsonFormat: resolveFeature(desc, "jsonFormat"),
+  };
+}
+
+function resolveFeature<Name extends keyof ResolvedFeatureSet>(
+  desc: AnyDesc,
+  name: Name,
+): ResolvedFeatureSet[Name] {
+  let d: AnyDesc = desc;
+  for (;;) {
+    const o = d.proto.options?.features;
+    if (o) {
+      const val = o[name] as number;
+      if (val != 0) {
+        return val as ResolvedFeatureSet[Name];
+      }
+    }
+    if (d.kind == "file") {
+      return resolveDefault(d.edition, name);
+    }
+    if ("parent" in d && d.parent !== undefined) {
+      d = d.parent;
+    } else if ("file" in d) {
+      d = d.file;
+    }
+  }
+}
+
+function resolveDefault<Name extends keyof ResolvedFeatureSet>(
+  edition: number,
+  name: Name,
+): ResolvedFeatureSet[Name] {
+  const editionDefaults = (
+    featureDefaults as Record<number, ResolvedFeatureSet | undefined>
+  )[edition];
+  if (!editionDefaults) {
+    throw new Error(`feature default for edition ${edition} not found`);
+  }
+  return editionDefaults[name];
 }

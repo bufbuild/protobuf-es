@@ -15,6 +15,8 @@
 export declare class UpstreamProtobuf {
   constructor(temp?: string, version?: string);
 
+  version(): string;
+
   getProtocPath(): Promise<string>;
 
   getFeatureSetDefaults(
@@ -42,6 +44,11 @@ export declare class UpstreamProtobuf {
   ): Promise<Uint8Array>;
 
   getTestProtoInclude(): Promise<{
+    dir: string;
+    files: string[];
+  }>;
+
+  getWktProtoInclude(): Promise<{
     dir: string;
     files: string[];
   }>;

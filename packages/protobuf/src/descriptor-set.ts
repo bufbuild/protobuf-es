@@ -17,6 +17,7 @@ import {
   Edition,
   EnumDescriptorProto,
   EnumValueDescriptorProto,
+  FeatureSet,
   FieldDescriptorProto,
   FileDescriptorProto,
   MethodDescriptorProto,
@@ -26,7 +27,21 @@ import {
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
-import type { ResolvedFeatureSet } from "./private/feature-set.js";
+
+/**
+ * Temporary plain object representing FeatureSet.
+ *
+ * TODO remove getFeatures() from the Desc* types, along with this
+ */
+export type ResolvedFeatureSet = Pick<
+  FeatureSet,
+  | "fieldPresence"
+  | "enumType"
+  | "repeatedFieldEncoding"
+  | "utf8Validation"
+  | "messageEncoding"
+  | "jsonFormat"
+>;
 
 /**
  * DescriptorSet provides a convenient interface for working with a set
