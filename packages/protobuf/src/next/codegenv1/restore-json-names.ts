@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import { DescriptorProto } from "../../google/protobuf/descriptor_pb.js";
-import { isFieldSet } from "../../field-accessor.js";
 import { protoCamelCase } from "../reflect/names.js";
+import { unsafeIsSetExplicit } from "../reflect/unsafe.js";
 
 export function restoreJsonNames(message: DescriptorProto) {
   for (const f of message.field) {
-    if (!isFieldSet(f, "jsonName")) {
+    if (!unsafeIsSetExplicit(f, "jsonName")) {
       f.jsonName = protoCamelCase(f.name);
     }
   }
