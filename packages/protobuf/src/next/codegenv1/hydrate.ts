@@ -14,12 +14,8 @@
 
 import { base64Decode } from "../wire/index.js";
 import type { Message } from "../types.js";
-import {
-  DescriptorProto,
-  FileDescriptorProto,
-} from "../../google/protobuf/descriptor_pb.js";
+import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb.js";
 import type { DescFile } from "../../descriptor-set.js";
-import { protoCamelCase } from "../reflect/names.js";
 import type {
   ServiceInfo,
   TypedDescEnum,
@@ -29,7 +25,7 @@ import type {
 } from "./typed-desc.js";
 import { createDescFileSet } from "../reflect/desc-set.js";
 import { assert } from "../../private/assert.js";
-import { isFieldSet } from "../../field-accessor.js";
+import { restoreJsonNames } from "./restore-json-names.js";
 
 export function messageDesc<Shape extends Message>(
   file: DescFile,
@@ -85,7 +81,7 @@ export function serviceDesc<T extends ServiceInfo>(
 
 export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const root = FileDescriptorProto.fromBinary(base64Decode(b64));
-  root.messageType.forEach(restoreRedundantJsonNames);
+  root.messageType.forEach(restoreJsonNames);
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
   const set = createDescFileSet(root, (protoFileName) =>
     imports?.find((f) => f.proto.name === protoFileName),
@@ -93,13 +89,4 @@ export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const file = set.getFile(root.name);
   assert(file);
   return file;
-}
-
-function restoreRedundantJsonNames(message: DescriptorProto) {
-  for (const f of message.field) {
-    if (!isFieldSet(f, "jsonName")) {
-      f.jsonName = protoCamelCase(f.name);
-    }
-  }
-  message.nestedType.forEach(restoreRedundantJsonNames);
 }
