@@ -17,7 +17,6 @@ import {
   Edition,
   EnumDescriptorProto,
   EnumValueDescriptorProto,
-  FeatureSet,
   FieldDescriptorProto,
   FileDescriptorProto,
   MethodDescriptorProto,
@@ -27,6 +26,7 @@ import {
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
+import type { ResolvedFeatureSet } from "./private/feature-set.js";
 
 /**
  * DescriptorSet provides a convenient interface for working with a set
@@ -141,7 +141,7 @@ export interface DescFile {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -188,7 +188,7 @@ export interface DescEnum {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -221,7 +221,7 @@ export interface DescEnumValue {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -286,7 +286,7 @@ export interface DescMessage {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -367,7 +367,7 @@ interface descFieldAndExtensionShared {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
   toString(): string;
 }
 
@@ -630,7 +630,7 @@ export interface DescOneof {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -668,7 +668,7 @@ export interface DescService {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -714,7 +714,7 @@ export interface DescMethod {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): FeatureSet;
+  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }

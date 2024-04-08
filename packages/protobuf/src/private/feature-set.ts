@@ -21,6 +21,8 @@ import { base64Decode } from "../next/wire/index.js";
 import type { BinaryReadOptions } from "../binary-format.js";
 
 /**
+ * TODO remove getFeatures() from the Desc* types, along with this
+ *
  * Return the edition feature defaults supported by @bufbuild/protobuf.
  */
 function getFeatureSetDefaults(
@@ -35,15 +37,37 @@ function getFeatureSetDefaults(
 }
 
 /**
+ * Temporary plain object representing FeatureSet.
+ *
+ * TODO remove getFeatures() from the Desc* types, along with this
+ */
+export type ResolvedFeatureSet = Pick<FeatureSet, FeatureNames>;
+
+const featureNames = [
+  "fieldPresence",
+  "enumType",
+  "repeatedFieldEncoding",
+  "utf8Validation",
+  "messageEncoding",
+  "jsonFormat",
+] as const;
+type FeatureNames = (typeof featureNames)[number];
+
+/**
  * A function that resolves features.
  *
  * If no feature set is provided, the default feature set for the edition is
  * returned. If features are provided, they are merged into the edition default
  * features.
  */
-export type FeatureResolverFn = (a?: FeatureSet, b?: FeatureSet) => FeatureSet;
+export type FeatureResolverFn = (
+  a?: ResolvedFeatureSet,
+  b?: ResolvedFeatureSet,
+) => ResolvedFeatureSet;
 
 /**
+ * TODO remove getFeatures() from the Desc* types, along with this
+ *
  * Create an edition feature resolver with the given feature set defaults, or
  * the feature set defaults supported by @bufbuild/protobuf.
  */
@@ -54,7 +78,17 @@ export function createFeatureResolver(edition: Edition): FeatureResolverFn {
   if (
     min == Edition.EDITION_UNKNOWN ||
     max == Edition.EDITION_UNKNOWN ||
-    fds.defaults.some((d) => d.edition == Edition.EDITION_UNKNOWN)
+    fds.defaults.some((d) => d.edition == Edition.EDITION_UNKNOWN) ||
+    fds.defaults.some(
+      (d) =>
+        !d.features ||
+        (d.features.fieldPresence as number) == 0 ||
+        (d.features.enumType as number) == 0 ||
+        (d.features.repeatedFieldEncoding as number) == 0 ||
+        (d.features.utf8Validation as number) == 0 ||
+        (d.features.messageEncoding as number) == 0 ||
+        (d.features.jsonFormat as number) == 0,
+    )
   ) {
     throw new Error("Invalid FeatureSetDefaults");
   }
@@ -79,52 +113,26 @@ export function createFeatureResolver(edition: Edition): FeatureResolverFn {
     }
     highestMatch = {
       e,
-      f: c.features ?? new FeatureSet(),
+      f: c.features!, // we verified above that all defaults have features
     };
   }
   if (highestMatch === undefined) {
     throw new Error(`No valid default found for edition ${Edition[edition]}`);
   }
-  const featureSetBin = highestMatch.f.toBinary();
-  return (...rest): FeatureSet => {
-    const f = FeatureSet.fromBinary(featureSetBin);
-    for (const c of rest) {
-      if (c !== undefined) {
-        f.fromBinary(c.toBinary());
+  return (...rest): ResolvedFeatureSet => {
+    const r: ResolvedFeatureSet = { ...highestMatch.f };
+    for (const i of rest) {
+      if (!i) {
+        continue;
+      }
+      for (const name of featureNames) {
+        if ((i[name] as number) == 0) {
+          continue;
+        }
+        (r as Record<FeatureNames, ResolvedFeatureSet[FeatureNames]>)[name] =
+          i[name];
       }
     }
-    if (!validateMergedFeatures(f)) {
-      throw new Error(`Invalid FeatureSet for edition ${Edition[edition]}`);
-    }
-    return f;
+    return r;
   };
-}
-
-// When protoc generates google.protobuf.FeatureSetDefaults, it ensures that
-// fields are not repeated or required, do not use oneof, and have a default
-// value.
-//
-// When features for an element are resolved, features of the element and its
-// parents are merged into the default FeatureSet for the edition. Because unset
-// fields in the FeatureSet of an element do not unset the default FeatureSet
-// values, a resolved FeatureSet is guaranteed to have all fields set. This is
-// also the case for extensions to FeatureSet that a user might provide, and for
-// features from the future.
-//
-// We cannot exhaustively validate correctness of FeatureSetDefaults at runtime
-// without knowing the schema: If no value for a feature is provided, we do not
-// know that it exists at all.
-//
-// As a sanity check, we validate that all fields known to our version of
-// FeatureSet are set.
-function validateMergedFeatures(
-  featureSet: FeatureSet,
-): featureSet is FeatureSet {
-  for (const fi of FeatureSet.fields.list()) {
-    const v = featureSet[fi.localName as keyof FeatureSet] as unknown;
-    if (fi.kind == "enum" && v === 0) {
-      return false;
-    }
-  }
-  return true;
 }

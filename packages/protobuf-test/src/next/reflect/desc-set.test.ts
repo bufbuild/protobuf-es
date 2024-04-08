@@ -34,7 +34,6 @@ import {
   FeatureSet_MessageEncoding,
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_Utf8Validation,
-  FeatureSet,
 } from "@bufbuild/protobuf";
 import {
   createDescFileSet,
@@ -501,14 +500,14 @@ describe("createDescFileSet()", function () {
           rpc A(M) returns (M);
         }`);
       const set = createDescFileSet(FileDescriptorSet.fromBinary(bin));
-      const wantFeatures = new FeatureSet({
+      const wantFeatures = {
         fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
         enumType: FeatureSet_EnumType.CLOSED,
         repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
         utf8Validation: FeatureSet_Utf8Validation.NONE,
         messageEncoding: FeatureSet_MessageEncoding.DELIMITED,
         jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-      });
+      };
       expect(set.getFile("input.proto")?.getFeatures()).toStrictEqual(
         wantFeatures,
       );
@@ -614,16 +613,14 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("proto2");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-        enumType: FeatureSet_EnumType.CLOSED,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
-        utf8Validation: FeatureSet_Utf8Validation.NONE,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-      }),
-    );
+    expect(descFile?.getFeatures()).toStrictEqual({
+      fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
+      enumType: FeatureSet_EnumType.CLOSED,
+      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
+      utf8Validation: FeatureSet_Utf8Validation.NONE,
+      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+      jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
+    });
   });
   test("proto3 syntax", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -634,16 +631,14 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("proto3");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
-        enumType: FeatureSet_EnumType.OPEN,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-        utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.ALLOW,
-      }),
-    );
+    expect(descFile?.getFeatures()).toStrictEqual({
+      fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
+      enumType: FeatureSet_EnumType.OPEN,
+      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
+      utf8Validation: FeatureSet_Utf8Validation.VERIFY,
+      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+      jsonFormat: FeatureSet_JsonFormat.ALLOW,
+    });
   });
   test("edition 2023", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -654,16 +649,14 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("editions");
     expect(descFile?.edition).toBe(Edition.EDITION_2023);
-    expect(descFile?.getFeatures()).toStrictEqual(
-      new FeatureSet({
-        fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-        enumType: FeatureSet_EnumType.OPEN,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-        utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-        messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-        jsonFormat: FeatureSet_JsonFormat.ALLOW,
-      }),
-    );
+    expect(descFile?.getFeatures()).toStrictEqual({
+      fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
+      enumType: FeatureSet_EnumType.OPEN,
+      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
+      utf8Validation: FeatureSet_Utf8Validation.VERIFY,
+      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
+      jsonFormat: FeatureSet_JsonFormat.ALLOW,
+    });
   });
   test("dependencies", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
