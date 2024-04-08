@@ -17,7 +17,6 @@ import {
   Edition,
   EnumDescriptorProto,
   FeatureSet_RepeatedFieldEncoding,
-  FeatureSetDefaults,
   FieldDescriptorProto,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
@@ -46,10 +45,6 @@ import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
 } from "../../private/text-format.js";
-import type {
-  BinaryReadOptions,
-  BinaryWriteOptions,
-} from "../../binary-format.js";
 import type { FeatureResolverFn } from "../../private/feature-set.js";
 import { createFeatureResolver } from "../../private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
@@ -158,37 +153,11 @@ export function createDescSet(
 }
 
 /**
- * Options to createDescFileSet()
- */
-interface CreateDescFileSetOptions {
-  /**
-   * Editions support language-specific features with extensions to
-   * google.protobuf.FeatureSet. They can define defaults, and specify on
-   * which targets the features can be set.
-   *
-   * To create a DescriptorSet that provides your language-specific features,
-   * you have to provide a google.protobuf.FeatureSetDefaults message in this
-   * option. It can also specify the minimum and maximum supported edition.
-   *
-   * The defaults can be generated with `protoc` - see the flag
-   * `--experimental_edition_defaults_out`.
-   */
-  featureSetDefaults?: FeatureSetDefaults;
-
-  /**
-   * Internally, data is serialized when features are resolved. The
-   * serialization options given here will be used for feature resolution.
-   */
-  serializationOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>;
-}
-
-/**
  * Create a set of descriptors (including file descriptors) from
  * a google.protobuf.FileDescriptorSet message.
  */
 export function createDescFileSet(
   fileDescriptorSet: FileDescriptorSet,
-  options?: CreateDescFileSetOptions,
 ): DescFileSet;
 
 /**
@@ -201,7 +170,6 @@ export function createDescFileSet(
   resolve: (
     protoFileName: string,
   ) => FileDescriptorProto | DescFile | undefined,
-  options?: CreateDescFileSetOptions,
 ): DescFileSet;
 
 /**
@@ -212,21 +180,18 @@ export function createDescFileSet(...descFileSet: DescFileSet[]): DescFileSet;
 
 export function createDescFileSet(
   ...args:
-    | [fileDescriptorSet: FileDescriptorSet, options?: CreateDescFileSetOptions]
+    | [fileDescriptorSet: FileDescriptorSet]
     | [
         fileDescriptorProto: FileDescriptorProto,
         resolve: (
           protoFileName: string,
         ) => FileDescriptorProto | DescFile | undefined,
-        options?: CreateDescFileSetOptions,
       ]
     | DescFileSet[]
 ): DescFileSet {
   const set = createMutableDescFileSet();
   if (args[0] instanceof FileDescriptorSet) {
-    const getFeatureResolver = createFeatureResolverCache(
-      args[1] as CreateDescFileSetOptions | undefined,
-    );
+    const getFeatureResolver = createFeatureResolverCache();
     for (const file of args[0].file) {
       addFile(file, set, getFeatureResolver(file));
     }
@@ -236,9 +201,7 @@ export function createDescFileSet(
     const resolve = args[1] as (
       protoFileName: string,
     ) => FileDescriptorProto | DescFile | undefined;
-    const getFeatureResolver = createFeatureResolverCache(
-      args[2] as CreateDescFileSetOptions | undefined,
-    );
+    const getFeatureResolver = createFeatureResolverCache();
     const seen = new Set<string>();
     // eslint-disable-next-line no-inner-declarations
     function recurseDeps(file: FileDescriptorProto): FileDescriptorProto[] {
@@ -285,7 +248,7 @@ export function createDescFileSet(
  * Creates feature resolvers, but caches them.
  * @private
  */
-function createFeatureResolverCache(options?: CreateDescFileSetOptions) {
+function createFeatureResolverCache() {
   const resolverByEdition = new Map<Edition, FeatureResolverFn>();
   return function (
     fileDescriptorProto: FileDescriptorProto,
@@ -296,11 +259,7 @@ function createFeatureResolverCache(options?: CreateDescFileSetOptions) {
           .edition;
     let resolve = resolverByEdition.get(edition);
     if (resolve === undefined) {
-      resolve = createFeatureResolver(
-        edition,
-        options?.featureSetDefaults,
-        options?.serializationOptions,
-      );
+      resolve = createFeatureResolver(edition);
       resolverByEdition.set(edition, resolve);
     }
     return resolve;

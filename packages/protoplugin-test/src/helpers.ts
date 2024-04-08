@@ -44,7 +44,6 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
       version?: PluginInit["version"];
       parseOption?: PluginInit["parseOption"];
       supportsEditions?: PluginInit["supportsEditions"];
-      featureSetDefaults?: PluginInit["featureSetDefaults"];
     }
   &
     (

@@ -18,10 +18,7 @@ import {
   FeatureSetDefaults,
 } from "../google/protobuf/descriptor_pb.js";
 import { base64Decode } from "../next/wire/index.js";
-import type {
-  BinaryReadOptions,
-  BinaryWriteOptions,
-} from "../binary-format.js";
+import type { BinaryReadOptions } from "../binary-format.js";
 
 /**
  * Return the edition feature defaults supported by @bufbuild/protobuf.
@@ -50,13 +47,8 @@ export type FeatureResolverFn = (a?: FeatureSet, b?: FeatureSet) => FeatureSet;
  * Create an edition feature resolver with the given feature set defaults, or
  * the feature set defaults supported by @bufbuild/protobuf.
  */
-export function createFeatureResolver(
-  edition: Edition,
-  compiledFeatureSetDefaults?: FeatureSetDefaults,
-  serializationOptions?: Partial<BinaryReadOptions & BinaryWriteOptions>,
-): FeatureResolverFn {
-  const fds =
-    compiledFeatureSetDefaults ?? getFeatureSetDefaults(serializationOptions);
+export function createFeatureResolver(edition: Edition): FeatureResolverFn {
+  const fds = getFeatureSetDefaults();
   const min = fds.minimumEdition;
   const max = fds.maximumEdition;
   if (
@@ -93,12 +85,12 @@ export function createFeatureResolver(
   if (highestMatch === undefined) {
     throw new Error(`No valid default found for edition ${Edition[edition]}`);
   }
-  const featureSetBin = highestMatch.f.toBinary(serializationOptions);
+  const featureSetBin = highestMatch.f.toBinary();
   return (...rest): FeatureSet => {
-    const f = FeatureSet.fromBinary(featureSetBin, serializationOptions);
+    const f = FeatureSet.fromBinary(featureSetBin);
     for (const c of rest) {
       if (c !== undefined) {
-        f.fromBinary(c.toBinary(serializationOptions), serializationOptions);
+        f.fromBinary(c.toBinary());
       }
     }
     if (!validateMergedFeatures(f)) {

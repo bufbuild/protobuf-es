@@ -19,7 +19,7 @@ import type {
   DescMessage,
 } from "@bufbuild/protobuf";
 import { CodeGeneratorRequest, FileDescriptorSet } from "@bufbuild/protobuf";
-import { FeatureSetDefaults, codegenInfo } from "@bufbuild/protobuf";
+import { codegenInfo } from "@bufbuild/protobuf";
 import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
 import type {
@@ -87,13 +87,9 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
-  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
   const descriptorSet = createDescFileSet(
     new FileDescriptorSet({ file: request.protoFile }),
-    {
-      featureSetDefaults,
-    },
   );
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);

@@ -19,9 +19,9 @@ import {
   CodeGeneratorResponse,
   CodeGeneratorResponse_Feature,
   Edition,
-  FeatureSetDefaults,
 } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("editions support in plugins", () => {
@@ -54,65 +54,52 @@ describe("editions support in plugins", () => {
     });
   });
 
-  describe("with own feature-set defaults", () => {
-    test.each([`syntax="proto3"`, `syntax="proto2"`, `edition="2023"`])(
-      "generates %s",
-      async (syntax) => {
-        const upstream = new UpstreamProtobuf();
-        const featureSetDefaults = FeatureSetDefaults.fromBinary(
-          await upstream.getFeatureSetDefaults("PROTO2", "2023"),
-        );
-        const res = await createTestPluginAndRun({
-          proto: syntax + ";",
-          supportsEditions: true,
-          featureSetDefaults,
-          generateAny: (f) => f.print("// placeholder"),
-        });
-        expect(res.file.length).toBeGreaterThanOrEqual(1);
-      },
-    );
-    test("raises error for unsupported edition from the past", async () => {
-      const upstream = new UpstreamProtobuf();
-      const featureSetDefaults = FeatureSetDefaults.fromBinary(
-        await upstream.getFeatureSetDefaults("PROTO3", "2023"),
-      );
-      const resPromise = createTestPluginAndRun({
-        proto: `syntax="proto2";`,
-        supportsEditions: true,
-        featureSetDefaults,
-        generateAny() {},
-      });
-      await expect(resPromise).rejects.toThrow(
-        /^Edition EDITION_PROTO2 is earlier than the minimum supported edition EDITION_PROTO3$/,
-      );
-    });
-    test("raises error for unsupported edition from the future", async () => {
+  describe("with unsupported edition", () => {
+    async function createCodeGeneratorRequest() {
       const upstream = new UpstreamProtobuf();
       const reqBytes = await upstream.createCodeGeneratorRequest(
-        `edition="2023";`, // we're going to modify this
+        {
+          "test.proto": ``,
+        },
+        {
+          filesToGenerate: ["test.proto"],
+        },
       );
-      const req = CodeGeneratorRequest.fromBinary(reqBytes);
-      req.parameter = "target=ts";
-      expect(req.protoFile.length).toBe(1);
-      req.protoFile[0].edition = Edition.EDITION_99999_TEST_ONLY;
-      const plugin = createEcmaScriptPlugin({
+      return CodeGeneratorRequest.fromBinary(reqBytes);
+    }
+    function createTestPlugin() {
+      return createEcmaScriptPlugin({
         name: "test",
         version: "v1",
-        generateTs() {},
+        generateTs: (schema: Schema) => {
+          const f = schema.generateFile("test.ts");
+          f.print("// ts");
+        },
+        generateJs: (schema: Schema) => {
+          const f = schema.generateFile("test.js");
+          f.print("// js");
+        },
+        generateDts: (schema: Schema) => {
+          const f = schema.generateFile("test.d.ts");
+          f.print("// dts");
+        },
       });
+    }
+    test("from the future", async () => {
+      const req = await createCodeGeneratorRequest();
+      req.protoFile[0].edition = Edition.EDITION_99997_TEST_ONLY;
+      const plugin = createTestPlugin();
       expect(() => plugin.run(req)).toThrow(
-        /^Edition EDITION_99999_TEST_ONLY is later than the maximum supported edition EDITION_2023$/,
+        /^Edition EDITION_99997_TEST_ONLY is later than the maximum supported edition EDITION_2023$/,
       );
     });
-  });
-
-  describe("with own feature-set defaults but without opt-in to editions", () => {
-    test("does not set SUPPORTS_EDITIONS", async () => {
-      const res = await createTestPluginAndRun({
-        proto: `syntax="proto3";`,
-        generateAny() {},
-      });
-      expect(supportsEditions(res)).toBe(false);
+    test("from the past", async () => {
+      const req = await createCodeGeneratorRequest();
+      req.protoFile[0].edition = Edition.EDITION_1_TEST_ONLY;
+      const plugin = createTestPlugin();
+      expect(() => plugin.run(req)).toThrow(
+        /^Edition EDITION_1_TEST_ONLY is earlier than the minimum supported edition EDITION_PROTO2$/,
+      );
     });
   });
 

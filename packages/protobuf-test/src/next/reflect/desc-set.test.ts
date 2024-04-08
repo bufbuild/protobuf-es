@@ -35,7 +35,6 @@ import {
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_Utf8Validation,
   FeatureSet,
-  FeatureSetDefaults,
 } from "@bufbuild/protobuf";
 import {
   createDescFileSet,
@@ -478,57 +477,6 @@ describe("createDescFileSet()", function () {
           .map((t) => t.typeName)
           .sort(),
       ).toStrictEqual(["MsgA", "MsgB"].sort());
-    });
-  });
-  describe("with user-provided edition feature-set defaults", () => {
-    test.each([`syntax="proto3"`, `syntax="proto2"`, `edition="2023"`])(
-      "parses %s without error",
-      async (syntax) => {
-        const upstream = new UpstreamProtobuf();
-        const fsdBin = await upstream.getFeatureSetDefaults("PROTO2", "2023");
-        const fsd = FeatureSetDefaults.fromBinary(fsdBin);
-        const fdsBin = await new UpstreamProtobuf().compileToDescriptorSet(
-          syntax + ";",
-        );
-        const set = createDescFileSet(FileDescriptorSet.fromBinary(fdsBin), {
-          featureSetDefaults: fsd,
-        });
-        expect(Array.from(set.files).length).toBe(1);
-        expect(Array.from(set.files)[0].getFeatures()).toBeDefined();
-      },
-    );
-    test("raises error when parsing unsupported edition from the past", async () => {
-      const upstream = new UpstreamProtobuf();
-      const featureSetDefaults = FeatureSetDefaults.fromBinary(
-        await upstream.getFeatureSetDefaults("PROTO3", "2023"),
-      );
-      const fileDescriptorSet = FileDescriptorSet.fromBinary(
-        await new UpstreamProtobuf().compileToDescriptorSet(`syntax="proto2";`),
-      );
-      expect(() =>
-        createDescFileSet(fileDescriptorSet, {
-          featureSetDefaults,
-        }),
-      ).toThrow(
-        /^Edition EDITION_PROTO2 is earlier than the minimum supported edition EDITION_PROTO3$/,
-      );
-    });
-    test("raises error when parsing unsupported edition from the future", async () => {
-      const upstream = new UpstreamProtobuf();
-      const featureSetDefaults = FeatureSetDefaults.fromBinary(
-        await upstream.getFeatureSetDefaults("PROTO2", "2023"),
-      );
-      const fileDescriptorSet = FileDescriptorSet.fromBinary(
-        await new UpstreamProtobuf().compileToDescriptorSet(`edition="2023";`),
-      );
-      fileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
-      expect(() =>
-        createDescFileSet(fileDescriptorSet, {
-          featureSetDefaults,
-        }),
-      ).toThrow(
-        /^Edition EDITION_99999_TEST_ONLY is later than the maximum supported edition EDITION_2023$/,
-      );
     });
   });
   describe("edition feature inheritance", () => {

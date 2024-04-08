@@ -20,7 +20,6 @@ import type {
   DescService,
 } from "@bufbuild/protobuf";
 import { CodeGeneratorRequest, FileDescriptorSet } from "@bufbuild/protobuf";
-import { FeatureSetDefaults } from "@bufbuild/protobuf";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
 import {
   createDescFileSet,
@@ -93,13 +92,9 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
-  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
   const descriptorSet = createDescFileSet(
     new FileDescriptorSet({ file: request.protoFile }),
-    {
-      featureSetDefaults,
-    },
   );
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   let target: Target | undefined;
