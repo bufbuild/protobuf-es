@@ -20,6 +20,11 @@ import { isScalarZeroValue, scalarZeroValue } from "../../private/scalars.js";
 
 export const unsafeLocal = Symbol.for("reflect unsafe local");
 
+/**
+ * Return the selected field of a oneof group.
+ *
+ * @private
+ */
 export function unsafeOneofCase(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   oneof: DescOneof,
@@ -31,6 +36,11 @@ export function unsafeOneofCase(
   return oneof.fields.find((f) => localName(f) === c);
 }
 
+/**
+ * Returns true if the field is set.
+ *
+ * @private
+ */
 export function unsafeIsSet(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   field: DescField,
@@ -66,6 +76,24 @@ export function unsafeIsSet(
   }
 }
 
+/**
+ * Returns true if the field is set, but only for singular fields with explicit
+ * presence (proto2).
+ *
+ * @private
+ */
+export function unsafeIsSetExplicit(target: object, localName: string) {
+  return (
+    Object.prototype.hasOwnProperty.call(target, localName) &&
+    (target as Record<string, unknown>)[localName] !== undefined
+  );
+}
+
+/**
+ * Return a field value, respecting oneof groups.
+ *
+ * @private
+ */
 export function unsafeGet(
   target: Record<string, unknown>,
   field: DescField,
@@ -81,6 +109,11 @@ export function unsafeGet(
   return target[name];
 }
 
+/**
+ * Set a field value, respecting oneof groups.
+ *
+ * @private
+ */
 export function unsafeSet(
   target: Record<string, unknown>,
   field: DescField,
@@ -98,7 +131,9 @@ export function unsafeSet(
 }
 
 /**
- * Resets the field, so that isFieldSetPrivate() will return false.
+ * Resets the field, so that unsafeIsSet() will return false.
+ *
+ * @private
  */
 export function unsafeClear(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
@@ -148,6 +183,11 @@ export function unsafeClear(
   }
 }
 
+/**
+ * Add an item to a list field.
+ *
+ * @private
+ */
 export function unsafeAddListItem(
   target: Record<string, unknown>,
   field: DescField & { fieldKind: "list" },
@@ -157,6 +197,11 @@ export function unsafeAddListItem(
   (target[name] as unknown[]).push(value);
 }
 
+/**
+ * Set a map entry.
+ *
+ * @private
+ */
 export function unsafeSetMapEntry(
   target: Record<string, unknown>,
   field: DescField & { fieldKind: "map" },

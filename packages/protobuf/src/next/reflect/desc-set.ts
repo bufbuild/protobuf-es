@@ -53,9 +53,9 @@ import type {
 import type { FeatureResolverFn } from "../../private/feature-set.js";
 import { createFeatureResolver } from "../../private/feature-set.js";
 import { LongType, ScalarType } from "./scalar.js";
-import { isFieldSet } from "../../field-accessor.js";
 import type { AnyMessage, Message } from "../../message.js";
 import { nestedTypes } from "./nested-types.js";
+import { unsafeIsSetExplicit } from "./unsafe.js";
 
 /**
  * A set of descriptors for messages, enumerations, extensions,
@@ -290,7 +290,7 @@ function createFeatureResolverCache(options?: CreateDescFileSetOptions) {
   return function (
     fileDescriptorProto: FileDescriptorProto,
   ): FeatureResolverFn {
-    const edition = isFieldSet(fileDescriptorProto, "edition")
+    const edition = unsafeIsSetExplicit(fileDescriptorProto, "edition")
       ? fileDescriptorProto.edition
       : parseFileSyntax(fileDescriptorProto.syntax, fileDescriptorProto.edition)
           .edition;
@@ -934,7 +934,7 @@ function newField(
       singular.fieldKind = "enum";
       singular.enum = set.getEnum(trimLeadingDot(proto.typeName));
       singular.getDefaultValue = () => {
-        return isFieldSet(proto, "defaultValue")
+        return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatEnumValue(enumeration, proto.defaultValue)
           : undefined;
       };
@@ -953,7 +953,7 @@ function newField(
           ? LongType.STRING
           : LongType.BIGINT;
       singular.getDefaultValue = () => {
-        return isFieldSet(proto, "defaultValue")
+        return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatScalarValue(scalar, proto.defaultValue)
           : undefined;
       };
@@ -1141,7 +1141,7 @@ function findOneof(
   proto: FieldDescriptorProto,
   allOneofs: DescOneof[],
 ): DescOneof | undefined {
-  if (!isFieldSet(proto, "oneofIndex")) {
+  if (!unsafeIsSetExplicit(proto, "oneofIndex")) {
     return undefined;
   }
   if (proto.proto3Optional) {
@@ -1166,7 +1166,7 @@ function isOptionalField(
   switch (syntax) {
     case "proto2":
       return (
-        !isFieldSet(proto, "oneofIndex") &&
+        !unsafeIsSetExplicit(proto, "oneofIndex") &&
         proto.label === FieldDescriptorProto_Label.OPTIONAL
       );
     case "proto3":
@@ -1236,12 +1236,12 @@ function isPackedField(
       switch (file.edition) {
         case Edition.EDITION_PROTO2:
           return protoOptions !== undefined &&
-            isFieldSet(protoOptions, "packed")
+            unsafeIsSetExplicit(protoOptions, "packed")
             ? protoOptions.packed
             : false;
         case Edition.EDITION_PROTO3:
           return protoOptions !== undefined &&
-            isFieldSet(protoOptions, "packed")
+            unsafeIsSetExplicit(protoOptions, "packed")
             ? protoOptions.packed
             : true;
         default: {
@@ -1291,7 +1291,7 @@ const fieldTypeToScalarType: Record<
 // same assertions, but they are no longer necessary for the type system, and
 // the value they provide is questionable.
 function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
-  if (!isFieldSet(target as AnyMessage, field as string)) {
+  if (!unsafeIsSetExplicit(target as AnyMessage, field as string)) {
     const type = target.getType().typeName.split(".").pop();
     throw new Error(`invalid ${type}: missing ${field as string}`);
   }
