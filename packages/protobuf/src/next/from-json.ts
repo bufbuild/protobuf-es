@@ -162,17 +162,10 @@ function readMessage(
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
-  if (json == null) {
-    throw new Error(
-      `cannot decode message ${msg.desc.typeName} from JSON: ${formatVal(
-        json,
-      )}`,
-    );
-  }
   if (tryWktFromJson(msg, json, opts)) {
     return;
   }
-  if (Array.isArray(json) || typeof json != "object") {
+  if (json == null || Array.isArray(json) || typeof json != "object") {
     throw new Error(
       `cannot decode message ${msg.desc.typeName} from JSON: ${formatVal(
         json,
@@ -378,7 +371,8 @@ function readMessageField(
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
-  if (json === null) {
+  if (json === null && field.message.typeName != "google.protobuf.Value") {
+    msg.clear(field);
     return;
   }
   const msgValue = msg.isSet(field) ? msg.get(field) : reflect(field.message);
@@ -617,7 +611,7 @@ function parseJsonString(jsonString: string, typeName: string) {
 
 function tryWktFromJson(
   msg: ReflectMessage,
-  jsonValue: JsonValue & NonNullable<unknown>,
+  jsonValue: JsonValue,
   opts: JsonReadOptions,
 ): boolean {
   if (!msg.desc.typeName.startsWith("google.protobuf.")) {
@@ -648,10 +642,14 @@ function tryWktFromJson(
     default:
       if (isWrapperDesc(msg.desc)) {
         const valueField = msg.desc.fields[0];
-        msg.set(
-          valueField,
-          readScalar(valueField.scalar, jsonValue, valueField.longType, true),
-        );
+        if (jsonValue === null) {
+          msg.clear(valueField);
+        } else {
+          msg.set(
+            valueField,
+            readScalar(valueField.scalar, jsonValue, valueField.longType, true),
+          );
+        }
         return true;
       }
       return false;

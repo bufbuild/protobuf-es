@@ -1,8 +1,3 @@
-# TODO fix v2 failures, but keep ignoring tests we can't pass w/o BigInt
-
-Required.Proto3.JsonInput.ValueAcceptNull.JsonOutput
-Required.Proto3.JsonInput.ValueAcceptNull.ProtobufOutput
-
 # Without BigInt support, a JavaScript runtime can only safely represent values
 # in the range from Number.MIN_SAFE_INTEGER to Number.MAX_SAFE_INTEGER.
 # That means number values in JSON will be unsafe as well. If you plan to use
