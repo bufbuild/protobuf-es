@@ -13,16 +13,22 @@
 // limitations under the License.
 
 import { readFileSync, writeFileSync } from "node:fs";
+import { join as joinPath } from "node:path";
 import assert from "node:assert";
 import { stdout, stderr, argv } from "node:process";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { localName, reflect } from "@bufbuild/protobuf/next/reflect";
+import {
+  createDescFileSet,
+  localName,
+  reflect,
+} from "@bufbuild/protobuf/next/reflect";
 import { fromBinary } from "@bufbuild/protobuf/next";
 import {
   Edition,
   FeatureSetDefaultsDesc,
   FeatureSetDesc,
 } from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorSet } from "@bufbuild/protobuf";
 
 void main(argv.slice(2)).catch((e) => {
   process.exitCode = 1;
@@ -46,6 +52,16 @@ async function main(args) {
 
   const lines = [];
   const print = (str) => lines.push(str ?? "");
+
+  const enumNames = [
+    "google.protobuf.FieldDescriptorProto.Type",
+    "google.protobuf.FieldDescriptorProto.Label",
+    "google.protobuf.FieldOptions.JSType",
+    "google.protobuf.MethodOptions.IdempotencyLevel",
+    "google.protobuf.Edition",
+    "google.protobuf.FeatureSet.RepeatedFieldEncoding",
+  ];
+  await enums(enumNames, print);
 
   const minEdition = undefined;
   const maxEdition = undefined;
@@ -118,6 +134,48 @@ async function featureDefaults(
 }
 
 /**
+ * @param {Array<string>} enumNames
+ * @param {PrintFn} print
+ * @param {string} [upstreamVersion]
+ * @return {Promise<void>}
+ */
+async function enums(enumNames, print, upstreamVersion) {
+  const upstream = new UpstreamProtobuf(undefined, upstreamVersion);
+  const set = await compileDescriptorProto(upstream);
+  for (const enumName of enumNames) {
+    const enumDesc = set.getEnum(enumName);
+    if (!enumDesc) {
+      throw new Error(`enum ${enumName} not found`);
+    }
+    print(`// generated from ${enumDesc.toString()} v${upstream.version()}`);
+    let name = enumDesc.name;
+    switch (name) {
+      case "IdempotencyLevel":
+        name = "IDEMPOTENCY";
+        break;
+      case "RepeatedFieldEncoding":
+        name = "REPEATED_FIELD_ENCODING";
+        break;
+      default:
+        name = name.toUpperCase();
+        break;
+    }
+    print(`type ${name} = `);
+    for (let i = 0; i < enumDesc.values.length; i++) {
+      const val = enumDesc.values[i];
+      print(
+        `  | typeof ${val.name}${i < enumDesc.values.length - 1 ? "" : ";"}`,
+      );
+    }
+    for (let i = 0; i < enumDesc.values.length; i++) {
+      const val = enumDesc.values[i];
+      print(`const ${val.name} = ${val.number};`);
+    }
+    print();
+  }
+}
+
+/**
  * @param {UpstreamProtobuf} upstream
  * @param {string} [minimumEdition]
  * @param {string} [maximumEdition]
@@ -151,6 +209,30 @@ async function compileDefaults(upstream, minimumEdition, maximumEdition) {
     throw new Error(`invalid ${FeatureSetDefaultsDesc.typeName}`);
   }
   return featureSetDefaults;
+}
+
+/**
+ * @param {UpstreamProtobuf} upstream
+ * @return {Promise<DescFileSet>}
+ */
+async function compileDescriptorProto(upstream) {
+  const path = "google/protobuf/descriptor.proto";
+  const wktInclude = await upstream.getWktProtoInclude();
+  const fdsBytes = await upstream.compileToDescriptorSet(
+    {
+      [path]: readFileSync(joinPath(wktInclude.dir, path), "utf-8"),
+    },
+    {
+      includeImports: false,
+      includeSourceInfo: false,
+      retainOptions: false,
+    },
+  );
+  const fds = FileDescriptorSet.fromBinary(fdsBytes);
+  const set = createDescFileSet(fds);
+  const file = set.getFile(path);
+  assert(file);
+  return set;
 }
 
 /**

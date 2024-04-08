@@ -12,21 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
+import type {
   DescriptorProto,
   Edition,
   EnumDescriptorProto,
-  FeatureSet_RepeatedFieldEncoding,
   FieldDescriptorProto,
-  FieldDescriptorProto_Label,
-  FieldDescriptorProto_Type,
-  FieldOptions_JSType,
-  FileDescriptorProto,
-  FileDescriptorSet,
   MethodDescriptorProto,
-  MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
+} from "../../google/protobuf/descriptor_pb.js";
+import {
+  FileDescriptorProto,
+  FileDescriptorSet,
 } from "../../google/protobuf/descriptor_pb.js";
 import { assert } from "../../private/assert.js";
 import type {
@@ -642,15 +639,17 @@ function newMethod(
   } else {
     methodKind = MethodKind.Unary;
   }
+  const protoIdempotency: IDEMPOTENCY | undefined =
+    proto.options?.idempotencyLevel;
   let idempotency: MethodIdempotency | undefined;
-  switch (proto.options?.idempotencyLevel) {
-    case MethodOptions_IdempotencyLevel.IDEMPOTENT:
+  switch (protoIdempotency) {
+    case IDEMPOTENT:
       idempotency = MethodIdempotency.Idempotent;
       break;
-    case MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS:
+    case NO_SIDE_EFFECTS:
       idempotency = MethodIdempotency.NoSideEffects;
       break;
-    case MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN:
+    case IDEMPOTENCY_UNKNOWN:
     case undefined:
       idempotency = undefined;
       break;
@@ -754,15 +753,18 @@ function newField(
       return resolveFeatures(this as DescField | DescExtension);
     },
   };
-  if (proto.label === FieldDescriptorProto_Label.REPEATED) {
+  const label: LABEL = proto.label;
+  const type: TYPE = proto.type;
+  const jstype: JSTYPE | undefined = proto.options?.jstype;
+  if (label === LABEL_REPEATED) {
     const mapEntry =
-      proto.type == FieldDescriptorProto_Type.MESSAGE
+      type == TYPE_MESSAGE
         ? mapEntries.get(trimLeadingDot(proto.typeName))
         : undefined;
     if (mapEntry) {
       assert(!oneof);
       const keyField = mapEntry.fields.find((f) => f.number === 1);
-      assert(keyField, "xxx " + mapEntry.name + ", " + mapEntry.typeName);
+      assert(keyField);
       assert(keyField.fieldKind == "scalar");
       assert(
         keyField.scalar != ScalarType.BYTES &&
@@ -786,18 +788,18 @@ function newField(
       ...common,
       fieldKind: "list",
       packed: isPackedField(file, common as DescField | DescExtension),
-      packedByDefault: isPackedFieldByDefault(file.edition, proto),
+      packedByDefault: isPackedFieldByDefault(file.edition, type),
     };
     assert(!oneof);
-    switch (proto.type) {
-      case FieldDescriptorProto_Type.MESSAGE:
-      case FieldDescriptorProto_Type.GROUP:
+    switch (type) {
+      case TYPE_MESSAGE:
+      case TYPE_GROUP:
         list.listKind = "message";
         assertFieldSet(proto, "typeName");
         list.message = set.getMessage(trimLeadingDot(proto.typeName));
         assert(list.message);
         break;
-      case FieldDescriptorProto_Type.ENUM:
+      case TYPE_ENUM:
         list.listKind = "enum";
         assertFieldSet(proto, "typeName");
         list.enum = set.getEnum(trimLeadingDot(proto.typeName));
@@ -805,12 +807,8 @@ function newField(
         break;
       default:
         list.listKind = "scalar";
-        list.scalar = fieldTypeToScalarType[proto.type];
-        assert(list.scalar);
-        list.longType =
-          proto.options?.jstype == FieldOptions_JSType.JS_STRING
-            ? LongType.STRING
-            : LongType.BIGINT;
+        list.scalar = type;
+        list.longType = jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
         break;
     }
     return list as DescField;
@@ -822,9 +820,9 @@ function newField(
       return undefined;
     },
   };
-  switch (proto.type) {
-    case FieldDescriptorProto_Type.MESSAGE:
-    case FieldDescriptorProto_Type.GROUP:
+  switch (type) {
+    case TYPE_MESSAGE:
+    case TYPE_GROUP:
       assertFieldSet(proto, "typeName");
       singular.fieldKind = "message";
       singular.message = set.getMessage(trimLeadingDot(proto.typeName));
@@ -833,7 +831,7 @@ function newField(
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       break;
-    case FieldDescriptorProto_Type.ENUM: {
+    case TYPE_ENUM: {
       assertFieldSet(proto, "typeName");
       const enumeration = set.getEnum(trimLeadingDot(proto.typeName));
       assert(
@@ -850,20 +848,13 @@ function newField(
       break;
     }
     default: {
-      const scalar = fieldTypeToScalarType[proto.type];
-      assert(
-        scalar,
-        `invalid FieldDescriptorProto: unknown type ${proto.type}`,
-      );
       singular.fieldKind = "scalar";
-      singular.scalar = scalar;
+      singular.scalar = type;
       singular.longType =
-        proto.options?.jstype == FieldOptions_JSType.JS_STRING
-          ? LongType.STRING
-          : LongType.BIGINT;
+        jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
       singular.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
-          ? parseTextFormatScalarValue(scalar, proto.defaultValue)
+          ? parseTextFormatScalarValue(type, proto.defaultValue)
           : undefined;
       };
       break;
@@ -920,7 +911,7 @@ function newExtension(
 /**
  * Parse the "syntax" and "edition" fields, stripping test editions.
  */
-function parseFileSyntax(fileName: string, syntax: string, edition: Edition) {
+function parseFileSyntax(fileName: string, syntax: string, edition: EDITION) {
   let e: Extract<
     Edition,
     Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
@@ -930,16 +921,16 @@ function parseFileSyntax(fileName: string, syntax: string, edition: Edition) {
     case "":
     case "proto2":
       s = "proto2";
-      e = Edition.EDITION_PROTO2;
+      e = EDITION_PROTO2;
       break;
     case "proto3":
       s = "proto3";
-      e = Edition.EDITION_PROTO3;
+      e = EDITION_PROTO3;
       break;
     case "editions":
       s = "editions";
       switch (edition) {
-        case Edition.EDITION_2023:
+        case EDITION_2023:
           e = edition;
           break;
         default:
@@ -1049,9 +1040,10 @@ function isOptionalField(
 ): boolean {
   switch (syntax) {
     case "proto2":
+      // eslint-disable-next-line no-case-declarations
+      const label: LABEL = proto.label;
       return (
-        !unsafeIsSetExplicit(proto, "oneofIndex") &&
-        proto.label === FieldDescriptorProto_Label.OPTIONAL
+        !unsafeIsSetExplicit(proto, "oneofIndex") && label === LABEL_OPTIONAL
       );
     case "proto3":
       return proto.proto3Optional;
@@ -1068,20 +1060,21 @@ function isOptionalField(
  * are unpacked by default. With editions, the default is whatever the edition
  * specifies as a default. In edition 2023, fields are packed by default.
  */
-function isPackedFieldByDefault(edition: Edition, proto: FieldDescriptorProto) {
-  switch (proto.type) {
-    case FieldDescriptorProto_Type.STRING:
-    case FieldDescriptorProto_Type.BYTES:
-    case FieldDescriptorProto_Type.GROUP:
-    case FieldDescriptorProto_Type.MESSAGE:
+function isPackedFieldByDefault(edition: EDITION, type: TYPE) {
+  switch (type) {
+    case TYPE_STRING:
+    case TYPE_BYTES:
+    case TYPE_GROUP:
+    case TYPE_MESSAGE:
       // length-delimited types cannot be packed
       return false;
     default:
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      return (
-        resolveDefault(edition, "repeatedFieldEncoding") ==
-        FeatureSet_RepeatedFieldEncoding.PACKED
+      // eslint-disable-next-line no-case-declarations
+      const repeatedFieldEncoding: REPEATED_FIELD_ENCODING = resolveDefault(
+        edition,
+        "repeatedFieldEncoding",
       );
+      return repeatedFieldEncoding == PACKED;
   }
 }
 
@@ -1092,61 +1085,38 @@ function isPackedFieldByDefault(edition: Edition, proto: FieldDescriptorProto) {
  * edition defaults and the edition features.repeated_field_encoding options.
  */
 function isPackedField(file: DescFile, field: DescField | DescExtension) {
-  switch (field.proto.type) {
-    case FieldDescriptorProto_Type.STRING:
-    case FieldDescriptorProto_Type.BYTES:
-    case FieldDescriptorProto_Type.GROUP:
-    case FieldDescriptorProto_Type.MESSAGE:
+  const type: TYPE = field.proto.type;
+  switch (type) {
+    case TYPE_STRING:
+    case TYPE_BYTES:
+    case TYPE_GROUP:
+    case TYPE_MESSAGE:
       // length-delimited types cannot be packed
       return false;
     default:
       const protoOptions = field.proto.options; // eslint-disable-line no-case-declarations
-      switch (file.edition) {
-        case Edition.EDITION_PROTO2:
+      const edition: EDITION = file.edition; // eslint-disable-line no-case-declarations
+      switch (edition) {
+        case EDITION_PROTO2:
           return protoOptions !== undefined &&
             unsafeIsSetExplicit(protoOptions, "packed")
             ? protoOptions.packed
             : false;
-        case Edition.EDITION_PROTO3:
+        case EDITION_PROTO3:
           return protoOptions !== undefined &&
             unsafeIsSetExplicit(protoOptions, "packed")
             ? protoOptions.packed
             : true;
         default: {
-          const r = resolveFeature(field, "repeatedFieldEncoding");
-          return r == FeatureSet_RepeatedFieldEncoding.PACKED;
+          const r: REPEATED_FIELD_ENCODING = resolveFeature(
+            field,
+            "repeatedFieldEncoding",
+          );
+          return r === PACKED;
         }
       }
   }
 }
-
-/**
- * Map from a compiler-generated field type to our ScalarType, which is a
- * subset of field types declared by protobuf enum google.protobuf.FieldDescriptorProto.
- */
-const fieldTypeToScalarType: Record<
-  FieldDescriptorProto_Type,
-  ScalarType | undefined
-> = {
-  [FieldDescriptorProto_Type.DOUBLE]: ScalarType.DOUBLE,
-  [FieldDescriptorProto_Type.FLOAT]: ScalarType.FLOAT,
-  [FieldDescriptorProto_Type.INT64]: ScalarType.INT64,
-  [FieldDescriptorProto_Type.UINT64]: ScalarType.UINT64,
-  [FieldDescriptorProto_Type.INT32]: ScalarType.INT32,
-  [FieldDescriptorProto_Type.FIXED64]: ScalarType.FIXED64,
-  [FieldDescriptorProto_Type.FIXED32]: ScalarType.FIXED32,
-  [FieldDescriptorProto_Type.BOOL]: ScalarType.BOOL,
-  [FieldDescriptorProto_Type.STRING]: ScalarType.STRING,
-  [FieldDescriptorProto_Type.GROUP]: undefined,
-  [FieldDescriptorProto_Type.MESSAGE]: undefined,
-  [FieldDescriptorProto_Type.BYTES]: ScalarType.BYTES,
-  [FieldDescriptorProto_Type.UINT32]: ScalarType.UINT32,
-  [FieldDescriptorProto_Type.ENUM]: undefined,
-  [FieldDescriptorProto_Type.SFIXED32]: ScalarType.SFIXED32,
-  [FieldDescriptorProto_Type.SFIXED64]: ScalarType.SFIXED64,
-  [FieldDescriptorProto_Type.SINT32]: ScalarType.SINT32,
-  [FieldDescriptorProto_Type.SINT64]: ScalarType.SINT64,
-};
 
 // TODO consider to remove to save bundle size.
 // Before proto2 fields were switched to use the prototype chain, we used
@@ -1161,6 +1131,106 @@ function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
 }
 
 /*bootstrap-inject-start*/
+// generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
+type TYPE = 
+  | typeof TYPE_DOUBLE
+  | typeof TYPE_FLOAT
+  | typeof TYPE_INT64
+  | typeof TYPE_UINT64
+  | typeof TYPE_INT32
+  | typeof TYPE_FIXED64
+  | typeof TYPE_FIXED32
+  | typeof TYPE_BOOL
+  | typeof TYPE_STRING
+  | typeof TYPE_GROUP
+  | typeof TYPE_MESSAGE
+  | typeof TYPE_BYTES
+  | typeof TYPE_UINT32
+  | typeof TYPE_ENUM
+  | typeof TYPE_SFIXED32
+  | typeof TYPE_SFIXED64
+  | typeof TYPE_SINT32
+  | typeof TYPE_SINT64;
+const TYPE_DOUBLE = 1;
+const TYPE_FLOAT = 2;
+const TYPE_INT64 = 3;
+const TYPE_UINT64 = 4;
+const TYPE_INT32 = 5;
+const TYPE_FIXED64 = 6;
+const TYPE_FIXED32 = 7;
+const TYPE_BOOL = 8;
+const TYPE_STRING = 9;
+const TYPE_GROUP = 10;
+const TYPE_MESSAGE = 11;
+const TYPE_BYTES = 12;
+const TYPE_UINT32 = 13;
+const TYPE_ENUM = 14;
+const TYPE_SFIXED32 = 15;
+const TYPE_SFIXED64 = 16;
+const TYPE_SINT32 = 17;
+const TYPE_SINT64 = 18;
+
+// generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
+type LABEL = 
+  | typeof LABEL_OPTIONAL
+  | typeof LABEL_REPEATED
+  | typeof LABEL_REQUIRED;
+const LABEL_OPTIONAL = 1;
+const LABEL_REPEATED = 3;
+const LABEL_REQUIRED = 2;
+
+// generated from enum google.protobuf.FieldOptions.JSType v26.0
+type JSTYPE = 
+  | typeof JS_NORMAL
+  | typeof JS_STRING
+  | typeof JS_NUMBER;
+const JS_NORMAL = 0;
+const JS_STRING = 1;
+const JS_NUMBER = 2;
+
+// generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
+type IDEMPOTENCY = 
+  | typeof IDEMPOTENCY_UNKNOWN
+  | typeof NO_SIDE_EFFECTS
+  | typeof IDEMPOTENT;
+const IDEMPOTENCY_UNKNOWN = 0;
+const NO_SIDE_EFFECTS = 1;
+const IDEMPOTENT = 2;
+
+// generated from enum google.protobuf.Edition v26.0
+type EDITION = 
+  | typeof EDITION_UNKNOWN
+  | typeof EDITION_PROTO2
+  | typeof EDITION_PROTO3
+  | typeof EDITION_2023
+  | typeof EDITION_2024
+  | typeof EDITION_1_TEST_ONLY
+  | typeof EDITION_2_TEST_ONLY
+  | typeof EDITION_99997_TEST_ONLY
+  | typeof EDITION_99998_TEST_ONLY
+  | typeof EDITION_99999_TEST_ONLY
+  | typeof EDITION_MAX;
+const EDITION_UNKNOWN = 0;
+const EDITION_PROTO2 = 998;
+const EDITION_PROTO3 = 999;
+const EDITION_2023 = 1000;
+const EDITION_2024 = 1001;
+const EDITION_1_TEST_ONLY = 1;
+const EDITION_2_TEST_ONLY = 2;
+const EDITION_99997_TEST_ONLY = 99997;
+const EDITION_99998_TEST_ONLY = 99998;
+const EDITION_99999_TEST_ONLY = 99999;
+const EDITION_MAX = 2147483647;
+
+// generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
+type REPEATED_FIELD_ENCODING = 
+  | typeof REPEATED_FIELD_ENCODING_UNKNOWN
+  | typeof PACKED
+  | typeof EXPANDED;
+const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
+const PACKED = 1;
+const EXPANDED = 2;
+
 // generated from protoc experimental_edition_defaults_out v26.0
 const featureDefaults = {
   // EDITION_PROTO2
