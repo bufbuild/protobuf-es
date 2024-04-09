@@ -26,7 +26,6 @@ import { assertFloat32, assertInt32, assertUInt32 } from "../private/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { create } from "./create.js";
 import type { DescSet } from "./reflect/desc-set.js";
-import { protoCamelCase } from "./reflect/index.js";
 import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { formatVal } from "./reflect/reflect-check.js";
@@ -175,9 +174,7 @@ function readMessage(
   const oneofSeen = new Map<DescOneof, string>();
   const jsonNames = new Map<string, DescField>();
   for (const field of msg.desc.fields) {
-    jsonNames
-      .set(field.name, field)
-      .set(field.jsonName ?? protoCamelCase(field.name), field);
+    jsonNames.set(field.name, field).set(field.jsonName, field);
   }
   for (const [jsonKey, jsonValue] of Object.entries(json)) {
     const field = jsonNames.get(jsonKey);

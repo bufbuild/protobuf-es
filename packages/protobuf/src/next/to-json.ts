@@ -168,7 +168,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       const [, field] = createExtensionContainer(extension);
       const jsonValue = fieldToJson(field, value, opts);
       if (jsonValue !== undefined) {
-        json[extension.jsonName ?? `[${extension.typeName}]`] = jsonValue;
+        json[extension.jsonName] = jsonValue;
       }
     }
   }
@@ -335,7 +335,7 @@ function canEmitFieldDefaultValue(field: DescField) {
 }
 
 function jsonName(f: DescField, opts: JsonWriteOptions) {
-  return opts.useProtoFieldName ? f.name : f.jsonName ?? protoCamelCase(f.name);
+  return opts.useProtoFieldName ? f.name : f.jsonName;
 }
 
 // returns a json value if wkt, otherwise returns undefined.

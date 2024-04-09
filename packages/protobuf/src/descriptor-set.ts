@@ -372,10 +372,9 @@ interface descFieldAndExtensionShared {
    */
   readonly number: number;
   /**
-   * A user-defined name for the JSON format, set with the field option
-   * [json_name="foo"].
+   * The field name in JSON.
    */
-  readonly jsonName: string | undefined;
+  readonly jsonName: string;
   /**
    * Marked as deprecated in the protobuf source.
    */

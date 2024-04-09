@@ -29,6 +29,7 @@ import {
   FieldOptions_JSType,
 } from "@bufbuild/protobuf";
 import { isFieldSet } from "@bufbuild/protobuf";
+import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
 
 /**
  * Get comments on the package element in the protobuf source.
@@ -204,7 +205,7 @@ export function getDeclarationString(
     }
     options.push(`default = ${defaultValue}`);
   }
-  if (desc.jsonName !== undefined) {
+  if (desc.kind == "field" && desc.jsonName !== protoCamelCase(desc.name)) {
     options.push(`json_name = "${desc.jsonName}"`);
   }
   if (protoOptions !== undefined && isFieldSet(protoOptions, "jstype")) {

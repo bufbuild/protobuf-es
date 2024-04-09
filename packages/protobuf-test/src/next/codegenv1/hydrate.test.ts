@@ -26,7 +26,7 @@ describe("fileDesc()", () => {
     `);
     const hydrated = fileDesc(embedFileDesc(file).protoB64().value);
     const field = hydrated.messages[0].fields[0];
-    expect(field.jsonName).toBeUndefined();
+    expect(field.jsonName).toBe("int32Field");
     expect(field.proto.jsonName).toBe("int32Field");
   });
 

@@ -39,7 +39,7 @@ import type {
   ResolvedFeatureSet,
 } from "../../descriptor-set.js";
 import { MethodIdempotency, MethodKind } from "../../service-type.js";
-import { fieldJsonName, findEnumSharedPrefix } from "../../private/names.js";
+import { findEnumSharedPrefix } from "../../private/names.js";
 import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
@@ -742,8 +742,7 @@ function newField(
     number: proto.number,
     parent,
     oneof,
-    jsonName:
-      proto.jsonName === fieldJsonName(proto.name) ? undefined : proto.jsonName,
+    jsonName: proto.jsonName,
     scalar: undefined,
     message: undefined,
     enum: undefined,
@@ -893,10 +892,12 @@ function newExtension(
   );
   assert(field.fieldKind != "map");
   assert(!field.oneof);
+  const typeName = makeTypeName(proto, parent, file);
   return {
     ...field,
     kind: "extension",
-    typeName: makeTypeName(proto, parent, file),
+    typeName,
+    jsonName: `[${typeName}]`, // option json_name is not allowed on extension fields
     parent,
     file,
     extendee,

@@ -37,6 +37,7 @@ import {
   getFieldDefaultValueExpression,
   isFieldPackedByDefault,
 } from "./util.js";
+import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
@@ -126,7 +127,7 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
   e.push("{ no: ", field.number, `, `);
   if (field.kind == "field") {
     e.push(`name: "`, field.name, `", `);
-    if (field.jsonName !== undefined) {
+    if (field.jsonName !== protoCamelCase(field.name)) {
       e.push(`jsonName: "`, field.jsonName, `", `);
     }
   }
