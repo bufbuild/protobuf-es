@@ -102,11 +102,6 @@ export interface GeneratedFile {
   print(fragments: TemplateStringsArray, ...printables: Printable[]): void;
 
   /**
-   * @deprecated Please use createImportSymbol() from @bufbuild/protoplugin/ecmascript instead
-   */
-  export(name: string): ImportSymbol;
-
-  /**
    * Create a string literal.
    */
   string(string: string): Printable;
@@ -219,9 +214,6 @@ export function createGeneratedFile(
 
       printableToEl(printables, el, createTypeImport, runtimeImports);
       el.push("\n");
-    },
-    export(name) {
-      return createImportSymbol(name, importPath);
     },
     exportDecl(declaration, name) {
       return {

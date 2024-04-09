@@ -31,13 +31,14 @@ import type {
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
+import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
 import {
   getFieldDefaultValueExpression,
   isFieldPackedByDefault,
 } from "./util.js";
 import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
+import { reifyWkt } from "./reify-wkt.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {

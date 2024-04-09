@@ -24,9 +24,10 @@ import type {
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
+import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
 import { fieldUsesPrototype, getFieldTypeInfo } from "./util.js";
+import { reifyWkt } from "./reify-wkt.js";
 
 export function generateDts(schema: Schema) {
   for (const file of schema.files) {

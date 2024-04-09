@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { AnyDesc, DescExtension, DescFile } from "@bufbuild/protobuf";
 import { codegenInfo } from "@bufbuild/protobuf";
-import type { Printable } from "./generated-file.js";
-import { createJsDocBlock as createJsDocBlockInternal } from "./jsdoc.js";
 
-export { reifyWkt } from "./reify-wkt.js";
 export type { Target } from "./target.js";
 export type { Schema } from "./schema.js";
 export type { RuntimeImports } from "./runtime-imports.js";
@@ -26,33 +22,3 @@ export type { ImportSymbol } from "./import-symbol.js";
 export { createImportSymbol } from "./import-symbol.js";
 
 export const { localName } = codegenInfo;
-
-export {
-  getFieldExplicitDefaultValue,
-  getFieldIntrinsicDefaultValue,
-  getFieldTyping,
-  literalString,
-} from "./legacy-gencommon.js";
-
-export {
-  findCustomScalarOption,
-  findCustomMessageOption,
-  findCustomEnumOption,
-} from "./legacy-custom-options.js";
-
-/**
- * @deprecated Please use GeneratedFile.jsDoc() instead
- */
-export function makeJsDoc(
-  desc: Exclude<AnyDesc, DescFile | DescExtension>,
-  indentation = "",
-): Printable {
-  return createJsDocBlockInternal(desc, indentation).toString();
-}
-
-/**
- * @deprecated Please use GeneratedFile.jsDoc() instead
- */
-export function createJsDocBlock(text: string, indentation = ""): Printable {
-  return createJsDocBlockInternal(text, indentation).toString();
-}

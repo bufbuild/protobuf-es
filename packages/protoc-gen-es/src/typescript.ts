@@ -25,7 +25,7 @@ import type {
   Printable,
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
-import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
+import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
 import { getNonEditionRuntime } from "./editions.js";
 import {
@@ -34,6 +34,7 @@ import {
   getFieldTypeInfo,
   getFieldZeroValueExpression,
 } from "./util.js";
+import { reifyWkt } from "./reify-wkt.js";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
