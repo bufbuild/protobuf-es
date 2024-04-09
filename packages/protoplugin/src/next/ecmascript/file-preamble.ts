@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Edition } from "@bufbuild/protobuf";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
 import type { DescFile, DescComments } from "@bufbuild/protobuf";
 import { getPackageComments, getSyntaxComments } from "../source-code-info.js";
 

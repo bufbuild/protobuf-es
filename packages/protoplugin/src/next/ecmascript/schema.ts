@@ -19,7 +19,6 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { CodeGeneratorRequest, FileDescriptorSet } from "@bufbuild/protobuf";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
 import {
   createDescFileSet,
@@ -42,6 +41,9 @@ import type { ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import { localDescName, localShapeName, generateFilePath } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
+import type { CodeGeneratorRequest } from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
+import { create } from "@bufbuild/protobuf/next";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -94,7 +96,9 @@ export function createSchema(
   pluginVersion: string,
 ): SchemaController {
   const descriptorSet = createDescFileSet(
-    new FileDescriptorSet({ file: request.protoFile }),
+    create(FileDescriptorSetDesc, {
+      file: request.protoFile,
+    }),
   );
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   let target: Target | undefined;

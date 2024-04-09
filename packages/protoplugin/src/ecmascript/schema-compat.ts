@@ -12,27 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  CodeGeneratorRequest,
-  CodeGeneratorResponse,
-} from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorProto as V1FileDescriptorProto } from "@bufbuild/protobuf";
+import { fromBinary } from "@bufbuild/protobuf/next";
+import type { FileDescriptorProto } from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorProtoDesc } from "@bufbuild/protobuf/next/wkt";
 
-/**
- * Represents any code generator plugin.
- */
-export interface Plugin {
-  /**
-   * Name of this code generator plugin.
-   */
-  name: string;
-
-  /**
-   * Version of this code generator plugin.
-   */
-  version: string;
-
-  /**
-   * Run this plugin for the given request.
-   */
-  run(request: CodeGeneratorRequest): CodeGeneratorResponse;
+// TODO remove, along with protoplugin v1
+export function v1FileDescriptorProtoToV2(
+  proto: V1FileDescriptorProto,
+): FileDescriptorProto {
+  const bytes = proto.toBinary();
+  return fromBinary(FileDescriptorProtoDesc, bytes);
 }

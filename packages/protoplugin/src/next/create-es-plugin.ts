@@ -12,17 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema } from "./ecmascript/schema.js";
 import { createSchema } from "./ecmascript/schema.js";
+import type { Schema } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
-import type { Plugin } from "../plugin.js";
+import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";
 import { parseParameter } from "./ecmascript/parameter.js";
+import { protoInt64 } from "@bufbuild/protobuf";
+import { create } from "@bufbuild/protobuf/next";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
 import {
-  CodeGeneratorResponse,
   CodeGeneratorResponse_Feature,
-  protoInt64,
-} from "@bufbuild/protobuf";
+  CodeGeneratorResponseDesc,
+} from "@bufbuild/protobuf/next/wkt";
 
 interface PluginInit {
   /**
@@ -205,7 +207,7 @@ function toResponse(
     supportedFeatures =
       supportedFeatures | CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS;
   }
-  return new CodeGeneratorResponse({
+  return create(CodeGeneratorResponseDesc, {
     supportedFeatures: protoInt64.parse(supportedFeatures),
     file: files.map((f) => {
       if (f.preamble !== undefined) {

@@ -19,16 +19,19 @@ import type {
   DescComments,
   AnyDesc,
   DescFile,
-  SourceCodeInfo,
 } from "@bufbuild/protobuf";
+import { ScalarType } from "@bufbuild/protobuf/next/reflect";
 import {
-  ScalarType,
   Edition,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
+  FieldDescriptorProtoDesc,
   FieldOptions_JSType,
-} from "@bufbuild/protobuf";
-import { isFieldSet } from "@bufbuild/protobuf";
+  FieldOptionsDesc,
+  SourceCodeInfo_LocationDesc,
+} from "@bufbuild/protobuf/next/wkt";
+import type { SourceCodeInfo } from "@bufbuild/protobuf/next/wkt";
+import { isFieldSet } from "@bufbuild/protobuf/next";
 import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
 
 /**
@@ -169,7 +172,7 @@ export function getDeclarationString(
     case "message":
       if (
         file.edition === Edition.EDITION_PROTO2 &&
-        isFieldSet(desc.proto, "label") &&
+        isFieldSet(FieldDescriptorProtoDesc, desc.proto, "label") &&
         desc.proto.label == FieldDescriptorProto_Label.REQUIRED
       ) {
         parts.push("required");
@@ -192,10 +195,13 @@ export function getDeclarationString(
   parts.push(desc.name, "=", desc.number.toString());
   const options: string[] = [];
   const protoOptions = desc.proto.options;
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "packed")) {
+  if (
+    protoOptions !== undefined &&
+    isFieldSet(FieldOptionsDesc, protoOptions, "packed")
+  ) {
     options.push(`packed = ${protoOptions.packed.toString()}`);
   }
-  if (isFieldSet(desc.proto, "defaultValue")) {
+  if (isFieldSet(FieldDescriptorProtoDesc, desc.proto, "defaultValue")) {
     let defaultValue = desc.proto.defaultValue;
     if (
       desc.proto.type == FieldDescriptorProto_Type.BYTES ||
@@ -208,10 +214,16 @@ export function getDeclarationString(
   if (desc.kind == "field" && desc.jsonName !== protoCamelCase(desc.name)) {
     options.push(`json_name = "${desc.jsonName}"`);
   }
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "jstype")) {
+  if (
+    protoOptions !== undefined &&
+    isFieldSet(FieldOptionsDesc, protoOptions, "jstype")
+  ) {
     options.push(`jstype = ${FieldOptions_JSType[protoOptions.jstype]}`);
   }
-  if (protoOptions !== undefined && isFieldSet(protoOptions, "deprecated")) {
+  if (
+    protoOptions !== undefined &&
+    isFieldSet(FieldOptionsDesc, protoOptions, "deprecated")
+  ) {
     options.push(`deprecated = true`);
   }
   if (options.length > 0) {
@@ -242,10 +254,18 @@ function findComments(
     }
     return {
       leadingDetached: location.leadingDetachedComments,
-      leading: isFieldSet(location, "leadingComments")
+      leading: isFieldSet(
+        SourceCodeInfo_LocationDesc,
+        location,
+        "leadingComments",
+      )
         ? location.leadingComments
         : undefined,
-      trailing: isFieldSet(location, "trailingComments")
+      trailing: isFieldSet(
+        SourceCodeInfo_LocationDesc,
+        location,
+        "trailingComments",
+      )
         ? location.trailingComments
         : undefined,
       sourcePath,
