@@ -25,8 +25,8 @@ import type {
   DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
+import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
 import {
-  FileDescriptorSet,
   Edition,
   FeatureSet_EnumType,
   FeatureSet_FieldPresence,
@@ -34,13 +34,12 @@ import {
   FeatureSet_MessageEncoding,
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_Utf8Validation,
-} from "@bufbuild/protobuf";
+} from "@bufbuild/protobuf/next/wkt";
 import {
   createDescFileSet,
   createDescSet,
 } from "@bufbuild/protobuf/next/reflect";
 import { compileFileDescriptorSet } from "../helpers.js";
-import { UpstreamProtobuf } from "upstream-protobuf";
 
 describe("createDescSet()", function () {
   let testSet: DescFileSet;
@@ -480,7 +479,8 @@ describe("createDescFileSet()", function () {
   });
   describe("edition feature inheritance", () => {
     test("file features should apply to all elements", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+      const fileDescriptorSet = await compileFileDescriptorSet({
+        "input.proto": `
         edition = "2023";
         option features.field_presence = IMPLICIT;
         option features.enum_type = CLOSED;
@@ -498,8 +498,9 @@ describe("createDescFileSet()", function () {
         enum E { A = 0; }
         service S {
           rpc A(M) returns (M);
-        }`);
-      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin));
+        }`,
+      });
+      const set = createDescFileSet(fileDescriptorSet);
       const wantFeatures = {
         fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
         enumType: FeatureSet_EnumType.CLOSED,
@@ -531,7 +532,8 @@ describe("createDescFileSet()", function () {
       );
     });
     test("message features should apply to nested elements", async () => {
-      const bin = await new UpstreamProtobuf().compileToDescriptorSet(`
+      const fileDescriptorSet = await compileFileDescriptorSet({
+        "input.proto": `
         edition="2023";
         enum EnumJsonAllow { A = 0; }
         message MessageJsonAllow {
@@ -548,8 +550,9 @@ describe("createDescFileSet()", function () {
               int32 f = 1;
             }
           }
-        }`);
-      const set = createDescFileSet(FileDescriptorSet.fromBinary(bin));
+        }`,
+      });
+      const set = createDescFileSet(fileDescriptorSet);
 
       function expectJsonFormat(
         jsonFormat: FeatureSet_JsonFormat,

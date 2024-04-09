@@ -14,11 +14,13 @@
 
 import { describe, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
-import { FileDescriptorSet } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { createDescFileSet, localName } from "@bufbuild/protobuf/next/reflect";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import type { DescField } from "@bufbuild/protobuf";
+import { fromBinary } from "@bufbuild/protobuf/next";
+import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 
 export function describeGenerated<Desc extends DescMessage>(
   ts: Desc,
@@ -58,7 +60,7 @@ export async function compileFileDescriptorSet(
     includeImports: true,
     retainOptions: true,
   });
-  return FileDescriptorSet.fromBinary(bytes);
+  return fromBinary(FileDescriptorSetDesc, bytes);
 }
 
 export async function compileMessage(proto: string): Promise<DescMessage> {

@@ -14,11 +14,12 @@
 
 import {
   createRegistryFromDescriptors,
-  FileDescriptorSet,
   LongType,
   protoInt64,
 } from "@bufbuild/protobuf";
+import { fromBinary } from "@bufbuild/protobuf/next";
 import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 import { readFileSync } from "fs";
 import { describe, expect, test } from "@jest/globals";
 import {
@@ -189,7 +190,7 @@ describe("createDescriptorSet with jstype", () => {
 
 describe("createRegistryFromDescriptors with jstype", () => {
   const set = createDescFileSet(
-    FileDescriptorSet.fromBinary(readFileSync("./descriptorset.binpb")),
+    fromBinary(FileDescriptorSetDesc, readFileSync("./descriptorset.binpb")),
   );
   testAllFieldsLongType("spec.JSTypeOmittedMessage", LongType.BIGINT);
   testAllFieldsLongType("spec.JSTypeStringMessage", LongType.STRING);

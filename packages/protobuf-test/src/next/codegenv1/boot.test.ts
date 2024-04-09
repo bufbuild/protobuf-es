@@ -37,7 +37,26 @@ import assert from "node:assert";
 import {
   bootFileDescriptorProto,
   createFileDescriptorProtoBoot,
+  embedFileDesc,
 } from "@bufbuild/protobuf/next/codegenv1";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { boot } from "@bufbuild/protobuf/next/codegenv1";
+
+describe("boot()", () => {
+  test("hydrates google/protobuf/descriptor.proto", async () => {
+    const fileDescriptorProto = await compileGoogleProtobufDescriptorProto();
+    const fileDesc = createDescFileSet(
+      fileDescriptorProto,
+      () => undefined,
+    ).getFile(fileDescriptorProto.name);
+    assert(fileDesc);
+    const embedded = embedFileDesc(fileDesc);
+    assert(embedded.bootable);
+
+    const bootedFileDesc = boot(embedded.boot());
+    expect(bootedFileDesc).toBeDefined();
+  });
+});
 
 describe("createFileDescriptorProtoBoot()", () => {
   test("only accepts google/protobuf/descriptor.proto", async () => {
