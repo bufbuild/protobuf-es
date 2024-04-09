@@ -973,7 +973,6 @@ function makeTypeName(
   parent: DescMessage | DescService | undefined,
   file: DescFile,
 ): string {
-  assert(proto.name, `invalid ${proto.getType().typeName}: missing name`);
   let typeName: string;
   if (parent) {
     typeName = `${parent.typeName}.${proto.name}`;

@@ -12,12 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export * from "./boot.js";
-export * from "./embed.js";
-export * from "./enum.js";
-export * from "./extension.js";
-export * from "./file.js";
-export * from "./message.js";
-export * from "./service.js";
-export * from "./symbols.js";
-export * from "./typed-desc.js";
+import type { ServiceInfo, TypedDescService } from "./typed-desc.js";
+import type { DescFile } from "../../descriptor-set.js";
+
+/**
+ * Hydrate a service descriptor.
+ *
+ * @private
+ */
+export function serviceDesc<T extends ServiceInfo>(
+  file: DescFile,
+  path: number,
+  ...paths: number[]
+): TypedDescService<T> {
+  if (paths.length > 0) {
+    throw new Error();
+  }
+  return file.services[path] as TypedDescService<T>;
+}

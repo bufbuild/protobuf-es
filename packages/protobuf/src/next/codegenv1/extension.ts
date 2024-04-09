@@ -12,44 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescFile } from "../../descriptor-set.js";
-import { localName } from "../reflect/names.js";
-import type { TypedDescEnum } from "./typed-desc.js";
+import type { Message } from "../types.js";
+import type { DescFile } from "../../descriptor-set.js";
+import type { TypedDescExtension } from "./typed-desc.js";
 
 /**
- * Hydrate an enum descriptor.
+ * Hydrate an extension descriptor.
  *
  * @private
  */
-export function enumDesc<Shape>(
+export function extDesc<Extendee extends Message, Value>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): TypedDescEnum<Shape> {
+): TypedDescExtension<Extendee, Value> {
   if (paths.length == 0) {
-    return file.enums[path] as TypedDescEnum<Shape>;
+    return file.extensions[path] as TypedDescExtension<Extendee, Value>;
   }
   const e = paths.pop() as number; // we checked length above
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ).nestedEnums[e] as TypedDescEnum<Shape>;
+  ).nestedExtensions[e] as TypedDescExtension<Extendee, Value>;
 }
-
-/**
- * Construct a TypeScript enum object at runtime from a descriptor.
- */
-export function tsEnum(desc: DescEnum) {
-  const enumObject = Object.create(null) as enumObject;
-  for (const value of desc.values) {
-    const name = localName(value);
-    enumObject[name] = value.number;
-    enumObject[value.number] = name;
-  }
-  return desc;
-}
-
-type enumObject = {
-  [key: number]: string;
-  [k: string]: number | string;
-};

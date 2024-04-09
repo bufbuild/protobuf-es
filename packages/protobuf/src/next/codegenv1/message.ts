@@ -12,12 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export * from "./boot.js";
-export * from "./embed.js";
-export * from "./enum.js";
-export * from "./extension.js";
-export * from "./file.js";
-export * from "./message.js";
-export * from "./service.js";
-export * from "./symbols.js";
-export * from "./typed-desc.js";
+import type { Message } from "../types.js";
+import type { DescFile } from "../../descriptor-set.js";
+import type { TypedDescMessage } from "./typed-desc.js";
+
+/**
+ * Hydrate a message descriptor.
+ *
+ * @private
+ */
+export function messageDesc<Shape extends Message>(
+  file: DescFile,
+  path: number,
+  ...paths: number[]
+): TypedDescMessage<Shape> {
+  return paths.reduce(
+    (acc, cur) => acc.nestedMessages[cur],
+    file.messages[path],
+  ) as TypedDescMessage<Shape>;
+}

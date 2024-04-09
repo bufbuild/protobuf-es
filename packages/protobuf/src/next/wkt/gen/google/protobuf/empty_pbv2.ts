@@ -17,9 +17,10 @@
 /* eslint-disable */
 
 import type { DescFile } from "../../../../../descriptor-set.js";
-import { fileDesc, messageDesc } from "../../../../codegenv1/hydrate.js";
+import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_empty: DescFile = /*@__PURE__*/
   fileDesc("Chtnb29nbGUvcHJvdG9idWYvZW1wdHkucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIHCgVFbXB0eUJ9ChNjb20uZ29vZ2xlLnByb3RvYnVmQgpFbXB0eVByb3RvUAFaLmdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2VtcHR5cGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
