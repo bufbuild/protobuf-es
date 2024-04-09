@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("file jsDoc", () => {
+describe("GeneratedFile.jsDoc", () => {
   test("creates JSDoc comment block", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,

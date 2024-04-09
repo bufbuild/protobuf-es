@@ -15,129 +15,160 @@
 import {
   getComments,
   getDeclarationString,
-  // getDeclarationString,
   getPackageComments,
   getSyntaxComments,
 } from "@bufbuild/protoplugin/next";
 import { describe, expect, test } from "@jest/globals";
-import { readFileSync } from "node:fs";
-import { UpstreamProtobuf } from "upstream-protobuf";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
-import { FileDescriptorSet, proto3 } from "@bufbuild/protobuf";
 import {
-  JsonNamesMessage,
-  MapsMessage,
-  MessageWithComments,
-  RepeatedScalarValuesMessage,
-  SimpleEnum,
-} from "../gen/source_code_info_pb.js";
+  compileEnum,
+  compileField,
+  compileFile,
+  compileMessage,
+} from "./helpers.js";
 
 describe("getComments()", () => {
   test("for syntax", async () => {
-    const set = await getDescFileSet();
-    const file = set.getMessage(MessageWithComments.typeName)?.file;
-    const comments = file ? getSyntaxComments(file) : undefined;
-    expect(comments).toBeDefined();
-    if (comments) {
-      expect(comments.leadingDetached[0]).toMatch(
-        / Copyright .* Buf Technologies/,
-      );
-      expect(comments.leading).toBe(" Comment before syntax.\n");
-      expect(comments.trailing).toBe(" Comment next to syntax.\n");
-    }
+    const file = await compileFile(`
+      // Copyright ACME, Inc.
+      //
+      //      http://www.apache.org/licenses/LICENSE-2.0
+      //
+      // WITHOUT WARRANTIES
+      
+      // Comment before syntax.
+      syntax = "proto3"; // Comment next to syntax.
+      // Comment after syntax.
+      
+      // Comment before package.
+      package testcomments;
+    `);
+    const comments = getSyntaxComments(file);
+    expect(comments.leadingDetached).toStrictEqual([
+      [
+        ` Copyright ACME, Inc.`,
+        ``,
+        `      http://www.apache.org/licenses/LICENSE-2.0`,
+        ``,
+        ` WITHOUT WARRANTIES`,
+        ``,
+      ].join("\n"),
+    ]);
+    expect(comments.leading).toBe(" Comment before syntax.\n");
+    expect(comments.trailing).toBe(" Comment next to syntax.\n");
   });
   test("for package", async () => {
-    const set = await getDescFileSet();
-    const file = set.getMessage(MessageWithComments.typeName)?.file;
-    const comments = file ? getPackageComments(file) : undefined;
-    expect(comments).toBeDefined();
-    if (comments) {
-      expect(comments.leadingDetached[0]).toBe(" Comment after syntax.\n");
-      expect(comments.leading).toBe(" Comment before package.\n");
-      expect(comments.trailing).toBe(" Comment next to package.\n");
-    }
+    const file = await compileFile(`
+      // Comment before syntax.
+      syntax = "proto3"; // Comment next to syntax.
+      // Comment after syntax.
+      
+      // Comment before package.
+      package testcomments; // Comment next to package.
+      // Comment after package.
+      
+      // Comment between package and message.
+      
+      // Comment before message.
+      message MessageWithComments {}
+    `);
+    const comments = getPackageComments(file);
+    expect(comments.leadingDetached[0]).toBe(" Comment after syntax.\n");
+    expect(comments.leading).toBe(" Comment before package.\n");
+    expect(comments.trailing).toBe(" Comment next to package.\n");
   });
   test("for messages", async () => {
-    const set = await getDescFileSet();
-    const message = set.getMessage(MessageWithComments.typeName);
-    const comments = message ? getComments(message) : undefined;
-    expect(comments).toBeDefined();
-    if (comments) {
-      expect(comments.leadingDetached).toStrictEqual([
-        " Comment after package.\n",
-        " Comment between package and message.\n",
-      ]);
-      expect(comments.leading).toBe(" Comment before message.\n");
-      expect(comments.trailing).toBeUndefined();
-    }
+    const message = await compileMessage(`
+      syntax="proto3";
+      package testcomments; // Comment next to package.
+      // Comment after package.
+      
+      // Comment between package and message.
+      
+      // Comment before message.
+      message MessageWithComments {}
+    `);
+    const comments = getComments(message);
+    expect(comments.leadingDetached).toStrictEqual([
+      " Comment after package.\n",
+      " Comment between package and message.\n",
+    ]);
+    expect(comments.leading).toBe(" Comment before message.\n");
+    expect(comments.trailing).toBeUndefined();
   });
   test("for fields", async () => {
-    const set = await getDescFileSet();
-    const field = set
-      .getMessage(MessageWithComments.typeName)
-      ?.fields.find((field) => field.name === "foo");
-    const comments = field ? getComments(field) : undefined;
-    expect(comments).toBeDefined();
-    if (comments) {
-      expect(comments.leadingDetached).toStrictEqual([
-        "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
-      ]);
-      expect(comments.leading).toBe(
-        " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n",
-      );
-      expect(comments.trailing).toBe(" Comment next to field.\n");
-    }
+    const field = await compileField(`
+      syntax="proto3";
+      message MessageWithComments {
+    
+        //
+        // Comment after start of message,
+            // with funny indentation,
+        // and empty lines on start and end.
+        //
+    
+        // Comment before field with 5 lines:
+        // line 2, next is empty
+        //
+        // line 4, next is empty
+        //
+        string foo = 1; // Comment next to field.
+        // Comment after field.
+      }
+    `);
+    const comments = getComments(field);
+    expect(comments.leadingDetached).toStrictEqual([
+      "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
+    ]);
+    expect(comments.leading).toBe(
+      " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n",
+    );
+    expect(comments.trailing).toBe(" Comment next to field.\n");
   });
 });
 
 describe("getDeclarationString()", () => {
-  test("for field with options", async () => {
-    const set = await getDescFileSet();
-    const message = set.getMessage(JsonNamesMessage.typeName);
-    expect(message).toBeDefined();
-    if (message !== undefined) {
-      const field = message.fields.find((f) => f.number === 1);
-      expect(field ? getDeclarationString(field) : undefined).toBe(
-        'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
-      );
-    }
+  test("for field built-in option", async () => {
+    const field = await compileField(`
+      syntax="proto3";
+      message M {
+        string scalar_field = 1 [json_name = "scalarFieldJsonName"];
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
+    );
   });
   test("for field with labels", async () => {
-    const set = await getDescFileSet();
-    const message = set.getMessage(RepeatedScalarValuesMessage.typeName);
-    expect(message).toBeDefined();
-    if (message !== undefined) {
-      const field = message.fields.find((f) => f.number === 1);
-      expect(field ? getDeclarationString(field) : undefined).toBe(
-        "repeated double double_field = 1",
-      );
-    }
+    const field = await compileField(`
+      syntax="proto3";
+      message M {
+        repeated double double_field = 1;
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "repeated double double_field = 1",
+    );
   });
   test("for map field", async () => {
-    const set = await getDescFileSet();
-    const message = set.getMessage(MapsMessage.typeName);
-    const field = message?.fields.find((f) => f.name === "int32_msg_field");
-    const got = field ? getDeclarationString(field) : undefined;
-    expect(got).toBe(
-      "map<int32, testcomments.MapsMessage> int32_msg_field = 10",
+    const field = await compileField(`
+      syntax="proto3";
+      package foo;
+      message M {
+        map<int32, M> int32_msg_field = 10;
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "map<int32, foo.M> int32_msg_field = 10",
     );
   });
   test("for enum value", async () => {
-    const set = await getDescFileSet();
-    const e = set.getEnum(proto3.getEnumType(SimpleEnum).typeName);
-    const v = e?.values.find((v) => v.name === "SIMPLE_ZERO");
-    const got = v ? getDeclarationString(v) : undefined;
-    expect(got).toBe("SIMPLE_ZERO = 0");
+    const e = await compileEnum(`
+      syntax="proto3";
+      enum SimpleEnum {
+        SIMPLE_ZERO = 0;
+        SIMPLE_ONE = 1;
+      }
+    `);
+    expect(getDeclarationString(e.values[0])).toBe("SIMPLE_ZERO = 0");
   });
 });
-
-async function getDescFileSet() {
-  const upstream = new UpstreamProtobuf();
-  const setBin = await upstream.compileToDescriptorSet(
-    readFileSync("proto/source_code_info.proto", "utf-8"),
-    {
-      includeSourceInfo: true,
-    },
-  );
-  return createDescFileSet(FileDescriptorSet.fromBinary(setBin));
-}

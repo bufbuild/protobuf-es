@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createTestPluginAndRun } from "../helpers.js";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.importShape", () => {
   test("should create import symbol for enum descriptor", async function () {
