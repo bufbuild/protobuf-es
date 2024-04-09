@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
+import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/next/wkt";
+import { create } from "@bufbuild/protobuf/next";
 import type { Plugin } from "@bufbuild/protoplugin/next";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
 
@@ -63,7 +64,7 @@ describe("parse custom plugin option", () => {
   });
   test("parse as expected on the happy path", () => {
     plugin.run(
-      new CodeGeneratorRequest({
+      create(CodeGeneratorRequestDesc, {
         parameter: "foo=123,bar,baz=a,baz=b",
       }),
     );
@@ -72,7 +73,7 @@ describe("parse custom plugin option", () => {
     expect(baz).toStrictEqual(["a", "b"]);
   });
   test("error from parseOption is wrapped", () => {
-    const req = new CodeGeneratorRequest({
+    const req = create(CodeGeneratorRequestDesc, {
       parameter: "foo=abc",
     });
     expect(() => plugin.run(req)).toThrowError(
@@ -80,13 +81,13 @@ describe("parse custom plugin option", () => {
     );
   });
   test("unknown option raises an error", () => {
-    const req = new CodeGeneratorRequest({
+    const req = create(CodeGeneratorRequestDesc, {
       parameter: "unknown",
     });
     expect(() => plugin.run(req)).toThrowError(/^invalid option "unknown"$/);
   });
   test("unknown option with value raises an error", () => {
-    const req = new CodeGeneratorRequest({
+    const req = create(CodeGeneratorRequestDesc, {
       parameter: "unknown=bar",
     });
     expect(() => plugin.run(req)).toThrowError(

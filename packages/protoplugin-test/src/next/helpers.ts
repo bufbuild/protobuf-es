@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
 import {
-  CodeGeneratorRequest,
-  CodeGeneratorResponse,
-  FileDescriptorSet,
-} from "@bufbuild/protobuf";
+  CodeGeneratorRequestDesc,
+  FileDescriptorSetDesc,
+} from "@bufbuild/protobuf/next/wkt";
+import { fromBinary } from "@bufbuild/protobuf/next";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 import type { Plugin } from "@bufbuild/protoplugin/next";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
 import type {
@@ -26,7 +28,6 @@ import type {
 } from "@bufbuild/protoplugin/next/ecmascript";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { expect } from "@jest/globals";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 import assert from "node:assert";
 
 let upstreamProtobuf: UpstreamProtobuf | undefined;
@@ -76,7 +77,7 @@ export async function createTestPluginAndRun(
     protoFiles,
     opt,
   );
-  const req = CodeGeneratorRequest.fromBinary(reqBytes);
+  const req = fromBinary(CodeGeneratorRequestDesc, reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {
     name: "test",
@@ -119,16 +120,21 @@ export async function createTestPluginAndRun(
 
 export async function compileFile(proto: string) {
   upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
-  const bytes = await upstreamProtobuf.compileToDescriptorSet(proto, {
-    includeImports: true,
-    retainOptions: true,
-    includeSourceInfo: true,
-  });
-  const fds = FileDescriptorSet.fromBinary(bytes);
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(
+    {
+      "input.proto": proto,
+    },
+    {
+      includeImports: true,
+      retainOptions: true,
+      includeSourceInfo: true,
+    },
+  );
+  const fds = fromBinary(FileDescriptorSetDesc, bytes);
   const set = createDescFileSet(fds);
-  const nextFile = set.files[Symbol.iterator]().next();
-  assert(nextFile.done !== true);
-  return nextFile.value;
+  const file = set.getFile("input.proto");
+  assert(file);
+  return file;
 }
 
 export async function compileEnum(proto: string) {
