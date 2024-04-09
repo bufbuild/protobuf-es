@@ -27,8 +27,8 @@ import {
   Edition,
   FeatureSetDefaultsDesc,
   FeatureSetDesc,
+  FileDescriptorSetDesc,
 } from "@bufbuild/protobuf/next/wkt";
-import { FileDescriptorSet } from "@bufbuild/protobuf";
 
 void main(argv.slice(2)).catch((e) => {
   process.exitCode = 1;
@@ -232,7 +232,7 @@ async function compileDescriptorProto(upstream) {
       retainOptions: false,
     },
   );
-  const fds = FileDescriptorSet.fromBinary(fdsBytes);
+  const fds = fromBinary(FileDescriptorSetDesc, fdsBytes);
   const set = createDescFileSet(fds);
   const file = set.getFile(path);
   assert(file);

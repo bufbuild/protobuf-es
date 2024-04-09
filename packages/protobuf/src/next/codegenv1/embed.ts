@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  DescriptorProto as V1DescriptorProto,
-  FileDescriptorProto as V1FileDescriptorProto,
-} from "../../google/protobuf/descriptor_pb.js";
 import type {
   DescEnum,
   DescExtension,
@@ -23,14 +19,12 @@ import type {
   DescMessage,
   DescService,
 } from "../../descriptor-set.js";
-import {
-  clearField as v1_clearField,
-  isFieldSet as v1_isFieldSet,
-} from "../../field-accessor.js";
 import { protoCamelCase } from "../reflect/names.js";
 import { assert } from "../../private/assert.js";
-import { isFieldSet } from "../fields.js";
+import { isFieldSet, clearField } from "../fields.js";
 import { base64Encode } from "../wire/base64-encoding.js";
+import { toBinary } from "../to-binary.js";
+import { clone } from "../clone.js";
 import type {
   DescriptorProto,
   EnumDescriptorProto,
@@ -53,11 +47,10 @@ import type {
   FieldOptionsBoot,
   FileDescriptorProtoBoot,
 } from "./boot.js";
-import { fromBinary } from "../from-binary.js";
 
 type EmbedUnknown = {
   bootable: false;
-  proto(): V1FileDescriptorProto;
+  proto(): FileDescriptorProto;
   base64(): string;
 };
 
@@ -78,28 +71,14 @@ export function embedFileDesc(
   const embed: EmbedUnknown = {
     bootable: false,
     proto() {
-      const i = file.proto;
-      const o = new V1FileDescriptorProto();
-      if (v1_isFieldSet(i, "name")) o.name = i.name;
-      if (v1_isFieldSet(i, "package")) o.package = i.package;
-      // dependency
-      if (v1_isFieldSet(i, "publicDependency"))
-        o.publicDependency = i.publicDependency;
-      if (v1_isFieldSet(i, "weakDependency"))
-        o.weakDependency = i.weakDependency;
-      if (v1_isFieldSet(i, "messageType"))
-        o.messageType = i.messageType.map(cloneAndStripJsonNames);
-      if (v1_isFieldSet(i, "enumType")) o.enumType = i.enumType;
-      if (v1_isFieldSet(i, "service")) o.service = i.service;
-      if (v1_isFieldSet(i, "extension")) o.extension = i.extension;
-      if (v1_isFieldSet(i, "options")) o.options = i.options;
-      // sourceCodeInfo
-      if (v1_isFieldSet(i, "syntax")) o.syntax = i.syntax;
-      if (v1_isFieldSet(i, "edition")) o.edition = i.edition;
-      return o;
+      const stripped = clone(FileDescriptorProtoDesc, file.proto);
+      clearField(FileDescriptorProtoDesc, stripped, "dependency");
+      clearField(FileDescriptorProtoDesc, stripped, "sourceCodeInfo");
+      stripped.messageType.map(stripJsonNames);
+      return stripped;
     },
     base64() {
-      const bytes = this.proto().toBinary();
+      const bytes = toBinary(FileDescriptorProtoDesc, this.proto());
       return base64Encode(bytes, "std_raw");
     },
   };
@@ -108,24 +87,16 @@ export function embedFileDesc(
         ...embed,
         bootable: true,
         boot(): FileDescriptorProtoBoot {
-          const bytes = this.proto().toBinary();
-          const proto = fromBinary(FileDescriptorProtoDesc, bytes);
-          return createFileDescriptorProtoBoot(proto);
+          return createFileDescriptorProtoBoot(this.proto());
         },
       }
     : embed;
 }
 
-function cloneAndStripJsonNames(i: V1DescriptorProto): V1DescriptorProto {
-  // not using clone() because it does not retain unknown fields
-  const o = V1DescriptorProto.fromBinary(i.toBinary());
-  stripJsonNames(o);
-  return o;
-}
-function stripJsonNames(d: V1DescriptorProto): void {
+function stripJsonNames(d: DescriptorProto): void {
   for (const f of d.field) {
     if (f.jsonName === protoCamelCase(f.name)) {
-      v1_clearField(f, "jsonName");
+      clearField(FieldDescriptorProtoDesc, f, "jsonName");
     }
   }
   for (const n of d.nestedType) {

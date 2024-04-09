@@ -21,7 +21,7 @@ import {
   FeatureSet_MessageEncoding,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
-} from "../google/protobuf/descriptor_pb.js";
+} from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
 import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";

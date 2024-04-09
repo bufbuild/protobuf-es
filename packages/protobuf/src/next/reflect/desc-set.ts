@@ -17,14 +17,12 @@ import type {
   Edition,
   EnumDescriptorProto,
   FieldDescriptorProto,
+  FileDescriptorProto,
+  FileDescriptorSet,
   MethodDescriptorProto,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "../../google/protobuf/descriptor_pb.js";
-import {
-  FileDescriptorProto,
-  FileDescriptorSet,
-} from "../../google/protobuf/descriptor_pb.js";
+} from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import { assert } from "../../private/assert.js";
 import type {
   AnyDesc,
@@ -186,12 +184,16 @@ export function createDescFileSet(
     | DescFileSet[]
 ): DescFileSet {
   const set = createMutableDescFileSet();
-  if (args[0] instanceof FileDescriptorSet) {
+  if (
+    "$typeName" in args[0] &&
+    args[0].$typeName == "google.protobuf.FileDescriptorSet"
+  ) {
     for (const file of args[0].file) {
       addFile(file, set);
     }
     return set;
-  } else if (args[0] instanceof FileDescriptorProto) {
+  }
+  if ("$typeName" in args[0]) {
     const input = args[0];
     const resolve = args[1] as (
       protoFileName: string,

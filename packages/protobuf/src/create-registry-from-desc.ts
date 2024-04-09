@@ -50,11 +50,11 @@ import {
   UInt32Value,
   UInt64Value,
 } from "./google/protobuf/wrappers_pb.js";
+import { FileDescriptorSet as V1FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
 import {
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
-  FileDescriptorSet,
-} from "./google/protobuf/descriptor_pb.js";
+} from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type {
   AnyDesc,
   DescEnum,
@@ -66,7 +66,7 @@ import type {
 import { createDescriptorSet } from "./create-descriptor-set.js";
 import type { Extension } from "./extension.js";
 import type { ExtensionFieldSource } from "./private/extensions.js";
-import { isMessage } from "./is-message.js";
+import { isMessage as V1_isMessage } from "./is-message.js";
 
 // well-known message types with specialized JSON representation
 const wkMessages = [
@@ -105,14 +105,14 @@ const wkEnums = [getEnumType(NullValue)];
  * are replaced with their generated counterpart in this package.
  */
 export function createRegistryFromDescriptors(
-  input: DescriptorSet | FileDescriptorSet | Uint8Array,
+  input: DescriptorSet | V1FileDescriptorSet | Uint8Array,
   replaceWkt = true,
 ): IMessageTypeRegistry &
   IEnumTypeRegistry &
   IExtensionRegistry &
   IServiceTypeRegistry {
   const set: DescriptorSet =
-    input instanceof Uint8Array || isMessage(input, FileDescriptorSet)
+    input instanceof Uint8Array || V1_isMessage(input, V1FileDescriptorSet)
       ? createDescriptorSet(input)
       : input;
   const enums = new Map<string, EnumType>();

@@ -24,6 +24,7 @@ import type {
   DescService,
 } from "./descriptor-set.js";
 import { createDescFileSet } from "./next/reflect/desc-set.js";
+import { createV2FileDescriptorSetFromV1Input } from "./create-descriptor-set-compat.js";
 
 /**
  * Create a DescriptorSet, a convenient interface for working with a set of
@@ -36,12 +37,7 @@ import { createDescFileSet } from "./next/reflect/desc-set.js";
 export function createDescriptorSet(
   input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
 ): DescriptorSet {
-  if (input instanceof Uint8Array) {
-    input = FileDescriptorSet.fromBinary(input);
-  } else if (Array.isArray(input)) {
-    input = new FileDescriptorSet({ file: input });
-  }
-  const set = createDescFileSet(input);
+  const set = createDescFileSet(createV2FileDescriptorSetFromV1Input(input));
   const enums = new Map<string, DescEnum>();
   const messages = new Map<string, DescMessage>();
   const services = new Map<string, DescService>();

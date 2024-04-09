@@ -13,11 +13,12 @@
 // limitations under the License.
 
 import { base64Decode } from "../wire/index.js";
-import { FileDescriptorProto } from "../../google/protobuf/descriptor_pb.js";
+import { FileDescriptorProtoDesc } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { DescFile } from "../../descriptor-set.js";
 import { createDescFileSet } from "../reflect/desc-set.js";
 import { assert } from "../../private/assert.js";
 import { restoreJsonNames } from "./restore-json-names.js";
+import { fromBinary } from "../from-binary.js";
 
 /**
  * Hydrate a file descriptor.
@@ -25,7 +26,7 @@ import { restoreJsonNames } from "./restore-json-names.js";
  * @private
  */
 export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
-  const root = FileDescriptorProto.fromBinary(base64Decode(b64));
+  const root = fromBinary(FileDescriptorProtoDesc, base64Decode(b64));
   root.messageType.forEach(restoreJsonNames);
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
   const set = createDescFileSet(root, (protoFileName) =>

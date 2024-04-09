@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
+import type {
   DescriptorProto,
   Edition,
   EnumDescriptorProto,
@@ -23,7 +23,7 @@ import {
   MethodDescriptorProto,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "./google/protobuf/descriptor_pb.js";
+} from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";

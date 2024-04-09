@@ -26,6 +26,27 @@ import type {
   FieldOptions,
   EnumDescriptorProto,
 } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { DescFile } from "../../descriptor-set.js";
+import { restoreJsonNames } from "./restore-json-names.js";
+import { createDescFileSet } from "../reflect/desc-set.js";
+import { assert } from "../../private/assert.js";
+
+/**
+ * Hydrate a file descriptor for google/protobuf/descriptor.proto from a plain
+ * object.
+ *
+ * See createFileDescriptorProtoBoot() for details.
+ *
+ * @private
+ */
+export function boot(boot: FileDescriptorProtoBoot): DescFile {
+  const root = bootFileDescriptorProto(boot);
+  root.messageType.forEach(restoreJsonNames);
+  const set = createDescFileSet(root, () => undefined);
+  const file = set.getFile(root.name);
+  assert(file);
+  return file;
+}
 
 /**
  * An object literal for initializing the message google.protobuf.FileDescriptorProto

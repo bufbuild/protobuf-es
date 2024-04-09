@@ -50,6 +50,7 @@ export const symbols = {
     DescFile:              {typeOnly: true,  bootstrapWktFrom: "../../../descriptor-set.js",    from: "@bufbuild/protobuf" },
   },
   codegen: {
+    boot:                  {typeOnly: false, bootstrapWktFrom: "../../codegenv1/boot.js",       from: packageName + "/codegenv1" },
     fileDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/file.js",       from: packageName + "/codegenv1" },
     enumDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/enum.js",       from: packageName + "/codegenv1" },
     extDesc:               {typeOnly: false, bootstrapWktFrom: "../../codegenv1/extension.js",  from: packageName + "/codegenv1" },
