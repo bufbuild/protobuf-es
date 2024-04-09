@@ -1132,7 +1132,7 @@ function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
 
 /*bootstrap-inject-start*/
 // generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
-type TYPE = 
+type TYPE =
   | typeof TYPE_DOUBLE
   | typeof TYPE_FLOAT
   | typeof TYPE_INT64
@@ -1171,7 +1171,7 @@ const TYPE_SINT32 = 17;
 const TYPE_SINT64 = 18;
 
 // generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
-type LABEL = 
+type LABEL =
   | typeof LABEL_OPTIONAL
   | typeof LABEL_REPEATED
   | typeof LABEL_REQUIRED;
@@ -1180,7 +1180,7 @@ const LABEL_REPEATED = 3;
 const LABEL_REQUIRED = 2;
 
 // generated from enum google.protobuf.FieldOptions.JSType v26.0
-type JSTYPE = 
+type JSTYPE =
   | typeof JS_NORMAL
   | typeof JS_STRING
   | typeof JS_NUMBER;
@@ -1189,7 +1189,7 @@ const JS_STRING = 1;
 const JS_NUMBER = 2;
 
 // generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
-type IDEMPOTENCY = 
+type IDEMPOTENCY =
   | typeof IDEMPOTENCY_UNKNOWN
   | typeof NO_SIDE_EFFECTS
   | typeof IDEMPOTENT;
@@ -1198,7 +1198,7 @@ const NO_SIDE_EFFECTS = 1;
 const IDEMPOTENT = 2;
 
 // generated from enum google.protobuf.Edition v26.0
-type EDITION = 
+type EDITION =
   | typeof EDITION_UNKNOWN
   | typeof EDITION_PROTO2
   | typeof EDITION_PROTO3
@@ -1223,7 +1223,7 @@ const EDITION_99999_TEST_ONLY = 99999;
 const EDITION_MAX = 2147483647;
 
 // generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
-type REPEATED_FIELD_ENCODING = 
+type REPEATED_FIELD_ENCODING =
   | typeof REPEATED_FIELD_ENCODING_UNKNOWN
   | typeof PACKED
   | typeof EXPANDED;

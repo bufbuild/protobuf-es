@@ -160,7 +160,7 @@ async function enums(enumNames, print, upstreamVersion) {
         name = name.toUpperCase();
         break;
     }
-    print(`type ${name} = `);
+    print(`type ${name} =`);
     for (let i = 0; i < enumDesc.values.length; i++) {
       const val = enumDesc.values[i];
       print(
