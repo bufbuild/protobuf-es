@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -112,6 +112,6 @@ export type Duration = Message<"google.protobuf.Duration"> & {
 
 // Describes the message google.protobuf.Duration.
 // Use `create(DurationDesc)` to create a new Duration.
-export const DurationDesc: TypedDescMessage<Duration> = /*@__PURE__*/
+export const DurationDesc: GenDescMessage<Duration> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_duration, 0);
 

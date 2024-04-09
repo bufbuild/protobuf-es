@@ -19,7 +19,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_proto3: DescFile;
 
@@ -330,7 +330,7 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
 };
 
 // Describes the message spec.Proto3Message. Use `create(Proto3MessageDesc)` to create a new Proto3Message.
-export declare const Proto3MessageDesc: TypedDescMessage<Proto3Message>;
+export declare const Proto3MessageDesc: GenDescMessage<Proto3Message>;
 
 /**
  * @generated from message spec.Proto3RepeatedMessage
@@ -379,7 +379,7 @@ export declare type Proto3RepeatedMessage = Message<"spec.Proto3RepeatedMessage"
 };
 
 // Describes the message spec.Proto3RepeatedMessage. Use `create(Proto3RepeatedMessageDesc)` to create a new Proto3RepeatedMessage.
-export declare const Proto3RepeatedMessageDesc: TypedDescMessage<Proto3RepeatedMessage>;
+export declare const Proto3RepeatedMessageDesc: GenDescMessage<Proto3RepeatedMessage>;
 
 /**
  * @generated from message spec.Proto3PackedMessage
@@ -403,7 +403,7 @@ export declare type Proto3PackedMessage = Message<"spec.Proto3PackedMessage"> & 
 };
 
 // Describes the message spec.Proto3PackedMessage. Use `create(Proto3PackedMessageDesc)` to create a new Proto3PackedMessage.
-export declare const Proto3PackedMessageDesc: TypedDescMessage<Proto3PackedMessage>;
+export declare const Proto3PackedMessageDesc: GenDescMessage<Proto3PackedMessage>;
 
 /**
  * @generated from message spec.Proto3UnpackedMessage
@@ -427,7 +427,7 @@ export declare type Proto3UnpackedMessage = Message<"spec.Proto3UnpackedMessage"
 };
 
 // Describes the message spec.Proto3UnpackedMessage. Use `create(Proto3UnpackedMessageDesc)` to create a new Proto3UnpackedMessage.
-export declare const Proto3UnpackedMessageDesc: TypedDescMessage<Proto3UnpackedMessage>;
+export declare const Proto3UnpackedMessageDesc: GenDescMessage<Proto3UnpackedMessage>;
 
 /**
  * @generated from message spec.Proto3UnspecifiedPackedMessage
@@ -451,7 +451,7 @@ export declare type Proto3UnspecifiedPackedMessage = Message<"spec.Proto3Unspeci
 };
 
 // Describes the message spec.Proto3UnspecifiedPackedMessage. Use `create(Proto3UnspecifiedPackedMessageDesc)` to create a new Proto3UnspecifiedPackedMessage.
-export declare const Proto3UnspecifiedPackedMessageDesc: TypedDescMessage<Proto3UnspecifiedPackedMessage>;
+export declare const Proto3UnspecifiedPackedMessageDesc: GenDescMessage<Proto3UnspecifiedPackedMessage>;
 
 /**
  * @generated from message spec.Proto3UnlabelledMessage
@@ -500,7 +500,7 @@ export declare type Proto3UnlabelledMessage = Message<"spec.Proto3UnlabelledMess
 };
 
 // Describes the message spec.Proto3UnlabelledMessage. Use `create(Proto3UnlabelledMessageDesc)` to create a new Proto3UnlabelledMessage.
-export declare const Proto3UnlabelledMessageDesc: TypedDescMessage<Proto3UnlabelledMessage>;
+export declare const Proto3UnlabelledMessageDesc: GenDescMessage<Proto3UnlabelledMessage>;
 
 /**
  * @generated from message spec.Proto3OptionalMessage
@@ -549,7 +549,7 @@ export declare type Proto3OptionalMessage = Message<"spec.Proto3OptionalMessage"
 };
 
 // Describes the message spec.Proto3OptionalMessage. Use `create(Proto3OptionalMessageDesc)` to create a new Proto3OptionalMessage.
-export declare const Proto3OptionalMessageDesc: TypedDescMessage<Proto3OptionalMessage>;
+export declare const Proto3OptionalMessageDesc: GenDescMessage<Proto3OptionalMessage>;
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -572,5 +572,5 @@ export enum Proto3Enum {
 }
 
 // Describes the enum spec.Proto3Enum.
-export declare const Proto3EnumDesc: TypedDescEnum<Proto3Enum>;
+export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum>;
 

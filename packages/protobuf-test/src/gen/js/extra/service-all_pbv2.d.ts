@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
-import type { TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_extra_service_all: DescFile;
@@ -25,7 +25,7 @@ export declare const fileDesc_extra_service_all: DescFile;
 /**
  * @generated from service spec.ServiceAll
  */
-export declare const ServiceAll: TypedDescService<{
+export declare const ServiceAll: GenDescService<{
   /**
    * @generated from rpc spec.ServiceAll.Unary
    */

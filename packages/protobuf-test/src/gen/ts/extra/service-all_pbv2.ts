@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
-import type { TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -28,7 +28,7 @@ export const fileDesc_extra_service_all: DescFile = /*@__PURE__*/
 /**
  * @generated from service spec.ServiceAll
  */
-export const ServiceAll: TypedDescService<{
+export const ServiceAll: GenDescService<{
   /**
    * @generated from rpc spec.ServiceAll.Unary
    */

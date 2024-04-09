@@ -20,7 +20,7 @@ import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportMessage } from "./unittest_import_pbv2.js";
 import type { PublicImportMessage } from "./unittest_import_public_pbv2.js";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_proto3_arena: DescFile;
 
@@ -390,7 +390,7 @@ export declare type TestAllTypes = Message<"proto3_arena_unittest.TestAllTypes">
 };
 
 // Describes the message proto3_arena_unittest.TestAllTypes. Use `create(TestAllTypesDesc)` to create a new TestAllTypes.
-export declare const TestAllTypesDesc: TypedDescMessage<TestAllTypes>;
+export declare const TestAllTypesDesc: GenDescMessage<TestAllTypes>;
 
 /**
  * @generated from message proto3_arena_unittest.TestAllTypes.NestedMessage
@@ -407,7 +407,7 @@ export declare type TestAllTypes_NestedMessage = Message<"proto3_arena_unittest.
 };
 
 // Describes the message proto3_arena_unittest.TestAllTypes.NestedMessage. Use `create(TestAllTypes_NestedMessageDesc)` to create a new TestAllTypes_NestedMessage.
-export declare const TestAllTypes_NestedMessageDesc: TypedDescMessage<TestAllTypes_NestedMessage>;
+export declare const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage>;
 
 /**
  * @generated from enum proto3_arena_unittest.TestAllTypes.NestedEnum
@@ -442,7 +442,7 @@ export enum TestAllTypes_NestedEnum {
 }
 
 // Describes the enum proto3_arena_unittest.TestAllTypes.NestedEnum.
-export declare const TestAllTypes_NestedEnumDesc: TypedDescEnum<TestAllTypes_NestedEnum>;
+export declare const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum>;
 
 /**
  * @generated from message proto3_arena_unittest.TestPackedTypes
@@ -520,7 +520,7 @@ export declare type TestPackedTypes = Message<"proto3_arena_unittest.TestPackedT
 };
 
 // Describes the message proto3_arena_unittest.TestPackedTypes. Use `create(TestPackedTypesDesc)` to create a new TestPackedTypes.
-export declare const TestPackedTypesDesc: TypedDescMessage<TestPackedTypes>;
+export declare const TestPackedTypesDesc: GenDescMessage<TestPackedTypes>;
 
 /**
  * Explicitly set packed to false
@@ -600,7 +600,7 @@ export declare type TestUnpackedTypes = Message<"proto3_arena_unittest.TestUnpac
 };
 
 // Describes the message proto3_arena_unittest.TestUnpackedTypes. Use `create(TestUnpackedTypesDesc)` to create a new TestUnpackedTypes.
-export declare const TestUnpackedTypesDesc: TypedDescMessage<TestUnpackedTypes>;
+export declare const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes>;
 
 /**
  * This proto includes a recursively nested message.
@@ -630,7 +630,7 @@ export declare type NestedTestAllTypes = Message<"proto3_arena_unittest.NestedTe
 };
 
 // Describes the message proto3_arena_unittest.NestedTestAllTypes. Use `create(NestedTestAllTypesDesc)` to create a new NestedTestAllTypes.
-export declare const NestedTestAllTypesDesc: TypedDescMessage<NestedTestAllTypes>;
+export declare const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes>;
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -646,7 +646,7 @@ export declare type ForeignMessage = Message<"proto3_arena_unittest.ForeignMessa
 };
 
 // Describes the message proto3_arena_unittest.ForeignMessage. Use `create(ForeignMessageDesc)` to create a new ForeignMessage.
-export declare const ForeignMessageDesc: TypedDescMessage<ForeignMessage>;
+export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
 
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
@@ -657,7 +657,7 @@ export declare type TestEmptyMessage = Message<"proto3_arena_unittest.TestEmptyM
 };
 
 // Describes the message proto3_arena_unittest.TestEmptyMessage. Use `create(TestEmptyMessageDesc)` to create a new TestEmptyMessage.
-export declare const TestEmptyMessageDesc: TypedDescMessage<TestEmptyMessage>;
+export declare const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage>;
 
 /**
  * Needed for a Python test.
@@ -668,7 +668,7 @@ export declare type TestPickleNestedMessage = Message<"proto3_arena_unittest.Tes
 };
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage. Use `create(TestPickleNestedMessageDesc)` to create a new TestPickleNestedMessage.
-export declare const TestPickleNestedMessageDesc: TypedDescMessage<TestPickleNestedMessage>;
+export declare const TestPickleNestedMessageDesc: GenDescMessage<TestPickleNestedMessage>;
 
 /**
  * @generated from message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage
@@ -681,7 +681,7 @@ export declare type TestPickleNestedMessage_NestedMessage = Message<"proto3_aren
 };
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage. Use `create(TestPickleNestedMessage_NestedMessageDesc)` to create a new TestPickleNestedMessage_NestedMessage.
-export declare const TestPickleNestedMessage_NestedMessageDesc: TypedDescMessage<TestPickleNestedMessage_NestedMessage>;
+export declare const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage>;
 
 /**
  * @generated from message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
@@ -694,7 +694,7 @@ export declare type TestPickleNestedMessage_NestedMessage_NestedNestedMessage = 
 };
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage. Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc)` to create a new TestPickleNestedMessage_NestedMessage_NestedNestedMessage.
-export declare const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: TypedDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage>;
+export declare const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage>;
 
 /**
  * @generated from enum proto3_arena_unittest.ForeignEnum
@@ -722,5 +722,5 @@ export enum ForeignEnum {
 }
 
 // Describes the enum proto3_arena_unittest.ForeignEnum.
-export declare const ForeignEnumDesc: TypedDescEnum<ForeignEnum>;
+export declare const ForeignEnumDesc: GenDescEnum<ForeignEnum>;
 

@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_duration: DescFile = /*@__PURE__*/
@@ -113,6 +113,6 @@ export type Duration = Message<"google.protobuf.Duration"> & {
 
 // Describes the message google.protobuf.Duration.
 // Use `create(DurationDesc)` to create a new Duration.
-export const DurationDesc: TypedDescMessage<Duration> = /*@__PURE__*/
+export const DurationDesc: GenDescMessage<Duration> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_duration, 0);
 

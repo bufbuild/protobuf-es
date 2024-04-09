@@ -21,7 +21,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_unittest_import_public_lite } from "./unittest_import_public_lite_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
@@ -41,7 +41,7 @@ export type ImportMessageLite = Message<"protobuf_unittest_import.ImportMessageL
 
 // Describes the message protobuf_unittest_import.ImportMessageLite.
 // Use `create(ImportMessageLiteDesc)` to create a new ImportMessageLite.
-export const ImportMessageLiteDesc: TypedDescMessage<ImportMessageLite> = /*@__PURE__*/
+export const ImportMessageLiteDesc: GenDescMessage<ImportMessageLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
 
 /**
@@ -65,6 +65,6 @@ export enum ImportEnumLite {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnumLite.
-export const ImportEnumLiteDesc: TypedDescEnum<ImportEnumLite> = /*@__PURE__*/
+export const ImportEnumLiteDesc: GenDescEnum<ImportEnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_import_lite, 0);
 

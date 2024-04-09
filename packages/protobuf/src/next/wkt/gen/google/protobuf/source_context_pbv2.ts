@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_source_context: DescFile = /*@__PURE__*/
@@ -43,6 +43,6 @@ export type SourceContext = Message<"google.protobuf.SourceContext"> & {
 
 // Describes the message google.protobuf.SourceContext.
 // Use `create(SourceContextDesc)` to create a new SourceContext.
-export const SourceContextDesc: TypedDescMessage<SourceContext> = /*@__PURE__*/
+export const SourceContextDesc: GenDescMessage<SourceContext> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_source_context, 0);
 

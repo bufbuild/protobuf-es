@@ -22,7 +22,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { ImportEnumForMap } from "./unittest_import_pbv2.js";
 
 export declare const fileDesc_google_protobuf_map_proto2_unittest: DescFile;
@@ -105,7 +105,7 @@ export declare type TestEnumMap = Message<"protobuf_unittest.TestEnumMap"> & {
 };
 
 // Describes the message protobuf_unittest.TestEnumMap. Use `create(TestEnumMapDesc)` to create a new TestEnumMap.
-export declare const TestEnumMapDesc: TypedDescMessage<TestEnumMap>;
+export declare const TestEnumMapDesc: GenDescMessage<TestEnumMap>;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtra
@@ -185,7 +185,7 @@ export declare type TestEnumMapPlusExtra = Message<"protobuf_unittest.TestEnumMa
 };
 
 // Describes the message protobuf_unittest.TestEnumMapPlusExtra. Use `create(TestEnumMapPlusExtraDesc)` to create a new TestEnumMapPlusExtra.
-export declare const TestEnumMapPlusExtraDesc: TypedDescMessage<TestEnumMapPlusExtra>;
+export declare const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra>;
 
 /**
  * @generated from message protobuf_unittest.TestImportEnumMap
@@ -198,7 +198,7 @@ export declare type TestImportEnumMap = Message<"protobuf_unittest.TestImportEnu
 };
 
 // Describes the message protobuf_unittest.TestImportEnumMap. Use `create(TestImportEnumMapDesc)` to create a new TestImportEnumMap.
-export declare const TestImportEnumMapDesc: TypedDescMessage<TestImportEnumMap>;
+export declare const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap>;
 
 /**
  * @generated from message protobuf_unittest.TestIntIntMap
@@ -211,7 +211,7 @@ export declare type TestIntIntMap = Message<"protobuf_unittest.TestIntIntMap"> &
 };
 
 // Describes the message protobuf_unittest.TestIntIntMap. Use `create(TestIntIntMapDesc)` to create a new TestIntIntMap.
-export declare const TestIntIntMapDesc: TypedDescMessage<TestIntIntMap>;
+export declare const TestIntIntMapDesc: GenDescMessage<TestIntIntMap>;
 
 /**
  * Test all key types: string, plus the non-floating-point scalars.
@@ -281,7 +281,7 @@ export declare type TestMaps = Message<"protobuf_unittest.TestMaps"> & {
 };
 
 // Describes the message protobuf_unittest.TestMaps. Use `create(TestMapsDesc)` to create a new TestMaps.
-export declare const TestMapsDesc: TypedDescMessage<TestMaps>;
+export declare const TestMapsDesc: GenDescMessage<TestMaps>;
 
 /**
  * Test maps in submessages.
@@ -296,7 +296,7 @@ export declare type TestSubmessageMaps = Message<"protobuf_unittest.TestSubmessa
 };
 
 // Describes the message protobuf_unittest.TestSubmessageMaps. Use `create(TestSubmessageMapsDesc)` to create a new TestSubmessageMaps.
-export declare const TestSubmessageMapsDesc: TypedDescMessage<TestSubmessageMaps>;
+export declare const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps>;
 
 /**
  * @generated from message protobuf_unittest.TestProto2BytesMap
@@ -314,7 +314,7 @@ export declare type TestProto2BytesMap = Message<"protobuf_unittest.TestProto2By
 };
 
 // Describes the message protobuf_unittest.TestProto2BytesMap. Use `create(TestProto2BytesMapDesc)` to create a new TestProto2BytesMap.
-export declare const TestProto2BytesMapDesc: TypedDescMessage<TestProto2BytesMap>;
+export declare const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnum
@@ -337,7 +337,7 @@ export enum Proto2MapEnum {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnum.
-export declare const Proto2MapEnumDesc: TypedDescEnum<Proto2MapEnum>;
+export declare const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtra
@@ -365,5 +365,5 @@ export enum Proto2MapEnumPlusExtra {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
-export declare const Proto2MapEnumPlusExtraDesc: TypedDescEnum<Proto2MapEnumPlusExtra>;
+export declare const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra>;
 

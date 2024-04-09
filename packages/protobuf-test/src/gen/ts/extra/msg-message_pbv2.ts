@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -41,7 +41,7 @@ export type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & {
 
 // Describes the message spec.MessageFieldMessage.
 // Use `create(MessageFieldMessageDesc)` to create a new MessageFieldMessage.
-export const MessageFieldMessageDesc: TypedDescMessage<MessageFieldMessage> = /*@__PURE__*/
+export const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_message, 0);
 
 /**
@@ -56,6 +56,6 @@ export type MessageFieldMessage_TestMessage = Message<"spec.MessageFieldMessage.
 
 // Describes the message spec.MessageFieldMessage.TestMessage.
 // Use `create(MessageFieldMessage_TestMessageDesc)` to create a new MessageFieldMessage_TestMessage.
-export const MessageFieldMessage_TestMessageDesc: TypedDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
+export const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_message, 0, 0);
 

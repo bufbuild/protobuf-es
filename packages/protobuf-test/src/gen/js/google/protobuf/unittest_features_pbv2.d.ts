@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_features: DescFile;
@@ -30,7 +30,7 @@ export declare type TestMessage = Message<"pb.TestMessage"> & {
 };
 
 // Describes the message pb.TestMessage. Use `create(TestMessageDesc)` to create a new TestMessage.
-export declare const TestMessageDesc: TypedDescMessage<TestMessage>;
+export declare const TestMessageDesc: GenDescMessage<TestMessage>;
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -39,17 +39,17 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 };
 
 // Describes the message pb.TestMessage.Nested. Use `create(TestMessage_NestedDesc)` to create a new TestMessage_Nested.
-export declare const TestMessage_NestedDesc: TypedDescMessage<TestMessage_Nested>;
+export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
  */
-export declare const TestMessage_Nested_test_nested: TypedDescExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_Nested_test_nested: GenDescExtension<FeatureSet, TestFeatures>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_message = 9998;
  */
-export declare const TestMessage_test_message: TypedDescExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_test_message: GenDescExtension<FeatureSet, TestFeatures>;
 
 /**
  * @generated from message pb.TestFeatures
@@ -137,7 +137,7 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
 };
 
 // Describes the message pb.TestFeatures. Use `create(TestFeaturesDesc)` to create a new TestFeatures.
-export declare const TestFeaturesDesc: TypedDescMessage<TestFeatures>;
+export declare const TestFeaturesDesc: GenDescMessage<TestFeatures>;
 
 /**
  * @generated from message pb.TestFeatures.MessageFeature
@@ -165,7 +165,7 @@ export declare type TestFeatures_MessageFeature = Message<"pb.TestFeatures.Messa
 };
 
 // Describes the message pb.TestFeatures.MessageFeature. Use `create(TestFeatures_MessageFeatureDesc)` to create a new TestFeatures_MessageFeature.
-export declare const TestFeatures_MessageFeatureDesc: TypedDescMessage<TestFeatures_MessageFeature>;
+export declare const TestFeatures_MessageFeatureDesc: GenDescMessage<TestFeatures_MessageFeature>;
 
 /**
  * @generated from enum pb.TestFeatures.EnumFeature
@@ -203,10 +203,10 @@ export enum TestFeatures_EnumFeature {
 }
 
 // Describes the enum pb.TestFeatures.EnumFeature.
-export declare const TestFeatures_EnumFeatureDesc: TypedDescEnum<TestFeatures_EnumFeature>;
+export declare const TestFeatures_EnumFeatureDesc: GenDescEnum<TestFeatures_EnumFeature>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;
  */
-export declare const test: TypedDescExtension<FeatureSet, TestFeatures>;
+export declare const test: GenDescExtension<FeatureSet, TestFeatures>;
 

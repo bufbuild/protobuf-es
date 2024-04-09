@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
@@ -38,7 +38,7 @@ export type EnumMessage = Message<"spec.EnumMessage"> & {
 
 // Describes the message spec.EnumMessage.
 // Use `create(EnumMessageDesc)` to create a new EnumMessage.
-export const EnumMessageDesc: TypedDescMessage<EnumMessage> = /*@__PURE__*/
+export const EnumMessageDesc: GenDescMessage<EnumMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_enum, 0);
 
 /**
@@ -57,7 +57,7 @@ export enum EnumMessage_NestedEnum {
 }
 
 // Describes the enum spec.EnumMessage.NestedEnum.
-export const EnumMessage_NestedEnumDesc: TypedDescEnum<EnumMessage_NestedEnum> = /*@__PURE__*/
+export const EnumMessage_NestedEnumDesc: GenDescEnum<EnumMessage_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_enum, 0, 0);
 
 /**
@@ -76,7 +76,7 @@ export enum AnnotatedEnum {
 }
 
 // Describes the enum spec.AnnotatedEnum.
-export const AnnotatedEnumDesc: TypedDescEnum<AnnotatedEnum> = /*@__PURE__*/
+export const AnnotatedEnumDesc: GenDescEnum<AnnotatedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_enum, 0);
 
 /**
@@ -95,7 +95,7 @@ export enum SimpleEnum {
 }
 
 // Describes the enum spec.SimpleEnum.
-export const SimpleEnumDesc: TypedDescEnum<SimpleEnum> = /*@__PURE__*/
+export const SimpleEnumDesc: GenDescEnum<SimpleEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_enum, 1);
 
 /**
@@ -119,7 +119,7 @@ export enum AliasEnum {
 }
 
 // Describes the enum spec.AliasEnum.
-export const AliasEnumDesc: TypedDescEnum<AliasEnum> = /*@__PURE__*/
+export const AliasEnumDesc: GenDescEnum<AliasEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_enum, 2);
 
 /**
@@ -142,18 +142,18 @@ export enum PrefixEnum {
 }
 
 // Describes the enum spec.PrefixEnum.
-export const PrefixEnumDesc: TypedDescEnum<PrefixEnum> = /*@__PURE__*/
+export const PrefixEnumDesc: GenDescEnum<PrefixEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_enum, 3);
 
 /**
  * @generated from extension: bool enum_opt_bool = 2001;
  */
-export const enum_opt_bool: TypedDescExtension<EnumOptions, boolean> = /*@__PURE__*/
+export const enum_opt_bool: GenDescExtension<EnumOptions, boolean> = /*@__PURE__*/
   extDesc(fileDesc_extra_enum, 0);
 
 /**
  * @generated from extension: bool enum_value_opt_bool = 3001;
  */
-export const enum_value_opt_bool: TypedDescExtension<EnumValueOptions, boolean> = /*@__PURE__*/
+export const enum_value_opt_bool: GenDescExtension<EnumValueOptions, boolean> = /*@__PURE__*/
   extDesc(fileDesc_extra_enum, 1);
 

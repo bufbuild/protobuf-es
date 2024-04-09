@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_msg_oneof: DescFile;
 
@@ -85,7 +85,7 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
 };
 
 // Describes the message spec.OneofMessage. Use `create(OneofMessageDesc)` to create a new OneofMessage.
-export declare const OneofMessageDesc: TypedDescMessage<OneofMessage>;
+export declare const OneofMessageDesc: GenDescMessage<OneofMessage>;
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -103,7 +103,7 @@ export declare type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 };
 
 // Describes the message spec.OneofMessageFoo. Use `create(OneofMessageFooDesc)` to create a new OneofMessageFoo.
-export declare const OneofMessageFooDesc: TypedDescMessage<OneofMessageFoo>;
+export declare const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo>;
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -121,7 +121,7 @@ export declare type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 };
 
 // Describes the message spec.OneofMessageBar. Use `create(OneofMessageBarDesc)` to create a new OneofMessageBar.
-export declare const OneofMessageBarDesc: TypedDescMessage<OneofMessageBar>;
+export declare const OneofMessageBarDesc: GenDescMessage<OneofMessageBar>;
 
 /**
  * @generated from enum spec.OneofEnum
@@ -144,5 +144,5 @@ export enum OneofEnum {
 }
 
 // Describes the enum spec.OneofEnum.
-export declare const OneofEnumDesc: TypedDescEnum<OneofEnum>;
+export declare const OneofEnumDesc: GenDescEnum<OneofEnum>;
 

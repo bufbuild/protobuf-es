@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
@@ -38,12 +38,12 @@ export type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
 
 // Describes the message pb.TestInvalidFeatures.
 // Use `create(TestInvalidFeaturesDesc)` to create a new TestInvalidFeatures.
-export const TestInvalidFeaturesDesc: TypedDescMessage<TestInvalidFeatures> = /*@__PURE__*/
+export const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
  */
-export const test_invalid: TypedDescExtension<FeatureSet, TestInvalidFeatures> = /*@__PURE__*/
+export const test_invalid: GenDescExtension<FeatureSet, TestInvalidFeatures> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
 

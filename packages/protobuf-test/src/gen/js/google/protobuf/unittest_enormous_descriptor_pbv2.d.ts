@@ -27,7 +27,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_enormous_descriptor: DescFile;
 
@@ -5039,5 +5039,5 @@ export declare type TestEnormousDescriptor = Message<"protobuf_unittest.TestEnor
 };
 
 // Describes the message protobuf_unittest.TestEnormousDescriptor. Use `create(TestEnormousDescriptorDesc)` to create a new TestEnormousDescriptor.
-export declare const TestEnormousDescriptorDesc: TypedDescMessage<TestEnormousDescriptor>;
+export declare const TestEnormousDescriptorDesc: GenDescMessage<TestEnormousDescriptor>;
 

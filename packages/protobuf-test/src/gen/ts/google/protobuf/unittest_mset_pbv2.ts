@@ -24,7 +24,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { TestMessageSet } from "./unittest_mset_wire_format_pbv2.js";
 import { fileDesc_google_protobuf_unittest_mset_wire_format } from "./unittest_mset_wire_format_pbv2.js";
@@ -45,7 +45,7 @@ export type TestMessageSetContainer = Message<"protobuf_unittest.TestMessageSetC
 
 // Describes the message protobuf_unittest.TestMessageSetContainer.
 // Use `create(TestMessageSetContainerDesc)` to create a new TestMessageSetContainer.
-export const TestMessageSetContainerDesc: TypedDescMessage<TestMessageSetContainer> = /*@__PURE__*/
+export const TestMessageSetContainerDesc: GenDescMessage<TestMessageSetContainer> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 0);
 
 /**
@@ -70,7 +70,7 @@ export type NestedTestMessageSetContainer = Message<"protobuf_unittest.NestedTes
 
 // Describes the message protobuf_unittest.NestedTestMessageSetContainer.
 // Use `create(NestedTestMessageSetContainerDesc)` to create a new NestedTestMessageSetContainer.
-export const NestedTestMessageSetContainerDesc: TypedDescMessage<NestedTestMessageSetContainer> = /*@__PURE__*/
+export const NestedTestMessageSetContainerDesc: GenDescMessage<NestedTestMessageSetContainer> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 1);
 
 /**
@@ -95,7 +95,7 @@ export type NestedTestInt = Message<"protobuf_unittest.NestedTestInt"> & {
 
 // Describes the message protobuf_unittest.NestedTestInt.
 // Use `create(NestedTestIntDesc)` to create a new NestedTestInt.
-export const NestedTestIntDesc: TypedDescMessage<NestedTestInt> = /*@__PURE__*/
+export const NestedTestIntDesc: GenDescMessage<NestedTestInt> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 2);
 
 /**
@@ -120,13 +120,13 @@ export type TestMessageSetExtension1 = Message<"protobuf_unittest.TestMessageSet
 
 // Describes the message protobuf_unittest.TestMessageSetExtension1.
 // Use `create(TestMessageSetExtension1Desc)` to create a new TestMessageSetExtension1.
-export const TestMessageSetExtension1Desc: TypedDescMessage<TestMessageSetExtension1> = /*@__PURE__*/
+export const TestMessageSetExtension1Desc: GenDescMessage<TestMessageSetExtension1> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 3);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension1 message_set_extension = 1545008;
  */
-export const TestMessageSetExtension1_message_set_extension: TypedDescExtension<TestMessageSet, TestMessageSetExtension1> = /*@__PURE__*/
+export const TestMessageSetExtension1_message_set_extension: GenDescExtension<TestMessageSet, TestMessageSetExtension1> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_mset, 3, 0);
 
 /**
@@ -141,13 +141,13 @@ export type TestMessageSetExtension2 = Message<"protobuf_unittest.TestMessageSet
 
 // Describes the message protobuf_unittest.TestMessageSetExtension2.
 // Use `create(TestMessageSetExtension2Desc)` to create a new TestMessageSetExtension2.
-export const TestMessageSetExtension2Desc: TypedDescMessage<TestMessageSetExtension2> = /*@__PURE__*/
+export const TestMessageSetExtension2Desc: GenDescMessage<TestMessageSetExtension2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 4);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension2 message_set_extension = 1547769;
  */
-export const TestMessageSetExtension2_message_set_extension: TypedDescExtension<TestMessageSet, TestMessageSetExtension2> = /*@__PURE__*/
+export const TestMessageSetExtension2_message_set_extension: GenDescExtension<TestMessageSet, TestMessageSetExtension2> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_mset, 4, 0);
 
 /**
@@ -167,13 +167,13 @@ export type TestMessageSetExtension3 = Message<"protobuf_unittest.TestMessageSet
 
 // Describes the message protobuf_unittest.TestMessageSetExtension3.
 // Use `create(TestMessageSetExtension3Desc)` to create a new TestMessageSetExtension3.
-export const TestMessageSetExtension3Desc: TypedDescMessage<TestMessageSetExtension3> = /*@__PURE__*/
+export const TestMessageSetExtension3Desc: GenDescMessage<TestMessageSetExtension3> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 5);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
  */
-export const TestMessageSetExtension3_message_set_extension: TypedDescExtension<TestMessageSet, TestMessageSetExtension3> = /*@__PURE__*/
+export const TestMessageSetExtension3_message_set_extension: GenDescExtension<TestMessageSet, TestMessageSetExtension3> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_mset, 5, 0);
 
 /**
@@ -190,7 +190,7 @@ export type RawMessageSet = Message<"protobuf_unittest.RawMessageSet"> & {
 
 // Describes the message protobuf_unittest.RawMessageSet.
 // Use `create(RawMessageSetDesc)` to create a new RawMessageSet.
-export const RawMessageSetDesc: TypedDescMessage<RawMessageSet> = /*@__PURE__*/
+export const RawMessageSetDesc: GenDescMessage<RawMessageSet> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 6);
 
 /**
@@ -210,6 +210,6 @@ export type RawMessageSet_Item = Message<"protobuf_unittest.RawMessageSet.Item">
 
 // Describes the message protobuf_unittest.RawMessageSet.Item.
 // Use `create(RawMessageSet_ItemDesc)` to create a new RawMessageSet_Item.
-export const RawMessageSet_ItemDesc: TypedDescMessage<RawMessageSet_Item> = /*@__PURE__*/
+export const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 6, 0);
 

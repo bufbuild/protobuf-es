@@ -28,7 +28,7 @@
 // "using namespace unittest_import = protobuf_unittest_import".
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_unittest_import_public } from "./unittest_import_public_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
@@ -48,7 +48,7 @@ export type ImportMessage = Message<"protobuf_unittest_import.ImportMessage"> & 
 
 // Describes the message protobuf_unittest_import.ImportMessage.
 // Use `create(ImportMessageDesc)` to create a new ImportMessage.
-export const ImportMessageDesc: TypedDescMessage<ImportMessage> = /*@__PURE__*/
+export const ImportMessageDesc: GenDescMessage<ImportMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
@@ -72,7 +72,7 @@ export enum ImportEnum {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnum.
-export const ImportEnumDesc: TypedDescEnum<ImportEnum> = /*@__PURE__*/
+export const ImportEnumDesc: GenDescEnum<ImportEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
@@ -98,6 +98,6 @@ export enum ImportEnumForMap {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnumForMap.
-export const ImportEnumForMapDesc: TypedDescEnum<ImportEnumForMap> = /*@__PURE__*/
+export const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_import, 1);
 

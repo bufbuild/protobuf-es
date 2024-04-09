@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescExtension } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_extra_extensions_proto3: DescFile;
@@ -25,20 +25,20 @@ export declare const fileDesc_extra_extensions_proto3: DescFile;
 /**
  * @generated from extension: uint32 uint32_ext = 1001;
  */
-export declare const uint32_ext: TypedDescExtension<FileOptions, number>;
+export declare const uint32_ext: GenDescExtension<FileOptions, number>;
 
 /**
  * @generated from extension: optional uint32 optional_uint32_ext = 1002;
  */
-export declare const optional_uint32_ext: TypedDescExtension<FileOptions, number>;
+export declare const optional_uint32_ext: GenDescExtension<FileOptions, number>;
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_ext = 7003;
  */
-export declare const packed_uint32_ext: TypedDescExtension<FileOptions, number[]>;
+export declare const packed_uint32_ext: GenDescExtension<FileOptions, number[]>;
 
 /**
  * @generated from extension: repeated uint32 unpacked_uint32_ext = 7004 [packed = false];
  */
-export declare const unpacked_uint32_ext: TypedDescExtension<FileOptions, number[]>;
+export declare const unpacked_uint32_ext: GenDescExtension<FileOptions, number[]>;
 

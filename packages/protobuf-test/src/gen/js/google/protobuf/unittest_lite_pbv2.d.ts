@@ -24,7 +24,7 @@ import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportEnumLite, ImportMessageLite } from "./unittest_import_lite_pbv2.js";
 import type { PublicImportMessageLite } from "./unittest_import_public_lite_pbv2.js";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_lite: DescFile;
 
@@ -454,7 +454,7 @@ export declare type TestAllTypesLite = Message<"protobuf_unittest.TestAllTypesLi
 };
 
 // Describes the message protobuf_unittest.TestAllTypesLite. Use `create(TestAllTypesLiteDesc)` to create a new TestAllTypesLite.
-export declare const TestAllTypesLiteDesc: TypedDescMessage<TestAllTypesLite>;
+export declare const TestAllTypesLiteDesc: GenDescMessage<TestAllTypesLite>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage
@@ -477,7 +477,7 @@ export declare type TestAllTypesLite_NestedMessage = Message<"protobuf_unittest.
 };
 
 // Describes the message protobuf_unittest.TestAllTypesLite.NestedMessage. Use `create(TestAllTypesLite_NestedMessageDesc)` to create a new TestAllTypesLite_NestedMessage.
-export declare const TestAllTypesLite_NestedMessageDesc: TypedDescMessage<TestAllTypesLite_NestedMessage>;
+export declare const TestAllTypesLite_NestedMessageDesc: GenDescMessage<TestAllTypesLite_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.NestedMessage2
@@ -490,7 +490,7 @@ export declare type TestAllTypesLite_NestedMessage2 = Message<"protobuf_unittest
 };
 
 // Describes the message protobuf_unittest.TestAllTypesLite.NestedMessage2. Use `create(TestAllTypesLite_NestedMessage2Desc)` to create a new TestAllTypesLite_NestedMessage2.
-export declare const TestAllTypesLite_NestedMessage2Desc: TypedDescMessage<TestAllTypesLite_NestedMessage2>;
+export declare const TestAllTypesLite_NestedMessage2Desc: GenDescMessage<TestAllTypesLite_NestedMessage2>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.OptionalGroup
@@ -503,7 +503,7 @@ export declare type TestAllTypesLite_OptionalGroup = Message<"protobuf_unittest.
 };
 
 // Describes the message protobuf_unittest.TestAllTypesLite.OptionalGroup. Use `create(TestAllTypesLite_OptionalGroupDesc)` to create a new TestAllTypesLite_OptionalGroup.
-export declare const TestAllTypesLite_OptionalGroupDesc: TypedDescMessage<TestAllTypesLite_OptionalGroup>;
+export declare const TestAllTypesLite_OptionalGroupDesc: GenDescMessage<TestAllTypesLite_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypesLite.RepeatedGroup
@@ -516,7 +516,7 @@ export declare type TestAllTypesLite_RepeatedGroup = Message<"protobuf_unittest.
 };
 
 // Describes the message protobuf_unittest.TestAllTypesLite.RepeatedGroup. Use `create(TestAllTypesLite_RepeatedGroupDesc)` to create a new TestAllTypesLite_RepeatedGroup.
-export declare const TestAllTypesLite_RepeatedGroupDesc: TypedDescMessage<TestAllTypesLite_RepeatedGroup>;
+export declare const TestAllTypesLite_RepeatedGroupDesc: GenDescMessage<TestAllTypesLite_RepeatedGroup>;
 
 /**
  * @generated from enum protobuf_unittest.TestAllTypesLite.NestedEnum
@@ -539,7 +539,7 @@ export enum TestAllTypesLite_NestedEnum {
 }
 
 // Describes the enum protobuf_unittest.TestAllTypesLite.NestedEnum.
-export declare const TestAllTypesLite_NestedEnumDesc: TypedDescEnum<TestAllTypesLite_NestedEnum>;
+export declare const TestAllTypesLite_NestedEnumDesc: GenDescEnum<TestAllTypesLite_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageLite
@@ -552,7 +552,7 @@ export declare type ForeignMessageLite = Message<"protobuf_unittest.ForeignMessa
 };
 
 // Describes the message protobuf_unittest.ForeignMessageLite. Use `create(ForeignMessageLiteDesc)` to create a new ForeignMessageLite.
-export declare const ForeignMessageLiteDesc: TypedDescMessage<ForeignMessageLite>;
+export declare const ForeignMessageLiteDesc: GenDescMessage<ForeignMessageLite>;
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypesLite
@@ -630,7 +630,7 @@ export declare type TestPackedTypesLite = Message<"protobuf_unittest.TestPackedT
 };
 
 // Describes the message protobuf_unittest.TestPackedTypesLite. Use `create(TestPackedTypesLiteDesc)` to create a new TestPackedTypesLite.
-export declare const TestPackedTypesLiteDesc: TypedDescMessage<TestPackedTypesLite>;
+export declare const TestPackedTypesLiteDesc: GenDescMessage<TestPackedTypesLite>;
 
 /**
  * @generated from message protobuf_unittest.TestAllExtensionsLite
@@ -639,7 +639,7 @@ export declare type TestAllExtensionsLite = Message<"protobuf_unittest.TestAllEx
 };
 
 // Describes the message protobuf_unittest.TestAllExtensionsLite. Use `create(TestAllExtensionsLiteDesc)` to create a new TestAllExtensionsLite.
-export declare const TestAllExtensionsLiteDesc: TypedDescMessage<TestAllExtensionsLite>;
+export declare const TestAllExtensionsLiteDesc: GenDescMessage<TestAllExtensionsLite>;
 
 /**
  * @generated from message protobuf_unittest.OptionalGroup_extension_lite
@@ -652,7 +652,7 @@ export declare type OptionalGroup_extension_lite = Message<"protobuf_unittest.Op
 };
 
 // Describes the message protobuf_unittest.OptionalGroup_extension_lite. Use `create(OptionalGroup_extension_liteDesc)` to create a new OptionalGroup_extension_lite.
-export declare const OptionalGroup_extension_liteDesc: TypedDescMessage<OptionalGroup_extension_lite>;
+export declare const OptionalGroup_extension_liteDesc: GenDescMessage<OptionalGroup_extension_lite>;
 
 /**
  * @generated from message protobuf_unittest.RepeatedGroup_extension_lite
@@ -665,7 +665,7 @@ export declare type RepeatedGroup_extension_lite = Message<"protobuf_unittest.Re
 };
 
 // Describes the message protobuf_unittest.RepeatedGroup_extension_lite. Use `create(RepeatedGroup_extension_liteDesc)` to create a new RepeatedGroup_extension_lite.
-export declare const RepeatedGroup_extension_liteDesc: TypedDescMessage<RepeatedGroup_extension_lite>;
+export declare const RepeatedGroup_extension_liteDesc: GenDescMessage<RepeatedGroup_extension_lite>;
 
 /**
  * @generated from message protobuf_unittest.TestPackedExtensionsLite
@@ -674,7 +674,7 @@ export declare type TestPackedExtensionsLite = Message<"protobuf_unittest.TestPa
 };
 
 // Describes the message protobuf_unittest.TestPackedExtensionsLite. Use `create(TestPackedExtensionsLiteDesc)` to create a new TestPackedExtensionsLite.
-export declare const TestPackedExtensionsLiteDesc: TypedDescMessage<TestPackedExtensionsLite>;
+export declare const TestPackedExtensionsLiteDesc: GenDescMessage<TestPackedExtensionsLite>;
 
 /**
  * @generated from message protobuf_unittest.TestNestedExtensionLite
@@ -683,12 +683,12 @@ export declare type TestNestedExtensionLite = Message<"protobuf_unittest.TestNes
 };
 
 // Describes the message protobuf_unittest.TestNestedExtensionLite. Use `create(TestNestedExtensionLiteDesc)` to create a new TestNestedExtensionLite.
-export declare const TestNestedExtensionLiteDesc: TypedDescMessage<TestNestedExtensionLite>;
+export declare const TestNestedExtensionLiteDesc: GenDescMessage<TestNestedExtensionLite>;
 
 /**
  * @generated from extension: optional int32 nested_extension = 12345;
  */
-export declare const TestNestedExtensionLite_nested_extension: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const TestNestedExtensionLite_nested_extension: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * Test that deprecated fields work.  We only verify that they compile (at one
@@ -723,7 +723,7 @@ export declare type TestDeprecatedLite = Message<"protobuf_unittest.TestDeprecat
 };
 
 // Describes the message protobuf_unittest.TestDeprecatedLite. Use `create(TestDeprecatedLiteDesc)` to create a new TestDeprecatedLite.
-export declare const TestDeprecatedLiteDesc: TypedDescMessage<TestDeprecatedLite>;
+export declare const TestDeprecatedLiteDesc: GenDescMessage<TestDeprecatedLite>;
 
 /**
  * See the comments of the same type in unittest.proto.
@@ -758,7 +758,7 @@ export declare type TestParsingMergeLite = Message<"protobuf_unittest.TestParsin
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite. Use `create(TestParsingMergeLiteDesc)` to create a new TestParsingMergeLite.
-export declare const TestParsingMergeLiteDesc: TypedDescMessage<TestParsingMergeLite>;
+export declare const TestParsingMergeLiteDesc: GenDescMessage<TestParsingMergeLite>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator
@@ -801,7 +801,7 @@ export declare type TestParsingMergeLite_RepeatedFieldsGenerator = Message<"prot
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator. Use `create(TestParsingMergeLite_RepeatedFieldsGeneratorDesc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator.
-export declare const TestParsingMergeLite_RepeatedFieldsGeneratorDesc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator>;
+export declare const TestParsingMergeLite_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1
@@ -814,7 +814,7 @@ export declare type TestParsingMergeLite_RepeatedFieldsGenerator_Group1 = Messag
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1. Use `create(TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator_Group1.
-export declare const TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1>;
+export declare const TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2
@@ -827,7 +827,7 @@ export declare type TestParsingMergeLite_RepeatedFieldsGenerator_Group2 = Messag
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2. Use `create(TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator_Group2.
-export declare const TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2>;
+export declare const TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.OptionalGroup
@@ -840,7 +840,7 @@ export declare type TestParsingMergeLite_OptionalGroup = Message<"protobuf_unitt
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.OptionalGroup. Use `create(TestParsingMergeLite_OptionalGroupDesc)` to create a new TestParsingMergeLite_OptionalGroup.
-export declare const TestParsingMergeLite_OptionalGroupDesc: TypedDescMessage<TestParsingMergeLite_OptionalGroup>;
+export declare const TestParsingMergeLite_OptionalGroupDesc: GenDescMessage<TestParsingMergeLite_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMergeLite.RepeatedGroup
@@ -853,17 +853,17 @@ export declare type TestParsingMergeLite_RepeatedGroup = Message<"protobuf_unitt
 };
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedGroup. Use `create(TestParsingMergeLite_RepeatedGroupDesc)` to create a new TestParsingMergeLite_RepeatedGroup.
-export declare const TestParsingMergeLite_RepeatedGroupDesc: TypedDescMessage<TestParsingMergeLite_RepeatedGroup>;
+export declare const TestParsingMergeLite_RepeatedGroupDesc: GenDescMessage<TestParsingMergeLite_RepeatedGroup>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite optional_ext = 1000;
  */
-export declare const TestParsingMergeLite_optional_ext: TypedDescExtension<TestParsingMergeLite, TestAllTypesLite>;
+export declare const TestParsingMergeLite_optional_ext: GenDescExtension<TestParsingMergeLite, TestAllTypesLite>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite repeated_ext = 1001;
  */
-export declare const TestParsingMergeLite_repeated_ext: TypedDescExtension<TestParsingMergeLite, TestAllTypesLite[]>;
+export declare const TestParsingMergeLite_repeated_ext: GenDescExtension<TestParsingMergeLite, TestAllTypesLite[]>;
 
 /**
  * Test that the correct exception is thrown by parseFrom in a corner case
@@ -879,7 +879,7 @@ export declare type TestMergeExceptionLite = Message<"protobuf_unittest.TestMerg
 };
 
 // Describes the message protobuf_unittest.TestMergeExceptionLite. Use `create(TestMergeExceptionLiteDesc)` to create a new TestMergeExceptionLite.
-export declare const TestMergeExceptionLiteDesc: TypedDescMessage<TestMergeExceptionLite>;
+export declare const TestMergeExceptionLiteDesc: GenDescMessage<TestMergeExceptionLite>;
 
 /**
  * TestEmptyMessageLite is used to test unknown fields support in lite mode.
@@ -890,7 +890,7 @@ export declare type TestEmptyMessageLite = Message<"protobuf_unittest.TestEmptyM
 };
 
 // Describes the message protobuf_unittest.TestEmptyMessageLite. Use `create(TestEmptyMessageLiteDesc)` to create a new TestEmptyMessageLite.
-export declare const TestEmptyMessageLiteDesc: TypedDescMessage<TestEmptyMessageLite>;
+export declare const TestEmptyMessageLiteDesc: GenDescMessage<TestEmptyMessageLite>;
 
 /**
  * Like above, but declare all field numbers as potential extensions.  No
@@ -902,7 +902,7 @@ export declare type TestEmptyMessageWithExtensionsLite = Message<"protobuf_unitt
 };
 
 // Describes the message protobuf_unittest.TestEmptyMessageWithExtensionsLite. Use `create(TestEmptyMessageWithExtensionsLiteDesc)` to create a new TestEmptyMessageWithExtensionsLite.
-export declare const TestEmptyMessageWithExtensionsLiteDesc: TypedDescMessage<TestEmptyMessageWithExtensionsLite>;
+export declare const TestEmptyMessageWithExtensionsLiteDesc: GenDescMessage<TestEmptyMessageWithExtensionsLite>;
 
 /**
  * @generated from message protobuf_unittest.V1MessageLite
@@ -920,7 +920,7 @@ export declare type V1MessageLite = Message<"protobuf_unittest.V1MessageLite"> &
 };
 
 // Describes the message protobuf_unittest.V1MessageLite. Use `create(V1MessageLiteDesc)` to create a new V1MessageLite.
-export declare const V1MessageLiteDesc: TypedDescMessage<V1MessageLite>;
+export declare const V1MessageLiteDesc: GenDescMessage<V1MessageLite>;
 
 /**
  * @generated from message protobuf_unittest.V2MessageLite
@@ -938,7 +938,7 @@ export declare type V2MessageLite = Message<"protobuf_unittest.V2MessageLite"> &
 };
 
 // Describes the message protobuf_unittest.V2MessageLite. Use `create(V2MessageLiteDesc)` to create a new V2MessageLite.
-export declare const V2MessageLiteDesc: TypedDescMessage<V2MessageLite>;
+export declare const V2MessageLiteDesc: GenDescMessage<V2MessageLite>;
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite
@@ -1025,7 +1025,7 @@ export declare type TestHugeFieldNumbersLite = Message<"protobuf_unittest.TestHu
 };
 
 // Describes the message protobuf_unittest.TestHugeFieldNumbersLite. Use `create(TestHugeFieldNumbersLiteDesc)` to create a new TestHugeFieldNumbersLite.
-export declare const TestHugeFieldNumbersLiteDesc: TypedDescMessage<TestHugeFieldNumbersLite>;
+export declare const TestHugeFieldNumbersLiteDesc: GenDescMessage<TestHugeFieldNumbersLite>;
 
 /**
  * @generated from message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup
@@ -1038,7 +1038,7 @@ export declare type TestHugeFieldNumbersLite_OptionalGroup = Message<"protobuf_u
 };
 
 // Describes the message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup. Use `create(TestHugeFieldNumbersLite_OptionalGroupDesc)` to create a new TestHugeFieldNumbersLite_OptionalGroup.
-export declare const TestHugeFieldNumbersLite_OptionalGroupDesc: TypedDescMessage<TestHugeFieldNumbersLite_OptionalGroup>;
+export declare const TestHugeFieldNumbersLite_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbersLite_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestOneofParsingLite
@@ -1105,7 +1105,7 @@ export declare type TestOneofParsingLite = Message<"protobuf_unittest.TestOneofP
 };
 
 // Describes the message protobuf_unittest.TestOneofParsingLite. Use `create(TestOneofParsingLiteDesc)` to create a new TestOneofParsingLite.
-export declare const TestOneofParsingLiteDesc: TypedDescMessage<TestOneofParsingLite>;
+export declare const TestOneofParsingLiteDesc: GenDescMessage<TestOneofParsingLite>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetLite
@@ -1114,7 +1114,7 @@ export declare type TestMessageSetLite = Message<"protobuf_unittest.TestMessageS
 };
 
 // Describes the message protobuf_unittest.TestMessageSetLite. Use `create(TestMessageSetLiteDesc)` to create a new TestMessageSetLite.
-export declare const TestMessageSetLiteDesc: TypedDescMessage<TestMessageSetLite>;
+export declare const TestMessageSetLiteDesc: GenDescMessage<TestMessageSetLite>;
 
 /**
  * The following four messages are set up to test for wire compatibility between
@@ -1131,7 +1131,7 @@ export declare type PackedInt32 = Message<"protobuf_unittest.PackedInt32"> & {
 };
 
 // Describes the message protobuf_unittest.PackedInt32. Use `create(PackedInt32Desc)` to create a new PackedInt32.
-export declare const PackedInt32Desc: TypedDescMessage<PackedInt32>;
+export declare const PackedInt32Desc: GenDescMessage<PackedInt32>;
 
 /**
  * @generated from message protobuf_unittest.NonPackedInt32
@@ -1144,7 +1144,7 @@ export declare type NonPackedInt32 = Message<"protobuf_unittest.NonPackedInt32">
 };
 
 // Describes the message protobuf_unittest.NonPackedInt32. Use `create(NonPackedInt32Desc)` to create a new NonPackedInt32.
-export declare const NonPackedInt32Desc: TypedDescMessage<NonPackedInt32>;
+export declare const NonPackedInt32Desc: GenDescMessage<NonPackedInt32>;
 
 /**
  * @generated from message protobuf_unittest.PackedFixed32
@@ -1157,7 +1157,7 @@ export declare type PackedFixed32 = Message<"protobuf_unittest.PackedFixed32"> &
 };
 
 // Describes the message protobuf_unittest.PackedFixed32. Use `create(PackedFixed32Desc)` to create a new PackedFixed32.
-export declare const PackedFixed32Desc: TypedDescMessage<PackedFixed32>;
+export declare const PackedFixed32Desc: GenDescMessage<PackedFixed32>;
 
 /**
  * @generated from message protobuf_unittest.NonPackedFixed32
@@ -1170,7 +1170,7 @@ export declare type NonPackedFixed32 = Message<"protobuf_unittest.NonPackedFixed
 };
 
 // Describes the message protobuf_unittest.NonPackedFixed32. Use `create(NonPackedFixed32Desc)` to create a new NonPackedFixed32.
-export declare const NonPackedFixed32Desc: TypedDescMessage<NonPackedFixed32>;
+export declare const NonPackedFixed32Desc: GenDescMessage<NonPackedFixed32>;
 
 /**
  * Test an enum that has multiple values with the same number.
@@ -1181,7 +1181,7 @@ export declare type DupEnum = Message<"protobuf_unittest.DupEnum"> & {
 };
 
 // Describes the message protobuf_unittest.DupEnum. Use `create(DupEnumDesc)` to create a new DupEnum.
-export declare const DupEnumDesc: TypedDescMessage<DupEnum>;
+export declare const DupEnumDesc: GenDescMessage<DupEnum>;
 
 /**
  * @generated from enum protobuf_unittest.DupEnum.TestEnumWithDupValueLite
@@ -1214,7 +1214,7 @@ export enum DupEnum_TestEnumWithDupValueLite {
 }
 
 // Describes the enum protobuf_unittest.DupEnum.TestEnumWithDupValueLite.
-export declare const DupEnum_TestEnumWithDupValueLiteDesc: TypedDescEnum<DupEnum_TestEnumWithDupValueLite>;
+export declare const DupEnum_TestEnumWithDupValueLiteDesc: GenDescEnum<DupEnum_TestEnumWithDupValueLite>;
 
 /**
  * @generated from message protobuf_unittest.RecursiveMessage
@@ -1232,7 +1232,7 @@ export declare type RecursiveMessage = Message<"protobuf_unittest.RecursiveMessa
 };
 
 // Describes the message protobuf_unittest.RecursiveMessage. Use `create(RecursiveMessageDesc)` to create a new RecursiveMessage.
-export declare const RecursiveMessageDesc: TypedDescMessage<RecursiveMessage>;
+export declare const RecursiveMessageDesc: GenDescMessage<RecursiveMessage>;
 
 /**
  * @generated from enum protobuf_unittest.ForeignEnumLite
@@ -1255,7 +1255,7 @@ export enum ForeignEnumLite {
 }
 
 // Describes the enum protobuf_unittest.ForeignEnumLite.
-export declare const ForeignEnumLiteDesc: TypedDescEnum<ForeignEnumLite>;
+export declare const ForeignEnumLiteDesc: GenDescEnum<ForeignEnumLite>;
 
 /**
  * @generated from enum protobuf_unittest.V1EnumLite
@@ -1268,7 +1268,7 @@ export enum V1EnumLite {
 }
 
 // Describes the enum protobuf_unittest.V1EnumLite.
-export declare const V1EnumLiteDesc: TypedDescEnum<V1EnumLite>;
+export declare const V1EnumLiteDesc: GenDescEnum<V1EnumLite>;
 
 /**
  * @generated from enum protobuf_unittest.V2EnumLite
@@ -1286,124 +1286,124 @@ export enum V2EnumLite {
 }
 
 // Describes the enum protobuf_unittest.V2EnumLite.
-export declare const V2EnumLiteDesc: TypedDescEnum<V2EnumLite>;
+export declare const V2EnumLiteDesc: GenDescEnum<V2EnumLite>;
 
 /**
  * Singular
  *
  * @generated from extension: optional int32 optional_int32_extension_lite = 1;
  */
-export declare const optional_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional int64 optional_int64_extension_lite = 2;
  */
-export declare const optional_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const optional_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional uint32 optional_uint32_extension_lite = 3;
  */
-export declare const optional_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional uint64 optional_uint64_extension_lite = 4;
  */
-export declare const optional_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const optional_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional sint32 optional_sint32_extension_lite = 5;
  */
-export declare const optional_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional sint64 optional_sint64_extension_lite = 6;
  */
-export declare const optional_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const optional_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional fixed32 optional_fixed32_extension_lite = 7;
  */
-export declare const optional_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional fixed64 optional_fixed64_extension_lite = 8;
  */
-export declare const optional_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const optional_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional sfixed32 optional_sfixed32_extension_lite = 9;
  */
-export declare const optional_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional sfixed64 optional_sfixed64_extension_lite = 10;
  */
-export declare const optional_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const optional_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional float optional_float_extension_lite = 11;
  */
-export declare const optional_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional double optional_double_extension_lite = 12;
  */
-export declare const optional_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const optional_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional bool optional_bool_extension_lite = 13;
  */
-export declare const optional_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean>;
+export declare const optional_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean>;
 
 /**
  * @generated from extension: optional string optional_string_extension_lite = 14;
  */
-export declare const optional_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const optional_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * @generated from extension: optional bytes optional_bytes_extension_lite = 15;
  */
-export declare const optional_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array>;
+export declare const optional_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionalGroup_extension_lite optionalgroup_extension_lite = 16;
  */
-export declare const optionalgroup_extension_lite: TypedDescExtension<TestAllExtensionsLite, OptionalGroup_extension_lite>;
+export declare const optionalgroup_extension_lite: GenDescExtension<TestAllExtensionsLite, OptionalGroup_extension_lite>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_nested_message_extension_lite = 18;
  */
-export declare const optional_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
+export declare const optional_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignMessageLite optional_foreign_message_extension_lite = 19;
  */
-export declare const optional_foreign_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignMessageLite>;
+export declare const optional_foreign_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignMessageLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportMessageLite optional_import_message_extension_lite = 20;
  */
-export declare const optional_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportMessageLite>;
+export declare const optional_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportMessageLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedEnum optional_nested_enum_extension_lite = 21;
  */
-export declare const optional_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum>;
+export declare const optional_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum>;
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignEnumLite optional_foreign_enum_extension_lite = 22;
  */
-export declare const optional_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite>;
+export declare const optional_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportEnumLite optional_import_enum_extension_lite = 23;
  */
-export declare const optional_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite>;
+export declare const optional_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite>;
 
 /**
  * @generated from extension: optional string optional_string_piece_extension_lite = 24;
  */
-export declare const optional_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const optional_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * TODO: ctype=CORD is not supported for extension. Add
@@ -1411,139 +1411,139 @@ export declare const optional_string_piece_extension_lite: TypedDescExtension<Te
  *
  * @generated from extension: optional string optional_cord_extension_lite = 25;
  */
-export declare const optional_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const optional_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * @generated from extension: optional protobuf_unittest_import.PublicImportMessageLite optional_public_import_message_extension_lite = 26;
  */
-export declare const optional_public_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, PublicImportMessageLite>;
+export declare const optional_public_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, PublicImportMessageLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_lazy_message_extension_lite = 27;
  */
-export declare const optional_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
+export declare const optional_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_unverified_lazy_message_extension_lite = 28;
  */
-export declare const optional_unverified_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
+export declare const optional_unverified_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
 
 /**
  * Repeated
  *
  * @generated from extension: repeated int32 repeated_int32_extension_lite = 31;
  */
-export declare const repeated_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated int64 repeated_int64_extension_lite = 32;
  */
-export declare const repeated_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]>;
+export declare const repeated_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated uint32 repeated_uint32_extension_lite = 33;
  */
-export declare const repeated_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated uint64 repeated_uint64_extension_lite = 34;
  */
-export declare const repeated_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]>;
+export declare const repeated_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated sint32 repeated_sint32_extension_lite = 35;
  */
-export declare const repeated_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated sint64 repeated_sint64_extension_lite = 36;
  */
-export declare const repeated_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]>;
+export declare const repeated_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated fixed32 repeated_fixed32_extension_lite = 37;
  */
-export declare const repeated_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated fixed64 repeated_fixed64_extension_lite = 38;
  */
-export declare const repeated_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]>;
+export declare const repeated_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated sfixed32 repeated_sfixed32_extension_lite = 39;
  */
-export declare const repeated_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated sfixed64 repeated_sfixed64_extension_lite = 40;
  */
-export declare const repeated_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]>;
+export declare const repeated_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated float repeated_float_extension_lite = 41;
  */
-export declare const repeated_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated double repeated_double_extension_lite = 42;
  */
-export declare const repeated_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]>;
+export declare const repeated_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated bool repeated_bool_extension_lite = 43;
  */
-export declare const repeated_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean[]>;
+export declare const repeated_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean[]>;
 
 /**
  * @generated from extension: repeated string repeated_string_extension_lite = 44;
  */
-export declare const repeated_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]>;
+export declare const repeated_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]>;
 
 /**
  * @generated from extension: repeated bytes repeated_bytes_extension_lite = 45;
  */
-export declare const repeated_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array[]>;
+export declare const repeated_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.RepeatedGroup_extension_lite repeatedgroup_extension_lite = 46;
  */
-export declare const repeatedgroup_extension_lite: TypedDescExtension<TestAllExtensionsLite, RepeatedGroup_extension_lite[]>;
+export declare const repeatedgroup_extension_lite: GenDescExtension<TestAllExtensionsLite, RepeatedGroup_extension_lite[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedMessage repeated_nested_message_extension_lite = 48;
  */
-export declare const repeated_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]>;
+export declare const repeated_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignMessageLite repeated_foreign_message_extension_lite = 49;
  */
-export declare const repeated_foreign_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignMessageLite[]>;
+export declare const repeated_foreign_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignMessageLite[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest_import.ImportMessageLite repeated_import_message_extension_lite = 50;
  */
-export declare const repeated_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportMessageLite[]>;
+export declare const repeated_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportMessageLite[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedEnum repeated_nested_enum_extension_lite = 51;
  */
-export declare const repeated_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum[]>;
+export declare const repeated_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignEnumLite repeated_foreign_enum_extension_lite = 52;
  */
-export declare const repeated_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite[]>;
+export declare const repeated_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest_import.ImportEnumLite repeated_import_enum_extension_lite = 53;
  */
-export declare const repeated_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite[]>;
+export declare const repeated_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite[]>;
 
 /**
  * @generated from extension: repeated string repeated_string_piece_extension_lite = 54;
  */
-export declare const repeated_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]>;
+export declare const repeated_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]>;
 
 /**
  * TODO: ctype=CORD is not supported for extension. Add
@@ -1551,109 +1551,109 @@ export declare const repeated_string_piece_extension_lite: TypedDescExtension<Te
  *
  * @generated from extension: repeated string repeated_cord_extension_lite = 55;
  */
-export declare const repeated_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]>;
+export declare const repeated_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedMessage repeated_lazy_message_extension_lite = 57;
  */
-export declare const repeated_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]>;
+export declare const repeated_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]>;
 
 /**
  * Singular with defaults
  *
  * @generated from extension: optional int32 default_int32_extension_lite = 61 [default = 41];
  */
-export declare const default_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional int64 default_int64_extension_lite = 62 [default = 42];
  */
-export declare const default_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const default_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional uint32 default_uint32_extension_lite = 63 [default = 43];
  */
-export declare const default_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional uint64 default_uint64_extension_lite = 64 [default = 44];
  */
-export declare const default_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const default_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional sint32 default_sint32_extension_lite = 65 [default = -45];
  */
-export declare const default_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional sint64 default_sint64_extension_lite = 66 [default = 46];
  */
-export declare const default_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const default_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional fixed32 default_fixed32_extension_lite = 67 [default = 47];
  */
-export declare const default_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional fixed64 default_fixed64_extension_lite = 68 [default = 48];
  */
-export declare const default_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const default_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional sfixed32 default_sfixed32_extension_lite = 69 [default = 49];
  */
-export declare const default_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional sfixed64 default_sfixed64_extension_lite = 70 [default = -50];
  */
-export declare const default_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint>;
+export declare const default_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint>;
 
 /**
  * @generated from extension: optional float default_float_extension_lite = 71 [default = 51.5];
  */
-export declare const default_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional double default_double_extension_lite = 72 [default = 52000];
  */
-export declare const default_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const default_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional bool default_bool_extension_lite = 73 [default = true];
  */
-export declare const default_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean>;
+export declare const default_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean>;
 
 /**
  * @generated from extension: optional string default_string_extension_lite = 74 [default = "hello"];
  */
-export declare const default_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const default_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * @generated from extension: optional bytes default_bytes_extension_lite = 75 [default = "world"];
  */
-export declare const default_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array>;
+export declare const default_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedEnum default_nested_enum_extension_lite = 81 [default = BAR];
  */
-export declare const default_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum>;
+export declare const default_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum>;
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignEnumLite default_foreign_enum_extension_lite = 82 [default = FOREIGN_LITE_BAR];
  */
-export declare const default_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite>;
+export declare const default_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportEnumLite default_import_enum_extension_lite = 83 [default = IMPORT_LITE_BAR];
  */
-export declare const default_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite>;
+export declare const default_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite>;
 
 /**
  * @generated from extension: optional string default_string_piece_extension_lite = 84 [default = "abc"];
  */
-export declare const default_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const default_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * TODO: ctype=CORD is not supported for extension. Add
@@ -1661,102 +1661,102 @@ export declare const default_string_piece_extension_lite: TypedDescExtension<Tes
  *
  * @generated from extension: optional string default_cord_extension_lite = 85 [default = "123"];
  */
-export declare const default_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const default_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * For oneof test
  *
  * @generated from extension: optional uint32 oneof_uint32_extension_lite = 111;
  */
-export declare const oneof_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number>;
+export declare const oneof_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage oneof_nested_message_extension_lite = 112;
  */
-export declare const oneof_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
+export declare const oneof_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage>;
 
 /**
  * @generated from extension: optional string oneof_string_extension_lite = 113;
  */
-export declare const oneof_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string>;
+export declare const oneof_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string>;
 
 /**
  * @generated from extension: optional bytes oneof_bytes_extension_lite = 114;
  */
-export declare const oneof_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array>;
+export declare const oneof_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array>;
 
 /**
  * @generated from extension: repeated int32 packed_int32_extension_lite = 90 [packed = true];
  */
-export declare const packed_int32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_int32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated int64 packed_int64_extension_lite = 91 [packed = true];
  */
-export declare const packed_int64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]>;
+export declare const packed_int64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_extension_lite = 92 [packed = true];
  */
-export declare const packed_uint32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_uint32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated uint64 packed_uint64_extension_lite = 93 [packed = true];
  */
-export declare const packed_uint64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]>;
+export declare const packed_uint64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated sint32 packed_sint32_extension_lite = 94 [packed = true];
  */
-export declare const packed_sint32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_sint32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated sint64 packed_sint64_extension_lite = 95 [packed = true];
  */
-export declare const packed_sint64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]>;
+export declare const packed_sint64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated fixed32 packed_fixed32_extension_lite = 96 [packed = true];
  */
-export declare const packed_fixed32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_fixed32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated fixed64 packed_fixed64_extension_lite = 97 [packed = true];
  */
-export declare const packed_fixed64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]>;
+export declare const packed_fixed64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated sfixed32 packed_sfixed32_extension_lite = 98 [packed = true];
  */
-export declare const packed_sfixed32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_sfixed32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated sfixed64 packed_sfixed64_extension_lite = 99 [packed = true];
  */
-export declare const packed_sfixed64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]>;
+export declare const packed_sfixed64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]>;
 
 /**
  * @generated from extension: repeated float packed_float_extension_lite = 100 [packed = true];
  */
-export declare const packed_float_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_float_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated double packed_double_extension_lite = 101 [packed = true];
  */
-export declare const packed_double_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]>;
+export declare const packed_double_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]>;
 
 /**
  * @generated from extension: repeated bool packed_bool_extension_lite = 102 [packed = true];
  */
-export declare const packed_bool_extension_lite: TypedDescExtension<TestPackedExtensionsLite, boolean[]>;
+export declare const packed_bool_extension_lite: GenDescExtension<TestPackedExtensionsLite, boolean[]>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignEnumLite packed_enum_extension_lite = 103 [packed = true];
  */
-export declare const packed_enum_extension_lite: TypedDescExtension<TestPackedExtensionsLite, ForeignEnumLite[]>;
+export declare const packed_enum_extension_lite: GenDescExtension<TestPackedExtensionsLite, ForeignEnumLite[]>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite test_all_types_lite = 536860000;
  */
-export declare const test_all_types_lite: TypedDescExtension<TestHugeFieldNumbersLite, TestAllTypesLite>;
+export declare const test_all_types_lite: GenDescExtension<TestHugeFieldNumbersLite, TestAllTypesLite>;
 

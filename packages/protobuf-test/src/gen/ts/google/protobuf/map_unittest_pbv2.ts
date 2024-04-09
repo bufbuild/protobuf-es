@@ -21,7 +21,7 @@
 // In map_test_util.h we do "using namespace unittest = protobuf_unittest".
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ForeignMessage, TestAllTypes, TestRequired } from "./unittest_pbv2.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pbv2.js";
@@ -134,7 +134,7 @@ export type TestMap = Message<"protobuf_unittest.TestMap"> & {
 
 // Describes the message protobuf_unittest.TestMap.
 // Use `create(TestMapDesc)` to create a new TestMap.
-export const TestMapDesc: TypedDescMessage<TestMap> = /*@__PURE__*/
+export const TestMapDesc: GenDescMessage<TestMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 0);
 
 /**
@@ -149,7 +149,7 @@ export type TestMapSubmessage = Message<"protobuf_unittest.TestMapSubmessage"> &
 
 // Describes the message protobuf_unittest.TestMapSubmessage.
 // Use `create(TestMapSubmessageDesc)` to create a new TestMapSubmessage.
-export const TestMapSubmessageDesc: TypedDescMessage<TestMapSubmessage> = /*@__PURE__*/
+export const TestMapSubmessageDesc: GenDescMessage<TestMapSubmessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 1);
 
 /**
@@ -164,7 +164,7 @@ export type TestMessageMap = Message<"protobuf_unittest.TestMessageMap"> & {
 
 // Describes the message protobuf_unittest.TestMessageMap.
 // Use `create(TestMessageMapDesc)` to create a new TestMessageMap.
-export const TestMessageMapDesc: TypedDescMessage<TestMessageMap> = /*@__PURE__*/
+export const TestMessageMapDesc: GenDescMessage<TestMessageMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 2);
 
 /**
@@ -186,7 +186,7 @@ export type TestSameTypeMap = Message<"protobuf_unittest.TestSameTypeMap"> & {
 
 // Describes the message protobuf_unittest.TestSameTypeMap.
 // Use `create(TestSameTypeMapDesc)` to create a new TestSameTypeMap.
-export const TestSameTypeMapDesc: TypedDescMessage<TestSameTypeMap> = /*@__PURE__*/
+export const TestSameTypeMapDesc: GenDescMessage<TestSameTypeMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 3);
 
 /**
@@ -203,7 +203,7 @@ export type TestRequiredMessageMap = Message<"protobuf_unittest.TestRequiredMess
 
 // Describes the message protobuf_unittest.TestRequiredMessageMap.
 // Use `create(TestRequiredMessageMapDesc)` to create a new TestRequiredMessageMap.
-export const TestRequiredMessageMapDesc: TypedDescMessage<TestRequiredMessageMap> = /*@__PURE__*/
+export const TestRequiredMessageMapDesc: GenDescMessage<TestRequiredMessageMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 4);
 
 /**
@@ -298,7 +298,7 @@ export type TestArenaMap = Message<"protobuf_unittest.TestArenaMap"> & {
 
 // Describes the message protobuf_unittest.TestArenaMap.
 // Use `create(TestArenaMapDesc)` to create a new TestArenaMap.
-export const TestArenaMapDesc: TypedDescMessage<TestArenaMap> = /*@__PURE__*/
+export const TestArenaMapDesc: GenDescMessage<TestArenaMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 5);
 
 /**
@@ -316,7 +316,7 @@ export type MessageContainingEnumCalledType = Message<"protobuf_unittest.Message
 
 // Describes the message protobuf_unittest.MessageContainingEnumCalledType.
 // Use `create(MessageContainingEnumCalledTypeDesc)` to create a new MessageContainingEnumCalledType.
-export const MessageContainingEnumCalledTypeDesc: TypedDescMessage<MessageContainingEnumCalledType> = /*@__PURE__*/
+export const MessageContainingEnumCalledTypeDesc: GenDescMessage<MessageContainingEnumCalledType> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 6);
 
 /**
@@ -330,7 +330,7 @@ export enum MessageContainingEnumCalledType_Type {
 }
 
 // Describes the enum protobuf_unittest.MessageContainingEnumCalledType.Type.
-export const MessageContainingEnumCalledType_TypeDesc: TypedDescEnum<MessageContainingEnumCalledType_Type> = /*@__PURE__*/
+export const MessageContainingEnumCalledType_TypeDesc: GenDescEnum<MessageContainingEnumCalledType_Type> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_unittest, 6, 0);
 
 /**
@@ -347,7 +347,7 @@ export type MessageContainingMapCalledEntry = Message<"protobuf_unittest.Message
 
 // Describes the message protobuf_unittest.MessageContainingMapCalledEntry.
 // Use `create(MessageContainingMapCalledEntryDesc)` to create a new MessageContainingMapCalledEntry.
-export const MessageContainingMapCalledEntryDesc: TypedDescMessage<MessageContainingMapCalledEntry> = /*@__PURE__*/
+export const MessageContainingMapCalledEntryDesc: GenDescMessage<MessageContainingMapCalledEntry> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 7);
 
 /**
@@ -362,7 +362,7 @@ export type TestRecursiveMapMessage = Message<"protobuf_unittest.TestRecursiveMa
 
 // Describes the message protobuf_unittest.TestRecursiveMapMessage.
 // Use `create(TestRecursiveMapMessageDesc)` to create a new TestRecursiveMapMessage.
-export const TestRecursiveMapMessageDesc: TypedDescMessage<TestRecursiveMapMessage> = /*@__PURE__*/
+export const TestRecursiveMapMessageDesc: GenDescMessage<TestRecursiveMapMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 8);
 
 /**
@@ -377,7 +377,7 @@ export type TestI32StrMap = Message<"protobuf_unittest.TestI32StrMap"> & {
 
 // Describes the message protobuf_unittest.TestI32StrMap.
 // Use `create(TestI32StrMapDesc)` to create a new TestI32StrMap.
-export const TestI32StrMapDesc: TypedDescMessage<TestI32StrMap> = /*@__PURE__*/
+export const TestI32StrMapDesc: GenDescMessage<TestI32StrMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_unittest, 9);
 
 /**
@@ -401,6 +401,6 @@ export enum MapEnum {
 }
 
 // Describes the enum protobuf_unittest.MapEnum.
-export const MapEnumDesc: TypedDescEnum<MapEnum> = /*@__PURE__*/
+export const MapEnumDesc: GenDescEnum<MapEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_unittest, 0);
 

@@ -20,7 +20,7 @@
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_no_generic_services: DescFile;
 
@@ -35,7 +35,7 @@ export declare type TestMessage = Message<"protobuf_unittest.no_generic_services
 };
 
 // Describes the message protobuf_unittest.no_generic_services_test.TestMessage. Use `create(TestMessageDesc)` to create a new TestMessage.
-export declare const TestMessageDesc: TypedDescMessage<TestMessage>;
+export declare const TestMessageDesc: GenDescMessage<TestMessage>;
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
@@ -48,12 +48,12 @@ export enum TestEnum {
 }
 
 // Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
-export declare const TestEnumDesc: TypedDescEnum<TestEnum>;
+export declare const TestEnumDesc: GenDescEnum<TestEnum>;
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService
  */
-export declare const TestService: TypedDescService<{
+export declare const TestService: GenDescService<{
   /**
    * @generated from rpc protobuf_unittest.no_generic_services_test.TestService.Foo
    */
@@ -68,5 +68,5 @@ export declare const TestService: TypedDescService<{
 /**
  * @generated from extension: optional int32 test_extension = 1000;
  */
-export declare const test_extension: TypedDescExtension<TestMessage, number>;
+export declare const test_extension: GenDescExtension<TestMessage, number>;
 

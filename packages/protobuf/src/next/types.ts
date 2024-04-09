@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import type {
-  TypedDescEnum,
-  TypedDescExtension,
-  TypedDescMessage,
-} from "./codegenv1/typed-desc.js";
+  GenDescEnum,
+  GenDescExtension,
+  GenDescMessage,
+} from "./codegenv1/types.js";
 import type {
   DescEnum,
   DescExtension,
@@ -33,25 +33,25 @@ export type Message<TypeName extends string = string> = {
 
 // TODO docs
 export type MessageShape<Desc extends DescMessage> =
-  Desc extends TypedDescMessage<infer RuntimeShape> ? RuntimeShape : Message;
+  Desc extends GenDescMessage<infer RuntimeShape> ? RuntimeShape : Message;
 
 // TODO docs
 export type MessageInitShape<Desc extends DescMessage> =
-  Desc extends TypedDescMessage<infer RuntimeShape>
+  Desc extends GenDescMessage<infer RuntimeShape>
     ? RuntimeShape | MessageInit<RuntimeShape>
     : Record<string, unknown>; // TODO better input type
 
 // TODO docs
 export type EnumShape<Desc extends DescEnum> =
-  Desc extends TypedDescEnum<infer RuntimeShape> ? RuntimeShape : number;
+  Desc extends GenDescEnum<infer RuntimeShape> ? RuntimeShape : number;
 
 export type ExtensionValueShape<Desc extends DescExtension> =
-  Desc extends TypedDescExtension<Message, infer RuntimeShape>
+  Desc extends GenDescExtension<Message, infer RuntimeShape>
     ? RuntimeShape
     : unknown;
 
 export type Extendee<Desc extends DescExtension> =
-  Desc extends TypedDescExtension<infer Extendee> ? Extendee : Message;
+  Desc extends GenDescExtension<infer Extendee> ? Extendee : Message;
 
 export type UnknownField = {
   readonly no: number;

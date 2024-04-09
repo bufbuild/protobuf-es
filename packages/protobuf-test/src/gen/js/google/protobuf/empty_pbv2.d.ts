@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_empty: DescFile;
 
@@ -38,5 +38,5 @@ export declare type Empty = Message<"google.protobuf.Empty"> & {
 };
 
 // Describes the message google.protobuf.Empty. Use `create(EmptyDesc)` to create a new Empty.
-export declare const EmptyDesc: TypedDescMessage<Empty>;
+export declare const EmptyDesc: GenDescMessage<Empty>;
 

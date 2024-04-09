@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_deprecation_explicit: DescFile;
 
@@ -36,7 +36,7 @@ export declare type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
 };
 
 // Describes the message spec.DeprecatedMessage. Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
-export declare const DeprecatedMessageDesc: TypedDescMessage<DeprecatedMessage>;
+export declare const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage>;
 
 /**
  * A single field of this message is deprecated
@@ -61,7 +61,7 @@ export declare type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessag
 };
 
 // Describes the message spec.DeprecatedFieldMessage. Use `create(DeprecatedFieldMessageDesc)` to create a new DeprecatedFieldMessage.
-export declare const DeprecatedFieldMessageDesc: TypedDescMessage<DeprecatedFieldMessage>;
+export declare const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage>;
 
 /**
  * The entire enum is deprecated
@@ -82,7 +82,7 @@ export enum DeprecatedEnum {
 }
 
 // Describes the enum spec.DeprecatedEnum.
-export declare const DeprecatedEnumDesc: TypedDescEnum<DeprecatedEnum>;
+export declare const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum>;
 
 /**
  * Only a single enum value is deprecated
@@ -103,5 +103,5 @@ export enum DeprecatedValueEnum {
 }
 
 // Describes the enum spec.DeprecatedValueEnum.
-export declare const DeprecatedValueEnumDesc: TypedDescEnum<DeprecatedValueEnum>;
+export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum>;
 

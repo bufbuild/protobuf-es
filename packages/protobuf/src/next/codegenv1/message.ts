@@ -14,7 +14,7 @@
 
 import type { Message } from "../types.js";
 import type { DescFile } from "../../descriptor-set.js";
-import type { TypedDescMessage } from "./typed-desc.js";
+import type { GenDescMessage } from "./types.js";
 
 /**
  * Hydrate a message descriptor.
@@ -25,9 +25,9 @@ export function messageDesc<Shape extends Message>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): TypedDescMessage<Shape> {
+): GenDescMessage<Shape> {
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ) as TypedDescMessage<Shape>;
+  ) as GenDescMessage<Shape>;
 }

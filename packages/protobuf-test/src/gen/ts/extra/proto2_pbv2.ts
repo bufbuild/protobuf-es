@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -475,7 +475,7 @@ export type Proto2Message = Message<"spec.Proto2Message"> & {
 
 // Describes the message spec.Proto2Message.
 // Use `create(Proto2MessageDesc)` to create a new Proto2Message.
-export const Proto2MessageDesc: TypedDescMessage<Proto2Message> = /*@__PURE__*/
+export const Proto2MessageDesc: GenDescMessage<Proto2Message> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0);
 
 /**
@@ -490,7 +490,7 @@ export type Proto2Message_RequiredGroup = Message<"spec.Proto2Message.RequiredGr
 
 // Describes the message spec.Proto2Message.RequiredGroup.
 // Use `create(Proto2Message_RequiredGroupDesc)` to create a new Proto2Message_RequiredGroup.
-export const Proto2Message_RequiredGroupDesc: TypedDescMessage<Proto2Message_RequiredGroup> = /*@__PURE__*/
+export const Proto2Message_RequiredGroupDesc: GenDescMessage<Proto2Message_RequiredGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 0);
 
 /**
@@ -505,7 +505,7 @@ export type Proto2Message_RequiredDefaultGroup = Message<"spec.Proto2Message.Req
 
 // Describes the message spec.Proto2Message.RequiredDefaultGroup.
 // Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new Proto2Message_RequiredDefaultGroup.
-export const Proto2Message_RequiredDefaultGroupDesc: TypedDescMessage<Proto2Message_RequiredDefaultGroup> = /*@__PURE__*/
+export const Proto2Message_RequiredDefaultGroupDesc: GenDescMessage<Proto2Message_RequiredDefaultGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 1);
 
 /**
@@ -520,7 +520,7 @@ export type Proto2Message_OptionalGroup = Message<"spec.Proto2Message.OptionalGr
 
 // Describes the message spec.Proto2Message.OptionalGroup.
 // Use `create(Proto2Message_OptionalGroupDesc)` to create a new Proto2Message_OptionalGroup.
-export const Proto2Message_OptionalGroupDesc: TypedDescMessage<Proto2Message_OptionalGroup> = /*@__PURE__*/
+export const Proto2Message_OptionalGroupDesc: GenDescMessage<Proto2Message_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 2);
 
 /**
@@ -535,7 +535,7 @@ export type Proto2Message_OptionalDefaultGroup = Message<"spec.Proto2Message.Opt
 
 // Describes the message spec.Proto2Message.OptionalDefaultGroup.
 // Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new Proto2Message_OptionalDefaultGroup.
-export const Proto2Message_OptionalDefaultGroupDesc: TypedDescMessage<Proto2Message_OptionalDefaultGroup> = /*@__PURE__*/
+export const Proto2Message_OptionalDefaultGroupDesc: GenDescMessage<Proto2Message_OptionalDefaultGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 3);
 
 /**
@@ -550,7 +550,7 @@ export type Proto2Message_RepeatedGroup = Message<"spec.Proto2Message.RepeatedGr
 
 // Describes the message spec.Proto2Message.RepeatedGroup.
 // Use `create(Proto2Message_RepeatedGroupDesc)` to create a new Proto2Message_RepeatedGroup.
-export const Proto2Message_RepeatedGroupDesc: TypedDescMessage<Proto2Message_RepeatedGroup> = /*@__PURE__*/
+export const Proto2Message_RepeatedGroupDesc: GenDescMessage<Proto2Message_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 4);
 
 /**
@@ -565,7 +565,7 @@ export type Proto2Message_OneofGroup = Message<"spec.Proto2Message.OneofGroup"> 
 
 // Describes the message spec.Proto2Message.OneofGroup.
 // Use `create(Proto2Message_OneofGroupDesc)` to create a new Proto2Message_OneofGroup.
-export const Proto2Message_OneofGroupDesc: TypedDescMessage<Proto2Message_OneofGroup> = /*@__PURE__*/
+export const Proto2Message_OneofGroupDesc: GenDescMessage<Proto2Message_OneofGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 0, 5);
 
 /**
@@ -621,7 +621,7 @@ export type Proto2RepeatedMessage = Message<"spec.Proto2RepeatedMessage"> & {
 
 // Describes the message spec.Proto2RepeatedMessage.
 // Use `create(Proto2RepeatedMessageDesc)` to create a new Proto2RepeatedMessage.
-export const Proto2RepeatedMessageDesc: TypedDescMessage<Proto2RepeatedMessage> = /*@__PURE__*/
+export const Proto2RepeatedMessageDesc: GenDescMessage<Proto2RepeatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 1);
 
 /**
@@ -636,7 +636,7 @@ export type Proto2RepeatedMessage_RepeatedGroup = Message<"spec.Proto2RepeatedMe
 
 // Describes the message spec.Proto2RepeatedMessage.RepeatedGroup.
 // Use `create(Proto2RepeatedMessage_RepeatedGroupDesc)` to create a new Proto2RepeatedMessage_RepeatedGroup.
-export const Proto2RepeatedMessage_RepeatedGroupDesc: TypedDescMessage<Proto2RepeatedMessage_RepeatedGroup> = /*@__PURE__*/
+export const Proto2RepeatedMessage_RepeatedGroupDesc: GenDescMessage<Proto2RepeatedMessage_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 1, 0);
 
 /**
@@ -706,7 +706,7 @@ export type Proto2OneofMessage = Message<"spec.Proto2OneofMessage"> & {
 
 // Describes the message spec.Proto2OneofMessage.
 // Use `create(Proto2OneofMessageDesc)` to create a new Proto2OneofMessage.
-export const Proto2OneofMessageDesc: TypedDescMessage<Proto2OneofMessage> = /*@__PURE__*/
+export const Proto2OneofMessageDesc: GenDescMessage<Proto2OneofMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 2);
 
 /**
@@ -721,7 +721,7 @@ export type Proto2OneofMessage_RepeatedGroup = Message<"spec.Proto2OneofMessage.
 
 // Describes the message spec.Proto2OneofMessage.RepeatedGroup.
 // Use `create(Proto2OneofMessage_RepeatedGroupDesc)` to create a new Proto2OneofMessage_RepeatedGroup.
-export const Proto2OneofMessage_RepeatedGroupDesc: TypedDescMessage<Proto2OneofMessage_RepeatedGroup> = /*@__PURE__*/
+export const Proto2OneofMessage_RepeatedGroupDesc: GenDescMessage<Proto2OneofMessage_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 2, 0);
 
 /**
@@ -747,7 +747,7 @@ export type Proto2PackedMessage = Message<"spec.Proto2PackedMessage"> & {
 
 // Describes the message spec.Proto2PackedMessage.
 // Use `create(Proto2PackedMessageDesc)` to create a new Proto2PackedMessage.
-export const Proto2PackedMessageDesc: TypedDescMessage<Proto2PackedMessage> = /*@__PURE__*/
+export const Proto2PackedMessageDesc: GenDescMessage<Proto2PackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 3);
 
 /**
@@ -773,7 +773,7 @@ export type Proto2UnpackedMessage = Message<"spec.Proto2UnpackedMessage"> & {
 
 // Describes the message spec.Proto2UnpackedMessage.
 // Use `create(Proto2UnpackedMessageDesc)` to create a new Proto2UnpackedMessage.
-export const Proto2UnpackedMessageDesc: TypedDescMessage<Proto2UnpackedMessage> = /*@__PURE__*/
+export const Proto2UnpackedMessageDesc: GenDescMessage<Proto2UnpackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 4);
 
 /**
@@ -799,7 +799,7 @@ export type Proto2UnspecifiedPackedMessage = Message<"spec.Proto2UnspecifiedPack
 
 // Describes the message spec.Proto2UnspecifiedPackedMessage.
 // Use `create(Proto2UnspecifiedPackedMessageDesc)` to create a new Proto2UnspecifiedPackedMessage.
-export const Proto2UnspecifiedPackedMessageDesc: TypedDescMessage<Proto2UnspecifiedPackedMessage> = /*@__PURE__*/
+export const Proto2UnspecifiedPackedMessageDesc: GenDescMessage<Proto2UnspecifiedPackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 5);
 
 /**
@@ -850,7 +850,7 @@ export type Proto2OptionalMessage = Message<"spec.Proto2OptionalMessage"> & {
 
 // Describes the message spec.Proto2OptionalMessage.
 // Use `create(Proto2OptionalMessageDesc)` to create a new Proto2OptionalMessage.
-export const Proto2OptionalMessageDesc: TypedDescMessage<Proto2OptionalMessage> = /*@__PURE__*/
+export const Proto2OptionalMessageDesc: GenDescMessage<Proto2OptionalMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 6);
 
 /**
@@ -901,7 +901,7 @@ export type Proto2RequiredMessage = Message<"spec.Proto2RequiredMessage"> & {
 
 // Describes the message spec.Proto2RequiredMessage.
 // Use `create(Proto2RequiredMessageDesc)` to create a new Proto2RequiredMessage.
-export const Proto2RequiredMessageDesc: TypedDescMessage<Proto2RequiredMessage> = /*@__PURE__*/
+export const Proto2RequiredMessageDesc: GenDescMessage<Proto2RequiredMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 7);
 
 /**
@@ -952,7 +952,7 @@ export type Proto2RequiredDefaultsMessage = Message<"spec.Proto2RequiredDefaults
 
 // Describes the message spec.Proto2RequiredDefaultsMessage.
 // Use `create(Proto2RequiredDefaultsMessageDesc)` to create a new Proto2RequiredDefaultsMessage.
-export const Proto2RequiredDefaultsMessageDesc: TypedDescMessage<Proto2RequiredDefaultsMessage> = /*@__PURE__*/
+export const Proto2RequiredDefaultsMessageDesc: GenDescMessage<Proto2RequiredDefaultsMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 8);
 
 /**
@@ -1003,7 +1003,7 @@ export type Proto2DefaultsMessage = Message<"spec.Proto2DefaultsMessage"> & {
 
 // Describes the message spec.Proto2DefaultsMessage.
 // Use `create(Proto2DefaultsMessageDesc)` to create a new Proto2DefaultsMessage.
-export const Proto2DefaultsMessageDesc: TypedDescMessage<Proto2DefaultsMessage> = /*@__PURE__*/
+export const Proto2DefaultsMessageDesc: GenDescMessage<Proto2DefaultsMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 9);
 
 /**
@@ -1019,7 +1019,7 @@ export type Proto2ChildMessage = Message<"spec.Proto2ChildMessage"> & {
 
 // Describes the message spec.Proto2ChildMessage.
 // Use `create(Proto2ChildMessageDesc)` to create a new Proto2ChildMessage.
-export const Proto2ChildMessageDesc: TypedDescMessage<Proto2ChildMessage> = /*@__PURE__*/
+export const Proto2ChildMessageDesc: GenDescMessage<Proto2ChildMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 10);
 
 /**
@@ -1061,7 +1061,7 @@ export type Proto2GroupsMessage = Message<"spec.Proto2GroupsMessage"> & {
 
 // Describes the message spec.Proto2GroupsMessage.
 // Use `create(Proto2GroupsMessageDesc)` to create a new Proto2GroupsMessage.
-export const Proto2GroupsMessageDesc: TypedDescMessage<Proto2GroupsMessage> = /*@__PURE__*/
+export const Proto2GroupsMessageDesc: GenDescMessage<Proto2GroupsMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 11);
 
 /**
@@ -1081,7 +1081,7 @@ export type Proto2GroupsMessage_Group = Message<"spec.Proto2GroupsMessage.Group"
 
 // Describes the message spec.Proto2GroupsMessage.Group.
 // Use `create(Proto2GroupsMessage_GroupDesc)` to create a new Proto2GroupsMessage_Group.
-export const Proto2GroupsMessage_GroupDesc: TypedDescMessage<Proto2GroupsMessage_Group> = /*@__PURE__*/
+export const Proto2GroupsMessage_GroupDesc: GenDescMessage<Proto2GroupsMessage_Group> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 11, 0);
 
 /**
@@ -1096,7 +1096,7 @@ export type Proto2GroupsMessage_Group_NestedGroup = Message<"spec.Proto2GroupsMe
 
 // Describes the message spec.Proto2GroupsMessage.Group.NestedGroup.
 // Use `create(Proto2GroupsMessage_Group_NestedGroupDesc)` to create a new Proto2GroupsMessage_Group_NestedGroup.
-export const Proto2GroupsMessage_Group_NestedGroupDesc: TypedDescMessage<Proto2GroupsMessage_Group_NestedGroup> = /*@__PURE__*/
+export const Proto2GroupsMessage_Group_NestedGroupDesc: GenDescMessage<Proto2GroupsMessage_Group_NestedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 11, 0, 0);
 
 /**
@@ -1112,7 +1112,7 @@ export type Proto2GroupsMessage_RepeatedGroup = Message<"spec.Proto2GroupsMessag
 
 // Describes the message spec.Proto2GroupsMessage.RepeatedGroup.
 // Use `create(Proto2GroupsMessage_RepeatedGroupDesc)` to create a new Proto2GroupsMessage_RepeatedGroup.
-export const Proto2GroupsMessage_RepeatedGroupDesc: TypedDescMessage<Proto2GroupsMessage_RepeatedGroup> = /*@__PURE__*/
+export const Proto2GroupsMessage_RepeatedGroupDesc: GenDescMessage<Proto2GroupsMessage_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 11, 1);
 
 /**
@@ -1128,7 +1128,7 @@ export type Proto2GroupsMessage_OneofGroup = Message<"spec.Proto2GroupsMessage.O
 
 // Describes the message spec.Proto2GroupsMessage.OneofGroup.
 // Use `create(Proto2GroupsMessage_OneofGroupDesc)` to create a new Proto2GroupsMessage_OneofGroup.
-export const Proto2GroupsMessage_OneofGroupDesc: TypedDescMessage<Proto2GroupsMessage_OneofGroup> = /*@__PURE__*/
+export const Proto2GroupsMessage_OneofGroupDesc: GenDescMessage<Proto2GroupsMessage_OneofGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto2, 11, 2);
 
 /**
@@ -1147,7 +1147,7 @@ export enum Proto2Enum {
 }
 
 // Describes the enum spec.Proto2Enum.
-export const Proto2EnumDesc: TypedDescEnum<Proto2Enum> = /*@__PURE__*/
+export const Proto2EnumDesc: GenDescEnum<Proto2Enum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_proto2, 0);
 
 /**
@@ -1168,6 +1168,6 @@ export enum Proto2EnumWithZero {
 }
 
 // Describes the enum spec.Proto2EnumWithZero.
-export const Proto2EnumWithZeroDesc: TypedDescEnum<Proto2EnumWithZero> = /*@__PURE__*/
+export const Proto2EnumWithZeroDesc: GenDescEnum<Proto2EnumWithZero> = /*@__PURE__*/
   enumDesc(fileDesc_extra_proto2, 1);
 

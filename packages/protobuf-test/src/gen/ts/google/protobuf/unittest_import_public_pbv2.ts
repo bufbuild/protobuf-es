@@ -19,7 +19,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -38,6 +38,6 @@ export type PublicImportMessage = Message<"protobuf_unittest_import.PublicImport
 
 // Describes the message protobuf_unittest_import.PublicImportMessage.
 // Use `create(PublicImportMessageDesc)` to create a new PublicImportMessage.
-export const PublicImportMessageDesc: TypedDescMessage<PublicImportMessage> = /*@__PURE__*/
+export const PublicImportMessageDesc: GenDescMessage<PublicImportMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
 

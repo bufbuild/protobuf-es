@@ -20,7 +20,7 @@ import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { Option, Syntax } from "./type_pbv2.js";
 import type { SourceContext } from "./source_context_pbv2.js";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_api: DescFile;
 
@@ -110,7 +110,7 @@ export declare type Api = Message<"google.protobuf.Api"> & {
 };
 
 // Describes the message google.protobuf.Api. Use `create(ApiDesc)` to create a new Api.
-export declare const ApiDesc: TypedDescMessage<Api>;
+export declare const ApiDesc: GenDescMessage<Api>;
 
 /**
  * Method represents a method of an API interface.
@@ -169,7 +169,7 @@ export declare type Method = Message<"google.protobuf.Method"> & {
 };
 
 // Describes the message google.protobuf.Method. Use `create(MethodDesc)` to create a new Method.
-export declare const MethodDesc: TypedDescMessage<Method>;
+export declare const MethodDesc: GenDescMessage<Method>;
 
 /**
  * Declares an API Interface to be included in this interface. The including
@@ -271,5 +271,5 @@ export declare type Mixin = Message<"google.protobuf.Mixin"> & {
 };
 
 // Describes the message google.protobuf.Mixin. Use `create(MixinDesc)` to create a new Mixin.
-export declare const MixinDesc: TypedDescMessage<Mixin>;
+export declare const MixinDesc: GenDescMessage<Mixin>;
 

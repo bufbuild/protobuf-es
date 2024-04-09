@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_struct: DescFile;
 
@@ -44,7 +44,7 @@ export declare type Struct = Message<"google.protobuf.Struct"> & {
 };
 
 // Describes the message google.protobuf.Struct. Use `create(StructDesc)` to create a new Struct.
-export declare const StructDesc: TypedDescMessage<Struct>;
+export declare const StructDesc: GenDescMessage<Struct>;
 
 /**
  * `Value` represents a dynamically typed value which can be either
@@ -114,7 +114,7 @@ export declare type Value = Message<"google.protobuf.Value"> & {
 };
 
 // Describes the message google.protobuf.Value. Use `create(ValueDesc)` to create a new Value.
-export declare const ValueDesc: TypedDescMessage<Value>;
+export declare const ValueDesc: GenDescMessage<Value>;
 
 /**
  * `ListValue` is a wrapper around a repeated field of values.
@@ -133,7 +133,7 @@ export declare type ListValue = Message<"google.protobuf.ListValue"> & {
 };
 
 // Describes the message google.protobuf.ListValue. Use `create(ListValueDesc)` to create a new ListValue.
-export declare const ListValueDesc: TypedDescMessage<ListValue>;
+export declare const ListValueDesc: GenDescMessage<ListValue>;
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the
@@ -153,5 +153,5 @@ export enum NullValue {
 }
 
 // Describes the enum google.protobuf.NullValue.
-export declare const NullValueDesc: TypedDescEnum<NullValue>;
+export declare const NullValueDesc: GenDescEnum<NullValue>;
 

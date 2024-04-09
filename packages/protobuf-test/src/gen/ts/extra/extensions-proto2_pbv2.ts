@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { User } from "./example_pbv2.js";
 import { fileDesc_extra_example } from "./example_pbv2.js";
@@ -41,7 +41,7 @@ export type Proto2Extendee = Message<"proto2ext.Proto2Extendee"> & {
 
 // Describes the message proto2ext.Proto2Extendee.
 // Use `create(Proto2ExtendeeDesc)` to create a new Proto2Extendee.
-export const Proto2ExtendeeDesc: TypedDescMessage<Proto2Extendee> = /*@__PURE__*/
+export const Proto2ExtendeeDesc: GenDescMessage<Proto2Extendee> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 0);
 
 /**
@@ -58,7 +58,7 @@ export type Proto2ExtMessage = Message<"proto2ext.Proto2ExtMessage"> & {
 
 // Describes the message proto2ext.Proto2ExtMessage.
 // Use `create(Proto2ExtMessageDesc)` to create a new Proto2ExtMessage.
-export const Proto2ExtMessageDesc: TypedDescMessage<Proto2ExtMessage> = /*@__PURE__*/
+export const Proto2ExtMessageDesc: GenDescMessage<Proto2ExtMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 1);
 
 /**
@@ -78,7 +78,7 @@ export type GroupExt = Message<"proto2ext.GroupExt"> & {
 
 // Describes the message proto2ext.GroupExt.
 // Use `create(GroupExtDesc)` to create a new GroupExt.
-export const GroupExtDesc: TypedDescMessage<GroupExt> = /*@__PURE__*/
+export const GroupExtDesc: GenDescMessage<GroupExt> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 2);
 
 /**
@@ -98,7 +98,7 @@ export type RepeatedGroupExt = Message<"proto2ext.RepeatedGroupExt"> & {
 
 // Describes the message proto2ext.RepeatedGroupExt.
 // Use `create(RepeatedGroupExtDesc)` to create a new RepeatedGroupExt.
-export const RepeatedGroupExtDesc: TypedDescMessage<RepeatedGroupExt> = /*@__PURE__*/
+export const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 3);
 
 /**
@@ -111,7 +111,7 @@ export type Proto2ExtContainer = Message<"proto2ext.Proto2ExtContainer"> & {
 
 // Describes the message proto2ext.Proto2ExtContainer.
 // Use `create(Proto2ExtContainerDesc)` to create a new Proto2ExtContainer.
-export const Proto2ExtContainerDesc: TypedDescMessage<Proto2ExtContainer> = /*@__PURE__*/
+export const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4);
 
 /**
@@ -122,19 +122,19 @@ export type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtContainer.Chi
 
 // Describes the message proto2ext.Proto2ExtContainer.Child.
 // Use `create(Proto2ExtContainer_ChildDesc)` to create a new Proto2ExtContainer_Child.
-export const Proto2ExtContainer_ChildDesc: TypedDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
+export const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4, 0);
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 9010;
  */
-export const Proto2ExtContainer_Child_uint32_ext: TypedDescExtension<Proto2Extendee, number> = /*@__PURE__*/
+export const Proto2ExtContainer_Child_uint32_ext: GenDescExtension<Proto2Extendee, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 4, 0, 0);
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 9001;
  */
-export const Proto2ExtContainer_uint32_ext: TypedDescExtension<Proto2Extendee, number> = /*@__PURE__*/
+export const Proto2ExtContainer_uint32_ext: GenDescExtension<Proto2Extendee, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 4, 0);
 
 /**
@@ -155,103 +155,103 @@ export enum Proto2ExtEnum {
 }
 
 // Describes the enum proto2ext.Proto2ExtEnum.
-export const Proto2ExtEnumDesc: TypedDescEnum<Proto2ExtEnum> = /*@__PURE__*/
+export const Proto2ExtEnumDesc: GenDescEnum<Proto2ExtEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_extensions_proto2, 0);
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 1001;
  */
-export const uint32_ext: TypedDescExtension<Proto2Extendee, number> = /*@__PURE__*/
+export const uint32_ext: GenDescExtension<Proto2Extendee, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 0);
 
 /**
  * @generated from extension: optional uint32 uint32_ext_with_default = 1002 [default = 999];
  */
-export const uint32_ext_with_default: TypedDescExtension<Proto2Extendee, number> = /*@__PURE__*/
+export const uint32_ext_with_default: GenDescExtension<Proto2Extendee, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 1);
 
 /**
  * @generated from extension: optional string string_ext = 2001;
  */
-export const string_ext: TypedDescExtension<Proto2Extendee, string> = /*@__PURE__*/
+export const string_ext: GenDescExtension<Proto2Extendee, string> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 2);
 
 /**
  * @generated from extension: optional string string_ext_with_default = 2002 [default = "hello \" *\/ "];
  */
-export const string_ext_with_default: TypedDescExtension<Proto2Extendee, string> = /*@__PURE__*/
+export const string_ext_with_default: GenDescExtension<Proto2Extendee, string> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 3);
 
 /**
  * @generated from extension: optional uint64 uint64_ext = 3001;
  */
-export const uint64_ext: TypedDescExtension<Proto2Extendee, bigint> = /*@__PURE__*/
+export const uint64_ext: GenDescExtension<Proto2Extendee, bigint> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 4);
 
 /**
  * @generated from extension: optional uint64 uint64_ext_js_string = 3002 [jstype = JS_STRING];
  */
-export const uint64_ext_js_string: TypedDescExtension<Proto2Extendee, string> = /*@__PURE__*/
+export const uint64_ext_js_string: GenDescExtension<Proto2Extendee, string> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 5);
 
 /**
  * @generated from extension: optional bytes bytes_ext = 4001;
  */
-export const bytes_ext: TypedDescExtension<Proto2Extendee, Uint8Array> = /*@__PURE__*/
+export const bytes_ext: GenDescExtension<Proto2Extendee, Uint8Array> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 6);
 
 /**
  * @generated from extension: optional bytes bytes_ext_with_default = 4002 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
  */
-export const bytes_ext_with_default: TypedDescExtension<Proto2Extendee, Uint8Array> = /*@__PURE__*/
+export const bytes_ext_with_default: GenDescExtension<Proto2Extendee, Uint8Array> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 7);
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtEnum enum_ext = 5001;
  */
-export const enum_ext: TypedDescExtension<Proto2Extendee, Proto2ExtEnum> = /*@__PURE__*/
+export const enum_ext: GenDescExtension<Proto2Extendee, Proto2ExtEnum> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 8);
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtEnum enum_ext_with_default = 5002 [default = PROTO2_EXT_ENUM_NO];
  */
-export const enum_ext_with_default: TypedDescExtension<Proto2Extendee, Proto2ExtEnum> = /*@__PURE__*/
+export const enum_ext_with_default: GenDescExtension<Proto2Extendee, Proto2ExtEnum> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 9);
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtMessage message_ext = 6001;
  */
-export const message_ext: TypedDescExtension<Proto2Extendee, Proto2ExtMessage> = /*@__PURE__*/
+export const message_ext: GenDescExtension<Proto2Extendee, Proto2ExtMessage> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 10);
 
 /**
  * @generated from extension: optional docs.User message_ext_proto3 = 6002;
  */
-export const message_ext_proto3: TypedDescExtension<Proto2Extendee, User> = /*@__PURE__*/
+export const message_ext_proto3: GenDescExtension<Proto2Extendee, User> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 11);
 
 /**
  * @generated from extension: repeated proto2ext.Proto2ExtMessage repeated_message_ext = 7001;
  */
-export const repeated_message_ext: TypedDescExtension<Proto2Extendee, Proto2ExtMessage[]> = /*@__PURE__*/
+export const repeated_message_ext: GenDescExtension<Proto2Extendee, Proto2ExtMessage[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 12);
 
 /**
  * @generated from extension: repeated proto2ext.Proto2ExtEnum repeated_enum_ext = 7005;
  */
-export const repeated_enum_ext: TypedDescExtension<Proto2Extendee, Proto2ExtEnum[]> = /*@__PURE__*/
+export const repeated_enum_ext: GenDescExtension<Proto2Extendee, Proto2ExtEnum[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 13);
 
 /**
  * @generated from extension: repeated string repeated_string_ext = 7002;
  */
-export const repeated_string_ext: TypedDescExtension<Proto2Extendee, string[]> = /*@__PURE__*/
+export const repeated_string_ext: GenDescExtension<Proto2Extendee, string[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 14);
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_ext = 7003 [packed = true];
  */
-export const packed_uint32_ext: TypedDescExtension<Proto2Extendee, number[]> = /*@__PURE__*/
+export const packed_uint32_ext: GenDescExtension<Proto2Extendee, number[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 15);
 
 /**
@@ -259,24 +259,24 @@ export const packed_uint32_ext: TypedDescExtension<Proto2Extendee, number[]> = /
  *
  * @generated from extension: repeated uint32 unpacked_uint32_ext = 7004;
  */
-export const unpacked_uint32_ext: TypedDescExtension<Proto2Extendee, number[]> = /*@__PURE__*/
+export const unpacked_uint32_ext: GenDescExtension<Proto2Extendee, number[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 16);
 
 /**
  * @generated from extension: optional google.protobuf.UInt32Value wrapper_ext = 8001;
  */
-export const wrapper_ext: TypedDescExtension<Proto2Extendee, number> = /*@__PURE__*/
+export const wrapper_ext: GenDescExtension<Proto2Extendee, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 17);
 
 /**
  * @generated from extension: optional proto2ext.GroupExt groupext = 8100;
  */
-export const groupext: TypedDescExtension<Proto2Extendee, GroupExt> = /*@__PURE__*/
+export const groupext: GenDescExtension<Proto2Extendee, GroupExt> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 18);
 
 /**
  * @generated from extension: repeated proto2ext.RepeatedGroupExt repeatedgroupext = 8101;
  */
-export const repeatedgroupext: TypedDescExtension<Proto2Extendee, RepeatedGroupExt[]> = /*@__PURE__*/
+export const repeatedgroupext: GenDescExtension<Proto2Extendee, RepeatedGroupExt[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto2, 19);
 

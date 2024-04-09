@@ -20,4 +20,4 @@ export * from "./file.js";
 export * from "./message.js";
 export * from "./service.js";
 export * from "./symbols.js";
-export * from "./typed-desc.js";
+export * from "./types.js";

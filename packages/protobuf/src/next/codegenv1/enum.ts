@@ -14,7 +14,7 @@
 
 import type { DescEnum, DescFile } from "../../descriptor-set.js";
 import { localName } from "../reflect/names.js";
-import type { TypedDescEnum } from "./typed-desc.js";
+import type { GenDescEnum } from "./types.js";
 
 /**
  * Hydrate an enum descriptor.
@@ -25,15 +25,15 @@ export function enumDesc<Shape>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): TypedDescEnum<Shape> {
+): GenDescEnum<Shape> {
   if (paths.length == 0) {
-    return file.enums[path] as TypedDescEnum<Shape>;
+    return file.enums[path] as GenDescEnum<Shape>;
   }
   const e = paths.pop() as number; // we checked length above
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ).nestedEnums[e] as TypedDescEnum<Shape>;
+  ).nestedEnums[e] as GenDescEnum<Shape>;
 }
 
 /**

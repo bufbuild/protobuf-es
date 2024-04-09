@@ -19,7 +19,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { SourceContext } from "./source_context_pbv2.js";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any } from "./any_pbv2.js";
 
 export declare const fileDesc_google_protobuf_type: DescFile;
@@ -81,7 +81,7 @@ export declare type Type = Message<"google.protobuf.Type"> & {
 };
 
 // Describes the message google.protobuf.Type. Use `create(TypeDesc)` to create a new Type.
-export declare const TypeDesc: TypedDescMessage<Type>;
+export declare const TypeDesc: GenDescMessage<Type>;
 
 /**
  * A single field of a message type.
@@ -163,7 +163,7 @@ export declare type Field = Message<"google.protobuf.Field"> & {
 };
 
 // Describes the message google.protobuf.Field. Use `create(FieldDesc)` to create a new Field.
-export declare const FieldDesc: TypedDescMessage<Field>;
+export declare const FieldDesc: GenDescMessage<Field>;
 
 /**
  * Basic field types.
@@ -306,7 +306,7 @@ export enum Field_Kind {
 }
 
 // Describes the enum google.protobuf.Field.Kind.
-export declare const Field_KindDesc: TypedDescEnum<Field_Kind>;
+export declare const Field_KindDesc: GenDescEnum<Field_Kind>;
 
 /**
  * Whether a field is optional, required, or repeated.
@@ -344,7 +344,7 @@ export enum Field_Cardinality {
 }
 
 // Describes the enum google.protobuf.Field.Cardinality.
-export declare const Field_CardinalityDesc: TypedDescEnum<Field_Cardinality>;
+export declare const Field_CardinalityDesc: GenDescEnum<Field_Cardinality>;
 
 /**
  * Enum type definition.
@@ -396,7 +396,7 @@ export declare type Enum = Message<"google.protobuf.Enum"> & {
 };
 
 // Describes the message google.protobuf.Enum. Use `create(EnumDesc)` to create a new Enum.
-export declare const EnumDesc: TypedDescMessage<Enum>;
+export declare const EnumDesc: GenDescMessage<Enum>;
 
 /**
  * Enum value definition.
@@ -427,7 +427,7 @@ export declare type EnumValue = Message<"google.protobuf.EnumValue"> & {
 };
 
 // Describes the message google.protobuf.EnumValue. Use `create(EnumValueDesc)` to create a new EnumValue.
-export declare const EnumValueDesc: TypedDescMessage<EnumValue>;
+export declare const EnumValueDesc: GenDescMessage<EnumValue>;
 
 /**
  * A protocol buffer option, which can be attached to a message, field,
@@ -458,7 +458,7 @@ export declare type Option = Message<"google.protobuf.Option"> & {
 };
 
 // Describes the message google.protobuf.Option. Use `create(OptionDesc)` to create a new Option.
-export declare const OptionDesc: TypedDescMessage<Option>;
+export declare const OptionDesc: GenDescMessage<Option>;
 
 /**
  * The syntax in which a protocol buffer element is defined.
@@ -489,5 +489,5 @@ export enum Syntax {
 }
 
 // Describes the enum google.protobuf.Syntax.
-export declare const SyntaxDesc: TypedDescEnum<Syntax>;
+export declare const SyntaxDesc: GenDescEnum<Syntax>;
 

@@ -20,7 +20,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_import_public_lite: DescFile;
 
@@ -35,5 +35,5 @@ export declare type PublicImportMessageLite = Message<"protobuf_unittest_import.
 };
 
 // Describes the message protobuf_unittest_import.PublicImportMessageLite. Use `create(PublicImportMessageLiteDesc)` to create a new PublicImportMessageLite.
-export declare const PublicImportMessageLiteDesc: TypedDescMessage<PublicImportMessageLite>;
+export declare const PublicImportMessageLiteDesc: GenDescMessage<PublicImportMessageLite>;
 

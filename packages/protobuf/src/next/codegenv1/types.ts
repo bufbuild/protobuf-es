@@ -21,17 +21,17 @@ import type {
 } from "../../descriptor-set.js";
 import { MethodKind } from "../../service-type.js";
 
-export type TypedDescMessage<RuntimeShape extends Message> = DescMessage &
+export type GenDescMessage<RuntimeShape extends Message> = DescMessage &
   brand<RuntimeShape>;
 
-export type TypedDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
+export type GenDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
 
-export type TypedDescExtension<
+export type GenDescExtension<
   Extendee extends Message = Message,
   RuntimeShape = unknown,
 > = DescExtension & brand<Extendee, RuntimeShape>;
 
-export type TypedDescService<RuntimeShape extends ServiceInfo> = DescService &
+export type GenDescService<RuntimeShape extends ServiceInfo> = DescService &
   brand<RuntimeShape>;
 
 export type ServiceInfo = {

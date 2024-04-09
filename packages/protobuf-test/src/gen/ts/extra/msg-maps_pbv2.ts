@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -101,7 +101,7 @@ export type MapsMessage = Message<"spec.MapsMessage"> & {
 
 // Describes the message spec.MapsMessage.
 // Use `create(MapsMessageDesc)` to create a new MapsMessage.
-export const MapsMessageDesc: TypedDescMessage<MapsMessage> = /*@__PURE__*/
+export const MapsMessageDesc: GenDescMessage<MapsMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_maps, 0);
 
 /**
@@ -125,6 +125,6 @@ export enum MapsEnum {
 }
 
 // Describes the enum spec.MapsEnum.
-export const MapsEnumDesc: TypedDescEnum<MapsEnum> = /*@__PURE__*/
+export const MapsEnumDesc: GenDescEnum<MapsEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_msg_maps, 0);
 

@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -238,6 +238,6 @@ export type FieldMask = Message<"google.protobuf.FieldMask"> & {
 
 // Describes the message google.protobuf.FieldMask.
 // Use `create(FieldMaskDesc)` to create a new FieldMask.
-export const FieldMaskDesc: TypedDescMessage<FieldMask> = /*@__PURE__*/
+export const FieldMaskDesc: GenDescMessage<FieldMask> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_field_mask, 0);
 

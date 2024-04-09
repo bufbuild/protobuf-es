@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_field_mask: DescFile = /*@__PURE__*/
@@ -239,6 +239,6 @@ export type FieldMask = Message<"google.protobuf.FieldMask"> & {
 
 // Describes the message google.protobuf.FieldMask.
 // Use `create(FieldMaskDesc)` to create a new FieldMask.
-export const FieldMaskDesc: TypedDescMessage<FieldMask> = /*@__PURE__*/
+export const FieldMaskDesc: GenDescMessage<FieldMask> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_field_mask, 0);
 

@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescEnum, TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescEnum, GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 import { enumDesc } from "../../../../codegenv1/enum.js";
 
@@ -49,7 +49,7 @@ export type Struct = Message<"google.protobuf.Struct"> & {
 
 // Describes the message google.protobuf.Struct.
 // Use `create(StructDesc)` to create a new Struct.
-export const StructDesc: TypedDescMessage<Struct> = /*@__PURE__*/
+export const StructDesc: GenDescMessage<Struct> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 0);
 
 /**
@@ -121,7 +121,7 @@ export type Value = Message<"google.protobuf.Value"> & {
 
 // Describes the message google.protobuf.Value.
 // Use `create(ValueDesc)` to create a new Value.
-export const ValueDesc: TypedDescMessage<Value> = /*@__PURE__*/
+export const ValueDesc: GenDescMessage<Value> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 1);
 
 /**
@@ -142,7 +142,7 @@ export type ListValue = Message<"google.protobuf.ListValue"> & {
 
 // Describes the message google.protobuf.ListValue.
 // Use `create(ListValueDesc)` to create a new ListValue.
-export const ListValueDesc: TypedDescMessage<ListValue> = /*@__PURE__*/
+export const ListValueDesc: GenDescMessage<ListValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 2);
 
 /**
@@ -163,6 +163,6 @@ export enum NullValue {
 }
 
 // Describes the enum google.protobuf.NullValue.
-export const NullValueDesc: TypedDescEnum<NullValue> = /*@__PURE__*/
+export const NullValueDesc: GenDescEnum<NullValue> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_struct, 0);
 

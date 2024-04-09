@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_jstype: DescFile;
 
@@ -79,7 +79,7 @@ export declare type JSTypeOmittedMessage = Message<"spec.JSTypeOmittedMessage"> 
 };
 
 // Describes the message spec.JSTypeOmittedMessage. Use `create(JSTypeOmittedMessageDesc)` to create a new JSTypeOmittedMessage.
-export declare const JSTypeOmittedMessageDesc: TypedDescMessage<JSTypeOmittedMessage>;
+export declare const JSTypeOmittedMessageDesc: GenDescMessage<JSTypeOmittedMessage>;
 
 /**
  * @generated from message spec.JSTypeNormalMessage
@@ -138,7 +138,7 @@ export declare type JSTypeNormalMessage = Message<"spec.JSTypeNormalMessage"> & 
 };
 
 // Describes the message spec.JSTypeNormalMessage. Use `create(JSTypeNormalMessageDesc)` to create a new JSTypeNormalMessage.
-export declare const JSTypeNormalMessageDesc: TypedDescMessage<JSTypeNormalMessage>;
+export declare const JSTypeNormalMessageDesc: GenDescMessage<JSTypeNormalMessage>;
 
 /**
  * @generated from message spec.JSTypeStringMessage
@@ -197,7 +197,7 @@ export declare type JSTypeStringMessage = Message<"spec.JSTypeStringMessage"> & 
 };
 
 // Describes the message spec.JSTypeStringMessage. Use `create(JSTypeStringMessageDesc)` to create a new JSTypeStringMessage.
-export declare const JSTypeStringMessageDesc: TypedDescMessage<JSTypeStringMessage>;
+export declare const JSTypeStringMessageDesc: GenDescMessage<JSTypeStringMessage>;
 
 /**
  * @generated from message spec.JSTypeNumberMessage
@@ -256,5 +256,5 @@ export declare type JSTypeNumberMessage = Message<"spec.JSTypeNumberMessage"> & 
 };
 
 // Describes the message spec.JSTypeNumberMessage. Use `create(JSTypeNumberMessageDesc)` to create a new JSTypeNumberMessage.
-export declare const JSTypeNumberMessageDesc: TypedDescMessage<JSTypeNumberMessage>;
+export declare const JSTypeNumberMessageDesc: GenDescMessage<JSTypeNumberMessage>;
 

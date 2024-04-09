@@ -25,7 +25,7 @@
 // Comment before package.
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -90,7 +90,7 @@ export type MessageWithComments = Message<"spec.MessageWithComments"> & {
 
 // Describes the message spec.MessageWithComments.
 // Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
-export const MessageWithCommentsDesc: TypedDescMessage<MessageWithComments> = /*@__PURE__*/
+export const MessageWithCommentsDesc: GenDescMessage<MessageWithComments> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 0);
 
 /**
@@ -103,7 +103,7 @@ export type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComment"> & 
 
 // Describes the message spec.EmptyMessageWithComment.
 // Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
-export const EmptyMessageWithCommentDesc: TypedDescMessage<EmptyMessageWithComment> = /*@__PURE__*/
+export const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 1);
 
 /**
@@ -163,7 +163,7 @@ export type GoogleCommentExample = Message<"spec.GoogleCommentExample"> & {
 
 // Describes the message spec.GoogleCommentExample.
 // Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
-export const GoogleCommentExampleDesc: TypedDescMessage<GoogleCommentExample> = /*@__PURE__*/
+export const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 2);
 
 /**
@@ -185,7 +185,7 @@ export enum EnumWithComments {
 }
 
 // Describes the enum spec.EnumWithComments.
-export const EnumWithCommentsDesc: TypedDescEnum<EnumWithComments> = /*@__PURE__*/
+export const EnumWithCommentsDesc: GenDescEnum<EnumWithComments> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 0);
 
 /**
@@ -207,7 +207,7 @@ export enum DeprecatedEnumWithComment {
 }
 
 // Describes the enum spec.DeprecatedEnumWithComment.
-export const DeprecatedEnumWithCommentDesc: TypedDescEnum<DeprecatedEnumWithComment> = /*@__PURE__*/
+export const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 1);
 
 /**
@@ -227,6 +227,6 @@ export enum DeprecatedEnumNoComment {
 }
 
 // Describes the enum spec.DeprecatedEnumNoComment.
-export const DeprecatedEnumNoCommentDesc: TypedDescEnum<DeprecatedEnumNoComment> = /*@__PURE__*/
+export const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 2);
 

@@ -22,7 +22,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_import_lite: DescFile;
 
@@ -37,7 +37,7 @@ export declare type ImportMessageLite = Message<"protobuf_unittest_import.Import
 };
 
 // Describes the message protobuf_unittest_import.ImportMessageLite. Use `create(ImportMessageLiteDesc)` to create a new ImportMessageLite.
-export declare const ImportMessageLiteDesc: TypedDescMessage<ImportMessageLite>;
+export declare const ImportMessageLiteDesc: GenDescMessage<ImportMessageLite>;
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnumLite
@@ -60,5 +60,5 @@ export enum ImportEnumLite {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnumLite.
-export declare const ImportEnumLiteDesc: TypedDescEnum<ImportEnumLite>;
+export declare const ImportEnumLiteDesc: GenDescEnum<ImportEnumLite>;
 

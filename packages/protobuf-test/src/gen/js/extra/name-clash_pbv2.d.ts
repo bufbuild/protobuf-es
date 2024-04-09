@@ -19,7 +19,7 @@
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
 import type { Message as Message$1 } from "@bufbuild/protobuf/next";
 import type { User as User$1 } from "./example_pbv2.js";
-import type { TypedDescEnum, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_name_clash: DescFile;
 
@@ -38,7 +38,7 @@ export declare type User = Message$1<"spec.User"> & {
 };
 
 // Describes the message spec.User. Use `create(UserDesc)` to create a new User.
-export declare const UserDesc: TypedDescMessage<User>;
+export declare const UserDesc: GenDescMessage<User>;
 
 /**
  * @generated from message spec.ReservedPropertyNames
@@ -47,7 +47,7 @@ export declare type ReservedPropertyNames = Message$1<"spec.ReservedPropertyName
 };
 
 // Describes the message spec.ReservedPropertyNames. Use `create(ReservedPropertyNamesDesc)` to create a new ReservedPropertyNames.
-export declare const ReservedPropertyNamesDesc: TypedDescMessage<ReservedPropertyNames>;
+export declare const ReservedPropertyNamesDesc: GenDescMessage<ReservedPropertyNames>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
@@ -83,7 +83,7 @@ export declare type ReservedPropertyNames_BuiltIn = Message$1<"spec.ReservedProp
 };
 
 // Describes the message spec.ReservedPropertyNames.BuiltIn. Use `create(ReservedPropertyNames_BuiltInDesc)` to create a new ReservedPropertyNames_BuiltIn.
-export declare const ReservedPropertyNames_BuiltInDesc: TypedDescMessage<ReservedPropertyNames_BuiltIn>;
+export declare const ReservedPropertyNames_BuiltInDesc: GenDescMessage<ReservedPropertyNames_BuiltIn>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
@@ -154,7 +154,7 @@ export declare type ReservedPropertyNames_Runtime = Message$1<"spec.ReservedProp
 };
 
 // Describes the message spec.ReservedPropertyNames.Runtime. Use `create(ReservedPropertyNames_RuntimeDesc)` to create a new ReservedPropertyNames_Runtime.
-export declare const ReservedPropertyNames_RuntimeDesc: TypedDescMessage<ReservedPropertyNames_Runtime>;
+export declare const ReservedPropertyNames_RuntimeDesc: GenDescMessage<ReservedPropertyNames_Runtime>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
@@ -191,7 +191,7 @@ export declare type ReservedPropertyNames_OneofBultIn = Message$1<"spec.Reserved
 };
 
 // Describes the message spec.ReservedPropertyNames.OneofBultIn. Use `create(ReservedPropertyNames_OneofBultInDesc)` to create a new ReservedPropertyNames_OneofBultIn.
-export declare const ReservedPropertyNames_OneofBultInDesc: TypedDescMessage<ReservedPropertyNames_OneofBultIn>;
+export declare const ReservedPropertyNames_OneofBultInDesc: GenDescMessage<ReservedPropertyNames_OneofBultIn>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
@@ -258,7 +258,7 @@ export declare type ReservedPropertyNames_OneofRuntime = Message$1<"spec.Reserve
 };
 
 // Describes the message spec.ReservedPropertyNames.OneofRuntime. Use `create(ReservedPropertyNames_OneofRuntimeDesc)` to create a new ReservedPropertyNames_OneofRuntime.
-export declare const ReservedPropertyNames_OneofRuntimeDesc: TypedDescMessage<ReservedPropertyNames_OneofRuntime>;
+export declare const ReservedPropertyNames_OneofRuntimeDesc: GenDescMessage<ReservedPropertyNames_OneofRuntime>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
@@ -286,7 +286,7 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
-export declare const ReservedPropertyNames_EnumBuiltInDesc: TypedDescEnum<ReservedPropertyNames_EnumBuiltIn>;
+export declare const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
@@ -339,7 +339,7 @@ export enum ReservedPropertyNames_EnumRuntime {
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumRuntime.
-export declare const ReservedPropertyNames_EnumRuntimeDesc: TypedDescEnum<ReservedPropertyNames_EnumRuntime>;
+export declare const ReservedPropertyNames_EnumRuntimeDesc: GenDescEnum<ReservedPropertyNames_EnumRuntime>;
 
 /**
  * reserved identifier
@@ -350,7 +350,7 @@ export declare type interface$ = Message$1<"spec.interface"> & {
 };
 
 // Describes the message spec.interface. Use `create(interface$Desc)` to create a new interface$.
-export declare const interface$Desc: TypedDescMessage<interface$>;
+export declare const interface$Desc: GenDescMessage<interface$>;
 
 /**
  * reserved identifier
@@ -361,7 +361,7 @@ export declare type function$ = Message$1<"spec.function"> & {
 };
 
 // Describes the message spec.function. Use `create(function$Desc)` to create a new function$.
-export declare const function$Desc: TypedDescMessage<function$>;
+export declare const function$Desc: GenDescMessage<function$>;
 
 /**
  * reserved identifier
@@ -372,7 +372,7 @@ export declare type instanceof$ = Message$1<"spec.instanceof"> & {
 };
 
 // Describes the message spec.instanceof. Use `create(instanceof$Desc)` to create a new instanceof$.
-export declare const instanceof$Desc: TypedDescMessage<instanceof$>;
+export declare const instanceof$Desc: GenDescMessage<instanceof$>;
 
 /**
  * reserved identifier
@@ -383,7 +383,7 @@ export declare type switch$ = Message$1<"spec.switch"> & {
 };
 
 // Describes the message spec.switch. Use `create(switch$Desc)` to create a new switch$.
-export declare const switch$Desc: TypedDescMessage<switch$>;
+export declare const switch$Desc: GenDescMessage<switch$>;
 
 /**
  * reserved identifier
@@ -394,7 +394,7 @@ export declare type case$ = Message$1<"spec.case"> & {
 };
 
 // Describes the message spec.case. Use `create(case$Desc)` to create a new case$.
-export declare const case$Desc: TypedDescMessage<case$>;
+export declare const case$Desc: GenDescMessage<case$>;
 
 /**
  * reserved identifier
@@ -405,7 +405,7 @@ export declare type return$ = Message$1<"spec.return"> & {
 };
 
 // Describes the message spec.return. Use `create(return$Desc)` to create a new return$.
-export declare const return$Desc: TypedDescMessage<return$>;
+export declare const return$Desc: GenDescMessage<return$>;
 
 /**
  * reserved object property
@@ -416,7 +416,7 @@ export declare type constructor = Message$1<"spec.constructor"> & {
 };
 
 // Describes the message spec.constructor. Use `create(constructorDesc)` to create a new constructor.
-export declare const constructorDesc: TypedDescMessage<constructor>;
+export declare const constructorDesc: GenDescMessage<constructor>;
 
 /**
  * @generated from message spec.toString
@@ -425,7 +425,7 @@ export declare type toString = Message$1<"spec.toString"> & {
 };
 
 // Describes the message spec.toString. Use `create(toStringDesc)` to create a new toString.
-export declare const toStringDesc: TypedDescMessage<toString>;
+export declare const toStringDesc: GenDescMessage<toString>;
 
 /**
  * @generated from message spec.toJSON
@@ -434,7 +434,7 @@ export declare type toJSON = Message$1<"spec.toJSON"> & {
 };
 
 // Describes the message spec.toJSON. Use `create(toJSONDesc)` to create a new toJSON.
-export declare const toJSONDesc: TypedDescMessage<toJSON>;
+export declare const toJSONDesc: GenDescMessage<toJSON>;
 
 /**
  * @generated from message spec.valueOf
@@ -443,7 +443,7 @@ export declare type valueOf = Message$1<"spec.valueOf"> & {
 };
 
 // Describes the message spec.valueOf. Use `create(valueOfDesc)` to create a new valueOf.
-export declare const valueOfDesc: TypedDescMessage<valueOf>;
+export declare const valueOfDesc: GenDescMessage<valueOf>;
 
 /**
  * used by runtime
@@ -454,7 +454,7 @@ export declare type Message = Message$1<"spec.Message"> & {
 };
 
 // Describes the message spec.Message. Use `create(MessageDesc)` to create a new Message.
-export declare const MessageDesc: TypedDescMessage<Message>;
+export declare const MessageDesc: GenDescMessage<Message>;
 
 /**
  * used by runtime
@@ -465,7 +465,7 @@ export declare type PartialMessage = Message$1<"spec.PartialMessage"> & {
 };
 
 // Describes the message spec.PartialMessage. Use `create(PartialMessageDesc)` to create a new PartialMessage.
-export declare const PartialMessageDesc: TypedDescMessage<PartialMessage>;
+export declare const PartialMessageDesc: GenDescMessage<PartialMessage>;
 
 /**
  * used by runtime
@@ -476,7 +476,7 @@ export declare type PlainMessage = Message$1<"spec.PlainMessage"> & {
 };
 
 // Describes the message spec.PlainMessage. Use `create(PlainMessageDesc)` to create a new PlainMessage.
-export declare const PlainMessageDesc: TypedDescMessage<PlainMessage>;
+export declare const PlainMessageDesc: GenDescMessage<PlainMessage>;
 
 /**
  * clash with global type "Error"
@@ -498,7 +498,7 @@ export declare type Error = Message$1<"spec.Error"> & {
 };
 
 // Describes the message spec.Error. Use `create(ErrorDesc)` to create a new Error.
-export declare const ErrorDesc: TypedDescMessage<Error>;
+export declare const ErrorDesc: GenDescMessage<Error>;
 
 /**
  * clash with global type
@@ -509,7 +509,7 @@ export declare type Object$ = Message$1<"spec.Object"> & {
 };
 
 // Describes the message spec.Object. Use `create(Object$Desc)` to create a new Object$.
-export declare const Object$Desc: TypedDescMessage<Object$>;
+export declare const Object$Desc: GenDescMessage<Object$>;
 
 /**
  * @generated from message spec.object
@@ -518,7 +518,7 @@ export declare type object$ = Message$1<"spec.object"> & {
 };
 
 // Describes the message spec.object. Use `create(object$Desc)` to create a new object$.
-export declare const object$Desc: TypedDescMessage<object$>;
+export declare const object$Desc: GenDescMessage<object$>;
 
 /**
  * clash with global type
@@ -529,7 +529,7 @@ export declare type array = Message$1<"spec.array"> & {
 };
 
 // Describes the message spec.array. Use `create(arrayDesc)` to create a new array.
-export declare const arrayDesc: TypedDescMessage<array>;
+export declare const arrayDesc: GenDescMessage<array>;
 
 /**
  * clash with global type
@@ -540,7 +540,7 @@ export declare type string$ = Message$1<"spec.string"> & {
 };
 
 // Describes the message spec.string. Use `create(string$Desc)` to create a new string$.
-export declare const string$Desc: TypedDescMessage<string$>;
+export declare const string$Desc: GenDescMessage<string$>;
 
 /**
  * clash with global type
@@ -551,7 +551,7 @@ export declare type number$ = Message$1<"spec.number"> & {
 };
 
 // Describes the message spec.number. Use `create(number$Desc)` to create a new number$.
-export declare const number$Desc: TypedDescMessage<number$>;
+export declare const number$Desc: GenDescMessage<number$>;
 
 /**
  * clash with global type
@@ -562,7 +562,7 @@ export declare type boolean$ = Message$1<"spec.boolean"> & {
 };
 
 // Describes the message spec.boolean. Use `create(boolean$Desc)` to create a new boolean$.
-export declare const boolean$Desc: TypedDescMessage<boolean$>;
+export declare const boolean$Desc: GenDescMessage<boolean$>;
 
 /**
  * clash with global type
@@ -573,7 +573,7 @@ export declare type bigint$ = Message$1<"spec.bigint"> & {
 };
 
 // Describes the message spec.bigint. Use `create(bigint$Desc)` to create a new bigint$.
-export declare const bigint$Desc: TypedDescMessage<bigint$>;
+export declare const bigint$Desc: GenDescMessage<bigint$>;
 
 /**
  * clash with global type
@@ -584,7 +584,7 @@ export declare type Uint8Array$ = Message$1<"spec.Uint8Array"> & {
 };
 
 // Describes the message spec.Uint8Array. Use `create(Uint8Array$Desc)` to create a new Uint8Array$.
-export declare const Uint8Array$Desc: TypedDescMessage<Uint8Array$>;
+export declare const Uint8Array$Desc: GenDescMessage<Uint8Array$>;
 
 /**
  * clash with global type
@@ -595,7 +595,7 @@ export declare type Array = Message$1<"spec.Array"> & {
 };
 
 // Describes the message spec.Array. Use `create(ArrayDesc)` to create a new Array.
-export declare const ArrayDesc: TypedDescMessage<Array>;
+export declare const ArrayDesc: GenDescMessage<Array>;
 
 /**
  * clash with global type
@@ -606,7 +606,7 @@ export declare type String = Message$1<"spec.String"> & {
 };
 
 // Describes the message spec.String. Use `create(StringDesc)` to create a new String.
-export declare const StringDesc: TypedDescMessage<String>;
+export declare const StringDesc: GenDescMessage<String>;
 
 /**
  * clash with global type
@@ -617,7 +617,7 @@ export declare type Number = Message$1<"spec.Number"> & {
 };
 
 // Describes the message spec.Number. Use `create(NumberDesc)` to create a new Number.
-export declare const NumberDesc: TypedDescMessage<Number>;
+export declare const NumberDesc: GenDescMessage<Number>;
 
 /**
  * clash with global type
@@ -628,7 +628,7 @@ export declare type Boolean = Message$1<"spec.Boolean"> & {
 };
 
 // Describes the message spec.Boolean. Use `create(BooleanDesc)` to create a new Boolean.
-export declare const BooleanDesc: TypedDescMessage<Boolean>;
+export declare const BooleanDesc: GenDescMessage<Boolean>;
 
 /**
  * clash with global type
@@ -639,7 +639,7 @@ export declare type BigInt = Message$1<"spec.BigInt"> & {
 };
 
 // Describes the message spec.BigInt. Use `create(BigIntDesc)` to create a new BigInt.
-export declare const BigIntDesc: TypedDescMessage<BigInt>;
+export declare const BigIntDesc: GenDescMessage<BigInt>;
 
 /**
  * @generated from message spec.ClashParent
@@ -648,7 +648,7 @@ export declare type ClashParent = Message$1<"spec.ClashParent"> & {
 };
 
 // Describes the message spec.ClashParent. Use `create(ClashParentDesc)` to create a new ClashParent.
-export declare const ClashParentDesc: TypedDescMessage<ClashParent>;
+export declare const ClashParentDesc: GenDescMessage<ClashParent>;
 
 /**
  * should clash with message ClashParent_ClashChild
@@ -659,7 +659,7 @@ export declare type ClashParent_ClashChild = Message$1<"spec.ClashParent.ClashCh
 };
 
 // Describes the message spec.ClashParent.ClashChild. Use `create(ClashParent_ClashChildDesc)` to create a new ClashParent_ClashChild.
-export declare const ClashParent_ClashChildDesc: TypedDescMessage<ClashParent_ClashChild>;
+export declare const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild>;
 
 /**
  * @generated from message spec.NoClashFields
@@ -709,7 +709,7 @@ export declare type NoClashFields = Message$1<"spec.NoClashFields"> & {
 };
 
 // Describes the message spec.NoClashFields. Use `create(NoClashFieldsDesc)` to create a new NoClashFields.
-export declare const NoClashFieldsDesc: TypedDescMessage<NoClashFields>;
+export declare const NoClashFieldsDesc: GenDescMessage<NoClashFields>;
 
 /**
  * @generated from message spec.NoClashOneof
@@ -770,7 +770,7 @@ export declare type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
 };
 
 // Describes the message spec.NoClashOneof. Use `create(NoClashOneofDesc)` to create a new NoClashOneof.
-export declare const NoClashOneofDesc: TypedDescMessage<NoClashOneof>;
+export declare const NoClashOneofDesc: GenDescMessage<NoClashOneof>;
 
 /**
  * @generated from message spec.NoClashOneofADT
@@ -783,7 +783,7 @@ export declare type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
 };
 
 // Describes the message spec.NoClashOneofADT. Use `create(NoClashOneofADTDesc)` to create a new NoClashOneofADT.
-export declare const NoClashOneofADTDesc: TypedDescMessage<NoClashOneofADT>;
+export declare const NoClashOneofADTDesc: GenDescMessage<NoClashOneofADT>;
 
 /**
  * @generated from message spec.NoClashOneofADT.M
@@ -801,7 +801,7 @@ export declare type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
 };
 
 // Describes the message spec.NoClashOneofADT.M. Use `create(NoClashOneofADT_MDesc)` to create a new NoClashOneofADT_M.
-export declare const NoClashOneofADT_MDesc: TypedDescMessage<NoClashOneofADT_M>;
+export declare const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M>;
 
 /**
  * just here as a "namespace" for the enum
@@ -812,7 +812,7 @@ export declare type NoClashEnumWrap = Message$1<"spec.NoClashEnumWrap"> & {
 };
 
 // Describes the message spec.NoClashEnumWrap. Use `create(NoClashEnumWrapDesc)` to create a new NoClashEnumWrap.
-export declare const NoClashEnumWrapDesc: TypedDescMessage<NoClashEnumWrap>;
+export declare const NoClashEnumWrapDesc: GenDescMessage<NoClashEnumWrap>;
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X
@@ -862,12 +862,12 @@ export enum NoClashEnumWrap_X {
 }
 
 // Describes the enum spec.NoClashEnumWrap.X.
-export declare const NoClashEnumWrap_XDesc: TypedDescEnum<NoClashEnumWrap_X>;
+export declare const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X>;
 
 /**
  * @generated from service spec.ReservedPropertyNamesService
  */
-export declare const ReservedPropertyNamesService: TypedDescService<{
+export declare const ReservedPropertyNamesService: GenDescService<{
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.constructor
    */

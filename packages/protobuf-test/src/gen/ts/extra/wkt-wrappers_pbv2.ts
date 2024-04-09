@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -228,6 +228,6 @@ export type WrappersMessage = Message<"spec.WrappersMessage"> & {
 
 // Describes the message spec.WrappersMessage.
 // Use `create(WrappersMessageDesc)` to create a new WrappersMessage.
-export const WrappersMessageDesc: TypedDescMessage<WrappersMessage> = /*@__PURE__*/
+export const WrappersMessageDesc: GenDescMessage<WrappersMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_wkt_wrappers, 0);
 

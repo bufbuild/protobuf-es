@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ImportMessage } from "./unittest_import_pbv2.js";
 import { fileDesc_google_protobuf_unittest_import } from "./unittest_import_pbv2.js";
@@ -394,7 +394,7 @@ export type TestAllTypes = Message<"proto3_arena_unittest.TestAllTypes"> & {
 
 // Describes the message proto3_arena_unittest.TestAllTypes.
 // Use `create(TestAllTypesDesc)` to create a new TestAllTypes.
-export const TestAllTypesDesc: TypedDescMessage<TestAllTypes> = /*@__PURE__*/
+export const TestAllTypesDesc: GenDescMessage<TestAllTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 0);
 
 /**
@@ -413,7 +413,7 @@ export type TestAllTypes_NestedMessage = Message<"proto3_arena_unittest.TestAllT
 
 // Describes the message proto3_arena_unittest.TestAllTypes.NestedMessage.
 // Use `create(TestAllTypes_NestedMessageDesc)` to create a new TestAllTypes_NestedMessage.
-export const TestAllTypes_NestedMessageDesc: TypedDescMessage<TestAllTypes_NestedMessage> = /*@__PURE__*/
+export const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 0, 0);
 
 /**
@@ -449,7 +449,7 @@ export enum TestAllTypes_NestedEnum {
 }
 
 // Describes the enum proto3_arena_unittest.TestAllTypes.NestedEnum.
-export const TestAllTypes_NestedEnumDesc: TypedDescEnum<TestAllTypes_NestedEnum> = /*@__PURE__*/
+export const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_arena, 0, 0);
 
 /**
@@ -529,7 +529,7 @@ export type TestPackedTypes = Message<"proto3_arena_unittest.TestPackedTypes"> &
 
 // Describes the message proto3_arena_unittest.TestPackedTypes.
 // Use `create(TestPackedTypesDesc)` to create a new TestPackedTypes.
-export const TestPackedTypesDesc: TypedDescMessage<TestPackedTypes> = /*@__PURE__*/
+export const TestPackedTypesDesc: GenDescMessage<TestPackedTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 1);
 
 /**
@@ -611,7 +611,7 @@ export type TestUnpackedTypes = Message<"proto3_arena_unittest.TestUnpackedTypes
 
 // Describes the message proto3_arena_unittest.TestUnpackedTypes.
 // Use `create(TestUnpackedTypesDesc)` to create a new TestUnpackedTypes.
-export const TestUnpackedTypesDesc: TypedDescMessage<TestUnpackedTypes> = /*@__PURE__*/
+export const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 2);
 
 /**
@@ -643,7 +643,7 @@ export type NestedTestAllTypes = Message<"proto3_arena_unittest.NestedTestAllTyp
 
 // Describes the message proto3_arena_unittest.NestedTestAllTypes.
 // Use `create(NestedTestAllTypesDesc)` to create a new NestedTestAllTypes.
-export const NestedTestAllTypesDesc: TypedDescMessage<NestedTestAllTypes> = /*@__PURE__*/
+export const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 3);
 
 /**
@@ -661,7 +661,7 @@ export type ForeignMessage = Message<"proto3_arena_unittest.ForeignMessage"> & {
 
 // Describes the message proto3_arena_unittest.ForeignMessage.
 // Use `create(ForeignMessageDesc)` to create a new ForeignMessage.
-export const ForeignMessageDesc: TypedDescMessage<ForeignMessage> = /*@__PURE__*/
+export const ForeignMessageDesc: GenDescMessage<ForeignMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 4);
 
 /**
@@ -674,7 +674,7 @@ export type TestEmptyMessage = Message<"proto3_arena_unittest.TestEmptyMessage">
 
 // Describes the message proto3_arena_unittest.TestEmptyMessage.
 // Use `create(TestEmptyMessageDesc)` to create a new TestEmptyMessage.
-export const TestEmptyMessageDesc: TypedDescMessage<TestEmptyMessage> = /*@__PURE__*/
+export const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 5);
 
 /**
@@ -687,7 +687,7 @@ export type TestPickleNestedMessage = Message<"proto3_arena_unittest.TestPickleN
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage.
 // Use `create(TestPickleNestedMessageDesc)` to create a new TestPickleNestedMessage.
-export const TestPickleNestedMessageDesc: TypedDescMessage<TestPickleNestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessageDesc: GenDescMessage<TestPickleNestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 6);
 
 /**
@@ -702,7 +702,7 @@ export type TestPickleNestedMessage_NestedMessage = Message<"proto3_arena_unitte
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.
 // Use `create(TestPickleNestedMessage_NestedMessageDesc)` to create a new TestPickleNestedMessage_NestedMessage.
-export const TestPickleNestedMessage_NestedMessageDesc: TypedDescMessage<TestPickleNestedMessage_NestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 6, 0);
 
 /**
@@ -717,7 +717,7 @@ export type TestPickleNestedMessage_NestedMessage_NestedNestedMessage = Message<
 
 // Describes the message proto3_arena_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage.
 // Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc)` to create a new TestPickleNestedMessage_NestedMessage_NestedNestedMessage.
-export const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: TypedDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_arena, 6, 0, 0);
 
 /**
@@ -746,6 +746,6 @@ export enum ForeignEnum {
 }
 
 // Describes the enum proto3_arena_unittest.ForeignEnum.
-export const ForeignEnumDesc: TypedDescEnum<ForeignEnum> = /*@__PURE__*/
+export const ForeignEnumDesc: GenDescEnum<ForeignEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_arena, 0);
 

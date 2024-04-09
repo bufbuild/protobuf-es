@@ -19,7 +19,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_proto2: DescFile;
 
@@ -471,7 +471,7 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
 };
 
 // Describes the message spec.Proto2Message. Use `create(Proto2MessageDesc)` to create a new Proto2Message.
-export declare const Proto2MessageDesc: TypedDescMessage<Proto2Message>;
+export declare const Proto2MessageDesc: GenDescMessage<Proto2Message>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredGroup
@@ -484,7 +484,7 @@ export declare type Proto2Message_RequiredGroup = Message<"spec.Proto2Message.Re
 };
 
 // Describes the message spec.Proto2Message.RequiredGroup. Use `create(Proto2Message_RequiredGroupDesc)` to create a new Proto2Message_RequiredGroup.
-export declare const Proto2Message_RequiredGroupDesc: TypedDescMessage<Proto2Message_RequiredGroup>;
+export declare const Proto2Message_RequiredGroupDesc: GenDescMessage<Proto2Message_RequiredGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredDefaultGroup
@@ -497,7 +497,7 @@ export declare type Proto2Message_RequiredDefaultGroup = Message<"spec.Proto2Mes
 };
 
 // Describes the message spec.Proto2Message.RequiredDefaultGroup. Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new Proto2Message_RequiredDefaultGroup.
-export declare const Proto2Message_RequiredDefaultGroupDesc: TypedDescMessage<Proto2Message_RequiredDefaultGroup>;
+export declare const Proto2Message_RequiredDefaultGroupDesc: GenDescMessage<Proto2Message_RequiredDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalGroup
@@ -510,7 +510,7 @@ export declare type Proto2Message_OptionalGroup = Message<"spec.Proto2Message.Op
 };
 
 // Describes the message spec.Proto2Message.OptionalGroup. Use `create(Proto2Message_OptionalGroupDesc)` to create a new Proto2Message_OptionalGroup.
-export declare const Proto2Message_OptionalGroupDesc: TypedDescMessage<Proto2Message_OptionalGroup>;
+export declare const Proto2Message_OptionalGroupDesc: GenDescMessage<Proto2Message_OptionalGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalDefaultGroup
@@ -523,7 +523,7 @@ export declare type Proto2Message_OptionalDefaultGroup = Message<"spec.Proto2Mes
 };
 
 // Describes the message spec.Proto2Message.OptionalDefaultGroup. Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new Proto2Message_OptionalDefaultGroup.
-export declare const Proto2Message_OptionalDefaultGroupDesc: TypedDescMessage<Proto2Message_OptionalDefaultGroup>;
+export declare const Proto2Message_OptionalDefaultGroupDesc: GenDescMessage<Proto2Message_OptionalDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RepeatedGroup
@@ -536,7 +536,7 @@ export declare type Proto2Message_RepeatedGroup = Message<"spec.Proto2Message.Re
 };
 
 // Describes the message spec.Proto2Message.RepeatedGroup. Use `create(Proto2Message_RepeatedGroupDesc)` to create a new Proto2Message_RepeatedGroup.
-export declare const Proto2Message_RepeatedGroupDesc: TypedDescMessage<Proto2Message_RepeatedGroup>;
+export declare const Proto2Message_RepeatedGroupDesc: GenDescMessage<Proto2Message_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OneofGroup
@@ -549,7 +549,7 @@ export declare type Proto2Message_OneofGroup = Message<"spec.Proto2Message.Oneof
 };
 
 // Describes the message spec.Proto2Message.OneofGroup. Use `create(Proto2Message_OneofGroupDesc)` to create a new Proto2Message_OneofGroup.
-export declare const Proto2Message_OneofGroupDesc: TypedDescMessage<Proto2Message_OneofGroup>;
+export declare const Proto2Message_OneofGroupDesc: GenDescMessage<Proto2Message_OneofGroup>;
 
 /**
  * @generated from message spec.Proto2RepeatedMessage
@@ -603,7 +603,7 @@ export declare type Proto2RepeatedMessage = Message<"spec.Proto2RepeatedMessage"
 };
 
 // Describes the message spec.Proto2RepeatedMessage. Use `create(Proto2RepeatedMessageDesc)` to create a new Proto2RepeatedMessage.
-export declare const Proto2RepeatedMessageDesc: TypedDescMessage<Proto2RepeatedMessage>;
+export declare const Proto2RepeatedMessageDesc: GenDescMessage<Proto2RepeatedMessage>;
 
 /**
  * @generated from message spec.Proto2RepeatedMessage.RepeatedGroup
@@ -616,7 +616,7 @@ export declare type Proto2RepeatedMessage_RepeatedGroup = Message<"spec.Proto2Re
 };
 
 // Describes the message spec.Proto2RepeatedMessage.RepeatedGroup. Use `create(Proto2RepeatedMessage_RepeatedGroupDesc)` to create a new Proto2RepeatedMessage_RepeatedGroup.
-export declare const Proto2RepeatedMessage_RepeatedGroupDesc: TypedDescMessage<Proto2RepeatedMessage_RepeatedGroup>;
+export declare const Proto2RepeatedMessage_RepeatedGroupDesc: GenDescMessage<Proto2RepeatedMessage_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2OneofMessage
@@ -684,7 +684,7 @@ export declare type Proto2OneofMessage = Message<"spec.Proto2OneofMessage"> & {
 };
 
 // Describes the message spec.Proto2OneofMessage. Use `create(Proto2OneofMessageDesc)` to create a new Proto2OneofMessage.
-export declare const Proto2OneofMessageDesc: TypedDescMessage<Proto2OneofMessage>;
+export declare const Proto2OneofMessageDesc: GenDescMessage<Proto2OneofMessage>;
 
 /**
  * @generated from message spec.Proto2OneofMessage.RepeatedGroup
@@ -697,7 +697,7 @@ export declare type Proto2OneofMessage_RepeatedGroup = Message<"spec.Proto2Oneof
 };
 
 // Describes the message spec.Proto2OneofMessage.RepeatedGroup. Use `create(Proto2OneofMessage_RepeatedGroupDesc)` to create a new Proto2OneofMessage_RepeatedGroup.
-export declare const Proto2OneofMessage_RepeatedGroupDesc: TypedDescMessage<Proto2OneofMessage_RepeatedGroup>;
+export declare const Proto2OneofMessage_RepeatedGroupDesc: GenDescMessage<Proto2OneofMessage_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2PackedMessage
@@ -721,7 +721,7 @@ export declare type Proto2PackedMessage = Message<"spec.Proto2PackedMessage"> & 
 };
 
 // Describes the message spec.Proto2PackedMessage. Use `create(Proto2PackedMessageDesc)` to create a new Proto2PackedMessage.
-export declare const Proto2PackedMessageDesc: TypedDescMessage<Proto2PackedMessage>;
+export declare const Proto2PackedMessageDesc: GenDescMessage<Proto2PackedMessage>;
 
 /**
  * @generated from message spec.Proto2UnpackedMessage
@@ -745,7 +745,7 @@ export declare type Proto2UnpackedMessage = Message<"spec.Proto2UnpackedMessage"
 };
 
 // Describes the message spec.Proto2UnpackedMessage. Use `create(Proto2UnpackedMessageDesc)` to create a new Proto2UnpackedMessage.
-export declare const Proto2UnpackedMessageDesc: TypedDescMessage<Proto2UnpackedMessage>;
+export declare const Proto2UnpackedMessageDesc: GenDescMessage<Proto2UnpackedMessage>;
 
 /**
  * @generated from message spec.Proto2UnspecifiedPackedMessage
@@ -769,7 +769,7 @@ export declare type Proto2UnspecifiedPackedMessage = Message<"spec.Proto2Unspeci
 };
 
 // Describes the message spec.Proto2UnspecifiedPackedMessage. Use `create(Proto2UnspecifiedPackedMessageDesc)` to create a new Proto2UnspecifiedPackedMessage.
-export declare const Proto2UnspecifiedPackedMessageDesc: TypedDescMessage<Proto2UnspecifiedPackedMessage>;
+export declare const Proto2UnspecifiedPackedMessageDesc: GenDescMessage<Proto2UnspecifiedPackedMessage>;
 
 /**
  * @generated from message spec.Proto2OptionalMessage
@@ -818,7 +818,7 @@ export declare type Proto2OptionalMessage = Message<"spec.Proto2OptionalMessage"
 };
 
 // Describes the message spec.Proto2OptionalMessage. Use `create(Proto2OptionalMessageDesc)` to create a new Proto2OptionalMessage.
-export declare const Proto2OptionalMessageDesc: TypedDescMessage<Proto2OptionalMessage>;
+export declare const Proto2OptionalMessageDesc: GenDescMessage<Proto2OptionalMessage>;
 
 /**
  * @generated from message spec.Proto2RequiredMessage
@@ -867,7 +867,7 @@ export declare type Proto2RequiredMessage = Message<"spec.Proto2RequiredMessage"
 };
 
 // Describes the message spec.Proto2RequiredMessage. Use `create(Proto2RequiredMessageDesc)` to create a new Proto2RequiredMessage.
-export declare const Proto2RequiredMessageDesc: TypedDescMessage<Proto2RequiredMessage>;
+export declare const Proto2RequiredMessageDesc: GenDescMessage<Proto2RequiredMessage>;
 
 /**
  * @generated from message spec.Proto2RequiredDefaultsMessage
@@ -916,7 +916,7 @@ export declare type Proto2RequiredDefaultsMessage = Message<"spec.Proto2Required
 };
 
 // Describes the message spec.Proto2RequiredDefaultsMessage. Use `create(Proto2RequiredDefaultsMessageDesc)` to create a new Proto2RequiredDefaultsMessage.
-export declare const Proto2RequiredDefaultsMessageDesc: TypedDescMessage<Proto2RequiredDefaultsMessage>;
+export declare const Proto2RequiredDefaultsMessageDesc: GenDescMessage<Proto2RequiredDefaultsMessage>;
 
 /**
  * @generated from message spec.Proto2DefaultsMessage
@@ -965,7 +965,7 @@ export declare type Proto2DefaultsMessage = Message<"spec.Proto2DefaultsMessage"
 };
 
 // Describes the message spec.Proto2DefaultsMessage. Use `create(Proto2DefaultsMessageDesc)` to create a new Proto2DefaultsMessage.
-export declare const Proto2DefaultsMessageDesc: TypedDescMessage<Proto2DefaultsMessage>;
+export declare const Proto2DefaultsMessageDesc: GenDescMessage<Proto2DefaultsMessage>;
 
 /**
  * @generated from message spec.Proto2ChildMessage
@@ -979,7 +979,7 @@ export declare type Proto2ChildMessage = Message<"spec.Proto2ChildMessage"> & {
 };
 
 // Describes the message spec.Proto2ChildMessage. Use `create(Proto2ChildMessageDesc)` to create a new Proto2ChildMessage.
-export declare const Proto2ChildMessageDesc: TypedDescMessage<Proto2ChildMessage>;
+export declare const Proto2ChildMessageDesc: GenDescMessage<Proto2ChildMessage>;
 
 /**
  * @generated from message spec.Proto2GroupsMessage
@@ -1019,7 +1019,7 @@ export declare type Proto2GroupsMessage = Message<"spec.Proto2GroupsMessage"> & 
 };
 
 // Describes the message spec.Proto2GroupsMessage. Use `create(Proto2GroupsMessageDesc)` to create a new Proto2GroupsMessage.
-export declare const Proto2GroupsMessageDesc: TypedDescMessage<Proto2GroupsMessage>;
+export declare const Proto2GroupsMessageDesc: GenDescMessage<Proto2GroupsMessage>;
 
 /**
  * @generated from message spec.Proto2GroupsMessage.Group
@@ -1037,7 +1037,7 @@ export declare type Proto2GroupsMessage_Group = Message<"spec.Proto2GroupsMessag
 };
 
 // Describes the message spec.Proto2GroupsMessage.Group. Use `create(Proto2GroupsMessage_GroupDesc)` to create a new Proto2GroupsMessage_Group.
-export declare const Proto2GroupsMessage_GroupDesc: TypedDescMessage<Proto2GroupsMessage_Group>;
+export declare const Proto2GroupsMessage_GroupDesc: GenDescMessage<Proto2GroupsMessage_Group>;
 
 /**
  * @generated from message spec.Proto2GroupsMessage.Group.NestedGroup
@@ -1050,7 +1050,7 @@ export declare type Proto2GroupsMessage_Group_NestedGroup = Message<"spec.Proto2
 };
 
 // Describes the message spec.Proto2GroupsMessage.Group.NestedGroup. Use `create(Proto2GroupsMessage_Group_NestedGroupDesc)` to create a new Proto2GroupsMessage_Group_NestedGroup.
-export declare const Proto2GroupsMessage_Group_NestedGroupDesc: TypedDescMessage<Proto2GroupsMessage_Group_NestedGroup>;
+export declare const Proto2GroupsMessage_Group_NestedGroupDesc: GenDescMessage<Proto2GroupsMessage_Group_NestedGroup>;
 
 /**
  * @generated from message spec.Proto2GroupsMessage.RepeatedGroup
@@ -1064,7 +1064,7 @@ export declare type Proto2GroupsMessage_RepeatedGroup = Message<"spec.Proto2Grou
 };
 
 // Describes the message spec.Proto2GroupsMessage.RepeatedGroup. Use `create(Proto2GroupsMessage_RepeatedGroupDesc)` to create a new Proto2GroupsMessage_RepeatedGroup.
-export declare const Proto2GroupsMessage_RepeatedGroupDesc: TypedDescMessage<Proto2GroupsMessage_RepeatedGroup>;
+export declare const Proto2GroupsMessage_RepeatedGroupDesc: GenDescMessage<Proto2GroupsMessage_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2GroupsMessage.OneofGroup
@@ -1078,7 +1078,7 @@ export declare type Proto2GroupsMessage_OneofGroup = Message<"spec.Proto2GroupsM
 };
 
 // Describes the message spec.Proto2GroupsMessage.OneofGroup. Use `create(Proto2GroupsMessage_OneofGroupDesc)` to create a new Proto2GroupsMessage_OneofGroup.
-export declare const Proto2GroupsMessage_OneofGroupDesc: TypedDescMessage<Proto2GroupsMessage_OneofGroup>;
+export declare const Proto2GroupsMessage_OneofGroupDesc: GenDescMessage<Proto2GroupsMessage_OneofGroup>;
 
 /**
  * @generated from enum spec.Proto2Enum
@@ -1096,7 +1096,7 @@ export enum Proto2Enum {
 }
 
 // Describes the enum spec.Proto2Enum.
-export declare const Proto2EnumDesc: TypedDescEnum<Proto2Enum>;
+export declare const Proto2EnumDesc: GenDescEnum<Proto2Enum>;
 
 /**
  * First enum value must be 0 when used as map value type
@@ -1116,5 +1116,5 @@ export enum Proto2EnumWithZero {
 }
 
 // Describes the enum spec.Proto2EnumWithZero.
-export declare const Proto2EnumWithZeroDesc: TypedDescEnum<Proto2EnumWithZero>;
+export declare const Proto2EnumWithZeroDesc: GenDescEnum<Proto2EnumWithZero>;
 

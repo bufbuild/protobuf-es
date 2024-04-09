@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_any: DescFile = /*@__PURE__*/
@@ -161,6 +161,6 @@ export type Any = Message<"google.protobuf.Any"> & {
 
 // Describes the message google.protobuf.Any.
 // Use `create(AnyDesc)` to create a new Any.
-export const AnyDesc: TypedDescMessage<Any> = /*@__PURE__*/
+export const AnyDesc: GenDescMessage<Any> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_any, 0);
 

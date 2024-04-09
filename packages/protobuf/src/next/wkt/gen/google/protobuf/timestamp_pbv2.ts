@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_timestamp: DescFile = /*@__PURE__*/
@@ -142,6 +142,6 @@ export type Timestamp = Message<"google.protobuf.Timestamp"> & {
 
 // Describes the message google.protobuf.Timestamp.
 // Use `create(TimestampDesc)` to create a new Timestamp.
-export const TimestampDesc: TypedDescMessage<Timestamp> = /*@__PURE__*/
+export const TimestampDesc: GenDescMessage<Timestamp> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_timestamp, 0);
 

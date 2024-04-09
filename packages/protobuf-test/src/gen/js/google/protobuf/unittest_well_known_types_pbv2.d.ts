@@ -20,7 +20,7 @@ import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import type { Type } from "./type_pbv2.js";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_well_known_types: DescFile;
 
@@ -131,7 +131,7 @@ export declare type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnow
 };
 
 // Describes the message protobuf_unittest.TestWellKnownTypes. Use `create(TestWellKnownTypesDesc)` to create a new TestWellKnownTypes.
-export declare const TestWellKnownTypesDesc: TypedDescMessage<TestWellKnownTypes>;
+export declare const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes>;
 
 /**
  * A repeated field for each well-known type.
@@ -233,7 +233,7 @@ export declare type RepeatedWellKnownTypes = Message<"protobuf_unittest.Repeated
 };
 
 // Describes the message protobuf_unittest.RepeatedWellKnownTypes. Use `create(RepeatedWellKnownTypesDesc)` to create a new RepeatedWellKnownTypes.
-export declare const RepeatedWellKnownTypesDesc: TypedDescMessage<RepeatedWellKnownTypes>;
+export declare const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes>;
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -354,7 +354,7 @@ export declare type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKn
 };
 
 // Describes the message protobuf_unittest.OneofWellKnownTypes. Use `create(OneofWellKnownTypesDesc)` to create a new OneofWellKnownTypes.
-export declare const OneofWellKnownTypesDesc: TypedDescMessage<OneofWellKnownTypes>;
+export declare const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes>;
 
 /**
  * A map field for each well-known type. We only
@@ -456,5 +456,5 @@ export declare type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownT
 };
 
 // Describes the message protobuf_unittest.MapWellKnownTypes. Use `create(MapWellKnownTypesDesc)` to create a new MapWellKnownTypes.
-export declare const MapWellKnownTypesDesc: TypedDescMessage<MapWellKnownTypes>;
+export declare const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes>;
 

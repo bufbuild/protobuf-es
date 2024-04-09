@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any } from "./any_pbv2.js";
 import { fileDesc_google_protobuf_any } from "./any_pbv2.js";
@@ -86,7 +86,7 @@ export type Type = Message<"google.protobuf.Type"> & {
 
 // Describes the message google.protobuf.Type.
 // Use `create(TypeDesc)` to create a new Type.
-export const TypeDesc: TypedDescMessage<Type> = /*@__PURE__*/
+export const TypeDesc: GenDescMessage<Type> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 0);
 
 /**
@@ -170,7 +170,7 @@ export type Field = Message<"google.protobuf.Field"> & {
 
 // Describes the message google.protobuf.Field.
 // Use `create(FieldDesc)` to create a new Field.
-export const FieldDesc: TypedDescMessage<Field> = /*@__PURE__*/
+export const FieldDesc: GenDescMessage<Field> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 1);
 
 /**
@@ -314,7 +314,7 @@ export enum Field_Kind {
 }
 
 // Describes the enum google.protobuf.Field.Kind.
-export const Field_KindDesc: TypedDescEnum<Field_Kind> = /*@__PURE__*/
+export const Field_KindDesc: GenDescEnum<Field_Kind> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 0);
 
 /**
@@ -353,7 +353,7 @@ export enum Field_Cardinality {
 }
 
 // Describes the enum google.protobuf.Field.Cardinality.
-export const Field_CardinalityDesc: TypedDescEnum<Field_Cardinality> = /*@__PURE__*/
+export const Field_CardinalityDesc: GenDescEnum<Field_Cardinality> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 1);
 
 /**
@@ -407,7 +407,7 @@ export type Enum = Message<"google.protobuf.Enum"> & {
 
 // Describes the message google.protobuf.Enum.
 // Use `create(EnumDesc)` to create a new Enum.
-export const EnumDesc: TypedDescMessage<Enum> = /*@__PURE__*/
+export const EnumDesc: GenDescMessage<Enum> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 2);
 
 /**
@@ -440,7 +440,7 @@ export type EnumValue = Message<"google.protobuf.EnumValue"> & {
 
 // Describes the message google.protobuf.EnumValue.
 // Use `create(EnumValueDesc)` to create a new EnumValue.
-export const EnumValueDesc: TypedDescMessage<EnumValue> = /*@__PURE__*/
+export const EnumValueDesc: GenDescMessage<EnumValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 3);
 
 /**
@@ -473,7 +473,7 @@ export type Option = Message<"google.protobuf.Option"> & {
 
 // Describes the message google.protobuf.Option.
 // Use `create(OptionDesc)` to create a new Option.
-export const OptionDesc: TypedDescMessage<Option> = /*@__PURE__*/
+export const OptionDesc: GenDescMessage<Option> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 4);
 
 /**
@@ -505,6 +505,6 @@ export enum Syntax {
 }
 
 // Describes the enum google.protobuf.Syntax.
-export const SyntaxDesc: TypedDescEnum<Syntax> = /*@__PURE__*/
+export const SyntaxDesc: GenDescEnum<Syntax> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 0);
 

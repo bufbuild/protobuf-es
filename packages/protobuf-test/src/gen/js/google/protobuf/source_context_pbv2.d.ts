@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_source_context: DescFile;
 
@@ -39,5 +39,5 @@ export declare type SourceContext = Message<"google.protobuf.SourceContext"> & {
 };
 
 // Describes the message google.protobuf.SourceContext. Use `create(SourceContextDesc)` to create a new SourceContext.
-export declare const SourceContextDesc: TypedDescMessage<SourceContext>;
+export declare const SourceContextDesc: GenDescMessage<SourceContext>;
 

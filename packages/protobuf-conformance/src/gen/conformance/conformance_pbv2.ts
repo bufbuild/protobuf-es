@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -40,7 +40,7 @@ export type FailureSet = Message<"conformance.FailureSet"> & {
 
 // Describes the message conformance.FailureSet.
 // Use `create(FailureSetDesc)` to create a new FailureSet.
-export const FailureSetDesc: TypedDescMessage<FailureSet> = /*@__PURE__*/
+export const FailureSetDesc: GenDescMessage<FailureSet> = /*@__PURE__*/
   messageDesc(fileDesc_conformance_conformance, 0);
 
 /**
@@ -131,7 +131,7 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
 
 // Describes the message conformance.ConformanceRequest.
 // Use `create(ConformanceRequestDesc)` to create a new ConformanceRequest.
-export const ConformanceRequestDesc: TypedDescMessage<ConformanceRequest> = /*@__PURE__*/
+export const ConformanceRequestDesc: GenDescMessage<ConformanceRequest> = /*@__PURE__*/
   messageDesc(fileDesc_conformance_conformance, 1);
 
 /**
@@ -236,7 +236,7 @@ export type ConformanceResponse = Message<"conformance.ConformanceResponse"> & {
 
 // Describes the message conformance.ConformanceResponse.
 // Use `create(ConformanceResponseDesc)` to create a new ConformanceResponse.
-export const ConformanceResponseDesc: TypedDescMessage<ConformanceResponse> = /*@__PURE__*/
+export const ConformanceResponseDesc: GenDescMessage<ConformanceResponse> = /*@__PURE__*/
   messageDesc(fileDesc_conformance_conformance, 2);
 
 /**
@@ -255,7 +255,7 @@ export type JspbEncodingConfig = Message<"conformance.JspbEncodingConfig"> & {
 
 // Describes the message conformance.JspbEncodingConfig.
 // Use `create(JspbEncodingConfigDesc)` to create a new JspbEncodingConfig.
-export const JspbEncodingConfigDesc: TypedDescMessage<JspbEncodingConfig> = /*@__PURE__*/
+export const JspbEncodingConfigDesc: GenDescMessage<JspbEncodingConfig> = /*@__PURE__*/
   messageDesc(fileDesc_conformance_conformance, 3);
 
 /**
@@ -291,7 +291,7 @@ export enum WireFormat {
 }
 
 // Describes the enum conformance.WireFormat.
-export const WireFormatDesc: TypedDescEnum<WireFormat> = /*@__PURE__*/
+export const WireFormatDesc: GenDescEnum<WireFormat> = /*@__PURE__*/
   enumDesc(fileDesc_conformance_conformance, 0);
 
 /**
@@ -346,6 +346,6 @@ export enum TestCategory {
 }
 
 // Describes the enum conformance.TestCategory.
-export const TestCategoryDesc: TypedDescEnum<TestCategory> = /*@__PURE__*/
+export const TestCategoryDesc: GenDescEnum<TestCategory> = /*@__PURE__*/
   enumDesc(fileDesc_conformance_conformance, 1);
 

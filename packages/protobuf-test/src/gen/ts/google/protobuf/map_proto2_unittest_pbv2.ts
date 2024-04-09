@@ -21,7 +21,7 @@
 // In map_test_util.h we do "using namespace unittest = protobuf_unittest".
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ImportEnumForMap } from "./unittest_import_pbv2.js";
 import { fileDesc_google_protobuf_unittest_import } from "./unittest_import_pbv2.js";
@@ -109,7 +109,7 @@ export type TestEnumMap = Message<"protobuf_unittest.TestEnumMap"> & {
 
 // Describes the message protobuf_unittest.TestEnumMap.
 // Use `create(TestEnumMapDesc)` to create a new TestEnumMap.
-export const TestEnumMapDesc: TypedDescMessage<TestEnumMap> = /*@__PURE__*/
+export const TestEnumMapDesc: GenDescMessage<TestEnumMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 0);
 
 /**
@@ -191,7 +191,7 @@ export type TestEnumMapPlusExtra = Message<"protobuf_unittest.TestEnumMapPlusExt
 
 // Describes the message protobuf_unittest.TestEnumMapPlusExtra.
 // Use `create(TestEnumMapPlusExtraDesc)` to create a new TestEnumMapPlusExtra.
-export const TestEnumMapPlusExtraDesc: TypedDescMessage<TestEnumMapPlusExtra> = /*@__PURE__*/
+export const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 1);
 
 /**
@@ -206,7 +206,7 @@ export type TestImportEnumMap = Message<"protobuf_unittest.TestImportEnumMap"> &
 
 // Describes the message protobuf_unittest.TestImportEnumMap.
 // Use `create(TestImportEnumMapDesc)` to create a new TestImportEnumMap.
-export const TestImportEnumMapDesc: TypedDescMessage<TestImportEnumMap> = /*@__PURE__*/
+export const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 2);
 
 /**
@@ -221,7 +221,7 @@ export type TestIntIntMap = Message<"protobuf_unittest.TestIntIntMap"> & {
 
 // Describes the message protobuf_unittest.TestIntIntMap.
 // Use `create(TestIntIntMapDesc)` to create a new TestIntIntMap.
-export const TestIntIntMapDesc: TypedDescMessage<TestIntIntMap> = /*@__PURE__*/
+export const TestIntIntMapDesc: GenDescMessage<TestIntIntMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 3);
 
 /**
@@ -293,7 +293,7 @@ export type TestMaps = Message<"protobuf_unittest.TestMaps"> & {
 
 // Describes the message protobuf_unittest.TestMaps.
 // Use `create(TestMapsDesc)` to create a new TestMaps.
-export const TestMapsDesc: TypedDescMessage<TestMaps> = /*@__PURE__*/
+export const TestMapsDesc: GenDescMessage<TestMaps> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 4);
 
 /**
@@ -310,7 +310,7 @@ export type TestSubmessageMaps = Message<"protobuf_unittest.TestSubmessageMaps">
 
 // Describes the message protobuf_unittest.TestSubmessageMaps.
 // Use `create(TestSubmessageMapsDesc)` to create a new TestSubmessageMaps.
-export const TestSubmessageMapsDesc: TypedDescMessage<TestSubmessageMaps> = /*@__PURE__*/
+export const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 5);
 
 /**
@@ -330,7 +330,7 @@ export type TestProto2BytesMap = Message<"protobuf_unittest.TestProto2BytesMap">
 
 // Describes the message protobuf_unittest.TestProto2BytesMap.
 // Use `create(TestProto2BytesMapDesc)` to create a new TestProto2BytesMap.
-export const TestProto2BytesMapDesc: TypedDescMessage<TestProto2BytesMap> = /*@__PURE__*/
+export const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 6);
 
 /**
@@ -354,7 +354,7 @@ export enum Proto2MapEnum {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnum.
-export const Proto2MapEnumDesc: TypedDescEnum<Proto2MapEnum> = /*@__PURE__*/
+export const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_proto2_unittest, 0);
 
 /**
@@ -383,6 +383,6 @@ export enum Proto2MapEnumPlusExtra {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
-export const Proto2MapEnumPlusExtraDesc: TypedDescEnum<Proto2MapEnumPlusExtra> = /*@__PURE__*/
+export const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_proto2_unittest, 1);
 

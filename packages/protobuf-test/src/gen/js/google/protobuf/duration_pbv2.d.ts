@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_duration: DescFile;
 
@@ -109,5 +109,5 @@ export declare type Duration = Message<"google.protobuf.Duration"> & {
 };
 
 // Describes the message google.protobuf.Duration. Use `create(DurationDesc)` to create a new Duration.
-export declare const DurationDesc: TypedDescMessage<Duration>;
+export declare const DurationDesc: GenDescMessage<Duration>;
 

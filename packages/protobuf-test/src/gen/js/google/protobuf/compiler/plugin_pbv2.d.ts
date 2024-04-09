@@ -31,7 +31,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pbv2.js";
 
 export declare const fileDesc_google_protobuf_compiler_plugin: DescFile;
@@ -67,7 +67,7 @@ export declare type Version = Message<"google.protobuf.compiler.Version"> & {
 };
 
 // Describes the message google.protobuf.compiler.Version. Use `create(VersionDesc)` to create a new Version.
-export declare const VersionDesc: TypedDescMessage<Version>;
+export declare const VersionDesc: GenDescMessage<Version>;
 
 /**
  * An encoded CodeGeneratorRequest is written to the plugin's stdin.
@@ -134,7 +134,7 @@ export declare type CodeGeneratorRequest = Message<"google.protobuf.compiler.Cod
 };
 
 // Describes the message google.protobuf.compiler.CodeGeneratorRequest. Use `create(CodeGeneratorRequestDesc)` to create a new CodeGeneratorRequest.
-export declare const CodeGeneratorRequestDesc: TypedDescMessage<CodeGeneratorRequest>;
+export declare const CodeGeneratorRequestDesc: GenDescMessage<CodeGeneratorRequest>;
 
 /**
  * The plugin writes an encoded CodeGeneratorResponse to stdout.
@@ -191,7 +191,7 @@ export declare type CodeGeneratorResponse = Message<"google.protobuf.compiler.Co
 };
 
 // Describes the message google.protobuf.compiler.CodeGeneratorResponse. Use `create(CodeGeneratorResponseDesc)` to create a new CodeGeneratorResponse.
-export declare const CodeGeneratorResponseDesc: TypedDescMessage<CodeGeneratorResponse>;
+export declare const CodeGeneratorResponseDesc: GenDescMessage<CodeGeneratorResponse>;
 
 /**
  * Represents a single generated file.
@@ -277,7 +277,7 @@ export declare type CodeGeneratorResponse_File = Message<"google.protobuf.compil
 };
 
 // Describes the message google.protobuf.compiler.CodeGeneratorResponse.File. Use `create(CodeGeneratorResponse_FileDesc)` to create a new CodeGeneratorResponse_File.
-export declare const CodeGeneratorResponse_FileDesc: TypedDescMessage<CodeGeneratorResponse_File>;
+export declare const CodeGeneratorResponse_FileDesc: GenDescMessage<CodeGeneratorResponse_File>;
 
 /**
  * Sync with code_generator.h.
@@ -302,5 +302,5 @@ export enum CodeGeneratorResponse_Feature {
 }
 
 // Describes the enum google.protobuf.compiler.CodeGeneratorResponse.Feature.
-export declare const CodeGeneratorResponse_FeatureDesc: TypedDescEnum<CodeGeneratorResponse_Feature>;
+export declare const CodeGeneratorResponse_FeatureDesc: GenDescEnum<CodeGeneratorResponse_Feature>;
 

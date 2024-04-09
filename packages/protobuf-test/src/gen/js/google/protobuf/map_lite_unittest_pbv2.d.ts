@@ -19,7 +19,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pbv2.js";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_map_lite_unittest: DescFile;
 
@@ -119,7 +119,7 @@ export declare type TestMapLite = Message<"protobuf_unittest.TestMapLite"> & {
 };
 
 // Describes the message protobuf_unittest.TestMapLite. Use `create(TestMapLiteDesc)` to create a new TestMapLite.
-export declare const TestMapLiteDesc: TypedDescMessage<TestMapLite>;
+export declare const TestMapLiteDesc: GenDescMessage<TestMapLite>;
 
 /**
  * @generated from message protobuf_unittest.TestArenaMapLite
@@ -212,7 +212,7 @@ export declare type TestArenaMapLite = Message<"protobuf_unittest.TestArenaMapLi
 };
 
 // Describes the message protobuf_unittest.TestArenaMapLite. Use `create(TestArenaMapLiteDesc)` to create a new TestArenaMapLite.
-export declare const TestArenaMapLiteDesc: TypedDescMessage<TestArenaMapLite>;
+export declare const TestArenaMapLiteDesc: GenDescMessage<TestArenaMapLite>;
 
 /**
  * Test embedded message with required fields
@@ -227,7 +227,7 @@ export declare type TestRequiredMessageMapLite = Message<"protobuf_unittest.Test
 };
 
 // Describes the message protobuf_unittest.TestRequiredMessageMapLite. Use `create(TestRequiredMessageMapLiteDesc)` to create a new TestRequiredMessageMapLite.
-export declare const TestRequiredMessageMapLiteDesc: TypedDescMessage<TestRequiredMessageMapLite>;
+export declare const TestRequiredMessageMapLiteDesc: GenDescMessage<TestRequiredMessageMapLite>;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMapLite
@@ -245,7 +245,7 @@ export declare type TestEnumMapLite = Message<"protobuf_unittest.TestEnumMapLite
 };
 
 // Describes the message protobuf_unittest.TestEnumMapLite. Use `create(TestEnumMapLiteDesc)` to create a new TestEnumMapLite.
-export declare const TestEnumMapLiteDesc: TypedDescMessage<TestEnumMapLite>;
+export declare const TestEnumMapLiteDesc: GenDescMessage<TestEnumMapLite>;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtraLite
@@ -263,7 +263,7 @@ export declare type TestEnumMapPlusExtraLite = Message<"protobuf_unittest.TestEn
 };
 
 // Describes the message protobuf_unittest.TestEnumMapPlusExtraLite. Use `create(TestEnumMapPlusExtraLiteDesc)` to create a new TestEnumMapPlusExtraLite.
-export declare const TestEnumMapPlusExtraLiteDesc: TypedDescMessage<TestEnumMapPlusExtraLite>;
+export declare const TestEnumMapPlusExtraLiteDesc: GenDescMessage<TestEnumMapPlusExtraLite>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageMapLite
@@ -276,7 +276,7 @@ export declare type TestMessageMapLite = Message<"protobuf_unittest.TestMessageM
 };
 
 // Describes the message protobuf_unittest.TestMessageMapLite. Use `create(TestMessageMapLiteDesc)` to create a new TestMessageMapLite.
-export declare const TestMessageMapLiteDesc: TypedDescMessage<TestMessageMapLite>;
+export declare const TestMessageMapLiteDesc: GenDescMessage<TestMessageMapLite>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredLite
@@ -299,12 +299,12 @@ export declare type TestRequiredLite = Message<"protobuf_unittest.TestRequiredLi
 };
 
 // Describes the message protobuf_unittest.TestRequiredLite. Use `create(TestRequiredLiteDesc)` to create a new TestRequiredLite.
-export declare const TestRequiredLiteDesc: TypedDescMessage<TestRequiredLite>;
+export declare const TestRequiredLiteDesc: GenDescMessage<TestRequiredLite>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
  */
-export declare const TestRequiredLite_single: TypedDescExtension<TestAllExtensionsLite, TestRequiredLite>;
+export declare const TestRequiredLite_single: GenDescExtension<TestAllExtensionsLite, TestRequiredLite>;
 
 /**
  * @generated from message protobuf_unittest.ForeignMessageArenaLite
@@ -317,7 +317,7 @@ export declare type ForeignMessageArenaLite = Message<"protobuf_unittest.Foreign
 };
 
 // Describes the message protobuf_unittest.ForeignMessageArenaLite. Use `create(ForeignMessageArenaLiteDesc)` to create a new ForeignMessageArenaLite.
-export declare const ForeignMessageArenaLiteDesc: TypedDescMessage<ForeignMessageArenaLite>;
+export declare const ForeignMessageArenaLiteDesc: GenDescMessage<ForeignMessageArenaLite>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite
@@ -340,7 +340,7 @@ export enum Proto2MapEnumLite {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumLite.
-export declare const Proto2MapEnumLiteDesc: TypedDescEnum<Proto2MapEnumLite>;
+export declare const Proto2MapEnumLiteDesc: GenDescEnum<Proto2MapEnumLite>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtraLite
@@ -368,7 +368,7 @@ export enum Proto2MapEnumPlusExtraLite {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumPlusExtraLite.
-export declare const Proto2MapEnumPlusExtraLiteDesc: TypedDescEnum<Proto2MapEnumPlusExtraLite>;
+export declare const Proto2MapEnumPlusExtraLiteDesc: GenDescEnum<Proto2MapEnumPlusExtraLite>;
 
 /**
  * @generated from enum protobuf_unittest.MapEnumLite
@@ -391,5 +391,5 @@ export enum MapEnumLite {
 }
 
 // Describes the enum protobuf_unittest.MapEnumLite.
-export declare const MapEnumLiteDesc: TypedDescEnum<MapEnumLite>;
+export declare const MapEnumLiteDesc: GenDescEnum<MapEnumLite>;
 

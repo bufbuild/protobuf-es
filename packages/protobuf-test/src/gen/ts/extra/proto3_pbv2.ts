@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -334,7 +334,7 @@ export type Proto3Message = Message<"spec.Proto3Message"> & {
 
 // Describes the message spec.Proto3Message.
 // Use `create(Proto3MessageDesc)` to create a new Proto3Message.
-export const Proto3MessageDesc: TypedDescMessage<Proto3Message> = /*@__PURE__*/
+export const Proto3MessageDesc: GenDescMessage<Proto3Message> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 0);
 
 /**
@@ -385,7 +385,7 @@ export type Proto3RepeatedMessage = Message<"spec.Proto3RepeatedMessage"> & {
 
 // Describes the message spec.Proto3RepeatedMessage.
 // Use `create(Proto3RepeatedMessageDesc)` to create a new Proto3RepeatedMessage.
-export const Proto3RepeatedMessageDesc: TypedDescMessage<Proto3RepeatedMessage> = /*@__PURE__*/
+export const Proto3RepeatedMessageDesc: GenDescMessage<Proto3RepeatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 1);
 
 /**
@@ -411,7 +411,7 @@ export type Proto3PackedMessage = Message<"spec.Proto3PackedMessage"> & {
 
 // Describes the message spec.Proto3PackedMessage.
 // Use `create(Proto3PackedMessageDesc)` to create a new Proto3PackedMessage.
-export const Proto3PackedMessageDesc: TypedDescMessage<Proto3PackedMessage> = /*@__PURE__*/
+export const Proto3PackedMessageDesc: GenDescMessage<Proto3PackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 2);
 
 /**
@@ -437,7 +437,7 @@ export type Proto3UnpackedMessage = Message<"spec.Proto3UnpackedMessage"> & {
 
 // Describes the message spec.Proto3UnpackedMessage.
 // Use `create(Proto3UnpackedMessageDesc)` to create a new Proto3UnpackedMessage.
-export const Proto3UnpackedMessageDesc: TypedDescMessage<Proto3UnpackedMessage> = /*@__PURE__*/
+export const Proto3UnpackedMessageDesc: GenDescMessage<Proto3UnpackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 3);
 
 /**
@@ -463,7 +463,7 @@ export type Proto3UnspecifiedPackedMessage = Message<"spec.Proto3UnspecifiedPack
 
 // Describes the message spec.Proto3UnspecifiedPackedMessage.
 // Use `create(Proto3UnspecifiedPackedMessageDesc)` to create a new Proto3UnspecifiedPackedMessage.
-export const Proto3UnspecifiedPackedMessageDesc: TypedDescMessage<Proto3UnspecifiedPackedMessage> = /*@__PURE__*/
+export const Proto3UnspecifiedPackedMessageDesc: GenDescMessage<Proto3UnspecifiedPackedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 4);
 
 /**
@@ -514,7 +514,7 @@ export type Proto3UnlabelledMessage = Message<"spec.Proto3UnlabelledMessage"> & 
 
 // Describes the message spec.Proto3UnlabelledMessage.
 // Use `create(Proto3UnlabelledMessageDesc)` to create a new Proto3UnlabelledMessage.
-export const Proto3UnlabelledMessageDesc: TypedDescMessage<Proto3UnlabelledMessage> = /*@__PURE__*/
+export const Proto3UnlabelledMessageDesc: GenDescMessage<Proto3UnlabelledMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 5);
 
 /**
@@ -565,7 +565,7 @@ export type Proto3OptionalMessage = Message<"spec.Proto3OptionalMessage"> & {
 
 // Describes the message spec.Proto3OptionalMessage.
 // Use `create(Proto3OptionalMessageDesc)` to create a new Proto3OptionalMessage.
-export const Proto3OptionalMessageDesc: TypedDescMessage<Proto3OptionalMessage> = /*@__PURE__*/
+export const Proto3OptionalMessageDesc: GenDescMessage<Proto3OptionalMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_proto3, 6);
 
 /**
@@ -589,6 +589,6 @@ export enum Proto3Enum {
 }
 
 // Describes the enum spec.Proto3Enum.
-export const Proto3EnumDesc: TypedDescEnum<Proto3Enum> = /*@__PURE__*/
+export const Proto3EnumDesc: GenDescEnum<Proto3Enum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_proto3, 0);
 

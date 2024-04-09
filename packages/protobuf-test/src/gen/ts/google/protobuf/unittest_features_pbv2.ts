@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
@@ -34,7 +34,7 @@ export type TestMessage = Message<"pb.TestMessage"> & {
 
 // Describes the message pb.TestMessage.
 // Use `create(TestMessageDesc)` to create a new TestMessage.
-export const TestMessageDesc: TypedDescMessage<TestMessage> = /*@__PURE__*/
+export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0);
 
 /**
@@ -45,19 +45,19 @@ export type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 
 // Describes the message pb.TestMessage.Nested.
 // Use `create(TestMessage_NestedDesc)` to create a new TestMessage_Nested.
-export const TestMessage_NestedDesc: TypedDescMessage<TestMessage_Nested> = /*@__PURE__*/
+export const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0, 0);
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
  */
-export const TestMessage_Nested_test_nested: TypedDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
+export const TestMessage_Nested_test_nested: GenDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_features, 0, 0, 0);
 
 /**
  * @generated from extension: optional pb.TestFeatures test_message = 9998;
  */
-export const TestMessage_test_message: TypedDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
+export const TestMessage_test_message: GenDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_features, 0, 0);
 
 /**
@@ -147,7 +147,7 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
 
 // Describes the message pb.TestFeatures.
 // Use `create(TestFeaturesDesc)` to create a new TestFeatures.
-export const TestFeaturesDesc: TypedDescMessage<TestFeatures> = /*@__PURE__*/
+export const TestFeaturesDesc: GenDescMessage<TestFeatures> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 1);
 
 /**
@@ -177,7 +177,7 @@ export type TestFeatures_MessageFeature = Message<"pb.TestFeatures.MessageFeatur
 
 // Describes the message pb.TestFeatures.MessageFeature.
 // Use `create(TestFeatures_MessageFeatureDesc)` to create a new TestFeatures_MessageFeature.
-export const TestFeatures_MessageFeatureDesc: TypedDescMessage<TestFeatures_MessageFeature> = /*@__PURE__*/
+export const TestFeatures_MessageFeatureDesc: GenDescMessage<TestFeatures_MessageFeature> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 1, 0);
 
 /**
@@ -216,12 +216,12 @@ export enum TestFeatures_EnumFeature {
 }
 
 // Describes the enum pb.TestFeatures.EnumFeature.
-export const TestFeatures_EnumFeatureDesc: TypedDescEnum<TestFeatures_EnumFeature> = /*@__PURE__*/
+export const TestFeatures_EnumFeatureDesc: GenDescEnum<TestFeatures_EnumFeature> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_features, 1, 0);
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;
  */
-export const test: TypedDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
+export const test: GenDescExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_features, 0);
 

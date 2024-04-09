@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -81,7 +81,7 @@ export type JSTypeProto2OmittedMessage = Message<"spec.JSTypeProto2OmittedMessag
 
 // Describes the message spec.JSTypeProto2OmittedMessage.
 // Use `create(JSTypeProto2OmittedMessageDesc)` to create a new JSTypeProto2OmittedMessage.
-export const JSTypeProto2OmittedMessageDesc: TypedDescMessage<JSTypeProto2OmittedMessage> = /*@__PURE__*/
+export const JSTypeProto2OmittedMessageDesc: GenDescMessage<JSTypeProto2OmittedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype_proto2, 0);
 
 /**
@@ -141,7 +141,7 @@ export type JSTypeProto2NormalMessage = Message<"spec.JSTypeProto2NormalMessage"
 
 // Describes the message spec.JSTypeProto2NormalMessage.
 // Use `create(JSTypeProto2NormalMessageDesc)` to create a new JSTypeProto2NormalMessage.
-export const JSTypeProto2NormalMessageDesc: TypedDescMessage<JSTypeProto2NormalMessage> = /*@__PURE__*/
+export const JSTypeProto2NormalMessageDesc: GenDescMessage<JSTypeProto2NormalMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype_proto2, 1);
 
 /**
@@ -201,7 +201,7 @@ export type JSTypeProto2StringMessage = Message<"spec.JSTypeProto2StringMessage"
 
 // Describes the message spec.JSTypeProto2StringMessage.
 // Use `create(JSTypeProto2StringMessageDesc)` to create a new JSTypeProto2StringMessage.
-export const JSTypeProto2StringMessageDesc: TypedDescMessage<JSTypeProto2StringMessage> = /*@__PURE__*/
+export const JSTypeProto2StringMessageDesc: GenDescMessage<JSTypeProto2StringMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype_proto2, 2);
 
 /**
@@ -261,6 +261,6 @@ export type JSTypeProto2NumberMessage = Message<"spec.JSTypeProto2NumberMessage"
 
 // Describes the message spec.JSTypeProto2NumberMessage.
 // Use `create(JSTypeProto2NumberMessageDesc)` to create a new JSTypeProto2NumberMessage.
-export const JSTypeProto2NumberMessageDesc: TypedDescMessage<JSTypeProto2NumberMessage> = /*@__PURE__*/
+export const JSTypeProto2NumberMessageDesc: GenDescMessage<JSTypeProto2NumberMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype_proto2, 3);
 

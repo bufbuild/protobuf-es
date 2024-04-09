@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -46,6 +46,6 @@ export type SelfReferencingMessage = Message<"spec.SelfReferencingMessage"> & {
 
 // Describes the message spec.SelfReferencingMessage.
 // Use `create(SelfReferencingMessageDesc)` to create a new SelfReferencingMessage.
-export const SelfReferencingMessageDesc: TypedDescMessage<SelfReferencingMessage> = /*@__PURE__*/
+export const SelfReferencingMessageDesc: GenDescMessage<SelfReferencingMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_self_reference, 0);
 

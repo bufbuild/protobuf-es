@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 
 export const fileDesc_google_protobuf_unittest_proto3_bad_macros: DescFile = /*@__PURE__*/
@@ -36,7 +36,7 @@ export enum GID {
 }
 
 // Describes the enum protobuf_unittest.GID.
-export const GIDDesc: TypedDescEnum<GID> = /*@__PURE__*/
+export const GIDDesc: GenDescEnum<GID> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 0);
 
 /**
@@ -52,7 +52,7 @@ export enum UID {
 }
 
 // Describes the enum protobuf_unittest.UID.
-export const UIDDesc: TypedDescEnum<UID> = /*@__PURE__*/
+export const UIDDesc: GenDescEnum<UID> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 1);
 
 /**
@@ -241,6 +241,6 @@ export enum BadNames {
 }
 
 // Describes the enum protobuf_unittest.BadNames.
-export const BadNamesDesc: TypedDescEnum<BadNames> = /*@__PURE__*/
+export const BadNamesDesc: GenDescEnum<BadNames> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 2);
 

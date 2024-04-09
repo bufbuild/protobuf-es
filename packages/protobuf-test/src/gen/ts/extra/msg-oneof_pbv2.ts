@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -88,7 +88,7 @@ export type OneofMessage = Message<"spec.OneofMessage"> & {
 
 // Describes the message spec.OneofMessage.
 // Use `create(OneofMessageDesc)` to create a new OneofMessage.
-export const OneofMessageDesc: TypedDescMessage<OneofMessage> = /*@__PURE__*/
+export const OneofMessageDesc: GenDescMessage<OneofMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_oneof, 0);
 
 /**
@@ -108,7 +108,7 @@ export type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 
 // Describes the message spec.OneofMessageFoo.
 // Use `create(OneofMessageFooDesc)` to create a new OneofMessageFoo.
-export const OneofMessageFooDesc: TypedDescMessage<OneofMessageFoo> = /*@__PURE__*/
+export const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_oneof, 1);
 
 /**
@@ -128,7 +128,7 @@ export type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 
 // Describes the message spec.OneofMessageBar.
 // Use `create(OneofMessageBarDesc)` to create a new OneofMessageBar.
-export const OneofMessageBarDesc: TypedDescMessage<OneofMessageBar> = /*@__PURE__*/
+export const OneofMessageBarDesc: GenDescMessage<OneofMessageBar> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_oneof, 2);
 
 /**
@@ -152,6 +152,6 @@ export enum OneofEnum {
 }
 
 // Describes the enum spec.OneofEnum.
-export const OneofEnumDesc: TypedDescEnum<OneofEnum> = /*@__PURE__*/
+export const OneofEnumDesc: GenDescEnum<OneofEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_msg_oneof, 0);
 

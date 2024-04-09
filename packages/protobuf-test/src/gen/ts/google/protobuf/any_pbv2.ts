@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -160,6 +160,6 @@ export type Any = Message<"google.protobuf.Any"> & {
 
 // Describes the message google.protobuf.Any.
 // Use `create(AnyDesc)` to create a new Any.
-export const AnyDesc: TypedDescMessage<Any> = /*@__PURE__*/
+export const AnyDesc: GenDescMessage<Any> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_any, 0);
 

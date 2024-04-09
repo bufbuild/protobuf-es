@@ -19,7 +19,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/next/wkt";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_wkt_wrappers: DescFile;
 
@@ -224,5 +224,5 @@ export declare type WrappersMessage = Message<"spec.WrappersMessage"> & {
 };
 
 // Describes the message spec.WrappersMessage. Use `create(WrappersMessageDesc)` to create a new WrappersMessage.
-export declare const WrappersMessageDesc: TypedDescMessage<WrappersMessage>;
+export declare const WrappersMessageDesc: GenDescMessage<WrappersMessage>;
 

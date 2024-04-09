@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_msg_scalar: DescFile;
 
@@ -103,7 +103,7 @@ export declare type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & 
 };
 
 // Describes the message spec.ScalarValuesMessage. Use `create(ScalarValuesMessageDesc)` to create a new ScalarValuesMessage.
-export declare const ScalarValuesMessageDesc: TypedDescMessage<ScalarValuesMessage>;
+export declare const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage>;
 
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
@@ -186,5 +186,5 @@ export declare type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarVa
 };
 
 // Describes the message spec.RepeatedScalarValuesMessage. Use `create(RepeatedScalarValuesMessageDesc)` to create a new RepeatedScalarValuesMessage.
-export declare const RepeatedScalarValuesMessageDesc: TypedDescMessage<RepeatedScalarValuesMessage>;
+export declare const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage>;
 

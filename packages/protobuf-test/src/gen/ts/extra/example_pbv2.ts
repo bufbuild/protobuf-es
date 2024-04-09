@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -61,6 +61,6 @@ export type User = Message<"docs.User"> & {
 
 // Describes the message docs.User.
 // Use `create(UserDesc)` to create a new User.
-export const UserDesc: TypedDescMessage<User> = /*@__PURE__*/
+export const UserDesc: GenDescMessage<User> = /*@__PURE__*/
   messageDesc(fileDesc_extra_example, 0);
 

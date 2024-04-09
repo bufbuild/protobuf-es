@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { SourceContext } from "./source_context_pbv2.js";
 import { fileDesc_google_protobuf_source_context } from "./source_context_pbv2.js";
@@ -115,7 +115,7 @@ export type Api = Message<"google.protobuf.Api"> & {
 
 // Describes the message google.protobuf.Api.
 // Use `create(ApiDesc)` to create a new Api.
-export const ApiDesc: TypedDescMessage<Api> = /*@__PURE__*/
+export const ApiDesc: GenDescMessage<Api> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 0);
 
 /**
@@ -176,7 +176,7 @@ export type Method = Message<"google.protobuf.Method"> & {
 
 // Describes the message google.protobuf.Method.
 // Use `create(MethodDesc)` to create a new Method.
-export const MethodDesc: TypedDescMessage<Method> = /*@__PURE__*/
+export const MethodDesc: GenDescMessage<Method> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 1);
 
 /**
@@ -280,6 +280,6 @@ export type Mixin = Message<"google.protobuf.Mixin"> & {
 
 // Describes the message google.protobuf.Mixin.
 // Use `create(MixinDesc)` to create a new Mixin.
-export const MixinDesc: TypedDescMessage<Mixin> = /*@__PURE__*/
+export const MixinDesc: GenDescMessage<Mixin> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 2);
 

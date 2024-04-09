@@ -25,7 +25,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -47,7 +47,7 @@ export type FileDescriptorSet = Message<"google.protobuf.FileDescriptorSet"> & {
 
 // Describes the message google.protobuf.FileDescriptorSet.
 // Use `create(FileDescriptorSetDesc)` to create a new FileDescriptorSet.
-export const FileDescriptorSetDesc: TypedDescMessage<FileDescriptorSet> = /*@__PURE__*/
+export const FileDescriptorSetDesc: GenDescMessage<FileDescriptorSet> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 0);
 
 /**
@@ -149,7 +149,7 @@ export type FileDescriptorProto = Message<"google.protobuf.FileDescriptorProto">
 
 // Describes the message google.protobuf.FileDescriptorProto.
 // Use `create(FileDescriptorProtoDesc)` to create a new FileDescriptorProto.
-export const FileDescriptorProtoDesc: TypedDescMessage<FileDescriptorProto> = /*@__PURE__*/
+export const FileDescriptorProtoDesc: GenDescMessage<FileDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 1);
 
 /**
@@ -214,7 +214,7 @@ export type DescriptorProto = Message<"google.protobuf.DescriptorProto"> & {
 
 // Describes the message google.protobuf.DescriptorProto.
 // Use `create(DescriptorProtoDesc)` to create a new DescriptorProto.
-export const DescriptorProtoDesc: TypedDescMessage<DescriptorProto> = /*@__PURE__*/
+export const DescriptorProtoDesc: GenDescMessage<DescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 2);
 
 /**
@@ -243,7 +243,7 @@ export type DescriptorProto_ExtensionRange = Message<"google.protobuf.Descriptor
 
 // Describes the message google.protobuf.DescriptorProto.ExtensionRange.
 // Use `create(DescriptorProto_ExtensionRangeDesc)` to create a new DescriptorProto_ExtensionRange.
-export const DescriptorProto_ExtensionRangeDesc: TypedDescMessage<DescriptorProto_ExtensionRange> = /*@__PURE__*/
+export const DescriptorProto_ExtensionRangeDesc: GenDescMessage<DescriptorProto_ExtensionRange> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 2, 0);
 
 /**
@@ -271,7 +271,7 @@ export type DescriptorProto_ReservedRange = Message<"google.protobuf.DescriptorP
 
 // Describes the message google.protobuf.DescriptorProto.ReservedRange.
 // Use `create(DescriptorProto_ReservedRangeDesc)` to create a new DescriptorProto_ReservedRange.
-export const DescriptorProto_ReservedRangeDesc: TypedDescMessage<DescriptorProto_ReservedRange> = /*@__PURE__*/
+export const DescriptorProto_ReservedRangeDesc: GenDescMessage<DescriptorProto_ReservedRange> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 2, 1);
 
 /**
@@ -313,7 +313,7 @@ export type ExtensionRangeOptions = Message<"google.protobuf.ExtensionRangeOptio
 
 // Describes the message google.protobuf.ExtensionRangeOptions.
 // Use `create(ExtensionRangeOptionsDesc)` to create a new ExtensionRangeOptions.
-export const ExtensionRangeOptionsDesc: TypedDescMessage<ExtensionRangeOptions> = /*@__PURE__*/
+export const ExtensionRangeOptionsDesc: GenDescMessage<ExtensionRangeOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 3);
 
 /**
@@ -364,7 +364,7 @@ export type ExtensionRangeOptions_Declaration = Message<"google.protobuf.Extensi
 
 // Describes the message google.protobuf.ExtensionRangeOptions.Declaration.
 // Use `create(ExtensionRangeOptions_DeclarationDesc)` to create a new ExtensionRangeOptions_Declaration.
-export const ExtensionRangeOptions_DeclarationDesc: TypedDescMessage<ExtensionRangeOptions_Declaration> = /*@__PURE__*/
+export const ExtensionRangeOptions_DeclarationDesc: GenDescMessage<ExtensionRangeOptions_Declaration> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 3, 0);
 
 /**
@@ -387,7 +387,7 @@ export enum ExtensionRangeOptions_VerificationState {
 }
 
 // Describes the enum google.protobuf.ExtensionRangeOptions.VerificationState.
-export const ExtensionRangeOptions_VerificationStateDesc: TypedDescEnum<ExtensionRangeOptions_VerificationState> = /*@__PURE__*/
+export const ExtensionRangeOptions_VerificationStateDesc: GenDescEnum<ExtensionRangeOptions_VerificationState> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 3, 0);
 
 /**
@@ -501,7 +501,7 @@ export type FieldDescriptorProto = Message<"google.protobuf.FieldDescriptorProto
 
 // Describes the message google.protobuf.FieldDescriptorProto.
 // Use `create(FieldDescriptorProtoDesc)` to create a new FieldDescriptorProto.
-export const FieldDescriptorProtoDesc: TypedDescMessage<FieldDescriptorProto> = /*@__PURE__*/
+export const FieldDescriptorProtoDesc: GenDescMessage<FieldDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 4);
 
 /**
@@ -623,7 +623,7 @@ export enum FieldDescriptorProto_Type {
 }
 
 // Describes the enum google.protobuf.FieldDescriptorProto.Type.
-export const FieldDescriptorProto_TypeDesc: TypedDescEnum<FieldDescriptorProto_Type> = /*@__PURE__*/
+export const FieldDescriptorProto_TypeDesc: GenDescEnum<FieldDescriptorProto_Type> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 4, 0);
 
 /**
@@ -653,7 +653,7 @@ export enum FieldDescriptorProto_Label {
 }
 
 // Describes the enum google.protobuf.FieldDescriptorProto.Label.
-export const FieldDescriptorProto_LabelDesc: TypedDescEnum<FieldDescriptorProto_Label> = /*@__PURE__*/
+export const FieldDescriptorProto_LabelDesc: GenDescEnum<FieldDescriptorProto_Label> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 4, 1);
 
 /**
@@ -675,7 +675,7 @@ export type OneofDescriptorProto = Message<"google.protobuf.OneofDescriptorProto
 
 // Describes the message google.protobuf.OneofDescriptorProto.
 // Use `create(OneofDescriptorProtoDesc)` to create a new OneofDescriptorProto.
-export const OneofDescriptorProtoDesc: TypedDescMessage<OneofDescriptorProto> = /*@__PURE__*/
+export const OneofDescriptorProtoDesc: GenDescMessage<OneofDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 5);
 
 /**
@@ -719,7 +719,7 @@ export type EnumDescriptorProto = Message<"google.protobuf.EnumDescriptorProto">
 
 // Describes the message google.protobuf.EnumDescriptorProto.
 // Use `create(EnumDescriptorProtoDesc)` to create a new EnumDescriptorProto.
-export const EnumDescriptorProtoDesc: TypedDescMessage<EnumDescriptorProto> = /*@__PURE__*/
+export const EnumDescriptorProtoDesc: GenDescMessage<EnumDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 6);
 
 /**
@@ -750,7 +750,7 @@ export type EnumDescriptorProto_EnumReservedRange = Message<"google.protobuf.Enu
 
 // Describes the message google.protobuf.EnumDescriptorProto.EnumReservedRange.
 // Use `create(EnumDescriptorProto_EnumReservedRangeDesc)` to create a new EnumDescriptorProto_EnumReservedRange.
-export const EnumDescriptorProto_EnumReservedRangeDesc: TypedDescMessage<EnumDescriptorProto_EnumReservedRange> = /*@__PURE__*/
+export const EnumDescriptorProto_EnumReservedRangeDesc: GenDescMessage<EnumDescriptorProto_EnumReservedRange> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 6, 0);
 
 /**
@@ -777,7 +777,7 @@ export type EnumValueDescriptorProto = Message<"google.protobuf.EnumValueDescrip
 
 // Describes the message google.protobuf.EnumValueDescriptorProto.
 // Use `create(EnumValueDescriptorProtoDesc)` to create a new EnumValueDescriptorProto.
-export const EnumValueDescriptorProtoDesc: TypedDescMessage<EnumValueDescriptorProto> = /*@__PURE__*/
+export const EnumValueDescriptorProtoDesc: GenDescMessage<EnumValueDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 7);
 
 /**
@@ -804,7 +804,7 @@ export type ServiceDescriptorProto = Message<"google.protobuf.ServiceDescriptorP
 
 // Describes the message google.protobuf.ServiceDescriptorProto.
 // Use `create(ServiceDescriptorProtoDesc)` to create a new ServiceDescriptorProto.
-export const ServiceDescriptorProtoDesc: TypedDescMessage<ServiceDescriptorProto> = /*@__PURE__*/
+export const ServiceDescriptorProtoDesc: GenDescMessage<ServiceDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 8);
 
 /**
@@ -853,7 +853,7 @@ export type MethodDescriptorProto = Message<"google.protobuf.MethodDescriptorPro
 
 // Describes the message google.protobuf.MethodDescriptorProto.
 // Use `create(MethodDescriptorProtoDesc)` to create a new MethodDescriptorProto.
-export const MethodDescriptorProtoDesc: TypedDescMessage<MethodDescriptorProto> = /*@__PURE__*/
+export const MethodDescriptorProtoDesc: GenDescMessage<MethodDescriptorProto> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 9);
 
 /**
@@ -1051,7 +1051,7 @@ export type FileOptions = Message<"google.protobuf.FileOptions"> & {
 
 // Describes the message google.protobuf.FileOptions.
 // Use `create(FileOptionsDesc)` to create a new FileOptions.
-export const FileOptionsDesc: TypedDescMessage<FileOptions> = /*@__PURE__*/
+export const FileOptionsDesc: GenDescMessage<FileOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 10);
 
 /**
@@ -1085,7 +1085,7 @@ export enum FileOptions_OptimizeMode {
 }
 
 // Describes the enum google.protobuf.FileOptions.OptimizeMode.
-export const FileOptions_OptimizeModeDesc: TypedDescEnum<FileOptions_OptimizeMode> = /*@__PURE__*/
+export const FileOptions_OptimizeModeDesc: GenDescEnum<FileOptions_OptimizeMode> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 10, 0);
 
 /**
@@ -1196,7 +1196,7 @@ export type MessageOptions = Message<"google.protobuf.MessageOptions"> & {
 
 // Describes the message google.protobuf.MessageOptions.
 // Use `create(MessageOptionsDesc)` to create a new MessageOptions.
-export const MessageOptionsDesc: TypedDescMessage<MessageOptions> = /*@__PURE__*/
+export const MessageOptionsDesc: GenDescMessage<MessageOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 11);
 
 /**
@@ -1339,7 +1339,7 @@ export type FieldOptions = Message<"google.protobuf.FieldOptions"> & {
 
 // Describes the message google.protobuf.FieldOptions.
 // Use `create(FieldOptionsDesc)` to create a new FieldOptions.
-export const FieldOptionsDesc: TypedDescMessage<FieldOptions> = /*@__PURE__*/
+export const FieldOptionsDesc: GenDescMessage<FieldOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 12);
 
 /**
@@ -1361,7 +1361,7 @@ export type FieldOptions_EditionDefault = Message<"google.protobuf.FieldOptions.
 
 // Describes the message google.protobuf.FieldOptions.EditionDefault.
 // Use `create(FieldOptions_EditionDefaultDesc)` to create a new FieldOptions_EditionDefault.
-export const FieldOptions_EditionDefaultDesc: TypedDescMessage<FieldOptions_EditionDefault> = /*@__PURE__*/
+export const FieldOptions_EditionDefaultDesc: GenDescMessage<FieldOptions_EditionDefault> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 12, 0);
 
 /**
@@ -1394,7 +1394,7 @@ export enum FieldOptions_CType {
 }
 
 // Describes the enum google.protobuf.FieldOptions.CType.
-export const FieldOptions_CTypeDesc: TypedDescEnum<FieldOptions_CType> = /*@__PURE__*/
+export const FieldOptions_CTypeDesc: GenDescEnum<FieldOptions_CType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 12, 0);
 
 /**
@@ -1424,7 +1424,7 @@ export enum FieldOptions_JSType {
 }
 
 // Describes the enum google.protobuf.FieldOptions.JSType.
-export const FieldOptions_JSTypeDesc: TypedDescEnum<FieldOptions_JSType> = /*@__PURE__*/
+export const FieldOptions_JSTypeDesc: GenDescEnum<FieldOptions_JSType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 12, 1);
 
 /**
@@ -1452,7 +1452,7 @@ export enum FieldOptions_OptionRetention {
 }
 
 // Describes the enum google.protobuf.FieldOptions.OptionRetention.
-export const FieldOptions_OptionRetentionDesc: TypedDescEnum<FieldOptions_OptionRetention> = /*@__PURE__*/
+export const FieldOptions_OptionRetentionDesc: GenDescEnum<FieldOptions_OptionRetention> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 12, 2);
 
 /**
@@ -1516,7 +1516,7 @@ export enum FieldOptions_OptionTargetType {
 }
 
 // Describes the enum google.protobuf.FieldOptions.OptionTargetType.
-export const FieldOptions_OptionTargetTypeDesc: TypedDescEnum<FieldOptions_OptionTargetType> = /*@__PURE__*/
+export const FieldOptions_OptionTargetTypeDesc: GenDescEnum<FieldOptions_OptionTargetType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 12, 3);
 
 /**
@@ -1540,7 +1540,7 @@ export type OneofOptions = Message<"google.protobuf.OneofOptions"> & {
 
 // Describes the message google.protobuf.OneofOptions.
 // Use `create(OneofOptionsDesc)` to create a new OneofOptions.
-export const OneofOptionsDesc: TypedDescMessage<OneofOptions> = /*@__PURE__*/
+export const OneofOptionsDesc: GenDescMessage<OneofOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 13);
 
 /**
@@ -1595,7 +1595,7 @@ export type EnumOptions = Message<"google.protobuf.EnumOptions"> & {
 
 // Describes the message google.protobuf.EnumOptions.
 // Use `create(EnumOptionsDesc)` to create a new EnumOptions.
-export const EnumOptionsDesc: TypedDescMessage<EnumOptions> = /*@__PURE__*/
+export const EnumOptionsDesc: GenDescMessage<EnumOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 14);
 
 /**
@@ -1638,7 +1638,7 @@ export type EnumValueOptions = Message<"google.protobuf.EnumValueOptions"> & {
 
 // Describes the message google.protobuf.EnumValueOptions.
 // Use `create(EnumValueOptionsDesc)` to create a new EnumValueOptions.
-export const EnumValueOptionsDesc: TypedDescMessage<EnumValueOptions> = /*@__PURE__*/
+export const EnumValueOptionsDesc: GenDescMessage<EnumValueOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 15);
 
 /**
@@ -1672,7 +1672,7 @@ export type ServiceOptions = Message<"google.protobuf.ServiceOptions"> & {
 
 // Describes the message google.protobuf.ServiceOptions.
 // Use `create(ServiceOptionsDesc)` to create a new ServiceOptions.
-export const ServiceOptionsDesc: TypedDescMessage<ServiceOptions> = /*@__PURE__*/
+export const ServiceOptionsDesc: GenDescMessage<ServiceOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 16);
 
 /**
@@ -1711,7 +1711,7 @@ export type MethodOptions = Message<"google.protobuf.MethodOptions"> & {
 
 // Describes the message google.protobuf.MethodOptions.
 // Use `create(MethodOptionsDesc)` to create a new MethodOptions.
-export const MethodOptionsDesc: TypedDescMessage<MethodOptions> = /*@__PURE__*/
+export const MethodOptionsDesc: GenDescMessage<MethodOptions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 17);
 
 /**
@@ -1743,7 +1743,7 @@ export enum MethodOptions_IdempotencyLevel {
 }
 
 // Describes the enum google.protobuf.MethodOptions.IdempotencyLevel.
-export const MethodOptions_IdempotencyLevelDesc: TypedDescEnum<MethodOptions_IdempotencyLevel> = /*@__PURE__*/
+export const MethodOptions_IdempotencyLevelDesc: GenDescEnum<MethodOptions_IdempotencyLevel> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 17, 0);
 
 /**
@@ -1798,7 +1798,7 @@ export type UninterpretedOption = Message<"google.protobuf.UninterpretedOption">
 
 // Describes the message google.protobuf.UninterpretedOption.
 // Use `create(UninterpretedOptionDesc)` to create a new UninterpretedOption.
-export const UninterpretedOptionDesc: TypedDescMessage<UninterpretedOption> = /*@__PURE__*/
+export const UninterpretedOptionDesc: GenDescMessage<UninterpretedOption> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 18);
 
 /**
@@ -1824,7 +1824,7 @@ export type UninterpretedOption_NamePart = Message<"google.protobuf.Uninterprete
 
 // Describes the message google.protobuf.UninterpretedOption.NamePart.
 // Use `create(UninterpretedOption_NamePartDesc)` to create a new UninterpretedOption_NamePart.
-export const UninterpretedOption_NamePartDesc: TypedDescMessage<UninterpretedOption_NamePart> = /*@__PURE__*/
+export const UninterpretedOption_NamePartDesc: GenDescMessage<UninterpretedOption_NamePart> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 18, 0);
 
 /**
@@ -1871,7 +1871,7 @@ export type FeatureSet = Message<"google.protobuf.FeatureSet"> & {
 
 // Describes the message google.protobuf.FeatureSet.
 // Use `create(FeatureSetDesc)` to create a new FeatureSet.
-export const FeatureSetDesc: TypedDescMessage<FeatureSet> = /*@__PURE__*/
+export const FeatureSetDesc: GenDescMessage<FeatureSet> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 19);
 
 /**
@@ -1900,7 +1900,7 @@ export enum FeatureSet_FieldPresence {
 }
 
 // Describes the enum google.protobuf.FeatureSet.FieldPresence.
-export const FeatureSet_FieldPresenceDesc: TypedDescEnum<FeatureSet_FieldPresence> = /*@__PURE__*/
+export const FeatureSet_FieldPresenceDesc: GenDescEnum<FeatureSet_FieldPresence> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 0);
 
 /**
@@ -1924,7 +1924,7 @@ export enum FeatureSet_EnumType {
 }
 
 // Describes the enum google.protobuf.FeatureSet.EnumType.
-export const FeatureSet_EnumTypeDesc: TypedDescEnum<FeatureSet_EnumType> = /*@__PURE__*/
+export const FeatureSet_EnumTypeDesc: GenDescEnum<FeatureSet_EnumType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 1);
 
 /**
@@ -1948,7 +1948,7 @@ export enum FeatureSet_RepeatedFieldEncoding {
 }
 
 // Describes the enum google.protobuf.FeatureSet.RepeatedFieldEncoding.
-export const FeatureSet_RepeatedFieldEncodingDesc: TypedDescEnum<FeatureSet_RepeatedFieldEncoding> = /*@__PURE__*/
+export const FeatureSet_RepeatedFieldEncodingDesc: GenDescEnum<FeatureSet_RepeatedFieldEncoding> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 2);
 
 /**
@@ -1972,7 +1972,7 @@ export enum FeatureSet_Utf8Validation {
 }
 
 // Describes the enum google.protobuf.FeatureSet.Utf8Validation.
-export const FeatureSet_Utf8ValidationDesc: TypedDescEnum<FeatureSet_Utf8Validation> = /*@__PURE__*/
+export const FeatureSet_Utf8ValidationDesc: GenDescEnum<FeatureSet_Utf8Validation> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 3);
 
 /**
@@ -1996,7 +1996,7 @@ export enum FeatureSet_MessageEncoding {
 }
 
 // Describes the enum google.protobuf.FeatureSet.MessageEncoding.
-export const FeatureSet_MessageEncodingDesc: TypedDescEnum<FeatureSet_MessageEncoding> = /*@__PURE__*/
+export const FeatureSet_MessageEncodingDesc: GenDescEnum<FeatureSet_MessageEncoding> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 4);
 
 /**
@@ -2020,7 +2020,7 @@ export enum FeatureSet_JsonFormat {
 }
 
 // Describes the enum google.protobuf.FeatureSet.JsonFormat.
-export const FeatureSet_JsonFormatDesc: TypedDescEnum<FeatureSet_JsonFormat> = /*@__PURE__*/
+export const FeatureSet_JsonFormatDesc: GenDescEnum<FeatureSet_JsonFormat> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 19, 5);
 
 /**
@@ -2056,7 +2056,7 @@ export type FeatureSetDefaults = Message<"google.protobuf.FeatureSetDefaults"> &
 
 // Describes the message google.protobuf.FeatureSetDefaults.
 // Use `create(FeatureSetDefaultsDesc)` to create a new FeatureSetDefaults.
-export const FeatureSetDefaultsDesc: TypedDescMessage<FeatureSetDefaults> = /*@__PURE__*/
+export const FeatureSetDefaultsDesc: GenDescMessage<FeatureSetDefaults> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 20);
 
 /**
@@ -2081,7 +2081,7 @@ export type FeatureSetDefaults_FeatureSetEditionDefault = Message<"google.protob
 
 // Describes the message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.
 // Use `create(FeatureSetDefaults_FeatureSetEditionDefaultDesc)` to create a new FeatureSetDefaults_FeatureSetEditionDefault.
-export const FeatureSetDefaults_FeatureSetEditionDefaultDesc: TypedDescMessage<FeatureSetDefaults_FeatureSetEditionDefault> = /*@__PURE__*/
+export const FeatureSetDefaults_FeatureSetEditionDefaultDesc: GenDescMessage<FeatureSetDefaults_FeatureSetEditionDefault> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 20, 0);
 
 /**
@@ -2143,7 +2143,7 @@ export type SourceCodeInfo = Message<"google.protobuf.SourceCodeInfo"> & {
 
 // Describes the message google.protobuf.SourceCodeInfo.
 // Use `create(SourceCodeInfoDesc)` to create a new SourceCodeInfo.
-export const SourceCodeInfoDesc: TypedDescMessage<SourceCodeInfo> = /*@__PURE__*/
+export const SourceCodeInfoDesc: GenDescMessage<SourceCodeInfo> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 21);
 
 /**
@@ -2256,7 +2256,7 @@ export type SourceCodeInfo_Location = Message<"google.protobuf.SourceCodeInfo.Lo
 
 // Describes the message google.protobuf.SourceCodeInfo.Location.
 // Use `create(SourceCodeInfo_LocationDesc)` to create a new SourceCodeInfo_Location.
-export const SourceCodeInfo_LocationDesc: TypedDescMessage<SourceCodeInfo_Location> = /*@__PURE__*/
+export const SourceCodeInfo_LocationDesc: GenDescMessage<SourceCodeInfo_Location> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 21, 0);
 
 /**
@@ -2278,7 +2278,7 @@ export type GeneratedCodeInfo = Message<"google.protobuf.GeneratedCodeInfo"> & {
 
 // Describes the message google.protobuf.GeneratedCodeInfo.
 // Use `create(GeneratedCodeInfoDesc)` to create a new GeneratedCodeInfo.
-export const GeneratedCodeInfoDesc: TypedDescMessage<GeneratedCodeInfo> = /*@__PURE__*/
+export const GeneratedCodeInfoDesc: GenDescMessage<GeneratedCodeInfo> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 22);
 
 /**
@@ -2325,7 +2325,7 @@ export type GeneratedCodeInfo_Annotation = Message<"google.protobuf.GeneratedCod
 
 // Describes the message google.protobuf.GeneratedCodeInfo.Annotation.
 // Use `create(GeneratedCodeInfo_AnnotationDesc)` to create a new GeneratedCodeInfo_Annotation.
-export const GeneratedCodeInfo_AnnotationDesc: TypedDescMessage<GeneratedCodeInfo_Annotation> = /*@__PURE__*/
+export const GeneratedCodeInfo_AnnotationDesc: GenDescMessage<GeneratedCodeInfo_Annotation> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_descriptor, 22, 0);
 
 /**
@@ -2358,7 +2358,7 @@ export enum GeneratedCodeInfo_Annotation_Semantic {
 }
 
 // Describes the enum google.protobuf.GeneratedCodeInfo.Annotation.Semantic.
-export const GeneratedCodeInfo_Annotation_SemanticDesc: TypedDescEnum<GeneratedCodeInfo_Annotation_Semantic> = /*@__PURE__*/
+export const GeneratedCodeInfo_Annotation_SemanticDesc: GenDescEnum<GeneratedCodeInfo_Annotation_Semantic> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 22, 0, 0);
 
 /**
@@ -2442,6 +2442,6 @@ export enum Edition {
 }
 
 // Describes the enum google.protobuf.Edition.
-export const EditionDesc: TypedDescEnum<Edition> = /*@__PURE__*/
+export const EditionDesc: GenDescEnum<Edition> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_descriptor, 0);
 

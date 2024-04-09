@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -33,6 +33,6 @@ export type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMess
 
 // Describes the message spec.ImplicitlyDeprecatedMessage.
 // Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
-export const ImplicitlyDeprecatedMessageDesc: TypedDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
+export const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_implicit, 0);
 

@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_any: DescFile;
 
@@ -157,5 +157,5 @@ export declare type Any = Message<"google.protobuf.Any"> & {
 };
 
 // Describes the message google.protobuf.Any. Use `create(AnyDesc)` to create a new Any.
-export declare const AnyDesc: TypedDescMessage<Any>;
+export declare const AnyDesc: GenDescMessage<Any>;
 

@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -41,6 +41,6 @@ export type Empty = Message<"google.protobuf.Empty"> & {
 
 // Describes the message google.protobuf.Empty.
 // Use `create(EmptyDesc)` to create a new Empty.
-export const EmptyDesc: TypedDescMessage<Empty> = /*@__PURE__*/
+export const EmptyDesc: GenDescMessage<Empty> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_empty, 0);
 

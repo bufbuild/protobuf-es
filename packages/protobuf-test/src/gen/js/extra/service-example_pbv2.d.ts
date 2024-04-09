@@ -18,7 +18,7 @@
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_service_example: DescFile;
 
@@ -56,7 +56,7 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
 };
 
 // Describes the message spec.ExampleRequest. Use `create(ExampleRequestDesc)` to create a new ExampleRequest.
-export declare const ExampleRequestDesc: TypedDescMessage<ExampleRequest>;
+export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest>;
 
 /**
  * @generated from message spec.ExampleResponse
@@ -92,7 +92,7 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
 };
 
 // Describes the message spec.ExampleResponse. Use `create(ExampleResponseDesc)` to create a new ExampleResponse.
-export declare const ExampleResponseDesc: TypedDescMessage<ExampleResponse>;
+export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse>;
 
 /**
  * @generated from enum spec.FailRequest
@@ -121,12 +121,12 @@ export enum FailRequest {
 }
 
 // Describes the enum spec.FailRequest.
-export declare const FailRequestDesc: TypedDescEnum<FailRequest>;
+export declare const FailRequestDesc: GenDescEnum<FailRequest>;
 
 /**
  * @generated from service spec.ExampleService
  */
-export declare const ExampleService: TypedDescService<{
+export declare const ExampleService: GenDescService<{
   /**
    * @generated from rpc spec.ExampleService.Unary
    */

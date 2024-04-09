@@ -23,7 +23,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { TestAllTypes, TestRequired } from "./unittest_pbv2.js";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_lite_imports_nonlite: DescFile;
 
@@ -45,5 +45,5 @@ export declare type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLite
 };
 
 // Describes the message protobuf_unittest.TestLiteImportsNonlite. Use `create(TestLiteImportsNonliteDesc)` to create a new TestLiteImportsNonlite.
-export declare const TestLiteImportsNonliteDesc: TypedDescMessage<TestLiteImportsNonlite>;
+export declare const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite>;
 

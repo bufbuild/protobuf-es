@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile, MethodKind } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage, TypedDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -59,7 +59,7 @@ export type ExampleRequest = Message<"spec.ExampleRequest"> & {
 
 // Describes the message spec.ExampleRequest.
 // Use `create(ExampleRequestDesc)` to create a new ExampleRequest.
-export const ExampleRequestDesc: TypedDescMessage<ExampleRequest> = /*@__PURE__*/
+export const ExampleRequestDesc: GenDescMessage<ExampleRequest> = /*@__PURE__*/
   messageDesc(fileDesc_extra_service_example, 0);
 
 /**
@@ -97,7 +97,7 @@ export type ExampleResponse = Message<"spec.ExampleResponse"> & {
 
 // Describes the message spec.ExampleResponse.
 // Use `create(ExampleResponseDesc)` to create a new ExampleResponse.
-export const ExampleResponseDesc: TypedDescMessage<ExampleResponse> = /*@__PURE__*/
+export const ExampleResponseDesc: GenDescMessage<ExampleResponse> = /*@__PURE__*/
   messageDesc(fileDesc_extra_service_example, 1);
 
 /**
@@ -127,13 +127,13 @@ export enum FailRequest {
 }
 
 // Describes the enum spec.FailRequest.
-export const FailRequestDesc: TypedDescEnum<FailRequest> = /*@__PURE__*/
+export const FailRequestDesc: GenDescEnum<FailRequest> = /*@__PURE__*/
   enumDesc(fileDesc_extra_service_example, 0);
 
 /**
  * @generated from service spec.ExampleService
  */
-export const ExampleService: TypedDescService<{
+export const ExampleService: GenDescService<{
   /**
    * @generated from rpc spec.ExampleService.Unary
    */

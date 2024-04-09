@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_msg_json_names: DescFile;
 
@@ -53,5 +53,5 @@ export declare type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
 };
 
 // Describes the message spec.JsonNamesMessage. Use `create(JsonNamesMessageDesc)` to create a new JsonNamesMessage.
-export declare const JsonNamesMessageDesc: TypedDescMessage<JsonNamesMessage>;
+export declare const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage>;
 

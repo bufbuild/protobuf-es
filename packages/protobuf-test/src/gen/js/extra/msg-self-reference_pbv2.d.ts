@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_msg_self_reference: DescFile;
 
@@ -43,5 +43,5 @@ export declare type SelfReferencingMessage = Message<"spec.SelfReferencingMessag
 };
 
 // Describes the message spec.SelfReferencingMessage. Use `create(SelfReferencingMessageDesc)` to create a new SelfReferencingMessage.
-export declare const SelfReferencingMessageDesc: TypedDescMessage<SelfReferencingMessage>;
+export declare const SelfReferencingMessageDesc: GenDescMessage<SelfReferencingMessage>;
 

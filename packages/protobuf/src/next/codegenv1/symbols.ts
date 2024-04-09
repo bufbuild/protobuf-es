@@ -56,10 +56,10 @@ export const symbols = {
     messageDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/message.js",    from: packageName + "/codegenv1" },
     serviceDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/service.js",    from: packageName + "/codegenv1" },
     tsEnum:                {typeOnly: false, bootstrapWktFrom: "../../codegenv1/enum.js",       from: packageName + "/codegenv1" },
-    TypedDescEnum:         {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
-    TypedDescExtension:    {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
-    TypedDescMessage:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
-    TypedDescService:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/typed-desc.js", from: packageName + "/codegenv1" },
+    GenDescEnum:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
+    GenDescExtension:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
+    GenDescMessage:        {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
+    GenDescService:        {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
   },
 } as const satisfies Record<string, symbolInfo | Record<string, symbolInfo>>;
 

@@ -25,7 +25,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { TestOptimizedForSize } from "./unittest_optimize_for_pbv2.js";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_embed_optimize_for: DescFile;
 
@@ -48,5 +48,5 @@ export declare type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestE
 };
 
 // Describes the message protobuf_unittest.TestEmbedOptimizedForSize. Use `create(TestEmbedOptimizedForSizeDesc)` to create a new TestEmbedOptimizedForSize.
-export declare const TestEmbedOptimizedForSizeDesc: TypedDescMessage<TestEmbedOptimizedForSize>;
+export declare const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize>;
 

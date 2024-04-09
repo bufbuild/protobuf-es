@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_google_protobuf_unittest_invalid_features: DescFile;
@@ -34,10 +34,10 @@ export declare type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
 };
 
 // Describes the message pb.TestInvalidFeatures. Use `create(TestInvalidFeaturesDesc)` to create a new TestInvalidFeatures.
-export declare const TestInvalidFeaturesDesc: TypedDescMessage<TestInvalidFeatures>;
+export declare const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures>;
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
  */
-export declare const test_invalid: TypedDescExtension<FeatureSet, TestInvalidFeatures>;
+export declare const test_invalid: GenDescExtension<FeatureSet, TestInvalidFeatures>;
 

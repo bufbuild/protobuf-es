@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescExtension } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
@@ -28,24 +28,24 @@ export const fileDesc_extra_extensions_proto3: DescFile = /*@__PURE__*/
 /**
  * @generated from extension: uint32 uint32_ext = 1001;
  */
-export const uint32_ext: TypedDescExtension<FileOptions, number> = /*@__PURE__*/
+export const uint32_ext: GenDescExtension<FileOptions, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto3, 0);
 
 /**
  * @generated from extension: optional uint32 optional_uint32_ext = 1002;
  */
-export const optional_uint32_ext: TypedDescExtension<FileOptions, number> = /*@__PURE__*/
+export const optional_uint32_ext: GenDescExtension<FileOptions, number> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto3, 1);
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_ext = 7003;
  */
-export const packed_uint32_ext: TypedDescExtension<FileOptions, number[]> = /*@__PURE__*/
+export const packed_uint32_ext: GenDescExtension<FileOptions, number[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto3, 2);
 
 /**
  * @generated from extension: repeated uint32 unpacked_uint32_ext = 7004 [packed = false];
  */
-export const unpacked_uint32_ext: TypedDescExtension<FileOptions, number[]> = /*@__PURE__*/
+export const unpacked_uint32_ext: GenDescExtension<FileOptions, number[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto3, 3);
 

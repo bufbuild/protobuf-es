@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -56,6 +56,6 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
 
 // Describes the message spec.JsonNamesMessage.
 // Use `create(JsonNamesMessageDesc)` to create a new JsonNamesMessage.
-export const JsonNamesMessageDesc: TypedDescMessage<JsonNamesMessage> = /*@__PURE__*/
+export const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_json_names, 0);
 

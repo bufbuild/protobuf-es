@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { MessageOptions } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
@@ -142,7 +142,7 @@ export type TestProto3Optional = Message<"protobuf_unittest.TestProto3Optional">
 
 // Describes the message protobuf_unittest.TestProto3Optional.
 // Use `create(TestProto3OptionalDesc)` to create a new TestProto3Optional.
-export const TestProto3OptionalDesc: TypedDescMessage<TestProto3Optional> = /*@__PURE__*/
+export const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0);
 
 /**
@@ -161,7 +161,7 @@ export type TestProto3Optional_NestedMessage = Message<"protobuf_unittest.TestPr
 
 // Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
 // Use `create(TestProto3Optional_NestedMessageDesc)` to create a new TestProto3Optional_NestedMessage.
-export const TestProto3Optional_NestedMessageDesc: TypedDescMessage<TestProto3Optional_NestedMessage> = /*@__PURE__*/
+export const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -197,7 +197,7 @@ export enum TestProto3Optional_NestedEnum {
 }
 
 // Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
-export const TestProto3Optional_NestedEnumDesc: TypedDescEnum<TestProto3Optional_NestedEnum> = /*@__PURE__*/
+export const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -217,7 +217,7 @@ export type TestProto3OptionalMessage = Message<"protobuf_unittest.TestProto3Opt
 
 // Describes the message protobuf_unittest.TestProto3OptionalMessage.
 // Use `create(TestProto3OptionalMessageDesc)` to create a new TestProto3OptionalMessage.
-export const TestProto3OptionalMessageDesc: TypedDescMessage<TestProto3OptionalMessage> = /*@__PURE__*/
+export const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1);
 
 /**
@@ -232,7 +232,7 @@ export type TestProto3OptionalMessage_NestedMessage = Message<"protobuf_unittest
 
 // Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
 // Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new TestProto3OptionalMessage_NestedMessage.
-export const TestProto3OptionalMessage_NestedMessageDesc: TypedDescMessage<TestProto3OptionalMessage_NestedMessage> = /*@__PURE__*/
+export const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1, 0);
 
 /**
@@ -243,18 +243,18 @@ export type Proto3OptionalExtensions = Message<"protobuf_unittest.Proto3Optional
 
 // Describes the message protobuf_unittest.Proto3OptionalExtensions.
 // Use `create(Proto3OptionalExtensionsDesc)` to create a new Proto3OptionalExtensions.
-export const Proto3OptionalExtensionsDesc: TypedDescMessage<Proto3OptionalExtensions> = /*@__PURE__*/
+export const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2);
 
 /**
  * @generated from extension: int32 ext_no_optional = 355886728;
  */
-export const Proto3OptionalExtensions_ext_no_optional: TypedDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const Proto3OptionalExtensions_ext_no_optional: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2, 0);
 
 /**
  * @generated from extension: optional int32 ext_with_optional = 355886729;
  */
-export const Proto3OptionalExtensions_ext_with_optional: TypedDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const Proto3OptionalExtensions_ext_with_optional: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2, 1);
 

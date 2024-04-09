@@ -21,7 +21,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ImportEnumLite, ImportMessageLite } from "./unittest_import_lite_pbv2.js";
 import { fileDesc_google_protobuf_unittest_import_lite } from "./unittest_import_lite_pbv2.js";
@@ -458,7 +458,7 @@ export type TestAllTypesLite = Message<"protobuf_unittest.TestAllTypesLite"> & {
 
 // Describes the message protobuf_unittest.TestAllTypesLite.
 // Use `create(TestAllTypesLiteDesc)` to create a new TestAllTypesLite.
-export const TestAllTypesLiteDesc: TypedDescMessage<TestAllTypesLite> = /*@__PURE__*/
+export const TestAllTypesLiteDesc: GenDescMessage<TestAllTypesLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 0);
 
 /**
@@ -483,7 +483,7 @@ export type TestAllTypesLite_NestedMessage = Message<"protobuf_unittest.TestAllT
 
 // Describes the message protobuf_unittest.TestAllTypesLite.NestedMessage.
 // Use `create(TestAllTypesLite_NestedMessageDesc)` to create a new TestAllTypesLite_NestedMessage.
-export const TestAllTypesLite_NestedMessageDesc: TypedDescMessage<TestAllTypesLite_NestedMessage> = /*@__PURE__*/
+export const TestAllTypesLite_NestedMessageDesc: GenDescMessage<TestAllTypesLite_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 0, 0);
 
 /**
@@ -498,7 +498,7 @@ export type TestAllTypesLite_NestedMessage2 = Message<"protobuf_unittest.TestAll
 
 // Describes the message protobuf_unittest.TestAllTypesLite.NestedMessage2.
 // Use `create(TestAllTypesLite_NestedMessage2Desc)` to create a new TestAllTypesLite_NestedMessage2.
-export const TestAllTypesLite_NestedMessage2Desc: TypedDescMessage<TestAllTypesLite_NestedMessage2> = /*@__PURE__*/
+export const TestAllTypesLite_NestedMessage2Desc: GenDescMessage<TestAllTypesLite_NestedMessage2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 0, 1);
 
 /**
@@ -513,7 +513,7 @@ export type TestAllTypesLite_OptionalGroup = Message<"protobuf_unittest.TestAllT
 
 // Describes the message protobuf_unittest.TestAllTypesLite.OptionalGroup.
 // Use `create(TestAllTypesLite_OptionalGroupDesc)` to create a new TestAllTypesLite_OptionalGroup.
-export const TestAllTypesLite_OptionalGroupDesc: TypedDescMessage<TestAllTypesLite_OptionalGroup> = /*@__PURE__*/
+export const TestAllTypesLite_OptionalGroupDesc: GenDescMessage<TestAllTypesLite_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 0, 2);
 
 /**
@@ -528,7 +528,7 @@ export type TestAllTypesLite_RepeatedGroup = Message<"protobuf_unittest.TestAllT
 
 // Describes the message protobuf_unittest.TestAllTypesLite.RepeatedGroup.
 // Use `create(TestAllTypesLite_RepeatedGroupDesc)` to create a new TestAllTypesLite_RepeatedGroup.
-export const TestAllTypesLite_RepeatedGroupDesc: TypedDescMessage<TestAllTypesLite_RepeatedGroup> = /*@__PURE__*/
+export const TestAllTypesLite_RepeatedGroupDesc: GenDescMessage<TestAllTypesLite_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 0, 3);
 
 /**
@@ -552,7 +552,7 @@ export enum TestAllTypesLite_NestedEnum {
 }
 
 // Describes the enum protobuf_unittest.TestAllTypesLite.NestedEnum.
-export const TestAllTypesLite_NestedEnumDesc: TypedDescEnum<TestAllTypesLite_NestedEnum> = /*@__PURE__*/
+export const TestAllTypesLite_NestedEnumDesc: GenDescEnum<TestAllTypesLite_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_lite, 0, 0);
 
 /**
@@ -567,7 +567,7 @@ export type ForeignMessageLite = Message<"protobuf_unittest.ForeignMessageLite">
 
 // Describes the message protobuf_unittest.ForeignMessageLite.
 // Use `create(ForeignMessageLiteDesc)` to create a new ForeignMessageLite.
-export const ForeignMessageLiteDesc: TypedDescMessage<ForeignMessageLite> = /*@__PURE__*/
+export const ForeignMessageLiteDesc: GenDescMessage<ForeignMessageLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 1);
 
 /**
@@ -647,7 +647,7 @@ export type TestPackedTypesLite = Message<"protobuf_unittest.TestPackedTypesLite
 
 // Describes the message protobuf_unittest.TestPackedTypesLite.
 // Use `create(TestPackedTypesLiteDesc)` to create a new TestPackedTypesLite.
-export const TestPackedTypesLiteDesc: TypedDescMessage<TestPackedTypesLite> = /*@__PURE__*/
+export const TestPackedTypesLiteDesc: GenDescMessage<TestPackedTypesLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 2);
 
 /**
@@ -658,7 +658,7 @@ export type TestAllExtensionsLite = Message<"protobuf_unittest.TestAllExtensions
 
 // Describes the message protobuf_unittest.TestAllExtensionsLite.
 // Use `create(TestAllExtensionsLiteDesc)` to create a new TestAllExtensionsLite.
-export const TestAllExtensionsLiteDesc: TypedDescMessage<TestAllExtensionsLite> = /*@__PURE__*/
+export const TestAllExtensionsLiteDesc: GenDescMessage<TestAllExtensionsLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 3);
 
 /**
@@ -673,7 +673,7 @@ export type OptionalGroup_extension_lite = Message<"protobuf_unittest.OptionalGr
 
 // Describes the message protobuf_unittest.OptionalGroup_extension_lite.
 // Use `create(OptionalGroup_extension_liteDesc)` to create a new OptionalGroup_extension_lite.
-export const OptionalGroup_extension_liteDesc: TypedDescMessage<OptionalGroup_extension_lite> = /*@__PURE__*/
+export const OptionalGroup_extension_liteDesc: GenDescMessage<OptionalGroup_extension_lite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 4);
 
 /**
@@ -688,7 +688,7 @@ export type RepeatedGroup_extension_lite = Message<"protobuf_unittest.RepeatedGr
 
 // Describes the message protobuf_unittest.RepeatedGroup_extension_lite.
 // Use `create(RepeatedGroup_extension_liteDesc)` to create a new RepeatedGroup_extension_lite.
-export const RepeatedGroup_extension_liteDesc: TypedDescMessage<RepeatedGroup_extension_lite> = /*@__PURE__*/
+export const RepeatedGroup_extension_liteDesc: GenDescMessage<RepeatedGroup_extension_lite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 5);
 
 /**
@@ -699,7 +699,7 @@ export type TestPackedExtensionsLite = Message<"protobuf_unittest.TestPackedExte
 
 // Describes the message protobuf_unittest.TestPackedExtensionsLite.
 // Use `create(TestPackedExtensionsLiteDesc)` to create a new TestPackedExtensionsLite.
-export const TestPackedExtensionsLiteDesc: TypedDescMessage<TestPackedExtensionsLite> = /*@__PURE__*/
+export const TestPackedExtensionsLiteDesc: GenDescMessage<TestPackedExtensionsLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 6);
 
 /**
@@ -710,13 +710,13 @@ export type TestNestedExtensionLite = Message<"protobuf_unittest.TestNestedExten
 
 // Describes the message protobuf_unittest.TestNestedExtensionLite.
 // Use `create(TestNestedExtensionLiteDesc)` to create a new TestNestedExtensionLite.
-export const TestNestedExtensionLiteDesc: TypedDescMessage<TestNestedExtensionLite> = /*@__PURE__*/
+export const TestNestedExtensionLiteDesc: GenDescMessage<TestNestedExtensionLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 7);
 
 /**
  * @generated from extension: optional int32 nested_extension = 12345;
  */
-export const TestNestedExtensionLite_nested_extension: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const TestNestedExtensionLite_nested_extension: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 7, 0);
 
 /**
@@ -753,7 +753,7 @@ export type TestDeprecatedLite = Message<"protobuf_unittest.TestDeprecatedLite">
 
 // Describes the message protobuf_unittest.TestDeprecatedLite.
 // Use `create(TestDeprecatedLiteDesc)` to create a new TestDeprecatedLite.
-export const TestDeprecatedLiteDesc: TypedDescMessage<TestDeprecatedLite> = /*@__PURE__*/
+export const TestDeprecatedLiteDesc: GenDescMessage<TestDeprecatedLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 8);
 
 /**
@@ -790,7 +790,7 @@ export type TestParsingMergeLite = Message<"protobuf_unittest.TestParsingMergeLi
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.
 // Use `create(TestParsingMergeLiteDesc)` to create a new TestParsingMergeLite.
-export const TestParsingMergeLiteDesc: TypedDescMessage<TestParsingMergeLite> = /*@__PURE__*/
+export const TestParsingMergeLiteDesc: GenDescMessage<TestParsingMergeLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9);
 
 /**
@@ -835,7 +835,7 @@ export type TestParsingMergeLite_RepeatedFieldsGenerator = Message<"protobuf_uni
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.
 // Use `create(TestParsingMergeLite_RepeatedFieldsGeneratorDesc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator.
-export const TestParsingMergeLite_RepeatedFieldsGeneratorDesc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator> = /*@__PURE__*/
+export const TestParsingMergeLite_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9, 0);
 
 /**
@@ -850,7 +850,7 @@ export type TestParsingMergeLite_RepeatedFieldsGenerator_Group1 = Message<"proto
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group1.
 // Use `create(TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator_Group1.
-export const TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> = /*@__PURE__*/
+export const TestParsingMergeLite_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group1> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9, 0, 0);
 
 /**
@@ -865,7 +865,7 @@ export type TestParsingMergeLite_RepeatedFieldsGenerator_Group2 = Message<"proto
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedFieldsGenerator.Group2.
 // Use `create(TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc)` to create a new TestParsingMergeLite_RepeatedFieldsGenerator_Group2.
-export const TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc: TypedDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> = /*@__PURE__*/
+export const TestParsingMergeLite_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMergeLite_RepeatedFieldsGenerator_Group2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9, 0, 1);
 
 /**
@@ -880,7 +880,7 @@ export type TestParsingMergeLite_OptionalGroup = Message<"protobuf_unittest.Test
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.OptionalGroup.
 // Use `create(TestParsingMergeLite_OptionalGroupDesc)` to create a new TestParsingMergeLite_OptionalGroup.
-export const TestParsingMergeLite_OptionalGroupDesc: TypedDescMessage<TestParsingMergeLite_OptionalGroup> = /*@__PURE__*/
+export const TestParsingMergeLite_OptionalGroupDesc: GenDescMessage<TestParsingMergeLite_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9, 1);
 
 /**
@@ -895,19 +895,19 @@ export type TestParsingMergeLite_RepeatedGroup = Message<"protobuf_unittest.Test
 
 // Describes the message protobuf_unittest.TestParsingMergeLite.RepeatedGroup.
 // Use `create(TestParsingMergeLite_RepeatedGroupDesc)` to create a new TestParsingMergeLite_RepeatedGroup.
-export const TestParsingMergeLite_RepeatedGroupDesc: TypedDescMessage<TestParsingMergeLite_RepeatedGroup> = /*@__PURE__*/
+export const TestParsingMergeLite_RepeatedGroupDesc: GenDescMessage<TestParsingMergeLite_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 9, 2);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite optional_ext = 1000;
  */
-export const TestParsingMergeLite_optional_ext: TypedDescExtension<TestParsingMergeLite, TestAllTypesLite> = /*@__PURE__*/
+export const TestParsingMergeLite_optional_ext: GenDescExtension<TestParsingMergeLite, TestAllTypesLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 9, 0);
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite repeated_ext = 1001;
  */
-export const TestParsingMergeLite_repeated_ext: TypedDescExtension<TestParsingMergeLite, TestAllTypesLite[]> = /*@__PURE__*/
+export const TestParsingMergeLite_repeated_ext: GenDescExtension<TestParsingMergeLite, TestAllTypesLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 9, 1);
 
 /**
@@ -925,7 +925,7 @@ export type TestMergeExceptionLite = Message<"protobuf_unittest.TestMergeExcepti
 
 // Describes the message protobuf_unittest.TestMergeExceptionLite.
 // Use `create(TestMergeExceptionLiteDesc)` to create a new TestMergeExceptionLite.
-export const TestMergeExceptionLiteDesc: TypedDescMessage<TestMergeExceptionLite> = /*@__PURE__*/
+export const TestMergeExceptionLiteDesc: GenDescMessage<TestMergeExceptionLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 10);
 
 /**
@@ -938,7 +938,7 @@ export type TestEmptyMessageLite = Message<"protobuf_unittest.TestEmptyMessageLi
 
 // Describes the message protobuf_unittest.TestEmptyMessageLite.
 // Use `create(TestEmptyMessageLiteDesc)` to create a new TestEmptyMessageLite.
-export const TestEmptyMessageLiteDesc: TypedDescMessage<TestEmptyMessageLite> = /*@__PURE__*/
+export const TestEmptyMessageLiteDesc: GenDescMessage<TestEmptyMessageLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 11);
 
 /**
@@ -952,7 +952,7 @@ export type TestEmptyMessageWithExtensionsLite = Message<"protobuf_unittest.Test
 
 // Describes the message protobuf_unittest.TestEmptyMessageWithExtensionsLite.
 // Use `create(TestEmptyMessageWithExtensionsLiteDesc)` to create a new TestEmptyMessageWithExtensionsLite.
-export const TestEmptyMessageWithExtensionsLiteDesc: TypedDescMessage<TestEmptyMessageWithExtensionsLite> = /*@__PURE__*/
+export const TestEmptyMessageWithExtensionsLiteDesc: GenDescMessage<TestEmptyMessageWithExtensionsLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 12);
 
 /**
@@ -972,7 +972,7 @@ export type V1MessageLite = Message<"protobuf_unittest.V1MessageLite"> & {
 
 // Describes the message protobuf_unittest.V1MessageLite.
 // Use `create(V1MessageLiteDesc)` to create a new V1MessageLite.
-export const V1MessageLiteDesc: TypedDescMessage<V1MessageLite> = /*@__PURE__*/
+export const V1MessageLiteDesc: GenDescMessage<V1MessageLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 13);
 
 /**
@@ -992,7 +992,7 @@ export type V2MessageLite = Message<"protobuf_unittest.V2MessageLite"> & {
 
 // Describes the message protobuf_unittest.V2MessageLite.
 // Use `create(V2MessageLiteDesc)` to create a new V2MessageLite.
-export const V2MessageLiteDesc: TypedDescMessage<V2MessageLite> = /*@__PURE__*/
+export const V2MessageLiteDesc: GenDescMessage<V2MessageLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 14);
 
 /**
@@ -1081,7 +1081,7 @@ export type TestHugeFieldNumbersLite = Message<"protobuf_unittest.TestHugeFieldN
 
 // Describes the message protobuf_unittest.TestHugeFieldNumbersLite.
 // Use `create(TestHugeFieldNumbersLiteDesc)` to create a new TestHugeFieldNumbersLite.
-export const TestHugeFieldNumbersLiteDesc: TypedDescMessage<TestHugeFieldNumbersLite> = /*@__PURE__*/
+export const TestHugeFieldNumbersLiteDesc: GenDescMessage<TestHugeFieldNumbersLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 15);
 
 /**
@@ -1096,7 +1096,7 @@ export type TestHugeFieldNumbersLite_OptionalGroup = Message<"protobuf_unittest.
 
 // Describes the message protobuf_unittest.TestHugeFieldNumbersLite.OptionalGroup.
 // Use `create(TestHugeFieldNumbersLite_OptionalGroupDesc)` to create a new TestHugeFieldNumbersLite_OptionalGroup.
-export const TestHugeFieldNumbersLite_OptionalGroupDesc: TypedDescMessage<TestHugeFieldNumbersLite_OptionalGroup> = /*@__PURE__*/
+export const TestHugeFieldNumbersLite_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbersLite_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 15, 0);
 
 /**
@@ -1165,7 +1165,7 @@ export type TestOneofParsingLite = Message<"protobuf_unittest.TestOneofParsingLi
 
 // Describes the message protobuf_unittest.TestOneofParsingLite.
 // Use `create(TestOneofParsingLiteDesc)` to create a new TestOneofParsingLite.
-export const TestOneofParsingLiteDesc: TypedDescMessage<TestOneofParsingLite> = /*@__PURE__*/
+export const TestOneofParsingLiteDesc: GenDescMessage<TestOneofParsingLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 16);
 
 /**
@@ -1176,7 +1176,7 @@ export type TestMessageSetLite = Message<"protobuf_unittest.TestMessageSetLite">
 
 // Describes the message protobuf_unittest.TestMessageSetLite.
 // Use `create(TestMessageSetLiteDesc)` to create a new TestMessageSetLite.
-export const TestMessageSetLiteDesc: TypedDescMessage<TestMessageSetLite> = /*@__PURE__*/
+export const TestMessageSetLiteDesc: GenDescMessage<TestMessageSetLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 17);
 
 /**
@@ -1195,7 +1195,7 @@ export type PackedInt32 = Message<"protobuf_unittest.PackedInt32"> & {
 
 // Describes the message protobuf_unittest.PackedInt32.
 // Use `create(PackedInt32Desc)` to create a new PackedInt32.
-export const PackedInt32Desc: TypedDescMessage<PackedInt32> = /*@__PURE__*/
+export const PackedInt32Desc: GenDescMessage<PackedInt32> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 18);
 
 /**
@@ -1210,7 +1210,7 @@ export type NonPackedInt32 = Message<"protobuf_unittest.NonPackedInt32"> & {
 
 // Describes the message protobuf_unittest.NonPackedInt32.
 // Use `create(NonPackedInt32Desc)` to create a new NonPackedInt32.
-export const NonPackedInt32Desc: TypedDescMessage<NonPackedInt32> = /*@__PURE__*/
+export const NonPackedInt32Desc: GenDescMessage<NonPackedInt32> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 19);
 
 /**
@@ -1225,7 +1225,7 @@ export type PackedFixed32 = Message<"protobuf_unittest.PackedFixed32"> & {
 
 // Describes the message protobuf_unittest.PackedFixed32.
 // Use `create(PackedFixed32Desc)` to create a new PackedFixed32.
-export const PackedFixed32Desc: TypedDescMessage<PackedFixed32> = /*@__PURE__*/
+export const PackedFixed32Desc: GenDescMessage<PackedFixed32> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 20);
 
 /**
@@ -1240,7 +1240,7 @@ export type NonPackedFixed32 = Message<"protobuf_unittest.NonPackedFixed32"> & {
 
 // Describes the message protobuf_unittest.NonPackedFixed32.
 // Use `create(NonPackedFixed32Desc)` to create a new NonPackedFixed32.
-export const NonPackedFixed32Desc: TypedDescMessage<NonPackedFixed32> = /*@__PURE__*/
+export const NonPackedFixed32Desc: GenDescMessage<NonPackedFixed32> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 21);
 
 /**
@@ -1253,7 +1253,7 @@ export type DupEnum = Message<"protobuf_unittest.DupEnum"> & {
 
 // Describes the message protobuf_unittest.DupEnum.
 // Use `create(DupEnumDesc)` to create a new DupEnum.
-export const DupEnumDesc: TypedDescMessage<DupEnum> = /*@__PURE__*/
+export const DupEnumDesc: GenDescMessage<DupEnum> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 22);
 
 /**
@@ -1287,7 +1287,7 @@ export enum DupEnum_TestEnumWithDupValueLite {
 }
 
 // Describes the enum protobuf_unittest.DupEnum.TestEnumWithDupValueLite.
-export const DupEnum_TestEnumWithDupValueLiteDesc: TypedDescEnum<DupEnum_TestEnumWithDupValueLite> = /*@__PURE__*/
+export const DupEnum_TestEnumWithDupValueLiteDesc: GenDescEnum<DupEnum_TestEnumWithDupValueLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_lite, 22, 0);
 
 /**
@@ -1307,7 +1307,7 @@ export type RecursiveMessage = Message<"protobuf_unittest.RecursiveMessage"> & {
 
 // Describes the message protobuf_unittest.RecursiveMessage.
 // Use `create(RecursiveMessageDesc)` to create a new RecursiveMessage.
-export const RecursiveMessageDesc: TypedDescMessage<RecursiveMessage> = /*@__PURE__*/
+export const RecursiveMessageDesc: GenDescMessage<RecursiveMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite, 23);
 
 /**
@@ -1331,7 +1331,7 @@ export enum ForeignEnumLite {
 }
 
 // Describes the enum protobuf_unittest.ForeignEnumLite.
-export const ForeignEnumLiteDesc: TypedDescEnum<ForeignEnumLite> = /*@__PURE__*/
+export const ForeignEnumLiteDesc: GenDescEnum<ForeignEnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_lite, 0);
 
 /**
@@ -1345,7 +1345,7 @@ export enum V1EnumLite {
 }
 
 // Describes the enum protobuf_unittest.V1EnumLite.
-export const V1EnumLiteDesc: TypedDescEnum<V1EnumLite> = /*@__PURE__*/
+export const V1EnumLiteDesc: GenDescEnum<V1EnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_lite, 1);
 
 /**
@@ -1364,7 +1364,7 @@ export enum V2EnumLite {
 }
 
 // Describes the enum protobuf_unittest.V2EnumLite.
-export const V2EnumLiteDesc: TypedDescEnum<V2EnumLite> = /*@__PURE__*/
+export const V2EnumLiteDesc: GenDescEnum<V2EnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_lite, 2);
 
 /**
@@ -1372,139 +1372,139 @@ export const V2EnumLiteDesc: TypedDescEnum<V2EnumLite> = /*@__PURE__*/
  *
  * @generated from extension: optional int32 optional_int32_extension_lite = 1;
  */
-export const optional_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 0);
 
 /**
  * @generated from extension: optional int64 optional_int64_extension_lite = 2;
  */
-export const optional_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const optional_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 1);
 
 /**
  * @generated from extension: optional uint32 optional_uint32_extension_lite = 3;
  */
-export const optional_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 2);
 
 /**
  * @generated from extension: optional uint64 optional_uint64_extension_lite = 4;
  */
-export const optional_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const optional_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 3);
 
 /**
  * @generated from extension: optional sint32 optional_sint32_extension_lite = 5;
  */
-export const optional_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 4);
 
 /**
  * @generated from extension: optional sint64 optional_sint64_extension_lite = 6;
  */
-export const optional_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const optional_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 5);
 
 /**
  * @generated from extension: optional fixed32 optional_fixed32_extension_lite = 7;
  */
-export const optional_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 6);
 
 /**
  * @generated from extension: optional fixed64 optional_fixed64_extension_lite = 8;
  */
-export const optional_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const optional_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 7);
 
 /**
  * @generated from extension: optional sfixed32 optional_sfixed32_extension_lite = 9;
  */
-export const optional_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 8);
 
 /**
  * @generated from extension: optional sfixed64 optional_sfixed64_extension_lite = 10;
  */
-export const optional_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const optional_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 9);
 
 /**
  * @generated from extension: optional float optional_float_extension_lite = 11;
  */
-export const optional_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 10);
 
 /**
  * @generated from extension: optional double optional_double_extension_lite = 12;
  */
-export const optional_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const optional_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 11);
 
 /**
  * @generated from extension: optional bool optional_bool_extension_lite = 13;
  */
-export const optional_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean> = /*@__PURE__*/
+export const optional_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 12);
 
 /**
  * @generated from extension: optional string optional_string_extension_lite = 14;
  */
-export const optional_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const optional_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 13);
 
 /**
  * @generated from extension: optional bytes optional_bytes_extension_lite = 15;
  */
-export const optional_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
+export const optional_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 14);
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionalGroup_extension_lite optionalgroup_extension_lite = 16;
  */
-export const optionalgroup_extension_lite: TypedDescExtension<TestAllExtensionsLite, OptionalGroup_extension_lite> = /*@__PURE__*/
+export const optionalgroup_extension_lite: GenDescExtension<TestAllExtensionsLite, OptionalGroup_extension_lite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 15);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_nested_message_extension_lite = 18;
  */
-export const optional_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
+export const optional_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 16);
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignMessageLite optional_foreign_message_extension_lite = 19;
  */
-export const optional_foreign_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignMessageLite> = /*@__PURE__*/
+export const optional_foreign_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignMessageLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 17);
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportMessageLite optional_import_message_extension_lite = 20;
  */
-export const optional_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportMessageLite> = /*@__PURE__*/
+export const optional_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportMessageLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 18);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedEnum optional_nested_enum_extension_lite = 21;
  */
-export const optional_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum> = /*@__PURE__*/
+export const optional_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 19);
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignEnumLite optional_foreign_enum_extension_lite = 22;
  */
-export const optional_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite> = /*@__PURE__*/
+export const optional_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 20);
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportEnumLite optional_import_enum_extension_lite = 23;
  */
-export const optional_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite> = /*@__PURE__*/
+export const optional_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 21);
 
 /**
  * @generated from extension: optional string optional_string_piece_extension_lite = 24;
  */
-export const optional_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const optional_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 22);
 
 /**
@@ -1513,25 +1513,25 @@ export const optional_string_piece_extension_lite: TypedDescExtension<TestAllExt
  *
  * @generated from extension: optional string optional_cord_extension_lite = 25;
  */
-export const optional_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const optional_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 23);
 
 /**
  * @generated from extension: optional protobuf_unittest_import.PublicImportMessageLite optional_public_import_message_extension_lite = 26;
  */
-export const optional_public_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, PublicImportMessageLite> = /*@__PURE__*/
+export const optional_public_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, PublicImportMessageLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 24);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_lazy_message_extension_lite = 27;
  */
-export const optional_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
+export const optional_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 25);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage optional_unverified_lazy_message_extension_lite = 28;
  */
-export const optional_unverified_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
+export const optional_unverified_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 26);
 
 /**
@@ -1539,139 +1539,139 @@ export const optional_unverified_lazy_message_extension_lite: TypedDescExtension
  *
  * @generated from extension: repeated int32 repeated_int32_extension_lite = 31;
  */
-export const repeated_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 27);
 
 /**
  * @generated from extension: repeated int64 repeated_int64_extension_lite = 32;
  */
-export const repeated_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
+export const repeated_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 28);
 
 /**
  * @generated from extension: repeated uint32 repeated_uint32_extension_lite = 33;
  */
-export const repeated_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 29);
 
 /**
  * @generated from extension: repeated uint64 repeated_uint64_extension_lite = 34;
  */
-export const repeated_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
+export const repeated_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 30);
 
 /**
  * @generated from extension: repeated sint32 repeated_sint32_extension_lite = 35;
  */
-export const repeated_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 31);
 
 /**
  * @generated from extension: repeated sint64 repeated_sint64_extension_lite = 36;
  */
-export const repeated_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
+export const repeated_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 32);
 
 /**
  * @generated from extension: repeated fixed32 repeated_fixed32_extension_lite = 37;
  */
-export const repeated_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 33);
 
 /**
  * @generated from extension: repeated fixed64 repeated_fixed64_extension_lite = 38;
  */
-export const repeated_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
+export const repeated_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 34);
 
 /**
  * @generated from extension: repeated sfixed32 repeated_sfixed32_extension_lite = 39;
  */
-export const repeated_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 35);
 
 /**
  * @generated from extension: repeated sfixed64 repeated_sfixed64_extension_lite = 40;
  */
-export const repeated_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
+export const repeated_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 36);
 
 /**
  * @generated from extension: repeated float repeated_float_extension_lite = 41;
  */
-export const repeated_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 37);
 
 /**
  * @generated from extension: repeated double repeated_double_extension_lite = 42;
  */
-export const repeated_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
+export const repeated_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 38);
 
 /**
  * @generated from extension: repeated bool repeated_bool_extension_lite = 43;
  */
-export const repeated_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean[]> = /*@__PURE__*/
+export const repeated_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 39);
 
 /**
  * @generated from extension: repeated string repeated_string_extension_lite = 44;
  */
-export const repeated_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
+export const repeated_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 40);
 
 /**
  * @generated from extension: repeated bytes repeated_bytes_extension_lite = 45;
  */
-export const repeated_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array[]> = /*@__PURE__*/
+export const repeated_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 41);
 
 /**
  * @generated from extension: repeated protobuf_unittest.RepeatedGroup_extension_lite repeatedgroup_extension_lite = 46;
  */
-export const repeatedgroup_extension_lite: TypedDescExtension<TestAllExtensionsLite, RepeatedGroup_extension_lite[]> = /*@__PURE__*/
+export const repeatedgroup_extension_lite: GenDescExtension<TestAllExtensionsLite, RepeatedGroup_extension_lite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 42);
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedMessage repeated_nested_message_extension_lite = 48;
  */
-export const repeated_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]> = /*@__PURE__*/
+export const repeated_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 43);
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignMessageLite repeated_foreign_message_extension_lite = 49;
  */
-export const repeated_foreign_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignMessageLite[]> = /*@__PURE__*/
+export const repeated_foreign_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignMessageLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 44);
 
 /**
  * @generated from extension: repeated protobuf_unittest_import.ImportMessageLite repeated_import_message_extension_lite = 50;
  */
-export const repeated_import_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportMessageLite[]> = /*@__PURE__*/
+export const repeated_import_message_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportMessageLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 45);
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedEnum repeated_nested_enum_extension_lite = 51;
  */
-export const repeated_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum[]> = /*@__PURE__*/
+export const repeated_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 46);
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignEnumLite repeated_foreign_enum_extension_lite = 52;
  */
-export const repeated_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite[]> = /*@__PURE__*/
+export const repeated_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 47);
 
 /**
  * @generated from extension: repeated protobuf_unittest_import.ImportEnumLite repeated_import_enum_extension_lite = 53;
  */
-export const repeated_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite[]> = /*@__PURE__*/
+export const repeated_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 48);
 
 /**
  * @generated from extension: repeated string repeated_string_piece_extension_lite = 54;
  */
-export const repeated_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
+export const repeated_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 49);
 
 /**
@@ -1680,13 +1680,13 @@ export const repeated_string_piece_extension_lite: TypedDescExtension<TestAllExt
  *
  * @generated from extension: repeated string repeated_cord_extension_lite = 55;
  */
-export const repeated_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
+export const repeated_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 50);
 
 /**
  * @generated from extension: repeated protobuf_unittest.TestAllTypesLite.NestedMessage repeated_lazy_message_extension_lite = 57;
  */
-export const repeated_lazy_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]> = /*@__PURE__*/
+export const repeated_lazy_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 51);
 
 /**
@@ -1694,115 +1694,115 @@ export const repeated_lazy_message_extension_lite: TypedDescExtension<TestAllExt
  *
  * @generated from extension: optional int32 default_int32_extension_lite = 61 [default = 41];
  */
-export const default_int32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_int32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 52);
 
 /**
  * @generated from extension: optional int64 default_int64_extension_lite = 62 [default = 42];
  */
-export const default_int64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const default_int64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 53);
 
 /**
  * @generated from extension: optional uint32 default_uint32_extension_lite = 63 [default = 43];
  */
-export const default_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 54);
 
 /**
  * @generated from extension: optional uint64 default_uint64_extension_lite = 64 [default = 44];
  */
-export const default_uint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const default_uint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 55);
 
 /**
  * @generated from extension: optional sint32 default_sint32_extension_lite = 65 [default = -45];
  */
-export const default_sint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_sint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 56);
 
 /**
  * @generated from extension: optional sint64 default_sint64_extension_lite = 66 [default = 46];
  */
-export const default_sint64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const default_sint64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 57);
 
 /**
  * @generated from extension: optional fixed32 default_fixed32_extension_lite = 67 [default = 47];
  */
-export const default_fixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_fixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 58);
 
 /**
  * @generated from extension: optional fixed64 default_fixed64_extension_lite = 68 [default = 48];
  */
-export const default_fixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const default_fixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 59);
 
 /**
  * @generated from extension: optional sfixed32 default_sfixed32_extension_lite = 69 [default = 49];
  */
-export const default_sfixed32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_sfixed32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 60);
 
 /**
  * @generated from extension: optional sfixed64 default_sfixed64_extension_lite = 70 [default = -50];
  */
-export const default_sfixed64_extension_lite: TypedDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
+export const default_sfixed64_extension_lite: GenDescExtension<TestAllExtensionsLite, bigint> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 61);
 
 /**
  * @generated from extension: optional float default_float_extension_lite = 71 [default = 51.5];
  */
-export const default_float_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_float_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 62);
 
 /**
  * @generated from extension: optional double default_double_extension_lite = 72 [default = 52000];
  */
-export const default_double_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const default_double_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 63);
 
 /**
  * @generated from extension: optional bool default_bool_extension_lite = 73 [default = true];
  */
-export const default_bool_extension_lite: TypedDescExtension<TestAllExtensionsLite, boolean> = /*@__PURE__*/
+export const default_bool_extension_lite: GenDescExtension<TestAllExtensionsLite, boolean> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 64);
 
 /**
  * @generated from extension: optional string default_string_extension_lite = 74 [default = "hello"];
  */
-export const default_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const default_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 65);
 
 /**
  * @generated from extension: optional bytes default_bytes_extension_lite = 75 [default = "world"];
  */
-export const default_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
+export const default_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 66);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedEnum default_nested_enum_extension_lite = 81 [default = BAR];
  */
-export const default_nested_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum> = /*@__PURE__*/
+export const default_nested_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedEnum> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 67);
 
 /**
  * @generated from extension: optional protobuf_unittest.ForeignEnumLite default_foreign_enum_extension_lite = 82 [default = FOREIGN_LITE_BAR];
  */
-export const default_foreign_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ForeignEnumLite> = /*@__PURE__*/
+export const default_foreign_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ForeignEnumLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 68);
 
 /**
  * @generated from extension: optional protobuf_unittest_import.ImportEnumLite default_import_enum_extension_lite = 83 [default = IMPORT_LITE_BAR];
  */
-export const default_import_enum_extension_lite: TypedDescExtension<TestAllExtensionsLite, ImportEnumLite> = /*@__PURE__*/
+export const default_import_enum_extension_lite: GenDescExtension<TestAllExtensionsLite, ImportEnumLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 69);
 
 /**
  * @generated from extension: optional string default_string_piece_extension_lite = 84 [default = "abc"];
  */
-export const default_string_piece_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const default_string_piece_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 70);
 
 /**
@@ -1811,7 +1811,7 @@ export const default_string_piece_extension_lite: TypedDescExtension<TestAllExte
  *
  * @generated from extension: optional string default_cord_extension_lite = 85 [default = "123"];
  */
-export const default_cord_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const default_cord_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 71);
 
 /**
@@ -1819,114 +1819,114 @@ export const default_cord_extension_lite: TypedDescExtension<TestAllExtensionsLi
  *
  * @generated from extension: optional uint32 oneof_uint32_extension_lite = 111;
  */
-export const oneof_uint32_extension_lite: TypedDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
+export const oneof_uint32_extension_lite: GenDescExtension<TestAllExtensionsLite, number> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 72);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite.NestedMessage oneof_nested_message_extension_lite = 112;
  */
-export const oneof_nested_message_extension_lite: TypedDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
+export const oneof_nested_message_extension_lite: GenDescExtension<TestAllExtensionsLite, TestAllTypesLite_NestedMessage> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 73);
 
 /**
  * @generated from extension: optional string oneof_string_extension_lite = 113;
  */
-export const oneof_string_extension_lite: TypedDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
+export const oneof_string_extension_lite: GenDescExtension<TestAllExtensionsLite, string> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 74);
 
 /**
  * @generated from extension: optional bytes oneof_bytes_extension_lite = 114;
  */
-export const oneof_bytes_extension_lite: TypedDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
+export const oneof_bytes_extension_lite: GenDescExtension<TestAllExtensionsLite, Uint8Array> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 75);
 
 /**
  * @generated from extension: repeated int32 packed_int32_extension_lite = 90 [packed = true];
  */
-export const packed_int32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_int32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 76);
 
 /**
  * @generated from extension: repeated int64 packed_int64_extension_lite = 91 [packed = true];
  */
-export const packed_int64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
+export const packed_int64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 77);
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_extension_lite = 92 [packed = true];
  */
-export const packed_uint32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_uint32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 78);
 
 /**
  * @generated from extension: repeated uint64 packed_uint64_extension_lite = 93 [packed = true];
  */
-export const packed_uint64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
+export const packed_uint64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 79);
 
 /**
  * @generated from extension: repeated sint32 packed_sint32_extension_lite = 94 [packed = true];
  */
-export const packed_sint32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_sint32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 80);
 
 /**
  * @generated from extension: repeated sint64 packed_sint64_extension_lite = 95 [packed = true];
  */
-export const packed_sint64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
+export const packed_sint64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 81);
 
 /**
  * @generated from extension: repeated fixed32 packed_fixed32_extension_lite = 96 [packed = true];
  */
-export const packed_fixed32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_fixed32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 82);
 
 /**
  * @generated from extension: repeated fixed64 packed_fixed64_extension_lite = 97 [packed = true];
  */
-export const packed_fixed64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
+export const packed_fixed64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 83);
 
 /**
  * @generated from extension: repeated sfixed32 packed_sfixed32_extension_lite = 98 [packed = true];
  */
-export const packed_sfixed32_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_sfixed32_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 84);
 
 /**
  * @generated from extension: repeated sfixed64 packed_sfixed64_extension_lite = 99 [packed = true];
  */
-export const packed_sfixed64_extension_lite: TypedDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
+export const packed_sfixed64_extension_lite: GenDescExtension<TestPackedExtensionsLite, bigint[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 85);
 
 /**
  * @generated from extension: repeated float packed_float_extension_lite = 100 [packed = true];
  */
-export const packed_float_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_float_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 86);
 
 /**
  * @generated from extension: repeated double packed_double_extension_lite = 101 [packed = true];
  */
-export const packed_double_extension_lite: TypedDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
+export const packed_double_extension_lite: GenDescExtension<TestPackedExtensionsLite, number[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 87);
 
 /**
  * @generated from extension: repeated bool packed_bool_extension_lite = 102 [packed = true];
  */
-export const packed_bool_extension_lite: TypedDescExtension<TestPackedExtensionsLite, boolean[]> = /*@__PURE__*/
+export const packed_bool_extension_lite: GenDescExtension<TestPackedExtensionsLite, boolean[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 88);
 
 /**
  * @generated from extension: repeated protobuf_unittest.ForeignEnumLite packed_enum_extension_lite = 103 [packed = true];
  */
-export const packed_enum_extension_lite: TypedDescExtension<TestPackedExtensionsLite, ForeignEnumLite[]> = /*@__PURE__*/
+export const packed_enum_extension_lite: GenDescExtension<TestPackedExtensionsLite, ForeignEnumLite[]> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 89);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypesLite test_all_types_lite = 536860000;
  */
-export const test_all_types_lite: TypedDescExtension<TestHugeFieldNumbersLite, TestAllTypesLite> = /*@__PURE__*/
+export const test_all_types_lite: GenDescExtension<TestHugeFieldNumbersLite, TestAllTypesLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_lite, 90);
 

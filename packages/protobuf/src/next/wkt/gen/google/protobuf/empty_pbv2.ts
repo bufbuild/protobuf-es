@@ -19,7 +19,7 @@
 import type { DescFile } from "../../../../../descriptor-set.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { TypedDescMessage } from "../../../../codegenv1/typed-desc.js";
+import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 export const fileDesc_google_protobuf_empty: DescFile = /*@__PURE__*/
@@ -42,6 +42,6 @@ export type Empty = Message<"google.protobuf.Empty"> & {
 
 // Describes the message google.protobuf.Empty.
 // Use `create(EmptyDesc)` to create a new Empty.
-export const EmptyDesc: TypedDescMessage<Empty> = /*@__PURE__*/
+export const EmptyDesc: GenDescMessage<Empty> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_empty, 0);
 

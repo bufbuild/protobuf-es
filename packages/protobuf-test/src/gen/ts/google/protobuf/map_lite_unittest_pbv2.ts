@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pbv2.js";
 import { fileDesc_google_protobuf_unittest_lite } from "./unittest_lite_pbv2.js";
@@ -123,7 +123,7 @@ export type TestMapLite = Message<"protobuf_unittest.TestMapLite"> & {
 
 // Describes the message protobuf_unittest.TestMapLite.
 // Use `create(TestMapLiteDesc)` to create a new TestMapLite.
-export const TestMapLiteDesc: TypedDescMessage<TestMapLite> = /*@__PURE__*/
+export const TestMapLiteDesc: GenDescMessage<TestMapLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 0);
 
 /**
@@ -218,7 +218,7 @@ export type TestArenaMapLite = Message<"protobuf_unittest.TestArenaMapLite"> & {
 
 // Describes the message protobuf_unittest.TestArenaMapLite.
 // Use `create(TestArenaMapLiteDesc)` to create a new TestArenaMapLite.
-export const TestArenaMapLiteDesc: TypedDescMessage<TestArenaMapLite> = /*@__PURE__*/
+export const TestArenaMapLiteDesc: GenDescMessage<TestArenaMapLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 1);
 
 /**
@@ -235,7 +235,7 @@ export type TestRequiredMessageMapLite = Message<"protobuf_unittest.TestRequired
 
 // Describes the message protobuf_unittest.TestRequiredMessageMapLite.
 // Use `create(TestRequiredMessageMapLiteDesc)` to create a new TestRequiredMessageMapLite.
-export const TestRequiredMessageMapLiteDesc: TypedDescMessage<TestRequiredMessageMapLite> = /*@__PURE__*/
+export const TestRequiredMessageMapLiteDesc: GenDescMessage<TestRequiredMessageMapLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 2);
 
 /**
@@ -255,7 +255,7 @@ export type TestEnumMapLite = Message<"protobuf_unittest.TestEnumMapLite"> & {
 
 // Describes the message protobuf_unittest.TestEnumMapLite.
 // Use `create(TestEnumMapLiteDesc)` to create a new TestEnumMapLite.
-export const TestEnumMapLiteDesc: TypedDescMessage<TestEnumMapLite> = /*@__PURE__*/
+export const TestEnumMapLiteDesc: GenDescMessage<TestEnumMapLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 3);
 
 /**
@@ -275,7 +275,7 @@ export type TestEnumMapPlusExtraLite = Message<"protobuf_unittest.TestEnumMapPlu
 
 // Describes the message protobuf_unittest.TestEnumMapPlusExtraLite.
 // Use `create(TestEnumMapPlusExtraLiteDesc)` to create a new TestEnumMapPlusExtraLite.
-export const TestEnumMapPlusExtraLiteDesc: TypedDescMessage<TestEnumMapPlusExtraLite> = /*@__PURE__*/
+export const TestEnumMapPlusExtraLiteDesc: GenDescMessage<TestEnumMapPlusExtraLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 4);
 
 /**
@@ -290,7 +290,7 @@ export type TestMessageMapLite = Message<"protobuf_unittest.TestMessageMapLite">
 
 // Describes the message protobuf_unittest.TestMessageMapLite.
 // Use `create(TestMessageMapLiteDesc)` to create a new TestMessageMapLite.
-export const TestMessageMapLiteDesc: TypedDescMessage<TestMessageMapLite> = /*@__PURE__*/
+export const TestMessageMapLiteDesc: GenDescMessage<TestMessageMapLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 5);
 
 /**
@@ -315,13 +315,13 @@ export type TestRequiredLite = Message<"protobuf_unittest.TestRequiredLite"> & {
 
 // Describes the message protobuf_unittest.TestRequiredLite.
 // Use `create(TestRequiredLiteDesc)` to create a new TestRequiredLite.
-export const TestRequiredLiteDesc: TypedDescMessage<TestRequiredLite> = /*@__PURE__*/
+export const TestRequiredLiteDesc: GenDescMessage<TestRequiredLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 6);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredLite single = 1000;
  */
-export const TestRequiredLite_single: TypedDescExtension<TestAllExtensionsLite, TestRequiredLite> = /*@__PURE__*/
+export const TestRequiredLite_single: GenDescExtension<TestAllExtensionsLite, TestRequiredLite> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_map_lite_unittest, 6, 0);
 
 /**
@@ -336,7 +336,7 @@ export type ForeignMessageArenaLite = Message<"protobuf_unittest.ForeignMessageA
 
 // Describes the message protobuf_unittest.ForeignMessageArenaLite.
 // Use `create(ForeignMessageArenaLiteDesc)` to create a new ForeignMessageArenaLite.
-export const ForeignMessageArenaLiteDesc: TypedDescMessage<ForeignMessageArenaLite> = /*@__PURE__*/
+export const ForeignMessageArenaLiteDesc: GenDescMessage<ForeignMessageArenaLite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_lite_unittest, 7);
 
 /**
@@ -360,7 +360,7 @@ export enum Proto2MapEnumLite {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumLite.
-export const Proto2MapEnumLiteDesc: TypedDescEnum<Proto2MapEnumLite> = /*@__PURE__*/
+export const Proto2MapEnumLiteDesc: GenDescEnum<Proto2MapEnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_lite_unittest, 0);
 
 /**
@@ -389,7 +389,7 @@ export enum Proto2MapEnumPlusExtraLite {
 }
 
 // Describes the enum protobuf_unittest.Proto2MapEnumPlusExtraLite.
-export const Proto2MapEnumPlusExtraLiteDesc: TypedDescEnum<Proto2MapEnumPlusExtraLite> = /*@__PURE__*/
+export const Proto2MapEnumPlusExtraLiteDesc: GenDescEnum<Proto2MapEnumPlusExtraLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_lite_unittest, 1);
 
 /**
@@ -413,6 +413,6 @@ export enum MapEnumLite {
 }
 
 // Describes the enum protobuf_unittest.MapEnumLite.
-export const MapEnumLiteDesc: TypedDescEnum<MapEnumLite> = /*@__PURE__*/
+export const MapEnumLiteDesc: GenDescEnum<MapEnumLite> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_lite_unittest, 2);
 

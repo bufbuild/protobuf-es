@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_example: DescFile;
 
@@ -58,5 +58,5 @@ export declare type User = Message<"docs.User"> & {
 };
 
 // Describes the message docs.User. Use `create(UserDesc)` to create a new User.
-export declare const UserDesc: TypedDescMessage<User>;
+export declare const UserDesc: GenDescMessage<User>;
 

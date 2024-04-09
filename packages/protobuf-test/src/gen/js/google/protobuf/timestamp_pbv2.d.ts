@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_timestamp: DescFile;
 
@@ -138,5 +138,5 @@ export declare type Timestamp = Message<"google.protobuf.Timestamp"> & {
 };
 
 // Describes the message google.protobuf.Timestamp. Use `create(TimestampDesc)` to create a new Timestamp.
-export declare const TimestampDesc: TypedDescMessage<Timestamp>;
+export declare const TimestampDesc: GenDescMessage<Timestamp>;
 

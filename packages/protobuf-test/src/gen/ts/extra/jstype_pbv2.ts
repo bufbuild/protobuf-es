@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -82,7 +82,7 @@ export type JSTypeOmittedMessage = Message<"spec.JSTypeOmittedMessage"> & {
 
 // Describes the message spec.JSTypeOmittedMessage.
 // Use `create(JSTypeOmittedMessageDesc)` to create a new JSTypeOmittedMessage.
-export const JSTypeOmittedMessageDesc: TypedDescMessage<JSTypeOmittedMessage> = /*@__PURE__*/
+export const JSTypeOmittedMessageDesc: GenDescMessage<JSTypeOmittedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype, 0);
 
 /**
@@ -143,7 +143,7 @@ export type JSTypeNormalMessage = Message<"spec.JSTypeNormalMessage"> & {
 
 // Describes the message spec.JSTypeNormalMessage.
 // Use `create(JSTypeNormalMessageDesc)` to create a new JSTypeNormalMessage.
-export const JSTypeNormalMessageDesc: TypedDescMessage<JSTypeNormalMessage> = /*@__PURE__*/
+export const JSTypeNormalMessageDesc: GenDescMessage<JSTypeNormalMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype, 1);
 
 /**
@@ -204,7 +204,7 @@ export type JSTypeStringMessage = Message<"spec.JSTypeStringMessage"> & {
 
 // Describes the message spec.JSTypeStringMessage.
 // Use `create(JSTypeStringMessageDesc)` to create a new JSTypeStringMessage.
-export const JSTypeStringMessageDesc: TypedDescMessage<JSTypeStringMessage> = /*@__PURE__*/
+export const JSTypeStringMessageDesc: GenDescMessage<JSTypeStringMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype, 2);
 
 /**
@@ -265,6 +265,6 @@ export type JSTypeNumberMessage = Message<"spec.JSTypeNumberMessage"> & {
 
 // Describes the message spec.JSTypeNumberMessage.
 // Use `create(JSTypeNumberMessageDesc)` to create a new JSTypeNumberMessage.
-export const JSTypeNumberMessageDesc: TypedDescMessage<JSTypeNumberMessage> = /*@__PURE__*/
+export const JSTypeNumberMessageDesc: GenDescMessage<JSTypeNumberMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_jstype, 3);
 

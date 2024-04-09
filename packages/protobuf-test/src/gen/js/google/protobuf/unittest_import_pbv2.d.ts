@@ -29,7 +29,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_import: DescFile;
 
@@ -44,7 +44,7 @@ export declare type ImportMessage = Message<"protobuf_unittest_import.ImportMess
 };
 
 // Describes the message protobuf_unittest_import.ImportMessage. Use `create(ImportMessageDesc)` to create a new ImportMessage.
-export declare const ImportMessageDesc: TypedDescMessage<ImportMessage>;
+export declare const ImportMessageDesc: GenDescMessage<ImportMessage>;
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
@@ -67,7 +67,7 @@ export enum ImportEnum {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnum.
-export declare const ImportEnumDesc: TypedDescEnum<ImportEnum>;
+export declare const ImportEnumDesc: GenDescEnum<ImportEnum>;
 
 /**
  * To use an enum in a map, it must has the first value as 0.
@@ -92,5 +92,5 @@ export enum ImportEnumForMap {
 }
 
 // Describes the enum protobuf_unittest_import.ImportEnumForMap.
-export declare const ImportEnumForMapDesc: TypedDescEnum<ImportEnumForMap>;
+export declare const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap>;
 

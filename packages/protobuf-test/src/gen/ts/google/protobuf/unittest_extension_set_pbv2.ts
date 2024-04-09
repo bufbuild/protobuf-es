@@ -23,7 +23,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -40,7 +40,7 @@ export type TestExtensionSet = Message<"protobuf_unittest.TestExtensionSet"> & {
 
 // Describes the message protobuf_unittest.TestExtensionSet.
 // Use `create(TestExtensionSetDesc)` to create a new TestExtensionSet.
-export const TestExtensionSetDesc: TypedDescMessage<TestExtensionSet> = /*@__PURE__*/
+export const TestExtensionSetDesc: GenDescMessage<TestExtensionSet> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
 
 /**
@@ -55,6 +55,6 @@ export type TestExtensionSetContainer = Message<"protobuf_unittest.TestExtension
 
 // Describes the message protobuf_unittest.TestExtensionSetContainer.
 // Use `create(TestExtensionSetContainerDesc)` to create a new TestExtensionSetContainer.
-export const TestExtensionSetContainerDesc: TypedDescMessage<TestExtensionSetContainer> = /*@__PURE__*/
+export const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
 

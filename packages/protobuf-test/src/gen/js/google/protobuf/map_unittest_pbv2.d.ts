@@ -23,7 +23,7 @@
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ForeignMessage, TestAllTypes, TestRequired } from "./unittest_pbv2.js";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_map_unittest: DescFile;
 
@@ -130,7 +130,7 @@ export declare type TestMap = Message<"protobuf_unittest.TestMap"> & {
 };
 
 // Describes the message protobuf_unittest.TestMap. Use `create(TestMapDesc)` to create a new TestMap.
-export declare const TestMapDesc: TypedDescMessage<TestMap>;
+export declare const TestMapDesc: GenDescMessage<TestMap>;
 
 /**
  * @generated from message protobuf_unittest.TestMapSubmessage
@@ -143,7 +143,7 @@ export declare type TestMapSubmessage = Message<"protobuf_unittest.TestMapSubmes
 };
 
 // Describes the message protobuf_unittest.TestMapSubmessage. Use `create(TestMapSubmessageDesc)` to create a new TestMapSubmessage.
-export declare const TestMapSubmessageDesc: TypedDescMessage<TestMapSubmessage>;
+export declare const TestMapSubmessageDesc: GenDescMessage<TestMapSubmessage>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageMap
@@ -156,7 +156,7 @@ export declare type TestMessageMap = Message<"protobuf_unittest.TestMessageMap">
 };
 
 // Describes the message protobuf_unittest.TestMessageMap. Use `create(TestMessageMapDesc)` to create a new TestMessageMap.
-export declare const TestMessageMapDesc: TypedDescMessage<TestMessageMap>;
+export declare const TestMessageMapDesc: GenDescMessage<TestMessageMap>;
 
 /**
  * Two map fields share the same entry default instance.
@@ -176,7 +176,7 @@ export declare type TestSameTypeMap = Message<"protobuf_unittest.TestSameTypeMap
 };
 
 // Describes the message protobuf_unittest.TestSameTypeMap. Use `create(TestSameTypeMapDesc)` to create a new TestSameTypeMap.
-export declare const TestSameTypeMapDesc: TypedDescMessage<TestSameTypeMap>;
+export declare const TestSameTypeMapDesc: GenDescMessage<TestSameTypeMap>;
 
 /**
  * Test embedded message with required fields
@@ -191,7 +191,7 @@ export declare type TestRequiredMessageMap = Message<"protobuf_unittest.TestRequ
 };
 
 // Describes the message protobuf_unittest.TestRequiredMessageMap. Use `create(TestRequiredMessageMapDesc)` to create a new TestRequiredMessageMap.
-export declare const TestRequiredMessageMapDesc: TypedDescMessage<TestRequiredMessageMap>;
+export declare const TestRequiredMessageMapDesc: GenDescMessage<TestRequiredMessageMap>;
 
 /**
  * @generated from message protobuf_unittest.TestArenaMap
@@ -284,7 +284,7 @@ export declare type TestArenaMap = Message<"protobuf_unittest.TestArenaMap"> & {
 };
 
 // Describes the message protobuf_unittest.TestArenaMap. Use `create(TestArenaMapDesc)` to create a new TestArenaMap.
-export declare const TestArenaMapDesc: TypedDescMessage<TestArenaMap>;
+export declare const TestArenaMapDesc: GenDescMessage<TestArenaMap>;
 
 /**
  * Previously, message containing enum called Type cannot be used as value of
@@ -300,7 +300,7 @@ export declare type MessageContainingEnumCalledType = Message<"protobuf_unittest
 };
 
 // Describes the message protobuf_unittest.MessageContainingEnumCalledType. Use `create(MessageContainingEnumCalledTypeDesc)` to create a new MessageContainingEnumCalledType.
-export declare const MessageContainingEnumCalledTypeDesc: TypedDescMessage<MessageContainingEnumCalledType>;
+export declare const MessageContainingEnumCalledTypeDesc: GenDescMessage<MessageContainingEnumCalledType>;
 
 /**
  * @generated from enum protobuf_unittest.MessageContainingEnumCalledType.Type
@@ -313,7 +313,7 @@ export enum MessageContainingEnumCalledType_Type {
 }
 
 // Describes the enum protobuf_unittest.MessageContainingEnumCalledType.Type.
-export declare const MessageContainingEnumCalledType_TypeDesc: TypedDescEnum<MessageContainingEnumCalledType_Type>;
+export declare const MessageContainingEnumCalledType_TypeDesc: GenDescEnum<MessageContainingEnumCalledType_Type>;
 
 /**
  * Previously, message cannot contain map field called "entry".
@@ -328,7 +328,7 @@ export declare type MessageContainingMapCalledEntry = Message<"protobuf_unittest
 };
 
 // Describes the message protobuf_unittest.MessageContainingMapCalledEntry. Use `create(MessageContainingMapCalledEntryDesc)` to create a new MessageContainingMapCalledEntry.
-export declare const MessageContainingMapCalledEntryDesc: TypedDescMessage<MessageContainingMapCalledEntry>;
+export declare const MessageContainingMapCalledEntryDesc: GenDescMessage<MessageContainingMapCalledEntry>;
 
 /**
  * @generated from message protobuf_unittest.TestRecursiveMapMessage
@@ -341,7 +341,7 @@ export declare type TestRecursiveMapMessage = Message<"protobuf_unittest.TestRec
 };
 
 // Describes the message protobuf_unittest.TestRecursiveMapMessage. Use `create(TestRecursiveMapMessageDesc)` to create a new TestRecursiveMapMessage.
-export declare const TestRecursiveMapMessageDesc: TypedDescMessage<TestRecursiveMapMessage>;
+export declare const TestRecursiveMapMessageDesc: GenDescMessage<TestRecursiveMapMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestI32StrMap
@@ -354,7 +354,7 @@ export declare type TestI32StrMap = Message<"protobuf_unittest.TestI32StrMap"> &
 };
 
 // Describes the message protobuf_unittest.TestI32StrMap. Use `create(TestI32StrMapDesc)` to create a new TestI32StrMap.
-export declare const TestI32StrMapDesc: TypedDescMessage<TestI32StrMap>;
+export declare const TestI32StrMapDesc: GenDescMessage<TestI32StrMap>;
 
 /**
  * @generated from enum protobuf_unittest.MapEnum
@@ -377,5 +377,5 @@ export enum MapEnum {
 }
 
 // Describes the enum protobuf_unittest.MapEnum.
-export declare const MapEnumDesc: TypedDescEnum<MapEnum>;
+export declare const MapEnumDesc: GenDescEnum<MapEnum>;
 

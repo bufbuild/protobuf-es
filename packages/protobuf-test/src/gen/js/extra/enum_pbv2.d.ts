@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescEnum, TypedDescExtension, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt";
 
 export declare const fileDesc_extra_enum: DescFile;
@@ -34,7 +34,7 @@ export declare type EnumMessage = Message<"spec.EnumMessage"> & {
 };
 
 // Describes the message spec.EnumMessage. Use `create(EnumMessageDesc)` to create a new EnumMessage.
-export declare const EnumMessageDesc: TypedDescMessage<EnumMessage>;
+export declare const EnumMessageDesc: GenDescMessage<EnumMessage>;
 
 /**
  * @generated from enum spec.EnumMessage.NestedEnum
@@ -52,7 +52,7 @@ export enum EnumMessage_NestedEnum {
 }
 
 // Describes the enum spec.EnumMessage.NestedEnum.
-export declare const EnumMessage_NestedEnumDesc: TypedDescEnum<EnumMessage_NestedEnum>;
+export declare const EnumMessage_NestedEnumDesc: GenDescEnum<EnumMessage_NestedEnum>;
 
 /**
  * @generated from enum spec.AnnotatedEnum
@@ -70,7 +70,7 @@ export enum AnnotatedEnum {
 }
 
 // Describes the enum spec.AnnotatedEnum.
-export declare const AnnotatedEnumDesc: TypedDescEnum<AnnotatedEnum>;
+export declare const AnnotatedEnumDesc: GenDescEnum<AnnotatedEnum>;
 
 /**
  * @generated from enum spec.SimpleEnum
@@ -88,7 +88,7 @@ export enum SimpleEnum {
 }
 
 // Describes the enum spec.SimpleEnum.
-export declare const SimpleEnumDesc: TypedDescEnum<SimpleEnum>;
+export declare const SimpleEnumDesc: GenDescEnum<SimpleEnum>;
 
 /**
  * @generated from enum spec.AliasEnum
@@ -111,7 +111,7 @@ export enum AliasEnum {
 }
 
 // Describes the enum spec.AliasEnum.
-export declare const AliasEnumDesc: TypedDescEnum<AliasEnum>;
+export declare const AliasEnumDesc: GenDescEnum<AliasEnum>;
 
 /**
  * The generated enum values should drop the "PREFIX_"
@@ -133,15 +133,15 @@ export enum PrefixEnum {
 }
 
 // Describes the enum spec.PrefixEnum.
-export declare const PrefixEnumDesc: TypedDescEnum<PrefixEnum>;
+export declare const PrefixEnumDesc: GenDescEnum<PrefixEnum>;
 
 /**
  * @generated from extension: bool enum_opt_bool = 2001;
  */
-export declare const enum_opt_bool: TypedDescExtension<EnumOptions, boolean>;
+export declare const enum_opt_bool: GenDescExtension<EnumOptions, boolean>;
 
 /**
  * @generated from extension: bool enum_value_opt_bool = 3001;
  */
-export declare const enum_value_opt_bool: TypedDescExtension<EnumValueOptions, boolean>;
+export declare const enum_value_opt_bool: GenDescExtension<EnumValueOptions, boolean>;
 

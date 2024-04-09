@@ -24,7 +24,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_mset_wire_format: DescFile;
 
@@ -37,7 +37,7 @@ export declare type TestMessageSet = Message<"proto2_wireformat_unittest.TestMes
 };
 
 // Describes the message proto2_wireformat_unittest.TestMessageSet. Use `create(TestMessageSetDesc)` to create a new TestMessageSet.
-export declare const TestMessageSetDesc: TypedDescMessage<TestMessageSet>;
+export declare const TestMessageSetDesc: GenDescMessage<TestMessageSet>;
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
@@ -50,5 +50,5 @@ export declare type TestMessageSetWireFormatContainer = Message<"proto2_wireform
 };
 
 // Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer. Use `create(TestMessageSetWireFormatContainerDesc)` to create a new TestMessageSetWireFormatContainer.
-export declare const TestMessageSetWireFormatContainerDesc: TypedDescMessage<TestMessageSetWireFormatContainer>;
+export declare const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer>;
 

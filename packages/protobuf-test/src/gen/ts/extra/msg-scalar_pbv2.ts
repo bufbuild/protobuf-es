@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -106,7 +106,7 @@ export type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & {
 
 // Describes the message spec.ScalarValuesMessage.
 // Use `create(ScalarValuesMessageDesc)` to create a new ScalarValuesMessage.
-export const ScalarValuesMessageDesc: TypedDescMessage<ScalarValuesMessage> = /*@__PURE__*/
+export const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 0);
 
 /**
@@ -191,6 +191,6 @@ export type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarValuesMess
 
 // Describes the message spec.RepeatedScalarValuesMessage.
 // Use `create(RepeatedScalarValuesMessageDesc)` to create a new RepeatedScalarValuesMessage.
-export const RepeatedScalarValuesMessageDesc: TypedDescMessage<RepeatedScalarValuesMessage> = /*@__PURE__*/
+export const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 1);
 

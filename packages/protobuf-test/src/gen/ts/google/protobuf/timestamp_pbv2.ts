@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -141,6 +141,6 @@ export type Timestamp = Message<"google.protobuf.Timestamp"> & {
 
 // Describes the message google.protobuf.Timestamp.
 // Use `create(TimestampDesc)` to create a new Timestamp.
-export const TimestampDesc: TypedDescMessage<Timestamp> = /*@__PURE__*/
+export const TimestampDesc: GenDescMessage<Timestamp> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_timestamp, 0);
 

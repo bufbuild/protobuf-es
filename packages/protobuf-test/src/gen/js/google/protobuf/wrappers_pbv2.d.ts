@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_wrappers: DescFile;
 
@@ -39,7 +39,7 @@ export declare type DoubleValue = Message<"google.protobuf.DoubleValue"> & {
 };
 
 // Describes the message google.protobuf.DoubleValue. Use `create(DoubleValueDesc)` to create a new DoubleValue.
-export declare const DoubleValueDesc: TypedDescMessage<DoubleValue>;
+export declare const DoubleValueDesc: GenDescMessage<DoubleValue>;
 
 /**
  * Wrapper message for `float`.
@@ -58,7 +58,7 @@ export declare type FloatValue = Message<"google.protobuf.FloatValue"> & {
 };
 
 // Describes the message google.protobuf.FloatValue. Use `create(FloatValueDesc)` to create a new FloatValue.
-export declare const FloatValueDesc: TypedDescMessage<FloatValue>;
+export declare const FloatValueDesc: GenDescMessage<FloatValue>;
 
 /**
  * Wrapper message for `int64`.
@@ -77,7 +77,7 @@ export declare type Int64Value = Message<"google.protobuf.Int64Value"> & {
 };
 
 // Describes the message google.protobuf.Int64Value. Use `create(Int64ValueDesc)` to create a new Int64Value.
-export declare const Int64ValueDesc: TypedDescMessage<Int64Value>;
+export declare const Int64ValueDesc: GenDescMessage<Int64Value>;
 
 /**
  * Wrapper message for `uint64`.
@@ -96,7 +96,7 @@ export declare type UInt64Value = Message<"google.protobuf.UInt64Value"> & {
 };
 
 // Describes the message google.protobuf.UInt64Value. Use `create(UInt64ValueDesc)` to create a new UInt64Value.
-export declare const UInt64ValueDesc: TypedDescMessage<UInt64Value>;
+export declare const UInt64ValueDesc: GenDescMessage<UInt64Value>;
 
 /**
  * Wrapper message for `int32`.
@@ -115,7 +115,7 @@ export declare type Int32Value = Message<"google.protobuf.Int32Value"> & {
 };
 
 // Describes the message google.protobuf.Int32Value. Use `create(Int32ValueDesc)` to create a new Int32Value.
-export declare const Int32ValueDesc: TypedDescMessage<Int32Value>;
+export declare const Int32ValueDesc: GenDescMessage<Int32Value>;
 
 /**
  * Wrapper message for `uint32`.
@@ -134,7 +134,7 @@ export declare type UInt32Value = Message<"google.protobuf.UInt32Value"> & {
 };
 
 // Describes the message google.protobuf.UInt32Value. Use `create(UInt32ValueDesc)` to create a new UInt32Value.
-export declare const UInt32ValueDesc: TypedDescMessage<UInt32Value>;
+export declare const UInt32ValueDesc: GenDescMessage<UInt32Value>;
 
 /**
  * Wrapper message for `bool`.
@@ -153,7 +153,7 @@ export declare type BoolValue = Message<"google.protobuf.BoolValue"> & {
 };
 
 // Describes the message google.protobuf.BoolValue. Use `create(BoolValueDesc)` to create a new BoolValue.
-export declare const BoolValueDesc: TypedDescMessage<BoolValue>;
+export declare const BoolValueDesc: GenDescMessage<BoolValue>;
 
 /**
  * Wrapper message for `string`.
@@ -172,7 +172,7 @@ export declare type StringValue = Message<"google.protobuf.StringValue"> & {
 };
 
 // Describes the message google.protobuf.StringValue. Use `create(StringValueDesc)` to create a new StringValue.
-export declare const StringValueDesc: TypedDescMessage<StringValue>;
+export declare const StringValueDesc: GenDescMessage<StringValue>;
 
 /**
  * Wrapper message for `bytes`.
@@ -191,5 +191,5 @@ export declare type BytesValue = Message<"google.protobuf.BytesValue"> & {
 };
 
 // Describes the message google.protobuf.BytesValue. Use `create(BytesValueDesc)` to create a new BytesValue.
-export declare const BytesValueDesc: TypedDescMessage<BytesValue>;
+export declare const BytesValueDesc: GenDescMessage<BytesValue>;
 

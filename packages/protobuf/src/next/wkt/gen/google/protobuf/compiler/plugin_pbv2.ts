@@ -34,7 +34,7 @@ import { fileDesc } from "../../../../../codegenv1/file.js";
 import type { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pbv2.js";
 import { fileDesc_google_protobuf_descriptor } from "../descriptor_pbv2.js";
 import type { Message } from "../../../../../types.js";
-import type { TypedDescEnum, TypedDescMessage } from "../../../../../codegenv1/typed-desc.js";
+import type { GenDescEnum, GenDescMessage } from "../../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../../codegenv1/message.js";
 import { enumDesc } from "../../../../../codegenv1/enum.js";
 
@@ -73,7 +73,7 @@ export type Version = Message<"google.protobuf.compiler.Version"> & {
 
 // Describes the message google.protobuf.compiler.Version.
 // Use `create(VersionDesc)` to create a new Version.
-export const VersionDesc: TypedDescMessage<Version> = /*@__PURE__*/
+export const VersionDesc: GenDescMessage<Version> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 0);
 
 /**
@@ -142,7 +142,7 @@ export type CodeGeneratorRequest = Message<"google.protobuf.compiler.CodeGenerat
 
 // Describes the message google.protobuf.compiler.CodeGeneratorRequest.
 // Use `create(CodeGeneratorRequestDesc)` to create a new CodeGeneratorRequest.
-export const CodeGeneratorRequestDesc: TypedDescMessage<CodeGeneratorRequest> = /*@__PURE__*/
+export const CodeGeneratorRequestDesc: GenDescMessage<CodeGeneratorRequest> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 1);
 
 /**
@@ -201,7 +201,7 @@ export type CodeGeneratorResponse = Message<"google.protobuf.compiler.CodeGenera
 
 // Describes the message google.protobuf.compiler.CodeGeneratorResponse.
 // Use `create(CodeGeneratorResponseDesc)` to create a new CodeGeneratorResponse.
-export const CodeGeneratorResponseDesc: TypedDescMessage<CodeGeneratorResponse> = /*@__PURE__*/
+export const CodeGeneratorResponseDesc: GenDescMessage<CodeGeneratorResponse> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 2);
 
 /**
@@ -289,7 +289,7 @@ export type CodeGeneratorResponse_File = Message<"google.protobuf.compiler.CodeG
 
 // Describes the message google.protobuf.compiler.CodeGeneratorResponse.File.
 // Use `create(CodeGeneratorResponse_FileDesc)` to create a new CodeGeneratorResponse_File.
-export const CodeGeneratorResponse_FileDesc: TypedDescMessage<CodeGeneratorResponse_File> = /*@__PURE__*/
+export const CodeGeneratorResponse_FileDesc: GenDescMessage<CodeGeneratorResponse_File> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
 
 /**
@@ -315,6 +315,6 @@ export enum CodeGeneratorResponse_Feature {
 }
 
 // Describes the enum google.protobuf.compiler.CodeGeneratorResponse.Feature.
-export const CodeGeneratorResponse_FeatureDesc: TypedDescEnum<CodeGeneratorResponse_Feature> = /*@__PURE__*/
+export const CodeGeneratorResponse_FeatureDesc: GenDescEnum<CodeGeneratorResponse_Feature> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
 

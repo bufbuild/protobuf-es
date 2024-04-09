@@ -18,7 +18,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_extra_msg_message: DescFile;
 
@@ -38,7 +38,7 @@ export declare type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & 
 };
 
 // Describes the message spec.MessageFieldMessage. Use `create(MessageFieldMessageDesc)` to create a new MessageFieldMessage.
-export declare const MessageFieldMessageDesc: TypedDescMessage<MessageFieldMessage>;
+export declare const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage>;
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
@@ -51,5 +51,5 @@ export declare type MessageFieldMessage_TestMessage = Message<"spec.MessageField
 };
 
 // Describes the message spec.MessageFieldMessage.TestMessage. Use `create(MessageFieldMessage_TestMessageDesc)` to create a new MessageFieldMessage_TestMessage.
-export declare const MessageFieldMessage_TestMessageDesc: TypedDescMessage<MessageFieldMessage_TestMessage>;
+export declare const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage>;
 

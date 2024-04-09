@@ -24,7 +24,7 @@
 
 import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
 export declare const fileDesc_google_protobuf_unittest_extension_set: DescFile;
 
@@ -37,7 +37,7 @@ export declare type TestExtensionSet = Message<"protobuf_unittest.TestExtensionS
 };
 
 // Describes the message protobuf_unittest.TestExtensionSet. Use `create(TestExtensionSetDesc)` to create a new TestExtensionSet.
-export declare const TestExtensionSetDesc: TypedDescMessage<TestExtensionSet>;
+export declare const TestExtensionSetDesc: GenDescMessage<TestExtensionSet>;
 
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
@@ -50,5 +50,5 @@ export declare type TestExtensionSetContainer = Message<"protobuf_unittest.TestE
 };
 
 // Describes the message protobuf_unittest.TestExtensionSetContainer. Use `create(TestExtensionSetContainerDesc)` to create a new TestExtensionSetContainer.
-export declare const TestExtensionSetContainerDesc: TypedDescMessage<TestExtensionSetContainer>;
+export declare const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer>;
 

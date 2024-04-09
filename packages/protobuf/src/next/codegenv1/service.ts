@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { ServiceInfo, TypedDescService } from "./typed-desc.js";
+import type { ServiceInfo, GenDescService } from "./types.js";
 import type { DescFile } from "../../descriptor-set.js";
 
 /**
@@ -24,9 +24,9 @@ export function serviceDesc<T extends ServiceInfo>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): TypedDescService<T> {
+): GenDescService<T> {
   if (paths.length > 0) {
     throw new Error();
   }
-  return file.services[path] as TypedDescService<T>;
+  return file.services[path] as GenDescService<T>;
 }

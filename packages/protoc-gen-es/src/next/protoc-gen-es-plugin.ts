@@ -67,49 +67,49 @@ function generateTs(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "ts");
-          const {TypedDescMessage, messageDesc} = f.runtime.codegen;
+          const {GenDescMessage, messageDesc} = f.runtime.codegen;
           const MessageShape = f.importShape(desc);
           const fileDesc = f.importDesc(file);
           const name = f.importDesc(desc).name;
           f.print("// Describes the ", desc.toString(), ".");
           f.print("// Use `create(", name, ")` to create a new ", MessageShape.name, ".");
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), ": ", TypedDescMessage, "<", MessageShape, ">", " = ", pure);
+          f.print(f.exportDecl("const", name), ": ", GenDescMessage, "<", MessageShape, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
-          const {TypedDescEnum, enumDesc} = f.runtime.codegen;
+          const {GenDescEnum, enumDesc} = f.runtime.codegen;
           const EnumShape = f.importShape(desc);
           const fileDesc = f.importDesc(file);
           f.print("// Describes the ", desc.toString(), ".");
           const name = f.importDesc(desc).name;
           const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.exportDecl("const", name), ": ", TypedDescEnum, "<", EnumShape, ">", " = ", pure);
+          f.print(f.exportDecl("const", name), ": ", GenDescEnum, "<", EnumShape, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "extension": {
-          const { TypedDescExtension, extDesc } = f.runtime.codegen;
+          const { GenDescExtension, extDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const E = f.importShape(desc.extendee);
           const V = getFieldTypeInfo(desc).typing;
           const call = functionCall(extDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("const", name), ": ", TypedDescExtension, "<", E, ", ", V, ">", " = ", pure);
+          f.print(f.exportDecl("const", name), ": ", GenDescExtension, "<", E, ", ", V, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "service": {
-          const { TypedDescService, serviceDesc} = f.runtime.codegen;
+          const { GenDescService, serviceDesc} = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const call = functionCall(serviceDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("const", name), ": ", TypedDescService, "<", getServiceShapeExpr(f, desc), "> = ", pure);
+          f.print(f.exportDecl("const", name), ": ", GenDescService, "<", getServiceShapeExpr(f, desc), "> = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -201,39 +201,39 @@ function generateDts(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "dts");
-          const { TypedDescMessage } = f.runtime.codegen;
+          const { GenDescMessage } = f.runtime.codegen;
           const MessageShape = f.importShape(desc);
           const name = f.importDesc(desc).name;
           f.print("// Describes the ", desc.toString(), ". Use `create(", name, ")` to create a new ", MessageShape.name, ".");
-          f.print(f.exportDecl("declare const", name), ": ", TypedDescMessage, "<", MessageShape, ">", ";");
+          f.print(f.exportDecl("declare const", name), ": ", GenDescMessage, "<", MessageShape, ">", ";");
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
-          const { TypedDescEnum } = f.runtime.codegen;
+          const { GenDescEnum } = f.runtime.codegen;
           const EnumShape = f.importShape(desc);
           f.print("// Describes the ", desc.toString(), ".");
           const name = f.importDesc(desc).name;
-          f.print(f.exportDecl("declare const", name), ": ", TypedDescEnum, "<", EnumShape, ">;");
+          f.print(f.exportDecl("declare const", name), ": ", GenDescEnum, "<", EnumShape, ">;");
           f.print();
           break;
         }
         case "extension": {
-          const { TypedDescExtension } = f.runtime.codegen;
+          const { GenDescExtension } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const E = f.importShape(desc.extendee);
           const V = getFieldTypeInfo(desc).typing;
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("declare const", name), ": ", TypedDescExtension, "<", E, ", ", V, ">;");
+          f.print(f.exportDecl("declare const", name), ": ", GenDescExtension, "<", E, ", ", V, ">;");
           f.print();
           break;
         }
         case "service": {
-          const { TypedDescService } = f.runtime.codegen;
+          const { GenDescService } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           f.print(f.jsDoc(desc));
-          f.print(f.exportDecl("declare const", name), ": ", TypedDescService, "<", getServiceShapeExpr(f, desc), ">;");
+          f.print(f.exportDecl("declare const", name), ": ", GenDescService, "<", getServiceShapeExpr(f, desc), ">;");
           f.print();
           break;
         }

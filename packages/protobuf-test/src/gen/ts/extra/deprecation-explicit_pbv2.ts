@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -39,7 +39,7 @@ export type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
 
 // Describes the message spec.DeprecatedMessage.
 // Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
-export const DeprecatedMessageDesc: TypedDescMessage<DeprecatedMessage> = /*@__PURE__*/
+export const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_explicit, 0);
 
 /**
@@ -66,7 +66,7 @@ export type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessage"> & {
 
 // Describes the message spec.DeprecatedFieldMessage.
 // Use `create(DeprecatedFieldMessageDesc)` to create a new DeprecatedFieldMessage.
-export const DeprecatedFieldMessageDesc: TypedDescMessage<DeprecatedFieldMessage> = /*@__PURE__*/
+export const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_explicit, 1);
 
 /**
@@ -88,7 +88,7 @@ export enum DeprecatedEnum {
 }
 
 // Describes the enum spec.DeprecatedEnum.
-export const DeprecatedEnumDesc: TypedDescEnum<DeprecatedEnum> = /*@__PURE__*/
+export const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_explicit, 0);
 
 /**
@@ -110,6 +110,6 @@ export enum DeprecatedValueEnum {
 }
 
 // Describes the enum spec.DeprecatedValueEnum.
-export const DeprecatedValueEnumDesc: TypedDescEnum<DeprecatedValueEnum> = /*@__PURE__*/
+export const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_explicit, 1);
 

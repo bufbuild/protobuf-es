@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_api, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_empty, fileDesc_google_protobuf_field_mask, fileDesc_google_protobuf_source_context, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp, fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -136,7 +136,7 @@ export type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnownTypes">
 
 // Describes the message protobuf_unittest.TestWellKnownTypes.
 // Use `create(TestWellKnownTypesDesc)` to create a new TestWellKnownTypes.
-export const TestWellKnownTypesDesc: TypedDescMessage<TestWellKnownTypes> = /*@__PURE__*/
+export const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_well_known_types, 0);
 
 /**
@@ -240,7 +240,7 @@ export type RepeatedWellKnownTypes = Message<"protobuf_unittest.RepeatedWellKnow
 
 // Describes the message protobuf_unittest.RepeatedWellKnownTypes.
 // Use `create(RepeatedWellKnownTypesDesc)` to create a new RepeatedWellKnownTypes.
-export const RepeatedWellKnownTypesDesc: TypedDescMessage<RepeatedWellKnownTypes> = /*@__PURE__*/
+export const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_well_known_types, 1);
 
 /**
@@ -363,7 +363,7 @@ export type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKnownTypes
 
 // Describes the message protobuf_unittest.OneofWellKnownTypes.
 // Use `create(OneofWellKnownTypesDesc)` to create a new OneofWellKnownTypes.
-export const OneofWellKnownTypesDesc: TypedDescMessage<OneofWellKnownTypes> = /*@__PURE__*/
+export const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_well_known_types, 2);
 
 /**
@@ -467,6 +467,6 @@ export type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownTypes"> &
 
 // Describes the message protobuf_unittest.MapWellKnownTypes.
 // Use `create(MapWellKnownTypesDesc)` to create a new MapWellKnownTypes.
-export const MapWellKnownTypesDesc: TypedDescMessage<MapWellKnownTypes> = /*@__PURE__*/
+export const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_well_known_types, 3);
 

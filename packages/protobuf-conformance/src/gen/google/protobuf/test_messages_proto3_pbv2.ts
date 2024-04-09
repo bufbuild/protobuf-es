@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescEnum, TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_field_mask, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp, fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
@@ -826,7 +826,7 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.TestAllT
 
 // Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.
 // Use `create(TestAllTypesProto3Desc)` to create a new TestAllTypesProto3.
-export const TestAllTypesProto3Desc: TypedDescMessage<TestAllTypesProto3> = /*@__PURE__*/
+export const TestAllTypesProto3Desc: GenDescMessage<TestAllTypesProto3> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 0);
 
 /**
@@ -846,7 +846,7 @@ export type TestAllTypesProto3_NestedMessage = Message<"protobuf_test_messages.p
 
 // Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.
 // Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new TestAllTypesProto3_NestedMessage.
-export const TestAllTypesProto3_NestedMessageDesc: TypedDescMessage<TestAllTypesProto3_NestedMessage> = /*@__PURE__*/
+export const TestAllTypesProto3_NestedMessageDesc: GenDescMessage<TestAllTypesProto3_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 0);
 
 /**
@@ -877,7 +877,7 @@ export enum TestAllTypesProto3_NestedEnum {
 }
 
 // Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
-export const TestAllTypesProto3_NestedEnumDesc: TypedDescEnum<TestAllTypesProto3_NestedEnum> = /*@__PURE__*/
+export const TestAllTypesProto3_NestedEnumDesc: GenDescEnum<TestAllTypesProto3_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 0);
 
 /**
@@ -916,7 +916,7 @@ export enum TestAllTypesProto3_AliasedEnum {
 }
 
 // Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
-export const TestAllTypesProto3_AliasedEnumDesc: TypedDescEnum<TestAllTypesProto3_AliasedEnum> = /*@__PURE__*/
+export const TestAllTypesProto3_AliasedEnumDesc: GenDescEnum<TestAllTypesProto3_AliasedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 1);
 
 /**
@@ -931,7 +931,7 @@ export type ForeignMessage = Message<"protobuf_test_messages.proto3.ForeignMessa
 
 // Describes the message protobuf_test_messages.proto3.ForeignMessage.
 // Use `create(ForeignMessageDesc)` to create a new ForeignMessage.
-export const ForeignMessageDesc: TypedDescMessage<ForeignMessage> = /*@__PURE__*/
+export const ForeignMessageDesc: GenDescMessage<ForeignMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 1);
 
 /**
@@ -942,7 +942,7 @@ export type NullHypothesisProto3 = Message<"protobuf_test_messages.proto3.NullHy
 
 // Describes the message protobuf_test_messages.proto3.NullHypothesisProto3.
 // Use `create(NullHypothesisProto3Desc)` to create a new NullHypothesisProto3.
-export const NullHypothesisProto3Desc: TypedDescMessage<NullHypothesisProto3> = /*@__PURE__*/
+export const NullHypothesisProto3Desc: GenDescMessage<NullHypothesisProto3> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 2);
 
 /**
@@ -953,7 +953,7 @@ export type EnumOnlyProto3 = Message<"protobuf_test_messages.proto3.EnumOnlyProt
 
 // Describes the message protobuf_test_messages.proto3.EnumOnlyProto3.
 // Use `create(EnumOnlyProto3Desc)` to create a new EnumOnlyProto3.
-export const EnumOnlyProto3Desc: TypedDescMessage<EnumOnlyProto3> = /*@__PURE__*/
+export const EnumOnlyProto3Desc: GenDescMessage<EnumOnlyProto3> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 3);
 
 /**
@@ -972,7 +972,7 @@ export enum EnumOnlyProto3_Bool {
 }
 
 // Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
-export const EnumOnlyProto3_BoolDesc: TypedDescEnum<EnumOnlyProto3_Bool> = /*@__PURE__*/
+export const EnumOnlyProto3_BoolDesc: GenDescEnum<EnumOnlyProto3_Bool> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 3, 0);
 
 /**
@@ -996,6 +996,6 @@ export enum ForeignEnum {
 }
 
 // Describes the enum protobuf_test_messages.proto3.ForeignEnum.
-export const ForeignEnumDesc: TypedDescEnum<ForeignEnum> = /*@__PURE__*/
+export const ForeignEnumDesc: GenDescEnum<ForeignEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 0);
 

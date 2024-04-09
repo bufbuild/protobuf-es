@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -42,6 +42,6 @@ export type SourceContext = Message<"google.protobuf.SourceContext"> & {
 
 // Describes the message google.protobuf.SourceContext.
 // Use `create(SourceContextDesc)` to create a new SourceContext.
-export const SourceContextDesc: TypedDescMessage<SourceContext> = /*@__PURE__*/
+export const SourceContextDesc: GenDescMessage<SourceContext> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_source_context, 0);
 

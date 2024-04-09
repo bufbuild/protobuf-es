@@ -21,7 +21,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { TestAllTypes, TestRequired } from "./unittest_pbv2.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pbv2.js";
@@ -49,6 +49,6 @@ export type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLiteImportsN
 
 // Describes the message protobuf_unittest.TestLiteImportsNonlite.
 // Use `create(TestLiteImportsNonliteDesc)` to create a new TestLiteImportsNonlite.
-export const TestLiteImportsNonliteDesc: TypedDescMessage<TestLiteImportsNonlite> = /*@__PURE__*/
+export const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite_imports_nonlite, 0);
 

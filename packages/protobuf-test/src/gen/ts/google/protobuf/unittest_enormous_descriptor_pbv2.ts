@@ -26,7 +26,7 @@
 /* eslint-disable */
 
 import type { DescFile } from "@bufbuild/protobuf";
-import type { TypedDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
@@ -5042,6 +5042,6 @@ export type TestEnormousDescriptor = Message<"protobuf_unittest.TestEnormousDesc
 
 // Describes the message protobuf_unittest.TestEnormousDescriptor.
 // Use `create(TestEnormousDescriptorDesc)` to create a new TestEnormousDescriptor.
-export const TestEnormousDescriptorDesc: TypedDescMessage<TestEnormousDescriptor> = /*@__PURE__*/
+export const TestEnormousDescriptorDesc: GenDescMessage<TestEnormousDescriptor> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_enormous_descriptor, 0);
 
