@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp";
-import { SayRequest } from "./gen/connectrpc/eliza_pb";
+import { SayRequestDesc } from "./gen/connectrpc/eliza_pbv2";
+import { create } from "@bufbuild/protobuf/next";
 
 const client = new ElizaServiceClient();
 const input = document.querySelector("input")!;
@@ -30,7 +31,7 @@ document.querySelector("form")!.addEventListener("submit", (event) => {
 // Send a sentence to the Eliza service
 async function send(sentence: string) {
   addConversationPill(sentence, "user");
-  const request = new SayRequest({ sentence });
+  const request = create(SayRequestDesc, { sentence });
   const response = await client.say(request);
   addConversationPill(response.sentence, "eliza");
 }

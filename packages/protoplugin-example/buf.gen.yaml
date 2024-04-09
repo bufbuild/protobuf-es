@@ -4,7 +4,7 @@
 # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
 version: v1
 plugins:
-  - plugin: es
+  - plugin: es-next
     opt: target=ts
     out: src/gen
   - plugin: twirp-es

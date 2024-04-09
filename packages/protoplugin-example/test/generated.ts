@@ -14,8 +14,9 @@
 
 import * as assert from "node:assert/strict";
 import { describe, it, mock } from "node:test";
+import { create } from "@bufbuild/protobuf/next";
+import { SayRequestDesc } from "../src/gen/connectrpc/eliza_pbv2";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
-import { SayRequest } from "../src/gen/connectrpc/eliza_pb";
 
 describe("custom plugin", async () => {
   it("should generate client class", () => {
@@ -48,7 +49,8 @@ describe("custom plugin", async () => {
           }),
       );
       const client = new ElizaServiceClient("https://example.com");
-      const res = await client.say(new SayRequest({ sentence: "hi" }));
+      const req = create(SayRequestDesc, { sentence: "hi" });
+      const res = await client.say(req);
       assert.equal(res.sentence, "ho");
       assert.equal(fetch.mock.callCount(), 1);
       const [argInput, argInit] = fetch.mock.calls[0].arguments;

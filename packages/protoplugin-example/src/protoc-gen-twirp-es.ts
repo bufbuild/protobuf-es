@@ -14,11 +14,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin/next";
+import {
+  type Schema,
+  safeIdentifier,
+} from "@bufbuild/protoplugin/next/ecmascript";
+import { MethodKind } from "@bufbuild/protobuf";
+import { localName } from "@bufbuild/protobuf/next/reflect";
+import { default_host } from "./gen/customoptions/default_host_pbv2.js";
 import { version } from "../package.json";
-import { localName, type Schema } from "@bufbuild/protoplugin/ecmascript";
-import { getExtension, hasExtension, MethodKind } from "@bufbuild/protobuf";
-import { default_host } from "./gen/customoptions/default_host_pb.js";
+import { getExtension, hasExtension } from "@bufbuild/protobuf/next";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
@@ -31,13 +36,9 @@ function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
-    const {
-      Message,
-      JsonValue
-    } = schema.runtime;
     for (const service of file.services) {
       f.print(f.jsDoc(service));
-      f.print(f.exportDecl("class", localName(service) + "Client"), " {");
+      f.print(f.exportDecl("class", safeIdentifier(service.name) + "Client"), " {");
       f.print();
 
       // To support the custom option we defined in customoptions/default_host.proto,
@@ -55,44 +56,29 @@ function generateTs(schema: Schema) {
         f.print("    }");
       }
       f.print();
-      f.print("    async request<T extends ", Message.toTypeOnly(), "<T>>(");
-      f.print("        service: string,");
-      f.print("        method: string,");
-      f.print("        contentType: string,");
-      f.print("        data: T");
-      f.print("    ) {");
-      f.print("        const headers = new Headers([]);");
-      f.print("        headers.set('content-type', contentType);");
-      f.print("        const response = await fetch(");
-      f.print("            `${this.baseUrl}/${service}/${method}`,");
-      f.print("            {");
-      f.print("                method: 'POST',");
-      f.print("                headers,");
-      f.print("                body: data.toJsonString(),");
-      f.print("            }");
-      f.print("        );");
-      f.print("        if (response.status === 200) {");
-      f.print("            if (contentType === 'application/json') {");
-      f.print("                return await response.json();");
-      f.print("            }");
-      f.print("            return new Uint8Array(await response.arrayBuffer());");
-      f.print("        }");
-      f.print("        throw Error(`HTTP ${response.status} ${response.statusText}`)");
-      f.print("    }");
       for (const method of service.methods) {
         if (method.methodKind === MethodKind.Unary) {
-          f.print();
           f.print(f.jsDoc(method, "    "));
-          f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
-          f.print("        const promise = this.request(");
-          f.print("            ", f.string(service.typeName), ",");
-          f.print("            ", f.string(method.name), ",");
-          f.print('            "application/json",');
-          f.print("            request");
+          const inputType = f.importShape(method.input);
+          const inputDesc = f.importDesc(method.input);
+          const outputType = f.importShape(method.output);
+          const outputDesc = f.importDesc(method.output);
+          f.print("    async ", localName(method), "(request: ", inputType, "): Promise<", outputType, "> {");
+          f.print("        const headers = new Headers([]);");
+          f.print("        headers.set('content-type', 'application/json');");
+          f.print("        const fetchResponse = await fetch(");
+          f.print("            `${this.baseUrl}/", service.typeName, "/", method.name, "`,");
+          f.print("            {");
+          f.print("                method: 'POST',");
+          f.print("                headers,");
+          f.print("                body: ", f.runtime.toJsonString, "(", inputDesc, ", request),");
+          f.print("            }");
           f.print("        );");
-          f.print("        return promise.then(async (data) =>");
-          f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
-          f.print("        );");
+          f.print("        if (fetchResponse.status !== 200) {");
+          f.print("          throw Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`)");
+          f.print("        }");
+          f.print("        const json = await fetchResponse.json() as ", f.runtime.legacy.JsonValue, ";");
+          f.print("        return ", f.runtime.fromJson, "(", outputDesc, ", json);");
           f.print("    }");
         }
       }
