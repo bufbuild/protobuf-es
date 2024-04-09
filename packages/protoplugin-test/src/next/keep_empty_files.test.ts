@@ -13,22 +13,15 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import type { DescFile } from "@bufbuild/protobuf";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
-import type {
-  GeneratedFile,
-  Schema,
-} from "@bufbuild/protoplugin/next/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
-import { UpstreamProtobuf } from "upstream-protobuf";
+import { createTestPluginAndRun } from "./helpers.js";
 
 describe("keep_empty_files", () => {
   describe("unset", () => {
     test.each(["js", "ts", "dts"])(
       "does not generate empty file with target %p",
       async (target) => {
-        const { fileCount, lines } = await testGenerate(
-          `
+        const res = await createTestPluginAndRun({
+          proto: `
             // detached syntax comment
             
             // syntax comment
@@ -41,30 +34,30 @@ describe("keep_empty_files", () => {
             
             message M {}
             `,
-          `target=${target}`,
-          (f, descFile) => {
+          parameter: `target=${target}`,
+          generateAny: (f, schema) => {
             // A preamble does not count as non-empty
-            f.preamble(descFile);
+            f.preamble(schema.files[0]);
             // An unused import does not count as non-empty
             f.import("foo", "bar");
             // An unused export declaration does not count as non-empty
             f.exportDecl("foo", "bar");
           },
-        );
-        expect(lines).toBeUndefined();
-        expect(fileCount).toBe(0);
+        });
+        expect(res.file.length).toBe(0);
       },
     );
     test.each(["js", "ts", "dts"])(
       "printing empty line generates a file with target %p",
       async (target) => {
-        const { lines } = await testGenerate(
-          `syntax="proto3"; message M {}`,
-          `target=${target}`,
-          (f) => {
+        const lines = await createTestPluginAndRun({
+          returnLinesOfFirstFile: true,
+          proto: `syntax="proto3"; message M {}`,
+          parameter: `target=${target}`,
+          generateAny: (f) => {
             f.print();
           },
-        );
+        });
         expect(lines).toStrictEqual([""]);
       },
     );
@@ -74,58 +67,16 @@ describe("keep_empty_files", () => {
     test.each(["js", "ts", "dts"])(
       "generates empty file with target %p",
       async (target) => {
-        const { lines } = await testGenerate(
-          `syntax="proto3"; message M {}`,
-          `target=${target},keep_empty_files=true`,
-          (f) => {
-            f.print();
+        const res = await createTestPluginAndRun({
+          proto: `syntax="proto3"; message M {}`,
+          parameter: `target=${target},keep_empty_files=true`,
+          generateAny: (f, schema) => {
+            // A preamble does not count as non-empty
+            f.preamble(schema.files[0]);
           },
-        );
-        expect(lines).toStrictEqual([""]);
+        });
+        expect(res.file.length).toBe(1);
       },
     );
   });
-
-  async function testGenerate(
-    protoSource: string,
-    parameter: string,
-    gen: (f: GeneratedFile, descFile: DescFile) => void,
-  ) {
-    const plugin = createEcmaScriptPlugin({
-      name: "test",
-      version: "v1",
-      generateTs: generateAny,
-      generateJs: generateAny,
-      generateDts: generateAny,
-    });
-
-    function generateAny(schema: Schema, target: "js" | "ts" | "dts") {
-      const f = schema.generateFile(`test.${target}`);
-      gen(f, schema.files[0]);
-    }
-
-    const upstream = new UpstreamProtobuf();
-    const protoFiles = {
-      "x.proto": protoSource,
-    };
-    const req = CodeGeneratorRequest.fromBinary(
-      await upstream.createCodeGeneratorRequest(protoFiles, {
-        parameter,
-      }),
-    );
-    expect(req.fileToGenerate.length).toBe(1);
-    const res = plugin.run(req);
-    let lines: string[] | undefined;
-    if (res.file.length > 0) {
-      let content = res.file[0]?.content ?? "";
-      if (content.endsWith("\n")) {
-        content = content.slice(0, -1); // trim final newline so we don't return an extra line
-      }
-      lines = content.split("\n");
-    }
-    return {
-      fileCount: res.file.length,
-      lines,
-    };
-  }
 });
