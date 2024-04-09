@@ -33,7 +33,10 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import { localName, reifyWkt } from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
-import { getFieldDefaultValueExpression } from "./util.js";
+import {
+  getFieldDefaultValueExpression,
+  isFieldPackedByDefault,
+} from "./util.js";
 
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
@@ -166,14 +169,14 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
             e.push(`L: `, field.longType, ` /* LongType.`, LongType[field.longType], ` */, `);
           }
           e.push(`repeated: true, `);
-          if (field.packed !== field.packedByDefault) {
+          if (field.packed !== isFieldPackedByDefault(field)) {
             e.push(`packed: `, field.packed, `, `);
           }
           break;
         case "enum":
           e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
           e.push(`repeated: true, `);
-          if (field.packed !== field.packedByDefault) {
+          if (field.packed !== isFieldPackedByDefault(field)) {
             e.push(`packed: `, field.packed, `, `);
           }
           break;

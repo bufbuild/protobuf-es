@@ -696,7 +696,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(false);
         expect(f.packed).toBe(false);
       }
       {
@@ -705,7 +704,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(false);
         expect(f.packed).toBe(true);
       }
       {
@@ -714,7 +712,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(false);
         expect(f.packed).toBe(false);
       }
     });
@@ -738,7 +735,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(true);
       }
       {
@@ -747,7 +743,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(true);
       }
       {
@@ -756,7 +751,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(false);
       }
     });
@@ -780,7 +774,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(true);
       }
       {
@@ -789,7 +782,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(true);
       }
       {
@@ -798,7 +790,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(false);
       }
     });
@@ -822,7 +813,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(false);
       }
       {
@@ -831,7 +821,6 @@ describe("DescField", () => {
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packedByDefault).toBe(true);
         expect(f.packed).toBe(true);
       }
     });
@@ -868,8 +857,6 @@ describe("DescField", () => {
     // exclusive to list
     // @ts-expect-error TS2339
     field.packed;
-    // @ts-expect-error TS2339
-    field.packedByDefault;
 
     // exclusive to singular
     // @ts-expect-error TS2339
@@ -892,8 +879,6 @@ describe("DescField", () => {
         // exclusive to list
         // @ts-expect-error TS2339
         field.packed;
-        // @ts-expect-error TS2339
-        field.packedByDefault;
 
         // exclusive to singular
         field.optional;
@@ -917,8 +902,6 @@ describe("DescField", () => {
         // exclusive to list
         // @ts-expect-error TS2339
         field.packed;
-        // @ts-expect-error TS2339
-        field.packedByDefault;
 
         // exclusive to singular
         field.optional;
@@ -954,8 +937,6 @@ describe("DescField", () => {
         // exclusive to list
         // @ts-expect-error TS2339
         field.packed;
-        // @ts-expect-error TS2339
-        field.packedByDefault;
 
         // exclusive to singular
         field.optional;
@@ -979,7 +960,6 @@ describe("DescField", () => {
 
         // exclusive to list
         field.packed;
-        field.packedByDefault;
 
         switch (field.listKind) {
           case "scalar": {
@@ -1035,8 +1015,6 @@ describe("DescField", () => {
         // exclusive to list
         // @ts-expect-error TS2339
         field.packed;
-        // @ts-expect-error TS2339
-        field.packedByDefault;
 
         // exclusive to singular
         // @ts-expect-error TS2339

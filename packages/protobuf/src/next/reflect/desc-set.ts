@@ -790,7 +790,6 @@ function newField(
       ...common,
       fieldKind: "list",
       packed: isPackedField(file, common as DescField | DescExtension),
-      packedByDefault: isPackedFieldByDefault(file.edition, type),
     };
     assert(!oneof);
     switch (type) {
@@ -1051,32 +1050,6 @@ function isOptionalField(
       return proto.proto3Optional;
     case "editions":
       return false;
-  }
-}
-
-/**
- * Is this field packed by default? Only valid for repeated enum fields, and
- * for repeated scalar fields except BYTES and STRING.
- *
- * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
- * are unpacked by default. With editions, the default is whatever the edition
- * specifies as a default. In edition 2023, fields are packed by default.
- */
-function isPackedFieldByDefault(edition: EDITION, type: TYPE) {
-  switch (type) {
-    case TYPE_STRING:
-    case TYPE_BYTES:
-    case TYPE_GROUP:
-    case TYPE_MESSAGE:
-      // length-delimited types cannot be packed
-      return false;
-    default:
-      // eslint-disable-next-line no-case-declarations
-      const repeatedFieldEncoding: REPEATED_FIELD_ENCODING = resolveDefault(
-        edition,
-        "repeatedFieldEncoding",
-      );
-      return repeatedFieldEncoding == PACKED;
   }
 }
 

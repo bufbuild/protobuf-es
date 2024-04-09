@@ -478,20 +478,10 @@ type descFieldList =
 type descFieldListCommon = {
   readonly fieldKind: "list";
   /**
-   * Pack this repeated field?
+   * Pack this repeated field? Only valid for repeated enum fields, and
+   * for repeated scalar fields except BYTES and STRING.
    */
   readonly packed: boolean;
-  /**
-   * Is this field packed by default? Only valid for repeated enum fields, and
-   * for repeated scalar fields except BYTES and STRING.
-   *
-   * In proto3 syntax, fields are packed by default. In proto2 syntax, fields
-   * are unpacked by default.
-   *
-   * With editions, the default is whatever the edition specifies as a default.
-   * In edition 2023, fields are packed by default.
-   */
-  readonly packedByDefault: boolean;
   /**
    * The `oneof` group this field belongs to, if any.
    */

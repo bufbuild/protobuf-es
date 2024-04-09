@@ -18,6 +18,7 @@ import {
   DescExtension,
   DescField,
   Edition,
+  FieldDescriptorProto_Type,
   LongType,
   ScalarType,
   ScalarValue,
@@ -25,6 +26,26 @@ import {
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
+
+export function isFieldPackedByDefault(field: DescField | DescExtension) {
+  switch (field.proto.type) {
+    case FieldDescriptorProto_Type.STRING:
+    case FieldDescriptorProto_Type.BYTES:
+    case FieldDescriptorProto_Type.GROUP:
+    case FieldDescriptorProto_Type.MESSAGE:
+      return false;
+    default: {
+      const edition =
+        field.kind == "field" ? field.parent.file.edition : field.file.edition;
+      switch (edition) {
+        case Edition.EDITION_PROTO2:
+          return false;
+        default:
+          return true;
+      }
+    }
+  }
+}
 
 /**
  * Tells whether a field uses the prototype chain for field presence.
