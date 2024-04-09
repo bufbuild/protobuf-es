@@ -242,8 +242,14 @@ function generateDts(schema: Schema) {
   }
 }
 
+// prettier-ignore
 function getFileDescCall(f: GeneratedFile, file: DescFile) {
   const info = embedFileDesc(file);
+  if (info.bootable && !f.runtime.create.from.startsWith("@bufbuild/protobuf")) {
+    // google/protobuf/descriptor.proto is embedded as a plain object when
+    // bootstrapping to avoid recursion
+    return functionCall(f.runtime.codegen.boot, [JSON.stringify(info.boot())]);
+  }
   const { fileDesc } = f.runtime.codegen;
   if (file.dependencies.length > 0) {
     const deps: Printable = file.dependencies.map((f) => ({

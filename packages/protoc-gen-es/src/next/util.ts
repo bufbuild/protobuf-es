@@ -13,8 +13,9 @@
 // limitations under the License.
 
 import type { DescExtension, DescField } from "@bufbuild/protobuf";
-import { codegenInfo, Edition, LongType, ScalarType } from "@bufbuild/protobuf";
-import { type Printable } from "@bufbuild/protoplugin/next/ecmascript";
+import { codegenInfo, LongType, ScalarType } from "@bufbuild/protobuf";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
+import type { Printable } from "@bufbuild/protoplugin/next/ecmascript";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 
 /**

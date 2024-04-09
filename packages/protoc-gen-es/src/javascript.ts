@@ -17,15 +17,12 @@ import {
   DescExtension,
   DescField,
   DescMessage,
-  FieldDescriptorProto_Label,
 } from "@bufbuild/protobuf";
 import {
   FieldDescriptorProto_Type,
-  LongType,
-  proto2,
-  proto3,
-  ScalarType,
-} from "@bufbuild/protobuf";
+  FieldDescriptorProto_Label,
+} from "@bufbuild/protobuf/next/wkt";
+import { LongType, proto2, proto3, ScalarType } from "@bufbuild/protobuf";
 import type {
   GeneratedFile,
   Printable,

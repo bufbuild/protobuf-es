@@ -17,12 +17,14 @@ import {
   DescEnumValue,
   DescExtension,
   DescField,
-  Edition,
-  FieldDescriptorProto_Type,
   LongType,
   ScalarType,
   ScalarValue,
 } from "@bufbuild/protobuf";
+import {
+  Edition,
+  FieldDescriptorProto_Type,
+} from "@bufbuild/protobuf/next/wkt";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
