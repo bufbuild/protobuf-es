@@ -498,12 +498,13 @@ function addEnum(
   set: DescFileSetMutable,
 ): void {
   assertFieldSet(proto, "name");
-  const desc: DescEnum = {
+  const desc: { -readonly [P in keyof DescEnum]: DescEnum[P] } = {
     kind: "enum",
     proto,
     deprecated: proto.options?.deprecated ?? false,
     file,
     parent,
+    open: true,
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     values: [],
@@ -518,6 +519,7 @@ function addEnum(
       return resolveFeatures(desc);
     },
   };
+  desc.open = (resolveFeature(desc, "enumType") as ENUM_TYPE) == OPEN;
   set.add(desc);
   proto.value.forEach((proto) => {
     assertFieldSet(proto, "name");
@@ -1230,6 +1232,15 @@ type REPEATED_FIELD_ENCODING =
 const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
 const PACKED = 1;
 const EXPANDED = 2;
+
+// generated from enum google.protobuf.FeatureSet.EnumType v26.0
+type ENUM_TYPE =
+  | typeof ENUM_TYPE_UNKNOWN
+  | typeof OPEN
+  | typeof CLOSED;
+const ENUM_TYPE_UNKNOWN = 0;
+const OPEN = 1;
+const CLOSED = 2;
 
 // generated from protoc experimental_edition_defaults_out v26.0
 const featureDefaults = {

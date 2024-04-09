@@ -183,6 +183,11 @@ export interface DescEnum {
    */
   readonly parent: DescMessage | undefined;
   /**
+   * Enumerations can be open or closed.
+   * See https://protobuf.dev/programming-guides/enum/
+   */
+  readonly open: boolean;
+  /**
    * Values declared for this enumeration.
    */
   readonly values: DescEnumValue[];

@@ -18,7 +18,6 @@ import { checkScalarValue } from "./scalar.js";
 import type { DescEnum, DescField, DescMessage } from "../../descriptor-set.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
-import { Edition } from "../../google/protobuf/descriptor_pb.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 
 export function checkField(
@@ -94,17 +93,10 @@ function checkSingular(
     return checkScalarValue(value, field.scalar);
   }
   if (field.enum !== undefined) {
-    switch (field.parent.file.edition) {
-      case Edition.EDITION_PROTO2:
-        // proto2 enums are closed
-        return field.enum.values.some((v) => v.number === value);
-      case Edition.EDITION_PROTO3:
-        // proto2 enums are open
-        return Number.isInteger(value);
-      default:
-        // TODO implement editions
-        throw new Error(`unsupported edition`);
+    if (field.enum.open) {
+      return Number.isInteger(value);
     }
+    return field.enum.values.some((v) => v.number === value);
   }
   return isReflectMessage(value, field.message);
 }

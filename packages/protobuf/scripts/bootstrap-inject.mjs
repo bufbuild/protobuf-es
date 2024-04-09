@@ -60,6 +60,7 @@ async function main(args) {
     "google.protobuf.MethodOptions.IdempotencyLevel",
     "google.protobuf.Edition",
     "google.protobuf.FeatureSet.RepeatedFieldEncoding",
+    "google.protobuf.FeatureSet.EnumType",
   ];
   await enums(enumNames, print);
 
@@ -155,6 +156,9 @@ async function enums(enumNames, print, upstreamVersion) {
         break;
       case "RepeatedFieldEncoding":
         name = "REPEATED_FIELD_ENCODING";
+        break;
+      case "EnumType":
+        name = "ENUM_TYPE";
         break;
       default:
         name = name.toUpperCase();
