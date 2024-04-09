@@ -15,8 +15,23 @@
 import type { DescField, DescOneof } from "../../descriptor-set.js";
 import { localName } from "./names.js";
 import type { OneofADT } from "./guard.js";
-import { Edition } from "../../google/protobuf/descriptor_pb.js";
 import { isScalarZeroValue, scalarZeroValue } from "../../private/scalars.js";
+
+// TODO avoid copy by not exposing these enums in Desc*
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+enum Edition {
+  EDITION_UNKNOWN = 0,
+  EDITION_PROTO2 = 998,
+  EDITION_PROTO3 = 999,
+  EDITION_2023 = 1000,
+  EDITION_2024 = 1001,
+  EDITION_1_TEST_ONLY = 1,
+  EDITION_2_TEST_ONLY = 2,
+  EDITION_99997_TEST_ONLY = 99997,
+  EDITION_99998_TEST_ONLY = 99998,
+  EDITION_99999_TEST_ONLY = 99999,
+  EDITION_MAX = 2147483647,
+}
 
 export const unsafeLocal = Symbol.for("reflect unsafe local");
 

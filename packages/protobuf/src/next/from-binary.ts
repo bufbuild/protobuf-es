@@ -23,10 +23,15 @@ import {
 import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 import { ScalarType } from "./reflect/scalar.js";
-import {
-  FeatureSet_MessageEncoding,
-  FieldDescriptorProto_Type,
-} from "../google/protobuf/descriptor_pb.js";
+
+// TODO avoid copy by not exposing these enums in Desc*
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+enum FeatureSet_MessageEncoding {
+  DELIMITED = 2,
+}
+enum FieldDescriptorProto_Type {
+  GROUP = 10,
+}
 
 /**
  * Options for parsing binary data.

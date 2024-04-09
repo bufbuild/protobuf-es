@@ -16,6 +16,7 @@ import type { MessageShape } from "./types.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import {
+  // TODO avoid import by not exposing these enums in Desc*
   FeatureSet_FieldPresence,
   FeatureSet_MessageEncoding,
   FieldDescriptorProto_Label,

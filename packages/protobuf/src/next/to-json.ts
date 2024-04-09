@@ -13,10 +13,6 @@
 // limitations under the License.
 
 import type { DescEnum, DescField, DescMessage } from "../descriptor-set.js";
-import {
-  FeatureSet_FieldPresence,
-  FieldDescriptorProto_Label,
-} from "../google/protobuf/descriptor_pb.js";
 import type { JsonValue, JsonObject } from "../json-format.js";
 import { assert } from "../private/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
@@ -42,6 +38,16 @@ import { isWrapperDesc } from "./wkt/wrappers.js";
 import type { DescSet } from "./reflect/desc-set.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
+
+// TODO avoid copy by not exposing these enums in Desc*
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+enum FieldDescriptorProto_Label {
+  OPTIONAL = 1,
+  REQUIRED = 2,
+}
+enum FeatureSet_FieldPresence {
+  LEGACY_REQUIRED = 3,
+}
 
 /**
  * Options for serializing to JSON.
