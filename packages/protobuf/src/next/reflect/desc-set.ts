@@ -45,7 +45,6 @@ import {
   parseTextFormatScalarValue,
 } from "../../private/text-format.js";
 import { LongType, ScalarType } from "./scalar.js";
-import type { AnyMessage, Message } from "../../message.js";
 import { nestedTypes } from "./nested-types.js";
 import { unsafeIsSetExplicit } from "./unsafe.js";
 
@@ -355,7 +354,6 @@ function addDescFile(file: DescFile, set: DescFileSetMutable) {
  * Create a descriptor for a file, add it to the set.
  */
 function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
-  assertFieldSet(proto, "name");
   const file: DescFile = {
     kind: "file",
     proto,
@@ -497,7 +495,6 @@ function addEnum(
   parent: DescMessage | undefined,
   set: DescFileSetMutable,
 ): void {
-  assertFieldSet(proto, "name");
   const desc: { -readonly [P in keyof DescEnum]: DescEnum[P] } = {
     kind: "enum",
     proto,
@@ -522,8 +519,6 @@ function addEnum(
   desc.open = (resolveFeature(desc, "enumType") as ENUM_TYPE) == OPEN;
   set.add(desc);
   proto.value.forEach((proto) => {
-    assertFieldSet(proto, "name");
-    assertFieldSet(proto, "number");
     desc.values.push({
       kind: "enum_value",
       proto,
@@ -597,7 +592,6 @@ function addService(
   file: DescFile,
   set: DescFileSetMutable,
 ): void {
-  assertFieldSet(proto, "name");
   const desc: DescService = {
     kind: "service",
     proto,
@@ -628,9 +622,6 @@ function newMethod(
   parent: DescService,
   set: DescSet,
 ): DescMethod {
-  assertFieldSet(proto, "name");
-  assertFieldSet(proto, "inputType");
-  assertFieldSet(proto, "outputType");
   let methodKind: MethodKind;
   if (proto.clientStreaming && proto.serverStreaming) {
     methodKind = MethodKind.BiDiStreaming;
@@ -690,7 +681,6 @@ function newMethod(
  * Create a descriptor for a oneof group.
  */
 function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
-  assertFieldSet(proto, "name");
   return {
     kind: "oneof",
     proto,
@@ -718,9 +708,6 @@ function newField(
   set: DescSet,
   mapEntries: FileMapEntries,
 ): DescField {
-  assertFieldSet(proto, "name");
-  assertFieldSet(proto, "number");
-  assertFieldSet(proto, "type");
   type fieldFragment<
     FieldKind extends "scalar" | "enum" | "message" | "list" | "map" =
       | "scalar"
@@ -795,13 +782,11 @@ function newField(
       case TYPE_MESSAGE:
       case TYPE_GROUP:
         list.listKind = "message";
-        assertFieldSet(proto, "typeName");
         list.message = set.getMessage(trimLeadingDot(proto.typeName));
         assert(list.message);
         break;
       case TYPE_ENUM:
         list.listKind = "enum";
-        assertFieldSet(proto, "typeName");
         list.enum = set.getEnum(trimLeadingDot(proto.typeName));
         assert(list.enum);
         break;
@@ -823,7 +808,6 @@ function newField(
   switch (type) {
     case TYPE_MESSAGE:
     case TYPE_GROUP:
-      assertFieldSet(proto, "typeName");
       singular.fieldKind = "message";
       singular.message = set.getMessage(trimLeadingDot(proto.typeName));
       assert(
@@ -832,7 +816,6 @@ function newField(
       );
       break;
     case TYPE_ENUM: {
-      assertFieldSet(proto, "typeName");
       const enumeration = set.getEnum(trimLeadingDot(proto.typeName));
       assert(
         enumeration !== undefined,
@@ -872,7 +855,6 @@ function newExtension(
   parent: DescMessage | undefined,
   set: DescFileSetMutable,
 ): DescExtension {
-  assertFieldSet(proto, "extendee");
   const emptyMapEntries: FileMapEntries = {
     get: () => undefined,
     add: () => assert(false),
@@ -1091,18 +1073,6 @@ function isPackedField(file: DescFile, field: DescField | DescExtension) {
           return r === PACKED;
         }
       }
-  }
-}
-
-// TODO consider to remove to save bundle size.
-// Before proto2 fields were switched to use the prototype chain, we used
-// assertions to narrow down optional types. This function is used to make the
-// same assertions, but they are no longer necessary for the type system, and
-// the value they provide is questionable.
-function assertFieldSet<T extends Message<T>>(target: T, field: keyof T) {
-  if (!unsafeIsSetExplicit(target as AnyMessage, field as string)) {
-    const type = target.getType().typeName.split(".").pop();
-    throw new Error(`invalid ${type}: missing ${field as string}`);
   }
 }
 
