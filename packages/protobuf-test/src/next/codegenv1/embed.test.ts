@@ -13,8 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { compileMessage } from "../helpers.js";
+import { compileFileDescriptorSet, compileMessage } from "../helpers.js";
 import { embedFileDesc } from "@bufbuild/protobuf/next/codegenv1";
+import assert from "node:assert";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 describe("embedFileDesc()", () => {
   test("embeds file descriptor", async () => {
@@ -25,7 +27,27 @@ describe("embedFileDesc()", () => {
       }
     `);
     const embedded = embedFileDesc(file);
+    expect(embedded.bootable).toBe(false);
+    expect(typeof embedded.base64()).toBe("string");
+  });
+  test("embeds google/protobuf.descriptor.proto", async () => {
+    const file = createDescFileSet(
+      await compileFileDescriptorSet({
+        "google/protobuf/descriptor.proto": `
+        syntax="proto2"; 
+        package google.protobuf;
+      `,
+      }),
+    ).getFile("google/protobuf/descriptor.proto");
+    assert(file);
+
+    const embedded = embedFileDesc(file);
     expect(embedded).toBeDefined();
-    expect(typeof embedded.protoB64().value).toBe("string");
+    expect(embedded.bootable).toBe(true);
+    if (embedded.bootable) {
+      const b = embedded.boot();
+      expect(b).toBeDefined();
+    }
+    expect(typeof embedded.base64()).toBe("string");
   });
 });

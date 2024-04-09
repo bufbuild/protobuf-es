@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+export * from "./boot.js";
 export * from "./embed.js";
 export * from "./enum.js";
 export * from "./hydrate.js";

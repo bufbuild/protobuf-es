@@ -243,16 +243,19 @@ function generateDts(schema: Schema) {
 }
 
 function getFileDescCall(f: GeneratedFile, file: DescFile) {
-  const { fileDesc } = f.runtime.codegen;
   const info = embedFileDesc(file);
+  const { fileDesc } = f.runtime.codegen;
   if (file.dependencies.length > 0) {
     const deps: Printable = file.dependencies.map((f) => ({
       kind: "es_desc_ref",
       desc: f,
     }));
-    return functionCall(fileDesc, [info.protoB64(), arrayLiteral(deps)]);
+    return functionCall(fileDesc, [
+      f.string(info.base64()),
+      arrayLiteral(deps),
+    ]);
   }
-  return functionCall(fileDesc, [info.protoB64()]);
+  return functionCall(fileDesc, [f.string(info.base64())]);
 }
 
 // prettier-ignore
