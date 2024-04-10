@@ -20,7 +20,7 @@ import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/
 import { fileDesc_extra_example } from "./example_pbv2.js";
 
 export const fileDesc_extra_name_clash = /*@__PURE__*/
-  fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLLBgoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRwoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgsKB3RvX0pTT04QAhIMCgh2YWx1ZV9vZhADIpQBCgtFbnVtUnVudGltZRILCgd0b19qc29uEAASCAoEdHlwZRAGEgkKBWNsb25lEAcSCgoGZXF1YWxzEAgSDwoLZnJvbV9iaW5hcnkQCRINCglmcm9tX2pzb24QChIUChBmcm9tX2pzb25fc3RyaW5nEAsSDQoJdG9fYmluYXJ5EAwSEgoOdG9fanNvbl9zdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iDQoLY29uc3RydWN0b3IiCgoIdG9TdHJpbmciCAoGdG9KU09OIgkKB3ZhbHVlT2YiCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYyuAEKHFJlc2VydmVkUHJvcGVydHlOYW1lc1NlcnZpY2USJwoLY29uc3RydWN0b3ISCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh0b1N0cmluZxILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yEiMKB3RvX0pTT04SCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh2YWx1ZV9vZhILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yYgZwcm90bzM", [fileDesc_extra_example]);
+  fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLtBwoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRQoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgoKBnRvSlNPThACEgsKB3ZhbHVlT2YQAyKpAQoTRW51bUJ1aWx0SW5QcmVmaXhlZBImCiJFTlVNX0JVSUxUX0lOX1BSRUZJWEVEX2NvbnN0cnVjdG9yEAASIwofRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF90b1N0cmluZxABEiEKHUVOVU1fQlVJTFRfSU5fUFJFRklYRURfdG9KU09OEAISIgoeRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF92YWx1ZU9mEAMijAEKC0VudW1SdW50aW1lEgoKBnRvSnNvbhAAEggKBHR5cGUQBhIJCgVjbG9uZRAHEgoKBmVxdWFscxAIEg4KCmZyb21CaW5hcnkQCRIMCghmcm9tSnNvbhAKEhIKDmZyb21Kc29uU3RyaW5nEAsSDAoIdG9CaW5hcnkQDBIQCgx0b0pzb25TdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYyuAEKHFJlc2VydmVkUHJvcGVydHlOYW1lc1NlcnZpY2USJwoLY29uc3RydWN0b3ISCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh0b1N0cmluZxILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yEiMKB3RvX0pTT04SCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh2YWx1ZV9vZhILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yYgZwcm90bzM", [fileDesc_extra_example]);
 
 // Describes the message spec.User. Use `create(UserDesc)` to create a new User.
 export const UserDesc = /*@__PURE__*/
@@ -56,9 +56,19 @@ export const ReservedPropertyNames_EnumBuiltInDesc = /*@__PURE__*/
 export const ReservedPropertyNames_EnumBuiltIn = /*@__PURE__*/
   tsEnum(ReservedPropertyNames_EnumBuiltInDesc);
 
+// Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
+export const ReservedPropertyNames_EnumBuiltInPrefixedDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 1, 1);
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export const ReservedPropertyNames_EnumBuiltInPrefixed = /*@__PURE__*/
+  tsEnum(ReservedPropertyNames_EnumBuiltInPrefixedDesc);
+
 // Describes the enum spec.ReservedPropertyNames.EnumRuntime.
 export const ReservedPropertyNames_EnumRuntimeDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_name_clash, 1, 1);
+  enumDesc(fileDesc_extra_name_clash, 1, 2);
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
@@ -90,121 +100,105 @@ export const case$Desc = /*@__PURE__*/
 export const return$Desc = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 7);
 
-// Describes the message spec.constructor. Use `create(constructorDesc)` to create a new constructor.
-export const constructorDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 8);
-
-// Describes the message spec.toString. Use `create(toStringDesc)` to create a new toString.
-export const toStringDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 9);
-
-// Describes the message spec.toJSON. Use `create(toJSONDesc)` to create a new toJSON.
-export const toJSONDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 10);
-
-// Describes the message spec.valueOf. Use `create(valueOfDesc)` to create a new valueOf.
-export const valueOfDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 11);
-
 // Describes the message spec.Message. Use `create(MessageDesc)` to create a new Message.
 export const MessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 12);
+  messageDesc(fileDesc_extra_name_clash, 8);
 
 // Describes the message spec.PartialMessage. Use `create(PartialMessageDesc)` to create a new PartialMessage.
 export const PartialMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 13);
+  messageDesc(fileDesc_extra_name_clash, 9);
 
 // Describes the message spec.PlainMessage. Use `create(PlainMessageDesc)` to create a new PlainMessage.
 export const PlainMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 14);
+  messageDesc(fileDesc_extra_name_clash, 10);
 
 // Describes the message spec.Error. Use `create(ErrorDesc)` to create a new Error.
 export const ErrorDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 15);
+  messageDesc(fileDesc_extra_name_clash, 11);
 
 // Describes the message spec.Object. Use `create(Object$Desc)` to create a new Object$.
 export const Object$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 16);
+  messageDesc(fileDesc_extra_name_clash, 12);
 
 // Describes the message spec.object. Use `create(object$Desc)` to create a new object$.
 export const object$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 17);
+  messageDesc(fileDesc_extra_name_clash, 13);
 
 // Describes the message spec.array. Use `create(arrayDesc)` to create a new array.
 export const arrayDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 18);
+  messageDesc(fileDesc_extra_name_clash, 14);
 
 // Describes the message spec.string. Use `create(string$Desc)` to create a new string$.
 export const string$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 19);
+  messageDesc(fileDesc_extra_name_clash, 15);
 
 // Describes the message spec.number. Use `create(number$Desc)` to create a new number$.
 export const number$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 20);
+  messageDesc(fileDesc_extra_name_clash, 16);
 
 // Describes the message spec.boolean. Use `create(boolean$Desc)` to create a new boolean$.
 export const boolean$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 21);
+  messageDesc(fileDesc_extra_name_clash, 17);
 
 // Describes the message spec.bigint. Use `create(bigint$Desc)` to create a new bigint$.
 export const bigint$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 22);
+  messageDesc(fileDesc_extra_name_clash, 18);
 
 // Describes the message spec.Uint8Array. Use `create(Uint8Array$Desc)` to create a new Uint8Array$.
 export const Uint8Array$Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 23);
+  messageDesc(fileDesc_extra_name_clash, 19);
 
 // Describes the message spec.Array. Use `create(ArrayDesc)` to create a new Array.
 export const ArrayDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 24);
+  messageDesc(fileDesc_extra_name_clash, 20);
 
 // Describes the message spec.String. Use `create(StringDesc)` to create a new String.
 export const StringDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 25);
+  messageDesc(fileDesc_extra_name_clash, 21);
 
 // Describes the message spec.Number. Use `create(NumberDesc)` to create a new Number.
 export const NumberDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 26);
+  messageDesc(fileDesc_extra_name_clash, 22);
 
 // Describes the message spec.Boolean. Use `create(BooleanDesc)` to create a new Boolean.
 export const BooleanDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 27);
+  messageDesc(fileDesc_extra_name_clash, 23);
 
 // Describes the message spec.BigInt. Use `create(BigIntDesc)` to create a new BigInt.
 export const BigIntDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 28);
+  messageDesc(fileDesc_extra_name_clash, 24);
 
 // Describes the message spec.ClashParent. Use `create(ClashParentDesc)` to create a new ClashParent.
 export const ClashParentDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 29);
+  messageDesc(fileDesc_extra_name_clash, 25);
 
 // Describes the message spec.ClashParent.ClashChild. Use `create(ClashParent_ClashChildDesc)` to create a new ClashParent_ClashChild.
 export const ClashParent_ClashChildDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 29, 0);
+  messageDesc(fileDesc_extra_name_clash, 25, 0);
 
 // Describes the message spec.NoClashFields. Use `create(NoClashFieldsDesc)` to create a new NoClashFields.
 export const NoClashFieldsDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 30);
+  messageDesc(fileDesc_extra_name_clash, 26);
 
 // Describes the message spec.NoClashOneof. Use `create(NoClashOneofDesc)` to create a new NoClashOneof.
 export const NoClashOneofDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 31);
+  messageDesc(fileDesc_extra_name_clash, 27);
 
 // Describes the message spec.NoClashOneofADT. Use `create(NoClashOneofADTDesc)` to create a new NoClashOneofADT.
 export const NoClashOneofADTDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 32);
+  messageDesc(fileDesc_extra_name_clash, 28);
 
 // Describes the message spec.NoClashOneofADT.M. Use `create(NoClashOneofADT_MDesc)` to create a new NoClashOneofADT_M.
 export const NoClashOneofADT_MDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 32, 0);
+  messageDesc(fileDesc_extra_name_clash, 28, 0);
 
 // Describes the message spec.NoClashEnumWrap. Use `create(NoClashEnumWrapDesc)` to create a new NoClashEnumWrap.
 export const NoClashEnumWrapDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 33);
+  messageDesc(fileDesc_extra_name_clash, 29);
 
 // Describes the enum spec.NoClashEnumWrap.X.
 export const NoClashEnumWrap_XDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_name_clash, 33, 0);
+  enumDesc(fileDesc_extra_name_clash, 29, 0);
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X

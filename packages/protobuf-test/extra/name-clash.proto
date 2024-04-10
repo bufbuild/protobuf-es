@@ -43,19 +43,25 @@ message ReservedPropertyNames {
     enum EnumBuiltIn {
         constructor = 0;
         toString = 1;
-        to_JSON = 2;
-        value_of = 3;
+        toJSON = 2;
+        valueOf = 3;
+    }
+    enum EnumBuiltInPrefixed {
+        ENUM_BUILT_IN_PREFIXED_constructor = 0;
+        ENUM_BUILT_IN_PREFIXED_toString = 1;
+        ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+        ENUM_BUILT_IN_PREFIXED_valueOf = 3;
     }
     enum EnumRuntime {
-        to_json = 0;
+        toJson = 0;
         type = 6;
         clone = 7;
         equals = 8;
-        from_binary = 9;
-        from_json = 10;
-        from_json_string = 11;
-        to_binary = 12;
-        to_json_string = 14;
+        fromBinary = 9;
+        fromJson = 10;
+        fromJsonString = 11;
+        toBinary = 12;
+        toJsonString = 14;
     }
     message OneofBultIn {
         oneof built_in {
@@ -105,16 +111,6 @@ message case {
 }
 // reserved identifier
 message return {
-}
-
-// reserved object property
-message constructor {
-}
-message toString {
-}
-message toJSON {
-}
-message valueOf {
 }
 
 // used by runtime

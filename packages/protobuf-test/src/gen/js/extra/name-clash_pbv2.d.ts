@@ -275,27 +275,55 @@ export enum ReservedPropertyNames_EnumBuiltIn {
   toString$ = 1,
 
   /**
-   * @generated from enum value: to_JSON = 2;
+   * @generated from enum value: toJSON = 2;
    */
-  to_JSON = 2,
+  toJSON$ = 2,
 
   /**
-   * @generated from enum value: value_of = 3;
+   * @generated from enum value: valueOf = 3;
    */
-  value_of = 3,
+  valueOf$ = 3,
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
 export declare const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn>;
 
 /**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export enum ReservedPropertyNames_EnumBuiltInPrefixed {
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_constructor = 0;
+   */
+  constructor$ = 0,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toString = 1;
+   */
+  toString$ = 1,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+   */
+  toJSON$ = 2,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_valueOf = 3;
+   */
+  valueOf$ = 3,
+}
+
+// Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
+export declare const ReservedPropertyNames_EnumBuiltInPrefixedDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed>;
+
+/**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
  */
 export enum ReservedPropertyNames_EnumRuntime {
   /**
-   * @generated from enum value: to_json = 0;
+   * @generated from enum value: toJson = 0;
    */
-  to_json = 0,
+  toJson = 0,
 
   /**
    * @generated from enum value: type = 6;
@@ -313,29 +341,29 @@ export enum ReservedPropertyNames_EnumRuntime {
   equals = 8,
 
   /**
-   * @generated from enum value: from_binary = 9;
+   * @generated from enum value: fromBinary = 9;
    */
-  from_binary = 9,
+  fromBinary = 9,
 
   /**
-   * @generated from enum value: from_json = 10;
+   * @generated from enum value: fromJson = 10;
    */
-  from_json = 10,
+  fromJson = 10,
 
   /**
-   * @generated from enum value: from_json_string = 11;
+   * @generated from enum value: fromJsonString = 11;
    */
-  from_json_string = 11,
+  fromJsonString = 11,
 
   /**
-   * @generated from enum value: to_binary = 12;
+   * @generated from enum value: toBinary = 12;
    */
-  to_binary = 12,
+  toBinary = 12,
 
   /**
-   * @generated from enum value: to_json_string = 14;
+   * @generated from enum value: toJsonString = 14;
    */
-  to_json_string = 14,
+  toJsonString = 14,
 }
 
 // Describes the enum spec.ReservedPropertyNames.EnumRuntime.
@@ -406,44 +434,6 @@ export declare type return$ = Message$1<"spec.return"> & {
 
 // Describes the message spec.return. Use `create(return$Desc)` to create a new return$.
 export declare const return$Desc: GenDescMessage<return$>;
-
-/**
- * reserved object property
- *
- * @generated from message spec.constructor
- */
-export declare type constructor = Message$1<"spec.constructor"> & {
-};
-
-// Describes the message spec.constructor. Use `create(constructorDesc)` to create a new constructor.
-export declare const constructorDesc: GenDescMessage<constructor>;
-
-/**
- * @generated from message spec.toString
- */
-export declare type toString = Message$1<"spec.toString"> & {
-};
-
-// Describes the message spec.toString. Use `create(toStringDesc)` to create a new toString.
-export declare const toStringDesc: GenDescMessage<toString>;
-
-/**
- * @generated from message spec.toJSON
- */
-export declare type toJSON = Message$1<"spec.toJSON"> & {
-};
-
-// Describes the message spec.toJSON. Use `create(toJSONDesc)` to create a new toJSON.
-export declare const toJSONDesc: GenDescMessage<toJSON>;
-
-/**
- * @generated from message spec.valueOf
- */
-export declare type valueOf = Message$1<"spec.valueOf"> & {
-};
-
-// Describes the message spec.valueOf. Use `create(valueOfDesc)` to create a new valueOf.
-export declare const valueOfDesc: GenDescMessage<valueOf>;
 
 /**
  * used by runtime

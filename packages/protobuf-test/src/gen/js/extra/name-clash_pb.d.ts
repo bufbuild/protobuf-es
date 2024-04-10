@@ -74,22 +74,47 @@ export declare enum ReservedPropertyNames_EnumBuiltIn {
   /**
    * @generated from enum value: constructor = 0;
    */
-  constructor = 0,
+  constructor$ = 0,
 
   /**
    * @generated from enum value: toString = 1;
    */
-  toString = 1,
+  toString$ = 1,
 
   /**
-   * @generated from enum value: to_JSON = 2;
+   * @generated from enum value: toJSON = 2;
    */
-  to_JSON = 2,
+  toJSON$ = 2,
 
   /**
-   * @generated from enum value: value_of = 3;
+   * @generated from enum value: valueOf = 3;
    */
-  value_of = 3,
+  valueOf$ = 3,
+}
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export declare enum ReservedPropertyNames_EnumBuiltInPrefixed {
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_constructor = 0;
+   */
+  constructor$ = 0,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toString = 1;
+   */
+  toString$ = 1,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+   */
+  toJSON$ = 2,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_valueOf = 3;
+   */
+  valueOf$ = 3,
 }
 
 /**
@@ -97,9 +122,9 @@ export declare enum ReservedPropertyNames_EnumBuiltIn {
  */
 export declare enum ReservedPropertyNames_EnumRuntime {
   /**
-   * @generated from enum value: to_json = 0;
+   * @generated from enum value: toJson = 0;
    */
-  to_json = 0,
+  toJson = 0,
 
   /**
    * @generated from enum value: type = 6;
@@ -117,29 +142,29 @@ export declare enum ReservedPropertyNames_EnumRuntime {
   equals = 8,
 
   /**
-   * @generated from enum value: from_binary = 9;
+   * @generated from enum value: fromBinary = 9;
    */
-  from_binary = 9,
+  fromBinary = 9,
 
   /**
-   * @generated from enum value: from_json = 10;
+   * @generated from enum value: fromJson = 10;
    */
-  from_json = 10,
+  fromJson = 10,
 
   /**
-   * @generated from enum value: from_json_string = 11;
+   * @generated from enum value: fromJsonString = 11;
    */
-  from_json_string = 11,
+  fromJsonString = 11,
 
   /**
-   * @generated from enum value: to_binary = 12;
+   * @generated from enum value: toBinary = 12;
    */
-  to_binary = 12,
+  toBinary = 12,
 
   /**
-   * @generated from enum value: to_json_string = 14;
+   * @generated from enum value: toJsonString = 14;
    */
-  to_json_string = 14,
+  toJsonString = 14,
 }
 
 /**
@@ -521,84 +546,6 @@ export declare class return$ extends Message$1<return$> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): return$;
 
   static equals(a: return$ | PlainMessage$1<return$> | undefined, b: return$ | PlainMessage$1<return$> | undefined): boolean;
-}
-
-/**
- * reserved object property
- *
- * @generated from message spec.constructor
- */
-export declare class constructor extends Message$1<constructor> {
-  constructor(data?: PartialMessage$1<constructor>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.constructor";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): constructor;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): constructor;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): constructor;
-
-  static equals(a: constructor | PlainMessage$1<constructor> | undefined, b: constructor | PlainMessage$1<constructor> | undefined): boolean;
-}
-
-/**
- * @generated from message spec.toString
- */
-export declare class toString extends Message$1<toString> {
-  constructor(data?: PartialMessage$1<toString>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.toString";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toString;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toString;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toString;
-
-  static equals(a: toString | PlainMessage$1<toString> | undefined, b: toString | PlainMessage$1<toString> | undefined): boolean;
-}
-
-/**
- * @generated from message spec.toJSON
- */
-export declare class toJSON extends Message$1<toJSON> {
-  constructor(data?: PartialMessage$1<toJSON>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.toJSON";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toJSON;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toJSON;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toJSON;
-
-  static equals(a: toJSON | PlainMessage$1<toJSON> | undefined, b: toJSON | PlainMessage$1<toJSON> | undefined): boolean;
-}
-
-/**
- * @generated from message spec.valueOf
- */
-export declare class valueOf extends Message$1<valueOf> {
-  constructor(data?: PartialMessage$1<valueOf>);
-
-  static readonly runtime: typeof proto3;
-  static readonly typeName = "spec.valueOf";
-  static readonly fields: FieldList;
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): valueOf;
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): valueOf;
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): valueOf;
-
-  static equals(a: valueOf | PlainMessage$1<valueOf> | undefined, b: valueOf | PlainMessage$1<valueOf> | undefined): boolean;
 }
 
 /**

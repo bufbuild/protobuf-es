@@ -99,29 +99,61 @@ export enum ReservedPropertyNames_EnumBuiltIn {
   /**
    * @generated from enum value: constructor = 0;
    */
-  constructor = 0,
+  constructor$ = 0,
 
   /**
    * @generated from enum value: toString = 1;
    */
-  toString = 1,
+  toString$ = 1,
 
   /**
-   * @generated from enum value: to_JSON = 2;
+   * @generated from enum value: toJSON = 2;
    */
-  to_JSON = 2,
+  toJSON$ = 2,
 
   /**
-   * @generated from enum value: value_of = 3;
+   * @generated from enum value: valueOf = 3;
    */
-  value_of = 3,
+  valueOf$ = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltIn)
 proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropertyNames.EnumBuiltIn", [
   { no: 0, name: "constructor" },
   { no: 1, name: "toString" },
-  { no: 2, name: "to_JSON" },
-  { no: 3, name: "value_of" },
+  { no: 2, name: "toJSON" },
+  { no: 3, name: "valueOf" },
+]);
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export enum ReservedPropertyNames_EnumBuiltInPrefixed {
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_constructor = 0;
+   */
+  constructor$ = 0,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toString = 1;
+   */
+  toString$ = 1,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+   */
+  toJSON$ = 2,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_valueOf = 3;
+   */
+  valueOf$ = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltInPrefixed)
+proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltInPrefixed, "spec.ReservedPropertyNames.EnumBuiltInPrefixed", [
+  { no: 0, name: "ENUM_BUILT_IN_PREFIXED_constructor" },
+  { no: 1, name: "ENUM_BUILT_IN_PREFIXED_toString" },
+  { no: 2, name: "ENUM_BUILT_IN_PREFIXED_toJSON" },
+  { no: 3, name: "ENUM_BUILT_IN_PREFIXED_valueOf" },
 ]);
 
 /**
@@ -129,9 +161,9 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropert
  */
 export enum ReservedPropertyNames_EnumRuntime {
   /**
-   * @generated from enum value: to_json = 0;
+   * @generated from enum value: toJson = 0;
    */
-  to_json = 0,
+  toJson = 0,
 
   /**
    * @generated from enum value: type = 6;
@@ -149,41 +181,41 @@ export enum ReservedPropertyNames_EnumRuntime {
   equals = 8,
 
   /**
-   * @generated from enum value: from_binary = 9;
+   * @generated from enum value: fromBinary = 9;
    */
-  from_binary = 9,
+  fromBinary = 9,
 
   /**
-   * @generated from enum value: from_json = 10;
+   * @generated from enum value: fromJson = 10;
    */
-  from_json = 10,
+  fromJson = 10,
 
   /**
-   * @generated from enum value: from_json_string = 11;
+   * @generated from enum value: fromJsonString = 11;
    */
-  from_json_string = 11,
+  fromJsonString = 11,
 
   /**
-   * @generated from enum value: to_binary = 12;
+   * @generated from enum value: toBinary = 12;
    */
-  to_binary = 12,
+  toBinary = 12,
 
   /**
-   * @generated from enum value: to_json_string = 14;
+   * @generated from enum value: toJsonString = 14;
    */
-  to_json_string = 14,
+  toJsonString = 14,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumRuntime)
 proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropertyNames.EnumRuntime", [
-  { no: 0, name: "to_json" },
+  { no: 0, name: "toJson" },
   { no: 6, name: "type" },
   { no: 7, name: "clone" },
   { no: 8, name: "equals" },
-  { no: 9, name: "from_binary" },
-  { no: 10, name: "from_json" },
-  { no: 11, name: "from_json_string" },
-  { no: 12, name: "to_binary" },
-  { no: 14, name: "to_json_string" },
+  { no: 9, name: "fromBinary" },
+  { no: 10, name: "fromJson" },
+  { no: 11, name: "fromJsonString" },
+  { no: 12, name: "toBinary" },
+  { no: 14, name: "toJsonString" },
 ]);
 
 /**
@@ -710,132 +742,6 @@ export class return$ extends Message$1<return$> {
 
   static equals(a: return$ | PlainMessage$1<return$> | undefined, b: return$ | PlainMessage$1<return$> | undefined): boolean {
     return proto3.util.equals(return$, a, b);
-  }
-}
-
-/**
- * reserved object property
- *
- * @generated from message spec.constructor
- */
-export class constructor extends Message$1<constructor> {
-  constructor(data?: PartialMessage$1<constructor>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "spec.constructor";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): constructor {
-    return new constructor().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): constructor {
-    return new constructor().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): constructor {
-    return new constructor().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: constructor | PlainMessage$1<constructor> | undefined, b: constructor | PlainMessage$1<constructor> | undefined): boolean {
-    return proto3.util.equals(constructor, a, b);
-  }
-}
-
-/**
- * @generated from message spec.toString
- */
-export class toString extends Message$1<toString> {
-  constructor(data?: PartialMessage$1<toString>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "spec.toString";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toString {
-    return new toString().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toString {
-    return new toString().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toString {
-    return new toString().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: toString | PlainMessage$1<toString> | undefined, b: toString | PlainMessage$1<toString> | undefined): boolean {
-    return proto3.util.equals(toString, a, b);
-  }
-}
-
-/**
- * @generated from message spec.toJSON
- */
-export class toJSON extends Message$1<toJSON> {
-  constructor(data?: PartialMessage$1<toJSON>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "spec.toJSON";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): toJSON {
-    return new toJSON().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): toJSON {
-    return new toJSON().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): toJSON {
-    return new toJSON().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: toJSON | PlainMessage$1<toJSON> | undefined, b: toJSON | PlainMessage$1<toJSON> | undefined): boolean {
-    return proto3.util.equals(toJSON, a, b);
-  }
-}
-
-/**
- * @generated from message spec.valueOf
- */
-export class valueOf extends Message$1<valueOf> {
-  constructor(data?: PartialMessage$1<valueOf>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "spec.valueOf";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): valueOf {
-    return new valueOf().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): valueOf {
-    return new valueOf().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): valueOf {
-    return new valueOf().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: valueOf | PlainMessage$1<valueOf> | undefined, b: valueOf | PlainMessage$1<valueOf> | undefined): boolean {
-    return proto3.util.equals(valueOf, a, b);
   }
 }
 

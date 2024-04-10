@@ -56,11 +56,11 @@ export function localName(
       return safeIdentifier(name);
     }
     case "enum_value": {
+      let name = desc.name;
       const sharedPrefix = desc.parent.sharedPrefix;
-      if (sharedPrefix === undefined) {
-        return desc.name;
+      if (sharedPrefix !== undefined) {
+        name = name.substring(sharedPrefix.length);
       }
-      const name = desc.name.substring(sharedPrefix.length);
       return safeObjectProperty(name);
     }
     case "rpc": {

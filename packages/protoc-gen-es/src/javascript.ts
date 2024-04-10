@@ -61,14 +61,11 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   f.print(f.exportDecl("const", enumeration), " = /*@__PURE__*/ ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
-  if (enumeration.sharedPrefix === undefined) {
-    for (const value of enumeration.values) {
+  for (const value of enumeration.values) {
+    if (localName(value) === value.name) {
       f.print("    {no: ", value.number, ", name: ", f.string(value.name), "},")
-    }
-  } else {
-    for (const value of enumeration.values) {
-      const localName = value.name.substring(enumeration.sharedPrefix.length);
-      f.print("    {no: ", value.number, ", name: ", f.string(value.name), ", localName: ", f.string(localName), "},")
+    } else {
+      f.print("    {no: ", value.number, ", name: ", f.string(value.name), ", localName: ", f.string(localName(value)), "},")
     }
   }
   f.print(`  ],`)
