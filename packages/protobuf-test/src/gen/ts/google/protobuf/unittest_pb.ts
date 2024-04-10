@@ -29,7 +29,7 @@
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoDouble, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
 import { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
 import { PublicImportMessage } from "./unittest_import_public_pb.js";
 
@@ -4921,12 +4921,12 @@ export class TestExtremeDefaultValues extends Message<TestExtremeDefaultValues> 
     { no: 11, name: "negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -1.5 },
     { no: 12, name: "large_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: 200000000 },
     { no: 13, name: "small_negative_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -8e-28 },
-    { no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.POSITIVE_INFINITY },
-    { no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.NEGATIVE_INFINITY },
-    { no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: protoDouble.NaN },
-    { no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.POSITIVE_INFINITY },
-    { no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.NEGATIVE_INFINITY },
-    { no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: protoDouble.NaN },
+    { no: 14, name: "inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.Infinity },
+    { no: 15, name: "neg_inf_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: -globalThis.Infinity },
+    { no: 16, name: "nan_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, opt: true, default: globalThis.NaN },
+    { no: 17, name: "inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.Infinity },
+    { no: 18, name: "neg_inf_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: -globalThis.Infinity },
+    { no: 19, name: "nan_float", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true, default: globalThis.NaN },
     { no: 20, name: "cpp_trigraph", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "? ? ?? ?? ??? ??/ ??-" },
     { no: 23, name: "string_with_zero", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true, default: "hel lo" },
     { no: 24, name: "bytes_with_zero", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true, default: new Uint8Array([0x77, 0x6F, 0x72, 0x00, 0x6C, 0x64]) },
@@ -4967,12 +4967,12 @@ TestExtremeDefaultValues.prototype.negativeOneFloat = -1;
 TestExtremeDefaultValues.prototype.negativeFloat = -1.5;
 TestExtremeDefaultValues.prototype.largeFloat = 200000000;
 TestExtremeDefaultValues.prototype.smallNegativeFloat = -8e-28;
-TestExtremeDefaultValues.prototype.infDouble = protoDouble.POSITIVE_INFINITY;
-TestExtremeDefaultValues.prototype.negInfDouble = protoDouble.NEGATIVE_INFINITY;
-TestExtremeDefaultValues.prototype.nanDouble = protoDouble.NaN;
-TestExtremeDefaultValues.prototype.infFloat = protoDouble.POSITIVE_INFINITY;
-TestExtremeDefaultValues.prototype.negInfFloat = protoDouble.NEGATIVE_INFINITY;
-TestExtremeDefaultValues.prototype.nanFloat = protoDouble.NaN;
+TestExtremeDefaultValues.prototype.infDouble = globalThis.Infinity;
+TestExtremeDefaultValues.prototype.negInfDouble = -globalThis.Infinity;
+TestExtremeDefaultValues.prototype.nanDouble = globalThis.NaN;
+TestExtremeDefaultValues.prototype.infFloat = globalThis.Infinity;
+TestExtremeDefaultValues.prototype.negInfFloat = -globalThis.Infinity;
+TestExtremeDefaultValues.prototype.nanFloat = globalThis.NaN;
 TestExtremeDefaultValues.prototype.cppTrigraph = "? ? ?? ?? ??? ??/ ??-";
 TestExtremeDefaultValues.prototype.stringWithZero = "hel lo";
 TestExtremeDefaultValues.prototype.bytesWithZero = new Uint8Array([0x77, 0x6F, 0x72, 0x00, 0x6C, 0x64]);

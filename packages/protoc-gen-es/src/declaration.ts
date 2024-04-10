@@ -23,10 +23,15 @@ import type {
   GeneratedFile,
   Printable,
   Schema,
-} from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+} from "@bufbuild/protoplugin/next/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
-import { fieldUsesPrototype, getFieldTypeInfo } from "./util.js";
+import {
+  fieldUsesPrototype,
+  getFieldTypeInfo,
+  importPb,
+  localName,
+  runtimeImports,
+} from "./util.js";
 import { reifyWkt } from "./reify-wkt.js";
 
 export function generateDts(schema: Schema) {
@@ -63,7 +68,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = getNonEditionRuntime(schema, message.file);
+  const protoN = getNonEditionRuntime(f, message.file);
   const {
     PartialMessage,
     FieldList,
@@ -72,7 +77,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     BinaryReadOptions,
     JsonReadOptions,
     JsonValue
-  } = schema.runtime;
+  } = runtimeImports(f);
   const m = localName(message);
   f.print(f.jsDoc(message));
   f.print(f.exportDecl("declare class", m), " extends ", Message, "<", m, "> {");
@@ -126,7 +131,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field);
+    const { typing } = getFieldTypeInfo(schema, f, field);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -137,7 +142,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     f.print(f.jsDoc(field, "  "));
     const e: Printable = [];
-    const { typing, optional } = getFieldTypeInfo(field);
+    const { typing, optional } = getFieldTypeInfo(schema, f, field);
     if (fieldUsesPrototype(field) || !optional) {
       e.push("  ", localName(field), ": ", typing, ";");
     } else {
@@ -152,10 +157,10 @@ function generateExtension(
   f: GeneratedFile,
   ext: DescExtension,
 ) {
-  const { typing } = getFieldTypeInfo(ext);
-  const e = f.import(ext.extendee).toTypeOnly();
+  const { typing } = getFieldTypeInfo(schema, f, ext);
+  const e = importPb(schema, f, ext.extendee).toTypeOnly();
   f.print(f.jsDoc(ext));
-  f.print(f.exportDecl("declare const", localName(ext)), ": ", schema.runtime.Extension, "<", e, ", ", typing, ">;");
+  f.print(f.exportDecl("declare const", localName(ext)), ": ", runtimeImports(f).Extension, "<", e, ", ", typing, ">;");
   f.print();
 }
 
@@ -169,7 +174,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     Message,
     MessageType,
     IMessageTypeRegistry
-  } = schema.runtime;
+  } = runtimeImports(f);
   switch (ref.typeName) {
     case "google.protobuf.Any":
       f.print("  packFrom(message: ", Message, "): void;");
@@ -233,7 +238,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value);
+      const {typing} = getFieldTypeInfo(schema, f, ref.value);
       f.print("  static readonly fieldWrapper: {")
       f.print("    wrapField(value: ", typing, "): ", localName(message), ",")
       f.print("    unwrapField(value: ", localName(message), "): ", typing, ",")

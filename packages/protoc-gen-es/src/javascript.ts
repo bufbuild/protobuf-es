@@ -27,12 +27,14 @@ import type {
   GeneratedFile,
   Printable,
   Schema,
-} from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+} from "@bufbuild/protoplugin/next/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
 import {
   getFieldDefaultValueExpression,
+  importPb,
   isFieldPackedByDefault,
+  localName,
+  runtimeImports,
 } from "./util.js";
 import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
 import { reifyWkt } from "./reify-wkt.js";
@@ -56,9 +58,9 @@ export function generateJs(schema: Schema) {
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  const protoN = getNonEditionRuntime(schema, enumeration.file);
+  const protoN = getNonEditionRuntime(f, enumeration.file);
   f.print(f.jsDoc(enumeration));
-  f.print(f.exportDecl("const", enumeration), " = /*@__PURE__*/ ", protoN, ".makeEnum(")
+  f.print(f.exportDecl("const", localName(enumeration)), " = /*@__PURE__*/ ", protoN, ".makeEnum(")
   f.print(`  "`, enumeration.typeName, `",`)
   f.print(`  [`)
   for (const value of enumeration.values) {
@@ -75,9 +77,9 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = getNonEditionRuntime(schema, message.file);
+  const protoN = getNonEditionRuntime(f, message.file);
   f.print(f.jsDoc(message));
-  f.print(f.exportDecl("const", message), " = /*@__PURE__*/ ", protoN, ".makeMessageType(")
+  f.print(f.exportDecl("const", localName(message)), " = /*@__PURE__*/ ", protoN, ".makeMessageType(")
   f.print(`  `, f.string(message.typeName), `,`)
   if (message.fields.length == 0) {
     f.print("  [],")
@@ -112,12 +114,12 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
 
 // prettier-ignore
 export function generateFieldInfo(schema: Schema, f: GeneratedFile, field: DescField | DescExtension) {
-  f.print("    ", getFieldInfoLiteral(schema, field), ",");
+  f.print("    ", getFieldInfoLiteral(f, schema, field), ",");
 }
 
 // prettier-ignore
-export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExtension): Printable {
-  const protoN = getNonEditionRuntime(schema, field.kind == "extension" ? field.file : field.parent.file);
+export function getFieldInfoLiteral(f: GeneratedFile, schema: Schema, field: DescField | DescExtension): Printable {
+  const protoN = getNonEditionRuntime(f, field.kind == "extension" ? field.file : field.parent.file);
   const e: Printable = [];
   e.push("{ no: ", field.number, `, `);
   if (field.kind == "field") {
@@ -139,7 +141,7 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
       }
       break;
     case "message":
-      e.push(`kind: "message", T: `, field.message, `, `);
+      e.push(`kind: "message", T: `, importPb(schema, f, field.message), `, `);
       if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
         e.push(`delimited: true, `);
       }
@@ -150,7 +152,7 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
       }
       break;
     case "enum":
-      e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
+      e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, importPb(schema, f, field.enum), `), `);
       if (field.optional) {
         e.push(`opt: true, `);
       } else if (field.proto.label === FieldDescriptorProto_Label.REQUIRED) {
@@ -170,14 +172,14 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
           }
           break;
         case "enum":
-          e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `), `);
+          e.push(`kind: "enum", T: `, protoN, `.getEnumType(`, importPb(schema, f, field.enum), `), `);
           e.push(`repeated: true, `);
           if (field.packed !== isFieldPackedByDefault(field)) {
             e.push(`packed: `, field.packed, `, `);
           }
           break;
         case "message":
-          e.push(`kind: "message", T: `, field.message, `, `);
+          e.push(`kind: "message", T: `, importPb(schema, f, field.message), `, `);
           if (field.proto.type === FieldDescriptorProto_Type.GROUP) {
             e.push(`delimited: true, `);
           }
@@ -192,15 +194,15 @@ export function getFieldInfoLiteral(schema: Schema, field: DescField | DescExten
           e.push(`V: {kind: "scalar", T: `, field.scalar, ` /* ScalarType.`, ScalarType[field.scalar], ` */}, `);
           break;
         case "message":
-          e.push(`V: {kind: "message", T: `, field.message, `}, `);
+          e.push(`V: {kind: "message", T: `, importPb(schema, f, field.message), `}, `);
           break;
         case "enum":
-          e.push(`V: {kind: "enum", T: `, protoN, `.getEnumType(`, field.enum, `)}, `);
+          e.push(`V: {kind: "enum", T: `, protoN, `.getEnumType(`, importPb(schema, f, field.enum), `)}, `);
           break;
       }
       break;
   }
-  const defaultValue = getFieldDefaultValueExpression(field);
+  const defaultValue = getFieldDefaultValueExpression(schema, f, field);
   if (defaultValue !== undefined) {
     e.push(`default: `, defaultValue, `, `);
   }
@@ -221,15 +223,15 @@ function generateExtension(
   f: GeneratedFile,
   ext: DescExtension,
 ) {
-  const protoN = getNonEditionRuntime(schema, ext.file);
+  const protoN = getNonEditionRuntime(f, ext.file);
   f.print(f.jsDoc(ext));
-  f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension(");
+  f.print(f.exportDecl("const", localName(ext)), " = ", protoN, ".makeExtension(");
   f.print("  ", f.string(ext.typeName), ", ");
-  f.print("  ", ext.extendee, ", ");
+  f.print("  ", importPb(schema, f, ext.extendee), ", ");
   if (ext.fieldKind == "scalar" || (ext.fieldKind == "list" && ext.listKind == "scalar")) {
-    f.print("  ", getFieldInfoLiteral(schema, ext), ",");
+    f.print("  ", getFieldInfoLiteral(f, schema, ext), ",");
   } else {
-    f.print("  () => (", getFieldInfoLiteral(schema, ext), "),");
+    f.print("  () => (", getFieldInfoLiteral(f, schema, ext), "),");
   }
   f.print(");");
   f.print();
@@ -244,11 +246,12 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
   const {
     ScalarType: rtScalarType,
     protoInt64,
-  } = schema.runtime;
-  const protoN = getNonEditionRuntime(schema, message.file);
+  } = runtimeImports(f);
+  const protoN = getNonEditionRuntime(f, message.file);
+  const m = localName(message);
   switch (ref.typeName) {
     case "google.protobuf.Any":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print(`  if (this.`, localName(ref.typeUrl), ` === "") {`);
       f.print("    return {};");
       f.print("  }");
@@ -266,7 +269,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return json;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (json === null || Array.isArray(json) || typeof json != "object") {`);
       f.print("    throw new Error(`cannot decode message ", message.typeName, ' from JSON: expected object but got ${json === null ? "null" : Array.isArray(json) ? "array" : typeof json}`);');
       f.print("  }");
@@ -293,12 +296,12 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return this;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.packFrom = function packFrom(message) {")
+      f.print(m, ".prototype.packFrom = function packFrom(message) {")
       f.print("  this.", localName(ref.value), " = message.toBinary();");
       f.print("  this.", localName(ref.typeUrl), " = this.typeNameToUrl(message.getType().typeName);");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.unpackTo = function unpackTo(target) {")
+      f.print(m, ".prototype.unpackTo = function unpackTo(target) {")
       f.print("  if (!this.is(target.getType())) {");
       f.print("    return false;");
       f.print("  }");
@@ -306,7 +309,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return true;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.unpack = function unpack(registry) {")
+      f.print(m, ".prototype.unpack = function unpack(registry) {")
       f.print("    if (this.", localName(ref.typeUrl), ` === "") {`);
       f.print("      return undefined;");
       f.print("    }");
@@ -317,7 +320,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("    return messageType.fromBinary(this.", localName(ref.value), ");");
       f.print("  }");
       f.print();
-      f.print(message, ".prototype.is = function is(type) {")
+      f.print(m, ".prototype.is = function is(type) {")
       f.print("  if (this.typeUrl === '') {");
       f.print("    return false;");
       f.print("  }");
@@ -331,11 +334,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return name === typeName;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.typeNameToUrl = function typeNameToUrl(name) {")
+      f.print(m, ".prototype.typeNameToUrl = function typeNameToUrl(name) {")
       f.print("  return `type.googleapis.com/${name}`;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.typeUrlToName = function typeUrlToName(url) {")
+      f.print(m, ".prototype.typeUrlToName = function typeUrlToName(url) {")
       f.print("  if (!url.length) {");
       f.print("    throw new Error(`invalid type url: ${url}`);");
       f.print("  }");
@@ -349,7 +352,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print();
       break;
     case "google.protobuf.Timestamp":
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (typeof json !== "string") {`);
       f.print("    throw new Error(`cannot decode ", message.typeName, " from JSON: ${", protoN, ".json.debug(json)}`);");
       f.print("  }");
@@ -372,7 +375,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return this;");
       f.print("};");
       f.print();
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print("  const ms = Number(this.", localName(ref.seconds), ") * 1000;");
       f.print(`  if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {`);
       f.print("    throw new Error(`cannot encode ", message.typeName, " to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);");
@@ -394,13 +397,13 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`  return new Date(ms).toISOString().replace(".000Z", z);`);
       f.print("};");
       f.print();
-      f.print(message, ".prototype.toDate = function toDate() {")
+      f.print(m, ".prototype.toDate = function toDate() {")
       f.print("  return new Date(Number(this.", localName(ref.seconds), ") * 1000 + Math.ceil(this.", localName(ref.nanos), " / 1000000));");
       f.print("};");
       f.print();
       break;
     case "google.protobuf.Duration":
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (typeof json !== "string") {`)
       f.print("    throw new Error(`cannot decode ", message.typeName, " from JSON: ${proto3.json.debug(json)}`);")
       f.print("  }")
@@ -423,7 +426,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return this;")
       f.print("};");
       f.print()
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print("  if (Number(this.", localName(ref.seconds), ") > 315576000000 || Number(this.", localName(ref.seconds), ") < -315576000000) {")
       f.print("    throw new Error(`cannot encode ", message.typeName, " to JSON: value out of range`);")
       f.print("  }")
@@ -446,7 +449,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print()
       break;
     case "google.protobuf.Struct":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print("  const json = {}")
       f.print("  for (const [k, v] of Object.entries(this.", localName(ref.fields), ")) {")
       f.print("    json[k] = v.toJson(options);")
@@ -454,19 +457,19 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("  return json;")
       f.print("};")
       f.print()
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (typeof json != "object" || json == null || Array.isArray(json)) {`)
       f.print(`    throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print("  }")
       f.print("  for (const [k, v] of Object.entries(json)) {")
-      f.print("    this.", localName(ref.fields), "[k] = ", ref.fields.message ?? "", ".fromJson(v);")
+      f.print("    this.", localName(ref.fields), "[k] = ", ref.fields.message ? importPb(schema, f, ref.fields.message) : "", ".fromJson(v);")
       f.print("  }")
       f.print("  return this;")
       f.print("};");
       f.print()
       break;
     case "google.protobuf.Value":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print("  switch (this.", localName(ref.kind), ".case) {")
       f.print(`    case "`, localName(ref.nullValue), `":`)
       f.print("      return null;")
@@ -484,7 +487,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`  throw new Error("`, message.typeName, ` must have a value");`)
       f.print("};");
       f.print()
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print("  switch (typeof json) {")
       f.print(`    case "number":`)
       f.print(`      this.kind = { case: "`, localName(ref.numberValue), `", value: json };`)
@@ -497,11 +500,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("      break;")
       f.print(`    case "object":`)
       f.print("      if (json === null) {")
-      f.print(`        this.kind = { case: "`, localName(ref.nullValue), `", value: `, ref.nullValue.enum, `.`, localName(ref.nullValue.enum.values[0]), ` };`)
+      f.print(`        this.kind = { case: "`, localName(ref.nullValue), `", value: `, importPb(schema, f, ref.nullValue.enum), `.`, localName(ref.nullValue.enum.values[0]), ` };`)
       f.print("      } else if (Array.isArray(json)) {")
-      f.print(`        this.kind = { case: "`, localName(ref.listValue), `", value: `, ref.listValue.message, `.fromJson(json) };`)
+      f.print(`        this.kind = { case: "`, localName(ref.listValue), `", value: `, importPb(schema, f, ref.listValue.message), `.fromJson(json) };`)
       f.print("      } else {")
-      f.print(`        this.kind = { case: "`, localName(ref.structValue), `", value: `, ref.structValue.message, `.fromJson(json) };`)
+      f.print(`        this.kind = { case: "`, localName(ref.structValue), `", value: `, importPb(schema, f, ref.structValue.message), `.fromJson(json) };`)
       f.print("      }")
       f.print("      break;")
       f.print("    default:")
@@ -512,23 +515,23 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print()
       break;
     case "google.protobuf.ListValue":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print(`  return this.`, localName(ref.values), `.map(v => v.toJson());`)
       f.print(`}`)
       f.print()
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (!Array.isArray(json)) {`)
       f.print(`    throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print(`  }`)
       f.print(`  for (let e of json) {`)
-      f.print(`    this.`, localName(ref.values), `.push(`, ref.values.message, `.fromJson(e));`)
+      f.print(`    this.`, localName(ref.values), `.push(`, importPb(schema, f, ref.values.message), `.fromJson(e));`)
       f.print(`  }`)
       f.print(`  return this;`)
       f.print("};");
       f.print()
       break;
     case "google.protobuf.FieldMask":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print(`  // Converts snake_case to protoCamelCase according to the convention`)
       f.print(`  // used by protoc to convert a field name to a JSON name.`)
       f.print(`  function protoCamelCase(snakeCase) {`)
@@ -572,7 +575,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`  }).join(",");`)
       f.print("};");
       f.print()
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print(`  if (typeof json !== "string") {`)
       f.print(`    throw new Error("cannot decode `, message.typeName, ` from JSON: " + proto3.json.debug(json));`)
       f.print(`  }`)
@@ -600,11 +603,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue":
-      f.print(message, ".prototype.toJson = function toJson(options) {")
+      f.print(m, ".prototype.toJson = function toJson(options) {")
       f.print("  return proto3.json.writeScalar(", rtScalarType, ".", ScalarType[ref.value.scalar], ", this.value, true);")
       f.print("}")
       f.print()
-      f.print(message, ".prototype.fromJson = function fromJson(json, options) {")
+      f.print(m, ".prototype.fromJson = function fromJson(json, options) {")
       f.print("  try {")
       f.print("    this.value = ", protoN, ".json.readScalar(", rtScalarType, ".", ScalarType[ref.value.scalar], ", json);")
       f.print("  } catch (e) {")
@@ -629,24 +632,25 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
   }
   const {
     protoInt64,
-  } = schema.runtime;
+  } = runtimeImports(f);
+  const m = localName(message);
   switch (ref.typeName) {
     case "google.protobuf.Any":
-      f.print(message, ".pack = function pack(message) {")
-      f.print("  const any = new ", message, "();")
+      f.print(m, ".pack = function pack(message) {")
+      f.print("  const any = new ", m, "();")
       f.print("  any.packFrom(message);")
       f.print("  return any;")
       f.print("};")
       f.print()
       break;
     case "google.protobuf.Timestamp":
-      f.print(message, ".now = function now() {")
-      f.print("  return ", message, ".fromDate(new Date())")
+      f.print(m, ".now = function now() {")
+      f.print("  return ", m, ".fromDate(new Date())")
       f.print("};")
       f.print()
-      f.print(message, ".fromDate = function fromDate(date) {")
+      f.print(m, ".fromDate = function fromDate(date) {")
       f.print("  const ms = date.getTime();")
-      f.print("  return new ", message, "({")
+      f.print("  return new ", m, "({")
       f.print("    ", localName(ref.seconds), ": ", protoInt64, ".parse(Math.floor(ms / 1000)),")
       f.print("    ", localName(ref.nanos), ": (ms % 1000) * 1000000,")
       f.print("  });")
@@ -662,9 +666,9 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      f.print(message, ".fieldWrapper = {")
+      f.print(m, ".fieldWrapper = {")
       f.print("  wrapField(value) {")
-      f.print("    return new ", message, "({value});")
+      f.print("    return new ", m, "({value});")
       f.print("  },")
       f.print("  unwrapField(value) {")
       f.print("    return value.", localName(ref.value), ";")

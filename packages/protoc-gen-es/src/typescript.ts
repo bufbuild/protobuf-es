@@ -20,12 +20,11 @@ import type {
   DescOneof,
 } from "@bufbuild/protobuf";
 import { LongType, ScalarType } from "@bufbuild/protobuf";
-import type {
+import {
   GeneratedFile,
   Printable,
   Schema,
-} from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+} from "@bufbuild/protoplugin/next/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
 import { getNonEditionRuntime } from "./editions.js";
 import {
@@ -33,6 +32,9 @@ import {
   getFieldDefaultValueExpression,
   getFieldTypeInfo,
   getFieldZeroValueExpression,
+  importPb,
+  localName,
+  runtimeImports,
 } from "./util.js";
 import { reifyWkt } from "./reify-wkt.js";
 
@@ -55,9 +57,9 @@ export function generateTs(schema: Schema) {
 
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
-  const protoN = getNonEditionRuntime(schema, enumeration.file);
+  const protoN = getNonEditionRuntime(f, enumeration.file);
   f.print(f.jsDoc(enumeration));
-  f.print(f.exportDecl("enum", enumeration), " {");
+  f.print(f.exportDecl("enum", localName(enumeration)), " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
@@ -66,8 +68,8 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
     f.print("  ", localName(value), " = ", value.number, ",");
   }
   f.print("}");
-  f.print("// Retrieve enum metadata with: ", enumeration.file.syntax, ".getEnumType(", enumeration, ")");
-  f.print(protoN, `.util.setEnumType(`, enumeration, `, "`, enumeration.typeName, `", [`);
+  f.print("// Retrieve enum metadata with: ", enumeration.file.syntax, ".getEnumType(", importPb(schema, f, enumeration), ")");
+  f.print(protoN, `.util.setEnumType(`, localName(enumeration), `, "`, enumeration.typeName, `", [`);
   for (const value of enumeration.values) {
     f.print("  { no: ", value.number, ', name: "', value.name, '" },');
   }
@@ -77,7 +79,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
-  const protoN = getNonEditionRuntime(schema, message.file);
+  const protoN = getNonEditionRuntime(f, message.file);
   const {
     PartialMessage,
     FieldList,
@@ -86,9 +88,10 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     BinaryReadOptions,
     JsonReadOptions,
     JsonValue
-  } = schema.runtime;
+  } = runtimeImports(f);
+  const m = localName(message);
   f.print(f.jsDoc(message));
-  f.print(f.exportDecl("class", message), " extends ", Message, "<", message, "> {");
+  f.print(f.exportDecl("class", m), " extends ", Message, "<", m, "> {");
   for (const member of message.members) {
     switch (member.kind) {
       case "oneof":
@@ -100,7 +103,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
-  f.print("  constructor(data?: ", PartialMessage, "<", message, ">) {");
+  f.print("  constructor(data?: ", PartialMessage, "<", m, ">) {");
   f.print("    super();");
   f.print("    ", protoN, ".util.initPartial(data, this);");
   f.print("  }");
@@ -117,20 +120,20 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   //f.print("  static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
   f.print();
   generateWktStaticMethods(schema, f, message);
-  f.print("  static fromBinary(bytes: Uint8Array, options?: Partial<", BinaryReadOptions, ">): ", message, " {")
-  f.print("    return new ", message, "().fromBinary(bytes, options);")
+  f.print("  static fromBinary(bytes: Uint8Array, options?: Partial<", BinaryReadOptions, ">): ", m, " {")
+  f.print("    return new ", m, "().fromBinary(bytes, options);")
   f.print("  }")
   f.print()
-  f.print("  static fromJson(jsonValue: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): ", message, " {")
-  f.print("    return new ", message, "().fromJson(jsonValue, options);")
+  f.print("  static fromJson(jsonValue: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): ", m, " {")
+  f.print("    return new ", m, "().fromJson(jsonValue, options);")
   f.print("  }")
   f.print()
-  f.print("  static fromJsonString(jsonString: string, options?: Partial<", JsonReadOptions, ">): ", message, " {")
-  f.print("    return new ", message, "().fromJsonString(jsonString, options);")
+  f.print("  static fromJsonString(jsonString: string, options?: Partial<", JsonReadOptions, ">): ", m, " {")
+  f.print("    return new ", m, "().fromJsonString(jsonString, options);")
   f.print("  }")
   f.print()
-  f.print("  static equals(a: ", message, " | ", PlainMessage, "<", message, "> | undefined, b: ", message, " | ", PlainMessage, "<", message, "> | undefined): boolean {")
-  f.print("    return ", protoN, ".util.equals(", message, ", a, b);")
+  f.print("  static equals(a: ", m, " | ", PlainMessage, "<", m, "> | undefined, b: ", m, " | ", PlainMessage, "<", m, "> | undefined): boolean {")
+  f.print("    return ", protoN, ".util.equals(", m, ", a, b);")
   f.print("  }")
   f.print("}")
   generatePrototypeFields(schema, f, message);
@@ -155,7 +158,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field);
+    const { typing } = getFieldTypeInfo(schema, f, field);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -166,7 +169,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
-  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field);
+  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(schema, f, field);
   if (fieldUsesPrototype(field)) {
     e.push("  declare ", localName(field), ": ", typing, ";");
   } else {
@@ -178,7 +181,7 @@ function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
       } else {
         e.push("  ", localName(field), ": ", typing);
       }
-      const zeroValue = getFieldZeroValueExpression(field);
+      const zeroValue = getFieldZeroValueExpression(schema, f, field);
       if (zeroValue !== undefined) {
         e.push(" = ", zeroValue);
       }
@@ -194,16 +197,16 @@ function generateExtension(
   f: GeneratedFile,
   ext: DescExtension,
 ) {
-  const protoN = getNonEditionRuntime(schema, ext.file);
-  const { typing } = getFieldTypeInfo(ext);
+  const protoN = getNonEditionRuntime(f, ext.file);
+  const { typing } = getFieldTypeInfo(schema, f, ext);
   f.print(f.jsDoc(ext));
-  f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension<", ext.extendee, ", ", typing, ">(");
+  f.print(f.exportDecl("const", localName(ext)), " = ", protoN, ".makeExtension<", importPb(schema, f, ext.extendee).toTypeOnly(), ", ", typing, ">(");
   f.print("  ", f.string(ext.typeName), ", ");
-  f.print("  ", ext.extendee, ", ");
+  f.print("  ", importPb(schema, f, ext.extendee), ", ");
   if (ext.fieldKind == "scalar" || (ext.fieldKind == "list" && ext.listKind == "scalar")) {
-    f.print("  ", getFieldInfoLiteral(schema, ext), ",");
+    f.print("  ", getFieldInfoLiteral(f, schema, ext), ",");
   } else {
-    f.print("  () => (", getFieldInfoLiteral(schema, ext), "),");
+    f.print("  () => (", getFieldInfoLiteral(f, schema, ext), "),");
   }
   f.print(");");
   f.print();
@@ -216,8 +219,8 @@ function generatePrototypeFields(schema: Schema, f: GeneratedFile, message: Desc
     if (!fieldUsesPrototype(field)) {
         continue;
     }
-    const defaultValue = getFieldDefaultValueExpression(field, "enum_value_as_cast_integer")
-        ?? getFieldZeroValueExpression(field, "enum_value_as_cast_integer");
+    const defaultValue = getFieldDefaultValueExpression(schema, f, field, "enum_value_as_cast_integer")
+        ?? getFieldZeroValueExpression(schema, f, field, "enum_value_as_cast_integer");
     if (defaultValue === undefined) {
       continue;
     }
@@ -227,7 +230,7 @@ function generatePrototypeFields(schema: Schema, f: GeneratedFile, message: Desc
     f.print();
   }
   for (const [field, defaultValue] of fieldToDefaultValue.entries()) {
-    f.print(message, ".prototype.", localName(field), " = ", defaultValue, ";");
+    f.print(localName(message), ".prototype.", localName(field), " = ", defaultValue, ";");
   }
 }
 
@@ -248,8 +251,8 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
     ScalarType: rtScalarType,
     LongType: rtLongType,
     protoInt64,
-  } = schema.runtime;
-  const protoN = getNonEditionRuntime(schema, message.file);
+  } = runtimeImports(f);
+  const protoN = getNonEditionRuntime(f, message.file);
   switch (ref.typeName) {
     case "google.protobuf.Any":
       f.print("  override toJson(options?: Partial<", JsonWriteOptions, ">): ", JsonValue, " {");
@@ -471,7 +474,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`      throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print("    }")
       f.print("    for (const [k, v] of Object.entries(json)) {")
-      f.print("      this.", localName(ref.fields), "[k] = ", ref.fields.message ?? "", ".fromJson(v);")
+      f.print("      this.", localName(ref.fields), "[k] = ", ref.fields.message ? importPb(schema, f, ref.fields.message) : "", ".fromJson(v);")
       f.print("    }")
       f.print("    return this;")
       f.print("  }")
@@ -511,11 +514,11 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print("        break;")
       f.print(`      case "object":`)
       f.print("        if (json === null) {")
-      f.print(`          this.kind = { case: "`, localName(ref.nullValue), `", value: `, ref.nullValue.enum, `.`, localName(ref.nullValue.enum.values[0]), ` };`)
+      f.print(`          this.kind = { case: "`, localName(ref.nullValue), `", value: `, importPb(schema, f, ref.nullValue.enum), `.`, localName(ref.nullValue.enum.values[0]), ` };`)
       f.print("        } else if (Array.isArray(json)) {")
-      f.print(`          this.kind = { case: "`, localName(ref.listValue), `", value: `, ref.listValue.message, `.fromJson(json) };`)
+      f.print(`          this.kind = { case: "`, localName(ref.listValue), `", value: `, importPb(schema, f, ref.listValue.message), `.fromJson(json) };`)
       f.print("        } else {")
-      f.print(`          this.kind = { case: "`, localName(ref.structValue), `", value: `, ref.structValue.message, `.fromJson(json) };`)
+      f.print(`          this.kind = { case: "`, localName(ref.structValue), `", value: `, importPb(schema, f, ref.structValue.message), `.fromJson(json) };`)
       f.print("        }")
       f.print("        break;")
       f.print("      default:")
@@ -535,7 +538,7 @@ function generateWktMethods(schema: Schema, f: GeneratedFile, message: DescMessa
       f.print(`      throw new Error("cannot decode `, message.typeName, ` from JSON " + `, protoN, `.json.debug(json));`)
       f.print(`    }`)
       f.print(`    for (let e of json) {`)
-      f.print(`      this.`, localName(ref.values), `.push(`, ref.values.message, `.fromJson(e));`)
+      f.print(`      this.`, localName(ref.values), `.push(`, importPb(schema, f, ref.values.message), `.fromJson(e));`)
       f.print(`    }`)
       f.print(`    return this;`)
       f.print(`  }`)
@@ -647,24 +650,25 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
   }
   const {
     protoInt64,
-  } = schema.runtime;
+  } = runtimeImports(f);
+  const m = localName(message);
   switch (ref.typeName) {
     case "google.protobuf.Any":
-      f.print("  static pack(message: Message): ", message, " {")
-      f.print("    const any = new ", message, "();")
+      f.print("  static pack(message: Message): ", m, " {")
+      f.print("    const any = new ", m, "();")
       f.print("    any.packFrom(message);")
       f.print("    return any;")
       f.print("  }")
       f.print()
       break;
     case "google.protobuf.Timestamp":
-      f.print("  static now(): ", message, " {")
-      f.print("    return ", message, ".fromDate(new Date())")
+      f.print("  static now(): ", m, " {")
+      f.print("    return ", m, ".fromDate(new Date())")
       f.print("  }")
       f.print()
-      f.print("  static fromDate(date: Date): ", message, " {")
+      f.print("  static fromDate(date: Date): ", m, " {")
       f.print("    const ms = date.getTime();")
-      f.print("    return new ", message, "({")
+      f.print("    return new ", m, "({")
       if (ref.seconds.longType === LongType.STRING) {
         f.print("      ", localName(ref.seconds), ": ", protoInt64, ".parse(Math.floor(ms / 1000)).toString(),")
       } else {
@@ -684,12 +688,12 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value);
+      const {typing} = getFieldTypeInfo(schema, f, ref.value);
       f.print("  static readonly fieldWrapper = {")
-      f.print("    wrapField(value: ", typing, "): ", message, " {")
-      f.print("      return new ", message, "({value});")
+      f.print("    wrapField(value: ", typing, "): ", m, " {")
+      f.print("      return new ", m, "({value});")
       f.print("    },")
-      f.print("    unwrapField(value: ", message, "): ", typing, " {")
+      f.print("    unwrapField(value: ", m, "): ", typing, " {")
       f.print("      return value.", localName(ref.value), ";")
       f.print("    }")
       f.print("  };")

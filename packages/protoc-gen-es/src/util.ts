@@ -14,10 +14,15 @@
 
 import {
   codegenInfo,
+  DescEnum,
   DescEnumValue,
   DescExtension,
   DescField,
+  DescMessage,
+  DescMethod,
+  DescOneof,
   LongType,
+  protoInt64,
   ScalarType,
   ScalarValue,
 } from "@bufbuild/protobuf";
@@ -25,9 +30,148 @@ import {
   Edition,
   FieldDescriptorProto_Type,
 } from "@bufbuild/protobuf/next/wkt";
-import type { Printable } from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+import type { Printable, Schema } from "@bufbuild/protoplugin/next/ecmascript";
+import { wktPublicImportPaths } from "@bufbuild/protobuf/next/codegenv1";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
+import { localName as reflectLocalName } from "@bufbuild/protobuf/next/reflect";
+import {
+  createImportSymbol,
+  GeneratedFile,
+  ImportSymbol,
+  safeIdentifier,
+} from "@bufbuild/protoplugin/next/ecmascript";
+import type { LiteralProtoInt64 } from "@bufbuild/protoplugin/src/ecmascript/opaque-printables";
+
+interface RuntimeImports {
+  proto2: ImportSymbol;
+  proto3: ImportSymbol;
+  Message: ImportSymbol;
+  PartialMessage: ImportSymbol;
+  PlainMessage: ImportSymbol;
+  FieldList: ImportSymbol;
+  MessageType: ImportSymbol;
+  Extension: ImportSymbol;
+  BinaryReadOptions: ImportSymbol;
+  BinaryWriteOptions: ImportSymbol;
+  JsonReadOptions: ImportSymbol;
+  JsonWriteOptions: ImportSymbol;
+  JsonValue: ImportSymbol;
+  JsonObject: ImportSymbol;
+  protoDouble: ImportSymbol;
+  protoInt64: ImportSymbol;
+  ScalarType: ImportSymbol;
+  LongType: ImportSymbol;
+  MethodKind: ImportSymbol;
+  MethodIdempotency: ImportSymbol;
+  IMessageTypeRegistry: ImportSymbol;
+}
+export function runtimeImports(f: GeneratedFile): RuntimeImports {
+  const isBootstrap = !f.runtime.create.from.startsWith("@bufbuild/protobuf");
+  // prettier-ignore
+  return {
+    proto2:                infoToSymbol("proto2",               isBootstrap),
+    proto3:                infoToSymbol("proto3",               isBootstrap),
+    Message:               infoToSymbol("Message",              isBootstrap),
+    PartialMessage:        infoToSymbol("PartialMessage",       isBootstrap),
+    PlainMessage:          infoToSymbol("PlainMessage",         isBootstrap),
+    FieldList:             infoToSymbol("FieldList",            isBootstrap),
+    MessageType:           infoToSymbol("MessageType",          isBootstrap),
+    Extension:             infoToSymbol("Extension",            isBootstrap),
+    BinaryReadOptions:     infoToSymbol("BinaryReadOptions",    isBootstrap),
+    BinaryWriteOptions:    infoToSymbol("BinaryWriteOptions",   isBootstrap),
+    JsonReadOptions:       infoToSymbol("JsonReadOptions",      isBootstrap),
+    JsonWriteOptions:      infoToSymbol("JsonWriteOptions",     isBootstrap),
+    JsonValue:             infoToSymbol("JsonValue",            isBootstrap),
+    JsonObject:            infoToSymbol("JsonObject",           isBootstrap),
+    protoDouble:           infoToSymbol("protoDouble",          isBootstrap),
+    protoInt64:            infoToSymbol("protoInt64",           isBootstrap),
+    ScalarType:            infoToSymbol("ScalarType",           isBootstrap),
+    LongType:              infoToSymbol("LongType",             isBootstrap),
+    MethodKind:            infoToSymbol("MethodKind",           isBootstrap),
+    MethodIdempotency:     infoToSymbol("MethodIdempotency",    isBootstrap),
+    IMessageTypeRegistry:  infoToSymbol("IMessageTypeRegistry", isBootstrap),
+  };
+  function infoToSymbol(
+    name: keyof typeof codegenInfo.symbols,
+    bootstrapWkt: boolean,
+  ): ImportSymbol {
+    const info = codegenInfo.symbols[name];
+    const symbol = createImportSymbol(
+      name,
+      bootstrapWkt ? info.privateImportPath : info.publicImportPath,
+    );
+    return info.typeOnly ? symbol.toTypeOnly() : symbol;
+  }
+}
+
+export function importPb(
+  schema: Schema,
+  f: GeneratedFile,
+  desc: DescMessage | DescEnum,
+): ImportSymbol {
+  const isBootstrap = !f.runtime.create.from.startsWith("@bufbuild/protobuf");
+  const isWkt =
+    (wktPublicImportPaths[desc.file.proto.name] as string | undefined) !==
+    undefined;
+  if (
+    isWkt &&
+    !isBootstrap &&
+    !schema.files.find((f) => f.name === desc.file.name)
+  ) {
+    return createImportSymbol(localName(desc), "@bufbuild/protobuf");
+  }
+  const from = "./" + desc.file.name + "_pb.js";
+  return createImportSymbol(localName(desc), from);
+}
+
+const reservedMessageProperties = new Set([
+  // names reserved by the runtime
+  "getType",
+  "clone",
+  "equals",
+  "fromBinary",
+  "fromJson",
+  "fromJsonString",
+  "toBinary",
+  "toJson",
+  "toJsonString",
+
+  // names reserved by the runtime for the future
+  "toObject",
+]);
+
+export function localName(
+  desc:
+    | DescMessage
+    | DescEnum
+    | DescEnumValue
+    | DescOneof
+    | DescField
+    | DescMethod
+    | DescExtension,
+) {
+  switch (desc.kind) {
+    case "enum":
+    case "message":
+    case "extension": {
+      const pkg = desc.file.proto.package;
+      const offset = pkg.length > 0 ? pkg.length + 1 : 0;
+      const name = desc.typeName.substring(offset).replace(/\./g, "_");
+      return safeIdentifier(name);
+    }
+    case "field": {
+      const n = reflectLocalName(desc);
+      if (!desc.oneof && reservedMessageProperties.has(n)) {
+        return n + "$";
+      }
+      return n;
+    }
+    case "enum_value":
+    case "oneof":
+    case "rpc":
+      return reflectLocalName(desc);
+  }
+}
 
 export function isFieldPackedByDefault(field: DescField | DescExtension) {
   switch (field.proto.type) {
@@ -71,7 +215,11 @@ export function fieldUsesPrototype(field: DescField): field is DescField & {
   return true;
 }
 
-export function getFieldTypeInfo(field: DescField | DescExtension): {
+export function getFieldTypeInfo(
+  schema: Schema,
+  f: GeneratedFile,
+  field: DescField | DescExtension,
+): {
   typing: Printable;
   optional: boolean;
   typingInferrableFromZeroValue: boolean;
@@ -90,22 +238,14 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       if (baseType !== undefined) {
         typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
       } else {
-        typing.push({
-          kind: "es_ref_message",
-          type: field.message,
-          typeOnly: true,
-        });
+        typing.push(importPb(schema, f, field.message).toTypeOnly());
       }
       optional = true;
       typingInferrableFromZeroValue = true;
       break;
     }
     case "enum":
-      typing.push({
-        kind: "es_ref_enum",
-        type: field.enum,
-        typeOnly: true,
-      });
+      typing.push(importPb(schema, f, field.enum).toTypeOnly());
       optional = field.optional;
       typingInferrableFromZeroValue = true;
       break;
@@ -115,18 +255,10 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           typing.push(scalarTypeScriptType(field.scalar, field.longType));
           break;
         case "enum":
-          typing.push({
-            kind: "es_ref_enum",
-            type: field.enum,
-            typeOnly: true,
-          });
+          typing.push(importPb(schema, f, field.enum).toTypeOnly());
           break;
         case "message":
-          typing.push({
-            kind: "es_ref_message",
-            type: field.message,
-            typeOnly: true,
-          });
+          typing.push(importPb(schema, f, field.message).toTypeOnly());
           break;
       }
       typing.push("[]");
@@ -153,18 +285,10 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           valueType = scalarTypeScriptType(field.scalar, LongType.BIGINT);
           break;
         case "message":
-          valueType = {
-            kind: "es_ref_message",
-            type: field.message,
-            typeOnly: true,
-          };
+          valueType = importPb(schema, f, field.message).toTypeOnly();
           break;
         case "enum":
-          valueType = {
-            kind: "es_ref_enum",
-            type: field.enum,
-            typeOnly: true,
-          };
+          valueType = importPb(schema, f, field.enum).toTypeOnly();
           break;
       }
       typing.push("{ [key: ", keyType, "]: ", valueType, " }");
@@ -181,6 +305,8 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
  * Only applicable for singular scalar and enum fields.
  */
 export function getFieldDefaultValueExpression(
+  schema: Schema,
+  f: GeneratedFile,
   field: DescField | DescExtension,
   enumAs:
     | "enum_value_as_is"
@@ -204,10 +330,10 @@ export function getFieldDefaultValueExpression(
           `invalid enum default value: ${String(defaultValue)} for ${enumValue}`,
         );
       }
-      return literalEnumValue(enumValue, enumAs);
+      return literalEnumValue(schema, f, enumValue, enumAs);
     }
     case "scalar":
-      return literalScalarValue(defaultValue, field);
+      return literalScalarValue(schema, f, defaultValue, field);
   }
 }
 
@@ -222,6 +348,8 @@ export function getFieldDefaultValueExpression(
  * - scalar zero value
  */
 export function getFieldZeroValueExpression(
+  schema: Schema,
+  f: GeneratedFile,
   field: DescField | DescExtension,
   enumAs:
     | "enum_value_as_is"
@@ -242,19 +370,21 @@ export function getFieldZeroValueExpression(
         throw new Error("invalid enum: missing at least one value");
       }
       const zeroValue = field.enum.values[0];
-      return literalEnumValue(zeroValue, enumAs);
+      return literalEnumValue(schema, f, zeroValue, enumAs);
     }
     case "scalar": {
       const defaultValue = codegenInfo.scalarZeroValue(
         field.scalar,
         field.longType,
       );
-      return literalScalarValue(defaultValue, field);
+      return literalScalarValue(schema, f, defaultValue, field);
     }
   }
 }
 
 function literalScalarValue(
+  schema: Schema,
+  f: GeneratedFile,
   value: ScalarValue,
   field: (DescField | DescExtension) & { fieldKind: "scalar" },
 ): Printable {
@@ -297,22 +427,69 @@ function literalScalarValue(
     case ScalarType.SINT64:
     case ScalarType.SFIXED64:
     case ScalarType.UINT64:
-    case ScalarType.FIXED64:
+    case ScalarType.FIXED64: {
       if (typeof value != "bigint" && typeof value != "string") {
         throw new Error(
           `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
-      return {
+      const literal = {
         kind: "es_proto_int64",
         type: field.scalar,
         longType: field.longType,
         value,
-      };
+      } as const;
+      const isBootstrap =
+        !f.runtime.create.from.startsWith("@bufbuild/protobuf");
+      if (!isBootstrap) {
+        return literal;
+      }
+      return elProtoInt64(literal, runtimeImports(f));
+    }
+  }
+}
+
+// we don't want to use v2's local bootstrapping import path, since v2 bootstraps
+// to a different directory, the path does not match
+function elProtoInt64(
+  literal: LiteralProtoInt64,
+  runtimeImports: RuntimeImports,
+): Printable {
+  switch (literal.longType) {
+    case LongType.STRING:
+      return [`"`, literal.value.toString(), `"`];
+    case LongType.BIGINT:
+      if (literal.value == protoInt64.zero) {
+        // Loose comparison will match between 0n and 0.
+        return [runtimeImports.protoInt64, ".zero"];
+      }
+      switch (literal.type) {
+        case ScalarType.UINT64:
+        case ScalarType.FIXED64:
+          return [
+            runtimeImports.protoInt64,
+            ".uParse(",
+            `"`,
+            literal.value.toString(),
+            `"`,
+            ")",
+          ];
+        default:
+          return [
+            runtimeImports.protoInt64,
+            ".parse(",
+            `"`,
+            literal.value.toString(),
+            `"`,
+            ")",
+          ];
+      }
   }
 }
 
 function literalEnumValue(
+  schema: Schema,
+  f: GeneratedFile,
   value: DescEnumValue,
   enumAs:
     | "enum_value_as_is"
@@ -321,11 +498,7 @@ function literalEnumValue(
 ): Printable {
   switch (enumAs) {
     case "enum_value_as_is":
-      return [
-        { kind: "es_ref_enum", type: value.parent, typeOnly: false },
-        ".",
-        localName(value),
-      ];
+      return [importPb(schema, f, value.parent), ".", localName(value)];
     case "enum_value_as_integer":
       return [
         value.number,
@@ -339,7 +512,7 @@ function literalEnumValue(
       return [
         value.number,
         " as ",
-        { kind: "es_ref_enum", type: value.parent, typeOnly: true },
+        importPb(schema, f, value.parent).toTypeOnly(),
         ".",
         localName(value),
       ];
