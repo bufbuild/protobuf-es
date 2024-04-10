@@ -13,11 +13,13 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { NoClashOneofADT as TS_NoClashOneofADT } from "./gen/ts/extra/name-clash_pb.js";
+import * as ts_name_clash from "./gen/ts/extra/name-clash_pb.js";
+import * as js_name_clash from "./gen/js/extra/name-clash_pb.js";
+import { proto3 } from "@bufbuild/protobuf";
 
 describe("message looking like a oneof ADT", () => {
   test("takes all fields in constructor", () => {
-    const m = new TS_NoClashOneofADT({
+    const m = new ts_name_clash.NoClashOneofADT({
       m: {
         case: "value",
         value: "xxx",
@@ -26,11 +28,70 @@ describe("message looking like a oneof ADT", () => {
     expect(m).toBeDefined();
   });
   test("takes partial input in constructor", () => {
-    const m = new TS_NoClashOneofADT({
+    const m = new ts_name_clash.NoClashOneofADT({
       m: {
         case: "value",
       },
     });
     expect(m).toBeDefined();
+  });
+});
+
+describe("enum values", () => {
+  test("reserved property names (generated ts)", () => {
+    const e = ts_name_clash.ReservedPropertyNames_EnumBuiltIn;
+    expect(e.constructor$).toBe(0);
+    expect(e.toString$).toBe(1);
+    expect(e.toJSON$).toBe(2);
+    expect(e.valueOf$).toBe(3);
+    const localNames = proto3.getEnumType(e).values.map((v) => v.localName);
+    expect(localNames).toStrictEqual([
+      "constructor$",
+      "toString$",
+      "toJSON$",
+      "valueOf$",
+    ]);
+  });
+  test("reserved property names with prefix (generated ts)", () => {
+    const e = ts_name_clash.ReservedPropertyNames_EnumBuiltInPrefixed;
+    expect(e.constructor$).toBe(0);
+    expect(e.toString$).toBe(1);
+    expect(e.toJSON$).toBe(2);
+    expect(e.valueOf$).toBe(3);
+    const localNames = proto3.getEnumType(e).values.map((v) => v.localName);
+    expect(localNames).toStrictEqual([
+      "constructor$",
+      "toString$",
+      "toJSON$",
+      "valueOf$",
+    ]);
+  });
+  test("reserved property names (generated js)", () => {
+    const e = js_name_clash.ReservedPropertyNames_EnumBuiltIn;
+    expect(e.constructor$).toBe(0);
+    expect(e.toString$).toBe(1);
+    expect(e.toJSON$).toBe(2);
+    expect(e.valueOf$).toBe(3);
+    const localNames = proto3.getEnumType(e).values.map((v) => v.localName);
+    expect(localNames).toStrictEqual([
+      "constructor$",
+      "toString$",
+      "toJSON$",
+      "valueOf$",
+    ]);
+  });
+  test("reserved property names with prefix (generated js)", () => {
+    const e = js_name_clash.ReservedPropertyNames_EnumBuiltInPrefixed;
+    expect(e.constructor$).toBe(0);
+    expect(e.toString$).toBe(1);
+    expect(e.toJSON$).toBe(2);
+    expect(e.valueOf$).toBe(3);
+    const localNames = proto3.getEnumType(e).values.map((v) => v.localName);
+    expect(localNames).toStrictEqual([
+      "constructor$",
+      "toString$",
+      "toJSON$",
+      "valueOf$",
+    ]);
   });
 });

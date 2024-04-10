@@ -45,10 +45,23 @@ export const ReservedPropertyNames = /*@__PURE__*/ proto3.makeMessageType(
 export const ReservedPropertyNames_EnumBuiltIn = /*@__PURE__*/ proto3.makeEnum(
   "spec.ReservedPropertyNames.EnumBuiltIn",
   [
-    {no: 0, name: "constructor"},
-    {no: 1, name: "toString"},
-    {no: 2, name: "to_JSON"},
-    {no: 3, name: "value_of"},
+    {no: 0, name: "constructor", localName: "constructor$"},
+    {no: 1, name: "toString", localName: "toString$"},
+    {no: 2, name: "toJSON", localName: "toJSON$"},
+    {no: 3, name: "valueOf", localName: "valueOf$"},
+  ],
+);
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export const ReservedPropertyNames_EnumBuiltInPrefixed = /*@__PURE__*/ proto3.makeEnum(
+  "spec.ReservedPropertyNames.EnumBuiltInPrefixed",
+  [
+    {no: 0, name: "ENUM_BUILT_IN_PREFIXED_constructor", localName: "constructor$"},
+    {no: 1, name: "ENUM_BUILT_IN_PREFIXED_toString", localName: "toString$"},
+    {no: 2, name: "ENUM_BUILT_IN_PREFIXED_toJSON", localName: "toJSON$"},
+    {no: 3, name: "ENUM_BUILT_IN_PREFIXED_valueOf", localName: "valueOf$"},
   ],
 );
 
@@ -58,15 +71,15 @@ export const ReservedPropertyNames_EnumBuiltIn = /*@__PURE__*/ proto3.makeEnum(
 export const ReservedPropertyNames_EnumRuntime = /*@__PURE__*/ proto3.makeEnum(
   "spec.ReservedPropertyNames.EnumRuntime",
   [
-    {no: 0, name: "to_json"},
+    {no: 0, name: "toJson"},
     {no: 6, name: "type"},
     {no: 7, name: "clone"},
     {no: 8, name: "equals"},
-    {no: 9, name: "from_binary"},
-    {no: 10, name: "from_json"},
-    {no: 11, name: "from_json_string"},
-    {no: 12, name: "to_binary"},
-    {no: 14, name: "to_json_string"},
+    {no: 9, name: "fromBinary"},
+    {no: 10, name: "fromJson"},
+    {no: 11, name: "fromJsonString"},
+    {no: 12, name: "toBinary"},
+    {no: 14, name: "toJsonString"},
   ],
 );
 
