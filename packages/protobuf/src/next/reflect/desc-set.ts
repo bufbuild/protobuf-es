@@ -660,7 +660,7 @@ function addEnum(
       return resolveFeatures(desc);
     },
   };
-  desc.open = (resolveFeature(desc, "enumType") as ENUM_TYPE) == OPEN;
+  desc.open = isEnumOpen(desc);
   set.add(desc);
   proto.value.forEach((proto) => {
     desc.values.push({
@@ -1168,6 +1168,11 @@ function isPackedField(field: DescField | DescExtension): boolean {
     "repeatedFieldEncoding",
   );
   return r === PACKED;
+}
+
+function isEnumOpen(desc: DescEnum): boolean {
+  const enumType: ENUM_TYPE = resolveFeature(desc, "enumType");
+  return enumType == OPEN;
 }
 
 export function resolveFeatures(desc: AnyDesc): ResolvedFeatureSet {

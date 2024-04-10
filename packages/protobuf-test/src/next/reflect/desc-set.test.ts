@@ -42,6 +42,7 @@ import {
   LongType,
 } from "@bufbuild/protobuf/next/reflect";
 import {
+  compileEnum,
   compileField,
   compileFileDescriptorSet,
   compileMessage,
@@ -680,6 +681,58 @@ describe("DescFile", () => {
     expect(a?.name).toBe("a");
     expect(a?.dependencies.length).toBe(2);
     expect(a?.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
+  });
+});
+
+describe("DescEnum", () => {
+  describe("open", () => {
+    test("proto3 enum is open", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.open).toBe(true);
+    });
+    test("proto2 enum is closed", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto2";
+        enum E {
+          A = 1;
+        }
+      `);
+      expect(descEnum.open).toBe(false);
+    });
+    test("edition 2023 enum is open by default", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.open).toBe(true);
+    });
+    test("edition 2023 enum is closed by file feature", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        option features.enum_type = CLOSED;
+        enum E {
+          A = 1;
+        }
+      `);
+      expect(descEnum.open).toBe(false);
+    });
+    test("edition 2023 enum is closed by enum feature", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        enum E {
+          option features.enum_type = CLOSED;
+          A = 1;
+        }
+      `);
+      expect(descEnum.open).toBe(false);
+    });
   });
 });
 
