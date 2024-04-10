@@ -13,14 +13,14 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { compileFileDescriptorSet, compileMessage } from "../helpers.js";
+import { compileFile, compileFileDescriptorSet } from "../helpers.js";
 import { embedFileDesc } from "@bufbuild/protobuf/next/codegenv1";
 import assert from "node:assert";
 import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
 
 describe("embedFileDesc()", () => {
   test("embeds file descriptor", async () => {
-    const { file } = await compileMessage(`
+    const file = await compileFile(`
       syntax="proto3";
       message M {
         int32 int32_field = 1;

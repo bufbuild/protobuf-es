@@ -21,6 +21,7 @@ import type { DescField } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf/next";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
+import assert from "node:assert";
 
 export function describeGenerated<Desc extends DescMessage>(
   ts: Desc,
@@ -63,20 +64,37 @@ export async function compileFileDescriptorSet(
   return fromBinary(FileDescriptorSetDesc, bytes);
 }
 
-export async function compileMessage(proto: string): Promise<DescMessage> {
-  const set = createDescFileSet(
-    await compileFileDescriptorSet({
+export async function compileFile(proto: string) {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(
+    {
       "input.proto": proto,
-    }),
+    },
+    {
+      includeImports: true,
+      retainOptions: true,
+      includeSourceInfo: true,
+    },
   );
+  const fds = fromBinary(FileDescriptorSetDesc, bytes);
+  const set = createDescFileSet(fds);
   const file = set.getFile("input.proto");
-  if (file === undefined) {
-    throw new Error("missing file descriptor for input.proto");
-  }
-  if (file.messages.length == 0) {
-    throw new Error("missing message in input.proto");
-  }
-  return file.messages[0];
+  assert(file);
+  return file;
+}
+
+export async function compileEnum(proto: string) {
+  const file = await compileFile(proto);
+  const firstEnum = file.enums[0];
+  assert(firstEnum);
+  return firstEnum;
+}
+
+export async function compileMessage(proto: string) {
+  const file = await compileFile(proto);
+  const firstMessage = file.messages[0];
+  assert(firstMessage);
+  return firstMessage;
 }
 
 export function getFieldByLocalName(desc: DescMessage, name: string): DescField;

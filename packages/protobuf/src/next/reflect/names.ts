@@ -15,14 +15,14 @@
 import type { DescEnumValue, DescField } from "../../descriptor-set.js";
 import type { DescMethod, DescOneof } from "../../descriptor-set.js";
 
-// TODO update doc
 /**
  * Returns the name of a protobuf element in generated code.
  *
- * Field names - including oneofs - are converted to lowerCamelCase. For
- * messages, enumerations and services, the package name is stripped from
- * the type name. For nested messages and enumerations, the names are joined
- * with an underscore. For methods, the first character is made lowercase.
+ * Field names - including oneofs - are converted to lowerCamelCase. For methods,
+ * the first character is made lowercase. All names are escaped to be safe object
+ * property names.
+ *
+ * This function does not provide names for messages, enumerations, and services.
  */
 export function localName(
   desc: DescEnumValue | DescOneof | DescField | DescMethod,
@@ -39,11 +39,12 @@ export function localName(
     case "oneof":
       return safeObjectProperty(protoCamelCase(name));
     case "enum_value": {
+      let name = desc.name;
       const sharedPrefix = desc.parent.sharedPrefix;
-      if (sharedPrefix === undefined) {
-        return safeObjectProperty(name);
+      if (sharedPrefix !== undefined) {
+        name = name.substring(sharedPrefix.length);
       }
-      return safeObjectProperty(name.substring(sharedPrefix.length));
+      return safeObjectProperty(name);
     }
     case "rpc": {
       if (name.length == 0) {

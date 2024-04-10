@@ -40,13 +40,13 @@ export function enumDesc<Shape>(
  * Construct a TypeScript enum object at runtime from a descriptor.
  */
 export function tsEnum(desc: DescEnum) {
-  const enumObject = Object.create(null) as enumObject;
+  const enumObject = {} as enumObject;
   for (const value of desc.values) {
     const name = localName(value);
     enumObject[name] = value.number;
     enumObject[value.number] = name;
   }
-  return desc;
+  return enumObject;
 }
 
 type enumObject = {
