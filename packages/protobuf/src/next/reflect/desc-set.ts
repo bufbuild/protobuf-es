@@ -1079,6 +1079,7 @@ function isPackedField(file: DescFile, field: DescField | DescExtension) {
 
 /*bootstrap-inject-start*/
 // generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
+// prettier-ignore
 type TYPE =
   | typeof TYPE_DOUBLE
   | typeof TYPE_FLOAT
@@ -1118,6 +1119,7 @@ const TYPE_SINT32 = 17;
 const TYPE_SINT64 = 18;
 
 // generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
+// prettier-ignore
 type LABEL =
   | typeof LABEL_OPTIONAL
   | typeof LABEL_REPEATED
@@ -1127,6 +1129,7 @@ const LABEL_REPEATED = 3;
 const LABEL_REQUIRED = 2;
 
 // generated from enum google.protobuf.FieldOptions.JSType v26.0
+// prettier-ignore
 type JSTYPE =
   | typeof JS_NORMAL
   | typeof JS_STRING
@@ -1136,6 +1139,7 @@ const JS_STRING = 1;
 const JS_NUMBER = 2;
 
 // generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
+// prettier-ignore
 type IDEMPOTENCY =
   | typeof IDEMPOTENCY_UNKNOWN
   | typeof NO_SIDE_EFFECTS
@@ -1145,6 +1149,7 @@ const NO_SIDE_EFFECTS = 1;
 const IDEMPOTENT = 2;
 
 // generated from enum google.protobuf.Edition v26.0
+// prettier-ignore
 type EDITION =
   | typeof EDITION_UNKNOWN
   | typeof EDITION_PROTO2
@@ -1170,6 +1175,7 @@ const EDITION_99999_TEST_ONLY = 99999;
 const EDITION_MAX = 2147483647;
 
 // generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
+// prettier-ignore
 type REPEATED_FIELD_ENCODING =
   | typeof REPEATED_FIELD_ENCODING_UNKNOWN
   | typeof PACKED
@@ -1179,6 +1185,7 @@ const PACKED = 1;
 const EXPANDED = 2;
 
 // generated from enum google.protobuf.FeatureSet.EnumType v26.0
+// prettier-ignore
 type ENUM_TYPE =
   | typeof ENUM_TYPE_UNKNOWN
   | typeof OPEN

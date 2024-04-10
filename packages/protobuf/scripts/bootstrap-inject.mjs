@@ -149,6 +149,7 @@ async function enums(enumNames, print, upstreamVersion) {
       throw new Error(`enum ${enumName} not found`);
     }
     print(`// generated from ${enumDesc.toString()} v${upstream.version()}`);
+    print(`// prettier-ignore`);
     let name = enumDesc.name;
     switch (name) {
       case "IdempotencyLevel":
