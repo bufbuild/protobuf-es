@@ -16,8 +16,7 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { Extension } from "@bufbuild/protobuf";
-import { FileOptions } from "@bufbuild/protobuf";
+import type { Extension, FileOptions } from "@bufbuild/protobuf";
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;

@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FeatureSet, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from message pb.TestMessage
