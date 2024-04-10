@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Module } from "./gen/protobuf-es/buf/alpha/module/v1alpha1/module_pb";
+import { ModuleDesc } from "./gen/protobuf-es/buf/alpha/module/v1alpha1/module_pbv2.js";
+import { create, toBinary } from "@bufbuild/protobuf/next";
 
-const module = new Module({
+const module = create(ModuleDesc, {
   files: [
     {
       path: "foo.proto",
@@ -22,7 +23,7 @@ const module = new Module({
   ],
 });
 
-const bytes = module.toBinary();
+const bytes = toBinary(ModuleDesc, module);
 
 /* eslint-disable no-console,@typescript-eslint/ban-ts-comment,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
 // @ts-ignore
