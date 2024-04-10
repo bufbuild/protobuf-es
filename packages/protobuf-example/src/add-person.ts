@@ -13,13 +13,14 @@
 // limitations under the License.
 
 import {
-  AddressBook,
-  Person,
-  Person_PhoneNumber,
+  AddressBookDesc,
+  PersonDesc,
+  Person_PhoneNumberDesc,
   Person_PhoneType,
-} from "./gen/addressbook_pb.js";
+} from "./gen/addressbook_pbv2.js";
 import { createInterface } from "readline";
 import { readFileSync, existsSync, writeFileSync } from "fs";
+import { create, mergeFromBinary, toBinary } from "@bufbuild/protobuf/next";
 
 async function main() {
   if (process.argv.length !== 3) {
@@ -27,14 +28,14 @@ async function main() {
   }
   const addressBookFile = process.argv[2];
 
-  const person = new Person({
+  const person = create(PersonDesc, {
     id: parseInt(await prompt("Enter person ID number: ")),
     name: await prompt("Enter name: "),
     email: await prompt("Enter email address (blank for none): "),
   });
 
   for (;;) {
-    const phoneNumber = new Person_PhoneNumber({
+    const phoneNumber = create(Person_PhoneNumberDesc, {
       number: await prompt("Enter a phone number (or leave blank to finish): "),
     });
     if (phoneNumber.number === "") {
@@ -57,16 +58,16 @@ async function main() {
     }
   }
 
-  const addressBook = new AddressBook();
+  const addressBook = create(AddressBookDesc);
   if (existsSync(addressBookFile)) {
     const bytes = readFileSync(addressBookFile);
-    addressBook.fromBinary(bytes);
+    mergeFromBinary(AddressBookDesc, addressBook, bytes);
   } else {
     print("File not found. Creating new file.");
   }
 
   addressBook.people.push(person);
-  writeFileSync(addressBookFile, addressBook.toBinary());
+  writeFileSync(addressBookFile, toBinary(AddressBookDesc, addressBook));
 }
 
 main().catch((e) => {

@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AddressBook, Person_PhoneType } from "./gen/addressbook_pb.js";
+import {
+  AddressBook,
+  AddressBookDesc,
+  Person_PhoneType,
+} from "./gen/addressbook_pbv2.js";
+import { fromBinary } from "@bufbuild/protobuf/next";
 import { readFileSync } from "fs";
 
 if (process.argv.length !== 3) {
@@ -21,7 +26,7 @@ if (process.argv.length !== 3) {
 }
 const addressBookFile = process.argv[2];
 const bytes = readFileSync(addressBookFile);
-const addressBook = AddressBook.fromBinary(bytes);
+const addressBook = fromBinary(AddressBookDesc, bytes);
 printAddressBook(addressBook);
 
 function printAddressBook(addressBook: AddressBook): void {
