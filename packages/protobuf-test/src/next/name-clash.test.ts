@@ -17,7 +17,7 @@ import * as ts_name_clash from "../gen/ts/extra/name-clash_pbv2.js";
 import * as js_name_clash from "../gen/js/extra/name-clash_pbv2.js";
 import { create } from "@bufbuild/protobuf/next";
 
-describe.skip("message looking like a oneof ADT", () => {
+describe("message looking like a oneof ADT", () => {
   test("takes all fields in constructor", () => {
     const m = create(ts_name_clash.NoClashOneofADTDesc, {
       m: {
@@ -35,7 +35,7 @@ describe.skip("message looking like a oneof ADT", () => {
       },
     });
     expect(m.m?.case).toBe("value");
-    expect(m.m?.value).toBe("");
+    expect(m.m?.value).toBeUndefined();
   });
 });
 
