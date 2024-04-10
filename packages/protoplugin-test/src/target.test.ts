@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, jest, test } from "@jest/globals";
-import type { FileInfo, Schema } from "@bufbuild/protoplugin/next/ecmascript";
+import type { FileInfo, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
-import type { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import type { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
 
 describe("target", () => {

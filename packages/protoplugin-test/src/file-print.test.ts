@@ -14,11 +14,8 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { LongType, protoInt64, ScalarType } from "@bufbuild/protobuf";
-import type {
-  GeneratedFile,
-  Schema,
-} from "@bufbuild/protoplugin/next/ecmascript";
-import { createImportSymbol } from "@bufbuild/protoplugin/next/ecmascript";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.print", () => {

@@ -24,13 +24,13 @@ import {
   embedFileDesc,
   pathInFileDesc,
 } from "@bufbuild/protobuf/next/codegenv1";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
   Schema,
   GeneratedFile,
   Printable,
   Target,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 import {
   arrayLiteral,
   fieldUsesPrototype,

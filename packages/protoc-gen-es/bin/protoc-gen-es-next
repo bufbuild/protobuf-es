@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {runNodeJs} = require("@bufbuild/protoplugin/next");
+const {runNodeJs} = require("@bufbuild/protoplugin");
 const {protocGenEs} = require("../dist/cjs/src/next/protoc-gen-es-plugin.js");
 
 runNodeJs(protocGenEs);

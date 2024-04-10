@@ -15,8 +15,8 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/next/wkt";
 import { create } from "@bufbuild/protobuf/next";
-import type { Plugin } from "@bufbuild/protoplugin/next";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import type { Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("parse custom plugin option", () => {
   let foo: number | undefined;

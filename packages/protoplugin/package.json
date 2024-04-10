@@ -26,26 +26,12 @@
     "./ecmascript": {
       "import": "./dist/esm/ecmascript/index.js",
       "require": "./dist/cjs/ecmascript/index.js"
-    },
-    "./next": {
-      "import": "./dist/esm/next/index.js",
-      "require": "./dist/cjs/next/index.js"
-    },
-    "./next/ecmascript": {
-      "import": "./dist/esm/next/ecmascript/index.js",
-      "require": "./dist/cjs/next/ecmascript/index.js"
     }
   },
   "typesVersions": {
     "*": {
       "ecmascript": [
         "./dist/cjs/ecmascript/index.d.ts"
-      ],
-      "next": [
-        "./dist/cjs/next/index.d.ts"
-      ],
-      "next/ecmascript": [
-        "./dist/cjs/next/ecmascript/index.d.ts"
       ]
     }
   },

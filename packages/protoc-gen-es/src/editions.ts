@@ -15,7 +15,7 @@
 import type {
   GeneratedFile,
   ImportSymbol,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 import { DescFile } from "@bufbuild/protobuf";
 import { runtimeImports } from "./util";
 

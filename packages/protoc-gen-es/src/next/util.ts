@@ -15,7 +15,7 @@
 import type { DescExtension, DescField } from "@bufbuild/protobuf";
 import { codegenInfo, LongType, ScalarType } from "@bufbuild/protobuf";
 import { Edition } from "@bufbuild/protobuf/next/wkt";
-import type { Printable } from "@bufbuild/protoplugin/next/ecmascript";
+import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 
 /**

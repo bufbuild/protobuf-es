@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import { generateTs } from "./typescript.js";
 import { generateJs } from "./javascript.js";
 import { generateDts } from "./declaration.js";

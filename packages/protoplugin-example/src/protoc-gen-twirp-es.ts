@@ -14,11 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin/next";
-import {
-  type Schema,
-  safeIdentifier,
-} from "@bufbuild/protoplugin/next/ecmascript";
+import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
+import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
 import { MethodKind } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/next/reflect";
 import { default_host } from "./gen/customoptions/default_host_pbv2.js";

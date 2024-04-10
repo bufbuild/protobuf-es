@@ -17,7 +17,7 @@ import {
   getDeclarationString,
   getPackageComments,
   getSyntaxComments,
-} from "@bufbuild/protoplugin/next";
+} from "@bufbuild/protoplugin";
 import { describe, expect, test } from "@jest/globals";
 import {
   compileEnum,

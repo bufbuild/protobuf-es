@@ -1,10 +1,5 @@
 {
-  "files": [
-    "src/index.ts",
-    "src/ecmascript/index.ts",
-    "src/next/index.ts",
-    "src/next/ecmascript/index.ts"
-  ],
+  "files": ["src/index.ts", "src/ecmascript/index.ts"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "esModuleInterop": true,

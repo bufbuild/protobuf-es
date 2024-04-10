@@ -23,7 +23,7 @@ import type {
   GeneratedFile,
   Printable,
   Schema,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 import { getNonEditionRuntime } from "./editions.js";
 import {
   fieldUsesPrototype,

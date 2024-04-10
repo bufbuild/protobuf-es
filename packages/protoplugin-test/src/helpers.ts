@@ -19,13 +19,13 @@ import {
 } from "@bufbuild/protobuf/next/wkt";
 import { fromBinary } from "@bufbuild/protobuf/next";
 import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
-import type { Plugin } from "@bufbuild/protoplugin/next";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import type { Plugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
   GeneratedFile,
   Schema,
   Target,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { expect } from "@jest/globals";
 import assert from "node:assert";

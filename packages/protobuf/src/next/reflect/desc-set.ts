@@ -1179,7 +1179,10 @@ const PACKED = 1;
 const EXPANDED = 2;
 
 // generated from enum google.protobuf.FeatureSet.EnumType v26.0
-type ENUM_TYPE = typeof ENUM_TYPE_UNKNOWN | typeof OPEN | typeof CLOSED;
+type ENUM_TYPE =
+  | typeof ENUM_TYPE_UNKNOWN
+  | typeof OPEN
+  | typeof CLOSED;
 const ENUM_TYPE_UNKNOWN = 0;
 const OPEN = 1;
 const CLOSED = 2;

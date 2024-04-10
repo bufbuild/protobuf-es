@@ -30,7 +30,7 @@ import {
   Edition,
   FieldDescriptorProto_Type,
 } from "@bufbuild/protobuf/next/wkt";
-import type { Printable, Schema } from "@bufbuild/protoplugin/next/ecmascript";
+import type { Printable, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { wktPublicImportPaths } from "@bufbuild/protobuf/next/codegenv1";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 import { localName as reflectLocalName } from "@bufbuild/protobuf/next/reflect";
@@ -39,7 +39,7 @@ import {
   GeneratedFile,
   ImportSymbol,
   safeIdentifier,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 
 interface RuntimeImports {
   proto2: ImportSymbol;

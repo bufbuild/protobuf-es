@@ -22,8 +22,8 @@ import {
 } from "@bufbuild/protobuf/next/wkt";
 import { createTestPluginAndRun } from "./helpers.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import type { Schema } from "@bufbuild/protoplugin/next/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
+import type { Schema } from "@bufbuild/protoplugin/ecmascript";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("editions support in plugins", () => {
   describe("with default setup", () => {

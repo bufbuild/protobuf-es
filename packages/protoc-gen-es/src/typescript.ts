@@ -24,7 +24,7 @@ import {
   GeneratedFile,
   Printable,
   Schema,
-} from "@bufbuild/protoplugin/next/ecmascript";
+} from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
 import { getNonEditionRuntime } from "./editions.js";
 import {
