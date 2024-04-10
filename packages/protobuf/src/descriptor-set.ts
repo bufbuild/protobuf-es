@@ -393,6 +393,8 @@ interface descFieldAndExtensionShared {
 type descFieldSingularCommon = {
   /**
    * The `oneof` group this field belongs to, if any.
+   *
+   * This does not include synthetic oneofs for proto3 optionals.
    */
   readonly oneof: DescOneof | undefined;
   /**

@@ -352,6 +352,155 @@ function addDescFile(file: DescFile, set: DescFileSetMutable) {
   }
 }
 
+/*bootstrap-inject-start*/
+// generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
+// prettier-ignore
+type TYPE =
+  | typeof TYPE_DOUBLE
+  | typeof TYPE_FLOAT
+  | typeof TYPE_INT64
+  | typeof TYPE_UINT64
+  | typeof TYPE_INT32
+  | typeof TYPE_FIXED64
+  | typeof TYPE_FIXED32
+  | typeof TYPE_BOOL
+  | typeof TYPE_STRING
+  | typeof TYPE_GROUP
+  | typeof TYPE_MESSAGE
+  | typeof TYPE_BYTES
+  | typeof TYPE_UINT32
+  | typeof TYPE_ENUM
+  | typeof TYPE_SFIXED32
+  | typeof TYPE_SFIXED64
+  | typeof TYPE_SINT32
+  | typeof TYPE_SINT64;
+const TYPE_DOUBLE = 1;
+const TYPE_FLOAT = 2;
+const TYPE_INT64 = 3;
+const TYPE_UINT64 = 4;
+const TYPE_INT32 = 5;
+const TYPE_FIXED64 = 6;
+const TYPE_FIXED32 = 7;
+const TYPE_BOOL = 8;
+const TYPE_STRING = 9;
+const TYPE_GROUP = 10;
+const TYPE_MESSAGE = 11;
+const TYPE_BYTES = 12;
+const TYPE_UINT32 = 13;
+const TYPE_ENUM = 14;
+const TYPE_SFIXED32 = 15;
+const TYPE_SFIXED64 = 16;
+const TYPE_SINT32 = 17;
+const TYPE_SINT64 = 18;
+
+// generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
+// prettier-ignore
+type LABEL =
+  | typeof LABEL_OPTIONAL
+  | typeof LABEL_REPEATED
+  | typeof LABEL_REQUIRED;
+const LABEL_OPTIONAL = 1;
+const LABEL_REPEATED = 3;
+const LABEL_REQUIRED = 2;
+
+// generated from enum google.protobuf.FieldOptions.JSType v26.0
+// prettier-ignore
+type JSTYPE =
+  | typeof JS_NORMAL
+  | typeof JS_STRING
+  | typeof JS_NUMBER;
+const JS_NORMAL = 0;
+const JS_STRING = 1;
+const JS_NUMBER = 2;
+
+// generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
+// prettier-ignore
+type IDEMPOTENCY =
+  | typeof IDEMPOTENCY_UNKNOWN
+  | typeof NO_SIDE_EFFECTS
+  | typeof IDEMPOTENT;
+const IDEMPOTENCY_UNKNOWN = 0;
+const NO_SIDE_EFFECTS = 1;
+const IDEMPOTENT = 2;
+
+// generated from enum google.protobuf.Edition v26.0
+// prettier-ignore
+type EDITION =
+  | typeof EDITION_UNKNOWN
+  | typeof EDITION_PROTO2
+  | typeof EDITION_PROTO3
+  | typeof EDITION_2023
+  | typeof EDITION_2024
+  | typeof EDITION_1_TEST_ONLY
+  | typeof EDITION_2_TEST_ONLY
+  | typeof EDITION_99997_TEST_ONLY
+  | typeof EDITION_99998_TEST_ONLY
+  | typeof EDITION_99999_TEST_ONLY
+  | typeof EDITION_MAX;
+const EDITION_UNKNOWN = 0;
+const EDITION_PROTO2 = 998;
+const EDITION_PROTO3 = 999;
+const EDITION_2023 = 1000;
+const EDITION_2024 = 1001;
+const EDITION_1_TEST_ONLY = 1;
+const EDITION_2_TEST_ONLY = 2;
+const EDITION_99997_TEST_ONLY = 99997;
+const EDITION_99998_TEST_ONLY = 99998;
+const EDITION_99999_TEST_ONLY = 99999;
+const EDITION_MAX = 2147483647;
+
+// generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
+// prettier-ignore
+type REPEATED_FIELD_ENCODING =
+  | typeof REPEATED_FIELD_ENCODING_UNKNOWN
+  | typeof PACKED
+  | typeof EXPANDED;
+const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
+const PACKED = 1;
+const EXPANDED = 2;
+
+// generated from enum google.protobuf.FeatureSet.EnumType v26.0
+// prettier-ignore
+type ENUM_TYPE =
+  | typeof ENUM_TYPE_UNKNOWN
+  | typeof OPEN
+  | typeof CLOSED;
+const ENUM_TYPE_UNKNOWN = 0;
+const OPEN = 1;
+const CLOSED = 2;
+
+// generated from protoc experimental_edition_defaults_out v26.0
+const featureDefaults = {
+  // EDITION_PROTO2
+  998: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 2, // CLOSED,
+    repeatedFieldEncoding: 2, // EXPANDED,
+    utf8Validation: 3, // NONE,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 2, // LEGACY_BEST_EFFORT,
+  },
+  // EDITION_PROTO3
+  999: {
+    fieldPresence: 2, // IMPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+  },
+  // EDITION_2023
+  1000: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+  },
+} as const;
+/*bootstrap-inject-end*/
+
 /**
  * Create a descriptor for a file, add it to the set.
  */
@@ -427,14 +576,14 @@ function addExtensions(
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc, undefined, set);
+        const ext = newField(proto, desc, set);
         desc.extensions.push(ext);
         set.add(ext);
       }
       break;
     case "message":
       for (const proto of desc.proto.extension) {
-        const ext = newExtension(proto, desc.file, desc, set);
+        const ext = newField(proto, desc, set);
         desc.nestedExtensions.push(ext);
         set.add(ext);
       }
@@ -460,14 +609,7 @@ function addFields(
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
     const oneof = findOneof(proto, allOneofs);
-    const field = newField(
-      proto,
-      message.file,
-      message,
-      oneof,
-      set,
-      mapEntries,
-    );
+    const field = newField(proto, message, set, oneof, mapEntries);
     message.fields.push(field);
     if (oneof === undefined) {
       message.members.push(field);
@@ -704,55 +846,82 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
  */
 function newField(
   proto: FieldDescriptorProto,
-  file: DescFile,
   parent: DescMessage,
-  oneof: DescOneof | undefined,
   set: DescSet,
+  oneof: DescOneof | undefined,
   mapEntries: FileMapEntries,
-): DescField {
-  type fieldFragment<
-    FieldKind extends "scalar" | "enum" | "message" | "list" | "map" =
-      | "scalar"
-      | "enum"
-      | "message"
-      | "list"
-      | "map",
-    ExtraProperties extends string = "",
-  > = {
-    -readonly [P in
-      | keyof (DescField & { fieldKind: FieldKind })
-      | ExtraProperties]?: unknown;
-  };
-  const common: fieldFragment = {
-    kind: "field",
+): DescField;
+
+/**
+ * Create a descriptor for an extension field.
+ */
+function newField(
+  proto: FieldDescriptorProto,
+  parent: DescFile | DescMessage,
+  set: DescSet,
+): DescExtension;
+
+function newField(
+  proto: FieldDescriptorProto,
+  parentOrFile: DescMessage | DescFile,
+  set: DescSet,
+  oneof?: DescOneof | undefined,
+  mapEntries?: FileMapEntries,
+): DescField | DescExtension {
+  type AllKeys =
+    | keyof DescField
+    | keyof DescExtension
+    | keyof (DescField & { fieldKind: "map" })
+    | keyof (DescField & { fieldKind: "list" })
+    | keyof (DescField & { fieldKind: "scalar" });
+  const field: Partial<Record<AllKeys, unknown>> = {
     proto,
     deprecated: proto.options?.deprecated ?? false,
     name: proto.name,
     number: proto.number,
-    parent,
-    oneof,
-    jsonName: proto.jsonName,
     scalar: undefined,
     message: undefined,
     enum: undefined,
-    // kind, toString, getComments, getFeatures are overridden in newExtension
-    toString(): string {
-      return `field ${parent.typeName}.${this.name as string}`;
-    },
     getFeatures() {
       return resolveFeatures(this as DescField | DescExtension);
     },
   };
+  if (mapEntries === undefined) {
+    const file = parentOrFile.kind == "file" ? parentOrFile : parentOrFile.file;
+    const parent = parentOrFile.kind == "file" ? undefined : parentOrFile;
+    const typeName = makeTypeName(proto, parent, file);
+    field.kind = "extension";
+    field.file = file;
+    field.parent = parent;
+    field.oneof = undefined;
+    field.typeName = typeName;
+    field.jsonName = `[${typeName}]`; // option json_name is not allowed on extension fields
+    field.toString = () => `extension ${typeName}`;
+    const extendee = set.getMessage(trimLeadingDot(proto.extendee));
+    assert(
+      extendee,
+      `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
+    );
+    field.extendee = extendee;
+  } else {
+    const parent = parentOrFile;
+    assert(parent.kind == "message");
+    field.kind = "field";
+    field.parent = parent;
+    field.oneof = oneof;
+    field.jsonName = proto.jsonName;
+    field.toString = () => `field ${parent.typeName}.${proto.name}`;
+  }
   const label: LABEL = proto.label;
   const type: TYPE = proto.type;
   const jstype: JSTYPE | undefined = proto.options?.jstype;
   if (label === LABEL_REPEATED) {
     const mapEntry =
       type == TYPE_MESSAGE
-        ? mapEntries.get(trimLeadingDot(proto.typeName))
+        ? mapEntries?.get(trimLeadingDot(proto.typeName))
         : undefined;
     if (mapEntry) {
-      assert(!oneof);
+      field.fieldKind = "map";
       const keyField = mapEntry.fields.find((f) => f.number === 1);
       assert(keyField);
       assert(keyField.fieldKind == "scalar");
@@ -764,58 +933,47 @@ function newField(
       const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
       assert(valueField);
       assert(valueField.fieldKind != "list" && valueField.fieldKind != "map");
-      return {
-        ...common,
-        fieldKind: "map",
-        mapKey: keyField.scalar,
-        mapKind: valueField.fieldKind,
-        message: valueField.message,
-        enum: valueField.enum,
-        scalar: valueField.scalar,
-      } as DescField;
+      field.mapKey = keyField.scalar;
+      field.mapKind = valueField.fieldKind;
+      field.message = valueField.message;
+      field.enum = valueField.enum;
+      field.scalar = valueField.scalar;
+      return field as DescField;
     }
-    const list: fieldFragment<"list", "longType"> = {
-      ...common,
-      fieldKind: "list",
-      packed: isPackedField(file, common as DescField | DescExtension),
-    };
-    assert(!oneof);
+    field.fieldKind = "list";
     switch (type) {
       case TYPE_MESSAGE:
       case TYPE_GROUP:
-        list.listKind = "message";
-        list.message = set.getMessage(trimLeadingDot(proto.typeName));
-        assert(list.message);
+        field.listKind = "message";
+        field.message = set.getMessage(trimLeadingDot(proto.typeName));
+        assert(field.message);
         break;
       case TYPE_ENUM:
-        list.listKind = "enum";
-        list.enum = set.getEnum(trimLeadingDot(proto.typeName));
-        assert(list.enum);
+        field.listKind = "enum";
+        field.enum = set.getEnum(trimLeadingDot(proto.typeName));
+        assert(field.enum);
         break;
       default:
-        list.listKind = "scalar";
-        list.scalar = type;
-        list.longType = jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
+        field.listKind = "scalar";
+        field.scalar = type;
+        field.longType =
+          jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
         break;
     }
-    return list as DescField;
+    field.packed = isPackedField(field as DescField | DescExtension);
+    return field as DescField | DescExtension;
   }
-  const singular: fieldFragment<"scalar" | "enum" | "message", "longType"> = {
-    ...common,
-    optional: isOptionalField(proto, file.syntax),
-    getDefaultValue() {
-      return undefined;
-    },
-  };
+
   switch (type) {
     case TYPE_MESSAGE:
     case TYPE_GROUP:
-      singular.fieldKind = "message";
-      singular.message = set.getMessage(trimLeadingDot(proto.typeName));
+      field.fieldKind = "message";
+      field.message = set.getMessage(trimLeadingDot(proto.typeName));
       assert(
-        singular.message,
+        field.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
+      field.getDefaultValue = () => undefined;
       break;
     case TYPE_ENUM: {
       const enumeration = set.getEnum(trimLeadingDot(proto.typeName));
@@ -823,9 +981,9 @@ function newField(
         enumeration !== undefined,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
-      singular.fieldKind = "enum";
-      singular.enum = set.getEnum(trimLeadingDot(proto.typeName));
-      singular.getDefaultValue = () => {
+      field.fieldKind = "enum";
+      field.enum = set.getEnum(trimLeadingDot(proto.typeName));
+      field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatEnumValue(enumeration, proto.defaultValue)
           : undefined;
@@ -833,11 +991,10 @@ function newField(
       break;
     }
     default: {
-      singular.fieldKind = "scalar";
-      singular.scalar = type;
-      singular.longType =
-        jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
-      singular.getDefaultValue = () => {
+      field.fieldKind = "scalar";
+      field.scalar = type;
+      field.longType = jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
+      field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatScalarValue(type, proto.defaultValue)
           : undefined;
@@ -845,53 +1002,8 @@ function newField(
       break;
     }
   }
-  return singular as DescField;
-}
-
-/**
- * Create a descriptor for an extension field.
- */
-function newExtension(
-  proto: FieldDescriptorProto,
-  file: DescFile,
-  parent: DescMessage | undefined,
-  set: DescSet,
-): DescExtension {
-  const emptyMapEntries: FileMapEntries = {
-    get: () => undefined,
-    add: () => assert(false),
-  };
-  const field = newField(
-    proto,
-    file,
-    null as unknown as DescMessage, // to safe us many lines of duplicated code, we trick the type system
-    undefined,
-    set,
-    emptyMapEntries, // extension fields cannot be maps
-  );
-  const extendee = set.getMessage(trimLeadingDot(proto.extendee));
-  assert(
-    extendee,
-    `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
-  );
-  assert(field.fieldKind != "map");
-  assert(!field.oneof);
-  const typeName = makeTypeName(proto, parent, file);
-  return {
-    ...field,
-    kind: "extension",
-    typeName,
-    jsonName: `[${typeName}]`, // option json_name is not allowed on extension fields
-    parent,
-    file,
-    extendee,
-    // Must override toString, getComments, getFeatures from newField, because we
-    // call newField with parent undefined.
-    oneof: undefined,
-    toString(): string {
-      return `extension ${this.typeName}`;
-    },
-  };
+  field.optional = isOptionalField(field as DescField | DescExtension);
+  return field as DescField | DescExtension;
 }
 
 /**
@@ -995,7 +1107,7 @@ function trimLeadingDot(typeName: string): string {
 
 /**
  * Did the user put the field in a oneof group?
- * This handles proto3 optionals.
+ * Synthetic oneofs for proto3 optionals are ignored.
  */
 function findOneof(
   proto: FieldDescriptorProto,
@@ -1017,34 +1129,27 @@ function findOneof(
 
 /**
  * Did the user use the `optional` keyword?
- * This handles proto3 optionals.
  */
-function isOptionalField(
-  proto: FieldDescriptorProto,
-  syntax: "proto2" | "proto3" | "editions",
-): boolean {
-  switch (syntax) {
-    case "proto2":
-      // eslint-disable-next-line no-case-declarations
-      const label: LABEL = proto.label;
-      return (
-        !unsafeIsSetExplicit(proto, "oneofIndex") && label === LABEL_OPTIONAL
-      );
-    case "proto3":
-      return proto.proto3Optional;
-    case "editions":
-      return false;
+function isOptionalField(field: DescField | DescExtension): boolean {
+  const edition = (field.kind == "extension" ? field.file : field.parent.file)
+    .edition;
+  if ((edition as number) == EDITION_PROTO2) {
+    return !field.oneof && (field.proto.label as number) == LABEL_OPTIONAL;
   }
+  if ((edition as number) == EDITION_PROTO3) {
+    return field.proto.proto3Optional;
+  }
+  return false;
 }
 
 /**
  * Pack this repeated field?
- *
- * Respects field type, proto2/proto3 defaults and the `packed` option, or
- * edition defaults and the edition features.repeated_field_encoding options.
  */
-function isPackedField(file: DescFile, field: DescField | DescExtension) {
-  const type: TYPE = field.proto.type;
+function isPackedField(field: DescField | DescExtension): boolean {
+  if ((field.proto.label as number) != LABEL_REPEATED) {
+    return false;
+  }
+  const type: number = field.proto.type;
   switch (type) {
     case TYPE_STRING:
     case TYPE_BYTES:
@@ -1052,179 +1157,18 @@ function isPackedField(file: DescFile, field: DescField | DescExtension) {
     case TYPE_MESSAGE:
       // length-delimited types cannot be packed
       return false;
-    default:
-      const protoOptions = field.proto.options; // eslint-disable-line no-case-declarations
-      const edition: EDITION = file.edition; // eslint-disable-line no-case-declarations
-      switch (edition) {
-        case EDITION_PROTO2:
-          return protoOptions !== undefined &&
-            unsafeIsSetExplicit(protoOptions, "packed")
-            ? protoOptions.packed
-            : false;
-        case EDITION_PROTO3:
-          return protoOptions !== undefined &&
-            unsafeIsSetExplicit(protoOptions, "packed")
-            ? protoOptions.packed
-            : true;
-        default: {
-          const r: REPEATED_FIELD_ENCODING = resolveFeature(
-            field,
-            "repeatedFieldEncoding",
-          );
-          return r === PACKED;
-        }
-      }
   }
+  const o = field.proto.options;
+  if (o && unsafeIsSetExplicit(o, "packed")) {
+    // prefer the field option over edition features
+    return o.packed;
+  }
+  const r: REPEATED_FIELD_ENCODING = resolveFeature(
+    field,
+    "repeatedFieldEncoding",
+  );
+  return r === PACKED;
 }
-
-/*bootstrap-inject-start*/
-// generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
-// prettier-ignore
-type TYPE =
-  | typeof TYPE_DOUBLE
-  | typeof TYPE_FLOAT
-  | typeof TYPE_INT64
-  | typeof TYPE_UINT64
-  | typeof TYPE_INT32
-  | typeof TYPE_FIXED64
-  | typeof TYPE_FIXED32
-  | typeof TYPE_BOOL
-  | typeof TYPE_STRING
-  | typeof TYPE_GROUP
-  | typeof TYPE_MESSAGE
-  | typeof TYPE_BYTES
-  | typeof TYPE_UINT32
-  | typeof TYPE_ENUM
-  | typeof TYPE_SFIXED32
-  | typeof TYPE_SFIXED64
-  | typeof TYPE_SINT32
-  | typeof TYPE_SINT64;
-const TYPE_DOUBLE = 1;
-const TYPE_FLOAT = 2;
-const TYPE_INT64 = 3;
-const TYPE_UINT64 = 4;
-const TYPE_INT32 = 5;
-const TYPE_FIXED64 = 6;
-const TYPE_FIXED32 = 7;
-const TYPE_BOOL = 8;
-const TYPE_STRING = 9;
-const TYPE_GROUP = 10;
-const TYPE_MESSAGE = 11;
-const TYPE_BYTES = 12;
-const TYPE_UINT32 = 13;
-const TYPE_ENUM = 14;
-const TYPE_SFIXED32 = 15;
-const TYPE_SFIXED64 = 16;
-const TYPE_SINT32 = 17;
-const TYPE_SINT64 = 18;
-
-// generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
-// prettier-ignore
-type LABEL =
-  | typeof LABEL_OPTIONAL
-  | typeof LABEL_REPEATED
-  | typeof LABEL_REQUIRED;
-const LABEL_OPTIONAL = 1;
-const LABEL_REPEATED = 3;
-const LABEL_REQUIRED = 2;
-
-// generated from enum google.protobuf.FieldOptions.JSType v26.0
-// prettier-ignore
-type JSTYPE =
-  | typeof JS_NORMAL
-  | typeof JS_STRING
-  | typeof JS_NUMBER;
-const JS_NORMAL = 0;
-const JS_STRING = 1;
-const JS_NUMBER = 2;
-
-// generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
-// prettier-ignore
-type IDEMPOTENCY =
-  | typeof IDEMPOTENCY_UNKNOWN
-  | typeof NO_SIDE_EFFECTS
-  | typeof IDEMPOTENT;
-const IDEMPOTENCY_UNKNOWN = 0;
-const NO_SIDE_EFFECTS = 1;
-const IDEMPOTENT = 2;
-
-// generated from enum google.protobuf.Edition v26.0
-// prettier-ignore
-type EDITION =
-  | typeof EDITION_UNKNOWN
-  | typeof EDITION_PROTO2
-  | typeof EDITION_PROTO3
-  | typeof EDITION_2023
-  | typeof EDITION_2024
-  | typeof EDITION_1_TEST_ONLY
-  | typeof EDITION_2_TEST_ONLY
-  | typeof EDITION_99997_TEST_ONLY
-  | typeof EDITION_99998_TEST_ONLY
-  | typeof EDITION_99999_TEST_ONLY
-  | typeof EDITION_MAX;
-const EDITION_UNKNOWN = 0;
-const EDITION_PROTO2 = 998;
-const EDITION_PROTO3 = 999;
-const EDITION_2023 = 1000;
-const EDITION_2024 = 1001;
-const EDITION_1_TEST_ONLY = 1;
-const EDITION_2_TEST_ONLY = 2;
-const EDITION_99997_TEST_ONLY = 99997;
-const EDITION_99998_TEST_ONLY = 99998;
-const EDITION_99999_TEST_ONLY = 99999;
-const EDITION_MAX = 2147483647;
-
-// generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
-// prettier-ignore
-type REPEATED_FIELD_ENCODING =
-  | typeof REPEATED_FIELD_ENCODING_UNKNOWN
-  | typeof PACKED
-  | typeof EXPANDED;
-const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
-const PACKED = 1;
-const EXPANDED = 2;
-
-// generated from enum google.protobuf.FeatureSet.EnumType v26.0
-// prettier-ignore
-type ENUM_TYPE =
-  | typeof ENUM_TYPE_UNKNOWN
-  | typeof OPEN
-  | typeof CLOSED;
-const ENUM_TYPE_UNKNOWN = 0;
-const OPEN = 1;
-const CLOSED = 2;
-
-// generated from protoc experimental_edition_defaults_out v26.0
-const featureDefaults = {
-  // EDITION_PROTO2
-  998: {
-    fieldPresence: 1, // EXPLICIT,
-    enumType: 2, // CLOSED,
-    repeatedFieldEncoding: 2, // EXPANDED,
-    utf8Validation: 3, // NONE,
-    messageEncoding: 1, // LENGTH_PREFIXED,
-    jsonFormat: 2, // LEGACY_BEST_EFFORT,
-  },
-  // EDITION_PROTO3
-  999: {
-    fieldPresence: 2, // IMPLICIT,
-    enumType: 1, // OPEN,
-    repeatedFieldEncoding: 1, // PACKED,
-    utf8Validation: 2, // VERIFY,
-    messageEncoding: 1, // LENGTH_PREFIXED,
-    jsonFormat: 1, // ALLOW,
-  },
-  // EDITION_2023
-  1000: {
-    fieldPresence: 1, // EXPLICIT,
-    enumType: 1, // OPEN,
-    repeatedFieldEncoding: 1, // PACKED,
-    utf8Validation: 2, // VERIFY,
-    messageEncoding: 1, // LENGTH_PREFIXED,
-    jsonFormat: 1, // ALLOW,
-  },
-} as const;
-/*bootstrap-inject-end*/
 
 export function resolveFeatures(desc: AnyDesc): ResolvedFeatureSet {
   return {
