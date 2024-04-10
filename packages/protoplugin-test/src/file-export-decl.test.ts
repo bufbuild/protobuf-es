@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import type { GeneratedFile } from "@bufbuild/protoplugin/next/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.exportDecl", () => {
@@ -32,20 +32,6 @@ describe("GeneratedFile.exportDecl", () => {
       f.print(f.exportDecl("", "foo"), ";");
     });
     expect(lines).toStrictEqual(["const foo = 123;", "export foo;"]);
-  });
-
-  test("accepts DescMessage as name", async () => {
-    const lines = await testGenerate((f, descMessage) => {
-      f.print(f.exportDecl("const", descMessage), " = 123;");
-    });
-    expect(lines).toStrictEqual(["export const SomeMessage = 123;"]);
-  });
-
-  test("accepts DescEnum as name", async () => {
-    const lines = await testGenerate((f, _, descEnum) => {
-      f.print(f.exportDecl("const", descEnum), " = 123;");
-    });
-    expect(lines).toStrictEqual(["export const SomeEnum = 123;"]);
   });
 
   test("forces import with same name to be aliased", async () => {

@@ -13,7 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
+import type {
+  GeneratedFile,
+  Schema,
+} from "@bufbuild/protoplugin/next/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("rewrite_imports", function () {
@@ -31,19 +34,6 @@ describe("rewrite_imports", function () {
       'import { Baz } from "@scope/pkg/foo/bar/baz_pb.js";',
       "",
       "console.log(Bar, Baz);",
-    ]);
-  });
-  test("should rewrite runtime import to other package", async () => {
-    const lines = await testGenerate(
-      "target=ts,rewrite_imports=@bufbuild/protobuf:@scope/pkg",
-      (f, schema) => {
-        f.print`${schema.runtime.ScalarType}.INT32`;
-      },
-    );
-    expect(lines).toStrictEqual([
-      'import { ScalarType } from "@scope/pkg";',
-      "",
-      "ScalarType.INT32",
     ]);
   });
   test("should rewrite npm import to other package", async () => {

@@ -12,4 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export * from "../error.js";
+export class PluginOptionError extends Error {
+  override name = "PluginOptionError";
+
+  constructor(option: string, reason?: unknown) {
+    const detail = reason !== undefined ? reasonToString(reason) : "";
+    super(
+      detail.length > 0
+        ? `invalid option "${option}": ${detail}`
+        : `invalid option "${option}"`,
+    );
+  }
+}
+
+export function reasonToString(reason: unknown): string {
+  if (reason instanceof Error) {
+    return reason.message;
+  }
+  if (typeof reason === "string") {
+    return reason;
+  }
+  return String(reason);
+}
+
+export function isPluginOptionError(arg: unknown): arg is PluginOptionError {
+  if (!(arg instanceof Error)) {
+    return false;
+  }
+  return arg.name === "PluginOptionError";
+}

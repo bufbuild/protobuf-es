@@ -13,16 +13,17 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { createTestPluginAndRun } from "./helpers.js";
+import { fromBinary } from "@bufbuild/protobuf/next";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
 import {
-  CodeGeneratorRequest,
-  CodeGeneratorResponse,
+  CodeGeneratorRequestDesc,
   CodeGeneratorResponse_Feature,
   Edition,
-} from "@bufbuild/protobuf";
+} from "@bufbuild/protobuf/next/wkt";
+import { createTestPluginAndRun } from "./helpers.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import type { Schema } from "@bufbuild/protoplugin/next/ecmascript";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
 
 describe("editions support in plugins", () => {
   describe("with default setup", () => {
@@ -65,7 +66,7 @@ describe("editions support in plugins", () => {
           filesToGenerate: ["test.proto"],
         },
       );
-      return CodeGeneratorRequest.fromBinary(reqBytes);
+      return fromBinary(CodeGeneratorRequestDesc, reqBytes);
     }
     function createTestPlugin() {
       return createEcmaScriptPlugin({

@@ -4,7 +4,7 @@ The code generator plugin for Protocol Buffers for ECMAScript.  Learn more about
 
 ## Installation
 
-`protoc-gen-es` generates base types - messages and enumerations - from your Protocol Buffer 
+`protoc-gen-es` generates base types - messages and enumerations - from your Protocol Buffer
 schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).  It is compatible with Protocol Buffer compilers  like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
 To install the plugin and the runtime library, run:
@@ -15,7 +15,7 @@ npm install @bufbuild/protobuf
 ```
 
 We use peer dependencies to ensure that code generator and runtime library are
-compatible with each other. Note that npm installs them automatically, but yarn 
+compatible with each other. Note that npm installs them automatically, but yarn
 and pnpm do not.
 
 
@@ -37,7 +37,7 @@ plugins:
   # This will invoke protoc-gen-es and write output to src/gen
   - plugin: es
     out: src/gen
-    opt: 
+    opt:
       # Add more plugin options here
       - target=ts
 ```
@@ -49,7 +49,7 @@ npx buf generate
 ```
 
 Note that `buf` can generate from various [inputs](https://docs.buf.build/reference/inputs),
-not just local protobuf files. 
+not just local protobuf files.
 
 
 ### With protoc
@@ -65,7 +65,7 @@ PATH=$PATH:$(pwd)/node_modules/.bin \
 Note that we are adding `node_modules/.bin` to the `$PATH`, so that the protocol
 buffer compiler can find them. This happens automatically with npm scripts.
 
-Since yarn v2 and above does not use a `node_modules` directory, you need to 
+Since yarn v2 and above does not use a `node_modules` directory, you need to
 change the variable a bit:
 
 ```bash
@@ -88,7 +88,7 @@ Multiple values can be given by separating them with `+`, for example
 `target=js+dts`.
 
 By default, we generate JavaScript and TypeScript declaration files, which
-produces the smallest code size and is the most compatible with various 
+produces the smallest code size and is the most compatible with various
 bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
 ### `import_extension=.js`
@@ -109,12 +109,12 @@ in import paths with the given value. For example, set
 
 By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 (and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-generate ECMAScript `import` and `export` statements. For use cases where 
-CommonJS is difficult to avoid, this option can be used to generate CommonJS 
+generate ECMAScript `import` and `export` statements. For use cases where
+CommonJS is difficult to avoid, this option can be used to generate CommonJS
 `require()` calls.
 
 Possible values:
-- `js_import_style=module` generate ECMAScript `import` / `export` statements - 
+- `js_import_style=module` generate ECMAScript `import` / `export` statements -
   the default behavior.
 - `js_import_style=legacy_commonjs` generate CommonJS `require()` calls.
 
@@ -127,13 +127,12 @@ empty files, to allow for smooth interoperation with Bazel and similar
 tooling that requires all output files to be declared ahead of time.
 Unless you use Bazel, it is very unlikely that you need this option.
 
-### `ts_nocheck=false`
+### `ts_nocheck=true`
 
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-generate an annotation at the top of each file: `// @ts-nocheck`.
+[protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) generates
+valid TypeScript for current versions of the TypeScript compiler with standard
+settings.
 
-We generate the annotation to support a wide range of compiler configurations and
-future changes to the language. But there can be situations where the annotation
-shadows an underlying problem, for example an unresolvable import. To remove 
-the annotation and to enable type checks, set the plugin option `ts_nocheck=false`.
+In case you use compiler settings that yield an error for generated code, you
+can set the plugin option `ts_nocheck=true`. This will generate an annotation at
+the top of each file to skip type checks: `// @ts-nocheck`.

@@ -40,7 +40,6 @@ import {
   ImportSymbol,
   safeIdentifier,
 } from "@bufbuild/protoplugin/next/ecmascript";
-import type { LiteralProtoInt64 } from "@bufbuild/protoplugin/src/ecmascript/opaque-printables";
 
 interface RuntimeImports {
   proto2: ImportSymbol;
@@ -448,6 +447,18 @@ function literalScalarValue(
     }
   }
 }
+
+type LiteralProtoInt64 = {
+  readonly kind: "es_proto_int64";
+  type:
+    | ScalarType.INT64
+    | ScalarType.SINT64
+    | ScalarType.SFIXED64
+    | ScalarType.UINT64
+    | ScalarType.FIXED64;
+  longType: LongType;
+  value: bigint | string;
+};
 
 // we don't want to use v2's local bootstrapping import path, since v2 bootstraps
 // to a different directory, the path does not match

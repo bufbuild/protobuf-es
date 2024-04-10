@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import type { FileInfo } from "@bufbuild/protoplugin/ecmascript";
+import type { FileInfo } from "@bufbuild/protoplugin/next/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("bring your own transpile", () => {

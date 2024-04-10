@@ -12,21 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
 import {
-  CodeGeneratorRequest,
-  CodeGeneratorResponse,
-} from "@bufbuild/protobuf";
-import type { Plugin } from "@bufbuild/protoplugin";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+  CodeGeneratorRequestDesc,
+  FileDescriptorSetDesc,
+} from "@bufbuild/protobuf/next/wkt";
+import { fromBinary } from "@bufbuild/protobuf/next";
+import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import type { Plugin } from "@bufbuild/protoplugin/next";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin/next";
 import type {
   GeneratedFile,
   Schema,
   Target,
-} from "@bufbuild/protoplugin/ecmascript";
+} from "@bufbuild/protoplugin/next/ecmascript";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { expect } from "@jest/globals";
+import assert from "node:assert";
 
-const upstream = new UpstreamProtobuf();
+let upstreamProtobuf: UpstreamProtobuf | undefined;
 
 type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
 
@@ -66,10 +70,14 @@ export async function createTestPluginAndRun(
 export async function createTestPluginAndRun(
   opt: CreateTestPluginAndRunOptions<boolean | undefined>,
 ) {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
   const protoFiles =
     typeof opt.proto == "string" ? { "x.proto": opt.proto } : opt.proto;
-  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, opt);
-  const req = CodeGeneratorRequest.fromBinary(reqBytes);
+  const reqBytes = await upstreamProtobuf.createCodeGeneratorRequest(
+    protoFiles,
+    opt,
+  );
+  const req = fromBinary(CodeGeneratorRequestDesc, reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {
     name: "test",
@@ -108,4 +116,44 @@ export async function createTestPluginAndRun(
     return content.split("\n");
   }
   return res;
+}
+
+export async function compileFile(proto: string) {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(
+    {
+      "input.proto": proto,
+    },
+    {
+      includeImports: true,
+      retainOptions: true,
+      includeSourceInfo: true,
+    },
+  );
+  const fds = fromBinary(FileDescriptorSetDesc, bytes);
+  const set = createDescFileSet(fds);
+  const file = set.getFile("input.proto");
+  assert(file);
+  return file;
+}
+
+export async function compileEnum(proto: string) {
+  const file = await compileFile(proto);
+  const firstEnum = file.enums[0];
+  assert(firstEnum);
+  return firstEnum;
+}
+
+export async function compileMessage(proto: string) {
+  const file = await compileFile(proto);
+  const firstMessage = file.messages[0];
+  assert(firstMessage);
+  return firstMessage;
+}
+
+export async function compileField(proto: string) {
+  const message = await compileMessage(proto);
+  const firstField = message.fields[0];
+  assert(firstField);
+  return firstField;
 }

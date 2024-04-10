@@ -53,19 +53,19 @@ describe("GeneratedFile.preamble", () => {
     expect(lines).toContain("/* eslint-disable */");
   });
 
-  test("contains ts-nocheck annotation by default", async () => {
+  test("does not contain ts-nocheck annotation by default", async () => {
     const lines = await testGenerate({
       proto: `syntax="proto3";`,
-    });
-    expect(lines).toContain("// @ts-nocheck");
-  });
-
-  test("does not contain ts-nocheck annotation when turned off", async () => {
-    const lines = await testGenerate({
-      proto: `syntax="proto3";`,
-      parameter: "ts_nocheck=false",
     });
     expect(lines).not.toContain("// @ts-nocheck");
+  });
+
+  test("contains ts-nocheck annotation when opted in", async () => {
+    const lines = await testGenerate({
+      proto: `syntax="proto3";`,
+      parameter: `ts_nocheck=true`,
+    });
+    expect(lines).toContain("// @ts-nocheck");
   });
 
   test("contains source file info for proto3", async () => {
@@ -149,9 +149,7 @@ describe("GeneratedFile.preamble", () => {
                 package foo;
            `,
     });
-    const lastLines = lines.slice(lines.indexOf("// @ts-nocheck"));
-    expect(lastLines).toStrictEqual([
-      "// @ts-nocheck",
+    expect(lines.slice(3)).toStrictEqual([
       "",
       "// comment above...",
       "// ... the package declaration",
