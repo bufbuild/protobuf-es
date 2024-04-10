@@ -39,8 +39,13 @@ import {
   createDescSet,
   protoCamelCase,
   ScalarType,
+  LongType,
 } from "@bufbuild/protobuf/next/reflect";
-import { compileField, compileFileDescriptorSet } from "../helpers.js";
+import {
+  compileField,
+  compileFileDescriptorSet,
+  compileMessage,
+} from "../helpers.js";
 
 describe("createDescSet()", function () {
   let testSet: DescFileSet;
@@ -679,6 +684,75 @@ describe("DescFile", () => {
 });
 
 describe("DescField", () => {
+  describe("longType", () => {
+    test("returns default LongType.BIGINT for option omitted", async () => {
+      const { fields } = await compileMessage(`
+        syntax="proto3";
+        message M {
+          fixed64 fixed64_field = 1;
+          int64 int64_field = 3;
+          sfixed64 sfixed64_field = 4;
+          sint64 sint64_field = 5;
+          uint64 uint64_field = 6;
+          repeated fixed64 repeated_fixed64_field = 11;
+          repeated int64 repeated_int64_field = 12;
+          repeated sfixed64 repeated_sfixed64_field = 13;
+          repeated sint64 repeated_sint64_field = 14;
+          repeated uint64 repeated_uint64_field = 15;
+        }
+      `);
+      expect(fields.length > 0).toBeTruthy();
+      for (const field of fields) {
+        expect(
+          field.fieldKind == "scalar" ||
+            (field.fieldKind == "list" && field.listKind == "scalar"),
+        ).toBeTruthy();
+        if (
+          field.fieldKind == "scalar" ||
+          (field.fieldKind == "list" && field.listKind == "scalar")
+        ) {
+          expect(field.longType).toBe(LongType.BIGINT);
+        }
+      }
+    });
+    test.each([
+      { jstype: "JS_NORMAL", longType: "BIGINT" },
+      { jstype: "JS_NUMBER", longType: "BIGINT" },
+      { jstype: "JS_STRING", longType: "STRING" },
+    ] as const)(
+      "returns default LongType.$longType for jstype=$jstype",
+      async ({ jstype, longType }) => {
+        const { fields } = await compileMessage(`
+        syntax="proto3";
+        message M {
+          fixed64 fixed64_field = 1 [jstype = ${jstype}];
+          int64 int64_field = 3 [jstype = ${jstype}];
+          sfixed64 sfixed64_field = 4 [jstype = ${jstype}];
+          sint64 sint64_field = 5 [jstype = ${jstype}];
+          uint64 uint64_field = 6 [jstype = ${jstype}];
+          repeated fixed64 repeated_fixed64_field = 11 [jstype = ${jstype}];
+          repeated int64 repeated_int64_field = 12 [jstype = ${jstype}];
+          repeated sfixed64 repeated_sfixed64_field = 13 [jstype = ${jstype}];
+          repeated sint64 repeated_sint64_field = 14 [jstype = ${jstype}];
+          repeated uint64 repeated_uint64_field = 15 [jstype = ${jstype}];
+        }
+      `);
+        expect(fields.length > 0).toBeTruthy();
+        for (const field of fields) {
+          expect(
+            field.fieldKind == "scalar" ||
+              (field.fieldKind == "list" && field.listKind == "scalar"),
+          ).toBeTruthy();
+          if (
+            field.fieldKind == "scalar" ||
+            (field.fieldKind == "list" && field.listKind == "scalar")
+          ) {
+            expect(field.longType).toBe(LongType[longType]);
+          }
+        }
+      },
+    );
+  });
   describe("jsonName", () => {
     test.each(["field", "foo_bar", "__proto__", "constructor"])(
       "returns compiler-provided json_name for %s",
