@@ -15,7 +15,6 @@
 import { beforeAll, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
-import { ScalarType } from "@bufbuild/protobuf/next/reflect";
 import type {
   AnyDesc,
   DescEnum,
@@ -38,8 +37,10 @@ import {
 import {
   createDescFileSet,
   createDescSet,
+  protoCamelCase,
+  ScalarType,
 } from "@bufbuild/protobuf/next/reflect";
-import { compileFileDescriptorSet } from "../helpers.js";
+import { compileField, compileFileDescriptorSet } from "../helpers.js";
 
 describe("createDescSet()", function () {
   let testSet: DescFileSet;
@@ -678,6 +679,33 @@ describe("DescFile", () => {
 });
 
 describe("DescField", () => {
+  describe("jsonName", () => {
+    test.each(["field", "foo_bar", "__proto__", "constructor"])(
+      "returns compiler-provided json_name for %s",
+      async (name) => {
+        const field = await compileField(`
+        syntax="proto3";
+        message M {
+          int32 ${name} = 1;
+        }
+      `);
+        expect(field.jsonName).toBe(protoCamelCase(name));
+        expect(field.jsonName).toBe(field.proto.jsonName);
+      },
+    );
+    test.each(["foo", "foo_bar", "", "@type"])(
+      "returns custom json_name for %s",
+      async (name) => {
+        const field = await compileField(`
+        syntax="proto3";
+        message M {
+          int32 f = 1 [json_name = "${name}"];
+        }
+      `);
+        expect(field.jsonName).toBe(name);
+      },
+    );
+  });
   describe("repeated field packing", () => {
     test("proto2 is unpacked by default", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
