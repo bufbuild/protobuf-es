@@ -855,7 +855,7 @@ function newExtension(
   proto: FieldDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  set: DescFileSetMutable,
+  set: DescSet,
 ): DescExtension {
   const emptyMapEntries: FileMapEntries = {
     get: () => undefined,
