@@ -74,22 +74,47 @@ export declare enum ReservedPropertyNames_EnumBuiltIn {
   /**
    * @generated from enum value: constructor = 0;
    */
-  constructor = 0,
+  constructor$ = 0,
 
   /**
    * @generated from enum value: toString = 1;
    */
-  toString = 1,
+  toString$ = 1,
 
   /**
-   * @generated from enum value: to_JSON = 2;
+   * @generated from enum value: toJSON = 2;
    */
-  to_JSON = 2,
+  toJSON$ = 2,
 
   /**
-   * @generated from enum value: value_of = 3;
+   * @generated from enum value: valueOf = 3;
    */
-  value_of = 3,
+  valueOf$ = 3,
+}
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export declare enum ReservedPropertyNames_EnumBuiltInPrefixed {
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_constructor = 0;
+   */
+  constructor$ = 0,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toString = 1;
+   */
+  toString$ = 1,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+   */
+  toJSON$ = 2,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_valueOf = 3;
+   */
+  valueOf$ = 3,
 }
 
 /**
@@ -97,9 +122,9 @@ export declare enum ReservedPropertyNames_EnumBuiltIn {
  */
 export declare enum ReservedPropertyNames_EnumRuntime {
   /**
-   * @generated from enum value: to_json = 0;
+   * @generated from enum value: toJson = 0;
    */
-  to_json = 0,
+  toJson = 0,
 
   /**
    * @generated from enum value: type = 6;
@@ -117,29 +142,29 @@ export declare enum ReservedPropertyNames_EnumRuntime {
   equals = 8,
 
   /**
-   * @generated from enum value: from_binary = 9;
+   * @generated from enum value: fromBinary = 9;
    */
-  from_binary = 9,
+  fromBinary = 9,
 
   /**
-   * @generated from enum value: from_json = 10;
+   * @generated from enum value: fromJson = 10;
    */
-  from_json = 10,
+  fromJson = 10,
 
   /**
-   * @generated from enum value: from_json_string = 11;
+   * @generated from enum value: fromJsonString = 11;
    */
-  from_json_string = 11,
+  fromJsonString = 11,
 
   /**
-   * @generated from enum value: to_binary = 12;
+   * @generated from enum value: toBinary = 12;
    */
-  to_binary = 12,
+  toBinary = 12,
 
   /**
-   * @generated from enum value: to_json_string = 14;
+   * @generated from enum value: toJsonString = 14;
    */
-  to_json_string = 14,
+  toJsonString = 14,
 }
 
 /**
