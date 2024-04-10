@@ -16,6 +16,7 @@ import type {
   DescriptorProto,
   Edition,
   EnumDescriptorProto,
+  FeatureSet,
   FieldDescriptorProto,
   FileDescriptorProto,
   FileDescriptorSet,
@@ -25,7 +26,6 @@ import type {
 } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import { assert } from "../../private/assert.js";
 import type {
-  AnyDesc,
   DescEnum,
   DescExtension,
   DescField,
@@ -34,7 +34,6 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
-  ResolvedFeatureSet,
 } from "../../descriptor-set.js";
 import { MethodIdempotency, MethodKind } from "../../service-type.js";
 import { findEnumSharedPrefix } from "../../private/names.js";
@@ -850,6 +849,7 @@ function newField(
   type AllKeys =
     | keyof DescField
     | keyof DescExtension
+    | keyof (DescField & { fieldKind: "message" })
     | keyof (DescField & { fieldKind: "map" })
     | keyof (DescField & { fieldKind: "list" })
     | keyof (DescField & { fieldKind: "scalar" });
@@ -866,6 +866,7 @@ function newField(
     },
   };
   if (mapEntries === undefined) {
+    // extension field
     const file = parentOrFile.kind == "file" ? parentOrFile : parentOrFile.file;
     const parent = parentOrFile.kind == "file" ? undefined : parentOrFile;
     const typeName = makeTypeName(proto, parent, file);
@@ -883,6 +884,7 @@ function newField(
     );
     field.extendee = extendee;
   } else {
+    // regular field
     const parent = parentOrFile;
     assert(parent.kind == "message");
     field.kind = "field";
@@ -895,11 +897,13 @@ function newField(
   const type: TYPE = proto.type;
   const jstype: JSTYPE | undefined = proto.options?.jstype;
   if (label === LABEL_REPEATED) {
+    // list or map field
     const mapEntry =
       type == TYPE_MESSAGE
         ? mapEntries?.get(trimLeadingDot(proto.typeName))
         : undefined;
     if (mapEntry) {
+      // map field
       field.fieldKind = "map";
       const keyField = mapEntry.fields.find((f) => f.number === 1);
       assert(keyField);
@@ -919,6 +923,7 @@ function newField(
       field.scalar = valueField.scalar;
       return field as DescField;
     }
+    // list field
     field.fieldKind = "list";
     switch (type) {
       case TYPE_MESSAGE:
@@ -939,10 +944,10 @@ function newField(
           jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
         break;
     }
-    field.packed = isPackedField(field as DescField | DescExtension);
+    field.packed = isPackedField(proto, parentOrFile);
     return field as DescField | DescExtension;
   }
-
+  // singular
   switch (type) {
     case TYPE_MESSAGE:
     case TYPE_GROUP:
@@ -1124,11 +1129,14 @@ function isOptionalField(field: DescField | DescExtension): boolean {
 /**
  * Pack this repeated field?
  */
-function isPackedField(field: DescField | DescExtension): boolean {
-  if ((field.proto.label as number) != LABEL_REPEATED) {
+function isPackedField(
+  proto: FieldDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  if ((proto.label as number) != LABEL_REPEATED) {
     return false;
   }
-  const type: number = field.proto.type;
+  const type: number = proto.type;
   switch (type) {
     case TYPE_STRING:
     case TYPE_BYTES:
@@ -1137,67 +1145,97 @@ function isPackedField(field: DescField | DescExtension): boolean {
       // length-delimited types cannot be packed
       return false;
   }
-  const o = field.proto.options;
+  const o = proto.options;
   if (o && unsafeIsSetExplicit(o, "packed")) {
     // prefer the field option over edition features
     return o.packed;
   }
-  const r: REPEATED_FIELD_ENCODING = resolveFeature(
-    field,
-    "repeatedFieldEncoding",
-  );
-  return r === PACKED;
+  const r: REPEATED_FIELD_ENCODING = resolveFeature("repeatedFieldEncoding", {
+    proto,
+    parent,
+  });
+  return r == PACKED;
 }
 
 function isEnumOpen(desc: DescEnum): boolean {
-  const enumType: ENUM_TYPE = resolveFeature(desc, "enumType");
+  const enumType: ENUM_TYPE = resolveFeature("enumType", {
+    proto: desc.proto,
+    parent: desc.parent ?? desc.file,
+  });
   return enumType == OPEN;
 }
 
-export function resolveFeatures(desc: AnyDesc): ResolvedFeatureSet {
+/**
+ * A google.protobuf.FeatureSet with just numeric properties.
+ */
+type Features = {
+  [P in keyof FeatureSet as FeatureSet[P] extends number
+    ? P
+    : never]: FeatureSet[P];
+};
+
+/**
+ * One of the numeric properties of google.protobuf.FeatureSet, excluding 0.
+ */
+type ResolvedFeature<Name extends keyof Features> = Exclude<
+  FeatureSet[Name],
+  0
+>;
+
+function resolveFeature<Name extends keyof Features>(
+  name: Name,
+  ref:
+    | DescFile
+    | DescMessage
+    | {
+        proto: DescriptorProto | FieldDescriptorProto | EnumDescriptorProto;
+        parent: DescMessage | DescFile;
+      },
+): ResolvedFeature<Name> {
+  const featureSet = ref.proto.options?.features;
+  if (featureSet) {
+    const val = featureSet[name];
+    if (val != 0) {
+      return val as unknown as ResolvedFeature<Name>;
+    }
+  }
+  if ("kind" in ref) {
+    if (ref.kind == "message") {
+      return resolveFeature(name, ref.parent ?? ref.file);
+    }
+    const editionDefaults = (
+      featureDefaults as Record<number, Features | undefined>
+    )[ref.edition];
+    if (!editionDefaults) {
+      throw new Error(`feature default for edition ${ref.edition} not found`);
+    }
+    return editionDefaults[name] as unknown as ResolvedFeature<Name>;
+  }
+  return resolveFeature(name, ref.parent);
+}
+
+// TODO remove getFeatures() from the Desc* types
+function resolveFeatures(
+  desc: DescField | DescExtension | DescMessage | DescEnum,
+) {
+  let parent: DescMessage | DescFile;
+  switch (desc.kind) {
+    case "enum":
+    case "extension":
+    case "message":
+      parent = desc.parent ?? desc.file;
+      break;
+    case "field":
+      parent = desc.parent;
+      break;
+  }
+  const x = { proto: desc.proto, parent };
   return {
-    fieldPresence: resolveFeature(desc, "fieldPresence"),
-    enumType: resolveFeature(desc, "enumType"),
-    repeatedFieldEncoding: resolveFeature(desc, "repeatedFieldEncoding"),
-    utf8Validation: resolveFeature(desc, "utf8Validation"),
-    messageEncoding: resolveFeature(desc, "messageEncoding"),
-    jsonFormat: resolveFeature(desc, "jsonFormat"),
+    fieldPresence: resolveFeature("fieldPresence", x),
+    enumType: resolveFeature("enumType", x),
+    repeatedFieldEncoding: resolveFeature("repeatedFieldEncoding", x),
+    utf8Validation: resolveFeature("utf8Validation", x),
+    messageEncoding: resolveFeature("messageEncoding", x),
+    jsonFormat: resolveFeature("jsonFormat", x),
   };
-}
-
-function resolveFeature<Name extends keyof ResolvedFeatureSet>(
-  desc: AnyDesc,
-  name: Name,
-): ResolvedFeatureSet[Name] {
-  let d: AnyDesc = desc;
-  for (;;) {
-    const o = d.proto.options?.features;
-    if (o) {
-      const val = o[name] as number;
-      if (val != 0) {
-        return val as ResolvedFeatureSet[Name];
-      }
-    }
-    if (d.kind == "file") {
-      return resolveDefault(d.edition, name);
-    }
-    if ("parent" in d && d.parent !== undefined) {
-      d = d.parent;
-    } else if ("file" in d) {
-      d = d.file;
-    }
-  }
-}
-
-function resolveDefault<Name extends keyof ResolvedFeatureSet>(
-  edition: number,
-  name: Name,
-): ResolvedFeatureSet[Name] {
-  const editionDefaults = (
-    featureDefaults as Record<number, ResolvedFeatureSet | undefined>
-  )[edition];
-  if (!editionDefaults) {
-    throw new Error(`feature default for edition ${edition} not found`);
-  }
-  return editionDefaults[name];
 }
