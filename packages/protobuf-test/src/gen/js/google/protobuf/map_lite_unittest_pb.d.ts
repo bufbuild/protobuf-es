@@ -18,8 +18,7 @@
 
 import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
-import type { ForeignMessageLite, TestAllTypesLite } from "./unittest_lite_pb.js";
-import { TestAllExtensionsLite } from "./unittest_lite_pb.js";
+import type { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pb.js";
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumLite

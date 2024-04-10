@@ -48,7 +48,7 @@ export function generateDts(schema: Schema) {
 // prettier-ignore
 function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
   f.print(f.jsDoc(enumeration));
-  f.print("export declare enum ", enumeration, " {");
+  f.print(f.exportDecl("declare enum", localName(enumeration)), " {");
   for (const value of enumeration.values) {
     if (enumeration.values.indexOf(value) > 0) {
       f.print();
@@ -72,8 +72,9 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     JsonReadOptions,
     JsonValue
   } = schema.runtime;
+  const m = localName(message);
   f.print(f.jsDoc(message));
-  f.print("export declare class ", message, " extends ", Message, "<", message, "> {");
+  f.print(f.exportDecl("declare class", m), " extends ", Message, "<", m, "> {");
   for (const member of message.members) {
     switch (member.kind) {
       case "oneof":
@@ -85,7 +86,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
-  f.print("  constructor(data?: ", PartialMessage, "<", message, ">);");
+  f.print("  constructor(data?: ", PartialMessage, "<", m, ">);");
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, ";");
@@ -95,13 +96,13 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   //f.print("  static readonly options: { readonly [extensionName: string]: ", rt.JsonValue, " } = {};")
   f.print();
   generateWktStaticMethods(schema, f, message);
-  f.print("  static fromBinary(bytes: Uint8Array, options?: Partial<", BinaryReadOptions, ">): ", message, ";")
+  f.print("  static fromBinary(bytes: Uint8Array, options?: Partial<", BinaryReadOptions, ">): ", m, ";")
   f.print()
-  f.print("  static fromJson(jsonValue: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): ", message, ";")
+  f.print("  static fromJson(jsonValue: ", JsonValue, ", options?: Partial<", JsonReadOptions, ">): ", m, ";")
   f.print()
-  f.print("  static fromJsonString(jsonString: string, options?: Partial<", JsonReadOptions, ">): ", message, ";")
+  f.print("  static fromJsonString(jsonString: string, options?: Partial<", JsonReadOptions, ">): ", m, ";")
   f.print()
-  f.print("  static equals(a: ", message, " | ", PlainMessage, "<", message, "> | undefined, b: ", message, " | ", PlainMessage, "<", message, "> | undefined): boolean;")
+  f.print("  static equals(a: ", m, " | ", PlainMessage, "<", m, "> | undefined, b: ", m, " | ", PlainMessage, "<", m, "> | undefined): boolean;")
   f.print("}")
   f.print()
   for (const nestedEnum of message.nestedEnums) {
@@ -151,8 +152,9 @@ function generateExtension(
   ext: DescExtension,
 ) {
   const { typing } = getFieldTypeInfo(ext);
+  const e = f.import(ext.extendee).toTypeOnly();
   f.print(f.jsDoc(ext));
-  f.print(f.exportDecl("declare const", ext), ": ", schema.runtime.Extension, "<", ext.extendee, ", ", typing, ">;");
+  f.print(f.exportDecl("declare const", localName(ext)), ": ", schema.runtime.Extension, "<", e, ", ", typing, ">;");
   f.print();
 }
 
