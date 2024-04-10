@@ -13,8 +13,9 @@
 // limitations under the License.
 
 import { describe, expect, it } from "@jest/globals";
-import { BinaryWriter, WireType } from "@bufbuild/protobuf";
-import { User } from "./gen/ts/extra/example_pb.js";
+import { BinaryWriter, WireType } from "@bufbuild/protobuf/next/wire";
+import { UserDesc } from "../../gen/ts/extra/example_pbv2.js";
+import { fromBinary } from "@bufbuild/protobuf/next";
 
 describe("BinaryWriter example", () => {
   it("should work as expected", () => {
@@ -26,7 +27,7 @@ describe("BinaryWriter example", () => {
       .tag(3, WireType.Varint)
       .bool(true)
       .finish();
-    const user = User.fromBinary(bytes);
+    const user = fromBinary(UserDesc, bytes);
     expect(user.firstName).toBe("Homer");
     expect(user.active).toBe(true);
   });
