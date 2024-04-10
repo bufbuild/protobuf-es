@@ -16,7 +16,6 @@ import { beforeAll, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
 import type {
-  AnyDesc,
   DescEnum,
   DescExtension,
   DescFile,
@@ -25,15 +24,7 @@ import type {
   DescService,
 } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
-import {
-  Edition,
-  FeatureSet_EnumType,
-  FeatureSet_FieldPresence,
-  FeatureSet_JsonFormat,
-  FeatureSet_MessageEncoding,
-  FeatureSet_RepeatedFieldEncoding,
-  FeatureSet_Utf8Validation,
-} from "@bufbuild/protobuf/next/wkt";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
 import {
   createDescFileSet,
   createDescSet,
@@ -484,133 +475,6 @@ describe("createDescFileSet()", function () {
       ).toStrictEqual(["MsgA", "MsgB"].sort());
     });
   });
-  describe("edition feature inheritance", () => {
-    test("file features should apply to all elements", async () => {
-      const fileDescriptorSet = await compileFileDescriptorSet({
-        "input.proto": `
-        edition = "2023";
-        option features.field_presence = IMPLICIT;
-        option features.enum_type = CLOSED;
-        option features.repeated_field_encoding = EXPANDED;
-        option features.utf8_validation = NONE;
-        option features.message_encoding = DELIMITED;
-        option features.json_format = LEGACY_BEST_EFFORT;
-        message M {
-          message NestedMessage {
-            message DeepNestedMessage {}
-            enum DeepNestedEnum { A = 0; }
-          }
-          enum NestedEnum { A = 0; }
-        }
-        enum E { A = 0; }
-        service S {
-          rpc A(M) returns (M);
-        }`,
-      });
-      const set = createDescFileSet(fileDescriptorSet);
-      const wantFeatures = {
-        fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
-        enumType: FeatureSet_EnumType.CLOSED,
-        repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
-        utf8Validation: FeatureSet_Utf8Validation.NONE,
-        messageEncoding: FeatureSet_MessageEncoding.DELIMITED,
-        jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-      };
-      expect(set.getFile("input.proto")?.getFeatures()).toStrictEqual(
-        wantFeatures,
-      );
-      expect(set.getMessage("M")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(set.getMessage("M.NestedMessage")?.getFeatures()).toStrictEqual(
-        wantFeatures,
-      );
-      expect(
-        set.getMessage("M.NestedMessage.DeepNestedMessage")?.getFeatures(),
-      ).toStrictEqual(wantFeatures);
-      expect(set.getEnum("E")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(set.getEnum("M.NestedEnum")?.getFeatures()).toStrictEqual(
-        wantFeatures,
-      );
-      expect(
-        set.getEnum("M.NestedMessage.DeepNestedEnum")?.getFeatures(),
-      ).toStrictEqual(wantFeatures);
-      expect(set.getService("S")?.getFeatures()).toStrictEqual(wantFeatures);
-      expect(set.getService("S")?.methods[0].getFeatures()).toStrictEqual(
-        wantFeatures,
-      );
-    });
-    test("message features should apply to nested elements", async () => {
-      const fileDescriptorSet = await compileFileDescriptorSet({
-        "input.proto": `
-        edition="2023";
-        enum EnumJsonAllow { A = 0; }
-        message MessageJsonAllow {
-          int32 f = 1;
-          enum EnumJsonAllow { A = 0; }
-          message MessageJsonAllow {
-            int32 f = 1;
-          }
-          message MessageJsonLegacy {
-            option features.json_format = LEGACY_BEST_EFFORT;
-            int32 f = 1;
-            enum EnumJsonLegacy { A = 0; }
-            message MessageJsonLegacy {
-              int32 f = 1;
-            }
-          }
-        }`,
-      });
-      const set = createDescFileSet(fileDescriptorSet);
-
-      function expectJsonFormat(
-        jsonFormat: FeatureSet_JsonFormat,
-        desc: AnyDesc | undefined,
-      ) {
-        expect(desc?.getFeatures().jsonFormat).toBe(jsonFormat);
-        if (desc?.kind == "message") {
-          for (const field of desc.fields) {
-            expect(field.getFeatures().jsonFormat).toBe(jsonFormat);
-          }
-          for (const oneof of desc.oneofs) {
-            expect(oneof.getFeatures().jsonFormat).toBe(jsonFormat);
-          }
-        }
-        if (desc?.kind == "enum") {
-          for (const value of desc.values) {
-            expect(value.getFeatures().jsonFormat).toBe(jsonFormat);
-          }
-        }
-      }
-
-      expectJsonFormat(
-        FeatureSet_JsonFormat.ALLOW,
-        set.getEnum("EnumJsonAllow"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.ALLOW,
-        set.getMessage("MessageJsonAllow"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.ALLOW,
-        set.getEnum("MessageJsonAllow.EnumJsonAllow"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.ALLOW,
-        set.getMessage("MessageJsonAllow.MessageJsonAllow"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        set.getMessage("MessageJsonAllow.MessageJsonLegacy"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        set.getEnum("MessageJsonAllow.MessageJsonLegacy.EnumJsonLegacy"),
-      );
-      expectJsonFormat(
-        FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-        set.getMessage("MessageJsonAllow.MessageJsonLegacy.MessageJsonLegacy"),
-      );
-    });
-  });
 });
 
 describe("DescFile", () => {
@@ -623,14 +487,6 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("proto2");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
-    expect(descFile?.getFeatures()).toStrictEqual({
-      fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-      enumType: FeatureSet_EnumType.CLOSED,
-      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.EXPANDED,
-      utf8Validation: FeatureSet_Utf8Validation.NONE,
-      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-      jsonFormat: FeatureSet_JsonFormat.LEGACY_BEST_EFFORT,
-    });
   });
   test("proto3 syntax", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -641,14 +497,6 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("proto3");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
-    expect(descFile?.getFeatures()).toStrictEqual({
-      fieldPresence: FeatureSet_FieldPresence.IMPLICIT,
-      enumType: FeatureSet_EnumType.OPEN,
-      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-      utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-      jsonFormat: FeatureSet_JsonFormat.ALLOW,
-    });
   });
   test("edition 2023", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -659,14 +507,6 @@ describe("DescFile", () => {
     expect(descFile).toBeDefined();
     expect(descFile?.syntax).toBe("editions");
     expect(descFile?.edition).toBe(Edition.EDITION_2023);
-    expect(descFile?.getFeatures()).toStrictEqual({
-      fieldPresence: FeatureSet_FieldPresence.EXPLICIT,
-      enumType: FeatureSet_EnumType.OPEN,
-      repeatedFieldEncoding: FeatureSet_RepeatedFieldEncoding.PACKED,
-      utf8Validation: FeatureSet_Utf8Validation.VERIFY,
-      messageEncoding: FeatureSet_MessageEncoding.LENGTH_PREFIXED,
-      jsonFormat: FeatureSet_JsonFormat.ALLOW,
-    });
   });
   test("dependencies", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({

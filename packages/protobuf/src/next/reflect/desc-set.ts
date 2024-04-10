@@ -520,9 +520,6 @@ function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- we asserted above
       return `file ${this.proto.name}`;
     },
-    getFeatures() {
-      return resolveFeatures(file);
-    },
   };
   const mapEntriesStore = new Map<string, DescMessage>();
   const mapEntries: FileMapEntries = {
@@ -656,9 +653,6 @@ function addEnum(
     toString(): string {
       return `enum ${this.typeName}`;
     },
-    getFeatures() {
-      return resolveFeatures(desc);
-    },
   };
   desc.open = isEnumOpen(desc);
   set.add(desc);
@@ -672,9 +666,6 @@ function addEnum(
       number: proto.number,
       toString() {
         return `enum value ${desc.typeName}.${this.name}`;
-      },
-      getFeatures() {
-        return resolveFeatures(this);
       },
     });
   });
@@ -708,9 +699,6 @@ function addMessage(
     nestedExtensions: [],
     toString(): string {
       return `message ${this.typeName}`;
-    },
-    getFeatures() {
-      return resolveFeatures(this);
     },
   };
   if (proto.options?.mapEntry === true) {
@@ -746,9 +734,6 @@ function addService(
     methods: [],
     toString(): string {
       return `service ${this.typeName}`;
-    },
-    getFeatures() {
-      return resolveFeatures(this);
     },
   };
   file.services.push(desc);
@@ -815,9 +800,6 @@ function newMethod(
     toString() {
       return `rpc ${parent.typeName}.${name}`;
     },
-    getFeatures() {
-      return resolveFeatures(this);
-    },
   };
 }
 
@@ -834,9 +816,6 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
     name: proto.name,
     toString(): string {
       return `oneof ${parent.typeName}.${this.name}`;
-    },
-    getFeatures() {
-      return resolveFeatures(this);
     },
   };
 }

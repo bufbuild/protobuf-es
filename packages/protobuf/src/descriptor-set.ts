@@ -153,11 +153,6 @@ export interface DescFile {
    */
   readonly proto: FileDescriptorProto;
 
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
-
   toString(): string;
 }
 
@@ -205,11 +200,6 @@ export interface DescEnum {
    */
   readonly proto: EnumDescriptorProto;
 
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
-
   toString(): string;
 }
 
@@ -238,10 +228,6 @@ export interface DescEnumValue {
    * The compiler-generated descriptor.
    */
   readonly proto: EnumValueDescriptorProto;
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -303,10 +289,6 @@ export interface DescMessage {
    * The compiler-generated descriptor.
    */
   readonly proto: DescriptorProto;
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -638,10 +620,6 @@ export interface DescOneof {
    * The compiler-generated descriptor.
    */
   readonly proto: OneofDescriptorProto;
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -675,11 +653,6 @@ export interface DescService {
    * The compiler-generated descriptor.
    */
   readonly proto: ServiceDescriptorProto;
-
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
@@ -721,11 +694,6 @@ export interface DescMethod {
    * The compiler-generated descriptor.
    */
   readonly proto: MethodDescriptorProto;
-
-  /**
-   * Get the edition features for this protobuf element.
-   */
-  getFeatures(): ResolvedFeatureSet;
 
   toString(): string;
 }
