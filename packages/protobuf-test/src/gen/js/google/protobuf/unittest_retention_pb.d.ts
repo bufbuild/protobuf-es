@@ -16,8 +16,8 @@
 // @generated from file google/protobuf/unittest_retention.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, Message, MessageOptions, MethodOptions, OneofOptions, proto2, ServiceOptions } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, EnumOptions, EnumValueOptions, Extension, ExtensionRangeOptions, FieldList, FieldOptions, FileOptions, JsonReadOptions, JsonValue, MessageOptions, MethodOptions, OneofOptions, PartialMessage, PlainMessage, ServiceOptions } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum protobuf_unittest.TopLevelEnum

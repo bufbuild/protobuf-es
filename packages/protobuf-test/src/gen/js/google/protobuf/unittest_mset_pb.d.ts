@@ -25,7 +25,7 @@
 
 import type { BinaryReadOptions, Extension, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto2 } from "@bufbuild/protobuf";
-import { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
+import type { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetContainer
