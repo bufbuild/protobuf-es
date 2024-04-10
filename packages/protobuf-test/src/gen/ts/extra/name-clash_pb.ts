@@ -99,29 +99,61 @@ export enum ReservedPropertyNames_EnumBuiltIn {
   /**
    * @generated from enum value: constructor = 0;
    */
-  constructor = 0,
+  constructor$ = 0,
 
   /**
    * @generated from enum value: toString = 1;
    */
-  toString = 1,
+  toString$ = 1,
 
   /**
-   * @generated from enum value: to_JSON = 2;
+   * @generated from enum value: toJSON = 2;
    */
-  to_JSON = 2,
+  toJSON$ = 2,
 
   /**
-   * @generated from enum value: value_of = 3;
+   * @generated from enum value: valueOf = 3;
    */
-  value_of = 3,
+  valueOf$ = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltIn)
 proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropertyNames.EnumBuiltIn", [
   { no: 0, name: "constructor" },
   { no: 1, name: "toString" },
-  { no: 2, name: "to_JSON" },
-  { no: 3, name: "value_of" },
+  { no: 2, name: "toJSON" },
+  { no: 3, name: "valueOf" },
+]);
+
+/**
+ * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
+ */
+export enum ReservedPropertyNames_EnumBuiltInPrefixed {
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_constructor = 0;
+   */
+  constructor$ = 0,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toString = 1;
+   */
+  toString$ = 1,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_toJSON = 2;
+   */
+  toJSON$ = 2,
+
+  /**
+   * @generated from enum value: ENUM_BUILT_IN_PREFIXED_valueOf = 3;
+   */
+  valueOf$ = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumBuiltInPrefixed)
+proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltInPrefixed, "spec.ReservedPropertyNames.EnumBuiltInPrefixed", [
+  { no: 0, name: "ENUM_BUILT_IN_PREFIXED_constructor" },
+  { no: 1, name: "ENUM_BUILT_IN_PREFIXED_toString" },
+  { no: 2, name: "ENUM_BUILT_IN_PREFIXED_toJSON" },
+  { no: 3, name: "ENUM_BUILT_IN_PREFIXED_valueOf" },
 ]);
 
 /**
@@ -129,9 +161,9 @@ proto3.util.setEnumType(ReservedPropertyNames_EnumBuiltIn, "spec.ReservedPropert
  */
 export enum ReservedPropertyNames_EnumRuntime {
   /**
-   * @generated from enum value: to_json = 0;
+   * @generated from enum value: toJson = 0;
    */
-  to_json = 0,
+  toJson = 0,
 
   /**
    * @generated from enum value: type = 6;
@@ -149,41 +181,41 @@ export enum ReservedPropertyNames_EnumRuntime {
   equals = 8,
 
   /**
-   * @generated from enum value: from_binary = 9;
+   * @generated from enum value: fromBinary = 9;
    */
-  from_binary = 9,
+  fromBinary = 9,
 
   /**
-   * @generated from enum value: from_json = 10;
+   * @generated from enum value: fromJson = 10;
    */
-  from_json = 10,
+  fromJson = 10,
 
   /**
-   * @generated from enum value: from_json_string = 11;
+   * @generated from enum value: fromJsonString = 11;
    */
-  from_json_string = 11,
+  fromJsonString = 11,
 
   /**
-   * @generated from enum value: to_binary = 12;
+   * @generated from enum value: toBinary = 12;
    */
-  to_binary = 12,
+  toBinary = 12,
 
   /**
-   * @generated from enum value: to_json_string = 14;
+   * @generated from enum value: toJsonString = 14;
    */
-  to_json_string = 14,
+  toJsonString = 14,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ReservedPropertyNames_EnumRuntime)
 proto3.util.setEnumType(ReservedPropertyNames_EnumRuntime, "spec.ReservedPropertyNames.EnumRuntime", [
-  { no: 0, name: "to_json" },
+  { no: 0, name: "toJson" },
   { no: 6, name: "type" },
   { no: 7, name: "clone" },
   { no: 8, name: "equals" },
-  { no: 9, name: "from_binary" },
-  { no: 10, name: "from_json" },
-  { no: 11, name: "from_json_string" },
-  { no: 12, name: "to_binary" },
-  { no: 14, name: "to_json_string" },
+  { no: 9, name: "fromBinary" },
+  { no: 10, name: "fromJson" },
+  { no: 11, name: "fromJsonString" },
+  { no: 12, name: "toBinary" },
+  { no: 14, name: "toJsonString" },
 ]);
 
 /**
