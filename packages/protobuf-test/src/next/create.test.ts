@@ -14,13 +14,13 @@
 
 import type { DescMessage } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { create, isMessage } from "@bufbuild/protobuf/next";
+import { create, isFieldSet, isMessage } from "@bufbuild/protobuf/next";
 import { describe, expect, test } from "@jest/globals";
 import * as example_ts from "../gen/ts/extra/example_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
 import * as TS from "../gen/ts/extra/proto2_pb.js";
-import { reflect } from "@bufbuild/protobuf/next/reflect";
+import { localName, reflect } from "@bufbuild/protobuf/next/reflect";
 import type { MessageInitShape } from "@bufbuild/protobuf/next";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment -- to support older TS versions in the TS compat tests, we cannot use ts-expect-error */
@@ -362,50 +362,91 @@ describe("create()", () => {
         expect(r.isSet(f)).toBe(false);
       });
     });
-    describe("skips null value", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc, {
-        singularStringField: null,
-        singularBytesField: null,
-        singularInt32Field: null,
-        singularInt64Field: null,
-        singularInt64JsNumberField: null,
-        singularInt64JsStringField: null,
-        singularFloatField: null,
-        singularBoolField: null,
-        singularEnumField: null,
-        singularMessageField: null,
-        singularWrappedUint32Field: null,
-        repeatedStringField: null,
-        repeatedEnumField: null,
-        repeatedMessageField: null,
-        mapStringStringField: null,
-      } as unknown as MessageInitShape<typeof proto3_ts.Proto3MessageDesc>);
-      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
-      test.each(r.fields)("$name", (f) => {
-        expect(r.isSet(f)).toBe(false);
+    describe("does not skip proto2 zero values for required fields", () => {
+      const desc = proto2_ts.Proto2MessageDesc;
+      const msg = create(proto2_ts.Proto2MessageDesc, {
+        // required
+        requiredStringField: "",
+        requiredInt64Field: protoInt64.zero,
+        requiredInt64JsNumberField: protoInt64.zero,
+        requiredInt64JsStringField: "0",
+        requiredEnumField: proto2_ts.Proto2Enum.YES,
+        requiredWrappedUint32Field: 0,
+        // required with default
+        requiredDefaultStringField: "",
+        requiredDefaultInt64Field: protoInt64.zero,
+        requiredDefaultInt64JsNumberField: protoInt64.zero,
+        requiredDefaultInt64JsStringField: "0",
+        requiredDefaultEnumField: proto2_ts.Proto2Enum.YES,
+      });
+      test.each([
+        // required
+        "requiredStringField",
+        "requiredInt64Field",
+        "requiredInt64JsNumberField",
+        "requiredInt64JsStringField",
+        "requiredEnumField",
+        "requiredWrappedUint32Field",
+        // required with default
+        "requiredDefaultStringField",
+        "requiredDefaultInt64Field",
+        "requiredDefaultInt64JsNumberField",
+        "requiredDefaultInt64JsStringField",
+        "requiredDefaultEnumField",
+      ] as const)("$name", (name) => {
+        expect(isFieldSet(desc, msg, name)).toBe(true);
       });
     });
-    describe("skips undefined value", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc, {
-        singularStringField: undefined,
-        singularBytesField: undefined,
-        singularInt32Field: undefined,
-        singularInt64Field: undefined,
-        singularInt64JsNumberField: undefined,
-        singularInt64JsStringField: undefined,
-        singularFloatField: undefined,
-        singularBoolField: undefined,
-        singularEnumField: undefined,
-        singularMessageField: undefined,
-        singularWrappedUint32Field: undefined,
-        repeatedStringField: undefined,
-        repeatedEnumField: undefined,
-        repeatedMessageField: undefined,
-        mapStringStringField: undefined,
+    describe("skips null values", () => {
+      describe("proto2", () => {
+        const desc = proto2_ts.Proto2MessageDesc;
+        const o: Record<string, unknown> = {};
+        for (const f of desc.members) {
+          o[localName(f)] = null;
+        }
+        const msg = create(desc, o as MessageInitShape<typeof desc>);
+        const r = reflect(desc, msg);
+        test.each(r.fields)("$name", (f) => {
+          expect(r.isSet(f)).toBe(false);
+        });
       });
-      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
-      test.each(r.fields)("$name", (f) => {
-        expect(r.isSet(f)).toBe(false);
+      describe("proto3", () => {
+        const desc = proto3_ts.Proto3MessageDesc;
+        const o: Record<string, unknown> = {};
+        for (const f of desc.members) {
+          o[localName(f)] = null;
+        }
+        const msg = create(desc, o as MessageInitShape<typeof desc>);
+        const r = reflect(desc, msg);
+        test.each(r.fields)("$name", (f) => {
+          expect(r.isSet(f)).toBe(false);
+        });
+      });
+    });
+    describe("skips undefined values", () => {
+      describe("proto2", () => {
+        const desc = proto2_ts.Proto2MessageDesc;
+        const o: Record<string, unknown> = {};
+        for (const f of desc.members) {
+          o[localName(f)] = undefined;
+        }
+        const msg = create(desc, o as MessageInitShape<typeof desc>);
+        const r = reflect(desc, msg);
+        test.each(r.fields)("$name", (f) => {
+          expect(r.isSet(f)).toBe(false);
+        });
+      });
+      describe("proto3", () => {
+        const desc = proto3_ts.Proto3MessageDesc;
+        const o: Record<string, unknown> = {};
+        for (const f of desc.members) {
+          o[localName(f)] = undefined;
+        }
+        const msg = create(desc, o as MessageInitShape<typeof desc>);
+        const r = reflect(desc, msg);
+        test.each(r.fields)("$name", (f) => {
+          expect(r.isSet(f)).toBe(false);
+        });
       });
     });
     describe("64-bit integer field", () => {
