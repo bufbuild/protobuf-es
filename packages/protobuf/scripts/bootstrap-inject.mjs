@@ -60,6 +60,7 @@ async function main(args) {
     "google.protobuf.MethodOptions.IdempotencyLevel",
     "google.protobuf.Edition",
     "google.protobuf.FeatureSet.RepeatedFieldEncoding",
+    "google.protobuf.FeatureSet.MessageEncoding",
     "google.protobuf.FeatureSet.EnumType",
   ];
   await enums(enumNames, print);

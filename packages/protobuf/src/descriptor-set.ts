@@ -43,6 +43,11 @@ export type ResolvedFeatureSet = Pick<
   | "jsonFormat"
 >;
 
+type SupportedEdition = Extract<
+  Edition,
+  Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
+>;
+
 /**
  * DescriptorSet provides a convenient interface for working with a set
  * of google.protobuf.FileDescriptorProto.
@@ -108,14 +113,7 @@ export interface DescFile {
    * The edition of the protobuf file. Will be EDITION_PROTO2 for syntax="proto2",
    * EDITION_PROTO3 for syntax="proto3";
    */
-  readonly edition: Exclude<
-    Edition,
-    | Edition.EDITION_1_TEST_ONLY
-    | Edition.EDITION_2_TEST_ONLY
-    | Edition.EDITION_99997_TEST_ONLY
-    | Edition.EDITION_99998_TEST_ONLY
-    | Edition.EDITION_99999_TEST_ONLY
-  >;
+  readonly edition: SupportedEdition;
   /**
    * The name of the file, excluding the .proto suffix.
    * For a protobuf file `foo/bar.proto`, this is `foo/bar`.
@@ -423,10 +421,14 @@ type descFieldMessage = {
    */
   readonly message: DescMessage;
   /**
+   * Encode the message delimited (a.k.a. proto2 group encoding), or
+   * length-prefixed?
+   */
+  readonly delimitedEncoding: boolean;
+  /**
    * The enum type, if it is an enum field.
    */
   readonly enum: undefined;
-
   /**
    * Return the default value specified in the protobuf source.
    */
@@ -486,7 +488,6 @@ type descFieldListScalar<T extends ScalarType = ScalarType> = T extends T
        * Scalar list element type.
        */
       readonly scalar: T;
-
       /**
        * JavaScript type for 64 bit integral types (int64, uint64,
        * sint64, fixed64, sfixed64).
@@ -525,6 +526,11 @@ type descFieldListMessage = {
    * Scalar list element type.
    */
   readonly scalar: undefined;
+  /**
+   * Encode the message delimited (a.k.a. proto2 group encoding), or
+   * length-prefixed?
+   */
+  readonly delimitedEncoding: boolean;
 };
 
 type descFieldMap =
@@ -543,6 +549,11 @@ type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<S
    * The `oneof` group this field belongs to, if any.
    */
   readonly oneof: undefined;
+  /**
+   * Encode the map entry message delimited (a.k.a. proto2 group encoding),
+   * or length-prefixed?
+   */
+  readonly delimitedEncoding: boolean;
 } : never;
 
 type descFieldMapScalar<T extends ScalarType = ScalarType> = T extends T

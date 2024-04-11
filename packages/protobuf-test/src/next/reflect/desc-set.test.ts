@@ -577,6 +577,67 @@ describe("DescEnum", () => {
 });
 
 describe("DescField", () => {
+  describe("delimitedEncoding", () => {
+    test("true for proto2 group", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M { 
+          optional group GroupField = 2 {}
+        }
+      `);
+      expect(
+        field.fieldKind == "message" ? field.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
+    test("true for field with features.message_encoding = DELIMITED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          M f = 1 [features.message_encoding = DELIMITED];
+        }
+      `);
+      expect(
+        field.fieldKind == "message" ? field.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
+    test("true for list field with features.message_encoding = DELIMITED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          repeated M f = 1 [features.message_encoding = DELIMITED];
+        }
+      `);
+      expect(
+        field.fieldKind == "list" && field.listKind == "message"
+          ? field.delimitedEncoding
+          : undefined,
+      ).toBe(true);
+    });
+    test("true for file with features.message_encoding = DELIMITED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.message_encoding = DELIMITED;
+        message M { 
+          M f = 1;
+        }
+      `);
+      expect(
+        field.fieldKind == "message" ? field.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
+    test("true for map field with inherited features.message_encoding = DELIMITED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.message_encoding = DELIMITED;
+        message M { 
+          map <int32, string> f = 1;
+        }
+      `);
+      expect(
+        field.fieldKind == "map" ? field.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
+  });
   describe("optional", () => {
     test("false for proto2 required scalar", async () => {
       const field = await compileField(`

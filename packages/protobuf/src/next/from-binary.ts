@@ -24,15 +24,6 @@ import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 import { ScalarType } from "./reflect/scalar.js";
 
-// TODO avoid copy by not exposing these enums in Desc*
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum FeatureSet_MessageEncoding {
-  DELIMITED = 2,
-}
-enum FieldDescriptorProto_Type {
-  GROUP = 10,
-}
-
 /**
  * Options for parsing binary data.
  */
@@ -175,7 +166,7 @@ export function readField(
 
 // Read a map field, expecting key field = 1, value field = 2
 //
-// TODO: Support edition features
+// TODO: Make sure we support edition feature message_encoding correctly
 function readMapEntry(
   field: DescField & { fieldKind: "map" },
   reader: BinaryReader,
@@ -255,18 +246,13 @@ function readListField(
   }
 }
 
-function readMessageField<Desc extends DescMessage>(
+function readMessageField(
   reader: BinaryReader,
   options: BinaryReadOptions,
-  field: Pick<DescField, "number" | "proto" | "getFeatures"> & {
-    message: Desc;
-  },
+  field: DescField & { message: DescMessage },
   mergeMessage?: ReflectMessage,
 ): ReflectMessage {
-  const delimited =
-    field.proto.type === FieldDescriptorProto_Type.GROUP ||
-    field.getFeatures().messageEncoding ===
-      FeatureSet_MessageEncoding.DELIMITED;
+  const delimited = field.delimitedEncoding;
   const message = mergeMessage ?? reflect(field.message);
   readMessage(
     message,

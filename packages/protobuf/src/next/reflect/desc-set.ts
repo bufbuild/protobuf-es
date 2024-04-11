@@ -458,6 +458,16 @@ const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
 const PACKED = 1;
 const EXPANDED = 2;
 
+// generated from enum google.protobuf.FeatureSet.MessageEncoding v26.0
+// prettier-ignore
+type MESSAGEENCODING =
+  | typeof MESSAGE_ENCODING_UNKNOWN
+  | typeof LENGTH_PREFIXED
+  | typeof DELIMITED;
+const MESSAGE_ENCODING_UNKNOWN = 0;
+const LENGTH_PREFIXED = 1;
+const DELIMITED = 2;
+
 // generated from enum google.protobuf.FeatureSet.EnumType v26.0
 // prettier-ignore
 type ENUM_TYPE =
@@ -919,6 +929,7 @@ function newField(
       field.mapKey = keyField.scalar;
       field.mapKind = valueField.fieldKind;
       field.message = valueField.message;
+      field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
       field.enum = valueField.enum;
       field.scalar = valueField.scalar;
       return field as DescField;
@@ -931,6 +942,7 @@ function newField(
         field.listKind = "message";
         field.message = set.getMessage(trimLeadingDot(proto.typeName));
         assert(field.message);
+        field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
         break;
       case TYPE_ENUM:
         field.listKind = "enum";
@@ -957,6 +969,7 @@ function newField(
         field.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
+      field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
       field.getDefaultValue = () => undefined;
       break;
     case TYPE_ENUM: {
@@ -1157,12 +1170,34 @@ function isPackedField(
   return r == PACKED;
 }
 
+/**
+ * Enumerations can be open or closed.
+ * See https://protobuf.dev/programming-guides/enum/
+ */
 function isEnumOpen(desc: DescEnum): boolean {
   const enumType: ENUM_TYPE = resolveFeature("enumType", {
     proto: desc.proto,
     parent: desc.parent ?? desc.file,
   });
   return enumType == OPEN;
+}
+
+/**
+ * Encode the message delimited (a.k.a. proto2 group encoding), or
+ * length-prefixed?
+ */
+function isDelimitedEncoding(
+  proto: FieldDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  if ((proto.type as number) == TYPE_GROUP) {
+    return true;
+  }
+  const r: MESSAGEENCODING = resolveFeature("messageEncoding", {
+    proto,
+    parent,
+  });
+  return r == DELIMITED;
 }
 
 /**
