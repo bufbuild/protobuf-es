@@ -13,28 +13,27 @@
 // limitations under the License.
 
 import { isMessage } from "./is-message.js";
-import type { DescField, DescMessage } from "../descriptor-set.js";
+import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { localName } from "./reflect/names.js";
 import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
 import { FieldError } from "./reflect/error.js";
-import { isObject } from "./reflect/guard.js";
+import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
 
 // TODO avoid copy by not exposing these enums in Desc*
 /* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
+enum FeatureSet_FieldPresence {
+  EXPLICIT = 1,
+  IMPLICIT = 2,
+}
+
+// TODO avoid copy by not exposing these enums in Desc*
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 enum Edition {
-  EDITION_UNKNOWN = 0,
   EDITION_PROTO2 = 998,
   EDITION_PROTO3 = 999,
   EDITION_2023 = 1000,
-  EDITION_2024 = 1001,
-  EDITION_1_TEST_ONLY = 1,
-  EDITION_2_TEST_ONLY = 2,
-  EDITION_99997_TEST_ONLY = 99997,
-  EDITION_99998_TEST_ONLY = 99998,
-  EDITION_99999_TEST_ONLY = 99999,
-  EDITION_MAX = 2147483647,
 }
 
 /**
@@ -57,6 +56,9 @@ export function create<Desc extends DescMessage>(
   return message;
 }
 
+/**
+ * Sets field values from a MessageInitShape on a zero message.
+ */
 function initMessage<Desc extends DescMessage>(
   messageDesc: Desc,
   message: MessageShape<Desc>,
@@ -79,11 +81,10 @@ function initMessage<Desc extends DescMessage>(
     } else {
       field = member;
     }
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- no need to convert enum
     switch (field.fieldKind) {
       case "message":
         value = toMessage(value, field.message);
-        // value = initMessage(field, value);
         break;
       case "scalar":
         value = initScalar(field, value);
@@ -163,82 +164,126 @@ function convertObjectValues(
   return ret;
 }
 
-const messagePrototypes = new WeakMap<DescMessage, object>();
+const tokenZeroMessageField = Symbol();
 
+const messagePrototypes = new WeakMap<
+  DescMessage,
+  { prototype: Record<string, unknown>; members: Set<DescField | DescOneof> }
+>();
+
+/**
+ * Create a zero message.
+ */
 function createZeroMessage(desc: DescMessage): Message {
-  let t: Record<string, unknown>;
-  switch (desc.file.edition) {
-    case Edition.EDITION_PROTO2: {
-      let prototype = messagePrototypes.get(desc);
-      if (!prototype) {
-        const pt: Record<string, unknown> = {};
-        for (const field of desc.fields) {
-          // only proto2 singular scalar and enum fields use an initial value on the prototype chain
-          // Behavior must match with the counterpart in @bufbuild/protoc-gen-es
-          if (field.oneof) {
+  let msg: Record<string, unknown>;
+  if (desc.file.edition == Edition.EDITION_PROTO3) {
+    // we special case proto3: since it does not have default values, we let
+    // the `optional` keyword generate an optional property.
+    msg = {};
+    for (const member of desc.members) {
+      if (member.kind == "field") {
+        if (
+          member.fieldKind == "scalar" ||
+          member.fieldKind == "enum" ||
+          member.fieldKind == "message"
+        ) {
+          if (member.presence == FeatureSet_FieldPresence.EXPLICIT) {
+            // skips message fields and optional scalar/enum
             continue;
           }
-          if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
-            continue;
-          }
-          let value = field.getDefaultValue();
-          if (value === undefined) {
-            if (field.fieldKind == "scalar") {
-              value = scalarZeroValue(field.scalar, field.longType);
-            } else {
-              value = field.enum.values[0].number;
-            }
-          } else if (
-            field.fieldKind == "scalar" &&
-            field.longType == LongType.STRING
-          ) {
-            value = value.toString();
-          }
-          const name = localName(field);
-          pt[name] = value;
-        }
-        messagePrototypes.set(desc, (prototype = pt));
-      }
-      t = Object.create(prototype) as Record<string, unknown>;
-      for (const member of desc.members) {
-        const name = localName(member);
-        if (member.kind == "oneof") {
-          t[name] = { case: undefined };
-        } else if (member.fieldKind == "list") {
-          t[name] = [];
-        } else if (member.fieldKind == "map") {
-          t[name] = {}; // Object.create(null) would be desirable here, but is unsupported by react https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
         }
       }
-      break;
+      msg[localName(member)] = createZeroField(member);
     }
-    case Edition.EDITION_PROTO3:
-      t = {};
+  } else {
+    // for everything but proto3, we support default values, and track presence
+    // via the prototype chain
+    const cached = messagePrototypes.get(desc);
+    let prototype: Record<string, unknown>;
+    let members: Set<DescField | DescOneof>;
+    if (cached) {
+      ({ prototype, members } = cached);
+    } else {
+      prototype = {};
+      members = new Set<DescField | DescOneof>();
       for (const member of desc.members) {
-        const name = localName(member);
         if (member.kind == "oneof") {
-          t[name] = { case: undefined };
-        } else if (member.fieldKind == "list") {
-          t[name] = [];
-        } else if (member.fieldKind == "map") {
-          t[name] = {}; // Object.create(null) would be desirable here, but is unsupported by react https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
-        } else if (!member.optional) {
-          switch (member.fieldKind) {
-            case "scalar":
-              t[name] = scalarZeroValue(member.scalar, member.longType);
-              break;
-            case "enum":
-              t[name] = 0;
-              break;
-            case "message":
-              break;
+          // we can only put immutable values on the prototype,
+          // oneof ADTs are mutable
+          continue;
+        }
+        if (member.fieldKind != "scalar" && member.fieldKind != "enum") {
+          // only scalar and enum values are immutable, map, list, and message
+          // are not
+          continue;
+        }
+        if (member.presence == FeatureSet_FieldPresence.IMPLICIT) {
+          // implicit presence tracks field presence by zero values
+          // e.g. 0, false, "", are unset, 1, true, "x" are set
+          continue;
+        }
+        members.add(member);
+        prototype[localName(member)] = createZeroField(member);
+      }
+      messagePrototypes.set(desc, { prototype, members });
+    }
+    msg = Object.create(prototype) as Record<string, unknown>;
+    for (const member of desc.members) {
+      if (members.has(member)) {
+        continue;
+      }
+      if (member.kind == "field") {
+        if (member.fieldKind == "message") {
+          continue;
+        }
+        if (member.fieldKind == "scalar" || member.fieldKind == "enum") {
+          if (member.presence != FeatureSet_FieldPresence.IMPLICIT) {
+            continue;
           }
         }
       }
-      break;
-    default:
-      throw new Error();
+      msg[localName(member)] = createZeroField(member);
+    }
   }
-  t.$typeName = desc.typeName;
-  return t as Message;
+  msg.$typeName = desc.typeName;
+  return msg as Message;
+}
+
+/**
+ * Returns a zero value for oneof groups, and for every field kind except
+ * messages. Scalar and enum fields can have default values.
+ */
+function createZeroField(
+  field: DescOneof | DescField,
+):
+  | string
+  | boolean
+  | number
+  | bigint
+  | Uint8Array
+  | OneofADT
+  | []
+  | object
+  | typeof tokenZeroMessageField {
+  if (field.kind == "oneof") {
+    return { case: undefined };
+  }
+  if (field.fieldKind == "list") {
+    return [];
+  }
+  if (field.fieldKind == "map") {
+    return {}; // Object.create(null) would be desirable here, but is unsupported by react https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
+  }
+  if (field.fieldKind == "message") {
+    return tokenZeroMessageField;
+  }
+  const defaultValue = field.getDefaultValue();
+  if (defaultValue !== undefined) {
+    return field.fieldKind == "scalar" && field.longType == LongType.STRING
+      ? defaultValue.toString()
+      : defaultValue;
+  }
+  return field.fieldKind == "scalar"
+    ? scalarZeroValue(field.scalar, field.longType)
+    : field.enum.values[0].number;
 }
