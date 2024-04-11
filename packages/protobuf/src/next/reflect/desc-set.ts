@@ -883,9 +883,6 @@ function newField(
     scalar: undefined,
     message: undefined,
     enum: undefined,
-    getFeatures() {
-      return resolveFeatures(this as DescField | DescExtension);
-    },
   };
   if (mapEntries === undefined) {
     // extension field
@@ -1291,30 +1288,4 @@ function resolveFeature<Name extends keyof Features>(
     return editionDefaults[name] as unknown as ResolvedFeature<Name>;
   }
   return resolveFeature(name, ref.parent);
-}
-
-// TODO remove getFeatures() from the Desc* types
-function resolveFeatures(
-  desc: DescField | DescExtension | DescMessage | DescEnum,
-) {
-  let parent: DescMessage | DescFile;
-  switch (desc.kind) {
-    case "enum":
-    case "extension":
-    case "message":
-      parent = desc.parent ?? desc.file;
-      break;
-    case "field":
-      parent = desc.parent;
-      break;
-  }
-  const x = { proto: desc.proto, parent };
-  return {
-    fieldPresence: resolveFeature("fieldPresence", x),
-    enumType: resolveFeature("enumType", x),
-    repeatedFieldEncoding: resolveFeature("repeatedFieldEncoding", x),
-    utf8Validation: resolveFeature("utf8Validation", x),
-    messageEncoding: resolveFeature("messageEncoding", x),
-    jsonFormat: resolveFeature("jsonFormat", x),
-  };
 }

@@ -17,7 +17,6 @@ import type {
   Edition,
   EnumDescriptorProto,
   EnumValueDescriptorProto,
-  FeatureSet,
   FeatureSet_FieldPresence,
   FieldDescriptorProto,
   FileDescriptorProto,
@@ -28,21 +27,6 @@ import type {
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
-
-/**
- * Temporary plain object representing FeatureSet.
- *
- * TODO remove getFeatures() from the Desc* types, along with this
- */
-export type ResolvedFeatureSet = Pick<
-  FeatureSet,
-  | "fieldPresence"
-  | "enumType"
-  | "repeatedFieldEncoding"
-  | "utf8Validation"
-  | "messageEncoding"
-  | "jsonFormat"
->;
 
 type SupportedEdition = Extract<
   Edition,
@@ -374,7 +358,6 @@ interface descFieldAndExtensionShared {
   /**
    * Get the edition features for this protobuf element.
    */
-  getFeatures(): ResolvedFeatureSet;
   toString(): string;
 }
 
