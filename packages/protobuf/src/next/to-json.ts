@@ -138,9 +138,9 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (
-        f.proto.label === FieldDescriptorProto_Label.REQUIRED ||
-        f.getFeatures().fieldPresence ==
-          FeatureSet_FieldPresence.LEGACY_REQUIRED
+        f.fieldKind != "map" &&
+        f.fieldKind != "list" &&
+        f.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
       ) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,

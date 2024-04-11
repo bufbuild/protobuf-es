@@ -18,6 +18,7 @@ import type {
   EnumDescriptorProto,
   EnumValueDescriptorProto,
   FeatureSet,
+  FeatureSet_FieldPresence,
   FieldDescriptorProto,
   FileDescriptorProto,
   MethodDescriptorProto,
@@ -46,6 +47,13 @@ export type ResolvedFeatureSet = Pick<
 type SupportedEdition = Extract<
   Edition,
   Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
+>;
+
+type SupportedFieldPresence = Extract<
+  FeatureSet_FieldPresence,
+  | FeatureSet_FieldPresence.EXPLICIT
+  | FeatureSet_FieldPresence.IMPLICIT
+  | FeatureSet_FieldPresence.LEGACY_REQUIRED
 >;
 
 /**
@@ -381,6 +389,11 @@ type descFieldSingularCommon = {
    * Whether this field was declared with `optional` in the protobuf source.
    */
   readonly optional: boolean;
+  /**
+   * Presence of the field.
+   * See https://protobuf.dev/programming-guides/field_presence/
+   */
+  readonly presence: SupportedFieldPresence;
 };
 
 type descFieldScalar<T extends ScalarType = ScalarType> = T extends T

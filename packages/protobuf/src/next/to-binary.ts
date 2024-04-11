@@ -18,7 +18,6 @@ import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import {
   // TODO avoid import by not exposing these enums in Desc*
   FeatureSet_FieldPresence,
-  FieldDescriptorProto_Label,
 } from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
 import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
@@ -71,9 +70,9 @@ function reflectToBinary(
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (
-        f.proto.label === FieldDescriptorProto_Label.REQUIRED ||
-        f.getFeatures().fieldPresence ==
-          FeatureSet_FieldPresence.LEGACY_REQUIRED
+        f.fieldKind != "map" &&
+        f.fieldKind != "list" &&
+        f.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
       ) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,

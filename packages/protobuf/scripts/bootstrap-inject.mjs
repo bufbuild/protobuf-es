@@ -59,6 +59,7 @@ async function main(args) {
     "google.protobuf.FieldOptions.JSType",
     "google.protobuf.MethodOptions.IdempotencyLevel",
     "google.protobuf.Edition",
+    "google.protobuf.FeatureSet.FieldPresence",
     "google.protobuf.FeatureSet.RepeatedFieldEncoding",
     "google.protobuf.FeatureSet.MessageEncoding",
     "google.protobuf.FeatureSet.EnumType",
@@ -196,7 +197,11 @@ async function compileDefaults(upstream, minimumEdition, maximumEdition) {
     FeatureSetDefaultsDesc,
     featureSetDefaultsBytes,
   );
+  const hasUnknownFields =
+    featureSetDefaults.$unknown !== undefined &&
+    featureSetDefaults.$unknown.length > 0;
   if (
+    hasUnknownFields ||
     featureSetDefaults.minimumEdition === 0 ||
     featureSetDefaults.maximumEdition === 0 ||
     featureSetDefaults.maximumEdition < featureSetDefaults.minimumEdition ||

@@ -448,6 +448,18 @@ const EDITION_99998_TEST_ONLY = 99998;
 const EDITION_99999_TEST_ONLY = 99999;
 const EDITION_MAX = 2147483647;
 
+// generated from enum google.protobuf.FeatureSet.FieldPresence v26.0
+// prettier-ignore
+type FIELDPRESENCE =
+  | typeof FIELD_PRESENCE_UNKNOWN
+  | typeof EXPLICIT
+  | typeof IMPLICIT
+  | typeof LEGACY_REQUIRED;
+const FIELD_PRESENCE_UNKNOWN = 0;
+const EXPLICIT = 1;
+const IMPLICIT = 2;
+const LEGACY_REQUIRED = 3;
+
 // generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
 // prettier-ignore
 type REPEATED_FIELD_ENCODING =
@@ -999,6 +1011,7 @@ function newField(
       break;
     }
   }
+  field.presence = getFieldPresence(proto, oneof, parentOrFile);
   field.optional = isOptionalField(field as DescField | DescExtension);
   return field as DescField | DescExtension;
 }
@@ -1122,6 +1135,37 @@ function findOneof(
     `invalid FieldDescriptorProto: oneof #${proto.oneofIndex} for field #${proto.number} not found`,
   );
   return oneof;
+}
+
+/**
+ * Presence of the field.
+ * See https://protobuf.dev/programming-guides/field_presence/
+ */
+function getFieldPresence(
+  proto: FieldDescriptorProto,
+  oneof: DescOneof | undefined,
+  parent: DescMessage | DescFile,
+): FIELDPRESENCE {
+  if ((proto.label as number) == LABEL_REQUIRED) {
+    // proto2 required is LEGACY_REQUIRED
+    return LEGACY_REQUIRED;
+  }
+  const { edition } = parent.kind == "message" ? parent.file : parent;
+  if ((edition as number) == EDITION_PROTO3) {
+    // proto3 oneof and optional are explicit
+    if (oneof != undefined || proto.proto3Optional) {
+      return EXPLICIT;
+    }
+    // proto3 singular message is explicit
+    const singularMessage =
+      (proto.label as number) != LABEL_REPEATED &&
+      (proto.type as number) == TYPE_MESSAGE;
+    if (singularMessage) {
+      return EXPLICIT;
+    }
+  }
+  // also resolves proto2/proto3 defaults
+  return resolveFeature("fieldPresence", { proto, parent });
 }
 
 /**
