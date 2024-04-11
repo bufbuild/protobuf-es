@@ -19,18 +19,8 @@ import { isScalarZeroValue, scalarZeroValue } from "../../private/scalars.js";
 
 // TODO avoid copy by not exposing these enums in Desc*
 /* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum Edition {
-  EDITION_UNKNOWN = 0,
-  EDITION_PROTO2 = 998,
-  EDITION_PROTO3 = 999,
-  EDITION_2023 = 1000,
-  EDITION_2024 = 1001,
-  EDITION_1_TEST_ONLY = 1,
-  EDITION_2_TEST_ONLY = 2,
-  EDITION_99997_TEST_ONLY = 99997,
-  EDITION_99998_TEST_ONLY = 99998,
-  EDITION_99999_TEST_ONLY = 99999,
-  EDITION_MAX = 2147483647,
+enum FeatureSet_FieldPresence {
+  IMPLICIT = 2,
 }
 
 export const unsafeLocal = Symbol.for("reflect unsafe local");
@@ -65,29 +55,24 @@ export function unsafeIsSet(
     return target[localName(field.oneof)].case === name; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
   }
   switch (field.fieldKind) {
-    case "enum":
-    case "scalar":
-      if (field.parent.file.edition == Edition.EDITION_PROTO2) {
-        // explicit presence
-        return (
-          Object.prototype.hasOwnProperty.call(target, name) &&
-          target[name] !== undefined
-        );
-      }
-      if (field.optional) {
-        return target[name] !== undefined;
-      }
-      // implicit presence
-      if (field.fieldKind == "enum") {
-        return target[name] !== field.enum.values[0].number;
-      }
-      return !isScalarZeroValue(field.scalar, target[name]);
     case "message":
       return target[name] !== undefined;
     case "list":
       return (target[name] as unknown[]).length > 0;
     case "map":
       return Object.keys(target[name]).length > 0; // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    default:
+      if (field.presence == FeatureSet_FieldPresence.IMPLICIT) {
+        if (field.fieldKind == "enum") {
+          return target[name] !== field.enum.values[0].number;
+        }
+        return !isScalarZeroValue(field.scalar, target[name]);
+      }
+      // EXPLICIT and LEGACY_REQUIRED
+      return (
+        target[name] !== undefined &&
+        Object.prototype.hasOwnProperty.call(target, name)
+      );
   }
 }
 
@@ -170,30 +155,18 @@ export function unsafeClear(
       case "list":
         target[name] = [];
         break;
-      case "enum":
-        if (
-          !field.optional &&
-          field.parent.file.edition == Edition.EDITION_PROTO3
-        ) {
-          target[name] = field.enum.values[0].number;
-        } else {
-          delete target[name];
-        }
-        break;
-      case "scalar":
-        if (
-          !field.optional &&
-          field.parent.file.edition == Edition.EDITION_PROTO3
-        ) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          target[name] = scalarZeroValue(field.scalar, field.longType);
-        } else {
-          delete target[name];
-        }
-        break;
       case "message":
-        target[name] = undefined;
+        delete target[name];
         break;
+      default:
+        if (field.presence == FeatureSet_FieldPresence.IMPLICIT) {
+          target[name] =
+            field.fieldKind == "enum"
+              ? field.enum.values[0].number
+              : scalarZeroValue(field.scalar, field.longType);
+        } else {
+          delete target[name];
+        }
     }
   }
 }
