@@ -15,13 +15,11 @@
 import type { DescField, DescOneof } from "../../descriptor-set.js";
 import { localName } from "./names.js";
 import type { OneofADT } from "./guard.js";
-import { isScalarZeroValue, scalarZeroValue } from "../../private/scalars.js";
+import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";
+import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 
-// TODO avoid copy by not exposing these enums in Desc*
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum FeatureSet_FieldPresence {
-  IMPLICIT = 2,
-}
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 
 export const unsafeLocal = Symbol.for("reflect unsafe local");
 
@@ -62,7 +60,7 @@ export function unsafeIsSet(
     case "map":
       return Object.keys(target[name]).length > 0; // eslint-disable-line @typescript-eslint/no-unsafe-argument
     default:
-      if (field.presence == FeatureSet_FieldPresence.IMPLICIT) {
+      if (field.presence == IMPLICIT) {
         if (field.fieldKind == "enum") {
           return target[name] !== field.enum.values[0].number;
         }
@@ -159,7 +157,7 @@ export function unsafeClear(
         delete target[name];
         break;
       default:
-        if (field.presence == FeatureSet_FieldPresence.IMPLICIT) {
+        if (field.presence == IMPLICIT) {
           target[name] =
             field.fieldKind == "enum"
               ? field.enum.values[0].number

@@ -18,6 +18,7 @@ import { assert } from "../private/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
+import type { DescSet } from "./reflect/desc-set.js";
 import type {
   ReflectList,
   ReflectMap,
@@ -27,6 +28,8 @@ import type { Message, MessageShape } from "./types.js";
 import type {
   Any,
   Duration,
+  FeatureSet_FieldPresence,
+  FieldDescriptorProto_Label,
   FieldMask,
   ListValue,
   Struct,
@@ -35,19 +38,14 @@ import type {
 } from "./wkt/index.js";
 import { anyUnpack } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
-import type { DescSet } from "./reflect/desc-set.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 
-// TODO avoid copy by not exposing these enums in Desc*
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum FieldDescriptorProto_Label {
-  OPTIONAL = 1,
-  REQUIRED = 2,
-}
-enum FeatureSet_FieldPresence {
-  LEGACY_REQUIRED = 3,
-}
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
+const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
+
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_OPTIONAL: const $name: FieldDescriptorProto_Label.$localName = $number;
+const LABEL_OPTIONAL: FieldDescriptorProto_Label.OPTIONAL = 1;
 
 /**
  * Options for serializing to JSON.
@@ -140,7 +138,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       if (
         f.fieldKind != "map" &&
         f.fieldKind != "list" &&
-        f.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
+        f.presence == LEGACY_REQUIRED
       ) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
@@ -333,7 +331,7 @@ function canEmitFieldDefaultValue(field: DescField) {
     case field.fieldKind === "message":
     // the field uses explicit presence, so we cannot emit a zero value
     // eslint-disable-next-line no-fallthrough
-    case field.proto.label === FieldDescriptorProto_Label.OPTIONAL:
+    case field.proto.label === LABEL_OPTIONAL:
       return false;
     default:
       return true;

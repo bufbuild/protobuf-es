@@ -15,14 +15,14 @@
 import type { MessageShape } from "./types.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
-import {
-  // TODO avoid import by not exposing these enums in Desc*
-  FeatureSet_FieldPresence,
-} from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
 import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
+
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
+const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
 
 /**
  * Options for serializing to binary data.
@@ -72,7 +72,7 @@ function reflectToBinary(
       if (
         f.fieldKind != "map" &&
         f.fieldKind != "list" &&
-        f.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
+        f.presence == LEGACY_REQUIRED
       ) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,

@@ -14,12 +14,21 @@
 
 import type {
   DescriptorProto,
+  Edition,
   EnumDescriptorProto,
   FeatureSet,
+  FeatureSet_FieldPresence,
+  FeatureSet_RepeatedFieldEncoding,
+  FeatureSet_MessageEncoding,
+  FeatureSet_EnumType,
   FieldDescriptorProto,
+  FieldDescriptorProto_Type,
+  FieldDescriptorProto_Label,
+  FieldOptions_JSType,
   FileDescriptorProto,
   FileDescriptorSet,
   MethodDescriptorProto,
+  MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
@@ -351,149 +360,59 @@ function addDescFile(file: DescFile, set: DescFileSetMutable) {
   }
 }
 
-/*bootstrap-inject-start*/
-// generated from enum google.protobuf.FieldDescriptorProto.Type v26.0
-// prettier-ignore
-type TYPE =
-  | typeof TYPE_DOUBLE
-  | typeof TYPE_FLOAT
-  | typeof TYPE_INT64
-  | typeof TYPE_UINT64
-  | typeof TYPE_INT32
-  | typeof TYPE_FIXED64
-  | typeof TYPE_FIXED32
-  | typeof TYPE_BOOL
-  | typeof TYPE_STRING
-  | typeof TYPE_GROUP
-  | typeof TYPE_MESSAGE
-  | typeof TYPE_BYTES
-  | typeof TYPE_UINT32
-  | typeof TYPE_ENUM
-  | typeof TYPE_SFIXED32
-  | typeof TYPE_SFIXED64
-  | typeof TYPE_SINT32
-  | typeof TYPE_SINT64;
-const TYPE_DOUBLE = 1;
-const TYPE_FLOAT = 2;
-const TYPE_INT64 = 3;
-const TYPE_UINT64 = 4;
-const TYPE_INT32 = 5;
-const TYPE_FIXED64 = 6;
-const TYPE_FIXED32 = 7;
-const TYPE_BOOL = 8;
-const TYPE_STRING = 9;
-const TYPE_GROUP = 10;
-const TYPE_MESSAGE = 11;
-const TYPE_BYTES = 12;
-const TYPE_UINT32 = 13;
-const TYPE_ENUM = 14;
-const TYPE_SFIXED32 = 15;
-const TYPE_SFIXED64 = 16;
-const TYPE_SINT32 = 17;
-const TYPE_SINT64 = 18;
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO2: const $name: Edition.$localName = $number;
+const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
+const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_2023: const $name: Edition.$localName = $number;
+const EDITION_2023: Edition.EDITION_2023 = 1000;
 
-// generated from enum google.protobuf.FieldDescriptorProto.Label v26.0
-// prettier-ignore
-type LABEL =
-  | typeof LABEL_OPTIONAL
-  | typeof LABEL_REPEATED
-  | typeof LABEL_REQUIRED;
-const LABEL_OPTIONAL = 1;
-const LABEL_REPEATED = 3;
-const LABEL_REQUIRED = 2;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_STRING: const $name: FieldDescriptorProto_Type.$localName = $number;
+const TYPE_STRING: FieldDescriptorProto_Type.STRING = 9;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_GROUP: const $name: FieldDescriptorProto_Type.$localName = $number;
+const TYPE_GROUP: FieldDescriptorProto_Type.GROUP = 10;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_MESSAGE: const $name: FieldDescriptorProto_Type.$localName = $number;
+const TYPE_MESSAGE: FieldDescriptorProto_Type.MESSAGE = 11;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_BYTES: const $name: FieldDescriptorProto_Type.$localName = $number;
+const TYPE_BYTES: FieldDescriptorProto_Type.BYTES = 12;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_ENUM: const $name: FieldDescriptorProto_Type.$localName = $number;
+const TYPE_ENUM: FieldDescriptorProto_Type.ENUM = 14;
 
-// generated from enum google.protobuf.FieldOptions.JSType v26.0
-// prettier-ignore
-type JSTYPE =
-  | typeof JS_NORMAL
-  | typeof JS_STRING
-  | typeof JS_NUMBER;
-const JS_NORMAL = 0;
-const JS_STRING = 1;
-const JS_NUMBER = 2;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_REPEATED: const $name: FieldDescriptorProto_Label.$localName = $number;
+const LABEL_REPEATED: FieldDescriptorProto_Label.REPEATED = 3;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_OPTIONAL: const $name: FieldDescriptorProto_Label.$localName = $number;
+const LABEL_OPTIONAL: FieldDescriptorProto_Label.OPTIONAL = 1;
+// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_REQUIRED: const $name: FieldDescriptorProto_Label.$localName = $number;
+const LABEL_REQUIRED: FieldDescriptorProto_Label.REQUIRED = 2;
 
-// generated from enum google.protobuf.MethodOptions.IdempotencyLevel v26.0
-// prettier-ignore
-type IDEMPOTENCY =
-  | typeof IDEMPOTENCY_UNKNOWN
-  | typeof NO_SIDE_EFFECTS
-  | typeof IDEMPOTENT;
-const IDEMPOTENCY_UNKNOWN = 0;
-const NO_SIDE_EFFECTS = 1;
-const IDEMPOTENT = 2;
+// bootstrap-inject google.protobuf.FieldOptions.JSType.JS_STRING: const $name: FieldOptions_JSType.$localName = $number;
+const JS_STRING: FieldOptions_JSType.JS_STRING = 1;
 
-// generated from enum google.protobuf.Edition v26.0
-// prettier-ignore
-type EDITION =
-  | typeof EDITION_UNKNOWN
-  | typeof EDITION_PROTO2
-  | typeof EDITION_PROTO3
-  | typeof EDITION_2023
-  | typeof EDITION_2024
-  | typeof EDITION_1_TEST_ONLY
-  | typeof EDITION_2_TEST_ONLY
-  | typeof EDITION_99997_TEST_ONLY
-  | typeof EDITION_99998_TEST_ONLY
-  | typeof EDITION_99999_TEST_ONLY
-  | typeof EDITION_MAX;
-const EDITION_UNKNOWN = 0;
-const EDITION_PROTO2 = 998;
-const EDITION_PROTO3 = 999;
-const EDITION_2023 = 1000;
-const EDITION_2024 = 1001;
-const EDITION_1_TEST_ONLY = 1;
-const EDITION_2_TEST_ONLY = 2;
-const EDITION_99997_TEST_ONLY = 99997;
-const EDITION_99998_TEST_ONLY = 99998;
-const EDITION_99999_TEST_ONLY = 99999;
-const EDITION_MAX = 2147483647;
+// bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.IDEMPOTENCY_UNKNOWN: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
+const IDEMPOTENCY_UNKNOWN: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN = 0;
+// bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.NO_SIDE_EFFECTS: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
+const NO_SIDE_EFFECTS: MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS = 1;
+// bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.IDEMPOTENT: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
+const IDEMPOTENT: MethodOptions_IdempotencyLevel.IDEMPOTENT = 2;
 
-// generated from enum google.protobuf.FeatureSet.FieldPresence v26.0
-// prettier-ignore
-type FIELDPRESENCE =
-  | typeof FIELD_PRESENCE_UNKNOWN
-  | typeof EXPLICIT
-  | typeof IMPLICIT
-  | typeof LEGACY_REQUIRED;
-const FIELD_PRESENCE_UNKNOWN = 0;
-const EXPLICIT = 1;
-const IMPLICIT = 2;
-const LEGACY_REQUIRED = 3;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.EXPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const EXPLICIT: FeatureSet_FieldPresence.EXPLICIT = 1;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
+const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
 
-// generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding v26.0
-// prettier-ignore
-type REPEATED_FIELD_ENCODING =
-  | typeof REPEATED_FIELD_ENCODING_UNKNOWN
-  | typeof PACKED
-  | typeof EXPANDED;
-const REPEATED_FIELD_ENCODING_UNKNOWN = 0;
-const PACKED = 1;
-const EXPANDED = 2;
+// bootstrap-inject google.protobuf.FeatureSet.RepeatedFieldEncoding.PACKED: const $name: FeatureSet_RepeatedFieldEncoding.$localName = $number;
+const PACKED: FeatureSet_RepeatedFieldEncoding.PACKED = 1;
 
-// generated from enum google.protobuf.FeatureSet.MessageEncoding v26.0
-// prettier-ignore
-type MESSAGEENCODING =
-  | typeof MESSAGE_ENCODING_UNKNOWN
-  | typeof LENGTH_PREFIXED
-  | typeof DELIMITED;
-const MESSAGE_ENCODING_UNKNOWN = 0;
-const LENGTH_PREFIXED = 1;
-const DELIMITED = 2;
+// bootstrap-inject google.protobuf.FeatureSet.MessageEncoding.DELIMITED: const $name: FeatureSet_MessageEncoding.$localName = $number;
+const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 
-// generated from enum google.protobuf.FeatureSet.EnumType v26.0
-// prettier-ignore
-type ENUM_TYPE =
-  | typeof ENUM_TYPE_UNKNOWN
-  | typeof OPEN
-  | typeof CLOSED;
-const ENUM_TYPE_UNKNOWN = 0;
-const OPEN = 1;
-const CLOSED = 2;
+// bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
+const OPEN: FeatureSet_EnumType.OPEN = 1;
 
+// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023
 // generated from protoc experimental_edition_defaults_out v26.0
 const featureDefaults = {
-  // EDITION_PROTO2
-  998: {
+  998: { // EDITION_PROTO2
     fieldPresence: 1, // EXPLICIT,
     enumType: 2, // CLOSED,
     repeatedFieldEncoding: 2, // EXPANDED,
@@ -501,8 +420,7 @@ const featureDefaults = {
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 2, // LEGACY_BEST_EFFORT,
   },
-  // EDITION_PROTO3
-  999: {
+  999: { // EDITION_PROTO3
     fieldPresence: 2, // IMPLICIT,
     enumType: 1, // OPEN,
     repeatedFieldEncoding: 1, // PACKED,
@@ -510,8 +428,7 @@ const featureDefaults = {
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 1, // ALLOW,
   },
-  // EDITION_2023
-  1000: {
+  1000: { // EDITION_2023
     fieldPresence: 1, // EXPLICIT,
     enumType: 1, // OPEN,
     repeatedFieldEncoding: 1, // PACKED,
@@ -520,7 +437,6 @@ const featureDefaults = {
     jsonFormat: 1, // ALLOW,
   },
 } as const;
-/*bootstrap-inject-end*/
 
 /**
  * Create a descriptor for a file, add it to the set.
@@ -782,7 +698,7 @@ function newMethod(
   } else {
     methodKind = MethodKind.Unary;
   }
-  const protoIdempotency: IDEMPOTENCY | undefined =
+  const protoIdempotency: MethodOptions_IdempotencyLevel | undefined =
     proto.options?.idempotencyLevel;
   let idempotency: MethodIdempotency | undefined;
   switch (protoIdempotency) {
@@ -912,9 +828,9 @@ function newField(
     field.jsonName = proto.jsonName;
     field.toString = () => `field ${parent.typeName}.${proto.name}`;
   }
-  const label: LABEL = proto.label;
-  const type: TYPE = proto.type;
-  const jstype: JSTYPE | undefined = proto.options?.jstype;
+  const label: FieldDescriptorProto_Label = proto.label;
+  const type: FieldDescriptorProto_Type = proto.type;
+  const jstype: FieldOptions_JSType | undefined = proto.options?.jstype;
   if (label === LABEL_REPEATED) {
     // list or map field
     const mapEntry =
@@ -1002,7 +918,10 @@ function newField(
       field.longType = jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
       field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
-          ? parseTextFormatScalarValue(type, proto.defaultValue)
+          ? parseTextFormatScalarValue(
+              type as number as ScalarType,
+              proto.defaultValue,
+            )
           : undefined;
       };
       break;
@@ -1026,7 +945,7 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
       return EDITION_PROTO3;
     case "editions":
       // eslint-disable-next-line no-case-declarations
-      const edition: EDITION = proto.edition;
+      const edition = proto.edition;
       switch (edition) {
         case EDITION_PROTO2:
         case EDITION_PROTO3:
@@ -1131,21 +1050,20 @@ function getFieldPresence(
   proto: FieldDescriptorProto,
   oneof: DescOneof | undefined,
   parent: DescMessage | DescFile,
-): FIELDPRESENCE {
-  if ((proto.label as number) == LABEL_REQUIRED) {
+): FeatureSet_FieldPresence {
+  if (proto.label == LABEL_REQUIRED) {
     // proto2 required is LEGACY_REQUIRED
     return LEGACY_REQUIRED;
   }
   const { edition } = parent.kind == "message" ? parent.file : parent;
-  if ((edition as number) == EDITION_PROTO3) {
+  if (edition == EDITION_PROTO3) {
     // proto3 oneof and optional are explicit
     if (oneof != undefined || proto.proto3Optional) {
       return EXPLICIT;
     }
     // proto3 singular message is explicit
     const singularMessage =
-      (proto.label as number) != LABEL_REPEATED &&
-      (proto.type as number) == TYPE_MESSAGE;
+      proto.label != LABEL_REPEATED && proto.type == TYPE_MESSAGE;
     if (singularMessage) {
       return EXPLICIT;
     }
@@ -1160,10 +1078,10 @@ function getFieldPresence(
 function isOptionalField(field: DescField | DescExtension): boolean {
   const edition = (field.kind == "extension" ? field.file : field.parent.file)
     .edition;
-  if ((edition as number) == EDITION_PROTO2) {
-    return !field.oneof && (field.proto.label as number) == LABEL_OPTIONAL;
+  if (edition == EDITION_PROTO2) {
+    return !field.oneof && field.proto.label == LABEL_OPTIONAL;
   }
-  if ((edition as number) == EDITION_PROTO3) {
+  if (edition == EDITION_PROTO3) {
     return field.proto.proto3Optional;
   }
   return false;
@@ -1176,11 +1094,11 @@ function isPackedField(
   proto: FieldDescriptorProto,
   parent: DescMessage | DescFile,
 ): boolean {
-  if ((proto.label as number) != LABEL_REPEATED) {
+  if (proto.label != LABEL_REPEATED) {
     return false;
   }
-  const type: number = proto.type;
-  switch (type) {
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+  switch (proto.type) {
     case TYPE_STRING:
     case TYPE_BYTES:
     case TYPE_GROUP:
@@ -1193,11 +1111,13 @@ function isPackedField(
     // prefer the field option over edition features
     return o.packed;
   }
-  const r: REPEATED_FIELD_ENCODING = resolveFeature("repeatedFieldEncoding", {
-    proto,
-    parent,
-  });
-  return r == PACKED;
+  return (
+    PACKED ==
+    resolveFeature("repeatedFieldEncoding", {
+      proto,
+      parent,
+    })
+  );
 }
 
 /**
@@ -1205,11 +1125,13 @@ function isPackedField(
  * See https://protobuf.dev/programming-guides/enum/
  */
 function isEnumOpen(desc: DescEnum): boolean {
-  const enumType: ENUM_TYPE = resolveFeature("enumType", {
-    proto: desc.proto,
-    parent: desc.parent ?? desc.file,
-  });
-  return enumType == OPEN;
+  return (
+    OPEN ==
+    resolveFeature("enumType", {
+      proto: desc.proto,
+      parent: desc.parent ?? desc.file,
+    })
+  );
 }
 
 /**
@@ -1220,14 +1142,16 @@ function isDelimitedEncoding(
   proto: FieldDescriptorProto,
   parent: DescMessage | DescFile,
 ): boolean {
-  if ((proto.type as number) == TYPE_GROUP) {
+  if (proto.type == TYPE_GROUP) {
     return true;
   }
-  const r: MESSAGEENCODING = resolveFeature("messageEncoding", {
-    proto,
-    parent,
-  });
-  return r == DELIMITED;
+  return (
+    DELIMITED ==
+    resolveFeature("messageEncoding", {
+      proto,
+      parent,
+    })
+  );
 }
 
 /**

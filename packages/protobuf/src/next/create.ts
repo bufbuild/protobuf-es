@@ -20,21 +20,17 @@ import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
 import { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
+import type {
+  Edition,
+  FeatureSet_FieldPresence,
+} from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
 
-// TODO avoid copy by not exposing these enums in Desc*
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum FeatureSet_FieldPresence {
-  EXPLICIT = 1,
-  IMPLICIT = 2,
-}
-
-// TODO avoid copy by not exposing these enums in Desc*
-/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
-enum Edition {
-  EDITION_PROTO2 = 998,
-  EDITION_PROTO3 = 999,
-  EDITION_2023 = 1000,
-}
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
+const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.EXPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const EXPLICIT: FeatureSet_FieldPresence.EXPLICIT = 1;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 
 /**
  * Create a new message instance.
@@ -176,7 +172,7 @@ const messagePrototypes = new WeakMap<
  */
 function createZeroMessage(desc: DescMessage): Message {
   let msg: Record<string, unknown>;
-  if (desc.file.edition == Edition.EDITION_PROTO3) {
+  if (desc.file.edition == EDITION_PROTO3) {
     // we special case proto3: since it does not have default values, we let
     // the `optional` keyword generate an optional property.
     msg = {};
@@ -187,7 +183,7 @@ function createZeroMessage(desc: DescMessage): Message {
           member.fieldKind == "enum" ||
           member.fieldKind == "message"
         ) {
-          if (member.presence == FeatureSet_FieldPresence.EXPLICIT) {
+          if (member.presence == EXPLICIT) {
             // skips message fields and optional scalar/enum
             continue;
           }
@@ -217,7 +213,7 @@ function createZeroMessage(desc: DescMessage): Message {
           // are not
           continue;
         }
-        if (member.presence == FeatureSet_FieldPresence.IMPLICIT) {
+        if (member.presence == IMPLICIT) {
           // implicit presence tracks field presence by zero values
           // e.g. 0, false, "", are unset, 1, true, "x" are set
           continue;
@@ -237,7 +233,7 @@ function createZeroMessage(desc: DescMessage): Message {
           continue;
         }
         if (member.fieldKind == "scalar" || member.fieldKind == "enum") {
-          if (member.presence != FeatureSet_FieldPresence.IMPLICIT) {
+          if (member.presence != IMPLICIT) {
             continue;
           }
         }
