@@ -52,6 +52,7 @@ import {
 } from "./google/protobuf/wrappers_pb.js";
 import { FileDescriptorSet as V1FileDescriptorSet } from "./google/protobuf/descriptor_pb.js";
 import {
+  Edition,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
 } from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
@@ -60,6 +61,7 @@ import type {
   DescEnum,
   DescExtension,
   DescField,
+  DescFile,
   DescMessage,
   DescriptorSet,
 } from "./descriptor-set.js";
@@ -141,8 +143,7 @@ export function createRegistryFromDescriptors(
       if (!desc) {
         return undefined;
       }
-      const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
-      const type = runtime.makeEnumType(
+      const type = getRuntime(desc.file).makeEnumType(
         typeName,
         desc.values.map(
           (u): EnumValueInfo => ({
@@ -169,11 +170,14 @@ export function createRegistryFromDescriptors(
       if (!desc) {
         return undefined;
       }
-      const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
       const fields: FieldInfo[] = [];
-      const type = runtime.makeMessageType(typeName, () => fields, {
-        localName: localName(desc),
-      });
+      const type = getRuntime(desc.file).makeMessageType(
+        typeName,
+        () => fields,
+        {
+          localName: localName(desc),
+        },
+      );
       messages.set(typeName, type);
       for (const field of desc.fields) {
         fields.push(makeFieldInfo(field, this));
@@ -248,8 +252,7 @@ export function createRegistryFromDescriptors(
         return undefined;
       }
       const extendee = resolve(desc.extendee, this, desc);
-      const runtime = desc.file.syntax == "proto3" ? proto3 : proto2;
-      const ext = runtime.makeExtension(
+      const ext = getRuntime(desc.file).makeExtension(
         typeName,
         extendee,
         makeFieldInfo(desc, this) as ExtensionFieldSource,
@@ -361,4 +364,15 @@ function resolve(
       : registry.findEnum(desc.typeName);
   assert(type, `${desc.toString()}" for ${context.toString()} not found`);
   return type;
+}
+
+function getRuntime(file: DescFile) {
+  switch (file.edition) {
+    case Edition.EDITION_PROTO3:
+      return proto3;
+    case Edition.EDITION_PROTO2:
+      return proto2;
+    default:
+      throw new Error("editions are not supported by v1");
+  }
 }

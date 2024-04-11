@@ -28,7 +28,7 @@ import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 import type { MethodIdempotency, MethodKind } from "./service-type.js";
 
-type SupportedEdition = Extract<
+export type SupportedEdition = Extract<
   Edition,
   Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
 >;
@@ -97,10 +97,6 @@ export type AnyDesc =
  */
 export interface DescFile {
   readonly kind: "file";
-  /**
-   * The syntax specified in the protobuf source.
-   */
-  readonly syntax: "proto3" | "proto2" | "editions";
   /**
    * The edition of the protobuf file. Will be EDITION_PROTO2 for syntax="proto2",
    * EDITION_PROTO3 for syntax="proto3";

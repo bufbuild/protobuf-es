@@ -26,7 +26,7 @@ import {
   Schema,
 } from "@bufbuild/protoplugin/ecmascript";
 import { generateFieldInfo, getFieldInfoLiteral } from "./javascript.js";
-import { getNonEditionRuntime } from "./editions.js";
+import { editionToSyntax, getNonEditionRuntime } from "./editions.js";
 import {
   fieldUsesPrototype,
   getFieldDefaultValueExpression,
@@ -68,7 +68,7 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
     f.print("  ", localName(value), " = ", value.number, ",");
   }
   f.print("}");
-  f.print("// Retrieve enum metadata with: ", enumeration.file.syntax, ".getEnumType(", importPb(schema, f, enumeration), ")");
+  f.print("// Retrieve enum metadata with: ", editionToSyntax(enumeration.file.edition), ".getEnumType(", importPb(schema, f, enumeration), ")");
   f.print(protoN, `.util.setEnumType(`, localName(enumeration), `, "`, enumeration.typeName, `", [`);
   for (const value of enumeration.values) {
     f.print("  { no: ", value.number, ', name: "', value.name, '" },');

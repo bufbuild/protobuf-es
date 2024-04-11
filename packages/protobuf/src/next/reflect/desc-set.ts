@@ -14,7 +14,6 @@
 
 import type {
   DescriptorProto,
-  Edition,
   EnumDescriptorProto,
   FeatureSet,
   FieldDescriptorProto,
@@ -34,6 +33,7 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
+  SupportedEdition,
 } from "../../descriptor-set.js";
 import { MethodIdempotency, MethodKind } from "../../service-type.js";
 import { findEnumSharedPrefix } from "../../private/names.js";
@@ -530,7 +530,7 @@ function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
     kind: "file",
     proto,
     deprecated: proto.options?.deprecated ?? false,
-    ...parseFileSyntax(proto.name, proto.syntax, proto.edition),
+    edition: getFileEdition(proto),
     name: proto.name.replace(/\.proto/, ""),
     dependencies: findFileDependencies(proto, set),
     enums: [],
@@ -1014,43 +1014,32 @@ function newField(
 }
 
 /**
- * Parse the "syntax" and "edition" fields, stripping test editions.
+ * Parse the "syntax" and "edition" fields, returning one of the supported
+ * editions.
  */
-function parseFileSyntax(fileName: string, syntax: string, edition: EDITION) {
-  let e: Extract<
-    Edition,
-    Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
-  >;
-  let s: "proto2" | "proto3" | "editions";
-  switch (syntax) {
+function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
+  switch (proto.syntax) {
     case "":
     case "proto2":
-      s = "proto2";
-      e = EDITION_PROTO2;
-      break;
+      return EDITION_PROTO2;
     case "proto3":
-      s = "proto3";
-      e = EDITION_PROTO3;
-      break;
+      return EDITION_PROTO3;
     case "editions":
-      s = "editions";
+      // eslint-disable-next-line no-case-declarations
+      const edition: EDITION = proto.edition;
       switch (edition) {
+        case EDITION_PROTO2:
+        case EDITION_PROTO3:
         case EDITION_2023:
-          e = edition;
-          break;
+          return edition;
         default:
           throw new Error(
-            `unsupported edition in ${fileName}: the latest supported edition is 2023`,
+            `unsupported edition in ${proto.name}: the latest supported edition is 2023`,
           );
       }
-      break;
     default:
-      throw new Error(`unsupported syntax in ${fileName}: ${syntax}`);
+      throw new Error(`unsupported syntax in ${proto.name}: ${proto.syntax}`);
   }
-  return {
-    syntax: s,
-    edition: e,
-  };
 }
 
 /**

@@ -21,6 +21,7 @@ import {
 import {
   FieldDescriptorProto_Type,
   FieldDescriptorProto_Label,
+  Edition,
 } from "@bufbuild/protobuf/next/wkt";
 import { LongType, proto2, proto3, ScalarType } from "@bufbuild/protobuf";
 import type {
@@ -91,7 +92,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     f.print("  ],")
   }
   const needsLocalName = localName(message) !==
-      (message.file.syntax == "proto3" ? proto2 : proto3)
+      (message.file.edition == Edition.EDITION_PROTO3 ? proto2 : proto3)
       .makeMessageType(message.typeName, []).name;
   if (needsLocalName) {
     // local name is not inferrable from the type name, we need to provide it

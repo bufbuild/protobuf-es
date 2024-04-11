@@ -18,6 +18,7 @@ import type {
 } from "@bufbuild/protoplugin/ecmascript";
 import { DescFile } from "@bufbuild/protobuf";
 import { runtimeImports } from "./util";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
 
 /**
  * Temporary function to retrieve the import symbol for the proto2 or proto3
@@ -32,15 +33,23 @@ export function getNonEditionRuntime(
   f: GeneratedFile,
   file: DescFile,
 ): ImportSymbol {
-  switch (file.syntax) {
-    case "proto2":
+  switch (file.edition) {
+    case Edition.EDITION_PROTO2:
       return runtimeImports(f).proto2;
-    case "proto3":
+    case Edition.EDITION_PROTO3:
       return runtimeImports(f).proto3;
     default:
-      // TODO support editions
-      throw new Error(
-        `${file.proto.name}: syntax "${file.syntax}" is not supported`,
-      );
+      throw new Error("editions are not supported by v1");
+  }
+}
+
+export function editionToSyntax(edition: Edition): "proto2" | "proto3" {
+  switch (edition) {
+    case Edition.EDITION_PROTO2:
+      return "proto2";
+    case Edition.EDITION_PROTO3:
+      return "proto3";
+    default:
+      throw new Error("editions are not supported by v1");
   }
 }

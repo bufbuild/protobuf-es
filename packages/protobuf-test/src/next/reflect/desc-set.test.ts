@@ -486,7 +486,6 @@ describe("DescFile", () => {
     const set = createDescFileSet(fileDescriptorSet);
     const descFile = set.getFile("a.proto");
     expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("proto2");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
   });
   test("proto3 syntax", async () => {
@@ -496,7 +495,6 @@ describe("DescFile", () => {
     const set = createDescFileSet(fileDescriptorSet);
     const descFile = set.getFile("a.proto");
     expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("proto3");
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
   });
   test("edition 2023", async () => {
@@ -506,7 +504,6 @@ describe("DescFile", () => {
     const set = createDescFileSet(fileDescriptorSet);
     const descFile = set.getFile("a.proto");
     expect(descFile).toBeDefined();
-    expect(descFile?.syntax).toBe("editions");
     expect(descFile?.edition).toBe(Edition.EDITION_2023);
   });
   test("dependencies", async () => {
