@@ -12,19 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { protoInt64 } from "@bufbuild/protobuf";
+import type { SupportedEdition } from "@bufbuild/protobuf";
+import { create } from "@bufbuild/protobuf/next";
+import {
+  minimumEdition as minimumEditionUpstream,
+  maximumEdition as maximumEditionUpstream,
+} from "@bufbuild/protobuf/next/reflect";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
+import {
+  CodeGeneratorResponse_Feature,
+  CodeGeneratorResponseDesc,
+} from "@bufbuild/protobuf/next/wkt";
 import { createSchema } from "./ecmascript/schema.js";
 import type { Schema } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./ecmascript/transpile.js";
 import { parseParameter } from "./ecmascript/parameter.js";
-import { protoInt64 } from "@bufbuild/protobuf";
-import { create } from "@bufbuild/protobuf/next";
-import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
-import {
-  CodeGeneratorResponse_Feature,
-  CodeGeneratorResponseDesc,
-} from "@bufbuild/protobuf/next/wkt";
 
 interface PluginInit {
   /**
@@ -44,9 +49,16 @@ interface PluginInit {
   parseOption?: (key: string, value: string) => void;
 
   /**
-   * Whether the plugin supports editions.
+   * The earliest edition supported by this plugin. Defaults to the minimum
+   * edition supported by @bufbuild/protobuf.
    */
-  supportsEditions?: boolean;
+  minimumEdition?: SupportedEdition;
+
+  /**
+   * The latest edition supported by this plugin. Defaults to the maximum
+   * edition supported by @bufbuild/protobuf.
+   */
+  maximumEdition?: SupportedEdition;
 
   /**
    * A function which will generate TypeScript files based on proto input.
@@ -113,8 +125,17 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     name: init.name,
     version: init.version,
     run(req) {
+      const minimumEdition = init.minimumEdition ?? minimumEditionUpstream;
+      const maximumEdition = init.maximumEdition ?? maximumEditionUpstream;
       const parameter = parseParameter(req.parameter, init.parseOption);
-      const schema = createSchema(req, parameter, init.name, init.version);
+      const schema = createSchema(
+        req,
+        parameter,
+        init.name,
+        init.version,
+        minimumEdition,
+        maximumEdition,
+      );
 
       const targetTs = schema.targets.includes("ts");
       const targetJs = schema.targets.includes("js");
@@ -193,22 +214,23 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
         files.push(...transpiledFiles);
       }
 
-      return toResponse(files, init.supportsEditions ?? false);
+      return toResponse(files, minimumEdition, maximumEdition);
     },
   };
 }
 
 function toResponse(
   files: FileInfo[],
-  supportsEditions: boolean,
+  minimumEdition: SupportedEdition,
+  maximumEdition: SupportedEdition,
 ): CodeGeneratorResponse {
-  let supportedFeatures: number = CodeGeneratorResponse_Feature.PROTO3_OPTIONAL;
-  if (supportsEditions) {
-    supportedFeatures =
-      supportedFeatures | CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS;
-  }
   return create(CodeGeneratorResponseDesc, {
-    supportedFeatures: protoInt64.parse(supportedFeatures),
+    supportedFeatures: protoInt64.parse(
+      CodeGeneratorResponse_Feature.PROTO3_OPTIONAL |
+        CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS,
+    ),
+    minimumEdition,
+    maximumEdition,
     file: files.map((f) => {
       if (f.preamble !== undefined) {
         f.content = f.preamble + "\n" + f.content;

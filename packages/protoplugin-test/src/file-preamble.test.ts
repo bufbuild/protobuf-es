@@ -167,7 +167,6 @@ describe("GeneratedFile.preamble", () => {
   }) {
     return await createTestPluginAndRun({
       ...opt,
-      supportsEditions: true,
       generateAny(f, schema) {
         f.preamble(schema.files[0]);
         f.print(

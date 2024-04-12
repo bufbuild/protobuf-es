@@ -12,9 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeAll, describe, expect, test } from "@jest/globals";
+import { beforeAll, beforeEach, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
 import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
+import {
+  createDescFileSet,
+  createDescSet,
+  LongType,
+  protoCamelCase,
+  ScalarType,
+} from "@bufbuild/protobuf/next/reflect";
 import type {
   DescEnum,
   DescExtension,
@@ -26,13 +33,6 @@ import type {
 } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
 import { Edition, FeatureSet_FieldPresence } from "@bufbuild/protobuf/next/wkt";
-import {
-  createDescFileSet,
-  createDescSet,
-  protoCamelCase,
-  ScalarType,
-  LongType,
-} from "@bufbuild/protobuf/next/reflect";
 import {
   compileEnum,
   compileField,
@@ -294,7 +294,7 @@ describe("createDescSet()", function () {
 
 describe("createDescFileSet()", function () {
   let testFileDescriptorSet: FileDescriptorSet;
-  beforeAll(async () => {
+  beforeEach(async () => {
     testFileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": `
         syntax="proto3";
@@ -391,6 +391,22 @@ describe("createDescFileSet()", function () {
       }
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
     });
+  });
+  test("raises error on unsupported edition from the past", function () {
+    testFileDescriptorSet.file[0].syntax = "editions";
+    testFileDescriptorSet.file[0].edition = Edition.EDITION_1_TEST_ONLY;
+    function t() {
+      createDescFileSet(testFileDescriptorSet);
+    }
+    expect(t).toThrow(/^d.proto: unsupported edition$/);
+  });
+  test("raises error on unsupported edition from the future", function () {
+    testFileDescriptorSet.file[0].syntax = "editions";
+    testFileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
+    function t() {
+      createDescFileSet(testFileDescriptorSet);
+    }
+    expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
   describe("from DescFileSet", function () {
     test("creates a copy of the given DescFileSet", () => {

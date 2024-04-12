@@ -364,8 +364,6 @@ function addDescFile(file: DescFile, set: DescFileSetMutable) {
 const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
-// bootstrap-inject google.protobuf.Edition.EDITION_2023: const $name: Edition.$localName = $number;
-const EDITION_2023: Edition.EDITION_2023 = 1000;
 
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_STRING: const $name: FieldDescriptorProto_Type.$localName = $number;
 const TYPE_STRING: FieldDescriptorProto_Type.STRING = 9;
@@ -409,10 +407,13 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 // bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
 
-// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023
-// generated from protoc experimental_edition_defaults_out v26.0
+// prettier-ignore
+// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
+// generated from protoc v26.0
+export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;
 const featureDefaults = {
-  998: { // EDITION_PROTO2
+  // EDITION_PROTO2
+  998: {
     fieldPresence: 1, // EXPLICIT,
     enumType: 2, // CLOSED,
     repeatedFieldEncoding: 2, // EXPANDED,
@@ -420,7 +421,8 @@ const featureDefaults = {
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 2, // LEGACY_BEST_EFFORT,
   },
-  999: { // EDITION_PROTO3
+  // EDITION_PROTO3
+  999: {
     fieldPresence: 2, // IMPLICIT,
     enumType: 1, // OPEN,
     repeatedFieldEncoding: 1, // PACKED,
@@ -428,7 +430,8 @@ const featureDefaults = {
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 1, // ALLOW,
   },
-  1000: { // EDITION_2023
+  // EDITION_2023
+  1000: {
     fieldPresence: 1, // EXPLICIT,
     enumType: 1, // OPEN,
     repeatedFieldEncoding: 1, // PACKED,
@@ -944,20 +947,12 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
     case "proto3":
       return EDITION_PROTO3;
     case "editions":
-      // eslint-disable-next-line no-case-declarations
-      const edition = proto.edition;
-      switch (edition) {
-        case EDITION_PROTO2:
-        case EDITION_PROTO3:
-        case EDITION_2023:
-          return edition;
-        default:
-          throw new Error(
-            `unsupported edition in ${proto.name}: the latest supported edition is 2023`,
-          );
+      if (proto.edition in featureDefaults) {
+        return proto.edition as SupportedEdition;
       }
+      throw new Error(`${proto.name}: unsupported edition`);
     default:
-      throw new Error(`unsupported syntax in ${proto.name}: ${proto.syntax}`);
+      throw new Error(`${proto.name}: unsupported syntax "${proto.syntax}"`);
   }
 }
 

@@ -124,7 +124,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
     {
       // bootstrap-inject feature-defaults: EDITION_PROTO2, EDITION_PROTO3, EDITION_2023
       const match = lines[i].match(
-        /^\/\/ bootstrap-inject defaults: (.+) to (.+)$/,
+        /^\/\/ bootstrap-inject defaults: ([A-Z0-_]+) to ([A-Z0-_]+): (.+)$/,
       );
       if (match !== null) {
         const enumDesc = descriptorProto.getEnum("google.protobuf.Edition");
@@ -133,7 +133,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
             `${filePath}:${i}: enum google.protobuf.Edition not found`,
           );
         }
-        const [, minimumEditionString, maximumEditionString] = match;
+        const [, minimumEditionString, maximumEditionString, template] = match;
         const featureSetDefaults = await compileDefaults(
           upstream,
           minimumEditionString.replace(/^EDITION_/, ""),
@@ -147,12 +147,17 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         }
         const remainder = lines.splice(endOfPrevious);
         lines.splice(i + 1);
+        lines.push(`// generated from protoc v${upstream.version()}`);
         lines.push(
-          `// generated from protoc experimental_edition_defaults_out v${upstream.version()}`,
+          injectVars(template, {
+            $minimumEdition: featureSetDefaults.minimumEdition,
+            $maximumEdition: featureSetDefaults.maximumEdition,
+          }),
         );
         lines.push(`const featureDefaults = {`);
         for (const def of featureSetDefaults.defaults) {
-          lines.push(`  ${def.edition}: { // ${Edition[def.edition]}`);
+          lines.push(`  // ${Edition[def.edition]}`);
+          lines.push(`  ${def.edition}: {`);
           const r = reflect(FeatureSetDesc, def.features);
           for (const f of r.fields) {
             if (f.fieldKind !== "enum") {

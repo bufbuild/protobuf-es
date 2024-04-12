@@ -79,6 +79,7 @@ export type {
   DescMethod,
   DescExtension,
   DescComments,
+  SupportedEdition,
 } from "./descriptor-set.js";
 export { createDescriptorSet } from "./create-descriptor-set.js";
 export type {

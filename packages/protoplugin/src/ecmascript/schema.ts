@@ -19,7 +19,10 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { create } from "@bufbuild/protobuf/next";
+import type { CodeGeneratorRequest } from "@bufbuild/protobuf/next/wkt";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
+import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 import {
   createDescFileSet,
   nestedTypes,
@@ -41,9 +44,6 @@ import type { ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import { localDescName, localShapeName, generateFilePath } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
-import type { CodeGeneratorRequest } from "@bufbuild/protobuf/next/wkt";
-import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
-import { create } from "@bufbuild/protobuf/next";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -94,13 +94,14 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
+  minimumEdition: Edition,
+  maximumEdition: Edition,
 ): SchemaController {
-  const descriptorSet = createDescFileSet(
-    create(FileDescriptorSetDesc, {
-      file: request.protoFile,
-    }),
+  const { allFiles, filesToGenerate } = getFilesToGenerate(
+    request,
+    minimumEdition,
+    maximumEdition,
   );
-  const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
@@ -138,7 +139,7 @@ export function createSchema(
     targets: parameter.targets,
     proto: request,
     files: filesToGenerate,
-    allFiles: Array.from(descriptorSet.files),
+    allFiles: allFiles,
     typesInFile: nestedTypes,
     generateFile(name) {
       if (target === undefined) {
@@ -170,21 +171,74 @@ export function createSchema(
   };
 }
 
-function findFilesToGenerate(
-  descriptorSet: DescFileSet,
+function getFilesToGenerate(
   request: CodeGeneratorRequest,
-) {
+  minimumEdition: Edition,
+  maximumEdition: Edition,
+): { filesToGenerate: DescFile[]; allFiles: DescFile[] } {
+  if (minimumEdition > maximumEdition) {
+    throw new Error(
+      `configured minimumEdition ${editionToString(minimumEdition)} > maximumEdition ${editionToString(maximumEdition)} - please contact plugin author`,
+    );
+  }
   const missing = request.fileToGenerate.filter(
-    (fileToGenerate) => descriptorSet.getFile(fileToGenerate) === undefined,
+    (fileToGenerate) =>
+      !request.protoFile.find((f) => f.name === fileToGenerate),
   );
   if (missing.length) {
-    throw `files_to_generate missing in the request: ${missing.join(", ")}`;
+    throw new Error(
+      `files_to_generate missing in the request: ${missing.join(", ")}`,
+    );
   }
+  for (const file of request.protoFile) {
+    if (request.fileToGenerate.includes(file.name)) {
+      let edition: Edition;
+      switch (file.syntax) {
+        case "":
+        case "proto2":
+          edition = Edition.EDITION_PROTO2;
+          break;
+        case "proto3":
+          edition = Edition.EDITION_PROTO3;
+          break;
+        case "editions":
+          edition = file.edition;
+          break;
+        default:
+          edition = Edition.EDITION_UNKNOWN;
+          break;
+      }
+      if (edition < minimumEdition) {
+        throw new Error(
+          `${file.name}: unsupported edition ${editionToString(edition)} - the earliest supported edition is ${editionToString(minimumEdition)}`,
+        );
+      }
+      if (edition > maximumEdition) {
+        throw new Error(
+          `${file.name}: unsupported edition ${editionToString(edition)} - the latest supported edition is ${editionToString(maximumEdition)}`,
+        );
+      }
+    }
+  }
+  const descriptorSet = createDescFileSet(
+    create(FileDescriptorSetDesc, {
+      file: request.protoFile,
+    }),
+  );
+  const allFiles: DescFile[] = [];
   const filesToGenerate: DescFile[] = [];
   for (const file of descriptorSet.files) {
+    allFiles.push(file);
     if (request.fileToGenerate.includes(file.proto.name)) {
       filesToGenerate.push(file);
     }
   }
-  return filesToGenerate;
+  return { allFiles, filesToGenerate };
+}
+
+function editionToString(edition: number): string {
+  if (edition in Edition) {
+    return Edition[edition].replace(/^EDITION_/, "");
+  }
+  return `unknown (${edition})`;
 }
