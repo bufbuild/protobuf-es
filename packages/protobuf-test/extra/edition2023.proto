@@ -65,8 +65,8 @@ message Edition2023Message {
   int64 required_default_int64_js_string_field = 106 [features.field_presence=LEGACY_REQUIRED, default = -256, jstype = JS_STRING];
   float required_default_float_field = 107 [features.field_presence=LEGACY_REQUIRED, default = -512.13];
   bool required_default_bool_field = 108 [features.field_presence=LEGACY_REQUIRED, default = true];
-  Edition2023EnumOpen required_default_enum_open_field = 109 [features.field_presence=LEGACY_REQUIRED, default = EDITION_2023_ENUM_OPEN_A];
-  Edition2023EnumClosed required_default_enum_closed_field = 110 [features.field_presence=LEGACY_REQUIRED, default = EDITION_2023_ENUM_CLOSED_A];
+  Edition2023EnumOpen required_default_enum_open_field = 109 [features.field_presence=LEGACY_REQUIRED, default = EDITION2023_ENUM_OPEN_A];
+  Edition2023EnumClosed required_default_enum_closed_field = 110 [features.field_presence=LEGACY_REQUIRED, default = EDITION2023_ENUM_CLOSED_A];
 
   repeated string repeated_string_field = 401;
   repeated bytes repeated_bytes_field = 402;
@@ -121,11 +121,43 @@ message Edition2023Message {
 }
 
 enum Edition2023EnumOpen {
-  EDITION_2023_ENUM_OPEN_UNSPECIFIED = 0;
-  EDITION_2023_ENUM_OPEN_A = 1;
+  EDITION2023_ENUM_OPEN_UNSPECIFIED = 0;
+  EDITION2023_ENUM_OPEN_A = 1;
 }
 
 enum Edition2023EnumClosed {
   option features.enum_type = CLOSED;
-  EDITION_2023_ENUM_CLOSED_A = 1;
+  EDITION2023_ENUM_CLOSED_A = 1;
+}
+
+// this is an exact replication of spec.Proto3MessageForEdition2023 in editions
+// see edition-2023-proto2.proto
+message Edition2023FromProto2Message {
+  bool optional_bool_field = 1;
+  Edition2023EnumClosed optional_closed_enum_field = 2;
+  string optional_string_field_with_default = 3 [default = "hello \" */ "];
+  OptionalGroup optionalgroup = 4 [features.message_encoding=DELIMITED];
+  message OptionalGroup {
+    int32 int32_field = 1;
+  }
+  bool required_bool_field = 5 [features.field_presence=LEGACY_REQUIRED];
+  Edition2023EnumClosed required_closed_enum_field = 6 [features.field_presence=LEGACY_REQUIRED];
+  string required_string_field_with_default = 7 [features.field_presence=LEGACY_REQUIRED, default = ""];
+  RequiredGroup requiredgroup = 8 [features.message_encoding=DELIMITED];
+  message RequiredGroup {
+    int32 int32_field = 1;
+  }
+  repeated double packed_double_field = 9 [features.repeated_field_encoding=PACKED];
+  repeated double unpacked_double_field = 10 [features.repeated_field_encoding=EXPANDED];
+}
+
+// this is an exact replication of spec.Proto2MessageForEdition2023 in editions
+// see edition-2023-proto3.proto
+message Edition2023FromProto3Message {
+  bool implicit_bool_field = 1 [features.field_presence=IMPLICIT];
+  Edition2023EnumOpen implicit_open_enum_field = 2 [features.field_presence=IMPLICIT];
+  bool explicit_bool_field = 5 [features.field_presence=EXPLICIT];
+  Edition2023EnumOpen explicit_open_enum_field = 6[features.field_presence=EXPLICIT];
+  repeated double packed_double_field = 9 [features.repeated_field_encoding=PACKED];
+  repeated double unpacked_double_field = 10 [features.repeated_field_encoding=EXPANDED];
 }

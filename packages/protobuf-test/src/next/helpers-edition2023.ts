@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
 import { create } from "@bufbuild/protobuf/next";
 import { protoInt64 } from "@bufbuild/protobuf";
+import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
 
 export function fillEdition2023MessageNames() {
   return [
@@ -51,9 +51,12 @@ export function fillEdition2023MessageNames() {
     // required with default
     "requiredDefaultStringField",
     "requiredDefaultBytesField",
+    "requiredDefaultInt32Field",
     "requiredDefaultInt64Field",
     "requiredDefaultInt64JsNumberField",
     "requiredDefaultInt64JsStringField",
+    "requiredDefaultFloatField",
+    "requiredDefaultBoolField",
     "requiredDefaultEnumOpenField",
     "requiredDefaultEnumClosedField",
     // repeated
@@ -73,12 +76,10 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   msg.explicitInt64Field = protoInt64.zero;
   msg.explicitInt64JsNumberField = protoInt64.zero;
   msg.explicitInt64JsStringField = "0";
-  msg.explicitEnumOpenField =
-    edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A;
-  msg.explicitEnumClosedField =
-    edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A;
-  msg.explicitMessageField = create(desc);
-  msg.explicitMessageDelimitedField = create(desc);
+  msg.explicitEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
+  msg.explicitEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
+  msg.explicitMessageField = fillEdition2023Required(create(desc));
+  msg.explicitMessageDelimitedField = fillEdition2023Required(create(desc));
   msg.explicitWrappedUint32Field = 66;
 
   // implicit
@@ -86,8 +87,7 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   msg.implicitInt64Field = protoInt64.parse(123);
   msg.implicitInt64JsNumberField = protoInt64.parse(123);
   msg.implicitInt64JsStringField = "456";
-  msg.implicitEnumOpenField =
-    edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A;
+  msg.implicitEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
 
   // required
   msg.requiredStringField = "non-zero";
@@ -98,10 +98,8 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   msg.requiredInt64JsStringField = "456";
   msg.requiredFloatField = 0;
   msg.requiredBoolField = false;
-  msg.requiredEnumOpenField =
-    edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A;
-  msg.requiredEnumClosedField =
-    edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A;
+  msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
+  msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   msg.requiredMessageField = create(
     edition2023_ts.Edition2023Message_ChildDesc,
   );
@@ -113,13 +111,14 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   // required with default
   msg.requiredDefaultStringField = "non-zero";
   msg.requiredDefaultBytesField = new Uint8Array();
+  msg.requiredDefaultInt32Field = 0;
   msg.requiredDefaultInt64Field = protoInt64.parse(123);
   msg.requiredDefaultInt64JsNumberField = protoInt64.parse(123);
   msg.requiredDefaultInt64JsStringField = "456";
-  msg.requiredDefaultEnumOpenField =
-    edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A;
-  msg.requiredDefaultEnumClosedField =
-    edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A;
+  msg.requiredDefaultFloatField = 0;
+  msg.requiredDefaultBoolField = false;
+  msg.requiredDefaultEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
+  msg.requiredDefaultEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
 
   // repeated
   msg.repeatedStringField = ["abc"];
@@ -128,5 +127,39 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   // oneof
   msg.either = { case: "oneofBoolField", value: false };
 
+  return msg;
+}
+
+function fillEdition2023Required(msg: edition2023_ts.Edition2023Message) {
+  // required
+  msg.requiredStringField = "non-zero";
+  msg.requiredBytesField = new Uint8Array();
+  msg.requiredInt32Field = 0;
+  msg.requiredInt64Field = protoInt64.parse(123);
+  msg.requiredInt64JsNumberField = protoInt64.parse(123);
+  msg.requiredInt64JsStringField = "456";
+  msg.requiredFloatField = 0;
+  msg.requiredBoolField = false;
+  msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
+  msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
+  msg.requiredMessageField = create(
+    edition2023_ts.Edition2023Message_ChildDesc,
+  );
+  msg.requiredMessageDelimitedField = create(
+    edition2023_ts.Edition2023Message_ChildDesc,
+  );
+  msg.requiredWrappedUint32Field = 66;
+
+  // required with default
+  msg.requiredDefaultStringField = "non-zero";
+  msg.requiredDefaultBytesField = new Uint8Array();
+  msg.requiredDefaultInt32Field = 0;
+  msg.requiredDefaultInt64Field = protoInt64.parse(123);
+  msg.requiredDefaultInt64JsNumberField = protoInt64.parse(123);
+  msg.requiredDefaultInt64JsStringField = "456";
+  msg.requiredDefaultFloatField = 0;
+  msg.requiredDefaultBoolField = false;
+  msg.requiredDefaultEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
+  msg.requiredDefaultEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   return msg;
 }

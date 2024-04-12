@@ -352,11 +352,11 @@ describe("create()", () => {
         expect(msg.explicitBoolField).toBe(false);
         expect(hasOwn("explicitBoolField")).toBe(false);
         expect(msg.explicitEnumOpenField).toBe(
-          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+          edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         expect(hasOwn("explicitEnumOpenField")).toBe(false);
         expect(msg.explicitEnumClosedField).toBe(
-          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+          edition2023_ts.Edition2023EnumClosed.A,
         );
         expect(hasOwn("explicitEnumClosedField")).toBe(false);
         expect(msg.explicitMessageField).toBeUndefined();
@@ -386,7 +386,7 @@ describe("create()", () => {
         expect(msg.implicitBoolField).toBe(false);
         expect(hasOwn("implicitBoolField")).toBe(true);
         expect(msg.implicitEnumOpenField).toBe(
-          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+          edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         expect(hasOwn("implicitEnumOpenField")).toBe(true);
 
@@ -410,11 +410,11 @@ describe("create()", () => {
         expect(msg.requiredBoolField).toBe(false);
         expect(hasOwn("requiredBoolField")).toBe(false);
         expect(msg.requiredEnumOpenField).toBe(
-          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+          edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         expect(hasOwn("requiredEnumOpenField")).toBe(false);
         expect(msg.requiredEnumClosedField).toBe(
-          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+          edition2023_ts.Edition2023EnumClosed.A,
         );
         expect(hasOwn("requiredEnumClosedField")).toBe(false);
         expect(msg.requiredMessageField).toBeUndefined();
@@ -449,11 +449,11 @@ describe("create()", () => {
         expect(msg.requiredDefaultBoolField).toBe(true);
         expect(hasOwn("requiredDefaultBoolField")).toBe(false);
         expect(msg.requiredDefaultEnumOpenField).toBe(
-          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A,
+          edition2023_ts.Edition2023EnumOpen.A,
         );
         expect(hasOwn("requiredDefaultEnumOpenField")).toBe(false);
         expect(msg.requiredDefaultEnumClosedField).toBe(
-          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+          edition2023_ts.Edition2023EnumClosed.A,
         );
 
         // repeated

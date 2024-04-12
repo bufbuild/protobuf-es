@@ -245,12 +245,12 @@ export declare type Edition2023Message = Message<"spec.Edition2023Message"> & {
   requiredDefaultBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen required_default_enum_open_field = 109 [default = EDITION_2023_ENUM_OPEN_A];
+   * @generated from field: spec.Edition2023EnumOpen required_default_enum_open_field = 109 [default = EDITION2023_ENUM_OPEN_A];
    */
   requiredDefaultEnumOpenField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: spec.Edition2023EnumClosed required_default_enum_closed_field = 110 [default = EDITION_2023_ENUM_CLOSED_A];
+   * @generated from field: spec.Edition2023EnumClosed required_default_enum_closed_field = 110 [default = EDITION2023_ENUM_CLOSED_A];
    */
   requiredDefaultEnumClosedField: Edition2023EnumClosed;
 
@@ -487,18 +487,146 @@ export declare type Edition2023Message_Child = Message<"spec.Edition2023Message.
 export declare const Edition2023Message_ChildDesc: GenDescMessage<Edition2023Message_Child>;
 
 /**
+ * this is an exact replication of spec.Proto3MessageForEdition2023 in editions
+ * see edition-2023-proto2.proto
+ *
+ * @generated from message spec.Edition2023FromProto2Message
+ */
+export declare type Edition2023FromProto2Message = Message<"spec.Edition2023FromProto2Message"> & {
+  /**
+   * @generated from field: bool optional_bool_field = 1;
+   */
+  optionalBoolField: boolean;
+
+  /**
+   * @generated from field: spec.Edition2023EnumClosed optional_closed_enum_field = 2;
+   */
+  optionalClosedEnumField: Edition2023EnumClosed;
+
+  /**
+   * @generated from field: string optional_string_field_with_default = 3 [default = "hello \" *\/ "];
+   */
+  optionalStringFieldWithDefault: string;
+
+  /**
+   * @generated from field: spec.Edition2023FromProto2Message.OptionalGroup optionalgroup = 4;
+   */
+  optionalgroup?: Edition2023FromProto2Message_OptionalGroup;
+
+  /**
+   * @generated from field: bool required_bool_field = 5;
+   */
+  requiredBoolField: boolean;
+
+  /**
+   * @generated from field: spec.Edition2023EnumClosed required_closed_enum_field = 6;
+   */
+  requiredClosedEnumField: Edition2023EnumClosed;
+
+  /**
+   * @generated from field: string required_string_field_with_default = 7 [default = ""];
+   */
+  requiredStringFieldWithDefault: string;
+
+  /**
+   * @generated from field: spec.Edition2023FromProto2Message.RequiredGroup requiredgroup = 8;
+   */
+  requiredgroup?: Edition2023FromProto2Message_RequiredGroup;
+
+  /**
+   * @generated from field: repeated double packed_double_field = 9;
+   */
+  packedDoubleField: number[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 10;
+   */
+  unpackedDoubleField: number[];
+};
+
+// Describes the message spec.Edition2023FromProto2Message. Use `create(Edition2023FromProto2MessageDesc)` to create a new Edition2023FromProto2Message.
+export declare const Edition2023FromProto2MessageDesc: GenDescMessage<Edition2023FromProto2Message>;
+
+/**
+ * @generated from message spec.Edition2023FromProto2Message.OptionalGroup
+ */
+export declare type Edition2023FromProto2Message_OptionalGroup = Message<"spec.Edition2023FromProto2Message.OptionalGroup"> & {
+  /**
+   * @generated from field: int32 int32_field = 1;
+   */
+  int32Field: number;
+};
+
+// Describes the message spec.Edition2023FromProto2Message.OptionalGroup. Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new Edition2023FromProto2Message_OptionalGroup.
+export declare const Edition2023FromProto2Message_OptionalGroupDesc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup>;
+
+/**
+ * @generated from message spec.Edition2023FromProto2Message.RequiredGroup
+ */
+export declare type Edition2023FromProto2Message_RequiredGroup = Message<"spec.Edition2023FromProto2Message.RequiredGroup"> & {
+  /**
+   * @generated from field: int32 int32_field = 1;
+   */
+  int32Field: number;
+};
+
+// Describes the message spec.Edition2023FromProto2Message.RequiredGroup. Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new Edition2023FromProto2Message_RequiredGroup.
+export declare const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup>;
+
+/**
+ * this is an exact replication of spec.Proto2MessageForEdition2023 in editions
+ * see edition-2023-proto3.proto
+ *
+ * @generated from message spec.Edition2023FromProto3Message
+ */
+export declare type Edition2023FromProto3Message = Message<"spec.Edition2023FromProto3Message"> & {
+  /**
+   * @generated from field: bool implicit_bool_field = 1;
+   */
+  implicitBoolField: boolean;
+
+  /**
+   * @generated from field: spec.Edition2023EnumOpen implicit_open_enum_field = 2;
+   */
+  implicitOpenEnumField: Edition2023EnumOpen;
+
+  /**
+   * @generated from field: bool explicit_bool_field = 5;
+   */
+  explicitBoolField: boolean;
+
+  /**
+   * @generated from field: spec.Edition2023EnumOpen explicit_open_enum_field = 6;
+   */
+  explicitOpenEnumField: Edition2023EnumOpen;
+
+  /**
+   * @generated from field: repeated double packed_double_field = 9;
+   */
+  packedDoubleField: number[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 10;
+   */
+  unpackedDoubleField: number[];
+};
+
+// Describes the message spec.Edition2023FromProto3Message. Use `create(Edition2023FromProto3MessageDesc)` to create a new Edition2023FromProto3Message.
+export declare const Edition2023FromProto3MessageDesc: GenDescMessage<Edition2023FromProto3Message>;
+
+/**
  * @generated from enum spec.Edition2023EnumOpen
  */
 export enum Edition2023EnumOpen {
   /**
-   * @generated from enum value: EDITION_2023_ENUM_OPEN_UNSPECIFIED = 0;
+   * @generated from enum value: EDITION2023_ENUM_OPEN_UNSPECIFIED = 0;
    */
-  EDITION_2023_ENUM_OPEN_UNSPECIFIED = 0,
+  UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: EDITION_2023_ENUM_OPEN_A = 1;
+   * @generated from enum value: EDITION2023_ENUM_OPEN_A = 1;
    */
-  EDITION_2023_ENUM_OPEN_A = 1,
+  A = 1,
 }
 
 // Describes the enum spec.Edition2023EnumOpen.
@@ -509,9 +637,9 @@ export declare const Edition2023EnumOpenDesc: GenDescEnum<Edition2023EnumOpen>;
  */
 export enum Edition2023EnumClosed {
   /**
-   * @generated from enum value: EDITION_2023_ENUM_CLOSED_A = 1;
+   * @generated from enum value: EDITION2023_ENUM_CLOSED_A = 1;
    */
-  EDITION_2023_ENUM_CLOSED_A = 1,
+  A = 1,
 }
 
 // Describes the enum spec.Edition2023EnumClosed.
