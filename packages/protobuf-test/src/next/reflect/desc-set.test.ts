@@ -984,11 +984,11 @@ describe("DescField", () => {
     test("edition2023 is packed by default", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "a.proto": `
-        syntax="proto3";
+        edition="2023";
         message M {
           repeated int32 default = 3;
-          repeated int32 explicitly_packed = 4 [packed = true];
-          repeated int32 explicitly_expanded = 5 [packed = false];
+          repeated int32 explicitly_packed = 4 [features.repeated_field_encoding = PACKED];
+          repeated int32 explicitly_expanded = 5 [features.repeated_field_encoding = EXPANDED];
         }
         `,
       });
