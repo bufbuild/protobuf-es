@@ -266,10 +266,9 @@ describe(`json serialization`, () => {
         int32ValueField: 6,
         uint32ValueField: 7,
         stringValueField: "a",
-        // TODO: uncomment this once it is fixed.
-        // bytesValueField: new Uint8Array([
-        //   104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
-        // ]),
+        bytesValueField: new Uint8Array([
+          104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
+        ]),
       },
       {
         doubleValueField: 1.2,
@@ -280,8 +279,7 @@ describe(`json serialization`, () => {
         int32ValueField: 6,
         uint32ValueField: 7,
         stringValueField: "a",
-        // TODO: uncomment this once it is fixed.
-        // bytesField: "aGVsbG8gd29ybGQ=",
+        bytesValueField: "aGVsbG8gd29ybGQ=",
       },
     );
     describe("Any", () => {
