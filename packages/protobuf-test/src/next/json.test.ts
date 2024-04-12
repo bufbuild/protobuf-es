@@ -406,14 +406,14 @@ describe(`json serialization`, () => {
       });
     });
     describe("Duration", () => {
-      const testDurationJson = (
+      const assertDurationJson = (
         init: MessageInitShape<typeof DurationDesc>,
         json: string,
       ) => {
         assertJson(DurationDesc, init, json);
       };
       test("3s", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(3),
             nanos: 0,
@@ -422,7 +422,7 @@ describe(`json serialization`, () => {
         );
       });
       test("3s 1ms", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(3),
             nanos: 1000,
@@ -431,7 +431,7 @@ describe(`json serialization`, () => {
         );
       });
       test("3s 1ns", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(3),
             nanos: 1,
@@ -440,7 +440,7 @@ describe(`json serialization`, () => {
         );
       });
       test("-3s 1ns", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(-3),
             nanos: -1,
@@ -449,7 +449,7 @@ describe(`json serialization`, () => {
         );
       });
       test("0s 5ns", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(0),
             nanos: 5,
@@ -458,7 +458,7 @@ describe(`json serialization`, () => {
         );
       });
       test("0s -5ns", () => {
-        testDurationJson(
+        assertDurationJson(
           {
             seconds: protoInt64.parse(0),
             nanos: -5,
