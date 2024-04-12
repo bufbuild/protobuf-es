@@ -20,6 +20,7 @@ import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
 import { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
+import { isWrapperDesc } from "./wkt/wrappers.js";
 import type {
   Edition,
   FeatureSet_FieldPresence,
@@ -80,7 +81,11 @@ function initMessage<Desc extends DescMessage>(
     // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- no need to convert enum
     switch (field.fieldKind) {
       case "message":
-        value = toMessage(value, field.message);
+        if (isWrapperDesc(field.message)) {
+          value = initScalar(field.message.fields[0], value);
+        } else {
+          value = toMessage(value, field.message);
+        }
         break;
       case "scalar":
         value = initScalar(field, value);
