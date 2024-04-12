@@ -43,6 +43,8 @@ export const Proto2EnumWithZero = /*@__PURE__*/ proto2.makeEnum(
 );
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto2Message
  */
 export const Proto2Message = /*@__PURE__*/ proto2.makeMessageType(

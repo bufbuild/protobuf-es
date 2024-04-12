@@ -40,6 +40,8 @@ export declare enum Proto3Enum {
 }
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto3Message
  */
 export declare class Proto3Message extends Message<Proto3Message> {

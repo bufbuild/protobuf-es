@@ -17,6 +17,7 @@ package spec;
 option go_package = "github.com/bufbuild/protobuf-es";
 import "google/protobuf/wrappers.proto";
 
+// Note: We do not exhaust all field types
 message Proto3Message {
   string singular_string_field = 1;
   bytes singular_bytes_field = 2;

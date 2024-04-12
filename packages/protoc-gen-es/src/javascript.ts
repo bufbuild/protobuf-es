@@ -43,6 +43,10 @@ import { reifyWkt } from "./reify-wkt.js";
 export function generateJs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.js");
+    if (file.edition > Edition.EDITION_PROTO3) {
+      // silently ignore editions - v1 is only used for tests at this point
+      continue;
+    }
     f.preamble(file);
     for (const enumeration of file.enums) {
       generateEnum(schema, f, enumeration);

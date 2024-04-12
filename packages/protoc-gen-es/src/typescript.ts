@@ -37,10 +37,15 @@ import {
   runtimeImports,
 } from "./util.js";
 import { reifyWkt } from "./reify-wkt.js";
+import { Edition } from "@bufbuild/protobuf/next/wkt";
 
 export function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.ts");
+    if (file.edition > Edition.EDITION_PROTO3) {
+      // silently ignore editions - v1 is only used for tests at this point
+      continue;
+    }
     f.preamble(file);
     for (const enumeration of file.enums) {
       generateEnum(schema, f, enumeration);

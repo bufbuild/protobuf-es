@@ -51,16 +51,6 @@ export class UpstreamProtobuf {
    */
   #version;
 
-  // TODO add the following files again once we have sufficient support for editions:
-  //  - google/protobuf/unittest_preserve_unknown_enum2.proto
-  //  - google/protobuf/unittest_preserve_unknown_enum.proto
-  //  - google/protobuf/unittest_no_field_presence.proto
-  //  - google/protobuf/unittest_lazy_dependencies_enum.proto
-  //  - google/protobuf/unittest_lazy_dependencies.proto
-  //  - google/protobuf/unittest_arena.proto
-  //  - google/protobuf/unittest_drop_unknown_fields.proto
-  //  - google/protobuf/unittest_lazy_dependencies_custom_option.proto
-  //  - google/protobuf/unittest_legacy_features.proto
   /**
    * Relevant proto files for testing in upstream protobuf.
    *
@@ -69,9 +59,7 @@ export class UpstreamProtobuf {
   #testprotos = [
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
-    "src/google/protobuf/editions/**/*.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
-    "!src/google/protobuf/editions/**/*.proto",
     "!src/google/protobuf/unittest_arena.proto",
     "!src/google/protobuf/unittest_drop_unknown_fields.proto",
     "!src/google/protobuf/unittest_lazy_dependencies.proto",

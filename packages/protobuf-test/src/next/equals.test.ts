@@ -21,9 +21,11 @@ import { reflect } from "@bufbuild/protobuf/next/reflect";
 import { WireType } from "@bufbuild/protobuf/next/wire";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
+import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
 import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
 import { fillProto3Message } from "./helpers-proto3.js";
 import { fillProto2Message } from "./helpers-proto2.js";
+import { fillEdition2023Message } from "./helpers-edition2023.js";
 
 describe("equals()", () => {
   test("same messages are equal", () => {
@@ -31,25 +33,33 @@ describe("equals()", () => {
     const b = a;
     expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
   });
-  test("equal proto3 zero messages are equal", () => {
-    const a = create(proto3_ts.Proto3MessageDesc);
-    const b = create(proto3_ts.Proto3MessageDesc);
-    expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
+  test.each([
+    proto3_ts.Proto3MessageDesc,
+    proto2_ts.Proto2MessageDesc,
+    edition2023_ts.Edition2023MessageDesc,
+  ])("equal zero messages are equal $typeName", (desc) => {
+    const a = create(desc);
+    const b = create(desc);
+    expect(equals(desc, a, b)).toBe(true);
   });
   test("equal proto3 messages are equal", () => {
     const a = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
     const b = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
     expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
   });
-  test("equal proto2 zero messages are equal", () => {
-    const a = create(proto2_ts.Proto2MessageDesc);
-    const b = create(proto2_ts.Proto2MessageDesc);
-    expect(equals(proto2_ts.Proto2MessageDesc, a, b)).toBe(true);
-  });
   test("equal proto2 messages are equal", () => {
     const a = fillProto2Message(create(proto2_ts.Proto2MessageDesc));
     const b = fillProto2Message(create(proto2_ts.Proto2MessageDesc));
     expect(equals(proto2_ts.Proto2MessageDesc, a, b)).toBe(true);
+  });
+  test("equal edition2023 messages are equal", () => {
+    const a = fillEdition2023Message(
+      create(edition2023_ts.Edition2023MessageDesc),
+    );
+    const b = fillEdition2023Message(
+      create(edition2023_ts.Edition2023MessageDesc),
+    );
+    expect(equals(edition2023_ts.Edition2023MessageDesc, a, b)).toBe(true);
   });
   test("different message types are not equal", () => {
     const a = create(proto3_ts.Proto3MessageDesc);
@@ -89,21 +99,38 @@ describe("equals()", () => {
     expect(equals(proto2_ts.Proto2MessageDesc, a, b)).toBe(false);
   });
   describe("set proto3 field is not equal unset field", () => {
-    const a = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
+    const desc = proto3_ts.Proto3MessageDesc;
+    const a = fillProto3Message(create(desc));
     let b: proto3_ts.Proto3Message;
     beforeEach(() => {
-      b = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
+      b = fillProto3Message(create(desc));
     });
-    test.each(
-      proto3_ts.Proto3MessageDesc.fields.filter((f) =>
-        reflect(proto3_ts.Proto3MessageDesc, a).isSet(f),
-      ),
-    )("$name", (f) => {
-      reflect(proto3_ts.Proto3MessageDesc, b).clear(f);
-      expect(reflect(proto3_ts.Proto3MessageDesc, b).isSet(f)).toBe(false);
-      expect(reflect(proto3_ts.Proto3MessageDesc, a).isSet(f)).toBe(true);
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
+      "$name",
+      (f) => {
+        reflect(desc, b).clear(f);
+        expect(reflect(desc, b).isSet(f)).toBe(false);
+        expect(reflect(desc, a).isSet(f)).toBe(true);
+        expect(equals(desc, a, b)).toBe(false);
+      },
+    );
+  });
+  describe("set edition2023 field is not equal unset field", () => {
+    const desc = edition2023_ts.Edition2023MessageDesc;
+    const a = fillEdition2023Message(create(desc));
+    let b: edition2023_ts.Edition2023Message;
+    beforeEach(() => {
+      b = fillEdition2023Message(create(desc));
     });
+    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
+      "$name",
+      (f) => {
+        reflect(desc, b).clear(f);
+        expect(reflect(desc, b).isSet(f)).toBe(false);
+        expect(reflect(desc, a).isSet(f)).toBe(true);
+        expect(equals(desc, a, b)).toBe(false);
+      },
+    );
   });
   describe("modified", () => {
     let a: proto3_ts.Proto3Message;

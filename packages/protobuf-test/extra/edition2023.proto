@@ -1,0 +1,131 @@
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+edition = "2023";
+package spec;
+import "google/protobuf/wrappers.proto";
+
+// Note: We do not exhaust all field types
+message Edition2023Message {
+
+  string explicit_string_field = 301;
+  bytes explicit_bytes_field = 302;
+  int32 explicit_int32_field = 303;
+  int64 explicit_int64_field = 304;
+  int64 explicit_int64_js_number_field = 305 [jstype=JS_NUMBER];
+  int64 explicit_int64_js_string_field = 306 [jstype=JS_STRING];
+  float explicit_float_field = 307;
+  bool explicit_bool_field = 308;
+  Edition2023EnumOpen explicit_enum_open_field = 309;
+  Edition2023EnumClosed explicit_enum_closed_field = 310;
+  Edition2023Message explicit_message_field = 311;
+  Edition2023Message explicit_message_delimited_field = 312 [features.message_encoding=DELIMITED];
+  google.protobuf.UInt32Value explicit_wrapped_uint32_field = 313;
+
+  string implicit_string_field = 201 [features.field_presence=IMPLICIT];
+  bytes implicit_bytes_field = 202 [features.field_presence=IMPLICIT];
+  int32 implicit_int32_field = 203 [features.field_presence=IMPLICIT];
+  int64 implicit_int64_field = 204 [features.field_presence=IMPLICIT];
+  int64 implicit_int64_js_number_field = 205 [features.field_presence=IMPLICIT, jstype=JS_NUMBER];
+  int64 implicit_int64_js_string_field = 206 [features.field_presence=IMPLICIT, jstype=JS_STRING];
+  float implicit_float_field = 207 [features.field_presence=IMPLICIT];
+  bool implicit_bool_field = 208 [features.field_presence=IMPLICIT];
+  Edition2023EnumOpen implicit_enum_open_field = 209 [features.field_presence=IMPLICIT];
+
+  string required_string_field = 1 [features.field_presence=LEGACY_REQUIRED];
+  bytes required_bytes_field = 2 [features.field_presence=LEGACY_REQUIRED];
+  int32 required_int32_field = 3 [features.field_presence=LEGACY_REQUIRED];
+  int64 required_int64_field = 4 [features.field_presence=LEGACY_REQUIRED];
+  int64 required_int64_js_number_field = 5 [features.field_presence=LEGACY_REQUIRED, jstype=JS_NUMBER];
+  int64 required_int64_js_string_field = 6 [features.field_presence=LEGACY_REQUIRED, jstype=JS_STRING];
+  float required_float_field = 7 [features.field_presence=LEGACY_REQUIRED];
+  bool required_bool_field = 8 [features.field_presence=LEGACY_REQUIRED];
+  Edition2023EnumOpen required_enum_open_field = 9 [features.field_presence=LEGACY_REQUIRED];
+  Edition2023EnumClosed required_enum_closed_field = 10 [features.field_presence=LEGACY_REQUIRED];
+  Child required_message_field = 11 [features.field_presence=LEGACY_REQUIRED];
+  Child required_message_delimited_field = 12 [features.field_presence=LEGACY_REQUIRED, features.message_encoding=DELIMITED];
+  google.protobuf.UInt32Value required_wrapped_uint32_field = 13 [features.field_presence=LEGACY_REQUIRED];
+
+  string required_default_string_field = 101 [features.field_presence=LEGACY_REQUIRED, default = "hello \" */ "];
+  bytes required_default_bytes_field = 102 [features.field_presence=LEGACY_REQUIRED, default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
+  int32 required_default_int32_field = 103 [features.field_presence=LEGACY_REQUIRED, default = 128];
+  int64 required_default_int64_field = 104 [features.field_presence=LEGACY_REQUIRED, default = -256];
+  int64 required_default_int64_js_number_field = 105 [features.field_presence=LEGACY_REQUIRED, default = -256, jstype = JS_NUMBER];
+  int64 required_default_int64_js_string_field = 106 [features.field_presence=LEGACY_REQUIRED, default = -256, jstype = JS_STRING];
+  float required_default_float_field = 107 [features.field_presence=LEGACY_REQUIRED, default = -512.13];
+  bool required_default_bool_field = 108 [features.field_presence=LEGACY_REQUIRED, default = true];
+  Edition2023EnumOpen required_default_enum_open_field = 109 [features.field_presence=LEGACY_REQUIRED, default = EDITION_2023_ENUM_OPEN_A];
+  Edition2023EnumClosed required_default_enum_closed_field = 110 [features.field_presence=LEGACY_REQUIRED, default = EDITION_2023_ENUM_CLOSED_A];
+
+  repeated string repeated_string_field = 401;
+  repeated bytes repeated_bytes_field = 402;
+  repeated int32 repeated_int32_field = 403;
+  repeated int64 repeated_int64_field = 404;
+  repeated int64 repeated_int64_js_number_field = 405 [jstype=JS_NUMBER];
+  repeated int64 repeated_int64_js_string_field = 406 [jstype=JS_STRING];
+  repeated float repeated_float_field = 407;
+  repeated bool repeated_bool_field = 408;
+  repeated Edition2023EnumOpen repeated_enum_open_field = 409;
+  repeated Edition2023EnumClosed repeated_enum_closed_field = 410;
+  repeated Edition2023Message repeated_message_field = 411;
+  repeated Edition2023Message repeated_message_delimited_field = 412 [features.message_encoding=DELIMITED];
+  repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 413;
+
+  repeated double packed_double_field = 414 [features.repeated_field_encoding=PACKED];
+  repeated uint32 packed_uint32_field = 415 [features.repeated_field_encoding=PACKED];
+  repeated uint64 packed_uint64_field = 416 [features.repeated_field_encoding=PACKED];
+
+  repeated double unpacked_double_field = 417 [features.repeated_field_encoding=EXPANDED];
+  repeated uint32 unpacked_uint32_field = 418 [features.repeated_field_encoding=EXPANDED];
+  repeated uint64 unpacked_uint64_field = 419 [features.repeated_field_encoding=EXPANDED];
+
+  oneof either {
+    string oneof_string_field = 501;
+    bytes oneof_bytes_field = 502;
+    int32 oneof_int32_field = 503;
+    int64 oneof_int64_field = 504;
+    int64 oneof_int64_js_number_field = 505 [jstype=JS_NUMBER];
+    int64 oneof_int64_js_string_field = 506 [jstype=JS_STRING];
+    float oneof_float_field = 507;
+    bool oneof_bool_field = 508;
+    Edition2023EnumOpen oneof_enum_open_field = 509;
+    Edition2023EnumClosed oneof_enum_closed_field = 510;
+    Edition2023Message oneof_message_field = 511;
+    Edition2023Message oneof_message_delimited_field = 512 [features.message_encoding=DELIMITED];
+    google.protobuf.UInt32Value oneof_wrapped_uint32_field = 513;
+  }
+
+  map<string, string> map_string_string_field = 601;
+  map<int32, int32> map_int32_int32_field = 602;
+  map<bool, bool> map_bool_bool_field = 603;
+  map<int64, int64> map_int64_int64_field = 604;
+  map<int32, Edition2023EnumOpen> map_int32_enum_open_field = 605;
+  map<int32, Edition2023Message> map_int32_message_field = 607;
+  map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 608;
+
+  // message for use in required fields above to avoid circular reference
+  message Child {
+    int32 f = 1;
+  }
+}
+
+enum Edition2023EnumOpen {
+  EDITION_2023_ENUM_OPEN_UNSPECIFIED = 0;
+  EDITION_2023_ENUM_OPEN_A = 1;
+}
+
+enum Edition2023EnumClosed {
+  option features.enum_type = CLOSED;
+  EDITION_2023_ENUM_CLOSED_A = 1;
+}

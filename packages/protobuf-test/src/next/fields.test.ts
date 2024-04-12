@@ -18,8 +18,13 @@ import { clearField, create, isFieldSet } from "@bufbuild/protobuf/next";
 import { localName } from "@bufbuild/protobuf/next/reflect";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
+import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
 import { fillProto2Message, fillProto2MessageNames } from "./helpers-proto2.js";
 import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
+import {
+  fillEdition2023Message,
+  fillEdition2023MessageNames,
+} from "./helpers-edition2023.js";
 
 describe("isFieldSet()", () => {
   test("accepts field names", () => {
@@ -74,6 +79,20 @@ describe("isFieldSet()", () => {
       expect(set).toBe(true);
     });
   });
+  describe("with edition2023", () => {
+    const desc = edition2023_ts.Edition2023MessageDesc;
+    test.each(desc.fields)("%s is initially unset", (field) => {
+      const msg = create(desc);
+      const set = isFieldSet(desc as DescMessage, msg, localName(field));
+      expect(set).toBe(false);
+    });
+    test.each(fillEdition2023MessageNames())("%s is set", (name) => {
+      const msg = create(desc);
+      fillEdition2023Message(msg);
+      const set = isFieldSet(desc, msg, name);
+      expect(set).toBe(true);
+    });
+  });
 });
 
 describe("clearField()", () => {
@@ -117,6 +136,33 @@ describe("clearField()", () => {
       fillProto2Message(msg);
     });
     test.each(fillProto2MessageNames())("%s", (name) => {
+      expect(isFieldSet(desc, msg, name)).toBe(true);
+      clearField(desc, msg, name);
+      expect(isFieldSet(desc, msg, name)).toBe(false);
+      switch (name) {
+        case "oneofBoolField":
+          expect(msg.either).toStrictEqual(zero.either);
+          break;
+        case "repeatedStringField":
+        case "mapStringStringField":
+          expect(msg[name]).toStrictEqual(zero[name]);
+          break;
+        default:
+          expect(msg[name]).toBe(zero[name]);
+          break;
+      }
+    });
+  });
+  describe("with edition2023", () => {
+    const desc = edition2023_ts.Edition2023MessageDesc;
+    let msg: edition2023_ts.Edition2023Message;
+    let zero: edition2023_ts.Edition2023Message;
+    beforeEach(() => {
+      zero = create(desc);
+      msg = create(desc);
+      fillEdition2023Message(msg);
+    });
+    test.each(fillEdition2023MessageNames())("%s", (name) => {
       expect(isFieldSet(desc, msg, name)).toBe(true);
       clearField(desc, msg, name);
       expect(isFieldSet(desc, msg, name)).toBe(false);

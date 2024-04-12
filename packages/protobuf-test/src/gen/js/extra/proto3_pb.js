@@ -31,6 +31,8 @@ export const Proto3Enum = /*@__PURE__*/ proto3.makeEnum(
 );
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto3Message
  */
 export const Proto3Message = /*@__PURE__*/ proto3.makeMessageType(

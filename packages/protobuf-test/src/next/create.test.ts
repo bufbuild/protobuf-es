@@ -14,14 +14,20 @@
 
 import type { DescMessage } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
+import type { MessageInitShape } from "@bufbuild/protobuf/next";
 import { create, isFieldSet, isMessage } from "@bufbuild/protobuf/next";
 import { describe, expect, test } from "@jest/globals";
+import { localName, reflect } from "@bufbuild/protobuf/next/reflect";
 import * as example_ts from "../gen/ts/extra/example_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
-import * as TS from "../gen/ts/extra/proto2_pb.js";
-import { localName, reflect } from "@bufbuild/protobuf/next/reflect";
-import type { MessageInitShape } from "@bufbuild/protobuf/next";
+import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
+import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
+import {
+  fillEdition2023Message,
+  fillEdition2023MessageNames,
+} from "./helpers-edition2023.js";
+import { fillProto2Message, fillProto2MessageNames } from "./helpers-proto2.js";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment -- to support older TS versions in the TS compat tests, we cannot use ts-expect-error */
 
@@ -206,8 +212,8 @@ describe("create()", () => {
         expect(hasOwn("requiredBoolField")).toBe(false);
         expect(msg.requiredDefaultBoolField).toBe(true);
         expect(hasOwn("requiredEnumField")).toBe(false);
-        expect(msg.requiredDefaultEnumField).toBe(TS.Proto2Enum.YES);
-        expect(hasOwn("requiredMessageField")).toBe(false);
+        expect(msg.requiredDefaultEnumField).toBe(proto2_ts.Proto2Enum.YES);
+        expect(hasOwn("requiredDefaultEnumField")).toBe(false);
         expect(msg.requiredDefaultMessageField).toBeUndefined();
         expect(hasOwn("requiredDefaultMessageField")).toBe(false);
         expect(msg.requireddefaultgroup).toBeUndefined();
@@ -288,7 +294,7 @@ describe("create()", () => {
         expect(hasOwn("optionalDefaultFloatField")).toBe(false);
         expect(msg.optionalDefaultBoolField).toBe(true);
         expect(hasOwn("optionalDefaultBoolField")).toBe(false);
-        expect(msg.optionalDefaultEnumField).toBe(TS.Proto2Enum.YES);
+        expect(msg.optionalDefaultEnumField).toBe(proto2_ts.Proto2Enum.YES);
         expect(hasOwn("optionalDefaultEnumField")).toBe(false);
         expect(msg.optionalDefaultMessageField).toBeUndefined();
         expect(hasOwn("optionalDefaultMessageField")).toBe(false);
@@ -318,6 +324,185 @@ describe("create()", () => {
         expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
       });
     });
+    describe("from edition2023", () => {
+      const desc = edition2023_ts.Edition2023MessageDesc;
+      test("with expected properties", () => {
+        const msg = create(desc);
+        function hasOwn(prop: keyof typeof msg) {
+          return Object.prototype.hasOwnProperty.call(msg, prop);
+        }
+
+        // explicit
+        expect(msg.explicitStringField).toBe("");
+        expect(hasOwn("explicitStringField")).toBe(false);
+        expect(msg.explicitBytesField).toBeInstanceOf(Uint8Array);
+        expect(msg.explicitBytesField.length).toBe(0);
+        expect(hasOwn("explicitBytesField")).toBe(false);
+        expect(msg.explicitInt32Field).toBe(0);
+        expect(hasOwn("explicitInt32Field")).toBe(false);
+        expect(msg.explicitInt64Field).toBe(protoInt64.zero);
+        expect(hasOwn("explicitInt64Field")).toBe(false);
+        expect(msg.explicitInt64JsNumberField).toBe(protoInt64.zero);
+        expect(hasOwn("explicitInt64JsNumberField")).toBe(false);
+        expect(typeof msg.explicitInt64JsStringField).toBe("string");
+        expect(msg.explicitInt64JsStringField).toBe("0");
+        expect(hasOwn("explicitInt64JsStringField")).toBe(false);
+        expect(msg.explicitFloatField).toBe(0);
+        expect(hasOwn("explicitFloatField")).toBe(false);
+        expect(msg.explicitBoolField).toBe(false);
+        expect(hasOwn("explicitBoolField")).toBe(false);
+        expect(msg.explicitEnumOpenField).toBe(
+          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+        );
+        expect(hasOwn("explicitEnumOpenField")).toBe(false);
+        expect(msg.explicitEnumClosedField).toBe(
+          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+        );
+        expect(hasOwn("explicitEnumClosedField")).toBe(false);
+        expect(msg.explicitMessageField).toBeUndefined();
+        expect(hasOwn("explicitMessageField")).toBe(false);
+        expect(msg.explicitMessageDelimitedField).toBeUndefined();
+        expect(hasOwn("explicitMessageDelimitedField")).toBe(false);
+        expect(msg.explicitWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("explicitWrappedUint32Field")).toBe(false);
+
+        // implicit
+        expect(msg.implicitStringField).toBe("");
+        expect(hasOwn("implicitStringField")).toBe(true);
+        expect(msg.implicitBytesField).toBeInstanceOf(Uint8Array);
+        expect(msg.implicitBytesField.length).toBe(0);
+        expect(hasOwn("implicitBytesField")).toBe(true);
+        expect(msg.implicitInt32Field).toBe(0);
+        expect(hasOwn("implicitInt32Field")).toBe(true);
+        expect(msg.implicitInt64Field).toBe(protoInt64.zero);
+        expect(hasOwn("implicitInt64Field")).toBe(true);
+        expect(msg.implicitInt64JsNumberField).toBe(protoInt64.zero);
+        expect(hasOwn("implicitInt64JsNumberField")).toBe(true);
+        expect(typeof msg.implicitInt64JsStringField).toBe("string");
+        expect(msg.implicitInt64JsStringField).toBe("0");
+        expect(hasOwn("implicitInt64JsStringField")).toBe(true);
+        expect(msg.implicitFloatField).toBe(0);
+        expect(hasOwn("implicitFloatField")).toBe(true);
+        expect(msg.implicitBoolField).toBe(false);
+        expect(hasOwn("implicitBoolField")).toBe(true);
+        expect(msg.implicitEnumOpenField).toBe(
+          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+        );
+        expect(hasOwn("implicitEnumOpenField")).toBe(true);
+
+        // required
+        expect(msg.requiredStringField).toBe("");
+        expect(hasOwn("requiredStringField")).toBe(false);
+        expect(msg.requiredBytesField).toBeInstanceOf(Uint8Array);
+        expect(msg.requiredBytesField.length).toBe(0);
+        expect(hasOwn("requiredBytesField")).toBe(false);
+        expect(msg.requiredInt32Field).toBe(0);
+        expect(hasOwn("requiredInt32Field")).toBe(false);
+        expect(msg.requiredInt64Field).toBe(protoInt64.zero);
+        expect(hasOwn("requiredInt64Field")).toBe(false);
+        expect(msg.requiredInt64JsNumberField).toBe(protoInt64.zero);
+        expect(hasOwn("requiredInt64JsNumberField")).toBe(false);
+        expect(typeof msg.requiredInt64JsStringField).toBe("string");
+        expect(msg.requiredInt64JsStringField).toBe("0");
+        expect(hasOwn("requiredInt64JsStringField")).toBe(false);
+        expect(msg.requiredFloatField).toBe(0);
+        expect(hasOwn("requiredFloatField")).toBe(false);
+        expect(msg.requiredBoolField).toBe(false);
+        expect(hasOwn("requiredBoolField")).toBe(false);
+        expect(msg.requiredEnumOpenField).toBe(
+          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_UNSPECIFIED,
+        );
+        expect(hasOwn("requiredEnumOpenField")).toBe(false);
+        expect(msg.requiredEnumClosedField).toBe(
+          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+        );
+        expect(hasOwn("requiredEnumClosedField")).toBe(false);
+        expect(msg.requiredMessageField).toBeUndefined();
+        expect(hasOwn("requiredMessageField")).toBe(false);
+        expect(msg.requiredMessageDelimitedField).toBeUndefined();
+        expect(hasOwn("requiredMessageDelimitedField")).toBe(false);
+        expect(msg.requiredWrappedUint32Field).toBeUndefined();
+        expect(hasOwn("requiredWrappedUint32Field")).toBe(false);
+
+        // required with default
+        expect(msg.requiredDefaultStringField).toBe('hello " */ ');
+        expect(hasOwn("requiredStringField")).toBe(false);
+        expect(msg.requiredDefaultBytesField).toBeInstanceOf(Uint8Array);
+        expect(hasOwn("requiredBytesField")).toBe(false);
+        expect(msg.requiredDefaultBytesField.length).toBe(17);
+        expect(hasOwn("requiredInt32Field")).toBe(false);
+        expect(msg.requiredDefaultInt32Field).toBe(128);
+        expect(hasOwn("requiredInt64Field")).toBe(false);
+        expect(msg.requiredDefaultInt64Field).toBe(protoInt64.parse(-256));
+        expect(hasOwn("requiredInt64Field")).toBe(false);
+        expect(msg.requiredDefaultInt64JsNumberField).toBe(
+          protoInt64.parse(-256),
+        );
+        expect(hasOwn("requiredDefaultInt64JsNumberField")).toBe(false);
+        expect(typeof msg.requiredDefaultInt64JsStringField).toBe("string");
+        expect(msg.requiredDefaultInt64JsStringField).toBe("-256");
+        expect(hasOwn("requiredDefaultInt64JsStringField")).toBe(false);
+        expect(msg.requiredDefaultFloatField).toBe(-512.13);
+        expect(hasOwn("requiredDefaultFloatField")).toBe(false);
+        expect(msg.requiredDefaultFloatField).toBe(-512.13);
+        expect(hasOwn("requiredDefaultFloatField")).toBe(false);
+        expect(msg.requiredDefaultBoolField).toBe(true);
+        expect(hasOwn("requiredDefaultBoolField")).toBe(false);
+        expect(msg.requiredDefaultEnumOpenField).toBe(
+          edition2023_ts.Edition2023EnumOpen.EDITION_2023_ENUM_OPEN_A,
+        );
+        expect(hasOwn("requiredDefaultEnumOpenField")).toBe(false);
+        expect(msg.requiredDefaultEnumClosedField).toBe(
+          edition2023_ts.Edition2023EnumClosed.EDITION_2023_ENUM_CLOSED_A,
+        );
+
+        // repeated
+        expect(msg.repeatedStringField).toStrictEqual([]);
+        expect(hasOwn("repeatedStringField")).toBe(true);
+        expect(msg.repeatedBytesField).toStrictEqual([]);
+        expect(hasOwn("repeatedBytesField")).toBe(true);
+        expect(msg.repeatedInt32Field).toStrictEqual([]);
+        expect(hasOwn("repeatedInt32Field")).toBe(true);
+        expect(msg.repeatedInt64Field).toStrictEqual([]);
+        expect(hasOwn("repeatedInt64Field")).toBe(true);
+        expect(msg.repeatedInt64JsNumberField).toStrictEqual([]);
+        expect(hasOwn("repeatedInt64JsNumberField")).toBe(true);
+        expect(msg.repeatedInt64JsStringField).toStrictEqual([]);
+        expect(hasOwn("repeatedInt64JsStringField")).toBe(true);
+        expect(msg.repeatedFloatField).toStrictEqual([]);
+        expect(hasOwn("repeatedFloatField")).toBe(true);
+        expect(msg.repeatedBoolField).toStrictEqual([]);
+        expect(hasOwn("repeatedBoolField")).toBe(true);
+        expect(msg.repeatedEnumOpenField).toStrictEqual([]);
+        expect(hasOwn("repeatedEnumOpenField")).toBe(true);
+        expect(msg.repeatedEnumClosedField).toStrictEqual([]);
+        expect(hasOwn("repeatedEnumClosedField")).toBe(true);
+        expect(msg.repeatedMessageField).toStrictEqual([]);
+        expect(hasOwn("repeatedMessageField")).toBe(true);
+        expect(msg.repeatedWrappedUint32Field).toStrictEqual([]);
+        expect(hasOwn("repeatedWrappedUint32Field")).toBe(true);
+
+        // oneof
+        expect(msg.either).toStrictEqual({ case: undefined });
+        expect(hasOwn("either")).toBe(true);
+
+        // map
+        expect(msg.mapStringStringField).toStrictEqual({});
+        expect(hasOwn("mapStringStringField")).toBe(true);
+        expect(msg.mapInt32Int32Field).toStrictEqual({});
+        expect(hasOwn("mapInt32Int32Field")).toBe(true);
+        expect(msg.mapBoolBoolField).toStrictEqual({});
+        expect(hasOwn("mapBoolBoolField")).toBe(true);
+        expect(msg.mapInt64Int64Field).toStrictEqual({});
+        expect(hasOwn("mapInt64Int64Field")).toBe(true);
+        expect(msg.mapInt32EnumOpenField).toStrictEqual({});
+        expect(hasOwn("mapInt32EnumOpenField")).toBe(true);
+        expect(msg.mapInt32MessageField).toStrictEqual({});
+        expect(hasOwn("mapInt32MessageField")).toBe(true);
+        expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
+        expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+      });
+    });
   });
 
   describe("with init argument", () => {
@@ -339,112 +524,99 @@ describe("create()", () => {
       });
       expect(msg).toBeDefined();
     });
-    describe("skips proto3 zero values", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc, {
-        singularStringField: "",
-        singularBytesField: new Uint8Array(0),
-        singularInt32Field: 0,
-        singularInt64Field: protoInt64.zero,
-        singularInt64JsNumberField: protoInt64.zero,
-        singularInt64JsStringField: "0",
-        singularFloatField: 0,
-        singularBoolField: false,
-        singularEnumField: proto3_ts.Proto3Enum.UNSPECIFIED,
-        singularMessageField: undefined,
-        singularWrappedUint32Field: undefined,
-        repeatedStringField: [],
-        repeatedEnumField: [],
-        repeatedMessageField: [],
-        mapStringStringField: {},
-      });
-      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
-      test.each(r.fields)("$name", (f) => {
-        expect(r.isSet(f)).toBe(false);
+    describe("inits proto2", () => {
+      test.each(fillProto2MessageNames())("field %s", (name) => {
+        const desc = proto2_ts.Proto2MessageDesc;
+        const filled = fillProto2Message(create(desc));
+        const init: MessageInitShape<typeof desc> = {};
+        for (const k in filled) {
+          (init as Record<string, unknown>)[k] = (
+            filled as Record<string, unknown>
+          )[k];
+        }
+        const created = create(desc, init);
+        switch (name) {
+          case "oneofBoolField":
+            expect(created.either).toStrictEqual(filled.either);
+            break;
+          default:
+            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(created[name]).toStrictEqual(filled[name]);
+        }
       });
     });
-    describe("does not skip proto2 zero values for required fields", () => {
-      const desc = proto2_ts.Proto2MessageDesc;
-      const msg = create(proto2_ts.Proto2MessageDesc, {
-        // required
-        requiredStringField: "",
-        requiredInt64Field: protoInt64.zero,
-        requiredInt64JsNumberField: protoInt64.zero,
-        requiredInt64JsStringField: "0",
-        requiredEnumField: proto2_ts.Proto2Enum.YES,
-        requiredWrappedUint32Field: 0,
-        // required with default
-        requiredDefaultStringField: "",
-        requiredDefaultInt64Field: protoInt64.zero,
-        requiredDefaultInt64JsNumberField: protoInt64.zero,
-        requiredDefaultInt64JsStringField: "0",
-        requiredDefaultEnumField: proto2_ts.Proto2Enum.YES,
+    describe("inits proto3", () => {
+      test.each(fillProto3MessageNames())("field %s", (name) => {
+        const desc = proto3_ts.Proto3MessageDesc;
+        const filled = fillProto3Message(create(desc));
+        const init: MessageInitShape<typeof desc> = {};
+        for (const k in filled) {
+          (init as Record<string, unknown>)[k] = (
+            filled as Record<string, unknown>
+          )[k];
+        }
+        const created = create(desc, init);
+        switch (name) {
+          case "oneofBoolField":
+            expect(created.either).toStrictEqual(filled.either);
+            break;
+          default:
+            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(created[name]).toStrictEqual(filled[name]);
+        }
       });
-      test.each([
-        // required
-        "requiredStringField",
-        "requiredInt64Field",
-        "requiredInt64JsNumberField",
-        "requiredInt64JsStringField",
-        "requiredEnumField",
-        "requiredWrappedUint32Field",
-        // required with default
-        "requiredDefaultStringField",
-        "requiredDefaultInt64Field",
-        "requiredDefaultInt64JsNumberField",
-        "requiredDefaultInt64JsStringField",
-        "requiredDefaultEnumField",
-      ] as const)("$name", (name) => {
-        expect(isFieldSet(desc, msg, name)).toBe(true);
+    });
+    describe("inits edition2023", () => {
+      test.each(fillEdition2023MessageNames())("field %s", (name) => {
+        const desc = edition2023_ts.Edition2023MessageDesc;
+        const filled = fillEdition2023Message(create(desc));
+        const init: MessageInitShape<typeof desc> = {};
+        for (const k in filled) {
+          (init as Record<string, unknown>)[k] = (
+            filled as Record<string, unknown>
+          )[k];
+        }
+        const created = create(desc, init);
+        switch (name) {
+          case "oneofBoolField":
+            expect(created.either).toStrictEqual(filled.either);
+            break;
+          default:
+            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(created[name]).toStrictEqual(filled[name]);
+        }
       });
     });
     describe("skips null values", () => {
-      describe("proto2", () => {
-        const desc = proto2_ts.Proto2MessageDesc;
-        const o: Record<string, unknown> = {};
-        for (const f of desc.members) {
-          o[localName(f)] = null;
-        }
-        const msg = create(desc, o as MessageInitShape<typeof desc>);
-        const r = reflect(desc, msg);
-        test.each(r.fields)("$name", (f) => {
-          expect(r.isSet(f)).toBe(false);
-        });
-      });
-      describe("proto3", () => {
-        const desc = proto3_ts.Proto3MessageDesc;
-        const o: Record<string, unknown> = {};
-        for (const f of desc.members) {
-          o[localName(f)] = null;
-        }
-        const msg = create(desc, o as MessageInitShape<typeof desc>);
-        const r = reflect(desc, msg);
-        test.each(r.fields)("$name", (f) => {
+      describe.each([
+        proto2_ts.Proto2MessageDesc,
+        proto3_ts.Proto3MessageDesc,
+        edition2023_ts.Edition2023MessageDesc,
+      ])("$typeName", (desc) => {
+        test.each(desc.fields)("$name", (f) => {
+          const init: Record<string, unknown> = {};
+          for (const f of desc.members) {
+            init[localName(f)] = null;
+          }
+          const msg = create(desc, init);
+          const r = reflect(desc, msg);
           expect(r.isSet(f)).toBe(false);
         });
       });
     });
     describe("skips undefined values", () => {
-      describe("proto2", () => {
-        const desc = proto2_ts.Proto2MessageDesc;
-        const o: Record<string, unknown> = {};
-        for (const f of desc.members) {
-          o[localName(f)] = undefined;
-        }
-        const msg = create(desc, o as MessageInitShape<typeof desc>);
-        const r = reflect(desc, msg);
-        test.each(r.fields)("$name", (f) => {
-          expect(r.isSet(f)).toBe(false);
-        });
-      });
-      describe("proto3", () => {
-        const desc = proto3_ts.Proto3MessageDesc;
-        const o: Record<string, unknown> = {};
-        for (const f of desc.members) {
-          o[localName(f)] = undefined;
-        }
-        const msg = create(desc, o as MessageInitShape<typeof desc>);
-        const r = reflect(desc, msg);
-        test.each(r.fields)("$name", (f) => {
+      describe.each([
+        proto2_ts.Proto2MessageDesc,
+        proto3_ts.Proto3MessageDesc,
+        edition2023_ts.Edition2023MessageDesc,
+      ])("$typeName", (desc) => {
+        test.each(desc.fields)("$name", (f) => {
+          const init: Record<string, unknown> = {};
+          for (const f of desc.members) {
+            init[localName(f)] = undefined;
+          }
+          const msg = create(desc, init);
+          const r = reflect(desc, msg);
           expect(r.isSet(f)).toBe(false);
         });
       });

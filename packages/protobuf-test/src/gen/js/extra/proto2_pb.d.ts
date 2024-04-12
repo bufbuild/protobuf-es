@@ -52,6 +52,8 @@ export declare enum Proto2EnumWithZero {
 }
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto2Message
  */
 export declare class Proto2Message extends Message<Proto2Message> {

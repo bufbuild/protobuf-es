@@ -46,6 +46,8 @@ proto3.util.setEnumType(Proto3Enum, "spec.Proto3Enum", [
 ]);
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto3Message
  */
 export class Proto3Message extends Message<Proto3Message> {

@@ -24,6 +24,8 @@ import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codege
 export declare const fileDesc_extra_proto2: DescFile;
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto2Message
  */
 export declare type Proto2Message = Message<"spec.Proto2Message"> & {

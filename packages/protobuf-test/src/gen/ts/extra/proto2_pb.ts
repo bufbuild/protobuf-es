@@ -62,6 +62,8 @@ proto2.util.setEnumType(Proto2EnumWithZero, "spec.Proto2EnumWithZero", [
 ]);
 
 /**
+ * Note: We do not exhaust all field types
+ *
  * @generated from message spec.Proto2Message
  */
 export class Proto2Message extends Message<Proto2Message> {
