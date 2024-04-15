@@ -27,9 +27,8 @@ export const fileDesc_extra_edition2023_map_encoding: DescFile = /*@__PURE__*/
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
- * key and field 2 for value.
- * The file feature message_encoding = DELIMITED should apply to this "synthetic"
- * message, following the logic of other message fields.
+ * key and field 2 for value. Despite that, the file feature message_encoding =
+ * DELIMITED should NOT apply to this "synthetic" message.
  *
  * @generated from message spec.Edition2023MapEncodingMessage
  */

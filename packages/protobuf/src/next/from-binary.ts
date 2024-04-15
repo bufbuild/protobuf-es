@@ -171,16 +171,11 @@ function readMapEntry(
   reader: BinaryReader,
   options: BinaryReadOptions,
 ): [MapEntryKey, ScalarValue | ReflectMessage] {
-  const delimited = field.delimitedEncoding;
-  const end = delimited ? reader.len : reader.pos + reader.uint32();
-  let fieldNo: number | undefined, wireType: WireType | undefined;
   let key: MapEntryKey | undefined,
     val: ScalarValue | ReflectMessage | undefined;
+  const end = reader.pos + reader.uint32();
   while (reader.pos < end) {
-    [fieldNo, wireType] = reader.tag();
-    if (delimited && wireType == WireType.EndGroup) {
-      break;
-    }
+    const [fieldNo] = reader.tag();
     switch (fieldNo) {
       case 1:
         key = readScalar(reader, field.mapKey);
@@ -198,11 +193,6 @@ function readMapEntry(
             break;
         }
         break;
-    }
-  }
-  if (delimited) {
-    if (wireType != WireType.EndGroup || fieldNo !== field.number) {
-      throw new Error(`invalid end group tag`);
     }
   }
   if (key === undefined) {

@@ -190,12 +190,8 @@ function writeMapEntry(
   key: unknown,
   value: unknown,
 ) {
-  const delimited = field.delimitedEncoding;
-  if (delimited) {
-    writer.tag(field.number, WireType.StartGroup);
-  } else {
-    writer.tag(field.number, WireType.LengthDelimited).fork();
-  }
+  writer.tag(field.number, WireType.LengthDelimited).fork();
+
   // write key, expecting key field number = 1
   writeScalar(writer, field.mapKey, 1, key);
 
@@ -211,11 +207,7 @@ function writeMapEntry(
         .bytes(reflectToBinary(value as ReflectMessage, opts));
       break;
   }
-  if (delimited) {
-    writer.tag(field.number, WireType.EndGroup);
-  } else {
-    writer.join();
-  }
+  writer.join();
 }
 
 function writeScalarValue(

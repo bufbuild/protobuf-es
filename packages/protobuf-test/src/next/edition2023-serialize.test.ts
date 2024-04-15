@@ -222,19 +222,19 @@ describe("edition2023 serialization", () => {
       const b = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
       expect(b).toStrictEqual(a);
     });
-    test("from binary parses expected", () => {
+    test("should expect LENGTH_PREFIXED", () => {
       const w = new BinaryWriter();
-      w.tag(77, WireType.StartGroup);
+      w.tag(77, WireType.LengthDelimited);
+      w.uint32(4);
       w.tag(1, WireType.Varint).int32(123);
       w.tag(2, WireType.Varint).bool(true);
-      w.tag(77, WireType.EndGroup);
       const bytes = w.finish();
       const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
       expect(msg.mapField).toStrictEqual({
         123: true,
       });
     });
-    test("to binary serializes expected", () => {
+    test("should serialize LENGTH_PREFIXED", () => {
       const msg = create(Edition2023MapEncodingMessageDesc);
       msg.mapField[123] = true;
       const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
@@ -242,7 +242,9 @@ describe("edition2023 serialization", () => {
       {
         const [number, wireType] = r.tag();
         expect(number).toBe(77);
-        expect(wireType).toBe(WireType.StartGroup);
+        expect(wireType).toBe(WireType.LengthDelimited);
+        const length = r.uint32();
+        expect(length).toBe(r.len - r.pos);
       }
       {
         const [number, wireType] = r.tag();
@@ -257,9 +259,7 @@ describe("edition2023 serialization", () => {
         expect(r.bool()).toBe(true);
       }
       {
-        const [number, wireType] = r.tag();
-        expect(number).toBe(77);
-        expect(wireType).toBe(WireType.EndGroup);
+        expect(r.pos).toBe(r.len);
       }
     });
   });
