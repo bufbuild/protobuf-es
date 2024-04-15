@@ -14,7 +14,7 @@
 
 import { protoInt64 } from "../../proto-int64.js";
 import { LongType, ScalarType } from "../../scalar.js";
-import { getTextEncoding } from "../wire/index.js";
+import { getTextEncoding } from "../wire/text-encoding.js";
 
 export { ScalarType, LongType } from "../../scalar.js";
 export type { ScalarValue } from "../../scalar.js";

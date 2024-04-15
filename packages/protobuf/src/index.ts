@@ -17,7 +17,6 @@ export { proto2 } from "./proto2.js";
 export { protoDouble } from "./proto-double.js";
 export { protoInt64 } from "./proto-int64.js";
 export { protoBase64 } from "./proto-base64.js";
-export { protoDelimited } from "./proto-delimited.js";
 export { codegenInfo } from "./codegen-info.js";
 
 export { Message } from "./message.js";
