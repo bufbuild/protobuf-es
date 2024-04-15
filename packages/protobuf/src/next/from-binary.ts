@@ -15,14 +15,10 @@
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { MessageShape } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
-import {
-  LongType,
-  scalarZeroValue,
-  type ScalarValue,
-} from "./reflect/scalar.js";
+import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
+import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
-import { ScalarType } from "./reflect/scalar.js";
 
 /**
  * Options for parsing binary data.
@@ -60,8 +56,9 @@ export function fromBinary<Desc extends DescMessage>(
   readMessage(
     msg,
     new BinaryReader(bytes),
-    bytes.byteLength,
     makeReadOptions(options),
+    false,
+    bytes.byteLength,
   );
   return msg.message as MessageShape<Desc>;
 }
@@ -84,24 +81,29 @@ export function mergeFromBinary<Desc extends DescMessage>(
   readMessage(
     reflect(messageDesc, target),
     new BinaryReader(bytes),
-    bytes.byteLength,
     makeReadOptions(options),
+    false,
+    bytes.byteLength,
   );
   return target;
 }
 
-// TODO: Improve the function signature, we got most it from v1.
+/**
+ * If `delimited` is false, read the length given in `lengthOrDelimitedFieldNo`.
+ *
+ * If `delimited` is true, read until an EndGroup tag. `lengthOrDelimitedFieldNo`
+ * is the expected field number.
+ *
+ * @private
+ */
 function readMessage(
   message: ReflectMessage,
   reader: BinaryReader,
-  lengthOrEndTagFieldNo: number,
   options: BinaryReadOptions,
-  delimitedMessageEncoding?: boolean,
+  delimited: boolean,
+  lengthOrDelimitedFieldNo: number,
 ): void {
-  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-  const end = delimitedMessageEncoding
-    ? reader.len
-    : reader.pos + lengthOrEndTagFieldNo;
+  const end = delimited ? reader.len : reader.pos + lengthOrDelimitedFieldNo;
   let fieldNo: number | undefined, wireType: WireType | undefined;
   const unknownFields = message.getUnknown() ?? [];
   while (reader.pos < end) {
@@ -119,11 +121,10 @@ function readMessage(
     }
     readField(message, reader, field, wireType, options);
   }
-  if (
-    delimitedMessageEncoding && // eslint-disable-line @typescript-eslint/strict-boolean-expressions
-    (wireType != WireType.EndGroup || fieldNo !== lengthOrEndTagFieldNo)
-  ) {
-    throw new Error(`invalid end group tag`);
+  if (delimited) {
+    if (wireType != WireType.EndGroup || fieldNo !== lengthOrDelimitedFieldNo) {
+      throw new Error(`invalid end group tag`);
+    }
   }
   if (unknownFields.length > 0) {
     message.setUnknown(unknownFields);
@@ -165,19 +166,21 @@ export function readField(
 }
 
 // Read a map field, expecting key field = 1, value field = 2
-//
-// TODO: Make sure we support edition feature message_encoding correctly
 function readMapEntry(
   field: DescField & { fieldKind: "map" },
   reader: BinaryReader,
   options: BinaryReadOptions,
 ): [MapEntryKey, ScalarValue | ReflectMessage] {
-  const length = reader.uint32(),
-    end = reader.pos + length;
+  const delimited = field.delimitedEncoding;
+  const end = delimited ? reader.len : reader.pos + reader.uint32();
+  let fieldNo: number | undefined, wireType: WireType | undefined;
   let key: MapEntryKey | undefined,
     val: ScalarValue | ReflectMessage | undefined;
   while (reader.pos < end) {
-    const [fieldNo] = reader.tag();
+    [fieldNo, wireType] = reader.tag();
+    if (delimited && wireType == WireType.EndGroup) {
+      break;
+    }
     switch (fieldNo) {
       case 1:
         key = readScalar(reader, field.mapKey);
@@ -195,6 +198,11 @@ function readMapEntry(
             break;
         }
         break;
+    }
+  }
+  if (delimited) {
+    if (wireType != WireType.EndGroup || fieldNo !== field.number) {
+      throw new Error(`invalid end group tag`);
     }
   }
   if (key === undefined) {
@@ -257,9 +265,9 @@ function readMessageField(
   readMessage(
     message,
     reader,
-    delimited ? field.number : reader.uint32(), // eslint-disable-line @typescript-eslint/strict-boolean-expressions
     options,
     delimited,
+    delimited ? field.number : reader.uint32(),
   );
   return message;
 }

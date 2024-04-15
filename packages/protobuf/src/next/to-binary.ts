@@ -16,8 +16,8 @@ import type { MessageShape } from "./types.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
-import { ScalarType } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
+import { ScalarType } from "./reflect/scalar.js";
 import type { DescField, DescMessage } from "../descriptor-set.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
 
@@ -183,7 +183,6 @@ function writeListField(
   }
 }
 
-// TODO: Make sure we support edition feature message_encoding correctly
 function writeMapEntry(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
@@ -191,9 +190,12 @@ function writeMapEntry(
   key: unknown,
   value: unknown,
 ) {
-  // TODO we always write length-prefixed, but have to honor `field.delimitedEncoding`, see writeMessageField()
-  writer.tag(field.number, WireType.LengthDelimited);
-  writer.fork();
+  const delimited = field.delimitedEncoding;
+  if (delimited) {
+    writer.tag(field.number, WireType.StartGroup);
+  } else {
+    writer.tag(field.number, WireType.LengthDelimited).fork();
+  }
   // write key, expecting key field number = 1
   writeScalar(writer, field.mapKey, 1, key);
 
@@ -209,8 +211,11 @@ function writeMapEntry(
         .bytes(reflectToBinary(value as ReflectMessage, opts));
       break;
   }
-
-  writer.join();
+  if (delimited) {
+    writer.tag(field.number, WireType.EndGroup);
+  } else {
+    writer.join();
+  }
 }
 
 function writeScalarValue(

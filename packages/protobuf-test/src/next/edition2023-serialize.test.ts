@@ -24,6 +24,12 @@ import {
 import * as edition2023_ts from "../gen/ts/extra/edition2023_pbv2.js";
 import * as edition2023_proto2_ts from "../gen/ts/extra/edition2023-proto2_pbv2.js";
 import * as edition2023_proto3_ts from "../gen/ts/extra/edition2023-proto3_pbv2.js";
+import { Edition2023MapEncodingMessageDesc } from "../gen/ts/extra/edition2023-map-encoding_pbv2.js";
+import {
+  BinaryReader,
+  BinaryWriter,
+  WireType,
+} from "@bufbuild/protobuf/next/wire";
 
 describe("edition2023 serialization", () => {
   test("should round-trip for binary", () => {
@@ -207,5 +213,54 @@ describe("edition2023 serialization", () => {
       msg.unpackedDoubleField = [4, 5, 6];
       return msg;
     }
+  });
+  describe("message_encoding DELIMITED with maps", () => {
+    test("should round-trip", () => {
+      const a = create(Edition2023MapEncodingMessageDesc);
+      a.mapField[123] = true;
+      const bytes = toBinary(Edition2023MapEncodingMessageDesc, a);
+      const b = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      expect(b).toStrictEqual(a);
+    });
+    test("from binary parses expected", () => {
+      const w = new BinaryWriter();
+      w.tag(77, WireType.StartGroup);
+      w.tag(1, WireType.Varint).int32(123);
+      w.tag(2, WireType.Varint).bool(true);
+      w.tag(77, WireType.EndGroup);
+      const bytes = w.finish();
+      const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      expect(msg.mapField).toStrictEqual({
+        123: true,
+      });
+    });
+    test("to binary serializes expected", () => {
+      const msg = create(Edition2023MapEncodingMessageDesc);
+      msg.mapField[123] = true;
+      const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
+      const r = new BinaryReader(bytes);
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(77);
+        expect(wireType).toBe(WireType.StartGroup);
+      }
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(1);
+        expect(wireType).toBe(WireType.Varint);
+        expect(r.int32()).toBe(123);
+      }
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(2);
+        expect(wireType).toBe(WireType.Varint);
+        expect(r.bool()).toBe(true);
+      }
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(77);
+        expect(wireType).toBe(WireType.EndGroup);
+      }
+    });
   });
 });
