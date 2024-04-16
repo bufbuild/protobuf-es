@@ -44,7 +44,7 @@ import type {
   DescService,
   SupportedEdition,
 } from "../../descriptor-set.js";
-import { MethodIdempotency, MethodKind } from "../../service-type.js";
+import { MethodKind } from "../../service-type.js";
 import { findEnumSharedPrefix } from "../../private/names.js";
 import {
   parseTextFormatEnumValue,
@@ -388,10 +388,6 @@ const JS_STRING: FieldOptions_JSType.JS_STRING = 1;
 
 // bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.IDEMPOTENCY_UNKNOWN: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
 const IDEMPOTENCY_UNKNOWN: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN = 0;
-// bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.NO_SIDE_EFFECTS: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
-const NO_SIDE_EFFECTS: MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS = 1;
-// bootstrap-inject google.protobuf.MethodOptions.IdempotencyLevel.IDEMPOTENT: const $name: MethodOptions_IdempotencyLevel.$localName = $number;
-const IDEMPOTENT: MethodOptions_IdempotencyLevel.IDEMPOTENT = 2;
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.EXPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
 const EXPLICIT: FeatureSet_FieldPresence.EXPLICIT = 1;
@@ -701,21 +697,6 @@ function newMethod(
   } else {
     methodKind = MethodKind.Unary;
   }
-  const protoIdempotency: MethodOptions_IdempotencyLevel | undefined =
-    proto.options?.idempotencyLevel;
-  let idempotency: MethodIdempotency | undefined;
-  switch (protoIdempotency) {
-    case IDEMPOTENT:
-      idempotency = MethodIdempotency.Idempotent;
-      break;
-    case NO_SIDE_EFFECTS:
-      idempotency = MethodIdempotency.NoSideEffects;
-      break;
-    case IDEMPOTENCY_UNKNOWN:
-    case undefined:
-      idempotency = undefined;
-      break;
-  }
   const input = set.getMessage(trimLeadingDot(proto.inputType));
   const output = set.getMessage(trimLeadingDot(proto.outputType));
   assert(
@@ -736,7 +717,7 @@ function newMethod(
     methodKind,
     input,
     output,
-    idempotency,
+    idempotency: proto.options?.idempotencyLevel ?? IDEMPOTENCY_UNKNOWN,
     toString() {
       return `rpc ${parent.typeName}.${name}`;
     },

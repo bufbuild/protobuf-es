@@ -21,12 +21,13 @@ import type {
   FieldDescriptorProto,
   FileDescriptorProto,
   MethodDescriptorProto,
+  MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
-import type { MethodIdempotency, MethodKind } from "./service-type.js";
+import type { MethodKind } from "./service-type.js";
 
 export type SupportedEdition = Extract<
   Edition,
@@ -688,7 +689,7 @@ export interface DescMethod {
   /**
    * The idempotency level declared in the protobuf source, if any.
    */
-  readonly idempotency?: MethodIdempotency;
+  readonly idempotency: MethodOptions_IdempotencyLevel;
   /**
    * Marked as deprecated in the protobuf source.
    */

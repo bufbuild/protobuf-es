@@ -26,6 +26,7 @@ import type {
   IServiceTypeRegistry,
 } from "./type-registry.js";
 import type { MethodInfo, ServiceType } from "./service-type.js";
+import { MethodIdempotency } from "./service-type.js";
 import { localName } from "./private/names.js";
 import { Timestamp } from "./google/protobuf/timestamp_pb.js";
 import { Duration } from "./google/protobuf/duration_pb.js";
@@ -55,6 +56,7 @@ import {
   Edition,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
+  MethodOptions_IdempotencyLevel,
 } from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type {
   AnyDesc,
@@ -201,12 +203,24 @@ export function createRegistryFromDescriptors(
       for (const method of desc.methods) {
         const I = resolve(method.input, this, method);
         const O = resolve(method.output, this, method);
+        let legacyIdempotency: MethodIdempotency | undefined;
+        switch (method.idempotency) {
+          case MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN:
+            legacyIdempotency = undefined;
+            break;
+          case MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS:
+            legacyIdempotency = MethodIdempotency.NoSideEffects;
+            break;
+          case MethodOptions_IdempotencyLevel.IDEMPOTENT:
+            legacyIdempotency = MethodIdempotency.Idempotent;
+            break;
+        }
         methods[localName(method)] = {
           name: method.name,
           I,
           O,
           kind: method.methodKind,
-          idempotency: method.idempotency,
+          idempotency: legacyIdempotency,
           // We do not surface options at this time
           // options: {},
         };

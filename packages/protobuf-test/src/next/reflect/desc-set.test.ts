@@ -1407,7 +1407,7 @@ describe("DescMethod", () => {
     });
   });
   describe("idempotency", () => {
-    test("is undefined if unset", async () => {
+    test("is IDEMPOTENCY_UNKNOWN if unset", async () => {
       const method = await compileMethod(`
         syntax="proto3";
         service Foo { 
@@ -1416,9 +1416,11 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBeUndefined();
+      expect(method.idempotency).toBe(
+        MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
+      );
     });
-    test("is undefined if IDEMPOTENCY_UNKNOWN", async () => {
+    test("is IDEMPOTENCY_UNKNOWN if set", async () => {
       const method = await compileMethod(`
         syntax="proto3";
         service Foo { 
@@ -1429,7 +1431,9 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBeUndefined();
+      expect(method.idempotency).toBe(
+        MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
+      );
     });
     test("is NO_SIDE_EFFECTS if set", async () => {
       const method = await compileMethod(`
