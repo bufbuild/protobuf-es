@@ -27,7 +27,6 @@ import type {
 } from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
-import type { MethodKind } from "./service-type.js";
 
 export type SupportedEdition = Extract<
   Edition,
@@ -677,7 +676,11 @@ export interface DescMethod {
   /**
    * One of the four available method types.
    */
-  readonly methodKind: MethodKind;
+  readonly methodKind:
+    | "unary"
+    | "server_streaming"
+    | "client_streaming"
+    | "bidi_streaming";
   /**
    * The message type for requests.
    */

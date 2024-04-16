@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_track.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -244,7 +244,7 @@ export const RepositoryTrackService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackService.CreateRepositoryTrack
    */
   createRepositoryTrack: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateRepositoryTrackRequest;
     O: CreateRepositoryTrackResponse;
   },
@@ -254,7 +254,7 @@ export const RepositoryTrackService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackService.ListRepositoryTracks
    */
   listRepositoryTracks: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryTracksRequest;
     O: ListRepositoryTracksResponse;
   },
@@ -264,7 +264,7 @@ export const RepositoryTrackService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackService.DeleteRepositoryTrackByName
    */
   deleteRepositoryTrackByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteRepositoryTrackByNameRequest;
     O: DeleteRepositoryTrackByNameResponse;
   },
@@ -274,7 +274,7 @@ export const RepositoryTrackService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackService.GetRepositoryTrackByName
    */
   getRepositoryTrackByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryTrackByNameRequest;
     O: GetRepositoryTrackByNameResponse;
   },

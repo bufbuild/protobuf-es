@@ -42,8 +42,6 @@ export const symbols = {
   toJsonString:            {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
   protoInt64:              {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
   legacy: {
-    // TODO
-    MethodKind:            {typeOnly: false, bootstrapWktFrom: "../../service-type.js",         from: "@bufbuild/protobuf" },
     JsonValue:             {typeOnly: true,  bootstrapWktFrom: "../../json-format.js",          from: "@bufbuild/protobuf" },
   },
   reflect: {

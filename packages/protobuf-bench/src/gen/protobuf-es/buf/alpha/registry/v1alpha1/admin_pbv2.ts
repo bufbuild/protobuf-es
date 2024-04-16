@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/admin.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Organization } from "./organization_pbv2.js";
@@ -105,7 +105,7 @@ export const AdminService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AdminService.ForceDeleteUser
    */
   forceDeleteUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ForceDeleteUserRequest;
     O: ForceDeleteUserResponse;
   },

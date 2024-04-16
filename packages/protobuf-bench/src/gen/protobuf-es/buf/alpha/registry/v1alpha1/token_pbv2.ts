@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/token.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -213,7 +213,7 @@ export const TokenService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.TokenService.CreateToken
    */
   createToken: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateTokenRequest;
     O: CreateTokenResponse;
   },
@@ -225,7 +225,7 @@ export const TokenService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.TokenService.GetToken
    */
   getToken: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetTokenRequest;
     O: GetTokenResponse;
   },
@@ -237,7 +237,7 @@ export const TokenService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.TokenService.ListTokens
    */
   listTokens: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListTokensRequest;
     O: ListTokensResponse;
   },
@@ -249,7 +249,7 @@ export const TokenService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.TokenService.DeleteToken
    */
   deleteToken: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteTokenRequest;
     O: DeleteTokenResponse;
   },

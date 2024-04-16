@@ -25,8 +25,12 @@ import type {
   IMessageTypeRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
-import type { MethodInfo, ServiceType } from "./service-type.js";
-import { MethodIdempotency } from "./service-type.js";
+import {
+  MethodIdempotency,
+  type MethodInfo,
+  MethodKind,
+  type ServiceType,
+} from "./service-type.js";
 import { localName } from "./private/names.js";
 import { Timestamp } from "./google/protobuf/timestamp_pb.js";
 import { Duration } from "./google/protobuf/duration_pb.js";
@@ -215,11 +219,26 @@ export function createRegistryFromDescriptors(
             legacyIdempotency = MethodIdempotency.Idempotent;
             break;
         }
+        let legacyKind: MethodKind;
+        switch (method.methodKind) {
+          case "bidi_streaming":
+            legacyKind = MethodKind.BiDiStreaming;
+            break;
+          case "server_streaming":
+            legacyKind = MethodKind.ServerStreaming;
+            break;
+          case "client_streaming":
+            legacyKind = MethodKind.ClientStreaming;
+            break;
+          case "unary":
+            legacyKind = MethodKind.Unary;
+            break;
+        }
         methods[localName(method)] = {
           name: method.name,
           I,
           O,
-          kind: method.methodKind,
+          kind: legacyKind,
           idempotency: legacyIdempotency,
           // We do not surface options at this time
           // options: {},

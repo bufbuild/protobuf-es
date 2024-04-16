@@ -18,7 +18,6 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { MethodKind } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/next/reflect";
 import {
   embedFileDesc,
@@ -266,7 +265,6 @@ function getFileDescCall(f: GeneratedFile, file: DescFile) {
 
 // prettier-ignore
 function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable {
-  const MethodKindType = f.runtime.legacy.MethodKind.toTypeOnly();
   const p: Printable[] = [];
   function print(...printables: Printable[]) {
     p.push(...printables, "\n");
@@ -275,7 +273,7 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
   for (const method of service.methods) {
     print(f.jsDoc(method, "  "));
     print("  ", localName(method), ": {");
-    print("    kind: ", MethodKindType, ".", MethodKind[method.methodKind], ";");
+    print("    kind: ", f.string(method.methodKind), ";");
     print("    I: ", f.importShape(method.input), ";");
     print("    O: ", f.importShape(method.output), ";");
     print("  },");

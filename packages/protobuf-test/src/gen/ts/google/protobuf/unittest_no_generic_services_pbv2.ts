@@ -18,7 +18,7 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
@@ -63,7 +63,7 @@ export const TestService: GenDescService<{
    * @generated from rpc protobuf_unittest.no_generic_services_test.TestService.Foo
    */
   foo: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: TestMessage;
     O: TestMessage;
   },

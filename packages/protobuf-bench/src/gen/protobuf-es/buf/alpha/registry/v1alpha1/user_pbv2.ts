@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/user.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { OrganizationRole, ServerRole } from "./role_pbv2.js";
@@ -455,7 +455,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.CreateUser
    */
   createUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateUserRequest;
     O: CreateUserResponse;
   },
@@ -465,7 +465,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.GetUser
    */
   getUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetUserRequest;
     O: GetUserResponse;
   },
@@ -475,7 +475,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.GetUserByUsername
    */
   getUserByUsername: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetUserByUsernameRequest;
     O: GetUserByUsernameResponse;
   },
@@ -485,7 +485,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.ListUsers
    */
   listUsers: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListUsersRequest;
     O: ListUsersResponse;
   },
@@ -496,7 +496,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.ListOrganizationUsers
    */
   listOrganizationUsers: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListOrganizationUsersRequest;
     O: ListOrganizationUsersResponse;
   },
@@ -506,7 +506,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.DeleteUser
    */
   deleteUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteUserRequest;
     O: DeleteUserResponse;
   },
@@ -516,7 +516,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.DeactivateUser
    */
   deactivateUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeactivateUserRequest;
     O: DeactivateUserResponse;
   },
@@ -526,7 +526,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.UpdateUserServerRole
    */
   updateUserServerRole: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UpdateUserServerRoleRequest;
     O: UpdateUserServerRoleResponse;
   },
@@ -536,7 +536,7 @@ export const UserService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.UserService.CountUsers
    */
   countUsers: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CountUsersRequest;
     O: CountUsersResponse;
   },

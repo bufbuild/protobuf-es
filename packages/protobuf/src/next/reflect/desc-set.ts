@@ -44,7 +44,6 @@ import type {
   DescService,
   SupportedEdition,
 } from "../../descriptor-set.js";
-import { MethodKind } from "../../service-type.js";
 import { findEnumSharedPrefix } from "../../private/names.js";
 import {
   parseTextFormatEnumValue,
@@ -687,15 +686,15 @@ function newMethod(
   parent: DescService,
   set: DescSet,
 ): DescMethod {
-  let methodKind: MethodKind;
+  let methodKind: DescMethod["methodKind"];
   if (proto.clientStreaming && proto.serverStreaming) {
-    methodKind = MethodKind.BiDiStreaming;
+    methodKind = "bidi_streaming";
   } else if (proto.clientStreaming) {
-    methodKind = MethodKind.ClientStreaming;
+    methodKind = "client_streaming";
   } else if (proto.serverStreaming) {
-    methodKind = MethodKind.ServerStreaming;
+    methodKind = "server_streaming";
   } else {
-    methodKind = MethodKind.Unary;
+    methodKind = "unary";
   }
   const input = set.getMessage(trimLeadingDot(proto.inputType));
   const output = set.getMessage(trimLeadingDot(proto.outputType));

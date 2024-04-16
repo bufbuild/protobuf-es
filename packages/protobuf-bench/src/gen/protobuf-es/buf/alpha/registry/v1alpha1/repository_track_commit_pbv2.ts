@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_track_commit.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -211,7 +211,7 @@ export const RepositoryTrackCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackCommitService.GetRepositoryTrackCommitByRepositoryCommit
    */
   getRepositoryTrackCommitByRepositoryCommit: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryTrackCommitByRepositoryCommitRequest;
     O: GetRepositoryTrackCommitByRepositoryCommitResponse;
   },
@@ -222,7 +222,7 @@ export const RepositoryTrackCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackCommitService.ListRepositoryTrackCommitsByRepositoryTrack
    */
   listRepositoryTrackCommitsByRepositoryTrack: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryTrackCommitsByRepositoryTrackRequest;
     O: ListRepositoryTrackCommitsByRepositoryTrackResponse;
   },
@@ -232,7 +232,7 @@ export const RepositoryTrackCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTrackCommitService.GetRepositoryTrackCommitByReference
    */
   getRepositoryTrackCommitByReference: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryTrackCommitByReferenceRequest;
     O: GetRepositoryTrackCommitByReferenceResponse;
   },

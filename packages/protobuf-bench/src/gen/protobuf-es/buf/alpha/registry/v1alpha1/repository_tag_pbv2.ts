@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_tag.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -187,7 +187,7 @@ export const RepositoryTagService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTagService.CreateRepositoryTag
    */
   createRepositoryTag: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateRepositoryTagRequest;
     O: CreateRepositoryTagResponse;
   },
@@ -197,7 +197,7 @@ export const RepositoryTagService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryTagService.ListRepositoryTags
    */
   listRepositoryTags: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryTagsRequest;
     O: ListRepositoryTagsResponse;
   },

@@ -16,7 +16,7 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 
@@ -30,7 +30,7 @@ export declare const ServiceAll: GenDescService<{
    * @generated from rpc spec.ServiceAll.Unary
    */
   unary: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: StringValue;
     O: Int32Value;
   },
@@ -38,7 +38,7 @@ export declare const ServiceAll: GenDescService<{
    * @generated from rpc spec.ServiceAll.ServerStream
    */
   serverStream: {
-    kind: MethodKind.ServerStreaming;
+    kind: "server_streaming";
     I: StringValue;
     O: Int32Value;
   },
@@ -46,7 +46,7 @@ export declare const ServiceAll: GenDescService<{
    * @generated from rpc spec.ServiceAll.ClientStream
    */
   clientStream: {
-    kind: MethodKind.ClientStreaming;
+    kind: "client_streaming";
     I: StringValue;
     O: Int32Value;
   },
@@ -55,7 +55,7 @@ export declare const ServiceAll: GenDescService<{
    * @deprecated
    */
   bidi: {
-    kind: MethodKind.BiDiStreaming;
+    kind: "bidi_streaming";
     I: StringValue;
     O: Int32Value;
   },

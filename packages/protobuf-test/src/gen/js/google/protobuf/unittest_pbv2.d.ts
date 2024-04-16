@@ -28,7 +28,7 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportEnum, ImportMessage } from "./unittest_import_pbv2.js";
 import type { PublicImportMessage } from "./unittest_import_public_pbv2.js";
@@ -6316,7 +6316,7 @@ export declare const TestService: GenDescService<{
    * @generated from rpc protobuf_unittest.TestService.Foo
    */
   foo: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: FooRequest;
     O: FooResponse;
   },
@@ -6324,7 +6324,7 @@ export declare const TestService: GenDescService<{
    * @generated from rpc protobuf_unittest.TestService.Bar
    */
   bar: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: BarRequest;
     O: BarResponse;
   },

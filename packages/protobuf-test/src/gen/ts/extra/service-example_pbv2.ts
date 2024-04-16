@@ -16,7 +16,7 @@
 // @generated from file extra/service-example.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
@@ -142,7 +142,7 @@ export const ExampleService: GenDescService<{
    * @generated from rpc spec.ExampleService.Unary
    */
   unary: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ExampleRequest;
     O: ExampleResponse;
   },
@@ -150,7 +150,7 @@ export const ExampleService: GenDescService<{
    * @generated from rpc spec.ExampleService.ServerStream
    */
   serverStream: {
-    kind: MethodKind.ServerStreaming;
+    kind: "server_streaming";
     I: ExampleRequest;
     O: ExampleResponse;
   },
@@ -158,7 +158,7 @@ export const ExampleService: GenDescService<{
    * @generated from rpc spec.ExampleService.ClientStream
    */
   clientStream: {
-    kind: MethodKind.ClientStreaming;
+    kind: "client_streaming";
     I: ExampleRequest;
     O: ExampleResponse;
   },
@@ -166,7 +166,7 @@ export const ExampleService: GenDescService<{
    * @generated from rpc spec.ExampleService.Bidi
    */
   bidi: {
-    kind: MethodKind.BiDiStreaming;
+    kind: "bidi_streaming";
     I: ExampleRequest;
     O: ExampleResponse;
   },

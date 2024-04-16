@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_retention.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
@@ -143,7 +143,7 @@ export const Service: GenDescService<{
    * @generated from rpc protobuf_unittest.Service.DoStuff
    */
   doStuff: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: TopLevelMessage;
     O: TopLevelMessage;
   },

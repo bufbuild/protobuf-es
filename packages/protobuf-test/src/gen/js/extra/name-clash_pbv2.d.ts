@@ -16,7 +16,7 @@
 // @generated from file extra/name-clash.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { Message as Message$1 } from "@bufbuild/protobuf/next";
 import type { User as User$1 } from "./example_pbv2.js";
 import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
@@ -862,7 +862,7 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    * @generated from rpc spec.ReservedPropertyNamesService.constructor
    */
   constructor$: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: Error;
     O: Error;
   },
@@ -870,7 +870,7 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    * @generated from rpc spec.ReservedPropertyNamesService.toString
    */
   toString$: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: Error;
     O: Error;
   },
@@ -878,7 +878,7 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    * @generated from rpc spec.ReservedPropertyNamesService.to_JSON
    */
   to_JSON: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: Error;
     O: Error;
   },
@@ -886,7 +886,7 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    * @generated from rpc spec.ReservedPropertyNamesService.value_of
    */
   value_of: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: Error;
     O: Error;
   },

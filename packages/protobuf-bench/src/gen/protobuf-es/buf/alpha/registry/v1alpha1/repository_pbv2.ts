@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { RepositoryRole } from "./role_pbv2.js";
@@ -783,7 +783,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.GetRepository
    */
   getRepository: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryRequest;
     O: GetRepositoryResponse;
   },
@@ -793,7 +793,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.GetRepositoryByFullName
    */
   getRepositoryByFullName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryByFullNameRequest;
     O: GetRepositoryByFullNameResponse;
   },
@@ -803,7 +803,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.ListRepositories
    */
   listRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoriesRequest;
     O: ListRepositoriesResponse;
   },
@@ -813,7 +813,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.ListUserRepositories
    */
   listUserRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListUserRepositoriesRequest;
     O: ListUserRepositoriesResponse;
   },
@@ -823,7 +823,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.ListRepositoriesUserCanAccess
    */
   listRepositoriesUserCanAccess: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoriesUserCanAccessRequest;
     O: ListRepositoriesUserCanAccessResponse;
   },
@@ -833,7 +833,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.ListOrganizationRepositories
    */
   listOrganizationRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListOrganizationRepositoriesRequest;
     O: ListOrganizationRepositoriesResponse;
   },
@@ -843,7 +843,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.CreateRepositoryByFullName
    */
   createRepositoryByFullName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateRepositoryByFullNameRequest;
     O: CreateRepositoryByFullNameResponse;
   },
@@ -853,7 +853,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.DeleteRepository
    */
   deleteRepository: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteRepositoryRequest;
     O: DeleteRepositoryResponse;
   },
@@ -863,7 +863,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.DeleteRepositoryByFullName
    */
   deleteRepositoryByFullName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteRepositoryByFullNameRequest;
     O: DeleteRepositoryByFullNameResponse;
   },
@@ -873,7 +873,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.DeprecateRepositoryByName
    */
   deprecateRepositoryByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeprecateRepositoryByNameRequest;
     O: DeprecateRepositoryByNameResponse;
   },
@@ -883,7 +883,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.UndeprecateRepositoryByName
    */
   undeprecateRepositoryByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UndeprecateRepositoryByNameRequest;
     O: UndeprecateRepositoryByNameResponse;
   },
@@ -894,7 +894,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.GetRepositoriesByFullName
    */
   getRepositoriesByFullName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoriesByFullNameRequest;
     O: GetRepositoriesByFullNameResponse;
   },
@@ -904,7 +904,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.SetRepositoryContributor
    */
   setRepositoryContributor: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetRepositoryContributorRequest;
     O: SetRepositoryContributorResponse;
   },
@@ -916,7 +916,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.ListRepositoryContributors
    */
   listRepositoryContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryContributorsRequest;
     O: ListRepositoryContributorsResponse;
   },
@@ -926,7 +926,7 @@ export const RepositoryService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryService.GetRepositorySettings
    */
   getRepositorySettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositorySettingsRequest;
     O: GetRepositorySettingsResponse;
   },

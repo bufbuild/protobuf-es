@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/recommendation.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -309,7 +309,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.RecommendedRepositories
    */
   recommendedRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: RecommendedRepositoriesRequest;
     O: RecommendedRepositoriesResponse;
   },
@@ -319,7 +319,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.RecommendedTemplates
    */
   recommendedTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: RecommendedTemplatesRequest;
     O: RecommendedTemplatesResponse;
   },
@@ -329,7 +329,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.ListRecommendedRepositories
    */
   listRecommendedRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRecommendedRepositoriesRequest;
     O: ListRecommendedRepositoriesResponse;
   },
@@ -339,7 +339,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.ListRecommendedTemplates
    */
   listRecommendedTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRecommendedTemplatesRequest;
     O: ListRecommendedTemplatesResponse;
   },
@@ -349,7 +349,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.SetRecommendedRepositories
    */
   setRecommendedRepositories: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetRecommendedRepositoriesRequest;
     O: SetRecommendedRepositoriesResponse;
   },
@@ -359,7 +359,7 @@ export const RecommendationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RecommendationService.SetRecommendedTemplates
    */
   setRecommendedTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetRecommendedTemplatesRequest;
     O: SetRecommendedTemplatesResponse;
   },

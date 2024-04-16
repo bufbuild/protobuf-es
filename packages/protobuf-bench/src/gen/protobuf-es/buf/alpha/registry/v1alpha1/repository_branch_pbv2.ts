@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_branch.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -181,7 +181,7 @@ export const RepositoryBranchService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryBranchService.CreateRepositoryBranch
    */
   createRepositoryBranch: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateRepositoryBranchRequest;
     O: CreateRepositoryBranchResponse;
   },
@@ -191,7 +191,7 @@ export const RepositoryBranchService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryBranchService.ListRepositoryBranches
    */
   listRepositoryBranches: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryBranchesRequest;
     O: ListRepositoryBranchesResponse;
   },

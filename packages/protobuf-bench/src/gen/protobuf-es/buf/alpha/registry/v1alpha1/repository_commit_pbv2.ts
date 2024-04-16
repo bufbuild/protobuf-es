@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_commit.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { RepositoryTag } from "./repository_tag_pbv2.js";
@@ -342,7 +342,7 @@ export const RepositoryCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryCommitService.ListRepositoryCommitsByBranch
    */
   listRepositoryCommitsByBranch: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryCommitsByBranchRequest;
     O: ListRepositoryCommitsByBranchResponse;
   },
@@ -353,7 +353,7 @@ export const RepositoryCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryCommitService.ListRepositoryCommitsByReference
    */
   listRepositoryCommitsByReference: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListRepositoryCommitsByReferenceRequest;
     O: ListRepositoryCommitsByReferenceResponse;
   },
@@ -364,7 +364,7 @@ export const RepositoryCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryCommitService.GetRepositoryCommitByReference
    */
   getRepositoryCommitByReference: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryCommitByReferenceRequest;
     O: GetRepositoryCommitByReferenceResponse;
   },
@@ -375,7 +375,7 @@ export const RepositoryCommitService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.RepositoryCommitService.GetRepositoryCommitBySequenceId
    */
   getRepositoryCommitBySequenceId: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetRepositoryCommitBySequenceIdRequest;
     O: GetRepositoryCommitBySequenceIdResponse;
   },

@@ -19,7 +19,6 @@ import type {
   DescMessage,
   DescService,
 } from "../../descriptor-set.js";
-import { MethodKind } from "../../service-type.js";
 
 export type GenDescMessage<RuntimeShape extends Message> = DescMessage &
   brand<RuntimeShape>;
@@ -31,17 +30,15 @@ export type GenDescExtension<
   RuntimeShape = unknown,
 > = DescExtension & brand<Extendee, RuntimeShape>;
 
-export type GenDescService<RuntimeShape extends ServiceInfo> = DescService &
-  brand<RuntimeShape>;
+export type GenDescService<RuntimeShape extends GenDescServiceShape> =
+  DescService & brand<RuntimeShape>;
 
-export type ServiceInfo = {
-  [localName: string]: MethodInfo<MethodKind, Message, Message>;
-};
-
-type MethodInfo<K extends MethodKind, I extends Message, O extends Message> = {
-  kind: K;
-  I: I;
-  O: O;
+export type GenDescServiceShape = {
+  [localName: string]: {
+    kind: "unary" | "server_streaming" | "client_streaming" | "bidi_streaming";
+    I: Message;
+    O: Message;
+  };
 };
 
 class brand<A, B = unknown> {

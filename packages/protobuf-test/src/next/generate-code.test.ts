@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import { describe, test, expect } from "@jest/globals";
+import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
+import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import * as proto2_ts from "../gen/ts/extra/proto2_pbv2.js";
 import * as proto2_js from "../gen/js/extra/proto2_pbv2.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
@@ -101,6 +103,38 @@ test("ts generated code is assignable to js", () => {
       return [ts, js];
     },
   ]).toBeDefined();
+});
+
+test("service generates as expected", () => {
+  type Expected = {
+    unary: {
+      kind: "unary";
+      I: StringValue;
+      O: Int32Value;
+    };
+    serverStream: {
+      kind: "server_streaming";
+      I: StringValue;
+      O: Int32Value;
+    };
+    clientStream: {
+      kind: "client_streaming";
+      I: StringValue;
+      O: Int32Value;
+    };
+    bidi: {
+      kind: "bidi_streaming";
+      I: StringValue;
+      O: Int32Value;
+    };
+  };
+  type Actual<T> = T extends GenDescService<infer Shape> ? Shape : never;
+  function f(expected: Expected, actual: Actual<typeof service_js.ServiceAll>) {
+    expected = actual;
+    actual = expected;
+    return [expected, actual];
+  }
+  expect(f).toBeDefined();
 });
 
 describe("ts generated code is equal to js generated code", () => {

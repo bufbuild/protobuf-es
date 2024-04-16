@@ -16,7 +16,7 @@
 // @generated from file connectrpc/eliza.proto (package connectrpc.eliza.v1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pbv2.js";
@@ -71,7 +71,7 @@ export const ElizaService: GenDescService<{
    * @generated from rpc connectrpc.eliza.v1.ElizaService.Say
    */
   say: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SayRequest;
     O: SayResponse;
   },

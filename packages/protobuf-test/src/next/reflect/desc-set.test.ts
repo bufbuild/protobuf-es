@@ -31,7 +31,6 @@ import type {
   DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
-import { MethodKind } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
 import {
   Edition,
@@ -1370,7 +1369,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe(MethodKind.Unary);
+      expect(method.methodKind).toBe("unary");
     });
     test("server-streaming", async () => {
       const method = await compileMethod(`
@@ -1381,7 +1380,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe(MethodKind.ServerStreaming);
+      expect(method.methodKind).toBe("server_streaming");
     });
     test("client-streaming", async () => {
       const method = await compileMethod(`
@@ -1392,7 +1391,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe(MethodKind.ClientStreaming);
+      expect(method.methodKind).toBe("client_streaming");
     });
     test("bidi-streaming", async () => {
       const method = await compileMethod(`
@@ -1403,7 +1402,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe(MethodKind.BiDiStreaming);
+      expect(method.methodKind).toBe("bidi_streaming");
     });
   });
   describe("idempotency", () => {

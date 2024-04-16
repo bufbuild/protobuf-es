@@ -25,7 +25,7 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
@@ -578,7 +578,7 @@ export declare const TestServiceWithCustomOptions: GenDescService<{
    * @generated from rpc protobuf_unittest.TestServiceWithCustomOptions.Foo
    */
   foo: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CustomOptionFooRequest;
     O: CustomOptionFooResponse;
   },
@@ -593,7 +593,7 @@ export declare const AggregateService: GenDescService<{
    * @generated from rpc protobuf_unittest.AggregateService.Method
    */
   method: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: AggregateMessage;
     O: AggregateMessage;
   },

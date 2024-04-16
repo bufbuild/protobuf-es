@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/plugin.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { PluginRole, TemplateRole } from "./role_pbv2.js";
@@ -1665,7 +1665,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListPlugins
    */
   listPlugins: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListPluginsRequest;
     O: ListPluginsResponse;
   },
@@ -1675,7 +1675,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListUserPlugins
    */
   listUserPlugins: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListUserPluginsRequest;
     O: ListUserPluginsResponse;
   },
@@ -1685,7 +1685,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListOrganizationPlugins
    */
   listOrganizationPlugins: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListOrganizationPluginsRequest;
     O: ListOrganizationPluginsResponse;
   },
@@ -1695,7 +1695,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.GetPluginVersion
    */
   getPluginVersion: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetPluginVersionRequest;
     O: GetPluginVersionResponse;
   },
@@ -1705,7 +1705,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListPluginVersions
    */
   listPluginVersions: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListPluginVersionsRequest;
     O: ListPluginVersionsResponse;
   },
@@ -1715,7 +1715,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.CreatePlugin
    */
   createPlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreatePluginRequest;
     O: CreatePluginResponse;
   },
@@ -1725,7 +1725,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.GetPlugin
    */
   getPlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetPluginRequest;
     O: GetPluginResponse;
   },
@@ -1737,7 +1737,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.DeletePlugin
    */
   deletePlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeletePluginRequest;
     O: DeletePluginResponse;
   },
@@ -1747,7 +1747,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.SetPluginContributor
    */
   setPluginContributor: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetPluginContributorRequest;
     O: SetPluginContributorResponse;
   },
@@ -1759,7 +1759,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListPluginContributors
    */
   listPluginContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListPluginContributorsRequest;
     O: ListPluginContributorsResponse;
   },
@@ -1769,7 +1769,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.DeprecatePlugin
    */
   deprecatePlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeprecatePluginRequest;
     O: DeprecatePluginResponse;
   },
@@ -1779,7 +1779,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.UndeprecatePlugin
    */
   undeprecatePlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UndeprecatePluginRequest;
     O: UndeprecatePluginResponse;
   },
@@ -1789,7 +1789,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.GetTemplate
    */
   getTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetTemplateRequest;
     O: GetTemplateResponse;
   },
@@ -1801,7 +1801,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListTemplates
    */
   listTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListTemplatesRequest;
     O: ListTemplatesResponse;
   },
@@ -1811,7 +1811,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListUserTemplates
    */
   listUserTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListUserTemplatesRequest;
     O: ListUserTemplatesResponse;
   },
@@ -1821,7 +1821,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListOrganizationTemplates
    */
   listOrganizationTemplates: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListOrganizationTemplatesRequest;
     O: ListOrganizationTemplatesResponse;
   },
@@ -1831,7 +1831,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.GetTemplateVersion
    */
   getTemplateVersion: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetTemplateVersionRequest;
     O: GetTemplateVersionResponse;
   },
@@ -1841,7 +1841,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListTemplateVersions
    */
   listTemplateVersions: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListTemplateVersionsRequest;
     O: ListTemplateVersionsResponse;
   },
@@ -1851,7 +1851,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.CreateTemplate
    */
   createTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateTemplateRequest;
     O: CreateTemplateResponse;
   },
@@ -1861,7 +1861,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.DeleteTemplate
    */
   deleteTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteTemplateRequest;
     O: DeleteTemplateResponse;
   },
@@ -1871,7 +1871,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.CreateTemplateVersion
    */
   createTemplateVersion: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateTemplateVersionRequest;
     O: CreateTemplateVersionResponse;
   },
@@ -1881,7 +1881,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.SetTemplateContributor
    */
   setTemplateContributor: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetTemplateContributorRequest;
     O: SetTemplateContributorResponse;
   },
@@ -1893,7 +1893,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.ListTemplateContributors
    */
   listTemplateContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListTemplateContributorsRequest;
     O: ListTemplateContributorsResponse;
   },
@@ -1903,7 +1903,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.DeprecateTemplate
    */
   deprecateTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeprecateTemplateRequest;
     O: DeprecateTemplateResponse;
   },
@@ -1913,7 +1913,7 @@ export const PluginService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.PluginService.UndeprecateTemplate
    */
   undeprecateTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UndeprecateTemplateRequest;
     O: UndeprecateTemplateResponse;
   },

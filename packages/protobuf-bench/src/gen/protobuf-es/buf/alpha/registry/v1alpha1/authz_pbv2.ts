@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/authz.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { OrganizationRole, PluginRole, RepositoryRole, TemplateRole } from "./role_pbv2.js";
@@ -799,7 +799,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanCreateOrganizationRepository
    */
   userCanCreateOrganizationRepository: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanCreateOrganizationRepositoryRequest;
     O: UserCanCreateOrganizationRepositoryResponse;
   },
@@ -810,7 +810,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanSeeRepositorySettings
    */
   userCanSeeRepositorySettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanSeeRepositorySettingsRequest;
     O: UserCanSeeRepositorySettingsResponse;
   },
@@ -821,7 +821,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanSeeOrganizationSettings
    */
   userCanSeeOrganizationSettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanSeeOrganizationSettingsRequest;
     O: UserCanSeeOrganizationSettingsResponse;
   },
@@ -831,7 +831,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanReadPlugin
    */
   userCanReadPlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanReadPluginRequest;
     O: UserCanReadPluginResponse;
   },
@@ -842,7 +842,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanCreatePluginVersion
    */
   userCanCreatePluginVersion: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanCreatePluginVersionRequest;
     O: UserCanCreatePluginVersionResponse;
   },
@@ -853,7 +853,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanCreateTemplateVersion
    */
   userCanCreateTemplateVersion: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanCreateTemplateVersionRequest;
     O: UserCanCreateTemplateVersionResponse;
   },
@@ -864,7 +864,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanCreateOrganizationPlugin
    */
   userCanCreateOrganizationPlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanCreateOrganizationPluginRequest;
     O: UserCanCreateOrganizationPluginResponse;
   },
@@ -875,7 +875,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanCreateOrganizationTemplate
    */
   userCanCreateOrganizationTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanCreateOrganizationTemplateRequest;
     O: UserCanCreateOrganizationTemplateResponse;
   },
@@ -886,7 +886,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanSeePluginSettings
    */
   userCanSeePluginSettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanSeePluginSettingsRequest;
     O: UserCanSeePluginSettingsResponse;
   },
@@ -897,7 +897,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanSeeTemplateSettings
    */
   userCanSeeTemplateSettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanSeeTemplateSettingsRequest;
     O: UserCanSeeTemplateSettingsResponse;
   },
@@ -908,7 +908,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanAddOrganizationMember
    */
   userCanAddOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanAddOrganizationMemberRequest;
     O: UserCanAddOrganizationMemberResponse;
   },
@@ -919,7 +919,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanUpdateOrganizationMember
    */
   userCanUpdateOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanUpdateOrganizationMemberRequest;
     O: UserCanUpdateOrganizationMemberResponse;
   },
@@ -930,7 +930,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanRemoveOrganizationMember
    */
   userCanRemoveOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanRemoveOrganizationMemberRequest;
     O: UserCanRemoveOrganizationMemberResponse;
   },
@@ -941,7 +941,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanDeleteOrganization
    */
   userCanDeleteOrganization: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanDeleteOrganizationRequest;
     O: UserCanDeleteOrganizationResponse;
   },
@@ -952,7 +952,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanDeleteRepository
    */
   userCanDeleteRepository: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanDeleteRepositoryRequest;
     O: UserCanDeleteRepositoryResponse;
   },
@@ -963,7 +963,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanDeleteTemplate
    */
   userCanDeleteTemplate: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanDeleteTemplateRequest;
     O: UserCanDeleteTemplateResponse;
   },
@@ -974,7 +974,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanDeletePlugin
    */
   userCanDeletePlugin: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanDeletePluginRequest;
     O: UserCanDeletePluginResponse;
   },
@@ -985,7 +985,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanDeleteUser
    */
   userCanDeleteUser: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanDeleteUserRequest;
     O: UserCanDeleteUserResponse;
   },
@@ -996,7 +996,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanSeeServerAdminPanel
    */
   userCanSeeServerAdminPanel: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanSeeServerAdminPanelRequest;
     O: UserCanSeeServerAdminPanelResponse;
   },
@@ -1007,7 +1007,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanManageRepositoryContributors
    */
   userCanManageRepositoryContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanManageRepositoryContributorsRequest;
     O: UserCanManageRepositoryContributorsResponse;
   },
@@ -1018,7 +1018,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanManagePluginContributors
    */
   userCanManagePluginContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanManagePluginContributorsRequest;
     O: UserCanManagePluginContributorsResponse;
   },
@@ -1029,7 +1029,7 @@ export const AuthzService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.AuthzService.UserCanManageTemplateContributors
    */
   userCanManageTemplateContributors: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UserCanManageTemplateContributorsRequest;
     O: UserCanManageTemplateContributorsResponse;
   },

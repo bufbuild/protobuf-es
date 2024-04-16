@@ -16,7 +16,6 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
-import { MethodKind } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/next/reflect";
 import { default_host } from "./gen/customoptions/default_host_pbv2.js";
 import { version } from "../package.json";
@@ -54,7 +53,7 @@ function generateTs(schema: Schema) {
       }
       f.print();
       for (const method of service.methods) {
-        if (method.methodKind === MethodKind.Unary) {
+        if (method.methodKind === "unary") {
           f.print(f.jsDoc(method, "    "));
           const inputType = f.importShape(method.input);
           const inputDesc = f.importDesc(method.input);

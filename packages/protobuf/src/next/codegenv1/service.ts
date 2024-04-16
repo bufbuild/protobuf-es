@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { ServiceInfo, GenDescService } from "./types.js";
+import type { GenDescService, GenDescServiceShape } from "./types.js";
 import type { DescFile } from "../../descriptor-set.js";
 
 /**
@@ -20,7 +20,7 @@ import type { DescFile } from "../../descriptor-set.js";
  *
  * @private
  */
-export function serviceDesc<T extends ServiceInfo>(
+export function serviceDesc<T extends GenDescServiceShape>(
   file: DescFile,
   path: number,
   ...paths: number[]

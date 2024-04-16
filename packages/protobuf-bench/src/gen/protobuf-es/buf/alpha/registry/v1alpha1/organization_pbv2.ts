@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/organization.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { OrganizationRole, PluginRole, RepositoryRole, TemplateRole } from "./role_pbv2.js";
@@ -610,7 +610,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.GetOrganization
    */
   getOrganization: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetOrganizationRequest;
     O: GetOrganizationResponse;
   },
@@ -620,7 +620,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.GetOrganizationByName
    */
   getOrganizationByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetOrganizationByNameRequest;
     O: GetOrganizationByNameResponse;
   },
@@ -630,7 +630,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.ListOrganizations
    */
   listOrganizations: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListOrganizationsRequest;
     O: ListOrganizationsResponse;
   },
@@ -640,7 +640,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.ListUserOrganizations
    */
   listUserOrganizations: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListUserOrganizationsRequest;
     O: ListUserOrganizationsResponse;
   },
@@ -650,7 +650,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.CreateOrganization
    */
   createOrganization: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: CreateOrganizationRequest;
     O: CreateOrganizationResponse;
   },
@@ -660,7 +660,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.DeleteOrganization
    */
   deleteOrganization: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteOrganizationRequest;
     O: DeleteOrganizationResponse;
   },
@@ -670,7 +670,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.DeleteOrganizationByName
    */
   deleteOrganizationByName: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DeleteOrganizationByNameRequest;
     O: DeleteOrganizationByNameResponse;
   },
@@ -680,7 +680,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.AddOrganizationMember
    */
   addOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: AddOrganizationMemberRequest;
     O: AddOrganizationMemberResponse;
   },
@@ -690,7 +690,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.UpdateOrganizationMember
    */
   updateOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UpdateOrganizationMemberRequest;
     O: UpdateOrganizationMemberResponse;
   },
@@ -700,7 +700,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.RemoveOrganizationMember
    */
   removeOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: RemoveOrganizationMemberRequest;
     O: RemoveOrganizationMemberResponse;
   },
@@ -710,7 +710,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.SetOrganizationMember
    */
   setOrganizationMember: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: SetOrganizationMemberRequest;
     O: SetOrganizationMemberResponse;
   },
@@ -720,7 +720,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.GetOrganizationSettings
    */
   getOrganizationSettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetOrganizationSettingsRequest;
     O: GetOrganizationSettingsResponse;
   },
@@ -730,7 +730,7 @@ export const OrganizationService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.OrganizationService.UpdateOrganizationSettings
    */
   updateOrganizationSettings: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: UpdateOrganizationSettingsRequest;
     O: UpdateOrganizationSettingsResponse;
   },

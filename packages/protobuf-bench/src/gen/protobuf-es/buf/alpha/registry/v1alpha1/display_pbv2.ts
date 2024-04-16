@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/display.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { PluginRole, RepositoryRole, TemplateRole } from "./role_pbv2.js";
@@ -545,7 +545,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayOrganizationElements
    */
   displayOrganizationElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayOrganizationElementsRequest;
     O: DisplayOrganizationElementsResponse;
   },
@@ -555,7 +555,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayRepositoryElements
    */
   displayRepositoryElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayRepositoryElementsRequest;
     O: DisplayRepositoryElementsResponse;
   },
@@ -565,7 +565,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayPluginElements
    */
   displayPluginElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayPluginElementsRequest;
     O: DisplayPluginElementsResponse;
   },
@@ -575,7 +575,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayTemplateElements
    */
   displayTemplateElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayTemplateElementsRequest;
     O: DisplayTemplateElementsResponse;
   },
@@ -585,7 +585,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayUserElements
    */
   displayUserElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayUserElementsRequest;
     O: DisplayUserElementsResponse;
   },
@@ -595,7 +595,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.DisplayServerElements
    */
   displayServerElements: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: DisplayServerElementsRequest;
     O: DisplayServerElementsResponse;
   },
@@ -606,7 +606,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageableRepositoryRoles
    */
   listManageableRepositoryRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageableRepositoryRolesRequest;
     O: ListManageableRepositoryRolesResponse;
   },
@@ -617,7 +617,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageableUserRepositoryRoles
    */
   listManageableUserRepositoryRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageableUserRepositoryRolesRequest;
     O: ListManageableUserRepositoryRolesResponse;
   },
@@ -628,7 +628,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageablePluginRoles
    */
   listManageablePluginRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageablePluginRolesRequest;
     O: ListManageablePluginRolesResponse;
   },
@@ -639,7 +639,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageableUserPluginRoles
    */
   listManageableUserPluginRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageableUserPluginRolesRequest;
     O: ListManageableUserPluginRolesResponse;
   },
@@ -650,7 +650,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageableTemplateRoles
    */
   listManageableTemplateRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageableTemplateRolesRequest;
     O: ListManageableTemplateRolesResponse;
   },
@@ -661,7 +661,7 @@ export const DisplayService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DisplayService.ListManageableUserTemplateRoles
    */
   listManageableUserTemplateRoles: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: ListManageableUserTemplateRolesRequest;
     O: ListManageableUserTemplateRolesResponse;
   },

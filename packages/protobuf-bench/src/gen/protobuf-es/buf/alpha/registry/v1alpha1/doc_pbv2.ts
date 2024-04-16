@@ -16,7 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/doc.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile, MethodKind } from "@bufbuild/protobuf";
+import type { DescFile } from "@bufbuild/protobuf";
 import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message as Message$1 } from "@bufbuild/protobuf/next";
@@ -1008,7 +1008,7 @@ export const DocService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DocService.GetSourceDirectoryInfo
    */
   getSourceDirectoryInfo: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetSourceDirectoryInfoRequest;
     O: GetSourceDirectoryInfoResponse;
   },
@@ -1019,7 +1019,7 @@ export const DocService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DocService.GetSourceFile
    */
   getSourceFile: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetSourceFileRequest;
     O: GetSourceFileResponse;
   },
@@ -1030,7 +1030,7 @@ export const DocService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DocService.GetModulePackages
    */
   getModulePackages: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetModulePackagesRequest;
     O: GetModulePackagesResponse;
   },
@@ -1041,7 +1041,7 @@ export const DocService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DocService.GetModuleDocumentation
    */
   getModuleDocumentation: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetModuleDocumentationRequest;
     O: GetModuleDocumentationResponse;
   },
@@ -1052,7 +1052,7 @@ export const DocService: GenDescService<{
    * @generated from rpc buf.alpha.registry.v1alpha1.DocService.GetPackageDocumentation
    */
   getPackageDocumentation: {
-    kind: MethodKind.Unary;
+    kind: "unary";
     I: GetPackageDocumentationRequest;
     O: GetPackageDocumentationResponse;
   },
