@@ -85,52 +85,28 @@ export enum LongType {
 /**
  * ScalarValue maps from a scalar field type to a TypeScript value type.
  */
+// prettier-ignore
 export type ScalarValue<
   T = ScalarType,
   L extends LongType = LongType.STRING | LongType.BIGINT,
-> = T extends ScalarType.STRING
-  ? string
-  : T extends ScalarType.INT32
-    ? number
-    : T extends ScalarType.UINT32
-      ? number
-      : T extends ScalarType.UINT32
-        ? number
-        : T extends ScalarType.SINT32
-          ? number
-          : T extends ScalarType.FIXED32
-            ? number
-            : T extends ScalarType.SFIXED32
-              ? number
-              : T extends ScalarType.FLOAT
-                ? number
-                : T extends ScalarType.DOUBLE
-                  ? number
-                  : T extends ScalarType.INT64
-                    ? L extends LongType.STRING
-                      ? string
-                      : bigint
-                    : T extends ScalarType.SINT64
-                      ? L extends LongType.STRING
-                        ? string
-                        : bigint
-                      : T extends ScalarType.SFIXED64
-                        ? L extends LongType.STRING
-                          ? string
-                          : bigint
-                        : T extends ScalarType.UINT64
-                          ? L extends LongType.STRING
-                            ? string
-                            : bigint
-                          : T extends ScalarType.FIXED64
-                            ? L extends LongType.STRING
-                              ? string
-                              : bigint
-                            : T extends ScalarType.BOOL
-                              ? boolean
-                              : T extends ScalarType.BYTES
-                                ? Uint8Array
-                                : never;
+> =
+    T extends ScalarType.STRING   ? string
+  : T extends ScalarType.INT32    ? number
+  : T extends ScalarType.UINT32   ? number
+  : T extends ScalarType.UINT32   ? number
+  : T extends ScalarType.SINT32   ? number
+  : T extends ScalarType.FIXED32  ? number
+  : T extends ScalarType.SFIXED32 ? number
+  : T extends ScalarType.FLOAT    ? number
+  : T extends ScalarType.DOUBLE   ? number
+  : T extends ScalarType.INT64    ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.SINT64   ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.SFIXED64 ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.UINT64   ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.FIXED64  ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.BOOL     ? boolean
+  : T extends ScalarType.BYTES    ? Uint8Array
+  : never;
 
 /**
  * Returns true if both scalar values are equal.

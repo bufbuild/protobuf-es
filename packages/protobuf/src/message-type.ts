@@ -14,7 +14,7 @@
 
 import type { FieldList } from "./field-list.js";
 import type { ProtoRuntime } from "./private/proto-runtime.js";
-import type { JsonReadOptions, JsonValue } from "./json-format.js";
+import type { JsonReadOptions } from "./json-format.js";
 import type { BinaryReadOptions } from "./binary-format.js";
 import type {
   AnyMessage,
@@ -23,6 +23,7 @@ import type {
   PlainMessage,
 } from "./message.js";
 import type { FieldWrapper } from "./private/field-wrapper.js";
+import type { JsonValue } from "./next/index.js";
 
 /**
  * MessageType represents a protobuf message. It provides:

@@ -15,11 +15,11 @@
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
 import type {
   JsonReadOptions,
-  JsonValue,
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "./json-format.js";
 import type { MessageType } from "./message-type.js";
+import type { JsonValue } from "./next/index.js";
 
 /**
  * AnyMessage is an interface implemented by all messages. If you need to

@@ -21,7 +21,7 @@ import type {
   DescMessage,
   DescOneof,
 } from "../descriptor-set.js";
-import type { JsonValue } from "../json-format.js";
+import type { JsonValue } from "./json-value.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "../private/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { create } from "./create.js";

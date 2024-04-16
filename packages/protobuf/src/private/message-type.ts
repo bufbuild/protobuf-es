@@ -15,12 +15,13 @@
 import { Message } from "../message.js";
 import type { AnyMessage, PartialMessage, PlainMessage } from "../message.js";
 import type { FieldListSource } from "./field-list.js";
-import type { JsonReadOptions, JsonValue } from "../json-format.js";
+import type { JsonReadOptions } from "../json-format.js";
 import type { MessageType } from "../message-type.js";
 import type { BinaryReadOptions } from "../binary-format.js";
 import type { ProtoRuntime } from "./proto-runtime.js";
 import { scalarZeroValue } from "./scalars.js";
 import type { FieldInfo } from "../field.js";
+import type { JsonValue } from "../next/index.js";
 
 /**
  * Create a new message type using the given runtime.

@@ -18,6 +18,7 @@ export * from "./create.js";
 export * from "./clone.js";
 export * from "./equals.js";
 export * from "./fields.js";
+export type { JsonValue, JsonObject } from "./json-value.js";
 export { toBinary } from "./to-binary.js";
 export type { BinaryWriteOptions } from "./to-binary.js";
 export { fromBinary, mergeFromBinary } from "./from-binary.js";

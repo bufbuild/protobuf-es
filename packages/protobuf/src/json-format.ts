@@ -14,11 +14,14 @@
 
 import type { Message } from "./message.js";
 import type { MessageType } from "./message-type.js";
-import type { ScalarType, LongType } from "./scalar.js";
+import type { LongType, ScalarType } from "./scalar.js";
 import type {
   IExtensionRegistry,
   IMessageTypeRegistry,
 } from "./type-registry.js";
+import type { JsonValue, JsonObject } from "./next/json-value.js";
+
+export type { JsonValue, JsonObject };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -139,25 +142,3 @@ export interface JsonWriteOptions {
 export interface JsonWriteStringOptions extends JsonWriteOptions {
   prettySpaces: number;
 }
-
-/**
- * Represents any possible JSON value:
- * - number
- * - string
- * - boolean
- * - null
- * - object (with any JSON value as property)
- * - array (with any JSON value as element)
- */
-export type JsonValue =
-  | number
-  | string
-  | boolean
-  | null
-  | JsonObject
-  | JsonValue[];
-
-/**
- * Represents a JSON object.
- */
-export type JsonObject = { [k: string]: JsonValue };

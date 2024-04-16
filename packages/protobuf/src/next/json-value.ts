@@ -12,9 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { JsonValue } from "../next/index.js";
+/**
+ * Represents any possible JSON value:
+ * - number
+ * - string
+ * - boolean
+ * - null
+ * - object (with any JSON value as property)
+ * - array (with any JSON value as element)
+ */
+export type JsonValue =
+  | number
+  | string
+  | boolean
+  | null
+  | JsonObject
+  | JsonValue[];
 
 /**
- *
+ * Represents a JSON object.
  */
-export type OptionsMap = { readonly [extensionName: string]: JsonValue };
+export type JsonObject = { [k: string]: JsonValue };

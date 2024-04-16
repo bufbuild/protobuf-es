@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { JsonFormat, JsonValue } from "../json-format.js";
+import type { JsonFormat } from "../json-format.js";
 import type { BinaryFormat } from "../binary-format.js";
 import type { AnyMessage } from "../message.js";
 import type { Message } from "../message.js";
@@ -29,6 +29,7 @@ import { makeExtension } from "./extensions.js";
 import { makeJsonFormat } from "./json-format.js";
 import { makeBinaryFormat } from "./binary-format.js";
 import { makeUtilCommon } from "./util-common.js";
+import type { JsonValue } from "../next/index.js";
 
 /**
  * A facade that provides serialization and other internal functionality.

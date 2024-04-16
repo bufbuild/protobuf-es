@@ -14,9 +14,7 @@
 
 import type {
   JsonFormat,
-  JsonObject,
   JsonReadOptions,
-  JsonValue,
   JsonWriteOptions,
   JsonWriteStringOptions,
 } from "../json-format.js";
@@ -46,6 +44,7 @@ import { isScalarZeroValue } from "./scalars.js";
 import type { ScalarValue } from "../scalar.js";
 import { LongType, ScalarType } from "../scalar.js";
 import { isMessage } from "../is-message.js";
+import type { JsonObject, JsonValue } from "../next/index.js";
 
 /* eslint-disable no-case-declarations,@typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call */
 
