@@ -54,7 +54,6 @@ export type MessageInitShape<Desc extends DescMessage> =
     ? RuntimeShape | MessageInit<RuntimeShape>
     : Record<string, unknown>; // TODO better input type?
 
-
 /**
  * Extract the enum type of from an enum descriptor.
  */
