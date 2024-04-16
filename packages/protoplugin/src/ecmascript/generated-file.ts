@@ -413,7 +413,6 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
               el.push(opt.resolveShapeImport(p.desc));
               break;
             case "es_jsdoc":
-              // TODO
               el.push(formatJsDocBlock(p.text, p.indentation));
               break;
             case "es_string":

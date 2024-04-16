@@ -25,43 +25,73 @@ import type {
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
 
+/**
+ * The type `Message` contains the properties shared by all messages.
+ */
 export type Message<TypeName extends string = string> = {
+  /**
+   * The fully qualified Protobuf type-name of the message.
+   */
   readonly $typeName: TypeName;
-
+  /**
+   * Unknown fields and extensions stored on the message.
+   */
   $unknown?: UnknownField[];
 };
 
-// TODO docs
+/**
+ * Extract the message type from a message descriptor.
+ */
 export type MessageShape<Desc extends DescMessage> =
   Desc extends GenDescMessage<infer RuntimeShape> ? RuntimeShape : Message;
 
-// TODO docs
+/**
+ * Extract the init type from a message descriptor.
+ * The init type is accepted by the function create().
+ */
 export type MessageInitShape<Desc extends DescMessage> =
   Desc extends GenDescMessage<infer RuntimeShape>
     ? RuntimeShape | MessageInit<RuntimeShape>
-    : Record<string, unknown>; // TODO better input type
+    : Record<string, unknown>; // TODO better input type?
 
-// TODO docs
+
+/**
+ * Extract the enum type of from an enum descriptor.
+ */
 export type EnumShape<Desc extends DescEnum> =
   Desc extends GenDescEnum<infer RuntimeShape> ? RuntimeShape : number;
 
+/**
+ * Extract the value type from an extension descriptor.
+ */
 export type ExtensionValueShape<Desc extends DescExtension> =
   Desc extends GenDescExtension<Message, infer RuntimeShape>
     ? RuntimeShape
     : unknown;
 
+/**
+ * Extract the type of the extended message from an extension descriptor.
+ */
 export type Extendee<Desc extends DescExtension> =
   Desc extends GenDescExtension<infer Extendee> ? Extendee : Message;
 
+/**
+ * Unknown fields are fields that were not recognized during parsing, or
+ * extension.
+ */
 export type UnknownField = {
   readonly no: number;
   readonly wireType: WireType;
   readonly data: Uint8Array;
 };
 
-// TODO ServiceShape
+// TODO ServiceShape?
 // TODO MethodShape?
 
+/**
+ * The init type for a message, which makes all fields optional.
+ * The init type is accepted by the function create().
+ */
 type MessageInit<T extends Message> = {
   [P in keyof T as P extends "$typeName" | "$unknown" ? never : P]?: FieldInit<
     T[P]

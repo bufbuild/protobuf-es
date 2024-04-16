@@ -137,8 +137,6 @@ export function unsafeClear(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   field: DescField,
 ) {
-  // TODO this can be cleaned up. see createZeroMessage from create.ts
-
   const name = localName(field);
   if (field.oneof) {
     const oneofLocalName = localName(field.oneof);

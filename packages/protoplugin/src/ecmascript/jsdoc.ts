@@ -15,23 +15,6 @@
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
 import { getComments, getDeclarationString } from "../source-code-info.js";
 
-export function formatJsDocBlock(
-  text: string,
-  indentation: string | undefined,
-): string {
-  if (text.trim().length == 0) {
-    return "";
-  }
-  let lines = text.split("\n");
-  if (lines.length === 0) {
-    return "";
-  }
-  lines = lines.map((l) => l.split("*/").join("*\\/"));
-  lines = lines.map((l) => (l.length > 0 ? " " + l : l));
-  const i = indentation ?? "";
-  return [`${i}/**\n`, ...lines.map((l) => `${i} *${l}\n`), `${i} */`].join("");
-}
-
 export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
   const comments = getComments(desc);
   let text = "";
@@ -85,4 +68,21 @@ export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
     text += "\n@deprecated";
   }
   return text;
+}
+
+export function formatJsDocBlock(
+  text: string,
+  indentation: string | undefined,
+): string {
+  if (text.trim().length == 0) {
+    return "";
+  }
+  let lines = text.split("\n");
+  if (lines.length === 0) {
+    return "";
+  }
+  lines = lines.map((l) => l.split("*/").join("*\\/"));
+  lines = lines.map((l) => (l.length > 0 ? " " + l : l));
+  const i = indentation ?? "";
+  return [`${i}/**\n`, ...lines.map((l) => `${i} *${l}\n`), `${i} */`].join("");
 }
