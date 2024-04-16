@@ -5,3 +5,4 @@ node_modules
 /packages/protoplugin-test/descriptorset.binpb
 /.tmp
 /packages/*/.tmp
+.turbo

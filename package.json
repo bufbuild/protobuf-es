@@ -24,6 +24,9 @@
     "yearRange": "2021-2024",
     "copyrightHolder": "Buf Technologies, Inc."
   },
+  "scripts": {
+    "turbo:build": "turbo run build"
+  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.0",
     "@bufbuild/license-header": "^0.0.4",
@@ -40,6 +43,7 @@
   },
   "//": "avoid hoisting, see packages/protoplugin/src/ecmascript/transpile.ts",
   "dependencies": {
-    "@typescript/vfs": "1.0.0"
+    "@typescript/vfs": "1.0.0",
+    "turbo": "^1.13.2"
   }
 }
