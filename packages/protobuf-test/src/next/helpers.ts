@@ -76,10 +76,17 @@ export async function compileField(proto: string) {
 }
 
 export async function compileService(proto: string) {
-  const message = await compileFile(proto);
-  const firstService = message.services[0];
+  const file = await compileFile(proto);
+  const firstService = file.services[0];
   assert(firstService);
   return firstService;
+}
+
+export async function compileMethod(proto: string) {
+  const service = await compileService(proto);
+  const firstMethod = service.methods[0];
+  assert(firstMethod);
+  return firstMethod;
 }
 
 export function getFieldByLocalName(desc: DescMessage, name: string): DescField;

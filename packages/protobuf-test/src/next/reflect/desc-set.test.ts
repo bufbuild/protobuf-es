@@ -31,13 +31,20 @@ import type {
   DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
+import { MethodKind } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
-import { Edition, FeatureSet_FieldPresence } from "@bufbuild/protobuf/next/wkt";
+import {
+  Edition,
+  FeatureSet_FieldPresence,
+  MethodOptions_IdempotencyLevel,
+} from "@bufbuild/protobuf/next/wkt";
 import {
   compileEnum,
   compileField,
   compileFileDescriptorSet,
   compileMessage,
+  compileMethod,
+  compileService,
 } from "../helpers.js";
 
 describe("createDescSet()", function () {
@@ -1307,5 +1314,178 @@ describe("DescField", () => {
         break;
       }
     }
+  });
+});
+
+describe("DescService", () => {
+  test("typeName", async () => {
+    const service = await compileService(`
+      syntax="proto3";
+      package test;
+      service Foo {}
+    `);
+    expect(service.typeName).toBe("test.Foo");
+  });
+  test("methods", async () => {
+    const service = await compileService(`
+      syntax="proto3";
+      service Foo { 
+        rpc Bar(I) returns(O);
+        rpc Baz(I) returns(O);
+      }
+      message I {}
+      message O {}
+    `);
+    expect(service.methods.length).toBe(2);
+    expect(service.deprecated).toBe(false);
+  });
+  describe("deprecated", () => {
+    test("is false by default", async () => {
+      const service = await compileService(`
+        syntax="proto3";
+        service Foo {}
+      `);
+      expect(service.deprecated).toBe(false);
+    });
+    test("is true with option", async () => {
+      const service = await compileService(`
+        syntax="proto3";
+        service Foo {
+          option deprecated = true;
+        }
+      `);
+      expect(service.deprecated).toBe(true);
+    });
+  });
+});
+
+describe("DescMethod", () => {
+  describe("methodKind", () => {
+    test("unary", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {}
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.methodKind).toBe(MethodKind.Unary);
+    });
+    test("server-streaming", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(stream O) {}
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.methodKind).toBe(MethodKind.ServerStreaming);
+    });
+    test("client-streaming", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(stream I) returns(O) {}
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.methodKind).toBe(MethodKind.ClientStreaming);
+    });
+    test("bidi-streaming", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(stream I) returns(stream O) {}
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.methodKind).toBe(MethodKind.BiDiStreaming);
+    });
+  });
+  describe("idempotency", () => {
+    test("is undefined if unset", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {}
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.idempotency).toBeUndefined();
+    });
+    test("is undefined if IDEMPOTENCY_UNKNOWN", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {
+            option idempotency_level = IDEMPOTENCY_UNKNOWN;
+          }
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.idempotency).toBeUndefined();
+    });
+    test("is NO_SIDE_EFFECTS if set", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {
+            option idempotency_level = NO_SIDE_EFFECTS;
+          }
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.idempotency).toBe(
+        MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS,
+      );
+    });
+    test("is IDEMPOTENT if set", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {
+            option idempotency_level = IDEMPOTENT;
+          }
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.idempotency).toBe(
+        MethodOptions_IdempotencyLevel.IDEMPOTENT,
+      );
+    });
+  });
+  describe("deprecated", () => {
+    test("is false by default", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O);
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.deprecated).toBe(false);
+    });
+    test("is true with option", async () => {
+      const method = await compileMethod(`
+        syntax="proto3";
+        service Foo { 
+          rpc Bar(I) returns(O) {
+            option deprecated = true;
+          }
+        }
+        message I {}
+        message O {}
+      `);
+      expect(method.deprecated).toBe(true);
+    });
   });
 });
