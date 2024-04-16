@@ -15,7 +15,7 @@
 import type { Timestamp } from "./gen/google/protobuf/timestamp_pbv2.js";
 import { TimestampDesc } from "./gen/google/protobuf/timestamp_pbv2.js";
 import { create } from "../create.js";
-import { protoInt64 } from "../../proto-int64.js";
+import { protoInt64 } from "../proto-int64.js";
 
 /**
  * Create a google.protobuf.Timestamp for the current time.

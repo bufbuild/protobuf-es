@@ -29,9 +29,10 @@
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 import { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
 import { PublicImportMessage } from "./unittest_import_public_pb.js";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * @generated from enum protobuf_unittest.ForeignEnum

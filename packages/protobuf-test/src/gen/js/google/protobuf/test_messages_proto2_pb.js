@@ -18,7 +18,8 @@
 // @generated from file google/protobuf/test_messages_proto2.proto (package protobuf_test_messages.proto2, syntax proto2)
 /* eslint-disable */
 
-import { proto2, protoInt64 } from "@bufbuild/protobuf";
+import { proto2 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * @generated from enum protobuf_test_messages.proto2.ForeignEnumProto2

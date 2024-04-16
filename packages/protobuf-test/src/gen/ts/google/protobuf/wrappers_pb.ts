@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, ScalarType } from "@bufbuild/protobuf";
+import { Message, proto3, ScalarType } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * Wrapper message for `double`.

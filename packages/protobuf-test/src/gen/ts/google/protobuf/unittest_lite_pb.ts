@@ -21,9 +21,10 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 import { ImportEnumLite, ImportMessageLite } from "./unittest_import_lite_pb.js";
 import { PublicImportMessageLite } from "./unittest_import_public_lite_pb.js";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * @generated from enum protobuf_unittest.ForeignEnumLite

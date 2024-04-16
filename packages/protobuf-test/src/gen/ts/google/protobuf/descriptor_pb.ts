@@ -25,7 +25,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * The full set of known editions.

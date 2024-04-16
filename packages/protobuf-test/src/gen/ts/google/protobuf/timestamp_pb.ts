@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 as protoInt64$1 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local
@@ -153,7 +154,7 @@ export class Timestamp extends Message<Timestamp> {
     if (ms < Date.parse("0001-01-01T00:00:00Z") || ms > Date.parse("9999-12-31T23:59:59Z")) {
       throw new Error(`cannot decode message google.protobuf.Timestamp from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`);
     }
-    this.seconds = protoInt64.parse(ms / 1000);
+    this.seconds = protoInt64$1.parse(ms / 1000);
     this.nanos = 0;
     if (matches[7]) {
       this.nanos = (parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) - 1000000000);
@@ -201,7 +202,7 @@ export class Timestamp extends Message<Timestamp> {
   static fromDate(date: Date): Timestamp {
     const ms = date.getTime();
     return new Timestamp({
-      seconds: protoInt64.parse(Math.floor(ms / 1000)),
+      seconds: protoInt64$1.parse(Math.floor(ms / 1000)),
       nanos: (ms % 1000) * 1000000,
     });
   }

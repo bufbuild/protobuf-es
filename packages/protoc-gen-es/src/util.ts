@@ -83,7 +83,7 @@ export function runtimeImports(f: GeneratedFile): RuntimeImports {
     JsonValue:             infoToSymbol("JsonValue",            isBootstrap),
     JsonObject:            infoToSymbol("JsonObject",           isBootstrap),
     protoDouble:           infoToSymbol("protoDouble",          isBootstrap),
-    protoInt64:            infoToSymbol("protoInt64",           isBootstrap),
+    protoInt64:            infoToSymbol("protoInt64",          isBootstrap),
     ScalarType:            infoToSymbol("ScalarType",           isBootstrap),
     LongType:              infoToSymbol("LongType",             isBootstrap),
     MethodKind:            infoToSymbol("MethodKind",           isBootstrap),

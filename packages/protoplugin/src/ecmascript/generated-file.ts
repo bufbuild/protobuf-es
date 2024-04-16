@@ -374,10 +374,10 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
         case "bigint":
           if (p == protoInt64.zero) {
             // Loose comparison will match between 0n and 0.
-            el.push(opt.runtime.legacy.protoInt64, ".zero");
+            el.push(opt.runtime.protoInt64, ".zero");
           } else {
             el.push(
-              opt.runtime.legacy.protoInt64,
+              opt.runtime.protoInt64,
               p > 0 ? ".uParse(" : ".parse(",
               escapeString(p.toString()),
               ")",
@@ -427,14 +427,14 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
                 case LongType.BIGINT:
                   if (p.value == protoInt64.zero) {
                     // Loose comparison will match between 0n and 0.
-                    el.push(opt.runtime.legacy.protoInt64, ".zero");
+                    el.push(opt.runtime.protoInt64, ".zero");
                     break;
                   }
                   switch (p.type) {
                     case ScalarType.UINT64:
                     case ScalarType.FIXED64:
                       el.push(
-                        opt.runtime.legacy.protoInt64,
+                        opt.runtime.protoInt64,
                         ".uParse(",
                         escapeString(p.value.toString()),
                         ")",
@@ -442,7 +442,7 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
                       break;
                     default:
                       el.push(
-                        opt.runtime.legacy.protoInt64,
+                        opt.runtime.protoInt64,
                         ".parse(",
                         escapeString(p.value.toString()),
                         ")",

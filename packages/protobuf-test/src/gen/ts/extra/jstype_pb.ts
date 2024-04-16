@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * @generated from message spec.JSTypeOmittedMessage

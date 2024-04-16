@@ -23,7 +23,7 @@ import {
   assertInt32,
   assertUInt32,
 } from "../../private/assert.js";
-import { protoInt64 } from "../../proto-int64.js";
+import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "./text-encoding.js";
 
 /* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/restrict-plus-operands */

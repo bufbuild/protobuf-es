@@ -26,7 +26,7 @@ describe("GeneratedFile.print", () => {
       f.print(18446744073709551615n); // max unsigned
     });
     expect(lines).toStrictEqual([
-      `import { protoInt64 } from "@bufbuild/protobuf";`,
+      `import { protoInt64 } from "@bufbuild/protobuf/next";`,
       ``,
       `protoInt64.zero`,
       `protoInt64.parse("-9223372036854775808")`,
@@ -141,7 +141,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
           ``,
           `protoInt64.zero`,
         ]);
@@ -156,7 +156,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
           ``,
           `protoInt64.parse("123")`,
         ]);
@@ -175,7 +175,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
           ``,
           `protoInt64.zero`,
         ]);
@@ -190,7 +190,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
           ``,
           `protoInt64.uParse("123")`,
         ]);

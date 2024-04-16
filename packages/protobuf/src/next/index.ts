@@ -31,3 +31,4 @@ export {
   setExtension,
   clearExtension,
 } from "./extensions.js";
+export * from "./proto-int64.js";

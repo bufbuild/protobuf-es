@@ -30,8 +30,9 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto2, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto2 } from "@bufbuild/protobuf";
 import { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * The version number of protocol compiler.

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 import Long from "long";
 
 const SIGNED = {

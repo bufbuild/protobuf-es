@@ -40,9 +40,9 @@ export const symbols = {
   toBinary:                {typeOnly: false, bootstrapWktFrom: "../../to-binary.js",            from: packageName },
   toJson:                  {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
   toJsonString:            {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
+  protoInt64:              {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
   legacy: {
     // TODO
-    protoInt64:            {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: "@bufbuild/protobuf" },
     MethodKind:            {typeOnly: false, bootstrapWktFrom: "../../service-type.js",         from: "@bufbuild/protobuf" },
     JsonValue:             {typeOnly: true,  bootstrapWktFrom: "../../json-format.js",          from: "@bufbuild/protobuf" },
   },

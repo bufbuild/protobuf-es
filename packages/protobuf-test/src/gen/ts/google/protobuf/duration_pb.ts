@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, JsonWriteOptions, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 as protoInt64$1 } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * A Duration represents a signed, fixed-length span of time represented
@@ -121,7 +122,7 @@ export class Duration extends Message<Duration> {
     if (longSeconds > 315576000000 || longSeconds < -315576000000) {
       throw new Error(`cannot decode google.protobuf.Duration from JSON: ${proto3.json.debug(json)}`);
     }
-    this.seconds = protoInt64.parse(longSeconds);
+    this.seconds = protoInt64$1.parse(longSeconds);
     if (typeof match[2] == "string") {
       const nanosStr = match[2] + "0".repeat(9 - match[2].length);
       this.nanos = parseInt(nanosStr);

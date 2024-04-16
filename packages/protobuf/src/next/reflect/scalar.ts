@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { protoInt64 } from "../../proto-int64.js";
+import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "../wire/text-encoding.js";
 
 /**

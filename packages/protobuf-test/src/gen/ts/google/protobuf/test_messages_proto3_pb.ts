@@ -17,7 +17,8 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, Message, NullValue, proto3, protoInt64, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf";
+import { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, Message, NullValue, proto3, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
 
 /**
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum
