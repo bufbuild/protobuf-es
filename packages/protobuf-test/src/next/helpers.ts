@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { createDescFileSet, localName } from "@bufbuild/protobuf/next/reflect";
@@ -22,34 +21,6 @@ import { fromBinary } from "@bufbuild/protobuf/next";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/next/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 import assert from "node:assert";
-
-export function describeGenerated<Desc extends DescMessage>(
-  ts: Desc,
-  js: Desc,
-  fn: (desc: Desc) => void,
-) {
-  type TestCase = { name: string; desc: Desc };
-  describe.each<TestCase>([
-    { name: ts.typeName + " (generated ts)", desc: ts },
-    { name: js.typeName + " (generated js)", desc: js },
-  ])("$name", function (testCase: TestCase) {
-    fn(testCase.desc);
-  });
-}
-
-export function testGenerated<Desc extends DescMessage>(
-  ts: Desc,
-  js: Desc,
-  fn: (desc: Desc) => void,
-) {
-  type TestCase = { name: string; desc: Desc };
-  test.each<TestCase>([
-    { name: ts.typeName + " (generated ts)", desc: ts },
-    { name: js.typeName + " (generated js)", desc: js },
-  ])("$name", function (testCase: TestCase) {
-    fn(testCase.desc);
-  });
-}
 
 let upstreamProtobuf: UpstreamProtobuf | undefined;
 

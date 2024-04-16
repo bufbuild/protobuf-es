@@ -24,6 +24,7 @@ export declare const fileDesc_extra_service_example: DescFile;
 
 /**
  * @generated from message spec.ExampleRequest
+ * @deprecated
  */
 export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
   /**
@@ -34,7 +35,7 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
   question: string;
 
   /**
-   * the server should simulate an error in the requested way 
+   * the server should simulate an error in the requested way
    *
    * @generated from field: spec.FailRequest please_fail = 2;
    */
@@ -60,6 +61,7 @@ export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest>;
 
 /**
  * @generated from message spec.ExampleResponse
+ * @deprecated
  */
 export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
   /**
@@ -77,14 +79,14 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
   yourRequestHeaders: { [key: string]: string };
 
   /**
-   * contains the deadline that the server received 
+   * contains the deadline that the server received
    *
    * @generated from field: string your_deadline = 3;
    */
   yourDeadline: string;
 
   /**
-   * the failure requested 
+   * the failure requested
    *
    * @generated from field: spec.FailRequest your_fail_request = 4;
    */
@@ -96,6 +98,7 @@ export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse>;
 
 /**
  * @generated from enum spec.FailRequest
+ * @deprecated
  */
 export enum FailRequest {
   /**
@@ -125,6 +128,7 @@ export declare const FailRequestDesc: GenDescEnum<FailRequest>;
 
 /**
  * @generated from service spec.ExampleService
+ * @deprecated
  */
 export declare const ExampleService: GenDescService<{
   /**
