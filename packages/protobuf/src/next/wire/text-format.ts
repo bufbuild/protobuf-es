@@ -12,11 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum } from "../descriptor-set.js";
-import { assert } from "./assert.js";
+import type { DescEnum } from "../../descriptor-set.js";
+import { assert } from "../../private/assert.js";
 import { protoInt64 } from "../proto-int64.js";
-import { ScalarType } from "../scalar.js";
+import { ScalarType } from "../reflect/scalar.js";
 
+/**
+ * Parse an enum value from the Protobuf text format.
+ *
+ * @private
+ */
 export function parseTextFormatEnumValue(
   descEnum: DescEnum,
   value: string,
@@ -26,6 +31,11 @@ export function parseTextFormatEnumValue(
   return enumValue.number;
 }
 
+/**
+ * Parse a scalar value from the Protobuf text format.
+ *
+ * @private
+ */
 export function parseTextFormatScalarValue(
   type: ScalarType,
   value: string,

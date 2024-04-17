@@ -48,7 +48,7 @@ import { findEnumSharedPrefix } from "../../private/names.js";
 import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
-} from "../../private/text-format.js";
+} from "../wire/text-format.js";
 import { LongType, ScalarType } from "./scalar.js";
 import { nestedTypes } from "./nested-types.js";
 import { unsafeIsSetExplicit } from "./unsafe.js";
