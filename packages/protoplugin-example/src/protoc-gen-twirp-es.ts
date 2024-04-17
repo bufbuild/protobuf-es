@@ -59,6 +59,7 @@ function generateTs(schema: Schema) {
           const inputDesc = f.importDesc(method.input);
           const outputType = f.importShape(method.output);
           const outputDesc = f.importDesc(method.output);
+          const jsonValue = f.import("JsonValue", "@bufbuild/protobuf/next").toTypeOnly();
           f.print("    async ", localName(method), "(request: ", inputType, "): Promise<", outputType, "> {");
           f.print("        const headers = new Headers([]);");
           f.print("        headers.set('content-type', 'application/json');");
@@ -73,7 +74,7 @@ function generateTs(schema: Schema) {
           f.print("        if (fetchResponse.status !== 200) {");
           f.print("          throw Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`)");
           f.print("        }");
-          f.print("        const json = await fetchResponse.json() as ", f.runtime.legacy.JsonValue, ";");
+          f.print("        const json = await fetchResponse.json() as ", jsonValue, ";");
           f.print("        return ", f.runtime.fromJson, "(", outputDesc, ", json);");
           f.print("    }");
         }

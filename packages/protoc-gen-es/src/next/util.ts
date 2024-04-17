@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import type { DescExtension, DescField } from "@bufbuild/protobuf";
-import { codegenInfo, LongType, ScalarType } from "@bufbuild/protobuf";
-import { Edition } from "@bufbuild/protobuf/next/wkt";
+import { LongType, ScalarType } from "@bufbuild/protobuf/next/reflect";
+import { Edition, isWrapperDesc } from "@bufbuild/protobuf/next/wkt";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 
@@ -55,8 +55,8 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       typingInferrableFromZeroValue = true;
       break;
     case "message": {
-      const baseType = codegenInfo.getUnwrappedFieldType(field);
-      if (baseType !== undefined) {
+      if (!field.oneof && isWrapperDesc(field.message)) {
+        const baseType = field.message.fields[0].scalar;
         typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
       } else {
         typing.push({
@@ -93,18 +93,13 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           typing.push(scalarTypeScriptType(field.scalar, field.longType), "[]");
           break;
         case "message": {
-          const baseType = codegenInfo.getUnwrappedFieldType(field);
-          if (baseType !== undefined) {
-            typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
-          } else {
-            typing.push(
-              {
-                kind: "es_shape_ref",
-                desc: field.message,
-              },
-              "[]",
-            );
-          }
+          typing.push(
+            {
+              kind: "es_shape_ref",
+              desc: field.message,
+            },
+            "[]",
+          );
           break;
         }
       }
