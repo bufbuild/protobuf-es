@@ -18,7 +18,7 @@ import {
   FileDescriptorSetDesc,
 } from "@bufbuild/protobuf/next/wkt";
 import { fromBinary } from "@bufbuild/protobuf/next";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf/next/reflect";
 import type { Plugin } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
@@ -132,8 +132,8 @@ export async function compileFile(proto: string) {
     },
   );
   const fds = fromBinary(FileDescriptorSetDesc, bytes);
-  const set = createDescFileSet(fds);
-  const file = set.getFile("input.proto");
+  const reg = createFileRegistry(fds);
+  const file = reg.getFile("input.proto");
   assert(file);
   return file;
 }

@@ -56,11 +56,11 @@ import { unsafeIsSetExplicit } from "./unsafe.js";
  * A set of descriptors for messages, enumerations, extensions,
  * and services.
  */
-export interface DescSet {
-  readonly kind: "set";
+export interface Registry {
+  readonly kind: "registry";
   /**
    * All types (message, enumeration, extension, or service) contained
-   * in this set.
+   * in this registry.
    */
   [Symbol.iterator](): IterableIterator<
     DescMessage | DescEnum | DescExtension | DescService
@@ -99,9 +99,9 @@ export interface DescSet {
  * A set of descriptors for messages, enumerations, extensions,
  * and services - and files.
  */
-export interface DescFileSet extends DescSet {
+export interface FileRegistry extends Registry {
   /**
-   * All files in this set.
+   * All files in this registry.
    */
   readonly files: Iterable<DescFile>;
   /**
@@ -111,74 +111,73 @@ export interface DescFileSet extends DescSet {
 }
 
 /**
- * Create a set of descriptors from the given inputs.
+ * Create a registry from the given inputs.
  *
  * An input can be:
  * - Any message, enum, service, or extension descriptor, which adds just the
  *   descriptor for this type.
  * - A file descriptor, which adds all typed defined in this file.
- * - A set of descriptors, which adds all types from the set.
+ * - A registry, which adds all types from the registry.
  *
  * For duplicate descriptors (same type name), the one given last wins.
  */
-export function createDescSet(
+export function createRegistry(
   ...input: (
-    | DescSet
+    | Registry
     | DescFile
     | DescMessage
     | DescEnum
     | DescExtension
     | DescService
   )[]
-): DescSet {
-  const set = createMutableDescFileSet();
+): Registry {
+  const reg = createMutableRegistry();
   for (const i of input) {
     switch (i.kind) {
-      case "set":
+      case "registry":
         for (const n of i) {
-          set.add(n);
+          reg.add(n);
         }
         break;
       case "file":
         for (const n of nestedTypes(i)) {
-          set.add(n);
+          reg.add(n);
         }
         break;
       default:
-        set.add(i);
+        reg.add(i);
         break;
     }
   }
-  return set;
+  return reg;
 }
 
 /**
- * Create a set of descriptors (including file descriptors) from
- * a google.protobuf.FileDescriptorSet message.
+ * Create a registry (including file descriptors) from a google.protobuf.FileDescriptorSet
+ * message.
  */
-export function createDescFileSet(
+export function createFileRegistry(
   fileDescriptorSet: FileDescriptorSet,
-): DescFileSet;
+): FileRegistry;
 
 /**
- * Create a set of descriptors (including file descriptors) from
- * a google.protobuf.FileDescriptorProto message. For every import, the given
- * resolver function is called.
+ * Create a registry (including file descriptors) from a google.protobuf.FileDescriptorProto
+ * message. For every import, the given resolver function is called.
  */
-export function createDescFileSet(
+export function createFileRegistry(
   fileDescriptorProto: FileDescriptorProto,
   resolve: (
     protoFileName: string,
   ) => FileDescriptorProto | DescFile | undefined,
-): DescFileSet;
+): FileRegistry;
 
 /**
- * Create a set of descriptors (including file descriptors) from
- * one or more sets of descriptors, merging them.
+ * Create a registry (including file descriptors) from one or more registries,
+ * merging them.
  */
-export function createDescFileSet(...descFileSet: DescFileSet[]): DescFileSet;
+export function createFileRegistry(...registries: FileRegistry[]): FileRegistry;
 
-export function createDescFileSet(
+export function createFileRegistry(
   ...args:
     | [fileDescriptorSet: FileDescriptorSet]
     | [
@@ -187,17 +186,17 @@ export function createDescFileSet(
           protoFileName: string,
         ) => FileDescriptorProto | DescFile | undefined,
       ]
-    | DescFileSet[]
-): DescFileSet {
-  const set = createMutableDescFileSet();
+    | FileRegistry[]
+): FileRegistry {
+  const registry = createMutableRegistry();
   if (
     "$typeName" in args[0] &&
     args[0].$typeName == "google.protobuf.FileDescriptorSet"
   ) {
     for (const file of args[0].file) {
-      addFile(file, set);
+      addFile(file, registry);
     }
-    return set;
+    return registry;
   }
   if ("$typeName" in args[0]) {
     const input = args[0];
@@ -209,7 +208,7 @@ export function createDescFileSet(
     function recurseDeps(file: FileDescriptorProto): FileDescriptorProto[] {
       const deps: FileDescriptorProto[] = [];
       for (const protoFileName of file.dependency) {
-        if (set.getFile(protoFileName) != undefined) {
+        if (registry.getFile(protoFileName) != undefined) {
           continue;
         }
         if (seen.has(protoFileName)) {
@@ -222,7 +221,7 @@ export function createDescFileSet(
           );
         }
         if ("kind" in dep) {
-          addDescFile(dep, set);
+          addDescFile(dep, registry);
         } else {
           seen.add(dep.name);
           deps.push(dep);
@@ -231,34 +230,34 @@ export function createDescFileSet(
       return [...deps, ...deps.flatMap((dep) => recurseDeps(dep))];
     }
     for (const file of [input, ...recurseDeps(input)].reverse()) {
-      addFile(file, set);
+      addFile(file, registry);
     }
   } else {
-    for (const fileSet of args as DescFileSet[]) {
-      for (const file of fileSet.files) {
-        set.add(file);
+    for (const fileReg of args as FileRegistry[]) {
+      for (const file of fileReg.files) {
+        registry.add(file);
         for (const type of nestedTypes(file)) {
-          set.add(type);
+          registry.add(type);
         }
       }
     }
   }
-  return set;
+  return registry;
 }
 
 /**
- * A DescFileSet that allows adding and removing descriptors.
+ * A FileRegistry that allows adding and removing descriptors.
  * @private
  */
-interface DescFileSetMutable extends DescFileSet {
+interface MutableRegistry extends FileRegistry {
   /**
-   * Adds the given descriptor - but not types nested within - to the set.
+   * Adds the given descriptor - but not types nested within - to the registry.
    */
   add(
     desc: DescFile | DescMessage | DescEnum | DescExtension | DescService,
   ): void;
   /**
-   * Remove the given descriptor from the set.
+   * Remove the given descriptor from the registry.
    */
   remove(
     desc: DescFile | DescMessage | DescEnum | DescExtension | DescService,
@@ -266,10 +265,10 @@ interface DescFileSetMutable extends DescFileSet {
 }
 
 /**
- * Create a mutable DescFileSet.
+ * Create a mutable file registry.
  * @private
  */
-function createMutableDescFileSet(): DescFileSetMutable {
+function createMutableRegistry(): MutableRegistry {
   const types = new Map<
     string,
     DescMessage | DescEnum | DescExtension | DescService
@@ -277,7 +276,7 @@ function createMutableDescFileSet(): DescFileSetMutable {
   const extendees = new Map<string, Map<number, DescExtension>>();
   const files = new Map<string, DescFile>();
   return {
-    kind: "set",
+    kind: "registry",
     [Symbol.iterator]() {
       return types.values();
     },
@@ -346,15 +345,15 @@ function createMutableDescFileSet(): DescFileSetMutable {
 }
 
 /**
- * Add the file descriptor and the types it contains to the set.
+ * Add the file descriptor and the types it contains to the registry.
  */
-function addDescFile(file: DescFile, set: DescFileSetMutable) {
-  set.add(file);
+function addDescFile(file: DescFile, reg: MutableRegistry) {
+  reg.add(file);
   for (const type of nestedTypes(file)) {
-    set.add(type);
+    reg.add(type);
   }
   for (const dep of file.dependencies) {
-    addDescFile(dep, set);
+    addDescFile(dep, reg);
   }
 }
 
@@ -436,16 +435,16 @@ const featureDefaults = {
 } as const;
 
 /**
- * Create a descriptor for a file, add it to the set.
+ * Create a descriptor for a file, add it to the registry.
  */
-function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
+function addFile(proto: FileDescriptorProto, reg: MutableRegistry): void {
   const file: DescFile = {
     kind: "file",
     proto,
     deprecated: proto.options?.deprecated ?? false,
     edition: getFileEdition(proto),
     name: proto.name.replace(/\.proto/, ""),
-    dependencies: findFileDependencies(proto, set),
+    dependencies: findFileDependencies(proto, reg),
     enums: [],
     messages: [],
     extensions: [],
@@ -466,24 +465,24 @@ function addFile(proto: FileDescriptorProto, set: DescFileSetMutable): void {
     },
   };
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, undefined, set);
+    addEnum(enumProto, file, undefined, reg);
   }
   for (const messageProto of proto.messageType) {
-    addMessage(messageProto, file, undefined, set, mapEntries);
+    addMessage(messageProto, file, undefined, reg, mapEntries);
   }
   for (const serviceProto of proto.service) {
-    addService(serviceProto, file, set);
+    addService(serviceProto, file, reg);
   }
-  addExtensions(file, set);
+  addExtensions(file, reg);
   for (const mapEntry of mapEntriesStore.values()) {
     // to create a map field, we need access to the map entry's fields
-    addFields(mapEntry, set, mapEntries);
+    addFields(mapEntry, reg, mapEntries);
   }
   for (const message of file.messages) {
-    addFields(message, set, mapEntries);
-    addExtensions(message, set);
+    addFields(message, reg, mapEntries);
+    addExtensions(message, reg);
   }
-  set.add(file);
+  reg.add(file);
 }
 
 /**
@@ -502,24 +501,24 @@ interface FileMapEntries {
  */
 function addExtensions(
   desc: DescFile | DescMessage,
-  set: DescFileSetMutable,
+  reg: MutableRegistry,
 ): void {
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
-        const ext = newField(proto, desc, set);
+        const ext = newField(proto, desc, reg);
         desc.extensions.push(ext);
-        set.add(ext);
+        reg.add(ext);
       }
       break;
     case "message":
       for (const proto of desc.proto.extension) {
-        const ext = newField(proto, desc, set);
+        const ext = newField(proto, desc, reg);
         desc.nestedExtensions.push(ext);
-        set.add(ext);
+        reg.add(ext);
       }
       for (const message of desc.nestedMessages) {
-        addExtensions(message, set);
+        addExtensions(message, reg);
       }
       break;
   }
@@ -531,7 +530,7 @@ function addExtensions(
  */
 function addFields(
   message: DescMessage,
-  set: DescSet,
+  reg: Registry,
   mapEntries: FileMapEntries,
 ): void {
   const allOneofs = message.proto.oneofDecl.map((proto) =>
@@ -540,7 +539,7 @@ function addFields(
   const oneofsSeen = new Set<DescOneof>();
   for (const proto of message.proto.field) {
     const oneof = findOneof(proto, allOneofs);
-    const field = newField(proto, message, set, oneof, mapEntries);
+    const field = newField(proto, message, reg, oneof, mapEntries);
     message.fields.push(field);
     if (oneof === undefined) {
       message.members.push(field);
@@ -556,7 +555,7 @@ function addFields(
     message.oneofs.push(oneof);
   }
   for (const child of message.nestedMessages) {
-    addFields(child, set, mapEntries);
+    addFields(child, reg, mapEntries);
   }
 }
 
@@ -568,7 +567,7 @@ function addEnum(
   proto: EnumDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  set: DescFileSetMutable,
+  reg: MutableRegistry,
 ): void {
   const desc: { -readonly [P in keyof DescEnum]: DescEnum[P] } = {
     kind: "enum",
@@ -589,7 +588,7 @@ function addEnum(
     },
   };
   desc.open = isEnumOpen(desc);
-  set.add(desc);
+  reg.add(desc);
   proto.value.forEach((proto) => {
     desc.values.push({
       kind: "enum_value",
@@ -614,7 +613,7 @@ function addMessage(
   proto: DescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  set: DescFileSetMutable,
+  reg: MutableRegistry,
   mapEntries: FileMapEntries,
 ): void {
   const desc: DescMessage = {
@@ -639,13 +638,13 @@ function addMessage(
     mapEntries.add(desc);
   } else {
     (parent?.nestedMessages ?? file.messages).push(desc);
-    set.add(desc);
+    reg.add(desc);
   }
   for (const enumProto of proto.enumType) {
-    addEnum(enumProto, file, desc, set);
+    addEnum(enumProto, file, desc, reg);
   }
   for (const messageProto of proto.nestedType) {
-    addMessage(messageProto, file, desc, set, mapEntries);
+    addMessage(messageProto, file, desc, reg, mapEntries);
   }
 }
 
@@ -656,7 +655,7 @@ function addMessage(
 function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
-  set: DescFileSetMutable,
+  reg: MutableRegistry,
 ): void {
   const desc: DescService = {
     kind: "service",
@@ -671,9 +670,9 @@ function addService(
     },
   };
   file.services.push(desc);
-  set.add(desc);
+  reg.add(desc);
   for (const methodProto of proto.method) {
-    desc.methods.push(newMethod(methodProto, desc, set));
+    desc.methods.push(newMethod(methodProto, desc, reg));
   }
 }
 
@@ -683,7 +682,7 @@ function addService(
 function newMethod(
   proto: MethodDescriptorProto,
   parent: DescService,
-  set: DescSet,
+  reg: Registry,
 ): DescMethod {
   let methodKind: DescMethod["methodKind"];
   if (proto.clientStreaming && proto.serverStreaming) {
@@ -695,8 +694,8 @@ function newMethod(
   } else {
     methodKind = "unary";
   }
-  const input = set.getMessage(trimLeadingDot(proto.inputType));
-  const output = set.getMessage(trimLeadingDot(proto.outputType));
+  const input = reg.getMessage(trimLeadingDot(proto.inputType));
+  const output = reg.getMessage(trimLeadingDot(proto.outputType));
   assert(
     input,
     `invalid MethodDescriptorProto: input_type ${proto.inputType} not found`,
@@ -745,7 +744,7 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
 function newField(
   proto: FieldDescriptorProto,
   parent: DescMessage,
-  set: DescSet,
+  reg: Registry,
   oneof: DescOneof | undefined,
   mapEntries: FileMapEntries,
 ): DescField;
@@ -756,13 +755,13 @@ function newField(
 function newField(
   proto: FieldDescriptorProto,
   parent: DescFile | DescMessage,
-  set: DescSet,
+  reg: Registry,
 ): DescExtension;
 
 function newField(
   proto: FieldDescriptorProto,
   parentOrFile: DescMessage | DescFile,
-  set: DescSet,
+  reg: Registry,
   oneof?: DescOneof | undefined,
   mapEntries?: FileMapEntries,
 ): DescField | DescExtension {
@@ -794,7 +793,7 @@ function newField(
     field.typeName = typeName;
     field.jsonName = `[${typeName}]`; // option json_name is not allowed on extension fields
     field.toString = () => `extension ${typeName}`;
-    const extendee = set.getMessage(trimLeadingDot(proto.extendee));
+    const extendee = reg.getMessage(trimLeadingDot(proto.extendee));
     assert(
       extendee,
       `invalid FieldDescriptorProto: extendee ${proto.extendee} not found`,
@@ -847,13 +846,13 @@ function newField(
       case TYPE_MESSAGE:
       case TYPE_GROUP:
         field.listKind = "message";
-        field.message = set.getMessage(trimLeadingDot(proto.typeName));
+        field.message = reg.getMessage(trimLeadingDot(proto.typeName));
         assert(field.message);
         field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
         break;
       case TYPE_ENUM:
         field.listKind = "enum";
-        field.enum = set.getEnum(trimLeadingDot(proto.typeName));
+        field.enum = reg.getEnum(trimLeadingDot(proto.typeName));
         assert(field.enum);
         break;
       default:
@@ -871,7 +870,7 @@ function newField(
     case TYPE_MESSAGE:
     case TYPE_GROUP:
       field.fieldKind = "message";
-      field.message = set.getMessage(trimLeadingDot(proto.typeName));
+      field.message = reg.getMessage(trimLeadingDot(proto.typeName));
       assert(
         field.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
@@ -880,13 +879,13 @@ function newField(
       field.getDefaultValue = () => undefined;
       break;
     case TYPE_ENUM: {
-      const enumeration = set.getEnum(trimLeadingDot(proto.typeName));
+      const enumeration = reg.getEnum(trimLeadingDot(proto.typeName));
       assert(
         enumeration !== undefined,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
       field.fieldKind = "enum";
-      field.enum = set.getEnum(trimLeadingDot(proto.typeName));
+      field.enum = reg.getEnum(trimLeadingDot(proto.typeName));
       field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatEnumValue(enumeration, proto.defaultValue)
@@ -940,10 +939,10 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
  */
 function findFileDependencies(
   proto: FileDescriptorProto,
-  set: DescFileSet,
+  reg: FileRegistry,
 ): DescFile[] {
   return proto.dependency.map((wantName) => {
-    const dep = set.getFile(wantName);
+    const dep = reg.getFile(wantName);
     if (!dep) {
       throw new Error(`Cannot find ${wantName}, imported by ${proto.name}`);
     }

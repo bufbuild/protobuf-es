@@ -25,7 +25,7 @@ import type { JsonValue } from "./json-value.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
-import type { DescSet } from "./reflect/desc-set.js";
+import type { Registry } from "./reflect/registry.js";
 import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { formatVal } from "./reflect/reflect-check.js";
@@ -72,7 +72,7 @@ export interface JsonReadOptions {
    * This option is required to read `google.protobuf.Any` and extensions
    * from JSON format.
    */
-  descSet?: DescSet;
+  registry?: Registry;
 }
 
 // Default options for parsing JSON.
@@ -198,7 +198,7 @@ function readMessage(
       if (
         jsonKey.startsWith("[") &&
         jsonKey.endsWith("]") &&
-        (extension = opts.descSet?.getExtension(
+        (extension = opts.registry?.getExtension(
           jsonKey.substring(1, jsonKey.length - 1),
         )) &&
         extension.extendee.typeName === msg.desc.typeName
@@ -669,7 +669,7 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
     );
   }
   const typeName = typeUrlToName(typeUrl),
-    desc = opts.descSet?.getMessage(typeName);
+    desc = opts.registry?.getMessage(typeName);
   if (!desc) {
     throw new Error(
       `cannot decode message ${any.$typeName} from JSON: ${typeUrl} is not in the type registry`,

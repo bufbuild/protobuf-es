@@ -18,7 +18,7 @@ import {
   protoInt64,
 } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf/next";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf/next/reflect";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 import { readFileSync } from "fs";
 import { describe, expect, test } from "@jest/globals";
@@ -189,7 +189,7 @@ describe("createDescriptorSet with jstype", () => {
 });
 
 describe("createRegistryFromDescriptors with jstype", () => {
-  const set = createDescFileSet(
+  const reg = createFileRegistry(
     fromBinary(FileDescriptorSetDesc, readFileSync("./descriptorset.binpb")),
   );
   testAllFieldsLongType("spec.JSTypeOmittedMessage", LongType.BIGINT);
@@ -202,7 +202,7 @@ describe("createRegistryFromDescriptors with jstype", () => {
   testAllFieldsLongType("spec.JSTypeProto2NumberMessage", LongType.BIGINT);
 
   function testAllFieldsLongType(messageTypeName: string, longType: LongType) {
-    const mt = set.getMessage(messageTypeName);
+    const mt = reg.getMessage(messageTypeName);
     assert(mt);
     for (const field of mt.fields) {
       test(`${messageTypeName} field #${field.number}`, () => {

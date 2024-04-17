@@ -40,7 +40,7 @@ import {
   anyUnpack,
 } from "@bufbuild/protobuf/next/wkt";
 import type { DescMessage, JsonValue } from "@bufbuild/protobuf";
-import { createDescSet } from "@bufbuild/protobuf/next/reflect";
+import { createRegistry } from "@bufbuild/protobuf/next/reflect";
 
 import {
   Proto2ExtendeeDesc,
@@ -317,7 +317,7 @@ describe(`json serialization`, () => {
         );
         expect(
           toJson(AnyDesc, any, {
-            descSet: createDescSet(ValueDesc, StructDesc),
+            registry: createRegistry(ValueDesc, StructDesc),
           }),
         ).toStrictEqual({
           "@type": "type.googleapis.com/google.protobuf.Value",
@@ -338,7 +338,7 @@ describe(`json serialization`, () => {
           }),
         );
         const got = toJson(AnyDesc, str, {
-          descSet: createDescSet(StructDesc, ValueDesc),
+          registry: createRegistry(StructDesc, ValueDesc),
         });
         expect(got).toStrictEqual({
           "@type": "type.googleapis.com/google.protobuf.Struct",
@@ -353,7 +353,7 @@ describe(`json serialization`, () => {
           }),
         );
         const got = toJson(AnyDesc, str, {
-          descSet: createDescSet(StructDesc, ValueDesc),
+          registry: createRegistry(StructDesc, ValueDesc),
         });
         expect(got).toStrictEqual({
           "@type": "type.googleapis.com/google.protobuf.Value",
@@ -370,7 +370,7 @@ describe(`json serialization`, () => {
             "@type": "type.googleapis.com/google.protobuf.Value",
             value: 1,
           },
-          { descSet: createDescSet(StructDesc, ValueDesc) },
+          { registry: createRegistry(StructDesc, ValueDesc) },
         );
         expect(anyUnpack(any, ValueDesc)).toStrictEqual(want);
       });
@@ -380,7 +380,7 @@ describe(`json serialization`, () => {
           create(JsonNamesMessageDesc, { a: "a", b: "b", c: "c" }),
         );
         const got = toJson(AnyDesc, any, {
-          descSet: createDescSet(JsonNamesMessageDesc),
+          registry: createRegistry(JsonNamesMessageDesc),
         });
         expect(got).toStrictEqual({
           "@type": "type.googleapis.com/spec.JsonNamesMessage",
@@ -564,7 +564,7 @@ describe(`json serialization`, () => {
     test("encode and decode an extension", () => {
       const extendee = create(Proto2ExtendeeDesc);
       setExtension(extendee, string_ext, "foo");
-      const jsonOpts = { descSet: createDescSet(string_ext) };
+      const jsonOpts = { registry: createRegistry(string_ext) };
       expect(
         getExtension(
           fromJson(

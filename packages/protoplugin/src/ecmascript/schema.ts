@@ -24,7 +24,7 @@ import type { CodeGeneratorRequest } from "@bufbuild/protobuf/next/wkt";
 import { Edition } from "@bufbuild/protobuf/next/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
 import {
-  createDescFileSet,
+  createFileRegistry,
   nestedTypes,
 } from "@bufbuild/protobuf/next/reflect";
 import type {
@@ -220,14 +220,14 @@ function getFilesToGenerate(
       }
     }
   }
-  const descriptorSet = createDescFileSet(
+  const registry = createFileRegistry(
     create(FileDescriptorSetDesc, {
       file: request.protoFile,
     }),
   );
   const allFiles: DescFile[] = [];
   const filesToGenerate: DescFile[] = [];
-  for (const file of descriptorSet.files) {
+  for (const file of registry.files) {
     allFiles.push(file);
     if (request.fileToGenerate.includes(file.proto.name)) {
       filesToGenerate.push(file);

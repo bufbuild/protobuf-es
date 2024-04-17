@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { compileFile, compileFileDescriptorSet } from "../helpers.js";
 import { embedFileDesc } from "@bufbuild/protobuf/next/codegenv1";
 import assert from "node:assert";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf/next/reflect";
 
 describe("embedFileDesc()", () => {
   test("embeds file descriptor", async () => {
@@ -31,7 +31,7 @@ describe("embedFileDesc()", () => {
     expect(typeof embedded.base64()).toBe("string");
   });
   test("embeds google/protobuf.descriptor.proto", async () => {
-    const file = createDescFileSet(
+    const file = createFileRegistry(
       await compileFileDescriptorSet({
         "google/protobuf/descriptor.proto": `
         syntax="proto2"; 
