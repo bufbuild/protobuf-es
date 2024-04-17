@@ -14,11 +14,18 @@
 
 import { describe, test, expect } from "@jest/globals";
 import { describeMT, testMT } from "./helpers.js";
-import { BoolValue, isFieldSet, protoInt64 } from "@bufbuild/protobuf";
+import {
+  BoolValue,
+  isFieldSet,
+  protoInt64,
+  WireType,
+} from "@bufbuild/protobuf";
 import { Proto2Enum } from "./gen/ts/extra/proto2_pb.js";
 import { Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
 import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
+import { Empty as TS_Empty } from "./gen/ts/google/protobuf/empty_pb.js";
+import { Empty as JS_Empty } from "./gen/js/google/protobuf/empty_pb.js";
 import {
   RepeatedScalarValuesMessage as TS_RepeatedScalarValuesMessage,
   ScalarValuesMessage as TS_ScalarValuesMessage,
@@ -253,4 +260,23 @@ describe("clone", function () {
       );
     },
   );
+  // We are using Empty wkt to test unknown fields.
+  testMT({ ts: TS_Empty, js: JS_Empty }, (messageType) => {
+    const a = new messageType();
+    const bin = messageType.runtime.bin;
+    const unknownFields = [
+      { no: 1, wireType: WireType.Bit32, data: new Uint8Array([1, 2, 3, 4]) },
+    ];
+    for (const unknowField of unknownFields) {
+      bin.onUnknownField(
+        a,
+        unknowField.no,
+        unknowField.wireType,
+        unknowField.data,
+      );
+    }
+    const b = a.clone();
+    expect(b).toStrictEqual(a);
+    expect(bin.listUnknownFields(b)).toStrictEqual(unknownFields);
+  });
 });

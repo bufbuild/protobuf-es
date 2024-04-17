@@ -2,7 +2,7 @@
   "include": ["src/**/*.ts", "test/*.ts"],
   "compilerOptions": {
     "target": "es2017",
-    "moduleResolution": "Node",
+    "moduleResolution": "Node10",
     "esModuleInterop": false,
     "resolveJsonModule": true,
     "strict": true,

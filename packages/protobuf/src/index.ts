@@ -23,7 +23,7 @@ export { Message } from "./message.js";
 export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
 export { isMessage } from "./is-message.js";
 
-export type { FieldInfo } from "./field.js";
+export type { FieldInfo, OneofInfo } from "./field.js";
 export type { FieldList } from "./field-list.js";
 export { LongType, ScalarType } from "./scalar.js";
 export type { ScalarValue } from "./scalar.js";

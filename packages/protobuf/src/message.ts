@@ -40,6 +40,7 @@ export interface AnyMessage extends Message<AnyMessage> {
 export class Message<T extends Message<T> = AnyMessage> {
   /**
    * Compare with a message of the same type.
+   * Note that this function disregards extensions and unknown fields.
    */
   equals(other: T | PlainMessage<T> | undefined | null): boolean {
     return this.getType().runtime.util.equals(

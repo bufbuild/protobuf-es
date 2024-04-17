@@ -216,7 +216,8 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
       });
     },
     clone<T extends Message<T>>(message: T): T {
-      const target = new (message.getType())();
+      const type = message.getType(),
+        target = new type();
       for (const member of message.getType().fields.byMember()) {
         const sourceProperty = (message as AnyMessage)[member.localName];
         if (member.kind == "oneof") {
@@ -249,6 +250,9 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
           (target as AnyMessage)[member.localName] =
             cloneSingularField(sourceProperty);
         }
+      }
+      for (const uf of type.runtime.bin.listUnknownFields(message)) {
+        type.runtime.bin.onUnknownField(target, uf.no, uf.wireType, uf.data);
       }
       return target;
     },

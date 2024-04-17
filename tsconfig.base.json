@@ -15,7 +15,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
-
     // We need node's module resolution, so we do not have to skip lib checks
     "moduleResolution": "Node16",
     "module": "Node16",

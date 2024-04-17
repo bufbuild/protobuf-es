@@ -93,12 +93,12 @@ export interface IBinaryReader {
   skip(wireType: WireType): Uint8Array;
 
   /**
-   * Read a `int32` field, a signed 32 bit varint.
+   * Read a `uint32` field, an unsigned 32 bit varint.
    */
   uint32(): number;
 
   /**
-   * Read a `sint32` field, a signed, zigzag-encoded 32-bit varint.
+   * Read a `int32` field, a signed 32 bit varint.
    */
   int32(): number;
 
