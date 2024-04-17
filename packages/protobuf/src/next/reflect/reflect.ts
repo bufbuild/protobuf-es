@@ -38,7 +38,7 @@ import {
 } from "./unsafe.js";
 import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
-import { LongType, ScalarType } from "../../scalar.js";
+import { LongType, ScalarType } from "./scalar.js";
 import { protoInt64 } from "../proto-int64.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 

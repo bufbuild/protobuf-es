@@ -19,8 +19,8 @@ import type {
   DescMessage,
   DescService,
   LongType,
-  ScalarType,
 } from "@bufbuild/protobuf";
+import { ScalarType } from "@bufbuild/protobuf/next/reflect";
 import type { ImportSymbol } from "./import-symbol.js";
 
 /**

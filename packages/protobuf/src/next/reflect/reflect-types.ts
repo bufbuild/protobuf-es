@@ -20,7 +20,7 @@ import type {
 import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
-import type { LongType, ScalarValue } from "../../scalar.js";
+import type { LongType, ScalarValue } from "./scalar.js";
 
 export interface ReflectMessage {
   readonly message: Message;

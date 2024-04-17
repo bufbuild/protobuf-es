@@ -25,8 +25,11 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
-import type { ScalarValue } from "./scalar.js";
-import { LongType, ScalarType } from "./scalar.js";
+import type {
+  ScalarType,
+  LongType,
+  ScalarValue,
+} from "./next/reflect/scalar.js";
 
 export type SupportedEdition = Extract<
   Edition,

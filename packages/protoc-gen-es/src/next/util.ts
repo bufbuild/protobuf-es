@@ -13,10 +13,13 @@
 // limitations under the License.
 
 import type { DescExtension, DescField } from "@bufbuild/protobuf";
-import { LongType, ScalarType } from "@bufbuild/protobuf/next/reflect";
+import {
+  LongType,
+  ScalarType,
+  scalarTypeScriptType,
+} from "@bufbuild/protobuf/next/reflect";
 import { Edition, isWrapperDesc } from "@bufbuild/protobuf/next/wkt";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
-import { scalarTypeScriptType } from "@bufbuild/protobuf/next/reflect";
 
 /**
  * Tells whether a field uses the prototype chain for field presence.

@@ -13,7 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { LongType, protoInt64, ScalarType } from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf/next";
+import { LongType, ScalarType } from "@bufbuild/protobuf/next/reflect";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
