@@ -44,7 +44,6 @@ import type {
   DescService,
   SupportedEdition,
 } from "../../descriptor-set.js";
-import { findEnumSharedPrefix } from "../../private/names.js";
 import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
@@ -950,6 +949,41 @@ function findFileDependencies(
     }
     return dep;
   });
+}
+
+/**
+ * Finds a prefix shared by enum values, for example `MY_ENUM_` for
+ * `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`.
+ */
+function findEnumSharedPrefix(
+  enumName: string,
+  valueNames: string[],
+): string | undefined {
+  const prefix = camelToSnakeCase(enumName) + "_";
+  for (const name of valueNames) {
+    if (!name.toLowerCase().startsWith(prefix)) {
+      return undefined;
+    }
+    const shortName = name.substring(prefix.length);
+    if (shortName.length == 0) {
+      return undefined;
+    }
+    if (/^\d/.test(shortName)) {
+      // identifiers must not start with numbers
+      return undefined;
+    }
+  }
+  return prefix;
+}
+
+/**
+ * Converts lowerCamelCase or UpperCamelCase into lower_snake_case.
+ * This is used to find shared prefixes in an enum.
+ */
+function camelToSnakeCase(camel: string): string {
+  return (
+    camel.substring(0, 1) + camel.substring(1).replace(/[A-Z]/g, (c) => "_" + c)
+  ).toLowerCase();
 }
 
 /**
