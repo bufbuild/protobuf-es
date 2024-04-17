@@ -177,7 +177,7 @@ export interface DescEnum {
   readonly values: DescEnumValue[];
   /**
    * A prefix shared by all enum values.
-   * For example, `MY_ENUM_` for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`
+   * For example, `my_enum_` for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`
    */
   readonly sharedPrefix?: string;
   /**

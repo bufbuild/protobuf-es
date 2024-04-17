@@ -594,6 +594,48 @@ describe("DescEnum", () => {
       expect(descEnum.open).toBe(false);
     });
   });
+  describe("sharedPrefix", () => {
+    test("is shared prefix", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum MyEnum {
+          MY_ENUM_A = 0; 
+          MY_ENUM_B = 1;
+        }
+      `);
+      expect(descEnum.sharedPrefix).toBe("my_enum_");
+    });
+    test("is shared prefix regardless of casing", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum MyEnum {
+          MY_ENUM_A = 0; 
+          my_enum_B = 1;
+        }
+      `);
+      expect(descEnum.sharedPrefix).toBe("my_enum_");
+    });
+    test("is undefined without shared prefix", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum MyEnum {
+          MY_ENUM_UNSPECIFIED = 0; 
+          B = 1;
+        }
+      `);
+      expect(descEnum.sharedPrefix).toBeUndefined();
+    });
+    test("is undefined if any short name starts with a number", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum MyEnum {
+          MY_ENUM_A = 0; 
+          MY_ENUM_23_B = 1; 
+        }
+      `);
+      expect(descEnum.sharedPrefix).toBeUndefined();
+    });
+  });
 });
 
 describe("DescField", () => {

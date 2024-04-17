@@ -952,7 +952,7 @@ function findFileDependencies(
 }
 
 /**
- * Finds a prefix shared by enum values, for example `MY_ENUM_` for
+ * Finds a prefix shared by enum values, for example `my_enum_` for
  * `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`.
  */
 function findEnumSharedPrefix(
