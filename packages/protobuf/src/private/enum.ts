@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { EnumType, EnumValueInfo } from "../enum.js";
-import { assert } from "./assert.js";
+import { assert } from "../next/reflect/assert.js";
 
 /**
  * Represents a generated enum.

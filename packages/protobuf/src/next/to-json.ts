@@ -14,7 +14,7 @@
 
 import type { DescEnum, DescField, DescMessage } from "../descriptor-set.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
-import { assert } from "../private/assert.js";
+import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";

@@ -14,7 +14,7 @@
 
 import type { FieldInfo, OneofInfo } from "../field.js";
 import { localOneofName } from "./names.js";
-import { assert } from "./assert.js";
+import { assert } from "../next/reflect/assert.js";
 
 export class InternalOneofInfo implements OneofInfo {
   readonly kind = "oneof";

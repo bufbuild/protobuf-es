@@ -22,7 +22,12 @@ import type { AnyMessage } from "../message.js";
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
 import type { FieldInfo, OneofInfo } from "../field.js";
-import { assert, assertFloat32, assertInt32, assertUInt32 } from "./assert.js";
+import {
+  assert,
+  assertFloat32,
+  assertInt32,
+  assertUInt32,
+} from "../next/reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { protoBase64 } from "../proto-base64.js";
 import type { EnumType } from "../enum.js";

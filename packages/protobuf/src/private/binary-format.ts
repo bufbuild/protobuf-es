@@ -23,7 +23,7 @@ import { type AnyMessage, Message } from "../message.js";
 import type { FieldInfo } from "../field.js";
 import { wrapField } from "./field-wrapper.js";
 import { scalarZeroValue } from "./scalars.js";
-import { assert } from "./assert.js";
+import { assert } from "../next/reflect/assert.js";
 import { isFieldSet } from "./reflect.js";
 import type { ScalarValue } from "../scalar.js";
 import { LongType, ScalarType } from "../scalar.js";

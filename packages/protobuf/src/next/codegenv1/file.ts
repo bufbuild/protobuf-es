@@ -16,7 +16,7 @@ import { base64Decode } from "../wire/index.js";
 import { FileDescriptorProtoDesc } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { DescFile } from "../../descriptor-set.js";
 import { createDescFileSet } from "../reflect/desc-set.js";
-import { assert } from "../../private/assert.js";
+import { assert } from "../reflect/assert.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { fromBinary } from "../from-binary.js";
 

@@ -29,7 +29,7 @@ import type {
 import type { DescFile } from "../../descriptor-set.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { createDescFileSet } from "../reflect/desc-set.js";
-import { assert } from "../../private/assert.js";
+import { assert } from "../reflect/assert.js";
 
 /**
  * Hydrate a file descriptor for google/protobuf/descriptor.proto from a plain

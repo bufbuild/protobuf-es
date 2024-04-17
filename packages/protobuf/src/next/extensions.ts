@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescExtension, DescField } from "../descriptor-set.js";
-import { assert } from "../private/assert.js";
+import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";
 import { localName } from "./reflect/names.js";

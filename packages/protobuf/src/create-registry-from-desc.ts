@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { assert } from "./private/assert.js";
+import { assert } from "./next/reflect/assert.js";
 import type { MessageType } from "./message-type.js";
 import { proto3 } from "./proto3.js";
 import { proto2 } from "./proto2.js";

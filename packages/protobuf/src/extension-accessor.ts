@@ -14,7 +14,7 @@
 
 import type { Message } from "./message.js";
 import type { BinaryReadOptions, BinaryWriteOptions } from "./binary-format.js";
-import { assert } from "./private/assert.js";
+import { assert } from "./next/reflect/assert.js";
 import {
   createExtensionContainer,
   filterUnknownFields,

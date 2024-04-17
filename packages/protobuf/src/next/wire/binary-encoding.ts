@@ -18,11 +18,7 @@ import {
   varint64read,
   varint64write,
 } from "./varint.js";
-import {
-  assertFloat32,
-  assertInt32,
-  assertUInt32,
-} from "../../private/assert.js";
+import { assertFloat32, assertInt32, assertUInt32 } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "./text-encoding.js";
 

@@ -32,7 +32,7 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
 } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
-import { assert } from "../../private/assert.js";
+import { assert } from "./assert.js";
 import type {
   DescEnum,
   DescExtension,

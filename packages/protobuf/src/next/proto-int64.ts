@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { assert } from "../private/assert.js";
+import { assert } from "./reflect/assert.js";
 import {
   int64FromString,
   int64ToString,

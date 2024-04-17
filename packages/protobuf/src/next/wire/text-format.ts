@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescEnum } from "../../descriptor-set.js";
-import { assert } from "../../private/assert.js";
+import { assert } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { ScalarType } from "../reflect/scalar.js";
 

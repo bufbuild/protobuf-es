@@ -20,7 +20,7 @@ import type {
   DescService,
 } from "../../descriptor-set.js";
 import { protoCamelCase } from "../reflect/names.js";
-import { assert } from "../../private/assert.js";
+import { assert } from "../reflect/assert.js";
 import { isFieldSet, clearField } from "../fields.js";
 import { base64Encode } from "../wire/base64-encoding.js";
 import { toBinary } from "../to-binary.js";
