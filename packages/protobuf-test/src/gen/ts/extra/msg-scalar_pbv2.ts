@@ -16,12 +16,11 @@
 // @generated from file extra/msg-scalar.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_scalar: DescFile = /*@__PURE__*/
+export const fileDesc_extra_msg_scalar: GenDescFile = /*@__PURE__*/
   fileDesc("ChZleHRyYS9tc2ctc2NhbGFyLnByb3RvEgRzcGVjIt8CChNTY2FsYXJWYWx1ZXNNZXNzYWdlEhQKDGRvdWJsZV9maWVsZBgBIAEoARITCgtmbG9hdF9maWVsZBgCIAEoAhITCgtpbnQ2NF9maWVsZBgDIAEoAxIUCgx1aW50NjRfZmllbGQYBCABKAQSEwoLaW50MzJfZmllbGQYBSABKAUSFQoNZml4ZWQ2NF9maWVsZBgGIAEoBhIVCg1maXhlZDMyX2ZpZWxkGAcgASgHEhIKCmJvb2xfZmllbGQYCCABKAgSFAoMc3RyaW5nX2ZpZWxkGAkgASgJEhMKC2J5dGVzX2ZpZWxkGAsgASgMEhQKDHVpbnQzMl9maWVsZBgMIAEoDRIWCg5zZml4ZWQzMl9maWVsZBgOIAEoDxIWCg5zZml4ZWQ2NF9maWVsZBgPIAEoEBIUCgxzaW50MzJfZmllbGQYECABKBESFAoMc2ludDY0X2ZpZWxkGBEgASgSIucCChtSZXBlYXRlZFNjYWxhclZhbHVlc01lc3NhZ2USFAoMZG91YmxlX2ZpZWxkGAEgAygBEhMKC2Zsb2F0X2ZpZWxkGAIgAygCEhMKC2ludDY0X2ZpZWxkGAMgAygDEhQKDHVpbnQ2NF9maWVsZBgEIAMoBBITCgtpbnQzMl9maWVsZBgFIAMoBRIVCg1maXhlZDY0X2ZpZWxkGAYgAygGEhUKDWZpeGVkMzJfZmllbGQYByADKAcSEgoKYm9vbF9maWVsZBgIIAMoCBIUCgxzdHJpbmdfZmllbGQYCSADKAkSEwoLYnl0ZXNfZmllbGQYCyADKAwSFAoMdWludDMyX2ZpZWxkGAwgAygNEhYKDnNmaXhlZDMyX2ZpZWxkGA4gAygPEhYKDnNmaXhlZDY0X2ZpZWxkGA8gAygQEhQKDHNpbnQzMl9maWVsZBgQIAMoERIUCgxzaW50NjRfZmllbGQYESADKBJiBnByb3RvMw");
 
 /**

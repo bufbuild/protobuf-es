@@ -22,11 +22,10 @@
 // @generated from file google/protobuf/unittest_extension_set.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_extension_set: DescFile;
+export declare const fileDesc_google_protobuf_unittest_extension_set: GenDescFile;
 
 /**
  * A message with message_set_wire_format.

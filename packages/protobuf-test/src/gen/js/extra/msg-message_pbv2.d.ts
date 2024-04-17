@@ -16,11 +16,10 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_msg_message: DescFile;
+export declare const fileDesc_extra_msg_message: GenDescFile;
 
 /**
  * @generated from message spec.MessageFieldMessage

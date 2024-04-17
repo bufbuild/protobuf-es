@@ -20,12 +20,11 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In map_test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ForeignMessage, TestAllTypes, TestRequired } from "./unittest_pbv2.js";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_map_unittest: DescFile;
+export declare const fileDesc_google_protobuf_map_unittest: GenDescFile;
 
 /**
  * Tests maps.

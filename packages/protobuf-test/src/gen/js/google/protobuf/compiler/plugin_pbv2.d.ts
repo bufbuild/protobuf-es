@@ -29,12 +29,11 @@
 // @generated from file google/protobuf/compiler/plugin.proto (package google.protobuf.compiler, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pbv2.js";
 
-export declare const fileDesc_google_protobuf_compiler_plugin: DescFile;
+export declare const fileDesc_google_protobuf_compiler_plugin: GenDescFile;
 
 /**
  * The version number of protocol compiler.

@@ -16,9 +16,12 @@ import type { Message } from "../types.js";
 import type {
   DescEnum,
   DescExtension,
+  DescFile,
   DescMessage,
   DescService,
 } from "../../descriptor-set.js";
+
+export type GenDescFile = DescFile;
 
 export type GenDescMessage<RuntimeShape extends Message> = DescMessage &
   brand<RuntimeShape>;

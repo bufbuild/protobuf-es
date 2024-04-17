@@ -16,12 +16,11 @@
 // @generated from file extra/edition2023.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_edition2023: DescFile;
+export declare const fileDesc_extra_edition2023: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types

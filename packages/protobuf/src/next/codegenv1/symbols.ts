@@ -44,9 +44,6 @@ export const symbols = {
   legacy: {
     JsonValue:             {typeOnly: true,  bootstrapWktFrom: "../../json-format.js",          from: "@bufbuild/protobuf" },
   },
-  reflect: {
-    DescFile:              {typeOnly: true,  bootstrapWktFrom: "../../../descriptor-set.js",    from: "@bufbuild/protobuf" },
-  },
   codegen: {
     boot:                  {typeOnly: false, bootstrapWktFrom: "../../codegenv1/boot.js",       from: packageName + "/codegenv1" },
     fileDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/file.js",       from: packageName + "/codegenv1" },
@@ -55,6 +52,7 @@ export const symbols = {
     messageDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/message.js",    from: packageName + "/codegenv1" },
     serviceDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv1/service.js",    from: packageName + "/codegenv1" },
     tsEnum:                {typeOnly: false, bootstrapWktFrom: "../../codegenv1/enum.js",       from: packageName + "/codegenv1" },
+    GenDescFile:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
     GenDescEnum:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
     GenDescExtension:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },
     GenDescMessage:        {typeOnly: true,  bootstrapWktFrom: "../../codegenv1/types.js",      from: packageName + "/codegenv1" },

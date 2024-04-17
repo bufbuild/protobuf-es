@@ -16,12 +16,11 @@
 // @generated from file extra/msg-oneof.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_oneof: DescFile = /*@__PURE__*/
+export const fileDesc_extra_msg_oneof: GenDescFile = /*@__PURE__*/
   fileDesc("ChVleHRyYS9tc2ctb25lb2YucHJvdG8SBHNwZWMi7gEKDE9uZW9mTWVzc2FnZRIPCgV2YWx1ZRgBIAEoBUgAEg8KBWVycm9yGAIgASgJSAASDwoFYnl0ZXMYAyABKAxIABIkCgNmb28YCyABKAsyFS5zcGVjLk9uZW9mTWVzc2FnZUZvb0gBEiQKA2JhchgMIAEoCzIVLnNwZWMuT25lb2ZNZXNzYWdlQmFySAESJAoDYmF6GA0gASgLMhUuc3BlYy5PbmVvZk1lc3NhZ2VCYXJIARIcCgFlGBUgASgOMg8uc3BlYy5PbmVvZkVudW1IAkIICgZzY2FsYXJCCQoHbWVzc2FnZUIGCgRlbnVtIi8KD09uZW9mTWVzc2FnZUZvbxIMCgRuYW1lGAEgASgJEg4KBnRvZ2dsZRgCIAEoCCInCg9PbmVvZk1lc3NhZ2VCYXISCQoBYRgBIAEoBRIJCgFiGAIgASgFKksKCU9uZW9mRW51bRIaChZPTkVPRl9FTlVNX1VOU1BFQ0lGSUVEEAASEAoMT05FT0ZfRU5VTV9BEAESEAoMT05FT0ZfRU5VTV9CEAJiBnByb3RvMw");
 
 /**

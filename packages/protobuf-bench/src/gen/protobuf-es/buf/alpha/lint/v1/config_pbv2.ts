@@ -16,12 +16,11 @@
 // @generated from file buf/alpha/lint/v1/config.proto (package buf.alpha.lint.v1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_lint_v1_config: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_lint_v1_config: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5idWYvYWxwaGEvbGludC92MS9jb25maWcucHJvdG8SEWJ1Zi5hbHBoYS5saW50LnYxIu4CCgZDb25maWcSDwoHdmVyc2lvbhgBIAEoCRIPCgd1c2VfaWRzGAIgAygJEhIKCmV4Y2VwdF9pZHMYAyADKAkSFAoMaWdub3JlX3BhdGhzGAQgAygJEjMKD2lnbm9yZV9pZF9wYXRocxgFIAMoCzIaLmJ1Zi5hbHBoYS5saW50LnYxLklEUGF0aHMSHgoWZW51bV96ZXJvX3ZhbHVlX3N1ZmZpeBgGIAEoCRInCh9ycGNfYWxsb3dfc2FtZV9yZXF1ZXN0X3Jlc3BvbnNlGAcgASgIEjAKKHJwY19hbGxvd19nb29nbGVfcHJvdG9idWZfZW1wdHlfcmVxdWVzdHMYCCABKAgSMQopcnBjX2FsbG93X2dvb2dsZV9wcm90b2J1Zl9lbXB0eV9yZXNwb25zZXMYCSABKAgSFgoOc2VydmljZV9zdWZmaXgYCiABKAkSHQoVYWxsb3dfY29tbWVudF9pZ25vcmVzGAsgASgIIiQKB0lEUGF0aHMSCgoCaWQYASABKAkSDQoFcGF0aHMYAiADKAliBnByb3RvMw");
 
 /**

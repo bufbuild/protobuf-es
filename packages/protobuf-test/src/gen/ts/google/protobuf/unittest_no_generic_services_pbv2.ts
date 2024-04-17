@@ -18,12 +18,11 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_no_generic_services: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_no_generic_services: GenDescFile = /*@__PURE__*/
   fileDesc("CjJnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfbm9fZ2VuZXJpY19zZXJ2aWNlcy5wcm90bxIqcHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0IiMKC1Rlc3RNZXNzYWdlEgkKAWEYASABKAUqCQjoBxCAgICAAioTCghUZXN0RW51bRIHCgNGT08QATKGAQoLVGVzdFNlcnZpY2USdwoDRm9vEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlOl8KDnRlc3RfZXh0ZW5zaW9uEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGOgHIAEoBVINdGVzdEV4dGVuc2lvbg");
 
 /**

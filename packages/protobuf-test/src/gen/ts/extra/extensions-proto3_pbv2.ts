@@ -16,13 +16,12 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescExtension } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
 
-export const fileDesc_extra_extensions_proto3: DescFile = /*@__PURE__*/
+export const fileDesc_extra_extensions_proto3: GenDescFile = /*@__PURE__*/
   fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0OjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY6QcgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjqByABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHRiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
 
 /**

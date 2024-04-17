@@ -16,12 +16,11 @@
 // @generated from file buf/alpha/registry/v1alpha1/jsonschema.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_jsonschema: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_jsonschema: GenDescFile = /*@__PURE__*/
   fileDesc("CixidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvanNvbnNjaGVtYS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIl8KFEdldEpTT05TY2hlbWFSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSEQoJcmVmZXJlbmNlGAMgASgJEhEKCXR5cGVfbmFtZRgEIAEoCSIsChVHZXRKU09OU2NoZW1hUmVzcG9uc2USEwoLanNvbl9zY2hlbWEYASABKAwyiwEKEUpTT05TY2hlbWFTZXJ2aWNlEnYKDUdldEpTT05TY2hlbWESMS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0SlNPTlNjaGVtYVJlcXVlc3QaMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0SlNPTlNjaGVtYVJlc3BvbnNlYgZwcm90bzM");
 
 /**

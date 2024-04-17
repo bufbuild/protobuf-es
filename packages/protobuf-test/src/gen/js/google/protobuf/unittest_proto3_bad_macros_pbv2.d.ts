@@ -16,10 +16,9 @@
 // @generated from file google/protobuf/unittest_proto3_bad_macros.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_proto3_bad_macros: DescFile;
+export declare const fileDesc_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
 
 /**
  * This generates `GID_MAX`, which is a macro in some circumstances.

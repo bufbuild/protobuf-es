@@ -16,12 +16,11 @@
 // @generated from file extra/proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { UInt32Value } from "@bufbuild/protobuf/next/wkt";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_proto3: DescFile;
+export declare const fileDesc_extra_proto3: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types

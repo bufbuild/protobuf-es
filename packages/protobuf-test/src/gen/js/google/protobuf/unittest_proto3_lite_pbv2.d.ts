@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/unittest_proto3_lite.proto (package proto3_lite_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportMessage } from "./unittest_import_pbv2.js";
 import type { PublicImportMessage } from "./unittest_import_public_pbv2.js";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_proto3_lite: DescFile;
+export declare const fileDesc_google_protobuf_unittest_proto3_lite: GenDescFile;
 
 /**
  * This proto includes every type of field in both singular and repeated

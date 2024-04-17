@@ -22,12 +22,11 @@
 // @generated from file google/protobuf/unittest_mset_wire_format.proto (package proto2_wireformat_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_mset_wire_format: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_mset_wire_format: GenDescFile = /*@__PURE__*/
   fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbXNldF93aXJlX2Zvcm1hdC5wcm90bxIacHJvdG8yX3dpcmVmb3JtYXRfdW5pdHRlc3QiLAoOVGVzdE1lc3NhZ2VTZXQqCAgEEIDR3PwBKgwIgNHc/AEQ/////wc6AggBImQKIVRlc3RNZXNzYWdlU2V0V2lyZUZvcm1hdENvbnRhaW5lchI/CgttZXNzYWdlX3NldBgBIAEoCzIqLnByb3RvMl93aXJlZm9ybWF0X3VuaXR0ZXN0LlRlc3RNZXNzYWdlU2V0QilIAfgBAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 /**

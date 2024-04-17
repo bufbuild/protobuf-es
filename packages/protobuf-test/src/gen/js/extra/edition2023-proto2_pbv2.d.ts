@@ -16,11 +16,10 @@
 // @generated from file extra/edition2023-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_edition2023_proto2: DescFile;
+export declare const fileDesc_extra_edition2023_proto2: GenDescFile;
 
 /**
  * see edition2023.proto

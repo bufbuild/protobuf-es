@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/duration.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "../../../../../descriptor-set.js";
+import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
-export const fileDesc_google_protobuf_duration: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_duration: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvZHVyYXRpb24ucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIqCghEdXJhdGlvbhIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgFQoMBChNjb20uZ29vZ2xlLnByb3RvYnVmQg1EdXJhdGlvblByb3RvUAFaMWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2R1cmF0aW9ucGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**

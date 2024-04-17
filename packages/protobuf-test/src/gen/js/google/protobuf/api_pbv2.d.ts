@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { Option, Syntax } from "./type_pbv2.js";
 import type { SourceContext } from "./source_context_pbv2.js";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_api: DescFile;
+export declare const fileDesc_google_protobuf_api: GenDescFile;
 
 /**
  * Api is a light-weight descriptor for an API Interface.

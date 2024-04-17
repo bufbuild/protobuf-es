@@ -16,11 +16,10 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_deprecation_implicit: DescFile;
+export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage

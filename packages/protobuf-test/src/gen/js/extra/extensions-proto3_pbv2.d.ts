@@ -16,11 +16,10 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescExtension } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_extra_extensions_proto3: DescFile;
+export declare const fileDesc_extra_extensions_proto3: GenDescFile;
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;

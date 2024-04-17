@@ -16,14 +16,13 @@
 // @generated from file buf/alpha/registry/v1alpha1/download.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Module } from "../../module/v1alpha1/module_pbv2.js";
 import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_download: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_download: GenDescFile = /*@__PURE__*/
   fileDesc("CipidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvZG93bmxvYWQucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJHCg9Eb3dubG9hZFJlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkiRQoQRG93bmxvYWRSZXNwb25zZRIxCgZtb2R1bGUYASABKAsyIS5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZTJ6Cg9Eb3dubG9hZFNlcnZpY2USZwoIRG93bmxvYWQSLC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRG93bmxvYWRSZXF1ZXN0Gi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRvd25sb2FkUmVzcG9uc2ViBnByb3RvMw", [fileDesc_buf_alpha_module_v1alpha1_module]);
 
 /**

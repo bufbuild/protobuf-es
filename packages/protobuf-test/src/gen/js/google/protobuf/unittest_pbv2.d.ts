@@ -28,13 +28,12 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportEnum, ImportMessage } from "./unittest_import_pbv2.js";
 import type { PublicImportMessage } from "./unittest_import_public_pbv2.js";
-import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest: DescFile;
+export declare const fileDesc_google_protobuf_unittest: GenDescFile;
 
 /**
  * This proto includes every type of field in both singular and repeated

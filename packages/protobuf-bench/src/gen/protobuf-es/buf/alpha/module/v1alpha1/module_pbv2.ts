@@ -16,8 +16,7 @@
 // @generated from file buf/alpha/module/v1alpha1/module.proto (package buf.alpha.module.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Config } from "../../breaking/v1/config_pbv2.js";
 import { fileDesc_buf_alpha_breaking_v1_config } from "../../breaking/v1/config_pbv2.js";
@@ -27,7 +26,7 @@ import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_module_v1alpha1_module: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_module_v1alpha1_module: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvbW9kdWxlL3YxYWxwaGExL21vZHVsZS5wcm90bxIZYnVmLmFscGhhLm1vZHVsZS52MWFscGhhMSL5AQoGTW9kdWxlEjQKBWZpbGVzGAEgAygLMiUuYnVmLmFscGhhLm1vZHVsZS52MWFscGhhMS5Nb2R1bGVGaWxlEjoKDGRlcGVuZGVuY2llcxgCIAMoCzIkLmJ1Zi5hbHBoYS5tb2R1bGUudjFhbHBoYTEuTW9kdWxlUGluEhUKDWRvY3VtZW50YXRpb24YAyABKAkSNgoPYnJlYWtpbmdfY29uZmlnGAQgASgLMh0uYnVmLmFscGhhLmJyZWFraW5nLnYxLkNvbmZpZxIuCgtsaW50X2NvbmZpZxgFIAEoCzIZLmJ1Zi5hbHBoYS5saW50LnYxLkNvbmZpZyIrCgpNb2R1bGVGaWxlEgwKBHBhdGgYASABKAkSDwoHY29udGVudBgCIAEoDCJXCg9Nb2R1bGVSZWZlcmVuY2USDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAkSEQoJcmVmZXJlbmNlGAQgASgJIp8BCglNb2R1bGVQaW4SDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAkSDgoGYnJhbmNoGAQgASgJEg4KBmNvbW1pdBgFIAEoCRIOCgZkaWdlc3QYBiABKAkSLwoLY3JlYXRlX3RpbWUYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wYgZwcm90bzM", [fileDesc_buf_alpha_breaking_v1_config, fileDesc_buf_alpha_lint_v1_config, fileDesc_google_protobuf_timestamp]);
 
 /**

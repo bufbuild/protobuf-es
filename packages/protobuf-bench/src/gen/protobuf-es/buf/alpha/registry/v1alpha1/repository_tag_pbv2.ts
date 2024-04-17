@@ -16,14 +16,13 @@
 // @generated from file buf/alpha/registry/v1alpha1/repository_tag.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_repository_tag: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_repository_tag: GenDescFile = /*@__PURE__*/
   fileDesc("CjBidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVwb3NpdG9yeV90YWcucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJ/Cg1SZXBvc2l0b3J5VGFnEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRuYW1lGAQgASgJEhMKC2NvbW1pdF9uYW1lGAUgASgJEg4KBmF1dGhvchgGIAEoCSJWChpDcmVhdGVSZXBvc2l0b3J5VGFnUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSEwoLY29tbWl0X25hbWUYAyABKAkiYQobQ3JlYXRlUmVwb3NpdG9yeVRhZ1Jlc3BvbnNlEkIKDnJlcG9zaXRvcnlfdGFnGAEgASgLMiouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlUYWciagoZTGlzdFJlcG9zaXRvcnlUYWdzUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgiegoaTGlzdFJlcG9zaXRvcnlUYWdzUmVzcG9uc2USQwoPcmVwb3NpdG9yeV90YWdzGAEgAygLMiouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlUYWcSFwoPbmV4dF9wYWdlX3Rva2VuGAIgASgJMqkCChRSZXBvc2l0b3J5VGFnU2VydmljZRKIAQoTQ3JlYXRlUmVwb3NpdG9yeVRhZxI3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVSZXBvc2l0b3J5VGFnUmVxdWVzdBo4LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVSZXBvc2l0b3J5VGFnUmVzcG9uc2UShQEKEkxpc3RSZXBvc2l0b3J5VGFncxI2LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0UmVwb3NpdG9yeVRhZ3NSZXF1ZXN0GjcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5VGFnc1Jlc3BvbnNlYgZwcm90bzM", [fileDesc_google_protobuf_timestamp]);
 
 /**

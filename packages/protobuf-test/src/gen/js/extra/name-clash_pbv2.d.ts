@@ -16,12 +16,11 @@
 // @generated from file extra/name-clash.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message as Message$1 } from "@bufbuild/protobuf/next";
 import type { User as User$1 } from "./example_pbv2.js";
-import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_name_clash: DescFile;
+export declare const fileDesc_extra_name_clash: GenDescFile;
 
 /**
  * This message class will clash with the imported message class

@@ -16,11 +16,10 @@
 // @generated from file google/protobuf/empty.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_empty: DescFile;
+export declare const fileDesc_google_protobuf_empty: GenDescFile;
 
 /**
  * A generic empty message that you can re-use to avoid defining duplicated

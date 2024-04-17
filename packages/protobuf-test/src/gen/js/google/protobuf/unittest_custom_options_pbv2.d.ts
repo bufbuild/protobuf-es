@@ -25,12 +25,11 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_google_protobuf_unittest_custom_options: DescFile;
+export declare const fileDesc_google_protobuf_unittest_custom_options: GenDescFile;
 
 /**
  * A test message with custom options at all possible locations (and also some

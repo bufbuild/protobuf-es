@@ -16,11 +16,10 @@
 // @generated from file extra/edition2023-map-encoding.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_edition2023_map_encoding: DescFile;
+export declare const fileDesc_extra_edition2023_map_encoding: GenDescFile;
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for

@@ -57,9 +57,9 @@ function generateTs(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pbv2.ts");
     f.preamble(file);
-    const { DescFile } = f.runtime.reflect;
+    const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);
-    f.print(f.exportDecl("const", fileDesc.name), ": ", DescFile, " = ", pure);
+    f.print(f.exportDecl("const", fileDesc.name), ": ", GenDescFile, " = ", pure);
     f.print("  ", getFileDescCall(f, file), ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
@@ -192,9 +192,9 @@ function generateDts(schema: Schema) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pbv2.d.ts");
     f.preamble(file);
-    const { DescFile } = f.runtime.reflect;
+    const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);
-    f.print(f.exportDecl("declare const", fileDesc.name), ": ", DescFile, ";");
+    f.print(f.exportDecl("declare const", fileDesc.name), ": ", GenDescFile, ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {

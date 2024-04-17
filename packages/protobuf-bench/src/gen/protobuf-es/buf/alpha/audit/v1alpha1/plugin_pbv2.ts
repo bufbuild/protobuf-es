@@ -16,12 +16,11 @@
 // @generated from file buf/alpha/audit/v1alpha1/plugin.proto (package buf.alpha.audit.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_audit_v1alpha1_plugin: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_audit_v1alpha1_plugin: GenDescFile = /*@__PURE__*/
   fileDesc("CiVidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvcGx1Z2luLnByb3RvEhhidWYuYWxwaGEuYXVkaXQudjFhbHBoYTEiewosQnVmQWxwaGFSZWdpc3RyeVYxQWxwaGExUGx1Z2luVmVyc2lvbk1hcHBpbmcSFAoMcGx1Z2luX293bmVyGAEgASgJEhMKC3BsdWdpbl9uYW1lGAIgASgJEg8KB3ZlcnNpb24YAyABKAkSDwoHZGVsZXRlZBgEIAEoCCJ2CiRCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5Db25maWcSFAoMcGx1Z2luX293bmVyGAEgASgJEhMKC3BsdWdpbl9uYW1lGAIgASgJEhIKCnBhcmFtZXRlcnMYAyADKAkSDwoHZGVsZXRlZBgEIAEoCCJUCjNCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5WZXJzaW9uUnVudGltZUxpYnJhcnkSDAoEbmFtZRgBIAEoCRIPCgd2ZXJzaW9uGAIgASgJKuEBCihCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5WaXNpYmlsaXR5Ej4KOkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1ZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABI5CjVCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1BMVUdJTl9WSVNJQklMSVRZX1BVQkxJQxABEjoKNkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1ZJU0lCSUxJVFlfUFJJVkFURRACYgZwcm90bzM");
 
 /**

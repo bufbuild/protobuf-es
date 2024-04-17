@@ -20,14 +20,13 @@
 // @generated from file google/protobuf/unittest_lite_imports_nonlite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { TestAllTypes, TestRequired } from "./unittest_pbv2.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile = /*@__PURE__*/
   fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [fileDesc_google_protobuf_unittest]);
 
 /**

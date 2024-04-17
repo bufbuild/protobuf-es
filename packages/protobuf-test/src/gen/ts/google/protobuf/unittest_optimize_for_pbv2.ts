@@ -22,14 +22,13 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ForeignMessage } from "./unittest_pbv2.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_optimize_for: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile = /*@__PURE__*/
   fileDesc("Citnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCLqAgoUVGVzdE9wdGltaXplZEZvclNpemUSCQoBaRgBIAEoBRIuCgNtc2cYEyABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5Gb3JlaWduTWVzc2FnZRIXCg1pbnRlZ2VyX2ZpZWxkGAIgASgFSAASFgoMc3RyaW5nX2ZpZWxkGAMgASgJSAAqCQjoBxCAgICAAjJPCg50ZXN0X2V4dGVuc2lvbhInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplGNIJIAEoBVINdGVzdEV4dGVuc2lvbjKCAQoPdGVzdF9leHRlbnNpb24yEicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUY0wkgASgLMi8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkT3B0aW1pemVkRm9yU2l6ZVIOdGVzdEV4dGVuc2lvbjJCBQoDZm9vIikKHFRlc3RSZXF1aXJlZE9wdGltaXplZEZvclNpemUSCQoBeBgBIAIoBSJaChxUZXN0T3B0aW9uYWxPcHRpbWl6ZWRGb3JTaXplEjoKAW8YASABKAsyLy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UmVxdWlyZWRPcHRpbWl6ZWRGb3JTaXplQgJIAg", [fileDesc_google_protobuf_unittest]);
 
 /**

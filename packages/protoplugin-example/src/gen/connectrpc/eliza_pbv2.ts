@@ -16,13 +16,12 @@
 // @generated from file connectrpc/eliza.proto (package connectrpc.eliza.v1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_connectrpc_eliza: DescFile = /*@__PURE__*/
+export const fileDesc_connectrpc_eliza: GenDescFile = /*@__PURE__*/
   fileDesc("ChZjb25uZWN0cnBjL2VsaXphLnByb3RvEhNjb25uZWN0cnBjLmVsaXphLnYxIh4KClNheVJlcXVlc3QSEAoIc2VudGVuY2UYASABKAkiHwoLU2F5UmVzcG9uc2USEAoIc2VudGVuY2UYASABKAkyfgoMRWxpemFTZXJ2aWNlEk0KA1NheRIfLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVxdWVzdBogLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVzcG9uc2UiA5ACARofyj4caHR0cHM6Ly9kZW1vLmNvbm5lY3RycGMuY29tL2IGcHJvdG8z", [fileDesc_customoptions_default_host]);
 
 /**

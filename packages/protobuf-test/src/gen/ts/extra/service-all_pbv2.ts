@@ -16,13 +16,12 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
 
-export const fileDesc_extra_service_all: DescFile = /*@__PURE__*/
+export const fileDesc_extra_service_all: GenDescFile = /*@__PURE__*/
   fileDesc("ChdleHRyYS9zZXJ2aWNlLWFsbC5wcm90bxIEc3BlYzLAAgoKU2VydmljZUFsbBJHCgVVbmFyeRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOQAgISUAoMU2VydmVyU3RyZWFtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUiA5ACATABEksKDENsaWVudFN0cmVhbRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlKAESSgoEQmlkaRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOIAgEoATABYgZwcm90bzM", [fileDesc_google_protobuf_wrappers]);
 
 /**

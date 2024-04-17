@@ -16,12 +16,11 @@
 // @generated from file extra/extensions-proto2.proto (package proto2ext, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { User } from "./example_pbv2.js";
 
-export declare const fileDesc_extra_extensions_proto2: DescFile;
+export declare const fileDesc_extra_extensions_proto2: GenDescFile;
 
 /**
  * The message we're going to extend

@@ -24,11 +24,10 @@
 
 // Comment before package.
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_comments: DescFile;
+export declare const fileDesc_extra_comments: GenDescFile;
 
 /**
  * Comment before message.

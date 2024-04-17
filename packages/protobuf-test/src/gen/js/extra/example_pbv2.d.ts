@@ -16,11 +16,10 @@
 // @generated from file extra/example.proto (package docs, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_example: DescFile;
+export declare const fileDesc_extra_example: GenDescFile;
 
 /**
  * @generated from message docs.User

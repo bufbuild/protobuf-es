@@ -16,11 +16,10 @@
 // @generated from file google/protobuf/struct.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_struct: DescFile;
+export declare const fileDesc_google_protobuf_struct: GenDescFile;
 
 /**
  * `Struct` represents a structured data value, consisting of fields

@@ -16,11 +16,10 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_extra_service_all: DescFile;
+export declare const fileDesc_extra_service_all: GenDescFile;
 
 /**
  * @generated from service spec.ServiceAll

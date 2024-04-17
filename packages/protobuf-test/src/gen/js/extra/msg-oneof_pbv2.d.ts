@@ -16,11 +16,10 @@
 // @generated from file extra/msg-oneof.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_msg_oneof: DescFile;
+export declare const fileDesc_extra_msg_oneof: GenDescFile;
 
 /**
  * @generated from message spec.OneofMessage

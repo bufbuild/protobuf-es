@@ -16,11 +16,10 @@
 // @generated from file extra/msg-json-names.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_msg_json_names: DescFile;
+export declare const fileDesc_extra_msg_json_names: GenDescFile;
 
 /**
  * @generated from message spec.JsonNamesMessage

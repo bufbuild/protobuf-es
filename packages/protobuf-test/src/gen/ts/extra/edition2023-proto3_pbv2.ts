@@ -16,12 +16,11 @@
 // @generated from file extra/edition2023-proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_edition2023_proto3: DescFile = /*@__PURE__*/
+export const fileDesc_extra_edition2023_proto3: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5leHRyYS9lZGl0aW9uMjAyMy1wcm90bzMucHJvdG8SBHNwZWMi3gIKG1Byb3RvM01lc3NhZ2VGb3JFZGl0aW9uMjAyMxIbChNpbXBsaWNpdF9ib29sX2ZpZWxkGAEgASgIEkAKGGltcGxpY2l0X29wZW5fZW51bV9maWVsZBgCIAEoDjIeLnNwZWMuUHJvdG8zRW51bUZvckVkaXRpb24yMDIzEiAKE2V4cGxpY2l0X2Jvb2xfZmllbGQYBSABKAhIAIgBARJFChhleHBsaWNpdF9vcGVuX2VudW1fZmllbGQYBiABKA4yHi5zcGVjLlByb3RvM0VudW1Gb3JFZGl0aW9uMjAyM0gBiAEBEh8KE3BhY2tlZF9kb3VibGVfZmllbGQYCSADKAFCAhABEiEKFXVucGFja2VkX2RvdWJsZV9maWVsZBgKIAMoAUICEABCFgoUX2V4cGxpY2l0X2Jvb2xfZmllbGRCGwoZX2V4cGxpY2l0X29wZW5fZW51bV9maWVsZCpqChhQcm90bzNFbnVtRm9yRWRpdGlvbjIwMjMSKwonUFJPVE8zX0VOVU1fRk9SX0VESVRJT04yMDIzX1VOU1BFQ0lGSUVEEAASIQodUFJPVE8zX0VOVU1fRk9SX0VESVRJT04yMDIzX0EQAWIGcHJvdG8z");
 
 /**

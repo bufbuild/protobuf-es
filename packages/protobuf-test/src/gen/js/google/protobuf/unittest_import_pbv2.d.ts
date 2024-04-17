@@ -27,11 +27,10 @@
 // In test_util.h we do
 // "using namespace unittest_import = protobuf_unittest_import".
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_import: DescFile;
+export declare const fileDesc_google_protobuf_unittest_import: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage

@@ -16,8 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/reference.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { RepositoryBranch } from "./repository_branch_pbv2.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_repository_branch } from "./repository_branch_pbv2.js";
@@ -29,7 +28,7 @@ import type { RepositoryTrack } from "./repository_track_pbv2.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_repository_track } from "./repository_track_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_reference: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_reference: GenDescFile = /*@__PURE__*/
   fileDesc("CitidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVmZXJlbmNlLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEilAIKCVJlZmVyZW5jZRI/CgZicmFuY2gYASABKAsyLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeUJyYW5jaEgAEjkKA3RhZxgCIAEoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5VGFnSAASPwoGY29tbWl0GAMgASgLMi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlDb21taXRIABI9CgV0cmFjaxgEIAEoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5VHJhY2tIAEILCglyZWZlcmVuY2UiUQoZR2V0UmVmZXJlbmNlQnlOYW1lUmVxdWVzdBIMCgRuYW1lGAEgASgJEg0KBW93bmVyGAIgASgJEhcKD3JlcG9zaXRvcnlfbmFtZRgDIAEoCSJXChpHZXRSZWZlcmVuY2VCeU5hbWVSZXNwb25zZRI5CglyZWZlcmVuY2UYASABKAsyJi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVmZXJlbmNlMpoBChBSZWZlcmVuY2VTZXJ2aWNlEoUBChJHZXRSZWZlcmVuY2VCeU5hbWUSNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVmZXJlbmNlQnlOYW1lUmVxdWVzdBo3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRSZWZlcmVuY2VCeU5hbWVSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_repository_branch, fileDesc_buf_alpha_registry_v1alpha1_repository_commit, fileDesc_buf_alpha_registry_v1alpha1_repository_tag, fileDesc_buf_alpha_registry_v1alpha1_repository_track]);
 
 /**

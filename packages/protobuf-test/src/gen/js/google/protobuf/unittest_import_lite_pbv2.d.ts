@@ -20,11 +20,10 @@
 // @generated from file google/protobuf/unittest_import_lite.proto (package protobuf_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_import_lite: DescFile;
+export declare const fileDesc_google_protobuf_unittest_import_lite: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessageLite

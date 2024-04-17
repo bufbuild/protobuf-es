@@ -20,12 +20,11 @@
 // @generated from file google/protobuf/unittest_lite_imports_nonlite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { TestAllTypes, TestRequired } from "./unittest_pbv2.js";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_lite_imports_nonlite: DescFile;
+export declare const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite

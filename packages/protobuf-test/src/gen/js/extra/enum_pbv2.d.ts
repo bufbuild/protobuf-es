@@ -16,12 +16,11 @@
 // @generated from file extra/enum.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { EnumOptions, EnumValueOptions } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_extra_enum: DescFile;
+export declare const fileDesc_extra_enum: GenDescFile;
 
 /**
  * @generated from message spec.EnumMessage

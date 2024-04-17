@@ -16,12 +16,11 @@
 // @generated from file google/protobuf/unittest_retention.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescExtension, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_google_protobuf_unittest_retention: DescFile;
+export declare const fileDesc_google_protobuf_unittest_retention: GenDescFile;
 
 /**
  * Retention attributes set on fields nested within a message

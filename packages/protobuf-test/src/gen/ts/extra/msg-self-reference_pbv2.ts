@@ -16,12 +16,11 @@
 // @generated from file extra/msg-self-reference.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_self_reference: DescFile = /*@__PURE__*/
+export const fileDesc_extra_msg_self_reference: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5leHRyYS9tc2ctc2VsZi1yZWZlcmVuY2UucHJvdG8SBHNwZWMigAIKFlNlbGZSZWZlcmVuY2luZ01lc3NhZ2USKgoEc2VsZhgBIAEoCzIcLnNwZWMuU2VsZlJlZmVyZW5jaW5nTWVzc2FnZRIvCglzZWxmX2xpc3QYAiADKAsyHC5zcGVjLlNlbGZSZWZlcmVuY2luZ01lc3NhZ2USOwoIc2VsZl9tYXAYAyADKAsyKS5zcGVjLlNlbGZSZWZlcmVuY2luZ01lc3NhZ2UuU2VsZk1hcEVudHJ5GkwKDFNlbGZNYXBFbnRyeRILCgNrZXkYASABKAkSKwoFdmFsdWUYAiABKAsyHC5zcGVjLlNlbGZSZWZlcmVuY2luZ01lc3NhZ2U6AjgBYgZwcm90bzM");
 
 /**

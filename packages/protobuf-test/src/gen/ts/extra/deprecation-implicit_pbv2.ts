@@ -16,12 +16,11 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_deprecation_implicit: DescFile = /*@__PURE__*/
+export const fileDesc_extra_deprecation_implicit: GenDescFile = /*@__PURE__*/
   fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
 
 /**

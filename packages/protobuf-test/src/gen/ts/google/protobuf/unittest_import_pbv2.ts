@@ -27,13 +27,12 @@
 // In test_util.h we do
 // "using namespace unittest_import = protobuf_unittest_import".
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_unittest_import_public } from "./unittest_import_public_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_import: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_import: GenDescFile = /*@__PURE__*/
   fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0LnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiGgoNSW1wb3J0TWVzc2FnZRIJCgFkGAEgASgFKjwKCkltcG9ydEVudW0SDgoKSU1QT1JUX0ZPTxAHEg4KCklNUE9SVF9CQVIQCBIOCgpJTVBPUlRfQkFaEAkqMQoQSW1wb3J0RW51bUZvck1hcBILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAJCHwoYY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0SAH4AQFQAA", [fileDesc_google_protobuf_unittest_import_public]);
 
 /**

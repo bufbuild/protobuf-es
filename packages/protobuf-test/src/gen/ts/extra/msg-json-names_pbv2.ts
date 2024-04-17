@@ -16,12 +16,11 @@
 // @generated from file extra/msg-json-names.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_json_names: DescFile = /*@__PURE__*/
+export const fileDesc_extra_msg_json_names: GenDescFile = /*@__PURE__*/
   fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKjAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGViBnByb3RvMw");
 
 /**

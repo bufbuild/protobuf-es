@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/wrappers.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "../../../../../descriptor-set.js";
+import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
-import type { GenDescMessage } from "../../../../codegenv1/types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
-export const fileDesc_google_protobuf_wrappers: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_wrappers: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvd3JhcHBlcnMucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIcCgtEb3VibGVWYWx1ZRINCgV2YWx1ZRgBIAEoASIbCgpGbG9hdFZhbHVlEg0KBXZhbHVlGAEgASgCIhsKCkludDY0VmFsdWUSDQoFdmFsdWUYASABKAMiHAoLVUludDY0VmFsdWUSDQoFdmFsdWUYASABKAQiGwoKSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoBSIcCgtVSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoDSIaCglCb29sVmFsdWUSDQoFdmFsdWUYASABKAgiHAoLU3RyaW5nVmFsdWUSDQoFdmFsdWUYASABKAkiGwoKQnl0ZXNWYWx1ZRINCgV2YWx1ZRgBIAEoDEKDAQoTY29tLmdvb2dsZS5wcm90b2J1ZkINV3JhcHBlcnNQcm90b1ABWjFnb29nbGUuZ29sYW5nLm9yZy9wcm90b2J1Zi90eXBlcy9rbm93bi93cmFwcGVyc3Bi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**

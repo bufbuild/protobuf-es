@@ -16,7 +16,7 @@
 // @generated from file extra/empty-file.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_empty_file: DescFile;
+export declare const fileDesc_extra_empty_file: GenDescFile;
 

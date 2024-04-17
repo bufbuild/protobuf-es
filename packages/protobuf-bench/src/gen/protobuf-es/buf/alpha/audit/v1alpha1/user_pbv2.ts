@@ -16,11 +16,10 @@
 // @generated from file buf/alpha/audit/v1alpha1/user.proto (package buf.alpha.audit.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_buf_alpha_audit_v1alpha1_user: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_audit_v1alpha1_user: GenDescFile = /*@__PURE__*/
   fileDesc("CiNidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvdXNlci5wcm90bxIYYnVmLmFscGhhLmF1ZGl0LnYxYWxwaGExKskBCiFCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFVc2VyU3RhdGUSNwozQlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9VU0VSX1NUQVRFX1VOU1BFQ0lGSUVEEAASMgouQlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9VU0VSX1NUQVRFX0FDVElWRRABEjcKM0JVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVVNFUl9TVEFURV9ERUFDVElWQVRFRBACYgZwcm90bzM");
 
 /**

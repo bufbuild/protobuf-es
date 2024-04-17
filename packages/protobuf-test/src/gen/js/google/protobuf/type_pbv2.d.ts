@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { SourceContext } from "./source_context_pbv2.js";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Any } from "./any_pbv2.js";
 
-export declare const fileDesc_google_protobuf_type: DescFile;
+export declare const fileDesc_google_protobuf_type: GenDescFile;
 
 /**
  * A protocol buffer message type.

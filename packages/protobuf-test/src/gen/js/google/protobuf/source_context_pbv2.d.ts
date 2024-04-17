@@ -16,11 +16,10 @@
 // @generated from file google/protobuf/source_context.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_source_context: DescFile;
+export declare const fileDesc_google_protobuf_source_context: GenDescFile;
 
 /**
  * `SourceContext` represents information about the source of a

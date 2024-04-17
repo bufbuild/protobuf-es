@@ -16,12 +16,11 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_msg_message: DescFile = /*@__PURE__*/
+export const fileDesc_extra_msg_message: GenDescFile = /*@__PURE__*/
   fileDesc("ChdleHRyYS9tc2ctbWVzc2FnZS5wcm90bxIEc3BlYyK3AQoTTWVzc2FnZUZpZWxkTWVzc2FnZRI8Cg1tZXNzYWdlX2ZpZWxkGAEgASgLMiUuc3BlYy5NZXNzYWdlRmllbGRNZXNzYWdlLlRlc3RNZXNzYWdlEkUKFnJlcGVhdGVkX21lc3NhZ2VfZmllbGQYAiADKAsyJS5zcGVjLk1lc3NhZ2VGaWVsZE1lc3NhZ2UuVGVzdE1lc3NhZ2UaGwoLVGVzdE1lc3NhZ2USDAoEbmFtZRgBIAEoCWIGcHJvdG8z");
 
 /**

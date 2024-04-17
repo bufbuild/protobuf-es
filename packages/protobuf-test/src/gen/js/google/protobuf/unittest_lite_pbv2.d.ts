@@ -20,13 +20,12 @@
 // @generated from file google/protobuf/unittest_lite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ImportEnumLite, ImportMessageLite } from "./unittest_import_lite_pbv2.js";
 import type { PublicImportMessageLite } from "./unittest_import_public_lite_pbv2.js";
-import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_lite: DescFile;
+export declare const fileDesc_google_protobuf_unittest_lite: GenDescFile;
 
 /**
  * Same as TestAllTypes but with the lite runtime.

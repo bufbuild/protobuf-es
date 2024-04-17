@@ -32,9 +32,9 @@
 // @generated from file google/protobuf/unittest_empty.proto (syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 
-export const fileDesc_google_protobuf_unittest_empty: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_empty: GenDescFile = /*@__PURE__*/
   fileDesc("CiRnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1wdHkucHJvdG8");
 

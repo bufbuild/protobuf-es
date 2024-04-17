@@ -16,11 +16,10 @@
 // @generated from file google/protobuf/timestamp.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_timestamp: DescFile;
+export declare const fileDesc_google_protobuf_timestamp: GenDescFile;
 
 /**
  * A Timestamp represents a point in time independent of any time zone or local

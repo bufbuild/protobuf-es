@@ -18,12 +18,11 @@
 // @generated from file google/protobuf/unittest_import_public_lite.proto (package protobuf_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_google_protobuf_unittest_import_public_lite: DescFile = /*@__PURE__*/
+export const fileDesc_google_protobuf_unittest_import_public_lite: GenDescFile = /*@__PURE__*/
   fileDesc("CjFnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpY19saXRlLnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiJAoXUHVibGljSW1wb3J0TWVzc2FnZUxpdGUSCQoBZRgBIAEoBUIXChNjb20uZ29vZ2xlLnByb3RvYnVmSAM");
 
 /**

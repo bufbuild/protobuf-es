@@ -16,12 +16,11 @@
 // @generated from file extra/wkt-wrappers.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/next/wkt";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_wkt_wrappers: DescFile;
+export declare const fileDesc_extra_wkt_wrappers: GenDescFile;
 
 /**
  * @generated from message spec.WrappersMessage

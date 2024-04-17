@@ -16,13 +16,12 @@
 // @generated from file google/protobuf/unittest_well_known_types.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/next/wkt";
 import type { Type } from "./type_pbv2.js";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_well_known_types: DescFile;
+export declare const fileDesc_google_protobuf_unittest_well_known_types: GenDescFile;
 
 /**
  * Test that we can include all well-known types.

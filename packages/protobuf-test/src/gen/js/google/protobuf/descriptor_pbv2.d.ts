@@ -24,11 +24,10 @@
 // @generated from file google/protobuf/descriptor.proto (package google.protobuf, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_descriptor: DescFile;
+export declare const fileDesc_google_protobuf_descriptor: GenDescFile;
 
 /**
  * The protocol compiler can output a FileDescriptorSet containing the .proto

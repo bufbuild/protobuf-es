@@ -22,12 +22,11 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ForeignMessage } from "./unittest_pbv2.js";
-import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_unittest_optimize_for: DescFile;
+export declare const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize

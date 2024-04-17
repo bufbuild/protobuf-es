@@ -16,8 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/audit_logs.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/next/wkt";
@@ -25,7 +24,7 @@ import type { Event } from "../../audit/v1alpha1/envelope_pbv2.js";
 import { fileDesc_buf_alpha_audit_v1alpha1_envelope } from "../../audit/v1alpha1/envelope_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_audit_logs: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_audit_logs: GenDescFile = /*@__PURE__*/
   fileDesc("CixidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvYXVkaXRfbG9ncy5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIqwBChRMaXN0QXVkaXRMb2dzUmVxdWVzdBIRCglwYWdlX3NpemUYASABKA0SEgoKcGFnZV90b2tlbhgCIAEoCRIPCgdyZXZlcnNlGAMgASgIEi4KCnN0YXJ0X3RpbWUYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJlChVMaXN0QXVkaXRMb2dzUmVzcG9uc2USMwoKYXVkaXRfbG9ncxgBIAMoCzIfLmJ1Zi5hbHBoYS5hdWRpdC52MWFscGhhMS5FdmVudBIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkyigEKEEF1ZGl0TG9nc1NlcnZpY2USdgoNTGlzdEF1ZGl0TG9ncxIxLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0QXVkaXRMb2dzUmVxdWVzdBoyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0QXVkaXRMb2dzUmVzcG9uc2ViBnByb3RvMw", [fileDesc_google_protobuf_timestamp, fileDesc_buf_alpha_audit_v1alpha1_envelope]);
 
 /**

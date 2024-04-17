@@ -16,11 +16,10 @@
 // @generated from file extra/service-example.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_service_example: DescFile;
+export declare const fileDesc_extra_service_example: GenDescFile;
 
 /**
  * @generated from message spec.ExampleRequest

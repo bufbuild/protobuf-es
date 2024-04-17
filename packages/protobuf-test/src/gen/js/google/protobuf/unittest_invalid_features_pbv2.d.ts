@@ -16,12 +16,11 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/next/wkt";
 
-export declare const fileDesc_google_protobuf_unittest_invalid_features: DescFile;
+export declare const fileDesc_google_protobuf_unittest_invalid_features: GenDescFile;
 
 /**
  * @generated from message pb.TestInvalidFeatures

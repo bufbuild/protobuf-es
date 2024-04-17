@@ -16,13 +16,12 @@
 // @generated from file customoptions/default_host.proto (package customoptions, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescExtension } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/next/codegenv1";
 import { extDesc, fileDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { ServiceOptions } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
 
-export const fileDesc_customoptions_default_host: DescFile = /*@__PURE__*/
+export const fileDesc_customoptions_default_host: GenDescFile = /*@__PURE__*/
   fileDesc("CiBjdXN0b21vcHRpb25zL2RlZmF1bHRfaG9zdC5wcm90bxINY3VzdG9tb3B0aW9uczpGCgxkZWZhdWx0X2hvc3QSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMY6QcgASgJUgtkZWZhdWx0SG9zdIgBAWIGcHJvdG8z", [fileDesc_google_protobuf_descriptor]);
 
 /**

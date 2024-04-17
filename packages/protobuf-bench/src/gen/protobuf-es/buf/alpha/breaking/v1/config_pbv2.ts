@@ -16,12 +16,11 @@
 // @generated from file buf/alpha/breaking/v1/config.proto (package buf.alpha.breaking.v1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_breaking_v1_config: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_breaking_v1_config: GenDescFile = /*@__PURE__*/
   fileDesc("CiJidWYvYWxwaGEvYnJlYWtpbmcvdjEvY29uZmlnLnByb3RvEhVidWYuYWxwaGEuYnJlYWtpbmcudjEirwEKBkNvbmZpZxIPCgd2ZXJzaW9uGAEgASgJEg8KB3VzZV9pZHMYAiADKAkSEgoKZXhjZXB0X2lkcxgDIAMoCRIUCgxpZ25vcmVfcGF0aHMYBCADKAkSNwoPaWdub3JlX2lkX3BhdGhzGAUgAygLMh4uYnVmLmFscGhhLmJyZWFraW5nLnYxLklEUGF0aHMSIAoYaWdub3JlX3Vuc3RhYmxlX3BhY2thZ2VzGAYgASgIIiQKB0lEUGF0aHMSCgoCaWQYASABKAkSDQoFcGF0aHMYAiADKAliBnByb3RvMw");
 
 /**

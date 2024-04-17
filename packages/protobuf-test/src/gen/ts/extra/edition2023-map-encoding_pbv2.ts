@@ -16,13 +16,12 @@
 // @generated from file extra/edition2023-map-encoding.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_extra_edition2023_map_encoding: DescFile = /*@__PURE__*/
+export const fileDesc_extra_edition2023_map_encoding: GenDescFile = /*@__PURE__*/
   fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw", [fileDesc_google_protobuf_wrappers]);
 
 /**

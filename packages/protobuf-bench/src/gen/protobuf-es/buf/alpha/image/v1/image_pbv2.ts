@@ -16,14 +16,13 @@
 // @generated from file buf/alpha/image/v1/image.proto (package buf.alpha.image.v1, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileOptions, ServiceDescriptorProto, SourceCodeInfo } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_image_v1_image: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_image_v1_image: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5idWYvYWxwaGEvaW1hZ2UvdjEvaW1hZ2UucHJvdG8SEmJ1Zi5hbHBoYS5pbWFnZS52MSI0CgVJbWFnZRIrCgRmaWxlGAEgAygLMh0uYnVmLmFscGhhLmltYWdlLnYxLkltYWdlRmlsZSKRBAoJSW1hZ2VGaWxlEgwKBG5hbWUYASABKAkSDwoHcGFja2FnZRgCIAEoCRISCgpkZXBlbmRlbmN5GAMgAygJEhkKEXB1YmxpY19kZXBlbmRlbmN5GAogAygFEhcKD3dlYWtfZGVwZW5kZW5jeRgLIAMoBRI2CgxtZXNzYWdlX3R5cGUYBCADKAsyIC5nb29nbGUucHJvdG9idWYuRGVzY3JpcHRvclByb3RvEjcKCWVudW1fdHlwZRgFIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5FbnVtRGVzY3JpcHRvclByb3RvEjgKB3NlcnZpY2UYBiADKAsyJy5nb29nbGUucHJvdG9idWYuU2VydmljZURlc2NyaXB0b3JQcm90bxI4CglleHRlbnNpb24YByADKAsyJS5nb29nbGUucHJvdG9idWYuRmllbGREZXNjcmlwdG9yUHJvdG8SLQoHb3B0aW9ucxgIIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxI5ChBzb3VyY2VfY29kZV9pbmZvGAkgASgLMh8uZ29vZ2xlLnByb3RvYnVmLlNvdXJjZUNvZGVJbmZvEg4KBnN5bnRheBgMIAEoCRI+Cg1idWZfZXh0ZW5zaW9uGOo+IAEoCzImLmJ1Zi5hbHBoYS5pbWFnZS52MS5JbWFnZUZpbGVFeHRlbnNpb24ilgEKEkltYWdlRmlsZUV4dGVuc2lvbhIRCglpc19pbXBvcnQYASABKAgSMwoLbW9kdWxlX2luZm8YAiABKAsyHi5idWYuYWxwaGEuaW1hZ2UudjEuTW9kdWxlSW5mbxIdChVpc19zeW50YXhfdW5zcGVjaWZpZWQYAyABKAgSGQoRdW51c2VkX2RlcGVuZGVuY3kYBCADKAUiSgoKTW9kdWxlSW5mbxIsCgRuYW1lGAEgASgLMh4uYnVmLmFscGhhLmltYWdlLnYxLk1vZHVsZU5hbWUSDgoGY29tbWl0GAIgASgJIj8KCk1vZHVsZU5hbWUSDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAlCBUgB+AEB", [fileDesc_google_protobuf_descriptor]);
 
 /**

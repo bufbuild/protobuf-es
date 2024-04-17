@@ -18,11 +18,10 @@
 // @generated from file google/protobuf/test_messages_proto2.proto (package protobuf_test_messages.proto2, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_test_messages_proto2: DescFile;
+export declare const fileDesc_google_protobuf_test_messages_proto2: GenDescFile;
 
 /**
  * This proto includes every type of field in both singular and repeated

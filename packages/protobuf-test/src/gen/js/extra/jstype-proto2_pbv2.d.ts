@@ -16,11 +16,10 @@
 // @generated from file extra/jstype-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
-import type { GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_extra_jstype_proto2: DescFile;
+export declare const fileDesc_extra_jstype_proto2: GenDescFile;
 
 /**
  * @generated from message spec.JSTypeProto2OmittedMessage

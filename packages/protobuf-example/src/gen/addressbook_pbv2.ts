@@ -16,14 +16,13 @@
 // @generated from file addressbook.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescEnum, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/next/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/next/wkt";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_addressbook: DescFile = /*@__PURE__*/
+export const fileDesc_addressbook: GenDescFile = /*@__PURE__*/
   fileDesc("ChFhZGRyZXNzYm9vay5wcm90bxIHZXhhbXBsZSKFAgoGUGVyc29uEgwKBG5hbWUYASABKAkSCgoCaWQYAiABKAUSDQoFZW1haWwYAyABKAkSKwoGcGhvbmVzGAQgAygLMhsuZXhhbXBsZS5QZXJzb24uUGhvbmVOdW1iZXISMAoMbGFzdF91cGRhdGVkGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBpGCgtQaG9uZU51bWJlchIOCgZudW1iZXIYASABKAkSJwoEdHlwZRgCIAEoDjIZLmV4YW1wbGUuUGVyc29uLlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoGTU9CSUxFEAASCAoESE9NRRABEggKBFdPUksQAiIuCgtBZGRyZXNzQm9vaxIfCgZwZW9wbGUYASADKAsyDy5leGFtcGxlLlBlcnNvbmIGcHJvdG8z", [fileDesc_google_protobuf_timestamp]);
 
 /**

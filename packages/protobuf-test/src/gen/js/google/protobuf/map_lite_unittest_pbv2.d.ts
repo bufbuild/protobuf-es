@@ -16,12 +16,11 @@
 // @generated from file google/protobuf/map_lite_unittest.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 import type { Message } from "@bufbuild/protobuf/next";
 import type { ForeignMessageLite, TestAllExtensionsLite, TestAllTypesLite } from "./unittest_lite_pbv2.js";
-import type { GenDescEnum, GenDescExtension, GenDescMessage } from "@bufbuild/protobuf/next/codegenv1";
 
-export declare const fileDesc_google_protobuf_map_lite_unittest: DescFile;
+export declare const fileDesc_google_protobuf_map_lite_unittest: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestMapLite

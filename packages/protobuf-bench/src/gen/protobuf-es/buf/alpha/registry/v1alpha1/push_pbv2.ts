@@ -16,8 +16,7 @@
 // @generated from file buf/alpha/registry/v1alpha1/push.proto (package buf.alpha.registry.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { DescFile } from "@bufbuild/protobuf";
-import type { GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
+import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/next/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/next/codegenv1";
 import type { Module } from "../../module/v1alpha1/module_pbv2.js";
 import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pbv2.js";
@@ -25,7 +24,7 @@ import type { LocalModulePin } from "./module_pbv2.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_module } from "./module_pbv2.js";
 import type { Message } from "@bufbuild/protobuf/next";
 
-export const fileDesc_buf_alpha_registry_v1alpha1_push: DescFile = /*@__PURE__*/
+export const fileDesc_buf_alpha_registry_v1alpha1_push: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcHVzaC5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIpEBCgtQdXNoUmVxdWVzdBINCgVvd25lchgBIAEoCRISCgpyZXBvc2l0b3J5GAIgASgJEg4KBmJyYW5jaBgDIAEoCRIxCgZtb2R1bGUYBCABKAsyIS5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZRIMCgR0YWdzGAUgAygJEg4KBnRyYWNrcxgGIAMoCSJVCgxQdXNoUmVzcG9uc2USRQoQbG9jYWxfbW9kdWxlX3BpbhgFIAEoCzIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Mb2NhbE1vZHVsZVBpbjJqCgtQdXNoU2VydmljZRJbCgRQdXNoEiguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlB1c2hSZXF1ZXN0GikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlB1c2hSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_module_v1alpha1_module, fileDesc_buf_alpha_registry_v1alpha1_module]);
 
 /**
