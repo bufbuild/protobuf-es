@@ -14,88 +14,180 @@
 
 import { describe, expect, test } from "@jest/globals";
 import {
-  toBinary,
   create,
+  setExtension,
+  getExtension,
+  toBinary,
   fromBinary,
-  mergeFromBinary,
-  equals,
 } from "@bufbuild/protobuf/next";
 import type { MessageInitShape } from "@bufbuild/protobuf/next";
-import {
-  ScalarValuesMessage,
-  RepeatedScalarValuesMessage,
-} from "../gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessage } from "../gen/ts/extra/msg-maps_pb.js";
 import {
   RepeatedScalarValuesMessageDesc,
   ScalarValuesMessageDesc,
 } from "../gen/ts/extra/msg-scalar_pbv2.js";
-import type {
-  DescMessage,
-  Message,
-  MessageType,
-  PartialMessage,
-} from "@bufbuild/protobuf";
+import { protoInt64 } from "@bufbuild/protobuf";
 import { MapsMessageDesc } from "../gen/ts/extra/msg-maps_pbv2.js";
 import { MessageFieldMessageDesc } from "../gen/ts/extra/msg-message_pbv2.js";
-import { MessageFieldMessage } from "../gen/ts/extra/msg-message_pb.js";
+import type { DescMessage } from "@bufbuild/protobuf";
 
-describe("binary serialization", () => {
-  describe("should be identical to v1", () => {
-    test("for scalar fields", () => {
-      testV1Compat(ScalarValuesMessage, ScalarValuesMessageDesc, {
-        boolField: true,
-        doubleField: 1.23,
-        int32Field: 123,
-        stringField: "foo",
-      });
+import {
+  Proto2ExtendeeDesc,
+  string_ext,
+} from "../gen/ts/extra/extensions-proto2_pbv2.js";
+import { OneofMessageDesc } from "../gen/ts/extra/msg-oneof_pbv2.js";
+import { JsonNamesMessageDesc } from "../gen/ts/extra/msg-json-names_pbv2.js";
+import { JSTypeProto2NormalMessageDesc } from "../gen/ts/extra/jstype-proto2_pbv2.js";
+import { StructDesc, ValueDesc } from "@bufbuild/protobuf/next/wkt";
+
+describe(`binary serialization`, () => {
+  testBinary(ScalarValuesMessageDesc, {
+    doubleField: 0.75,
+    floatField: -0.75,
+    int64Field: protoInt64.parse(-1),
+    uint64Field: protoInt64.uParse(1),
+    int32Field: -123,
+    fixed64Field: protoInt64.uParse(1),
+    fixed32Field: 123,
+    boolField: true,
+    stringField: "hello world",
+    bytesField: new Uint8Array([
+      104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
+    ]),
+    uint32Field: 123,
+    sfixed32Field: -123,
+    sfixed64Field: protoInt64.parse(-1),
+    sint32Field: -1,
+    sint64Field: protoInt64.parse(-1),
+  });
+  testBinary(RepeatedScalarValuesMessageDesc, {
+    doubleField: [0.75, 0, 1],
+    floatField: [0.75, -0.75],
+    int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
+    uint64Field: [protoInt64.uParse(1), protoInt64.uParse(2)],
+    int32Field: [-123, 500],
+    fixed64Field: [protoInt64.uParse(1), protoInt64.uParse(99)],
+    fixed32Field: [123, 999],
+    boolField: [true, false, true],
+    stringField: ["hello", "world"],
+    bytesField: [
+      new Uint8Array([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]),
+    ],
+    uint32Field: [123, 123],
+    sfixed32Field: [-123, -123, -123],
+    sfixed64Field: [
+      protoInt64.parse(-1),
+      protoInt64.parse(-2),
+      protoInt64.parse(100),
+    ],
+    sint32Field: [-1, -2, 999],
+    sint64Field: [
+      protoInt64.parse(-1),
+      protoInt64.parse(-99),
+      protoInt64.parse(99),
+    ],
+  });
+  testBinary(MessageFieldMessageDesc, {
+    messageField: { name: "test" },
+    repeatedMessageField: [{ name: "a" }, { name: "b" }],
+  });
+  testBinary(MapsMessageDesc, {
+    strStrField: { a: "str", b: "xx" },
+    strInt32Field: { a: 123, b: 455 },
+    strInt64Field: { a: protoInt64.parse(123) },
+    strBoolField: { a: true, b: false },
+    strBytesField: {
+      a: new Uint8Array([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]),
+    },
+    int32StrField: { 123: "hello" },
+    int64StrField: { "9223372036854775807": "hello" },
+    boolStrField: { true: "yes", false: "no" },
+    strMsgField: {
+      a: {},
+    },
+    int32MsgField: {
+      "32": {},
+    },
+    int64MsgField: {
+      "64": {},
+    },
+    strEnuField: { a: 0, b: 1, c: 2 },
+    int32EnuField: { 1: 0, 2: 1, 0: 2 },
+    int64EnuField: { "-1": 0, "2": 1, "0": 2 },
+  });
+  testBinary(OneofMessageDesc, {
+    message: {
+      case: "foo",
+      value: {
+        name: "max",
+        toggle: false,
+      },
+    },
+    scalar: { case: undefined },
+    enum: { case: undefined },
+  });
+  testBinary(JsonNamesMessageDesc, {
+    a: "a",
+    b: "b",
+    c: "c",
+  });
+  testBinary(JSTypeProto2NormalMessageDesc, {
+    fixed64Field: protoInt64.uParse(123),
+    int64Field: protoInt64.parse(123),
+    sfixed64Field: protoInt64.parse(123),
+    sint64Field: protoInt64.parse(123),
+    uint64Field: protoInt64.uParse(123),
+    repeatedFixed64Field: [protoInt64.uParse(123)],
+    repeatedInt64Field: [protoInt64.parse(123)],
+    repeatedSfixed64Field: [protoInt64.parse(123)],
+    repeatedSint64Field: [protoInt64.parse(123)],
+    repeatedUint64Field: [protoInt64.uParse(123)],
+  });
+  testBinary(StructDesc, {
+    fields: {
+      a: { kind: { case: "numberValue", value: 123 } },
+      b: { kind: { case: "stringValue", value: "abc" } },
+    },
+  });
+  describe("Value", () => {
+    testBinary(ValueDesc, {
+      kind: { case: "boolValue", value: true },
     });
-    test("for message fields", () => {
-      testV1Compat(MessageFieldMessage, MessageFieldMessageDesc, {
-        messageField: {
-          name: "foo",
-        },
-        repeatedMessageField: [
-          {
-            name: "bar",
+    describe("Value with Struct field", () => {
+      testBinary(ValueDesc, {
+        kind: {
+          case: "structValue",
+          value: {
+            fields: {
+              foo: { kind: { case: "numberValue", value: 1 } },
+            },
           },
-        ],
-      });
-    });
-    test("for repeated scalar fields", () => {
-      testV1Compat(
-        RepeatedScalarValuesMessage,
-        RepeatedScalarValuesMessageDesc,
-        {
-          boolField: [true, false],
-          stringField: ["foo", "bar"],
-          doubleField: [1.23, 23.1],
-          int32Field: [123, 321],
         },
-      );
-    });
-    test("for map fields", () => {
-      testV1Compat(MapsMessage, MapsMessageDesc, {
-        boolStrField: { true: "foo" },
-        int32MsgField: { 123: { strStrField: { key: "value" } } },
       });
+    });
+  });
+  describe("extensions", () => {
+    test("encode and decode an extension", () => {
+      const extendee = create(Proto2ExtendeeDesc);
+      setExtension(extendee, string_ext, "foo");
+      expect(
+        getExtension(
+          fromBinary(
+            Proto2ExtendeeDesc,
+            toBinary(Proto2ExtendeeDesc, extendee),
+          ),
+          string_ext,
+        ),
+      ).toEqual("foo");
     });
   });
 });
 
-function testV1Compat<T extends Message<T>, Desc extends DescMessage>(
-  type: MessageType<T>,
+function testBinary<Desc extends DescMessage>(
   desc: Desc,
-  init: PartialMessage<T> & MessageInitShape<Desc>,
+  init: MessageInitShape<Desc>,
 ) {
-  const v1Msg = new type(init);
-  const v1Bytes = v1Msg.toBinary();
-  const v2Msg = create(desc, init);
-  const v2Bytes = toBinary(desc, v2Msg);
-  expect(type.fromBinary(v2Bytes)).toEqual(v1Msg);
-  expect(equals(desc, fromBinary(desc, v1Bytes), v2Msg)).toBe(true);
-  v1Msg.fromBinary(v2Bytes);
-  mergeFromBinary(desc, v2Msg, v1Bytes);
-  expect(type.fromBinary(toBinary(desc, v2Msg))).toEqual(v1Msg);
-  expect(equals(desc, fromBinary(desc, v1Msg.toBinary()), v2Msg)).toBe(true);
+  test(desc.typeName, () => {
+    const msg = create(desc, init);
+    expect(fromBinary(desc, toBinary(desc, msg))).toStrictEqual(msg);
+  });
 }
