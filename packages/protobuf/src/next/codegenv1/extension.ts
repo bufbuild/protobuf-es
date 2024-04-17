@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Message } from "../types.js";
-import type { DescFile } from "../../descriptor-set.js";
+import type { DescFile } from "../../desc-types.js";
 import type { GenDescExtension } from "./types.js";
 
 /**

@@ -43,7 +43,7 @@ import type {
   DescOneof,
   DescService,
   SupportedEdition,
-} from "../../descriptor-set.js";
+} from "../../desc-types.js";
 import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,

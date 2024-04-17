@@ -28,7 +28,7 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
-} from "./descriptor-set.js";
+} from "./desc-types.js";
 import type { ScalarValue } from "./scalar.js";
 import { LongType, ScalarType } from "./scalar.js";
 

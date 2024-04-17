@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "../descriptor-set.js";
+import type { DescEnum, DescField, DescMessage } from "../desc-types.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
 import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";

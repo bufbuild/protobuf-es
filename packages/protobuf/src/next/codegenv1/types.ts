@@ -19,7 +19,7 @@ import type {
   DescFile,
   DescMessage,
   DescService,
-} from "../../descriptor-set.js";
+} from "../../desc-types.js";
 
 export type GenDescFile = DescFile;
 

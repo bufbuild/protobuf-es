@@ -17,11 +17,7 @@ import type {
   GenDescExtension,
   GenDescMessage,
 } from "./codegenv1/types.js";
-import type {
-  DescEnum,
-  DescExtension,
-  DescMessage,
-} from "../descriptor-set.js";
+import type { DescEnum, DescExtension, DescMessage } from "../desc-types.js";
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
 

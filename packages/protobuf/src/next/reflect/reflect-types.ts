@@ -12,11 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  DescField,
-  DescMessage,
-  DescOneof,
-} from "../../descriptor-set.js";
+import type { DescField, DescMessage, DescOneof } from "../../desc-types.js";
 import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";

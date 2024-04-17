@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescExtension, DescField } from "../descriptor-set.js";
+import type { DescExtension, DescField } from "../desc-types.js";
 import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";

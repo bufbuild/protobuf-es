@@ -20,7 +20,7 @@ import type {
   ReflectMessage,
 } from "./reflect-types.js";
 import { unsafeLocal } from "./unsafe.js";
-import type { DescField, DescMessage } from "../../descriptor-set.js";
+import type { DescField, DescMessage } from "../../desc-types.js";
 import { isMessage } from "../is-message.js";
 
 export function isObject(arg: unknown): arg is Record<string, unknown> {

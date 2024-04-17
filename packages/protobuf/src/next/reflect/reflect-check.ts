@@ -15,7 +15,7 @@
 import { ScalarType, scalarTypeDescription } from "./scalar.js";
 import type { InvalidScalarValueErr } from "./scalar.js";
 import { checkScalarValue } from "./scalar.js";
-import type { DescEnum, DescField, DescMessage } from "../../descriptor-set.js";
+import type { DescEnum, DescField, DescMessage } from "../../desc-types.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";

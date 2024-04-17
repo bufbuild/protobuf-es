@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage } from "../descriptor-set.js";
+import type { DescField, DescMessage } from "../desc-types.js";
 import type { MessageShape } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";

@@ -19,8 +19,8 @@ import type {
   DescField,
   DescMessage,
   DescService,
-} from "../descriptor-set.js";
-import type { DescMethod, DescOneof } from "../descriptor-set.js";
+} from "../desc-types.js";
+import type { DescMethod, DescOneof } from "../desc-types.js";
 
 /**
  * Returns the name of a protobuf element in generated code.

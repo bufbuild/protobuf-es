@@ -69,8 +69,8 @@ import type {
   DescField,
   DescFile,
   DescMessage,
-  DescriptorSet,
-} from "./descriptor-set.js";
+} from "./desc-types.js";
+import type { DescriptorSet } from "./descriptor-set.js";
 import { createDescriptorSet } from "./create-descriptor-set.js";
 import type { Extension } from "./extension.js";
 import type { ExtensionFieldSource } from "./private/extensions.js";

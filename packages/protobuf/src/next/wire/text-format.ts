@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum } from "../../descriptor-set.js";
+import type { DescEnum } from "../../desc-types.js";
 import { assert } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { ScalarType } from "../reflect/scalar.js";

@@ -15,7 +15,7 @@
 import type { Message, MessageShape } from "./types.js";
 import { localName } from "./reflect/names.js";
 import { unsafeClear, unsafeIsSet } from "./reflect/unsafe.js";
-import type { DescMessage } from "../descriptor-set.js";
+import type { DescMessage } from "../desc-types.js";
 
 /**
  * Returns true if the field is set.

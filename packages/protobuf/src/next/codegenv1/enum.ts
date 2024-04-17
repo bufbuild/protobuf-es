@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescFile } from "../../descriptor-set.js";
+import type { DescEnum, DescFile } from "../../desc-types.js";
 import { localName } from "../reflect/names.js";
 import type { GenDescEnum } from "./types.js";
 

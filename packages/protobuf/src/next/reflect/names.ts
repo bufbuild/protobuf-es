@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnumValue, DescField } from "../../descriptor-set.js";
-import type { DescMethod, DescOneof } from "../../descriptor-set.js";
+import type { DescEnumValue, DescField } from "../../desc-types.js";
+import type { DescMethod, DescOneof } from "../../desc-types.js";
 
 /**
  * Returns the name of a protobuf element in generated code.

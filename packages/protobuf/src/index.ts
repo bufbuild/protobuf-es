@@ -66,7 +66,6 @@ export type {
 } from "./json-format.js";
 
 export type {
-  DescriptorSet,
   AnyDesc,
   DescFile,
   DescEnum,
@@ -79,7 +78,8 @@ export type {
   DescExtension,
   DescComments,
   SupportedEdition,
-} from "./descriptor-set.js";
+} from "./desc-types.js";
+export type { DescriptorSet } from "./descriptor-set.js";
 export { createDescriptorSet } from "./create-descriptor-set.js";
 export type {
   IMessageTypeRegistry,

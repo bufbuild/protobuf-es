@@ -20,9 +20,9 @@ import type {
   DescEnum,
   DescExtension,
   DescMessage,
-  DescriptorSet,
   DescService,
-} from "./descriptor-set.js";
+} from "./desc-types.js";
+import type { DescriptorSet } from "./descriptor-set.js";
 import { createDescFileSet } from "./next/reflect/desc-set.js";
 import { createV2FileDescriptorSetFromV1Input } from "./create-descriptor-set-compat.js";
 

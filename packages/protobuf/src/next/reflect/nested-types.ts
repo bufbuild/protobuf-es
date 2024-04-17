@@ -18,7 +18,7 @@ import type {
   DescFile,
   DescMessage,
   DescService,
-} from "../../descriptor-set.js";
+} from "../../desc-types.js";
 
 export function* nestedTypes(
   desc: DescFile | DescMessage,

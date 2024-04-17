@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescOneof } from "../../descriptor-set.js";
+import type { DescField, DescOneof } from "../../desc-types.js";
 import { localName } from "./names.js";
 import type { OneofADT } from "./guard.js";
 import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";

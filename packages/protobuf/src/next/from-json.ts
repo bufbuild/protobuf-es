@@ -20,7 +20,7 @@ import type {
   DescField,
   DescMessage,
   DescOneof,
-} from "../descriptor-set.js";
+} from "../desc-types.js";
 import type { JsonValue } from "./json-value.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";

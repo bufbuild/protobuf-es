@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { isMessage } from "./is-message.js";
-import type { DescField, DescMessage, DescOneof } from "../descriptor-set.js";
+import type { DescField, DescMessage, DescOneof } from "../desc-types.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { localName } from "./reflect/names.js";
 import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";

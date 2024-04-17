@@ -15,7 +15,7 @@
 import type { MessageShape } from "./types.js";
 import { scalarEquals } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import type { DescField, DescMessage } from "../descriptor-set.js";
+import type { DescField, DescMessage } from "../desc-types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 
 /**

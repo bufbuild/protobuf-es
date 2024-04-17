@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { MessageShape } from "./types.js";
-import type { DescField, DescMessage } from "../descriptor-set.js";
+import type { DescField, DescMessage } from "../desc-types.js";
 import type { ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { isReflectMessage } from "./reflect/guard.js";

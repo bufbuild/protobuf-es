@@ -14,7 +14,7 @@
 
 import { Message } from "../message.js";
 import type { MessageType } from "../message-type.js";
-import type { DescExtension, DescField } from "../descriptor-set.js";
+import type { DescExtension, DescField } from "../desc-types.js";
 import { ScalarType } from "../scalar.js";
 import { isMessage } from "../is-message.js";
 
