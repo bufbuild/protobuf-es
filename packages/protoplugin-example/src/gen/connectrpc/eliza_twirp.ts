@@ -18,8 +18,8 @@
 
 import type { SayRequest, SayResponse } from "./eliza_pbv2.js";
 import { SayRequestDesc, SayResponseDesc } from "./eliza_pbv2.js";
-import type { JsonValue } from "@bufbuild/protobuf/next";
-import { fromJson, toJsonString } from "@bufbuild/protobuf/next";
+import type { JsonValue } from "@bufbuild/protobuf";
+import { fromJson, toJsonString } from "@bufbuild/protobuf";
 
 /**
  * This is a modified copy of ElizaService from https://buf.build/connectrpc/eliza

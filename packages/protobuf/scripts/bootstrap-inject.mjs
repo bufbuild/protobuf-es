@@ -21,14 +21,14 @@ import {
   createFileRegistry,
   localName,
   reflect,
-} from "@bufbuild/protobuf/next/reflect";
-import { fromBinary } from "@bufbuild/protobuf/next";
+} from "@bufbuild/protobuf/reflect";
+import { fromBinary } from "@bufbuild/protobuf";
 import {
   Edition,
   FeatureSetDefaultsDesc,
   FeatureSetDesc,
   FileDescriptorSetDesc,
-} from "@bufbuild/protobuf/next/wkt";
+} from "@bufbuild/protobuf/wkt";
 
 const injectComment = "// bootstrap-inject";
 
@@ -220,7 +220,7 @@ function injectVars(text, vars) {
  * @param {UpstreamProtobuf} upstream
  * @param {string} [minimumEdition]
  * @param {string} [maximumEdition]
- * @return {Promise<import("@bufbuild/protobuf/next/wkt").FeatureSetDefaults>}
+ * @return {Promise<import("@bufbuild/protobuf/wkt").FeatureSetDefaults>}
  */
 async function compileDefaults(upstream, minimumEdition, maximumEdition) {
   const featureSetDefaultsBytes = await upstream.getFeatureSetDefaults(

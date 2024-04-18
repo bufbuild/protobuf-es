@@ -23,7 +23,7 @@ describe("GeneratedFile.runtime", () => {
       generateAny(f) {
         const imp = f.runtime.Message;
         expect(imp.name).toBe("Message");
-        expect(imp.from).toBe("@bufbuild/protobuf/next");
+        expect(imp.from).toBe("@bufbuild/protobuf");
         expect(imp.typeOnly).toBe(true);
       },
     });

@@ -17,7 +17,7 @@ import {
   AddressBookDesc,
   Person_PhoneType,
 } from "./gen/addressbook_pbv2.js";
-import { fromBinary } from "@bufbuild/protobuf/next";
+import { fromBinary } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 
 if (process.argv.length !== 3) {

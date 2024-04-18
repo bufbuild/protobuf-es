@@ -14,7 +14,7 @@
 
 import * as assert from "node:assert/strict";
 import { describe, it, mock } from "node:test";
-import { create } from "@bufbuild/protobuf/next";
+import { create } from "@bufbuild/protobuf";
 import { SayRequestDesc } from "../src/gen/connectrpc/eliza_pbv2";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
 

@@ -22,13 +22,11 @@ import {
   type MessageShape,
   toBinary,
   toJsonString,
-} from "@bufbuild/protobuf/next";
-import { createRegistry } from "@bufbuild/protobuf/next/reflect";
-import type {
-  ConformanceRequest,
-  ConformanceResponse,
-} from "./gen/conformance/conformance_pbv2.js";
+} from "@bufbuild/protobuf";
+import { createRegistry } from "@bufbuild/protobuf/reflect";
 import {
+  type ConformanceRequest,
+  type ConformanceResponse,
   ConformanceRequestDesc,
   ConformanceResponseDesc,
   FailureSetDesc,
@@ -44,7 +42,7 @@ import {
   fileDesc_google_protobuf_struct,
   fileDesc_google_protobuf_timestamp,
   fileDesc_google_protobuf_wrappers,
-} from "@bufbuild/protobuf/next/wkt";
+} from "@bufbuild/protobuf/wkt";
 
 const registry = createRegistry(
   fileDesc_google_protobuf_test_messages_proto2,

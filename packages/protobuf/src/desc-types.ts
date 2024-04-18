@@ -24,12 +24,8 @@ import type {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "./next/wkt/gen/google/protobuf/descriptor_pbv2.js";
-import type {
-  LongType,
-  ScalarType,
-  ScalarValue,
-} from "./next/reflect/scalar.js";
+} from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { LongType, ScalarType, ScalarValue } from "./reflect/scalar.js";
 
 export type SupportedEdition = Extract<
   Edition,

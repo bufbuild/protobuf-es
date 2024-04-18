@@ -15,11 +15,11 @@
 import type { Plugin } from "./plugin.js";
 import type { ReadStream, WriteStream } from "tty";
 import { isPluginOptionError, reasonToString } from "./error.js";
-import { fromBinary, toBinary } from "@bufbuild/protobuf/next";
+import { fromBinary, toBinary } from "@bufbuild/protobuf";
 import {
   CodeGeneratorRequestDesc,
   CodeGeneratorResponseDesc,
-} from "@bufbuild/protobuf/next/wkt";
+} from "@bufbuild/protobuf/wkt";
 
 /**
  * Run a plugin with Node.js.

@@ -20,7 +20,7 @@ import {
 } from "./gen/addressbook_pbv2.js";
 import { createInterface } from "readline";
 import { readFileSync, existsSync, writeFileSync } from "fs";
-import { create, mergeFromBinary, toBinary } from "@bufbuild/protobuf/next";
+import { create, mergeFromBinary, toBinary } from "@bufbuild/protobuf";
 
 async function main() {
   if (process.argv.length !== 3) {

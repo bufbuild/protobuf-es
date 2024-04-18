@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
+import { getExtension, hasExtension } from "@bufbuild/protobuf";
+import { localName } from "@bufbuild/protobuf/reflect";
 import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protobuf/next/reflect";
 import { default_host } from "./gen/customoptions/default_host_pbv2.js";
 import { version } from "../package.json";
-import { getExtension, hasExtension } from "@bufbuild/protobuf/next";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
@@ -59,7 +59,7 @@ function generateTs(schema: Schema) {
           const inputDesc = f.importDesc(method.input);
           const outputType = f.importShape(method.output);
           const outputDesc = f.importDesc(method.output);
-          const jsonValue = f.import("JsonValue", "@bufbuild/protobuf/next").toTypeOnly();
+          const jsonValue = f.import("JsonValue", "@bufbuild/protobuf").toTypeOnly();
           f.print("    async ", localName(method), "(request: ", inputType, "): Promise<", outputType, "> {");
           f.print("        const headers = new Headers([]);");
           f.print("        headers.set('content-type', 'application/json');");

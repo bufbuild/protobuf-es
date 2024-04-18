@@ -14,7 +14,7 @@
 
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
-import { symbols } from "@bufbuild/protobuf/next/codegenv1";
+import { symbols } from "@bufbuild/protobuf/codegenv1";
 
 export type RuntimeImports = mapRecord<typeof symbols>;
 

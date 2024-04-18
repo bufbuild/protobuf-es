@@ -14,7 +14,7 @@
 
 import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp";
 import { SayRequestDesc } from "./gen/connectrpc/eliza_pbv2";
-import { create } from "@bufbuild/protobuf/next";
+import { create } from "@bufbuild/protobuf";
 
 const client = new ElizaServiceClient();
 const input = document.querySelector("input")!;

@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/next/wkt";
-import { create } from "@bufbuild/protobuf/next";
+import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/wkt";
+import { create } from "@bufbuild/protobuf";
 import type { Plugin } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 

@@ -19,8 +19,8 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { wktPublicImportPaths } from "@bufbuild/protobuf/next/codegenv1";
-import { nestedTypes } from "@bufbuild/protobuf/next/reflect";
+import { wktPublicImportPaths } from "@bufbuild/protobuf/codegenv1";
+import { nestedTypes } from "@bufbuild/protobuf/reflect";
 import { safeIdentifier } from "./safe-identifier.js";
 
 export function generateFilePath(
