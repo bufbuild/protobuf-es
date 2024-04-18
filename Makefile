@@ -152,7 +152,6 @@ perf: $(BUILD)/protobuf-test
 .PHONY: bootstrap
 bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Bootstrap well-known types and edition features-set defaults in @bufbuild/protobuf from upstream protobuf
 	npm run -w packages/protobuf bootstrap:wkt
-	npm run -w packages/protobuf bootstrap:wktv2
 	npm run -w packages/protobuf bootstrap:inject
 
 .PHONY: setversion
