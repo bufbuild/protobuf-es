@@ -18,8 +18,7 @@
     "generate:wkt:js": "protoc --experimental_editions --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts $(upstream-files wkt)",
     "generate:desc": "protoc --experimental_editions --descriptor_set_out descriptorset.binpb --include_imports --include_source_info --proto_path=. --proto_path=$(upstream-include test) $(buf ls-files extra) $(upstream-files test)",
     "postgenerate": "license-header src/gen",
-    "perf": "tsx src/perf.ts",
-    "perf:next": "tsx src/next/perf.ts",
+    "perf": "tsx src/next/perf.ts",
     "test": "npm run test:bigint && npm run test:string",
     "test:bigint": "BUF_BIGINT_DISABLE=0 NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest"
