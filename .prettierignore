@@ -3,5 +3,4 @@
 /packages/*/.tmp
 /packages/*/dist
 /packages/*/src/gen
-/packages/protobuf/src/google
 /packages/protobuf/src/next/wkt/gen
