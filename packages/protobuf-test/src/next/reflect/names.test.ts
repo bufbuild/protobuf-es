@@ -18,8 +18,6 @@ import {
   protoCamelCase,
   localName,
 } from "@bufbuild/protobuf/next/reflect";
-import { UpstreamProtobuf } from "upstream-protobuf";
-import { FileDescriptorSet } from "@bufbuild/protobuf";
 import { compileEnum, compileField, compileService } from "../helpers.js";
 
 describe("localName", () => {
@@ -165,7 +163,6 @@ describe("safeObjectProperty", () => {
 });
 
 describe("protoCamelCase", () => {
-  const upstream = new UpstreamProtobuf();
   test.each([
     "foo_bar",
     "__proto__",
@@ -188,16 +185,13 @@ describe("protoCamelCase", () => {
     "field_name17__",
     "Field_name18__",
   ])("returns same name as protoc for %s", async (name) => {
-    const bytes = await upstream.compileToDescriptorSet({
-      "i.proto": `
+    const field = await compileField(`
       syntax="proto3";
       message M { 
         int32 ${name} = 1;
-      }`,
-    });
-    const protocJsonName =
-      FileDescriptorSet.fromBinary(bytes).file[0].messageType[0].field[0]
-        .jsonName;
+      }
+    `);
+    const protocJsonName = field.proto.jsonName;
     expect(protoCamelCase(name)).toBe(protocJsonName);
   });
 });
