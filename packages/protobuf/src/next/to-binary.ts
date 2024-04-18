@@ -56,17 +56,18 @@ export function toBinary<Desc extends DescMessage>(
   message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array {
-  return reflectToBinary(
-    reflect(messageDesc, message),
+  return writeFields(
+    new BinaryWriter(),
     makeWriteOptions(options),
-  );
+    reflect(messageDesc, message),
+  ).finish();
 }
 
-function reflectToBinary(
-  msg: ReflectMessage,
+function writeFields(
+  writer: BinaryWriter,
   opts: BinaryWriteOptions,
-): Uint8Array {
-  const w = new BinaryWriter();
+  msg: ReflectMessage,
+): BinaryWriter {
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (
@@ -80,14 +81,14 @@ function reflectToBinary(
       }
       continue;
     }
-    writeField(w, opts, msg, f);
+    writeField(writer, opts, msg, f);
   }
   if (opts.writeUnknownFields) {
     for (const { no, wireType, data } of msg.getUnknown() ?? []) {
-      w.tag(no, wireType).raw(data);
+      writer.tag(no, wireType).raw(data);
     }
   }
-  return w.finish();
+  return writer;
 }
 
 /**
@@ -143,14 +144,18 @@ function writeMessageField(
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
   message: ReflectMessage,
 ) {
-  const rm = reflectToBinary(message, opts);
   if (field.delimitedEncoding) {
-    writer
-      .tag(field.number, WireType.StartGroup)
-      .raw(rm) // TODO: Optimise this to not create a new writer.
-      .tag(field.number, WireType.EndGroup);
+    writeFields(
+      writer.tag(field.number, WireType.StartGroup),
+      opts,
+      message,
+    ).tag(field.number, WireType.EndGroup);
   } else {
-    writer.tag(field.number, WireType.LengthDelimited).bytes(rm);
+    writeFields(
+      writer.tag(field.number, WireType.LengthDelimited).fork(),
+      opts,
+      message,
+    ).join();
   }
 }
 
@@ -202,9 +207,11 @@ function writeMapEntry(
       writeScalar(writer, field.scalar ?? ScalarType.INT32, 2, value);
       break;
     case "message":
-      writer
-        .tag(2, WireType.LengthDelimited)
-        .bytes(reflectToBinary(value as ReflectMessage, opts));
+      writeFields(
+        writer.tag(2, WireType.LengthDelimited).fork(),
+        opts,
+        value as ReflectMessage,
+      ).join();
       break;
   }
   writer.join();
