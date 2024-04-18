@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
-import { getExtension } from "@bufbuild/protobuf/next";
+import { getExtension } from "@bufbuild/protobuf";
 import { compileFile } from "./helpers.js";
 import { createTestPluginAndRun } from "./helpers.js";
 

@@ -9,7 +9,7 @@
     "directory": "packages/protoc-gen-es"
   },
   "bin": {
-    "protoc-gen-es-next": "bin/protoc-gen-es-next"
+    "protoc-gen-es": "bin/protoc-gen-es"
   },
   "engines": {
     "node": ">=14"

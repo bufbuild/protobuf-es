@@ -20,7 +20,8 @@ import type {
   AnyDesc,
   DescFile,
 } from "@bufbuild/protobuf";
-import { ScalarType } from "@bufbuild/protobuf/next/reflect";
+import { isFieldSet } from "@bufbuild/protobuf";
+import { ScalarType, protoCamelCase } from "@bufbuild/protobuf/reflect";
 import {
   Edition,
   FieldDescriptorProto_Label,
@@ -29,10 +30,8 @@ import {
   FieldOptions_JSType,
   FieldOptionsDesc,
   SourceCodeInfo_LocationDesc,
-} from "@bufbuild/protobuf/next/wkt";
-import type { SourceCodeInfo } from "@bufbuild/protobuf/next/wkt";
-import { isFieldSet } from "@bufbuild/protobuf/next";
-import { protoCamelCase } from "@bufbuild/protobuf/next/reflect";
+} from "@bufbuild/protobuf/wkt";
+import type { SourceCodeInfo } from "@bufbuild/protobuf/wkt";
 
 /**
  * Get comments on the package element in the protobuf source.

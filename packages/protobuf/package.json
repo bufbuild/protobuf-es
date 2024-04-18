@@ -14,9 +14,9 @@
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
     "bootstrap:inject": "node scripts/bootstrap-inject.mjs src",
-    "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp/v2 && cp -rp src/next/wkt/gen/* .tmp/v2",
-    "bootstrap:wkt": "protoc --es-next_out=src/next/wkt/gen --es-next_opt=bootstrap_wkt=true,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/next/wkt/gen",
-    "postbootstrap:wkt": "diff >/dev/null -r .tmp/v2 src/next/wkt/gen && cp -rp .tmp/v2/* src/next/wkt/gen || true",
+    "prebootstrap:wkt": "rm -rf .tmp && mkdir -p .tmp && cp -rp src/wkt/gen/* .tmp",
+    "bootstrap:wkt": "protoc --es_out=src/wkt/gen --es_opt=bootstrap_wkt=true,target=ts --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/wkt/gen",
+    "postbootstrap:wkt": "diff >/dev/null -r .tmp src/wkt/gen && cp -rp .tmp/* src/wkt/gen || true",
     "attw": "attw --pack"
   },
   "type": "module",
@@ -27,43 +27,36 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
-    "./next": {
-      "import": "./dist/esm/next/index.js",
-      "require": "./dist/cjs/next/index.js"
+    "./codegenv1": {
+      "import": "./dist/esm/codegenv1/index.js",
+      "require": "./dist/cjs/codegenv1/index.js"
     },
-    "./next/codegenv1": {
-      "import": "./dist/esm/next/codegenv1/index.js",
-      "require": "./dist/cjs/next/codegenv1/index.js"
+    "./reflect": {
+      "import": "./dist/esm/reflect/index.js",
+      "require": "./dist/cjs/reflect/index.js"
     },
-    "./next/reflect": {
-      "import": "./dist/esm/next/reflect/index.js",
-      "require": "./dist/cjs/next/reflect/index.js"
+    "./wkt": {
+      "import": "./dist/esm/wkt/index.js",
+      "require": "./dist/cjs/wkt/index.js"
     },
-    "./next/wkt": {
-      "import": "./dist/esm/next/wkt/index.js",
-      "require": "./dist/cjs/next/wkt/index.js"
-    },
-    "./next/wire": {
-      "import": "./dist/esm/next/wire/index.js",
-      "require": "./dist/cjs/next/wire/index.js"
+    "./wire": {
+      "import": "./dist/esm/wire/index.js",
+      "require": "./dist/cjs/wire/index.js"
     }
   },
   "typesVersions": {
     "*": {
-      "next": [
-        "./dist/cjs/next/index.d.ts"
+      "codegenv1": [
+        "./dist/cjs/codegenv1/index.d.ts"
       ],
-      "next/codegenv1": [
-        "./dist/cjs/next/codegenv1/index.d.ts"
+      "reflect": [
+        "./dist/cjs/reflect/index.d.ts"
       ],
-      "next/reflect": [
-        "./dist/cjs/next/reflect/index.d.ts"
+      "wkt": [
+        "./dist/cjs/wkt/index.d.ts"
       ],
-      "next/wkt": [
-        "./dist/cjs/next/wkt/index.d.ts"
-      ],
-      "next/wire": [
-        "./dist/cjs/next/wire/index.d.ts"
+      "wire": [
+        "./dist/cjs/wire/index.d.ts"
       ]
     }
   },

@@ -20,8 +20,8 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf/next";
-import { LongType, ScalarType } from "@bufbuild/protobuf/next/reflect";
+import { protoInt64 } from "@bufbuild/protobuf";
+import { LongType, ScalarType } from "@bufbuild/protobuf/reflect";
 import type { ImportSymbol } from "./import-symbol.js";
 import { createImportSymbol } from "./import-symbol.js";
 import { makeImportPathRelative } from "./import-path.js";

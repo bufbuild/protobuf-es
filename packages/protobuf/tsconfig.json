@@ -1,11 +1,10 @@
 {
   "files": [
     "src/index.ts",
-    "src/next/index.ts",
-    "src/next/codegenv1/index.ts",
-    "src/next/reflect/index.ts",
-    "src/next/wkt/index.ts",
-    "src/next/wire/index.ts"
+    "src/codegenv1/index.ts",
+    "src/reflect/index.ts",
+    "src/wkt/index.ts",
+    "src/wire/index.ts"
   ],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {

@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { protoInt64 } from "@bufbuild/protobuf/next";
-import { LongType, ScalarType } from "@bufbuild/protobuf/next/reflect";
+import { protoInt64 } from "@bufbuild/protobuf";
+import { LongType, ScalarType } from "@bufbuild/protobuf/reflect";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
@@ -27,7 +27,7 @@ describe("GeneratedFile.print", () => {
       f.print(18446744073709551615n); // max unsigned
     });
     expect(lines).toStrictEqual([
-      `import { protoInt64 } from "@bufbuild/protobuf/next";`,
+      `import { protoInt64 } from "@bufbuild/protobuf";`,
       ``,
       `protoInt64.zero`,
       `protoInt64.parse("-9223372036854775808")`,
@@ -142,7 +142,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
           ``,
           `protoInt64.zero`,
         ]);
@@ -157,7 +157,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
           ``,
           `protoInt64.parse("123")`,
         ]);
@@ -176,7 +176,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
           ``,
           `protoInt64.zero`,
         ]);
@@ -191,7 +191,7 @@ describe("GeneratedFile.print", () => {
           });
         });
         expect(lines).toStrictEqual([
-          `import { protoInt64 } from "@bufbuild/protobuf/next";`,
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
           ``,
           `protoInt64.uParse("123")`,
         ]);
@@ -289,7 +289,7 @@ describe("GeneratedFile.print", () => {
       f.print(f.runtime.create, "(FooDesc);");
     });
     expect(lines).toStrictEqual([
-      'import { create } from "@bufbuild/protobuf/next";',
+      'import { create } from "@bufbuild/protobuf";',
       "",
       "create(FooDesc);",
     ]);

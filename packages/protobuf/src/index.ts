@@ -12,6 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+export * from "./types.js";
+export * from "./is-message.js";
+export * from "./create.js";
+export * from "./clone.js";
 export * from "./desc-types.js";
-export * from "./next/proto-int64.js";
-export type { JsonValue } from "./next/json-value.js";
+export * from "./equals.js";
+export * from "./fields.js";
+export type { JsonValue, JsonObject } from "./json-value.js";
+export { toBinary } from "./to-binary.js";
+export type { BinaryWriteOptions } from "./to-binary.js";
+export { fromBinary, mergeFromBinary } from "./from-binary.js";
+export type { BinaryReadOptions } from "./from-binary.js";
+export * from "./to-json.js";
+export * from "./from-json.js";
+export {
+  hasExtension,
+  getExtension,
+  setExtension,
+  clearExtension,
+} from "./extensions.js";
+export * from "./proto-int64.js";

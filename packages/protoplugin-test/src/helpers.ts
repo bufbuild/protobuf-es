@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 import {
   CodeGeneratorRequestDesc,
   FileDescriptorSetDesc,
-} from "@bufbuild/protobuf/next/wkt";
-import { fromBinary } from "@bufbuild/protobuf/next";
-import { createFileRegistry } from "@bufbuild/protobuf/next/reflect";
+} from "@bufbuild/protobuf/wkt";
+import { fromBinary } from "@bufbuild/protobuf";
+import { createFileRegistry } from "@bufbuild/protobuf/reflect";
 import type { Plugin } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {

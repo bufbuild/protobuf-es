@@ -12,18 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { protoInt64 } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 import type { SupportedEdition } from "@bufbuild/protobuf";
-import { create } from "@bufbuild/protobuf/next";
 import {
   minimumEdition as minimumEditionUpstream,
   maximumEdition as maximumEditionUpstream,
-} from "@bufbuild/protobuf/next/reflect";
-import type { CodeGeneratorResponse } from "@bufbuild/protobuf/next/wkt";
+} from "@bufbuild/protobuf/reflect";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 import {
   CodeGeneratorResponse_Feature,
   CodeGeneratorResponseDesc,
-} from "@bufbuild/protobuf/next/wkt";
+} from "@bufbuild/protobuf/wkt";
 import { createSchema } from "./ecmascript/schema.js";
 import type { Schema } from "./ecmascript/schema.js";
 import type { FileInfo } from "./ecmascript/generated-file.js";

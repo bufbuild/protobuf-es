@@ -3,4 +3,4 @@
 /packages/*/.tmp
 /packages/*/dist
 /packages/*/src/gen
-/packages/protobuf/src/next/wkt/gen
+/packages/protobuf/src/wkt/gen

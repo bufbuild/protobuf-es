@@ -19,14 +19,10 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { create } from "@bufbuild/protobuf/next";
-import type { CodeGeneratorRequest } from "@bufbuild/protobuf/next/wkt";
-import { Edition } from "@bufbuild/protobuf/next/wkt";
-import { FileDescriptorSetDesc } from "@bufbuild/protobuf/next/wkt";
-import {
-  createFileRegistry,
-  nestedTypes,
-} from "@bufbuild/protobuf/next/reflect";
+import { create } from "@bufbuild/protobuf";
+import type { CodeGeneratorRequest } from "@bufbuild/protobuf/wkt";
+import { Edition, FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
+import { createFileRegistry, nestedTypes } from "@bufbuild/protobuf/reflect";
 import type {
   CreatePreambleFn,
   FileInfo,
