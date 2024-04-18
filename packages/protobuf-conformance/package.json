@@ -6,11 +6,9 @@
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "pregenerate": "rm -rf src/gen/*",
-    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --es-next_out=src/gen --es-next_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
+    "generate": "protoc --es-next_out=src/gen --es-next_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
     "postgenerate": "license-header src/gen",
-    "test": "npm run test:bigint && npm run test:string     && npm run test:v1:bigint && npm run test:v1:string",
-    "test:v1:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --enforce_recommended --failure_list v1_failing_tests_with_bigint.txt --text_format_failure_list v1_failing_tests_text_format.txt bin/conformance_v1.js",
-    "test:v1:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --enforce_recommended --failure_list v1_failing_tests_without_bigint.txt --text_format_failure_list v1_failing_tests_text_format.txt bin/conformance_v1.js",
+    "test": "npm run test:bigint && npm run test:string",
     "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
     "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js"
   },

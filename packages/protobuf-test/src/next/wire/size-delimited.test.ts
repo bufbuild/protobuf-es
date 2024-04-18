@@ -23,7 +23,6 @@ import {
 } from "@bufbuild/protobuf/next/wire";
 import { create, toBinary } from "@bufbuild/protobuf/next";
 import { TestAllTypesProto3Desc } from "../../gen/ts/google/protobuf/test_messages_proto3_pbv2.js";
-import { TestAllTypesProto3 } from "../../gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { join } from "path";
 import { tmpdir } from "os";
 import { createReadStream, createWriteStream } from "fs";
@@ -88,7 +87,7 @@ describe("sizeDelimitedDecodeStream()", () => {
       );
       let i = 0;
       for await (const dec of sizeDelimitedDecodeStream(desc, stream)) {
-        expect(TestAllTypesProto3.equals(dec, testMessages[i])).toBeTruthy();
+        expect(dec).toStrictEqual(testMessages[i]);
         i++;
       }
       expect(i).toBe(2);
