@@ -835,7 +835,7 @@ function newField(
       field.mapKey = keyField.scalar;
       field.mapKind = valueField.fieldKind;
       field.message = valueField.message;
-      field.delimitedEncoding = false; // map fields are always LENGTH_PREFIXED
+      field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
       field.enum = valueField.enum;
       field.scalar = valueField.scalar;
       return field as DescField;

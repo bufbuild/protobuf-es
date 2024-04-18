@@ -140,8 +140,7 @@ function writeScalar(
 function writeMessageField(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
-  field: DescField &
-    ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
+  field: { number: number; delimitedEncoding: boolean },
   message: ReflectMessage,
 ) {
   if (field.delimitedEncoding) {
@@ -195,8 +194,12 @@ function writeMapEntry(
   key: unknown,
   value: unknown,
 ) {
-  writer.tag(field.number, WireType.LengthDelimited).fork();
-
+  const delimited = field.delimitedEncoding;
+  if (delimited) {
+    writer.tag(field.number, WireType.StartGroup);
+  } else {
+    writer.tag(field.number, WireType.LengthDelimited).fork();
+  }
   // write key, expecting key field number = 1
   writeScalar(writer, field.mapKey, 1, key);
 
@@ -207,14 +210,19 @@ function writeMapEntry(
       writeScalar(writer, field.scalar ?? ScalarType.INT32, 2, value);
       break;
     case "message":
-      writeFields(
-        writer.tag(2, WireType.LengthDelimited).fork(),
+      writeMessageField(
+        writer,
         opts,
+        { delimitedEncoding: delimited, number: 2 },
         value as ReflectMessage,
-      ).join();
+      );
       break;
   }
-  writer.join();
+  if (delimited) {
+    writer.tag(field.number, WireType.EndGroup);
+  } else {
+    writer.join();
+  }
 }
 
 function writeScalarValue(

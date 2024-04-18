@@ -24,7 +24,7 @@ import {
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pb.js";
 import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pb.js";
-import { Edition2023MapEncodingMessageDesc } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
+import * as edition2023_maps_ts from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
 describe("edition2023 serialization", () => {
@@ -211,36 +211,37 @@ describe("edition2023 serialization", () => {
     }
   });
   describe("message_encoding DELIMITED with maps", () => {
+    const desc = edition2023_maps_ts.Edition2023MapEncodingMessageDesc;
+    const descChild =
+      edition2023_maps_ts.Edition2023MapEncodingMessage_ChildDesc;
     test("should round-trip", () => {
-      const a = create(Edition2023MapEncodingMessageDesc);
-      a.mapField[123] = true;
-      const bytes = toBinary(Edition2023MapEncodingMessageDesc, a);
-      const b = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      const a = create(desc);
+      a.mapField[123] = create(descChild);
+      const bytes = toBinary(desc, a);
+      const b = fromBinary(desc, bytes);
       expect(b).toStrictEqual(a);
     });
-    test("should expect LENGTH_PREFIXED", () => {
+    test("should parse map entry DELIMITED", () => {
       const w = new BinaryWriter();
-      w.tag(77, WireType.LengthDelimited);
-      w.uint32(4);
+      w.tag(77, WireType.StartGroup);
       w.tag(1, WireType.Varint).int32(123);
-      w.tag(2, WireType.Varint).bool(true);
+      w.tag(77, WireType.StartGroup).tag(77, WireType.EndGroup);
+      w.tag(77, WireType.EndGroup);
       const bytes = w.finish();
-      const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      const msg = fromBinary(desc, bytes);
       expect(msg.mapField).toStrictEqual({
-        123: true,
+        123: create(descChild),
       });
     });
-    test("should serialize LENGTH_PREFIXED", () => {
-      const msg = create(Edition2023MapEncodingMessageDesc);
-      msg.mapField[123] = true;
-      const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
+    test("should serialize map entry DELIMITED", () => {
+      const msg = create(desc);
+      msg.mapField[123] = create(descChild);
+      const bytes = toBinary(desc, msg);
       const r = new BinaryReader(bytes);
       {
         const [number, wireType] = r.tag();
         expect(number).toBe(77);
-        expect(wireType).toBe(WireType.LengthDelimited);
-        const length = r.uint32();
-        expect(length).toBe(r.len - r.pos);
+        expect(wireType).toBe(WireType.StartGroup);
       }
       {
         const [number, wireType] = r.tag();
@@ -251,11 +252,17 @@ describe("edition2023 serialization", () => {
       {
         const [number, wireType] = r.tag();
         expect(number).toBe(2);
-        expect(wireType).toBe(WireType.Varint);
-        expect(r.bool()).toBe(true);
+        expect(wireType).toBe(WireType.StartGroup);
       }
       {
-        expect(r.pos).toBe(r.len);
+        const [number, wireType] = r.tag();
+        expect(number).toBe(2);
+        expect(wireType).toBe(WireType.EndGroup);
+      }
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(77);
+        expect(wireType).toBe(WireType.EndGroup);
       }
     });
   });

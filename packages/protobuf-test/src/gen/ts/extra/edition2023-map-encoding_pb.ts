@@ -18,28 +18,39 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_extra_edition2023_map_encoding: GenDescFile = /*@__PURE__*/
-  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw", [fileDesc_google_protobuf_wrappers]);
+  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMiygEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRpaCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRI4CgV2YWx1ZRgCIAEoCzIpLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuQ2hpbGQ6AjgBGgcKBUNoaWxkQgWSAwIoAmIIZWRpdGlvbnNw6Ac");
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
- * key and field 2 for value. Despite that, the file feature message_encoding =
- * DELIMITED should NOT apply to this "synthetic" message.
+ * key and field 2 for value.
+ * The file feature message_encoding = DELIMITED should apply to this "synthetic"
+ * message, following the logic of other message fields.
  *
  * @generated from message spec.Edition2023MapEncodingMessage
  */
 export type Edition2023MapEncodingMessage = Message<"spec.Edition2023MapEncodingMessage"> & {
   /**
-   * @generated from field: map<int32, bool> map_field = 77;
+   * @generated from field: map<int32, spec.Edition2023MapEncodingMessage.Child> map_field = 77;
    */
-  mapField: { [key: number]: boolean };
+  mapField: { [key: number]: Edition2023MapEncodingMessage_Child };
 };
 
 // Describes the message spec.Edition2023MapEncodingMessage.
 // Use `create(Edition2023MapEncodingMessageDesc)` to create a new Edition2023MapEncodingMessage.
 export const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_map_encoding, 0);
+
+/**
+ * @generated from message spec.Edition2023MapEncodingMessage.Child
+ */
+export type Edition2023MapEncodingMessage_Child = Message<"spec.Edition2023MapEncodingMessage.Child"> & {
+};
+
+// Describes the message spec.Edition2023MapEncodingMessage.Child.
+// Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new Edition2023MapEncodingMessage_Child.
+export const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_edition2023_map_encoding, 0, 0);
 

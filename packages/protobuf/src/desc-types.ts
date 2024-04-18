@@ -504,9 +504,9 @@ type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<S
   readonly oneof: undefined;
   /**
    * Encode the map entry message delimited (a.k.a. proto2 group encoding),
-   * or length-prefixed? This is always false for map fields.
+   * or length-prefixed? This also applies to map values, if they are messages.
    */
-  readonly delimitedEncoding: false;
+  readonly delimitedEncoding: boolean;
 } : never;
 
 type descFieldMapScalar<T extends ScalarType = ScalarType> = T extends T

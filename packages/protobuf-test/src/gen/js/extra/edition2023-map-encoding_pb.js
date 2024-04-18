@@ -17,12 +17,15 @@
 /* eslint-disable */
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 export const fileDesc_extra_edition2023_map_encoding = /*@__PURE__*/
-  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw", [fileDesc_google_protobuf_wrappers]);
+  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMiygEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRpaCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRI4CgV2YWx1ZRgCIAEoCzIpLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuQ2hpbGQ6AjgBGgcKBUNoaWxkQgWSAwIoAmIIZWRpdGlvbnNw6Ac");
 
 // Describes the message spec.Edition2023MapEncodingMessage. Use `create(Edition2023MapEncodingMessageDesc)` to create a new Edition2023MapEncodingMessage.
 export const Edition2023MapEncodingMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_map_encoding, 0);
+
+// Describes the message spec.Edition2023MapEncodingMessage.Child. Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new Edition2023MapEncodingMessage_Child.
+export const Edition2023MapEncodingMessage_ChildDesc = /*@__PURE__*/
+  messageDesc(fileDesc_extra_edition2023_map_encoding, 0, 0);
 

@@ -790,7 +790,7 @@ describe("DescField", () => {
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
       ).toBe(true);
     });
-    test("false for map field with inherited features.message_encoding = DELIMITED", async () => {
+    test("true for map field with inherited features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
         edition="2023";
         option features.message_encoding = DELIMITED;
@@ -800,7 +800,7 @@ describe("DescField", () => {
       `);
       expect(
         field.fieldKind == "map" ? field.delimitedEncoding : undefined,
-      ).toBe(false);
+      ).toBe(true);
     });
   });
   describe("optional", () => {

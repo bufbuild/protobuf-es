@@ -23,18 +23,28 @@ export declare const fileDesc_extra_edition2023_map_encoding: GenDescFile;
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
- * key and field 2 for value. Despite that, the file feature message_encoding =
- * DELIMITED should NOT apply to this "synthetic" message.
+ * key and field 2 for value.
+ * The file feature message_encoding = DELIMITED should apply to this "synthetic"
+ * message, following the logic of other message fields.
  *
  * @generated from message spec.Edition2023MapEncodingMessage
  */
 export declare type Edition2023MapEncodingMessage = Message<"spec.Edition2023MapEncodingMessage"> & {
   /**
-   * @generated from field: map<int32, bool> map_field = 77;
+   * @generated from field: map<int32, spec.Edition2023MapEncodingMessage.Child> map_field = 77;
    */
-  mapField: { [key: number]: boolean };
+  mapField: { [key: number]: Edition2023MapEncodingMessage_Child };
 };
 
 // Describes the message spec.Edition2023MapEncodingMessage. Use `create(Edition2023MapEncodingMessageDesc)` to create a new Edition2023MapEncodingMessage.
 export declare const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage>;
+
+/**
+ * @generated from message spec.Edition2023MapEncodingMessage.Child
+ */
+export declare type Edition2023MapEncodingMessage_Child = Message<"spec.Edition2023MapEncodingMessage.Child"> & {
+};
+
+// Describes the message spec.Edition2023MapEncodingMessage.Child. Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new Edition2023MapEncodingMessage_Child.
+export declare const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child>;
 
