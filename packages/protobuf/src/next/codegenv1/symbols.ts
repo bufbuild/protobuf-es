@@ -41,9 +41,6 @@ export const symbols = {
   toJson:                  {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
   toJsonString:            {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
   protoInt64:              {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
-  legacy: {
-    JsonValue:             {typeOnly: true,  bootstrapWktFrom: "../../json-format.js",          from: "@bufbuild/protobuf" },
-  },
   codegen: {
     boot:                  {typeOnly: false, bootstrapWktFrom: "../../codegenv1/boot.js",       from: packageName + "/codegenv1" },
     fileDesc:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/file.js",       from: packageName + "/codegenv1" },
