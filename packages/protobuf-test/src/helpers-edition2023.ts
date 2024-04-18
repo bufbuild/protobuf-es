@@ -14,7 +14,7 @@
 
 import { create } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
-import * as edition2023_ts from "./gen/ts/extra/edition2023_pbv2.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 
 export function fillEdition2023MessageNames() {
   return [

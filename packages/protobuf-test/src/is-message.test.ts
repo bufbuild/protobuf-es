@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { UserDesc } from "./gen/ts/extra/example_pbv2.js";
+import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { create, isMessage } from "@bufbuild/protobuf";
-import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pbv2.js";
+import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pb.js";
 
 describe("isMessage", () => {
   test("narrows down to anonymous message", () => {

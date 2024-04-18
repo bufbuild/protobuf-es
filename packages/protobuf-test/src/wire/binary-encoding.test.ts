@@ -14,7 +14,7 @@
 
 import { describe, expect, it } from "@jest/globals";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
-import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
+import { UserDesc } from "../gen/ts/extra/example_pb.js";
 import { fromBinary } from "@bufbuild/protobuf";
 
 describe("BinaryWriter example", () => {

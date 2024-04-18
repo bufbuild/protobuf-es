@@ -19,9 +19,9 @@ import {
   reflect,
 } from "@bufbuild/protobuf/reflect";
 import { getFieldByLocalName } from "../helpers.js";
-import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
+import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
+import { UserDesc } from "../gen/ts/extra/example_pb.js";
 
 describe("reflectList()", () => {
   test("creates ReflectList", () => {

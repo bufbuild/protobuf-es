@@ -14,4 +14,4 @@
 
 // Workaround for bundlers that do not support subpath exports.
 // eslint-disable-next-line no-undef
-module.exports = require("../../dist/cjs/codegenv1/index.js");
+module.exports = require("../dist/cjs/codegenv1/index.js");

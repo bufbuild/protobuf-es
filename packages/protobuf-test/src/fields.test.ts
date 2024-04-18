@@ -16,9 +16,9 @@ import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
 import { clearField, create, isFieldSet } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/reflect";
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
-import * as proto2_ts from "./gen/ts/extra/proto2_pbv2.js";
-import * as edition2023_ts from "./gen/ts/extra/edition2023_pbv2.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import { fillProto2Message, fillProto2MessageNames } from "./helpers-proto2.js";
 import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
 import {

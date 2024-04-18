@@ -28,8 +28,8 @@ import {
   isReflectMap,
 } from "@bufbuild/protobuf/reflect";
 import { compileMessage, getFieldByLocalName } from "../helpers.js";
-import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
-import * as example_ts from "../gen/ts/extra/example_pbv2.js";
+import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
+import * as example_ts from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
 
 describe("reflect()", () => {

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescriptorProto } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { DescriptorProto } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import { protoCamelCase } from "../reflect/names.js";
 import { unsafeIsSetExplicit } from "../reflect/unsafe.js";
 

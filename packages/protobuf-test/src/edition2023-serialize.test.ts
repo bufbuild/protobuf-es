@@ -21,10 +21,10 @@ import {
   toBinary,
   toJson,
 } from "@bufbuild/protobuf";
-import * as edition2023_ts from "./gen/ts/extra/edition2023_pbv2.js";
-import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pbv2.js";
-import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pbv2.js";
-import { Edition2023MapEncodingMessageDesc } from "./gen/ts/extra/edition2023-map-encoding_pbv2.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
+import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pb.js";
+import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pb.js";
+import { Edition2023MapEncodingMessageDesc } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
 describe("edition2023 serialization", () => {

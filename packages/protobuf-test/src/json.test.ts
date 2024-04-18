@@ -24,11 +24,11 @@ import type { MessageInitShape } from "@bufbuild/protobuf";
 import {
   RepeatedScalarValuesMessageDesc,
   ScalarValuesMessageDesc,
-} from "./gen/ts/extra/msg-scalar_pbv2.js";
+} from "./gen/ts/extra/msg-scalar_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pbv2.js";
-import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pbv2.js";
-import { WrappersMessageDesc } from "./gen/ts/extra/wkt-wrappers_pbv2.js";
+import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
+import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pb.js";
+import { WrappersMessageDesc } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import {
   AnyDesc,
   DurationDesc,
@@ -45,12 +45,12 @@ import { createRegistry } from "@bufbuild/protobuf/reflect";
 import {
   Proto2ExtendeeDesc,
   string_ext,
-} from "./gen/ts/extra/extensions-proto2_pbv2.js";
-import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pbv2.js";
-import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pbv2.js";
-import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pbv2.js";
+} from "./gen/ts/extra/extensions-proto2_pb.js";
+import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pb.js";
+import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pb.js";
+import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { fromJsonString } from "@bufbuild/protobuf";
-import { TestAllTypesProto3Desc } from "./gen/ts/google/protobuf/test_messages_proto3_pbv2.js";
+import { TestAllTypesProto3Desc } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
 describe(`json serialization`, () => {
   testJson(

@@ -43,7 +43,7 @@ export function generateFilePath(
   ) {
     return wktFrom;
   }
-  return "./" + file.name + "_pbv2.js";
+  return "./" + file.name + "_pb.js";
 }
 
 export function localDescName(

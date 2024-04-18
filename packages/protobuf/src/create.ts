@@ -24,7 +24,7 @@ import { isWrapperDesc } from "./wkt/wrappers.js";
 import type {
   Edition,
   FeatureSet_FieldPresence,
-} from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
+} from "./wkt/gen/google/protobuf/descriptor_pb.js";
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;

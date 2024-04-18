@@ -29,7 +29,7 @@ describe("GeneratedFile.importShape", () => {
       generateAny(f, schema) {
         const imp = f.importShape(schema.files[0].enums[0]);
         expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(true);
       },
     });
@@ -44,7 +44,7 @@ describe("GeneratedFile.importShape", () => {
       generateAny(f, schema) {
         const imp = f.importShape(schema.files[0].messages[0]);
         expect(imp.name).toBe("Person");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(true);
       },
     });

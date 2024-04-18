@@ -15,22 +15,22 @@
 import { describe, test, expect } from "@jest/globals";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/wkt";
 import type { GenDescService } from "@bufbuild/protobuf/codegenv1";
-import * as proto2_ts from "./gen/ts/extra/proto2_pbv2.js";
-import * as proto2_js from "./gen/js/extra/proto2_pbv2.js";
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
-import * as proto3_js from "./gen/js/extra/proto3_pbv2.js";
-import * as edition2023_ts from "./gen/ts/extra/edition2023_pbv2.js";
-import * as edition2023_js from "./gen/js/extra/edition2023_pbv2.js";
-import * as nameclash_ts from "./gen/ts/extra/name-clash_pbv2.js";
-import * as nameclash_js from "./gen/js/extra/name-clash_pbv2.js";
-import * as service_ts from "./gen/ts/extra/service-all_pbv2.js";
-import * as service_js from "./gen/js/extra/service-all_pbv2.js";
-import * as test_messages_proto2_ts from "./gen/ts/google/protobuf/test_messages_proto2_pbv2.js";
-import * as test_messages_proto2_js from "./gen/js/google/protobuf/test_messages_proto2_pbv2.js";
-import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages_proto3_pbv2.js";
-import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pbv2.js";
-import * as descriptor_ts from "./gen/ts/google/protobuf/descriptor_pbv2.js";
-import * as descriptor_js from "./gen/js/google/protobuf/descriptor_pbv2.js";
+import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
+import * as proto2_js from "./gen/js/extra/proto2_pb.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as proto3_js from "./gen/js/extra/proto3_pb.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
+import * as edition2023_js from "./gen/js/extra/edition2023_pb.js";
+import * as nameclash_ts from "./gen/ts/extra/name-clash_pb.js";
+import * as nameclash_js from "./gen/js/extra/name-clash_pb.js";
+import * as service_ts from "./gen/ts/extra/service-all_pb.js";
+import * as service_js from "./gen/js/extra/service-all_pb.js";
+import * as test_messages_proto2_ts from "./gen/ts/google/protobuf/test_messages_proto2_pb.js";
+import * as test_messages_proto2_js from "./gen/js/google/protobuf/test_messages_proto2_pb.js";
+import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
+import * as descriptor_ts from "./gen/ts/google/protobuf/descriptor_pb.js";
+import * as descriptor_js from "./gen/js/google/protobuf/descriptor_pb.js";
 
 test("ts generated code is assignable to js", () => {
   expect([

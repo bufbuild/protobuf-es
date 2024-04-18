@@ -15,7 +15,7 @@
 import * as assert from "node:assert/strict";
 import { describe, it, mock } from "node:test";
 import { create } from "@bufbuild/protobuf";
-import { SayRequestDesc } from "../src/gen/connectrpc/eliza_pbv2";
+import { SayRequestDesc } from "../src/gen/connectrpc/eliza_pb";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
 
 describe("custom plugin", async () => {

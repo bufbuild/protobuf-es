@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import { create } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 

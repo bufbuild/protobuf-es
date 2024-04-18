@@ -13,17 +13,17 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { FileDescriptorSetDesc } from "./gen/ts/google/protobuf/descriptor_pbv2.js";
-import { UserDesc } from "./gen/ts/extra/example_pbv2.js";
+import { FileDescriptorSetDesc } from "./gen/ts/google/protobuf/descriptor_pb.js";
+import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
-import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pbv2.js";
-import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pbv2.js";
-import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pbv2.js";
+import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
+import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
+import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
 import {
   MessageFieldMessageDesc,
   MessageFieldMessage_TestMessageDesc,
-} from "./gen/ts/extra/msg-message_pbv2.js";
+} from "./gen/ts/extra/msg-message_pb.js";
 
 /* eslint-disable no-console, import/no-named-as-default-member */
 

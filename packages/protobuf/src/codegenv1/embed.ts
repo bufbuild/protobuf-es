@@ -31,13 +31,13 @@ import type {
   FileDescriptorProto,
   FieldDescriptorProto,
   FieldOptions,
-} from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+} from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import {
   Edition,
   FieldDescriptorProtoDesc,
   FieldOptionsDesc,
   FileDescriptorProtoDesc,
-} from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+} from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import type {
   DescriptorProtoBoot,
   EnumDescriptorProtoBoot,

@@ -14,7 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { FieldError, isFieldError } from "@bufbuild/protobuf/reflect";
-import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
+import { UserDesc } from "../gen/ts/extra/example_pb.js";
 import type { DescField, DescOneof } from "@bufbuild/protobuf";
 
 describe("FieldError", () => {

@@ -18,10 +18,10 @@ import type { MessageInitShape } from "@bufbuild/protobuf";
 import { create, isFieldSet, isMessage } from "@bufbuild/protobuf";
 import { describe, expect, test } from "@jest/globals";
 import { localName, reflect } from "@bufbuild/protobuf/reflect";
-import * as example_ts from "./gen/ts/extra/example_pbv2.js";
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
-import * as proto2_ts from "./gen/ts/extra/proto2_pbv2.js";
-import * as edition2023_ts from "./gen/ts/extra/edition2023_pbv2.js";
+import * as example_ts from "./gen/ts/extra/example_pb.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
 import {
   fillEdition2023Message,

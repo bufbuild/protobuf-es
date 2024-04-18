@@ -16,7 +16,7 @@ import type { DescField, DescOneof } from "../desc-types.js";
 import { localName } from "./names.js";
 import type { OneofADT } from "./guard.js";
 import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";
-import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
 const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
