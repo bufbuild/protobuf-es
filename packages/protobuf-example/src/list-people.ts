@@ -16,7 +16,7 @@ import {
   AddressBook,
   AddressBookDesc,
   Person_PhoneType,
-} from "./gen/addressbook_pbv2.js";
+} from "./gen/addressbook_pb.js";
 import { fromBinary } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 

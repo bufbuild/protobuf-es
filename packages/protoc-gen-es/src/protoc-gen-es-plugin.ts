@@ -52,7 +52,7 @@ const pure = "/*@__PURE__*/";
 // prettier-ignore
 function generateTs(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + "_pbv2.ts");
+    const f = schema.generateFile(file.name + "_pb.ts");
     f.preamble(file);
     const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);
@@ -118,7 +118,7 @@ function generateTs(schema: Schema) {
 // prettier-ignore
 function generateJs(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + "_pbv2.js");
+    const f = schema.generateFile(file.name + "_pb.js");
     f.preamble(file);
     const fileDesc = f.importDesc(file);
     f.print(f.exportDecl("const", fileDesc.name), " = ", pure);
@@ -187,7 +187,7 @@ function generateJs(schema: Schema) {
 // prettier-ignore
 function generateDts(schema: Schema) {
   for (const file of schema.files) {
-    const f = schema.generateFile(file.name + "_pbv2.d.ts");
+    const f = schema.generateFile(file.name + "_pb.d.ts");
     f.preamble(file);
     const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);

@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import * as ts_name_clash from "./gen/ts/extra/name-clash_pbv2.js";
-import * as js_name_clash from "./gen/js/extra/name-clash_pbv2.js";
+import * as ts_name_clash from "./gen/ts/extra/name-clash_pb.js";
+import * as js_name_clash from "./gen/js/extra/name-clash_pb.js";
 import { create } from "@bufbuild/protobuf";
 
 describe("message looking like a oneof ADT", () => {

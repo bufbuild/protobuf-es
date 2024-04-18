@@ -18,7 +18,7 @@ import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { getExtension, hasExtension } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/reflect";
 import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
-import { default_host } from "./gen/customoptions/default_host_pbv2.js";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
 import { version } from "../package.json";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({

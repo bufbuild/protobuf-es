@@ -23,8 +23,8 @@ import {
 } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf";
 import { describe, expect, it, beforeEach } from "@jest/globals";
-import { UserDesc } from "./gen/ts/extra/example_pbv2.js";
-import type { Proto2Extendee } from "./gen/ts/extra/extensions-proto2_pbv2.js";
+import { UserDesc } from "./gen/ts/extra/example_pb.js";
+import type { Proto2Extendee } from "./gen/ts/extra/extensions-proto2_pb.js";
 import {
   GroupExtDesc,
   Proto2ExtContainer_Child_uint32_ext,
@@ -53,7 +53,7 @@ import {
   uint64_ext_js_string,
   unpacked_uint32_ext,
   wrapper_ext,
-} from "./gen/ts/extra/extensions-proto2_pbv2.js";
+} from "./gen/ts/extra/extensions-proto2_pb.js";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import type { DescExtension, DescMessage } from "@bufbuild/protobuf";
 import { UInt32ValueDesc, FileOptionsDesc } from "@bufbuild/protobuf/wkt";
@@ -64,7 +64,7 @@ import {
   packed_uint32_ext as proto3_packed_uint32_ext,
   uint32_ext as proto3_uint32_ext,
   unpacked_uint32_ext as proto3_unpacked_uint32_ext,
-} from "./gen/ts/extra/extensions-proto3_pbv2.js";
+} from "./gen/ts/extra/extensions-proto3_pb.js";
 
 // test cases for extensions
 type extensionWithValueCollection = ReadonlyArray<{

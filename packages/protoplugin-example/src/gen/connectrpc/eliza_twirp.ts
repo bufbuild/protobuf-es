@@ -16,8 +16,8 @@
 // @generated from file connectrpc/eliza.proto (package connectrpc.eliza.v1, syntax proto3)
 /* eslint-disable */
 
-import type { SayRequest, SayResponse } from "./eliza_pbv2.js";
-import { SayRequestDesc, SayResponseDesc } from "./eliza_pbv2.js";
+import type { SayRequest, SayResponse } from "./eliza_pb.js";
+import { SayRequestDesc, SayResponseDesc } from "./eliza_pb.js";
 import type { JsonValue } from "@bufbuild/protobuf";
 import { fromJson, toJsonString } from "@bufbuild/protobuf";
 

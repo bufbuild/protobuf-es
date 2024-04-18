@@ -31,7 +31,7 @@ import type {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
+} from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import { assert } from "./assert.js";
 import type {
   DescEnum,

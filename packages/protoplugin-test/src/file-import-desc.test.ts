@@ -29,7 +29,7 @@ describe("GeneratedFile.importDesc", () => {
       generateAny(f, schema) {
         const imp = f.importDesc(schema.files[0].enums[0]);
         expect(imp.name).toBe("FooDesc");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
     });
@@ -44,7 +44,7 @@ describe("GeneratedFile.importDesc", () => {
       generateAny(f, schema) {
         const imp = f.importDesc(schema.files[0].messages[0]);
         expect(imp.name).toBe("PersonDesc");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
     });
@@ -62,7 +62,7 @@ describe("GeneratedFile.importDesc", () => {
       generateAny(f, schema) {
         const imp = f.importDesc(schema.files[0].services[0]);
         expect(imp.name).toBe("Serv");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
     });
@@ -82,7 +82,7 @@ describe("GeneratedFile.importDesc", () => {
       generateAny(f, schema) {
         const imp = f.importDesc(schema.files[0].extensions[0]);
         expect(imp.name).toBe("ext");
-        expect(imp.from).toBe("./x_pbv2.js");
+        expect(imp.from).toBe("./x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
     });
@@ -96,7 +96,7 @@ describe("GeneratedFile.importDesc", () => {
       generateAny(f, schema) {
         const imp = f.importDesc(schema.files[0]);
         expect(imp.name).toBe("fileDesc_my_proto_files_23_dir_joe_s_files_x");
-        expect(imp.from).toBe("./my-proto-files/23/dir:/joe's files/x_pbv2.js");
+        expect(imp.from).toBe("./my-proto-files/23/dir:/joe's files/x_pb.js");
         expect(imp.typeOnly).toBe(false);
       },
     });

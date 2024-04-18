@@ -15,7 +15,7 @@
 import type { MessageShape } from "./types.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
-import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pbv2.js";
+import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pb.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { ScalarType } from "./reflect/scalar.js";
 import type { DescField, DescMessage } from "./desc-types.js";

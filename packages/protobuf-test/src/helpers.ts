@@ -15,7 +15,7 @@
 import type { DescMessage } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { createFileRegistry, localName } from "@bufbuild/protobuf/reflect";
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import type { DescField } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";

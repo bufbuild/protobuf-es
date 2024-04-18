@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp";
-import { SayRequestDesc } from "./gen/connectrpc/eliza_pbv2";
+import { SayRequestDesc } from "./gen/connectrpc/eliza_pb";
 import { create } from "@bufbuild/protobuf";
 
 const client = new ElizaServiceClient();

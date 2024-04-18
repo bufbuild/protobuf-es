@@ -14,10 +14,10 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { getFieldByLocalName } from "../helpers.js";
-import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
+import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { isReflectMap, reflectMap, reflect } from "@bufbuild/protobuf/reflect";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
+import { UserDesc } from "../gen/ts/extra/example_pb.js";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {

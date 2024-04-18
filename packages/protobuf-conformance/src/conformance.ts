@@ -32,9 +32,9 @@ import {
   FailureSetDesc,
   TestCategory,
   WireFormat,
-} from "./gen/conformance/conformance_pbv2.js";
-import { fileDesc_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pbv2.js";
-import { fileDesc_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pbv2.js";
+} from "./gen/conformance/conformance_pb.js";
+import { fileDesc_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
+import { fileDesc_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
 import {
   fileDesc_google_protobuf_any,
   fileDesc_google_protobuf_duration,

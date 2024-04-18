@@ -22,7 +22,7 @@ import {
   WireType,
 } from "@bufbuild/protobuf/wire";
 import { create, toBinary } from "@bufbuild/protobuf";
-import { TestAllTypesProto3Desc } from "../gen/ts/google/protobuf/test_messages_proto3_pbv2.js";
+import { TestAllTypesProto3Desc } from "../gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { join } from "path";
 import { tmpdir } from "os";
 import { createReadStream, createWriteStream } from "fs";

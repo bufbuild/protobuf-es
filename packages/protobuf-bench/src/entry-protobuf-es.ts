@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ModuleDesc } from "./gen/protobuf-es/buf/alpha/module/v1alpha1/module_pbv2.js";
+import { ModuleDesc } from "./gen/protobuf-es/buf/alpha/module/v1alpha1/module_pb.js";
 import { create, toBinary } from "@bufbuild/protobuf";
 
 const module = create(ModuleDesc, {

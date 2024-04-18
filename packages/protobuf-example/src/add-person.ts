@@ -17,7 +17,7 @@ import {
   PersonDesc,
   Person_PhoneNumberDesc,
   Person_PhoneType,
-} from "./gen/addressbook_pbv2.js";
+} from "./gen/addressbook_pb.js";
 import { createInterface } from "readline";
 import { readFileSync, existsSync, writeFileSync } from "fs";
 import { create, mergeFromBinary, toBinary } from "@bufbuild/protobuf";

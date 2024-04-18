@@ -17,8 +17,8 @@ import { clone, create } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { WireType } from "@bufbuild/protobuf/wire";
 import { reflect } from "@bufbuild/protobuf/reflect";
-import * as proto3_ts from "./gen/ts/extra/proto3_pbv2.js";
-import * as proto2_ts from "./gen/ts/extra/proto2_pbv2.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 
 describe("clone()", () => {
   test("clones unknown fields", () => {
