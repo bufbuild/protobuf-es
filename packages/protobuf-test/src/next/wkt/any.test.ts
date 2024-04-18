@@ -22,7 +22,7 @@ import {
 } from "@bufbuild/protobuf/next/wkt";
 import type { Value } from "@bufbuild/protobuf/next/wkt";
 import { create } from "@bufbuild/protobuf/next";
-import { createDescSet } from "@bufbuild/protobuf/next/reflect";
+import { createRegistry } from "@bufbuild/protobuf/next/reflect";
 
 describe("google.protobuf.Any", () => {
   test(`is correctly identifies by message and type name`, () => {
@@ -52,7 +52,7 @@ describe("google.protobuf.Any", () => {
   });
 
   test(`unpack correctly unpacks a message in the registry`, () => {
-    const typeRegistry = createDescSet(ValueDesc);
+    const typeRegistry = createRegistry(ValueDesc);
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
@@ -66,7 +66,7 @@ describe("google.protobuf.Any", () => {
   });
 
   test(`unpack correctly unpacks a message with a leading slash type url in the registry`, () => {
-    const typeRegistry = createDescSet(ValueDesc);
+    const typeRegistry = createRegistry(ValueDesc);
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
@@ -81,7 +81,7 @@ describe("google.protobuf.Any", () => {
   });
 
   test(`unpack returns undefined if message not in the registry`, () => {
-    const typeRegistry = createDescSet();
+    const typeRegistry = createRegistry();
     const val = create(ValueDesc, {
       kind: { case: "numberValue", value: 1 },
     });
@@ -91,7 +91,7 @@ describe("google.protobuf.Any", () => {
   });
 
   test(`unpack returns undefined with an empty Any`, () => {
-    const typeRegistry = createDescSet(ValueDesc);
+    const typeRegistry = createRegistry(ValueDesc);
     const any = create(AnyDesc);
     const unpacked = anyUnpack(any, typeRegistry);
     expect(unpacked).toBeUndefined();

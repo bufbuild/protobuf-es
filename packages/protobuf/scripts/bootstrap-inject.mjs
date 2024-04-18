@@ -18,7 +18,7 @@ import assert from "node:assert";
 import { stdout, stderr, argv } from "node:process";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import {
-  createDescFileSet,
+  createFileRegistry,
   localName,
   reflect,
 } from "@bufbuild/protobuf/next/reflect";
@@ -84,7 +84,7 @@ async function main(args) {
 /**
  * @param {string} filePath
  * @param {string} content
- * @param {DescFileSet} descriptorProto
+ * @param {FileRegistry} descriptorProto
  * @param {UpstreamProtobuf} upstream
  */
 async function processFile(filePath, content, descriptorProto, upstream) {
@@ -258,7 +258,7 @@ async function compileDefaults(upstream, minimumEdition, maximumEdition) {
 
 /**
  * @param {UpstreamProtobuf} upstream
- * @return {Promise<DescFileSet>}
+ * @return {Promise<FileRegistry>}
  */
 async function compileDescriptorProto(upstream) {
   const path = "google/protobuf/descriptor.proto";
@@ -274,7 +274,7 @@ async function compileDescriptorProto(upstream) {
     },
   );
   const fds = fromBinary(FileDescriptorSetDesc, fdsBytes);
-  const set = createDescFileSet(fds);
+  const set = createFileRegistry(fds);
   const file = set.getFile(path);
   assert(file);
   return set;

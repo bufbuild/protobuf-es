@@ -14,10 +14,10 @@
 
 import { beforeAll, beforeEach, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
-import type { DescFileSet } from "@bufbuild/protobuf/next/reflect";
+import type { FileRegistry } from "@bufbuild/protobuf/next/reflect";
 import {
-  createDescFileSet,
-  createDescSet,
+  createFileRegistry,
+  createRegistry,
   LongType,
   protoCamelCase,
   ScalarType,
@@ -46,8 +46,8 @@ import {
   compileService,
 } from "../helpers.js";
 
-describe("createDescSet()", function () {
-  let testSet: DescFileSet;
+describe("createRegistry()", function () {
+  let testReg: FileRegistry;
   let testDescs: {
     message: DescMessage;
     enum: DescEnum;
@@ -64,17 +64,17 @@ describe("createDescSet()", function () {
         extend Msg { optional int32 ext = 1; }
       `,
     });
-    testSet = createDescFileSet(fileDescriptorSet);
-    const descMsg = testSet.get("Msg");
+    testReg = createFileRegistry(fileDescriptorSet);
+    const descMsg = testReg.get("Msg");
     assert(descMsg);
     assert(descMsg.kind == "message");
-    const descEnu = testSet.get("Enu");
+    const descEnu = testReg.get("Enu");
     assert(descEnu);
     assert(descEnu.kind == "enum");
-    const descSrv = testSet.get("Srv");
+    const descSrv = testReg.get("Srv");
     assert(descSrv);
     assert(descSrv.kind == "service");
-    const descExt = testSet.get("ext");
+    const descExt = testReg.get("ext");
     assert(descExt);
     assert(descExt.kind == "extension");
     testDescs = {
@@ -86,62 +86,62 @@ describe("createDescSet()", function () {
   });
   describe("get()", () => {
     test("gets message", () => {
-      const set = createDescSet(testDescs.message);
-      expect(set.get("Msg")).toBe(testDescs.message);
+      const reg = createRegistry(testDescs.message);
+      expect(reg.get("Msg")).toBe(testDescs.message);
     });
     test("gets enum", () => {
-      const set = createDescSet(testDescs.enum);
-      expect(set.get("Enu")).toBe(testDescs.enum);
+      const reg = createRegistry(testDescs.enum);
+      expect(reg.get("Enu")).toBe(testDescs.enum);
     });
     test("gets service", () => {
-      const set = createDescSet(testDescs.service);
-      expect(set.get("Srv")).toBe(testDescs.service);
+      const reg = createRegistry(testDescs.service);
+      expect(reg.get("Srv")).toBe(testDescs.service);
     });
     test("gets extension", () => {
-      const set = createDescSet(testDescs.extension);
-      expect(set.get("ext")).toBe(testDescs.extension);
+      const reg = createRegistry(testDescs.extension);
+      expect(reg.get("ext")).toBe(testDescs.extension);
     });
   });
   describe("getMessage()", () => {
     test("gets message", () => {
-      const set = createDescSet(testDescs.message);
-      const msg: DescMessage | undefined = set.getMessage("Msg");
+      const reg = createRegistry(testDescs.message);
+      const msg: DescMessage | undefined = reg.getMessage("Msg");
       expect(msg).toBe(testDescs.message);
     });
   });
   describe("getEnum()", () => {
     test("gets enum", () => {
-      const set = createDescSet(testDescs.enum);
-      const msg: DescEnum | undefined = set.getEnum("Enu");
+      const reg = createRegistry(testDescs.enum);
+      const msg: DescEnum | undefined = reg.getEnum("Enu");
       expect(msg).toBe(testDescs.enum);
     });
   });
   describe("getService()", () => {
     test("gets service", () => {
-      const set = createDescSet(testDescs.service);
-      const msg: DescService | undefined = set.getService("Srv");
+      const reg = createRegistry(testDescs.service);
+      const msg: DescService | undefined = reg.getService("Srv");
       expect(msg).toBe(testDescs.service);
     });
   });
   describe("getExtension()", () => {
     test("gets extension", () => {
-      const set = createDescSet(testDescs.extension);
-      const ext: DescExtension | undefined = set.getExtension("ext");
+      const reg = createRegistry(testDescs.extension);
+      const ext: DescExtension | undefined = reg.getExtension("ext");
       expect(ext).toBe(testDescs.extension);
     });
   });
   describe("getExtensionFor()", () => {
     test("gets extension", () => {
-      const set = createDescSet(testDescs.extension);
-      const ext: DescExtension | undefined = set.getExtensionFor(
+      const reg = createRegistry(testDescs.extension);
+      const ext: DescExtension | undefined = reg.getExtensionFor(
         testDescs.message,
         1,
       );
       expect(ext).toBe(testDescs.extension);
     });
     test("returns undefined on unknown extension field number", () => {
-      const set = createDescSet(testDescs.extension);
-      const msg: DescExtension | undefined = set.getExtensionFor(
+      const reg = createRegistry(testDescs.extension);
+      const msg: DescExtension | undefined = reg.getExtensionFor(
         testDescs.message,
         2,
       );
@@ -155,10 +155,10 @@ describe("createDescSet()", function () {
       `,
       });
       const otherMessageDesc =
-        createDescFileSet(fileDescriptorSet).getMessage("OtherMsg");
+        createFileRegistry(fileDescriptorSet).getMessage("OtherMsg");
       assert(otherMessageDesc);
-      const set = createDescSet(testDescs.extension);
-      const msg: DescExtension | undefined = set.getExtensionFor(
+      const reg = createRegistry(testDescs.extension);
+      const msg: DescExtension | undefined = reg.getExtensionFor(
         otherMessageDesc,
         2,
       );
@@ -167,13 +167,13 @@ describe("createDescSet()", function () {
   });
   describe("iterator", () => {
     test("gets registered types", () => {
-      const set = createDescSet(
+      const reg = createRegistry(
         testDescs.message,
         testDescs.enum,
         testDescs.service,
         testDescs.extension,
       );
-      const actual = Array.from(set)
+      const actual = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
       const want = ["Msg", "Enu", "Srv", "ext"].sort();
@@ -192,11 +192,11 @@ describe("createDescSet()", function () {
       `,
       });
       const testMessage =
-        createDescFileSet(fileDescriptorSet).getMessage("Msg");
+        createFileRegistry(fileDescriptorSet).getMessage("Msg");
       assert(testMessage);
-      const set = createDescSet(testMessage);
-      expect(set.get("Msg")).toBeDefined();
-      expect(set.get("FieldMsg")).toBeUndefined();
+      const reg = createRegistry(testMessage);
+      expect(reg.get("Msg")).toBeDefined();
+      expect(reg.get("FieldMsg")).toBeUndefined();
     });
     test("does not make nested messages available", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
@@ -207,15 +207,15 @@ describe("createDescSet()", function () {
         }
       `,
       });
-      const testSet = createDescFileSet(fileDescriptorSet);
-      const testMessage = testSet.getMessage("Msg");
+      const testReg = createFileRegistry(fileDescriptorSet);
+      const testMessage = testReg.getMessage("Msg");
       assert(testMessage);
-      const nestedTestMessage = testSet.getMessage("Msg.Nested");
+      const nestedTestMessage = testReg.getMessage("Msg.Nested");
       assert(nestedTestMessage);
-      const set = createDescSet(testMessage);
-      expect(set.get("Msg")).toBeDefined();
-      expect(set.get("Msg.Nested")).toBeUndefined();
-      expect(Array.from(set).length).toBe(1);
+      const reg = createRegistry(testMessage);
+      expect(reg.get("Msg")).toBeDefined();
+      expect(reg.get("Msg.Nested")).toBeUndefined();
+      expect(Array.from(reg).length).toBe(1);
     });
     test("later duplicate type overwrites former type", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
@@ -225,38 +225,38 @@ describe("createDescSet()", function () {
       `,
       });
       const duplicateMessage =
-        createDescFileSet(fileDescriptorSet).getMessage("Msg");
+        createFileRegistry(fileDescriptorSet).getMessage("Msg");
       assert(duplicateMessage);
       assert(duplicateMessage.typeName === testDescs.message.typeName);
-      const set = createDescSet(duplicateMessage, testDescs.message);
-      expect(set.getMessage("Msg")).toBe(testDescs.message);
+      const reg = createRegistry(duplicateMessage, testDescs.message);
+      expect(reg.getMessage("Msg")).toBe(testDescs.message);
     });
   });
   describe("from DescFile", () => {
     test("provides all types from the file", () => {
-      const testFile = testSet.getFile("a.proto");
+      const testFile = testReg.getFile("a.proto");
       assert(testFile);
-      const set = createDescSet(testFile);
-      const setTypeNames = Array.from(set)
+      const reg = createRegistry(testFile);
+      const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(setTypeNames).toStrictEqual(["Msg", "Enu", "Srv", "ext"].sort());
+      expect(regTypeNames).toStrictEqual(["Msg", "Enu", "Srv", "ext"].sort());
     });
   });
-  describe("from DescSet", () => {
-    test("creates a copy of the given DescSet", () => {
-      const testSetTypeNames = Array.from(testSet)
+  describe("from Registry", () => {
+    test("creates a copy of the given Registry", () => {
+      const testSetTypeNames = Array.from(testReg)
         .map((t) => t.typeName)
         .sort();
       assert(testSetTypeNames.length > 0);
-      const set = createDescSet(testSet);
-      const setTypeNames = Array.from(set)
+      const reg = createRegistry(testReg);
+      const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(setTypeNames).toStrictEqual(testSetTypeNames);
+      expect(regTypeNames).toStrictEqual(testSetTypeNames);
     });
-    test("merges two DescSets", async () => {
-      const secondSet = createDescFileSet(
+    test("merges two Registries", async () => {
+      const secondReg = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
         syntax="proto2";
@@ -267,16 +267,16 @@ describe("createDescSet()", function () {
       `,
         }),
       );
-      const set = createDescSet(testSet, secondSet);
-      const setTypeNames = Array.from(set)
+      const reg = createRegistry(testReg, secondReg);
+      const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(setTypeNames).toStrictEqual(
+      expect(regTypeNames).toStrictEqual(
         ["Msg", "Enu", "Srv", "ext", "Msg2", "Enu2", "Srv2", "ext2"].sort(),
       );
     });
     test("later duplicate type overwrites former type", async () => {
-      const secondSet = createDescFileSet(
+      const secondReg = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
         syntax="proto2";
@@ -285,20 +285,20 @@ describe("createDescSet()", function () {
       `,
         }),
       );
-      const set = createDescSet(testSet, secondSet);
-      const setTypeNames = Array.from(set)
+      const reg = createRegistry(testReg, secondReg);
+      const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(setTypeNames).toStrictEqual(
+      expect(regTypeNames).toStrictEqual(
         ["Msg", "Enu", "Srv", "ext", "Msg3"].sort(),
       );
-      expect(set.get("Msg")).toBe(secondSet.get("Msg"));
-      expect(set.get("Msg")).not.toBe(testSet.get("Msg"));
+      expect(reg.get("Msg")).toBe(secondReg.get("Msg"));
+      expect(reg.get("Msg")).not.toBe(testReg.get("Msg"));
     });
   });
 });
 
-describe("createDescFileSet()", function () {
+describe("createFileRegistry()", function () {
   let testFileDescriptorSet: FileDescriptorSet;
   beforeEach(async () => {
     testFileDescriptorSet = await compileFileDescriptorSet({
@@ -326,11 +326,11 @@ describe("createDescFileSet()", function () {
   });
   describe("from FileDescriptorSet", function () {
     test("provides files through getFile()", () => {
-      const fileSet = createDescFileSet(testFileDescriptorSet);
-      const a = fileSet.getFile("a.proto");
-      const b = fileSet.getFile("b.proto");
-      const c = fileSet.getFile("c.proto");
-      const d = fileSet.getFile("d.proto");
+      const fileReg = createFileRegistry(testFileDescriptorSet);
+      const a = fileReg.getFile("a.proto");
+      const b = fileReg.getFile("b.proto");
+      const c = fileReg.getFile("c.proto");
+      const d = fileReg.getFile("d.proto");
       expect(a).toBeDefined();
       expect(b).toBeDefined();
       expect(c).toBeDefined();
@@ -341,8 +341,8 @@ describe("createDescFileSet()", function () {
       expect(d?.dependencies).toStrictEqual([]);
     });
     test("provides files through file iterable", () => {
-      const fileSet = createDescFileSet(testFileDescriptorSet);
-      expect(Array.from(fileSet.files).map((f) => f.name)).toStrictEqual([
+      const fileReg = createFileRegistry(testFileDescriptorSet);
+      expect(Array.from(fileReg.files).map((f) => f.name)).toStrictEqual([
         "d",
         "b",
         "c",
@@ -352,47 +352,47 @@ describe("createDescFileSet()", function () {
   });
   describe("from FileDescriptorProto", function () {
     let descFileA: DescFile;
-    let testFileSet: DescFileSet;
+    let testFileReg: FileRegistry;
     beforeAll(() => {
-      testFileSet = createDescFileSet(testFileDescriptorSet);
-      const a = testFileSet.getFile("a.proto");
+      testFileReg = createFileRegistry(testFileDescriptorSet);
+      const a = testFileReg.getFile("a.proto");
       assert(a);
       assert(a.proto);
       descFileA = a;
     });
     test("resolves all dependencies as FileDescriptorProto", function () {
-      const set = createDescFileSet(descFileA.proto, (protoFileName) =>
-        testFileSet.getFile(protoFileName),
+      const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
+        testFileReg.getFile(protoFileName),
       );
-      expect(set.getFile("a.proto")).toBeDefined();
-      expect(set.getFile("b.proto")).toBeDefined();
-      expect(set.getFile("c.proto")).toBeDefined();
-      expect(set.getFile("d.proto")).toBeDefined();
-      expect(set.getMessage("A")).toBeDefined();
-      expect(set.getMessage("B")).toBeDefined();
-      expect(set.getMessage("C")).toBeDefined();
-      expect(set.getMessage("D")).toBeDefined();
+      expect(reg.getFile("a.proto")).toBeDefined();
+      expect(reg.getFile("b.proto")).toBeDefined();
+      expect(reg.getFile("c.proto")).toBeDefined();
+      expect(reg.getFile("d.proto")).toBeDefined();
+      expect(reg.getMessage("A")).toBeDefined();
+      expect(reg.getMessage("B")).toBeDefined();
+      expect(reg.getMessage("C")).toBeDefined();
+      expect(reg.getMessage("D")).toBeDefined();
     });
     test("resolves all dependencies as DescFile", function () {
-      const set = createDescFileSet(descFileA.proto, (protoFileName) =>
-        testFileSet.getFile(protoFileName),
+      const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
+        testFileReg.getFile(protoFileName),
       );
-      expect(set.getFile("a.proto")).toBeDefined();
-      expect(set.getFile("b.proto")).toBeDefined();
-      expect(set.getFile("c.proto")).toBeDefined();
-      expect(set.getFile("d.proto")).toBeDefined();
-      expect(set.getMessage("A")).toBeDefined();
-      expect(set.getMessage("B")).toBeDefined();
-      expect(set.getMessage("C")).toBeDefined();
-      expect(set.getMessage("D")).toBeDefined();
+      expect(reg.getFile("a.proto")).toBeDefined();
+      expect(reg.getFile("b.proto")).toBeDefined();
+      expect(reg.getFile("c.proto")).toBeDefined();
+      expect(reg.getFile("d.proto")).toBeDefined();
+      expect(reg.getMessage("A")).toBeDefined();
+      expect(reg.getMessage("B")).toBeDefined();
+      expect(reg.getMessage("C")).toBeDefined();
+      expect(reg.getMessage("D")).toBeDefined();
     });
     test("raises error on unresolvable dependency", function () {
       function t() {
-        createDescFileSet(descFileA.proto, (protoFileName) => {
+        createFileRegistry(descFileA.proto, (protoFileName) => {
           if (protoFileName === "c.proto") {
             return undefined;
           }
-          return testFileSet.getFile(protoFileName);
+          return testFileReg.getFile(protoFileName);
         });
       }
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
@@ -402,7 +402,7 @@ describe("createDescFileSet()", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_1_TEST_ONLY;
     function t() {
-      createDescFileSet(testFileDescriptorSet);
+      createFileRegistry(testFileDescriptorSet);
     }
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
@@ -410,33 +410,33 @@ describe("createDescFileSet()", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
     function t() {
-      createDescFileSet(testFileDescriptorSet);
+      createFileRegistry(testFileDescriptorSet);
     }
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
-  describe("from DescFileSet", function () {
-    test("creates a copy of the given DescFileSet", () => {
-      const testSet = createDescFileSet(testFileDescriptorSet);
-      const testSetFileNames = Array.from(testSet.files)
+  describe("from FileRegistry", function () {
+    test("creates a copy of the given FileRegistry", () => {
+      const testReg = createFileRegistry(testFileDescriptorSet);
+      const testRegFileNames = Array.from(testReg.files)
         .map((f) => f.name)
         .sort();
-      const testSetTypeNames = Array.from(testSet)
+      const testRegTypeNames = Array.from(testReg)
         .map((t) => t.typeName)
         .sort();
-      assert(testSetTypeNames.length > 0);
+      assert(testRegTypeNames.length > 0);
 
-      const set = createDescFileSet(testSet);
-      const setFileNames = Array.from(set.files)
+      const reg = createFileRegistry(testReg);
+      const regFileNames = Array.from(reg.files)
         .map((f) => f.name)
         .sort();
-      expect(setFileNames).toStrictEqual(testSetFileNames);
-      const setTypeNames = Array.from(set)
+      expect(regFileNames).toStrictEqual(testRegFileNames);
+      const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(setTypeNames).toStrictEqual(testSetTypeNames);
+      expect(regTypeNames).toStrictEqual(testRegTypeNames);
     });
-    test("merges two DescFileSets", async () => {
-      const setA = createDescFileSet(
+    test("merges two FileRegistries", async () => {
+      const regA = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
           syntax="proto2";
@@ -447,7 +447,7 @@ describe("createDescFileSet()", function () {
         `,
         }),
       );
-      const setB = createDescFileSet(
+      const regB = createFileRegistry(
         await compileFileDescriptorSet({
           "b.proto": `
           syntax="proto2";
@@ -458,22 +458,22 @@ describe("createDescFileSet()", function () {
         `,
         }),
       );
-      const set = createDescFileSet(setA, setB);
+      const reg = createFileRegistry(regA, regB);
       expect(
-        Array.from(set)
+        Array.from(reg)
           .map((t) => t.typeName)
           .sort(),
       ).toStrictEqual(
         ["Msg", "Enu", "Srv", "ext", "Msg2", "Enu2", "Srv2", "ext2"].sort(),
       );
       expect(
-        Array.from(set.files)
+        Array.from(reg.files)
           .map((f) => f.name)
           .sort(),
       ).toStrictEqual(["a", "b"].sort());
     });
     test("later duplicate file overwrites former file", async () => {
-      const setA = createDescFileSet(
+      const regA = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
           syntax="proto2";
@@ -481,7 +481,7 @@ describe("createDescFileSet()", function () {
         `,
         }),
       );
-      const setB = createDescFileSet(
+      const regB = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
           syntax="proto2";
@@ -489,10 +489,10 @@ describe("createDescFileSet()", function () {
         `,
         }),
       );
-      const set = createDescFileSet(setA, setB);
-      expect(Array.from(set.files).map((f) => f.name)).toStrictEqual(["a"]);
+      const reg = createFileRegistry(regA, regB);
+      expect(Array.from(reg.files).map((f) => f.name)).toStrictEqual(["a"]);
       expect(
-        Array.from(set)
+        Array.from(reg)
           .map((t) => t.typeName)
           .sort(),
       ).toStrictEqual(["MsgA", "MsgB"].sort());
@@ -505,8 +505,8 @@ describe("DescFile", () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": `syntax="proto2";`,
     });
-    const set = createDescFileSet(fileDescriptorSet);
-    const descFile = set.getFile("a.proto");
+    const reg = createFileRegistry(fileDescriptorSet);
+    const descFile = reg.getFile("a.proto");
     expect(descFile).toBeDefined();
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
   });
@@ -514,8 +514,8 @@ describe("DescFile", () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": `syntax="proto3";`,
     });
-    const set = createDescFileSet(fileDescriptorSet);
-    const descFile = set.getFile("a.proto");
+    const reg = createFileRegistry(fileDescriptorSet);
+    const descFile = reg.getFile("a.proto");
     expect(descFile).toBeDefined();
     expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
   });
@@ -523,8 +523,8 @@ describe("DescFile", () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": `edition = "2023";`,
     });
-    const set = createDescFileSet(fileDescriptorSet);
-    const descFile = set.getFile("a.proto");
+    const reg = createFileRegistry(fileDescriptorSet);
+    const descFile = reg.getFile("a.proto");
     expect(descFile).toBeDefined();
     expect(descFile?.edition).toBe(Edition.EDITION_2023);
   });
@@ -536,8 +536,8 @@ describe("DescFile", () => {
       "b.proto": `syntax="proto3";`,
       "c.proto": `syntax="proto3";`,
     });
-    const set = createDescFileSet(fileDescriptorSet);
-    const a = set.getFile("a.proto");
+    const reg = createFileRegistry(fileDescriptorSet);
+    const a = reg.getFile("a.proto");
     expect(a?.name).toBe("a");
     expect(a?.dependencies.length).toBe(2);
     expect(a?.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
@@ -979,7 +979,7 @@ describe("DescField", () => {
         `,
       });
       const fields =
-        createDescFileSet(fileDescriptorSet).getMessage("M")?.fields;
+        createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
       assert(fields);
       {
         const f = fields.shift();
@@ -1018,7 +1018,7 @@ describe("DescField", () => {
         `,
       });
       const fields =
-        createDescFileSet(fileDescriptorSet).getMessage("M")?.fields;
+        createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
       assert(fields);
       {
         const f = fields.shift();
@@ -1057,7 +1057,7 @@ describe("DescField", () => {
         `,
       });
       const fields =
-        createDescFileSet(fileDescriptorSet).getMessage("M")?.fields;
+        createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
       assert(fields);
       {
         const f = fields.shift();
@@ -1096,7 +1096,7 @@ describe("DescField", () => {
         `,
       });
       const fields =
-        createDescFileSet(fileDescriptorSet).getMessage("M")?.fields;
+        createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
       assert(fields);
       {
         const f = fields.shift();
@@ -1126,7 +1126,7 @@ describe("DescField", () => {
         `,
     });
     const field =
-      createDescFileSet(fileDescriptorSet).getMessage("M")?.fields[0];
+      createFileRegistry(fileDescriptorSet).getMessage("M")?.fields[0];
     assert(field);
 
     // always available

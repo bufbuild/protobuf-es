@@ -18,7 +18,7 @@ import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import { ScalarType } from "./reflect/scalar.js";
-import type { DescSet } from "./reflect/desc-set.js";
+import type { Registry } from "./reflect/registry.js";
 import type {
   ReflectList,
   ReflectMap,
@@ -79,7 +79,7 @@ export interface JsonWriteOptions {
    * This option is required to write `google.protobuf.Any` and extensions
    * to JSON format.
    */
-  descSet?: DescSet;
+  registry?: Registry;
 }
 
 /**
@@ -156,7 +156,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       json[jsonName(f, opts)] = jsonValue;
     }
   }
-  if (opts.descSet) {
+  if (opts.registry) {
     const tagSeen = new Set<number>();
     for (const uf of msg.getUnknown() ?? []) {
       // Same tag can appear multiple times, so we
@@ -164,7 +164,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       if (tagSeen.has(uf.no)) {
         continue;
       }
-      const extension = opts.descSet.getExtensionFor(msg.desc, uf.no);
+      const extension = opts.registry.getExtensionFor(msg.desc, uf.no);
       if (!extension) {
         continue;
       }
@@ -378,13 +378,13 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
   if (val.typeUrl === "") {
     return {};
   }
-  const { descSet } = opts;
+  const { registry } = opts;
   let message: Message | undefined;
   let desc: DescMessage | undefined;
-  if (descSet) {
-    message = anyUnpack(val, descSet);
+  if (registry) {
+    message = anyUnpack(val, registry);
     if (message) {
-      desc = descSet.getMessage(message.$typeName);
+      desc = registry.getMessage(message.$typeName);
     }
   }
   if (!desc || !message) {

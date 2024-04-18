@@ -16,7 +16,7 @@ import type { Message, MessageShape } from "../types.js";
 import type { Any } from "./gen/google/protobuf/any_pbv2.js";
 import { AnyDesc } from "./gen/google/protobuf/any_pbv2.js";
 import type { DescMessage } from "../../desc-types.js";
-import type { DescSet } from "../reflect/index.js";
+import type { Registry } from "../reflect/index.js";
 import { create } from "../create.js";
 import { toBinary } from "../to-binary.js";
 import { fromBinary, mergeFromBinary } from "../from-binary.js";
@@ -79,9 +79,9 @@ export function anyIs(any: Any, descOrTypeName: DescMessage | string): boolean {
  * Unpacks the message the Any represents.
  *
  * Returns undefined if the Any is empty, or if packed type is not included
- * in the given set.
+ * in the given registry.
  */
-export function anyUnpack(any: Any, set: DescSet): Message | undefined;
+export function anyUnpack(any: Any, registry: Registry): Message | undefined;
 
 /**
  * Unpacks the message the Any represents.
@@ -96,15 +96,15 @@ export function anyUnpack<Desc extends DescMessage>(
 
 export function anyUnpack(
   any: Any,
-  descSetOrMessage: DescSet | DescMessage,
+  registryOrMessageDesc: Registry | DescMessage,
 ): Message | undefined {
   if (any.typeUrl === "") {
     return undefined;
   }
   const desc =
-    descSetOrMessage.kind == "message"
-      ? descSetOrMessage
-      : descSetOrMessage.getMessage(typeUrlToName(any.typeUrl));
+    registryOrMessageDesc.kind == "message"
+      ? registryOrMessageDesc
+      : registryOrMessageDesc.getMessage(typeUrlToName(any.typeUrl));
   if (!desc) {
     return undefined;
   }

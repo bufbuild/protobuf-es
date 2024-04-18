@@ -14,7 +14,7 @@
 
 import type { DescMessage } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { createDescFileSet, localName } from "@bufbuild/protobuf/next/reflect";
+import { createFileRegistry, localName } from "@bufbuild/protobuf/next/reflect";
 import * as proto3_ts from "../gen/ts/extra/proto3_pbv2.js";
 import type { DescField } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf/next";
@@ -48,8 +48,8 @@ export async function compileFile(proto: string) {
     },
   );
   const fds = fromBinary(FileDescriptorSetDesc, bytes);
-  const set = createDescFileSet(fds);
-  const file = set.getFile("input.proto");
+  const reg = createFileRegistry(fds);
+  const file = reg.getFile("input.proto");
   assert(file);
   return file;
 }

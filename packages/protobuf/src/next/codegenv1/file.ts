@@ -15,7 +15,7 @@
 import { base64Decode } from "../wire/index.js";
 import { FileDescriptorProtoDesc } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { DescFile } from "../../desc-types.js";
-import { createDescFileSet } from "../reflect/desc-set.js";
+import { createFileRegistry } from "../reflect/registry.js";
 import { assert } from "../reflect/assert.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { fromBinary } from "../from-binary.js";
@@ -29,10 +29,10 @@ export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const root = fromBinary(FileDescriptorProtoDesc, base64Decode(b64));
   root.messageType.forEach(restoreJsonNames);
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
-  const set = createDescFileSet(root, (protoFileName) =>
+  const reg = createFileRegistry(root, (protoFileName) =>
     imports?.find((f) => f.proto.name === protoFileName),
   );
-  const file = set.getFile(root.name);
+  const file = reg.getFile(root.name);
   assert(file);
   return file;
 }

@@ -39,13 +39,13 @@ import {
   createFileDescriptorProtoBoot,
   embedFileDesc,
 } from "@bufbuild/protobuf/next/codegenv1";
-import { createDescFileSet } from "@bufbuild/protobuf/next/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf/next/reflect";
 import { boot } from "@bufbuild/protobuf/next/codegenv1";
 
 describe("boot()", () => {
   test("hydrates google/protobuf/descriptor.proto", async () => {
     const fileDescriptorProto = await compileGoogleProtobufDescriptorProto();
-    const fileDesc = createDescFileSet(
+    const fileDesc = createFileRegistry(
       fileDescriptorProto,
       () => undefined,
     ).getFile(fileDescriptorProto.name);

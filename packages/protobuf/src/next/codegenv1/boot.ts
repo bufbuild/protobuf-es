@@ -28,7 +28,7 @@ import type {
 } from "../wkt/gen/google/protobuf/descriptor_pbv2.js";
 import type { DescFile } from "../../desc-types.js";
 import { restoreJsonNames } from "./restore-json-names.js";
-import { createDescFileSet } from "../reflect/desc-set.js";
+import { createFileRegistry } from "../reflect/registry.js";
 import { assert } from "../reflect/assert.js";
 
 /**
@@ -42,8 +42,8 @@ import { assert } from "../reflect/assert.js";
 export function boot(boot: FileDescriptorProtoBoot): DescFile {
   const root = bootFileDescriptorProto(boot);
   root.messageType.forEach(restoreJsonNames);
-  const set = createDescFileSet(root, () => undefined);
-  const file = set.getFile(root.name);
+  const reg = createFileRegistry(root, () => undefined);
+  const file = reg.getFile(root.name);
   assert(file);
   return file;
 }

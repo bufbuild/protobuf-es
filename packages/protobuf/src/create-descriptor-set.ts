@@ -23,7 +23,7 @@ import type {
   DescService,
 } from "./desc-types.js";
 import type { DescriptorSet } from "./descriptor-set.js";
-import { createDescFileSet } from "./next/reflect/desc-set.js";
+import { createFileRegistry } from "./next/reflect/registry.js";
 import { createV2FileDescriptorSetFromV1Input } from "./create-descriptor-set-compat.js";
 
 /**
@@ -37,12 +37,12 @@ import { createV2FileDescriptorSetFromV1Input } from "./create-descriptor-set-co
 export function createDescriptorSet(
   input: FileDescriptorProto[] | FileDescriptorSet | Uint8Array,
 ): DescriptorSet {
-  const set = createDescFileSet(createV2FileDescriptorSetFromV1Input(input));
+  const reg = createFileRegistry(createV2FileDescriptorSetFromV1Input(input));
   const enums = new Map<string, DescEnum>();
   const messages = new Map<string, DescMessage>();
   const services = new Map<string, DescService>();
   const extensions = new Map<string, DescExtension>();
-  for (const type of set) {
+  for (const type of reg) {
     switch (type.kind) {
       case "service":
         services.set(type.typeName, type);
@@ -59,7 +59,7 @@ export function createDescriptorSet(
     }
   }
   return {
-    files: Array.from(set.files),
+    files: Array.from(reg.files),
     enums,
     messages,
     services,

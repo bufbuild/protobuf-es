@@ -23,7 +23,7 @@ import {
   toBinary,
   toJsonString,
 } from "@bufbuild/protobuf/next";
-import { createDescSet } from "@bufbuild/protobuf/next/reflect";
+import { createRegistry } from "@bufbuild/protobuf/next/reflect";
 import type {
   ConformanceRequest,
   ConformanceResponse,
@@ -46,7 +46,7 @@ import {
   fileDesc_google_protobuf_wrappers,
 } from "@bufbuild/protobuf/next/wkt";
 
-const registry = createDescSet(
+const registry = createRegistry(
   fileDesc_google_protobuf_test_messages_proto2,
   fileDesc_google_protobuf_test_messages_proto3,
   fileDesc_google_protobuf_any,
@@ -114,7 +114,7 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
           ignoreUnknownFields:
             request.testCategory ===
             TestCategory.JSON_IGNORE_UNKNOWN_PARSING_TEST,
-          descSet: registry,
+          registry,
         });
         break;
 
@@ -146,7 +146,7 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
         return {
           case: "jsonPayload",
           value: toJsonString(payloadType, payload, {
-            descSet: registry,
+            registry,
           }),
         };
 
