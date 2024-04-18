@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { readFileSync } from "node:fs";
 import { FileDescriptorSetDesc } from "../gen/ts/google/protobuf/descriptor_pbv2.js";
 import { UserDesc } from "../gen/ts/extra/example_pbv2.js";
 import { protoInt64 } from "@bufbuild/protobuf";
@@ -29,15 +28,15 @@ import {
 /* eslint-disable no-console, import/no-named-as-default-member */
 
 run("Parsing binary", [
-  function () {
-    const data = readFileSync("./descriptorset.binpb");
-    return {
-      name: `large google.protobuf.FileDescriptorSet (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(FileDescriptorSetDesc, data);
-      },
-    };
-  },
+  // function () {
+  //   const data = readFileSync("./descriptorset.binpb");
+  //   return {
+  //     name: `large google.protobuf.FileDescriptorSet (${data.byteLength} bytes)`,
+  //     fn: () => {
+  //       fromBinary(FileDescriptorSetDesc, data);
+  //     },
+  //   };
+  // },
   function () {
     const tinyUser = create(UserDesc, {
       active: false,
