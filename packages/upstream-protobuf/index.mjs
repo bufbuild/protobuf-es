@@ -51,6 +51,16 @@ export class UpstreamProtobuf {
    */
   #version;
 
+  /**
+   * Proto files for the "well-known types".
+   *
+   * @type {string[]}
+   */
+  #wktprotos = [
+    "google/protobuf/**/*.proto",
+    "!google/protobuf/*_features.proto",
+  ];
+
   // TODO add the following files again once we have sufficient support for editions:
   //  - google/protobuf/unittest_preserve_unknown_enum2.proto
   //  - google/protobuf/unittest_preserve_unknown_enum.proto
@@ -344,7 +354,7 @@ export class UpstreamProtobuf {
       protocPath,
       protoInclude: {
         dir: wktDir,
-        files: lsfiles(wktDir).filter((n) => n.endsWith(".proto")),
+        files: micromatch(lsfiles(wktDir), this.#wktprotos, {}),
       },
     };
   }
