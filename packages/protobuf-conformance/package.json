@@ -9,8 +9,8 @@
     "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
     "postgenerate": "license-header src/gen",
     "test": "npm run test:bigint && npm run test:string",
-    "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --maximum_edition 2023 --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
-    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --maximum_edition 2023 --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js"
+    "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
+    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js"
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
