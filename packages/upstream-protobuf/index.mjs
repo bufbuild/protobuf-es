@@ -52,6 +52,16 @@ export class UpstreamProtobuf {
   #version;
 
   /**
+   * Proto files for the "well-known types".
+   *
+   * @type {string[]}
+   */
+  #wktprotos = [
+    "google/protobuf/**/*.proto",
+    "!google/protobuf/*_features.proto",
+  ];
+
+  /**
    * Relevant proto files for testing in upstream protobuf.
    *
    * @type {string[]}
@@ -336,7 +346,7 @@ export class UpstreamProtobuf {
       protocPath,
       protoInclude: {
         dir: wktDir,
-        files: lsfiles(wktDir).filter((n) => n.endsWith(".proto")),
+        files: micromatch(lsfiles(wktDir), this.#wktprotos, {}),
       },
     };
   }
