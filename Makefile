@@ -176,6 +176,7 @@ setversion: ## Set a new version in for the project, i.e. make setversion SET_VE
 release: all ## Release @bufbuild/protobuf
 	@[ -z "$(shell git status --short)" ] || (echo "Uncommitted changes found." && exit 1);
 	npm publish \
+		--tag $(shell node scripts/get-workspace-publish-tag.js) \
 		--workspace packages/protobuf \
 		--workspace packages/protoplugin \
 		--workspace packages/protoc-gen-es
