@@ -15,6 +15,18 @@ Required.Proto2.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
 Required.Proto2.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
 Required.Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
 Required.Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
 
 # Without BigInt support, our implementation does not validate that 64-bit
 # values are within bounds.
@@ -24,3 +36,9 @@ Required.Proto3.JsonInput.Uint64FieldTooLarge
 Required.Proto2.JsonInput.Int64FieldTooLarge
 Required.Proto2.JsonInput.Int64FieldTooSmall
 Required.Proto2.JsonInput.Uint64FieldTooLarge
+Required.Editions_Proto2.JsonInput.Int64FieldTooLarge
+Required.Editions_Proto2.JsonInput.Int64FieldTooSmall
+Required.Editions_Proto2.JsonInput.Uint64FieldTooLarge
+Required.Editions_Proto3.JsonInput.Int64FieldTooLarge
+Required.Editions_Proto3.JsonInput.Int64FieldTooSmall
+Required.Editions_Proto3.JsonInput.Uint64FieldTooLarge

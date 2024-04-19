@@ -158,7 +158,12 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         for (const def of featureSetDefaults.defaults) {
           lines.push(`  // ${Edition[def.edition]}`);
           lines.push(`  ${def.edition}: {`);
-          const r = reflect(FeatureSetDesc, def.features);
+          const r = reflect(
+            FeatureSetDesc,
+            featureSetHasAllSet(def.overridableFeatures)
+              ? def.overridableFeatures
+              : def.fixedFeatures,
+          );
           for (const f of r.fields) {
             if (f.fieldKind !== "enum") {
               throw new Error(
@@ -231,29 +236,48 @@ async function compileDefaults(upstream, minimumEdition, maximumEdition) {
     FeatureSetDefaultsDesc,
     featureSetDefaultsBytes,
   );
-  const hasUnknownFields =
-    featureSetDefaults.$unknown !== undefined &&
-    featureSetDefaults.$unknown.length > 0;
-  if (
-    hasUnknownFields ||
-    featureSetDefaults.minimumEdition === 0 ||
-    featureSetDefaults.maximumEdition === 0 ||
-    featureSetDefaults.maximumEdition < featureSetDefaults.minimumEdition ||
-    featureSetDefaults.defaults.some((d) => d.edition === 0) ||
-    featureSetDefaults.defaults.some(
-      (d) =>
-        !d.features ||
-        d.features.fieldPresence === 0 ||
-        d.features.enumType === 0 ||
-        d.features.repeatedFieldEncoding === 0 ||
-        d.features.utf8Validation === 0 ||
-        d.features.messageEncoding === 0 ||
-        d.features.jsonFormat === 0,
-    )
-  ) {
+  if (!validateDefaults(featureSetDefaults)) {
     throw new Error(`invalid ${FeatureSetDefaultsDesc.typeName}`);
   }
   return featureSetDefaults;
+}
+
+/**
+ * @param {import("@bufbuild/protobuf/wkt").FeatureSetDefaults} def
+ * @returns {boolean}
+ */
+function validateDefaults(def) {
+  const hasUnknownFields =
+    def.$unknown !== undefined && def.$unknown.length > 0;
+  const hasValidEditionRange =
+    def.minimumEdition !== 0 &&
+    def.maximumEdition !== 0 &&
+    def.maximumEdition >= def.minimumEdition;
+  const hasValidDefaults = def.defaults.every((d) => {
+    if (d.edition === 0) {
+      return false;
+    }
+    return (
+      featureSetHasAllSet(d.fixedFeatures) ||
+      featureSetHasAllSet(d.overridableFeatures)
+    );
+  });
+  return !hasUnknownFields && hasValidEditionRange && hasValidDefaults;
+}
+
+/**
+ * @param {import("@bufbuild/protobuf/wkt").FeatureSet} featureSet
+ */
+function featureSetHasAllSet(featureSet) {
+  return (
+    !!featureSet &&
+    featureSet.fieldPresence !== 0 &&
+    featureSet.enumType !== 0 &&
+    featureSet.repeatedFieldEncoding !== 0 &&
+    featureSet.utf8Validation !== 0 &&
+    featureSet.messageEncoding !== 0 &&
+    featureSet.jsonFormat !== 0
+  );
 }
 
 /**

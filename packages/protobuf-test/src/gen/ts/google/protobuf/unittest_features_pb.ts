@@ -23,7 +23,7 @@ import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_google_protobuf_unittest_features: GenDescFile = /*@__PURE__*/
-  fileDesc("Cidnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZmVhdHVyZXMucHJvdG8SAnBiIrsBCgtUZXN0TWVzc2FnZRpZCgZOZXN0ZWQyTwoLdGVzdF9uZXN0ZWQSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiNTiABKAsyEC5wYi5UZXN0RmVhdHVyZXNSCnRlc3ROZXN0ZWQyUQoMdGVzdF9tZXNzYWdlEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjk4gASgLMhAucGIuVGVzdEZlYXR1cmVzUgt0ZXN0TWVzc2FnZSL9CgoMVGVzdEZlYXR1cmVzElEKEGludF9maWxlX2ZlYXR1cmUYASABKAVCN4gBAZgBAaIBBxICLTIY5geiAQcSAi0zGOcHogEGEgExGOgHogEHEgEyGJ2NBqIBBxIBMxiejQYSNAobaW50X2V4dGVuc2lvbl9yYW5nZV9mZWF0dXJlGAIgASgFQg+IAQGYAQKiAQYSATEY5gcSLAoTaW50X21lc3NhZ2VfZmVhdHVyZRgDIAEoBUIPiAEBmAEDogEGEgExGOYHEioKEWludF9maWVsZF9mZWF0dXJlGAQgASgFQg+IAQGYAQSiAQYSATEY5gcSKgoRaW50X29uZW9mX2ZlYXR1cmUYBSABKAVCD4gBAZgBBaIBBhIBMRjmBxIpChBpbnRfZW51bV9mZWF0dXJlGAYgASgFQg+IAQGYAQaiAQYSATEY5gcSLwoWaW50X2VudW1fZW50cnlfZmVhdHVyZRgHIAEoBUIPiAEBmAEHogEGEgExGOYHEiwKE2ludF9zZXJ2aWNlX2ZlYXR1cmUYCCABKAVCD4gBAZgBCKIBBhIBMRjmBxIrChJpbnRfbWV0aG9kX2ZlYXR1cmUYCSABKAVCD4gBAZgBCaIBBhIBMRjmBxJFChRpbnRfbXVsdGlwbGVfZmVhdHVyZRgKIAEoBUIniAEBmAEBmAEEmAEDmAEGmAEHmAEImAEJmAEFmAECogEGEgExGOYHEjwKEmJvb2xfZmllbGRfZmVhdHVyZRgLIAEoCEIgiAEBmAEEogEKEgVmYWxzZRjmB6IBChIEdHJ1ZRidjQYSOgoTZmxvYXRfZmllbGRfZmVhdHVyZRgMIAEoAkIdiAEBmAEEogEIEgMxLjEY5geiAQkSAzEuMhidjQYSzAEKFW1lc3NhZ2VfZmllbGRfZmVhdHVyZRgNIAEoCzIfLnBiLlRlc3RGZWF0dXJlcy5NZXNzYWdlRmVhdHVyZUKLAYgBAZgBBKIBEhIMaW50X2ZpZWxkOiAyGJ2NBqIBGhIUc3RyaW5nX2ZpZWxkOiAnMjAyNCcYno0GogFIEkNib29sX2ZpZWxkOiB0cnVlIGludF9maWVsZDogMSBmbG9hdF9maWVsZDogMS41IHN0cmluZ19maWVsZDogJzIwMjMnGOgHogEFEgAY5gcSnAEKEmVudW1fZmllbGRfZmVhdHVyZRgOIAEoDjIcLnBiLlRlc3RGZWF0dXJlcy5FbnVtRmVhdHVyZUJiiAEBmAEEogEeEhlURVNUX0VOVU1fRkVBVFVSRV9VTktOT1dOGOYHogEQEgtFTlVNX1ZBTFVFMRjoB6IBERILRU5VTV9WQUxVRTIYnY0GogEREgtFTlVNX1ZBTFVFMxiejQYSQwoSaW50X3NvdXJjZV9mZWF0dXJlGA8gASgFQieIAQKYAQGYAQSYAQOYAQaYAQeYAQiYAQmYAQWYAQKiAQYSATEY5gcSSwoVc3RyaW5nX3NvdXJjZV9mZWF0dXJlGBAgASgJQiyIAQKYAQGYAQSYAQOYAQaYAQeYAQiYAQmYAQWYAQKiAQsSBicyMDIzJxjmBxpiCg5NZXNzYWdlRmVhdHVyZRISCgpib29sX2ZpZWxkGAEgASgIEhEKCWludF9maWVsZBgCIAEoBRITCgtmbG9hdF9maWVsZBgDIAEoAhIUCgxzdHJpbmdfZmllbGQYBCABKAkigQEKC0VudW1GZWF0dXJlEh0KGVRFU1RfRU5VTV9GRUFUVVJFX1VOS05PV04QABIPCgtFTlVNX1ZBTFVFMRABEg8KC0VOVU1fVkFMVUUyEAISDwoLRU5VTV9WQUxVRTMQAxIPCgtFTlVNX1ZBTFVFNBAEEg8KC0VOVU1fVkFMVUU1EAU6QgoEdGVzdBIbLmdvb2dsZS5wcm90b2J1Zi5GZWF0dXJlU2V0GI9OIAEoCzIQLnBiLlRlc3RGZWF0dXJlc1IEdGVzdA", [fileDesc_google_protobuf_descriptor]);
+  fileDesc("Cidnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZmVhdHVyZXMucHJvdG8SAnBiIrsBCgtUZXN0TWVzc2FnZRpZCgZOZXN0ZWQyTwoLdGVzdF9uZXN0ZWQSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiNTiABKAsyEC5wYi5UZXN0RmVhdHVyZXNSCnRlc3ROZXN0ZWQyUQoMdGVzdF9tZXNzYWdlEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjk4gASgLMhAucGIuVGVzdEZlYXR1cmVzUgt0ZXN0TWVzc2FnZSLbCgoMVGVzdEZlYXR1cmVzEnsKDGZpbGVfZmVhdHVyZRgBIAEoDjIPLnBiLkVudW1GZWF0dXJlQlSIAQGYAQGiAQsSBlZBTFVFMRiEB6IBCxIGVkFMVUUyGOcHogELEgZWQUxVRTMY6AeiAQwSBlZBTFVFNBidjQaiAQwSBlZBTFVFNRiejQayAQMI6AcSTAoXZXh0ZW5zaW9uX3JhbmdlX2ZlYXR1cmUYAiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAECogELEgZWQUxVRTEYhAeyAQMI6AcSRAoPbWVzc2FnZV9mZWF0dXJlGAMgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBA6IBCxIGVkFMVUUxGIQHsgEDCOgHEkIKDWZpZWxkX2ZlYXR1cmUYBCABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEEogELEgZWQUxVRTEYhAeyAQMI6AcSQgoNb25lb2ZfZmVhdHVyZRgFIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQWiAQsSBlZBTFVFMRiEB7IBAwjoBxJBCgxlbnVtX2ZlYXR1cmUYBiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEGogELEgZWQUxVRTEYhAeyAQMI6AcSRwoSZW51bV9lbnRyeV9mZWF0dXJlGAcgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBB6IBCxIGVkFMVUUxGIQHsgEDCOgHEkQKD3NlcnZpY2VfZmVhdHVyZRgIIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQiiAQsSBlZBTFVFMRiEB7IBAwjoBxJDCg5tZXRob2RfZmVhdHVyZRgJIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQmiAQsSBlZBTFVFMRiEB7IBAwjoBxJdChBtdWx0aXBsZV9mZWF0dXJlGAogASgOMg8ucGIuRW51bUZlYXR1cmVCMogBAZgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEkIKEmJvb2xfZmllbGRfZmVhdHVyZRgLIAEoCEImiAEBmAEEogEKEgVmYWxzZRiEB6IBChIEdHJ1ZRidjQayAQMI6AcSWwoOc291cmNlX2ZlYXR1cmUYDyABKA4yDy5wYi5FbnVtRmVhdHVyZUIyiAECmAEBmAEEmAEDmAEGmAEHmAEImAEJmAEFmAECogELEgZWQUxVRTEYhAeyAQMI6AcSXAoPc291cmNlX2ZlYXR1cmUyGBAgASgOMg8ucGIuRW51bUZlYXR1cmVCMogBApgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEo0BCg9yZW1vdmVkX2ZlYXR1cmUYESABKA4yDy5wYi5FbnVtRmVhdHVyZUJjiAEBmAEBmAEEogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjoB6IBCxIGVkFMVUUzGOkHsgEtCOgHEOgHGiJDdXN0b20gZmVhdHVyZSBkZXByZWNhdGlvbiB3YXJuaW5nIOkHElQKDmZ1dHVyZV9mZWF0dXJlGBIgASgOMg8ucGIuRW51bUZlYXR1cmVCK4gBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6QeyAQMI6QcSVwoObGVnYWN5X2ZlYXR1cmUYEyABKA4yDy5wYi5FbnVtRmVhdHVyZUIuiAEBmAEBmAEEogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjoB7IBBgjmByDoByrmAQoLRW51bUZlYXR1cmUSHQoZVEVTVF9FTlVNX0ZFQVRVUkVfVU5LTk9XThAAEgoKBlZBTFVFMRABEgoKBlZBTFVFMhACEgoKBlZBTFVFMxADEgoKBlZBTFVFNBAEEgoKBlZBTFVFNRAFEgoKBlZBTFVFNhAGEgoKBlZBTFVFNxAHEgoKBlZBTFVFOBAIEgoKBlZBTFVFORAJEgsKB1ZBTFVFMTAQChILCgdWQUxVRTExEAsSCwoHVkFMVUUxMhAMEgsKB1ZBTFVFMTMQDRILCgdWQUxVRTE0EA4SCwoHVkFMVUUxNRAPOkIKBHRlc3QSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiPTiABKAsyEC5wYi5UZXN0RmVhdHVyZXNSBHRlc3Q", [fileDesc_google_protobuf_descriptor]);
 
 /**
  * @generated from message pb.TestMessage
@@ -64,54 +64,54 @@ export const TestMessage_test_message: GenDescExtension<FeatureSet, TestFeatures
  */
 export type TestFeatures = Message<"pb.TestFeatures"> & {
   /**
-   * @generated from field: optional int32 int_file_feature = 1;
+   * @generated from field: optional pb.EnumFeature file_feature = 1;
    */
-  intFileFeature: number;
+  fileFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_extension_range_feature = 2;
+   * @generated from field: optional pb.EnumFeature extension_range_feature = 2;
    */
-  intExtensionRangeFeature: number;
+  extensionRangeFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_message_feature = 3;
+   * @generated from field: optional pb.EnumFeature message_feature = 3;
    */
-  intMessageFeature: number;
+  messageFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_field_feature = 4;
+   * @generated from field: optional pb.EnumFeature field_feature = 4;
    */
-  intFieldFeature: number;
+  fieldFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_oneof_feature = 5;
+   * @generated from field: optional pb.EnumFeature oneof_feature = 5;
    */
-  intOneofFeature: number;
+  oneofFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_feature = 6;
+   * @generated from field: optional pb.EnumFeature enum_feature = 6;
    */
-  intEnumFeature: number;
+  enumFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_entry_feature = 7;
+   * @generated from field: optional pb.EnumFeature enum_entry_feature = 7;
    */
-  intEnumEntryFeature: number;
+  enumEntryFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_service_feature = 8;
+   * @generated from field: optional pb.EnumFeature service_feature = 8;
    */
-  intServiceFeature: number;
+  serviceFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_method_feature = 9;
+   * @generated from field: optional pb.EnumFeature method_feature = 9;
    */
-  intMethodFeature: number;
+  methodFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_multiple_feature = 10;
+   * @generated from field: optional pb.EnumFeature multiple_feature = 10;
    */
-  intMultipleFeature: number;
+  multipleFeature: EnumFeature;
 
   /**
    * @generated from field: optional bool bool_field_feature = 11;
@@ -119,29 +119,29 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
   boolFieldFeature: boolean;
 
   /**
-   * @generated from field: optional float float_field_feature = 12;
+   * @generated from field: optional pb.EnumFeature source_feature = 15;
    */
-  floatFieldFeature: number;
+  sourceFeature: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.MessageFeature message_field_feature = 13;
+   * @generated from field: optional pb.EnumFeature source_feature2 = 16;
    */
-  messageFieldFeature?: TestFeatures_MessageFeature;
+  sourceFeature2: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.EnumFeature enum_field_feature = 14;
+   * @generated from field: optional pb.EnumFeature removed_feature = 17;
    */
-  enumFieldFeature: TestFeatures_EnumFeature;
+  removedFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_source_feature = 15;
+   * @generated from field: optional pb.EnumFeature future_feature = 18;
    */
-  intSourceFeature: number;
+  futureFeature: EnumFeature;
 
   /**
-   * @generated from field: optional string string_source_feature = 16;
+   * @generated from field: optional pb.EnumFeature legacy_feature = 19;
    */
-  stringSourceFeature: string;
+  legacyFeature: EnumFeature;
 };
 
 // Describes the message pb.TestFeatures.
@@ -150,73 +150,93 @@ export const TestFeaturesDesc: GenDescMessage<TestFeatures> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 1);
 
 /**
- * @generated from message pb.TestFeatures.MessageFeature
+ * @generated from enum pb.EnumFeature
  */
-export type TestFeatures_MessageFeature = Message<"pb.TestFeatures.MessageFeature"> & {
-  /**
-   * @generated from field: optional bool bool_field = 1;
-   */
-  boolField: boolean;
-
-  /**
-   * @generated from field: optional int32 int_field = 2;
-   */
-  intField: number;
-
-  /**
-   * @generated from field: optional float float_field = 3;
-   */
-  floatField: number;
-
-  /**
-   * @generated from field: optional string string_field = 4;
-   */
-  stringField: string;
-};
-
-// Describes the message pb.TestFeatures.MessageFeature.
-// Use `create(TestFeatures_MessageFeatureDesc)` to create a new TestFeatures_MessageFeature.
-export const TestFeatures_MessageFeatureDesc: GenDescMessage<TestFeatures_MessageFeature> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_features, 1, 0);
-
-/**
- * @generated from enum pb.TestFeatures.EnumFeature
- */
-export enum TestFeatures_EnumFeature {
+export enum EnumFeature {
   /**
    * @generated from enum value: TEST_ENUM_FEATURE_UNKNOWN = 0;
    */
   TEST_ENUM_FEATURE_UNKNOWN = 0,
 
   /**
-   * @generated from enum value: ENUM_VALUE1 = 1;
+   * @generated from enum value: VALUE1 = 1;
    */
-  ENUM_VALUE1 = 1,
+  VALUE1 = 1,
 
   /**
-   * @generated from enum value: ENUM_VALUE2 = 2;
+   * @generated from enum value: VALUE2 = 2;
    */
-  ENUM_VALUE2 = 2,
+  VALUE2 = 2,
 
   /**
-   * @generated from enum value: ENUM_VALUE3 = 3;
+   * @generated from enum value: VALUE3 = 3;
    */
-  ENUM_VALUE3 = 3,
+  VALUE3 = 3,
 
   /**
-   * @generated from enum value: ENUM_VALUE4 = 4;
+   * @generated from enum value: VALUE4 = 4;
    */
-  ENUM_VALUE4 = 4,
+  VALUE4 = 4,
 
   /**
-   * @generated from enum value: ENUM_VALUE5 = 5;
+   * @generated from enum value: VALUE5 = 5;
    */
-  ENUM_VALUE5 = 5,
+  VALUE5 = 5,
+
+  /**
+   * @generated from enum value: VALUE6 = 6;
+   */
+  VALUE6 = 6,
+
+  /**
+   * @generated from enum value: VALUE7 = 7;
+   */
+  VALUE7 = 7,
+
+  /**
+   * @generated from enum value: VALUE8 = 8;
+   */
+  VALUE8 = 8,
+
+  /**
+   * @generated from enum value: VALUE9 = 9;
+   */
+  VALUE9 = 9,
+
+  /**
+   * @generated from enum value: VALUE10 = 10;
+   */
+  VALUE10 = 10,
+
+  /**
+   * @generated from enum value: VALUE11 = 11;
+   */
+  VALUE11 = 11,
+
+  /**
+   * @generated from enum value: VALUE12 = 12;
+   */
+  VALUE12 = 12,
+
+  /**
+   * @generated from enum value: VALUE13 = 13;
+   */
+  VALUE13 = 13,
+
+  /**
+   * @generated from enum value: VALUE14 = 14;
+   */
+  VALUE14 = 14,
+
+  /**
+   * @generated from enum value: VALUE15 = 15;
+   */
+  VALUE15 = 15,
 }
 
-// Describes the enum pb.TestFeatures.EnumFeature.
-export const TestFeatures_EnumFeatureDesc: GenDescEnum<TestFeatures_EnumFeature> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_features, 1, 0);
+// Describes the enum pb.EnumFeature.
+export const EnumFeatureDesc: GenDescEnum<EnumFeature> = /*@__PURE__*/
+  enumDesc(fileDesc_google_protobuf_unittest_features, 0);
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;

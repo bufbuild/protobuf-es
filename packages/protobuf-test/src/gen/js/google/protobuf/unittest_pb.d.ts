@@ -2781,6 +2781,11 @@ export declare type TestOneof2_NestedMessage = Message<"protobuf_unittest.TestOn
    * @generated from field: repeated int32 corge_int = 2;
    */
   corgeInt: number[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestOneof2.NestedMessage child = 3;
+   */
+  child?: TestOneof2_NestedMessage;
 };
 
 // Describes the message protobuf_unittest.TestOneof2.NestedMessage. Use `create(TestOneof2_NestedMessageDesc)` to create a new TestOneof2_NestedMessage.
