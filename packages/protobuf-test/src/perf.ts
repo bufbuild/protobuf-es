@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { FileDescriptorSetDesc } from "./gen/ts/google/protobuf/descriptor_pb.js";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { protoInt64 } from "@bufbuild/protobuf";
+import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
+import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
 import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
 import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";

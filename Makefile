@@ -66,7 +66,7 @@ $(BUILD)/protobuf-example: $(BUILD)/protobuf node_modules tsconfig.base.json pac
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-test: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es $(shell find packages/protobuf-test/extra -name '*.proto')
+$(GEN)/protobuf-test: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es packages/protobuf-test/package.json $(shell find packages/protobuf-test/extra -name '*.proto')
 	npm run -w packages/protobuf-test generate
 	@mkdir -p $(@D)
 	@touch $(@)

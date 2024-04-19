@@ -16,12 +16,11 @@ import { describe, expect, test } from "@jest/globals";
 import { create } from "@bufbuild/protobuf";
 import type { MessageShape, EnumShape, Message } from "@bufbuild/protobuf";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
+import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import { Proto3EnumDesc } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
 import { UserDesc } from "./gen/ts/extra/example_pb.js";
-import type { Timestamp } from "./gen/ts/google/protobuf/timestamp_pb.js";
-import type { Duration } from "./gen/ts/google/protobuf/duration_pb.js";
 
 describe("type Message", () => {
   describe("assigning different messages with same shape to each other", () => {

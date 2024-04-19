@@ -18,8 +18,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { SourceContext } from "./source_context_pb.js";
-import type { Any } from "./any_pb.js";
+import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
 
 export declare const fileDesc_google_protobuf_type: GenDescFile;
 
