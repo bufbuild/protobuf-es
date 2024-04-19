@@ -29,17 +29,25 @@ Looks at the version used in the workspace, and returns one of:
 */
 
 const version = findWorkspaceVersion("packages");
+const tag = determinePublishTag(version);
+process.stdout.write(tag);
 
-if (/^\d\.\d\.\d$/.test(version)) {
-  process.stdout.write("latest");
-} else if (/^\d\.\d\.\d-alpha.*$/.test(version)) {
-  process.stdout.write("alpha");
-} else if (/^\d\.\d\.\d-beta.*$/.test(version)) {
-  process.stdout.write("beta");
-} else if (/^\d\.\d\.\d-rc.*$/.test(version)) {
-  process.stdout.write("rc");
-} else {
-  throw new Error(`Unable to determine publish tag from version ${version}`);
+/**
+ * @param {string} version
+ * @returns {string}
+ */
+function determinePublishTag(version) {
+  if (/^\d+\.\d+\.\d+$/.test(version)) {
+    return "latest";
+  } else if (/^\d+\.\d+\.\d+-alpha.*$/.test(version)) {
+    return "alpha";
+  } else if (/^\d+\.\d+\.\d+-beta.*$/.test(version)) {
+    return "beta";
+  } else if (/^\d+\.\d+\.\d+-rc.*$/.test(version)) {
+    return "rc";
+  } else {
+    throw new Error(`Unable to determine publish tag from version ${version}`);
+  }
 }
 
 /**
