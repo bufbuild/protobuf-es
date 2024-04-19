@@ -18,10 +18,8 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any } from "./any_pb.js";
-import { fileDesc_google_protobuf_any } from "./any_pb.js";
-import type { SourceContext } from "./source_context_pb.js";
-import { fileDesc_google_protobuf_source_context } from "./source_context_pb.js";
+import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
+import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_source_context } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_google_protobuf_type: GenDescFile = /*@__PURE__*/

@@ -29,8 +29,6 @@ import * as test_messages_proto2_ts from "./gen/ts/google/protobuf/test_messages
 import * as test_messages_proto2_js from "./gen/js/google/protobuf/test_messages_proto2_pb.js";
 import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
-import * as descriptor_ts from "./gen/ts/google/protobuf/descriptor_pb.js";
-import * as descriptor_js from "./gen/js/google/protobuf/descriptor_pb.js";
 
 test("ts generated code is assignable to js", () => {
   expect([
@@ -81,14 +79,6 @@ test("ts generated code is assignable to js", () => {
     function f(
       ts: test_messages_proto3_ts.TestAllTypesProto3,
       js: test_messages_proto3_js.TestAllTypesProto3,
-    ) {
-      ts = js;
-      js = ts;
-      return [ts, js];
-    },
-    function f(
-      ts: descriptor_ts.FileDescriptorSet,
-      js: descriptor_js.FileDescriptorSet,
     ) {
       ts = js;
       js = ts;
@@ -154,9 +144,6 @@ describe("ts generated code is equal to js generated code", () => {
     expect(toPlain(test_messages_proto3_ts)).toStrictEqual(
       toPlain(test_messages_proto3_js),
     );
-  });
-  test("descriptor", () => {
-    expect(toPlain(descriptor_ts)).toStrictEqual(toPlain(descriptor_js));
   });
   test("service", () => {
     expect(toPlain(service_ts)).toStrictEqual(toPlain(service_js));
