@@ -12,8 +12,8 @@
   "type": "module",
   "dependencies": {
     "@bufbuild/buf": "^1.29.0",
-    "@bufbuild/protobuf": "1.8.0",
-    "@bufbuild/protoc-gen-es": "1.8.0",
+    "@bufbuild/protobuf": "1.9.0",
+    "@bufbuild/protoc-gen-es": "1.9.0",
     "typescript": "^5.2.2"
   }
 }
