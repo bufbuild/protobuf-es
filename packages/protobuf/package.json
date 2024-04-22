@@ -30,8 +30,5 @@
   },
   "devDependencies": {
     "upstream-protobuf": "*"
-  },
-  "files": [
-    "dist/**"
-  ]
+  }
 }
