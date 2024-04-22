@@ -55,54 +55,54 @@ export declare const TestMessage_test_message: GenDescExtension<FeatureSet, Test
  */
 export declare type TestFeatures = Message<"pb.TestFeatures"> & {
   /**
-   * @generated from field: optional int32 int_file_feature = 1;
+   * @generated from field: optional pb.EnumFeature file_feature = 1;
    */
-  intFileFeature: number;
+  fileFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_extension_range_feature = 2;
+   * @generated from field: optional pb.EnumFeature extension_range_feature = 2;
    */
-  intExtensionRangeFeature: number;
+  extensionRangeFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_message_feature = 3;
+   * @generated from field: optional pb.EnumFeature message_feature = 3;
    */
-  intMessageFeature: number;
+  messageFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_field_feature = 4;
+   * @generated from field: optional pb.EnumFeature field_feature = 4;
    */
-  intFieldFeature: number;
+  fieldFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_oneof_feature = 5;
+   * @generated from field: optional pb.EnumFeature oneof_feature = 5;
    */
-  intOneofFeature: number;
+  oneofFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_feature = 6;
+   * @generated from field: optional pb.EnumFeature enum_feature = 6;
    */
-  intEnumFeature: number;
+  enumFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_entry_feature = 7;
+   * @generated from field: optional pb.EnumFeature enum_entry_feature = 7;
    */
-  intEnumEntryFeature: number;
+  enumEntryFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_service_feature = 8;
+   * @generated from field: optional pb.EnumFeature service_feature = 8;
    */
-  intServiceFeature: number;
+  serviceFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_method_feature = 9;
+   * @generated from field: optional pb.EnumFeature method_feature = 9;
    */
-  intMethodFeature: number;
+  methodFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_multiple_feature = 10;
+   * @generated from field: optional pb.EnumFeature multiple_feature = 10;
    */
-  intMultipleFeature: number;
+  multipleFeature: EnumFeature;
 
   /**
    * @generated from field: optional bool bool_field_feature = 11;
@@ -110,99 +110,121 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
   boolFieldFeature: boolean;
 
   /**
-   * @generated from field: optional float float_field_feature = 12;
+   * @generated from field: optional pb.EnumFeature source_feature = 15;
    */
-  floatFieldFeature: number;
+  sourceFeature: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.MessageFeature message_field_feature = 13;
+   * @generated from field: optional pb.EnumFeature source_feature2 = 16;
    */
-  messageFieldFeature?: TestFeatures_MessageFeature;
+  sourceFeature2: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.EnumFeature enum_field_feature = 14;
+   * @generated from field: optional pb.EnumFeature removed_feature = 17;
    */
-  enumFieldFeature: TestFeatures_EnumFeature;
+  removedFeature: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_source_feature = 15;
+   * @generated from field: optional pb.EnumFeature future_feature = 18;
    */
-  intSourceFeature: number;
+  futureFeature: EnumFeature;
 
   /**
-   * @generated from field: optional string string_source_feature = 16;
+   * @generated from field: optional pb.EnumFeature legacy_feature = 19;
    */
-  stringSourceFeature: string;
+  legacyFeature: EnumFeature;
 };
 
 // Describes the message pb.TestFeatures. Use `create(TestFeaturesDesc)` to create a new TestFeatures.
 export declare const TestFeaturesDesc: GenDescMessage<TestFeatures>;
 
 /**
- * @generated from message pb.TestFeatures.MessageFeature
+ * @generated from enum pb.EnumFeature
  */
-export declare type TestFeatures_MessageFeature = Message<"pb.TestFeatures.MessageFeature"> & {
-  /**
-   * @generated from field: optional bool bool_field = 1;
-   */
-  boolField: boolean;
-
-  /**
-   * @generated from field: optional int32 int_field = 2;
-   */
-  intField: number;
-
-  /**
-   * @generated from field: optional float float_field = 3;
-   */
-  floatField: number;
-
-  /**
-   * @generated from field: optional string string_field = 4;
-   */
-  stringField: string;
-};
-
-// Describes the message pb.TestFeatures.MessageFeature. Use `create(TestFeatures_MessageFeatureDesc)` to create a new TestFeatures_MessageFeature.
-export declare const TestFeatures_MessageFeatureDesc: GenDescMessage<TestFeatures_MessageFeature>;
-
-/**
- * @generated from enum pb.TestFeatures.EnumFeature
- */
-export enum TestFeatures_EnumFeature {
+export enum EnumFeature {
   /**
    * @generated from enum value: TEST_ENUM_FEATURE_UNKNOWN = 0;
    */
   TEST_ENUM_FEATURE_UNKNOWN = 0,
 
   /**
-   * @generated from enum value: ENUM_VALUE1 = 1;
+   * @generated from enum value: VALUE1 = 1;
    */
-  ENUM_VALUE1 = 1,
+  VALUE1 = 1,
 
   /**
-   * @generated from enum value: ENUM_VALUE2 = 2;
+   * @generated from enum value: VALUE2 = 2;
    */
-  ENUM_VALUE2 = 2,
+  VALUE2 = 2,
 
   /**
-   * @generated from enum value: ENUM_VALUE3 = 3;
+   * @generated from enum value: VALUE3 = 3;
    */
-  ENUM_VALUE3 = 3,
+  VALUE3 = 3,
 
   /**
-   * @generated from enum value: ENUM_VALUE4 = 4;
+   * @generated from enum value: VALUE4 = 4;
    */
-  ENUM_VALUE4 = 4,
+  VALUE4 = 4,
 
   /**
-   * @generated from enum value: ENUM_VALUE5 = 5;
+   * @generated from enum value: VALUE5 = 5;
    */
-  ENUM_VALUE5 = 5,
+  VALUE5 = 5,
+
+  /**
+   * @generated from enum value: VALUE6 = 6;
+   */
+  VALUE6 = 6,
+
+  /**
+   * @generated from enum value: VALUE7 = 7;
+   */
+  VALUE7 = 7,
+
+  /**
+   * @generated from enum value: VALUE8 = 8;
+   */
+  VALUE8 = 8,
+
+  /**
+   * @generated from enum value: VALUE9 = 9;
+   */
+  VALUE9 = 9,
+
+  /**
+   * @generated from enum value: VALUE10 = 10;
+   */
+  VALUE10 = 10,
+
+  /**
+   * @generated from enum value: VALUE11 = 11;
+   */
+  VALUE11 = 11,
+
+  /**
+   * @generated from enum value: VALUE12 = 12;
+   */
+  VALUE12 = 12,
+
+  /**
+   * @generated from enum value: VALUE13 = 13;
+   */
+  VALUE13 = 13,
+
+  /**
+   * @generated from enum value: VALUE14 = 14;
+   */
+  VALUE14 = 14,
+
+  /**
+   * @generated from enum value: VALUE15 = 15;
+   */
+  VALUE15 = 15,
 }
 
-// Describes the enum pb.TestFeatures.EnumFeature.
-export declare const TestFeatures_EnumFeatureDesc: GenDescEnum<TestFeatures_EnumFeature>;
+// Describes the enum pb.EnumFeature.
+export declare const EnumFeatureDesc: GenDescEnum<EnumFeature>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;

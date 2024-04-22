@@ -70,7 +70,20 @@ export class UpstreamProtobuf {
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
+    "!src/google/protobuf/edition_unittest.proto",
     "!src/google/protobuf/unittest_arena.proto",
+    "!src/google/protobuf/map_unittest.proto",
+    "!src/google/protobuf/map_lite_unittest.proto",
+    "!src/google/protobuf/unittest_lite.proto",
+    "!src/google/protobuf/unittest_import_lite.proto",
+    "!src/google/protobuf/unittest_import_public_lite.proto",
+    "!src/google/protobuf/unittest_delimited.proto",
+    "!src/google/protobuf/unittest_delimited_import.proto",
+    "!src/google/protobuf/unittest_proto3_extensions.proto",
+    "!src/google/protobuf/unittest_proto3_lite.proto",
+    "!src/google/protobuf/unittest_proto3_arena.proto",
+    "!src/google/protobuf/unittest_proto3_arena_lite.proto",
+    "!src/google/protobuf/unittest_string_view.proto",
     "!src/google/protobuf/unittest_drop_unknown_fields.proto",
     "!src/google/protobuf/unittest_lazy_dependencies.proto",
     "!src/google/protobuf/unittest_lazy_dependencies_custom_option.proto",
@@ -146,7 +159,6 @@ export class UpstreamProtobuf {
       writeTree(Object.entries(files), tempDir);
       const outPath = joinPath(tempDir, "desc.binpb");
       const args = [
-        "--experimental_editions",
         "--descriptor_set_out",
         outPath,
         "--proto_path",
@@ -191,7 +203,6 @@ export class UpstreamProtobuf {
     try {
       writeTree(Object.entries(files), tempDir);
       const args = [
-        "--experimental_editions",
         "--dumpcodegenreq_out",
         ".",
         "--proto_path",
@@ -235,16 +246,16 @@ export class UpstreamProtobuf {
     try {
       writeTree(Object.entries(files), tempDir);
       const args = [
-        "--experimental_edition_defaults_out",
+        "--edition_defaults_out",
         "defaults.binpb",
         "google/protobuf/descriptor.proto",
         ...Object.keys(files),
       ];
       if (minimumEdition !== undefined) {
-        args.push("--experimental_edition_defaults_minimum", minimumEdition);
+        args.push("--edition_defaults_minimum", minimumEdition);
       }
       if (maximumEdition !== undefined) {
-        args.push("--experimental_edition_defaults_maximum", maximumEdition);
+        args.push("--edition_defaults_maximum", maximumEdition);
       }
       execFileSync(protocPath, args, {
         shell: false,
@@ -394,7 +405,12 @@ export class UpstreamProtobuf {
         }
         break;
     }
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${this.#version}-${build}.zip`;
+    let archiveVersion = this.#version;
+    const rcMatch = /^(\d+\.\d+-rc)(\d)$/.exec(archiveVersion);
+    if (rcMatch != null) {
+      archiveVersion = rcMatch[1] + "-" + rcMatch[2];
+    }
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${archiveVersion}-${build}.zip`;
     return this.#download(url, "protoc.zip");
   }
 

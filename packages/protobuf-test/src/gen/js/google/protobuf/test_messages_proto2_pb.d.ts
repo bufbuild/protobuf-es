@@ -560,6 +560,11 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
   data?: TestAllTypesProto2_Data;
 
   /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField multiwordgroupfield = 204;
+   */
+  multiwordgroupfield?: TestAllTypesProto2_MultiWordGroupField;
+
+  /**
    * default values
    *
    * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
@@ -772,6 +777,24 @@ export declare type TestAllTypesProto2_Data = Message<"protobuf_test_messages.pr
 export declare const TestAllTypesProto2_DataDesc: GenDescMessage<TestAllTypesProto2_Data>;
 
 /**
+ * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
+ */
+export declare type TestAllTypesProto2_MultiWordGroupField = Message<"protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField"> & {
+  /**
+   * @generated from field: optional int32 group_int32 = 205;
+   */
+  groupInt32: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 206;
+   */
+  groupUint32: number;
+};
+
+// Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField. Use `create(TestAllTypesProto2_MultiWordGroupFieldDesc)` to create a new TestAllTypesProto2_MultiWordGroupField.
+export declare const TestAllTypesProto2_MultiWordGroupFieldDesc: GenDescMessage<TestAllTypesProto2_MultiWordGroupField>;
+
+/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -860,6 +883,24 @@ export declare type ForeignMessageProto2 = Message<"protobuf_test_messages.proto
 
 // Describes the message protobuf_test_messages.proto2.ForeignMessageProto2. Use `create(ForeignMessageProto2Desc)` to create a new ForeignMessageProto2.
 export declare const ForeignMessageProto2Desc: GenDescMessage<ForeignMessageProto2>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.GroupField
+ */
+export declare type GroupField = Message<"protobuf_test_messages.proto2.GroupField"> & {
+  /**
+   * @generated from field: optional int32 group_int32 = 122;
+   */
+  groupInt32: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 123;
+   */
+  groupUint32: number;
+};
+
+// Describes the message protobuf_test_messages.proto2.GroupField. Use `create(GroupFieldDesc)` to create a new GroupField.
+export declare const GroupFieldDesc: GenDescMessage<GroupField>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -1338,4 +1379,9 @@ export declare const ForeignEnumProto2Desc: GenDescEnum<ForeignEnumProto2>;
  * @generated from extension: optional int32 extension_int32 = 120;
  */
 export declare const extension_int32: GenDescExtension<TestAllTypesProto2, number>;
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
+ */
+export declare const groupfield: GenDescExtension<TestAllTypesProto2, GroupField>;
 

@@ -27,6 +27,7 @@ import {
   FieldDescriptorProtoDesc,
   FileDescriptorProtoDesc,
   FileDescriptorSetDesc,
+  FieldOptionsDesc,
 } from "@bufbuild/protobuf/wkt";
 import assert from "node:assert";
 import {
@@ -104,6 +105,9 @@ describe("bootFileDescriptorProto()", () => {
     clearField(DescriptorProtoDesc, d, "reservedName");
     for (const f of d.field) {
       clearField(FieldDescriptorProtoDesc, f, "jsonName");
+      if (f.options) {
+        clearField(FieldOptionsDesc, f.options, "featureSupport");
+      }
     }
     for (const n of d.nestedType) {
       stripLikeBoot(n);

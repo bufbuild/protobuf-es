@@ -18,11 +18,10 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_extra_edition2023_map_encoding: GenDescFile = /*@__PURE__*/
-  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw", [fileDesc_google_protobuf_wrappers]);
+  fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw");
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
