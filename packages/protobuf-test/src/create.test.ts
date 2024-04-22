@@ -671,15 +671,14 @@ describe("create()", () => {
           // @ts-expect-error expected type error
           repeatedInt64JsStringField: [protoInt64.parse(6)],
           either: {
-            // @ts-ignore -- required for older TS
             case: "oneofInt64Field",
-            // @ts-ignore -- required for older TS
+            // @ts-expect-error expected type error
             value: 7,
           },
           mapInt64Int64Field: {
-            // @ts-ignore -- required for older TS
+            // @ts-expect-error expected type error
             "1": 8,
-            // @ts-ignore -- required for older TS
+            // @ts-expect-error expected type error
             "2": 9,
           },
         });
@@ -714,9 +713,8 @@ describe("create()", () => {
             [0xde, 0xad, 0xbe, 0xef],
           ],
           either: {
-            // @ts-ignore -- number array is still a type error
             case: "oneofBytesField",
-            // @ts-ignore -- number array is still a type error
+            // @ts-expect-error -- number array is still a type error
             value: [0xde, 0xad, 0xbe, 0xef],
           },
         });
@@ -798,7 +796,7 @@ describe("create()", () => {
     describe("enum field", () => {
       test("accepts proto3 enum value out of range", () => {
         const msg = create(proto3_ts.Proto3MessageDesc, {
-          // @ts-ignore -- cannot use ts-expect-error, not an error in older TS
+          // @ts-ignore -- required for older TS
           singularEnumField: 99,
         });
         expect(msg.singularEnumField).toBe(99);
