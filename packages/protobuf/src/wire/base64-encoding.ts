@@ -41,10 +41,10 @@ export function base64Decode(base64Str: string) {
     b = table[base64Str.charCodeAt(i)];
     if (b === undefined) {
       switch (base64Str[i]) {
-        // @ts-ignore TS7029: Fallthrough case in switch
+        // @ts-expect-error TS7029: Fallthrough case in switch
         case "=":
           groupPos = 0; // reset state when padding found
-        // @ts-ignore TS7029: Fallthrough case in switch
+        // eslint-disable-next-line no-fallthrough
         case "\n":
         case "\r":
         case "\t":

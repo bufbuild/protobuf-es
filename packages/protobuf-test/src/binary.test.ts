@@ -20,15 +20,18 @@ import {
   toBinary,
   fromBinary,
 } from "@bufbuild/protobuf";
-import type { MessageInitShape } from "@bufbuild/protobuf";
+import {
+  type MessageInitShape,
+  type DescMessage,
+  protoInt64,
+} from "@bufbuild/protobuf";
+import { StructDesc, ValueDesc } from "@bufbuild/protobuf/wkt";
 import {
   RepeatedScalarValuesMessageDesc,
   ScalarValuesMessageDesc,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { protoInt64 } from "@bufbuild/protobuf";
 import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
 import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pb.js";
-import type { DescMessage } from "@bufbuild/protobuf";
 
 import {
   Proto2ExtendeeDesc,
@@ -37,7 +40,6 @@ import {
 import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pb.js";
-import { StructDesc, ValueDesc } from "@bufbuild/protobuf/wkt";
 
 describe(`binary serialization`, () => {
   testBinary(ScalarValuesMessageDesc, {

@@ -124,7 +124,7 @@ You should now see a generated file at `src/gen/example_pb.ts` that contains a c
 
 ## TypeScript
 
-The generated code is compatible with TypeScript **v4.1.2** or later, with the default compiler settings.
+The generated code is compatible with TypeScript **v4.9.5** or later, with the default compiler settings.
 
 
 ## Copyright
