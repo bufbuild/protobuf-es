@@ -12,7 +12,7 @@ respective to that version of TypeScript.
 
 ### Which versions are tested
 
-- the earliest TypeScript version we support (4.1.2).
+- the earliest TypeScript version we support.
 - the latest patch release of all minor versions up to the current release.
 
 ### Adding a new version
