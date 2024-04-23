@@ -18,44 +18,19 @@ import {
   ScalarType,
   scalarTypeScriptType,
 } from "@bufbuild/protobuf/reflect";
-import { Edition, isWrapperDesc } from "@bufbuild/protobuf/wkt";
+import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 
-/**
- * Tells whether a field uses the prototype chain for field presence.
- * Behavior must match with the counterpart in @bufbuild/protobuf.
- */
-export function fieldUsesPrototype(field: DescField): field is DescField & {
-  fieldKind: "scalar" | "enum";
-  oneof: undefined;
-  repeated: false;
-} {
-  if (field.parent.file.edition != Edition.EDITION_PROTO2) {
-    return false;
-  }
-  if (field.fieldKind != "scalar" && field.fieldKind != "enum") {
-    return false;
-  }
-  if (field.oneof) {
-    return false;
-  }
-  // proto2 singular scalar and enum fields use an initial value on the prototype chain
-  return true;
-}
-
-export function getFieldTypeInfo(field: DescField | DescExtension): {
+export function fieldTypeScriptType(field: DescField | DescExtension): {
   typing: Printable;
   optional: boolean;
-  typingInferrableFromZeroValue: boolean;
 } {
   const typing: Printable = [];
-  let typingInferrableFromZeroValue: boolean;
   let optional = false;
   switch (field.fieldKind) {
     case "scalar":
       typing.push(scalarTypeScriptType(field.scalar, field.longType));
-      optional = field.optional;
-      typingInferrableFromZeroValue = true;
+      optional = field.proto.proto3Optional;
       break;
     case "message": {
       if (!field.oneof && isWrapperDesc(field.message)) {
@@ -68,7 +43,6 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
         });
       }
       optional = true;
-      typingInferrableFromZeroValue = true;
       break;
     }
     case "enum":
@@ -76,12 +50,10 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
         kind: "es_shape_ref",
         desc: field.enum,
       });
-      optional = field.optional;
-      typingInferrableFromZeroValue = true;
+      optional = field.proto.proto3Optional;
       break;
     case "list":
       optional = false;
-      typingInferrableFromZeroValue = false;
       switch (field.listKind) {
         case "enum":
           typing.push(
@@ -140,12 +112,11 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           break;
       }
       typing.push("{ [key: ", keyType, "]: ", valueType, " }");
-      typingInferrableFromZeroValue = false;
       optional = false;
       break;
     }
   }
-  return { typing, optional, typingInferrableFromZeroValue };
+  return { typing, optional };
 }
 
 export function functionCall(

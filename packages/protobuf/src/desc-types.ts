@@ -326,10 +326,6 @@ type descFieldSingularCommon = {
    */
   readonly oneof: DescOneof | undefined;
   /**
-   * Whether this field was declared with `optional` in the protobuf source.
-   */
-  readonly optional: boolean;
-  /**
    * Presence of the field.
    * See https://protobuf.dev/programming-guides/field_presence/
    */

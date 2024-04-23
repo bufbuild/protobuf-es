@@ -127,7 +127,7 @@ describe("getComments()", () => {
 });
 
 describe("getDeclarationString()", () => {
-  test("for field built-in option", async () => {
+  test("for field with json_name option", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
@@ -138,7 +138,18 @@ describe("getDeclarationString()", () => {
       'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
     );
   });
-  test("for field with labels", async () => {
+  test("for field with jstype option", async () => {
+    const field = await compileField(`
+      syntax="proto3";
+      message M {
+        string scalar_field = 1 [jstype = JS_NORMAL];
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "string scalar_field = 1 [jstype = JS_NORMAL]",
+    );
+  });
+  test("for repeated field", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
@@ -147,6 +158,28 @@ describe("getDeclarationString()", () => {
     `);
     expect(getDeclarationString(field)).toBe(
       "repeated double double_field = 1",
+    );
+  });
+  test("for proto2 optional field", async () => {
+    const field = await compileField(`
+      syntax="proto3";
+      message M {
+        optional double double_field = 1;
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "optional double double_field = 1",
+    );
+  });
+  test("for proto2 required field", async () => {
+    const field = await compileField(`
+      syntax="proto2";
+      message M {
+        required double double_field = 1;
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "required double double_field = 1",
     );
   });
   test("for map field", async () => {

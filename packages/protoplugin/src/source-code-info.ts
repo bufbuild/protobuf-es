@@ -154,7 +154,6 @@ export function getDeclarationString(
     }
     return str;
   }
-  const file = desc.kind === "extension" ? desc.file : desc.parent.file;
   const parts: string[] = [];
   function typeName(f: DescField | DescExtension) {
     if (f.message) {
@@ -169,14 +168,10 @@ export function getDeclarationString(
     case "scalar":
     case "enum":
     case "message":
-      if (
-        file.edition === Edition.EDITION_PROTO2 &&
-        isFieldSet(FieldDescriptorProtoDesc, desc.proto, "label") &&
-        desc.proto.label == FieldDescriptorProto_Label.REQUIRED
-      ) {
+      if (fieldHasRequiredKeyword(desc)) {
         parts.push("required");
       }
-      if (desc.optional) {
+      if (fieldHasOptionalKeyword(desc)) {
         parts.push("optional");
       }
       parts.push(typeName(desc));
@@ -229,6 +224,37 @@ export function getDeclarationString(
     parts.push("[" + options.join(", ") + "]");
   }
   return parts.join(" ");
+}
+
+/**
+ * Whether this field was declared with `required` in the protobuf source.
+ */
+function fieldHasRequiredKeyword(field: DescField | DescExtension): boolean {
+  const edition = (field.kind == "extension" ? field.file : field.parent.file)
+    .edition;
+  return (
+    edition == Edition.EDITION_PROTO2 &&
+    field.proto.label == FieldDescriptorProto_Label.REQUIRED
+  );
+}
+
+/**
+ * Whether this field was declared with `optional` in the protobuf source.
+ * Note that message fields are always optional. It is impossible to determine
+ * whether the keyword was used.
+ */
+function fieldHasOptionalKeyword(field: DescField | DescExtension): boolean {
+  const edition = (field.kind == "extension" ? field.file : field.parent.file)
+    .edition;
+  if (edition == Edition.EDITION_PROTO2) {
+    return (
+      !field.oneof && field.proto.label == FieldDescriptorProto_Label.OPTIONAL
+    );
+  }
+  if (edition == Edition.EDITION_PROTO3) {
+    return field.proto.proto3Optional;
+  }
+  return false;
 }
 
 /**
