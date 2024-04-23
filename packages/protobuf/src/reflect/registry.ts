@@ -443,7 +443,7 @@ function addFile(proto: FileDescriptorProto, reg: MutableRegistry): void {
     proto,
     deprecated: proto.options?.deprecated ?? false,
     edition: getFileEdition(proto),
-    name: proto.name.replace(/\.proto/, ""),
+    name: proto.name.replace(/\.proto$/, ""),
     dependencies: findFileDependencies(proto, reg),
     enums: [],
     messages: [],
@@ -451,7 +451,7 @@ function addFile(proto: FileDescriptorProto, reg: MutableRegistry): void {
     services: [],
     toString(): string {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- we asserted above
-      return `file ${this.proto.name}`;
+      return `file ${proto.name}`;
     },
   };
   const mapEntriesStore = new Map<string, DescMessage>();
@@ -829,7 +829,7 @@ function newField(
           keyField.scalar != ScalarType.FLOAT &&
           keyField.scalar != ScalarType.DOUBLE,
       );
-      const valueField = mapEntry.fields.find((f) => f.proto.number === 2);
+      const valueField = mapEntry.fields.find((f) => f.number === 2);
       assert(valueField);
       assert(valueField.fieldKind != "list" && valueField.fieldKind != "map");
       field.mapKey = keyField.scalar;

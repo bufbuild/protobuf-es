@@ -40,6 +40,7 @@ import {
 import {
   compileEnum,
   compileField,
+  compileFile,
   compileFileDescriptorSet,
   compileMessage,
   compileMethod,
@@ -502,31 +503,16 @@ describe("createFileRegistry()", function () {
 
 describe("DescFile", () => {
   test("proto2 syntax", async () => {
-    const fileDescriptorSet = await compileFileDescriptorSet({
-      "a.proto": `syntax="proto2";`,
-    });
-    const reg = createFileRegistry(fileDescriptorSet);
-    const descFile = reg.getFile("a.proto");
-    expect(descFile).toBeDefined();
-    expect(descFile?.edition).toBe(Edition.EDITION_PROTO2);
+    const file = await compileFile(`syntax="proto2";`);
+    expect(file.edition).toBe(Edition.EDITION_PROTO2);
   });
   test("proto3 syntax", async () => {
-    const fileDescriptorSet = await compileFileDescriptorSet({
-      "a.proto": `syntax="proto3";`,
-    });
-    const reg = createFileRegistry(fileDescriptorSet);
-    const descFile = reg.getFile("a.proto");
-    expect(descFile).toBeDefined();
-    expect(descFile?.edition).toBe(Edition.EDITION_PROTO3);
+    const file = await compileFile(`syntax="proto3";`);
+    expect(file.edition).toBe(Edition.EDITION_PROTO3);
   });
   test("edition 2023", async () => {
-    const fileDescriptorSet = await compileFileDescriptorSet({
-      "a.proto": `edition = "2023";`,
-    });
-    const reg = createFileRegistry(fileDescriptorSet);
-    const descFile = reg.getFile("a.proto");
-    expect(descFile).toBeDefined();
-    expect(descFile?.edition).toBe(Edition.EDITION_2023);
+    const file = await compileFile(`edition = "2023";`);
+    expect(file.edition).toBe(Edition.EDITION_2023);
   });
   test("dependencies", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -541,6 +527,19 @@ describe("DescFile", () => {
     expect(a?.name).toBe("a");
     expect(a?.dependencies.length).toBe(2);
     expect(a?.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
+  });
+  describe("name", () => {
+    test("is proto file name without .proto suffix", async () => {
+      const file = await compileFile(`syntax="proto3";`, "foo/bar/baz.proto");
+      expect(file.name).toBe("foo/bar/baz");
+    });
+    test("strips only last .proto", async () => {
+      const file = await compileFile(
+        `syntax="proto3";`,
+        "foo.proto/baz.proto.proto",
+      );
+      expect(file.name).toBe("foo.proto/baz.proto");
+    });
   });
 });
 
