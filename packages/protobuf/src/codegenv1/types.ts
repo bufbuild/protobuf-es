@@ -21,21 +21,61 @@ import type {
   DescService,
 } from "../desc-types.js";
 
+/**
+ * Describes a protobuf source file.
+ *
+ * @private
+ */
 export type GenDescFile = DescFile;
 
+/**
+ * Describes a message declaration in a protobuf source file.
+ *
+ * This type is identical to DescMessage, but carries additional type
+ * information.
+ *
+ * @private
+ */
 export type GenDescMessage<RuntimeShape extends Message> = DescMessage &
   brand<RuntimeShape>;
 
+/**
+ * Describes an enumeration in a protobuf source file.
+ *
+ * This type is identical to DescEnum, but carries additional type
+ * information.
+ *
+ * @private
+ */
 export type GenDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
 
+/**
+ * Describes an extension in a protobuf source file.
+ *
+ * This type is identical to DescExtension, but carries additional type
+ * information.
+ *
+ * @private
+ */
 export type GenDescExtension<
   Extendee extends Message = Message,
   RuntimeShape = unknown,
 > = DescExtension & brand<Extendee, RuntimeShape>;
 
+/**
+ * Describes a service declaration in a protobuf source file.
+ *
+ * This type is identical to DescService, but carries additional type
+ * information.
+ *
+ * @private
+ */
 export type GenDescService<RuntimeShape extends GenDescServiceShape> =
   DescService & brand<RuntimeShape>;
 
+/**
+ * @private
+ */
 export type GenDescServiceShape = {
   [localName: string]: {
     kind: "unary" | "server_streaming" | "client_streaming" | "bidi_streaming";

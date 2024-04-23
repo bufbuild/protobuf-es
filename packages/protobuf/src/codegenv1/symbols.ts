@@ -12,8 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * @private
+ */
 export const packageName = "@bufbuild/protobuf";
 
+/**
+ * @private
+ */
 export const wktPublicImportPaths: Readonly<Record<string, string>> = {
   "google/protobuf/compiler/plugin.proto": packageName + "/wkt",
   "google/protobuf/any.proto": packageName + "/wkt",
@@ -29,6 +35,9 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
   "google/protobuf/wrappers.proto": packageName + "/wkt",
 };
 
+/**
+ * @private
+ */
 // prettier-ignore
 export const symbols = {
   isMessage:               {typeOnly: false, bootstrapWktFrom: "../../is-message.js",           from: packageName },

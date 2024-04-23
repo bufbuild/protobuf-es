@@ -16,6 +16,9 @@ import type { DescriptorProto } from "../wkt/gen/google/protobuf/descriptor_pb.j
 import { protoCamelCase } from "../reflect/names.js";
 import { unsafeIsSetExplicit } from "../reflect/unsafe.js";
 
+/**
+ * @private
+ */
 export function restoreJsonNames(message: DescriptorProto) {
   for (const f of message.field) {
     if (!unsafeIsSetExplicit(f, "jsonName")) {
