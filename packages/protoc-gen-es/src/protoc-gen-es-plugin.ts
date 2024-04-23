@@ -313,7 +313,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
         break;
       default: {
         f.print(f.jsDoc(member, "  "));
-        const {typing, optional} = fieldTypeScriptType(member);
+        const { typing, optional } = fieldTypeScriptType(member);
         if (optional) {
           f.print("  ", localName(member), "?: ", typing, ";");
         } else {
