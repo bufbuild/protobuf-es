@@ -35,11 +35,11 @@ export async function compileFileDescriptorSet(
   return fromBinary(FileDescriptorSetDesc, bytes);
 }
 
-export async function compileFile(proto: string) {
+export async function compileFile(proto: string, name = "input.proto") {
   upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
   const bytes = await upstreamProtobuf.compileToDescriptorSet(
     {
-      "input.proto": proto,
+      [name]: proto,
     },
     {
       includeImports: true,
@@ -49,7 +49,7 @@ export async function compileFile(proto: string) {
   );
   const fds = fromBinary(FileDescriptorSetDesc, bytes);
   const reg = createFileRegistry(fds);
-  const file = reg.getFile("input.proto");
+  const file = reg.getFile(name);
   assert(file);
   return file;
 }
