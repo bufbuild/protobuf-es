@@ -149,6 +149,17 @@ describe("getDeclarationString()", () => {
       "string scalar_field = 1 [jstype = JS_NORMAL]",
     );
   });
+  test("for field with edition feature", async () => {
+    const field = await compileField(`
+      edition="2023";
+      message M {
+        string scalar_field = 1 [features.field_presence = EXPLICIT];
+      }
+    `);
+    expect(getDeclarationString(field)).toBe(
+      "string scalar_field = 1 [features.field_presence = EXPLICIT]",
+    );
+  });
   test("for repeated field", async () => {
     const field = await compileField(`
       syntax="proto3";

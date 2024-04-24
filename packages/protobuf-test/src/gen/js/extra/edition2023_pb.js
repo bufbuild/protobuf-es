@@ -62,6 +62,7 @@ export const Edition2023EnumClosedDesc = /*@__PURE__*/
 
 /**
  * @generated from enum spec.Edition2023EnumClosed
+ * @generated with option features.enum_type = CLOSED
  */
 export const Edition2023EnumClosed = /*@__PURE__*/
   tsEnum(Edition2023EnumClosedDesc);

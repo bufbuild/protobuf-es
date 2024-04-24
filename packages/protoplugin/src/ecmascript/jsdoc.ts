@@ -13,7 +13,11 @@
 // limitations under the License.
 
 import type { AnyDesc, DescFile } from "@bufbuild/protobuf";
-import { getComments, getDeclarationString } from "../source-code-info.js";
+import {
+  getComments,
+  getDeclarationString,
+  getFeatureOptionStrings,
+} from "../source-code-info.js";
 
 export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
   const comments = getComments(desc);
@@ -50,6 +54,15 @@ export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
     case "extension":
       text += `@generated from extension: ${getDeclarationString(desc)};`;
       break;
+    case "message":
+    case "enum": {
+      text += `@generated from ${desc.toString()}`;
+      const featureOptions = getFeatureOptionStrings(desc);
+      if (featureOptions.length > 0) {
+        text += `\n@generated with ${featureOptions.length > 1 ? "options" : "option"} ${featureOptions.join(", ")}`;
+      }
+      break;
+    }
     default:
       text += `@generated from ${desc.toString()}`;
       break;

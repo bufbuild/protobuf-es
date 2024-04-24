@@ -12,26 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  DescField,
-  DescEnumValue,
-  DescExtension,
-  DescComments,
-  AnyDesc,
-  DescFile,
+import {
+  type AnyDesc,
+  type DescComments,
+  type DescEnumValue,
+  type DescExtension,
+  type DescField,
+  type DescFile,
+  isFieldSet,
 } from "@bufbuild/protobuf";
-import { isFieldSet } from "@bufbuild/protobuf";
-import { ScalarType, protoCamelCase } from "@bufbuild/protobuf/reflect";
+import {
+  protoCamelCase,
+  reflect,
+  ScalarType,
+} from "@bufbuild/protobuf/reflect";
 import {
   Edition,
+  type SourceCodeInfo,
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
   FieldDescriptorProtoDesc,
   FieldOptions_JSType,
   FieldOptionsDesc,
+  FeatureSetDesc,
   SourceCodeInfo_LocationDesc,
 } from "@bufbuild/protobuf/wkt";
-import type { SourceCodeInfo } from "@bufbuild/protobuf/wkt";
 
 /**
  * Get comments on the package element in the protobuf source.
@@ -141,6 +146,29 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
 }
 
 /**
+ * Get feature options set on the element in the protobuf source. This returns
+ * compact (e.g. fields) or regular options (e.g. files) as an array of strings.
+ */
+export function getFeatureOptionStrings(desc: AnyDesc): string[] {
+  const strings: string[] = [];
+  const features = desc.proto.options?.features;
+  if (features !== undefined) {
+    const r = reflect(FeatureSetDesc, features);
+    for (const f of r.fields) {
+      if (f.fieldKind != "enum" || !r.isSet(f)) {
+        continue;
+      }
+      const val = r.get(f);
+      const name = f.enum.values.find((v) => v.number == val)?.name;
+      if (name !== undefined) {
+        strings.push(`features.${f.name} = ${name}`);
+      }
+    }
+  }
+  return strings;
+}
+
+/**
  * Return a string that matches the definition of a field in the protobuf
  * source. Does not take custom options into account.
  */
@@ -220,6 +248,7 @@ export function getDeclarationString(
   ) {
     options.push(`deprecated = true`);
   }
+  options.push(...getFeatureOptionStrings(desc));
   if (options.length > 0) {
     parts.push("[" + options.join(", ") + "]");
   }

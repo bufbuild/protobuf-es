@@ -101,6 +101,20 @@ describe("GeneratedFile.preamble", () => {
     );
   });
 
+  test("contains edition file features", async () => {
+    const lines = await testGenerate({
+      proto: {
+        "foo/bar.proto": `
+          edition="2023";
+          option features.field_presence = EXPLICIT;
+          option features.enum_type = OPEN;
+        `,
+      },
+    });
+    expect(lines).toContain("// option features.field_presence = EXPLICIT;");
+    expect(lines).toContain("// option features.enum_type = OPEN;");
+  });
+
   test("contains syntax comments", async () => {
     const lines = await testGenerate({
       proto: `
