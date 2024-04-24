@@ -14,7 +14,6 @@
 
 import Benchmark from "benchmark";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
 import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
 import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
@@ -38,19 +37,21 @@ run("Parsing binary", [
   //   };
   // },
   function () {
-    const tinyUser = create(UserDesc, {
+    const desc = UserDesc;
+    const tinyUser = create(desc, {
       active: false,
       manager: { active: true },
     });
-    const data = toBinary(UserDesc, tinyUser);
+    const data = toBinary(desc, tinyUser);
     return {
       name: `tiny docs.User (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(FileDescriptorSetDesc, data);
+        fromBinary(desc, data);
       },
     };
   },
   function () {
+    const desc = ScalarValuesMessageDesc;
     const message = create(ScalarValuesMessageDesc, {
       doubleField: 0.75,
       floatField: -0.75,
@@ -70,16 +71,17 @@ run("Parsing binary", [
       sint32Field: -1,
       sint64Field: protoInt64.parse(-1),
     });
-    const data = toBinary(ScalarValuesMessageDesc, message);
+    const data = toBinary(desc, message);
     return {
       name: `scalar values (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(ScalarValuesMessageDesc, data);
+        fromBinary(desc, data);
       },
     };
   },
   function () {
-    const message = create(RepeatedScalarValuesMessageDesc, {
+    const desc = RepeatedScalarValuesMessageDesc;
+    const message = create(desc, {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
       int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
@@ -106,11 +108,11 @@ run("Parsing binary", [
         protoInt64.parse(99),
       ],
     });
-    const data = toBinary(RepeatedScalarValuesMessageDesc, message);
+    const data = toBinary(desc, message);
     return {
       name: `repeated scalar fields (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(RepeatedScalarValuesMessageDesc, data);
+        fromBinary(desc, data);
       },
     };
   },
