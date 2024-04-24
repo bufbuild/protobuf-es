@@ -108,12 +108,12 @@ function readMessage(
   const unknownFields = message.getUnknown() ?? [];
   while (reader.pos < end) {
     [fieldNo, wireType] = reader.tag();
-    if (wireType == WireType.EndGroup) {
+    if (delimited && wireType == WireType.EndGroup) {
       break;
     }
     const field = message.findNumber(fieldNo);
     if (!field) {
-      const data = reader.skip(wireType);
+      const data = reader.skip(wireType, fieldNo);
       if (options.readUnknownFields) {
         unknownFields.push({ no: fieldNo, wireType, data });
       }
