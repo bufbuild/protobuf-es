@@ -375,8 +375,6 @@ const TYPE_ENUM: FieldDescriptorProto_Type.ENUM = 14;
 
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_REPEATED: const $name: FieldDescriptorProto_Label.$localName = $number;
 const LABEL_REPEATED: FieldDescriptorProto_Label.REPEATED = 3;
-// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_OPTIONAL: const $name: FieldDescriptorProto_Label.$localName = $number;
-const LABEL_OPTIONAL: FieldDescriptorProto_Label.OPTIONAL = 1;
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_REQUIRED: const $name: FieldDescriptorProto_Label.$localName = $number;
 const LABEL_REQUIRED: FieldDescriptorProto_Label.REQUIRED = 2;
 
@@ -909,7 +907,6 @@ function newField(
     }
   }
   field.presence = getFieldPresence(proto, oneof, parentOrFile);
-  field.optional = isOptionalField(field as DescField | DescExtension);
   return field as DescField | DescExtension;
 }
 
@@ -1078,21 +1075,6 @@ function getFieldPresence(
   }
   // also resolves proto2/proto3 defaults
   return resolveFeature("fieldPresence", { proto, parent });
-}
-
-/**
- * Did the user use the `optional` keyword?
- */
-function isOptionalField(field: DescField | DescExtension): boolean {
-  const edition = (field.kind == "extension" ? field.file : field.parent.file)
-    .edition;
-  if (edition == EDITION_PROTO2) {
-    return !field.oneof && field.proto.label == LABEL_OPTIONAL;
-  }
-  if (edition == EDITION_PROTO3) {
-    return field.proto.proto3Optional;
-  }
-  return false;
 }
 
 /**

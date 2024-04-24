@@ -802,73 +802,6 @@ describe("DescField", () => {
       ).toBe(false);
     });
   });
-  describe("optional", () => {
-    test("false for proto2 required scalar", async () => {
-      const field = await compileField(`
-        syntax="proto2";
-        message M { required int32 f1 = 1; }
-      `);
-      expect(
-        field.fieldKind == "scalar" ||
-          field.fieldKind == "message" ||
-          field.fieldKind == "enum"
-          ? field.optional
-          : undefined,
-      ).toBe(false);
-    });
-    test("true for proto2 optional scalar", async () => {
-      const field = await compileField(`
-        syntax="proto2";
-        message M { required int32 f1 = 1; }
-      `);
-      expect(
-        field.fieldKind == "scalar" ||
-          field.fieldKind == "message" ||
-          field.fieldKind == "enum"
-          ? field.optional
-          : undefined,
-      ).toBe(false);
-    });
-    test("true for proto3 optional scalar", async () => {
-      const field = await compileField(`
-        syntax="proto3";
-        message M { optional int32 f1 = 1; }
-      `);
-      expect(
-        field.fieldKind == "scalar" ||
-          field.fieldKind == "message" ||
-          field.fieldKind == "enum"
-          ? field.optional
-          : undefined,
-      ).toBe(true);
-    });
-    test("false for features.field_presence = EXPLICIT", async () => {
-      const field = await compileField(`
-        edition="2023";
-        message M { int32 f1 = 1 [features.field_presence = EXPLICIT]; }
-      `);
-      expect(
-        field.fieldKind == "scalar" ||
-          field.fieldKind == "message" ||
-          field.fieldKind == "enum"
-          ? field.optional
-          : undefined,
-      ).toBe(false);
-    });
-    test("false for features.field_presence = IMPLICIT", async () => {
-      const field = await compileField(`
-        edition="2023";
-        message M { int32 f1 = 1 [features.field_presence = IMPLICIT]; }
-      `);
-      expect(
-        field.fieldKind == "scalar" ||
-          field.fieldKind == "message" ||
-          field.fieldKind == "enum"
-          ? field.optional
-          : undefined,
-      ).toBe(false);
-    });
-  });
   describe("longType", () => {
     test("returns default LongType.BIGINT for option omitted", async () => {
       const { fields } = await compileMessage(`
@@ -1171,7 +1104,6 @@ describe("DescField", () => {
         field.packed;
 
         // exclusive to singular
-        field.optional;
         const def: undefined = field.getDefaultValue();
 
         // exclusive to map
@@ -1194,7 +1126,6 @@ describe("DescField", () => {
         field.packed;
 
         // exclusive to singular
-        field.optional;
         const def: string | number | bigint | boolean | Uint8Array | undefined =
           field.getDefaultValue();
 
@@ -1229,7 +1160,6 @@ describe("DescField", () => {
         field.packed;
 
         // exclusive to singular
-        field.optional;
         const def: number | undefined = field.getDefaultValue();
 
         // exclusive to map

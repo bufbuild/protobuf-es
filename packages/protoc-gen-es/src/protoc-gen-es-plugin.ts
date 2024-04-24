@@ -27,12 +27,7 @@ import type {
   Printable,
   Target,
 } from "@bufbuild/protoplugin/ecmascript";
-import {
-  arrayLiteral,
-  fieldUsesPrototype,
-  functionCall,
-  getFieldTypeInfo,
-} from "./util";
+import { arrayLiteral, functionCall, fieldTypeScriptType } from "./util";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -92,7 +87,7 @@ function generateTs(schema: Schema) {
           const { GenDescExtension, extDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const E = f.importShape(desc.extendee);
-          const V = getFieldTypeInfo(desc).typing;
+          const V = fieldTypeScriptType(desc).typing;
           const call = functionCall(extDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
           f.print(f.exportDecl("const", name), ": ", GenDescExtension, "<", E, ", ", V, ">", " = ", pure);
@@ -219,7 +214,7 @@ function generateDts(schema: Schema) {
           const { GenDescExtension } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const E = f.importShape(desc.extendee);
-          const V = getFieldTypeInfo(desc).typing;
+          const V = fieldTypeScriptType(desc).typing;
           f.print(f.jsDoc(desc));
           f.print(f.exportDecl("declare const", name), ": ", GenDescExtension, "<", E, ", ", V, ">;");
           f.print();
@@ -310,7 +305,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
             f.print(`  } | {`);
           }
           f.print(f.jsDoc(field, "    "));
-          const { typing } = getFieldTypeInfo(field);
+          const { typing } = fieldTypeScriptType(field);
           f.print(`    value: `, typing, `;`);
           f.print(`    case: "`, localName(field), `";`);
         }
@@ -318,11 +313,11 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
         break;
       default: {
         f.print(f.jsDoc(member, "  "));
-        const {typing, optional} = getFieldTypeInfo(member);
-        if (fieldUsesPrototype(member) || !optional) {
-          f.print("  ", localName(member), ": ", typing, ";");
-        } else {
+        const { typing, optional } = fieldTypeScriptType(member);
+        if (optional) {
           f.print("  ", localName(member), "?: ", typing, ";");
+        } else {
+          f.print("  ", localName(member), ": ", typing, ";");
         }
         break;
       }
