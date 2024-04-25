@@ -173,7 +173,7 @@ export interface ReflectMessage {
  * ReflectList provides dynamic access and manipulation of a list field on a
  * message.
  *
- * ReflectList is iterable - you can loop throw all items with a for...of loop.
+ * ReflectList is iterable - you can loop through all items with a for...of loop.
  *
  * Values are converted or wrapped to make it easier to manipulate them:
  * - Scalar 64-bit integer fields with the option `jstype=JS_STRING` are
@@ -230,7 +230,7 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
  * ReflectMap provides dynamic access and manipulation of a map field on a
  * message.
  *
- * ReflectMap is iterable - you can loop throw all entries with a for...of loop.
+ * ReflectMap is iterable - you can loop through all entries with a for...of loop.
  *
  * Keys and values are converted or wrapped to make it easier to manipulate them:
  * - A map field is a record object on a message, where keys are always strings.
