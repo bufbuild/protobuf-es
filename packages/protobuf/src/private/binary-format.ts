@@ -106,7 +106,7 @@ export function makeBinaryFormat(): BinaryFormat {
       while (reader.pos < end) {
         [fieldNo, wireType] = reader.tag();
         if (
-          (delimitedMessageEncoding ?? false) &&
+          delimitedMessageEncoding === true &&
           wireType == WireType.EndGroup
         ) {
           break;
