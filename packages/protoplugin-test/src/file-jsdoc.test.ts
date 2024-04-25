@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.jsDoc", () => {
-  test("creates JSDoc comment block", async () => {
+  test("creates JSDoc block", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -28,19 +28,18 @@ describe("GeneratedFile.jsDoc", () => {
     expect(lines).toStrictEqual(["/**", " * hello world", " */"]);
   });
 
-  test("creates JSDoc comment block for message descriptor", async () => {
+  test("creates JSDoc block for message", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
-          syntax="proto3";
+        syntax="proto3";
         message SomeMessage {};
-          `,
+      `,
       parameter: "target=ts",
       generateAny(f, schema) {
         f.print(f.jsDoc(schema.files[0].messages[0]));
       },
       returnLinesOfFirstFile: true,
     });
-
     expect(lines).toStrictEqual([
       "/**",
       " * @generated from message SomeMessage",
@@ -48,7 +47,7 @@ describe("GeneratedFile.jsDoc", () => {
     ]);
   });
 
-  test("creates JSDoc comment block for message descriptor with comments", async () => {
+  test("creates JSDoc block for message with comments", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
         syntax="proto3";
@@ -57,19 +56,63 @@ describe("GeneratedFile.jsDoc", () => {
         
         // comment on message
         message SomeMessage {};
-          `,
+      `,
       parameter: "target=ts",
       generateAny(f, schema) {
         f.print(f.jsDoc(schema.files[0].messages[0]));
       },
       returnLinesOfFirstFile: true,
     });
-
     expect(lines).toStrictEqual([
       "/**",
       " * comment on message",
       " *",
       " * @generated from message SomeMessage",
+      " */",
+    ]);
+  });
+
+  test("creates JSDoc block for message with feature options", async () => {
+    const lines = await createTestPluginAndRun({
+      proto: `
+        edition="2023";
+        message SomeMessage {
+          option features.json_format = ALLOW;
+        }
+      `,
+      parameter: "target=ts",
+      generateAny(f, schema) {
+        f.print(f.jsDoc(schema.files[0].messages[0]));
+      },
+      returnLinesOfFirstFile: true,
+    });
+    expect(lines).toStrictEqual([
+      "/**",
+      " * @generated from message SomeMessage",
+      " * @generated with option features.json_format = ALLOW",
+      " */",
+    ]);
+  });
+
+  test("creates JSDoc block for enum with feature options", async () => {
+    const lines = await createTestPluginAndRun({
+      proto: `
+        edition="2023";
+        enum SomeEnum {
+          option features.enum_type = OPEN;
+          SOME_ENUM_UNSPECIFIED = 0;
+        }
+      `,
+      parameter: "target=ts",
+      generateAny(f, schema) {
+        f.print(f.jsDoc(schema.files[0].enums[0]));
+      },
+      returnLinesOfFirstFile: true,
+    });
+    expect(lines).toStrictEqual([
+      "/**",
+      " * @generated from enum SomeEnum",
+      " * @generated with option features.enum_type = OPEN",
       " */",
     ]);
   });
@@ -83,7 +126,6 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-
     expect(lines).toStrictEqual([
       "  /**",
       "   * multi-line",
@@ -101,7 +143,6 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-
     expect(lines).toStrictEqual(["/**", " * *\\/", " */"]);
   });
 
@@ -114,7 +155,6 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-
     expect(lines).toStrictEqual([
       "/**",
       " *",

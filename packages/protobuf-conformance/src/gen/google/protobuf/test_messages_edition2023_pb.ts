@@ -249,144 +249,144 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
   /**
    * Packed
    *
-   * @generated from field: repeated int32 packed_int32 = 75;
+   * @generated from field: repeated int32 packed_int32 = 75 [features.repeated_field_encoding = PACKED];
    */
   packedInt32: number[];
 
   /**
-   * @generated from field: repeated int64 packed_int64 = 76;
+   * @generated from field: repeated int64 packed_int64 = 76 [features.repeated_field_encoding = PACKED];
    */
   packedInt64: bigint[];
 
   /**
-   * @generated from field: repeated uint32 packed_uint32 = 77;
+   * @generated from field: repeated uint32 packed_uint32 = 77 [features.repeated_field_encoding = PACKED];
    */
   packedUint32: number[];
 
   /**
-   * @generated from field: repeated uint64 packed_uint64 = 78;
+   * @generated from field: repeated uint64 packed_uint64 = 78 [features.repeated_field_encoding = PACKED];
    */
   packedUint64: bigint[];
 
   /**
-   * @generated from field: repeated sint32 packed_sint32 = 79;
+   * @generated from field: repeated sint32 packed_sint32 = 79 [features.repeated_field_encoding = PACKED];
    */
   packedSint32: number[];
 
   /**
-   * @generated from field: repeated sint64 packed_sint64 = 80;
+   * @generated from field: repeated sint64 packed_sint64 = 80 [features.repeated_field_encoding = PACKED];
    */
   packedSint64: bigint[];
 
   /**
-   * @generated from field: repeated fixed32 packed_fixed32 = 81;
+   * @generated from field: repeated fixed32 packed_fixed32 = 81 [features.repeated_field_encoding = PACKED];
    */
   packedFixed32: number[];
 
   /**
-   * @generated from field: repeated fixed64 packed_fixed64 = 82;
+   * @generated from field: repeated fixed64 packed_fixed64 = 82 [features.repeated_field_encoding = PACKED];
    */
   packedFixed64: bigint[];
 
   /**
-   * @generated from field: repeated sfixed32 packed_sfixed32 = 83;
+   * @generated from field: repeated sfixed32 packed_sfixed32 = 83 [features.repeated_field_encoding = PACKED];
    */
   packedSfixed32: number[];
 
   /**
-   * @generated from field: repeated sfixed64 packed_sfixed64 = 84;
+   * @generated from field: repeated sfixed64 packed_sfixed64 = 84 [features.repeated_field_encoding = PACKED];
    */
   packedSfixed64: bigint[];
 
   /**
-   * @generated from field: repeated float packed_float = 85;
+   * @generated from field: repeated float packed_float = 85 [features.repeated_field_encoding = PACKED];
    */
   packedFloat: number[];
 
   /**
-   * @generated from field: repeated double packed_double = 86;
+   * @generated from field: repeated double packed_double = 86 [features.repeated_field_encoding = PACKED];
    */
   packedDouble: number[];
 
   /**
-   * @generated from field: repeated bool packed_bool = 87;
+   * @generated from field: repeated bool packed_bool = 87 [features.repeated_field_encoding = PACKED];
    */
   packedBool: boolean[];
 
   /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum packed_nested_enum = 88;
+   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum packed_nested_enum = 88 [features.repeated_field_encoding = PACKED];
    */
   packedNestedEnum: TestAllTypesEdition2023_NestedEnum[];
 
   /**
    * Unpacked
    *
-   * @generated from field: repeated int32 unpacked_int32 = 89;
+   * @generated from field: repeated int32 unpacked_int32 = 89 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedInt32: number[];
 
   /**
-   * @generated from field: repeated int64 unpacked_int64 = 90;
+   * @generated from field: repeated int64 unpacked_int64 = 90 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedInt64: bigint[];
 
   /**
-   * @generated from field: repeated uint32 unpacked_uint32 = 91;
+   * @generated from field: repeated uint32 unpacked_uint32 = 91 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedUint32: number[];
 
   /**
-   * @generated from field: repeated uint64 unpacked_uint64 = 92;
+   * @generated from field: repeated uint64 unpacked_uint64 = 92 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedUint64: bigint[];
 
   /**
-   * @generated from field: repeated sint32 unpacked_sint32 = 93;
+   * @generated from field: repeated sint32 unpacked_sint32 = 93 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedSint32: number[];
 
   /**
-   * @generated from field: repeated sint64 unpacked_sint64 = 94;
+   * @generated from field: repeated sint64 unpacked_sint64 = 94 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedSint64: bigint[];
 
   /**
-   * @generated from field: repeated fixed32 unpacked_fixed32 = 95;
+   * @generated from field: repeated fixed32 unpacked_fixed32 = 95 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedFixed32: number[];
 
   /**
-   * @generated from field: repeated fixed64 unpacked_fixed64 = 96;
+   * @generated from field: repeated fixed64 unpacked_fixed64 = 96 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedFixed64: bigint[];
 
   /**
-   * @generated from field: repeated sfixed32 unpacked_sfixed32 = 97;
+   * @generated from field: repeated sfixed32 unpacked_sfixed32 = 97 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedSfixed32: number[];
 
   /**
-   * @generated from field: repeated sfixed64 unpacked_sfixed64 = 98;
+   * @generated from field: repeated sfixed64 unpacked_sfixed64 = 98 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedSfixed64: bigint[];
 
   /**
-   * @generated from field: repeated float unpacked_float = 99;
+   * @generated from field: repeated float unpacked_float = 99 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedFloat: number[];
 
   /**
-   * @generated from field: repeated double unpacked_double = 100;
+   * @generated from field: repeated double unpacked_double = 100 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedDouble: number[];
 
   /**
-   * @generated from field: repeated bool unpacked_bool = 101;
+   * @generated from field: repeated bool unpacked_bool = 101 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedBool: boolean[];
 
   /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum unpacked_nested_enum = 102;
+   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum unpacked_nested_enum = 102 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedNestedEnum: TestAllTypesEdition2023_NestedEnum[];
 
@@ -547,12 +547,12 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
   } | { case: undefined; value?: undefined };
 
   /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType groupliketype = 201;
+   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType groupliketype = 201 [features.message_encoding = DELIMITED];
    */
   groupliketype?: TestAllTypesEdition2023_GroupLikeType;
 
   /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType delimited_field = 202;
+   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType delimited_field = 202 [features.message_encoding = DELIMITED];
    */
   delimitedField?: TestAllTypesEdition2023_GroupLikeType;
 };
@@ -696,13 +696,13 @@ export const extension_int32: GenDescExtension<TestAllTypesEdition2023, number> 
   extDesc(fileDesc_google_protobuf_test_messages_edition2023, 0);
 
 /**
- * @generated from extension: protobuf_test_messages.editions.GroupLikeType groupliketype = 121;
+ * @generated from extension: protobuf_test_messages.editions.GroupLikeType groupliketype = 121 [features.message_encoding = DELIMITED];
  */
 export const groupliketype: GenDescExtension<TestAllTypesEdition2023, GroupLikeType> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_test_messages_edition2023, 1);
 
 /**
- * @generated from extension: protobuf_test_messages.editions.GroupLikeType delimited_ext = 122;
+ * @generated from extension: protobuf_test_messages.editions.GroupLikeType delimited_ext = 122 [features.message_encoding = DELIMITED];
  */
 export const delimited_ext: GenDescExtension<TestAllTypesEdition2023, GroupLikeType> = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_test_messages_edition2023, 2);

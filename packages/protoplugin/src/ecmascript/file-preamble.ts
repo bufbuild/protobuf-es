@@ -14,7 +14,11 @@
 
 import { Edition } from "@bufbuild/protobuf/wkt";
 import type { DescFile, DescComments } from "@bufbuild/protobuf";
-import { getPackageComments, getSyntaxComments } from "../source-code-info.js";
+import {
+  getPackageComments,
+  getSyntaxComments,
+  getFeatureOptionStrings,
+} from "../source-code-info.js";
 
 export function makeFilePreamble(
   file: DescFile,
@@ -69,6 +73,9 @@ export function makeFilePreamble(
       }
       break;
     }
+  }
+  for (const o of getFeatureOptionStrings(file)) {
+    builder.push(`// option ${o};\n`);
   }
   builder.push("/* eslint-disable */\n");
   if (tsNoCheck) {

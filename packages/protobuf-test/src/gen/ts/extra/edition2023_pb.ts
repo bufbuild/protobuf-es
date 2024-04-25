@@ -87,7 +87,7 @@ export type Edition2023Message = Message<"spec.Edition2023Message"> & {
   explicitMessageField?: Edition2023Message;
 
   /**
-   * @generated from field: spec.Edition2023Message explicit_message_delimited_field = 312;
+   * @generated from field: spec.Edition2023Message explicit_message_delimited_field = 312 [features.message_encoding = DELIMITED];
    */
   explicitMessageDelimitedField?: Edition2023Message;
 
@@ -97,162 +97,162 @@ export type Edition2023Message = Message<"spec.Edition2023Message"> & {
   explicitWrappedUint32Field?: number;
 
   /**
-   * @generated from field: string implicit_string_field = 201;
+   * @generated from field: string implicit_string_field = 201 [features.field_presence = IMPLICIT];
    */
   implicitStringField: string;
 
   /**
-   * @generated from field: bytes implicit_bytes_field = 202;
+   * @generated from field: bytes implicit_bytes_field = 202 [features.field_presence = IMPLICIT];
    */
   implicitBytesField: Uint8Array;
 
   /**
-   * @generated from field: int32 implicit_int32_field = 203;
+   * @generated from field: int32 implicit_int32_field = 203 [features.field_presence = IMPLICIT];
    */
   implicitInt32Field: number;
 
   /**
-   * @generated from field: int64 implicit_int64_field = 204;
+   * @generated from field: int64 implicit_int64_field = 204 [features.field_presence = IMPLICIT];
    */
   implicitInt64Field: bigint;
 
   /**
-   * @generated from field: int64 implicit_int64_js_number_field = 205 [jstype = JS_NUMBER];
+   * @generated from field: int64 implicit_int64_js_number_field = 205 [jstype = JS_NUMBER, features.field_presence = IMPLICIT];
    */
   implicitInt64JsNumberField: bigint;
 
   /**
-   * @generated from field: int64 implicit_int64_js_string_field = 206 [jstype = JS_STRING];
+   * @generated from field: int64 implicit_int64_js_string_field = 206 [jstype = JS_STRING, features.field_presence = IMPLICIT];
    */
   implicitInt64JsStringField: string;
 
   /**
-   * @generated from field: float implicit_float_field = 207;
+   * @generated from field: float implicit_float_field = 207 [features.field_presence = IMPLICIT];
    */
   implicitFloatField: number;
 
   /**
-   * @generated from field: bool implicit_bool_field = 208;
+   * @generated from field: bool implicit_bool_field = 208 [features.field_presence = IMPLICIT];
    */
   implicitBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen implicit_enum_open_field = 209;
+   * @generated from field: spec.Edition2023EnumOpen implicit_enum_open_field = 209 [features.field_presence = IMPLICIT];
    */
   implicitEnumOpenField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: string required_string_field = 1;
+   * @generated from field: string required_string_field = 1 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredStringField: string;
 
   /**
-   * @generated from field: bytes required_bytes_field = 2;
+   * @generated from field: bytes required_bytes_field = 2 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredBytesField: Uint8Array;
 
   /**
-   * @generated from field: int32 required_int32_field = 3;
+   * @generated from field: int32 required_int32_field = 3 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredInt32Field: number;
 
   /**
-   * @generated from field: int64 required_int64_field = 4;
+   * @generated from field: int64 required_int64_field = 4 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredInt64Field: bigint;
 
   /**
-   * @generated from field: int64 required_int64_js_number_field = 5 [jstype = JS_NUMBER];
+   * @generated from field: int64 required_int64_js_number_field = 5 [jstype = JS_NUMBER, features.field_presence = LEGACY_REQUIRED];
    */
   requiredInt64JsNumberField: bigint;
 
   /**
-   * @generated from field: int64 required_int64_js_string_field = 6 [jstype = JS_STRING];
+   * @generated from field: int64 required_int64_js_string_field = 6 [jstype = JS_STRING, features.field_presence = LEGACY_REQUIRED];
    */
   requiredInt64JsStringField: string;
 
   /**
-   * @generated from field: float required_float_field = 7;
+   * @generated from field: float required_float_field = 7 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredFloatField: number;
 
   /**
-   * @generated from field: bool required_bool_field = 8;
+   * @generated from field: bool required_bool_field = 8 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen required_enum_open_field = 9;
+   * @generated from field: spec.Edition2023EnumOpen required_enum_open_field = 9 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredEnumOpenField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: spec.Edition2023EnumClosed required_enum_closed_field = 10;
+   * @generated from field: spec.Edition2023EnumClosed required_enum_closed_field = 10 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredEnumClosedField: Edition2023EnumClosed;
 
   /**
-   * @generated from field: spec.Edition2023Message.Child required_message_field = 11;
+   * @generated from field: spec.Edition2023Message.Child required_message_field = 11 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredMessageField?: Edition2023Message_Child;
 
   /**
-   * @generated from field: spec.Edition2023Message.Child required_message_delimited_field = 12;
+   * @generated from field: spec.Edition2023Message.Child required_message_delimited_field = 12 [features.field_presence = LEGACY_REQUIRED, features.message_encoding = DELIMITED];
    */
   requiredMessageDelimitedField?: Edition2023Message_Child;
 
   /**
-   * @generated from field: google.protobuf.UInt32Value required_wrapped_uint32_field = 13;
+   * @generated from field: google.protobuf.UInt32Value required_wrapped_uint32_field = 13 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredWrappedUint32Field?: number;
 
   /**
-   * @generated from field: string required_default_string_field = 101 [default = "hello \" *\/ "];
+   * @generated from field: string required_default_string_field = 101 [default = "hello \" *\/ ", features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultStringField: string;
 
   /**
-   * @generated from field: bytes required_default_bytes_field = 102 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   * @generated from field: bytes required_default_bytes_field = 102 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013", features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultBytesField: Uint8Array;
 
   /**
-   * @generated from field: int32 required_default_int32_field = 103 [default = 128];
+   * @generated from field: int32 required_default_int32_field = 103 [default = 128, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultInt32Field: number;
 
   /**
-   * @generated from field: int64 required_default_int64_field = 104 [default = -256];
+   * @generated from field: int64 required_default_int64_field = 104 [default = -256, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultInt64Field: bigint;
 
   /**
-   * @generated from field: int64 required_default_int64_js_number_field = 105 [default = -256, jstype = JS_NUMBER];
+   * @generated from field: int64 required_default_int64_js_number_field = 105 [default = -256, jstype = JS_NUMBER, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultInt64JsNumberField: bigint;
 
   /**
-   * @generated from field: int64 required_default_int64_js_string_field = 106 [default = -256, jstype = JS_STRING];
+   * @generated from field: int64 required_default_int64_js_string_field = 106 [default = -256, jstype = JS_STRING, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultInt64JsStringField: string;
 
   /**
-   * @generated from field: float required_default_float_field = 107 [default = -512.13];
+   * @generated from field: float required_default_float_field = 107 [default = -512.13, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultFloatField: number;
 
   /**
-   * @generated from field: bool required_default_bool_field = 108 [default = true];
+   * @generated from field: bool required_default_bool_field = 108 [default = true, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen required_default_enum_open_field = 109 [default = EDITION2023_ENUM_OPEN_A];
+   * @generated from field: spec.Edition2023EnumOpen required_default_enum_open_field = 109 [default = EDITION2023_ENUM_OPEN_A, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultEnumOpenField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: spec.Edition2023EnumClosed required_default_enum_closed_field = 110 [default = EDITION2023_ENUM_CLOSED_A];
+   * @generated from field: spec.Edition2023EnumClosed required_default_enum_closed_field = 110 [default = EDITION2023_ENUM_CLOSED_A, features.field_presence = LEGACY_REQUIRED];
    */
   requiredDefaultEnumClosedField: Edition2023EnumClosed;
 
@@ -312,7 +312,7 @@ export type Edition2023Message = Message<"spec.Edition2023Message"> & {
   repeatedMessageField: Edition2023Message[];
 
   /**
-   * @generated from field: repeated spec.Edition2023Message repeated_message_delimited_field = 412;
+   * @generated from field: repeated spec.Edition2023Message repeated_message_delimited_field = 412 [features.message_encoding = DELIMITED];
    */
   repeatedMessageDelimitedField: Edition2023Message[];
 
@@ -322,32 +322,32 @@ export type Edition2023Message = Message<"spec.Edition2023Message"> & {
   repeatedWrappedUint32Field: UInt32Value[];
 
   /**
-   * @generated from field: repeated double packed_double_field = 414;
+   * @generated from field: repeated double packed_double_field = 414 [features.repeated_field_encoding = PACKED];
    */
   packedDoubleField: number[];
 
   /**
-   * @generated from field: repeated uint32 packed_uint32_field = 415;
+   * @generated from field: repeated uint32 packed_uint32_field = 415 [features.repeated_field_encoding = PACKED];
    */
   packedUint32Field: number[];
 
   /**
-   * @generated from field: repeated uint64 packed_uint64_field = 416;
+   * @generated from field: repeated uint64 packed_uint64_field = 416 [features.repeated_field_encoding = PACKED];
    */
   packedUint64Field: bigint[];
 
   /**
-   * @generated from field: repeated double unpacked_double_field = 417;
+   * @generated from field: repeated double unpacked_double_field = 417 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedDoubleField: number[];
 
   /**
-   * @generated from field: repeated uint32 unpacked_uint32_field = 418;
+   * @generated from field: repeated uint32 unpacked_uint32_field = 418 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedUint32Field: number[];
 
   /**
-   * @generated from field: repeated uint64 unpacked_uint64_field = 419;
+   * @generated from field: repeated uint64 unpacked_uint64_field = 419 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedUint64Field: bigint[];
 
@@ -422,7 +422,7 @@ export type Edition2023Message = Message<"spec.Edition2023Message"> & {
     case: "oneofMessageField";
   } | {
     /**
-     * @generated from field: spec.Edition2023Message oneof_message_delimited_field = 512;
+     * @generated from field: spec.Edition2023Message oneof_message_delimited_field = 512 [features.message_encoding = DELIMITED];
      */
     value: Edition2023Message;
     case: "oneofMessageDelimitedField";
@@ -515,37 +515,37 @@ export type Edition2023FromProto2Message = Message<"spec.Edition2023FromProto2Me
   optionalStringFieldWithDefault: string;
 
   /**
-   * @generated from field: spec.Edition2023FromProto2Message.OptionalGroup optionalgroup = 4;
+   * @generated from field: spec.Edition2023FromProto2Message.OptionalGroup optionalgroup = 4 [features.message_encoding = DELIMITED];
    */
   optionalgroup?: Edition2023FromProto2Message_OptionalGroup;
 
   /**
-   * @generated from field: bool required_bool_field = 5;
+   * @generated from field: bool required_bool_field = 5 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumClosed required_closed_enum_field = 6;
+   * @generated from field: spec.Edition2023EnumClosed required_closed_enum_field = 6 [features.field_presence = LEGACY_REQUIRED];
    */
   requiredClosedEnumField: Edition2023EnumClosed;
 
   /**
-   * @generated from field: string required_string_field_with_default = 7 [default = ""];
+   * @generated from field: string required_string_field_with_default = 7 [default = "", features.field_presence = LEGACY_REQUIRED];
    */
   requiredStringFieldWithDefault: string;
 
   /**
-   * @generated from field: spec.Edition2023FromProto2Message.RequiredGroup requiredgroup = 8;
+   * @generated from field: spec.Edition2023FromProto2Message.RequiredGroup requiredgroup = 8 [features.message_encoding = DELIMITED];
    */
   requiredgroup?: Edition2023FromProto2Message_RequiredGroup;
 
   /**
-   * @generated from field: repeated double packed_double_field = 9;
+   * @generated from field: repeated double packed_double_field = 9 [features.repeated_field_encoding = PACKED];
    */
   packedDoubleField: number[];
 
   /**
-   * @generated from field: repeated double unpacked_double_field = 10;
+   * @generated from field: repeated double unpacked_double_field = 10 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedDoubleField: number[];
 };
@@ -593,32 +593,32 @@ export const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edit
  */
 export type Edition2023FromProto3Message = Message<"spec.Edition2023FromProto3Message"> & {
   /**
-   * @generated from field: bool implicit_bool_field = 1;
+   * @generated from field: bool implicit_bool_field = 1 [features.field_presence = IMPLICIT];
    */
   implicitBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen implicit_open_enum_field = 2;
+   * @generated from field: spec.Edition2023EnumOpen implicit_open_enum_field = 2 [features.field_presence = IMPLICIT];
    */
   implicitOpenEnumField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: bool explicit_bool_field = 5;
+   * @generated from field: bool explicit_bool_field = 5 [features.field_presence = EXPLICIT];
    */
   explicitBoolField: boolean;
 
   /**
-   * @generated from field: spec.Edition2023EnumOpen explicit_open_enum_field = 6;
+   * @generated from field: spec.Edition2023EnumOpen explicit_open_enum_field = 6 [features.field_presence = EXPLICIT];
    */
   explicitOpenEnumField: Edition2023EnumOpen;
 
   /**
-   * @generated from field: repeated double packed_double_field = 9;
+   * @generated from field: repeated double packed_double_field = 9 [features.repeated_field_encoding = PACKED];
    */
   packedDoubleField: number[];
 
   /**
-   * @generated from field: repeated double unpacked_double_field = 10;
+   * @generated from field: repeated double unpacked_double_field = 10 [features.repeated_field_encoding = EXPANDED];
    */
   unpackedDoubleField: number[];
 };
@@ -649,6 +649,7 @@ export const Edition2023EnumOpenDesc: GenDescEnum<Edition2023EnumOpen> = /*@__PU
 
 /**
  * @generated from enum spec.Edition2023EnumClosed
+ * @generated with option features.enum_type = CLOSED
  */
 export enum Edition2023EnumClosed {
   /**
