@@ -16,10 +16,11 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 
 export const fileDesc_extra_deprecation_explicit = /*@__PURE__*/
-  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIAWIGcHJvdG8z");
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIATJWChFEZXByZWNhdGVkU2VydmljZRI8CgpEZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GgOIAgEymgEKFERlcHJlY2F0ZWRScGNTZXJ2aWNlEkEKCkRlcHJlY2F0ZWQSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiA4gCARI/Cg1Ob3REZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5YgZwcm90bzM", [fileDesc_google_protobuf_empty]);
 
 // Describes the message spec.DeprecatedMessage. Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
 export const DeprecatedMessageDesc = /*@__PURE__*/
@@ -53,4 +54,21 @@ export const DeprecatedValueEnumDesc = /*@__PURE__*/
  */
 export const DeprecatedValueEnum = /*@__PURE__*/
   tsEnum(DeprecatedValueEnumDesc);
+
+/**
+ * The entire service is deprecated
+ *
+ * @generated from service spec.DeprecatedService
+ * @deprecated
+ */
+export const DeprecatedService = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_explicit, 0);
+
+/**
+ * A single RPC of this service is deprecated
+ *
+ * @generated from service spec.DeprecatedRpcService
+ */
+export const DeprecatedRpcService = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_explicit, 1);
 

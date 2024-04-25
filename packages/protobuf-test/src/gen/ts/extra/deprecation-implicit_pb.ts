@@ -16,22 +16,60 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { Empty } from "@bufbuild/protobuf/wkt";
+import { fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_extra_deprecation_implicit: GenDescFile = /*@__PURE__*/
-  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyJCChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2USIwobaW1wbGljaXRseV9kZXByZWNhdGVkX2ZpZWxkGAEgASgJKkYKGEltcGxpY2l0bHlEZXByZWNhdGVkRW51bRIqCiZJTVBMSUNJVExZX0RFUFJFQ0FURURfRU5VTV9VTlNQRUNJRklFRBAAMmgKG0ltcGxpY2l0bHlEZXByZWNhdGVkU2VydmljZRJJChdJbXBsaWNpdGx5RGVwcmVjYXRlZFJwYxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eUIDuAEBYgZwcm90bzM", [fileDesc_google_protobuf_empty]);
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage
  * @deprecated
  */
 export type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMessage"> & {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField: string;
 };
 
 // Describes the message spec.ImplicitlyDeprecatedMessage.
 // Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
 export const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_implicit, 0);
+
+/**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export enum ImplicitlyDeprecatedEnum {
+  /**
+   * @generated from enum value: IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+}
+
+// Describes the enum spec.ImplicitlyDeprecatedEnum.
+export const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_deprecation_implicit, 0);
+
+/**
+ * @generated from service spec.ImplicitlyDeprecatedService
+ * @deprecated
+ */
+export const ImplicitlyDeprecatedService: GenDescService<{
+  /**
+   * @generated from rpc spec.ImplicitlyDeprecatedService.ImplicitlyDeprecatedRpc
+   */
+  implicitlyDeprecatedRpc: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_implicit, 0);
 

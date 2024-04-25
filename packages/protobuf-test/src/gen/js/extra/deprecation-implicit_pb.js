@@ -16,12 +16,31 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 
 export const fileDesc_extra_deprecation_implicit = /*@__PURE__*/
-  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyIdChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2VCA7gBAWIGcHJvdG8z");
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyJCChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2USIwobaW1wbGljaXRseV9kZXByZWNhdGVkX2ZpZWxkGAEgASgJKkYKGEltcGxpY2l0bHlEZXByZWNhdGVkRW51bRIqCiZJTVBMSUNJVExZX0RFUFJFQ0FURURfRU5VTV9VTlNQRUNJRklFRBAAMmgKG0ltcGxpY2l0bHlEZXByZWNhdGVkU2VydmljZRJJChdJbXBsaWNpdGx5RGVwcmVjYXRlZFJwYxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eUIDuAEBYgZwcm90bzM", [fileDesc_google_protobuf_empty]);
 
 // Describes the message spec.ImplicitlyDeprecatedMessage. Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
 export const ImplicitlyDeprecatedMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_implicit, 0);
+
+// Describes the enum spec.ImplicitlyDeprecatedEnum.
+export const ImplicitlyDeprecatedEnumDesc = /*@__PURE__*/
+  enumDesc(fileDesc_extra_deprecation_implicit, 0);
+
+/**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export const ImplicitlyDeprecatedEnum = /*@__PURE__*/
+  tsEnum(ImplicitlyDeprecatedEnumDesc);
+
+/**
+ * @generated from service spec.ImplicitlyDeprecatedService
+ * @deprecated
+ */
+export const ImplicitlyDeprecatedService = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_implicit, 0);
 

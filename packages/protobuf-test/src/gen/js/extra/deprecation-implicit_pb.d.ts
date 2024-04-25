@@ -16,8 +16,9 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
+import type { Empty } from "@bufbuild/protobuf/wkt";
 
 export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
 
@@ -26,8 +27,42 @@ export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
  * @deprecated
  */
 export declare type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMessage"> & {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField: string;
 };
 
 // Describes the message spec.ImplicitlyDeprecatedMessage. Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
 export declare const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage>;
+
+/**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export enum ImplicitlyDeprecatedEnum {
+  /**
+   * @generated from enum value: IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+}
+
+// Describes the enum spec.ImplicitlyDeprecatedEnum.
+export declare const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum>;
+
+/**
+ * @generated from service spec.ImplicitlyDeprecatedService
+ * @deprecated
+ */
+export declare const ImplicitlyDeprecatedService: GenDescService<{
+  /**
+   * @generated from rpc spec.ImplicitlyDeprecatedService.ImplicitlyDeprecatedRpc
+   */
+  implicitlyDeprecatedRpc: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+>;
 
