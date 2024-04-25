@@ -10,5 +10,5 @@ server would usually do.
 
 | code generator      | bundle size             | minified               | compressed         |
 |---------------------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es         | 98,146 b      | 41,869 b | 10,878 b |
+| protobuf-es         | 98,070 b      | 41,868 b | 10,882 b |
 | protobuf-javascript | 394,384 b  | 288,654 b | 45,122 b |
