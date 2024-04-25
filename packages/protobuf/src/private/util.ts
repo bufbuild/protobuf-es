@@ -57,6 +57,15 @@ export interface Util {
   ): void;
 
   /**
+   * Set specified field values on the target plain message, recursively.
+   */
+  initPartialPlain<T extends Message<T>>(
+    source: PartialMessage<T> | undefined,
+    target: PlainMessage<T>,
+    type: MessageType<T>,
+  ): void;
+
+  /**
    * Compares two messages of the same type recursively.
    * Will also return true if both messages are `undefined` or `null`.
    */
