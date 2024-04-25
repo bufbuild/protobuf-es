@@ -20,10 +20,30 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export enum ImplicitlyDeprecatedEnum {
+  /**
+   * @generated from enum value: IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ImplicitlyDeprecatedEnum)
+proto3.util.setEnumType(ImplicitlyDeprecatedEnum, "spec.ImplicitlyDeprecatedEnum", [
+  { no: 0, name: "IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED" },
+]);
+
+/**
  * @generated from message spec.ImplicitlyDeprecatedMessage
  * @deprecated
  */
 export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField = "";
+
   constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>) {
     super();
     proto3.util.initPartial(data, this);
@@ -32,6 +52,7 @@ export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMes
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "spec.ImplicitlyDeprecatedMessage";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "implicitly_deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ImplicitlyDeprecatedMessage {

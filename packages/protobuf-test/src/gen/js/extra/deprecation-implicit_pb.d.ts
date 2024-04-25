@@ -20,10 +20,26 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export declare enum ImplicitlyDeprecatedEnum {
+  /**
+   * @generated from enum value: IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+}
+
+/**
  * @generated from message spec.ImplicitlyDeprecatedMessage
  * @deprecated
  */
 export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMessage> {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField: string;
+
   constructor(data?: PartialMessage<ImplicitlyDeprecatedMessage>);
 
   static readonly runtime: typeof proto3;

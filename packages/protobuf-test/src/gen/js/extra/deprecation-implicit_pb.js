@@ -19,11 +19,24 @@
 import { proto3 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum spec.ImplicitlyDeprecatedEnum
+ * @deprecated
+ */
+export const ImplicitlyDeprecatedEnum = /*@__PURE__*/ proto3.makeEnum(
+  "spec.ImplicitlyDeprecatedEnum",
+  [
+    {no: 0, name: "IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED", localName: "UNSPECIFIED"},
+  ],
+);
+
+/**
  * @generated from message spec.ImplicitlyDeprecatedMessage
  * @deprecated
  */
 export const ImplicitlyDeprecatedMessage = /*@__PURE__*/ proto3.makeMessageType(
   "spec.ImplicitlyDeprecatedMessage",
-  [],
+  () => [
+    { no: 1, name: "implicitly_deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
 );
 
