@@ -15,9 +15,15 @@
 import { describe, expect, test } from "@jest/globals";
 import { getFieldByLocalName } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
-import { isReflectMap, reflectMap, reflect } from "@bufbuild/protobuf/reflect";
+import {
+  isReflectMap,
+  reflectMap,
+  reflect,
+  isReflectMessage,
+} from "@bufbuild/protobuf/reflect";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import { create } from "@bufbuild/protobuf";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {
@@ -104,6 +110,13 @@ describe("ReflectMap", () => {
     test("converts key", () => {
       const map = reflectMap(mapInt64Int64Field, { "1": n11 });
       expect(map.get(n1)).toBeDefined();
+    });
+    test("returns ReflectMessage for message map", () => {
+      const map = reflectMap(mapInt32MessageField, {
+        a: create(proto3_ts.Proto3MessageDesc),
+      });
+      const val = map.get("a");
+      expect(isReflectMessage(val)).toBe(true);
     });
   });
   describe("keys()", () => {
