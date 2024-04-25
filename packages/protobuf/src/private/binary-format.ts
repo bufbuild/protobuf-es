@@ -105,12 +105,15 @@ export function makeBinaryFormat(): BinaryFormat {
       let fieldNo: number | undefined, wireType: WireType | undefined;
       while (reader.pos < end) {
         [fieldNo, wireType] = reader.tag();
-        if (wireType == WireType.EndGroup) {
+        if (
+          (delimitedMessageEncoding ?? false) &&
+          wireType == WireType.EndGroup
+        ) {
           break;
         }
         const field = type.fields.find(fieldNo);
         if (!field) {
-          const data = reader.skip(wireType);
+          const data = reader.skip(wireType, fieldNo);
           if (options.readUnknownFields) {
             this.onUnknownField(message, fieldNo, wireType, data);
           }
