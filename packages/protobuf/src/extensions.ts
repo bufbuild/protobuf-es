@@ -80,7 +80,7 @@ export function setExtension<Desc extends DescExtension>(
   const reader = new BinaryReader(writer.finish());
   while (reader.pos < reader.len) {
     const [no, wireType] = reader.tag();
-    const data = reader.skip(wireType);
+    const data = reader.skip(wireType, no);
     ufs.push({ no, wireType, data });
   }
   message.$unknown = ufs;
