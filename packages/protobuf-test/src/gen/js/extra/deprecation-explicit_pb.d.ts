@@ -16,8 +16,9 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
+import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 export declare const fileDesc_extra_deprecation_explicit: GenDescFile;
 
@@ -103,4 +104,56 @@ export enum DeprecatedValueEnum {
 
 // Describes the enum spec.DeprecatedValueEnum.
 export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum>;
+
+/**
+ * The entire service is deprecated
+ *
+ * @generated from service spec.DeprecatedService
+ * @deprecated
+ */
+export declare const DeprecatedService: GenDescService<{
+  /**
+   * @generated from rpc spec.DeprecatedService.Deprecated
+   */
+  deprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+>;
+
+/**
+ * A single RPC of this service is deprecated
+ *
+ * @generated from service spec.DeprecatedRpcService
+ */
+export declare const DeprecatedRpcService: GenDescService<{
+  /**
+   * @generated from rpc spec.DeprecatedRpcService.Deprecated
+   * @deprecated
+   */
+  deprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+  /**
+   * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
+   */
+  notDeprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+>;
+
+/**
+ * This extension is deprecated
+ *
+ * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
+ * @deprecated
+ */
+export declare const explicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
 

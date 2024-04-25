@@ -16,12 +16,14 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
+import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 export const fileDesc_extra_deprecation_explicit: GenDescFile = /*@__PURE__*/
-  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIAWIGcHJvdG8z");
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIATJWChFEZXByZWNhdGVkU2VydmljZRI8CgpEZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GgOIAgEymgEKFERlcHJlY2F0ZWRScGNTZXJ2aWNlEkEKCkRlcHJlY2F0ZWQSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiA4gCARI/Cg1Ob3REZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5OmQKHGV4cGxpY2l0bHlfZGVwcmVjYXRlZF9vcHRpb24SHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGNEPIAEoBUICGAFSGmV4cGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uYgZwcm90bzM", [fileDesc_google_protobuf_empty, fileDesc_google_protobuf_descriptor]);
 
 /**
  * The entire message is deprecated
@@ -111,4 +113,59 @@ export enum DeprecatedValueEnum {
 // Describes the enum spec.DeprecatedValueEnum.
 export const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_explicit, 1);
+
+/**
+ * The entire service is deprecated
+ *
+ * @generated from service spec.DeprecatedService
+ * @deprecated
+ */
+export const DeprecatedService: GenDescService<{
+  /**
+   * @generated from rpc spec.DeprecatedService.Deprecated
+   */
+  deprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_explicit, 0);
+
+/**
+ * A single RPC of this service is deprecated
+ *
+ * @generated from service spec.DeprecatedRpcService
+ */
+export const DeprecatedRpcService: GenDescService<{
+  /**
+   * @generated from rpc spec.DeprecatedRpcService.Deprecated
+   * @deprecated
+   */
+  deprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+  /**
+   * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
+   */
+  notDeprecated: {
+    kind: "unary";
+    I: Empty;
+    O: Empty;
+  },
+}
+> = /*@__PURE__*/
+  serviceDesc(fileDesc_extra_deprecation_explicit, 1);
+
+/**
+ * This extension is deprecated
+ *
+ * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
+ * @deprecated
+ */
+export const explicitly_deprecated_option: GenDescExtension<FieldOptions, number> = /*@__PURE__*/
+  extDesc(fileDesc_extra_deprecation_explicit, 0);
 
