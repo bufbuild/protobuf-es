@@ -13,12 +13,25 @@
 // limitations under the License.
 
 syntax = "proto3";
-
 package spec;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/descriptor.proto";
 
 option deprecated = true;
 
-
 message ImplicitlyDeprecatedMessage {
+  string implicitly_deprecated_field = 1;
+}
 
+enum ImplicitlyDeprecatedEnum {
+  IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED = 0;
+}
+
+service ImplicitlyDeprecatedService {
+  rpc ImplicitlyDeprecatedRpc(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+extend google.protobuf.FieldOptions {
+  int32 implicitly_deprecated_option = 2001;
 }

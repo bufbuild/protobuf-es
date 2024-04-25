@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, FieldOptions, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -117,4 +117,12 @@ export declare class DeprecatedFieldMessage extends Message<DeprecatedFieldMessa
 
   static equals(a: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined, b: DeprecatedFieldMessage | PlainMessage<DeprecatedFieldMessage> | undefined): boolean;
 }
+
+/**
+ * This extension is deprecated
+ *
+ * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
+ * @deprecated
+ */
+export declare const explicitly_deprecated_option: Extension<FieldOptions, number>;
 
