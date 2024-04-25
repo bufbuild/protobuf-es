@@ -16,9 +16,9 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { Empty } from "@bufbuild/protobuf/wkt";
+import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
 
@@ -65,4 +65,9 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
   },
 }
 >;
+
+/**
+ * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ */
+export declare const implicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
 
