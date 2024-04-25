@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, Extension, FieldList, FieldOptions, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -54,4 +54,9 @@ export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDepre
 
   static equals(a: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined, b: ImplicitlyDeprecatedMessage | PlainMessage<ImplicitlyDeprecatedMessage> | undefined): boolean;
 }
+
+/**
+ * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ */
+export declare const implicitly_deprecated_option: Extension<FieldOptions, number>;
 

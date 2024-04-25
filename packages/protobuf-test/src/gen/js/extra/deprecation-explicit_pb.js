@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { FieldOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
  * The entire enum is deprecated
@@ -69,5 +69,17 @@ export const DeprecatedFieldMessage = /*@__PURE__*/ proto3.makeMessageType(
     { no: 1, name: "deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "current_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
+);
+
+/**
+ * This extension is deprecated
+ *
+ * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
+ * @deprecated
+ */
+export const explicitly_deprecated_option = proto3.makeExtension(
+  "spec.explicitly_deprecated_option", 
+  FieldOptions, 
+  { no: 2001, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
 );
 

@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { proto3 } from "@bufbuild/protobuf";
+import { FieldOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
@@ -38,5 +38,14 @@ export const ImplicitlyDeprecatedMessage = /*@__PURE__*/ proto3.makeMessageType(
   () => [
     { no: 1, name: "implicitly_deprecated_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
+);
+
+/**
+ * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ */
+export const implicitly_deprecated_option = proto3.makeExtension(
+  "spec.implicitly_deprecated_option", 
+  FieldOptions, 
+  { no: 2001, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
 );
 

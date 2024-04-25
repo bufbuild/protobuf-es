@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { FieldOptions, Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
@@ -71,4 +71,13 @@ export class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDeprecatedMes
     return proto3.util.equals(ImplicitlyDeprecatedMessage, a, b);
   }
 }
+
+/**
+ * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ */
+export const implicitly_deprecated_option = proto3.makeExtension<FieldOptions, number>(
+  "spec.implicitly_deprecated_option", 
+  FieldOptions, 
+  { no: 2001, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+);
 
